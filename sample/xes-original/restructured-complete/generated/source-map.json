@@ -6610,7 +6610,20 @@
         "sections": 6
       },
       "revision_ledger": "audit/source-review/volume6-ledger-20260930.json",
-      "revision_evidence": "build/revision-volume6-20260930/release-verification.json"
+      "revision_evidence": "build/revision-volume6-20260930/release-verification.json",
+      "revision_20261003_numbering": {
+        "description": "按现行阅读顺序编号，内部标签保留",
+        "old_to_new": {
+          "31.1": "31.1",
+          "31.2": "31.2",
+          "31.3": "31.3",
+          "31.4": "31.4",
+          "31.5": "31.5",
+          "31.7": "31.6",
+          "31.6": "31.7",
+          "31.8": "31.8"
+        }
+      }
     },
     {
       "chapter": 32,
@@ -6625,7 +6638,24 @@
         "sections": 6
       },
       "revision_ledger": "audit/source-review/volume6-ledger-20260930.json",
-      "revision_evidence": "build/revision-volume6-20260930/release-verification.json"
+      "revision_evidence": "build/revision-volume6-20260930/release-verification.json",
+      "revision_20261003_numbering": {
+        "description": "按现行阅读顺序编号，内部标签保留",
+        "old_to_new": {
+          "32.5": "32.1",
+          "32.1": "32.2",
+          "32.6": "32.3",
+          "32.7": "32.4",
+          "32.2": "32.5",
+          "32.8": "32.6",
+          "32.3": "32.7",
+          "32.9": "32.8",
+          "32.10": "32.9",
+          "32.11": "32.10",
+          "32.4": "32.11",
+          "32.12": "32.12"
+        }
+      }
     }
   ]
 }

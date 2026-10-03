@@ -106,7 +106,7 @@ def main() -> None:
         *[next(row["title"] for row in json.loads((ROOT / "generated" / "source-map.json").read_text(encoding="utf-8"))["chapters"] if row["chapter"] == number) for number in range(1, 33)],
         "电磁学补充专题",
         "第7卷　高阶选读",
-        "符号与常数索引",
+        "记号说明",
     ]
     ordering_ok = top_titles == required_order
     advanced_part = next(item for item in top if item["title"] == "第7卷　高阶选读")

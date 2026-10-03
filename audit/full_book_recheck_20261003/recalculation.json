@@ -1,0 +1,281 @@
+[
+  {
+    "name": "2.18: minimum launch speed reaches ground at the same time",
+    "observed": 80.00000000000003,
+    "expected": 80.0,
+    "tolerance": 1e-08,
+    "error": 2.842170943040401e-14,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "2.19: bounce flight-time sum",
+    "observed": 13.759915742008493,
+    "expected": 13.759915742008491,
+    "tolerance": 1e-08,
+    "error": 1.7763568394002505e-15,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "2.19: bounce distance sum",
+    "observed": 105.29597081744322,
+    "expected": 105.2959708174432,
+    "tolerance": 1e-08,
+    "error": 1.4210854715202004e-14,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "2.20: increasing-acceleration time sum",
+    "observed": 15.75,
+    "expected": 15.749999999999998,
+    "tolerance": 1e-08,
+    "error": 1.7763568394002505e-15,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "2.21: half-period stroboscopic height",
+    "observed": 59.99999999999999,
+    "expected": 60.0,
+    "tolerance": 1e-08,
+    "error": 7.105427357601002e-15,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "2.21: second exposure height",
+    "observed": 59.999999999999986,
+    "expected": 60.0,
+    "tolerance": 1e-08,
+    "error": 1.4210854715202004e-14,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "4.30: new solar day, hours",
+    "observed": 24.00095677964035,
+    "expected": 24.000957,
+    "tolerance": 5e-07,
+    "error": 2.2035964875044556e-07,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "4.30: new year, hours",
+    "observed": 8640.344440670526,
+    "expected": 8640.344,
+    "tolerance": 0.0005,
+    "error": 0.000440670526586473,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "4.31: retrograde days",
+    "observed": 72.73961853818336,
+    "expected": 72.74,
+    "tolerance": 0.005,
+    "error": 0.00038146181663023526,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "4.31: direct-motion days",
+    "observed": 706.9291062270821,
+    "expected": 706.93,
+    "tolerance": 0.005,
+    "error": 0.0008937729178342124,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "4.31: stationary sightline cross product",
+    "observed": -2.7755575615628914e-17,
+    "expected": 0.0,
+    "tolerance": 1e-08,
+    "error": 2.7755575615628914e-17,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "13.16: funnel emptying time, seconds",
+    "observed": 203.6949413887114,
+    "expected": 203.69494138871144,
+    "tolerance": 1e-07,
+    "error": 2.842170943040401e-14,
+    "passed": true,
+    "method": "numerical volume-flux integral"
+  },
+  {
+    "name": "13.17: Snell ray invariant",
+    "observed": 0.4811252243246882,
+    "expected": 0.4811252243246882,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "13.18: pipe equilibrium angle, degrees",
+    "observed": 31.080962195493385,
+    "expected": 31.1,
+    "tolerance": 0.05,
+    "error": 0.01903780450661685,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "13.18: angular momentum flux balance",
+    "observed": 0.17999999999999988,
+    "expected": 0.17999999999999997,
+    "tolerance": 1e-08,
+    "error": 8.326672684688674e-17,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "15.10: relative frequency-squared error, kappa=1.0",
+    "observed": 1.0000000000331457,
+    "expected": 1.0,
+    "tolerance": 1e-08,
+    "error": 3.314570840018405e-11,
+    "passed": true,
+    "method": "finite difference of generalized radial force"
+  },
+  {
+    "name": "15.10: relative frequency-squared error, kappa=1.4",
+    "observed": 1.0000000001183034,
+    "expected": 1.0,
+    "tolerance": 1e-08,
+    "error": 1.1830336710261236e-10,
+    "passed": true,
+    "method": "finite difference of generalized radial force"
+  },
+  {
+    "name": "17.8: dry lapse rate, K/km",
+    "observed": 9.698762710824182,
+    "expected": 9.7,
+    "tolerance": 0.05,
+    "error": 0.0012372891758172244,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "21.18: Sierpinski network resistance, level 0",
+    "observed": 0.6666666666666666,
+    "expected": 0.6666666666666666,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "generated graph and nodal KCL; lambda*a=1"
+  },
+  {
+    "name": "21.18: Sierpinski network resistance, level 1",
+    "observed": 0.5555555555555556,
+    "expected": 0.5555555555555556,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "generated graph and nodal KCL; lambda*a=1"
+  },
+  {
+    "name": "21.18: Sierpinski network resistance, level 2",
+    "observed": 0.46296296296296235,
+    "expected": 0.462962962962963,
+    "tolerance": 1e-08,
+    "error": 6.661338147750939e-16,
+    "passed": true,
+    "method": "generated graph and nodal KCL; lambda*a=1"
+  },
+  {
+    "name": "21.18: Sierpinski network resistance, level 3",
+    "observed": 0.3858024691358012,
+    "expected": 0.3858024691358025,
+    "tolerance": 1e-08,
+    "error": 1.3322676295501878e-15,
+    "passed": true,
+    "method": "generated graph and nodal KCL; lambda*a=1"
+  },
+  {
+    "name": "23.9: proton frequency, MHz",
+    "observed": 42.54297400971382,
+    "expected": 42.5,
+    "tolerance": 0.05,
+    "error": 0.042974009713816486,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "23.9: radio wavelength, m",
+    "observed": 7.046814779134824,
+    "expected": 7.05,
+    "tolerance": 0.005,
+    "error": 0.0031852208651761416,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "24.6: terminal capacitor voltage and emf",
+    "observed": 3.2457496136012365,
+    "expected": 3.2457496136012365,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "24.6: energy loss in small-resistance limit",
+    "observed": 2.0448222565687786,
+    "expected": 2.044822256568779,
+    "tolerance": 1e-08,
+    "error": 4.440892098500626e-16,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "24.6: alternative lossless model conserves energy",
+    "observed": 9.0,
+    "expected": 9.0,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "24.7: coupled rod-inductor energy",
+    "observed": 9.0,
+    "expected": 9.0,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "30.15: unpolarized fraction",
+    "observed": 0.6,
+    "expected": 0.6,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "30.15: maximum transmitted intensity / I0",
+    "observed": 1.75,
+    "expected": 1.75,
+    "tolerance": 1e-08,
+    "error": 0.0,
+    "passed": true,
+    "method": "direct substitution"
+  },
+  {
+    "name": "30.16: extraordinary effective refractive index",
+    "observed": 1.5681307116737515,
+    "expected": 1.57,
+    "tolerance": 0.005,
+    "error": 0.0018692883262485527,
+    "passed": true,
+    "method": "direct substitution"
+  }
+]

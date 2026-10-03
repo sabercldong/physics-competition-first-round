@@ -234,12 +234,15 @@
 
 \newcommand{\rodCapacitorDiagram}{%
 \begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
-  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-3,1.4)--(-1.9,1.4);
+  \draw[Ink,thick] (-1.9,1.2) rectangle (-1.0,1.6);
+  \node[above] at (-1.45,1.6) {$R_s$};
+  \draw[Ink,very thick] (-1.0,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
   \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.25); \draw[Ink,very thick] (-3.05,-0.25)--(-2.35,-0.25);
   \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,very thick] (-2.7,0.25)--(-2.7,1.4);
   \node[left] at (-2.7,0) {$C$};
   \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
-  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v(t)$};
   \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
   \node[align=left,anchor=west] at (3.5,0.2)
     {$q_\infty=CBLv_\infty$\\[4pt]$m(v-v_0)=-BLq$};

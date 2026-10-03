@@ -1,0 +1,571 @@
+{
+  "main_pages": 1106,
+  "main_sha256": "fa14b27f8c46d9021943896059edc20dd42573136deb70253644564a0775f696",
+  "main_warnings": [],
+  "derived_files": 48,
+  "versions": [
+    {
+      "name": "高中物理竞赛一轮讲义_第01—02章.pdf",
+      "pages": 65,
+      "body_pages": 63,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "3c3f7b8cda6845ea9880e094e891b7587bf3277a7e633aae88c2687984c10e89"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第01章_数学工具：量纲、矢量、坐标、导数和积分.pdf",
+      "pages": 40,
+      "body_pages": 39,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "b9aa488e301453877caf40e498c058c24f3c22d495e5e6d99a6d07838d917e38"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第02章_质点运动的描述.pdf",
+      "pages": 25,
+      "body_pages": 24,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "62aabda69ee23f0c07084aa6b8f7052cd560b53f6e65b2d90e59e0c802213ad5"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第03章_合运动、抛体、圆周与一般曲线运动.pdf",
+      "pages": 52,
+      "body_pages": 51,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "9eb3345bddaaaca9ca48177602322c130ac6b8b5c03d80f79d15110d0fc547fd"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第04章_相对运动、约束和刚体运动学.pdf",
+      "pages": 36,
+      "body_pages": 35,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "b5a68301e86eb0287d9b16d77d2de70f983d0e5dd203a32a20ecc22203f3d0a4"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第05章_力、受力分析与静力平衡.pdf",
+      "pages": 41,
+      "body_pages": 40,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "5594082b4fcb7e4b8102be3f500814b0117b99c07277d31eab5f285e0767f1a7"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第06章_牛顿定律、非惯性系及其应用.pdf",
+      "pages": 36,
+      "body_pages": 35,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "f105a57a625fb7ea1e68a823e86380b3305ab61fa90acfa16df9b6d91cfd5894"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第07章_动量、变质量系统与碰撞.pdf",
+      "pages": 43,
+      "body_pages": 42,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "dd8308edd61ff196191ced0a06bf1d90bfcde5ebb48b9336a40b88f6483f249f"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第08章_功、能量和守恒定律.pdf",
+      "pages": 26,
+      "body_pages": 25,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "35186e31e235d7e87b675fc0f5659b5f7ef408225f48c201f676f87605686b5a"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第09章_角动量与刚体动力学.pdf",
+      "pages": 33,
+      "body_pages": 32,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "f0e59df7470eb2beed898e468f037d00f436159e6cf702ee49037de0a499d951"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第10章_简谐振动、阻尼、受迫振动和共振.pdf",
+      "pages": 37,
+      "body_pages": 36,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "5cd76b32c3bbdfbeea3f0e342586ee133464e315374907ba8a1e6735f3bf4169"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第11章_有心力、万有引力与天体运动.pdf",
+      "pages": 17,
+      "body_pages": 16,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [
+        {
+          "local": 8,
+          "main": 375
+        }
+      ],
+      "unmatched": [],
+      "sha256": "c440aed2b47b95d033a45fd5ecb0ff41347fb7d967f75d8eec3b7b0745fbc6ae"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第12章_弹性体与机械波.pdf",
+      "pages": 30,
+      "body_pages": 29,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "617c2cf6fce57c80f504628809346a75a0ffff31d4521e5aa286eca10bead08c"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第13章_流体静力学与动力学.pdf",
+      "pages": 25,
+      "body_pages": 24,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "6c3ec225f970c125a66f923003b0645441b7fc77d0b8b20a335a7f53dd8c8162"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第14章_温度、物态、理想气体与分子模型.pdf",
+      "pages": 27,
+      "body_pages": 26,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "2f38941bd537ff1bb08cc19de7f33175b38145505e97b1b1331987f297ae2f13"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第15章_热力学第一定律.pdf",
+      "pages": 29,
+      "body_pages": 28,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "d04194b002667fc639cf2cbff793b01116c5d2816a174b96121e2516e07289cb"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第16章_热力学第二定律.pdf",
+      "pages": 18,
+      "body_pages": 17,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "e8b61858e7fc4cd48cb0a3dd68715d66485ff7dd4b8c94e2f97cf853295bad1f"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第17章_相变与表面现象.pdf",
+      "pages": 19,
+      "body_pages": 18,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "e9b3a95817849e3161b056ad9eae3653d8bb7505e26aa4f0d73e7c5666583b86"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第18章_统计物理基础.pdf",
+      "pages": 17,
+      "body_pages": 16,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "b8c8fe49ae91f2e0d3881c44629a0c5b9f446fa27efe3b65ca39dcabb74dd630"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第19章_静电场与电势.pdf",
+      "pages": 37,
+      "body_pages": 36,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "4354cfa88c91bb44ff48ec3d4c274c35559e585bb8434507cf885a02d9a212de"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第1—7章.pdf",
+      "pages": 269,
+      "body_pages": 266,
+      "frontmatter": [
+        1,
+        2,
+        3
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "1e549b6a4ab61259441b7191fda103862f39cc4e64a12a4f8516bd2e03f8f404"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第1卷_数学工具与运动学.pdf",
+      "pages": 151,
+      "body_pages": 149,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "e8194af97cdaadfd484c90d5e3350341cdf2f73e0baee646a2c9d86dfc22a40e"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第20章_导体、电介质与电容器_含解答与解图.pdf",
+      "pages": 41,
+      "body_pages": 40,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "4d20389afee8b6309e440f4cbbf7eef53ceffe5816d593cbcd1f8245c40741dd"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第21章_恒定电流与复杂电路.pdf",
+      "pages": 38,
+      "body_pages": 37,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "0eb36007b4644e63f7abb842b01011b2067ab54b49a9f34777e5aa29442c8711"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第22章_洛伦兹力与带电粒子运动.pdf",
+      "pages": 29,
+      "body_pages": 28,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "24d978ce1f20cd728380553b6324b7850974b15bd2cc04b2aa618997d7411c75"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第23章_磁场、安培力与安培定律.pdf",
+      "pages": 27,
+      "body_pages": 26,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "b372283261f48b7e259359a36a282d904ccfc7c1c89378f27d54a81686859932"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第24章_电磁感应.pdf",
+      "pages": 39,
+      "body_pages": 38,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "2a943fd13c7c118966fb9a10bcc4403f00b8ace609c34c8ef79884cf18791226"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第25章_交流电、相量与RLC电路.pdf",
+      "pages": 14,
+      "body_pages": 13,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "35a66cdb42b7cec85caa9206fba2b66c576711b6f8292146c13ed52a5a4524bf"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第26章_电磁场、电磁波与超导体.pdf",
+      "pages": 28,
+      "body_pages": 27,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "cfe421dd223d275ccc9269b7cfe39ee214c754866435f4175c18793a20633d9e"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第27章_几何光学：光线、反射和折射.pdf",
+      "pages": 24,
+      "body_pages": 23,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "08276ee67e0856200632310387985dd41f060577e864e67d55f98d76fdeb1606"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第28章_成像与光学仪器.pdf",
+      "pages": 26,
+      "body_pages": 25,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "e5738a2d770028bc9dc3d923d86cc93ca35eeec93f3c0f9124f719ae86715a83"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第29章_光的干涉.pdf",
+      "pages": 25,
+      "body_pages": 24,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "a28053c0eb68b4744e157adc108147ac043eb67a5cbb18e5448f6b51add030aa"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第2卷_力学.pdf",
+      "pages": 282,
+      "body_pages": 279,
+      "frontmatter": [
+        1,
+        2,
+        3
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "5e64f6577068c34f2a0ca03ea3dceafe1c93edf21aea58f3dad358cae6cba63d"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第30章_衍射、偏振与晶体光学.pdf",
+      "pages": 25,
+      "body_pages": 24,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "dbdb38ad964d87185b4aca4df515e2f282f928c338f7101666ccd0fcbe06fdda"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第31章_狭义相对论.pdf",
+      "pages": 15,
+      "body_pages": 14,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "f844016c2a90407bf6d00ef9205fc92739a9926c72a63c741f6773f26f6a93f6"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第32章_量子现象、原子与原子核物理.pdf",
+      "pages": 15,
+      "body_pages": 14,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "78e9235f9c98cc2ce698709ab72149709f0648665bddecbe2fbf170fb07ab981"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第3卷_热学与统计物理.pdf",
+      "pages": 108,
+      "body_pages": 105,
+      "frontmatter": [
+        1,
+        2,
+        3
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "424def6ef1bb1f6d4ced45e9db713980fa2b17f307e03e5852f1d4f3f40fd83a"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第4卷_电磁学.pdf",
+      "pages": 267,
+      "body_pages": 264,
+      "frontmatter": [
+        1,
+        2,
+        3
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "a77324626404db8657d9a226e5bc9ff12afa1eddc6412aac51307b8ab2e1294d"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第5卷_光学.pdf",
+      "pages": 99,
+      "body_pages": 96,
+      "frontmatter": [
+        1,
+        2,
+        3
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "50c9a34c1c2b7adc4a90b6c01efba2a1ad3e5cd464e4a4fc3aa85bdd8923a10a"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第6卷_近代物理.pdf",
+      "pages": 30,
+      "body_pages": 28,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "51c15f6918cb34956a9bcb9699d0b0c1354e8d74aca72da76b903ea01cb2bd72"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_第7卷_高阶选读.pdf",
+      "pages": 176,
+      "body_pages": 175,
+      "frontmatter": [
+        2
+      ],
+      "reordered_extraction": [
+        {
+          "local": 36,
+          "main": 965
+        }
+      ],
+      "unmatched": [],
+      "sha256": "1db90b95d3f8eb5b49ee9daa1c82fcfcfd6ab58505c9dd54cb1a377ea2aa18c0"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_附录E_电磁学补充专题_含解答与解图.pdf",
+      "pages": 20,
+      "body_pages": 19,
+      "frontmatter": [
+        1
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "1d368eeef410a921007d6793a823becf3e9b8b9c24328251f4f5b21374555ab4"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_高阶选读_A1_力学_含解答与解图.pdf",
+      "pages": 40,
+      "body_pages": 38,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [
+        {
+          "local": 36,
+          "main": 965
+        }
+      ],
+      "unmatched": [],
+      "sha256": "59bcc79ab02312c625d5acf99cefb841067d811964c8dff45b1b1f1f77a8ca6a"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_高阶选读_A2_热学_含解答与解图.pdf",
+      "pages": 19,
+      "body_pages": 17,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "a89917ae58e37e2cfaa663096c3cc668656030fa107068b0e4dd9f3cd29cb274"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_高阶选读_A3_数学工具_含解答与解图.pdf",
+      "pages": 29,
+      "body_pages": 27,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "ddadea291258092ac5b862dcde26f10923ccdb6314f91466d0afed2dc778c253"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_高阶选读_A4_电磁学_含解答与解图.pdf",
+      "pages": 28,
+      "body_pages": 26,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "73e1277cf460c4f026b7106cfe30fcaa82a00a8f51acf6285dcbf9d7f0a88bae"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_高阶选读_A5_光学.pdf",
+      "pages": 28,
+      "body_pages": 26,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "1806939be31442792371f68b054b16d3c8379abb68ab4a54d69c3c906a982897"
+    },
+    {
+      "name": "高中物理竞赛一轮讲义_高阶选读_A6_近代物理_含解答与解图.pdf",
+      "pages": 42,
+      "body_pages": 40,
+      "frontmatter": [
+        1,
+        2
+      ],
+      "reordered_extraction": [],
+      "unmatched": [],
+      "sha256": "68245b9f29394d49a3a90b7b668dbd5a3949b141a2aef30a84e50ad02ec01932"
+    }
+  ],
+  "ok": true
+}

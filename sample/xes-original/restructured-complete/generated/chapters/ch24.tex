@@ -247,12 +247,15 @@
 
 \newcommand{\rodCapacitorDiagram}{%
 \begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
-  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-3,1.4)--(-1.9,1.4);
+  \draw[Ink,thick] (-1.9,1.2) rectangle (-1.0,1.6);
+  \node[above] at (-1.45,1.6) {$R_s$};
+  \draw[Ink,very thick] (-1.0,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
   \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.25); \draw[Ink,very thick] (-3.05,-0.25)--(-2.35,-0.25);
   \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,very thick] (-2.7,0.25)--(-2.7,1.4);
   \node[left] at (-2.7,0) {$C$};
   \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
-  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v(t)$};
   \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
   \node[align=left,anchor=west] at (3.5,0.2)
     {$q_\infty=CBLv_\infty$\\[4pt]$m(v-v_0)=-BLq$};
@@ -1241,12 +1244,16 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 
 \begin{origexamplebox}{【小棒加电容】}\label{ch24:ex:s40-9-6}
 一根质量为 $m$ 的导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路中串联电容 $C$，
-所有电阻均忽略。棒初速为 $v_0$ 向右，电容初始不带电。描述 $t=0$ 后导体棒的运动。
+并保留串联小电阻 $R_s>0$；忽略回路自感及其他电阻。在 $t=0$ 接通回路，棒初速为 $v_0$ 向右，电容初始不带电。
+求充电暂态中的棒速和电荷、长时间后的终态，并讨论先等待暂态结束再取 $R_s\to0^+$ 的极限。
 
 % Pure source-question geometry: no derived forces, currents or solution curves.
 %
 \begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
-  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-3,1.4)--(-1.9,1.4);
+  \draw[Ink,thick] (-1.9,1.2) rectangle (-1.0,1.6);
+  \node[above] at (-1.45,1.6) {$R_s$};
+  \draw[Ink,very thick] (-1.0,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
   \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.25); \draw[Ink,very thick] (-3.05,-0.25)--(-2.35,-0.25);
   \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,very thick] (-2.7,0.25)--(-2.7,1.4);
   \node[left] at (-2.7,0) {$C$};
@@ -1254,12 +1261,12 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
   \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
   \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
   \end{tikzpicture}\end{center}
-\figcap{导体棒与初始未充电电容器相连。}\label{ch24:fig:em24-question-6}
+\figcap{导体棒通过小电阻与初始未充电的电容器相连，图示接通后的回路。}\label{ch24:fig:em24-question-6}
 \end{origexamplebox}
 
 \begin{xesolution}
-零电阻与“初始电容不带电、棒却有非零速度”不能在普通时间尺度上同时满足；闭合回路后会出现一个极短的充电暂态。
-设暂态后电容带电量为 $q$、棒速为 $v$，则回路方程和棒的冲量方程分别为
+接通回路后先经历充电暂态。先求长时间极限，再解出完整的时间变化。
+设长时间后电容带电量为 $q$、棒速为 $v$。此时电流趋于零，回路方程与暂态全过程的冲量方程分别为
 \begin{equation}
   \frac qC=BLv,
   \qquad m(v-v_0)=-BLq.
@@ -1270,7 +1277,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
   \qquad
   \boxed{q=\frac{mCBL}{m+CB^2L^2}v_0}.
 \end{equation}
-上述状态是忽略自感、先保留微小电阻 $R_s>0$ 并等待暂态结束后的终态，随后电流为零，棒匀速运动。
+上述 $q,v$ 分别记作 $q_\infty,v_\infty$；这是题设 $R_s>0$ 时的长时间极限，电流渐近趋零，棒速渐近趋于常量。
 为明确过程，令 $k_m=BL$，则
 \[
  R_s\dot q+q/C=k_mv,\qquad mv+k_mq=mv_0.
@@ -1293,7 +1300,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-rodcapacitordiagram-1}中，电容最终电压等于棒的动生电动势；暂态需按文中微小电阻模型理解。
 \par\noindent\begin{minipage}{\linewidth}
 \rodCapacitorDiagram
-\figcap{机械等效电容与真实电容的电荷重分配}\label{ch24:fig:review-rodcapacitordiagram-1}
+\figcap{电容充电时的回路与棒的冲量关系}\label{ch24:fig:review-rodcapacitordiagram-1}
 \end{minipage}\par\medskip
 \end{xesolution}
 

@@ -38,3 +38,7 @@ git lfs pull
 ## 当前本机工作副本
 
 为避免 iCloud 将 Git 对象转为占位文件，本机 `.git` 文件指向用户主目录下的 `.local/share/git/physics-competition-first-round.git`。原有 Git 元数据保存在本地 `archive/20261003-git-before-github/`。从 GitHub 克隆的新工作副本使用常规 Git 目录，无需上述本机路径。
+
+## 本次全书修订（2026-10-03）
+
+已修正复查中定位的题干条件、例号顺序、术语和书末记号说明，并同步正式分册及组合文件。合订本仍为1106页。修订记录见 `audit/全书复查问题_修订完成记录_20261003.md`；当前49份正式一轮PDF的校验清单见 `output/pdf/发布清单_20261003.json`。
