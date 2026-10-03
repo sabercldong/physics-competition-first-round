@@ -1,0 +1,110 @@
+\subsection*{稳恒电流并不意味着载流子静止}
+
+稳恒电流是指宏观电流密度不随时间变化，并不是每个载流子保持同一速度。金属电子在两次碰撞
+之间被电场加速，碰撞后定向动量的一部分转移给晶格；大量电子的统计平均漂移速度保持不变，
+才形成稳恒电流。典型金属中的漂移速度通常很小，而开关闭合后电路响应很快，是因为电场以接近
+电磁信号传播的速度在整个电路中建立，不是某一批电子从电源一路高速跑到用电器。
+
+由连续性方程积分可得一个有限体积内的电荷守恒：
+\begin{equation}
+ \frac{\dd}{\dd t}\int_V\rho_q\,\dd V
+ =-\oint_{\partial V}\vect j\cdot\dd\vect S.
+\end{equation}
+右侧是流出边界的净电流。节点处若流入电流大于流出电流，节点就会积累电荷并改变局部电势，
+直到各支路电流重新满足 KCL。因而 Kirchhoff 电流定律可看成稳态极限，而不是与场论无关的
+独立规则。
+
+导体中若出现体电荷密度扰动，利用 $\vect j=\sigma\vect E$、
+$\nabla\cdot\vect E=\rho_q/\varepsilon$ 和连续性方程可得
+\begin{equation}
+ \frac{\partial\rho_q}{\partial t}=-\frac\sigma\varepsilon\rho_q.
+\end{equation}
+所以体电荷按时间常数
+\begin{equation}
+ \tau_r=\frac\varepsilon\sigma
+\end{equation}
+迅速弛豫到表面。良导体中 $\sigma$ 很大，$\tau_r$ 极短，这解释了稳恒导电时导体内部通常近似
+电中性，而维持电流所需的微小电场主要由表面电荷分布建立。
+
+\subsection*{Drude 模型的暂态与交流响应}
+
+恒定电场在 $t=0$ 突然接通，若初始平均漂移速度为零，Drude 方程的解为
+\begin{equation}
+ \vect v_d(t)=-\frac{e\tau}{m}\vect E
+ \left(1-e^{-t/\tau}\right),
+\end{equation}
+电流在若干碰撞时间后接近稳态。若电场撤去，则漂移速度按 $e^{-t/\tau}$ 衰减，定向动量转化为
+晶格热运动。这是电阻耗散的微观图像。
+
+对角频率为 $\omega$ 的简谐电场，取复数表示可得频率相关电导率
+\begin{equation}
+ \boxed{\sigma(\omega)=\frac{ne^2\tau/m}{1-\mathrm i\omega\tau}}.
+\end{equation}
+当 $\omega\tau\ll1$，载流子来得及跟随，恢复直流电导率；当 $\omega\tau\gg1$，漂移明显滞后，
+简单的恒定电阻模型失效。Drude 模型虽然忽略能带和量子统计，却能把电导、碰撞时间和交流响应
+放在同一框架中。
+
+焦耳热的局部功率密度为 $p=\vect j\cdot\vect E$。对各向同性欧姆介质，
+$p=\sigma E^2=j^2/\sigma\ge0$，表明电能不可逆地转化为内能。若元件具有电源作用，端口功率可为
+负，能量来自化学反应、机械功或其他内部储能，不能再把它当作纯电阻。
+
+\subsection*{电动势、端电压与内阻}
+
+维持稳恒电流需要非静电力把正电荷从低电势处输送回高电势处。电源中单位正电荷受到的非静电力
+沿闭合回路做功定义为电动势
+\begin{equation}
+ \mathcal E=\oint\frac{\vect f_{\rm non}}q\cdot\dd\vect l.
+\end{equation}
+电动势单位也是伏特，却不是电源两端某两点电势之差的同义词。理想电源无内阻时端电压等于
+$\mathcal E$；实际电源用内阻 $r$ 表示内部损耗，放电时
+\begin{equation}
+ U=\mathcal E-Ir.
+\end{equation}
+充电时电流被外界压入电源正端，端电压通常为 $U=\mathcal E+Ir$。符号最好由选定的电流方向和
+KVL 推出，不宜死记。
+
+电源接负载 $R$ 时
+\begin{equation}
+ I=\frac{\mathcal E}{R+r},
+ \qquad
+ P_R=I^2R=\frac{\mathcal E^2R}{(R+r)^2}.
+\end{equation}
+对 $R$ 求极值得最大功率条件 $R=r$，此时效率只有 $1/2$。最大功率与最高效率是不同目标；若追求
+高效率，应让 $R\gg r$，但输出功率会下降。
+
+\subsection*{非欧姆元件与微分电阻}
+
+对非线性元件，工作点处可区分静态电阻和微分电阻：
+\begin{equation}
+ R_{\rm stat}=\frac UI,
+ \qquad
+ r_d=\frac{\dd U}{\dd I}.
+\end{equation}
+前者是从原点到工作点连线的斜率，后者是曲线切线斜率。小信号扰动只看工作点附近的
+$r_d$；气体放电管、隧穿器件等可能出现 $r_d<0$，这不代表 $U/I$ 为负，而是电流增加时端电压
+下降。把这种元件与外电路连接时，工作点稳定性取决于整条负载线，不能孤立地读一个“电阻值”。
+
+电阻率一般依赖温度。金属中晶格振动增强使碰撞更频繁，常温附近可近似写
+\begin{equation}
+ \rho(T)=\rho_0[1+\alpha(T-T_0)].
+\end{equation}
+灯丝通电升温后电阻显著增大，因此伏安曲线弯曲；半导体载流子浓度随温度变化强烈，温度系数
+还可能为负。Ohm 定律只应在材料状态和工作范围明确时使用。
+
+\subsection*{Kirchhoff 方程的适用范围}
+
+KVL 假设沿回路的感应电场贡献可忽略，即电路尺度远小于信号波长、磁通变化不显著，可以把各节点
+赋予单值电势。若回路中有时变磁通，Faraday 定律给出
+\begin{equation}
+ \oint\vect E\cdot\dd\vect l=-\frac{\dd\Phi_B}{\dd t},
+\end{equation}
+回路电压和不再为零，必须把感应电动势计入。高频或尺寸很大的电路还会出现传播延迟，集总参数
+模型应改为传输线或完整电磁场描述。
+
+实际列网络方程时，可先选参考节点，把每条支路电流写成两端节点电压的函数，再对未知节点列
+KCL。理想电压源连接两个非参考节点时，可把二者视为超节点；理想电流源则直接进入节点电流和。
+方程求解后应检查功率平衡：所有元件按同一被动符号约定计算 $P_k=U_kI_k$，应满足
+\begin{equation}
+ \sum_k P_k=0.
+\end{equation}
+这既是能量守恒，也能有效发现电压极性或电流方向的符号错误。

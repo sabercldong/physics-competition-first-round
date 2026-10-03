@@ -1,0 +1,25 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{common-style.tex}
+
+\hypersetup{
+  pdftitle={高中物理竞赛一轮讲义：数学与物理工具}
+}
+
+% Section sources remain independently compilable.  With this flag defined,
+% each source skips its standalone preamble and chapter reset.
+\newcommand{\MASTERBOOK}{}
+
+\begin{document}
+
+\pagenumbering{arabic}
+\chapter{数学与物理工具}
+
+\input{first-section/main.tex}
+\input{second-section/main.tex}
+\input{third-section/main.tex}
+\input{fourth-section/main.tex}
+\input{fifth-section/main.tex}
+
+\end{document}

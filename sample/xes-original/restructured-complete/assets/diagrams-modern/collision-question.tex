@@ -1,0 +1,12 @@
+% 核心结论：已知两等质量粒子同速相向结合，待求末态静质量。
+% 纯几何两行，蓝灰10pt，目标宽9cm；m -> <- m / M=?，无结果或辅助四动量。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \node[draw,circle,minimum size=9mm] (a) at (-2.6,1) {$m$};
+ \node[draw,circle,minimum size=9mm] (b) at (2.6,1) {$m$};
+ \draw[vector] (a.east)--(-.5,1) node[midway,above] {$v$};
+ \draw[vector] (b.west)--(.5,1) node[midway,above] {$v$};
+ \node[left=8pt] at (a.west) {初态};
+ \node[draw,minimum width=2cm,minimum height=.8cm] (f) at (0,-.65) {$M\;?$};
+ \node[right=8pt] at (f.east) {结合后静止};
+ \node[left=8pt] at (-3.05,-.65) {末态};
+\end{tikzpicture}

@@ -1,0 +1,598 @@
+\input{theory-restored.tex}
+
+% 以下为早期压缩稿，保留在源码中仅供修订对照，不进入成品。
+\iffalse
+导体达到静电平衡后，每块连通导体都具有确定的电势与净电荷。固定所有导体的形状、位置以及
+周围介质后，静电场方程是线性的，因此导体的电荷与电势之间也呈线性关系。对单个孤立导体或
+只关心两极电势差的双极系统，这种线性关系就由一个标量——电容——来概括。
+
+\subsection*{孤立导体与双极电容器}
+
+若一个导体携带电荷 $Q$，相对于无穷远的电势为 $\varphi$，其余导体均接地，则定义单极电容
+\begin{equation}
+  \boxed{C=\frac{Q}{\varphi}}.
+\end{equation}
+电容由几何形状、相对位置和介质决定，与 $Q$ 的大小无关。半径为 $R$ 的孤立导体球满足
+$\varphi=Q/(4\pi\varepsilon_0R)$，故
+\begin{equation}
+  \boxed{C_{\rm sphere}=4\pi\varepsilon_0R}.
+\end{equation}
+
+两块导体分别带等量异号电荷 $+Q$、$-Q$，两极电势差为 $U$ 时，双极电容器的电容定义为
+\begin{equation}
+  \boxed{C=\frac QU}.
+\end{equation}
+这一定义不要求极板平行；只要结构固定且介质在线性范围内，$Q$ 与 $U$ 就成正比。
+
+平行板电容器在极板面积 $S$ 远大于边缘尺度 $d^2$ 时，可忽略边缘场。板间
+$E=Q/(\varepsilon_0S)$、$U=Ed$，所以
+\begin{equation}
+  \boxed{C=\frac{\varepsilon_0S}{d}}.
+\end{equation}
+同心球形电容器内、外半径为 $R_1<R_2$，同轴圆柱电容器内、外半径为 $a<b$、有效长度为 $l$，
+则
+\begin{equation}
+  \boxed{C_{\rm sph}=4\pi\varepsilon_0\frac{R_1R_2}{R_2-R_1}},
+  \qquad
+  \boxed{C_{\rm cyl}=\frac{2\pi\varepsilon_0l}{\ln(b/a)}}.
+\end{equation}
+
+\capacitorGeometryDiagram
+
+\subsection*{连接与储能}
+
+并联电容器两端电势差相同，总电荷是各支路电荷之和：
+\begin{equation}
+  \boxed{C_{\parallel}=\sum_iC_i}.
+\end{equation}
+串联电容器的中间连接导体若初始中性，其净电荷始终为零，因而各电容器所带电荷量的绝对值
+相同；总电压是各段电压之和：
+\begin{equation}
+  \boxed{\frac1{C_{\rm series}}=\sum_i\frac1{C_i}}.
+\end{equation}
+
+\seriesParallelDiagram
+
+给电容器增加微小电荷 $\dd q$ 时，需要克服当时的电势差 $u=q/C$，外力输入
+$\dd W=u\dd q$。从零电荷充到 $Q$，电场储能为
+\begin{equation}
+  \boxed{W=\int_0^Q\frac qC\dd q
+  =\frac{Q^2}{2C}=\frac12QU=\frac12CU^2}.
+\end{equation}
+真空中的能量密度为 $u_E=\varepsilon_0E^2/2$；在线性、各向同性介质中推广为
+\begin{equation}
+  \boxed{u_E=\frac12\vect E\cdot\vect D=\frac12\varepsilon E^2}.
+\end{equation}
+
+\subsection*{导体组的倒易关系}
+
+同一组固定导体可处于两种静电平衡状态。第一态各导体的电荷、电势为 $Q_i,\varphi_i$，第二态
+为 $Q_i',\varphi_i'$。由 Green 第二恒等式，可得静电倒易定理
+\begin{equation}
+  \boxed{\sum_iQ_i\varphi_i'=\sum_iQ_i'\varphi_i}.
+\end{equation}
+把电荷写成电势的线性函数
+\begin{equation}
+  Q_i=\sum_jC_{ij}\varphi_j,
+\end{equation}
+倒易定理给出 $C_{ij}=C_{ji}$。这意味着“导体 $j$ 升高单位电势在导体 $i$ 上引起的电荷”与
+交换 $i,j$ 后完全相同。多导体静电感应并不需要为每一对导体分别建立互不相关的参数，电容系数
+矩阵具有对称性。
+
+\subsection*{电介质、极化与电位移}
+
+绝缘体置于外电场后，束缚的正负电荷发生微小相对位移，原子或分子形成电偶极子。单位体积内的
+总电偶极矩定义为极化强度
+\begin{equation}
+  \boxed{\vect P=\frac{\dd\vect p}{\dd V}}.
+\end{equation}
+均匀介质中，体内相邻偶极子的电荷相互抵消，但介质表面会留下束缚面电荷
+\begin{equation}
+  \boxed{\sigma_b=\vect P\cdot\uvec n}.
+\end{equation}
+非均匀极化还会产生束缚体电荷 $\rho_b=-\nabla\cdot\vect P$。
+
+\polarizationDiagram
+
+定义电位移矢量
+\begin{equation}
+  \boxed{\vect D=\varepsilon_0\vect E+\vect P}.
+\end{equation}
+把束缚电荷并入 $\vect P$ 后，Gauss 定律写成
+\begin{equation}
+  \boxed{\oint_S\vect D\cdot\dd\vect S=Q_{\rm free}},
+  \qquad \nabla\cdot\vect D=\rho_{\rm free}.
+\end{equation}
+对线性、各向同性、均匀介质，
+\begin{equation}
+  \vect P=\varepsilon_0\chi_e\vect E,
+  \qquad
+  \boxed{\vect D=\varepsilon\vect E
+  =\varepsilon_r\varepsilon_0\vect E},
+  \qquad \varepsilon_r=1+\chi_e.
+\end{equation}
+同一电容器完全填充介质后，若几何不变，电容增大为
+\begin{equation}
+  \boxed{C=\varepsilon_rC_0}.
+\end{equation}
+电介质不具备导体的静电屏蔽性质：极化只能削弱或改变电场，不能让介质内部在一般情况下变成
+等势体。
+
+\fi
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 32.1【统统算出来】}
+求下列三种电容器的电容：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 面积 $S=l^2$、间距 $d$ 的平行板电容器，$l\gg d$；
+  \item 内、外半径为 $R_1,R_2$ 的同心球形电容器，$R_1<R_2$；
+  \item 内、外半径为 $a,b$、长度为 $l$ 的同轴圆柱形电容器，$l\gg b-a$。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+三题都让内、外电极分别带 $+Q$、$-Q$，先由 Gauss 定律求两极间电场，再积分求电压。
+
+\textbf{(1) 平行板。}忽略边缘效应，板间场为
+\[
+  E=\frac{Q}{\varepsilon_0S},\qquad
+  U=Ed=\frac{Qd}{\varepsilon_0S}.
+\]
+因此
+\begin{equation}
+  \boxed{C_{\rm pp}=\frac QU=\frac{\varepsilon_0S}{d}}.
+\end{equation}
+
+\textbf{(2) 同心球。}在 $R_1<r<R_2$ 内，
+\[
+  E(r)4\pi r^2=\frac Q{\varepsilon_0},
+  \qquad E(r)=\frac{Q}{4\pi\varepsilon_0r^2}.
+\]
+故
+\[
+  U=\int_{R_1}^{R_2}E(r)\dd r
+  =\frac{Q}{4\pi\varepsilon_0}\left(\frac1{R_1}-\frac1{R_2}\right),
+\]
+从而
+\begin{equation}
+  \boxed{C_{\rm sph}=4\pi\varepsilon_0
+  \frac{R_1R_2}{R_2-R_1}}.
+\end{equation}
+令 $R_2\to\infty$，得到孤立球的 $C=4\pi\varepsilon_0R_1$。
+
+\textbf{(3) 同轴圆柱。}柱面 Gauss 面给出
+\[
+  E(r)2\pi rl=\frac Q{\varepsilon_0},
+  \qquad E(r)=\frac{Q}{2\pi\varepsilon_0lr}.
+\]
+所以
+\[
+  U=\int_a^bE(r)\dd r=\frac{Q}{2\pi\varepsilon_0l}\ln\frac ba,
+\]
+以及
+\begin{equation}
+  \boxed{C_{\rm cyl}=\frac{2\pi\varepsilon_0l}{\ln(b/a)}}.
+\end{equation}
+三种推导中的近似只用于忽略开口或极板边缘的非均匀场；在理想同心球中不存在边缘近似。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 32.2【两个导体球】}
+两个半径均为 $R$ 的导体球紧挨着并相互导通。求它们作为一个导体时的单极电容。
+\end{origexamplebox}
+
+\begin{xesolution}
+两球导通后具有相同电势 $V$。这一几何可用双球坐标求解，也可用逐次反演产生的无穷像电荷
+序列。对两个等半径球，设球心距为 $L>2R$，定义
+\[
+  \cosh\alpha=\frac{L}{2R}.
+\]
+两个球处于同一电势 $V$ 时，自电容系数与互电容系数的级数交错组合，总电荷可写成
+\begin{equation}
+  Q_{\rm tot}=8\pi\varepsilon_0RV\sinh\alpha
+  \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\sinh(n\alpha)}.
+\end{equation}
+因此
+\[
+  C(L)=8\pi\varepsilon_0R\sinh\alpha
+  \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\sinh(n\alpha)}.
+\]
+相切极限 $L\to2R^+$ 对应 $\alpha\to0^+$。此时
+\[
+  \frac{\sinh\alpha}{\sinh(n\alpha)}\longrightarrow\frac1n,
+\]
+故级数趋于交错调和级数 $1-1/2+1/3-\cdots=\ln2$，得到
+\begin{equation}
+  \boxed{C=8\pi\varepsilon_0R\ln2}.
+\end{equation}
+它约为 $1.386$ 个孤立单球电容 $4\pi\varepsilon_0R$，小于相距无穷远时两个单球电容之和
+$8\pi\varepsilon_0R$。原因是两球接近且同电势时，接触区附近的同号电荷被排斥到外侧，总电势在
+相同总电荷下升高。
+
+\touchingSpheresDiagram
+
+图 32.12 中沿球心连线画出的点列表示双球坐标或像电荷级数中的等效源位置。越靠近接触点，
+相邻像电荷的位置越密，说明接触区的边界条件需要越来越高阶的项才能准确满足；这也是相切极限
+不能简单把两个孤立球电容直接相加的原因。图中的点不是导体内部真实存在的点电荷，而是计算外部
+电势时的数学等效源。
+
+结果的两个极限提供了重要校验。若两球相距很远，每个球几乎不受另一个球影响，总电容趋近
+$2(4\pi\varepsilon_0R)=8\pi\varepsilon_0R$；相切时得到
+$8\pi\varepsilon_0R\ln2$，因 $\ln2<1$，确实比远离时小。两球越接近，同号电荷越被排向外侧，
+同样总电荷产生的公共电势越高，所以 $C=Q/V$ 越小，趋势与级数结果一致。
+
+“两球导通”是本题的关键条件。若两球仅几何接触却由绝缘层隔开，电荷不能在两个球之间重新分配，
+就不能把表面视为同一个等势导体；若两球带给定的不同总电荷，也应先求电容系数矩阵，而不是只用
+一个标量电容。图示中的连成一体，既表示几何接触，也表示电荷能够自由迁移并达到共同电势。
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 32.3【两个圆柱】}
+两根无穷长平行圆柱导体的半径均为 $R$，圆心距为 $L>2R$。两柱带等量异号线电荷，求单位
+长度的双极电容。
+\end{origexamplebox}
+
+\begin{xesolution}
+取双极坐标 $\tau,\sigma$，使两圆柱表面分别为 $\tau=\pm\tau_0$。几何关系为
+\begin{equation}
+  \boxed{\cosh\tau_0=\frac{L}{2R}}.
+\end{equation}
+二维 Laplace 方程中，满足两柱电势分别为 $+U/2$、$-U/2$ 的解可取
+\[
+  \varphi(\tau)=\frac{U}{2\tau_0}\tau.
+\]
+由柱面上的法向电场积分，单根圆柱每单位长度所带电荷为
+\[
+  \lambda=\frac{\pi\varepsilon_0U}{\tau_0}.
+\]
+因此单位长度双极电容
+\begin{equation}
+  \boxed{C'=\frac\lambda U
+  =\frac{\pi\varepsilon_0}{\operatorname{arcosh}(L/2R)}}.
+\end{equation}
+利用 $\operatorname{arcosh}x=\ln(x+\sqrt{x^2-1})$，也可写成
+\begin{equation}
+  \boxed{C'=\frac{\pi\varepsilon_0}
+  {\ln\!\left(\dfrac{L+\sqrt{L^2-4R^2}}{2R}\right)}}.
+\end{equation}
+$L\to2R^+$ 时两柱接近接触，电容发散；这是理想无限长、零间隙模型的结果。
+
+\twoCylinderDiagram
+\end{xesolution}
+
+\Needspace{0.4\textheight}
+\begin{origexamplebox}{例题 32.4【改造电容器】}
+平行板电容器的极板面积为 $S$、间距为 $d$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 沿面积方向，在左半边完全填入相对介电常数为 $\varepsilon_r$ 的介质；
+  \item 沿厚度方向，在上半层填入相对介电常数为 $\varepsilon_r$ 的介质。
+\end{enumerate}
+分别求改造后的电容，并判断增减。
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1) 按面积分成左右两区。}两区具有相同板间距与电压，相当于并联：
+\[
+  C_1=\frac{\varepsilon_r\varepsilon_0(S/2)}d,
+  \qquad C_2=\frac{\varepsilon_0(S/2)}d.
+\]
+故
+\begin{equation}
+  \boxed{C_{\rm left}=C_1+C_2
+  =\frac{\varepsilon_0S}{2d}(\varepsilon_r+1)}.
+\end{equation}
+
+\textbf{(2) 按厚度分成上下两层。}两层面积相同，自由面电荷密度相同，电位移的法向分量连续，
+相当于串联：
+\[
+  C_1=\frac{\varepsilon_r\varepsilon_0S}{d/2},
+  \qquad C_2=\frac{\varepsilon_0S}{d/2}.
+\]
+于是
+\begin{equation}
+  \boxed{C_{\rm upper}=\left(\frac1{C_1}+\frac1{C_2}\right)^{-1}
+  =\frac{2\varepsilon_r}{\varepsilon_r+1}\frac{\varepsilon_0S}{d}}.
+\end{equation}
+因 $\varepsilon_r>1$，两种改造都使电容变大；但一般有
+\[
+  C_{\rm left}-C_{\rm upper}
+  =\frac{\varepsilon_0S}{d}\frac{(\varepsilon_r-1)^2}{2(\varepsilon_r+1)}\ge0,
+\]
+所以相同介质量按面积并排放置，增容更明显。
+
+\splitDielectricDiagram
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 32.5【奇妙的吸引力】}
+小明又需要你的帮助了。他把一块相对介电常数为 $\varepsilon_r$ 的电介质插入平行板电容器中。
+极板面积为 $S=ab$、间距为 $d$，介质厚度等于板间距，并沿边长 $a$ 的方向插入深度 $x$。
+电介质会受到继续向电容器内部运动的吸引力；这个力从微观上怎样产生并不容易直接看清，请利用虚功法
+把它算出来。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 电容器电荷 $Q$ 保持不变，用介质内电场 $E$ 表示吸入力；
+  \item 电容器接在恒压电源上，用介质内电场 $E$ 表示吸入力。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+忽略边缘场，已填充区域与真空区域相当于并联：
+\begin{equation}
+  C(x)=\frac{\varepsilon_0b}{d}\,[a+(\varepsilon_r-1)x],
+  \qquad
+  \frac{\dd C}{\dd x}=\frac{\varepsilon_0b}{d}(\varepsilon_r-1).
+\end{equation}
+
+\textbf{(1) 固定电荷。}系统静电能 $W=Q^2/[2C(x)]$，介质所受力沿 $x$ 增大方向：
+\[
+  F=-\left(\frac{\partial W}{\partial x}\right)_Q
+  =\frac{Q^2}{2C^2}\frac{\dd C}{\dd x}
+  =\frac{U^2}{2}\frac{\dd C}{\dd x}.
+\]
+介质内场 $E=U/d$，故
+\begin{equation}
+  \boxed{F_Q=\frac12\varepsilon_0(\varepsilon_r-1)bdE^2}.
+\end{equation}
+
+\textbf{(2) 固定电压。}电容器能量 $CU^2/2$ 随 $C$ 增大而增大，但电源还会输送电荷并做功
+$U\dd Q=U^2\dd C$。把电源计入后，机械势能的增量是
+$\dd(CU^2/2)-U\dd Q=-U^2\dd C/2$，所以
+\[
+  F=\frac{U^2}{2}\frac{\dd C}{\dd x}.
+\]
+仍用 $E=U/d$ 表示，得到
+\begin{equation}
+  \boxed{F_U=\frac12\varepsilon_0(\varepsilon_r-1)bdE^2}.
+\end{equation}
+两式形式相同，是因为题目要求用各自状态下的 $E$ 表示；固定 $Q$ 时 $E$ 随 $x$ 改变，固定
+$U$ 时 $E$ 不变。力都把介质拉入电容器，因为介质进入会增大电容。
+
+\dielectricPullDiagram
+\end{xesolution}
+
+\Needspace{0.4\textheight}
+\begin{origexamplebox}{例题 32.6【匀强电场中的电介质球】}
+半径为 $R$、介电常数为 $\varepsilon$ 的均匀线性电介质球置于真空匀强电场 $\vect E_0$ 中，求
+空间中的电势与电场。
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $z$ 轴沿 $\vect E_0$。球内、外均无自由电荷，电势满足 Laplace 方程。只保留满足轴对称和
+无穷远条件的一阶项：
+\[
+  \varphi_{\rm in}=-Ar\cos\theta,
+  \qquad
+  \varphi_{\rm out}=-E_0r\cos\theta+\frac{B\cos\theta}{r^2}.
+\]
+在 $r=R$ 处电势连续，切向电场自然连续；又因界面无自由面电荷，法向电位移连续：
+\[
+  \varphi_{\rm in}=\varphi_{\rm out},
+  \qquad
+  \varepsilon E_{r,\rm in}=\varepsilon_0E_{r,\rm out}.
+\]
+解得
+\[
+  A=\frac{3\varepsilon_0}{\varepsilon+2\varepsilon_0}E_0,
+  \qquad
+  B=\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}E_0R^3.
+\]
+因此
+\begin{equation}
+  \boxed{\varphi_{\rm in}=-\frac{3\varepsilon_0}{\varepsilon+2\varepsilon_0}
+  E_0r\cos\theta},
+  \qquad
+  \boxed{\vect E_{\rm in}=\frac{3\varepsilon_0}{\varepsilon+2\varepsilon_0}\vect E_0}.
+\end{equation}
+球内场仍为匀强场，但弱于外加场。球外
+\begin{equation}
+  \boxed{\varphi_{\rm out}=-E_0r\cos\theta
+  +\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}
+  E_0R^3\frac{\cos\theta}{r^2}},
+  \qquad \vect E_{\rm out}=-\nabla\varphi_{\rm out}.
+\end{equation}
+第二项是感应偶极子的电势，对应
+\begin{equation}
+  \boxed{\vect p=4\pi\varepsilon_0R^3
+  \frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}\vect E_0}.
+\end{equation}
+当 $\varepsilon\to\infty$ 时，球内场趋于零，外部解退化为上一讲的导体球结果。
+
+\dielectricSphereDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 32.7【能量怎么多了】}
+线性电介质中的能量密度为 $u=\varepsilon E^2/2$，真空中则为
+$u_0=\varepsilon_0E^2/2$。在电场强度相同的条件下，介质中的能量为什么更多？
+\end{origexamplebox}
+
+\begin{xesolution}
+介质中的总能量不只包括真空电场本身的能量，还包括建立极化所需的微观形变能。线性介质中
+\[
+  \vect D=\varepsilon_0\vect E+\vect P.
+\]
+从零场准静态建立到 $\vect E$，单位体积外界输入
+\[
+  u=\int_{\vect 0}^{\vect D}\vect E\cdot\dd\vect D
+  =\frac12\vect E\cdot\vect D
+  =\frac12\varepsilon_0E^2+\frac12\vect E\cdot\vect P.
+\]
+第一项是真空场能；第二项是把束缚正、负电荷拉开，建立分子偶极矩与介质极化所需要储存的能量。
+因此在比较相同 $E$ 时，
+\begin{equation}
+  \boxed{u-u_0=\frac12\vect E\cdot\vect P
+  =\frac12(\varepsilon-\varepsilon_0)E^2>0}.
+\end{equation}
+若比较的是固定自由电荷而不是固定 $E$，插入介质会使 $E$ 减小，总能量反而可能下降；此时减少
+的电场能转化为介质被吸入时的机械功。比较能量前必须先明确保持不变的是 $E$、$Q$ 还是 $U$。
+\end{xesolution}
+
+\Needspace{0.4\textheight}
+\begin{origexamplebox}{例题 32.8【充电过程】}
+用电动势为 $\mathcal E$ 的理想电源给电容 $C$ 充电。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 电路中串联电阻 $R$，充电完成前电源做功和电阻发热各为多少；
+  \item 令 $R$ 趋于零，两个结果怎样变化；
+  \item 若理想电路中完全没有电阻，应如何理解？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} 充电完成后 $Q=C\mathcal E$。电源搬运总电荷 $Q$，故
+\begin{equation}
+  \boxed{W_{\rm source}=\mathcal EQ=C\mathcal E^2}.
+\end{equation}
+电容器最终储能
+\[
+  W_C=\frac12C\mathcal E^2.
+\]
+其余能量变成焦耳热：
+\begin{equation}
+  \boxed{Q_R=W_{\rm source}-W_C=\frac12C\mathcal E^2}.
+\end{equation}
+也可由 $i(t)=\mathcal E e^{-t/(RC)}/R$ 积分验证：
+$\int_0^\infty i^2R\dd t=C\mathcal E^2/2$。
+
+\textbf{(2)} 当 $R\to0^+$，充电时间常数 $RC\to0$、初始电流峰值趋于无穷，但热量积分仍为
+$C\mathcal E^2/2$，与 $R$ 的数值无关。这是先对有限 $R$ 完成积分、再取极限的结果。
+
+\textbf{(3)} 完全没有电阻、电感和辐射的理想回路不能由一阶 $RC$ 方程描述；它要求电容电压在
+零时间内突变，产生无穷大电流，数学模型自相矛盾。真实电路总有寄生电感、导线电阻和电磁辐射。
+若保留电感而不含耗散，能量会在电容电场与电感磁场之间振荡，电容电压并不单调趋于
+$\mathcal E$；微小电阻或辐射最终耗散那一半能量。因而“零电阻”只能作为 $R\to0^+$ 的极限，
+不能把所有寄生参数同时删掉后仍期待同样的稳态充电过程。
+
+\chargingDiagram
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 32.9【电容充电】}
+三个初始均不带电的电容 $C_1,C_2,C_3$ 连接成星形，外端电势分别固定为
+$\varphi_1,\varphi_2,\varphi_3$，中心节点悬空。求中心电势及三个电容器所带电荷。
+\end{origexamplebox}
+
+\begin{xesolution}
+设中心节点电势为 $\varphi_0$。中心节点及与它相连的三块极板构成一个孤立导体，初始净电荷为
+零，此后也没有导电通路让净电荷流入，因此
+\[
+  C_1(\varphi_0-\varphi_1)+C_2(\varphi_0-\varphi_2)
+  +C_3(\varphi_0-\varphi_3)=0.
+\]
+解得中心电势
+\begin{equation}
+  \boxed{\varphi_0=
+  \frac{C_1\varphi_1+C_2\varphi_2+C_3\varphi_3}{C_1+C_2+C_3}}.
+\end{equation}
+若把 $Q_i$ 定义为第 $i$ 个外端极板的电荷，则
+\begin{equation}
+  \boxed{Q_i=C_i(\varphi_i-\varphi_0)},\qquad i=1,2,3.
+\end{equation}
+展开为
+\begin{align*}
+  Q_1&=\frac{C_1[C_2(\varphi_1-\varphi_2)+C_3(\varphi_1-\varphi_3)]}{C_1+C_2+C_3},\\
+  Q_2&=\frac{C_2[C_1(\varphi_2-\varphi_1)+C_3(\varphi_2-\varphi_3)]}{C_1+C_2+C_3},\\
+  Q_3&=\frac{C_3[C_1(\varphi_3-\varphi_1)+C_2(\varphi_3-\varphi_2)]}{C_1+C_2+C_3}.
+\end{align*}
+中心侧极板分别带 $-Q_i$，且 $Q_1+Q_2+Q_3=0$，正好体现中心孤立导体的电荷守恒。
+
+\starCapacitorDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 32.10【电容串并联】}
+证明两个电容器串联或并联都可等效为一个电容器，求等效公式，并推广到多个电容器。
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{并联。}各电容电压相同，均为 $U$，电源输送的总电荷为
+\[
+  Q=\sum_iQ_i=\sum_iC_iU.
+\]
+令 $Q=C_{\rm eq}U$，得到
+\begin{equation}
+  \boxed{C_{\rm eq}=\sum_iC_i}.
+\end{equation}
+
+\textbf{串联。}各中间节点初始中性且保持孤立，所以每个电容所带电荷量的绝对值均为 $Q$。总
+电压为
+\[
+  U=\sum_iU_i=Q\sum_i\frac1{C_i}.
+\]
+由 $Q=C_{\rm eq}U$ 得
+\begin{equation}
+  \boxed{\frac1{C_{\rm eq}}=\sum_i\frac1{C_i}}.
+\end{equation}
+两个电容时，$C_{\rm series}=C_1C_2/(C_1+C_2)$，
+$C_{\parallel}=C_1+C_2$。等效不仅保持端口处的 $Q$-$U$ 关系，也保持端口看到的总储能：
+\[
+  \sum_i\frac12C_iU_i^2=\frac12C_{\rm eq}U^2.
+\]
+若中间节点预先带有非零净电荷，或存在额外支路，简单“串联同电荷”条件不再成立，需要按节点
+电荷守恒重新求解。
+\end{xesolution}
+
+\Needspace{0.44\textheight}
+\begin{origexamplebox}{例题 32.11【超大电容】}
+物理学家 Kelvin 最先把地球和大气层构造为一个电容器模型：地球表面是其中一个极板，带负电荷；
+高空的大气等效为另一个极板，带正电荷。把地球表面和高空 $h=\SI{5}{km}$ 处的大气层近似为
+同心球形电容器。取地球半径
+$R_\oplus=\SI{6.4e6}{m}$，地球带电量绝对值 $Q=\SI{5e5}{C}$，空气电阻率
+$\rho=\SI{3e13}{\ohm.m}$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求球形电容器的电容；
+  \item 求地表电场能量密度和电容器总能量；
+  \item 求大气层的径向漏电电阻；
+  \item 求 $RC$ 放电时间常数；
+  \item 若每次雷电平均向地面补充 $\SI{25}{C}$ 电荷，维持该电荷量每天约需多少次雷电？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+令内、外半径分别为 $R=R_\oplus$、$R+h$。
+
+\textbf{(1) 电容。}
+\begin{equation}
+  C=4\pi\varepsilon_0\frac{R(R+h)}h
+  \approx\boxed{\SI{0.912}{F}}.
+\end{equation}
+因 $h\ll R$，也可用薄层近似 $C\approx4\pi\varepsilon_0R^2/h$。
+
+\textbf{(2) 地表场与能量。}地表外侧
+\[
+  E(R)=\frac{Q}{4\pi\varepsilon_0R^2}approx\SI{1.10e2}{V.m^{-1}}.
+\]
+故
+\begin{equation}
+  \boxed{u(R)=\frac12\varepsilon_0E^2\approx\SI{5.33e-8}{J.m^{-3}}}.
+\end{equation}
+总能量
+\begin{equation}
+  \boxed{W=\frac{Q^2}{2C}\approx\SI{1.37e11}{J}}.
+\end{equation}
+
+\textbf{(3) 径向电阻。}半径 $r$ 处厚度 $\dd r$ 的球壳电阻
+$\dd R_{\rm el}=\rho\dd r/(4\pi r^2)$，所以
+\begin{equation}
+  R_{\rm el}=\frac\rho{4\pi}\left(\frac1R-\frac1{R+h}\right)
+  \approx\boxed{\SI{2.91e2}{\ohm}}.
+\end{equation}
+
+\textbf{(4) 时间常数。}相乘时几何因子恰好消去：
+\begin{equation}
+  \boxed{\tau=R_{\rm el}C=\rho\varepsilon_0
+  \approx\SI{2.66e2}{s}\approx\SI{4.43}{min}}.
+\end{equation}
+
+\textbf{(5) 雷电补充率。}漏电电流的平均量级为
+\[
+  I=\frac Q\tau\approx\SI{1.88e3}{A}.
+\]
+每天漏失电荷 $I\times\SI{86400}{s}$，所需雷电次数
+\begin{equation}
+  \boxed{N=\frac{Q}{\tau}\frac{\SI{86400}{s}}{\SI{25}{C}}
+  \approx6.5\times10^6\ \text{次/天}}.
+\end{equation}
+这是题设参数下的数量级模型；真实全球电路的电荷分布、天气电导率和雷暴补充机制更复杂。
+
+\atmosphereCapacitorDiagram
+\end{xesolution}

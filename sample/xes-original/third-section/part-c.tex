@@ -1,0 +1,265 @@
+\subsection{有质量绳的情况}
+
+之前问题中的绳一般取无质量的极限。对于没有沿程外力、只在两端受力的自由绳段，平衡且
+张力不为零时绳段为直线，两端张力大小相等；多数情况下还忽略伸长。有滑轮或曲面支承时，
+轻绳可以弯曲，在光滑支承下张力大小仍可相等，但方向沿绳改变。
+实际上很多问题中绳的质量和形变不能忽略，例如桥梁上的斜
+拉索，它一方面负责承担桥梁其它部分的重量，另一方面必须采用足够强度的材料以保证其
+可靠性，这时其自重就不可忽略不计。
+
+当考虑可变形物体的质量时，其内部各部分之间的作用力将不再相同，除了承担外部的
+受力以外，其自重也会改变不同位置处的受力。最简单的例子如图 1.3(a) 所示，一根质量为
+$m$，长度为 $L$ 的均匀绳静止悬挂于 $O$ 点，建立一个原点在 $O$ 点、竖直向下的坐标系 $Ox$，
+这时绳中张力 $T$ 就不再是常数，而是坐标 $x$ 的函数。在某一 $x$ 点处的张力用来平衡处于其
+下部绳的重力，简单的分析可知绳中张力满足
+\[
+  T(x)=\frac{mg}{L}(L-x).
+\]
+
+在绳的底端，也就是 $x=L$ 处很明显张力为零。在更复杂的情况下不但绳中张力不同，绳
+还会发生弯曲。这时任何一点处的张力的方向是绳在该处的切线方向，此时如果绳的质量不
+可忽略，需要取绳中极小一段作为研究对象，两端的张力在水平方向上平衡，而在竖直方向
+上与该段绳的重力平衡，如图 1.3(b) 中那样。
+
+\sourcefigure[0.76\linewidth]{fig-1-3.png}
+\origcaption{图 1.3：(a) 有质量的绳中各部分张力不同，是位置的函数；(b) 有质量且弯曲绳的受力分析}
+
+\begin{origexamplebox}{例 1.23}
+如图所示，一个顶角为 $\alpha$ 的光滑圆锥体，一个质量为 $m$、原长为 $L_0$、劲度系数为
+$k$ 的弹性绳处于平衡状态，所有部分均处于同一水平面上。求平衡绳圈到锥顶的母线距离
+$s$，并求绳圈相对锥顶的竖直高度 $z$。
+\sourcefigure[0.27\linewidth]{ex-1-23.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+令圆锥的半顶角为 $\delta=\alpha/2$，平衡绳圈的水平半径为 $\rho$，绳中张力为 $T$。
+取绳圈上圆心角为 $\mathrm d\varphi$ 的一小段，微元受力如解图所示：
+\soldiagOneTwentyThree
+其两端张力的合力沿水平方向指向圆锥轴，
+大小为 $T\,\mathrm d\varphi$。圆锥支持力的竖直分量与水平分量之比为 $\tan\delta$，所以
+这段绳所受支持力的竖直分量为
+\[
+  T\tan\delta\,\mathrm d\varphi.
+\]
+这应当等于该段绳的重力 $(mg/2\pi)\,\mathrm d\varphi$，故
+\[
+  T=\frac{mg}{2\pi}\cot\delta.
+\]
+弹性绳伸长后的总长为 $2\pi\rho$，由胡克定律
+\[
+  T=k(2\pi\rho-L_0).
+\]
+因此
+\[
+  \rho=\frac{L_0}{2\pi}+\frac{mg}{4\pi^2k}\cot\delta.
+\]
+由 $\rho=s\sin\delta$，母线距离为
+\[
+  \boxed{s=\frac{1}{\sin(\alpha/2)}
+  \left[\frac{L_0}{2\pi}+\frac{mg}{4\pi^2k}\cot\frac\alpha2\right]}.
+\]
+相应的竖直高度为
+\[
+  \boxed{z=\rho\cot\frac\alpha2}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.24}
+有一个固定在水平面上半径为 $R$ 的半圆柱形光滑物体和一根质量为 $m$、长为 $\pi R/2$
+的均匀绳。它们处于如图所示位置的平衡状态，求维持平衡作用于绳顶端水平向左力 $F$ 的
+大小。
+\sourcefigure[0.46\linewidth]{ex-1-24.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+绳的线密度为
+\[
+  \lambda=\frac{m}{\pi R/2}=\frac{2m}{\pi R}.
+\]
+以圆柱右端为 $\varphi=0$、最高点为 $\varphi=\pi/2$。沿绳切线方向研究圆心角为
+$\mathrm d\varphi$ 的小段，切向受力如解图所示：
+\soldiagOneTwentyFour
+因此
+\[
+  \mathrm dT=\lambda gR\cos\varphi\,\mathrm d\varphi.
+\]
+右端为自由端，故 $T(0)=0$。积分到最高点：
+\[
+  F=T\!\left(\frac\pi2\right)
+  =\lambda gR\int_0^{\pi/2}\cos\varphi\,\mathrm d\varphi
+  =\lambda gR.
+\]
+所以
+\[
+  \boxed{F=\frac{2mg}{\pi}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.25}
+质量为 $m$、长为 $l$ 的均匀光滑细绳，穿过半径为 $R$ 的光滑滑轮并搭在轮上。设
+$l\ge\pi R$，绳关于滑轮的竖直中线对称，两端自由段均竖直且等长。求绳上的最大张力。
+\sourcefigure[0.34\linewidth]{ex-1-25.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+设 $l\ge\pi R$，绳关于滑轮的竖直中线对称。搭在滑轮上的部分长为 $\pi R$，两段竖直
+部分各长
+\[
+  h=\frac{l-\pi R}{2}.
+\]
+张力从自由端向上逐渐增加，其关键位置如解图所示：
+\soldiagOneTwentyFive
+绳的线密度为 $\lambda=m/l$。从任一自由端向上，竖直段顶端的张力为 $\lambda gh$。
+再从侧面切点沿圆弧走到滑轮最高点，张力增加
+\[
+  \lambda gR\int_0^{\pi/2}\cos\varphi\,\mathrm d\varphi=\lambda gR.
+\]
+故最大张力出现在滑轮最高点：
+\[
+  T_{\max}=\lambda g(h+R)
+  =\frac{mg}{l}\left(\frac{l-\pi R}{2}+R\right).
+\]
+即
+\[
+  \boxed{T_{\max}=\frac{mg}{2l}\bigl[l-(\pi-2)R\bigr]}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.26}
+半径为 $R$ 的刚性球固定在水平桌面上，有一个质量为 $M$ 的圆环状均匀弹性绳圈，
+原长 $2\pi a$，$a=R/2$。绳圈的弹性系数为 $k$（绳圈伸长 $s$ 时，绳中弹性张力为 $ks$）。将绳圈从
+球的正上方轻放到球上，并用手扶着绳圈使之保持水平并最后停留在某个静力平衡位置。
+扶持仅维持水平姿态，不承担绳圈的重量，也不施加径向拉力。
+设此时绳圈的长度为 $2\pi b$，$b=\sqrt{2}a$，考虑重力，忽略摩擦，求绳圈的弹性系数 $k$？（用 $M$、$R$、
+$g$ 表示，$g$ 为重力加速度）
+\sourcefigure[0.39\linewidth]{ex-1-26.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+设绳圈所在水平面的高度相对球心为 $z$。由球面几何关系
+\[
+  b^2+z^2=R^2.
+\]
+已知 $a=R/2$、$b=\sqrt2a=R/\sqrt2$，所以 $z=R/\sqrt2=b$。
+
+取绳圈上圆心角为 $\mathrm d\varphi$ 的一小段，设球面对它的支持力为 $\mathrm dN$。
+微元所用的几何量和三个力如解图所示：
+\soldiagOneTwentySix
+竖直方向平衡给出
+\[
+  \mathrm dN\frac zR=\frac{Mg}{2\pi}\,\mathrm d\varphi.
+\]
+支持力的水平分量与两端张力的合力平衡：
+\[
+  T\,\mathrm d\varphi=\mathrm dN\frac bR.
+\]
+两式相除得
+\[
+  T=\frac{Mgb}{2\pi z}=\frac{Mg}{2\pi}.
+\]
+绳圈的总伸长量为
+\[
+  s=2\pi(b-a)=\pi R(\sqrt2-1).
+\]
+由 $T=ks$，
+\[
+  \boxed{k=\frac{Mg}{2\pi^2R(\sqrt2-1)}
+  =\frac{(\sqrt2+1)Mg}{2\pi^2R}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.27【思考题】}
+一根长度为 $L$、质量为 $m$ 的均匀绳两端固定在处于同一水平面上相距
+$d<L$ 的 $A$、$B$ 两点，你能够用何种方法决定平衡以后绳的形状。
+\sourcefigure[0.54\linewidth]{ex-1-27.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+平衡后的绳是悬链线。取最低点为坐标原点，$x$ 轴水平、$y$ 轴竖直向上。设绳的线密度
+$\lambda=m/L$，最低点处的水平张力为 $H$，并定义
+\[
+  c=\frac{H}{\lambda g}.
+\]
+对最低点到横坐标 $x$ 的一段绳列平衡方程。记这段绳的弧长为 $s$，研究对象如解图所示：
+\soldiagOneTwentySeven
+设 $P$ 点绳的切线与水平方向的夹角为 $\theta$。解图中三个力分别沿水平和竖直方向平衡：
+\[
+  T\cos\theta=H,
+  \qquad
+  T\sin\theta=\lambda gs.
+\]
+两式相除，并利用曲线切线斜率 $y'=\tan\theta$，得
+\[
+  y'=\tan\theta=\frac{\lambda gs}{H}=\frac{s}{c}.
+\]
+另一方面，弧长元满足
+\[
+  \frac{\mathrm ds}{\mathrm dx}=\sqrt{1+y'^2}.
+\]
+对 $y'=s/c$ 关于 $x$ 求导，再代入上式，才得到由解图决定的微分方程
+\[
+  y''=\frac{1}{c}\sqrt{1+y'^2},
+  \qquad y(0)=0,\quad y'(0)=0.
+\]
+先把这个二阶方程降为一阶。令 $p=y'$，并只看 $x\ge0$ 的右半段，则
+\[
+ \frac{\mathrm dp}{\sqrt{1+p^2}}=\frac{\mathrm dx}{c}.
+\]
+由于
+\[
+ \frac{\mathrm d}{\mathrm dp}\ln\!\left(p+\sqrt{1+p^2}\right)
+ =\frac{1+p/\sqrt{1+p^2}}{p+\sqrt{1+p^2}}
+ =\frac1{\sqrt{1+p^2}},
+\]
+从 $x=0,p=0$ 积分到 $x,p$，得到
+\[
+ \ln\!\left(p+\sqrt{1+p^2}\right)=\frac xc.
+\]
+令 $E=\mathrm e^{x/c}$，则 $p+\sqrt{1+p^2}=E$；两因子
+$(\sqrt{1+p^2}+p)(\sqrt{1+p^2}-p)=1$，故
+\[
+ p=\frac{E-E^{-1}}2=\frac{\mathrm e^{x/c}-\mathrm e^{-x/c}}2.
+\]
+为简写这类指数式，定义双曲正弦和双曲余弦：
+\[
+ \sinh u=\frac{\mathrm e^u-\mathrm e^{-u}}2,\qquad
+ \cosh u=\frac{\mathrm e^u+\mathrm e^{-u}}2.
+\]
+由指数函数求导可得 $(\cosh u)'=\sinh u$、$(\sinh u)'=\cosh u$，直接展开还得到
+$\cosh^2u-\sinh^2u=1$。现在 $y'=\sinh(x/c)$，再次积分并使用 $y(0)=0$，得
+\[
+ y(x)=\int_0^x\sinh\frac{\xi}{c}\,\mathrm d\xi
+ =c\left[\cosh\frac{\xi}{c}\right]_0^x.
+\]
+因此平衡曲线为悬链线
+\[
+  \boxed{y(x)=c\cosh\frac{x}{c}-c}.
+\]
+它是偶函数，左半段由对称性给出，两固定点位于 $x=\pm d/2$。
+利用 $\sqrt{1+\sinh^2u}=\cosh u$，弧长条件为
+\[
+  L=\int_{-d/2}^{d/2}\sqrt{1+y'^2}\,\mathrm dx
+  =2c\sinh\frac{d}{2c}.
+\]
+因此先由
+\[
+  \boxed{2c\sinh\frac{d}{2c}=L}
+\]
+求出 $c>0$，再代入悬链线方程。为什么一定有且只有一个解？令 $q=d/(2c)>0$，则
+\[
+ f(q)=\frac{\sinh q}{q}=\frac Ld>1,\qquad
+ f'(q)=\frac{q\cosh q-\sinh q}{q^2}.
+\]
+分子在 $q=0$ 时为零，其导数为 $q\sinh q>0$，所以 $f'(q)>0$。
+同时 $f(q)\to1$（$q\to0^+$），且 $f(q)\to\infty$（$q\to\infty$），因此每个 $L/d>1$
+都对应唯一的 $q$，也就对应唯一的 $c=d/(2q)$。可先用二分法求 $q$，再计算曲线。
+
+由 $T\cos\theta=H$ 及 $\tan\theta=\sinh(x/c)$，有
+$1/\cos\theta=\sqrt{1+\tan^2\theta}=\cosh(x/c)$，所以绳中张力为
+\[
+  T(x)=H\cosh\frac{x}{c}=\lambda gc\cosh\frac{x}{c}.
+\]
+$c$ 的量纲是长度，指数中的 $x/c$ 和弧长方程中的 $d/(2c)$ 均无量纲。当 $d\to L^-$ 时，
+$q\to0$、$c\to\infty$，曲线近似为 $y\simeq x^2/(2c)$，下垂趋于零，
+而水平张力 $H=\lambda gc$ 发散。因而有自重的柔绳不能用有限水平张力拉成完全水平的直线。
+\end{xesolution}

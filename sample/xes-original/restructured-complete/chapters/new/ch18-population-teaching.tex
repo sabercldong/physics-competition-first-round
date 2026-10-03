@@ -1,0 +1,16 @@
+\begin{origexamplebox}{简并度能否抵消较高能量的不利因素}\label{ch18:ex:teaching-degeneracy}
+一个系统只有两组能级：能量为0的基能级有1个微观状态，能量为 $\varepsilon>0$ 的激发能级有3个微观状态。系统与正温度热库平衡。求激发能级的总概率、两组总布居相等的温度及平均能量，并讨论高、低温极限。
+\end{origexamplebox}
+\begin{xesolution}
+每个激发微观状态的权重是 $e^{-\beta\varepsilon}$，三个不同状态的权重须相加：
+\[
+ Z=1+3e^{-\beta\varepsilon},\qquad
+ P_e=\frac{3e^{-\beta\varepsilon}}{1+3e^{-\beta\varepsilon}},\qquad
+ P_g=\frac1{1+3e^{-\beta\varepsilon}}.
+\]
+两组等布居要求 $3e^{-\varepsilon/(k_BT)}=1$，因此 $T_*=\varepsilon/(k_B\ln3)$。平均能量不是两个能级的算术平均，而是
+\[
+ U=0\cdot P_g+\varepsilon P_e=\varepsilon P_e.
+\]
+当 $T\to0^+$ 时，$P_e\to0$、$U\to0$；当 $T\to\infty$ 时，四个微观状态等概率，$P_e\to3/4$、$U\to3\varepsilon/4$，并非 $\varepsilon/2$。即使激发组总概率超过基组，任一单独激发态的概率仍低于唯一基态；这不是逐态布居反转，而是简并状态数带来的总数优势。
+\end{xesolution}

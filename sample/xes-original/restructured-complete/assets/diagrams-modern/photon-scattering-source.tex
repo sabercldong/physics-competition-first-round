@@ -1,0 +1,37 @@
+% Source: spring-II physical p201, lecture11 problem2, both source panels.
+% Contract: closed fermion loop with four external photon legs; arrows show
+% photon propagation. Right panel: equal incident vectors enclose 120deg,
+% sum along +y; representative output momenta sum to the same vector.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}[xshift=-3.0cm]
+  \draw[thick,->] (-.55,-.55)--(-.55,.55);
+  \draw[thick,->] (-.55,.55)--(.55,.55);
+  \draw[thick,->] (.55,.55)--(.55,-.55);
+  \draw[thick,->] (.55,-.55)--(-.55,-.55);
+  \foreach \sx/\sy/\lab in {-1/1/1,-1/-1/2,1/1/3,1/-1/4}{
+   \draw[DeepBlue,thick,domain=0:1,samples=70,variable=\t]
+    plot ({\sx*(.55+1.0*\t)+.045*sin(\t*2160)},
+          {\sy*(.55+.75*\t)-\sx*\sy*.06*sin(\t*2160)});
+   \node[anchor=\ifnum\sx<0 east\else west\fi] at ({\sx*1.65},{\sy*1.32}){$\nu_{\lab}$};
+  }
+  \node at (0,0){$e$};
+ \node[align=center] at (0,-1.95){(a) 四条光子外线\\电子闭合内线};
+ \end{scope}
+ \begin{scope}[xshift=3.1cm]
+  \coordinate (O) at (0,0);
+  \draw[->,thick,DeepBlue] ({-1.8*cos(30)},-.9)--(O);
+  \draw[->,thick,DeepBlue] ({1.8*cos(30)},-.9)--(O);
+  \node at (-1.72,-1.18){$\nu_0$};
+  \node at (1.72,-1.18){$\nu_0$};
+  \draw[->,thick] (O)--(0,1.8) node[above]{$\vect K=\vect k_1+\vect k_2$};
+  % theta=40deg, k3/k0=3/[2(2-cos(theta))]; k4=K-k3.
+  \pgfmathsetmacro{\kk}{3/(2*(2-cos(40)))}
+  \draw[->,thick,DeepBlue] (O)--({1.8*\kk*sin(40)},{1.8*\kk*cos(40)}) node[right]{$\vect k_3$};
+  \draw[->,thick,DeepBlue] (O)--({-1.8*\kk*sin(40)},{1.8*(1-\kk*cos(40))}) node[above left]{$\vect k_4$};
+  \draw[->] (0,.6) arc[start angle=90,end angle=50,radius=.6];
+  \node at (.29,.87){$\theta$};
+  \draw (-.43,-.25) arc[start angle=210,end angle=330,radius=.5];
+  \node at (0,-.78){$120^\circ$};
+  \node at (0,-1.95){(b) 入射夹角与出射方向};
+ \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,170 @@
+\section{刚体的物理描述}
+\label{r2ch06:sec:description}
+
+质点模型突出物体的平动，连续介质模型允许物体内部发生形变；刚体（rigid body）则处在两者之间：任意两质元间的距离始终不变。它能很好地描述尺寸不可忽略、形变又足够小的物体。严格刚体要求作用瞬时传遍全体，与相对论中的有限传播速度并不相容，因此它是低速、弱形变条件下的理想模型。
+
+设参考时刻 $t_0$ 刚体占据区域 $\Omega_0$，物质点的参考位置为 $\vect R_0$，密度为 $\rho(\vect R_0)$。总质量及运动映射写成
+\begin{equation}
+ m=\int_{\Omega_0}\rho(\vect R_0)\,\dd^3R_0=\int_{\Omega_0}\dd m,
+ \qquad \vect r=\vect f(\vect R_0,t).
+ \label{r2ch06:eq:001}
+\end{equation}
+刚性要求映射保持任意两点距离，也保持体积元和附着在物质元上的密度：
+\begin{equation}
+ |\vect f(\vect R_0,t)-\vect f(\vect R'_0,t)|=|\vect R_0-\vect R'_0|,
+ \qquad \dd^3r=\dd^3R_0,\qquad \dd m=\text{常量}.
+ \label{r2ch06:eq:002}
+\end{equation}
+图~\ref{r2ch06:fig:001} 把同一体积元在两个时刻的位置对应画出；阴影只表示物体所占区域，不表示形变。
+\figRigidMap
+
+刚体的动力学不仅取决于总质量，还取决于质量相对所选原点的分布。零阶矩、一级矩和二级矩分别为
+\begin{equation}
+ M^{(0)}=m,\qquad
+ M_i^{(1)}=mr_{C,i}=\int r_i\,\dd m,\qquad
+ M_{ij}^{(2)}=\int r_ir_j\,\dd m.
+ \label{r2ch06:eq:003}
+\end{equation}
+一级矩确定质心 $C$。二级矩是对称张量，它包含后面计算转动惯量所需的全部信息。它们依赖原点；原点平移后必须同时使用平行轴关系，不能把关于不同点的矩混用。
+
+\subsection{固连标架、角速度与基点法}
+\label{r2ch06:sec:kinematics}
+
+在刚体上固连一组正交单位矢量 $\vect\varepsilon_i(t)$。刚体转动时存在唯一角速度 $\vect\omega$，使三根轴同时满足
+\begin{equation}
+ \dot{\vect\varepsilon}_i=\vect\omega\times\vect\varepsilon_i,
+ \qquad i=1,2,3.
+ \label{r2ch06:eq:004}
+\end{equation}
+任取刚体上的基点 $B$，设研究点 $P$ 相对它的固连位矢为 $\vect R=\vect r_P-\vect r_B$。因为 $\dot{\vect R}=\vect\omega\times\vect R$，连续求导得到
+\begin{equation}
+ \vect v_P=\vect v_B+\vect\omega\times\vect R,
+ \qquad
+ \vect a_P=\vect a_B+\dot{\vect\omega}\times\vect R
+ +\vect\omega\times(\vect\omega\times\vect R).
+ \label{r2ch06:eq:005}
+\end{equation}
+图~\ref{r2ch06:fig:002} 中 $\vect r_P=\vect r_B+\vect R$，三根矢量首尾关系与式~\eqref{r2ch06:eq:005} 使用的是同一基点，避免把原点 $O$、质心 $C$ 和任意基点混成一个点。
+\figBasePoint
+
+作用于 $P$ 点的力 $\vect F$ 对固定原点和质心的力矩分别为
+\begin{equation}
+ \vect M_O=\vect r_P\times\vect F,
+ \qquad \vect M_C=(\vect r_P-\vect r_C)\times\vect F.
+ \label{r2ch06:eq:006}
+\end{equation}
+对整个刚体求和，质心运动、功率和角动量定理可写成
+\begin{equation}
+ \begin{aligned}
+  \sum_i\vect F_i&=m\vect a_C,\\
+  \sum_i\vect v_i\cdot\vect F_i
+   &=\frac{\dd}{\dd t}\left(\frac12mv_C^2+T_C\right),\\
+  \sum_i(\vect r_i-\vect r_C)\times\vect F_i
+   &=\frac{\dd\vect L_C}{\dd t}.
+ \end{aligned}
+ \label{r2ch06:eq:007}
+\end{equation}
+其中相对质心的转动动能和角动量为
+\begin{equation}
+ T_C=\frac12\int[\vect\omega\times(\vect r-\vect r_C)]^2\,\dd m,
+ \qquad
+ \vect L_C=\int(\vect r-\vect r_C)\times
+ [\vect\omega\times(\vect r-\vect r_C)]\,\dd m.
+ \label{r2ch06:eq:008}
+\end{equation}
+式~\eqref{r2ch06:eq:007} 的最后一式之所以能直接写在质心处，是因为质心的运输项自动为零；对一般运动点取矩则要保留附加项。
+
+\section{平面平行运动}
+\label{r2ch06:sec:planar}
+
+若刚体的每个质元都在彼此平行的平面内运动，称为平面平行运动。它由质心的两个坐标和绕垂直平面的转角 $\theta$ 唯一确定，共有三个自由度。约定逆时针为正，$\omega=\dot\theta$、$\beta=\ddot\theta$。
+
+对垂直运动平面、过点 $P$ 的轴，转动惯量定义为
+\begin{equation}
+ I_P=\int \rho_P^2\,\dd m
+ =\int[(x-x_P)^2+(y-y_P)^2],\dd m.
+ \label{r2ch06:eq:009}
+\end{equation}
+若瞬时转动中心为 $Q$，所有质点此刻的速度都等于绕 $Q$ 的纯转动速度，故
+\begin{equation}
+ T=\frac12I_Q\omega^2.
+ \label{r2ch06:eq:010}
+\end{equation}
+但 $Q$ 往往不是刚体上的固定点，$I_Q$ 可以随时间变化。对质心作柯尼希分解则始终安全：
+\begin{equation}
+ T=\frac12mv_C^2+\frac12I_C\omega^2,\qquad
+ J_P=[(\vect r_C-\vect r_P)\times m\vect v_C]_z+I_C\omega.
+ \label{r2ch06:eq:011}
+\end{equation}
+这里 $J_P$ 是对 $P$ 轴的角动量 $z$ 分量。只有当 $P$ 是固定点，或 $P=C$，才能把相应角动量定理直接写成最熟悉的形式。对轨迹为 $\vect r_P(t)$ 的一般动点，运输定理为
+\begin{equation}
+ \frac{\dd\vect L_P}{\dd t}=\vect M_P-\vect v_P\times m\vect v_C.
+ \label{r2ch06:eq:012}
+\end{equation}
+这也是后面“瞬心并非质点”问题的关键。瞬心位置处的刚体速度虽为零，瞬心轨迹本身的速度 $\vect v_P$ 却一般不为零，两者不能混同。
+
+平面刚体的三个动力学方程可选为
+\begin{equation}
+ \sum_iF_{x,i}=ma_{C,x},\qquad
+ \sum_iF_{y,i}=ma_{C,y},\qquad
+ \sum_iM_{C,i}=I_C\beta.
+ \label{r2ch06:eq:013}
+\end{equation}
+前两式管质心平动，第三式管相对质心的转动。若改对固定轴取矩，也可使用角动量定理；若对运动轴取矩，则必须先检查式~\eqref{r2ch06:eq:012} 的运输项。
+
+\section{空间刚体运动}
+\label{r2ch06:sec:spatial}
+
+空间转动中，$\vect L$ 通常不与 $\vect\omega$ 平行。定义二级质量矩张量
+$\mathsf M=\int\vect r\vect r^{\mathsf T}\dd m$，则惯量张量为
+\begin{equation}
+ \mathsf I=\int(r^2\mathsf 1-\vect r\vect r^{\mathsf T})\,\dd m
+ =\operatorname{tr}(\mathsf M)\mathsf 1-\mathsf M.
+ \label{r2ch06:eq:014}
+\end{equation}
+由三重矢积直接得到
+\begin{equation}
+ \vect L=\mathsf I\vect\omega,\qquad
+ T=\frac12\vect\omega\cdot\mathsf I\vect\omega.
+ \label{r2ch06:eq:015}
+\end{equation}
+在任意直角坐标系中
+\begin{equation}
+ \begin{pmatrix}L_x\\L_y\\L_z\end{pmatrix}
+ =\begin{pmatrix}
+ I_{xx}&I_{xy}&I_{xz}\\
+ I_{xy}&I_{yy}&I_{yz}\\
+ I_{xz}&I_{yz}&I_{zz}
+ \end{pmatrix}
+ \begin{pmatrix}\omega_x\\\omega_y\\\omega_z\end{pmatrix},
+ \quad
+ I_{xx}=M_{yy}+M_{zz},\quad I_{xy}=-M_{xy}.
+ \label{r2ch06:eq:016}
+\end{equation}
+惯量张量是实对称张量；非对角元的负号来自 $r^2\mathsf 1-\vect r\vect r^{\mathsf T}$。若使用“惯量积” $\int xy\dd m$ 的正号定义，就要在惯量矩阵的非对角位置另加负号，不能把两套约定混写。
+
+也可用并矢把坐标无关的张量写成
+\begin{equation}
+ \mathsf I=\sum_{i,j}I_{ij}\,\vect e_i\vect e_j,\qquad
+ (\vect e_i\vect e_j)\cdot\vect e_k
+ =\vect e_i(\vect e_j\cdot\vect e_k).
+ \label{r2ch06:eq:017}
+\end{equation}
+实对称矩阵必可正交对角化，因此对任意定点都存在三条互相垂直的主轴。在主轴系中
+\begin{equation}
+ \mathsf I=\operatorname{diag}(I_1,I_2,I_3),\qquad
+ \vect L=(I_1\omega_1,I_2\omega_2,I_3\omega_3),\qquad
+ T=\frac12\sum_{i=1}^3I_i\omega_i^2.
+ \label{r2ch06:eq:018}
+\end{equation}
+若主轴系固连刚体，惯性系与刚体系对任意矢量的导数满足
+$({\dd\vect A}/{\dd t})_{\rm inertial}=({\dd\vect A}/{\dd t})_{\rm body}+\vect\omega\times\vect A$。将它用于 $\vect L$，得到欧拉动力学方程
+\begin{equation}
+ \begin{aligned}
+ I_1\dot\omega_1+(I_3-I_2)\omega_2\omega_3&=M_1,\\
+ I_2\dot\omega_2+(I_1-I_3)\omega_3\omega_1&=M_2,\\
+ I_3\dot\omega_3+(I_2-I_1)\omega_1\omega_2&=M_3.
+ \end{aligned}
+ \label{r2ch06:eq:019}
+\end{equation}
+式~\eqref{r2ch06:eq:019} 说明：即使外力矩只有一个分量，不同主轴方向的角速度仍可能通过二次项耦合。只有绕主轴转动时，$\vect L\parallel\vect\omega$ 才恢复质点式的直观图像。

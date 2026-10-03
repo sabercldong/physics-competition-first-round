@@ -1,0 +1,178 @@
+% Problem figures and added solution diagrams for Section 4.3.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray},
+  solpath/.style={draw=Ink,line width=.75pt}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+
+\newcommand{\probdiagFourFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody] (-4.1,-.70)--(4.1,-.70);
+  \draw[solbody,fill=SoftGray] (-3.15,-.70) rectangle (-2.20,.20);
+  \draw[solbody,fill=SoftGray] (2.20,-.70) rectangle (3.15,.20);
+  \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt},line width=.75pt]
+    (-2.20,-.25)--(2.20,-.25);
+  \node[sollabel] at (-2.68,.75) {$m_1$};
+  \node[sollabel] at (2.68,.75) {$m_2$};
+  \draw[<->,draw=DeepBlue] (-2.20,-1.05)--(2.20,-1.05)
+    node[midway,below,sollabel] {$r=l<l_0$};
+  \draw[solflow] (-2.70,1.10)--(-1.70,1.10) node[midway,above,sollabel] {$v_1$};
+  \draw[solflow] (2.25,1.10)--(3.25,1.10) node[midway,above,sollabel] {$v_2$};
+\end{tikzpicture}
+\diagcaption{题意图}{弹簧只改变两物体的相对运动；整体质心速度保持不变。}\label{ch07:fig:probdiagFourFifteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \draw[axis] (0,0)--(6.6,0) node[right,sollabel] {$r$};
+ \draw[axis] (0,0)--(0,2.7) node[above,sollabel] {能量};
+ \draw[curve,domain=.6:5.4,samples=80] plot ({\x},{.35*(\x-3)^2});
+ \draw[TextGray,line width=.8pt] (.45,1.12)--(5.75,1.12);
+ \draw[solgeom] (1.21115,0)--(1.21115,1.12) (4.78885,0)--(4.78885,1.12);
+ \node[sollabel,above=4pt] at (5.7,1.12) {$E_{\rm rel}$};
+ \node[sollabel] at (3,2.45) {$U(r)=\frac12k(r-l_0)^2$};
+ \node[sollabel,below=4pt] at (1.21115,0) {$r_{\min}$};
+ \node[sollabel,below=4pt] at (3,0) {$l_0$};
+ \node[sollabel,below=4pt] at (4.78885,0) {$r_{\max}$};
+\end{tikzpicture}
+\diagcaption{解图}{相对势能关于原长位置对称，同一相对能量给出最近与最远两个转折点。}\label{ch07:fig:soldiagFourFifteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody] (-1.75,-1.75)--(1.75,-1.75);
+  \foreach \x in {-1.55,-1.25,...,1.55}{\draw[draw=TextGray,line width=.45pt] (\x,-1.75)--++(-.25,-.22);}
+  \draw[solbody,fill=SoftGray] (-.55,-1.75) rectangle (.55,-.85);
+  \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt},line width=.75pt]
+    (0,-.85)--(0,1.10);
+  \draw[solbody,fill=SoftGray] (-.55,1.10) rectangle (.55,2.00);
+  \node[sollabel,right] at (.65,1.55) {$A,m_1$};
+  \node[sollabel,right] at (.65,-1.30) {$B,m_2$};
+  \draw[<->,draw=DeepBlue] (-.95,-.85)--(-.95,1.10) node[midway,left,sollabel] {$l<l_0$};
+\end{tikzpicture}
+\diagcaption{题意图}{在 $B$ 尚未离地的阶段，下端固定，只有上方物体 $A$ 运动。}\label{ch07:fig:probdiagFourSixteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \node[solpanel] at (0,2.6) {下物块 $B$ 的临界受力图};
+ \draw[solbody,fill=SoftGray] (-.4,-.35) rectangle (.4,.35);
+ \draw[solbody] (-1.2,-.35)--(1.2,-.35);
+ \draw[solforce] (0,0)--(0,1.7) node[above=4pt,sollabel] {$T=k(x-l_0)$};
+ \draw[solforce] (0,0)--(0,-1.7) node[below=4pt,sollabel] {$m_2g$};
+ \node[sollabel,right=5pt] at (.4,0) {$B$};
+ \node[sollabel,anchor=west,align=left] at (2,1)
+   {临界时 $N=0$\\$T=m_2g$\\$x_{\rm c}=l_0+m_2g/k$};
+\end{tikzpicture}
+\diagcaption{解图}{离地瞬间只保留弹力和重力；支持力降为零。}\label{ch07:fig:soldiagFourSixteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourSeventeen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody] (-4.4,-.42)--(4.4,-.42);
+  \shade[ball color=PaleBlue] (-2.25,0) circle (.42);
+  \shade[ball color=SoftGray] (1.65,0) circle (.42);
+  \node[sollabel,above] at (-2.25,.55) {$A,m_A$};
+  \node[sollabel,above] at (1.65,.55) {$B,m_B$};
+  \draw[solflow] (-1.72,0)--(-.50,0) node[midway,above,sollabel] {$v_0$};
+  \node[sollabel] at (1.65,-.02) {$0$};
+\end{tikzpicture}
+\diagcaption{题意图}{一维完全弹性碰撞同时满足动量守恒和动能守恒。}\label{ch07:fig:probdiagFourSeventeen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourSeventeen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \node[solpanel] at (-2.60,1.10) {碰前};
+  \draw[solflow] (-3.75,0)--(-1.45,0) node[midway,above,sollabel] {$v_0$};
+  \node[solpanel] at (2.15,1.10) {碰后（$m_A>m_B$）};
+  \draw[solflow] (.45,.25)--(1.55,.25) node[midway,above,sollabel] {$v_A$};
+  \draw[solflow] (.45,-.45)--(3.60,-.45) node[midway,below,sollabel] {$v_B$};
+\end{tikzpicture}
+\diagcaption{解图}{非平凡碰撞后两速度都向右要求 $m_A>m_B$，且被撞球 $B$ 的速度更大。}\label{ch07:fig:soldiagFourSeventeen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \coordinate (A) at (0,0); \coordinate (B) at (.64,.48);
+ \draw[solgeom] (-2.4,0)--(1.9,0);
+ \draw[solbody,fill=SoftGray] (A) circle (.4);
+ \draw[solbody,fill=SoftGray] (B) circle (.4);
+ \draw[solgeom] (A)--(B);
+ \node[sollabel,below=15pt] at (A) {$A$}; \node[sollabel,above=15pt] at (B) {$B$};
+ \draw[solflow] (-2.1,0)--(-.5,0) node[midway,above=5pt,sollabel] {$\vec v_0$};
+ \node[sollabel] at (.2,1.6) {俯视：接触瞬间；圆心连线为法线};
+\end{tikzpicture}
+\diagcaption{题意图}{等质量小球在光滑平面内发生极短的完全弹性碰撞。}\label{ch07:fig:probdiagFourEighteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ % Use the same laboratory directions as the contact figure: n=(.8,.6).
+ \coordinate (O) at (0,1.92); \coordinate (A) at (1.44,0); \coordinate (B) at (4,1.92);
+ \draw[solforce] (O)--(A) node[midway,below left=5pt,sollabel] {$\vec v_A$};
+ \draw[solforce] (A)--(B) node[midway,below right=5pt,sollabel] {$\vec v_B$};
+ \draw[solforce] (O)--(B) node[midway,above=5pt,sollabel] {$\vec v_0$};
+ \draw[TextGray] (1.26,.24)--(1.5,.42)--(1.68,.18);
+ \node[sollabel,anchor=west,align=left] at (4.8,1)
+  {动量：首尾相接\\动能：交叉项为零\\两非零速度互相垂直};
+\end{tikzpicture}
+\diagcaption{解图}{沿用接触图的方向：$\vec v_0$ 向右，$\vec v_B$ 沿圆心连线，$\vec v_A\perp\vec v_B$。}\label{ch07:fig:soldiagFourEighteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourNineteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \begin{scope}[rotate=20]
+  \draw[solbody] (-3,0)--(3,0);
+  \draw[solbody,fill=SoftGray] (1.1,0) rectangle (2,.65);
+  \draw[solgeom] (-2.2,0) rectangle (-1.3,.65);
+  \draw[solgeom] (-1.75,.8)--(-1.75,1.55) (1.55,.8)--(1.55,1.55);
+  \draw[<->,TextGray] (-1.75,1.45)--(1.55,1.45) node[midway,above=4pt,sollabel] {$L$};
+  \draw[solforce] (1.55,.325)--(2.85,.325) node[above right=5pt,sollabel] {$f$};
+  \draw[solflow] (.8,.75)--(-.4,.75) node[midway,above=4pt,sollabel] {下滑};
+ \end{scope}
+ \coordinate (Q) at ({-3*cos(20)},{-3*sin(20)});
+ \draw[TextGray] (Q)--++(1.1,0);
+ \draw[TextGray] ($(Q)+(.7,0)$) arc (0:20:.7);
+ \node[sollabel] at ($(Q)+(1.1,.23)$) {$\theta$};
+\end{tikzpicture}
+\diagcaption{题意图}{沿斜面方向，重力分力做正功，滑动摩擦力做负功。}\label{ch07:fig:probdiagFourNineteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourTwenty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \draw[solbody] (-3.8,0)--(3.8,0) (-3.6,0)--(-3.6,1.4);
+ \draw[solgeom] (-.45,0) rectangle (.45,.8);
+ \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt}] (-3.6,.4)--(1.55,.4);
+ \draw[solbody,fill=SoftGray] (1.55,0) rectangle (2.45,.8);
+ \draw[solgeom] (0,-.65)--(0,1.15) (2,-.65)--(2,1.15);
+ \draw[<->,TextGray] (0,-.5)--(2,-.5) node[midway,below=4pt,sollabel] {$a$};
+ \node[sollabel,above=5pt,anchor=south east] at (0,1.15) {$O$：自然长度时的中心};
+ \draw[solflow] (2.6,1.65)--(1.4,1.65) node[midway,above=5pt,sollabel] {释放后向左};
+\end{tikzpicture}
+\diagcaption{题图}{弹簧在 $O$ 点为自然长度；物块从相对 $O$ 向右位移 $a$ 的位置由静止释放。}\label{ch07:fig:probdiagFourTwenty}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourTwenty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.67]
+  \node[solpanel] at (-3.55,1.55) {运动中};
+  \draw[axis] (-5.0,0)--(-2.15,0) node[right,sollabel] {$x$};
+  \draw[solbody,fill=SoftGray] (-3.75,-.35) rectangle (-3.05,.35);
+  \draw[solforce] (-3.40,.65)--(-4.45,.65) node[left,sollabel] {$F_s$};
+  \draw[solforce] (-3.40,-.65)--(-2.35,-.65) node[right,sollabel] {$f_k$};
+  \node[sollabel] at (-3.40,-1.02) {向左运动、$x>0$};
+  \node[solpanel] at (1.95,1.55) {停止后（图示 $x>0$）};
+  \draw[axis] (.35,0)--(3.85,0) node[right,sollabel] {$x$};
+  \draw[solbody,fill=SoftGray] (1.60,-.35) rectangle (2.30,.35);
+  \draw[solforce] (1.95,.65)--(.90,.65) node[left,sollabel] {$F_s$};
+  \draw[solforce] (1.95,-.65)--(3.00,-.65) node[right,sollabel] {$f_s$};
+  \node[sollabel] at (1.95,-1.02) {$f_s$ 按平衡需要取值};
+\end{tikzpicture}
+\diagcaption{解图}{滑动摩擦反向于速度；静摩擦则反向于物体停止位置处的弹簧力。}\label{ch07:fig:soldiagFourTwenty}\end{minipage}\end{center}}

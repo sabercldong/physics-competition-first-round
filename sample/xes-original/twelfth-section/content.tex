@@ -1,0 +1,345 @@
+动量关系之外，碰撞与弹簧问题还需要能量关系。这里先给出所需的基本定义；功和能量的
+系统讨论在后续章节展开。质点的动能为 $E_k=mv^2/2$，力在位移上的功为
+$W=\int\vec F\cdot\dd\vec r$。将 $m\dot{\vec v}=\vec F$ 与速度点乘并对时间积分，
+得到 $\Delta E_k=W$。如果一类力的功只取决于起终点，就称为保守力，并定义其势能变化
+$\Delta E_p=-W$；于是只受保守力时，$E_k+E_p$ 不变。近地面重力势能可写成 $mgy$，
+理想弹簧势能为 $k(\ell-l_0)^2/2$，零点分别取 $y=0$ 和自然长度。
+
+现在考察由多个质点构成的力学系统。
+系统内每个质点除受外力外，还会受到其他质点施加的、满足牛顿第三定律的内力。作用力与
+反作用力的矢量和为零，所以内力不能改变系统总动量；但两力作用点的位移通常不同，它们的
+功并不必然相互抵消，因此内力完全可能改变系统的总动能。这正是动量问题与能量问题在处理
+内力时的重要区别。
+
+内力做功有两种性质截然不同的情形。若质点间的内力是保守力，内力功只与质点间的相对位置
+有关；系统动能的减少会以内部势能的形式储存在相对位置中，并可在以后的运动中重新释放为
+各质点的动能。若内力像滑动摩擦力一样，其功与相对运动的具体过程有关，那么机械能会转化
+为内能等形式，在单纯的力学过程中不能自行完整地转回宏观动能。这里所谓“机械能损失”并不
+是能量从自然界消失，而是能量形式发生了转化。
+
+当系统的内力和外力均为保守力时，可把系统总机械能定义为所有质点的动能、外力对应的势能
+以及系统内部质点之间的势能之和：
+\[
+ E=\sum_i E_{k,i}+E_{p,\text{外}}+E_{p,\text{内}},
+\]
+在势能没有显含时间、且无其他外部能量输入的模型中，运动过程中 $E$ 保持不变。
+
+\begin{origexamplebox}{例 4.15}
+光滑水平面上有一根无质量的弹簧，劲度系数为 $k$，原长为 $l_0$。它的两端分别连接质量
+为 $m_1,m_2$ 的两个物体。
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 初始时刻两物体的速度均为零，相距 $l<l_0$。求释放以后两物体之间的最大距离。
+ \item 取向右为正方向，若初始时刻两物体的速度分别为 $v_1,v_2$，求此后运动过程中
+ 两物体的最近和最远距离。
+\end{enumerate}
+图~\ref{ch07:fig:probdiagFourFifteen}中，弹簧只改变两物体的相对运动；整体质心速度保持不变。
+\probdiagFourFifteen
+\end{origexamplebox}
+
+\begin{xesolution}
+记两物体之间的距离为 $r=x_2-x_1$，总质量和约化质量分别为
+\[
+ M=m_1+m_2,
+ \qquad
+ \mu_r=\frac{m_1m_2}{m_1+m_2}.
+\]
+质心速度
+\[
+ V=\frac{m_1v_1+m_2v_2}{M}
+\]
+保持不变。由 $\dot r=\dot x_2-\dot x_1$ 和质心速度的定义，先解出
+\[
+ \dot x_1=V-\frac{m_2}{M}\dot r,\qquad
+ \dot x_2=V+\frac{m_1}{M}\dot r.
+\]
+代入两物体动能，交叉项系数 $-m_1m_2/M+m_2m_1/M=0$；相对速度平方项系数为
+$(m_1m_2^2+m_2m_1^2)/(2M^2)=\mu_r/2$。因此
+\[
+ \frac12m_1\dot x_1^2+\frac12m_2\dot x_2^2
+ =\frac12MV^2+\frac12\mu_r\dot r^{\,2},
+\]
+系统机械能可分成不变的质心平动能和相对运动能：
+\[
+ E=\frac12MV^2+\frac12\mu_r\dot r^{\,2}
+   +\frac12k(r-l_0)^2.
+\]
+
+\textbf{(1)} 初始相对速度为零，弹簧的初始压缩量为
+$\delta=l_0-l$。在最大距离处相对速度再次为零，因而
+\[
+ \frac12k(l-l_0)^2=\frac12k(r_{\max}-l_0)^2.
+\]
+除初始转折点 $r=l$ 外，另一转折点位于原长位置的对侧：
+\[
+ \boxed{r_{\max}=2l_0-l}.
+\]
+
+\textbf{(2)} 初始相对速度为 $\dot r_0=v_2-v_1$。相对运动的总能量为
+\[
+ E_{\rm rel}
+ =\frac12\mu_r(v_2-v_1)^2+\frac12k(l-l_0)^2.
+\]
+最近和最远距离都是相对运动的转折点，满足 $\dot r=0$。令
+\[
+ A=\sqrt{(l-l_0)^2+\frac{\mu_r}{k}(v_2-v_1)^2},
+\]
+则
+\[
+ \boxed{r_{\min}=l_0-A},
+ \qquad
+ \boxed{r_{\max}=l_0+A}.
+\]
+图~\ref{ch07:fig:soldiagFourFifteen}中，相对势能关于原长位置对称，同一相对能量给出最近与最远两个转折点。
+\soldiagFourFifteen
+两物体的共同平动速度只改变质心运动，不改变它们之间的距离；所以结果只含相对速度
+$v_2-v_1$。上式默认 $A\le l_0$ 且物体可视为质点；若模型中物体不能相互穿越，而计算
+得到 $A>l_0$，则在弹簧长度降为零以前已发生接触，最近距离须由接触条件另行确定。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{例 4.16}
+质量分别为 $m_1,m_2$ 的两个物体 $A,B$ 用原长为 $l_0$、劲度系数为 $k$ 的轻弹簧连接。
+初始时刻 $A$ 放在 $B$ 的上方且均静止，将弹簧压缩至 $l<l_0$。求系统释放以后 $B$
+能够离开地面的条件。
+图~\ref{ch07:fig:probdiagFourSixteen}中，在 $B$ 尚未离地的阶段，下端固定，只有上方物体 $A$ 运动。
+\probdiagFourSixteen
+\end{origexamplebox}
+
+\begin{xesolution}
+在 $B$ 尚未离地时，它受地面约束而保持静止，弹簧下端等效固定。设某时刻弹簧长度为
+$x$，上方物体 $A$ 的速率为 $u$。以 $B$ 所在高度为重力势能零点，机械能守恒给出
+\[
+ \frac12m_1u^2+m_1gx+\frac12k(x-l_0)^2
+ =m_1gl+\frac12k(l-l_0)^2.
+\]
+物体 $A$ 到达最高点时 $u=0$。去掉代表初始位置的根 $x=l$，另一转折位置为
+\[
+ x_{\max}=2l_0-l-\frac{2m_1g}{k}.
+\]
+
+当弹簧已经伸长时，它对 $B$ 的拉力向上。$B$ 刚要离地的临界条件是地面支持力
+$N=0$，即
+\[
+ k(x-l_0)=m_2g,
+ \qquad
+ x_{\rm c}=l_0+\frac{m_2g}{k}.
+\]
+图~\ref{ch07:fig:soldiagFourSixteen}中，离地瞬间只保留弹力和重力；支持力降为零。
+\soldiagFourSixteen
+要使 $B$ 真正获得离地速度，$A$ 在其上升过程中必须越过这一临界位置，故
+\[
+ x_{\max}>x_{\rm c}.
+\]
+代入两式并整理，得到
+\[
+ \boxed{k(l_0-l)>(2m_1+m_2)g}.
+\]
+等号只表示 $A$ 恰在最高点时使 $N$ 瞬间降为零；随后弹簧拉力立即减小，$B$ 不会真正
+上升。因此若“离开地面”要求产生向上的运动，应取严格不等号。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{例 4.17}
+在光滑平面上有两个球 $A,B$，质量分别为 $m_A,m_B$。开始时刻 $B$ 球静止，$A$ 球以
+速度 $v_0$ 撞向 $B$。如果碰撞之后两球运动速度均与 $A$ 的初速度方向相同，且碰撞过程
+极短、无机械能损失，求碰后两球的速度。
+图~\ref{ch07:fig:probdiagFourSeventeen}中，一维完全弹性碰撞同时满足动量守恒和动能守恒。
+\probdiagFourSeventeen
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $A$ 的初速度方向为正，设碰后速度分别为 $v_A,v_B$。碰撞时间极短，外力冲量可忽略，
+故动量守恒；又因无机械能损失，动能守恒：
+\[
+ m_Av_0=m_Av_A+m_Bv_B,
+\]
+\[
+ \frac12m_Av_0^2
+ =\frac12m_Av_A^2+\frac12m_Bv_B^2.
+\]
+由动量式写成 $m_A(v_0-v_A)=m_Bv_B$，动能式则可因式分解为
+\[
+ m_A(v_0-v_A)(v_0+v_A)=m_Bv_B^2.
+\]
+排除“没有发生速度交换”的平凡情形后，两式相除得到
+\[
+ v_0+v_A=v_B.
+\]
+再与动量式联立，得到一维完全弹性碰撞公式
+\[
+ \boxed{v_A=\frac{m_A-m_B}{m_A+m_B}v_0},
+ \qquad
+ \boxed{v_B=\frac{2m_A}{m_A+m_B}v_0}.
+\]
+图~\ref{ch07:fig:soldiagFourSeventeen}中，非平凡碰撞后两速度都向右要求 $m_A>m_B$，且被撞球 $B$ 的速度更大。
+\soldiagFourSeventeen
+题设要求两球碰后都沿正方向运动，因此必须有 $m_A>m_B$；若 $m_A=m_B$，则 $A$ 停止、
+$B$ 以 $v_0$ 前进，不能说 $A$ 的速度仍具有原方向。
+\end{xesolution}
+
+\Needspace{0.29\textheight}
+\begin{origexamplebox}{例 4.18}
+光滑平面上有两个质量相同的球 $A,B$。$A$ 球以某一初速度 $\vec v_0$ 撞向静止的 $B$，
+碰撞时间极短且无机械能损失。求证：无论 $A$ 球以何种方式弹开，$B$ 球的速度方向总与
+$A$ 球弹开的方向垂直。
+图~\ref{ch07:fig:probdiagFourEighteen}中，等质量小球在光滑平面内发生极短的完全弹性碰撞。
+\probdiagFourEighteen
+\end{origexamplebox}
+
+\begin{xesolution}
+设两球质量均为 $m$，碰后速度分别为 $\vec v_A,\vec v_B$。在平面内必须使用矢量动量
+守恒：
+\begin{equation}\label{eq:equal-ball-momentum}
+ \vec v_0=\vec v_A+\vec v_B.
+\end{equation}
+动能守恒给出
+\begin{equation}\label{eq:equal-ball-energy}
+ v_0^2=v_A^2+v_B^2.
+\end{equation}
+对式\eqref{eq:equal-ball-momentum}两边取矢量自身的点积：
+\[
+ v_0^2=v_A^2+v_B^2+2\vec v_A\cdot\vec v_B.
+\]
+与式\eqref{eq:equal-ball-energy}比较，得到
+\[
+ \vec v_A\cdot\vec v_B=0.
+\]
+因此在两球碰后速度均不为零的非退化碰撞中
+\[
+ \boxed{\vec v_A\perp\vec v_B}.
+\]
+图~\ref{ch07:fig:soldiagFourEighteen}沿用接触图的方向：$\vec v_0$ 向右，$\vec v_B$ 沿两球圆心连线指向右上方，$\vec v_A$ 指向右下方。将 $\vec v_A$ 与 $\vec v_B$ 首尾相接，合矢量就是 $\vec v_0$；动能关系使两条直角边互相垂直。
+\soldiagFourEighteen
+这也说明三条速度矢量构成以 $\vec v_0$ 为斜边的直角三角形。若其中一球碰后静止，则零
+速度没有确定方向，应把它看作上述结论的退化极限。
+\end{xesolution}
+
+\subsection{机械能的损失：摩擦}
+
+当物体所受的力中含有非保守力时，机械能不再守恒。对于单个质点从 $A$ 到 $B$ 的运动，
+把外力分成保守力和非保守力，由动能定理得
+\begin{equation}
+ \frac12mv_B^2-\frac12mv_A^2=W_C+W_{NC},
+\end{equation}
+其中 $W_C,W_{NC}$ 分别表示保守力和非保守力的功。保守力做功等于势能的减少量：
+\begin{equation}
+ W_C=-E_p(B)+E_p(A).
+\end{equation}
+代入并整理可得
+\begin{equation}\label{eq:nonconservative-work}
+ W_{NC}
+ =\left(\frac12mv_B^2+E_p(B)\right)
+  -\left(\frac12mv_A^2+E_p(A)\right)
+ =E(B)-E(A).
+\end{equation}
+也就是说，\textbf{非保守力的功等于系统机械能的变化量}。摩擦力通常做负功，使机械能
+减小；其他非保守力也可能做正功，使物体的机械能增加。
+
+\Needspace{0.28\textheight}
+\begin{origexamplebox}{例 4.19}
+在一个物体沿粗糙斜面下滑的过程中验证式\eqref{eq:nonconservative-work}。物体由静止出发，沿动摩擦因数为
+$\mu$、倾角为 $\theta$ 的粗糙斜面下滑。求沿斜面下滑距离为 $L$ 时的速度。
+图~\ref{ch07:fig:probdiagFourNineteen}中，沿斜面方向，重力分力做正功，滑动摩擦力做负功。
+\probdiagFourNineteen
+\end{origexamplebox}
+
+\begin{xesolution}
+物体下降的竖直高度为 $L\sin\theta$，支持力为 $N=mg\cos\theta$，滑动摩擦力的功为
+\[
+ W_{NC}=W_f=-\mu mg\cos\theta\,L.
+\]
+取末位置为重力势能零点，则初、末机械能分别为
+\[
+ E_A=mgL\sin\theta,
+ \qquad
+ E_B=\frac12mv^2.
+\]
+代入式\eqref{eq:nonconservative-work}：
+\[
+ -\mu mgL\cos\theta
+ =\frac12mv^2-mgL\sin\theta.
+\]
+因此
+\[
+ \boxed{v=\sqrt{2gL(\sin\theta-\mu\cos\theta)}}.
+\]
+物体若要由静止开始下滑且不断加速，须有 $\sin\theta>\mu\cos\theta$；若还要精确判断
+能否启动，应另用静摩擦因数检验初始临界条件。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例 4.20}
+如图所示，一轻弹簧一端固定在墙上，另一端连接一小物块。小物块放在摩擦因数为 $\mu$
+的水平面上；弹簧处于自然状态时，小物块中心位于 $O$ 点。现用手将小物块从 $O$ 向右移动距离 $a>0$，
+然后由静止释放，发现小物块开始向左移动。取最大静摩擦因数与滑动摩擦因数均为 $\mu$。
+判断下列说法是否正确：
+\begin{enumerate}[label=\Alph*.,leftmargin=2.2em]
+ \item 小物块可能停在 $O$ 点；
+ \item 小物块停止以后所受的摩擦力必不为零；
+ \item 小物块无论停在 $O$ 点左边还是右边，停前所受摩擦力的方向和停止后所受摩擦力的
+ 方向，两者既可能相同也可能相反；
+ \item 小物块在通过 $O$ 点后向右运动直到最远处的过程中，速度的大小总是减小；小物块
+ 由右边最远处回到 $O$ 点的过程中，速度大小总是增加。
+\end{enumerate}
+图~\ref{ch07:fig:probdiagFourTwenty}中，虚线物块表示弹簧自然长度时的位置；标注 $a$ 量取的是两个位置的中心间距。
+\probdiagFourTwenty
+\end{origexamplebox}
+
+\begin{xesolution}
+令 $x$ 为物块相对 $O$ 点的坐标，向右为正，并记
+\[
+ d=\frac{\mu mg}{k}.
+\]
+物块开始向左移动说明初始弹簧力足以克服最大静摩擦力；在题目用同一摩擦因数描述时，
+至少有 $ka>\mu mg$。
+
+\textbf{A．正确。}\quad 从 $x=a$ 向左运动到 $O$ 的过程中，滑动摩擦力做功
+$-\mu mga$。若物块恰好在 $O$ 停下，则
+\[
+ \frac12ka^2-\mu mga=0,
+\]
+非零解为
+\[
+ a=2d=\frac{2\mu mg}{k}.
+\]
+此时 $O$ 点弹簧力为零，静摩擦力也可为零，物块能够停在该处。
+
+\textbf{B．错误。}\quad A 项已经给出反例：物块停在 $O$ 点时，所需静摩擦力为零。
+
+\textbf{C．正确。}\quad 物块从 $x=a$ 向左运动后的第一个停止位置 $x_1$ 满足
+\[
+ \frac12ka^2-\mu mg(a-x_1)=\frac12kx_1^2,
+\]
+除去初始位置，得到
+\[
+ x_1=2d-a.
+\]
+若 $d<a<2d$，则 $0<x_1<d$：物块停在 $O$ 点右侧，停前、停后的摩擦力均向右，两者
+同向。若 $2d<a<3d$，则 $-d<x_1<0$：物块停在左侧，停前摩擦力向右，停后静摩擦力
+向左，两者反向。
+
+若 $a>3d$，物块到达 $x_1<-d$ 后还会反向。下一停止位置由同样的功—能关系得到
+\[
+ x_2=a-4d.
+\]
+当 $3d<a<4d$ 时，物块停在左侧且停前向右运动，停前、停后的摩擦力均向左，两者同向；
+当 $4d<a<5d$ 时，物块停在右侧且停前向右运动，停前摩擦力向左、停后静摩擦力向右，
+两者反向。因此，无论最后停在 $O$ 点左侧还是右侧，同向和反向都确有可能。
+
+\textbf{D．错误。}\quad 物块从 $O$ 向右运动时，弹簧力与滑动摩擦力都向左，速度确实
+一直减小。若物块能从右侧最远点返回，向左运动时弹簧力向左、摩擦力向右：在 $x>d$
+时合力向左，速率增加；进入 $0<x<d$ 后合力向右，速率反而减小，并非直到 $O$ 都增加。
+图~\ref{ch07:fig:soldiagFourTwenty}中，滑动摩擦反向于速度；静摩擦则反向于物体停止位置处的弹簧力。
+\soldiagFourTwenty
+所以正确选项为
+\[
+ \boxed{\text{A、C}}.
+\]
+本题中“摩擦力反向”不是由位置本身决定的：滑动时它反向于速度，静止后则按维持平衡所
+需的方向和大小取值。
+\end{xesolution}
+
+对于更复杂过程中机械能怎样变化，也可以沿用“先区分保守力与非保守力，再考察各段功和
+能量变化”的方法逐段分析。
+
+\input{source-restoration.tex}

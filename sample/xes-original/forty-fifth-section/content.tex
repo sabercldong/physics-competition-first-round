@@ -1,0 +1,335 @@
+衍射是光的波动性带来的另一类基本现象。几何光学预言障碍物应产生边界锐利的影子、光通过小孔后只留下孔的几何投影；实际观察却会在边缘看到明暗细纹，在圆孔后看到中央亮斑和环纹。凡是传播方向或空间强度分布偏离几何光学预言、并由有限波长引起的现象，都可归入衍射。
+
+可见光波长很短，所以日常大尺度物体附近衍射角通常很小；当孔径、障碍尺度接近波长，或传播距离足够长时，衍射便不可忽略。完整衍射理论需要积分波动方程，本讲从周期结构、单缝和圆孔几个可计算模型建立物理图像。
+
+\BasicDiffractionPanel
+
+\subsection*{光栅衍射}
+
+设直线上有 $N$ 个等间距散射中心，间距为 $d$，单色平面波正入射。所有中心同相受激，向远场方向 $\theta$ 发出次级波。相邻中心到探测器的程差为 $d\sin\theta$，相位差
+\begin{equation}
+ \delta=\frac{2\pi}{\lambda}d\sin\theta.
+\end{equation}
+若每个中心在该方向贡献振幅 $A_0$，总复振幅是等比级数
+\[
+ \widetilde A=A_0\sum_{j=0}^{N-1}\e^{\mathrm i j\delta}
+ =A_0\e^{\mathrm i(N-1)\delta/2}\frac{\sin(N\delta/2)}{\sin(\delta/2)}.
+\]
+所以
+\begin{equation}
+ I(\theta)=I_1\left[\frac{\sin(N\delta/2)}{\sin(\delta/2)}\right]^2.
+\end{equation}
+当 $\delta=2m\pi$ 时，每条刻线的振幅同相相加，取主极大
+\begin{equation}
+ d\sin\theta_m=m\lambda,\qquad m=0,\pm1,\pm2,\ldots
+\end{equation}
+且峰值为单刻线强度的 $N^2$ 倍。两个相邻主极大之间有 $N-1$ 个零点和 $N-2$ 个次极大；$N$ 越大，主极大越窄、方向选择越精确。图 22.4 中曲线作了峰值归一化，用来比较宽度而非绝对能量。
+
+等比求和中的整体相因子 $\e^{\mathrm i(N-1)\delta/2}$ 只改变合振幅的相位，不改变强度；真正决定角分布的是正弦比。主极大处分子、分母同时为零，不能把它直接代成 $0/0$ 后说强度为零。令 $\delta=2m\pi+\varepsilon$ 并取 $\varepsilon\to0$，有
+\[
+ \frac{\sin(N\delta/2)}{\sin(\delta/2)}\longrightarrow(-1)^{m(N-1)}N,
+\]
+这是因为分子的线性项为 $(-1)^{Nm}N\varepsilon/2$，分母为 $(-1)^m\varepsilon/2$。取模平方后符号消失，所以峰值仍为 $N^2I_1$；与前面的整体相因子相乘后，主极大的合振幅恰为 $NA_0$。相邻主峰之间，分子在 $\delta=2m\pi+2q\pi/N$（$q=1,\ldots,N-1$）处为零，给出 $N-1$ 个暗方向，这也是图 22.4 中主峰随 $N$ 增大而变窄的原因。
+
+若入射光并非正入射，相邻刻线在被照亮时已经带有初始相位差；出射路径又贡献另一部分相位差。两者必须带符号相减，得到本节例题 22.9 的斜入射公式。正入射只是在入射项为零时的特殊情况。
+
+\GratingDiagram
+\SpectrumDiagram
+\GratingCurves
+
+由于 $|\sin\theta_m|\le1$，允许级次满足 $|m|\le d/\lambda$。若 $d<\lambda$，除 $m=0$ 外没有传播级；若 $d\gg\lambda$，会出现许多级，不利于谱线分离。光栅用于光谱仪时，通常让间距与目标波长处于合适量级。不同颜色在同一级中的角度不同，$\lambda$ 越长，$|\theta_m|$ 越大。
+
+这里的“没有衍射解”专指没有 $m\ne0$ 的传播级，零级直射或镜面方向仍然存在。对同一正级次，红光波长长，偏离零级更远；紫蓝光更靠近中央。不同级次还可能重叠，例如某波长的二级可与另一波长的三级落在相近角度，所以实际光谱仪还需限制工作级次和波段。图 22.3 中红光位于同一级光谱的外侧，紫蓝光位于内侧。
+
+\subsection*{周期晶体与布拉格定律（Bragg's law）}
+
+X 射线是极短波长电磁波，其波长与原子间距相当。晶体中的原子周期排列，每个原子在入射场驱动下成为次级散射源，因而晶体是天然三维光栅。晶体 X 射线衍射既证明了 X 射线的波动性，也提供了研究原子排列和分子结构的工具；Von Laue 因晶体 X 射线衍射工作获 1914 年 Nobel 物理学奖。
+
+在晶体衍射被发现之前，X 射线虽已用于成像，但其波动本性和波长尺度尚缺少直接证据。晶体一方面提供原子尺度的周期，另一方面又会把散射波集中到少数方向，因此衍射斑的位置可反推晶面间距和取向。反过来，若晶格常数已知，也能由斑点位置测出 X 射线波长。这种“双向标尺”是 X 射线晶体学能够研究微观结构的基础。
+
+把晶体看作间距 $d$ 的平行晶面。射线与晶面夹角为 $\theta$ 时，相邻晶面反射波程差为 $2d\sin\theta$。同相加强条件
+\begin{equation}
+ 2d\sin\theta=n\lambda,\qquad n=1,2,3,\ldots
+\end{equation}
+称为 Bragg 定律。这里 $\theta$ 是相对\textbf{晶面}的掠射角，不是相对晶面法线的角；两者互余，混用会导致正弦和余弦互换。
+
+\historyfigure{von-laue-diffraction-v1.png}{图 22.5--22.6：马克斯·冯·劳厄（Max von Laue，1879—1960）与晶体 X 射线衍射斑。他因发现晶体中的 X 射线衍射获得1914年诺贝尔物理学奖。}
+
+\begin{center}\begin{tikzpicture}[font=\small]
+\begin{scope}[xshift=-3cm]
+\fill[black!90](-1.6,-1.6)rectangle(1.6,1.6);
+\foreach \r in {.28,.52,.77,1.04,1.35}{\draw[white!70!black,line width=.7pt](0,0)circle(\r);}
+\node[below]at(0,-1.8){多取向微晶的环状衍射};
+\end{scope}
+\begin{scope}[xshift=3cm]
+\fill[black!90](-1.6,-1.6)rectangle(1.6,1.6);
+\foreach \x in {-1.2,-.6,0,.6,1.2}{\foreach \y in {-1.2,-.6,0,.6,1.2}{
+\fill[white!80!black](\x,\y)circle(.035);}}
+\node[below]at(0,-1.8){固定取向晶体的离散点斑};
+\end{scope}
+\end{tikzpicture}\figcap{环纹和点斑是两类不同的衍射结构；这里展示形态，不代表某一种样品的测量数据。}\label{fig:xray-patterns}\end{center}
+
+图~\ref{fig:xray-patterns} 中，大量随机取向微晶把相同散射角的信号分布到圆锥面上，平面探测器截得环纹；固定取向单晶则只在满足相位匹配的方向产生离散斑点。不能把所有晶体的衍射照片都画成相同方阵。
+
+\begin{center}\begin{tikzpicture}[x={(1cm,0cm)},y={(.38cm,.28cm)},z={(0cm,1cm)},font=\small]
+\foreach \sh/\plane in {0/1,5/2}{
+\begin{scope}[shift={(\sh,0,0)}]
+\foreach \a in {0,2}{\foreach \b in {0,2}{
+\draw[RuleGray](0,\a,\b)--(2,\a,\b);
+\draw[RuleGray](\a,0,\b)--(\a,2,\b);
+\draw[RuleGray](\a,\b,0)--(\a,\b,2);}}
+\ifnum\plane=1
+\fill[Blue!20,opacity=.45](0,1,0)--(2,1,0)--(2,1,2)--(0,1,2)--cycle;
+\else
+\fill[Gold!30,opacity=.45](0,2,0)--(2,0,0)--(2,0,2)--(0,2,2)--cycle;
+\fi
+\foreach \y in {2,1,0}{\foreach \z in {0,1,2}{\foreach \x in {0,1,2}{
+\pgfmathtruncatemacro{\parity}{mod(\x+\y+\z,2)}
+\ifnum\parity=0\filldraw[fill=Blue!45,draw=DeepBlue](\x,\y,\z)circle(2.8pt);
+\else\filldraw[fill=Gold!55,draw=Gold!80!black](\x,\y,\z)circle(1.8pt);\fi}}}
+\end{scope}}
+\begin{scope}[shift={(10,0,0)},x={(.5cm,0cm)},y={(0cm,.5cm)}]
+\begin{scope}
+\clip(-.2,-.2)rectangle(4.2,4.2);
+\foreach \j in {0,1,2,3,4}{\draw[Blue!60](0,\j)--(4,\j);}
+\foreach \j in {-4,-2,0,2,4}{\draw[TextGray,dashed](0,\j)--(4,{\j+4});}
+\foreach \j in {-2,0,2,4}{\draw[DeepBlue,dotted](0,\j)--(4,{\j+2});}
+\end{scope}
+\foreach \x in {0,...,4}{\foreach \y in {0,...,4}{
+\pgfmathtruncatemacro{\parity}{mod(\x+\y,2)}
+\ifnum\parity=0\fill[DeepBlue](\x,\y)circle(1.7pt);
+\else\fill[TextGray!60](\x,\y)circle(1.2pt);\fi}}
+\node[below,align=center]at(2,-.9){二维截面中的\\不同平行行族};
+\end{scope}
+\node at(1,0,-.55){$\{100\}$ 类晶面};
+\node at(6,0,-.55){$\{110\}$ 类晶面};
+\node[anchor=west]at(0,0,3.15){深色大球：$\mathrm{Cl}^-$；浅色小球：$\mathrm{Na}^+$；球大小仅用于区分离子};
+\end{tikzpicture}\figcap{氯化钠晶格的同一常规晶胞、两类晶面及二维截面中的平行行族。沿立方轴相邻离子间距为晶格常数的一半，不把立方格线当作共价键。}\label{fig:nacl}\end{center}
+
+图~\ref{fig:nacl} 把钠、氯离子交替排列在立方细网格上；同种离子各自组成面心立方子晶格。不同方向的平行晶面具有不同间距，立方晶格满足 $d_{hkl}=a_{\rm c}/\sqrt{h^2+k^2+l^2}$，其中 $a_{\rm c}$ 是常规晶胞边长。例如 $d_{100}=a_{\rm c}$，$d_{110}=a_{\rm c}/\sqrt2$；具体哪一级反射出现还取决于基元的散射相位，不能只凭几何间距断言每一峰都存在。
+\BraggDiagram
+
+\subsection*{单缝、圆孔与分辨率}
+
+宽度为 $D$ 的矩形孔可视为连续分布的次级波源，是 $N\to\infty$、$d\to0$ 且 $Nd=D$ 的光栅极限。令
+\[
+ \beta=\frac{\pi D}{\lambda}\sin\theta,
+\]
+夫琅禾费远场（Fraunhofer far field）强度为
+\begin{equation}
+ I(\theta)=I_0\left(\frac{\sin\beta}{\beta}\right)^2.
+\end{equation}
+第一暗纹满足 $D\sin\theta=\lambda$。小角时，中央光束的半角量级
+\begin{equation}
+ \theta\sim\frac{\lambda}{D}.
+\end{equation}
+孔越小，衍射角越大；这与“缩小孔能无限提高几何清晰度”的直觉相反。圆孔产生艾里图样（Airy pattern），第一暗环角半径为
+\begin{equation}
+ \theta_A=1.22\frac{\lambda}{D}.
+\end{equation}
+
+连续极限也可直接积分得到。孔内横坐标为 $x$ 的窄条相对中央窄条有相位 $kx\sin\theta$，所以
+\[
+ \widetilde A(\theta)\propto
+ \int_{-D/2}^{D/2}\e^{\mathrm ikx\sin\theta}\,\dd x
+ =D\,\frac{\sin\beta}{\beta},
+ \qquad \beta=\frac{\pi D\sin\theta}{\lambda}.
+\]
+强度取振幅模平方，才得到 $\operatorname{sinc}^2$ 曲线。中央 $\beta=0$ 处同样应用极限 $\sin\beta/\beta\to1$；图 22.8 的中央峰必须最高，若曲线在原点落到零，就是数值绘图把可去奇点处理错了。
+
+中央亮斑位于两侧第一暗纹之间，角宽约 $2\lambda/D$，而常说的“衍射张角 $\lambda/D$”是半角。题目若问屏上直径，应再乘传播距离并乘 $2$；若问圆孔第一暗环，则还要使用 $1.22$。这三个量只差常数因子，却对应不同几何定义，必须结合图中的半径或直径标记判断。
+
+\SingleSlitCurve
+
+任何点物经有限圆孔成像后都成为艾里斑。两个点的斑重叠过多时便无法分辨。瑞利判据（Rayleigh criterion）把一个艾里斑的主极大落在另一个的第一暗环处作为临界，因此口径 $D$ 的理想系统角分辨率约为 $1.22\lambda/D$。实际仪器还受像差、传感器采样、噪声和大气扰动限制，但衍射极限是任何无源线性远场成像都不能靠打磨消除的波动下限。
+
+\ResolutionPanel
+
+单台望远镜口径受制造、质量和支架限制。多台望远镜通过相位同步和相关处理可合成长基线，提高特定方向的角分辨率。长基线光学/射电阵列以及事件视界望远镜的全球基线，都体现“有效口径由最大相干基线决定”的思想；阵列的稀疏采样和成像重建仍需单独处理，不能简单等同于一面实心巨镜。
+
+分辨率与像素采样是两层限制。衍射先决定光学系统能传递到像面的最细结构，传感器再对它采样；像素太粗会丢失本可分辨的细节，像素远小于衍射斑则只会把同一模糊斑分成更多格。缩小光圈可减轻部分几何像差并增加景深，但同时增大 $\lambda/D$，所以相机往往在中等光圈获得最佳实际清晰度。后面的“视网膜屏”和“数码相机”两题分别从人眼采样与传感器采样检验这一关系。
+
+\historyfigure{astronomy-contexts-20260923.png}{射电望远镜阵列与月球激光实验的情景。左图强调多台天线协作，右图强调地面发射、接收端；图不按距离与束宽比例绘制。}\label{fig:astronomy-context}
+\ArrayDiagram
+
+实验情景图~\ref{fig:astronomy-context} 左侧强调各天线分别接收信号，再按时延相关合成；右侧则是激光往返传播的地面实验端。全球站点图把台站分离距离与单台口径区分开：分辨角的量级由基线对波前的投影 $B_\perp$ 决定，即 $\lambda/B_\perp$；稀疏阵列并不等于具有同样直径、连续填满的大镜面。
+
+\begin{origexamplebox}{例题 22.1【视网膜屏】}
+手机号称“视网膜屏”。（1）若近视者的明视距离仅为 $10\,\mathrm{cm}$，像素密度需达到多少才使单个像素不易被眼分辨？（2）继续增加像素是否有用？
+\end{origexamplebox}
+\begin{xesolution}
+正常眼的典型角分辨率约为 $1'$，即
+\[
+ \theta_{\min}\approx\frac{\pi}{180\times60}=2.91\times10^{-4}\,\mathrm{rad}.
+\]
+在 $L=0.10\,\mathrm m$ 处，对应线尺度
+\[
+ p=L\theta_{\min}\approx2.91\times10^{-5}\,\mathrm m=29\,\mu\mathrm m.
+\]
+换算为每英寸像素数
+\[
+ \boxed{\mathrm{ppi}\approx\frac{25.4\,\mathrm{mm}}{0.029\,\mathrm{mm}}\approx8.7\times10^2},
+\]
+即约 $900\,\mathrm{ppi}$。这是量级估计，个体视力、对比度、子像素排列和观看距离都会改变结果。
+
+当像素角尺度已明显小于眼的分辨角，再增加像素不会在该距离增加可见空间细节，只会提高数据量和功耗；它仍可能有利于更近观看、图像缩放、抗锯齿、彩色子像素采样或后期裁剪，所以“无用”只限于固定距离下的直接视觉分辨。
+\end{xesolution}
+
+\begin{origexamplebox}{例题 22.2【六角星芒】}
+拍摄点光源时出现六角星芒。（1）解释成因并判断可推知什么；（2）动画中角色飞走后留下星芒是否合理？
+\end{origexamplebox}
+\begin{xesolution}
+相机光圈不是理想圆孔时，直边会产生方向性衍射：垂直于一条边的两个相反方向形成一对亮芒，平行边产生的方向会重合。六边形光阑的三组平行对边因此可形成六条星芒；但三角形孔径的三条边也可给出六个方向，望远镜的支撑结构也能产生相似图样。因此\boxed{\text{六条星芒不能唯一确定叶片数}}。只能结合孔径结构、星芒方向及曝光条件判断；六边形光圈是一个可能模型，而不是唯一结论。圆整孔径减弱这种定向结构，光学表面划痕和传感器溢出也可能叠加其他伪影。
+
+角色本身飞走不会在空气中凭空留下固定星芒。只有画面经过具有多边形孔径的“摄影机”、且角色或背景含足够亮的近点光源时，星芒作为成像系统的衍射效果才合理；动画中的星芒通常是表现速度或闪光的艺术符号。
+\end{xesolution}
+
+\begin{origexamplebox}{例题 22.3【提升视力】}
+看不清远处公交车号时，用拇指和食指做一个很小的缝，透过缝反而看清，为什么？
+\end{origexamplebox}
+\begin{xesolution}
+屈光不正或调焦误差使大瞳孔内不同位置进入的光不能在同一视网膜点会聚，形成较大的弥散圆。小缝挡掉离轴边缘光，只保留方向范围窄的近轴光，弥散圆缩小、景深增大，所以暂时变清楚；这就是针孔效应。
+
+但孔继续缩小时，衍射角 $\sim\lambda/D$ 增大，Airy 斑又会变宽，同时亮度下降。因此存在几何模糊与衍射模糊的折中，小孔不能真正治疗近视，也不能无限提升分辨率。
+\end{xesolution}
+
+\Needspace{25\baselineskip}
+\begin{origexamplebox}{例题 22.4【激光照月】}
+口径 $D=100\,\mu\mathrm m$ 的 He--Ne 激光器发射 $\lambda=632.8\,\mathrm{nm}$ 单色光，对准月球。地月距离 $L=3.84\times10^8\,\mathrm m$，估算到达月球时覆盖面积。
+\end{origexamplebox}
+\begin{xesolution}
+先区分垂直于传播方向的束斑截面与弯曲的月球表面。图 22.11 右图中，月球投影和第一暗环使用相同的长度比例。
+\LaserMoonDiagram
+把出光口视为圆孔，中央斑角半径约 $1.22\lambda/D$：
+\[
+ \theta_A=1.22\frac{632.8\times10^{-9}}{100\times10^{-6}}
+ \approx7.72\times10^{-3}\,\mathrm{rad}.
+\]
+在距离 $L$、垂直于光轴的假想平面上，中央斑第一暗环半径为
+\[
+ r=L\theta_A\approx2.96\times10^6\,\mathrm m,
+\]
+相应的平面光斑面积为
+\[
+ \boxed{A\approx\pi r^2\approx2.75\times10^{13}\,\mathrm{m^2}}.
+\]
+若只作量级估计、去掉圆孔系数 $1.22$，得到约 $1.9\times10^{13}\,\mathrm{m^2}$。但这不是月球表面的受照面积：月球半径约 $R_M=1.737\times10^6\,\mathrm m$，小于上述光斑半径，因此瞄准月心时，整个月球的迎光投影圆盘都落在中央斑以内。投影面积只有 $\pi R_M^2\approx9.48\times10^{12}\,\mathrm{m^2}$；近似平行照明下迎光半球的曲面面积约为 $2\pi R_M^2$，又是另一个量，且各处照度并不相同。题设光束到月球已扩展至数千公里尺度，不能当作几何平行细束；实际月球激光测距须用大得多的发射口径。
+\end{xesolution}
+
+\begin{origexamplebox}{例题 22.5【数码相机】}
+边长 $L=35\,\mathrm{mm}$、像素数 $N_p=5\,\mathrm{Mpix}$ 的方形 CCD 配焦距 $f=38\,\mathrm{mm}$ 镜头。光圈数 $F\#=f/D$ 可取 $2,2.8,4,5.6,8,11,16,22$。（1）估计像面最佳空间分辨率 $\Delta x_{\min}$；（2）估计超过何种像素总数后只会造成采样浪费。
+\end{origexamplebox}
+\begin{xesolution}
+衍射斑角半径 $1.22\lambda/D$，落在焦平面的线半径
+\[
+ \Delta x=1.22\lambda\frac fD=1.22\lambda(F\#).
+\]
+最佳分辨率取最大光圈 $F\#=2$。以 $\lambda=550\,\mathrm{nm}$ 估算
+\[
+ \boxed{\Delta x_{\min}\approx1.34\,\mu\mathrm m}.
+\]
+以每个独立分辨单元占一格作本题量级估算，方形感光面最多包含
+\[
+ N_{\max}\sim\left(\frac{35\,\mathrm{mm}}{1.34\,\mu\mathrm m}\right)^2
+ \approx\boxed{6.8\times10^8\ \text{像素，约 }680\,\mathrm{Mpix}}.
+\]
+这个 $680\,\mathrm{Mpix}$ 只是按“一格对应一个瑞利间隔”作出的数量级估算，\textbf{不是超过它像素就严格无用的阈值}。以非相干成像的衍射截止频率 $f_c=1/(\lambda F\#)$ 为准，奈奎斯特采样需要 $p\le1/(2f_c)=\lambda F\#/2$；在本题理想参数下为 $0.55\,\mu\mathrm m$，对应约 $4.0\times10^9$ 个方形像素。两种数字不同，是因为“分辨两个点”和“采样全部可传递空间频率”不是同一判据。实际系统还受彩色滤镜、噪声、像差、对比度和数据处理影响，不能给出与这些条件无关的统一“浪费界线”。现有 $5\,\mathrm{Mpix}$ 的像素间距约 $15.7\,\mu\mathrm m$，远大于上述理想衍射尺度。
+\end{xesolution}
+
+\MolecularLimitDiagram
+
+\begin{origexamplebox}{例题 22.6【光学极限】}
+解释为什么无论怎样改造普通基于可见光的光学显微镜，都无法直接观察 RNA 合成蛋白质的分子过程。
+\end{origexamplebox}
+\begin{xesolution}
+普通远场显微镜的横向衍射极限约为
+\[
+ \Delta x\simeq0.61\frac{\lambda}{\mathrm{NA}}.
+\]
+可见光 $\lambda\sim400$--$700\,\mathrm{nm}$，即使高数值孔径 $\mathrm{NA}\sim1.4$，分辨尺度仍约 $200\,\mathrm{nm}$。RNA、核糖体上的局部结构和氨基酸连接过程尺度是数纳米甚至更小，相差两至三数量级，两个分子态的普通光学点扩散斑完全重叠。
+
+增大倍率只会放大同一个模糊斑，不能恢复被孔径截止的空间频率。电子显微镜、X 射线、单分子荧光和超分辨技术可间接研究相关过程，但它们不再是本题所指的普通可见光衍射极限显微镜，且实时、活体和化学标记条件各有约束。
+\end{xesolution}
+
+\begin{origexamplebox}{例题 22.7【充分遐想】}
+非鸟类恐龙约在 6600 万年前灭绝。距地球一亿光年以上的文明若想用可见光望远镜分辨地球上的恐龙，估算所需口径。
+\end{origexamplebox}
+\begin{xesolution}
+取恐龙特征尺度 $s\sim10\,\mathrm m$，距离 $L=10^8\,\mathrm{ly}\approx9.46\times10^{23}\,\mathrm m$，角尺度
+\[
+ \theta\sim\frac sL\approx1.06\times10^{-23}\,\mathrm{rad}.
+\]
+以 $\lambda=550\,\mathrm{nm}$ 和 Rayleigh 判据估算
+\[
+ D\gtrsim1.22\frac\lambda\theta
+ \approx6.3\times10^{16}\,\mathrm m
+ \approx\boxed{6.7\ \text{光年}}.
+\]
+这只是分辨一个十米亮暗结构的理论口径；真实恐龙不自行发光，反射光子极少，恒星、行星大气和背景噪声使要求更加夸张。图~\ref{fig:distant-past} 的两个场景用于区分距离与所见时代：在忽略宇宙膨胀的估算中，距地球一亿光年的观察者现在接收到约一亿年前离开地球的光，所见仍处于恐龙时代；若要恰看灭绝前后，则距离约为6600万光年。题设“一亿光年以上”是下界，不能据此断言任何更远距离都恰好对应恐龙时代。
+\historyfigure{galaxy-dinosaurs-20260923.png}{遥远星系与远古地球的情景示意。所见时代由光行时决定，能否看清个体则取决于角分辨率和光子数。\label{fig:distant-past}}
+\end{xesolution}
+
+\GridPatternDiagram
+
+\begin{origexamplebox}{例题 22.8【周期结构】}
+通过经纬正交织物观看 $20\,\mathrm m$ 外、波长 $550\,\mathrm{nm}$ 的点光源，周围出现正方形亮斑阵列，最近邻表观距离 $12\,\mathrm{cm}$。求织物线间距。
+\end{origexamplebox}
+\begin{xesolution}
+经、纬线分别构成一维光栅，两组衍射的乘积形成二维正方点阵。最近邻一级斑的角度很小：
+\[
+ \theta\simeq\frac{0.12}{20}=6.0\times10^{-3}\,\mathrm{rad}.
+\]
+一级光栅条件 $d\sin\theta=\lambda$，故
+\[
+ \boxed{d\simeq\frac{550\times10^{-9}}{6.0\times10^{-3}}
+ =9.17\times10^{-5}\,\mathrm m=0.092\,\mathrm{mm}}.
+\]
+两正交方向间距若不同，亮斑阵列会成为矩形而非正方形；这就是图 22.13 中位置关系所表达的信息。
+\end{xesolution}
+
+\ObliqueGratingDiagram
+
+\begin{origexamplebox}{例题 22.9【光栅方程】}
+证明斜入射透射光栅公式
+\[
+ a(\sin\theta_m-\sin\theta_i)=m\lambda,
+\]
+其中 $a$ 为刻线间距，$\theta_i,\theta_m$ 分别为入射光与第 $m$ 级衍射光相对光栅法线的有向角。
+\end{origexamplebox}
+\begin{xesolution}
+取相邻两缝 $A,B$，沿刻线间距方向的位移为 $a$。斜入射波到达 $A,B$ 时已经有初始光程差 $a\sin\theta_i$；从两缝向观察方向 $\theta_m$ 传播时，又产生出射几何程差 $a\sin\theta_m$。按图中的有向角约定，总有效程差为
+\[
+ \Delta\mathcal L=a\sin\theta_m-a\sin\theta_i.
+\]
+所有刻线同相加强要求 $\Delta\mathcal L=m\lambda$，于是
+\[
+ \boxed{a(\sin\theta_m-\sin\theta_i)=m\lambda}.
+\]
+正入射 $\theta_i=0$ 时退化为 $a\sin\theta_m=m\lambda$。若把入射光画在法线另一侧，$\theta_i$ 本身为负，公式仍自动给出正确的“正弦相加”形式；因此必须使用有向角，而不是事后凭图改正负号。
+\end{xesolution}
+\begin{origexamplebox}{例题 22.0【不同波长的中央亮斑】}
+单色平行光照射宽度可调的单缝，缝后远处放置接收屏。红光波长 $655\,\mathrm{nm}$，绿光波长 $532\,\mathrm{nm}$。判断下列说法：
+
+A. 红光通过 $0.8\,\mathrm{mm}$ 缝、绿光通过 $0.7\,\mathrm{mm}$ 缝时，绿光中央亮斑更宽；
+
+B. 上述配置中红光中央亮斑更宽；
+
+C. 红光通过 $0.7\,\mathrm{mm}$ 缝、绿光通过 $0.8\,\mathrm{mm}$ 缝时，绿光中央亮斑更宽；
+
+D. 上述配置中红光中央亮斑更宽。
+\end{origexamplebox}
+\begin{xesolution}
+单缝中央亮斑宽度 $w\simeq2L\lambda/a$，只需比较 $\lambda/a$。第一组
+\[
+ \frac{655}{0.8}=818.8>\frac{532}{0.7}=760,
+\]
+故红光更宽，对应B。第二组
+\[
+ \frac{655}{0.7}=935.7>\frac{532}{0.8}=665,
+\]
+仍是红光更宽，对应D。因此
+\[
+ \boxed{\text{B、D正确。}}
+\]
+条纹尺度由波长与孔径宽度的比值共同决定，不能只比较波长或只比较缝宽。
+\end{xesolution}

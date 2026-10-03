@@ -1,0 +1,273 @@
+% Teaching diagrams. Labels are transparent; geometry is shared where applicable.
+\newcommand{\boltzmannRayleighContext}{%
+\begin{center}
+\includegraphics[width=.9\linewidth]{boltzmann-rayleigh-context.png}
+\figcap{左：玻尔兹曼（Ludwig Boltzmann）与分子运动的统计图像；右：瑞利勋爵（Lord Rayleigh）与精密气体测量。}
+\label{ch14:fig:history}\end{center}}
+\newcommand{\molecularMicroscopyFigure}{%
+\begin{center}
+\includegraphics[width=.72\linewidth]{figure19-1-redraw.png}
+\figcap{图19.1：分子尺度成像示意。左、右分别表示局部分子结构与规则排列的分子；此图不表示实验测量数据。}
+\end{center}}
+
+\newcommand{\thermometerMeasurementDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\draw[axis] (0,0)--(6.6,0) node[right]{$t$};
+\draw[axis] (0,0)--(0,3.4) node[above]{$T$};
+\draw[DeepBlue,thick,domain=0:6,samples=65] plot(\x,{1.6+1.3*exp(-\x)});
+\draw[Ink,thick,domain=0:6,samples=65] plot(\x,{1.6-1.1*exp(-\x)});
+\draw[TextGray,dashed] (0,1.6)--(6.2,1.6);
+\node[left] at(0,2.9){$T_{\text{物},0}$}; \node[left] at(0,.5){$T_{\text{计},0}$};
+\node[above,DeepBlue] at(3,2){被测物降温};
+\node[below] at(3,1.1){温度计升温};
+\node[right] at(6.3,1.6){$T_f$};
+\end{tikzpicture}
+\figcap{接触后的温度变化：在隔热的整体中，两者从不同初温趋于共同温度 $T_f$。}\label{ch14:fig:thermometry}
+\end{center}}
+
+\newcommand{\molecularEquilibriumDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.8cm,y=.8cm,>=Latex]
+\foreach \offset/\title in {0/{较高温度},4.6/{较低温度},10.2/{共同温度}}{
+\draw[Ink,thick] (\offset,0) rectangle ++(3.8,2.8);
+\node[above] at(\offset+1.9,3){\title};}
+\foreach \xx/\yy/\ang in {.5/.5/35,1.8/.8/110,2.6/1.6/190,.8/2.1/320}{
+\fill[Ink] (\xx,\yy) circle(1.5pt);
+\draw[->,Ink,thick] (\xx,\yy)--++(\ang:.85);
+\fill[Ink] (\xx+4.6,\yy) circle(1.5pt);
+\draw[->,Ink,thick] (\xx+4.6,\yy)--++(\ang:.38);
+\fill[DeepBlue] (\xx+10.2,\yy) circle(1.5pt);
+\draw[->,DeepBlue,thick] (\xx+10.2,\yy)--++(\ang:.6);}
+\draw[->,DeepBlue,thick] (8.65,1.4)--(9.95,1.4);
+\node[below,align=center] at(4.2,-.2){接触并交换能量};
+\node[below,align=center] at(12.1,-.2){单分子能量仍涨落};
+\end{tikzpicture}
+\figcap{同种气体的热平衡示意：箭头表示典型热运动速度，不表示共同的宏观流速。}\label{ch14:fig:equilibrium}
+\end{center}}
+
+% q=r/r0, U/epsilon=q^-12-2q^-6; exact roots of U/epsilon=E.
+\newcommand{\ThermalPotentialAxes}[1]{%
+\pgfmathsetmacro{\qleft}{(1+sqrt(1+#1))^(-1/6)}
+\pgfmathsetmacro{\qright}{(1-sqrt(1+#1))^(-1/6)}
+\draw[axis] (.76,0)--(1.93,0) node[right]{$r/r_0$};
+\draw[axis] (.76,-1.2)--(.76,1.0) node[above]{$U/\varepsilon$};
+\begin{scope}\clip (.79,-1.08) rectangle (1.87,.88);
+\draw[DeepBlue,very thick,domain=.80:1.86,samples=180,smooth] plot(\x,{(\x)^(-12)-2*(\x)^(-6)});
+\end{scope}
+\draw[TextGray,dashed] (.8,#1)--(1.83,#1);
+\fill[Ink] (\qleft,#1) circle(.4pt) (\qright,#1) circle(.4pt);
+\draw[TextGray,dashed] (1,-1)--(1,0);
+\node[above] at(1,0){$1$};
+\node[left] at(.76,-1){$-1$};
+\node[right,font=\small] at(1.84,#1){$-1+E_T/\varepsilon$};}
+\newcommand{\anharmonicPotentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=5.5cm,y=1.65cm,>=Latex]
+\ThermalPotentialAxes{-.5}
+\draw[TextGray,dashed] (\qleft,-.5)--(\qleft,-1.38);
+\draw[TextGray,dashed] (\qright,-.5)--(\qright,-1.38);
+\draw[<->,DeepBlue] (\qleft,-1.3)--(\qright,-1.3);
+\node[below,font=\small] at({(\qleft+\qright)/2},-1.32){$r_2-r_1=2A_T$};
+\node[font=\small] at(.86,-.18){$r_1$};
+\draw[TextGray,thin] (.88,-.23)--(\qleft,-.5);
+\node[font=\small] at(1.4,-.98){$r_2$};
+\draw[TextGray,thin] (1.37,-.9)--(\qright,-.5);
+\end{tikzpicture}
+\figcap{非对称势阱与同一能量水平的两个真实交点。横坐标按 $r_0$ 归一化；$A_T$ 只表示两转折点间距的一半。}\label{ch14:fig:anharmonic}
+\end{center}}
+
+\newcommand{\gasWallCollisionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\fill[DeepBlue!10] (1,0) rectangle (4,2.4);
+\draw[Ink,line width=1.2pt] (4,-.4)--(4,2.9);
+\draw[TextGray,dashed] (1,0)--(4,0) (1,2.4)--(4,2.4) (1,0)--(1,2.4);
+\foreach \xx/\yy in {1.3/.5,2.3/1.8,2.7/.9}{
+\fill[Ink] (\xx,\yy) circle(1.5pt); \draw[->,DeepBlue] (\xx,\yy)--++(.8,0);}
+\draw[<->] (1,-.65)--node[below]{$v_x\Delta t$}(4,-.65);
+\node[above] at(2.5,3.2){朝向壁面的候选分子层};
+\node[align=left,anchor=west] at(4.5,1.2){壁面面积 $S$\\层体积 $Sv_x\Delta t$\\单次壁面冲量 $2mv_x$\\此处 $v_x>0$};
+\end{tikzpicture}
+\figcap{给定正法向速度的分子在 $\Delta t$ 内能够到壁面的薄层；图为法向剖面。}\label{ch14:fig:collision-layer}
+\end{center}}
+
+\newcommand{\traditionalBarometerDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\ThermalBarometerBase{3.5}{4.6}
+\node[anchor=west,align=left] at(3,2.1){管顶残余气体压强 $p_g$\\[4pt]$p_{\rm atm}=\rho_{\rm Hg}gH+p_g$\\[4pt]真空近似：$p_g\ll p_{\rm atm}$};
+\end{tikzpicture}
+\figcap{水银气压计的压力平衡。高度 $H$ 从汞槽自由液面量到管内液面，不从槽底起算。}\label{ch14:fig:barometer-principle}
+\end{center}}
+
+\newcommand{\rayleighApparatusDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\foreach \sx/\lab in {0/B,5/C}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[DeepBlue!22] (-.65,1.8)--(-.25,1.65)--(-.25,.7)--(.25,.7)--(.25,1.65)--(.65,1.8)--(.65,0)--(-.65,0)--cycle;
+\draw[Ink,thick] (-.65,2.6)--(-.65,0)--(.65,0)--(.65,2.6);
+\draw[Ink,thick] (-.25,3)--(-.25,.7)--(.25,.7)--(.25,3);
+\draw[DeepBlue,thick] (-.65,1.8)..controls(-.45,1.8)and(-.3,1.72)..(-.25,1.65);
+\draw[DeepBlue,thick] (.25,1.65)..controls(.3,1.72)and(.45,1.8)..(.65,1.8);
+\draw[TextGray,dashed] (-1,.7)--(1,.7);
+\node[below] at(0,-.3){$\lab$ 处的局部剖面};
+\end{scope}}
+\node[align=center] at(2.5,2.2){同形玻璃元件\\同种液体\\相同接触状态};
+\draw[<->,DeepBlue] (1.3,.7)--(3.7,.7);
+\end{tikzpicture}
+\figcap{两处同形叉状汞面与标志的比较原理。放大图把两处移到同一基准高度，以比较几何形状；实际装置的高度差见前图。}\label{ch14:fig:rayleigh-forks}
+\end{center}}
+
+\newcommand{\heatFeelingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\foreach \sx/\title/\desc in {0/{冷热水后摸温水}/{初态与热流方向},4/{湿冷环境}/{多种换热因素},8/{泡脚后打喷嚏}/{单次观察不定因},12/{高温环境}/{不能据此认定安全}}{
+\node[align=center] at(\sx,1){\title};
+\node[align=center,font=\small,TextGray] at(\sx,0){\desc};}
+\end{tikzpicture}
+\figcap{四个情境需要分别判断：热感觉、换热过程与安全防护不是同一问题。}\label{ch14:fig:heat-feeling}
+\end{center}}
+
+\newcommand{\surfacePhenomenaDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\begin{scope}[shift={(-4.8,0)}]
+\fill[DeepBlue!15] (-1,-1)--(-1,.3)..controls(-.55,1.1)and(.55,1.1)..(1,.3)--(1,-1)--cycle;
+\draw[Ink,thick] (-1,-1.2)--(-1,1.8) (1,-1.2)--(1,1.8);
+\draw[DeepBlue,thick] (-1,.3)..controls(-.55,1.1)and(.55,1.1)..(1,.3);
+\draw[TextGray,dashed] (0,.9)--(2,.9);\node[right,font=\small] at(2,.9){水平视线};
+\node[above] at(0,2){凸液面};
+\end{scope}
+\begin{scope}
+\draw[Ink,thick] (-.22,1.6)--(-.22,.65) (.22,1.6)--(.22,.65);
+\fill[DeepBlue!15,draw=DeepBlue,thick] (-.22,.65)..controls(-.2,.25)and(-.75,-.15)..(-.65,-.55)..controls(-.5,-1.3)and(.5,-1.3)..(.65,-.55)..controls(.75,-.15)and(.2,.25)..(.22,.65)--cycle;
+\draw[->,Ink] (0,-.5)--(0,-1.8) node[below]{$mg$};
+\draw[->,DeepBlue] (-.22,.6)--(-.22,1.4);
+\draw[->,DeepBlue] (.22,.6)--(.22,1.4);
+\node[right,font=\small] at(.6,1.2){张力竖直分量};
+\node[above] at(0,2){悬在管口的液滴};
+\end{scope}
+\begin{scope}[shift={(5.6,0)}]
+\draw[Ink,line width=2pt] (-1.05,1.5)--(.75,-1.2);
+\draw[DeepBlue,line width=1.8pt] (-2,1.2)..controls(-1.4,1.15)and(-1.1,1.4)..(-.95,1.17)--(.77,-1.4);
+\draw[->,DeepBlue] (-.4,.05)--(.1,-.7);
+\draw[Ink,thick] (-.05,-.6)--(-.05,-1.8)--(2,-1.8)--(2,-.6);
+\node[above] at(0,2){液流贴着玻璃棒一侧};
+\end{scope}
+\end{tikzpicture}
+\figcap{凸弯月面、与管口相连的液滴及沿玻璃棒一侧流下的液流。蓝色液流不穿过玻璃棒。}\label{ch14:fig:surface-phenomena}
+\end{center}}
+
+% Openings in the circular bulbs are the same intersections used by the tube walls.
+\newcommand{\ThermalBulbOutline}{%
+\pgfmathsetmacro{\ang}{asin(.15/.8)}\pgfmathsetmacro{\dx}{sqrt(.8*.8-.15*.15)}
+\draw[Ink,thick] ({-2+\dx},.15) arc[start angle=\ang,end angle={360-\ang},radius=.8];
+\draw[Ink,thick] ({2-\dx},-.15) arc[start angle={180+\ang},end angle={540-\ang},radius=.8];
+\draw[Ink,thick] ({-2+\dx},.15)--({2-\dx},.15) ({-2+\dx},-.15)--({2-\dx},-.15);}
+\newcommand{\bulbThermometerDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\begin{scope}[shift={(-4.2,0)}]
+\ThermalBulbOutline
+\fill[DeepBlue] (-.09,-.15) rectangle (.09,.15);
+\node[above] at(0,1.1){水平：活塞居中};
+\node at(-2,0){$V_0$};\node at(2,0){$V_0$};
+\end{scope}
+\begin{scope}[shift={(2.5,0)}]
+\begin{scope}[rotate=90]\ThermalBulbOutline\end{scope}
+\fill[DeepBlue] (-.15,-.54) rectangle (.15,-.36);
+\draw[TextGray,dashed] (-.7,0)--(.9,0);
+\draw[{Latex[length=1.6pt,width=2pt]}-{Latex[length=1.6pt,width=2pt]}] (.75,0)--(.75,-.45);\node[right] at(.9,-.23){$h$};
+\node[right] at(1,2){$V_0+Sh,\ p_{\text{上}}$};
+\node[right] at(1,-2){$V_0-Sh,\ p_{\text{下}}$};
+\draw[->,Ink] (-.65,-.45)--(-.65,-1.1) node[left]{$mg$};
+\node[above] at(0,3){竖直：活塞下移};
+\end{scope}
+\end{tikzpicture}
+\figcap{两球通过细管真正连通；活塞只在直管段内滑动，密封整个管截面。}\label{ch14:fig:bulb-thermometer}
+\end{center}}
+
+\newcommand{\torricelliDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\foreach \sx/\height/\idx/\gasLen in {-3.2/3.7/1/8,3.2/3.6/2/10}{
+\begin{scope}[shift={(\sx,0)}]
+\ThermalBarometerBase{\height}{4.1}
+\draw[{Latex[length=1.6pt,width=2pt]}-{Latex[length=1.6pt,width=2pt]}] (-.9,\height)--(-.9,4.1);
+\node[above left,font=\small] at(-.9,4.1){$\ell_{\idx}=\gasLen\,\mathrm{cm}$};
+\node[below] at(0,-1){状态 \idx};
+\end{scope}}
+\end{tikzpicture}
+\figcap{同一固定管顶、同一汞槽液面基准。左：$H_1=74\,\mathrm{cm}$；右：$H_2=72\,\mathrm{cm}$，残余气柱由8厘米增至10厘米。}\label{ch14:fig:torricelli}
+\end{center}}
+
+\newcommand{\heatedCylinderDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\begin{axis}[width=9cm,height=6cm,xmin=.97,xmax=1.14,ymin=.87,ymax=1.14,
+xlabel={$V/V_0$},ylabel={$p/p_0$},xtick={1,1.1},ytick={.9,1,1.1},grid=major,
+scaled ticks=false,tick label style={/pgf/number format/fixed},clip=false]
+\addplot[DeepBlue,very thick,->] coordinates{(1,.9)(1,1)};
+\addplot[DeepBlue,very thick,->] coordinates{(1,1)(1.1,1)};
+\addplot[DeepBlue,very thick,->] coordinates{(1.1,1)(1.1,1.1)};
+\node[left] at(axis cs:1,.95){定容};
+\node[above] at(axis cs:1.05,1){定压};
+\node[right] at(axis cs:1.1,1.05){定容};
+\end{axis}
+\end{tikzpicture}
+\figcap{缓慢加热的三个阶段。坐标只显示 $V/V_0$ 与 $p/p_0$ 的局部范围，刻度在各自轴上均为线性。}\label{ch14:fig:heated-path}
+\end{center}}
+
+\newcommand{\sandPistonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\foreach \sx/\height/\idx/\sand in {-4.2/1.5/0/1,0/2.25/1/1,4.2/2.7/2/0}{
+\begin{scope}[shift={(\sx,0)}]
+\draw[Ink,thick] (-1,3.6)--(-1,0)--(1,0)--(1,3.6);
+\draw[Ink,line width=2pt] (-1,1.48)--(-.8,1.48) (.8,1.48)--(1,1.48);
+\filldraw[fill=SoftGray,draw=Ink] (-1,\height) rectangle (1,\height+.14);
+\ifnum\sand=1\fill[TextGray!45] (-.78,\height+.14)--(0,\height+.65)--(.78,\height+.14)--cycle;\fi
+\draw[<->] (-1.35,0)--node[left]{$H_{\idx}$}(-1.35,\height);
+\node at(0,.65){气体};
+\node[below,align=center,font=\small] at(0,-.3){\ifnum\idx=0 初态及起动前\else\ifnum\idx=1 砂未取走\else 砂已取尽\fi\fi};
+\end{scope}}
+\end{tikzpicture}
+\figcap{三个状态的几何比例：$H_1=1.5H_0$，$H_2=1.8H_0$；活塞密封气缸，铁砂直接承托在活塞上。}\label{ch14:fig:sand-states}
+\end{center}}
+
+\newcommand{\mercurySpillDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\foreach \sx/\air/\hg/\title in {-4/1.75/.7/{初态},0/2.8/.7/{刚到管口},4/3.5/0/{全部溢出}}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[DeepBlue!30] (-.3,\air) rectangle (.3,\air+\hg);
+\draw[Ink,thick] (-.3,3.5)--(-.3,0)--(.3,0)--(.3,3.5);
+\node[below] at(0,-.2){\title};
+\end{scope}}
+\begin{scope}[shift={(-3,-5.7)}]
+\begin{axis}[width=8cm,height=4.5cm,xmin=0,xmax=20,ymin=450,ymax=490,
+xtick={0,12,20},ytick={456,480,484},xlabel={$x/\mathrm{cm}$},ylabel={$T/\mathrm K$},
+scaled ticks=false,grid=major,xmajorgrids=false,clip=false]
+\addplot[DeepBlue,thick,domain=0:20,samples=60]{(76+x)*(100-x)/16};
+\addplot[only marks,mark=*] coordinates{(12,484)};
+\node[below] at(axis cs:12,478){最高点};
+\draw[thin,Ink] (axis cs:12,479)--(axis cs:12,483);
+\draw[->,Ink] (axis cs:19,461)--(axis cs:15,461);
+\node[above,font=\small] at(axis cs:17,461){溢出方向};
+\end{axis}
+\end{scope}
+\end{tikzpicture}
+\figcap{水银到达管口后，剩余长度 $x$ 从20厘米减至0；所需温度在 $x=12\,\mathrm{cm}$ 处最大。}\label{ch14:fig:mercury-spill}
+\end{center}}
+
+\newcommand{\lennardJonesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=5.5cm,y=1.6cm,>=Latex]
+\ThermalPotentialAxes{-.8}
+\draw[TextGray,densely dashed,domain=.86:1.15,samples=60] plot(\x,{-1+36*(\x-1)^2});
+\node[anchor=west,font=\small,align=left] at(1.45,.65){实线：完整势能\\虚线：局部二阶近似};
+\end{tikzpicture}
+\figcap{势阱最低点为 $(r_0,-\varepsilon)$；二阶近似关于 $r_0$ 对称，而三次项改变左右两侧的形状。}\label{ch14:fig:lennard-jones}
+\end{center}}

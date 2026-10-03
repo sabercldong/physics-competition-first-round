@@ -1,0 +1,226 @@
+\section{阻尼振动}\label{ch10:sec:damping}
+\subsection{三种阻尼情形及其通解}
+阻尼表示运动中的耗散。以下采用黏性阻力模型$F_d=-b\dot x$，其中$b>0$，单位为$\mathrm{kg/s}$。这种线性关系只适用于相应速度和介质条件，不能替代干摩擦或任意流体阻力。运动方程为
+\begin{equation}\label{ch10:eq:damping}
+ m\ddot x+b\dot x+kx=0,
+ \qquad\ddot x+2\gamma\dot x+\omega_0^2x=0,
+ \quad\gamma=\frac{b}{2m},\quad\omega_0=\sqrt{k/m}.
+\end{equation}
+这里$\gamma$和$\omega_0$都是频率量纲，但$\gamma$控制衰减，不是振荡角频率。设$x=\mathrm e^{rt}$，除去非零指数，特征方程和根为
+\[
+ r^2+2\gamma r+\omega_0^2=0,
+ \qquad r_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\]
+\paragraph{欠阻尼：$0<\gamma<\omega_0$。}
+令$\omega_d=\sqrt{\omega_0^2-\gamma^2}$。共轭根$-\gamma\pm\ii\omega_d$给出两个实独立解：
+\begin{equation}\label{ch10:eq:under}
+ x=\mathrm e^{-\gamma t}(C\cos\omega_dt+D\sin\omega_dt)
+ =A_0\mathrm e^{-\gamma t}\cos(\omega_dt+\varphi).
+\end{equation}
+若$x(0)=x_0,\dot x(0)=v_0$，则$C=x_0$，由$v_0=-\gamma C+\omega_dD$得$D=(v_0+\gamma x_0)/\omega_d$。准周期$T_d=2\pi/\omega_d$大于无阻尼周期；严格说$x(t)$不再周期重复，而是振荡与衰减的乘积。
+
+\paragraph{临界阻尼：$\gamma=\omega_0$。}
+此时两个根相同，不能把两个相同的指数当成两条独立解。直接令$x=\mathrm e^{-\gamma t}y$代入方程，得到$\ddot y=0$，故
+\begin{equation}\label{ch10:eq:critical}
+ x=(C+Dt)\mathrm e^{-\omega_0t}
+ =[x_0+(v_0+\omega_0x_0)t]\mathrm e^{-\omega_0t}.
+\end{equation}
+也可在欠阻尼解中用$\sin\omega_dt/\omega_d\to t$求极限；初速度对应的正弦项系数随$\omega_d\to0$变化，不能只把正弦置零。
+
+\paragraph{过阻尼：$\gamma>\omega_0$。}
+记$\kappa=\sqrt{\gamma^2-\omega_0^2}$，则两个根均为负实数：
+\begin{equation}\label{ch10:eq:over}
+ x=C\mathrm e^{(-\gamma+\kappa)t}+D\mathrm e^{(-\gamma-\kappa)t}.
+\end{equation}
+初值给$C+D=x_0$、$\kappa(C-D)=v_0+\gamma x_0$，也可合写为
+\[
+ x=\mathrm e^{-\gamma t}\left[x_0\cosh\kappa t+
+ \frac{v_0+\gamma x_0}{\kappa}\sinh\kappa t\right].
+\]
+它没有反复过零的振荡，但初速度很大时仍可能穿过平衡位置一次；“非振荡”不能误读为“绝不越过平衡点”。
+
+\chTenDampingFigure
+图\ref{ch10:fig:damping-types}三幅图均取$x_0>0,v_0=0$，只改变$\gamma/\omega_0$。欠阻尼有过冲；临界阻尼不反复振荡；过阻尼中的慢指数使返回延迟。其慢衰减率为
+\[
+ \gamma-\sqrt{\gamma^2-\omega_0^2}
+ =\frac{\omega_0^2}{\gamma+\sqrt{\gamma^2-\omega_0^2}},
+\]
+随$\gamma$增大而减小。对于相同$m,k$、从同一偏离位置静止释放，以及用长期收敛尺度比较的情形，临界阻尼是欠阻尼与非振荡返回之间的分界，具有最快的非振荡返回特性。不能脱离初始条件、允许过冲量和“返回”的容差定义，宣称它在所有指标下都最快。临界衰减的特征时间是$1/\omega_0$量级，并非一次完整的无阻尼周期。
+
+\subsection{包络、能量与品质因数}
+欠阻尼位移被两条包络$\pm A_0\mathrm e^{-\gamma t}$限制，振幅尺度减少到$1/\mathrm e$的时间为$\tau_A=1/\gamma$。相邻同向极值相隔$T_d$，极值绝对值之比恰为$\mathrm e^{\gamma T_d}$，其对数$\gamma T_d$称对数衰减率。图\ref{ch10:fig:damping-envelope}同时画出了位移及两条包络。
+\chTenEnvelopeFigure
+机械能仍定义为$E=m\dot x^2/2+kx^2/2$，但已不守恒。将运动方程乘$\dot x$，可得精确结论
+\begin{equation}\label{ch10:eq:dissipation}
+ \frac{\dd E}{\dd t}=\dot x(m\ddot x+kx)=-b\dot x^2\leq0.
+\end{equation}
+令$\psi=\omega_dt+\varphi$，精确求导得
+\[
+ \dot x=-A_0\mathrm e^{-\gamma t}(\gamma\cos\psi+\omega_d\sin\psi),
+\]
+所以瞬时能量为
+\[
+ E(t)=\frac{mA_0^2}{2}\mathrm e^{-2\gamma t}
+ \left[(\gamma\cos\psi+\omega_d\sin\psi)^2+\omega_0^2\cos^2\psi\right].
+\]
+方括号一般随相位变化，因此不能把瞬时能量直接写成固定常数乘$\mathrm e^{-2\gamma t}$。当$\gamma/\omega_0\ll1$，一周期内包络变化很小，将慢变包络暂时固定再平均，得到
+\[
+ \overline E\simeq\frac12m\omega_0^2A^2(t),\qquad
+ \overline P_{\rm loss}\simeq\frac12b\omega_0^2A^2(t),
+ \qquad \frac{\dd\overline E}{\dd t}\simeq-2\gamma\overline E.
+\]
+这里$P_{\rm loss}>0$是损失功率的大小。于是平均能量近似按$\mathrm e^{-2\gamma t}$衰减，$\tau_E\simeq1/(2\gamma)$。品质因数（quality factor）可定义为本线性模型的参数
+\begin{equation}\label{ch10:eq:quality}
+ Q=\frac{m\omega_0}{b}=\frac{\omega_0}{2\gamma}.
+\end{equation}
+在弱阻尼下，它还有能量意义：
+\[
+ Q\simeq\frac{\omega_0\overline E}{\overline P_{\rm loss}}
+ \simeq2\pi\frac{\overline E}{|\Delta E|_{\text{一周期}}}.
+\]
+第二个比值要求一周期损耗占比较小。$Q$大表示每次振动损耗较少，而不是完全没有耗散。
+
+\subsection{阻尼相图与损耗相位}
+相图是以坐标和速度（或动量）为轴画出的状态轨迹。因为$x$和$v$都衰减，欠阻尼相轨迹沿顺时针向原点收缩，见图\ref{ch10:fig:damped-phase}左图；它不是一组互不连接的椭圆。
+\chTenDampedPhaseFigure
+为分开“包络收缩”和“相位偏离”，定义$X=\mathrm e^{\gamma t}x$、$V=\mathrm e^{\gamma t}v$，注意$V\ne\dot X$。由$X=A_0\cos\psi$及$V=-\gamma A_0\cos\psi-\omega_d A_0\sin\psi$消去相位：
+\begin{equation}\label{ch10:eq:tilted}
+ X^2+\frac{(V+\gamma X)^2}{\omega_d^2}=A_0^2.
+\end{equation}
+这条曲线含交叉项$XV$。令$Y=V/\omega_0$并利用$\omega_d^2+\gamma^2=\omega_0^2$，得
+\[
+ X^2+Y^2+2\frac\gamma{\omega_0}XY
+ =A_0^2\left(1-\frac{\gamma^2}{\omega_0^2}\right).
+\]
+在同一长度标度的$X,Y$图上，其主轴沿$Y=\pm X$；阻尼改变轴长比，而不是使这个特定归一化下的主轴角逐渐增大。若采用不同横纵标度，纸面倾角还会改变。图中的椭圆倾角不能直接当作损耗相位。
+
+速度还可写为
+\[
+ v=-\omega_0A_0\mathrm e^{-\gamma t}\sin(\psi+\eta),\qquad
+ \sin\eta=\frac\gamma{\omega_0},\quad
+ \cos\eta=\frac{\omega_d}{\omega_0},\quad0<\eta<\frac\pi2.
+\]
+因此扣除衰减包络后，速度相对位移的相位偏离无阻尼的$\pi/2$，多出$\eta$。在此欠阻尼自由衰减约定下，可称$\eta$为损耗角，并有$\sin\eta=1/(2Q)$。不同学科也用“损耗角”表示受迫响应中的材料损耗相位，定义未必相同，使用时应说明；下文用$\delta$专指位移相对外力的滞后角。
+
+\section{受迫振动、共振与谱线}\label{ch10:sec:driven}
+\subsection{暂态与稳态：从复振幅到真实位移}
+给振子施加$F(t)=F_0\cos\omega t$，其中$F_0>0,\omega>0$。线性方程为
+\begin{equation}\label{ch10:eq:forced}
+ m\ddot x+b\dot x+kx=F_0\cos\omega t.
+\end{equation}
+为什么先研究单一频率？满足通常傅里叶展开条件的周期力可以分解为常量和不同频率的正弦项，线性系统对各项的响应相加便是总响应；非周期驱动力在适当条件下可用傅里叶积分。这不是说任意力都等于一个正弦力。
+
+先将右端暂写成$F_0\mathrm e^{\ii\omega t}$，设特解$\widetilde x=\widetilde X\mathrm e^{\ii\omega t}$。求导一次、两次分别带来$\ii\omega$、$-\omega^2$，因此
+\[
+ (k-m\omega^2+\ii b\omega)\widetilde X=F_0,
+ \quad\widetilde X=\frac{F_0}{k-m\omega^2+\ii b\omega}
+ =\frac{F_0(k-m\omega^2-\ii b\omega)}{(k-m\omega^2)^2+b^2\omega^2}.
+\]
+写$\widetilde X=A\mathrm e^{-\ii\delta}$，取实部得稳态$x_s=A\cos(\omega t-\delta)$，其中
+\begin{align}
+ A&=\frac{F_0}{\sqrt{(k-m\omega^2)^2+b^2\omega^2}},\label{ch10:eq:response-A}\\
+ \cos\delta&=\frac{k-m\omega^2}{\sqrt{(k-m\omega^2)^2+b^2\omega^2}},\qquad
+ \sin\delta=\frac{b\omega}{\sqrt{(k-m\omega^2)^2+b^2\omega^2}}.\label{ch10:eq:response-phase}
+\end{align}
+对$b>0$，必须取$0<\delta<\pi$，即$\delta=\operatorname{atan2}(b\omega,k-m\omega^2)$。只写$\tan\delta=b\omega/(k-m\omega^2)$会在$\omega>\omega_0$时丢失象限；在$\omega=\omega_0$，$\delta=\pi/2$而非“无定义”。
+
+完整解为$x=x_h+x_s$，其中$x_h$是上一节相应阻尼类型的齐次解，用来满足初始位移和速度。例如欠阻尼时从静止开始施力，$x(0)=v(0)=0$，可写
+\[
+ x_h=\mathrm e^{-\gamma t}(C\cos\omega_dt+D\sin\omega_dt),\quad
+ C=-A\cos\delta,\quad
+ D=\frac{-A\omega\sin\delta+\gamma C}{\omega_d}.
+\]
+经过若干衰减时间，$x_h$才可忽略；稳态频率由外力决定，不是自由衰减频率$\omega_d$。在启动初期，两个频率的叠加还可能出现拍状变化。
+
+\subsection{幅频、相频与共振条件}
+令$r=\omega/\omega_0$，则
+\[
+ \frac{Ak}{F_0}=\frac1{\sqrt{(1-r^2)^2+r^2/Q^2}},\qquad
+ \delta=\operatorname{atan2}(r/Q,1-r^2).
+\]
+图\ref{ch10:fig:resonance}按同一组$Q$画出幅频和相频两部分。实线和虚线不仅表示不同峰高，也给出相位经过$\pi/2$的陡缓变化。
+\chTenResonanceFigure
+当$\omega\to0$，弹性项控制响应，$A\to F_0/k,\delta\to0$，振子近似随外力准静态移动。当$\omega$很高，需同时有$\omega\gg\omega_0$和$\omega\gg b/m$，惯性项才压倒其余项，此时$A\simeq F_0/(m\omega^2)$、$\delta\simeq\pi$。在$\omega=\omega_0$，弹性项与惯性项在复表示中抵消，阻尼项平衡外力，$A=F_0/(b\omega_0)=QF_0/k$。
+
+位移峰值需要最小化$A$的分母平方$D(\omega)$。求导：
+\[
+ D=m^2(\omega_0^2-\omega^2)^2+b^2\omega^2,
+ \quad D'=4m^2\omega(\omega^2-\omega_0^2+2\gamma^2).
+\]
+所以只有$0<\gamma<\omega_0/\sqrt2$时，存在正频率的位移共振峰：
+\[
+ \omega_r=\sqrt{\omega_0^2-2\gamma^2},\qquad
+ A_{\max}=\frac{F_0}{2m\gamma\sqrt{\omega_0^2-\gamma^2}}
+ =\frac{QF_0/k}{\sqrt{1-1/(4Q^2)}}.
+\]
+若$\gamma\geq\omega_0/\sqrt2$，$A$在$\omega\geq0$上的最大值位于$\omega=0$，没有非零频率的位移共振峰。弱阻尼$Q\gg1$时$\omega_r\simeq\omega_0$、$A_{\max}\simeq QF_0/k$，这给出$Q$作为共振放大倍数的近似意义。
+
+\subsection{吸收功率与无阻尼共振}
+稳态平均输入功率必须用真实力乘真实速度。因$v=-A\omega\sin(\omega t-\delta)$，展开正弦并平均，交叉项平均为零、$\overline{\cos^2\omega t}=1/2$，得到
+\begin{equation}\label{ch10:eq:power}
+ \overline P=\overline{Fv}=\frac12F_0A\omega\sin\delta
+ =\frac12b\omega^2A^2
+ =\frac{F_0^2b\omega^2}{2[(k-m\omega^2)^2+b^2\omega^2]}.
+\end{equation}
+它恰等于$\overline{bv^2}$，所以稳态没有能量逐周期累积。把分母除以$\omega^2$，可看出功率在$k/\omega-m\omega=0$即$\omega=\omega_0$处最大：
+\[
+ \overline P_{\max}=\frac{F_0^2}{2b},\qquad
+ (\omega A)_{\max}=\frac{F_0}{b}.
+\]
+因此速度振幅峰、吸收功率峰与$\delta=\pi/2$的位置一致；位移峰通常与它们不同。在$\omega_0$处，外力与速度同相，做功最有效；此时$\overline E=m\omega_0^2A^2/2$，从而$\omega_0\overline E/\overline P=Q$。
+
+如果$b=0$，不能把有阻尼的峰值公式直接用于$\omega=\omega_0$。此时没有有限振幅的周期稳态。取共振特解$x_p=Ct\sin\omega_0t$，则
+\[
+ \ddot x_p+\omega_0^2x_p=2C\omega_0\cos\omega_0t,
+ \quad C=\frac{F_0}{2m\omega_0}.
+\]
+由静止起振时$x=F_0t\sin\omega_0t/(2m\omega_0)$，包络随$t$增长；无限增长只属于无阻尼且始终线性的理想模型，实际会受耗散、非线性或结构极限限制。
+
+\subsection{线型与半高全宽}
+洛伦兹线型（Lorentzian profile）在概率论中对应柯西分布。中心为$z_0$、半宽为$\Gamma>0$的归一化形式是
+\[
+ L(z)=\frac1\pi\frac{\Gamma}{(z-z_0)^2+\Gamma^2},\qquad
+ \int_{-\infty}^{\infty}L(z)\,\dd z=1.
+\]
+积分用$u=(z-z_0)/\Gamma$化为$\pi^{-1}[\arctan u]_{-\infty}^{\infty}=1$。分子中的$\Gamma$不可遗漏，否则量纲和归一化均不对。高斯线型（Gaussian profile）为
+\[
+ G(z)=\frac1{\sqrt{2\pi}\sigma}\exp[-(z-z_0)^2/(2\sigma^2)].
+\]
+比较图\ref{ch10:fig:profiles}时，为单看形状，先各自除以峰高，并令二者半高全宽相同。洛伦兹线型在$|z-z_0|=\Gamma$时降到一半，故全宽$2\Gamma$；高斯线型则为$2\sqrt{2\ln2}\,\sigma$。洛伦兹尾部按距离平方的倒数衰减，高斯尾部衰减更快。
+\chTenProfileFigure
+一般受迫振子的$A^2(\omega)$并非严格洛伦兹函数，因为分母含$\omega^4$。只有弱阻尼、$|\Delta|=|\omega-\omega_0|\ll\omega_0$时，$\omega_0^2-\omega^2\simeq-2\omega_0\Delta$，于是
+\[
+ A^2(\omega)\simeq\frac{F_0^2}{4m^2\omega_0^2}\frac1{\Delta^2+\gamma^2}.
+\]
+半高必须说明测的是$A$、$A^2$还是功率。下题求功率峰的带宽，再说明何时可把它用于位移强度谱。
+
+\begin{origexamplebox}{共振半功率带宽}\label{ch10:ex:bandwidth}
+弱阻尼受迫振子在共振附近的两个半功率频率为$\omega_1<\omega_2$。证明$Q\simeq\omega_0/(\omega_2-\omega_1)$。
+\end{origexamplebox}
+\begin{xesolution}
+由式\eqref{ch10:eq:power}，将功率除以峰值，得
+\[
+ \frac{\overline P}{\overline P_{\max}}
+ =\frac{b^2\omega^2}{(k-m\omega^2)^2+b^2\omega^2}.
+\]
+半功率条件是该比值等于$1/2$，交叉相乘并移项：
+\[
+ 2b^2\omega^2=(k-m\omega^2)^2+b^2\omega^2
+ \quad\Longrightarrow\quad|k-m\omega^2|=b\omega.
+\]
+低频侧$k-m\omega_1^2>0$，高频侧相反，所以分别解
+\[
+ \omega_1^2+2\gamma\omega_1-\omega_0^2=0,
+ \qquad\omega_2^2-2\gamma\omega_2-\omega_0^2=0.
+\]
+各取正根：
+\[
+ \omega_1=\sqrt{\omega_0^2+\gamma^2}-\gamma,
+ \qquad\omega_2=\sqrt{\omega_0^2+\gamma^2}+\gamma.
+\]
+因此$\Delta\omega=2\gamma=b/m$，即
+\[
+ \boxed{Q=\frac{\omega_0}{\omega_2-\omega_1}}.
+\]
+对这一线性黏性阻尼模型，\emph{吸收功率}的等式实际上是精确的。弱阻尼时两个半功率点近似为$\omega_0\pm\gamma$，且在窄峰内$\omega^2$近似不变，$\overline P\propto\omega^2A^2$才近似与$A^2$成正比；这时也可把$2\gamma$作为位移强度谱的近似半高全宽。$\gamma$和带宽都是角频率，$Q$无量纲；$b\to0^+$时峰越来越窄，但恰好$b=0$的共振需使用上一小节的增长解。
+\end{xesolution}

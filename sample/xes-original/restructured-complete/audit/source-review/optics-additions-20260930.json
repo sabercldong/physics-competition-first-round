@@ -1,0 +1,56 @@
+{
+  "scope": "本轮四道新增题的来源与变更；不代替光学全部原件逐对象验收",
+  "objects": [
+    {
+      "source_id": "black-117-1",
+      "source_pdf": "/Users/dongxingxi/Downloads/黑白皮/新编物理 奥赛实用题典（462）.pdf",
+      "physical_page": 117,
+      "printed_page": 105,
+      "source_number": "1",
+      "target_id": "ch28:ex:depth-stick",
+      "status": "mapped",
+      "changes": "保留直杆最大表观弯折模型，明确近于正上方、局部近轴观察条件；补完整求导、极值唯一性及极限检验。",
+      "new_figure": "ch28:fig:depth-stick",
+      "source_review": "题目所在高清页已人工查看"
+    },
+    {
+      "source_id": "black-118-11",
+      "source_pdf": "/Users/dongxingxi/Downloads/黑白皮/新编物理 奥赛实用题典（462）.pdf",
+      "physical_page": 118,
+      "printed_page": 106,
+      "source_number": "11",
+      "target_id": "ch27:ex:depth-abbe",
+      "status": "mapped",
+      "changes": "保留阿贝数、60度棱镜、三谱线折射率条件；明确只对D光调整一次棱镜，随后固定入射方向。分别追踪两次折射，不把各色光都误取最小偏向。",
+      "figure_reuse": "ch27:fig:s42-19-6 右图",
+      "source_review": "题目所在高清页已人工查看"
+    },
+    {
+      "source_id": "cheng-folder-cui-285-286-9.2.4",
+      "source_pdf": "/Users/dongxingxi/Downloads/程书/热学、光学、近代物理学篇（程稼夫系列后续）.pdf",
+      "author_note": "该书作者为崔宏滨；文件存于程书文件夹，不因此署名程稼夫。",
+      "physical_pages": [285, 286],
+      "printed_pages": [273, 274],
+      "source_number": "例9.2第(4)问",
+      "target_id": "ch29:ex:depth-source-width",
+      "status": "adapted",
+      "changes": "沿用前三问已收入的双面镜模型和数据，显式增加均匀非相干线光源、无渐晕及等振幅的近轴条件。将含糊的可见宽度改为可见度函数与第一次零点，并解释后续旁瓣和阈值依赖；不是逐字照录题意。",
+      "merged_prior_parts": "ch29:ex:s44-21-7",
+      "new_figure": "ch29:fig:depth-source-visibility",
+      "source_review": "题目及解答两页均已人工查看"
+    },
+    {
+      "source_id": "cai067-p2-q8",
+      "source_pdf": "/Users/dongxingxi/Downloads/2026.6.22/竞赛/蔡题集萃/蔡题集萃_整理版/蔡题067/试卷.pdf",
+      "physical_page": 2,
+      "source_number": "8",
+      "target_id": "ch30:ex:depth-cai67",
+      "status": "mapped",
+      "changes": "两问及极值数据均纳入；明确部分偏振光的自然光加完全偏振光分解。补相位、振幅和强度的逐步判断及能量核验。",
+      "new_figure": "ch30:fig:depth-cai67",
+      "source_review": "题目所在高清页已人工查看"
+    }
+  ],
+  "not_claimed_as_used": ["江四喜教程本轮尚未新增选题", "白皮本轮仅查看目录，尚未新增选题"],
+  "note": "三幅新图均为TikZ模型图，不截取来源书籍。源页图片仅供内部核对。"
+}

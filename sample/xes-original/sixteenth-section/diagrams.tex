@@ -1,0 +1,337 @@
+% Restrained TikZ redraws based on the figures in the source material.
+
+\newcommand{\crossProductDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (4.0,0);
+  \coordinate (B) at (1.35,1.75);
+  \fill[PaleBlue] (O)--(A)--($(A)+(B)$)--(B)--cycle;
+  \draw[vector] (O)--(A) node[below right] {$\vect a$};
+  \draw[vector] (O)--(B) node[above left] {$\vect b$};
+  \draw[thick,TextGray] (A)--($(A)+(B)$)--(B);
+  % The normal is drawn with an out-of-plane symbol, not as another in-plane arrow.
+  \draw[DeepBlue,very thick] (2.68,0.88) circle (0.27);
+  \fill[DeepBlue] (2.68,0.88) circle (2.2pt);
+  \node[DeepBlue,above] at (2.68,1.18) {$\vect a\times\vect b$};
+  \node[DeepBlue,below] at (2.68,0.58) {出纸面};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=A--O--B};
+  \node[align=left,TextGray,anchor=west] at (5.72,1.1)
+    {$|\vect a\times\vect b|=ab\sin\theta$\\方向由 $\vect a$ 转向 $\vect b$ 的右手定则确定};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.1\quad 矢量外积的大小和方向}
+\end{center}}
+
+\newcommand{\particleAngularMomentumDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (3.4,1.55);
+  \fill (O) circle (1.5pt) node[below left] {$O$};
+  \draw[vector] (O)--(P) node[midway,above] {$\vect r$};
+  \fill[DeepBlue] (P) circle (2.2pt) node[below right] {$m$};
+  \coordinate (V) at ($(P)+(2.2,0)$);
+  \draw[vector] (P)--(V) node[above] {$\vect p=m\vect v$};
+  \draw pic[draw,"$\varphi$",angle radius=7mm,angle eccentricity=1.25]
+    {angle=O--P--V};
+  % Here r points up and to the right while p points to the right, so
+  % r x p is into the page.  Use a circled cross rather than a dot.
+  \draw[DeepBlue,very thick] (0.82,1.32) circle (0.27);
+  \draw[DeepBlue,very thick] (0.66,1.16)--(0.98,1.48);
+  \draw[DeepBlue,very thick] (0.66,1.48)--(0.98,1.16);
+  \node[DeepBlue,above] at (0.82,1.62) {$\vect L$};
+  \node[DeepBlue,left] at (0.50,1.32) {入纸面};
+  \node[TextGray,align=left,anchor=west] at (5.95,0.75)
+    {$\vect L=\vect r\times\vect p$\\$\vect L\perp\vect r$ 且 $\vect L\perp\vect p$\\$L=mrv\sin\varphi$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.2\quad 运动质点相对于 $O$ 点的角动量}
+\end{center}}
+
+\newcommand{\apsidesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.0cm,y=0.72cm,>=Latex]
+  % For a=4.6 and b=2.25 the focal distance is
+  % c=sqrt(a^2-b^2)=4.01.  The force centre must sit at that focus.
+  \coordinate (F) at (4.01,0);
+  \fill (F) circle (3.5pt) node[above left=2pt] {$M$};
+  \draw[curve] (0,0) ellipse (4.6 and 2.25);
+  \coordinate (P) at (4.6,0);
+  \coordinate (A) at (-4.6,0);
+  \fill[DeepBlue] (P) circle (2.3pt);
+  \fill[DeepBlue] (A) circle (2.3pt);
+  \draw[vector] (P)--++(0,1.25) node[above] {$\vect v_{\rm p}$};
+  \draw[vector] (A)--++(0,-0.75) node[below] {$\vect v_{\rm a}$};
+  \node[right=4pt] at (P) {近日点};
+  \node[left=4pt] at (A) {远日点};
+  \draw[<->] ($(F)+(0,-0.48)$)--node[fill=white,inner sep=1pt] {$r_{\rm p}$}($(P)+(0,-0.48)$);
+  \draw[<->] (A)--node[fill=white,inner sep=1pt] {$r_{\rm a}$}(F);
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.3\quad 回归点处速度与力心连线垂直}
+\end{center}}
+
+\newcommand{\keplerContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.92cm,y=0.72cm,>=Latex]
+  % a=4.7, b=2.15 -> c=sqrt(a^2-b^2)=4.18.
+  \coordinate (F) at (4.18,0);
+  \coordinate (P) at (4.7,0);
+  \coordinate (A) at (-4.7,0);
+  \fill[PaleBlue] (0,0) ellipse (4.7 and 2.15);
+  \draw[curve] (0,0) ellipse (4.7 and 2.15);
+  \fill[DeepBlue] (F) circle (4.2pt) node[below=3pt] {太阳};
+  \fill[Ink] (P) circle (2.8pt) node[above right] {近日点};
+  \fill[Ink] (A) circle (2.8pt) node[above left] {远日点};
+  \draw[<->] (1.9,-0.48)--node[fill=white,inner sep=1pt] {$r_{\rm near}$}(4.7,-0.48);
+  \draw[<->] (-4.7,-0.90)--node[fill=white,inner sep=1pt] {$r_{\rm far}$}(1.9,-0.90);
+  \draw[vector] (P)--++(0,1.55) node[above] {$v_{\rm near}$};
+  \draw[vector] (A)--++(0,-0.78) node[below] {$v_{\rm far}$};
+  \node[TextGray,align=center,fill=white,fill opacity=0.86,text opacity=1,
+    rounded corners=2pt,inner sep=3pt] at (0,1.18)
+    {$mv_{\rm near}r_{\rm near}=mv_{\rm far}r_{\rm far}$\\[-1pt]
+     $r_{\rm near}<r_{\rm far}\Rightarrow v_{\rm near}>v_{\rm far}$};
+\end{tikzpicture}
+
+{\small\color{TextGray}开普勒椭圆轨道中，太阳位于焦点；回归点速度与日心连线垂直}
+\end{center}}
+
+\newcommand{\momentsContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex,
+  item/.style={align=center,text=Ink,font=\small},
+  formula/.style={align=center,text=DeepBlue,font=\small}]
+  \begin{scope}[xshift=-6.3cm,yshift=2.2cm]
+    \draw[thick] (0,0) ellipse (0.85 and 0.32);
+    \draw[guide] (0,-0.95)--(0,0.95);
+    \node[item] at (0,-0.75) {薄圆环};
+    \node[formula] at (0,-1.18) {$I=MR^2$};
+  \end{scope}
+  \begin{scope}[xshift=-2.1cm,yshift=2.2cm]
+    \fill[PaleBlue] (0,0) ellipse (0.85 and 0.32);
+    \draw[thick] (0,0) ellipse (0.85 and 0.32);
+    \draw[guide] (0,-0.95)--(0,0.95);
+    \node[item] at (0,-0.75) {实心圆柱};
+    \node[formula] at (0,-1.18) {$I=\frac12MR^2$};
+  \end{scope}
+  \begin{scope}[xshift=2.1cm,yshift=2.2cm]
+    \fill[PaleBlue] (0,0) ellipse (0.95 and 0.36);
+    \fill[white] (0,0) ellipse (0.43 and 0.16);
+    \draw[thick] (0,0) ellipse (0.95 and 0.36) (0,0) ellipse (0.43 and 0.16);
+    \draw[guide] (0,-0.95)--(0,0.95);
+    \node[item] at (0,-0.75) {厚圆筒};
+    \node[formula] at (0,-1.18) {$I=\frac12M(R_1^2+R_2^2)$};
+  \end{scope}
+  \begin{scope}[xshift=6.3cm,yshift=2.2cm]
+    \draw[very thick] (-1.25,0)--(1.25,0);
+    \draw[guide] (0,-0.85)--(0,0.85);
+    \node[item] at (0,-0.75) {细杆绕中心};
+    \node[formula] at (0,-1.18) {$I=\frac1{12}ML^2$};
+  \end{scope}
+  \begin{scope}[xshift=-4.2cm,yshift=-2.05cm]
+    \draw[very thick] (-1.25,0)--(1.25,0);
+    \draw[guide] (-1.25,-0.85)--(-1.25,0.85);
+    \node[item] at (0,-0.75) {细杆绕端点};
+    \node[formula] at (0,-1.18) {$I=\frac13ML^2$};
+  \end{scope}
+  \begin{scope}[xshift=0cm,yshift=-2.05cm]
+    \fill[PaleBlue] (0,0) circle (0.78);
+    \draw[thick] (0,0) circle (0.78);
+    \draw[guide] (0,-1.0)--(0,1.0);
+    \node[item] at (0,-1.05) {实心球};
+    \node[formula] at (0,-1.48) {$I=\frac25MR^2$};
+  \end{scope}
+  \begin{scope}[xshift=4.2cm,yshift=-2.05cm]
+    \draw[thick] (0,0) circle (0.78);
+    \draw[guide] (0,-1.0)--(0,1.0);
+    \draw[TextGray] (-0.68,0) arc[start angle=180,end angle=360,x radius=0.68,y radius=0.23];
+    \node[item] at (0,-1.05) {薄球壳};
+    \node[formula] at (0,-1.48) {$I=\frac23MR^2$};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}常见均匀刚体绕图示对称轴的转动惯量；虚线表示转轴}
+\end{center}}
+
+\newcommand{\gyroDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (C) at (2.8,2.5);
+  \coordinate (V) at (0,3);
+  \draw[thick] (-0.8,0)--(0.8,0);
+  \foreach \x in {-0.7,-0.35,0,0.35,0.7}{\draw[TextGray] (\x,0)--++(-0.18,-0.18);}
+  \draw[axis] (O)--(0,4.0) node[above] {$z$};
+  \draw[curve] (O)--(C) node[midway,above left] {$\vect r$};
+  \draw[vector] (O)--++(3.65,3.25) node[above right] {$\vect L\simeq I_0\vect\omega_0$};
+  \draw[vector] (C)--++(0,-1.7) node[below] {$M\vect g$};
+  \draw[thick] ($(C)+(-0.95,0.5)$)--($(C)+(0.95,-0.5)$);
+  \draw[thick] ($(C)+(-0.25,0.9)$) ellipse (0.35 and 0.75);
+  % r and Mg lie in the drawing plane, hence their cross product is normal
+  % to that plane.  With the orientation shown it points into the page.
+  \draw[DeepBlue,very thick] (-1.12,1.05) circle (0.25);
+  \draw[DeepBlue,very thick] (-1.27,0.90)--(-0.97,1.20);
+  \draw[DeepBlue,very thick] (-1.27,1.20)--(-0.97,0.90);
+  \node[DeepBlue,anchor=east] at (-1.48,1.05) {$\vect\tau=\vect r\times M\vect g$（入纸面）};
+  \draw[->,DeepBlue,thick] (-1.15,3.45) arc[start angle=165,end angle=385,x radius=1.15,y radius=0.35];
+  \node[DeepBlue,right] at (1.2,3.55) {$\omega_{\rm p}$};
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.3]
+    {angle=C--O--V};
+  % Cone swept out by the symmetry axis during steady precession; this
+  % restores the second panel of the source figure.
+  \begin{scope}[xshift=6.0cm,yshift=1.0cm,scale=0.72]
+    \draw[TextGray,dashed] (0,0)--(0,3.25);
+    \draw[curve] (-1.55,2.55)--(0,0)--(1.55,2.55);
+    \draw[DeepBlue,thick] (0,2.55) ellipse (1.55 and 0.42);
+    \draw[vector] (0,0)--(1.15,2.55)
+      node[pos=0.60,right=4pt,fill=white,inner sep=0.7pt] {$\vect L$};
+    \draw[->,DeepBlue,thick] (-1.05,2.82) arc[start angle=165,end angle=385,x radius=1.05,y radius=0.28];
+    \node[DeepBlue,anchor=west] at (1.62,2.92) {$\omega_{\rm p}$};
+    \node[TextGray,align=center] at (0,-1.95)
+      {$\vect L$ 绕竖直轴扫出圆锥面\\[4pt]
+       $\dd\vect L=\vect\tau\,\dd t$\\[-1pt]
+       力矩改变 $\vect L$ 的方向};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.6\quad 重力矩使高速自转陀螺发生进动}
+\end{center}}
+
+\newcommand{\areaVelocityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (4.2,0.25);
+  \coordinate (B) at (3.25,2.25);
+  \fill[PaleBlue] (O)--(A)--(B)--cycle;
+  \draw[vector] (O)--(A) node[midway,below] {$\vect r$};
+  \draw[vector] (O)--(B) node[midway,above left] {$\vect r+\dd\vect r$};
+  \draw[vector] (A)--(B) node[midway,right] {$\dd\vect r=\vect v\dd t$};
+  \fill (O) circle (1.5pt) node[below left] {$O$};
+  \node at (2.45,0.95) {$\dd\vect S$};
+  \draw[DeepBlue,very thick] (1.35,0.78) circle (0.22);
+  \fill[DeepBlue] (1.35,0.78) circle (1.8pt);
+  \node[DeepBlue,anchor=east,fill=white,inner sep=1.2pt] at (0.65,0.78) {法向出纸面};
+  \draw[DeepBlue,thin] (0.75,0.78)--(1.10,0.78);
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.7\quad 短时间内扫过的面积矢量}
+\end{center}}
+
+\newcommand{\conicalPendulumDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,3.6);
+  \coordinate (P) at (-2.7,0.7);
+  \coordinate (V) at (0,0.6);
+  \draw[thick] (-1.2,3.6)--(1.2,3.6);
+  \foreach \x in {-1.0,-0.6,-0.2,0.2,0.6,1.0}{\draw[TextGray] (\x,3.6)--++(-0.18,0.2);}
+  \draw[guide] (O)--(0,0.1);
+  \draw[curve] (O)--(P) node[midway,above left] {$l$};
+  \fill[DeepBlue] (P) circle (2.5pt) node[left] {$m$};
+  \draw[vector] (P)--++(0,-1.35) node[below] {$m\vect g$};
+  \draw[vector] (P)--++(1.05,1.13) node[above left] {$\vect T$};
+  % At the displayed instant the tangential velocity points into the meridian plane.
+  % A circled cross keeps the projected geometry consistent with the drawn L_O.
+  \draw[DeepBlue,very thick] ($(P)+(-0.48,0)$) circle (0.23);
+  \draw[DeepBlue,very thick] ($(P)+(-0.63,-0.15)$)--($(P)+(-0.33,0.15)$);
+  \draw[DeepBlue,very thick] ($(P)+(-0.63,0.15)$)--($(P)+(-0.33,-0.15)$);
+  \node[DeepBlue,left] at ($(P)+(-0.73,0)$) {$\vect v$（入纸面）};
+  % r points down-left and v points into the page, therefore r x v points
+  % down-right in the meridian plane.
+  \draw[vector] (O)--++(1.65,-1.78) node[below right] {$\vect L_O=m\vect r\times\vect v$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=P--O--V};
+  \draw[->,DeepBlue,thick] (-0.75,4.0) arc[start angle=180,end angle=500,x radius=0.75,y radius=0.28];
+  \node[DeepBlue,right] at (0.8,4.0) {$\vect\omega$};
+  \node[TextGray,align=left,anchor=west] at (2.0,2.25)
+    {$\vect\omega$ 沿竖直轴\\$\vect L_O\perp\vect r$，一般不与 $\vect\omega$ 平行};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dumbbellGroundDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \draw[thick] (-0.7,0)--(5.2,0) node[right] {地面};
+  \foreach \x in {-0.5,0,0.5,1,1.5,2,2.5,3,3.5,4,4.5}{\draw[TextGray] (\x,0)--++(-0.2,-0.18);}
+  \coordinate (A) at (0.9,0.12);
+  \coordinate (B) at (4.1,2.1);
+  \coordinate (H) at (5,0);
+  \draw[curve] (A)--(B) node[midway,above left] {$2l$};
+  \fill[DeepBlue] (A) circle (3pt) node[above left] {$m$};
+  \fill[DeepBlue] (B) circle (3pt) node[above right] {$m$};
+  \draw[vector] (2.1,2.75)--++(0,-1.1) node[midway,right] {$\vect v_0$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=H--A--B};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.9\quad 哑铃的一端与沙地碰撞}
+\end{center}}
+
+\newcommand{\dumbbellCollisionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.9cm,>=Latex]
+  \fill[DeepBlue] (0,0) circle (2.8pt) node[below left=2pt] {$A$};
+  \fill[DeepBlue] (2,0) circle (2.8pt) node[below right=2pt] {$B$};
+  \fill[DeepBlue] (2,1.55) circle (2.8pt) node[above right=2pt] {$C$};
+  \fill[DeepBlue] (4,1.55) circle (2.8pt) node[below right=2pt] {$D$};
+  \draw[curve] (0,0)--(2,0);
+  \draw[curve] (2,1.55)--(4,1.55);
+  \node[above left=2pt] at (0,0) {$m$}; \node[below left=2pt] at (2,0) {$m$};
+  \node[above left=2pt] at (2,1.55) {$m$}; \node[above right=2pt] at (4,1.55) {$m$};
+  \draw[vector] (1,-0.25)--++(0,1.2) node[left] {$\vect v_0$};
+  \draw[guide] (2,0.12)--(2,1.43);
+  \draw[TextGray] (2.0,0.42)--++(0.24,0)--++(0,0.24);
+  \node[TextGray,right] at (4.6,0.75) {$BC$ 为碰撞线，且 $BC\perp AB,CD$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.10\quad 两个相同哑铃端点间的完全弹性正碰}
+\end{center}}
+
+\newcommand{\seesawDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.84,>=Latex]
+  \begin{scope}
+    \draw[curve] (-2.4,0.65)--(2.4,-0.25);
+    \draw[thick] (-0.3,-0.15)--(0.3,-0.15)--(0,0.25)--cycle;
+    \fill[DeepBlue] (-2.1,0.59) circle (2.7pt) node[above] {$m_A$};
+    \fill[DeepBlue] (2.1,-0.19) circle (2.7pt) node[below] {$m_B$};
+    \draw[vector] (-2.1,2.4)--(-2.1,1.05) node[midway,left] {$u_A$};
+  \end{scope}
+  \begin{scope}[xshift=7cm]
+    \draw[curve] (-2.4,0.65)--(2.4,-0.25);
+    \draw[thick] (-0.3,-0.15)--(0.3,-0.15)--(0,0.25)--cycle;
+    \fill[DeepBlue] (-2.1,0.59) circle (2.7pt) node[above] {$m_B$};
+    \fill[DeepBlue] (2.1,-0.19) circle (2.7pt) node[below] {$m_C$};
+    \draw[guide,->] (-2.1,2.25) .. controls (-1.15,3.05) and (-0.2,2.6) .. (-2.1,1.0);
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.11\quad 两次等臂轻跷跷板弹性碰撞}
+\end{center}}
+
+\newcommand{\funnelDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (V) at (0,3);
+  % The axial section is equilateral: the wall makes 30 degrees with the
+  % vertical, hence r/h=tan 30 degrees.  Coordinates are chosen accordingly.
+  \draw[curve] (-2.37,4.1)--(O)--(2.37,4.1);
+  \draw[guide] (O)--(0,4.35);
+  \coordinate (P) at (1.52,2.64);
+  \fill[DeepBlue] (P) circle (2.8pt) node[below right=2pt] {$m$};
+  \draw[vector] (P)--++(1.2,0) node[above=3pt] {$\vect v$};
+  \draw[guide] (0,2.18)--(0,2.52) (1.52,2.18)--(1.52,2.52);
+  \draw[<->] (0,2.18)--node[above,fill=white,inner sep=1pt] {$r$}(1.52,2.18);
+  \draw[<->] (-0.35,0)--node[left] {$h$}(-0.35,2.64);
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=V--O--P};
+  \node[TextGray,align=left] at (5.25,2.1)
+    {$r=h\tan\theta$\\正三角形截面：$\theta=30^\circ$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 14.12\quad 光滑圆锥漏斗中的黄豆}
+\end{center}}

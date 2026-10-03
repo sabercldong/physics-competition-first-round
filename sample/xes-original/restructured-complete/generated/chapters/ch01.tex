@@ -1,0 +1,2711 @@
+\begingroup
+\tcbset{breakable/.default=false}
+\chapter{数学工具：量纲、矢量、坐标与微积分}
+
+\section{量纲、尺度估计与无量纲化}
+
+物理等式两端必须具有相同量纲。以质量、长度、时间为基本量纲，记作
+$M,L,T$。若某物理量 $Q$ 的量纲为
+\begin{equation}
+ \dimens Q=M^\alpha L^\beta T^\gamma,
+\end{equation}
+则 $\alpha,\beta,\gamma$ 只描述它随单位选择怎样缩放，并不包含数值系数。
+量纲分析能排除错误公式、确定幂律形式，却通常不能给出无量纲常数，也不能分辨具有相同量纲而物理意义不同的量。
+
+若问题含 $n$ 个有量纲变量，而它们只涉及 $r$ 个相互独立的基本量纲，则可组成 $n-r$ 个独立无量纲组合。
+把控制方程改写成这些组合的关系称为无量纲化。它不仅减少参数数目，还会显露决定不同物理区间的尺度比。
+
+\begin{origexamplebox}{单摆周期的量纲结构}
+长度为 $\ell$ 的单摆在重力场中作小振动。只用 $\ell$、重力加速度 $g$ 和摆球质量 $m$，由量纲分析确定周期的幂律形式，并说明量纲分析不能确定什么。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+设 $T_0=C\ell^a g^b m^c$，其中 $C$ 无量纲。比较质量量纲先得 $c=0$；再由
+\[
+ [T_0]=T,\qquad [\ell^ag^b]=L^{a+b}T^{-2b}
+\]
+得到 $a+b=0$、$-2b=1$，故 $a=1/2$、$b=-1/2$：
+\[
+ \boxed{T_0=C\sqrt{\frac{\ell}{g}}}.
+\]
+质量不进入结果。量纲分析不能确定 $C=2\pi$，也不能判断大振幅时还会出现怎样的无量纲振幅修正。
+单位检查：$\ell/g$ 的量纲为 $T^2$，开方后确为时间。
+\end{xesolution}
+
+\begin{origexamplebox}{黏性流体中小球的终端速度}
+半径为 $R$、密度为 $\rho_s$ 的小球，在密度为 $\rho_f$、动力黏度为 $\eta$ 的静止流体中由静止释放，且 $\rho_s>\rho_f$。为判断黏性是否主导流动，定义以球直径 $2R$ 为特征长度的雷诺数
+\[
+ \mathrm{Re}=\frac{\rho_fv(2R)}{\eta}.
+\]
+当 $\mathrm{Re}\ll1$ 时，黏滞阻力方向与速度相反，大小可写成 $F_D=C\eta Rv$，其中 $C$ 是与球形几何有关的无量纲常数。
+
+(1) 先用尺度分析估计终端速度 $v_t$；
+
+(2) 若进一步采用斯托克斯阻力 $F_D=6\pi\eta Rv$，求 $v_t$ 的准确表达式；
+
+(3) 把求得的 $v_t$ 代入 $\mathrm{Re}$，写出斯托克斯阻力适用的参数条件。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+先把物理过程分成两个阶段：刚释放时小球加速下落；速度增大后，向上的黏滞阻力也增大。当加速度降为零时，小球保持恒定速度，这个恒定速度才叫终端速度。
+
+图~\ref{ch01:fig:terminal-speed} 中，小球向下运动，重力向下，浮力与黏滞阻力向上。终端状态满足
+\begin{equation}
+ mg=F_b+F_D.
+\end{equation}
+小球体积为 $V=4\pi R^3/3$，所以重力减浮力为
+\[
+ mg-F_b=(\rho_s-\rho_f)Vg
+ =\frac{4\pi}{3}(\rho_s-\rho_f)R^3g.
+\]
+
+只做尺度分析时，忽略 $4\pi/3$ 以及阻力定律中的无量纲系数。用
+$F_D\sim\eta Rv_t$ 与重力减浮力平衡，得到
+\begin{equation}
+ \boxed{v_t\sim\frac{(\rho_s-\rho_f)gR^2}{\eta}}.
+\end{equation}
+符号“$\sim$”表示两边具有相同的尺度和参数依赖关系，并不表示数值严格相等。
+
+若采用准确的斯托克斯阻力，终端平衡式成为
+\[
+ \frac{4\pi}{3}(\rho_s-\rho_f)R^3g=6\pi\eta Rv_t,
+\]
+因而
+\begin{equation}
+ \boxed{v_t=\frac{2(\rho_s-\rho_f)gR^2}{9\eta}}.
+\end{equation}
+这说明量纲分析能够确定 $R^2$、$g$、密度差和黏度怎样进入结果，却不能得到数值因子 $2/9$。
+
+雷诺数不是另一条凭空给出的经验公式。惯性项的尺度为
+$\rho_fv^2/L$，黏性项的尺度为 $\eta v/L^2$，二者之比为
+\[
+ \frac{\rho_fv^2/L}{\eta v/L^2}=\frac{\rho_fvL}{\eta}.
+\]
+取小球直径 $L=2R$，就得到题设中的 $\mathrm{Re}$。它确为无量纲量；若改用半径 $R$ 作特征长度，只会相差无关紧要的常数因子 $2$。
+
+把准确的终端速度代入，终端状态的雷诺数为
+\begin{equation}
+ \mathrm{Re}_t=\frac{\rho_f v_t(2R)}{\eta}
+ =\frac{4\rho_f(\rho_s-\rho_f)gR^3}{9\eta^2}.
+\end{equation}
+所以斯托克斯解答自洽的参数条件是
+\begin{equation}
+ \boxed{\frac{4\rho_f(\rho_s-\rho_f)gR^3}{9\eta^2}\ll1}.
+\end{equation}
+题目没有给出具体数值，因此不能预先断言该条件一定成立，只能在得到参数或实验数据后检验。量纲检查还给出
+$[(\rho_s-\rho_f)gR^2/\eta]=\mathrm{m/s}$。若 $\mathrm{Re}_t$ 不再远小于 $1$，阻力不再与速度成正比，本题的模型必须更换。
+小球由静止单调加速到终端速度的过程中始终有 $0\le v\le v_t$，而雷诺数与 $v$ 成正比，
+因此终端状态的 $\mathrm{Re}_t$ 是整个下落过程中的最大值；只要 $\mathrm{Re}_t\ll1$，此前各时刻也都满足低雷诺数条件。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \fill[DeepBlue!8] (-3.2,-2.0) rectangle (3.2,2.15);
+  \draw[DeepBlue!35] (-3.2,1.55)--(3.2,1.55);
+  \shade[ball color=DeepBlue!24] (0,0) circle (.72);
+  \draw[vector] (0,-.05)--(0,-1.65) node[midway,left=5pt] {$mg$};
+  \draw[vector] (0,.05)--(0,1.65) node[midway,left=5pt] {$F_b+F_D$};
+  \draw[vector,orange!85!black] (1.35,.55)--(1.35,-1.15)
+    node[midway,right=5pt] {$v_t$};
+  \node[anchor=west] at (1.75,.55) {向下匀速};
+  \node[anchor=west,TextGray] at (-3.0,1.87) {静止流体：$\rho_f,\eta$};
+  \node[anchor=east] at (-.9,.05) {小球：$R,\rho_s$};
+\end{tikzpicture}
+\figcap{终端状态的受力图：速度向下，浮力与黏滞阻力的合力向上。}
+\label{ch01:fig:terminal-speed}
+\end{center}
+\end{xesolution}
+
+\section{点乘、投影、叉积与方向判断}
+
+\subsection{点乘与投影}
+
+两个矢量的点乘（scalar product）定义为
+\begin{equation}
+ \boxed{\vect a\cdot\vect b=ab\cos\theta
+ =a_xb_x+a_yb_y+a_zb_z},
+\end{equation}
+其中 $0\le\theta\le\pi$ 是两矢量的夹角。点乘的结果是标量：同向时为正，垂直时为零，夹角为钝角时为负。物理中它用来取“沿某方向的分量”，也用来表示功
+$W=\vect F\cdot\vect s$。点乘满足交换律，且 $\vect a\cdot\vect a=a^2$。
+
+令 $\uvec b=\vect b/b$ 是 $\vect b$ 方向的单位矢量，则 $\vect a$ 在该方向上的标量投影为
+\begin{equation}
+ a_b=\vect a\cdot\uvec b=a\cos\theta.
+\end{equation}
+$a_b$ 可以为负，它只给出带符号的分量大小。把这个大小再乘方向单位矢量，才得到矢量投影：
+\begin{equation}
+ \boxed{\proj_{\vect b}\vect a
+ =(\vect a\cdot\uvec b)\uvec b
+ =\frac{\vect a\cdot\vect b}{b^2}\vect b}.
+\end{equation}
+这里要求 $\vect b\ne\vect 0$，否则“沿 $\vect b$ 的方向”没有定义。
+
+\begin{center}
+\begin{tikzpicture}[scale=.95,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[axis] (-.3,0)--(6,0) node[right]{$\vect b$方向};
+  \draw[vector] (O)--(4.6,2.4) node[above right]{$\vect a$};
+  \draw[component] (O)--(4.6,0) node[midway,below]{$\proj_{\vect b}\vect a$};
+  \draw[guide] (4.6,2.4)--(4.6,0);
+  \draw[->,DeepBlue] (1.2,0) arc[start angle=0,end angle=27,radius=1.2];
+  \node at (1.45,.32) {$\theta$};
+  \node[point,label={[clearlabel]below left:$O$}] at (O) {};
+\end{tikzpicture}
+\figcap{矢量投影的几何意义；虚线表示从 $\vect a$ 端点向 $\vect b$ 所在直线所作的垂线。}\label{ch01:fig:projection}
+\end{center}
+图~\ref{ch01:fig:projection} 中垂足把 $\vect a$ 分成平行、垂直于 $\vect b$ 的两部分。若 $\theta<90^\circ$，投影与 $\vect b$ 同向；若 $\theta>90^\circ$，投影反向。后续的受力分解、功和通量计算都会使用这一结构。
+
+\subsection{叉积与右手定则}
+
+叉积（vector product）的结果仍是矢量，其模和方向分别为
+\begin{equation}
+ |\vect a\times\vect b|=ab\sin\theta,
+ \qquad \vect a\times\vect b\perp\vect a,
+ \quad \vect a\times\vect b\perp\vect b.
+\end{equation}
+方向必须使用右手定则判断：右手四指先指向 $\vect a$，再沿两矢量之间不超过 $180^\circ$ 的较小转角弯向 $\vect b$，此时伸直的拇指方向就是 $\vect a\times\vect b$。
+选定右手直角坐标系后，用 $\uvec i,\uvec j,\uvec k$ 分别表示沿 $x,y,z$ 轴正方向的单位矢量，
+其长度均为 $1$。叉积的顺序不能交换：
+\begin{equation}
+ \vect a\times\vect b=-\vect b\times\vect a,
+ \qquad
+ \uvec i\times\uvec j=\uvec k,
+ \quad \uvec j\times\uvec k=\uvec i,
+ \quad \uvec k\times\uvec i=\uvec j.
+\end{equation}
+同向或反向矢量的叉积为零。叉积是有向面积、力矩、角动量和洛伦兹力的共同语言。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[vector] (O)--(4.2,0) node[right] {$\vect a$};
+  \draw[vector] (O)--(2.45,2.45) node[above right] {$\vect b$};
+  \draw[->,DeepBlue,thick] (1.1,0) arc[start angle=0,end angle=45,radius=1.1];
+  \node at (1.35,.48) {$\theta$};
+  \node[font=\Large,DeepBlue] at (-.48,.45) {$\boldsymbol\odot$};
+  \node[anchor=east] at (-.78,.45) {$\vect a\times\vect b$};
+  \node[anchor=west,align=left,TextGray] at (4.85,1.35)
+    {四指：$\vect a\rightarrow\vect b$\\拇指：指向纸外};
+\end{tikzpicture}
+\figcap{从纸面正面观察，$\vect a$ 逆时针转向 $\vect b$，故 $\vect a\times\vect b$ 指向纸外；圆点符号 $\odot$ 表示箭头朝向读者。}
+\label{ch01:fig:right-hand-rule}
+\end{center}
+
+\begin{origexamplebox}{力矩的坐标计算与方向}
+在 $xy$ 平面内，质点位置为 $\vect r=(2.0\,\uvec i+1.0\,\uvec j)\,\mathrm m$，受力
+$\vect F=(3.0\,\uvec i-4.0\,\uvec j)\,\mathrm N$。求力对原点的力矩，并解释正负号。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+先把力矩写成基矢的叉积，使用分配律逐项计算。平行基矢的叉积为零，
+$\uvec i\times\uvec j=\uvec k$，而交换顺序后
+$\uvec j\times\uvec i=-\uvec k$，所以
+\begin{align*}
+ \vect r\times\vect F
+ &=(2\uvec i+\uvec j)\times(3\uvec i-4\uvec j)\,\mathrm{N\,m}\\
+ &=\bigl(6\uvec i\times\uvec i-8\uvec i\times\uvec j
+       +3\uvec j\times\uvec i-4\uvec j\times\uvec j\bigr)\,\mathrm{N\,m}\\
+ &=(-8-3)\uvec k\,\mathrm{N\,m}.
+\end{align*}
+一般地，把三维分量分别相乘并合并同一基矢，得到
+\[
+ \vect a\times\vect b
+ =(a_yb_z-a_zb_y)\uvec i+(a_zb_x-a_xb_z)\uvec j
+ +(a_xb_y-a_yb_x)\uvec k.
+\]
+常把这三项缩写成下面的三阶行列式。沿第一行展开时，各项符号依次为正、负、正；
+划去该项所在的行与列，剩下的二阶式按“左上乘右下，减去右上乘左下”计算。
+对本题补上两个为零的 $z$ 分量，便有
+\[
+ \vect\tau=\vect r\times\vect F
+ =\begin{vmatrix}
+ \uvec i&\uvec j&\uvec k\\2&1&0\\3&-4&0
+ \end{vmatrix}
+ =(-8-3)\uvec k\,\mathrm{N\,m}.
+\]
+故
+\[
+ \boxed{\vect\tau=-11\,\uvec k\,\mathrm{N\,m}}.
+\]
+$-\uvec k$ 指向纸内；从 $+z$ 轴正向朝原点观察，力使质点呈顺时针转动趋势。量纲为力乘力臂，即 $\mathrm{N\,m}$；它与能量虽同量纲，物理对象不同。
+\end{xesolution}
+
+\section{常用坐标系与微元}
+
+这里的“微元”是把一条很短的线、一小块曲面或一个很小的体积写成可积分的量。$\dd s$ 表示长度微元，$\dd A$ 表示面积微元，$\dd V$ 表示体积微元；它们分别具有长度、面积、体积的量纲。
+
+先约定坐标的含义：直角坐标为 $(x,y,z)$；平面极坐标 $(r,\varphi)$ 中，
+$r$ 是到平面原点的距离，$\varphi$ 是从 $+x$ 轴朝 $+y$ 轴量起的方位角。
+柱坐标 $(\rho,\varphi,z)$ 中，$\rho$ 是到 $z$ 轴的垂直距离，
+不是前面量纲分析中使用的密度；$\varphi$ 为水平投影的方位角。
+球坐标 $(r,\theta,\varphi)$ 的角度约定见下面的球面图。
+这四种坐标的线元分别为
+\begin{align}
+ \dd s^2&=\dd x^2+\dd y^2+\dd z^2,\\
+ \dd s^2&=\dd r^2+r^2\dd\varphi^2,\\
+ \dd s^2&=\dd \rho^2+\rho^2\dd\varphi^2+\dd z^2,\\
+ \dd s^2&=\dd r^2+r^2\dd\theta^2+r^2\sin^2\theta\,\dd\varphi^2.
+\end{align}
+相应面积或体积微元来自各坐标方向的尺度因子。采用图~\ref{ch01:fig:spherical} 的球坐标约定：$r$ 是点到原点的距离，$\theta$ 从 $+z$ 轴向下量，$\varphi$ 是绕 $z$ 轴、从 $+x$ 轴朝 $+y$ 轴量的方位角。
+
+在半径固定的球面上，把 $\theta$ 增加 $\dd\theta$，沿经线得到的小弧长是 $r\dd\theta$；把 $\varphi$ 增加 $\dd\varphi$，所在纬圈的半径为 $r\sin\theta$，所以另一条小弧长是 $r\sin\theta\dd\varphi$。两者相乘就是图中黄色小面片的面积：
+\begin{equation}
+ \boxed{\dd A_{r=\text{常量}}
+ =(r\dd\theta)(r\sin\theta\dd\varphi)
+ =r^2\sin\theta\,\dd\theta\,\dd\varphi}.
+\end{equation}
+$\dd A$ 是面积大小，是标量；若计算电通量或流量，需要带方向的面积矢量
+\begin{equation}
+ \dd\vect A=\uvec e_r\,\dd A,
+ \qquad
+ \dd V=\dd r\,\dd A
+ =r^2\sin\theta\,\dd r\,\dd\theta\,\dd\varphi.
+\end{equation}
+这里 $\uvec e_r$ 是球面外法线方向。$\sin\theta$ 不是额外的物理假设，而是纬圈弧长随极角缩短产生的几何因子。
+
+\begin{center}
+\begin{tikzpicture}[scale=.86,>=Latex]
+ \begin{scope}[xshift=-3.7cm]
+  \coordinate (O) at (0,0);
+  \coordinate (X) at (-2.75,-1.55);
+  \coordinate (Y) at (3.3,-1.3);
+  \coordinate (Z) at (0,3.45);
+  \coordinate (Q) at (1.05,-1.18);
+  \coordinate (P) at (1.05,2.05);
+  \draw[axis] (O)--(X) node[below left] {$x$};
+  \draw[axis] (O)--(Y) node[right] {$y$};
+  \draw[axis] (O)--(Z) node[above] {$z$};
+  \draw[guide] (O)--(Q);
+  \draw[guide] (Q)--(P);
+  \draw[vector] (O)--(P) node[above right] {$P(r,\theta,\varphi)$};
+  \node[below right] at (Q) {$P_{xy}$};
+  \draw[->,DeepBlue,thick] (0,1.08) arc[start angle=90,end angle=62,radius=1.08];
+  \node[DeepBlue] at (.35,1.50) {$\theta$};
+  \draw[->,TextGray,thick] (-.85,-.48) .. controls (-.15,-1.22) .. (.68,-.77);
+  \node[TextGray] at (-1.10,-1.30) {$\varphi$};
+  \draw[TextGray,thin] (-.90,-1.21)--(-.22,-.86);
+  \node[point,label={[clearlabel]above left:$O$}] at (O) {};
+  \node[align=center,TextGray] at (0,-2.85)
+    {$\varphi$ 的正向为 $+x\rightarrow +y$\\$\uvec i\times\uvec j=\uvec k$（右手系）};
+ \end{scope}
+ \begin{scope}[xshift=4.65cm,yshift=.05cm]
+  \coordinate (C) at (0,0);
+  \filldraw[draw=DeepBlue,fill=yellow!55]
+    (-1.75,-.52)--(1.18,-.28)--(1.55,.7)--(-1.38,.46)--cycle;
+  \draw[vector] (C)--(0,2.12) node[above] {$\dd\vect A=\uvec e_r\,\dd A$};
+  \draw[<->,TextGray] (-1.62,-.78)--(1.23,-.55)
+    node[midway,below=5pt] {$r\sin\theta\,\dd\varphi$};
+  \draw[<->,TextGray] (1.42,-.3)--(1.78,.62)
+    node[midway,right=6pt] {$r\,\dd\theta$};
+  \node[align=center] at (0,-1.72)
+    {图中黄色小面片的面积就是 $\dd A$};
+  \node[align=center,TextGray] at (0,-2.3)
+    {$\dd A=(r\,\dd\theta)(r\sin\theta\,\dd\varphi)$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{左：球坐标建立在右手直角坐标系上；右：球面面积微元的切平面放大图。}\label{ch01:fig:spherical}
+\end{center}
+图~\ref{ch01:fig:spherical} 的角度约定决定公式中的 $\sin\theta$；若把 $\theta$ 改为从赤道面量起，尺度因子的写法也必须同步改变。特别要区分 $\dd A$ 与 $\dd\vect A$：前者只有面积大小，后者还带球面外法线方向。
+
+\begin{origexamplebox}{球对称密度的总质量}
+半径为 $R$ 的球体密度为 $\rho(r)=\rho_0(1-r/R)$。求总质量，并检查结果的符号和量纲。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+\textbf{先把“累加微元”写清楚。}把球体分成许多很薄的球壳，第 $j$ 层的质量近似为
+$\rho(r_j)\Delta V_j$，总质量近似为这些质量之和。
+当每层厚度趋于零时，这个和的极限称为定积分，符号 $\int$ 表示连续累加；
+上下限表示累加范围，$\dd r$ 对应逐渐变小的层厚，而不是一个额外的未知量。
+对于半径 $r$、厚度 $\Delta r$ 的球壳，
+\[
+ \Delta V=\frac{4\pi}{3}\bigl[(r+\Delta r)^3-r^3\bigr]
+ =4\pi r^2\Delta r+4\pi r(\Delta r)^2+\frac{4\pi}{3}(\Delta r)^3.
+\]
+与第一项相比，后两项在分层无限变细时不再贡献有限总量，故 $\dd V=4\pi r^2\dd r$。
+本题所需的两个累加公式也可先由有限求和得到。令 $\Delta r=R/n$、$r_j=jR/n$，利用
+\[
+ \sum_{j=1}^n j^2=\frac{n(n+1)(2n+1)}6,\qquad
+ \sum_{j=1}^n j^3=\frac{n^2(n+1)^2}4,
+\]
+分别乘以 $(R/n)^3$、$(R/n)^4$ 并令 $n\to\infty$，便得到
+\[
+ \int_0^R r^2\dd r=\frac{R^3}{3},\qquad
+ \int_0^R r^3\dd r=\frac{R^4}{4}.
+\]
+因此球壳累加已经足够完成本题，不必先掌握多重积分的一般运算。
+
+也可使用前文的球坐标体积元
+$\dd V=r^2\sin\theta\,\dd r\,\dd\theta\,\dd\varphi$。因为密度只依赖 $r$，
+两个角变量可以先积分：
+\[
+ \int_0^{2\pi}\!\dd\varphi
+ \int_0^\pi\!\sin\theta\,\dd\theta=4\pi.
+\]
+这里第一项是在长度为 $2\pi$ 的角区间上累加 $1$，结果为 $2\pi$；
+第二项等于 $[-\cos\theta]_0^\pi=-\cos\pi+\cos0=2$。
+方括号表示把上限与下限分别代入后相减；由于 $-\cos\theta$ 的变化率是
+$\sin\theta$，它的总变化就等于相应的累加量。这种“由变化率求总变化”的计算法将在积分部分系统说明。
+因此半径在 $r$ 与 $r+\dd r$ 之间的薄球壳体积是 $4\pi r^2\dd r$，总质量为
+\begin{align*}
+ M&=\int_V\rho\,\dd V
+ =4\pi\rho_0\int_0^R\left(1-\frac rR\right)r^2\dd r\\
+ &=4\pi\rho_0\left(\frac{R^3}{3}-\frac{R^3}{4}\right)
+ =\boxed{\frac{\pi}{3}\rho_0R^3}.
+\end{align*}
+被积函数在 $0\le r\le R$ 非负，所以总质量为正；$\rho_0R^3$ 的量纲为质量。
+这里的 $r^2\sin\theta$ 正是把三个坐标微元换成实际体积的几何因子；它给出薄球壳体积
+$4\pi r^2\dd r$，从而把本题的三重积分化成只对半径 $r$ 的一重积分。
+\end{xesolution}
+
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fourteenth-section/}}
+\section{导数及其应用}
+% TikZ figures redrawn from the source.  Blue annotations in solution figures
+% are added for the present edition.
+
+\newcommand{\extremaDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.78cm,y=0.62cm,>=Latex]
+  \foreach \s in {0,4,8,12}{
+    \draw[axis] (\s,0)--++(3,0) node[right] {$x$};
+    \draw[axis] (\s+0.25,-0.35)--++(0,2.75) node[above] {$y$};
+  }
+  \draw[curve,domain=-1.05:1.05,smooth,variable=\t]
+    plot ({1.65+\t},{0.25+1.35*\t*\t});
+  \draw[tangent] (0.9,0.25)--(2.4,0.25);
+  \node[below] at (1.6,-0.35) {(1)};
+  \draw[curve,domain=-1.05:1.05,smooth,variable=\t]
+    plot ({5.65+\t},{1.9-1.2*\t*\t});
+  \draw[tangent] (4.9,1.9)--(6.4,1.9);
+  \node[below] at (5.6,-0.35) {(2)};
+  \draw[curve,domain=-1.15:1.15,smooth,variable=\t]
+    plot ({9.65+\t},{1.05+0.42*\t*\t*\t});
+  \draw[tangent] (8.9,1.05)--(10.4,1.05);
+  \node[below] at (9.6,-0.35) {(3)};
+  \draw[curve,smooth] plot coordinates
+    {(12.65,1.1) (12.9,1.85) (13.25,1.2) (13.55,1.2)
+     (13.85,0.45) (14.2,1.9) (14.6,1.1)};
+  \draw[tangent] (12.75,1.85)--(13.35,1.85);
+  \draw[tangent] (13.2,1.2)--(13.75,1.2);
+  \draw[tangent] (13.55,0.45)--(14.1,0.45);
+  \draw[tangent] (13.9,1.9)--(14.45,1.9);
+  \node[below] at (13.6,-0.35) {(4)};
+\end{tikzpicture}
+\figcap{函数的导数为零的各种情况}\label{ch01:fig:s14-1-1}
+\end{center}}
+
+\newcommand{\probdiagOneFour}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-2,0) arc[start angle=180,end angle=0,radius=2];
+  \draw[thick] (-2,0)--(2,0);
+  \coordinate (C) at (0,0);
+  \coordinate (P) at ({2*sin(38)},{2*cos(38)});
+  \draw[guide] (C)--(0,2);
+  \draw[guide] (C)--(P);
+  \draw[thick] (P)--++(0,2.0);
+  % 两只固定导向块分列杆的两侧，二者之间留缝让杆竖直滑动。
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(-0.78,1.04)$) rectangle ($(P)+(-0.10,1.30)$);
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(0.10,1.04)$) rectangle ($(P)+(0.78,1.30)$);
+  \draw[->,very thick] ($(P)+(0,2.0)$)--++(0,0.65);
+  \draw[vector] (2.15,0.25)--++(0.9,0) node[right] {$v_0$};
+  \coordinate (Top) at (0,2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=P--C--Top};
+  \node at (-0.95,0.25) {$R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\soldiagOneFour}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-2,0) arc[start angle=180,end angle=0,radius=2];
+  \draw[thick] (-2,0)--(2,0);
+  \coordinate (C) at (0,0);
+  \coordinate (P) at ({2*sin(38)},{2*cos(38)});
+  \draw[guide] (C)--(P);
+  \node[below left=2pt] at ($(C)!0.43!(P)$) {$R$};
+  \draw[guide] (C)--(0,2);
+  \draw[thick] (P)--++(0,2);
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(-0.78,1.04)$) rectangle ($(P)+(-0.10,1.30)$);
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(0.10,1.04)$) rectangle ($(P)+(0.78,1.30)$);
+  \draw[vector] (-2.4,0.25)--++(1.1,0) node[above] {$\dot X=v_0$};
+  \draw[component] (P)--++(0,1.05);
+  \node[right=4pt] at ($(P)+(0,0.78)$) {$\dot y$};
+  \draw[component] (P)--++(-1.18,0);
+  \node[right=7pt] at (P) {$R\cos\theta\,|\dot\theta|$};
+  \coordinate (Top) at (0,2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=P--C--Top};
+  \node[align=center,TextGray] at (0,-0.75)
+    {$x_{\rm rod}=X+R\sin\theta$\\$y=R\cos\theta$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneSix}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-3,0)--(3,0);
+  \node[right] at (3,0.28) {$n_1$};
+  \node[right] at (3,-0.28) {$n_2$};
+  \coordinate (A) at (-2.2,2.0);
+  \coordinate (P) at (0.35,0);
+  \coordinate (B) at (2.25,-1.55);
+  \draw[thick] (A)--(P)--(B);
+  \draw[guide] (P)--++(0,1.35);
+  \draw[guide] (P)--++(0,-1.25);
+  \node[left] at (A) {$A$}; \node[above right] at (P) {$P$}; \node[right] at (B) {$B$};
+  \coordinate (PN) at (0.35,1);
+  \draw pic[draw,->,"$\alpha$",angle radius=7mm,angle eccentricity=1.35]
+    {angle=PN--P--A};
+  \coordinate (PS) at (0.35,-1);
+  \draw pic[draw,<- ,"$\beta$",angle radius=7mm,angle eccentricity=1.35]
+    {angle=PS--P--B};
+  \draw[<->] (-2.2,-0.35)--(0.35,-0.35);
+  \node[above=1pt] at (-0.925,-0.35) {$x$};
+  \draw[<->] (-2.2,-0.72)--(2.25,-0.72);
+  \node[below=1pt] at (0.025,-0.72) {$L$};
+  \draw[<->] (-2.55,0)--node[left] {$h_1$}(-2.55,2);
+  \draw[<->] (2.55,0)--node[right] {$h_2$}(2.55,-1.55);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneSeven}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=0.8cm,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(3.3,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.0) node[above] {$p$};
+    \draw[curve] (1,2)--(2,1);
+    \draw[guide] (1,0)--(1,2)--(0,2);
+    \draw[guide] (2,0)--(2,1)--(0,1);
+    \node[above right] at (1,2) {$A$}; \node[above right] at (2,1) {$B$};
+    \node[below] at (1,0) {$V_0$}; \node[below] at (2,0) {$2V_0$};
+    \node[left] at (0,1) {$p_0$}; \node[left] at (0,2) {$2p_0$};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \draw[axis] (0,0)--(3.3,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.0) node[above] {$p$};
+    \draw[curve] (1.55,1.55) circle[radius=0.78];
+    \draw[guide] (1.55,0)--(1.55,1.55)--(0,1.55);
+    \node[above right] at (1.55,1.55) {$(p_0,V_0)$};
+    \node[below] at (1.55,0) {$V_0$}; \node[left] at (0,1.55) {$p_0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneEight}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (U) at (0,1.45); \coordinate (D) at (0,-1.45); \coordinate (P) at (3.2,0);
+  \fill[white] (U) circle (0.21); \draw[thick] (U) circle (0.21);
+  \fill[white] (D) circle (0.21); \draw[thick] (D) circle (0.21);
+  \fill[white] (P) circle (0.13); \draw[thick] (P) circle (0.13);
+  \draw[guide] (U)--(D); \draw[guide] (U)--(P); \draw[guide] (D)--(P);
+  \draw[thick] (0,0)--(P);
+  \node[above left=4pt] at (U) {$M$};
+  \node[below left=4pt] at (D) {$M$};
+  \node[left=5pt] at (0,0.72) {$L$};
+  \node[left=5pt] at (0,-0.72) {$L$};
+  \node[above=4pt] at (1.55,0) {$x$};
+  \draw[vector] (P)--++(-1.1,0);
+  \node[below=5pt] at (2.70,0) {$\vec F$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\soldiagOneNine}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \pgfmathsetmacro{\throwD}{(sqrt(3)+3*sqrt(11))/8}
+  \draw[thick] (1.9,0)--(6.5,0);
+  \coordinate (S) at ({4.6-1.25*\throwD},0); \coordinate (C) at (4.6,1.25);
+  \coordinate (K) at ({4.6-1.25*sqrt(3)/2},1.875); \coordinate (T) at (4.6,2.5);
+  \draw[thick] (C) circle[radius=1.25];
+  \draw[curve,domain=-\throwD:0,samples=90,variable=\x]
+    plot ({4.6+1.25*\x},{1.25*(2-\x/sqrt(3)-4*\x*\x/3)});
+  \draw[tangent] ($(K)+(-0.38,-0.658)$)--($(K)+(0.38,0.658)$);
+  \fill[DeepBlue] (K) circle (1.7pt) node[above left] {相切点};
+  \draw[guide] (4.6,0)--(T);
+  \draw[<->] ({4.6-1.25*\throwD},-.4)--(4.6,-.4);
+  \node[below=1pt] at (3.6875,-0.4) {$d_0$};
+  \draw[<->] (6.15,0)--node[right] {$2R$}(6.15,2.5);
+  \draw[guide] (T)--(6.3,2.5);
+  \draw[vector] (S)--++(.42,{.42*sqrt(11)}) node[left] {$\vec v_0$};
+  \coordinate (SR) at ($(S)+(1,0)$); \coordinate (SV) at ($(S)+(.42,{.42*sqrt(11)})$);
+  \draw pic[draw,->,"$\theta_0$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=SR--S--SV};
+  \node[anchor=west] at (5.65,3.10) {球顶目标};
+  \draw[TextGray,thin] (5.60,3.02)--(T);
+  \node[TextGray,align=center] at (4.1,-1.15)
+    {临界轨迹先与球面相切，再到达球顶};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\potentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.65cm,>=Latex]
+  \begin{scope}
+    \coordinate (O) at (0,2.2); \coordinate (M) at (-1.25,0.2);
+    \fill (O) circle (1.5pt) node[above right] {$O$};
+    \draw[thick] (O)--(M) node[midway,left] {$l$};
+    \fill (M) circle (2.5pt) node[left] {$m$};
+    \draw[guide] (O)--++(0,-1.45);
+    \coordinate (OD) at (0,0.75);
+    \draw pic[draw,->,"$\theta$",angle radius=7mm,angle eccentricity=1.35]
+      {angle=M--O--OD};
+  \end{scope}
+  \begin{scope}[xshift=4.4cm]
+    \draw[axis] (-0.2,0)--(5.0,0) node[right] {$x$};
+    \draw[axis] (0,-0.3)--(0,3.1) node[above] {$V(x)$};
+    \draw[curve,smooth] plot coordinates
+      {(0.2,2.5) (0.75,1.0) (1.2,0.42) (1.75,1.15) (2.35,2.25)
+       (2.95,1.25) (3.6,0.62) (4.15,1.15) (4.7,2.35)};
+    \draw[guide] (1.2,0)--(1.2,0.42);
+    \draw[guide] (2.35,0)--(2.35,2.25);
+    \draw[guide] (3.6,0)--(3.6,0.62);
+    \fill[DeepBlue] (1.2,0.42) circle (1.8pt);
+    \fill[DeepBlue] (2.35,2.25) circle (1.8pt);
+    \fill[DeepBlue] (3.6,0.62) circle (1.8pt);
+    \node[below=2pt] at (1.2,0) {$S_1$};
+    \node[below=2pt] at (2.35,0) {$U$};
+    \node[below=2pt] at (3.6,0) {$S_2$};
+    \node[DeepBlue] at (1.0,3.25) {稳定};
+    \draw[DeepBlue,thin] (1.0,2.98)--(1.2,.57);
+    \node[above=5pt,DeepBlue] at (2.35,2.25) {不稳定};
+    \node[DeepBlue] at (3.9,3.25) {稳定};
+    \draw[DeepBlue,thin] (3.9,2.98)--(3.6,.77);
+  \end{scope}
+\end{tikzpicture}
+\figcap{左：单摆的角度约定；右：势能曲线的局部极小点与局部极大点。}
+\end{center}}
+
+\newcommand{\probdiagOneTen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (B) at (0,0); \coordinate (A) at (3.0,0); \coordinate (M) at (0,-2.0);
+  \draw[thick] (0,0.45)--(0,-2.45);
+  \draw[thick] (B)--(A);
+  \draw[decorate,decoration={coil,aspect=0.35,segment length=4pt,amplitude=3pt},thick]
+    (M)--(A);
+  \fill (M) circle (2.8pt) node[left] {$m$};
+  \fill (A) circle (1.7pt) node[right] {$A$}; \node[left] at (B) {$B$};
+  \draw[<->] (0,0.35)--(3,0.35);
+  \node[above=1pt] at (1.5,0.35) {$h$};
+  \draw[<->] (-0.45,0)--(-0.45,-2);
+  \node[left=1pt] at (-0.45,-1) {$x$};
+  \node[below right] at (1.55,-1.05) {$\ell=\sqrt{h^2+x^2}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneEleven}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (O) at (0,3.1);
+  \draw[thick] (O)--(-2.05,0); \draw[thick] (O)--(2.05,0);
+  \draw[thick] (-2.05,0) arc[start angle=180,end angle=360,x radius=2.05,y radius=0.32];
+  \draw[guide] (-2.05,0) arc[start angle=180,end angle=0,x radius=2.05,y radius=0.32];
+  \draw[very thick,DeepBlue] (-1.15,1.35) arc[start angle=180,end angle=360,x radius=1.15,y radius=0.22];
+  \draw[guide] (-1.15,1.35) arc[start angle=180,end angle=0,x radius=1.15,y radius=0.22];
+  \draw[axis] (O)--(0,0.55);
+  \draw[guide] (O)--(2.55,3.1);
+  \draw[guide] (0,1.35)--(2.55,1.35);
+  \draw[<->] (2.4,3.1)--node[right=4pt] {$x$}(2.4,1.35);
+  \coordinate (OD) at (0,1.8); \coordinate (RB) at (2.05,0);
+  \draw pic[draw,->,"$\alpha$",angle radius=8mm,angle eccentricity=1.62]
+    {angle=OD--O--RB};
+  \draw[TextGray] (-1.05,1.35)--(-2.25,1.0);
+  \node[anchor=east,DeepBlue] at (-2.3,1.0) {$\ell=2\pi x\tan\alpha$};
+  \node[above] at (O) {$O$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneTwelve}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (L) at (-1.75,0); \coordinate (R) at (1.75,0); \coordinate (T) at (0,2.35);
+  \draw[thick] (-2.5,0)--(2.5,0);
+  \draw[thick] (L)--(T)--(R);
+  \draw[decorate,decoration={coil,aspect=0.35,segment length=4pt,amplitude=3pt},thick]
+    (L)--(R);
+  \fill (T) circle (2.8pt) node[above right] {$m$};
+  \node[left] at (-1.12,1.15) {$l$}; \node[right] at (1.12,1.15) {$l$};
+  \node[above=5pt] at (0,0) {$k$};
+  \coordinate (RL) at (-2.5,0);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=T--R--RL};
+  \draw[<->] (-1.75,-0.72)--(1.75,-0.72);
+  \node[below=3pt] at (0,-0.72) {$2l\cos\theta$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\incrementDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=0.85cm,>=Latex]
+  \draw[axis] (0,0)--(6,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.0) node[above] {$y$};
+  \draw[curve,domain=0.7:5.2,smooth,variable=\x]
+    plot ({\x},{0.55+0.13*exp(0.62*\x)});
+  \coordinate (P) at (4.1,{0.55+0.13*exp(0.62*4.1)});
+  \coordinate (Q) at (4.8,{0.55+0.13*exp(0.62*4.8)});
+  \draw[guide] (P)--(4.1,0);
+  \draw[guide] (Q)--(4.8,0);
+  \node[below left=3pt] at (4.1,0) {$x_0$};
+  \node[below right=3pt] at (4.8,0) {$x_0+\Delta x$};
+  \draw[guide] (P)--(0,{0.55+0.13*exp(0.62*4.1)}) node[left] {$y_0$};
+  \draw[guide] (Q)--(0,{0.55+0.13*exp(0.62*4.8)});
+  \draw[<->] (4.1,1.0)--(4.8,1.0);
+  \node[below=1pt] at (4.45,1.0) {$\Delta x$};
+  \draw[<->] (5.2,{0.55+0.13*exp(0.62*4.1)})--node[right] {$\Delta y$}
+    (5.2,{0.55+0.13*exp(0.62*4.8)});
+  \node[above left] at (3.0,1.7) {$y(x)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneSixteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (0,-2.2); \coordinate (O) at (0,0); \coordinate (X) at (2.6,0); \coordinate (DX) at (3.35,0);
+  \draw[thick,->] (-0.5,0)--(4.2,0);
+  \draw[guide] (A)--(O);
+  \draw[thick] (A)--(X); \draw[thick] (A)--(DX);
+  \fill (A) circle (2.5pt) node[below left] {$A$};
+  \node[above] at (O) {$O$};
+  \node[above left=1pt] at (X) {$x$};
+  \node[above right=1pt] at (DX) {$x+\Delta x$};
+  \draw[<->] (-0.35,0)--node[left] {$h$}(-0.35,-2.2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=X--A--O};
+  \draw pic[draw,->,angle radius=17mm]
+    {angle=DX--A--X};
+  \coordinate (DeltaMid) at (1.36,-1.18);
+  \node (DeltaLabel) at (3.8,-1.50) {$\Delta\theta$};
+  \draw[guide] (DeltaLabel.west)--(DeltaMid);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\soldiagOneSixteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (0,-2.2); \coordinate (O) at (0,0);
+  \coordinate (X) at (2.6,0); \coordinate (DX) at (3.35,0);
+  \draw[thick,->] (-0.5,0)--(4.2,0);
+  \draw[guide] (A)--(O);
+  \draw[thick] (A)--(X); \draw[thick] (A)--(DX);
+  \fill (A) circle (2.5pt) node[below left] {$A$};
+  \node[above] at (O) {$O$};
+  \node[above left=1pt] at (X) {$x$};
+  \node[above right=1pt] at (DX) {$x+\Delta x$};
+  \draw[<->] (-0.35,0)--node[left] {$h$}(-0.35,-2.2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=X--A--O};
+  \draw pic[draw,->,DeepBlue,angle radius=17mm]
+    {angle=DX--A--X};
+  \node[DeepBlue] (DeltaLabel) at (3.25,-1.75) {$\Delta\theta$};
+  \draw[guide] (DeltaLabel.west)--(1.36,-1.18);
+  \draw[component] (2.6,.85)--(3.35,.85) node[midway,above] {$\Delta x$};
+  \draw[guide] (X)--(2.6,.95) (DX)--(3.35,.95);
+  \node[align=left,TextGray] at (6.05,-.75)
+    {$\displaystyle \tan\theta=\frac{x}{h}$\\[3pt]
+     $\displaystyle \Delta\theta\simeq
+       \frac{h\,\Delta x}{h^2+x^2}$};
+\end{tikzpicture}
+\end{center}}
+
+
+在过去的学习中，我们已经学习了许多物理定律及其应用。对于一大类问题，通过已知定律
+并结合系统分析，已经可以得到结果，其中也包括一些相当复杂的问题。但在学习过程中会
+发现，处理某些问题时会遇到数学上的困难。例如，位置随时间的变化率被定义为速度，可
+我们还没有掌握由任意给定运动求速度的普遍方法；又如，速度—时间图像与横轴所围面积
+表示位移，却还不能对一般的速度函数求任意一段时间内的位移。
+
+历史上，人们在研究引力及其性质时也遇到了类似困难。牛顿（I. Newton）和莱布尼茨
+（G. W. Leibniz）分别独立地发明了新的数学工具——微积分（calculus），使这类问题的
+处理成为可能。微积分及随之发展起来的数学理论极大地推动了物理学的发展，不仅使我们
+能够处理许多与曲线、曲面性质有关的问题，其中也包含着重要的物理思想。
+
+具有光滑图像的单自变量函数在某点处切线的斜率称为函数在该点的\textbf{导数}
+（derivative）。若函数记为 $y=y(x)$，曲线在 $x$ 点处的切线可以看作割线的极限，其
+斜率为
+\begin{equation}
+ y'(x)=\lim_{\Delta x\to0}\frac{y(x+\Delta x)-y(x)}{\Delta x}.
+\end{equation}
+导数有多种表示方法，例如 $y'(x)$、$\dfrac{\dd y}{\dd x}(x)$。物理中遇到的绝大部分
+函数都可以求导；除了会计算特定函数的导数，还需要理解导数的物理意义。
+
+直线运动质点的速度是坐标对时间的导数：
+\begin{equation}
+ v(t)=\frac{\dd x}{\dd t}(t),
+\end{equation}
+加速度则是速度对时间的导数：
+\begin{equation}
+ a(t)=\frac{\dd v}{\dd t}(t)=\frac{\dd^2x}{\dd t^2}(t).
+\end{equation}
+因此加速度也是坐标对时间的二阶导数（second order derivative），常记作 $x''$ 或
+$\dfrac{\dd^2x}{\dd t^2}$；类似地还可以定义更高阶导数。
+
+许多物理量本来就是借助导数定义的。例如实验给出一般弹性体的外力与形变量的函数
+$F(x)$，它在形变 $x$ 处的切线刚度（局部劲度）可写成
+\begin{equation}
+ k(x)=\frac{\dd F}{\dd x}(x).
+\end{equation}
+胡克定律只是切线刚度为常数的特殊情况。又如实验测得某物体吸收的热量与温度之间的关系
+$Q(T)$，则该物体在温度 $T$ 处的热容量为
+\begin{equation}
+ C(T)=\frac{\dd Q}{\dd T}(T).
+\end{equation}
+对于真实物体，热容量一般会随温度改变。
+
+利用导数的定义和基本运算法则，可以求出物理中绝大部分常见函数的导数。下面通过例题
+熟悉基本求导规律。
+
+\subsection{局部变化率、链式法则与偏导数}
+
+前述割线斜率的极限说明，导数不是“两个无穷小量的普通商”，而是一个局部变化率。位置对时间的一阶导数是速度，二阶导数是
+加速度；电量对时间的导数是电流；弹性体的切线刚度可写成 $\dd F/\dd x$；若物体吸热量为
+$Q(T)$，则温度为 $T$ 时的热容 $C(T)$ 为 $\dd Q/\dd T$。这些定义都在问同一件事：系统处于某个状态时，
+再作极小改变会得到怎样的即时响应。
+
+复合关系要用链式法则。若 $y=f(u)$、$u=g(x)$，则
+\[
+ \frac{\dd y}{\dd x}=\frac{\dd y}{\dd u}\frac{\dd u}{\dd x}.
+\]
+例如势能 $U(x)$ 随位置变化，而位置又随时间变化，就有
+$\dd U/\dd t=(\dd U/\dd x)v$。若函数由多个物理量共同决定，则应说明求偏导时保持哪些量不变；
+热学中 $(\partial p/\partial V)_T$ 与 $(\partial p/\partial V)_S$ 就代表不同的物理过程。
+
+\subsection{极值判别、物理约束与近似展开}
+
+若函数在定义域内部的 $x_0$ 处可导并取得局部极值，则必有 $f'(x_0)=0$；但驻点不一定是极值，
+还要比较左右导数或二阶导数。若 $f'(x_0)=0$ 且 $f''(x_0)>0$，则 $x_0$ 是严格局部极小点；
+若 $f'(x_0)=0$ 且 $f''(x_0)<0$，则 $x_0$ 是严格局部极大点。端点和不可导点也可能
+给出最大、最小值，故完整求极值必须连同定义域一起检查。物理答案还要满足长度为正、接触不脱离、
+速度可达等约束，纯代数驻点未必可实现。
+
+在 $x_0$ 附近，足够光滑的函数可逐阶展开：
+\[
+ f(x_0+\xi)=f(x_0)+f'(x_0)\xi+
+ \frac12f''(x_0)\xi^2+\frac1{3!}f'''(x_0)\xi^3+\cdots .
+\]
+近似保留到哪一阶取决于所需精度。若 $x_0$ 是势能的平衡位置，一阶项消失，最低非零项通常是二次项，
+系统因而近似简谐振动；若二次项也为零，就必须保留更高阶，回复力和振动周期会表现出不同规律。
+小角近似 $\sin\theta\simeq\theta$、$\cos\theta\simeq1-\theta^2/2$ 也来自同一展开，使用前要说明
+$|\theta|\ll1$ 且角度以弧度计。
+
+对时间求导时还常使用点记号：$\dot X=\dd X/\dd t$，
+$\ddot X=\dd^2X/\dd t^2$；对一般自变量仍写撇号或 $\dd/\dd x$。
+导数还提供变化率的量级判断。设某量的特征值为 $X$、变化时间为 $T$，则
+$\dot X$ 的量级约为 $X/T$；两个机制谁占主导，可比较相应导数项的无量纲比值。竞赛推导中，
+这类先估量级、再保留主导项的做法，常比直接处理完整方程更清楚。
+
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-1}
+根据定义求下列函数的导数：
+\[
+ y(x)=C,\qquad y(x)=kx,\qquad y(x)=ax^n,\qquad
+ y(x)=A\sin(kx),\qquad y(x)=\e^x,
+\]
+其中除自变量 $x$ 外，其余字母均为常数；幂函数一式先取非负整数 $n$。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+直接使用导数定义。例如幂函数有
+\[
+ \frac{\dd}{\dd x}(ax^n)
+ =a\lim_{\Delta x\to0}
+ \frac{(x+\Delta x)^n-x^n}{\Delta x}.
+\]
+由有限二项式展开
+\[
+ (x+\Delta x)^n-x^n
+ =nx^{n-1}\Delta x+\binom n2x^{n-2}(\Delta x)^2+\cdots+(\Delta x)^n,
+\]
+除以 $\Delta x$ 后，第一项为 $nx^{n-1}$，其余各项都至少含一个 $\Delta x$，在
+$\Delta x\to0$ 时趋于零，故得到 $anx^{n-1}$。对实数指数，在 $x>0$ 的区间可由广义二项式展开得到同一公式。同理可得
+\[
+ \boxed{C'=0},\qquad
+ \boxed{(kx)'=k},\qquad
+ \boxed{(ax^n)'=anx^{n-1}},
+\]
+\[
+ \boxed{[A\sin(kx)]'=Ak\cos(kx)},\qquad
+ \boxed{(\e^x)'=\e^x}.
+\]
+
+下面把三角函数和指数函数两式的极限过程完整写出。对 $y=A\sin(kx)$，由导数定义
+\begin{align*}
+ \frac{\dd y}{\dd x}
+ &=A\lim_{\Delta x\to0}
+ \frac{\sin[k(x+\Delta x)]-\sin(kx)}{\Delta x}\\
+ &=A\lim_{\Delta x\to0}
+ \frac{2\cos\!\left(kx+\dfrac{k\Delta x}{2}\right)
+       \sin\!\left(\dfrac{k\Delta x}{2}\right)}{\Delta x}.
+\end{align*}
+第二步使用了恒等式
+$\sin\alpha-\sin\beta
+=2\cos[(\alpha+\beta)/2]\sin[(\alpha-\beta)/2]$。
+把分式改写成
+\[
+ Ak\cos\!\left(kx+\frac{k\Delta x}{2}\right)
+ \frac{\sin(k\Delta x/2)}{k\Delta x/2}.
+\]
+当 $\Delta x\to0$ 时，余弦因子趋于 $\cos(kx)$，而令
+$u=k\Delta x/2$ 后，需要使用基本极限 $\sin u/u\to1$。这个极限可由单位圆直接证明：
+当 $0<u<\pi/2$ 时，扇形面积与内、外两个三角形面积的比较给出
+\[
+ \sin u<u<\tan u.
+\]
+各项除以 $u$ 并整理，得到
+\[
+ \cos u<\frac{\sin u}{u}<1.
+\]
+当 $u\to0^+$ 时两侧都趋于 $1$，由夹逼定理可得右极限为 $1$；又因为
+$\sin(-u)/(-u)=\sin u/u$，左极限相同。因此
+\[
+ \frac{\dd}{\dd x}[A\sin(kx)]=Ak\cos(kx).
+\]
+
+对 $y=\e^x$，先把公因子 $\e^x$ 提出：
+\begin{align*}
+ \frac{\dd}{\dd x}\e^x
+ &=\lim_{\Delta x\to0}
+ \frac{\e^{x+\Delta x}-\e^x}{\Delta x}\\
+ &=\e^x\lim_{\Delta x\to0}
+ \frac{\e^{\Delta x}-1}{\Delta x}.
+\end{align*}
+把自然指数函数写成它的收敛级数定义
+\[
+ \e^u=1+u+\frac{u^2}{2!}+\frac{u^3}{3!}+\cdots,
+\]
+便有
+\[
+ \frac{\e^u-1}{u}
+ =1+\frac{u}{2!}+\frac{u^2}{3!}+\cdots.
+\]
+当 $|u|<1/2$ 时，余项的绝对值满足
+\[
+ \left|\frac{u}{2!}+\frac{u^2}{3!}+\cdots\right|
+ \le |u|+|u|^2+\cdots=\frac{|u|}{1-|u|}\longrightarrow0.
+\]
+因此 $\lim_{u\to0}(\e^u-1)/u=1$。取 $u=\Delta x$，上式中的极限等于 $1$，最终得到
+$\dd(\e^x)/\dd x=\e^x$。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-2}
+函数 $f(x),g(x)$ 对 $x$ 的导数已知。根据导数定义证明以下求导运算的基本规律：
+\[
+ \frac{\dd}{\dd x}[a f(x)]=a\frac{\dd f}{\dd x},
+\]
+\[
+ \frac{\dd}{\dd x}[f(x)g(x)]
+ =f\frac{\dd g}{\dd x}+g\frac{\dd f}{\dd x},
+\]
+\[
+ \frac{\dd}{\dd x}f(g(x))=\frac{\dd f}{\dd g}\frac{\dd g}{\dd x}.
+\]
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+对第一式，常数 $a$ 可直接移到极限号外：
+\[
+ \lim_{\Delta x\to0}\frac{af(x+\Delta x)-af(x)}{\Delta x}
+ =a f'(x).
+\]
+对乘积，在分子中加上再减去 $f(x+\Delta x)g(x)$：
+\begin{align*}
+ &\frac{f(x+\Delta x)g(x+\Delta x)-f(x)g(x)}{\Delta x}\\
+ &\quad=f(x+\Delta x)\frac{g(x+\Delta x)-g(x)}{\Delta x}
+ +g(x)\frac{f(x+\Delta x)-f(x)}{\Delta x}.
+\end{align*}
+令 $\Delta x\to0$，由连续性 $f(x+\Delta x)\to f(x)$，便得乘积法则。
+
+对复合函数令 $\Delta g=g(x+\Delta x)-g(x)$。当 $\Delta g\ne0$ 时
+\[
+ \frac{f(g+\Delta g)-f(g)}{\Delta x}
+ =\frac{f(g+\Delta g)-f(g)}{\Delta g}\,
+  \frac{\Delta g}{\Delta x}.
+\]
+不过 $\Delta g$ 可能在某些 $\Delta x\ne0$ 时恰为零，不能把上式中的除法当成总能进行。
+为同时包含这个分支，利用 $f$ 在 $g(x)$ 处可导，把它的增量写为
+\[
+ f(g+\Delta g)-f(g)=f'(g)\Delta g+\varepsilon(\Delta g)\Delta g,
+ \qquad \varepsilon(h)\to0\quad(h\to0).
+\]
+余项表示“实际增量减去切线估计”的差比 $\Delta g$ 更小；当 $\Delta g=0$ 时，
+取 $\varepsilon(0)=0$，这条等式仍成立。只除以 $\Delta x\ne0$，得到
+\[
+ \frac{f(g+\Delta g)-f(g)}{\Delta x}
+ =[f'(g)+\varepsilon(\Delta g)]\frac{\Delta g}{\Delta x}.
+\]
+$g$ 可导因而连续，所以 $\Delta x\to0$ 时 $\Delta g\to0$，
+右侧两因子分别趋于 $f'(g(x))$ 和 $g'(x)$。这就严格得到链式法则
+\[
+ \boxed{\frac{\dd f(g(x))}{\dd x}=f'(g(x))g'(x)}.
+\]
+\end{xesolution}
+
+\subsection{物理量的变化率}
+
+导数在物理中最直接的应用，是求一个物理量对另一个物理量的变化率。这种计算广泛存在
+于物理学的各个分支：速度是坐标随时间的变化率，加速度是速度随时间的变化率，保守力
+也与势能随坐标的变化率直接相关。若能写出两个物理量之间的函数关系，直接求导便可
+得到一个物理量改变时另一个物理量的变化率。
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-3}
+一个一维运动质点的坐标随时间的关系分别为下列函数，求瞬时速度、加速度与时间的函数：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item $x(t)=v_0t+\dfrac12at^2$；
+ \item $x(t)=A\e^{-\beta t}\cos(\omega t)$，$\beta,\omega$ 为已知数；
+ \item $x(t)=\dfrac{mv_0}{\beta}\left(1-\e^{-\frac{\beta}{m}t}\right)$，
+       $\beta,m$ 为已知数。
+\end{enumerate}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+逐式对 $t$ 求一阶、二阶导数。
+
+\textbf{(1)}
+\[
+ \boxed{v(t)=v_0+at},\qquad \boxed{a(t)=a}.
+\]
+
+\textbf{(2)} 先使用乘积法则，再使用链式法则：
+\[
+ \boxed{v(t)=-A\e^{-\beta t}
+   [\beta\cos(\omega t)+\omega\sin(\omega t)]},
+\]
+\[
+ \boxed{a(t)=A\e^{-\beta t}
+   [(\beta^2-\omega^2)\cos(\omega t)
+    +2\beta\omega\sin(\omega t)]}.
+\]
+
+\textbf{(3)} 指数项中的 $-\beta/m$ 还要再乘一次：
+\[
+ \boxed{v(t)=v_0\e^{-\frac{\beta}{m}t}},\qquad
+ \boxed{a(t)=-\frac{\beta v_0}{m}\e^{-\frac{\beta}{m}t}}.
+\]
+由前两式可得
+\[
+ a=\frac{\dd v}{\dd t}=-\frac{\beta}{m}v.
+\]
+在本题给出的运动中 $v>0$ 而 $a<0$，所以加速度方向与速度方向相反，速率随时间减小。
+这种“与速度反向、使速率减小的加速度分量”常被称为减速度；它不是一种新的物理量，
+仍然是加速度。若把这一运动解释为物体只受线性阻力，或其他恒力已经彼此平衡，则由
+牛顿第二定律
+\[
+ F_{\rm net}=ma=-\beta v
+\]
+可知阻力为 $F_{\rm D}=-\beta v$：负号表示阻力与速度反向，大小 $\beta v$ 随速率增大。
+若没有这一受力模型，仅由给定的 $x(t)$ 只能判断物体在减速，不能凭空断定具体是哪一种力造成的。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-4}
+一个半径为 $R$ 的半圆柱体在垂直于柱轴的水平方向上以匀速 $v_0$ 运动。如图，在圆柱面
+上搁一竖直杆，此杆只能沿竖直方向上下运动。求杆上任意一点的速度、加速度与图示角
+$\theta$ 的关系。
+\probdiagOneFour
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设半圆柱圆心的横坐标为 $X$，杆的横坐标为 $x_{\rm r}$，接触点相对圆心的高度为 $y$。
+由解图可见
+\[
+ x_{\rm r}=X+R\sin\theta,\qquad y=R\cos\theta.
+\]
+杆只能竖直运动，所以 $x_{\rm r}$ 为常数，而 $\dot X=v_0$。对第一式求导：
+\[
+ 0=v_0+R\cos\theta\,\dot\theta,\qquad
+ \dot\theta=-\frac{v_0}{R\cos\theta}.
+\]
+再对 $y$ 求导，得到杆的竖直速度
+\[
+ v_y=\dot y=-R\sin\theta\,\dot\theta
+ =\boxed{v_0\tan\theta}.
+\]
+\soldiagOneFour
+继续求导：
+\[
+ a_y=v_0\sec^2\theta\,\dot\theta
+ =\boxed{-\frac{v_0^2}{R\cos^3\theta}}.
+\]
+若取竖直向上为正，速度向上，加速度向下。刚性杆作平动，所以杆上任意一点的速度和
+加速度都相同。当 $\theta\to\pi/2$ 时理想模型给出发散结果，说明接触状态不可能一直
+保持到圆柱侧缘。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-5}
+一个发光点在焦距为 $f$ 的凸透镜主光轴上，以恒定不变的速度 $v$ 向着透镜运动。求其
+像点移动速度与物距 $u$ 的关系。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设物体在透镜左侧，$u>0$ 是它到透镜的距离；取像坐标 $q$ 向右为正，
+所以右侧实像 $q>0$、左侧虚像 $q<0$。在近轴近似下，对焦距 $f>0$ 的薄凸透镜，
+\[
+ \frac1f=\frac1u+\frac1q,\qquad q=\frac{fu}{u-f}.
+\]
+光点向透镜运动，故 $\dot u=-v$。对 $q(u)$ 求导：
+\[
+ \frac{\dd q}{\dd u}=-\frac{f^2}{(u-f)^2},
+\]
+从而
+\[
+ \boxed{\dot q=\frac{f^2}{(u-f)^2}v}.
+\]
+当 $u>f$ 时，像位于透镜另一侧，$\dot q>0$ 表示实像远离透镜；物体越接近焦点，像点
+移动越快。当 $u=f$ 时，出射光平行，不存在有限位置的像点，因此此时不能给像点一个有限速度。
+当 $0<u<f$ 时，$q<0$，形成同侧虚像；虽然仍有 $\dot q>0$，
+其含义却是负的像坐标向零增加，虚像向透镜靠近，而不是远离。
+例如 $u=f/2$ 时 $q=-f$、$\dot q=4v$，这与有向坐标的判断一致。
+不能把 $u=f$ 两侧的像当作以有限速度连续越过无穷远的同一个物点。
+\end{xesolution}
+
+\subsection{求极值}
+
+对于光滑函数，函数曲线上各点的切线斜率就是该点的导数。当某一点处切线水平时，该点
+可能是局部极大值、局部极小值，也可能既非极大又非极小。导数为零的点统称为\textbf{驻点}
+（stationary point）。若在驻点处二阶导数为正，则是局部极小值；二阶导数为负，则是
+局部极大值；二阶导数为零时，还需进一步判断。
+
+\extremaDiagram
+
+当感兴趣的物理量随其他因素变化时，先写出它们之间的函数关系，再令一阶导数为零，便
+可寻找变化过程中的极值；必要时再借助二阶导数或端点条件判断极值类型。
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-6}
+利用费马原理证明光的折射定律：两个均匀介质的折射率分别为 $n_1,n_2$，分界面为一
+平面。证明由平面外一点 $A$ 到达另一点 $B$ 的光线中，满足折射定律的光线的光程为
+极值。
+\probdiagOneSix
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设入射点 $P$ 到 $A$ 在界面上的垂足的距离为 $x$，两垂足间的水平距离为 $L$，而 $A,B$
+到界面的垂直距离分别为 $h_1,h_2$。光程为
+\[
+ \mathcal L(x)=n_1\sqrt{h_1^2+x^2}
+ +n_2\sqrt{h_2^2+(L-x)^2}.
+\]
+费马原理要求实际光路使光程取稳定值，因此
+\[
+ \frac{\dd\mathcal L}{\dd x}
+ =n_1\frac{x}{\sqrt{h_1^2+x^2}}
+ -n_2\frac{L-x}{\sqrt{h_2^2+(L-x)^2}}=0.
+\]
+由图中几何关系
+\[
+ \sin\alpha=\frac{x}{\sqrt{h_1^2+x^2}},\qquad
+ \sin\beta=\frac{L-x}{\sqrt{h_2^2+(L-x)^2}},
+\]
+所以
+\[
+ \boxed{n_1\sin\alpha=n_2\sin\beta},
+\]
+这就是斯涅耳折射定律。此外
+\[
+ \frac{\dd^2\mathcal L}{\dd x^2}
+ =\frac{n_1h_1^2}{(h_1^2+x^2)^{3/2}}
+ +\frac{n_2h_2^2}{[h_2^2+(L-x)^2]^{3/2}}>0,
+\]
+故该稳定光路给出的确是光程的极小值。
+\end{xesolution}
+
+\Needspace{0.40\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-7}
+求理想气体在下面两个热力学过程中的温度最大值和最小值：
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 气体从状态 $(2p_0,V_0)$ 沿连接两点的直线段变化到状态 $(p_0,2V_0)$；
+ \item $p$--$V$ 图中的一个圆（椭圆），过程满足
+ \[
+  \left(\frac p{p_0}-1\right)^2+
+  \left(\frac V{V_0}-1\right)^2=\left(\frac12\right)^2.
+ \]
+\end{enumerate}
+\probdiagOneSeven
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+对一定量理想气体，$T=pV/(nR_g)$，因此只需在给定曲线上求乘积 $pV$ 的极值，其中
+$R_g$ 为气体常量。
+
+\textbf{(a)} 连接两状态的直线为
+\[
+ p=3p_0-\frac{p_0}{V_0}V.
+\]
+于是
+\[
+ pV=3p_0V-\frac{p_0}{V_0}V^2,\qquad
+ \frac{\dd(pV)}{\dd V}=3p_0-2\frac{p_0}{V_0}V.
+\]
+在题设线段上 $V_0\le V\le2V_0$。驻点位于 $V=3V_0/2$，此时 $p=3p_0/2$，为抛物线的最大值；
+最小值只能出现在两个端点，而两端点的温度相同，故
+\[
+ \boxed{T_{\max}=\frac{9p_0V_0}{4nR_g}},\qquad
+ \boxed{T_{\min}=\frac{2p_0V_0}{nR_g}}.
+\]
+
+\textbf{(b)} 令 $P=p/p_0, X=V/V_0$，并参数化圆：
+\[
+ P=1+\frac12\cos\phi,\qquad X=1+\frac12\sin\phi.
+\]
+于是 $T=(p_0V_0/nR_g)PX$。求导可得
+\[
+ \frac{\dd(PX)}{\dd\phi}
+ =\frac12(\cos\phi-\sin\phi)+\frac14\cos2\phi
+ =(\cos\phi-\sin\phi)
+ \left(\frac12+\frac14(\cos\phi+\sin\phi)\right).
+\]
+第二因子恒正，故驻点满足 $\sin\phi=\cos\phi$。比较两组对径点：
+\[
+ P=X=1\pm\frac{1}{2\sqrt2}.
+\]
+因此
+\[
+ \boxed{T_{\max}=\frac{p_0V_0}{nR_g}
+  \left(1+\frac1{2\sqrt2}\right)^2},
+\]
+\[
+ \boxed{T_{\min}=\frac{p_0V_0}{nR_g}
+  \left(1-\frac1{2\sqrt2}\right)^2}.
+\]
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-8}
+宇宙中有两个天体，质量均为 $M$，相距 $2L$。求在它们连线的垂直平分线上何处的小
+天体受到两个大天体的万有引力合力能够达到最大值。
+\probdiagOneEight
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设小天体质量为 $m$，到连线中点的距离为 $x$。到每个大天体的距离为
+$r=\sqrt{x^2+L^2}$。两个引力的垂直分量相消，沿垂直平分线方向的分量相加：
+\[
+ F(x)=2\frac{GMm}{r^2}\frac{x}{r}
+ =\frac{2GMm\,x}{(x^2+L^2)^{3/2}}.
+\]
+求导：
+\[
+ F'(x)=2GMm\frac{L^2-2x^2}{(x^2+L^2)^{5/2}}.
+\]
+令 $F'(x)=0$，得 $x=L/\sqrt2$。由于 $F(0)=0$ 且 $x\to\infty$ 时 $F\to0$，这必为
+最大值。因此在垂直平分线两侧各有一个对称位置：
+\[
+ \boxed{|x|=\frac{L}{\sqrt2}},
+ \qquad
+ \boxed{F_{\max}=\frac{4GMm}{3\sqrt3\,L^2}}.
+\]
+\end{xesolution}
+
+\Needspace{0.43\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-9}
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 从坐标原点以给定初速度 $v_0$ 沿不同角度抛出物体。证明能击中的目标与因初速度
+ 不足而无法击中的目标之间，分界线满足
+ \[
+  y=\frac{v_0^2}{2g}-\frac{g}{2v_0^2}x^2.
+ \]
+ \item 平面上有一个半径为 $R$ 的球体，希望从地面斜向上抛出物体并击中球体顶部。
+ 在命中球顶以前不接触球体的条件下，求抛出速度的下界，并判断最小值是否能取到；
+ 再讨论允许提前相切但不穿入球体时的最小抛出速度、抛出角及抛出点到球底部的距离。
+\end{enumerate}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+\textbf{(a)} 设 $q=\tan\theta$，抛物线轨迹为
+\[
+ y=xq-\frac{gx^2}{2v_0^2}(1+q^2).
+\]
+对于给定横坐标 $x$，令右端对 $q$ 取最大值：
+\[
+ \frac{\partial y}{\partial q}=x-\frac{gx^2}{v_0^2}q=0,\qquad
+ q=\frac{v_0^2}{gx}.
+\]
+代回即得所有同速抛物线的包络线
+\[
+ \boxed{y_{\max}(x)=\frac{v_0^2}{2g}-\frac{g}{2v_0^2}x^2}.
+\]
+包络线下方的目标至少对应一个发射角，线上只有一个临界角，线上方不能击中。
+
+\textbf{(b)} 取球底部为原点，球面截线满足
+\[
+ x^2+(y-R)^2=R^2,
+\]
+目标是球顶 $(0,2R)$。令抛出点在 $(-d,0)$，以
+\[
+ X=\frac{x}{R},\quad Y=\frac{y}{R},\quad D=\frac dR,
+ \quad Q=\tan\theta,
+ \quad A=\frac{gR}{2v_0^2}(1+Q^2)
+\]
+作无量纲化，则轨迹可写为
+\[
+ Y=Q(X+D)-A(X+D)^2.
+\]
+它通过球顶 $(0,2)$，故
+\begin{equation}\label{ch01:eq:sphere-top}
+ QD-AD^2=2.
+\end{equation}
+先研究允许提前相切的边界轨迹，再检查它是否符合严格不接触的条件。设接触点
+横坐标为 $s$，并记 $r=\sqrt{1-s^2}$，则上半圆在该点的纵坐标和斜率分别为
+$1+r$ 与 $-s/r$。相切条件为
+\begin{equation}\label{ch01:eq:sphere-tangent-point}
+ Q(s+D)-A(s+D)^2=1+r,
+\end{equation}
+\begin{equation}\label{ch01:eq:sphere-tangent-slope}
+ Q-2A(s+D)=-\frac{s}{r}.
+\end{equation}
+把临界抛物线改写成以相切点为展开中心的形式。因为它在
+$X=s$ 处的函数值为 $1+r$、斜率为 $-s/r$，且二次项系数为 $-A$，所以
+\[
+ Y(X)=1+r-\frac{s}{r}(X-s)-A(X-s)^2.
+\]
+令 $X=0$，利用轨迹通过球顶 $Y=2$，得到
+\[
+ 2=1+r+\frac{s^2}{r}-As^2.
+\]
+因此
+\[
+ A=\frac{r-1+s^2/r}{s^2}
+ =\frac{1-r}{s^2r}
+ =\frac{1}{r(1+r)},
+\]
+最后一步使用了 $s^2=1-r^2$。
+
+接下来求发射方向。记
+\[
+ u=s+D>0,
+\]
+它是抛出点 $X=-D$ 到相切点 $X=s$ 的水平距离。把 $X=-D$、$Y=0$ 代入以相切点为中心的抛物线，得到
+\[
+ 0=1+r+\frac{s}{r}u-Au^2.
+\]
+代入 $A=1/[r(1+r)]$ 并整理：
+\[
+ u^2-s(1+r)u-r(1+r)^2=0.
+\]
+取 $u>0$ 的根，
+\[
+ u=\frac{1+r}{2}\left(s+\sqrt{s^2+4r}\right).
+\]
+在发射点，轨迹斜率就是 $Q=\tan\theta$。由上面的相切点形式求导并令 $X=-D$，
+\[
+ Q=-\frac{s}{r}+2Au
+ =\frac{\sqrt{s^2+4r}}{r}
+ =\frac{\sqrt{1+4r-r^2}}{r}.
+\]
+这同时说明所取的是向右上方发射的 $Q>0$ 分支。于是
+\[
+ 1+Q^2=\frac{1+4r}{r^2}.
+\]
+再代入 $A=gR(1+Q^2)/(2v_0^2)$，临界速度便成为只含 $r$ 的函数：
+\[
+ \frac{v_0^2}{gR}=\frac{1+Q^2}{2A}
+ =\frac{(r+1)(4r+1)}{2r},\qquad 0<r\le1.
+\]
+对 $r$ 求导：
+\[
+ \frac{\dd}{\dd r}\frac{(r+1)(4r+1)}{2r}
+ =\frac{(2r-1)(2r+1)}{2r^2}.
+\]
+最小值在 $r=1/2$ 处取得。此时
+\[
+ s=-\frac{\sqrt3}{2},\qquad A=\frac43,\qquad
+ Q=\sqrt{11},\qquad
+ D=\frac{\sqrt3(1+\sqrt{33})}{8}.
+\]
+因此
+\[
+ \boxed{v_*=3\sqrt{\frac{gR}{2}}},\qquad
+ \boxed{\theta_0=\arctan\sqrt{11}},
+\]
+\[
+ \boxed{d_0=\frac{\sqrt3(1+\sqrt{33})}{8}R}.
+\]
+\soldiagOneNine
+在这组参数下，抛物线在球体左上方
+$(x/R,y/R)=(-\sqrt3/2,3/2)$ 处与球面相切，随后到达球顶；因此解图中的“相切”发生在
+球顶之前，而不是球顶本身。
+
+还需证明没有另一类轨迹给出更小速度。将任意从左侧到达球顶的轨迹写成
+$Y=2-qX-AX^2$。为避免在球顶左邻域穿入球面，必须有 $q\ge0$；
+在球顶的水平、竖直速度分别为 $w_x>0$、$-qw_x$，而 $A=gR/(2w_x^2)$。
+由竖直运动的速度关系，初速度平方为
+\[
+ \frac{v_0^2}{gR}=4+\frac{1+q^2}{2A}.
+\]
+令 $z=-X\in(0,1]$。要求轨迹不低于球的上半圆，等价于
+\[
+ q\ge h_A(z):=Az-\frac{z}{1+\sqrt{1-z^2}}.
+\]
+若 $A\le1/2$，可取 $q=0$，但速度平方不小于 $5gR$。
+若 $A>1/2$，令 $r=\sqrt{1-z^2}$，直接求导得
+\[
+ h_A'(z)=A-\frac1{r(1+r)}.
+\]
+右端随 $z$ 严格减小，由正变负，因此 $h_A$ 恰有一个最大值，
+最小可行 $q$ 正是在该处取等号，即前面已经求出的相切轨迹。
+这就补足了对所有可行轨迹的比较，而不是只在相切轨迹内部求极值。
+
+\textbf{严格不接触时只有下确界。}等号轨迹提前碰到球面，不能作为严格条件下的解。
+固定 $A=4/3$，取 $q=1/\sqrt3+\varepsilon$，其中 $\varepsilon>0$。
+在每个 $X<0$ 处，轨迹都比临界轨迹高出 $-\varepsilon X$，仍通过球顶；
+令 $\varepsilon\to0^+$，初速度从上方趋于 $v_*$。所以
+\[
+ \boxed{\inf v_0=v_*,\quad\text{严格不提前接触时最小值不能取到。}}
+\]
+若允许提前相切而不穿入，才有 $v_{\min}=v_*$，相应角度和距离为上式的 $\theta_0,d_0$。
+$\sqrt{gR}$ 具有速度量纲，$d_0$ 与 $R$ 成正比，符合几何相似性。
+\end{xesolution}
+
+\subsection{平衡位置及其稳定性}
+
+对一维保守系统，力与势能满足 $F=-\dd U/\dd x$，所以平衡位置首先要求 $U'(x)=0$。
+局部极小点受到小扰动后会出现指向平衡点的回复力，因而是稳定平衡；局部极大点则是不稳定平衡。
+必须注意：没有阻尼时，物体从局部极小点附近释放后通常会在其两侧振动，并不会自行停在最低点；
+只有存在摩擦等耗散时，机械能逐渐减少，系统才可能最终趋近较低势能的稳定平衡。过去常由受力分析
+判断平衡；利用势能曲线也能得到相同答案，而且系统越复杂，能量方法往往越简便。
+
+\potentialDiagram
+
+右侧势能曲线中，$S_1,S_2$ 是局部极小点，对应稳定平衡；$U$ 是局部极大点，对应不稳定平衡。
+图线其余斜率不为零的位置受力不为零，不能作为静止平衡位置。
+
+以单摆为例，长度为 $l$ 的轻杆一端与 $O$ 点光滑连接，另一端连接质量为 $m$ 的质点。
+若以摆竖直向下为 $\theta=0$，系统的重力势能为
+\begin{equation}
+ E_p=-mgl\cos\theta.
+\end{equation}
+势能取稳定值的条件为
+\begin{equation}
+ \frac{\dd E_p}{\dd\theta}=mgl\sin\theta=0,
+\end{equation}
+故 $\theta=0,\pi$ 都是平衡位置。再求二阶导数
+\begin{equation}
+ \frac{\dd^2E_p}{\dd\theta^2}=mgl\cos\theta.
+\end{equation}
+在 $\theta=0$ 处二阶导数为正，是稳定平衡；在 $\theta=\pi$ 处二阶导数为负，是不稳定
+平衡。更一般地，势能曲线的局部极小点是稳定平衡，局部极大点是不稳定平衡；导数不为
+零的点不能平衡，二阶导数为零的平衡位置须作进一步判断。
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-10}
+如图，在固定点 $A$ 上系有一根质量可忽略、原长为 $h$、劲度系数为 $k$ 的弹簧，另一
+端连接质量为 $m$ 的重物。重物被限制在竖直光滑直线上，$A$ 点到约束直线的距离恰为
+$h$。求平衡时重物到 $B$ 点的距离 $x$。
+\probdiagOneTen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+当重物下降 $x$ 时，弹簧长度
+\[
+ \ell=\sqrt{h^2+x^2},
+\]
+伸长量为 $\ell-h$。取 $B$ 点处的重力势能为零，系统势能为
+\[
+ U(x)=\frac12k(\sqrt{h^2+x^2}-h)^2-mgx.
+\]
+求导：
+\[
+ U'(x)=k(\ell-h)\frac{x}{\ell}-mg.
+\]
+平衡条件为
+\[
+ \boxed{kx\left(1-\frac{h}{\sqrt{h^2+x^2}}\right)=mg}.
+\]
+这已经给出 $x$ 的确定方程。若希望写成无根式的多项式，令
+$\lambda=mg/(kh)$、$z=x/h$，则
+\[
+ z\left(1-\frac1{\sqrt{1+z^2}}\right)=\lambda,
+\]
+等价于
+\[
+ \boxed{z^4-2\lambda z^3+\lambda^2z^2-2\lambda z+\lambda^2=0},
+\]
+并须取满足 $z>\lambda$ 的正根，以排除平方带来的伪根。也可以看出
+\[
+ U''(x)=k\left(1-\frac{h^3}{(h^2+x^2)^{3/2}}\right)>0\quad(x>0),
+\]
+所以该平衡位置唯一且稳定。一般参数下没有更简洁的初等显式根式，保留隐式方程
+更能体现其物理结构。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-11}
+如图，锥角为 $\alpha$ 的光滑圆锥体上放着一段质量为 $m$、等效劲度系数为 $k$、原长为
+$L_0$ 的弹簧，弹簧始终保持水平。求平衡时弹簧到锥体顶端的距离 $x$。
+\probdiagOneEleven
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+题图中的 $\alpha$ 是圆锥母线与轴线的夹角。距顶端竖直距离为 $x$ 的水平截面半径为
+$r=x\tan\alpha$，所以环形弹簧长度
+\[
+ \ell=2\pi r=2\pi x\tan\alpha.
+\]
+取顶点高度处为重力势能零点，系统势能为
+\[
+ U(x)=-mgx+\frac12k(2\pi x\tan\alpha-L_0)^2.
+\]
+令 $U'(x)=0$：
+\[
+ -mg+k(2\pi x\tan\alpha-L_0)(2\pi\tan\alpha)=0.
+\]
+因此
+\[
+ \boxed{x=\frac{L_0}{2\pi\tan\alpha}
+ +\frac{mg}{4\pi^2k\tan^2\alpha}}.
+\]
+又因
+$U''(x)=k(2\pi\tan\alpha)^2>0$，该平衡位置稳定。这里的 $k$ 是整段环形弹簧在周长方向的等效劲度系数。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-12}
+两根质量可忽略、长度为 $l$ 的杆在顶部无摩擦连接，质量为 $m$ 的重物 $A$ 放在连接
+处。两杆底部放在光滑水平地面上，底端之间由原长为零、劲度系数为 $k$ 的弹簧连接。
+求平衡时两杆与地面的夹角 $\theta$。
+\probdiagOneTwelve
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+由对称性，两杆与地面的夹角相同。重物高度为 $l\sin\theta$，两杆底端距离即弹簧长度为
+$2l\cos\theta$。系统势能
+\[
+ U(\theta)=mgl\sin\theta+\frac12k(2l\cos\theta)^2.
+\]
+求导：
+\[
+ U'(\theta)=mgl\cos\theta-4kl^2\sin\theta\cos\theta
+ =l\cos\theta(mg-4kl\sin\theta).
+\]
+非退化平衡位置满足
+\[
+ \boxed{\sin\theta=\frac{mg}{4kl}}.
+\]
+作为 $0<\theta<\pi/2$ 的内点解，存在条件是 $0<mg<4kl$。在该点
+\[
+ U''(\theta)=-4kl^2\cos^2\theta<0,
+\]
+故这一内点平衡是\textbf{不稳定平衡}：角度稍增或稍减，系统都会继续偏离。两个几何
+边界 $\theta=0$ 与 $\theta=90^\circ$ 中哪一个是较低势能状态，取决于 $2kl^2$ 与
+$mgl$ 的大小；实际能否到达边界，还须结合杆、铰链和重物的接触约束判断。
+特别地，$mg=4kl$ 时该解到达 $\theta=\pi/2$，上面的二阶导数为零，不能继续用
+$U''<0$ 判断。令 $\delta=\pi/2-\theta$，展开得
+$U=4kl^2-\tfrac12kl^2\delta^4+O(\delta^6)$。
+若允许向 $\delta>0$ 偏离，这仍是退化的单侧极大值，而不是稳定内点。
+\end{xesolution}
+
+\subsection{做展开}
+
+在光滑函数图像上，曲线在某点附近与该点的切线很接近。设函数 $f(x)$ 在 $x_0$ 处的
+取值为 $f(x_0)$，切线斜率为 $f'(x_0)$，切线方程为
+\begin{equation}
+ y=f(x_0)+f'(x_0)(x-x_0).
+\end{equation}
+当 $x$ 与 $x_0$ 足够接近时，可以近似写为
+\begin{equation}
+ f(x)\simeq f(x_0)+f'(x_0)(x-x_0).
+\end{equation}
+若令 $\Delta f=f(x)-f(x_0)$、$\Delta x=x-x_0$，则
+\begin{equation}
+ \Delta f\simeq f'(x_0)\Delta x.
+\end{equation}
+这说明连续函数在某点附近的函数值变化量，近似正比于自变量的变化量，比例系数就是
+函数在该点的导数。
+
+下面令 $\varepsilon$ 表示无量纲小量，且 $|\varepsilon|\ll1$。常见的小量展开有
+\[
+ \sin\varepsilon\simeq\tan\varepsilon\simeq\varepsilon,
+\]
+\[
+ (1+\varepsilon)^n\simeq1+n\varepsilon,\qquad
+ \e^{\varepsilon}\simeq1+\varepsilon,\qquad
+ \ln(1+\varepsilon)\simeq\varepsilon.
+\]
+它们在 $\varepsilon\to0$ 时与原函数越来越接近。若实际变化量 $\Delta x$ 具有长度量纲，
+应先用问题中的特征长度 $L$ 构造 $\varepsilon=\Delta x/L$，不能直接把有量纲的 $\Delta x$ 与数字 $1$ 比较。
+小量展开在研究物理系统某点附近的运动行为时非常有效。
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-13}
+相对论中运动物体的能量随速度的关系不是经典力学中的动能 $\frac12mv^2$，而是
+\[
+ E(v)=\frac{mc^2}{\sqrt{1-v^2/c^2}}.
+\]
+证明当物体速度远小于光速时，相对论性能量与经典力学动能给出的结果一致。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+令 $\varepsilon=v^2/c^2\ll1$，使用二项式展开
+\[
+ (1-\varepsilon)^{-1/2}
+ =1+\frac12\varepsilon+\frac38\varepsilon^2+\cdots.
+\]
+因此
+\[
+ E=mc^2+\frac12mv^2+\frac38m\frac{v^4}{c^2}+\cdots.
+\]
+第一项 $mc^2$ 是与速度无关的静能，不影响机械运动中的能量差；扣除静能后，相对论动能
+为
+\[
+ E_k=E-mc^2=\frac12mv^2+\mathcal O\!\left(\frac{v^4}{c^2}\right).
+\]
+所以当 $v\ll c$ 时
+\[
+ \boxed{E_k\simeq\frac12mv^2},
+\]
+与经典力学一致。严格地说，题设所给 $E(v)$ 是总能量，不是单独的动能；这正是为何须
+扣除 $mc^2$。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-14}
+相对论中，质量为 $m$ 的质点在恒力 $F$ 作用下由静止出发做直线运动，位移和时间的关系为
+\[
+ x(t)=\frac{mc^2}{F}
+ \left(\sqrt{1+\left(\frac{Ft}{mc}\right)^2}-1\right).
+\]
+证明在 $\dfrac{Ft}{mc}\ll1$ 时，相对论公式与经典力学一致。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+令 $\varepsilon=Ft/(mc)\ll1$。由
+$\sqrt{1+\varepsilon^2}=1+\varepsilon^2/2+\order{\varepsilon^4}$，有
+\begin{align*}
+ x(t)
+ &\simeq\frac{mc^2}{F}\cdot\frac12
+ \left(\frac{Ft}{mc}\right)^2\\
+ &=\frac12\frac{F}{m}t^2.
+\end{align*}
+经典力学中恒力产生的加速度为 $a=F/m$，故
+\[
+ \boxed{x(t)\simeq\frac12at^2}.
+\]
+下一阶修正为 $-F^3t^4/(8m^3c^2)$，说明相对论位移略小于经典结果。
+\end{xesolution}
+
+当一个物理量随另一个物理量改变时，在自变量产生微小变化的情况下，函数值的微小变化
+也由给定点处的导数决定。对函数 $y(x)$，当 $x$ 从 $x_0$ 变到 $x_0+\Delta x$ 时，
+\begin{equation}
+ \Delta y\simeq\frac{\dd y}{\dd x}(x_0)\Delta x.
+\end{equation}
+
+\incrementDiagram
+
+上式右边含有两个量：自变量的取值 $x_0$ 与其改变量 $\Delta x$。它们共同给出 $x_0$
+附近的函数值变化量，且 $\Delta y$ 正比于该点的导数和 $\Delta x$。
+
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-15}
+已知抛体运动的射程
+\[
+ S=\frac{v^2}{g}\sin2\theta,
+\]
+其中 $v$ 为初速度，$\theta$ 为抛出角。求速度或角度有微小变化时，射程如何变化。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+把 $S$ 看成 $v,\theta$ 的二元函数，其一阶微小变化为全微分
+\[
+ \Delta S\simeq
+ \frac{\partial S}{\partial v}\Delta v
+ +\frac{\partial S}{\partial\theta}\Delta\theta.
+\]
+分别求偏导：
+\[
+ \frac{\partial S}{\partial v}=\frac{2v}{g}\sin2\theta,\qquad
+ \frac{\partial S}{\partial\theta}=\frac{2v^2}{g}\cos2\theta.
+\]
+所以当两者都可能微变时
+\[
+ \boxed{\Delta S\simeq
+ \frac{2v}{g}\sin2\theta\,\Delta v
+ +\frac{2v^2}{g}\cos2\theta\,\Delta\theta}.
+\]
+若只改变速度，取 $\Delta\theta=0$；若只改变角度，取 $\Delta v=0$，其中角度增量须以
+弧度计。特别地，
+$\theta=45^\circ$ 时角度的一阶影响为零，这正对应最大射程；此时角度误差的主要影响是
+二阶量，而速度误差仍产生一阶影响。
+\end{xesolution}
+
+\Needspace{0.40\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s14-1-16}
+如图，在 $A$ 点有一个粒子发射源，它在上方 $180^\circ$ 的范围内独立、均匀随机地发射出 $N$ 个
+粒子。粒子被与 $A$ 相距 $h$ 的壁接收。建立图示坐标系，求在 $x$ 到 $x+\Delta x$
+范围内接收到的粒子数的期望值 $\mathbb E[\Delta n]$，其中 $\Delta x>0$。
+假设该小区间足够窄，使方向角在其中可作一阶近似；
+例如在 $x=0$ 附近要求 $|\Delta x|\ll h$。
+\probdiagOneSixteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+“随机”本身并不意味着均匀；本题另行给出的均匀条件表示等角宽的区间具有相同概率。
+长度为 $\pi$ 的角区间中，角宽 $\Delta\theta$ 对应概率 $\Delta\theta/\pi$，
+故接收粒子数的期望为
+\[
+ \mathbb E[\Delta n]=\frac{N}{\pi}\Delta\theta.
+\]
+由解图的直角三角形
+\[
+ \tan\theta=\frac{x}{h},\qquad
+ \theta=\arctan\frac{x}{h}.
+\]
+两条边界射线对应的精确角宽，是两个端点方向角之差，因此
+\[
+ \mathbb E[\Delta n]=\frac N\pi
+ \left[\arctan\frac{x+\Delta x}{h}-\arctan\frac{x}{h}\right].
+\]
+因此
+\[
+ \frac{\dd\theta}{\dd x}
+ =\frac{h}{h^2+x^2},\qquad
+ \Delta\theta\simeq\frac{h}{h^2+x^2}\Delta x.
+\]
+这里的小区间条件不是 $\Delta x\ll x$，而是角度变化率在区间内近似不变。一个简明的充分条件是
+$|\Delta x|\ll\sqrt{h^2+x^2}$；在 $x=0$ 处它退化为 $|\Delta x|\ll h$，因此公式仍然完全适用。
+于是
+\[
+ \boxed{\mathbb E[\Delta n]\simeq
+ \frac{Nh}{\pi(h^2+x^2)}\Delta x}.
+\]
+\soldiagOneSixteen
+该结果显示墙上粒子分布不均匀：离 $O$ 点越远，单位长度接收的粒子越少。若把墙的两侧
+全部计入，积分平均粒子数密度 $\rho(x)=Nh/[\pi(h^2+x^2)]$ 从 $-\infty$ 到 $+\infty$ 恰好得到
+总数 $N$，也为系数提供了检验。
+一次实验的实际粒子数为整数，会围绕期望值波动；期望值本身不必是整数。
+\end{xesolution}
+}
+
+\section{泰勒展开与近似的阶}
+
+函数在 $x_0$ 附近足够光滑时，
+\begin{equation}
+ f(x_0+h)=f(x_0)+f'(x_0)h+\frac{f''(x_0)}{2!}h^2+\cdots.
+\end{equation}
+写“$h$ 很小”还不够，必须说明被舍项相对保留项小到什么阶。常用展开包括
+\begin{align}
+ \sin x&=x-\frac{x^3}{6}+\order{x^5},&
+ \cos x&=1-\frac{x^2}{2}+\order{x^4},\\
+ (1+x)^\alpha&=1+\alpha x+\frac{\alpha(\alpha-1)}2x^2+\order{x^3},&
+ \ln(1+x)&=x-\frac{x^2}{2}+\order{x^3}.
+\end{align}
+展开参数必须无量纲；不能直接声称“长度 $x$ 很小”，而应比较 $x/L$。
+
+\begin{origexamplebox}{单摆非线性修正的量级}
+单摆精确方程为 $\ddot\theta+(g/\ell)\sin\theta=0$。若最大摆角为 $\theta_0\ll1$，估计线性化所忽略项相对于恢复项的量级。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+展开 $\sin\theta=\theta-\theta^3/6+\cdots$。线性恢复项是 $\theta$，首个被忽略项为 $-\theta^3/6$，二者比值的最大量级为
+\[
+ \left|\frac{-\theta^3/6}{\theta}\right|\lesssim\frac{\theta_0^2}{6}.
+\]
+因此小角近似的相对方程误差为 $\order{\theta_0^2}$。角度必须用弧度，弧度是无量纲量；若用度数直接代入展开，数值和阶数判断都会失去意义。
+\end{xesolution}
+
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fifteenth-section/}}
+\section{积分及其应用}
+% TikZ figures redrawn from the source; annotations used only in solutions are
+% drawn in the restrained blue accent of the common style.
+
+\newcommand{\partitionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.66cm,y=0.58cm,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(7.0,0) node[right] {$t$};
+    \draw[axis] (0,0)--(0,4.2) node[above] {$x$};
+    \draw[curve,domain=0.45:6.2,smooth,variable=\t]
+      plot ({\t},{0.55+0.075*\t*\t});
+    \foreach \i in {1,...,6}{
+      \pgfmathsetmacro{\xa}{0.65+0.82*(\i-1)}
+      \pgfmathsetmacro{\xb}{0.65+0.82*\i}
+      \pgfmathsetmacro{\ya}{0.55+0.075*\xa*\xa}
+      \pgfmathsetmacro{\slope}{0.15*\xa}
+      \draw[TextGray] (\xa,\ya)--(\xb,{\ya+\slope*(\xb-\xa)});
+      \draw[guide] (\xa,0)--(\xa,\ya);
+    }
+    \node[below] at (3.1,-0.12) {$\Delta t\quad\Delta t\quad\cdots$};
+  \end{scope}
+  \begin{scope}[xshift=5.9cm]
+    \draw[axis] (0,0)--(7.0,0) node[right] {$t$};
+    \draw[axis] (0,0)--(0,4.2) node[above] {$v$};
+    \draw[curve,domain=0.45:6.2,smooth,variable=\t]
+      plot ({\t},{0.15*\t});
+    \foreach \i in {1,...,6}{
+      \pgfmathsetmacro{\xa}{0.65+0.82*(\i-1)}
+      \pgfmathsetmacro{\xb}{0.65+0.82*\i}
+      \pgfmathsetmacro{\ya}{0.15*\xa}
+      \draw[fill=DeepBlue!16,draw=TextGray] (\xa,0) rectangle (\xb,\ya);
+    }
+    \node[below] at (3.1,-0.12) {$\Delta t\quad\Delta t\quad\cdots$};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{同一运动的 $x(t)$ 与 $v(t)=x'(t)$：左图的切线增量等于右图对应矩形的面积，均为 $v(t_i)\Delta t$。}\label{ch01:fig:s15-1-5}
+\end{center}}
+
+\newcommand{\integralDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.7cm,>=Latex]
+  \draw[axis] (0,0)--(7.2,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.1) node[above] {$y$};
+  \pgfmathdeclarefunction{areaheight}{1}{\pgfmathparse{3.1-.23*(##1-3.2)^2}}
+  \fill[DeepBlue!14] (1.1,0)
+    -- plot[domain=1.1:5.45,samples=90] (\x,{areaheight(\x)})
+    --(5.45,0)--cycle;
+  \draw[curve,domain=.35:6.2,samples=100] plot (\x,{areaheight(\x)});
+  \draw[thick] (1.1,0)--(1.1,{areaheight(1.1)})
+    (5.45,0)--(5.45,{areaheight(5.45)});
+  \node[below] at (1.1,0) {$a$}; \node[below] at (5.45,0) {$b$};
+  \node[above] at (3.2,3.1) {$f(x)$};
+  \node[align=center,anchor=north] at (3.45,-.65)
+    {$\displaystyle \frac{\dd F}{\dd x}=f(x)$\\[2pt]
+     $\displaystyle \int_a^b f(x)\dd x=F(b)-F(a)$};
+\end{tikzpicture}
+
+\figcap{积分的代数和几何意义}\label{ch01:fig:s15-1-6}
+\end{center}}
+
+\newcommand{\areaLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(4.2,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,3.2) node[above] {$y$};
+  \fill[DeepBlue!16] (0,0)--(3.1,0)--(3.1,2.35)--cycle;
+  \draw[curve] (0,0)--(3.6,2.73) node[above left] {$y=kx$};
+  \draw[thick] (3.1,0)--(3.1,2.35);
+  \node[below] at (3.1,0) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\areaParabolaDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.65cm,>=Latex]
+  \draw[axis] (0,0)--(4.2,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,3.2) node[above] {$y$};
+  \fill[DeepBlue!16] (0,0) plot[domain=0:3.1,smooth,variable=\x]
+    ({\x},{0.27*\x*\x}) --(3.1,0)--cycle;
+  \draw[curve,domain=0:3.45,smooth,variable=\x]
+    plot ({\x},{0.27*\x*\x}) node[above left] {$y=kx^2$};
+  \draw[thick] (3.1,0)--(3.1,{0.27*3.1*3.1});
+  \node[below] at (3.1,0) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\circlePartitionsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  \begin{scope}
+    \draw[thick] (0,0) circle (1.55);
+    \foreach \a in {0,10,20,30}{\draw[thick] (0,0)--(\a:1.55);}
+    \coordinate (Oa) at (0,0);
+    \coordinate (A20) at (20:1);
+    \coordinate (A30) at (30:1);
+    \draw pic[draw,->,angle radius=10mm] {angle=A20--Oa--A30};
+    \node (anglelabel) at (1.15,2.12) {$\dd\theta$};
+    \draw[TextGray,thin] (anglelabel.south)--(.91,.43);
+    \fill (0,0) circle (1.4pt) node[below left] {$O$};
+  \end{scope}
+  \begin{scope}[xshift=4.5cm]
+    \draw[thick] (0,0) circle (1.55);
+    \draw[DeepBlue,thick] (0,0) circle (0.95);
+    \draw[DeepBlue,thick] (0,0) circle (1.05);
+    \draw[thick] (0,0)--(25:1.0) node[midway,above] {$r$};
+    \node[DeepBlue,anchor=west] (drlabel) at (1.85,1.20) {$\dd r$};
+    \draw[DeepBlue,thin] (drlabel.west)--(.94,.34);
+    \fill (0,0) circle (1.4pt) node[below left] {$O$};
+  \end{scope}
+  \begin{scope}[xshift=9.0cm]
+    \draw[thick] (0,0) circle (1.55);
+    \draw[DeepBlue,thick] (0.8,-1.33)--(0.8,1.33);
+    \draw[DeepBlue,thick] (0.92,-1.25)--(0.92,1.25);
+    \draw[thick] (0,0)--(0.8,0) node[midway,below] {$x$};
+    \node[DeepBlue,anchor=west] (dxlabel) at (2.0,.65) {$\dd x$};
+    \draw[DeepBlue,thin] (dxlabel.west)--(.86,.65);
+    \fill (0,0) circle (1.4pt) node[below left] {$O$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\massElementsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(0,3.5) node[above] {$x$};
+    \draw[curve] plot[smooth] coordinates {(0,0) (1.15,0.5) (1.55,1.5) (1.0,2.55) (0,3.15)};
+    \draw[curve] plot[smooth] coordinates {(0,0) (-1.15,0.5) (-1.55,1.5) (-1.0,2.55) (0,3.15)};
+    \fill[DeepBlue!24] (-1.5,1.4) rectangle (1.5,1.55);
+    \draw[DeepBlue,thick] (-1.5,1.4)--(1.5,1.4) (-1.5,1.55)--(1.5,1.55);
+    \draw[<->] (0,1.18)--(1.5,1.18);
+    \node[below=1pt] at (0.75,1.18) {$r(x)$};
+    \node[DeepBlue,anchor=west] (dxlabel) at (2.0,1.95) {$\dd x$};
+    \draw[DeepBlue,thin] (dxlabel.west)--(1.5,1.475);
+    \node[below] at (0,-0.45) {$\dd m=\rho(x)\pi r^2(x)\dd x$};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \draw[thick] (0,0) circle (1.55);
+    \draw[DeepBlue,thick] (0,0) circle (1.0);
+    \draw[DeepBlue,thick] (0,0) circle (1.1);
+    \draw[<->] (0,0)--(0.72,0.72);
+    \node[below right=1pt] at (0.36,0.36) {$r$};
+    \node[DeepBlue,anchor=west] (drlabel) at (1.90,.70) {$\dd r$};
+    \draw[DeepBlue,thin] (drlabel.west)--(.96,.43);
+    \node[below] at (0,-2.0) {$\dd m=4\pi r^2\rho(r)\dd r$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\pvWorkDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.68cm,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(4.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.2) node[above] {$p$};
+    \fill[DeepBlue!16] (0.8,0)
+      -- plot[domain=0.8:3.6,smooth,variable=\x] ({\x},{2.16/\x})--(3.6,0)--cycle;
+    \draw[curve,domain=0.65:4.0,smooth,variable=\x]
+      plot ({\x},{2.16/\x});
+    \node at (2.35,3.65) {$p=nR_gT/V$};
+    \draw[thick] (0.8,0)--(0.8,2.7) (3.6,0)--(3.6,0.6);
+    \node[below] at (0.8,0) {$V_1$}; \node[below] at (3.6,0) {$V_2$};
+  \end{scope}
+  \begin{scope}[xshift=6.2cm]
+    \draw[axis] (0,0)--(4.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.2) node[above] {$p$};
+    \fill[DeepBlue!16] (0.8,0)
+      -- plot[domain=0.8:3.6,smooth,variable=\x] ({\x},{1.95/(\x^1.35)})--(3.6,0)--cycle;
+    \draw[curve,domain=0.65:4.0,smooth,variable=\x]
+      plot ({\x},{1.95/(\x^1.35)});
+    \node at (2.35,3.65) {$pV^\gamma=C$};
+    \draw[thick] (0.8,0)--(0.8,{1.95/(.8^1.35)})
+      (3.6,0)--(3.6,{1.95/(3.6^1.35)});
+    \node[below] at (0.8,0) {$V_1$}; \node[below] at (3.6,0) {$V_2$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\radialFallDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill (0,0) circle (4pt) node[above left=2pt] {$A(M)$};
+  \draw[axis] (0,0)--(5.35,0) node[right] {径向坐标};
+  \draw[DeepBlue,dashed] (4.75,0) circle (3.0pt);
+  \node[above=8pt,DeepBlue] at (4.75,0) {$m(0)$};
+  \fill[DeepBlue] (3.25,0) circle (2.5pt);
+  \node[below left=3pt,DeepBlue] at (3.25,0) {$m(t)$};
+  \draw[vector] (3.1,0.68)--(2.05,0.68) node[midway,above] {$\vec v$};
+  \draw[<->] (0,-0.72)--(3.25,-0.72);
+  \node[below=1pt] at (1.63,-0.72) {$r$};
+  \draw[<->,TextGray] (0,-1.28)--(4.75,-1.28);
+  \node[below=1pt,TextGray] at (2.38,-1.28) {$r_0$};
+  \draw[guide] (3.25,-0.9)--(3.25,0);
+  \draw[guide] (4.75,-1.44)--(4.75,0);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\arcLengthDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(5.8,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,3.5) node[above] {$y$};
+  \draw[curve,domain=.55:4.6,samples=80] plot (\x,{1.4+.27*(\x-2.3)^2});
+  \draw[thick] (1.2,0)--(1.2,{1.4+.27*(1.2-2.3)^2})
+    (4.35,0)--(4.35,{1.4+.27*(4.35-2.3)^2});
+  \node[below] at (1.2,0) {$x_1$}; \node[below] at (4.35,0) {$x_2$};
+  \coordinate (P) at (7.0,1.2);
+  \coordinate (H) at (9.0,1.2);
+  \coordinate (Q) at (9.0,{1.2+2*.54*(3.7-2.3)});
+  \draw[guide] (3.7,{1.4+.27*(3.7-2.3)^2})--(6.7,2.9);
+  \node[TextGray,above] at (8,3.2) {局部切线三角形};
+  \draw[DeepBlue,very thick] (P)--(Q) node[midway,above left] {$\dd s$};
+  \draw[component] (P)--(H) node[midway,below] {$\dd x$};
+  \draw[component] (H)--(Q) node[midway,right] {$\dd y$};
+  \draw[TextGray,line width=.45pt] ($(H)+(-.13,0)$)--($(H)+(-.13,.13)$)--($(H)+(0,.13)$);
+  \node[above left] at (4.55,2.78) {$y(x)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\trackTimeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(6.4,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.2) node[above] {$y$};
+  \draw[curve] plot[smooth] coordinates {(0,3.6) (0.55,2.7) (1.5,2.0) (3.0,1.15) (4.8,0.35) (5.8,0)};
+  \fill[DeepBlue] (1.7,1.88) circle (2.3pt);
+  \draw[vector] (1.7,1.88)--++(0.75,-0.45) node[above right] {$\vec v$};
+  \draw[guide] (1.7,1.88)--(1.7,3.6);
+  \draw[<->] (2.05,1.88)--node[right] {$H-y$}(2.05,3.6);
+  \node[left] at (0,3.6) {$A(0,H)$};
+  \node[below] at (5.8,0) {$B(L,0)$};
+  \node[above right] at (3.05,1.15) {$y(x)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\trackTimeSolutionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(6.4,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.2) node[above] {$y$};
+  \draw[curve] plot[smooth] coordinates
+    {(0,3.6) (0.55,2.7) (1.5,2.0) (3.0,1.15) (4.8,0.35) (5.8,0)};
+  \coordinate (P) at (1.70,1.88);
+  \fill[DeepBlue] (P) circle (2.3pt);
+  \draw[guide] (P)--(1.70,3.6);
+  \draw[<->] (2.02,1.88)--(2.02,3.6);
+  \node[right] at (2.02,2.78) {$H-y$};
+  \draw[vector] (P)--++(0.74,-0.43) node[below right] {$\vec v$};
+  \node[left] at (0,3.6) {$A(0,H)$};
+  \node[below] at (5.8,0) {$B(L,0)$};
+  \node[align=left,TextGray] at (4.65,3.8)
+    {$\displaystyle v=\sqrt{2g(H-y)}$};
+  \node[anchor=north,TextGray] at (3.0,-.45)
+    {$\displaystyle \dd t=\frac{\dd s}{v}$};
+  \begin{scope}[shift={(3.75,2.25)}]
+    \coordinate (U) at (0,0);
+    \coordinate (V) at (1.35,0);
+    \coordinate (W) at (1.35,-0.78);
+    \draw[component] (U)--(V) node[midway,above] {$\dd x$};
+    \draw[component] (V)--(W) node[midway,right] {$|\dd y|$};
+    \draw[DeepBlue,very thick] (U)--(W) node[midway,below left] {$\dd s$};
+    \draw[TextGray,line width=.45pt]
+      ($(V)+(-.14,0)$)--($(V)+(-.14,-.14)$)--($(V)+(0,-.14)$);
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+
+回到运动学中，假设一艘船沿给定航线行驶。规定一个正方向后，为了确定船的位置，需要知道
+它相对港口的带符号位移。船员能够记录船在不同时刻沿航线的速度，并据此推断当前位置。
+如果船始终作匀速直线运动，只需用速度乘时间即可得到位移；但实际速度会不断变化，因而
+需要由速度随时间的函数计算变速运动中的位移。若另求航程，才应把各段路程作为正量相加。
+
+\partitionDiagram
+
+把时间分成许多小段。设物体在时刻 $t$ 的速度为 $v(t)$，若时间段 $\Delta t$ 足够小，
+可近似认为速度在这段时间内不变，于是从 $t$ 到 $t+\Delta t$ 的位移近似为
+\begin{equation}
+ \Delta x\simeq v(t)\Delta t.
+\end{equation}
+在 $x$--$t$ 图像上，这段位移是以 $v(t)$ 为斜率的短直线段在竖直方向的投影；在
+$v$--$t$ 图像上，它是宽为 $\Delta t$、高为 $v(t)$ 的窄矩形面积。把所有小段相加，
+并令 $\Delta t$ 趋于零，折线趋近真实的 $x(t)$ 曲线，矩形面积之和趋近 $v$--$t$
+曲线下的面积。
+
+已知位置函数时，速度由
+\begin{equation}
+ v(t)=\frac{\dd x}{\dd t}(t)
+\end{equation}
+给出。现在要解决的是它的逆问题：已知一条曲线各点的导数，怎样求曲线本身。解决这类
+问题的方法就是积分。
+
+若函数 $F(x)$ 的导数为 $f(x)$，则称 $F(x)$ 是 $f(x)$ 的一个原函数，并写成
+\begin{equation}
+ \int f(x)\dd x=F(x)+C,
+\end{equation}
+这称为 $f(x)$ 的不定积分（indefinite integration），其中 $f(x)$ 为被积函数，$x$ 为
+积分变量，$C$ 为积分常数。若原函数已知，则 $f(x)$ 在 $x_1$ 到 $x_2$ 之间的定积分为
+\begin{equation}
+ \int_{x_1}^{x_2}f(x)\dd x
+ =\left.F(x)\right|_{x_1}^{x_2}=F(x_2)-F(x_1).
+\end{equation}
+
+\integralDiagram
+
+积分可以处理曲线面积、复杂形体体积以及许多连续求和问题。基本思想是把复杂对象分割
+成简单的小对象，先算出每个小对象的相应量，再在小对象趋于无穷小时把它们积分起来。
+积分的线性规律为
+\begin{equation}
+ \int af(x)\dd x=a\int f(x)\dd x,
+\end{equation}
+\begin{equation}
+ \int[f(x)+g(x)]\dd x
+ =\int f(x)\dd x+\int g(x)\dd x.
+\end{equation}
+
+\Needspace{0.32\textheight}
+\subsection{定积分的方向、运算与检验}
+
+前述分割求和给出了定积分。它在 $v$--$t$ 图上表示有向面积：横轴下方的部分给负位移，而路程应对速率 $|v|$ 积分。类似地，
+密度不均匀细棒的质量为 $m=\int\lambda(x)\dd x$，变力做功为
+$W=\int\vec F\cdot\dd\vec r$，积分的共同思想都是“局部近似简单、整体取极限求和”。
+
+若 $F'(x)=f(x)$，则
+\[
+ \int_a^b f(x)\,\dd x=F(b)-F(a).
+\]
+积分上限、下限和积分变量缺一不可；换元时微分和边界必须同时变换。分部积分
+\[
+ \int_a^b u\,\dd v=[uv]_a^b-\int_a^b v\,\dd u
+\]
+来自乘积求导法则，适于含对数、反三角函数或两个不同类型函数乘积的积分。结果求出后可通过
+求导核对原函数，并用量纲和边界极限检查物理答案。
+
+\subsection{积分建立物理量的空间分布}
+
+连续分布的质心坐标满足
+\[
+ x_C=\frac1M\int x\,\dd m.
+\]
+关键是先把质量元写成合适坐标的函数，如细线 $\dd m=\lambda\dd l$、薄片
+$\dd m=\sigma\dd S$、立体 $\dd m=\rho\dd V$。转动惯量
+$I=\int r_\perp^2\dd m$ 同样依赖转轴到质量元的垂直距离。选择对称坐标后，许多奇函数部分积分为零；
+在结果中保留这种对称性，比从一开始展开全部坐标更简洁。
+
+微分方程把“局部变化规律”还原成运动。若 $m\dot v=F(v)$，可写成
+$\dd v/F(v)=\dd t/m$ 再积分；更一般的 $F(v,t)$ 只有在它能够分解为速度函数与时间函数的乘积时才能分离变量。
+由 $v\dd v/\dd x=a$ 可在不显含时间的问题中把二阶运动方程降阶。
+积分常数由初始条件确定，不能因只求到一个原函数而省略。遇到分段力或分段约束时，应在每一段
+分别积分，并在转换时刻用位置、速度的连续性或冲量条件衔接。
+
+积分也能给出曲线长度、面积和体积。平面极坐标的一般面积元为
+$\dd S=r\dd r\dd\theta$，柱坐标体积元为 $\dd V=r\dd r\dd\theta\dd z$；这些微元中的几何因子
+不是记号装饰，而是坐标网格随位置伸缩的结果。若区域从原点延伸到边界 $r=R(\theta)$，先对半径积分才得到
+$\int_0^{R(\theta)}r\dd r\dd\theta=\tfrac12R^2(\theta)\dd\theta$；后者是微小扇形面积，不是一般面积元。
+先画出被积区域、再确定积分次序，能够避免漏算或重复。
+
+\subsection{近似求积与物理积分的检查}
+
+有些积分没有初等原函数，但定积分仍然有清楚的物理意义。可以把区间划分为小段，用矩形、梯形或
+中点值近似每段面积；分割越细，数值和越接近真实积分。实验数据本来就是离散的，此时
+\[
+ \int_{t_1}^{t_2}F(t)\,\dd t
+ \simeq\sum_i\frac{F_i+F_{i+1}}2(t_{i+1}-t_i)
+\]
+可直接由测得的力—时间数据估计冲量。数值积分给出的是近似值，应同时说明时间步长和误差怎样随
+分割改变，而不能把计算器输出的许多小数位都当成有效数字。
+
+广义积分还要求检查端点或无穷远是否收敛。例如总质量
+$M=\int_0^\infty\lambda(x)\dd x$ 只有在密度衰减足够快时才有限；势能或电势把无穷远取作零点时，
+也隐含了相应积分收敛。若积分发散，往往表示理想化模型不能延伸到无限远，而不是简单地说物理量
+“等于无穷”。无限长导线、无限大平面等模型通常只能可靠给出场强或两个有限点之间的势差。
+
+含参数的积分能够表示一族物理状态。若积分区间固定并满足适当光滑条件，可在积分号下求导：
+\[
+ \frac{\dd}{\dd a}\int_{x_1}^{x_2}f(x,a)\,\dd x
+ =\int_{x_1}^{x_2}\frac{\partial f}{\partial a}\,\dd x.
+\]
+这个方法可把难积分转化为较容易的积分，再对参数积分回来；积分常数则由某个易求的参数值确定。
+若上下限也依赖参数，还要加上端点移动产生的边界项。
+
+任何物理积分至少应通过三项检查：被积式乘微元的量纲是否正确，改变积分方向时符号是否合理，
+以及在均匀分布、恒力或恒速极限下能否退化为熟悉的初等公式。先写清微元代表什么，再写积分限，
+往往比先套积分表更能避免错误。
+
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-17}
+设 $a>0,k>0$。计算通过坐标原点的直线 $f(x)=kx$ 在 $x=0$ 到 $x=a$ 之间与横轴所围成的几何面积。
+\areaLineDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+把区间 $[0,a]$ 分成许多宽为 $\dd x$ 的小段，每个窄条的面积为
+\[
+ \dd S=f(x)\dd x=kx\dd x.
+\]
+将它们相加：
+\[
+ S=\int_0^a kx\dd x
+ =\left.\frac12kx^2\right|_0^a
+ =\boxed{\frac12ka^2}.
+\]
+这正是底为 $a$、高为 $ka$ 的三角形面积 $\frac12a\cdot ka$。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-18}
+设 $a>0,k>0$。计算抛物线 $f(x)=kx^2$ 在 $x=0$ 到 $x=a$ 之间与横轴所围成的几何面积。
+\areaParabolaDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取宽为 $\dd x$ 的竖直窄条，其面积元为
+\[
+ \dd S=kx^2\dd x.
+\]
+因此
+\[
+ S=\int_0^a kx^2\dd x
+ =\left.\frac{kx^3}{3}\right|_0^a
+ =\boxed{\frac13ka^3}.
+\]
+若以外接矩形面积 $a\cdot ka^2=ka^3$ 作比较，抛物线下的面积恰为它的三分之一。
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-19}
+把下列计算圆面积的分割思路用积分表示出来并计算圆的面积，与熟悉的公式
+$S=\pi R^2$ 比较。
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 从圆心出发把圆分成许多扇形，每个扇形的顶角为 $\dd\theta$；
+ \item 把圆分成许多厚度为 $\dd r$ 的圆环，每个圆环的内半径为 $r$；
+ \item 把圆切成许多矩形，每个矩形到圆心的距离为 $x$，宽为 $\dd x$。
+\end{enumerate}
+\circlePartitionsDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+三种分割方式都在计算同一个圆面积，只是所选面积元不同。
+
+\textbf{(a) 扇形分割。}\quad 半径为 $R$、圆心角为 $\dd\theta$ 的小扇形面积为
+\[
+ \dd S=\frac12R^2\dd\theta.
+\]
+绕圆一周：
+\[
+ S=\int_0^{2\pi}\frac12R^2\dd\theta
+ =\boxed{\pi R^2}.
+\]
+
+\textbf{(b) 圆环分割。}\quad 半径为 $r$、厚度为 $\dd r$ 的薄圆环可近似展开成长为
+$2\pi r$、宽为 $\dd r$ 的矩形：
+\[
+ \dd S=2\pi r\dd r,
+ \qquad
+ S=\int_0^R2\pi r\dd r=\boxed{\pi R^2}.
+\]
+
+\textbf{(c) 竖条分割。}\quad 距圆心横坐标为 $x$ 的竖条，其高度由
+$x^2+y^2=R^2$ 给出：
+\[
+ h(x)=2\sqrt{R^2-x^2}.
+\]
+所以
+\[
+ S=\int_{-R}^{R}2\sqrt{R^2-x^2}\dd x
+ =4\int_0^R\sqrt{R^2-x^2}\dd x.
+\]
+令 $x=R\sin\phi$，$\dd x=R\cos\phi\dd\phi$：
+\[
+ S=4R^2\int_0^{\pi/2}\cos^2\phi\dd\phi
+ =4R^2\cdot\frac\pi4
+ =\boxed{\pi R^2}.
+\]
+三种积分都得到熟悉的圆面积公式。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-20}
+利用积分证明圆锥体体积是同底等高圆柱体积的 $1/3$。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设圆锥高为 $H$、底面半径为 $R$。从锥顶起沿轴线建立坐标 $x$，在 $x$ 处取厚度为
+$\dd x$ 的圆盘。由相似三角形
+\[
+ r(x)=\frac{R}{H}x.
+\]
+圆盘体积元为
+\[
+ \dd V=\pi r^2(x)\dd x
+ =\pi\frac{R^2}{H^2}x^2\dd x.
+\]
+从锥顶累加到底面：
+\[
+ V=\int_0^H\pi\frac{R^2}{H^2}x^2\dd x
+ =\pi\frac{R^2}{H^2}\cdot\frac{H^3}{3}
+ =\boxed{\frac13\pi R^2H}.
+\]
+同底等高圆柱体积为 $\pi R^2H$，故圆锥体积恰为其三分之一。
+\end{xesolution}
+
+在物理中经常会遇到复杂的求和过程。若一个物理量发生变化，与它相关的量也随之改变，
+直接求和往往并不现实；但把变化过程分成无穷多足够小的部分时，各小段中的物理量变化
+通常可以近似表达。
+
+例如物体在某时刻速度为 $v$，在无限小时间 $\dd t$ 内可近似看作匀速运动：
+\begin{equation}
+ \Delta x\simeq v(t)\Delta t,
+\end{equation}
+在 $\Delta t\to0$ 的极限下写成
+\begin{equation}
+ \dd x=v\dd t.
+\end{equation}
+已知 $v(t)$ 时，从 $t_1$ 到 $t_2$ 的位移为
+\begin{equation}
+ x(t_2)-x(t_1)=\int_{t_1}^{t_2}v(t)\dd t.
+\end{equation}
+这里得到的是带符号的位移；若要求路程，应在速度变号处分段积分 $|v(t)|$。
+
+又如某物体的热容量随温度变化为 $C(T)$，在小温区 $\Delta T$ 内吸收的热量近似为
+\begin{equation}
+ \Delta Q\simeq C(T)\Delta T.
+\end{equation}
+取极限得 $\dd Q=C(T)\dd T$，所以物体从 $T_1$ 升温至 $T_2$ 所需热量为
+\begin{equation}
+ Q=\int_{T_1}^{T_2}C(T)\dd T.
+\end{equation}
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-21}
+利用积分写出下列两个物体质量的表达式：
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 轴对称物体的底部为 $x=0$、顶部为 $x=H$，半径随 $x$ 的关系为 $r(x)$，
+ 密度随高度的关系为 $\rho(x)$；
+ \item 半径为 $R$ 的球对称物体，密度与距球心距离 $r$ 的关系由函数 $\rho(r)$ 给出。
+\end{enumerate}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+质量元总是 $\dd m=\rho\dd V$，关键在于按对称性选择体积元。
+
+\textbf{(a)} 在高度 $x$ 处取厚度 $\dd x$ 的薄圆盘：
+\[
+ \dd V=\pi r^2(x)\dd x,
+ \qquad
+ \dd m=\rho(x)\pi r^2(x)\dd x.
+\]
+所以
+\[
+ \boxed{M=\int_0^H\rho(x)\pi r^2(x)\dd x}.
+\]
+
+\textbf{(b)} 在距球心 $r$ 处取厚度 $\dd r$ 的薄球壳，其体积元为
+$4\pi r^2\dd r$，故
+\[
+ \boxed{M=4\pi\int_0^R\rho(r)r^2\dd r}.
+\]
+\massElementsDiagram
+两个式子的上下限都从对称中心或底部开始，直到物体边界；量纲均为
+$[\rho][\text{体积}]=[\text{质量}]$。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-22}
+一维运动中，外力与物体位置的关系为 $F(x)$。物体从 $x_1$ 运动到 $x_2$ 时，外力的功为
+\[
+ W_{12}=\int_{x_1}^{x_2}F(x)\dd x.
+\]
+计算下列情况下给定外力所做的功：
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 弹性力 $F=-kx$ 从 $x_1$ 到 $x_2$ 的功；
+ \item 万有引力 $F=-\dfrac{Gm_1m_2}{r^2}$ 从 $r_1$ 到 $r_2$ 的功；
+ \item 分子力 $F=\dfrac{A}{r^6}-\dfrac{B}{r^{12}}$ 从 $r_1$ 到 $r_2$ 的功；
+ \item 理想气体分别经过准静态等温过程和准静态可逆绝热过程，从体积 $V_1$ 膨胀到 $V_2$ 对外所做的功。
+\end{enumerate}
+\pvWorkDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+\textbf{(a)}
+\[
+ W=\int_{x_1}^{x_2}(-kx)\dd x
+ =\boxed{\frac12k(x_1^2-x_2^2)}.
+\]
+它等于弹性势能的减少量。
+
+\textbf{(b)} 取径向向外为正：
+\[
+ W=\int_{r_1}^{r_2}-\frac{Gm_1m_2}{r^2}\dd r
+ =\boxed{Gm_1m_2\left(\frac1{r_2}-\frac1{r_1}\right)}.
+\]
+若物体向内运动，$r_2<r_1$，引力做正功。
+
+\textbf{(c)}
+\begin{align*}
+ W&=\int_{r_1}^{r_2}\left(\frac A{r^6}-\frac B{r^{12}}\right)\dd r\\
+ &=\boxed{\left[-\frac{A}{5r^5}+\frac{B}{11r^{11}}\right]_{r_1}^{r_2}}.
+\end{align*}
+
+\textbf{(d)} 气体准静态膨胀时，气体对外做功 $W=\int p\dd V$。
+这里 $n$ 是气体的物质的量，$R_g$ 是摩尔气体常量，$T$ 是热力学温度。
+以下取一定量理想气体，并把相应过程方程作为本题积分练习的已知规律；
+过程方程的物理推导在热学中讨论。
+
+等温过程中 $pV=nR_gT$，温度不变：
+\[
+ W_{\rm iso}=\int_{V_1}^{V_2}\frac{nR_gT}{V}\dd V
+ =nR_gT[\ln V]_{V_1}^{V_2}
+ =\boxed{nR_gT\ln\frac{V_2}{V_1}}.
+\]
+对于可逆绝热过程，还要求所讨论温区内的定压、定容摩尔热容 $C_p,C_V$
+可视为常量。记热容比 $\gamma=C_p/C_V>1$，过程方程为 $pV^\gamma=C$，
+其中 $C$ 是沿这条绝热线保持不变的常数，不是热容。于是
+\begin{align*}
+ W_{\rm ad}
+ &=\int_{V_1}^{V_2}CV^{-\gamma}\dd V\\
+ &=\frac{C}{1-\gamma}
+   \left(V_2^{1-\gamma}-V_1^{1-\gamma}\right)\\
+ &=\boxed{\frac{p_1V_1-p_2V_2}{\gamma-1}}.
+\end{align*}
+图中曲线下的阴影面积就是相应过程的功；同一初态膨胀到同一体积时，绝热线下降更快，
+其曲线下面积小于等温过程。
+\end{xesolution}
+
+积分还能处理物理量之间更复杂的依赖关系。通常先用小量分析写出过程中的物理关系，再
+取极限得到微分方程，最后通过积分得到所需结果。
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-23}
+质量为 $m$ 的质点受到正比于速度的阻力 $f=-\alpha v$，在其作用下作减速运动。设
+$t=0$ 时速度为 $v_0$，且位于坐标原点 $x=0$。求速度随时间的规律 $v(t)$、前进距离
+随时间的关系 $x(t)$，以及速度与位移的关系 $v(x)$。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取初速度方向为正。牛顿第二定律给出
+\[
+ m\frac{\dd v}{\dd t}=-\alpha v.
+\]
+分离变量并代入 $v(0)=v_0$：
+\[
+ \int_{v_0}^{v}\frac{\dd v'}{v'}
+ =-\frac\alpha m\int_0^t\dd t',
+\]
+故
+\[
+ \boxed{v(t)=v_0\e^{-\alpha t/m}}.
+\]
+再由 $\dd x=v\dd t$：
+\[
+ x(t)=\int_0^tv_0\e^{-\alpha t'/m}\dd t'
+ =\boxed{\frac{mv_0}{\alpha}
+ \left(1-\e^{-\alpha t/m}\right)}.
+\]
+若直接求 $v(x)$，利用 $\dd v/\dd t=v\dd v/\dd x$：
+\[
+ mv\frac{\dd v}{\dd x}=-\alpha v.
+\]
+在 $v>0$ 的运动阶段约去 $v$ 并积分，得到
+\[
+ \boxed{v(x)=v_0-\frac\alpha m x}.
+\]
+当 $t\to\infty$ 时速度渐近于零，极限位移为
+$x_\infty=mv_0/\alpha$，与 $v(x)=0$ 给出的结果一致。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-24}
+物体在重力作用下下落，同时受到正比于速度的阻力 $f=-\alpha v$。已知 $t=0$ 时它在
+竖直向下坐标系的原点处静止，求此后速度随时间的关系 $v(t)$。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取竖直向下为正，运动方程为
+\[
+ m\frac{\dd v}{\dd t}=mg-\alpha v.
+\]
+引入终端速度 $v_\infty=mg/\alpha$，则
+\[
+ \frac{\dd v}{\dd t}=\frac\alpha m(v_\infty-v).
+\]
+分离变量并用 $v(0)=0$：
+\[
+ \int_0^v\frac{\dd v'}{v_\infty-v'}
+ =\frac\alpha m\int_0^t\dd t'.
+\]
+因此
+\[
+ \boxed{v(t)=\frac{mg}{\alpha}
+ \left(1-\e^{-\alpha t/m}\right)}.
+\]
+初始时 $v=0$、加速度为 $g$；时间足够长时 $v\to mg/\alpha$、加速度趋于零，符合受力
+平衡的终端速度图景。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-25}
+质点在 $t=0$ 时位于坐标原点，初速度为 $v_0$。它受到正比于速度平方的阻力
+$f=-\beta v^2$。求速度随时间衰减的规律 $v(t)$。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+在速度尚为正的阶段，运动方程为
+\[
+ m\frac{\dd v}{\dd t}=-\beta v^2.
+\]
+分离变量：
+\[
+ \int_{v_0}^{v}\frac{\dd v'}{v'^2}
+ =-\frac\beta m\int_0^t\dd t'.
+\]
+于是
+\[
+ -\frac1v+\frac1{v_0}=-\frac\beta m t,
+\]
+即
+\[
+ \boxed{v(t)=\frac{v_0}{1+\frac{\beta v_0}{m}t}}.
+\]
+与线性阻力的指数衰减不同，平方阻力下速度按 $1/t$ 的量级衰减。阻力写作
+$-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能始终与速度反向。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-26}
+坐标原点处有质量为 $M$ 的物体 $A$，它始终保持静止。在距它 $r_0$ 处有另一个质量远小
+于它的质点，在二者万有引力作用下由静止出发落向 $A$。求它们相撞的时间。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+把小质点视为试探质点，并把中心物体视为质点；“相撞”即 $r\to0$。机械能守恒给出
+\[
+ \frac12mv^2-\frac{GMm}{r}=-\frac{GMm}{r_0},
+\]
+因此向内运动的速率为
+\[
+ v(r)=\sqrt{2GM\left(\frac1r-\frac1{r_0}\right)}.
+\]
+\radialFallDiagram
+图中虚圈表示 $t=0$ 时位于 $r_0$ 的初始位置，实点表示当前位于 $r$ 的位置；速度箭头指向
+半径减小的方向，所以 $\dd r/\dd t<0$。
+由于 $\dd r/\dd t=-v$，下落时间为
+\[
+ t=\int_0^{r_0}\frac{\dd r}
+ {\sqrt{2GM(1/r-1/r_0)}}.
+\]
+令 $r=r_0\sin^2\phi$，则 $\dd r=2r_0\sin\phi\cos\phi\dd\phi$，积分化为
+\[
+ t=2r_0\sqrt{\frac{r_0}{2GM}}
+ \int_0^{\pi/2}\sin^2\phi\dd\phi.
+\]
+利用 $\int_0^{\pi/2}\sin^2\phi\dd\phi=\pi/4$，得到
+\[
+ \boxed{t=\frac{\pi}{2\sqrt2}
+ \sqrt{\frac{r_0^3}{GM}}}.
+\]
+小质点的质量被约去，体现了引力场中自由落体时间与试探质量无关。若中心物体有有限
+半径 $R_A$，真正碰到表面的时间应把积分下限改为 $R_A$，会小于上述结果。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-27}
+放射性衰变是随机过程。对含有大量同类原子的样品，用 $N(t)$ 表示尚未衰变原子数的期望值
+（实际宏观样品中也可视为平均数）。在无穷小时间间隔中，期望衰变数正比于当前期望总数，即
+\[
+ \frac{\dd N}{\dd t}=-\lambda N,
+\]
+其中 $\lambda$ 为衰变常数。若 $t=0$ 时有 $N_0$ 个放射性原子，求任意时刻 $t$ 尚未
+衰变的原子数期望值；并给出衰变常数与半衰期 $\tau_{1/2}$ 的关系。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+分离变量并积分：
+\[
+ \int_{N_0}^{N(t)}\frac{\dd N'}{N'}
+ =-\lambda\int_0^t\dd t'.
+\]
+所以
+\[
+ \ln\frac{N(t)}{N_0}=-\lambda t,
+ \qquad
+ \boxed{N(t)=N_0\e^{-\lambda t}}.
+\]
+半衰期定义为 $N(\tau_{1/2})=N_0/2$，代入上式：
+\[
+ \frac12=\e^{-\lambda\tau_{1/2}},
+\]
+因此
+\[
+ \boxed{\tau_{1/2}=\frac{\ln2}{\lambda}},
+ \qquad
+ \boxed{\lambda=\frac{\ln2}{\tau_{1/2}}}.
+\]
+衰变常数的量纲是时间的倒数；样品经过 $n$ 个半衰期后剩余比例为 $2^{-n}$。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-28}
+用定积分给出任意光滑曲线 $y(x)$ 在 $x_1$ 到 $x_2$ 之间的部分曲线长度 $L_{12}$。
+\arcLengthDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+在曲线上取相邻两点。图中右侧把局部三角形放大：横、纵两条直角边分别表示
+$\dd x,\dd y$，斜边表示弧长微元 $\dd s$。局部曲线段在极限
+下可看作切线上的小直线段，由勾股定理
+\[
+ \dd s=\sqrt{(\dd x)^2+(\dd y)^2}.
+\]
+把 $\dd x$ 提出：
+\[
+ \dd s=\sqrt{1+\left(\frac{\dd y}{\dd x}\right)^2}\,|\dd x|.
+\]
+若沿 $x$ 增大的方向从 $x_1$ 走到 $x_2$，且 $x_2>x_1$，则
+\[
+ \boxed{L_{12}=\int_{x_1}^{x_2}
+ \sqrt{1+[y'(x)]^2}\dd x}.
+\]
+被积函数始终不小于 $1$，所以弧长不小于两端点的水平距离 $x_2-x_1$；这是公式的一个
+直接检验。
+\end{xesolution}
+
+\Needspace{0.39\textheight}
+\begin{origexamplebox}{}\label{ch01:ex:s15-1-29}
+坐标系中有 $A,B$ 两点，坐标分别为 $(0,H)$ 和 $(L,0)$。一条光滑轨道 $y(x)$ 连接
+$A,B$。求物体由 $A$ 点从静止出发、沿该轨道下落到 $B$ 点所需的时间。
+\trackTimeDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+假设轨道光滑且没有能量损失。物体到达横坐标 $x$ 处时下降高度为 $H-y(x)$。由机械能
+守恒
+\[
+ \frac12mv^2=mg[H-y(x)],
+\]
+故速率为
+\[
+ v(x)=\sqrt{2g[H-y(x)]}.
+\]
+沿轨道的弧长元由例~\ref{ch01:ex:s15-1-28} 给出：
+\[
+ \dd s=\sqrt{1+[y'(x)]^2}\dd x.
+\]
+而 $\dd t=\dd s/v$，所以总时间为
+\[
+ \boxed{t_{AB}=\int_0^L
+ \frac{\sqrt{1+[y'(x)]^2}}
+ {\sqrt{2g[H-y(x)]}}\dd x}.
+\]
+\trackTimeSolutionDiagram
+积分在起点处的分母趋于零，因此这是需要检查收敛性的反常积分；其是否收敛取决于轨道离开 $A$ 点的
+方式。若起点切线具有非零向下斜率，则 $H-y(x)$ 与 $x$ 同阶，积分像
+$\int\dd x/\sqrt{x}$ 一样收敛；若起点是严格水平且曲线足够光滑，物体可能不能自行
+离开静止点，相应积分会发散。该式也是最速降线问题的出发点，但这里只要求给出任意
+已知轨道的下落时间。
+\end{xesolution}
+}
+
+\section{复数相量}
+
+\subsection{复数如何记录振幅与相位}
+虚数单位 $\ii$ 满足 $\ii^2=-1$。复数 $z=a+\ii b$ 的实部记作 $\Re z=a$，虚部记作 $\Im z=b$，
+可以用平面上的点 $(a,b)$ 表示。它的模为 $|z|=\sqrt{a^2+b^2}$；
+从实轴正向量到向量 $(a,b)$ 的角称为辐角 $\phi$，应根据象限确定，而不能只取
+$\arctan(b/a)$ 的主值。因此
+\[
+ z=|z|(\cos\phi+\ii\sin\phi)=|z|e^{\ii\phi}.
+\]
+最后一步使用欧拉公式 $e^{\ii\phi}=\cos\phi+\ii\sin\phi$。
+将指数级数中的偶次项与奇次项分别合并，因 $\ii^{2n}=(-1)^n$、
+$\ii^{2n+1}=\ii(-1)^n$，恰好得到余弦和正弦的级数，因而这不是新的物理假设。
+
+简谐量可写成复指数的实部：
+\begin{equation}
+ x(t)=A\cos(\omega t+\phi)=\Re\!\left(\widetilde x\,e^{\ii\omega t}\right),
+ \qquad \widetilde x=Ae^{\ii\phi}.
+\end{equation}
+其中 $\Re$ 表示取实部。复平面向量随时间以角速度 $\omega$ 转动，
+其在实轴上的投影才是实际位移 $x(t)$；常量 $\widetilde x$ 则称为相量，记录振幅 $A\ge0$ 和初相 $\phi$。
+相量本身不是额外的空间位移。
+
+\subsection{相量的运算}
+同频信号共有时间因子 $e^{\ii\omega t}$，因此先把相量相加，最后取实部即可：
+\[
+ x_1+x_2=\Re\!\left[(\widetilde x_1+\widetilde x_2)e^{\ii\omega t}\right].
+\]
+不同频率没有共同时间因子，不能直接当作静态相量相加。对固定相量求导，
+\[
+ \frac{\dd}{\dd t}\bigl(\widetilde x e^{\ii\omega t}\bigr)
+ =\ii\omega\widetilde x e^{\ii\omega t},\qquad
+ \int\widetilde x e^{\ii\omega t}\dd t
+ =\frac{\widetilde x}{\ii\omega}e^{\ii\omega t}+C\quad(\omega\ne0).
+\]
+所以微分对应乘 $\ii\omega$：振幅乘 $|\omega|$，当 $\omega>0$ 时相位超前 $\pi/2$；
+积分对应除 $\ii\omega$，但还必须保留积分常数 $C$。例如位移的导数是速度，
+再次求导时乘 $(\ii\omega)^2=-\omega^2$，故简谐运动满足 $\ddot x=-\omega^2x$。
+
+\begin{origexamplebox}{同频简谐量的合成}
+$x_1=A\cos\omega t$，$x_2=A\cos(\omega t+2\pi/3)$。求 $x=x_1+x_2$ 的振幅和初相。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+相量为 $\widetilde x_1=A$、$\widetilde x_2=Ae^{\ii2\pi/3}$，所以
+\[
+ \widetilde x=A\left(1-\frac12+\ii\frac{\sqrt3}{2}\right)
+ =Ae^{\ii\pi/3}.
+\]
+合相量的实部、虚部分别为 $A/2$、$\sqrt3A/2$，故其模为
+$\sqrt{A^2/4+3A^2/4}=A$；它在第一象限，且正切为 $\sqrt3$，所以初相为 $\pi/3$。
+图~\ref{ch01:fig:phasor-sum} 中，两相量首尾相接得到合相量，虚线表示平移后的第二相量。
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1]
+ \draw[axis] (-1.9,0)--(3.3,0) node[right]{$\Re$};
+ \draw[axis] (0,-.4)--(0,2.65) node[above]{$\Im$};
+ \draw[vector] (0,0)--(2.4,0) node[midway,below=5pt]{$\widetilde x_1=A$};
+ \draw[vector] (0,0)--(-1.2,2.07846) node[above left]{$\widetilde x_2$};
+ \draw[guide,->] (2.4,0)--(1.2,2.07846);
+ \draw[vector,orange!85!black] (0,0)--(1.2,2.07846) node[above right]{$\widetilde x$};
+ \draw[->,TextGray] (.75,0) arc (0:60:.75);
+ \node at (.87,.60) {$\pi/3$};
+\end{tikzpicture}
+\figcap{同频相量相加：合相量长度为 $A$，辐角为 $\pi/3$。}\label{ch01:fig:phasor-sum}
+\end{center}
+因此
+\[
+ \boxed{x=A\cos(\omega t+\pi/3)}.
+\]
+合振幅仍为 $A$，不是 $2A$。极限检查：两相量夹角为 $120^\circ$，等腰三角形的合矢量长度确为一边长。
+\end{xesolution}
+
+\section{常微分方程的物理读法}
+
+\subsection{一阶方程与初始条件}
+微分方程把未知函数与它的变化率联系起来；上方一点表示对时间求一次导数，
+两点表示二次导数，即 $\dot x=\dd x/\dd t$、$\ddot x=\dd^2x/\dd t^2$。
+“常微分”指未知量只依赖一个自变量。以常数 $a$ 的一阶线性方程为例：
+\begin{equation}
+ \dot x+ax=f(t)
+\end{equation}
+两边乘积分因子 $e^{at}$，左端由乘积求导法则变成一个完整导数：
+\[
+ e^{at}\dot x+ae^{at}x=\frac{\dd}{\dd t}(e^{at}x)=e^{at}f(t).
+\]
+从 $0$ 积分到 $t$，并使用 $x(0)=x_0$，得到
+\[
+ e^{at}x(t)-x_0=\int_0^t e^{as}f(s)\dd s,\qquad
+ \boxed{x(t)=e^{-at}\left[x_0+\int_0^t e^{as}f(s)\dd s\right]}.
+\]
+积分变量 $s$ 与上限 $t$ 必须区分。$f=0,a>0$ 时，$x=x_0e^{-at}$ 衰减；
+$a=0$ 时退化为 $x=x_0+\int_0^t f(s)\dd s$。
+
+\subsection{二阶方程、特征根与阻尼}
+弹簧振子的线性模型为 $m\ddot x+b\dot x+kx=0$。令
+$\gamma=b/(2m)$、$\omega_0=\sqrt{k/m}>0$，得到二阶常系数齐次方程
+\begin{equation}
+ \ddot x+2\gamma\dot x+\omega_0^2x=0
+\end{equation}
+试取 $x=e^{rt}$，代入并约去不为零的 $e^{rt}$，得到特征方程及其根
+\[
+ r^2+2\gamma r+\omega_0^2=0,\qquad r_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\]
+下述三种阻尼分类以 $\gamma>0$ 为前提。给定 $x(0)=x_0$、$\dot x(0)=v_0$：
+\begin{itemize}
+ \item $0<\gamma<\omega_0$：令 $\omega_d=\sqrt{\omega_0^2-\gamma^2}$。
+ 共轭复根给出
+ \[
+ x=e^{-\gamma t}\left[x_0\cos\omega_dt+
+ \frac{v_0+\gamma x_0}{\omega_d}\sin\omega_dt\right].
+ \]
+ 括号内振荡，外面的正因子衰减，这是欠阻尼。
+ \item $\gamma=\omega_0$：重根下两个独立解是 $e^{-\gamma t}$ 和
+ $te^{-\gamma t}$，代回方程即可逐一验证。代入两条初始条件得
+ \[
+ x=[x_0+(v_0+\gamma x_0)t]e^{-\gamma t},
+ \]
+ 称为临界阻尼。
+ \item $\gamma>\omega_0$：两个实根均为负，
+ \[
+ x=C_+e^{r_+t}+C_-e^{r_-t},\quad
+ C_+=\frac{v_0-r_-x_0}{r_+-r_-},\quad
+ C_-=\frac{r_+x_0-v_0}{r_+-r_-}.
+ \]
+ 这是过阻尼。它没有周期振荡，但特定初始速度仍可能使物体越过平衡点一次，不能一概称为单调返回。
+\end{itemize}
+当 $\gamma=0$ 时，根为 $\pm\ii\omega_0$，运动无衰减；当 $\gamma<0$ 时，
+模型中的速度项向系统供能，非零解通常增长，不属于上述被动阻尼衰减。
+根的实部决定振幅随时间增长还是衰减，虚部决定是否具有振荡因子。
+初始条件的个数应与方程阶数相同；只写通解而不代入初始条件，物理问题尚未求完。
+
+\begin{origexamplebox}{一阶弛豫过程}
+温度为 $T(t)$ 的小物体置于恒温环境 $T_a$ 中，满足牛顿冷却模型
+$\dot T=-k(T-T_a)$，其中 $k>0$，且 $T(0)=T_0$。求 $T(t)$，并检验长时间极限。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+令温差 $\Theta=T-T_a$，因环境温度不变，方程化为 $\dot\Theta=-k\Theta$。
+乘 $e^{kt}$ 后，$\dd(e^{kt}\Theta)/\dd t=0$，说明 $e^{kt}\Theta$ 为常量；
+代入 $t=0$ 得该常量为 $T_0-T_a$。因此
+\[
+ \Theta(t)=(T_0-T_a)e^{-kt},\qquad
+ \boxed{T(t)=T_a+(T_0-T_a)e^{-kt}}.
+\]
+当 $T_0\ne T_a$ 时也可分离变量，积分为
+$\ln|\Theta(t)|-\ln|\Theta(0)|=-kt$；温差始终同号，才可化为
+$\ln[\Theta(t)/\Theta(0)]=-kt$。当 $T_0=T_a$ 时不能除以温差，
+但上面的积分因子解仍直接给出 $T(t)=T_a$。
+$k$ 的量纲为 $\mathsf T^{-1}$（例如 $\mathrm{s^{-1}}$），所以指数 $kt$ 无量纲。$t\to\infty$ 时 $T\to T_a$；若 $T_0>T_a$，温度单调下降且不会在有限时间越过环境温度，均与模型的物理含义一致。
+\end{xesolution}
+
+\endgroup

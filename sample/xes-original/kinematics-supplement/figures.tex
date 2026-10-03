@@ -1,0 +1,425 @@
+\newcommand{\PrefaceAncientVisionDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.86,>=Latex]
+  \begin{scope}[xshift=-3.8cm]
+    \draw[very thick] (-2.1,-1.0)--(-1.45,-.35)--(-2.1,.3);
+    \fill (-1.45,-.35) circle (.07);
+    \draw[DeepBlue,->,very thick] (-1.4,-.35)--(.25,.45);
+    \draw[DeepBlue,->,very thick] (-1.4,-.35)--(.4,-.35);
+    \draw[DeepBlue,->,very thick] (-1.4,-.35)--(.25,-1.05);
+    \draw[very thick,rounded corners=2pt] (.55,-1.1) rectangle (1.8,.65);
+    \node[clearlabel,below,align=center] at (-.15,-1.45){古代“视觉触须”设想：\\由眼睛向物体发出微粒};
+  \end{scope}
+  \begin{scope}[xshift=3.6cm]
+    \draw[very thick] (-2.2,-.9) rectangle (2.2,.9);
+    \draw[DeepBlue,->,very thick] (-1.85,0)--(-.35,0);
+    \fill (-.2,0) circle (.16);
+    \foreach \a in {25,65,105,145,205,245,295,335}{
+      \draw[Blue,->] (-.2,0)--++(\a:1.45);
+    }
+    \node[clearlabel,below,align=center] at (0,-1.35){量子态的传播不能简单理解为\\一颗经典台球沿唯一轨迹运动};
+  \end{scope}
+\end{tikzpicture}\figcap{图1.1—图1.2：早期视觉模型与量子粒子“弥散”的概念示意。}\end{center}}
+
+\newcommand{\PrefaceParticleDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+  \shade[ball color=DeepBlue] (-2,0) circle (.45);
+  \shade[ball color=Gold] (2,0) circle (.45);
+  \draw[DeepBlue,very thick,->] (-1.45,0)--(-.35,0);
+  \draw[Gold,very thick,->] (1.45,0)--(.35,0);
+  \draw[Blue,very thick,->] (0,0)--++(55:1.75) node[clearlabel,above]{$\gamma$};
+  \draw[Blue,very thick,->] (0,0)--++(235:1.75) node[clearlabel,below]{$\gamma$};
+  \node[clearlabel,below] at (-2,-.65){电子 $e^-$};
+  \node[clearlabel,below] at (2,-.65){正电子 $e^+$};
+\end{tikzpicture}\figcap{图1.3：电子与正电子湮灭并产生光子的概念示意；能量和动量必须同时守恒。}\end{center}}
+
+\newcommand{\EarthMoonScaleDiagram}{%
+\begin{center}\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  % 主图按同一线性比例绘制：中心距 10.5 cm，对应天体半径分别
+  % 为 1.74 mm 和 0.48 mm。这样保留题图“真实尺度”的物理作用。
+  \coordinate (E) at (-5.25,0);
+  \coordinate (M) at (5.25,0);
+  \shade[ball color=Blue!70] (E) circle (.174);
+  \shade[ball color=TextGray!45] (M) circle (.048);
+  \draw[<->,TextGray] (-5.25,-.45)--(5.25,-.45)
+    node[midway,clearlabel,below=2pt]
+      {平均中心距 $3.84\times10^5\,\mathrm{km}$};
+  \draw[TextGray] (E)--++(-.42,.58);
+  \node[clearlabel,above right,align=left] at (-5.72,.55)
+    {地球 $R_E\approx6.37\times10^3\,\mathrm{km}$\\$M_E\approx5.97\times10^{24}\,\mathrm{kg}$};
+  \draw[TextGray] (M)--++(.35,.58);
+  \node[clearlabel,above left,align=right] at (5.67,.55)
+    {月球 $R_M\approx1.74\times10^3\,\mathrm{km}$\\$M_M\approx7.35\times10^{22}\,\mathrm{kg}$};
+  \node[clearlabel,below] at (0,-1.05)
+    {半径与中心距采用同一比例；$M_M/M_E\approx0.0123$};
+\end{tikzpicture}\figcap{图2.1：月球、地球及月地距离的真实比例。研究月球绕地球公转时可把月球近似为质点；研究着陆时则不能。}\end{center}}
+
+\newcommand{\SprintGraph}{%
+\begin{center}\begin{tikzpicture}
+\begin{axis}[
+  width=.78\linewidth,height=6.0cm,
+  axis lines=left,xlabel={$t/\mathrm{s}$},ylabel={$x/\mathrm{m}$},
+  xmin=0,xmax=12.5,ymin=0,ymax=105,
+  xtick={0,...,12},ytick={0,20,...,100},
+  grid=major,grid style={draw=RuleGray},
+  every axis label/.style={fill=none},tick label style={font=\small}
+]
+\addplot[kcurve,mark=*,mark size=1.3pt] coordinates {
+  (0,0)(1,1)(2,4)(3,9)(4,16)(5,25)(6,35)(7,45)(8,55)(9,65)(10,75)(11,85)(12,100)
+};
+\end{axis}
+\end{tikzpicture}\figcap{图2.2：短跑选手位置随时间变化。曲线越陡，位置变化越快。}\end{center}}
+
+\newcommand{\PositionSlopeDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.94,>=Latex]
+  \foreach \dx/\dy/\mode in {-3/0/1,3/0/2,0/-5.2/3}{
+    \begin{scope}[shift={(\dx,\dy)}]
+      \draw[kaxis] (-1.8,0)--(1.9,0) node[right,clearlabel]{$t$};
+      \draw[kaxis] (-1.55,-1.35)--(-1.55,1.55) node[above,clearlabel]{$x$};
+      \ifnum\mode=1
+        \draw[kcurve] (-1.35,-.9)--(1.55,1.05);
+        \node[clearlabel,below,align=center] at (0,-1.55){匀速运动\\直线斜率恒定};
+      \else\ifnum\mode=2
+        \draw[kcurve] plot[smooth] coordinates{(-1.35,.12)(-.7,.35)(0,.64)(.7,1.0)(1.55,1.27)};
+        \coordinate (A) at (-.7,.35);\coordinate (B) at (.7,1.0);
+        \fill (A) circle (.04);
+        \fill (B) circle (.04);
+        \draw[secant] (A)--(B);
+        \draw[kguide] (-.7,0)--(A) (.7,0)--(B);
+        \draw[kguide] (-1.55,.35)--(A) (-1.55,1.0)--(B);
+        \draw[<->,TextGray] (-.7,-.45)--(.7,-.45)
+          node[midway,clearlabel,below=1pt]{$\Delta t$};
+        \draw[<->,TextGray] (1.18,.35)--(1.18,1.0)
+          node[midway,clearlabel,right=1pt]{$\Delta x$};
+        \draw[TextGray] (A)--(.38,.35);
+        \draw[TextGray] (-.30,.35) arc[start angle=0,end angle=24.90,radius=.40];
+        \node[clearlabel] at (.20,.58){$\alpha$};
+        \node[clearlabel,above left=2pt] at (A) {$A$};
+        \node[clearlabel,above right=2pt] at (B) {$B$};
+        \node[clearlabel,below=1pt] at (-.7,0) {$t_1$};
+        \node[clearlabel,below=1pt] at (.7,0) {$t_2$};
+        \node[clearlabel,left=1pt] at (-1.55,.35) {$x$};
+        \node[clearlabel,left=1pt] at (-1.55,1.0) {$x+\Delta x$};
+        \node[clearlabel,below,align=center] at (0,-1.55){割线斜率：平均速度\\$\Delta t=t_2-t_1$};
+      \else
+        \draw[kcurve,domain=-1.35:1.5,samples=80] plot (\x,{.12+.65*\x-.1*\x*\x});
+        \coordinate (A) at (0,.12);\fill (A) circle (.04);
+        \draw[tangent] (-1.0,-.53)--(1.1,.835);
+        \node[clearlabel,below right=3pt] at (A) {$A$};
+        \node[clearlabel,below,align=center] at (0,-1.55){切线斜率\\瞬时速度};
+      \fi\fi
+    \end{scope}
+  }
+\end{tikzpicture}\figcap{图2.3：$x$-$t$ 图像中平均速度与瞬时速度的几何意义。}\end{center}}
+
+\newcommand{\VelocityAreaDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+  \foreach \dx/\mode in {-4.7/1,0/2,4.7/3}{
+    \begin{scope}[xshift=\dx cm]
+      \draw[kaxis] (-1.8,0)--(1.9,0) node[right,clearlabel]{$t$};
+      \draw[kaxis] (-1.55,-.15)--(-1.55,1.65) node[above,clearlabel]{$v$};
+      \ifnum\mode=1
+        \fill[Blue!12] (-1.1,0) rectangle (1.3,.9);
+        \draw[kcurve] (-1.25,.9)--(1.5,.9);
+        \draw[kguide] (-1.1,0)--(-1.1,.9) (1.3,0)--(1.3,.9);
+        \node[clearlabel,below=2pt] at (-1.1,0){$A$};
+        \node[clearlabel,below=2pt] at (1.3,0){$B$};
+        \node[clearlabel,above left=1pt] at (-1.1,.9){$C$};
+        \node[clearlabel,above right=1pt] at (1.3,.9){$D$};
+        \node[clearlabel,below] at (0,-.55){匀速：矩形面积};
+      \else
+        \path[fill=Blue!12] (-1.1,0)--
+          plot[domain=-1.1:1.3,samples=60]
+            ({\x},{0.55+0.75*(\x+1.1)-0.22*(\x+1.1)^2})--(1.3,0)--cycle;
+        \draw[kcurve]
+          plot[domain=-1.1:1.3,samples=60]
+            ({\x},{0.55+0.75*(\x+1.1)-0.22*(\x+1.1)^2});
+        \draw[kguide] (-1.1,0)--(-1.1,.55) (1.3,0)--(1.3,1.08);
+        \node[clearlabel,below=2pt] at (-1.1,0){$A$};
+        \node[clearlabel,below=2pt] at (1.3,0){$B$};
+        \node[clearlabel,above left=1pt] at (-1.1,.55){$C$};
+        \node[clearlabel,above right=1pt] at (1.3,1.08){$D$};
+        \ifnum\mode=2
+          \foreach \x in {-1.05,-.85,...,1.25}{
+            \draw[Blue!65] (\x,0)--
+              (\x,{0.55+0.75*(\x+1.1)-0.22*(\x+1.1)^2});}
+          \node[clearlabel,below] at (0,-.55){窄矩形求和};
+        \else
+          \node[clearlabel,below] at (0,-.55){极限：曲线下面积};
+        \fi
+      \fi
+    \end{scope}
+  }
+\end{tikzpicture}\figcap{图2.4：$v$-$t$ 图像下的有向面积等于位移；若求路程，应对 $|v|$ 积分。}\end{center}}
+
+\newcommand{\ExampleTwoSixGraphs}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+  \foreach \dx/\mode in {-4.6/1,0/2,4.6/3}{
+    \begin{scope}[xshift=\dx cm]
+      \draw[kaxis] (-1.65,0)--(1.75,0) node[right,clearlabel]{$t$};
+      \draw[kaxis] (-1.45,-.55)--(-1.45,2.05) node[above,clearlabel]{$x$};
+      \ifnum\mode=1
+        \draw[kcurve] (-1.35,0)--(0,1.35)--(1.35,0);
+        \draw[vector] (-.92,.43)--(-.42,.93);
+        \draw[vector] (.42,.93)--(.92,.43);
+        \node[clearlabel,below] at (0,-.62){先正向、后反向};
+      \else\ifnum\mode=2
+        \draw[kcurve,domain=-1.35:1.30,samples=80] plot (\x,{.25*(\x+1.35)^2});
+        \draw[vector] (-.65,.12)--(-.15,.34);
+        \draw[vector] (.35,.73)--(.82,1.25);
+        \node[clearlabel,below] at (0,-.62){斜率为正且增大};
+      \else
+        \draw[kcurve,domain=-1.35:1.35,samples=100] plot (\x,{1.45*sqrt(max(0,1-(\x/1.35)^2))});
+        \draw[vector] (-.85,.99)--(-.35,1.34);
+        \draw[vector] (.35,1.34)--(.85,.99);
+        \node[clearlabel,below] at (0,-.62){斜率由正变为负};
+      \fi\fi
+    \end{scope}}
+\end{tikzpicture}\figcap{例2.6：三幅 $x$-$t$ 图的切线斜率分别给出速度的方向与变化趋势。}\end{center}}
+
+\newcommand{\ExampleTwoSevenGraphs}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+  \begin{scope}[shift={(-4.9,-1.1)}]
+    \draw[kaxis] (0,0)--(2.75,0) node[right,clearlabel]{$t$};
+    \draw[kaxis] (0,-1.55)--(0,1.85) node[above,clearlabel]{$v$};
+    \draw[kcurve] (0,1.3)--(2.4,-1.3);
+    \node[clearlabel,left] at (0,1.3){$v_0$};
+    \node[clearlabel,left] at (0,-1.3){$-v_0$};
+    \draw[kguide] (0,-1.3)--(2.4,-1.3);
+    \node[clearlabel,below left] at (0,0){$O$};
+    \node[clearlabel,above right=2pt] at (1.2,0){$T/2$};
+    \node[clearlabel,above] at (2.4,0){$T$};
+    \node[clearlabel,below] at (1.2,-1.7){已知速度图};
+  \end{scope}
+  \foreach \dx/\dy/\mode/\tag in {-.7/0/1/A,3.3/0/2/B,-.7/-3.3/3/C,3.3/-3.3/4/D}{
+    \begin{scope}[shift={(\dx,\dy)}]
+      \draw[kaxis] (0,0)--(2.7,0) node[right,clearlabel]{$t$};
+      \draw[kaxis] (0,-.25)--(0,1.65) node[above,clearlabel]{$x$};
+      \ifnum\mode=1
+        \draw[kcurve] (0,0)--(1.2,1.15)--(2.4,0);
+      \else\ifnum\mode=2
+        \draw[kcurve,domain=0:1,samples=70]
+          plot ({2.4*\x},{4.6*\x*(1-\x)});
+      \else\ifnum\mode=3
+        \draw[kcurve,domain=0:1,samples=70] plot ({2.4*\x},{1.15*(2*\x-\x*\x)});
+      \else
+        \draw[kcurve] (0,1.15)--(1.2,0)--(2.4,.85);
+      \fi\fi\fi
+      \node[clearlabel,below left] at (0,0){$O$};
+      \node[clearlabel,below=3pt] at (1.2,0){$T/2$};
+      \node[clearlabel,below=3pt] at (2.4,0){$T$};
+      \node[clearlabel,below] at (1.2,-.65){$\tag$};
+    \end{scope}}
+\end{tikzpicture}\figcap{例2.7：左图为给定的 $v$-$t$ 图，右侧四图为待判断的位移图；正确图必须连续且斜率等于给定速度。}\end{center}}
+
+\newcommand{\ExampleTwoEightGraphs}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+  \foreach \dx/\mode in {-4.4/1,0/2,4.4/3}{
+    \begin{scope}[xshift=\dx cm]
+      \draw[kaxis] (-1.55,0)--(1.75,0) node[right,clearlabel]{时间};
+      \draw[kaxis] (-1.35,-.25)--(-1.35,1.85) node[above,clearlabel]{$v$};
+      \ifnum\mode=1
+        \fill[Blue!12] (-1.25,0)--(1.25,0)--(1.25,1.35)--cycle;
+        \draw[kcurve] (-1.25,0)--(1.25,1.35);
+        \draw[kguide] (1.25,0)--(1.25,1.35);
+        \draw[kguide] (-1.35,1.35)--(1.25,1.35);
+        \node[clearlabel,left] at (-1.35,1.35){$v$};
+      \else\ifnum\mode=2
+        \fill[Blue!12] (-1.25,0)--(-1.25,.55)--(1.25,1.35)--(1.25,0)--cycle;
+        \draw[kcurve] (-1.25,.55)--(1.25,1.35);
+        \draw[kguide] (1.25,0)--(1.25,1.35);
+        \draw[kguide] (-1.35,.55)--(-1.25,.55) (-1.35,1.35)--(1.25,1.35);
+        \node[clearlabel,left] at (-1.35,.55){$v_0$};
+        \node[clearlabel,left] at (-1.35,1.35){$v_1$};
+      \else
+        \fill[Blue!12] (-1.25,0)--(-.42,1.35)--(1.25,0)--cycle;
+        \draw[kcurve] (-1.25,0)--(-.42,1.35)--(1.25,0);
+        \draw[kguide] (-.42,0)--(-.42,1.35);
+        \draw[kguide] (-1.35,1.35)--(-.42,1.35);
+        \node[clearlabel,left] at (-1.35,1.35){$v_0$};
+        \node[clearlabel,below] at (-.42,0){$t/3$};
+      \fi\fi
+      \node[clearlabel,below] at (1.25,0){$t$};
+    \end{scope}}
+\end{tikzpicture}\figcap{例2.8：总路程等于三幅 $v$-$t$ 图中阴影面积；梯形或三角形面积直接给出结果。}\end{center}}
+
+\newcommand{\FreeFallMeetingDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[very thick] (-1.4,0)--(1.4,0);
+  \node[point,label={[clearlabel]below right=3pt:$B$}] (B) at (0,0) {};
+  \node[point,label={[clearlabel]left:$A$}] (A) at (0,3.2) {};
+  \draw[<->,TextGray] (.8,0)--(.8,3.2) node[midway,clearlabel,right]{$h$};
+  \draw[DeepBlue,very thick,->] (B)--(0,1.15) node[midway,clearlabel,left]{$v_0$};
+  \draw[Blue,very thick,->] (A)--(0,2.45) node[midway,clearlabel,left]{$g$};
+\end{tikzpicture}\figcap{例2.17解图：两球具有相同的重力加速度，因此相对加速度为零，初始间距以相对速度 $v_0$ 关闭。}\end{center}}
+
+\newcommand{\BounceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+  \draw[very thick] (-1.7,0)--(1.7,0);
+  \fill (0,2.7) circle (.12);
+  \fill (0,.12) circle (.12);
+  \draw[kguide] (0,.27)--(0,2.55);
+  \draw[<->,TextGray] (.88,0)--(.88,2.7)
+    node[midway,clearlabel,right=2pt]{$H$};
+  \draw[DeepBlue,very thick,->] (-.35,1.0)--(-.35,.25) node[midway,clearlabel,left]{$u$};
+  \draw[Blue,very thick,->] (.35,.25)--(.35,1.0) node[midway,clearlabel,right]{$eu$};
+\end{tikzpicture}\figcap{例2.19解图：每次反弹速度按 $e$ 成等比衰减，飞行时间按 $e$ 衰减，路程按 $e^2$ 衰减。}\end{center}}
+
+\input{figures-ch03.tex}
+
+
+
+\newcommand{\CrossRiverRoundTripDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \fill[Blue!7] (-3,-1.45) rectangle (3,1.45);
+ \draw[very thick] (-3,-1.45)--(3,-1.45) (-3,1.45)--(3,1.45);
+ \coordinate (A) at (0,-1.45);\coordinate (B) at (0,1.45);
+ \node[point,label={[clearlabel]below:$A$}] at (A) {};
+ \node[point,label={[clearlabel]above:$B$}] at (B) {};
+ \draw[DeepBlue,very thick,->] (.10,-1.25)--(.10,1.20);
+ \draw[DeepBlue,very thick,->] (-.10,1.20)--(-.10,-1.25);
+ \draw[vector] (-2.35,.15)--(-1.05,.15) node[midway,clearlabel,above]{$\vect u$};
+ \draw[vector] (A)--++(145:1.25) node[near end,clearlabel,below left]{$\vect v$};
+ \draw[vector] (B)--++(215:1.25) node[near end,clearlabel,above left]{$\vect v$};
+ \draw[<->,TextGray] (2.45,-1.45)--(2.45,1.45) node[midway,clearlabel,right]{$L$};
+\end{tikzpicture}\figcap{例2.73解图：$A,B$ 位于两岸正对位置；往返时都用船对水速度的上游分量抵消水流。}\end{center}}
+
+\newcommand{\EqualSpeedFrameDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[very thick] (-3,0)--(3,0);
+ \coordinate (A) at (-2.1,0);\coordinate (B) at (2.1,0);
+ \node[point,label={[clearlabel]below:$A$}] at (A) {};
+ \node[point,label={[clearlabel]below:$B$}] at (B) {};
+ \draw[vector] (A)--++(1.55,0) node[midway,clearlabel,above]{$v$};
+ \draw[vector] (-.75,1.0)--(.75,1.0) node[midway,clearlabel,above]{$S'\text{ 的速度 }u$};
+ \draw[->,TextGray] (-1.55,-.58)--(-.2,-.58);
+ \draw[->,TextGray] (1.55,-.58)--(.2,-.58);
+ \node[below] at (0,-.65){在 $S'$ 中迎面接近};
+\end{tikzpicture}\figcap{例2.74解图：在地面系中 $A$ 向右、$B$ 静止，参考系 $S'$ 也向右平动。}\end{center}}
+
+
+
+\newcommand{\VelocityTriangleDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \coordinate (O) at (0,0);\coordinate (A) at (2.7,0);\coordinate (B) at (2.7,1.8);
+ \draw[vector] (O)--(A) node[midway,clearlabel,below]{$\vect v_{P/A}$};
+ \draw[vector] (A)--(B) node[midway,clearlabel,right]{$\vect v_{A/O}$};
+ \draw[vector] (O)--(B) node[midway,clearlabel,above left]{$\vect v_{P/O}$};
+\end{tikzpicture}\figcap{相对速度三角形：先走“物体相对载体”，再走“载体相对地面”，得到物体相对地面。}\end{center}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\SphereStreamlinesDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \shade[ball color=TextGray!35] (0,0) circle (1.2);
+ \input{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/ch13/sphere-paths.tex}
+ \draw[Blue,thick,->] (-4,0)--(-1.25,0);\draw[Blue,thick,->] (1.25,0)--(4,0);
+\end{tikzpicture}\figcap{图2.23：圆球绕流的子午面流线。不同流线绕过球面，不在球顶或球底合并。}\end{center}}
+
+\newcommand{\StreamtubeDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.95,>=Latex]
+ % Center c(t)=(t,0,.1t^2); section basis e_y and (-.2t,0,1)/sqrt(1+.04t^2).
+ \foreach \ang in {0,60,120,180,240,300}{
+  \draw[Blue,thick,domain=0:5,samples=75,variable=\t]
+   plot ({\t+(.70-.055*\t)*(.45*cos(\ang)-.2*\t*sin(\ang)/sqrt(1+.04*\t*\t))},
+         {.1*\t*\t+(.70-.055*\t)*(.22*cos(\ang)+sin(\ang)/sqrt(1+.04*\t*\t))});}
+ \foreach \t in {0,5}{
+  \draw[Ink,thick,domain=0:360,samples=80,variable=\a]
+   plot ({\t+(.70-.055*\t)*(.45*cos(\a)-.2*\t*sin(\a)/sqrt(1+.04*\t*\t))},
+         {.1*\t*\t+(.70-.055*\t)*(.22*cos(\a)+sin(\a)/sqrt(1+.04*\t*\t))});}
+ \foreach \t/\lab in {0.7/1,2.5/2,4.2/3}{
+  \draw[->,DeepBlue,very thick] (\t,{.1*\t*\t})--++(.55,{.11*\t});
+  \draw[TextGray,thin] (\t,{.1*\t*\t})--(\t,{.1*\t*\t-1.0});
+  \node[below,font=\small] at (\t,{.1*\t*\t-1.07}) {$\vect v_{\lab}$};}
+ \node[left] at (-.5,0) {$C_1$};\node[left] at (-.5,-.45) {$S_A$};
+ \node[right] at (5.55,2.8) {$C_2$};\node[right] at (5.55,2.35) {$S_B$};
+\end{tikzpicture}\figcap{图2.24：闭合截线 $C_1,C_2$ 围出横截面，侧壁由流线构成。箭头沿局部速度方向；图为弯曲流管的透视示意。}\end{center}}
+
+\newcommand{\PipeContinuityDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.74,>=Latex]
+ \draw[very thick] (-4,.55)--(-1.5,.55)--(1.2,1.2)--(4,1.2);
+ \draw[very thick] (-4,-.55)--(-1.5,-.55)--(1.2,-1.2)--(4,-1.2);
+ \draw[vector] (-2.9,0)--(-1.65,0);
+ \draw[TextGray,thin] (-2.3,-.12)--(-2.3,-.95);
+ \node[below] at (-2.3,-1.0) {$v_A$};
+ \draw[vector] (1.65,0)--(2.4,0) node[midway,below=4pt]{$v_B$};
+ \draw[DeepBlue] (-3.25,-.55)--(-3.25,.55) node[above=5pt]{$S_A$};
+ \draw[DeepBlue] (3.0,-1.2)--(3.0,1.2) node[above=5pt]{$S_B$};
+\end{tikzpicture}\figcap{例2.97：管道的两个横截面及流速方向，$v_B$ 为待求量。}\end{center}}
+
+\newcommand{\UniformPipeDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[thick] (-4,.65)--(4,.65) (-4,-.65)--(4,-.65);
+ \foreach \xx/\lab in {-2.8/1,2.0/2}{
+  \draw[dashed,TextGray] (\xx,-.65)--(\xx,.65) node[above=5pt]{$S$};
+  \draw[->,DeepBlue,thick] (\xx+.2,0)--(\xx+1.25,0) node[midway,below=5pt]{$v_{\lab}$};}
+\end{tikzpicture}\figcap{例2.98：同一圆柱管的两个等截面；在一维稳态模型中比较 $Sv_1$ 与 $Sv_2$。}\end{center}}
+
+\newcommand{\CompressiblePipeDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[thick] (-4,.6)--(-1.5,.6)--(1.3,1.3)--(4,1.3);
+ \draw[thick] (-4,-.6)--(-1.5,-.6)--(1.3,-1.3)--(4,-1.3);
+ \foreach \xx/\rr/\lab in {-3/.6/A,3/1.3/B}{
+  \draw[DeepBlue,dashed] (\xx,-\rr)--(\xx,\rr) node[above=6pt]{$S_{\lab}$};
+  \node[below=6pt] at (\xx,-\rr) {$\rho_{\lab}$};}
+ \draw[->,DeepBlue,thick] (-2.65,0)--(-1.65,0);
+ \draw[TextGray,thin] (-1.9,.1)--(-1.9,1.05);
+ \node[above] at (-1.9,1.1) {$v_A$};
+ \draw[->,DeepBlue,thick] (1.55,0)--(2.5,0) node[midway,below=5pt]{$v_B$};
+\end{tikzpicture}\figcap{例2.100：两截面的面积、密度及流速符号，$v_B$ 为待求量。}\end{center}}
+
+\newcommand{\FallingJetDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[thick] (-1.8,1)--(-1.8,0)--(-.50,0) (.50,0)--(1.8,0)--(1.8,1);
+ \foreach \sgn in {-1,1}{\draw[DeepBlue,thick,domain=0:3.7,samples=90,variable=\s]
+  plot ({\sgn*.5/(1+1.2*\s)^.25},{-\s});}
+ \draw[TextGray,dashed] (-.75,0)--(1.3,0) (-.75,-3)--(1.3,-3);
+ \draw[<->,TextGray] (-1.1,0)--(-1.1,-3) node[midway,left]{$h$};
+ \draw[DeepBlue,dashed] (-.5,0)--(.5,0);
+ \draw[DeepBlue,thick] ({-.5/4.6^.25},-3)--({.5/4.6^.25},-3);
+ \node[above] at (0,.12) {$S$};\node[left] at (-.55,-3.25) {$S(h)$};
+ \draw[->,DeepBlue,thick] (1.3,0)--(1.3,-.65) node[right]{$v$};
+ \draw[->,DeepBlue,thick] (1.3,-3)--(1.3,-4.1) node[right]{$v(h)$};
+\end{tikzpicture}\figcap{例2.99：高度差 $h$ 的末端就是截面 $S(h)$；两速度箭头分别从对应截面起画。}\end{center}}
+
+% Reserve space with discardable glue so a natural page break is not followed
+% by a second forced break.  Local to the chapter-four maintained units.
+\newcommand{\KinematicKeepSpace}[1]{%
+\par\begingroup
+\dimen0=#1\relax
+\dimen2=\lastskip
+\advance\dimen0 by \dimen2
+\vskip-\dimen2
+\vskip0pt plus\dimen0
+\penalty-100
+\vskip0pt plus-\dimen0
+\vskip\dimen0
+\penalty9999
+\vskip-\dimen0
+\vskip\dimen2
+\endgroup}
+\input{figures-ch04.tex}
+\input{data/question-figures.tex}

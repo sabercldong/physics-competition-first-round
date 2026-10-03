@@ -1,0 +1,11 @@
+% 核心结论：题图给地面同时发光、地面长度L和车速，不给同时线或光相遇点。
+% 纯几何，蓝灰，10pt，目标宽10cm；草图 A|------L------|B，v向右，t=0。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \draw[thick] (0,0) rectangle (6,1.1);
+ \fill[DeepBlue] (0,.55) circle(2pt);\fill[DeepBlue] (6,.55) circle(2pt);
+ \node[left=5pt,align=center] at (0,.55) {后端A\\发光};
+ \node[right=5pt,align=center] at (6,.55) {前端B\\发光};
+ \draw[vector] (2,1.65)--(4,1.65) node[midway,above] {$v$};
+ \draw[TextGray,<->] (0,-.55)--(6,-.55) node[midway,below] {$L$（地面同时测量）};
+ \node at (3,.55) {地面系 $t=0$};
+\end{tikzpicture}

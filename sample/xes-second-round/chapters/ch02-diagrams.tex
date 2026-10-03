@@ -1,0 +1,301 @@
+% 第2章全部图采用透明标签；节点通过偏移或引线避开轮廓和箭头。
+\newcommand{\figImpulseHistory}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[x=4.5cm,y=1cm]
+  % u=t/tau. The second curve is exactly the integral of the first.
+  \draw[axis] (0,0)--(1.12,0) node[right]{$t$};
+  \draw[axis] (0,0)--(0,3) node[above]{$F(t)$};
+  \fill[Blue!18] (0,0)--plot[domain=0:.65,samples=80]
+    (\x,{1.3*30*\x^2*(1-\x)^2})--(.65,0)--cycle;
+  \draw[curve,domain=0:1,samples=140] plot (\x,{1.3*30*\x^2*(1-\x)^2});
+  \draw[guide] (.65,0)--(.65,{1.3*30*.65^2*(1-.65)^2});
+  \node[labelclean] at (.38,.65){$kI$};
+  \node[labelclean,below=4pt] at (0,0){$0$};
+  \node[labelclean,below=4pt] at (.65,0){$t_k$};
+  \node[labelclean,below=4pt] at (1,0){$\tau$};
+  \node[labelclean] at (.53,-.8){(a) 力与累积面积};
+  \begin{scope}[xshift=7cm]
+    \draw[axis] (0,0)--(1.12,0) node[right]{$t$};
+    \draw[axis] (0,0)--(0,3.2) node[above]{$i(t)$};
+    \draw[guide] (0,2.7)--(1,2.7)--(1,0);
+    \draw[guide] (0,{2.7*(10*.65^3-15*.65^4+6*.65^5)})
+      --(.65,{2.7*(10*.65^3-15*.65^4+6*.65^5)})--(.65,0);
+    \draw[curve,domain=0:1,samples=140] plot(\x,{2.7*(10*\x^3-15*\x^4+6*\x^5)});
+    \fill[DeepBlue] (.65,{2.7*(10*.65^3-15*.65^4+6*.65^5)}) circle(1.6pt);
+    \node[labelclean,left=4pt] at (0,2.7){$I$};
+    \node[labelclean,left=4pt] at (0,{2.7*(10*.65^3-15*.65^4+6*.65^5)}){$kI$};
+    \node[labelclean,below=4pt] at (0,0){$0$};
+    \node[labelclean,below=4pt] at (.65,0){$t_k$};
+    \node[labelclean,below=4pt] at (1,0){$\tau$};
+    \node[labelclean] at (.53,-.8){(b) 同一过程的冲量};
+  \end{scope}
+\end{tikzpicture}
+\bookcaption{碰撞力随时间变化及累积冲量}\label{r2ch02:fig:001}\end{minipage}\end{center}}
+
+\newcommand{\figRigidImpact}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.82]
+  % Both ellipses meet exactly at P and have the same horizontal tangent.
+  \draw[thick] (0,1.4) ellipse[x radius=2,y radius=1.4];
+  \draw[thick] (0,-1.4) ellipse[x radius=2,y radius=1.4];
+  \draw[guide,->] (-2.5,0)--(3.25,0) node[right]{$\uvec t$};
+  \draw[guide,->] (0,-3.05)--(0,3.3) node[above]{$\uvec n$};
+  \coordinate (P) at (0,0); \fill (P) circle(2pt);
+  \node[labelclean,anchor=east] at (-2.6,1.5){物体2};
+  \node[labelclean,anchor=east] at (-2.6,-1.5){物体1};
+  \draw[guide] (-2.45,1.5)--(-2,1.5);
+  \draw[guide] (-2.45,-1.5)--(-2,-1.5);
+  \node[labelclean] at (-.9,.48){$P$};
+  \draw[vector] (P)--(-.8,1.8) node[above=5pt]{$\vect I_2$};
+  \draw[vector] (P)--(.8,-1.8);
+  \node[labelclean] at (1.3,-3.25){$\vect I_1=-\vect I_2$};
+  \draw[component] (P)--(2.8,.65) node[right=4pt]{$\vect v_{P_1}$};
+  \draw[component] (P)--(1.5,2.15) node[above right=4pt]{$\vect v_{P_2}$};
+  \node[labelclean,align=center] at (4.5,-1.7){$P_1,P_2$ 空间重合\\速度可以不同};
+\end{tikzpicture}
+\bookcaption{两自由刚体在接触点的法向与切向冲量}\label{r2ch02:fig:002}\end{minipage}\end{center}}
+
+\newcommand{\figNewtonCradle}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\includegraphics[width=8.2cm]{assets/ch02/newtons-cradle.png}\par
+{\small (a) 五球装置，最低点球心处于同一水平线}\par\medskip
+\begin{tikzpicture}[scale=.95]
+  % Exactly five circles in each time panel; separation of panels is explicit.
+  \foreach \j in {1,...,5}{
+    \pgfmathsetmacro{\xc}{.7*(\j-1)}
+    \draw[thick] (\xc,0) circle(.35);
+    \node[labelclean,font=\small] at (\xc,0){\j};
+    \draw[thick] (\xc+6.6,0) circle(.35);
+    \node[labelclean,font=\small] at (\xc+6.6,0){\j};
+  }
+  \draw[vector] (-1.5,0)--(-.45,0) node[midway,above=4pt]{$v$};
+  \draw[vector] (9.85,0)--(10.9,0) node[midway,above=4pt]{$v$};
+  \draw[->,TextGray] (3.8,0)--(5.2,0);
+  \node[labelclean] at (1.4,-.75){碰前：仅球1运动};
+  \node[labelclean] at (8,-.75){碰后：仅球5运动};
+  \node[labelclean] at (4.5,-1.45){(b) 逐次弹性正碰的理想极限};
+\end{tikzpicture}\par
+\bookcaption{牛顿摆的多体碰撞模型}\label{r2ch02:fig:003}\end{minipage}\end{center}}
+
+\newcommand{\figPulleyTable}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.1]
+  \pgfmathsetmacro{\rp}{.16}
+  \pgfmathsetmacro{\hp}{2}
+  \pgfmathsetmacro{\anglep}{30}
+  \pgfmathsetmacro{\ellp}{(\hp+\rp*cos(\anglep))/sin(\anglep)}
+  \pgfmathsetmacro{\bx}{\rp*sin(\anglep)+\ellp*cos(\anglep)}
+  \coordinate (O) at (0,\hp);
+  \coordinate (P) at ({\rp*sin(\anglep)},{\hp+\rp*cos(\anglep)});
+  \coordinate (B) at (\bx,0);
+  \typeout{R2GEO:PULLEY=\rp,\hp,\anglep,\ellp,\bx}
+  \draw[ground] (.5,-.4)--(5.4,-.4); \draw[ground] (.5,-.4)--(.5,-1.5);
+  \draw[thick] (O) circle(\rp);
+  \draw[ground] (-.5,2.55)--(.5,2.55);
+  \draw[thick] (O)--(0,2.55);
+  \draw[thick] (-\rp,\hp)--(-\rp,.75);
+  \draw[thick] (P)--(B);
+  \draw[thick] (-.42,.25) rectangle(.10,.75);
+  \node[labelclean,left=5pt] at (-.42,.5){$A$};
+  \draw[thick] (\bx-.3,-.4) rectangle(\bx+.3,0);
+  \node[labelclean,below=5pt] at (\bx,-.4){$B$};
+  \node[labelclean,left=7pt] at (-\rp,\hp){$O$};
+  \draw[guide] (B)--++(-1.15,0);
+  \draw[->,DeepBlue] (\bx-.9,0) arc[start angle=180,end angle=150,radius=.9];
+  \node[labelclean] at (\bx-1.12,.24){$\theta$};
+  \draw[guide] (\bx+.5,0)--(5.2,0);
+  \draw[guide] (.45,\hp)--(5.2,\hp);
+  \draw[<->,TextGray] (5,0)--(5,\hp) node[midway,right=5pt]{$H$};
+  \draw[vector] (\bx,-1.1)--++(-1.1,0) node[midway,below=4pt]{$u,\ a$};
+  \node[labelclean] at (2.1,-1.9){释放时 $\theta_0=30^\circ$；圆圈标明转向处};
+\end{tikzpicture}\bookcaption{等质量物块、定滑轮与可变绳角}\label{r2ch02:fig:005}\end{minipage}\end{center}}
+
+\newcommand{\figEarthMoon}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.2]
+ \coordinate (E) at (0,0); \coordinate (O) at (.65,0);
+ \coordinate (Moon) at (5,0);
+ \coordinate (P) at ({1.4*cos(52)},{1.4*sin(52)});
+ \draw[thick] (E) circle(1.25);
+ \fill (E) circle(1.5pt); \node[labelclean,left=5pt] at (E){$E$};
+ \node[labelclean,anchor=east] at (-1.6,.7){地球 $M$};
+ \draw[guide] (-1.5,.6)--(-1.05,.6);
+ \fill (Moon) circle(.12); \node[labelclean,above=6pt] at (Moon){月球 $m$};
+ \draw[guide] (E)--(Moon);
+ \fill[DeepBlue] (O) circle(1.8pt);
+ \node[labelclean] at (.80,-.25){$O$};
+ \draw[guide] (O)--(P);
+ \draw[vector] (E)--(P);
+ \node[labelclean] at (.05,.83){$r$};
+ \fill (P) circle(2pt); \node[labelclean,above=6pt] at (P){$P$};
+ \draw[->,TextGray] (.32,0) arc[start angle=0,end angle=52,radius=.32];
+ \node[labelclean,font=\small] at (.51,.22){$\phi$};
+ \draw[<->,TextGray] (0,-.80)--(.65,-.80) node[midway,below=4pt]{$l$};
+ \draw[guide] (0,-1.4)--(0,-1.8); \draw[guide] (5,-.15)--(5,-1.8);
+ \draw[<->,TextGray] (0,-1.65)--(5,-1.65) node[midway,below=4pt]{$L$};
+ \node[labelclean,align=left] at (3.2,1.2){极坐标从 $E$ 量起\\转轴通过 $O$，垂直纸面};
+\end{tikzpicture}\bookcaption{地月共转系中的坐标和有效势}\label{r2ch02:fig:007}\end{minipage}\end{center}}
+
+\newcommand{\figWedgeImpact}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.5]
+ \pgfmathsetmacro{\tb}{.6+sqrt(3.36)}
+ \pgfmathsetmacro{\xb}{.5+.6*\tb}
+ \typeout{R2GEO:WEDGE=\tb,\xb}
+ \draw[ground] (0,0)--(0,2.65); \draw[ground] (0,0)--(4.1,0);
+ \draw[very thick] (0,1)--(1,1)--(0,2)--cycle;
+ \draw[spring] (.45,0)--(.45,1); \node[labelclean,right=5pt] at (.45,.4){$k$};
+ \coordinate (B) at (.5,1.5); \fill (B) circle(2pt);
+ \node[labelclean,left=7pt] at (B){$B$};
+ \coordinate (A) at (3.5,0); \fill (A) circle(2pt);
+ \node[labelclean,below=6pt] at (A){$A$};
+ \draw[guide] (1,1)--(3.65,1);
+ \draw[<->,TextGray] (1,1.07)--(3.5,1.07) node[midway,above=4pt]{$2.5a$};
+ \draw[<->,TextGray] (3.8,0)--(3.8,1) node[midway,right=4pt]{$a$};
+ \draw[<->,TextGray] (-.35,1)--(-.35,2) node[midway,left=4pt]{$a$};
+ \draw[guide] (0,-.08)--(0,-.72);
+ \draw[guide] (1,.9)--(1,-.72);
+ \draw[<->,TextGray] (0,-.58)--(1,-.58) node[midway,below=4pt]{$a$};
+ \draw[curve,dashed,domain=0:3,samples=130,
+   postaction={decorate},decoration={markings,mark=at position .63 with {\arrow{Stealth}}}]
+   plot({3.5-\x},{2*\x-.5*(\x)^2});
+ \draw[curve,domain=0:\tb,samples=100,
+   postaction={decorate},decoration={markings,mark=at position .5 with {\arrow{Stealth}}}]
+   plot({.5+.6*\x},{1.5+.6*\x-.5*(\x)^2});
+ \fill[DeepBlue] (\xb,0) circle(2pt);
+ \node[labelclean,below=6pt] at (\xb,0){落点};
+ \node[labelclean] at (2.1,2.35){虚线：入射；实线：反弹};
+\end{tikzpicture}\bookcaption{石子垂直撞击可沿墙滑动的直角斜面}\label{r2ch02:fig:008}\end{minipage}\end{center}}
+
+\newcommand{\figHexagonImpulse}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \pgfmathsetmacro{\hh}{sqrt(3)}
+ \coordinate (P1) at (-1,-\hh); \coordinate (P2) at (1,-\hh);
+ \coordinate (P3) at (2,0); \coordinate (P4) at (1,\hh);
+ \coordinate (P5) at (-1,\hh); \coordinate (P6) at (-2,0);
+ \foreach \i [evaluate=\i as \j using {int(mod(\i,6)+1)}] in {1,...,6}{
+   \draw[double,thick] (P\i)--(P\j);
+   \fill (P\i) circle(2pt);
+ }
+ \node[labelclean] at (0,-1.35){1};
+ \node[labelclean] at (1.12,-.8){2}; \node[labelclean] at (1.12,.8){3};
+ \node[labelclean] at (0,1.35){4};
+ \node[labelclean] at (-1.12,.8){5}; \node[labelclean] at (-1.12,-.8){6};
+ \draw[vector] (0,-2.85)--(0,-\hh) node[midway,right=5pt]{$J$};
+ \draw[vector] (-.6,-\hh)--(-.6,-.8) node[above=4pt]{$v$};
+ \draw[vector] (.6,\hh)--(.6,2.65) node[above=4pt]{$v'$};
+ \draw[component] (P3)--(2.85,0) node[right=4pt]{$U_m$};
+ \draw[component] (P3)--(2,.8) node[above right=3pt]{$V_m$};
+\end{tikzpicture}\bookcaption{铰接正六边形底边受对称冲量}\label{r2ch02:fig:009}\end{minipage}\end{center}}
+
+\newcommand{\figSphereBounce}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.08]
+ \draw[ground] (-.65,0)--(3.05,0);
+ \draw[thick] (0,2.3) circle(.3);
+ \draw[thick] (0,.3) circle(.3);
+ \draw[thick,dashed] (2.1,.3) circle(.3);
+ \draw[guide] (-.85,2)--(-.2,2);
+ \draw[<->,TextGray] (-.75,0)--(-.75,2) node[midway,left=5pt]{$h$};
+ \draw[vector] (0,1.85)--(0,.85) node[midway,left=5pt]{$u$};
+ \draw[->,DeepBlue] ({.43*cos(65)},{2.3+.43*sin(65)})
+    arc[start angle=65,end angle=-30,radius=.43];
+ \node[labelclean,right=5pt] at (.43,2.3){$\omega_0$};
+ \draw[curve,domain=0:3,samples=110] plot ({.7*\x},{.3+1.5*\x-.5*(\x)^2});
+ \draw[vector] (0,.3)--(.56,1.5) node[above=5pt]{$\vect v'$};
+ \draw[guide] (0,.3)--(.8,.3);
+ \draw[->,TextGray] (.45,.3) arc[start angle=0,end angle=64.983,radius=.45];
+ \node[labelclean] at (.68,.69){$\theta$};
+ \draw[<->,TextGray] (0,-.35)--(2.1,-.35) node[midway,below=4pt]{$X$};
+ \node[labelclean] at (1,-1.25){(a) 球心轨迹与两次接触};
+ \begin{scope}[xshift=6cm,x=1.2cm,y=.026cm]
+   \draw[axis] (0,0)--(3.45,0) node[right]{$\eta$};
+   \draw[axis] (0,0)--(0,102) node[above]{$\theta$};
+   \draw[guide] (0,90)--(3.1,90);
+   \node[labelclean,left=4pt] at (0,90){$90^\circ$};
+   \draw[curve,domain=0:3.2,samples=150]
+     plot(\x,{atan2(.75,2*min(\x,1.225)/7)});
+   \draw[guide] (1.225,0)--(1.225,{atan2(.75,.35)});
+   \node[labelclean,below=5pt] at (1.225,0){$\eta_*$};
+   \node[labelclean,left=4pt] at (0,0){$0$};
+   \node[labelclean,align=center] at (1.9,28){$e=0.75$\\$\mu=0.20$};
+   \node[labelclean] at (1.6,-48){(b) 出射角—自转关系};
+ \end{scope}
+\end{tikzpicture}\bookcaption{球的反弹轨迹及滑动、无滑动两支出射角}\label{r2ch02:fig:010}\end{minipage}\end{center}}
+
+\newcommand{\figFrequentCollisions}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.8]
+ \draw[ground] (0,0)--(0,1.5); \draw[ground] (0,0)--(8,0);
+ \draw[fill=SoftGray] (4.8,0) rectangle(7.4,1.35); \node[labelclean] at (6.1,.68){$M=km$};
+ \draw[fill=SoftGray] (1.2,0) rectangle(1.65,.45); \node[labelclean,above=5pt] at (1.42,.45){$m$};
+ \draw[vector] (1.65,.23)--(2.85,.23) node[midway,above=5pt]{$u_0$};
+ \draw[<->,TextGray] (0,1.75)--(4.8,1.75) node[midway,above=3pt]{$x_0$};
+\end{tikzpicture}\bookcaption{小物块在墙与重物块之间频繁弹性碰撞}\label{r2ch02:fig:012}\end{minipage}\end{center}}
+
+\newcommand{\figCycloidForce}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.05]
+ \pgfmathsetmacro{\qc}{.75}
+ \pgfmathsetmacro{\qx}{2*(\qc+sin(\qc r)*cos(\qc r))}
+ \pgfmathsetmacro{\qy}{-2*cos(\qc r)^2}
+ \typeout{R2GEO:CYCLOIDFORCE=\qc,\qx,\qy}
+ \draw[curve,domain=-pi/2:pi/2,samples=160]
+   plot ({2*(\x+sin(\x r)*cos(\x r))},{-2*cos(\x r)^2});
+ \coordinate (Q) at (\qx,\qy); \fill (Q) circle(2.2pt);
+ \node[labelclean,right=9pt] at (Q){$Q(\theta)$};
+ \draw[vector] (Q)--++({-sin(\qc r)},{cos(\qc r)}) node[above left=4pt]{$N$};
+ \draw[vector] (Q)--++(0,-1.0) node[right=5pt]{$mg$};
+ \draw[component] (Q)--++({-.9*cos(\qc r)},{-.9*sin(\qc r)})
+   node[below left=4pt]{$v$};
+ \draw[component] (Q)--++({.9*cos(\qc r)},{.9*sin(\qc r)})
+   node[above right=4pt]{$\mu N$};
+ \node[labelclean,below=5pt] at (0,-2){最低点 $\theta=0$};
+ \node[labelclean,above=6pt] at (pi,0){尖端 $\theta=\pi/2$};
+ \node[labelclean,align=center] at (-1,.1){粗糙时摩擦沿斜上方\\光滑时去掉 $\mu N$};
+\end{tikzpicture}\bookcaption{圆滚线上的自然法向与支持力}\label{r2ch02:fig:004}\end{minipage}\end{center}}
+
+\newcommand{\figElasticWinding}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.15]
+ \draw[thick] (0,0) circle(.6);
+ \draw[very thick,Blue] (-.6,0) arc[start angle=180,end angle=90,radius=.6];
+ \coordinate (O) at (0,0); \coordinate (P) at (0,.6); \coordinate (B) at (3,.6);
+ \fill (O) circle(1.5pt); \node[labelclean,below=5pt] at (O){$O$};
+ \draw[guide] (O)--(B) node[midway,below=8pt]{$r$};
+ \draw[thick] (P)--(B);
+ \draw[<->,TextGray] (O)--(P) node[midway,left=5pt]{$a$};
+ \node[labelclean,above=5pt] at (P){$P$};
+ \fill (B) circle(2pt); \node[labelclean,right=7pt] at (B){$B$};
+ \draw[vector] (B)--(1.65,.6) node[midway,above=5pt]{$F$};
+ \draw[vector] (B)--(3.3,-.9) node[right=6pt]{$v$};
+ \draw[guide] (0,.4)--(.2,.4)--(.2,.6);
+ \draw[->,TextGray] (1,-.6) arc[start angle=-31,end angle=-66,radius=1.17];
+ \node[labelclean] at (.8,-1.5){绕入方向};
+ \node[labelclean,align=center] at (-1.7,.7){已锁定段\\保持当地伸长};
+ \draw[guide] (-1.0,.65)--(-.44,.44);
+\end{tikzpicture}
+\bookcaption{弹性绳沿圆柱切线拉动物块，张力力臂为 $a$}\label{r2ch02:fig:006}\end{minipage}\end{center}}
+
+\newcommand{\figSideStep}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1.15]
+ \node[inner sep=0pt] at (-4.4,.15){\includegraphics[width=4.6cm]{assets/ch02/side-step-scenario.png}};
+ \node[labelclean] at (-4.4,-2.3){(a) 从左上端起跳的情景};
+ \pgfmathsetmacro{\th}{21.67714184}
+ \pgfmathsetmacro{\bb}{2}
+ \pgfmathsetmacro{\ux}{sqrt(\bb/cos(\th))*cos(\th)}
+ \pgfmathsetmacro{\uy}{sqrt(\bb/cos(\th))*sin(\th)}
+ \pgfmathsetmacro{\flight}{2*\uy}
+ \pgfmathsetmacro{\ax}{-\bb*sin(\th)}
+ \pgfmathsetmacro{\ay}{\bb*cos(\th)}
+ \typeout{R2GEO:SIDESTEP=\th,\bb,\ux,\uy,\flight}
+ \coordinate (A) at (\ax,\ay); \coordinate (B) at (-\ax,\ay);
+ \draw[very thick] (A)--(-\ax,-\ay);
+ \draw[very thick,dashed,TextGray] (\ax,-\ay)--(B);
+ \draw[guide,->] (0,-2.05)--(0,2.3) node[above]{$y$};
+ \fill (0,0) circle(2pt); \node[labelclean,left=6pt] at (0,0){$O$};
+ \fill (A) circle(2pt); \fill (B) circle(2pt);
+ \node[labelclean,left=7pt] at (A){$A$};
+ \node[labelclean,above right=6pt] at (B){$B$};
+ \draw[curve,domain=0:\flight,samples=90]
+   plot ({\ax+\ux*\x},{\ay+\uy*\x-.5*(\x)^2});
+ \draw[vector] (A)--++({.65*cos(\th)},{.65*sin(\th)}) node[above left=4pt]{$\vect u$};
+ \draw[component] (B)--++({.65*cos(\th)},{-.65*sin(\th)}) node[below right=4pt]{$\vect v_-$};
+ \draw[->,TextGray] (0,.8) arc[start angle=90,end angle=90+\th,radius=.8];
+ \node[labelclean] at (-.18,1.04){$\theta$};
+ \draw[->,DeepBlue] ({1.15*cos(-90+\th)},{1.15*sin(-90+\th)})
+   arc[start angle=-90+\th,end angle=90-\th,radius=1.15];
+ \node[labelclean,align=left] at (2.65,-.25){$\omega\tau=\pi-2\theta$\\逆时针转动};
+ \node[labelclean,align=center] at (.7,-2.3){(b) 实线板：起跳时\\虚线板：落脚时，同一块板};
+\end{tikzpicture}\bookcaption{人在转板两端反复横跳的周期几何}\label{r2ch02:fig:011}\end{minipage}\end{center}}

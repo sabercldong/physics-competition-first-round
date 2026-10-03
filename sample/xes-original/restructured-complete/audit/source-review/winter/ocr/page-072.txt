@@ -1,0 +1,39 @@
+最后让我们来看看作为以上炳的定义所符合的一个十分重要的性质.为了方便起见我们把样本空间记
+做 9. 并在样本空间的每个元事件引入两个随机变量 ze X, yy © Y 还要求两个随机变量独立:
+Pei芒) = P(#i)P(y;). ViVi
+那么对于整个样本空间按照随机变量 X RRS Y oti:
+Sx =和》 -Plz)mnpPlz) : Sy = SO -P(y)In P(y;)
+7                                 7
+Ta ea:
+S$ = SO -P(ai. yy) In Plwisys)
+可
+计算其关系, 容易发现:
+$= YO -P(xi,y;)In P(e) Ply)
+a
+= YO -Plai.ys)In Plwi) + YO -P(ai. ys) In Plys)
+可                          可
+= YY -Po力)Plo)+y -PimP()
+7                           了
+=和-Ptz)jnPlz)+》 - Ply) mn Ply)
+= Sx + Sy
+即, ik GATE ART AB HH. TD ATR TB eR PSB:
+Sx + Sy — S$ = YO =P(ai.y;) In Plas) + YO = Pai, ys) Im P(y;) — YO Pai y;) In Plo. ys)
+可                          可                          可
+pi         P(a)P(y)
+= x   P(x,.y;)n  Planu,)
+.    _ Pe) P(ys)
+> mL Plan)    Plewu,)
+=-Dmy P(w,)Ply;)
+=-Inl
+=0
+其中用到了 In 是上凸函数, 所以自变量的加权平均处的函数值总是大于函数值的加权平均:
+In pin) > Spina : >m=1
+以上结论告诉我们非独立的两个随机变量所带来的炳有一部分是重合的, ATS BR i
+PLA EAT FO. 小的这一部分叫做两个变量之间的互信息(mutual information):
+M=Sx+Sy-S
+互信息代表着已知一个随机变量的结果以后对另一个随机变量条件概率分布的影响. 例如考虑自然光
+在某个方向的分振幅, 以 z 方向的振幅作为第一个随机变量, 如果另一个方向也是 >, 那么互信息恰好等于
+z FARR EA AA: 如果另一个方向为 ! 方向, 那么两个随机变量独立, 从而互信息为 0; 如果选取一
+个与 z 方向夹锐角的方向,则 > 方向的振幅在一定程度上也会影响该方向的振幅的概率分布,从而两个随
+机变量之间具有一定的互信息量,并随着夹角增大到 90 度而消失.
+高二物理竞赛                                               71

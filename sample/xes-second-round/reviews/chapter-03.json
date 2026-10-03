@@ -1,0 +1,93 @@
+{
+  "status": "verified",
+  "verified_on": "2026-09-05",
+  "scope": "第3章内部锁定；全书尚未通过发布门",
+  "pdf_sha256": "d400f9496d65ec3fd175d52017069587273ecbf0cdb70c8fbc5c636ed1a7af36",
+  "inputs": {
+    "book.json": "18702eba6d0aa5e2234074d44d1967366db287cc30222180d8b13c1f9319961f",
+    "chapters/ch03-diagrams.tex": "c32949ab5b6816c4535d4753fe5aa4b314d7edcb00b5ca3d39fa2c7747606b0d",
+    "chapters/ch03-practice.tex": "069a538221f0f904096f085866892b0992df4f86388b0cb9b30d2f04a18bae01",
+    "chapters/ch03-theory.tex": "c4326490183db869264a3f5bfbdc68610575705bd242ad19c8054df46c910bf1",
+    "chapters/ch03.tex": "760e63cd004ba08e6e0c6530b32c4c2ba8d6d7bea0aa29ff0194348150f6a6d7",
+    "style.tex": "4b402b0aac0e9a5897146852243d667394b72f2523ed3a70303ceb3725a1b814",
+    "tools/build.py": "ead3a920c99f62cc1901fbcb4fe230f3ae0dc1ec184063bf97194e8a83889f26"
+  },
+  "checks": {
+    "page_layout": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-03-review-notes.md",
+        "build/chapter-03/render/manifest.json",
+        "build/chapter-03/render/contact-01.jpg",
+        "build/chapter-03/render/contact-02.jpg",
+        "build/chapter-03/render/contact-03.jpg"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-03-review-notes.md": "e9646a792b7a3993c56a23f514226b49256c77b4d2e7db2649bfb1411729b7f5",
+        "build/chapter-03/render/manifest.json": "d2312203af19fe7d44d294d68316446993d88920b5cf15f9c8aefef64561abbf",
+        "build/chapter-03/render/contact-01.jpg": "fc0d8976c5d3f777a303d11a814f88c63177a7a9604f27bdf942cd2a3d939b1f",
+        "build/chapter-03/render/contact-02.jpg": "0e11e5eb15e1b37ad25e7da9d92b16edd7664ab03b793175e322803d20c50a12",
+        "build/chapter-03/render/contact-03.jpg": "116ea4e647a6660ff7c8113abb56a08033901cb0df74a50289dc5d564889c32b"
+      }
+    },
+    "figures": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-03-review-notes.md",
+        "build/chapter-03/figure-review/manifest.json",
+        "build/chapter-03/figure-review/contact-01.jpg",
+        "build/chapter-03/figure-review/contact-02.jpg",
+        "build/chapter-03/figure-review/contact-03.jpg",
+        "build/chapter-03/figure-review/contact-04.jpg",
+        "build/chapter-03/figure-review/contact-05.jpg",
+        "tests/test_ch03_physics.py"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-03-review-notes.md": "e9646a792b7a3993c56a23f514226b49256c77b4d2e7db2649bfb1411729b7f5",
+        "build/chapter-03/figure-review/manifest.json": "da29f1bb45f8f8a821ebd0d33f402ec64e60f6e644db927f2684c4379553c0f3",
+        "build/chapter-03/figure-review/contact-01.jpg": "a70cf25dc02de067e3ac6a59669edf9df4bc8d0367d515a61420fb43ad018d03",
+        "build/chapter-03/figure-review/contact-02.jpg": "af0d650620f7f67db77a71f8e6268ab1f3687d2df2f628f06e282cd122b4d736",
+        "build/chapter-03/figure-review/contact-03.jpg": "ee67fdf77772b3fff0b12e5f431d4613da53b8191cba4aac47717df245107841",
+        "build/chapter-03/figure-review/contact-04.jpg": "254ac14be231a7ccabf7ee7d16df0e18fab2f37c5d5672208cd144549db4f5e6",
+        "build/chapter-03/figure-review/contact-05.jpg": "2ffa1dc57087100c54b8fdd232050c1ae78d1ef90a7f91b07160b233ed63204e",
+        "tests/test_ch03_physics.py": "7e2902608bdffe028375dc96cf688ca1bd1121aa937ccf4b07d56c073f90b5ab"
+      }
+    },
+    "physics": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-03-review-notes.md",
+        "tests/test_ch03_physics.py"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-03-review-notes.md": "e9646a792b7a3993c56a23f514226b49256c77b4d2e7db2649bfb1411729b7f5",
+        "tests/test_ch03_physics.py": "7e2902608bdffe028375dc96cf688ca1bd1121aa937ccf4b07d56c073f90b5ab"
+      }
+    },
+    "source_completeness": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-03-review-notes.md",
+        "reviews/source_inventory/autumn-student-ch03.json",
+        "reviews/source_inventory/autumn-practice-ch03.json"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-03-review-notes.md": "e9646a792b7a3993c56a23f514226b49256c77b4d2e7db2649bfb1411729b7f5",
+        "reviews/source_inventory/autumn-student-ch03.json": "2fcafc03236d49f516c20d004f7b8cf3a0255b0c2c1154137a0eb0bf449f0abe",
+        "reviews/source_inventory/autumn-practice-ch03.json": "0ac245427ab1d93677cf188ec30e29483071bf8927afe39752915fc9340b237e"
+      }
+    },
+    "pdf_structure": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-03-review-notes.md",
+        "build/chapter-03/main.log"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-03-review-notes.md": "e9646a792b7a3993c56a23f514226b49256c77b4d2e7db2649bfb1411729b7f5",
+        "build/chapter-03/main.log": "3fbe84cbef9e31edd6f4ef4a96f4122f9ebb58dd01a2a5e74cfc56582fbc2acc"
+      }
+    }
+  },
+  "unresolved_findings": []
+}

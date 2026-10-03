@@ -1,0 +1,204 @@
+\clearpage
+\section{配套习题：流体}
+\label{r2ch08:sec:practice}
+
+\begin{practicebox}{双水银柱与封闭空气的耦合振动}
+图~\ref{r2ch08:fig:005} 所示等截面 U 形管中有两段水银，左段总长为 $24\,\mathrm{cm}+8\,\mathrm{cm}$，右段总长为 $24\,\mathrm{cm}+36\,\mathrm{cm}$，中间封闭长度 $L=100\,\mathrm{cm}$ 的空气柱。大气压为 $p_a=\rho g p_0$，其中 $p_0=76\,\mathrm{cm}$，$\rho$ 是水银密度。设振动足够缓慢，封闭空气作等温变化，忽略阻力。求小振动的两个本征角频率。
+\label{r2ch08:pr:001}
+\begin{solution}
+\figUTubeModes
+平衡时两侧自由液面比水平段高 $h=24\,\mathrm{cm}$，封闭空气压强为
+$P=p_a+\rho gh=\rho g(p_0+h)=\rho gL$。图~\ref{r2ch08:fig:005} 把两段水银向空气柱内侧的位移分别记为 $x_1,x_2$。空气体积从 $AL$ 变为 $A(L-x_1-x_2)$；等温条件给出一阶压强增量
+\begin{equation}
+ \delta p=P\frac{x_1+x_2}{L}=\rho g(x_1+x_2).
+ \label{r2ch08:eq:020}
+\end{equation}
+左、右水银柱总长分别为 $\ell_1=0.32\,\mathrm m$、$\ell_2=0.60\,\mathrm m$。某段向内移动 $x_i$ 时，它的自由面与内端之间的高度差还增加 $x_i$，所以重力压差再提供恢复项 $\rho gx_i$。以截面积 $A$ 约去共同因子，运动方程为
+\begin{equation}
+ \ell_1\ddot x_1+g(2x_1+x_2)=0,
+ \qquad
+ \ell_2\ddot x_2+g(x_1+2x_2)=0.
+ \label{r2ch08:eq:021}
+\end{equation}
+令 $x_i=X_i e^{i\omega t}$，非零振幅要求系数行列式为零：
+\begin{equation}
+ \ell_1\ell_2\left(\frac{\omega^2}{g}\right)^2
+ -2(\ell_1+\ell_2)\frac{\omega^2}{g}+3=0.
+ \label{r2ch08:eq:022}
+\end{equation}
+因此
+\begin{equation}
+ \boxed{\omega_- =\sqrt{\frac{25g}{12\,\mathrm m}}\simeq4.52\,\mathrm{rad/s}},
+ \qquad
+ \boxed{\omega_+ =\sqrt{\frac{15g}{2\,\mathrm m}}\simeq8.57\,\mathrm{rad/s}}.
+ \label{r2ch08:eq:023}
+\end{equation}
+数值取 $g=9.8\,\mathrm{m/s^2}$。两根号内都是 $g/\text{长度}$，量纲为 $\mathrm{s^{-2}}$。若振动快到空气近似绝热，应把式~\eqref{r2ch08:eq:020} 的右端乘绝热指数 $\gamma$，频率也随之改变；因此原题必须说明热力学过程，才能得到唯一数值。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{同轴圆筒之间的旋转层流}
+半径为 $R_1,R_2$（$R_1<R_2$）的两个长圆筒竖直同轴放置，间隙中充满密度 $\rho$、动力黏度 $\eta$ 的不可压缩牛顿流体。内筒以恒定角速度 $\omega_0$ 转动，外筒静止，形成轴对称稳态层流。
+
+(a) 已知柱坐标中的切应力为 $\tau_{r\theta}=\eta(\partial_r v_\theta-v_\theta/r)$，求 $\omega(r)=v_\theta/r$；
+
+(b) 若 $p(R_1)=p_1$，求压强 $p(r)$；
+
+(c) 解释切应力式中两项的几何意义。
+\label{r2ch08:pr:002}
+\begin{solution}
+图~\ref{r2ch08:fig:006} 中只有环向速度 $v_\theta(r)=r\omega(r)$。半径 $r$、长度 $l$ 的圆柱面上传递的黏性力矩为 $2\pi l r^2\tau_{r\theta}$；稳态时任意两柱面间角动量不积累，故此力矩与 $r$ 无关。于是
+\begin{equation}
+ r^2\tau_{r\theta}=\eta r^3\frac{\dd\omega}{\dd r}=\text{常量},
+ \qquad \omega(r)=A+\frac B{r^2}.
+ \label{r2ch08:eq:024}
+\end{equation}
+无滑移条件 $\omega(R_1)=\omega_0$、$\omega(R_2)=0$ 给出
+\begin{equation}
+ \boxed{\omega(r)=\omega_0\frac{R_1^2(R_2^2-r^2)}{r^2(R_2^2-R_1^2)}},
+ \qquad
+ v_\theta=a\left(\frac{R_2^2}{r}-r\right),
+ \quad a=\frac{\omega_0R_1^2}{R_2^2-R_1^2}.
+ \label{r2ch08:eq:025}
+\end{equation}
+径向速度为零，但流体质元有向心加速度 $-v_\theta^2/r$。径向动量方程为 $\dd p/\dd r=\rho v_\theta^2/r$，从 $R_1$ 积分到 $r$ 得
+\begin{equation}
+ \boxed{p(r)=p_1+\rho a^2\left[
+ \frac{r^2-R_1^2}{2}-2R_2^2\ln\frac r{R_1}
+ -\frac{R_2^4}{2}\left(\frac1{r^2}-\frac1{R_1^2}\right)
+ \right]}.
+ \label{r2ch08:eq:026}
+\end{equation}
+求导可恢复 $\rho v_\theta^2/r\ge0$，所以压强向外增大，符合圆周运动需要内向合力的判断。
+
+$\partial_rv_\theta$ 比较相邻圆柱面上的切向速度；$-v_\theta/r$ 则补偿柱坐标基矢随位置转动的几何效应。若整个流体刚体转动，$v_\theta=\Omega r$，两项恰好相消，黏性应力为零。完整柱坐标应变率还可含 $(1/r)\partial_\theta v_r$；本题轴对称且 $v_r=0$，该项消失。这正说明黏性应力响应的是形变率，而不是绝对角速度。
+\figCouette
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{半圆形飞机棚所受的风力}
+半径为 $R$、轴向长度为 $l$ 的半圆柱形飞机棚置于不可压缩、无黏、定常的二维风场中。无穷远来流速度为 $v_0$，外部速度势为
+\[
+ \phi=-v_0\left(r+\frac{R^2}{r}\right)\cos\theta .
+\]
+棚的门口 $A$ 敞开，空气密度为 $\rho$，忽略重力。求风对棚的合力。
+\label{r2ch08:pr:003}
+\begin{solution}
+由 $v_r=\partial_r\phi$、$v_\theta=(1/r)\partial_\theta\phi$，在棚面 $r=R$ 上
+\begin{equation}
+ v_r=0,\qquad v_\theta=2v_0\sin\theta.
+ \label{r2ch08:eq:027}
+\end{equation}
+图~\ref{r2ch08:fig:007} 中 $\theta$ 从右端沿屋面取到左端。外部同一流线上的伯努利关系给
+$p_{\rm out}=p_\infty+\tfrac12\rho(v_0^2-4v_0^2\sin^2\theta)$。门口 $A$ 位于停滞点，那里速度为零，敞开的棚内压强均匀并等于
+$p_{\rm in}=p_A=p_\infty+\tfrac12\rho v_0^2$。故屋面内外压差为
+\begin{equation}
+ \Delta p=p_{\rm in}-p_{\rm out}=2\rho v_0^2\sin^2\theta.
+ \label{r2ch08:eq:028}
+\end{equation}
+关于竖直中线对称的面元，其水平分力相消。面元面积为 $Rl\,\dd\theta$，外法线的竖直分量为 $\sin\theta$，于是
+\begin{equation}
+ \boxed{\vect F=\frac83\rho v_0^2Rl\,\uvec y},
+ \qquad
+ F_y=Rl\int_0^\pi\Delta p\sin\theta\,\dd\theta.
+ \label{r2ch08:eq:029}
+\end{equation}
+方向竖直向上。结果量纲为 $\rho v_0^2$（压强）乘 $Rl$（面积），确为力。若门关闭，棚内压强不再由停滞点直接确定，题目将缺少边界条件。
+\figHangar
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{圆锥形漏斗排水}
+尖端向下的圆锥形漏斗高为 $H$，顶部半径为 $R$；尖端有半径 $r$ 的小圆孔。漏斗初始装满水，打开小孔后，求水面从高度 $H$ 降到 $H/2$ 所需时间，并讨论何时可以忽略黏性。
+\label{r2ch08:pr:004}
+\begin{solution}
+设瞬时水深为 $h$。相似三角形给出自由液面面积
+$A(h)=\pi R^2h^2/H^2$。若 $r$ 远小于该阶段的自由液面半径，自由液面速度可忽略；对自由面和孔口应用伯努利关系，孔口速度为 $v=\sqrt{2gh}$。体积守恒如图~\ref{r2ch08:fig:008}：
+\begin{equation}
+ -A(h)\frac{\dd h}{\dd t}=\pi r^2\sqrt{2gh}.
+ \label{r2ch08:eq:030}
+\end{equation}
+从 $h=H$ 积分到 $H/2$，得到
+\begin{equation}
+ \boxed{t=\frac{2R^2\sqrt H}{5r^2\sqrt{2g}}
+ \left(1-2^{-5/2}\right)}.
+ \label{r2ch08:eq:031}
+\end{equation}
+量纲为 $R^2\sqrt H/(r^2\sqrt g)=\mathrm s$。以孔径 $2r$ 和孔口速度为尺度，雷诺数为
+\begin{equation}
+ \mathrm{Re}(h)=\frac{2r\sqrt{2gh}}\nu.
+ \label{r2ch08:eq:032}
+\end{equation}
+在 $H/2\le h\le H$ 内若 $\mathrm{Re}\gg1$，且孔口短而锐、$r\ll R/2$，可把黏性损失作为小修正。真实孔口通常用流量系数 $C_d<1$ 写 $Q=C_d\pi r^2\sqrt{2gh}$，排水时间相应变成式~\eqref{r2ch08:eq:031} 的 $1/C_d$ 倍；若 $\mathrm{Re}$ 不大，则不能只靠理想伯努利关系判断。
+\figFunnel
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{浅水波靠岸的摆线轨迹}
+平直岸边附近的河床是倾角为 $\alpha$ 的斜面。以 $x$ 沿岸、$y$ 垂直岸线并指向深水区，水深为 $h(y)=y\tan\alpha$。小艇位于离岸距离 $y_0$ 的 $B$ 点，激发一个初始沿岸传播的窄波包。浅水波速为 $c=\sqrt{gh}$。讨论波包运动，并证明其水平射线为摆线。
+\label{r2ch08:pr:005}
+\begin{solution}
+水深只随 $y$ 变化，故介质对时间和平行岸线的 $x$ 方向都具有平移对称性；频率 $\omega$ 与沿岸波数 $k_x$ 守恒。令 $c(y)=\kappa\sqrt y$，其中 $\kappa=\sqrt{g\tan\alpha}$，初始点波速 $c_0=\kappa\sqrt{y_0}$。初始传播沿 $+x$，所以 $k_x=\omega/c_0$。局域色散关系 $\omega=c|\vect k|$ 给出射线速度
+\begin{equation}
+ \dot x=\frac{c^2}{c_0}=\frac{\kappa y}{\sqrt{y_0}},
+ \qquad
+ \dot y=-\kappa\sqrt y\sqrt{1-\frac y{y_0}}.
+ \label{r2ch08:eq:033}
+\end{equation}
+负号表示折向较浅、较慢的一侧。两式相除，并令 $y=y_0(1+\cos\theta)/2$，从 $B$ 点取 $x=0,\theta=0$，得
+\begin{equation}
+ \frac{\dd x}{\dd y}=-\sqrt{\frac{y}{y_0-y}},
+ \qquad
+ \boxed{x=\frac{y_0}{2}(\theta+\sin\theta),\quad
+ y=\frac{y_0}{2}(1+\cos\theta)}.
+ \label{r2ch08:eq:034}
+\end{equation}
+这正是一段摆线。图~\ref{r2ch08:fig:009} 把竖直剖面的水深与水平面内的波包射线分开画出，避免把“波向下沉”误读为水平折射。$\theta=\pi$ 时到达岸线，故
+\begin{equation}
+ \boxed{x_A=\frac{\pi y_0}{2}},
+ \qquad
+ \boxed{t_A=\pi\sqrt{\frac{y_0}{g\tan\alpha}}}.
+ \label{r2ch08:eq:035}
+\end{equation}
+第二式由 $\dot\theta=\kappa/\sqrt{y_0}$ 得到。$\alpha$ 越小，水深变化越缓，靠岸所需时间越长，符合极限判断。
+\figShallowRay
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{可绕入口转动的直角软管}
+均匀直角软管由两段等长 $l=0.40\,\mathrm m$ 的直管组成，内截面积为 $A=2.0\,\mathrm{cm^2}$，总质量 $m=0.10\,\mathrm{kg}$。入口与水龙头连接处可在竖直平面内自由转动，折角保持 $90^\circ$。水的体积流量为 $Q=0.30\,\mathrm{L/s}$，密度取 $\rho=1.0\times10^3\,\mathrm{kg/m^3}$，$g=10\,\mathrm{m/s^2}$。忽略软管内摩擦和入口处对转轴的力矩，求稳定偏转角。
+\label{r2ch08:pr:006}
+\begin{solution}
+水速为 $u=Q/A=1.5\,\mathrm{m/s}$。图~\ref{r2ch08:fig:010} 中 $\alpha$ 从第一段原来的竖直向下位置沿顺时针量取。入口在转轴上，对轴无角动量通量；出口到转轴的位置是 $l\uvec e_1+l\uvec e_2$，速度为 $u\uvec e_2$，故水带走的角动量流率大小为 $\rho Qul$。软管受到反向的射流力矩，其大小为
+\begin{equation}
+ \tau_f=\rho Qul=\frac{\rho Q^2l}{A}.
+ \label{r2ch08:eq:036}
+\end{equation}
+均匀软管两段质量各为 $m/2$。相对于转轴，其质心位置为
+\begin{equation}
+ \vect r_C=\frac{3l}{4}\uvec e_1+\frac l4\uvec e_2,
+ \qquad x_C=\frac l4(\cos\alpha-3\sin\alpha).
+ \label{r2ch08:eq:037}
+\end{equation}
+以顺时针为广义正方向，重力广义力矩为 $mgl(\cos\alpha-3\sin\alpha)/4$，射流反力矩为 $+\tau_f$。平衡条件因此是
+\begin{equation}
+ 3\sin\alpha-\cos\alpha
+ =\frac{4\rho Q^2}{mgA}=1.8.
+ \label{r2ch08:eq:038}
+\end{equation}
+写成 $\sqrt{10}\sin[\alpha-\arctan(1/3)]=1.8$，在 $0<\alpha<90^\circ$ 内得到
+\begin{equation}
+ \boxed{\alpha=\arctan\frac13+arcsin\frac{1.8}{\sqrt{10}}
+ \simeq53.1^\circ}.
+ \label{r2ch08:eq:039}
+\end{equation}
+在此根附近，广义合力矩对 $\alpha$ 的导数为
+\begin{equation}
+ \frac{\dd\tau_{\rm net}}{\dd\alpha}
+ =-\frac{mgl}{4}(\sin\alpha+3\cos\alpha)<0,
+ \label{r2ch08:eq:040}
+\end{equation}
+所以它是稳定平衡；同一三角方程的另一根不稳定。式~\eqref{r2ch08:eq:038} 右端无量纲，且 $Q\to0$ 时稳定位置回到软管质心在转轴正下方的重力平衡位置，提供了极限检验。
+\figHose
+\end{solution}
+\end{practicebox}

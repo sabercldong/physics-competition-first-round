@@ -1,0 +1,15 @@
+% EM structure and teaching revision 20260928
+\subsection{由场求势：分段积分与参考点}
+电势差由路径积分定义。若场具有径向对称性，可写为
+\[
+ \varphi(r)-\varphi(r_0)=-\int_{r_0}^{r}E_r(s)\dd s.
+\]
+积分路径穿过不同场区时必须分段，并让同一界面的电势值衔接。半径 $R$、电荷 $Q$ 的均匀实心球取无穷远为零，球外 $\varphi=kQ/r$，球内则为
+\[
+ \varphi(r)=\varphi(R)+\int_r^R\frac{kQs}{R^3}\dd s
+ =\frac{kQ}{2R}\left(3-\frac{r^2}{R^2}\right),\qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+中心电势有限；当 $Q>0$ 时它大于球面电势，而中心场强为零。若 $Q<0$，电势高低关系反向，但中心场强仍为零。这说明电势的数值与其空间变化率是不同问题；“场为零”只能推出所在连通无场区域内电势为常数。
+无限长线电荷的场按 $1/r$ 衰减，到无穷远的积分不收敛，不能仍机械地选 $\varphi(\infty)=0$。应指定有限参考半径 $r_0$，得到
+$\varphi(r)-\varphi(r_0)=-\lambda\ln(r/r_0)/(2\pi\varepsilon_0)$。绝对零点的选择不影响电势差、力和能量变化。
+

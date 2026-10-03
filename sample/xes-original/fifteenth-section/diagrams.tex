@@ -1,0 +1,267 @@
+% TikZ figures redrawn from the source; annotations used only in solutions are
+% drawn in the restrained blue accent of the common style.
+
+\newcommand{\partitionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.66cm,y=0.58cm,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(7.0,0) node[right] {$t$};
+    \draw[axis] (0,0)--(0,4.2) node[above] {$x$};
+    \draw[curve,domain=0.45:6.2,smooth,variable=\t]
+      plot ({\t},{0.55+0.075*\t*\t});
+    \foreach \i in {1,...,6}{
+      \pgfmathsetmacro{\xa}{0.65+0.82*(\i-1)}
+      \pgfmathsetmacro{\xb}{0.65+0.82*\i}
+      \pgfmathsetmacro{\ya}{0.55+0.075*\xa*\xa}
+      \pgfmathsetmacro{\slope}{0.15*\xa}
+      \draw[TextGray] (\xa,\ya)--(\xb,{\ya+\slope*(\xb-\xa)});
+      \draw[guide] (\xa,0)--(\xa,\ya);
+    }
+    \node[below] at (3.1,-0.12) {$\Delta t\quad\Delta t\quad\cdots$};
+  \end{scope}
+  \begin{scope}[xshift=5.9cm]
+    \draw[axis] (0,0)--(7.0,0) node[right] {$t$};
+    \draw[axis] (0,0)--(0,4.2) node[above] {$v$};
+    \draw[curve,domain=0.45:6.2,smooth,variable=\t]
+      plot ({\t},{0.15*\t});
+    \foreach \i in {1,...,6}{
+      \pgfmathsetmacro{\xa}{0.65+0.82*(\i-1)}
+      \pgfmathsetmacro{\xb}{0.65+0.82*\i}
+      \pgfmathsetmacro{\ya}{0.15*\xa}
+      \draw[fill=DeepBlue!16,draw=TextGray] (\xa,0) rectangle (\xb,\ya);
+    }
+    \node[below] at (3.1,-0.12) {$\Delta t\quad\Delta t\quad\cdots$};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 1.5\quad 同一运动的 $x(t)$ 与 $v(t)=x'(t)$：左图的切线增量等于右图对应矩形的面积，均为 $v(t_i)\Delta t$。}
+\end{center}}
+
+\newcommand{\integralDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.7cm,>=Latex]
+  \draw[axis] (0,0)--(7.2,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.1) node[above] {$y$};
+  \pgfmathdeclarefunction{areaheight}{1}{\pgfmathparse{3.1-.23*(##1-3.2)^2}}
+  \fill[DeepBlue!14] (1.1,0)
+    -- plot[domain=1.1:5.45,samples=90] (\x,{areaheight(\x)})
+    --(5.45,0)--cycle;
+  \draw[curve,domain=.35:6.2,samples=100] plot (\x,{areaheight(\x)});
+  \draw[thick] (1.1,0)--(1.1,{areaheight(1.1)})
+    (5.45,0)--(5.45,{areaheight(5.45)});
+  \node[below] at (1.1,0) {$a$}; \node[below] at (5.45,0) {$b$};
+  \node[above] at (3.2,3.1) {$f(x)$};
+  \node[align=center,anchor=north] at (3.45,-.65)
+    {$\displaystyle \frac{\dd F}{\dd x}=f(x)$\\[2pt]
+     $\displaystyle \int_a^b f(x)\dd x=F(b)-F(a)$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 1.6\quad 积分的代数和几何意义}
+\end{center}}
+
+\newcommand{\areaLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(4.2,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,3.2) node[above] {$y$};
+  \fill[DeepBlue!16] (0,0)--(3.1,0)--(3.1,2.35)--cycle;
+  \draw[curve] (0,0)--(3.6,2.73) node[above left] {$y=kx$};
+  \draw[thick] (3.1,0)--(3.1,2.35);
+  \node[below] at (3.1,0) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\areaParabolaDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.65cm,>=Latex]
+  \draw[axis] (0,0)--(4.2,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,3.2) node[above] {$y$};
+  \fill[DeepBlue!16] (0,0) plot[domain=0:3.1,smooth,variable=\x]
+    ({\x},{0.27*\x*\x}) --(3.1,0)--cycle;
+  \draw[curve,domain=0:3.45,smooth,variable=\x]
+    plot ({\x},{0.27*\x*\x}) node[above left] {$y=kx^2$};
+  \draw[thick] (3.1,0)--(3.1,{0.27*3.1*3.1});
+  \node[below] at (3.1,0) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\circlePartitionsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  \begin{scope}
+    \draw[thick] (0,0) circle (1.55);
+    \foreach \a in {0,10,20,30}{\draw[thick] (0,0)--(\a:1.55);}
+    \coordinate (Oa) at (0,0);
+    \coordinate (A20) at (20:1);
+    \coordinate (A30) at (30:1);
+    \draw pic[draw,->,angle radius=10mm] {angle=A20--Oa--A30};
+    \node (anglelabel) at (1.15,2.12) {$\dd\theta$};
+    \draw[TextGray,thin] (anglelabel.south)--(.91,.43);
+    \fill (0,0) circle (1.4pt) node[below left] {$O$};
+  \end{scope}
+  \begin{scope}[xshift=4.5cm]
+    \draw[thick] (0,0) circle (1.55);
+    \draw[DeepBlue,thick] (0,0) circle (0.95);
+    \draw[DeepBlue,thick] (0,0) circle (1.05);
+    \draw[thick] (0,0)--(25:1.0) node[midway,above] {$r$};
+    \node[DeepBlue,anchor=west] (drlabel) at (1.85,1.20) {$\dd r$};
+    \draw[DeepBlue,thin] (drlabel.west)--(.94,.34);
+    \fill (0,0) circle (1.4pt) node[below left] {$O$};
+  \end{scope}
+  \begin{scope}[xshift=9.0cm]
+    \draw[thick] (0,0) circle (1.55);
+    \draw[DeepBlue,thick] (0.8,-1.33)--(0.8,1.33);
+    \draw[DeepBlue,thick] (0.92,-1.25)--(0.92,1.25);
+    \draw[thick] (0,0)--(0.8,0) node[midway,below] {$x$};
+    \node[DeepBlue,anchor=west] (dxlabel) at (2.0,.65) {$\dd x$};
+    \draw[DeepBlue,thin] (dxlabel.west)--(.86,.65);
+    \fill (0,0) circle (1.4pt) node[below left] {$O$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\massElementsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(0,3.5) node[above] {$x$};
+    \draw[curve] plot[smooth] coordinates {(0,0) (1.15,0.5) (1.55,1.5) (1.0,2.55) (0,3.15)};
+    \draw[curve] plot[smooth] coordinates {(0,0) (-1.15,0.5) (-1.55,1.5) (-1.0,2.55) (0,3.15)};
+    \fill[DeepBlue!24] (-1.5,1.4) rectangle (1.5,1.55);
+    \draw[DeepBlue,thick] (-1.5,1.4)--(1.5,1.4) (-1.5,1.55)--(1.5,1.55);
+    \draw[<->] (0,1.18)--(1.5,1.18);
+    \node[below=1pt] at (0.75,1.18) {$r(x)$};
+    \node[DeepBlue,anchor=west] (dxlabel) at (2.0,1.95) {$\dd x$};
+    \draw[DeepBlue,thin] (dxlabel.west)--(1.5,1.475);
+    \node[below] at (0,-0.45) {$\dd m=\rho(x)\pi r^2(x)\dd x$};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \draw[thick] (0,0) circle (1.55);
+    \draw[DeepBlue,thick] (0,0) circle (1.0);
+    \draw[DeepBlue,thick] (0,0) circle (1.1);
+    \draw[<->] (0,0)--(0.72,0.72);
+    \node[below right=1pt] at (0.36,0.36) {$r$};
+    \node[DeepBlue,anchor=west] (drlabel) at (1.90,.70) {$\dd r$};
+    \draw[DeepBlue,thin] (drlabel.west)--(.96,.43);
+    \node[below] at (0,-2.0) {$\dd m=4\pi r^2\rho(r)\dd r$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\pvWorkDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.68cm,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(4.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.2) node[above] {$p$};
+    \fill[DeepBlue!16] (0.8,0)
+      -- plot[domain=0.8:3.6,smooth,variable=\x] ({\x},{2.16/\x})--(3.6,0)--cycle;
+    \draw[curve,domain=0.65:4.0,smooth,variable=\x]
+      plot ({\x},{2.16/\x});
+    \node at (2.35,3.65) {$p=nR_gT/V$};
+    \draw[thick] (0.8,0)--(0.8,2.7) (3.6,0)--(3.6,0.6);
+    \node[below] at (0.8,0) {$V_1$}; \node[below] at (3.6,0) {$V_2$};
+  \end{scope}
+  \begin{scope}[xshift=6.2cm]
+    \draw[axis] (0,0)--(4.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.2) node[above] {$p$};
+    \fill[DeepBlue!16] (0.8,0)
+      -- plot[domain=0.8:3.6,smooth,variable=\x] ({\x},{1.95/(\x^1.35)})--(3.6,0)--cycle;
+    \draw[curve,domain=0.65:4.0,smooth,variable=\x]
+      plot ({\x},{1.95/(\x^1.35)});
+    \node at (2.35,3.65) {$pV^\gamma=C$};
+    \draw[thick] (0.8,0)--(0.8,{1.95/(.8^1.35)})
+      (3.6,0)--(3.6,{1.95/(3.6^1.35)});
+    \node[below] at (0.8,0) {$V_1$}; \node[below] at (3.6,0) {$V_2$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\radialFallDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill (0,0) circle (4pt) node[above left=2pt] {$A(M)$};
+  \draw[axis] (0,0)--(5.35,0) node[right] {径向坐标};
+  \draw[DeepBlue,dashed] (4.75,0) circle (3.0pt);
+  \node[above=8pt,DeepBlue] at (4.75,0) {$m(0)$};
+  \fill[DeepBlue] (3.25,0) circle (2.5pt);
+  \node[below left=3pt,DeepBlue] at (3.25,0) {$m(t)$};
+  \draw[vector] (3.1,0.68)--(2.05,0.68) node[midway,above] {$\vec v$};
+  \draw[<->] (0,-0.72)--(3.25,-0.72);
+  \node[below=1pt] at (1.63,-0.72) {$r$};
+  \draw[<->,TextGray] (0,-1.28)--(4.75,-1.28);
+  \node[below=1pt,TextGray] at (2.38,-1.28) {$r_0$};
+  \draw[guide] (3.25,-0.9)--(3.25,0);
+  \draw[guide] (4.75,-1.44)--(4.75,0);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\arcLengthDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(5.8,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,3.5) node[above] {$y$};
+  \draw[curve,domain=.55:4.6,samples=80] plot (\x,{1.4+.27*(\x-2.3)^2});
+  \draw[thick] (1.2,0)--(1.2,{1.4+.27*(1.2-2.3)^2})
+    (4.35,0)--(4.35,{1.4+.27*(4.35-2.3)^2});
+  \node[below] at (1.2,0) {$x_1$}; \node[below] at (4.35,0) {$x_2$};
+  \coordinate (P) at (7.0,1.2);
+  \coordinate (H) at (9.0,1.2);
+  \coordinate (Q) at (9.0,{1.2+2*.54*(3.7-2.3)});
+  \draw[guide] (3.7,{1.4+.27*(3.7-2.3)^2})--(6.7,2.9);
+  \node[TextGray,above] at (8,3.2) {局部切线三角形};
+  \draw[DeepBlue,very thick] (P)--(Q) node[midway,above left] {$\dd s$};
+  \draw[component] (P)--(H) node[midway,below] {$\dd x$};
+  \draw[component] (H)--(Q) node[midway,right] {$\dd y$};
+  \draw[TextGray,line width=.45pt] ($(H)+(-.13,0)$)--($(H)+(-.13,.13)$)--($(H)+(0,.13)$);
+  \node[above left] at (4.55,2.78) {$y(x)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\trackTimeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(6.4,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.2) node[above] {$y$};
+  \draw[curve] plot[smooth] coordinates {(0,3.6) (0.55,2.7) (1.5,2.0) (3.0,1.15) (4.8,0.35) (5.8,0)};
+  \fill[DeepBlue] (1.7,1.88) circle (2.3pt);
+  \draw[vector] (1.7,1.88)--++(0.75,-0.45) node[above right] {$\vec v$};
+  \draw[guide] (1.7,1.88)--(1.7,3.6);
+  \draw[<->] (2.05,1.88)--node[right] {$H-y$}(2.05,3.6);
+  \node[left] at (0,3.6) {$A(0,H)$};
+  \node[below] at (5.8,0) {$B(L,0)$};
+  \node[above right] at (3.05,1.15) {$y(x)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\trackTimeSolutionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.72cm,>=Latex]
+  \draw[axis] (0,0)--(6.4,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.2) node[above] {$y$};
+  \draw[curve] plot[smooth] coordinates
+    {(0,3.6) (0.55,2.7) (1.5,2.0) (3.0,1.15) (4.8,0.35) (5.8,0)};
+  \coordinate (P) at (1.70,1.88);
+  \fill[DeepBlue] (P) circle (2.3pt);
+  \draw[guide] (P)--(1.70,3.6);
+  \draw[<->] (2.02,1.88)--(2.02,3.6);
+  \node[right] at (2.02,2.78) {$H-y$};
+  \draw[vector] (P)--++(0.74,-0.43) node[below right] {$\vec v$};
+  \node[left] at (0,3.6) {$A(0,H)$};
+  \node[below] at (5.8,0) {$B(L,0)$};
+  \node[align=left,TextGray] at (4.65,3.8)
+    {$\displaystyle v=\sqrt{2g(H-y)}$};
+  \node[anchor=north,TextGray] at (3.0,-.45)
+    {$\displaystyle \dd t=\frac{\dd s}{v}$};
+  \begin{scope}[shift={(3.75,2.25)}]
+    \coordinate (U) at (0,0);
+    \coordinate (V) at (1.35,0);
+    \coordinate (W) at (1.35,-0.78);
+    \draw[component] (U)--(V) node[midway,above] {$\dd x$};
+    \draw[component] (V)--(W) node[midway,right] {$|\dd y|$};
+    \draw[DeepBlue,very thick] (U)--(W) node[midway,below left] {$\dd s$};
+    \draw[TextGray,line width=.45pt]
+      ($(V)+(-.14,0)$)--($(V)+(-.14,-.14)$)--($(V)+(0,-.14)$);
+  \end{scope}
+\end{tikzpicture}
+\end{center}}

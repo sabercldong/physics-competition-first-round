@@ -1,0 +1,59 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../../common-style.tex}
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+\usetikzlibrary{decorations.pathmorphing,decorations.markings,intersections,patterns.meta,calc,arrows.meta,positioning}
+
+\newcommand{\redrawimage}[2][0.72\linewidth]{%
+  \begin{center}
+    \includegraphics[width=#1]{#2}
+  \end{center}
+}
+
+\newcommand{\Needspace}[1]{%
+  \par
+  \ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax
+    \newpage
+  \fi
+}
+
+\newtcolorbox{origexamplebox}[1]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue}
+}
+
+\NewDocumentEnvironment{xesolution}{+b}{%
+  \par\smallskip
+  \begingroup\small
+  \noindent{\bfseries\color{DeepBlue}解答}\quad #1
+  \par\endgroup\medskip
+}{}
+
+\hypersetup{
+  pdftitle={高中物理竞赛一轮讲义：第29节 热力学第一定律（含解答与解图）},
+  pdfsubject={依据学而思兴趣一阶热物理第20讲完整整理，并补写推导、解答与解图},
+  pdfauthor={原题资料：学而思；整理与解答：物理竞赛一轮资料编写组}
+}
+
+\fancyhead[R]{\small\color{TextGray}寒假兴趣一阶\quad 第 20 讲}
+\renewcommand{\theequation}{20.\arabic{equation}}
+
+\input{diagrams.tex}
+\input{redrawn-figures.tex}
+\input{revision-diagrams.tex}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{equation}{0}
+
+\section*{第 20 讲\quad 热力学第一定律}
+
+\input{content.tex}
+\end{document}

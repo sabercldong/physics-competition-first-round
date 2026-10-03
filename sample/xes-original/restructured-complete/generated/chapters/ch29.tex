@@ -1,0 +1,1131 @@
+\begingroup\tcbset{breakable/.default=false}
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\chapter{光的干涉}
+
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/forty-fourth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/forty-fourth-section/assets/}}
+
+
+\section{干涉现象与相干条件}
+
+
+% 图契约：光路由界面、成像和反射定律确定；标签不覆盖图线。
+% 光学纯几何，印刷宽度<=14.5cm，标签>=8pt；透明标签，克制配色。
+% 草图：光源 -> 分束元件 -> 两条相干光路 -> 共同观察区。
+% 实线是真实光路，虚线是延长线/法线；尺寸在光路外侧。
+\newcommand{\InterferencePhenomenaPanel}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}
+ \shade[left color=violet,right color=blue] (0,0) rectangle (2,.55);
+ \shade[left color=blue,right color=green!65!black] (2,0) rectangle (4,.55);
+ \shade[left color=green!65!black,right color=yellow] (4,0) rectangle (6,.55);
+ \shade[left color=yellow,right color=red] (6,0) rectangle (9,.55);
+ \draw[->] (0,-.35)--(9.5,-.35) node[right]{$\lambda_0$};
+ \foreach \x/\v in {0/380,2/470,4/560,6/650,9/780}{\draw(\x,-.29)--(\x,-.42)node[below]{$\v$};}
+ \node[above] at (4.5,.65){可见光连续谱（单位：$\mathrm{nm}$）};
+\end{tikzpicture}\figcap{薄膜颜色取决于反射增强的波段；可见光谱连续，并非只有七条离散谱线。}\label{ch29:fig:s44-21-2}\end{minipage}\end{center}}
+
+\newcommand{\YoungPanel}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85,>=Latex]
+ \coordinate(S)at(-3,0);\coordinate(A)at(0,.65);\coordinate(B)at(0,-.65);\coordinate(P)at(5,1.45);
+ \fill(S)circle(1.5pt)node[left]{$S$};
+ \draw[very thick](0,-1.8)--(0,-.76) (0,-.54)--(0,.54) (0,.76)--(0,1.8);
+ \draw[very thick](5,-1.8)--(5,2.1);\fill(P)circle(1.5pt)node[above left]{$P(L,y)$};
+ \draw[DeepBlue,thick](S)--(A)--(P) (S)--(B)--(P);
+ \node[above left]at(A){$S_1$};\node[below left]at(B){$S_2$};
+ \draw[guide](-3.2,0)--(5.4,0);\node[below right]at(5,0){$O$};
+ \draw[<->](-.45,-.65)--(-.45,.65)node[midway,left]{$d$};
+ \draw[<->](0,-2.1)--(5,-2.1)node[midway,below]{$L$};
+ \draw[<->](5.65,0)--(5.65,1.45)node[midway,right]{$y$};
+ \node at(2.8,1.45){$r_1$};\node at(2.8,.22){$r_2$};
+ \draw[guide](0,0)--(P);
+ \draw[TextGray](1,0)arc(0:16.173:1);\node at(.65,.52){$\theta$};
+ \draw[TextGray,thin](.85,.48)--(1.08,.15);
+ \begin{scope}[shift={(0,-4.3)}]
+  \draw[very thick](0,-.9)--(0,-.5) (0,-.3)--(0,.3) (0,.5)--(0,.9);
+  \foreach \r in {.45,.85,1.25,1.65}{
+   \draw[DeepBlue!75] (0,.4) ++(-65:\r) arc[start angle=-65,end angle=65,radius=\r];
+   \draw[Blue!70] (0,-.4) ++(-65:\r) arc[start angle=-65,end angle=65,radius=\r];}
+  \node[anchor=west,align=left]at(2.3,0){两个次级波面叠加\\实线弧表示同相位波面};
+ \end{scope}
+\end{tikzpicture}\figcap{双缝的相干照明、屏上距离与次级波面。$S$ 是初级狭缝；下图显示双缝后相互重叠的波面。}\label{ch29:fig:s44-21-3}\end{minipage}\end{center}}
+
+\newcommand{\YoungPatternPanel}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[x=.9cm,y=1cm]
+ \foreach \x in {-5,-4.5,...,-1}{\fill[DeepBlue!80](\x,0)rectangle+(0.17,.8);}
+ \node[below,align=center]at(-3,-.25){单色光\\等间距明暗条纹};
+ \fill[black!75](.3,0)rectangle(6.1,.8);
+ \fill[white](3.08,0)rectangle(3.32,.8);
+ \foreach \s in {-1,1}{
+  \fill[blue!80!white]({3.2+\s*.65-.08},0)rectangle+(.16,.8);
+  \fill[green!80!white]({3.2+\s*.95-.08},0)rectangle+(.16,.8);
+  \fill[red!85!white]({3.2+\s*1.25-.08},0)rectangle+(.16,.8);}
+ \node[below,align=center]at(3.2,-.25){白光零级白纹\\同一级：紫蓝在内，红在外};
+\end{tikzpicture}\figcap{单色光与白光双缝图样。右图只展开零级和两侧第一级的颜色次序，宽谱高阶条纹很快相互重叠。}\label{ch29:fig:s44-21-4}\end{minipage}\end{center}}
+
+\newcommand{\FilmPhenomenaPanel}{%
+\historyfigure{thin-film-scenes-20260923.png}{左侧泡膜和右侧油膜的彩纹。膜厚与观察方向改变上下表面反射光的相位差。\label{ch29:fig:s44-21-5}}}
+
+\newcommand{\ThinFilmDiagram}{%
+% A=(-1,.6), D=1.5, r=20deg, n=1.5；B,C,E由同一组参数确定。
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+ \pgfmathsetmacro{\rr}{20}\pgfmathsetmacro{\ia}{asin(1.5*sin(\rr))}
+ \coordinate(A)at(-1,.6);\coordinate(B)at({-1+1.5*tan(\rr)},-.9);
+ \coordinate(C)at({-1+3*tan(\rr)},.6);
+ \pgfmathsetmacro{\ae}{3*tan(\rr)*sin(\ia)}
+ \coordinate(E)at({-1+\ae*sin(\ia)},{.6+\ae*cos(\ia)});
+ \fill[Blue!10](-2,-.9)rectangle(3,.6);\draw[very thick](-2,.6)--(3,.6) (-2,-.9)--(3,-.9);
+ \draw[DeepBlue,thick]({-1-2*sin(\ia)},{.6+2*cos(\ia)})--(A)--(B)--(C);
+ \draw[DeepBlue,thick,->](A)--({-1+2.4*sin(\ia)},{.6+2.4*cos(\ia)});
+ \draw[Blue,thick,->](C)--({-1+3*tan(\rr)+2.4*sin(\ia)},{.6+2.4*cos(\ia)});
+ \draw[guide](A)--(-1,2.35) (A)--(-1,-1.15);\draw[guide](E)--(C);
+ \draw[TextGray](-1,1.23)arc[start angle=90,end angle={90+\ia},radius=.63];
+ \node at(-1.26,1.7){$i$};
+ \draw[TextGray](-1,.05)arc[start angle=-90,end angle={-90+\rr},radius=.55];
+ \node at(-.89,-.05){$r$};
+ \node[above left]at(A){$A$};\node[below]at(B){$B$};\node[below right]at(C){$C$};
+ \node[above left]at(E){$E$};\node at(1.9,-.16){$n$};
+ \draw[<->](3.35,-.9)--(3.35,.6)node[midway,right]{$D$};
+ \node[anchor=west,align=left]at(2.4,2.1){$CE\perp AE$\\共同出射波面};
+\end{tikzpicture}\figcap{在共同波面 $CE$ 比较相位。两路分别走 $AE$ 与 $ABC$，传播光程差为 $n(AB+BC)-AE$；两束出射光平行。}\label{ch29:fig:s44-21-6}\end{minipage}\end{center}}
+
+\newcommand{\MichelsonDiagram}{%
+% 分光面正斜率：+x反射到+y，-x反射到-y；镜面就是折返点。
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[very thick](-.65,-.65)--(.65,.65);\node[below right]at(.55,-.4){分光镜 $M$};
+ \draw[very thick](4,-.75)--(4,.75);\node[right]at(4,.8){$M_1$};
+ \draw[very thick](-.75,3.4)--(.75,3.4);\node[right]at(.8,3.4){$M_2$};
+ \draw[thick](-.4,1.15)--(.4,1.95) (-.47,1.22)--(.33,2.02);
+ \node[anchor=west]at(.65,1.75){补偿板 $P$};
+ \draw[DeepBlue,very thick](-3,0)--(4,0) (0,-2)--(0,3.4);
+ \draw[->,DeepBlue](-2.4,0)--(-1.4,0);
+ \draw[->,DeepBlue](1,0)--(2.2,0);\draw[->,DeepBlue](3.2,.13)--(2.3,.13);
+ \draw[->,DeepBlue](0,.65)--(0,1.1);\draw[->,DeepBlue](.13,2.95)--(.13,2.25);
+ \draw[->,DeepBlue](0,-1)--(0,-1.7);
+ \node[left]at(-3,0){光源};\node[below]at(0,-2.2){探测器};
+ \node[anchor=west,align=left]at(1.6,2.6){端镜移动 $x$\\往返光程变化 $2x$};
+\end{tikzpicture}\figcap{迈克耳孙干涉仪。往返光路共线，短箭头表示往返方向；薄板近似下未画玻璃内的微小侧移。}\label{ch29:fig:s44-21-7}\end{minipage}\end{center}}
+
+\newcommand{\MovingSourceDiagram}{%
+% Independent panel: original physical paths and local coordinates retained.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.83,>=Latex]
+  \coordinate(S)at(-2,0);\coordinate(T)at(-2,.8);\coordinate(P)at(3,-1.2);
+  \draw[very thick](0,-1.6)--(0,-.5) (0,-.3)--(0,.3) (0,.5)--(0,1.6);
+  \draw[very thick](3,-1.6)--(3,1.2);\draw[guide](-2.3,0)--(3.3,0);
+  \draw[->,DeepBlue](S)--(T);\fill(T)circle(1.5pt)node[above]{$S_{\rm new}$};
+  \draw[Blue,thick](T)--(0,.4)--(P) (T)--(0,-.4)--(P);
+  \fill(P)circle(1.5pt)node[right]{$P_0$};\node[left]at(S){$S$};
+  \node[below,align=center]at(.5,-1.95){源上移，零光程差点下移};
+ \end{tikzpicture}
+\figcap{光源上移使零光程差点下移，图中 $P_0$ 表示移动后的中央明纹位置。}\label{ch29:fig:moving-source}
+\end{minipage}\end{center}
+}
+
+\newcommand{\FiniteLloydDiagram}{%
+% Independent panel: original physical paths and local coordinates retained.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.83,>=Latex]
+  \coordinate(S)at(0,.45);\coordinate(V)at(0,-.45);
+  \draw[guide](-.2,0)--(6,0);\draw[line width=1.8pt](1.2,0)--(3.3,0);
+  \draw[very thick](6,-.65)--(6,2.25);\fill(S)circle(1.5pt)node[above left]{$S$};
+  \fill(V)circle(1.3pt)node[below left]{$S'$};
+  \foreach \x in {1.2,3.3}{\pgfmathsetmacro{\yy}{6*.45/\x-.45}
+   \draw[DeepBlue,thick](S)--(\x,0)--(6,\yy);\draw[guide](V)--(\x,0);}
+  \draw[Blue,thick](S)--(6,1.05);\draw[<->](-.5,0)--(-.5,.45)node[midway,left]{$d$};
+  \draw[<->](0,-.9)--(1.2,-.9)node[midway,below]{$b$};
+  \draw[<->](1.2,-.9)--(3.3,-.9)node[midway,below]{$l$};
+  \draw[<->](0,-1.6)--(6,-1.6)node[midway,below]{$L$};
+  \draw[DeepBlue,line width=2pt](6,{6*.45/3.3-.45})--(6,{6*.45/1.2-.45});
+  \node[anchor=west]at(6.25,1.35){重叠区};
+ \end{tikzpicture}
+\figcap{有限长劳埃德镜：只有粗线段是真实镜面；两端点反射的边界光线限定屏上的重叠区。}\label{ch29:fig:s44-21-8}
+\end{minipage}\end{center}
+}
+
+\newcommand{\WedgeInterferenceDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.9,>=Latex]
+ \fill[Blue!10](0,0)--(0,2.8)--(1.4,2.8)--cycle;\draw[thick](0,0)--(0,2.8)--(1.4,2.8)--cycle;
+ \draw[axis](-.3,0)--(2,0)node[below right]{$x$};\draw[axis](0,-.3)--(0,3.4)node[above]{$y$};
+ \draw[very thick](2,-.1)--(2,-.06) (2,.06)--(2,.28) (2,.42)--(2,1.23) (2,1.37)--(2,2.43) (2,2.57)--(2,3);
+ \draw[<->](3.3,-.1)--(3.3,3.0);\fill(5.6,1.4)circle(1.5pt)node[right]{$F$};
+ \foreach \yy in {0,.35,1.3,2.5}{
+  \draw[DeepBlue,thick](-1.6,\yy)--(3.3,\yy)--(5.6,1.4);}
+ \draw[<->](0,3.08)--(1.4,3.08)node[midway,above]{$h$};
+ \draw[<->](0,-.55)--(.65,-.55)node[midway,below]{$x_y$};
+ \draw[guide](.65,1.3)--(.65,-.6);\node[left]at(-1.55,1.9){平行光};
+ \node[below]at(2,-.85){开缝挡板};\node[below]at(3.6,-.45){理想透镜};
+ \draw[TextGray](0,.7)arc[start angle=90,end angle=63.435,radius=.7];\node at(.29,.93){$\theta$};
+ \begin{scope}[shift={(8,1)}]
+  \draw[guide](.35,.3)--(.35,1.8)--(1.25,1.8);
+  \draw[guide](.35,.3)--(.65,.3)--(.65,.8)--(.95,.8)--(.95,1.3)--(1.25,1.3)--(1.25,1.8);
+  \foreach \x/\y in {0/0,0/1.5,.3/0,.3/.5,.6/.5,.6/1,.9/1,.9/1.5}{
+   \draw[TextGray!60](\x,\y)--({\x+.35},{\y+.3});}
+  \draw[thick](0,0)--(0,1.5)--(.9,1.5);
+  \draw[thick](0,0)--(.3,0)--(.3,.5)--(.6,.5)--(.6,1)--(.9,1)--(.9,1.5);
+  \draw[DeepBlue,->](-.7,.25)--(.3,.25)--(1.4,.25);
+  \draw[DeepBlue,->](-.7,.75)--(.6,.75)--(1.4,.75);
+  \node[below,align=center]at(.4,-.35){台阶沿 $z$ 延伸\\小面垂直于光线};
+ \end{scope}
+\end{tikzpicture}\figcap{劈尖与台阶模型。斜线给出厚度包络 $x_y=y\tan\theta$；右图说明微小台阶如何保持直线传播。$h$ 沿 $x$ 方向量取。}\label{ch29:fig:wedge}\end{minipage}\end{center}}
+
+\newcommand{\PlaneWaveDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[very thick](2,-1.8)--(2,1.8);\coordinate(P)at(2,0);
+ \draw[guide](-2.6,0)--(2.5,0);\node[below]at(-1.7,-.1){屏法线};
+ \draw[DeepBlue,thick,->](-2,{-4*tan(25)})--(P);
+ \draw[Blue,thick,->](-2,{4*tan(20)})--(P);
+ \draw(1.2,0)arc[start angle=180,end angle=205,radius=.8];
+ \draw(1,0)arc[start angle=180,end angle=160,radius=1];
+ \node at(.76,-.43){$\alpha$};\node at(.65,.4){$\beta$};
+ \node[right]at(P){$P$};\node[above]at(2,1.9){$+y$};
+ \node[anchor=west,align=left]at(3,.65){$k_{1y}=k\sin\alpha$\\$k_{2y}=-k\sin\beta$};
+ \node[anchor=west]at(3,-.8){$\Delta y=\lambda/(\sin\alpha+\sin\beta)$};
+\end{tikzpicture}\figcap{两波矢在屏面方向的分量符号相反。条纹间距由相位梯度决定，不是两条示意光线之间的距离。}\label{ch29:fig:s44-21-9}\end{minipage}\end{center}}
+
+\newcommand{\BiprismDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[thick,fill=Blue!8](0,0)--(0,1.5)--(.45,0)--(0,-1.5)--cycle;
+ \draw[guide](-3.4,0)--(6.5,0);\fill(-3,0)circle(1.5pt)node[left]{$S$};
+ \draw[very thick](6,-1.6)--(6,1.6);
+ \foreach \s in {-1,1}{
+  \draw[DeepBlue,thick](-3,0)--(0,{\s*.3})--(.352960321,{\s*.323465596})--(6,{\s*.041448685});
+  \draw[guide](-3,{\s*.490914661})--(.352960321,{\s*.323465596});
+  \fill(-3,{\s*.490914661})circle(1.2pt);}
+ \node[left]at(-3,.62){$S_1'$};\node[left]at(-3,-.62){$S_2'$};
+ \draw[<->](-3,-1.9)--(0,-1.9)node[midway,below]{$L_1$};
+ \draw[<->](0,-1.9)--(6,-1.9)node[midway,below]{$L_2$};
+ \draw[thin](0,0)--(.45,0);
+ \draw[thin](0,1.05)arc(-90:-73.3:.45);\node[left]at(0,1.12){$\alpha$};
+ \draw[thin](.16,-.75)--(1.1,-1.05)node[right]{$n$};
+ \draw[fill=Blue!8](1.4,.02)rectangle(1.56,.65);
+ \draw[thin](1.48,.65)--(2.3,1.1)node[right]{膜 $n',t$};
+ \node[above,align=center]at(2.5,1.85){上、下棱镜使光偏向公共底面\\出射线反向延长确定虚源};
+\end{tikzpicture}\figcap{菲涅耳双棱镜。上、下两半在公共底面相接；光线在界面折转，虚线与出射线共线。膜仅遮住上半束，忽略其横向位移而计入相位延迟；虚源公式采用薄棱镜近轴近似。}\label{ch29:fig:s44-21-10}\end{minipage}\end{center}}
+
+\newcommand{\DoubleMirrorDiagram}{%
+% alpha=12deg,R=2,L=5；两镜方向-51,-39deg；几何角度夸大。
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85,>=Latex]
+ \coordinate(O)at(0,0);\coordinate(S)at(0,2);
+ \coordinate(Vone)at({-2*cos(12)},{2*sin(12)});\coordinate(Vtwo)at({-2*cos(12)},{-2*sin(12)});
+ \draw[very thick](-1.4,{1.4*tan(51)})--(O)--(1.65,{-1.65*tan(39)});
+ \draw[guide](-1.96,0)--(5.4,0);\draw[very thick](5,-1.7)--(5,2.2);
+ \draw[DeepBlue,line width=2pt](5,{-5*tan(12)})--(5,{5*tan(12)});
+ \foreach \V in {Vone,Vtwo}{\draw[guide](\V)--(O);}
+ \draw[guide](O)--(5,{-5*tan(12)}) (O)--(5,{5*tan(12)});
+ \coordinate(A)at(-.254342226,.314086491);\coordinate(B)at(.343717036,-.278336567);
+ \draw[DeepBlue,thick](S)--(A)--(5,0) (S)--(B)--(5,0);
+ \draw[guide](Vone)--(A) (Vtwo)--(B);
+ \fill(S)circle(1.5pt)node[above]{$S$};\fill(O)circle(1.2pt)node[below left]{$O$};
+ \fill(Vone)circle(1.2pt)node[left]{$S_1'$};\fill(Vtwo)circle(1.2pt)node[left]{$S_2'$};
+ \node[left]at(-1.75,1.5){$M_1$};\node[below]at(1.45,-1.3){$M_2$};
+ \draw[<->](5.45,{-5*tan(12)})--(5.45,{5*tan(12)})node[midway,right]{$W$};
+ \draw[<->](0,-2)--(5,-2)node[midway,below]{$L$};
+ \draw[<->]({-2*cos(12)},-2.7)--(5,-2.7)node[midway,below]{$L+R\cos\alpha$};
+ \node[anchor=west]at(.65,2.75){$OS=R$，小夹角 $\alpha$ 已夸大};
+\end{tikzpicture}\figcap{双面镜的两条反射光路在屏上重合。两虚源都在镜后，屏距从虚源平面量起；经过 $O$ 的边界射线限定 $W$。}\label{ch29:fig:s44-21-11}\end{minipage}\end{center}}
+
+\newcommand{\BilletSourceDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.7,>=Latex]
+ \draw[guide](-3.2,0)--(8.3,0);\fill(-3,0)circle(1.5pt)node[left]{$S$};
+ \foreach \s in {-1,1}{
+  \draw[very thick](0,{\s*.3})--(0,{\s*1.8});\draw[thin](-.12,{\s*.3})--(.12,{\s*.3});
+  \foreach \h in {.3,1.8}{\draw[DeepBlue,thick](-3,0)--(0,{\s*\h})--(4,{\s*.7})--(8,{\s*(1.4-\h)});}
+  \fill(4,{\s*.7})circle(1.5pt);}
+ \draw[very thick](8,-1.9)--(8,1.9);\draw[Blue,line width=2pt](8,-.4)--(8,.4);
+ \node[above]at(4,.7){$S_1'$};\node[below]at(4,-.7){$S_2'$};
+ \draw[<->](-.5,-.3)--(-.5,.3)node[midway,left]{$\delta$};
+ \draw[<->](4.8,-.7)--(4.8,.7)node[midway,right]{$d$};
+ \draw[<->](8.6,-.4)--(8.6,.4)node[midway,right]{$D$};
+ \draw[<->](-3,-2.1)--(0,-2.1)node[midway,below]{$l_1$};
+ \draw[<->](0,-2.1)--(4,-2.1)node[midway,below]{$l_2$};
+ \draw[<->](4,-2.1)--(8,-2.1)node[midway,below]{$L-l_2$};
+\end{tikzpicture}\figcap{解图：比耶对切透镜、两实像源与公共照明区。竖线是薄透镜所在平面，切口之间留有间隙。}\label{ch29:fig:s44-ex-21-8}\label{ch29:fig:billet}\end{minipage}\end{center}}
+\newcommand{\MeslinSourceDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[guide](-3.2,0)--(6,0);\fill(-3,0)circle(1.5pt)node[left]{$S$};
+ \draw[very thick](0,0)--(0,1.5) (2,-1.5)--(2,0);
+ \draw[DeepBlue,thick](-3,0)--(0,1.2)--(3,0)--(5,-.8);
+ \draw[Blue,thick](-3,0)--(2,-1.2)--({29/7},0)--(5,.48);
+ \draw[very thick]({25/7},-1.2)--({25/7},1.2);\fill(3,0)circle(1.5pt);\fill({29/7},0)circle(1.5pt);
+ \node[above left]at(3,0){$S_1'$};\node[above right]at({29/7},0){$S_2'$};
+ \node[above]at({25/7},1.3){中点屏};\node[below]at(1,-1.7){两半沿轴错开};
+ \draw[<->](3,-1.5)--({29/7},-1.5)node[midway,below]{$a$};
+ \begin{scope}[shift={(7.4,0)}]
+  \foreach \r in {.4,.7,1.0}{\draw[DeepBlue](180:\r)arc[start angle=180,end angle=360,radius=\r];}
+  \draw[guide](-1.1,0)--(1.1,0);\node[above]at(0,.2){屏的正视图};
+ \end{scope}
+\end{tikzpicture}\figcap{解图：梅斯林装置的两像都在光轴上，屏置于两像之间。重叠光只占一侧半屏，条纹为同心半圆弧；轴向间隔已夸大。}\label{ch29:fig:s44-ex-21-9}\label{ch29:fig:meslin}\end{minipage}\end{center}}
+
+\newcommand{\NewtonRingsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.92,>=Latex]
+ \begin{scope}
+  \draw[very thick](-2.5,0)--(2.5,0);
+  \draw[very thick,domain=-2.2:2.2,samples=101]plot(\x,{4-sqrt(16-\x*\x)});
+  \draw[thick](-2.2,{4-sqrt(16-2.2*2.2)})--(-2.2,1.1)--(2.2,1.1)--(2.2,{4-sqrt(16-2.2*2.2)});
+  \fill(0,0)circle(1.3pt)node[below left]{$O$};
+  \draw[<->](1.8,0)--(1.8,{4-sqrt(16-1.8*1.8)})node[midway,right=4pt]{$t(r)$};
+  \draw[<->](0,-.65)--(1.8,-.65)node[midway,below]{$r$};
+  \node[above]at(0,1.15){平凸透镜};\node[below]at(-1.1,-1.15){底板（透明玻璃特例）};
+ \end{scope}
+ \begin{scope}[shift={(6,0)}]
+  \foreach \m in {1,...,7}{\draw[DeepBlue](0,0)circle({.55*sqrt(\m)});}
+  \fill(0,0)circle(.06);\node[below]at(0,-1.65){暗环满足 $r_m^2=m\lambda R$};
+ \end{scope}
+\end{tikzpicture}\figcap{牛顿环的接触几何与暗环半径。球面在 $O$ 与平板相切，$t(r)$ 两端分别落在平板和球面；环半径按平方级次生成。}\label{ch29:fig:newton}\end{minipage}\end{center}}
+
+
+波动光学研究几何光学不能解释的光学性质，其中最典型的是干涉、衍射和偏振。光是电磁波，两束光在同一点相遇时，先叠加的是电场矢量，而探测到的能流却与电场平方的时间平均成正比。正如 $(a+b)^2$ 中除 $a^2+b^2$ 外还有交叉项，多个光场叠加后的总强度一般不等于各自强度的简单相加；能量在空间重新分布，就是干涉。
+
+日常所见的肥皂泡、油膜和镜头镀膜颜色，都要求同一列光先被分开，沿不同光程传播后再在眼睛或探测器处重合。几何光学能确定每束光的路线，却不能判断重合后的明暗和颜色；这些必须由相位关系决定。
+
+按“怎样把同一列光分开”可把常见装置分为两类。杨氏双缝、菲涅耳双棱镜和双面镜从同一波面的不同区域产生次级波，称为分波阵面干涉；薄膜和迈克耳孙干涉仪利用部分反射、部分透射把一束光的振幅分开，称为分振幅干涉。两类装置的几何结构不同，但计算核心完全相同：列出到观察点的全部传播光程和界面相变，求相位差，再由振幅叠加得到强度。图~\ref{ch29:fig:s44-21-1} 的同心环纹正是几何光路相近、相位结果却随膜厚和波长改变的典型证据。
+
+\historyfigure{newton-rings-20260923.png}{牛顿环的俯视情景：同心环向外逐渐变密。定量几何见本章牛顿环解图。\label{ch29:fig:s44-21-1}}
+\InterferencePhenomenaPanel
+图~\ref{ch29:fig:s44-21-2} 把薄膜颜色与连续光谱并列：某处显色来自不同波长的增强或削弱，而不是薄膜只反射一种固定颜色。
+
+
+
+\section{电场叠加、光程差与干涉强度}
+
+
+
+设同频、同偏振的两束单色光在一点产生
+\[
+ E_1(t)=E_{01}\cos(\omega t+\varphi_1),\qquad
+ E_2(t)=E_{02}\cos(\omega t+\varphi_2).
+\]
+电磁场满足线性叠加，$E=E_1+E_2$。对远长于光周期的探测时间取平均，得到
+\begin{equation}
+ I=I_1+I_2+2\sqrt{I_1I_2}\cos\Delta\varphi,\qquad
+ \Delta\varphi=\varphi_1-\varphi_2.
+\end{equation}
+最后一项称为干涉项。若 $I_1=I_2=I_0$，则 $I_{\max}=4I_0$、$I_{\min}=0$；若振幅不同，即使相消位置也不能完全变黑。干涉可见度还要求频率相同或带宽足够窄、偏振方向不正交，且相位差在探测时间内稳定。两个互不相关的普通光源相位快速漂移，干涉项平均为零。
+
+上述平均式可从瞬时场逐项看清。展开 $(E_1+E_2)^2$ 后，$\cos^2(\omega t+\varphi)$ 在许多光周期上的平均为 $1/2$，交叉项的平均为 $\tfrac12\cos(\varphi_1-\varphi_2)$；探测器来不及跟随约 $10^{15}\,\mathrm{Hz}$ 的电场振荡，只记录这个时间平均。若定义条纹可见度
+\[
+ \mathcal V=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}},
+\]
+则理想同偏振两束光有
+\[
+ \mathcal V=\frac{2\sqrt{I_1I_2}}{I_1+I_2}.
+\]
+所以两路亮度越接近，明暗反差越大；“完全相消”不仅要求相位差为 $\pi$，也要求两振幅相等。偏振正交或相位随机时，交叉项消失，即使两束光在空间重合也看不到稳定条纹。
+
+能量守恒并未被干涉破坏。亮处可能达到单束光强的四倍，是因为能流被重新分配。对无吸收的完整干涉装置，把所有出射端口的功率相加，仍等于总入射功率；例如分光镜的一个端口变暗时，另一个端口可以变亮。不能任取一小块屏面就断言其干涉项积分为零。对于包含许多完整周期、包络变化缓慢的双缝图样，亮暗区的交叉项近似相互抵消。干涉改变能流分布，并不创造能量。
+
+光程差 $\Delta\mathcal L$ 与相位差的关系为
+\begin{equation}
+ \Delta\varphi=\frac{2\pi}{\lambda_0}\Delta\mathcal L,\qquad
+ \mathcal L=\int n\,\dd s,
+\end{equation}
+其中 $\lambda_0$ 是真空波长。除传播光程外，还要计入反射相位。对透明、无吸收介质的正入射或近正入射，按同一切向电场方向比较，从低折射率侧向高折射率侧反射有 $\pi$ 相变，反向反射无此相变。这就是常用的“半波损失”规则；全反射、金属反射及大角度不同偏振的情形应使用相应的菲涅尔反射系数，不能一概套用。不同路线中的传播相位和界面相位必须作为整体比较。
+
+可见光只是电磁谱中的一小段，真空波长大致从紫光的 $400\,\mathrm{nm}$ 延伸到红光的 $700\,\mathrm{nm}$。同一频率的光进入折射率 $n$ 的介质后，频率不变、相速变为 $c/n$，介质波长变为 $\lambda_0/n$；所以几何长度 $l$ 中累积的相位等于真空中长度 $nl$ 的相位，这就是光程 $nl$ 的由来。比较两路相位时必须统一使用真空波长与光程，或分别使用各介质波长与几何程，不能把两套写法混在同一式中。
+
+
+
+\subsection{为什么相加的是电场而不是亮度}
+设两束同频、同偏振光到达同一点的电场为
+\[
+ E_1=A_1\cos\omega t,\qquad E_2=A_2\cos(\omega t-\delta).
+\]
+探测器响应于总电场平方的时间平均，而不是响应于某一时刻的电场。展开平方并分别平均：
+\[
+ \langle(E_1+E_2)^2\rangle
+ =\frac{A_1^2}2+\frac{A_2^2}2+A_1A_2\cos\delta.
+\]
+因此强度除了 $I_1+I_2$，还多出含相位差的交叉项。相位稳定时，交叉项可以为正，也可以为负；相位在探测时间内均匀漂移时，$\langle\cos\delta\rangle=0$，才退化为直接相加强度。所谓“频率相同”只是必要条件之一，不能保证两个独立普通光源长期保持固定相位差。
+
+完全相干且同偏振时，
+\[
+ I_{\max}=(\sqrt{I_1}+\sqrt{I_2})^2,\qquad
+ I_{\min}=(\sqrt{I_1}-\sqrt{I_2})^2.
+\]
+只有 $I_1=I_2$ 时暗纹才降为零。改变两路强度比例会改变条纹反差，却不一定改变条纹位置。若两电场偏振方向成角 $\psi$，交叉项还要乘 $\cos\psi$；互相正交的偏振在不加检偏器时不产生这一标量干涉项。
+
+\subsection{统一光程差和附加相位的记账方式}
+指定第二路减第一路，记几何传播光程差为 $\Delta=\mathcal L_2-\mathcal L_1$。对给定时间因子约定，把两束在观察点的相位差写为
+\[
+ \delta=\frac{2\pi\Delta}{\lambda_0}+\delta_{\rm extra}.
+\]
+其中 $\delta_{\rm extra}$ 收集分束、反射以及源端的相对相位。必须整套使用同一约定；若调换两路编号，光程差和附加相位都应反号，最终强度不变。明纹条件是 $\delta=2m\pi$，不是在所有场合都直接写 $\Delta=m\lambda_0$。薄膜和劳埃德镜中的明暗翻转，正来自不能遗漏的附加相位。
+
+
+\PlaneWaveDiagram
+图~\ref{ch29:fig:s44-21-9} 中两波矢的横向分量相反，因此沿屏移动时两波相位之差持续变化；条纹周期应由这个相位差的变化率求出。
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【平行光干涉】}\label{ch29:ex:s44-21-5}
+两束波长均为 $\lambda$ 的平行光从屏法线两侧入射，与法线分别成 $\alpha,\beta$。干涉条纹间距为（
+A. $\lambda/(\sin\alpha+\sin\beta)$；
+B. $\lambda/(\cos\alpha+\cos\beta)$；
+C. $\lambda/(\sin\alpha-\sin\beta)$；
+D. $\lambda/|\cos\alpha-\cos\beta|$）。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+沿屏面移动 $y$，两束平面波的相位分别改变 $k y\sin\alpha$ 与 $-k y\sin\beta$，故相位差梯度为
+\[
+ \frac{\dd\Delta\varphi}{\dd y}=k(\sin\alpha+\sin\beta).
+\]
+相位差增加 $2\pi$ 对应一条纹间距：
+\[
+ \boxed{\Delta y=\frac{\lambda}{\sin\alpha+\sin\beta}}.
+\]
+对应选项 A。若两光位于法线同一侧，正负号应按波矢在屏面上的投影重新取值，而不能机械使用相加式。
+\end{xesolution}
+
+\section{杨氏双缝与条纹移动}
+
+
+
+杨氏实验用初级狭缝 $S$ 同相照亮 $S_1,S_2$，从同一波面上取出两个相干次级波源。两缝间距为 $d$，屏距为 $L$，屏上点 $P$ 与主轴夹角为 $\theta$。两路几何程差
+\[
+ \Delta r=r_2-r_1,\qquad
+ \Delta\varphi=\frac{2\pi}{\lambda}\Delta r.
+\]
+远场条件 $L\gg d$ 且观察角不大时，
+\begin{equation}
+ \Delta r\simeq d\sin\theta\simeq d\frac yL.
+\end{equation}
+明纹满足 $\Delta r=m\lambda$，暗纹满足 $\Delta r=(m+1/2)\lambda$，相邻明纹间距
+\begin{equation}
+ \Delta y=\frac{\lambda L}{d}.
+\end{equation}
+改变两缝的相对初相位只会平移图样，不改变斜率 $\dd\Delta r/\dd y$，所以条纹间距不变。杨氏实验不仅确立了光的波动性，其“路径不可区分时振幅相加”的结构也成为量子物理的重要原型。
+
+远场近似可以从精确距离展开得到。若两缝坐标为 $\pm d/2$，屏点坐标为 $(L,y)$，则
+\[
+ r_{1,2}=\sqrt{L^2+(y\mp d/2)^2}.
+\]
+在 $L$ 远大于 $|y|,d$ 时，用 $\sqrt{1+u}=1+u/2+O(u^2)$，有
+\[
+ r_1\simeq L+\frac{(y-d/2)^2}{2L},\qquad
+ r_2\simeq L+\frac{(y+d/2)^2}{2L}.
+\]
+两式相减得 $r_2-r_1\simeq yd/L$，正负号与前面的定义一致：$y>0$ 时，下缝到观察点更远。再用 $y/L\simeq\sin\theta$ 得到上式。被略去的高阶项会改变远离主轴的条纹间距，因此 $\Delta y=\lambda L/d$ 不是任意近屏、大角度几何下的精确公式。
+
+图~\ref{ch29:fig:s44-21-3} 中初级狭缝 $S$ 不是装饰。若直接用两个彼此独立的灯照亮 $S_1,S_2$，两灯相位各自漂移，屏上的交叉项会在观察时间内平均掉；让同一束光先通过 $S$，再同时照亮两缝，才能获得稳定的相位关系。若 $S$ 到两缝距离不同，只会在 $S_1,S_2$ 间加入固定初相位差 $\varphi_0$，屏上明纹位置变为
+\[
+ d\frac yL+\frac{\lambda\varphi_0}{2\pi}=m\lambda,
+\]
+条纹整体平移而间距仍为 $\lambda L/d$。
+
+激光相干长度长、方向性强，图~\ref{ch29:fig:s44-21-4} 中条纹通常清晰且可延伸较远；普通宽带光源的不同波长分别形成不同间距的条纹，只有零光程差附近能够同时保持高可见度。源缝变宽还会把来自不同源点、位置略有错开的条纹叠加，从而降低反差。这些实验条件解释了为什么“有两条光路”只是必要条件，不是出现清晰干涉的充分条件。
+
+\subsection{先写两段路，再使用小角近似}
+双缝间距为 $d$，缝位于 $y=\pm d/2$，屏距为 $L$。屏上坐标为 $y$ 的点到下、上两缝的距离分别为
+\[
+ r_-=\sqrt{L^2+(y+d/2)^2},\qquad
+ r_+=\sqrt{L^2+(y-d/2)^2}.
+\]
+有理化给出精确关系
+\[
+ r_--r_+=\frac{2dy}{r_-+r_+}.
+\]
+当 $|y|,d\ll L$ 时，分母可取 $2L$，于是 $\Delta\simeq dy/L$。相邻明纹光程差相差一个波长，因此 $\Delta y=\lambda L/d$。这里“等间距”是近轴屏坐标中的近似；大角度观察时应先求满足 $d\sin\theta=m\lambda$ 的角度，再用 $y=L\tan\theta$，不能把 $\tan\theta$ 与 $\sin\theta$ 混用。
+
+源缝不在中垂线上时，光从源到双缝之前已经累积了路差，所以完整差值为
+\[
+ \Delta=(\mathcal L_{S\to -}-\mathcal L_{S\to +})+(r_--r_+).
+\]
+插片、移动源或改变一路介质，本质上都是改变第一项或增加一个常量程差。求条纹向哪侧移动时，先判断哪一路变长，再判断屏上往哪侧移动可以使该路变短以补偿，而不要只记“向薄片侧移动”的口令；若装置换了成像方向，口令可能失效。
+
+
+\YoungPanel
+\YoungPatternPanel
+% Contract: two normalized grayscale interference strips; print width 12cm.
+% Physical model: equal local beam intensities, I/(I1+I2)=1+V(x)cos(2pi*x).
+% Top V=.98; bottom V=.98 exp[-(x/1.4)^2]; identical fringe spatial period.
+% Smooth narrow-band illustrative coherence envelope, not a measured source spectrum.
+% Layout: two 8cm strips stacked 1.6cm apart, descriptive text to their right.
+% No labels over pixels; no white masks; no inferred color from a grayscale scan.
+% ASCII: [high contrast many fringes] laser; [central clear, outer washed] ordinary.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[every node/.style={fill=none,font=\small},x=1cm,y=1cm]
+ \foreach \row in {0,1}{
+  \foreach \j in {0,...,319}{
+   \pgfmathsetmacro{\xx}{-4+(\j+.5)/40}
+   \pgfmathsetmacro{\vis}{ifthenelse(\row==0,.98,.98*exp(-(\xx/1.4)^2))}
+   \pgfmathsetmacro{\shadevalue}{50*(1-\vis*cos(360*\xx))}
+   \fill[black!\shadevalue]({-4+\j/40},{-1.6*\row})rectangle({-4+(\j+1)/40+.001},{.65-1.6*\row});
+  }
+ }
+ \node[right,align=left,text width=4cm]at(4.3,.32){窄谱、良好相干照明\\较大范围仍有清晰条纹};
+ \node[right,align=left,text width=4cm]at(4.3,-1.28){普通光源经狭缝处理\\中心附近条纹较清晰};
+\end{tikzpicture}
+\figcap{相同条纹间距下的反差比较。灰度只表示归一化强度，不用于比较两种光源的绝对亮度。\label{ch29:fig:coherence-contrast}}
+\end{minipage}\end{center}
+
+图~\ref{ch29:fig:coherence-contrast} 保留了另一层信息：普通光源经狭缝获得部分空间相干性后，也能产生干涉，并非“只有激光能干涉”。但光谱宽度及有效光源尺寸会限制反差；当两路光程差增大，不同频率产生的条纹逐渐错开，时间平均后外侧条纹变淡。图中用随离轴距离增大而减小的可见度示意这一过程。实际反差包络由光谱、光源尺寸和仪器决定，不必恰好是高斯形。白光的颜色次序则应另看图~\ref{ch29:fig:s44-21-4}，不能用颜色次序代替反差的比较。
+
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【移动光源】}\label{ch29:ex:s44-21-1}
+杨氏双缝实验中，单色点光源沿垂直于主轴方向向上移动一小段，屏上条纹如何变化？A. 上移、间距不变；B. 上移、间距变大；C. 下移、间距不变；D. 下移、间距变大。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+\MovingSourceDiagram
+
+光源上移后，到上缝的距离变短、到下缝的距离变长，两个次级光源获得一个固定初相位差。为了重新满足零光程差，屏上观察点必须向下移动，以用“下缝到屏更短”的几何程差补偿源端程差。由于光源移动不改变两缝间距 $d$、屏距 $L$ 和波长，$\Delta y=\lambda L/d$ 不变。
+\[
+ \boxed{\text{C：条纹向下移动，间距不变。}}
+\]
+进一步设光源到双缝面的距离为 $a$，上移量为 $s>0$，屏坐标 $y$ 向上为正。上、下缝分别在 $d/2,-d/2$，在 $s,d\ll a$、$y,d\ll L$ 的近轴条件下，两条完整路径之差为
+\[
+ \Delta\mathcal L=
+ \left[\sqrt{a^2+(s+d/2)^2}-\sqrt{a^2+(s-d/2)^2}\right]
+ +\left[\sqrt{L^2+(y+d/2)^2}-\sqrt{L^2+(y-d/2)^2}\right]
+ \simeq\frac{ds}{a}+\frac{dy}{L}.
+\]
+中央明纹满足 $\Delta\mathcal L=0$，故 $y_0=-Ls/a<0$；相邻明纹满足程差相差 $\lambda$，仍有 $\Delta y=\lambda L/d$。图~\ref{ch29:fig:moving-source} 画出这种向下补偿的方向；该结论使用近轴近似。
+\end{xesolution}
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【白光干涉】}\label{ch29:ex:s44-21-11}
+白光通过杨氏双缝后为什么出现彩色条纹且级数很少？为什么这种现象难观察？
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+中央零级处所有波长程差均为零，叠加成白纹。离开中心后，明纹位置 $y_m=m\lambda L/d$ 随波长不同：紫蓝光靠内、红光靠外，形成彩边。级次增大时，不同波长的不同级条纹互相覆盖，综合色趋于均匀，很快失去可见度。
+
+普通白光的相干长度很短，只有两路光程差接近零时相位关系才稳定；双缝又很窄，亮度低，且源缝、双缝和平衡光路必须精确调整。所以白光条纹只在零光程差附近少量出现，远比激光双缝难观察。
+\end{xesolution}
+
+\section{虚光源干涉与公共照明区}
+
+
+
+
+\subsection{等效光源解决路差，边缘光线决定能否看见}
+双棱镜、双面镜和对切透镜看似不同，都可以分成三步：先用反射或成像规律找到一对相干的等效源；再从它们到屏的距离计算相位差；最后追踪器件边缘所允许的真实光线，确定屏上两束共同到达的区域。
+
+第二步给出的条纹是一个数学上的延拓图样。只有落在第三步公共照明区内的部分才真正可见。把虚源到屏的连线反向延长时，还必须检查它是否穿过对应镜面或透镜的有效口径；否则虽然能算出路差，实际却没有那一路光。这是题目中的有限镜长、半透镜边缘和挡光片不能略去的原因。
+
+若近轴明纹中心为 $y_m=y_0+m\Delta y$，公共照明区为闭区间 $[a,b]$，那么允许级次满足
+\[
+ \frac{a-y_0}{\Delta y}\le m\le\frac{b-y_0}{\Delta y}.
+\]
+用上取整与下取整分别确定两端，得到
+\begin{equation}\label{ch29:eq:depth-fringe-count}
+ N=\max\!\left\{0,
+ \left\lfloor\frac{b-y_0}{\Delta y}\right\rfloor
+ -\left\lceil\frac{a-y_0}{\Delta y}\right\rceil+1\right\}.
+\end{equation}
+所以仅给宽度 $b-a$，而不给条纹相对窗口的位置，通常不能确定条数。若题目明确允许调节相位，才可另求平移图样时的最大数。边缘不计入、或要求亮带完整落入窗口时，端点不等式也要相应改变。
+
+劳埃德镜只有一路经过反射，而双面镜的两路通常各反射一次；前者常需计入相对半波损失，后者在同样反射条件下这部分相位会抵消。等效源法只替代了路径几何，并不会自动替你处理反射相位。
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【劳埃德镜（Lloyd's mirror）】}\label{ch29:ex:s44-21-3}
+劳埃德镜长 $l=7.5\,\mathrm{cm}$；点光源 $S$ 离镜面 $d=0.15\,\mathrm{mm}$，距镜左端 $b=4.5\,\mathrm{cm}$；屏与镜垂直，距 $S$ 的水平距离 $L=1.2\,\mathrm m$。$\lambda=6.0\times10^{-7}\,\mathrm m$。求：（1）干涉区；（2）明纹间距；（3）该区第一条暗纹位置。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+\FiniteLloydDiagram
+图~\ref{ch29:fig:s44-21-8} 中的虚源 $S'$、有限镜段与屏上边界确定下面的不等式。
+
+反射光等效来自镜面对称虚源 $S'$，但反射带来 $\pi$ 相变。连接 $S'$ 与屏上高度 $y$ 的点，其与镜面的交点横坐标为 $x_0=Ld/(y+d)$。要落在有限镜段，须 $b\le x_0\le b+l$，故
+\[
+ \frac{Ld}{b+l}-d\le y\le\frac{Ld}{b}-d.
+\]
+代入数值得
+\[
+ \boxed{1.35\,\mathrm{mm}\le y\le3.85\,\mathrm{mm}}.
+\]
+两等效源间距为 $2d$，所以
+\[
+ \boxed{\Delta y=\frac{\lambda L}{2d}=2.40\,\mathrm{mm}}.
+\]
+由于反射半波损失，几何程差 $2dy/L=m\lambda$ 的位置是暗纹，即 $y_m=m\Delta y$。干涉区内最小的正整数 $m$ 为 $1$，故第一条暗纹在
+\[
+ \boxed{y=2.40\,\mathrm{mm}}
+\]
+处。若漏掉反射相变，会把明暗次序完全颠倒。
+\end{xesolution}
+
+% Biprism panel relocated to its solution.
+
+\Needspace{22\baselineskip}\begin{origexamplebox}{【菲涅耳双棱镜】}\label{ch29:ex:s44-21-6}
+双棱镜折射率为 $n$，小棱角为 $\alpha$；缝光源到棱镜距离为 $L_1$，屏到棱镜为 $L_2$。（1）求条纹间距；（2）用折射率 $n'$ 的肥皂膜遮住一半，零级条纹移动 $a$，求膜厚。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+\BiprismDiagram
+图~\ref{ch29:fig:s44-21-10} 的两条反向延长线确定虚源；肥皂膜只覆盖其中一束，因而只给这一束增加光程。
+
+每半棱镜使近轴光偏转 $\delta\simeq(n-1)\alpha$，两虚源间距
+\[
+ d=2L_1(n-1)\alpha.
+\]
+虚源到屏的距离近似 $L_1+L_2$，故
+\[
+ \boxed{\Delta y=\frac{\lambda(L_1+L_2)}{2L_1(n-1)\alpha}}.
+\]
+肥皂膜给一路增加光程 $(n'-1)t$。条纹移动 $a$ 对应的原几何程差为 $da/(L_1+L_2)$，补偿条件给出
+\[
+ \boxed{t=\frac{ad}{(L_1+L_2)(n'-1)}
+ =\frac{2aL_1(n-1)\alpha}{(L_1+L_2)(n'-1)}}.
+\]
+移动方向由哪一半被遮决定；厚度取正值。
+\end{xesolution}
+
+\DoubleMirrorDiagram
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【菲涅耳双面镜】}\label{ch29:ex:s44-21-7}
+两镜相对共面位置的小夹角 $\alpha=20'$，缝光源到镜交线距离 $R=10\,\mathrm{cm}$，$\lambda=600\,\mathrm{nm}$，屏距镜交线 $L=210\,\mathrm{cm}$。采用图示对称配置：截面上 $O=(0,0)$、光源 $S=(0,R)$、屏为 $x=L$，两镜方向为 $-45^\circ\mp\alpha/2$，反射面朝向光源，尺寸足以接收公共照明区的光线；忽略边缘衍射，两次反射具有相同相位变化。（1）求间距与最多可见条纹数；（2）$R$ 加倍时怎样变化；（3）光源沿 $+x$ 横移 $\delta s$ 时怎样变化。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+先统一几何距离。图~\ref{ch29:fig:s44-21-11} 中镜交线的截点为 $O$，屏位于 $x=L$；取光源 $S=(0,R)$，两镜所在直线的方向角分别为 $-45^\circ-\alpha/2$ 与 $-45^\circ+\alpha/2$。这里 $\alpha$ 是两镜相对于共面位置的小夹角。光源关于两镜的像分别为
+\[
+ S_1'=(-R\cos\alpha,R\sin\alpha),\qquad
+ S_2'=(-R\cos\alpha,-R\sin\alpha).
+\]
+两镜分别形成相干虚源，间距
+\[
+ d=2R\sin\alpha\simeq2R\alpha.
+\]
+虚源平面位于 $O$ 后方 $R\cos\alpha$，所以虚源到屏的距离是 $L+R\cos\alpha$，不是 $L$。因此
+\[
+ \boxed{\Delta y=\frac{\lambda(L+R\cos\alpha)}{2R\sin\alpha}
+ \approx1.134\,\mathrm{mm}}.
+\]
+两束反射光只在共同照明区内形成条纹。取镜面足够宽、外边缘不另行截光的理想情况，图~\ref{ch29:fig:s44-21-11} 中从 $S_1',S_2'$ 经过 $O$ 的边界射线在屏上交于 $y=\mp L\tan\alpha$，故重叠宽度 $W=2L\tan\alpha\approx24.435\,\mathrm{mm}$。两次反射的相位相同，中心为明纹。固定对称图样的亮纹中心满足 $y_m=m\Delta y$，于是
+\[
+ N_{\rm bright}=2\left\lfloor\frac W{2\Delta y}\right\rfloor+1
+ =\boxed{21}.
+\]
+对应 $m=-10,\ldots,10$；暗纹中心有22条。若题目的“最多”还允许调节两路恒定相位、把条纹在同宽窗口内平移，则亮纹中心的最大数为 $\lfloor W/\Delta y\rfloor+1=22$。这不是当前中心为亮的对称图样的条数。镜面外缘、挡光片或不计边界纹会进一步限制可见数。
+
+$R$ 加倍后，虚源间距加倍，但虚源到屏的距离也改变：
+\[
+ \Delta y'=\frac{\lambda(L+2R\cos\alpha)}{4R\sin\alpha}
+ \approx0.593\,\mathrm{mm},\qquad
+ \frac{\Delta y'}{\Delta y}=\frac{L+2R\cos\alpha}{2(L+R\cos\alpha)}.
+\]
+比例约为0.523，不是严格的一半。理想重叠宽度不变，固定对称图样有41条亮纹中心，允许调相位时最大42条。
+
+最后必须说明“横移”的方向。取光源沿图中 $+x$ 方向移动 $\delta s$，即 $S=(\delta s,R)$。两虚像坐标变为
+\[
+ \begin{split}
+ S_1'&=(-R\cos\alpha-\delta s\sin\alpha,\ R\sin\alpha-\delta s\cos\alpha),\\
+ S_2'&=(-R\cos\alpha+\delta s\sin\alpha,-R\sin\alpha-\delta s\cos\alpha).
+ \end{split}
+\]
+到两虚像等距的点满足中垂线方程 $Ry=\delta s\,x$，故中央亮纹在屏上的位移为
+\[
+ \boxed{\delta y_0=\frac LR\,\delta s}.
+\]
+在这一坐标约定下是向 $+y$ 移动；若将源的正方向反取，结果的符号也反取。小位移的一阶近似下条纹间距不变，但公共照明区边界也应随新光路检查。量纲上 $\lambda(L+R)/R$ 是长度；$L\gg R$ 时才恢复常见的 $\lambda L/(2R\alpha)$ 近似。
+\end{xesolution}
+
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【比耶对切透镜】}\label{ch29:ex:s44-21-8}
+焦距为 $f$ 的透镜前 $l_1>f$ 处为波长 $\lambda$ 的缝光源，透镜后 $L$ 处为屏，且 $L>l_2=fl_1/(l_1-f)$。透镜沿直径切为两半并沿切口垂直方向对称移开总距离 $\delta>0$。已知屏上的公共重叠区为 $-D/2\le y\le D/2$，关于中央明纹对称。求条纹间距、亮纹中心的条数，并说明只计两侧暗纹之间完整亮带时如何计数。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+\BilletSourceDiagram
+未切透镜的像距
+\[
+ l_2=\frac{fl_1}{l_1-f}.
+\]
+设某半透镜的光轴平移到 $y=c$。相对于它的新光轴，源的物高为 $-c$，像高为 $(-l_2/l_1)(-c)$；换回原光轴，像的坐标为 $c(1+l_2/l_1)=cl_2/f$。取 $c=\pm\delta/2$，两实像源间距
+\[
+ d=\delta\frac{l_2}{f}.
+\]
+屏在像面之后时，相干源到屏的距离为 $L-l_2$，所以
+\[
+ \boxed{\Delta y=\frac{\lambda(L-l_2)}d
+ =\frac{\lambda f(L-l_2)}{\delta l_2}}.
+\]
+图~\ref{ch29:fig:billet} 中 $d$ 是两实像源间距，$D$ 是屏上的公共照明宽度，二者不可混用。由中心亮纹位于 $y=0$，亮纹中心 $y_m=m\Delta y$ 必须满足 $|m|\Delta y\le D/2$，所以包括端点的亮纹中心条数是
+\[
+ \boxed{N_{\rm center}=2\left\lfloor\frac{D}{2\Delta y}\right\rfloor+1}.
+\]
+若端点不计入，且 $D/(2\Delta y)$ 恰为整数，应去掉这两条端点纹。若“完整亮纹”指相邻两个暗纹之间的整条亮带，则第 $m$ 条的两侧暗纹位于 $(m\pm\tfrac12)\Delta y$，要求 $(|m|+\tfrac12)\Delta y\le D/2$，因此
+\[
+ \boxed{N_{\rm full}=\max\!\left\{0,\,
+ 2\left\lfloor\frac{D}{2\Delta y}-\frac12\right\rfloor+1\right\}.}
+\]
+如何由实际口径确定题给的 $D$？设每半透镜从切口到外缘的有效高度为 $a_p$，取上半片轴高 $c=\delta/2$、入射高度 $h\in[c,c+a_p]$。屏上光线高度为
+\[
+ Y=\frac{L}{l_2}\frac{cl_2}{f}+\left(1-\frac{L}{l_2}\right)h.
+\]
+于是上半束覆盖 $[q-sa_p,q]$，下半束覆盖 $[-q,-q+sa_p]$，其中
+$q=\frac\delta2(1+L/l_1)$、$s=L/l_2-1>0$。两者交集给出
+\[
+ \boxed{D=2\max\{0,\min(q,sa_p-q)\}.}
+\]
+外缘足够宽时才可化为 $D=2q=\delta(1+L/l_1)$；若 $sa_p\le q$，没有非零宽度的共同照明区，不能直接套条纹计数式。这里将恰在边界上的暗纹算作完整亮带的边界。若孔径使边缘光强趋零，实际能分辨的条数还可能更少。只有在允许条纹任意平移并求最大中心数时，才使用 $\lfloor D/\Delta y\rfloor+1$。
+\end{xesolution}
+
+\Needspace{20\baselineskip}\begin{origexamplebox}{【梅斯林干涉（Meslin interference）】}\label{ch29:ex:s44-21-9}
+凸透镜沿直径切开，两半沿光轴错开。轴上单色点源经两半分别成像于 $S_1',S_2'$，观察屏垂直于轴。（1）求条纹形状；（2）$f=30\,\mathrm{cm}$，物到近半透镜 $60\,\mathrm{cm}$，两半错开 $8\,\mathrm{cm}$，$\lambda=500\,\mathrm{nm}$，屏置于两像中点，求近轴条纹尺度。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+\MeslinSourceDiagram
+图~\ref{ch29:fig:meslin} 中两相干像源在同一轴上，屏在两像之间。若只考虑相位条件，等相位差轨迹是同心圆；但上、下半透镜各只透过半个波面。先成像的一束过轴后进入另一半空间，与尚未成像的一束只在该半屏重叠，所以实际可见的是\boxed{\text{同心半圆弧}}，而不是整圈。
+
+近半透镜像距 $v_1=30\times60/(60-30)=60\,\mathrm{cm}$。远半透镜到物的距离 $68\,\mathrm{cm}$，像距 $v_2=30\times68/(68-30)=53.684\,\mathrm{cm}$，按同一原点计其像坐标为 $8+53.684=61.684\,\mathrm{cm}$。两轴上像源间距
+\[
+ a=1.684\,\mathrm{cm}.
+\]
+屏位于中点，一束波在过焦点后发散，另一束仍在向焦点会聚；两波面曲率半径分别为 $+a/2$ 与 $-a/2$。近轴径向相位差增量
+\[
+ \Delta\varphi(r)-\Delta\varphi(0)=\frac{2kr^2}{a}.
+\]
+相邻圆纹满足
+\[
+ \boxed{r_{m+1}^2-r_m^2=\frac{\lambda a}{2}
+ =4.21\times10^{-9}\,\mathrm{m^2}=0.00421\,\mathrm{mm^2}}.
+\]
+上式可直接由球面波相位展开解释：屏到两像的轴向距离均为 $a/2$，离轴点到像的距离增加量约为 $r^2/a$。一束已发散，另一束仍会聚，曲率符号相反，故相位差增加量为 $2kr^2/a$。实际相邻圆弧的径向间距为
+\[
+ \boxed{r_{m+1}-r_m=\frac{\lambda a}{2(r_{m+1}+r_m)}}.
+\]
+它随半径增大而减小；$\sqrt{\lambda a/2}\approx64.9\,\mu\mathrm m$ 是平方半径级差对应的特征尺度，不能不考虑轴上相位就把它当作“第一亮环半径”。过焦点相位和两路恒定相位决定中心明暗，不影响上述相邻级次的平方半径差。
+\end{xesolution}
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{光源宽度怎样降低条纹反差}
+\label{ch29:ex:depth-source-width}
+沿用例~\ref{ch29:ex:s44-21-7} 的双面镜对称配置，取 $R=0.10\,\mathrm m$、$L=2.10\,\mathrm m$、$\alpha=20'$、$\lambda=600\,\mathrm{nm}$。把点光源改为沿 $x$ 方向、以 $(0,R)$ 为中心、全宽为 $w$ 的均匀线光源，不同源点彼此不相干。忽略源宽引起的振幅差和渐晕，仅考察所有源点均能照亮的近轴区域。（1）求条纹可见度随 $w$ 的关系；（2）求条纹第一次完全消失的源宽，并说明“能看见条纹”能否定义一个唯一最大源宽。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+一个源点经两镜形成的两束光彼此相干，但两个不同源点的场不能保持稳定相位，所以应先求每个源点的干涉强度，再把强度相加。例~\ref{ch29:ex:s44-21-7} 已得横移 $s$ 时中央亮纹移动 $Ms$，其中
+\[
+ M=\frac LR=21,\qquad
+ \Delta y=\frac{\lambda(L+R\cos\alpha)}{2R\sin\alpha}
+ \approx1.134\,\mathrm{mm}.
+\]
+这说明源上很小的横向距离可以在屏上变为较大的条纹错位。记 $k_y=2\pi/\Delta y$，来自源元 $\dd s$ 的强度可写为
+\[
+ \dd I=C[1+\cos k_y(y-Ms)]\dd s,
+ \qquad -w/2\le s\le w/2,
+\]
+其中 $C$ 为单位源宽贡献的平均强度。积分中的正弦项因关于 $s=0$ 对称而抵消，余下
+\[
+ I(y)=Cw\left[1+
+ \frac{\sin(k_yMw/2)}{k_yMw/2}\cos(k_yy)\right].
+\]
+因此
+\begin{equation}\label{ch29:eq:depth-source-visibility}
+ \boxed{\mathcal V(w)=\left|\frac{\sin(\pi Mw/\Delta y)}{\pi Mw/\Delta y}\right|}.
+\end{equation}
+当 $w\to0$ 时，分式趋于1，回到理想点光源；第一次为零时 $Mw=\Delta y$，故
+\[
+ \boxed{w_0=\frac{\Delta y}{M}=54.0\,\mu\mathrm m}.
+\]
+
+% Figure design: optical coherence, analytic plot rather than invented trend.
+% Print width 9cm, minimum label 9pt; x=w/w0 in [0,2.5], V in [0,1].
+% Main blue curve abs(sin(pi*x)/(pi*x)), value at 0 defined by limit.
+% Dashed guides only at first zero x=1; zero at x=2 also labelled.
+% ASCII: V |\_ /\_ / ; horizontal axis w/w0. No boxes or opaque tags.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=2.6cm,y=2.5cm,>=Latex,every node/.style={fill=none,font=\small,inner sep=2pt}]
+ \draw[->] (0,0)--(2.65,0) node[right]{$w/w_0$};
+ \draw[->] (0,0)--(0,1.17) node[above]{$\mathcal V$};
+ \draw[DeepBlue,thick] (0,1)--(.004,{abs(sin(180*.004)/(pi*.004))});
+ \draw[DeepBlue,thick,domain=.004:2.5,samples=301]
+ plot(\x,{abs(sin(180*\x)/(pi*\x))});
+ \draw[guide] (1,0)--(1,1);
+ \node[left] at (0,1){$1$};\node[below left] at (0,0){$0$};
+ \node[below] at (1,0){$1$};\node[below] at (2,0){$2$};
+ \node[above,align=center] at (1.72,.61){第一次零点后\\还有低反差条纹};
+\end{tikzpicture}
+\figcap{均匀非相干线光源的宽度效应。横轴按第一次零点的源宽归一化。\label{ch29:fig:depth-source-visibility}}
+\end{minipage}\end{center}
+
+图~\ref{ch29:fig:depth-source-visibility} 显示 $w>w_0$ 后可见度不总为零，还存在较弱的旁瓣。实际“可见”要指定反差阈值、噪声和渐晕，因此题目若只说“具有一定反差”而不给标准，就没有唯一的最大允许宽度。这里的 $w_0$ 是清楚定义的第一次零点，不应偷换成普遍的可见性界限；其他源强分布也会给出不同的可见度函数。
+\end{xesolution}
+
+
+\section{薄膜干涉与增透膜}
+
+
+
+分波阵面装置把一个波面的不同区域变成次级波源；分振幅装置则由部分反射/透射把同一束光的振幅分开，再使各束重合。薄膜反射是最常见的分振幅干涉。
+
+图~\ref{ch29:fig:s44-21-6} 中，折射率为 $n$、厚度为 $D$ 的膜置于空气中，入射角为 $i$、膜内折射角为 $r$。上下表面两束反射光的传播光程差为
+\[
+ \Delta\mathcal L_{\rm geom}=2nD\cos r.
+\]
+若两次反射中恰有一次发生半波损失，总相位差可写成
+\begin{equation}
+ \Delta\varphi=\frac{2\pi}{\lambda_0}(2nD\cos r)+\pi.
+\end{equation}
+因此在\textbf{反射光}中，带一次半波损失时，暗纹满足 $2nD\cos r=m\lambda_0$，明纹满足 $2nD\cos r=(m+1/2)\lambda_0$。若零次或两次相变，明暗条件互换。正入射时只需令 $\cos r=1$。
+
+图~\ref{ch29:fig:s44-21-6} 中传播光程差可逐段核算。进入薄膜的一束在膜内往返的光程为 $2nD/\cos r$；与此同时，直接在上表面反射的另一束在膜外多走了一段，其在出射方向上的投影光程为 $2D\tan r\sin i$。利用 $\sin i=n\sin r$，两者相减：
+\[
+ \frac{2nD}{\cos r}-2D\tan r\sin i
+ =2nD\cos r.
+\]
+因此 $2nD/\cos r$ 不是最终程差，漏减外部补偿段会把角度依赖写反。相位突变应在传播光程算完后另行加入：只有上下两次反射的相变次数相差奇数，才等效多出 $\lambda_0/2$。
+
+对楔形膜或缓慢变厚的油膜，$D$ 随位置变化，等光程差的位置形成条纹；对白光，不同 $\lambda_0$ 的加强位置不同，于是出现颜色。若膜厚超过光源相干长度，来自不同往返路径的相位关系不再稳定，彩纹会被平均掉。薄膜现象图和薄膜光路图中膜的两个界面、两束最终平行的出射光以及一次相变的位置，必须同时参与判断。
+
+\FilmPhenomenaPanel
+图~\ref{ch29:fig:s44-21-5} 中的薄膜现象都需要比较上下表面反射的两束光；以下计算既计膜内传播，也计反射相变。
+\ThinFilmDiagram
+
+太阳能电池、眼镜和相机镜头的增透膜利用反射光相消。取空气、透明膜、透明基底三个介质，折射率满足 $n_0<n_{\rm f}<n_{\rm s}$；正入射时上下界面的反射均有 $\pi$ 相变，二者的相对界面相位为零。要使传播相位相差 $\pi$，最薄的膜须满足 $2n_{\rm f}D=\lambda_0/2$，即 $D=\lambda_0/(4n_{\rm f})$。
+
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+\fill[Blue!10](-3,-.6)rectangle(3,.6);
+\fill[SoftGray](-3,-1.5)rectangle(3,-.6);
+\draw[thick](-3,.6)--(3,.6) (-3,-.6)--(3,-.6);
+\node[anchor=west]at(3.3,1.1){空气 $n_0=1$};
+\node[anchor=west]at(3.3,0){膜 $n_{\rm f}=1.45$};
+\node[anchor=west]at(3.3,-1.1){基底 $n_{\rm s}=3.5$};
+\draw[DeepBlue,->](-1.4,1.8)--(-1.4,-.6);
+\draw[Blue,->](-.8,.6)--(-.8,1.8);
+\draw[Gold,->](.3,-.6)--(.3,1.8);
+\node[above]at(-1.4,1.8){入射};\node[above]at(-.5,2.3){两界面反射};
+\draw[<->](2.6,-.6)--(2.6,.6)node[midway,left]{$D$};
+\end{tikzpicture}\figcap{增透膜的三介质模型。正入射光线为便于辨认而横向分列，实际往返光路重合。}\label{ch29:fig:coating}\end{minipage}\end{center}
+
+例如 $\lambda_0=550\,\mathrm{nm}$、$n_{\rm f}=1.45$ 时，$D\approx94.8\,\mathrm{nm}$。图~\ref{ch29:fig:coating} 的无吸收模型中，未镀膜反射率为 $[(n_{\rm s}-n_0)/(n_{\rm s}+n_0)]^2\approx30.9\%$；计入膜内全部往返反射，四分之一波膜的反射率为
+\[
+ R=\left(\frac{n_0n_{\rm s}-n_{\rm f}^2}{n_0n_{\rm s}+n_{\rm f}^2}\right)^2\approx6.22\%.
+\]
+只有 $n_{\rm f}^2=n_0n_{\rm s}$ 时理想反射率才恰为零。这里的基底折射率仅为计算模型；真实硅等材料还具有吸收与色散，不能直接拿此结果替代实测。真实多层膜还要匹配入射角和宽谱响应。镜头表面呈紫红或绿色，是其余波段反射光的综合色。
+
+四分之一波厚度只保证两束主要反射光相差 $\pi$，要做到完全相消还需要两束反射振幅相等。单层膜在正入射下的理想振幅匹配要求膜折射率约为两侧折射率的几何平均；现实材料未必恰好满足，因此反射率只能被显著压低而非严格为零。入射角或波长改变时，$2nD\cos r$ 也随之改变，所以为某一中心波长设计的膜在反射光中会显出其余颜色，多层膜则用多组厚度扩大有效波段。
+
+反射光与透射光的明暗条件互补：忽略吸收时，某波长在反射方向被相消，能量便主要进入透射方向。增透膜并不是把这部分光“吸收掉”，而是利用相位把能流重新分配；高反膜则反过来设计多层界面，使目标波段的反射振幅同相叠加。
+
+
+
+
+\subsection{增透为何既要求膜厚，也要求折射率匹配}
+膜厚决定相位，界面折射率决定反射振幅。只有相位相反而振幅不等，反射仍不能完全消失。以下取正入射、各介质无吸收且非磁性，入射介质、单层膜和半无限基底的折射率依次为 $n_0,n,n_s$。
+
+用电场振幅的比值定义反射系数，两个界面的系数为
+\[
+ r_{01}=\frac{n_0-n}{n_0+n},\qquad
+ r_{12}=\frac{n-n_s}{n+n_s}.
+\]
+负号已经包含反射的 $\pi$ 相变，使用这组带符号系数时不能再额外加一次“半波损失”。从膜内向入射侧反射有 $r_{10}=-r_{01}$；两次透射系数满足
+\[
+ t_{01}t_{10}=\frac{2n_0}{n_0+n}\frac{2n}{n_0+n}
+ =1-r_{01}^2.
+\]
+设膜厚为 $t$，单程相位为 $\phi=2\pi nt/\lambda_0$，往返相位因子为 $q=\exp(2\ii\phi)$。第一束反射振幅为 $r_{01}$，进入膜后从底面反射并透回来的第一束为 $t_{01}t_{10}r_{12}q$，以后每多往返一次就乘 $r_{10}r_{12}q$。把等比级数相加，得到总反射系数
+\[
+ r=r_{01}+\frac{(1-r_{01}^2)r_{12}q}{1+r_{01}r_{12}q}
+ =\frac{r_{01}+r_{12}q}{1+r_{01}r_{12}q}.
+\]
+最薄的四分之一波膜满足 $nt=\lambda_0/4$，因此 $q=-1$。要使分子为零，还必须有 $r_{01}=r_{12}$。代入并交叉相乘：
+\[
+ (n_0-n)(n+n_s)=(n-n_s)(n_0+n)
+ \quad\Longrightarrow\quad n^2=n_0n_s.
+\]
+所以理想单层增透膜的两个条件为 $n=\sqrt{n_0n_s}$ 和 $t=\lambda_0/(4n)$。仅满足厚度条件时通常只能减弱反射；改变波长或入射角后，相位和振幅匹配也会改变，不能认为这一层膜对所有颜色和方向都完全增透。
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【油膜干涉】}\label{ch29:ex:s44-21-12}
+地面油膜为什么呈五彩斑斓？这说明了什么？
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+白光照到油膜，上、下表面反射光重新重合。对给定位置和观察角，反射相位差约由 $2nD\cos r$ 加界面半波损失决定；不同波长的加强条件不同，所以反射光只突出某些颜色。油膜厚度和表面坡度随位置变化，颜色也随位置改变。
+
+这说明油层薄到与可见光波长同量级，并且在至少一个相干面积内厚度变化缓慢；同时也直接显示光的波动叠加性质。若油层远厚于白光相干长度，众多反射次序平均后便不会形成清晰彩纹。
+\end{xesolution}
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【薄膜干涉】}\label{ch29:ex:s44-21-13}
+竖直的未吹泡泡液膜从上到下呈不同颜色，颜色缓慢变化并最终变黑，为什么？
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+重力使液体向下排流，膜通常上薄下厚；每一高度对应不同 $D$，反射增强的波长不同，因而形成近似水平的等厚彩带。排流继续时，同一高度的厚度随时间减小，颜色便缓慢迁移。
+
+当顶部膜厚降到几十纳米量级，$2nD$ 对全部可见波长都很小；上下表面反射中恰有一次 $\pi$ 相变，两束反射光近乎相消，形成“黑膜”。黑色不是液体变黑，而是可见反射光被压低；膜已经很薄，但黑膜可因表面力而维持一段时间，变黑本身不等于已经破裂或必将立即破裂。
+\end{xesolution}
+
+\section{劈尖与牛顿环}
+
+
+
+
+\subsection{把条纹位置转化成膜厚位置}
+在单色光近于垂直入射、恰有一次相对半波损失时，空气膜的反射暗纹满足 $2t=m\lambda_0$。劈尖小角为 $\alpha$，距接触线的坐标为 $x$，则 $t=x\tan\alpha\simeq\alpha x$，从而
+\[
+ x_m=\frac{m\lambda_0}{2\alpha},\qquad
+ x_{m+1}-x_m=\frac{\lambda_0}{2\alpha}.
+\]
+因此直而等间距的条纹意味着所测截面上的厚度近似线性增加。若有局部凸起，条纹要沿保持同一厚度的位置弯曲；判断凸凹时必须说明观察的是哪一界面以及空气膜变厚还是变薄。
+
+牛顿环中，球面曲率半径为 $R$、离轴半径为 $\rho$。几何关系不是 $t=\rho^2/R$，而是
+\[
+ \rho^2+(R-t)^2=R^2,
+ \quad \rho^2=2Rt-t^2,
+ \quad t\simeq\frac{\rho^2}{2R}\ (t\ll R).
+\]
+于是反射暗环半径满足 $\rho_m^2=m\lambda_0R$。相邻暗环的半径差并不恒定，恒定的是半径平方差。测量时使用
+\[
+ D_{m+p}^2-D_m^2=4p\lambda_0R
+\]
+（$D_m=2\rho_m$），能避开把中央某个环误认作第零级的影响。
+
+若透镜并未真正接触平板，中心存在间隙 $t_0$，应写 $t=t_0+\rho^2/(2R)$。此时中心未必为暗，环的绝对级次也改变，但相隔 $p$ 级的直径平方差公式仍成立。把“中心必须暗”当作不带条件的规律，会把灰尘、接触不良和膜厚偏置误解释成新现象。
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【劈尖的干涉】}\label{ch29:ex:s44-21-4}
+透明劈尖的尖角为 $\theta$，沿传播方向 $x$ 的最大厚度为 $h$，折射率为 $n(x)=1+bx$（$b>0$）。将斜面理解为许多微小台阶，各台阶的入射、出射面均垂直于 $x$ 轴，忽略台阶边缘的衍射及反射损失。波长 $\lambda$ 的平行光沿 $+x$ 入射，各光线在介质中直线传播。其后紧贴不透明挡板，开有平行于 $z$ 轴的狭缝；缝在 $y$ 方向排列，第一缝位于尖端 $y=0$，该处厚度为零。理想会聚透镜把各缝光汇聚到后焦点，各缝至焦点的其余光程相同。求其余缝的允许坐标，并判断是否可以选择等距的缝，使焦点处各束光同相加强。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+图~\ref{ch29:fig:wedge} 中，$y$ 是缝沿挡板的坐标，$x_y$ 才是该光线穿过介质的厚度。由尖角几何，$x_y=y\tan\theta$。
+\WedgeInterferenceDiagram
+相对于同样几何长度的空气，该光线增加的光程为
+\[
+ \Delta\mathcal L(y)=\int_0^{x_y}[n(x)-1]\,\dd x
+ =\int_0^{x_y}bx\,\dd x=\frac b2y^2\tan^2\theta.
+\]
+物到像的其余光程相等，故各缝要在透镜焦点同相加强，须 $\Delta\mathcal L(y_m)=m\lambda$：
+\[
+ \boxed{y_m=\cot\theta\sqrt{\frac{2m\lambda}{b}},\qquad m=0,1,2,\ldots}
+\]
+并受 $x_y\le h$ 限制，即 $0\le m\le bh^2/(2\lambda)$。注意 $[b]=\mathrm m^{-1}$，所以 $\sqrt{\lambda/b}$ 的量纲为长度。
+
+若把每一个相邻整数级次都开成一条缝，则
+\[
+ y_{m+1}-y_m=\cot\theta\sqrt{\frac{2\lambda}{b}}
+ (\sqrt{m+1}-\sqrt m),
+\]
+间距确实逐渐减小。但题目并未要求所有允许位置都开缝：\textbf{选取部分级次可以得到等距缝列。}
+取任意正整数 $q$，只选 $m=qj^2$，就有
+\[
+ \boxed{y_j=j\cot\theta\sqrt{\frac{2q\lambda}{b}},\quad
+ j=0,1,\ldots,\left\lfloor h\sqrt{\frac{b}{2q\lambda}}\right\rfloor.}
+\]
+此时第 $j$ 条缝的附加光程为 $qj^2\lambda$，与第一缝的相位差为 $2\pi qj^2$，每束仍同相。最小等距间隔对应 $q=1$；至少能开两条缝还要求 $bh^2\ge2\lambda$。这区分了“连续级次不等距”和“选取级次可以等距”两件事。
+\end{xesolution}
+
+\NewtonRingsDiagram
+图~\ref{ch29:fig:newton} 中透镜与平板之间的空气层厚度随离接触点的距离增大；等厚位置成圆，因而干涉条纹呈同心环。
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【牛顿环】}\label{ch29:ex:s44-21-14}
+把凸面半径为 $R$ 的平凸透镜以凸面向下放在平面镜上，中心恰好接触，从反射方向观察空气膜的明暗同心环。（1）求第 $m$ 级条纹半径；（2）判断中心明暗；（3）说明这一现象的早期观察者。题目只写“平面镜”，未指定其反射镀层；请先说明所需的反射相位条件，再给出常用透明玻璃底板模型的结果。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+“平面镜”只确定几何形状，未确定反射相位。如果是金属镀层，不能从题给的 $R,\lambda$ 唯一确定中心明暗。下面保留一般相位 $\delta_r$，并把透明玻璃底板作为条件明确的特例。
+离中心半径 $r$ 处的空气膜厚度由球面几何给出
+\[
+ t=R-\sqrt{R^2-r^2}\simeq\frac{r^2}{2R}.
+\]
+图中的 $O$ 是真实接触点，厚度从 $O$ 向外增大。透明玻璃模型下，玻璃到空气的反射无半波损失，空气到玻璃的反射有半波损失，故反射暗环满足 $2t=m\lambda$：
+\[
+ \boxed{r_m^{(\rm dark)}=\sqrt{m\lambda R},\qquad m=0,1,2,\ldots}
+\]
+反射明环满足 $2t=(m+1/2)\lambda$：
+\[
+ \boxed{r_m^{(\rm bright)}=\sqrt{\left(m+\tfrac12\right)\lambda R}}.
+\]
+$r=0$ 处几何程差为零但有半波损失，因此\boxed{\text{中心为暗纹}}。若透镜与平面不真正接触，中心会因残余膜厚而改变。
+
+如果底板改为金属镜，反射系数一般为复数。设两束反射引入的相对相位为 $\delta_r$，则总相位差为 $4\pi t/\lambda+\delta_r$，相消位置满足
+\[
+ \frac{4\pi t}{\lambda}+\delta_r=(2m+1)\pi.
+\]
+在 $r\ll R$ 下，极小与极大的平方半径分别为
+\[
+ r_{m,\min}^2=\lambda R\left(m+\frac12-\frac{\delta_r}{2\pi}\right),\qquad
+ r_{m,\max}^2=\lambda R\left(m-\frac{\delta_r}{2\pi}\right),
+\]
+只保留右端非负的整数 $m$。中心强度为 $I(0)=I_1+I_2+2\sqrt{I_1I_2}\cos\delta_r$。所以中心是否为暗纹要由 $\delta_r$ 决定，不能直接沿用透明玻璃的半波损失判断；两束振幅不等时，相消处也只是极小而不是完全无光。几何关系 $t\simeq r^2/(2R)$ 仍成立。
+
+这类颜色和环纹在牛顿之前已由罗伯特·胡克（Robert Hooke）观察并记载；牛顿后来作了系统、定量研究，“牛顿环”由此得名。
+\end{xesolution}
+
+\section{迈克耳孙干涉仪与测量}
+
+
+
+迈克耳孙干涉仪用半透半反分光镜把光分入两条近乎正交的臂，经 $M_1,M_2$ 反射后再次合束。补偿板 $P$ 使两束光穿过相同厚度的玻璃。把一面反射镜关于分光镜成像，两臂等效为两面几乎平行或略有夹角的镜；微小位移会让干涉条纹移动。
+
+若某臂反射镜移动 $x$，往返光程改变 $2x$，每改变一个波长就有一条条纹扫过固定点。这使迈克耳孙装置成为高灵敏位移和波长测量工具。迈克耳孙的工作获 1907 年诺贝尔物理学奖；现代大型激光干涉仪沿用相同相位测量思想，通过长臂、多次反射、真空和隔振检测极小长度变化，引力波探测是其著名应用。
+
+大型引力波装置可以看作把这一原理推到极端：两条互相垂直的真空臂长达千米，光在臂腔中多次往返以增加等效光程，隔振与双站符合则用来排除局部扰动。引力波通过时，两臂长度以相反方式产生极微小相对变化，合束处的相位和光强随之改变。它测量的不是镜子“被光推着移动”，而是两条光路长度差的时间变化；这一区别也说明迈克耳孙图中两臂、分光镜、反射镜和探测端的连接关系都不能省略。
+
+分光镜使一路先反射后透射，另一路先透射后反射；若没有补偿板，两路穿过玻璃的次数和厚度不同，宽带光中会出现额外色散，零光程差难以同时满足。把反射镜 $M_2$ 关于分光镜作虚像后，仪器可等效为两面“虚镜”形成的空气薄膜：虚镜平行时得到等倾圆纹，略有夹角时得到近似直条纹。镜移动 $\lambda/2$ 会使往返程差变化一个波长，因此固定点恰有一条纹通过，这是后面例~\ref{ch29:ex:s44-21-10} 速度测量的直接依据。
+
+\MichelsonDiagram
+图~\ref{ch29:fig:s44-21-7} 的两臂都往返传播；反射镜沿臂移动距离 $x$，该臂的几何路程改变 $2x$，而不是 $x$。
+
+激光干涉引力波天文台（LIGO）在美国汉福德和利文斯顿各设一台干涉仪，每台的两条真空臂几何长度均为 $4\,\mathrm{km}$。图~\ref{ch29:fig:ligo-sites} 中左侧为干旱地区的汉福德站，右侧为森林地区的利文斯顿站；每站两臂互相垂直。不同站点的环境扰动通常不相关，比较两站信号到达时间和波形，是判断天体来源的重要步骤。
+
+\historyfigure{ligo-two-sites-20260923.png}{引力波双站的环境与两条正交长臂；情景图不用于量取尺寸。\label{ch29:fig:ligo-sites}}
+
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[x=.19cm,y=.13cm,font=\small]
+\draw[RuleGray](-125,25)rectangle(-65,50);
+\foreach \x in {-120,-100,-80}{\draw[RuleGray](\x,25)--(\x,50);\node[below]at(\x,25){$\x^\circ$};}
+\foreach \y in {30,40,50}{\draw[RuleGray](-125,\y)--(-65,\y);\node[left]at(-125,\y){$\y^\circ$};}
+\coordinate(H)at(-119.407,46.455);\coordinate(L)at(-90.774,30.563);
+\fill[DeepBlue](H)circle(2pt);\fill[DeepBlue](L)circle(2pt);
+\draw[Blue,dashed](H)--(L);
+\node[above right]at(H){汉福德（美国西北部）};
+\node[above right]at(L){利文斯顿（美国南部）};
+\end{tikzpicture}\figcap{双站近似经纬位置；横坐标是东经有向角，负值表示西经，纵坐标为北纬。图上直线不用于量取球面距离。}\label{ch29:fig:ligomap}\end{minipage}\end{center}
+
+图~\ref{ch29:fig:ligomap} 中汉福德位于利文斯顿的西北方向。两站具有不同的局部环境，远距离布置使共同信号与单站噪声的区分更有依据；信号到达的先后还取决于波源方向。
+
+首次直接探测到的引力波信号于2015年9月14日到达两站。若应变的量级为 $h\sim10^{-21}$，则单臂长度变化的量级是 $hL\sim4\times10^{-18}\,\mathrm m$，而不是毫米或纳米。臂内的法布里--珀罗腔使光反复往返，低频相位响应约增强300倍；这是光学响应的增强，不能把实体臂长写成几百倍的 $4\,\mathrm{km}$，也不能把增强系数不加频率条件地视为常数。
+
+\subsection{移动镜面、计数与折射率测量}
+镜面沿其法线移动 $\Delta l$ 时，一路光往返的几何长度改变 $2\Delta l$。在空气近似为真空且近轴时，若观察点有 $N$ 个完整条纹周期通过，便有
+\[
+ 2|\Delta l|=N\lambda_0.
+\]
+因子2来自同一路的去程和回程，不来自仪器有两条臂。计数给出的是变化量，通常不能确定初始绝对级次；镜面向哪侧移动，则必须另外通过机械位移或条纹运动方向判断。
+
+若在一路放入长度为 $l$ 的气室，折射率从 $n_a$ 变为 $n_b$，光在气室中往返，其他条件不变，则光程变化为 $2l(n_b-n_a)$，于是
+\[
+ |n_b-n_a|=\frac{N\lambda_0}{2l}.
+\]
+若装置只单程通过待测片，分母便没有2。做题时先把实际路径逐段列出来，再决定“一次”还是“两次”，比记忆仪器名称更可靠。
+
+把一块斜放玻璃板插入一路时，除了改变相位，还可能引起横向位移和色散。白光干涉要求两臂不仅几何长度接近，所经过玻璃的厚度也应匹配；补偿板的作用就是让不同频率的相位能够同时接近匹配，不能仅凭某一单色光的零程差认定白光条件已满足。
+
+
+% Moving-source panel relocated to its solution.
+
+
+
+
+
+
+\Needspace{8\baselineskip}\begin{origexamplebox}{【变化臂长】}\label{ch29:ex:s44-21-10}
+迈克耳孙干涉仪一臂反射镜以速度 $v$ 匀速平移。（1）$\lambda=600\,\mathrm{nm}$，固定取样窗中的信号频率 $50\,\mathrm{Hz}$，求镜速；（2）用平均波长 $589.3\,\mathrm{nm}$ 的钠黄光，镜速同前，拍频 $5.2\times10^{-2}\,\mathrm{Hz}$，求两谱线波长差。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+镜移动 $v\dd t$ 使往返光程改变 $2v\dd t$，故条纹频率 $\nu=2v/\lambda$：
+\[
+ \boxed{v=\frac{\nu\lambda}{2}=1.50\times10^{-5}\,\mathrm{m/s}=15.0\,\mu\mathrm{m/s}}.
+\]
+两近邻波长产生的时间频率差
+\[
+ \Delta\nu=2v\left|\frac1{\lambda_1}-\frac1{\lambda_2}\right|
+ \simeq\frac{2v\Delta\lambda}{\bar\lambda^2}.
+\]
+所以
+\[
+ \boxed{\Delta\lambda=\frac{\Delta\nu\,\bar\lambda^2}{2v}
+ \approx6.02\times10^{-10}\,\mathrm m=0.602\,\mathrm{nm}}.
+\]
+这里两色的光学频率相差很大，探测器并不是记录光场在光学频率上的拍频，而是先分别得到两列随镜位移变化的低频强度信号，再叠加：
+\[
+ \cos(2\pi\nu_1t)+\cos(2\pi\nu_2t)
+ =2\cos[\pi(\nu_1-\nu_2)t]\cos[\pi(\nu_1+\nu_2)t].
+\]
+包络的绝对值每隔 $1/|\nu_1-\nu_2|$ 再现一次，故题给拍频取两条纹频率之差，不能再多乘或少乘一个 $2$。两谱线强度不等会降低包络谷的深度，但不会改变其再现周期。
+这里 $50\,\mathrm{Hz}$ 与 $5.2\times10^{-2}\,\mathrm{Hz}$ 的量级相差三阶，代入时必须保留指数。
+\end{xesolution}
+
+\section{复振幅与相干性的定量描述（选读）}
+
+
+
+标量波模型满足
+\begin{equation}
+ \left(\nabla^2-\frac1{v^2}\frac{\partial^2}{\partial t^2}\right)\psi(\vect r,t)=0.
+\end{equation}
+对角频率为 $\omega$ 的单色波，取时间因子 $e^{-\ii\omega t}$，写成
+\begin{equation}
+ \psi(\vect r,t)=\Re\!\left[U(\vect r)e^{-\ii\omega t}\right],
+ \qquad (\nabla^2+k^2)U=0,
+\end{equation}
+其中 $k=\omega/v$，第二式是亥姆霍兹方程（Helmholtz equation）。改变时间因子约定会同时改变传播相因子的符号，但可测的强度和相位差不变。
+
+下文把复振幅归一化为 $I_j=\langle|U_j|^2\rangle$；若直接使用电场复振幅，在同一无吸收介质中还需乘共同系数 $n\varepsilon_0c/2$。对同偏振光，探测器在远长于光学周期的时间内平均，得到
+\begin{equation}
+ I=I_1+I_2+2\Re\Gamma_{12},
+ \qquad
+ \Gamma_{12}=\left\langle U_1^*U_2\right\rangle.
+\end{equation}
+当 $I_1,I_2$ 均非零时，归一化复相干度定义为
+\begin{equation}
+ \gamma_{12}=\frac{\Gamma_{12}}{\sqrt{I_1I_2}},
+ \qquad 0\le |\gamma_{12}|\le1.
+\end{equation}
+改变两路相位差并记录条纹最大、最小强度，条纹可见度为
+\begin{equation}
+ \mathcal V=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}
+ =\frac{2\sqrt{I_1I_2}}{I_1+I_2}|\gamma_{12}|.
+\end{equation}
+因此条纹变浅既可能是相干度下降，也可能只是两束强度相差过大；仅凭“看不见条纹”不能断言两束完全不相干。
+
+时间相干性比较同一点不同时刻的场，谱宽为 $\Delta\nu$ 的准单色光，其相干时间和真空相干长度量级为
+\begin{equation}
+ \tau_c\sim\frac1{\Delta\nu},
+ \qquad \ell_c\sim c\tau_c.
+\end{equation}
+空间相干性比较同一波面不同位置的场，扩展光源越大，不同源点形成的条纹错位越明显，相干面积通常越小。这分别解释了宽带光对光程差敏感、宽光源对双缝间距敏感的原因。
+
+\tcbset{breakable/.default=true}\begin{starread}{多光束干涉与法布里--珀罗腔（Fabry--P\'erot cavity）}
+两块平行的部分反射镜使光在腔内多次往返。相邻透射束的往返相位差为
+\[
+ \delta=\frac{4\pi nd\cos r}{\lambda_0}.
+\]
+若两镜强度反射率相同且为 $R$，忽略吸收，每通过两镜一次，振幅因子为 $1-R$；
+每多往返一周，振幅再乘 $R\e^{\ii\delta}$。因此全部透射束的复振幅和为
+\[
+ \frac{E_t}{E_0}
+ =(1-R)\e^{\ii\delta/2}
+ \sum_{j=0}^{\infty}(R\e^{\ii\delta})^j
+ =\frac{(1-R)\e^{\ii\delta/2}}{1-R\e^{\ii\delta}}.
+\]
+取模平方，并利用
+$|1-R\e^{\ii\delta}|^2=(1-R)^2+4R\sin^2(\delta/2)$，得到艾里公式（Airy formula）：
+\[
+ \frac{I_t}{I_0}=\frac1{1+\mathcal F\sin^2(\delta/2)},
+ \qquad \mathcal F=\frac{4R}{(1-R)^2}.
+\]
+当 $\delta=2m\pi$ 时各束同相，透射达到极大；$R$ 越接近1，峰越窄，仪器分辨相近谱线的能力越强。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.86,>=Latex]
+  \draw[very thick] (0,-1.55)--(0,2.05);
+  \draw[very thick] (5,-1.55)--(5,2.05);
+  \node[below] at (0,-1.65){部分反射镜};
+  \node[below] at (5,-1.65){部分反射镜};
+  \draw[<->,guide] (.1,2.18)--(4.9,2.18) node[midway,above]{$d$};
+  \draw[thick,DeepBlue] (-1.4,-1.254)--(0,-1.10)--(5,-.55)--(0,0)--(5,.55)--(0,1.10)--(5,1.65);
+  \draw[-{Latex[length=2mm]},thick,DeepBlue] (5,-.55)--(6.4,-.396);
+  \draw[-{Latex[length=2mm]},thick,DeepBlue] (5,.55)--(6.4,.704);
+  \draw[-{Latex[length=2mm]},thick,DeepBlue] (5,1.65)--(6.4,1.804);
+  \node[right] at (6.4,.704){逐次透射束};
+\end{tikzpicture}
+\figcap{法布里--珀罗腔中的多次反射与透射。右侧各束平行；用会聚透镜在后焦面叠加同方向的光束，或在远场观察其共同角谱。}
+\end{minipage}\end{center}
+
+相邻纵模满足 $2nd\cos r=m\lambda_0$。近轴且介质色散可忽略时，相邻共振频率之差（自由光谱范围）为
+\[
+ \Delta\nu_{\rm FSR}=\frac{c}{2nd}.
+\]
+在高反射率近似下，令 $\delta=2m\pi+\varepsilon$ 且
+$\sin(\varepsilon/2)\simeq\varepsilon/2$。透射强度降到峰值一半时
+$\mathcal F\varepsilon^2/4=1$，故单个透射峰的频率半高全宽为
+\[
+ \delta\nu_{1/2}=\frac{\Delta\nu_{\rm FSR}}{\mathcal F_{\rm in}},
+ \qquad
+ \mathcal F_{\rm in}=\frac{\pi\sqrt R}{1-R},
+\]
+其中 $\mathcal F_{\rm in}$ 称为精细度（finesse）。注意艾里公式中的系数 $\mathcal F$ 与精细度
+$\mathcal F_{\rm in}$ 不是同一个量；前者控制峰形，后者是“相邻峰间距与单峰宽度之比”。
+
+例如 $d=1.00\,\mathrm{cm}$、$n=1$、$R=0.95$ 时，
+$\Delta\nu_{\rm FSR}=15.0\,\mathrm{GHz}$，$\mathcal F_{\rm in}\approx61.2$，
+因而 $\delta\nu_{1/2}\approx245\,\mathrm{MHz}$。若两条谱线的频差远小于这个峰宽，它们在该腔的透射谱上不能清楚分开；
+增大 $R$ 会压窄峰，但也会增加建立稳定腔场所需的往返次数，并提高对镜面平行度和机械稳定性的要求。
+
+这个频域结论还有直接的时域解释。关掉入射光后，腔内光每经过一个往返时间
+$t_{\rm rt}=2nd/c$，能量乘以 $R^2$，所以
+\[
+ U(t)=U(0)\exp\!\left(-\frac{t}{\tau_E}\right),
+ \qquad
+ \tau_E=-\frac{t_{\rm rt}}{2\ln R}
+ \simeq\frac{nd}{c(1-R)}.
+\]
+高反射率近似下，谱峰半高全宽满足
+\[
+ \boxed{\delta\nu_{1/2}\simeq\frac1{2\pi\tau_E}}.
+\]
+因此“峰越窄”与“腔内能量衰减越慢”是同一物理事实的频域和时域表述；测量关断后的环降曲线，
+也能反推出腔损耗和精细度。
+\end{starread}\tcbset{breakable/.default=false}
+
+\endgroup

@@ -1,0 +1,24 @@
+% Contract: two normalized grayscale interference strips; print width 12cm.
+% Physical model: equal local beam intensities, I/(I1+I2)=1+V(x)cos(2pi*x).
+% Top V=.98; bottom V=.98 exp[-(x/1.4)^2]; identical fringe spatial period.
+% Smooth narrow-band illustrative coherence envelope, not a measured source spectrum.
+% Layout: two 8cm strips stacked 1.6cm apart, descriptive text to their right.
+% No labels over pixels; no white masks; no inferred color from a grayscale scan.
+% ASCII: [high contrast many fringes] laser; [central clear, outer washed] ordinary.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[every node/.style={fill=none,font=\small},x=1cm,y=1cm]
+ \foreach \row in {0,1}{
+  \foreach \j in {0,...,319}{
+   \pgfmathsetmacro{\xx}{-4+(\j+.5)/40}
+   \pgfmathsetmacro{\vis}{ifthenelse(\row==0,.98,.98*exp(-(\xx/1.4)^2))}
+   \pgfmathsetmacro{\shadevalue}{50*(1-\vis*cos(360*\xx))}
+   \fill[black!\shadevalue]({-4+\j/40},{-1.6*\row})rectangle({-4+(\j+1)/40+.001},{.65-1.6*\row});
+  }
+ }
+ \node[right,align=left,text width=4cm]at(4.3,.32){窄谱、良好相干照明\\较大范围仍有清晰条纹};
+ \node[right,align=left,text width=4cm]at(4.3,-1.28){普通光源经狭缝处理\\中心附近条纹较清晰};
+\end{tikzpicture}
+\figcap{相同条纹间距下的反差比较。灰度只表示归一化强度，不用于比较两种光源的绝对亮度。\label{ch29:fig:coherence-contrast}}
+\end{minipage}\end{center}
+
+图~\ref{ch29:fig:coherence-contrast} 保留了另一层信息：普通光源经狭缝获得部分空间相干性后，也能产生干涉，并非“只有激光能干涉”。但光谱宽度及有效光源尺寸会限制反差；当两路光程差增大，不同频率产生的条纹逐渐错开，时间平均后外侧条纹变淡。图中用随离轴距离增大而减小的可见度示意这一过程。实际反差包络由光谱、光源尺寸和仪器决定，不必恰好是高斯形。白光的颜色次序则应另看图~\ref{ch29:fig:s44-21-4}，不能用颜色次序代替反差的比较。

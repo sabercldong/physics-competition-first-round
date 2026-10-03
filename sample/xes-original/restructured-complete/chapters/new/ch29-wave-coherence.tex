@@ -1,0 +1,110 @@
+\section{复振幅与相干性的定量描述}
+
+标量波模型满足
+\begin{equation}
+ \left(\nabla^2-\frac1{v^2}\frac{\partial^2}{\partial t^2}\right)\psi(\vect r,t)=0.
+\end{equation}
+对角频率为 $\omega$ 的单色波，取时间因子 $e^{-\ii\omega t}$，写成
+\begin{equation}
+ \psi(\vect r,t)=\Re\!\left[U(\vect r)e^{-\ii\omega t}\right],
+ \qquad (\nabla^2+k^2)U=0,
+\end{equation}
+其中 $k=\omega/v$，第二式是亥姆霍兹方程（Helmholtz equation）。改变时间因子约定会同时改变传播相因子的符号，但可测的强度和相位差不变。
+
+下文把复振幅归一化为 $I_j=\langle|U_j|^2\rangle$；若直接使用电场复振幅，在同一无吸收介质中还需乘共同系数 $n\varepsilon_0c/2$。对同偏振光，探测器在远长于光学周期的时间内平均，得到
+\begin{equation}
+ I=I_1+I_2+2\Re\Gamma_{12},
+ \qquad
+ \Gamma_{12}=\left\langle U_1^*U_2\right\rangle.
+\end{equation}
+当 $I_1,I_2$ 均非零时，归一化复相干度定义为
+\begin{equation}
+ \gamma_{12}=\frac{\Gamma_{12}}{\sqrt{I_1I_2}},
+ \qquad 0\le |\gamma_{12}|\le1.
+\end{equation}
+改变两路相位差并记录条纹最大、最小强度，条纹可见度为
+\begin{equation}
+ \mathcal V=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}
+ =\frac{2\sqrt{I_1I_2}}{I_1+I_2}|\gamma_{12}|.
+\end{equation}
+因此条纹变浅既可能是相干度下降，也可能只是两束强度相差过大；仅凭“看不见条纹”不能断言两束完全不相干。
+
+时间相干性比较同一点不同时刻的场，谱宽为 $\Delta\nu$ 的准单色光，其相干时间和真空相干长度量级为
+\begin{equation}
+ \tau_c\sim\frac1{\Delta\nu},
+ \qquad \ell_c\sim c\tau_c.
+\end{equation}
+空间相干性比较同一波面不同位置的场，扩展光源越大，不同源点形成的条纹错位越明显，相干面积通常越小。这分别解释了宽带光对光程差敏感、宽光源对双缝间距敏感的原因。
+
+\begin{starread}{多光束干涉与法布里--珀罗腔（Fabry--P\'erot cavity）}
+两块平行的部分反射镜使光在腔内多次往返。相邻透射束的往返相位差为
+\[
+ \delta=\frac{4\pi nd\cos r}{\lambda_0}.
+\]
+若两镜强度反射率相同且为 $R$，忽略吸收，每通过两镜一次，振幅因子为 $1-R$；
+每多往返一周，振幅再乘 $R\e^{\ii\delta}$。因此全部透射束的复振幅和为
+\[
+ \frac{E_t}{E_0}
+ =(1-R)\e^{\ii\delta/2}
+ \sum_{j=0}^{\infty}(R\e^{\ii\delta})^j
+ =\frac{(1-R)\e^{\ii\delta/2}}{1-R\e^{\ii\delta}}.
+\]
+取模平方，并利用
+$|1-R\e^{\ii\delta}|^2=(1-R)^2+4R\sin^2(\delta/2)$，得到艾里公式（Airy formula）：
+\[
+ \frac{I_t}{I_0}=\frac1{1+\mathcal F\sin^2(\delta/2)},
+ \qquad \mathcal F=\frac{4R}{(1-R)^2}.
+\]
+当 $\delta=2m\pi$ 时各束同相，透射达到极大；$R$ 越接近1，峰越窄，仪器分辨相近谱线的能力越强。
+
+\begin{center}
+\begin{tikzpicture}[scale=.86,>=Latex]
+  \draw[very thick] (0,-1.55)--(0,2.05);
+  \draw[very thick] (5,-1.55)--(5,2.05);
+  \node[below] at (0,-1.65){部分反射镜};
+  \node[below] at (5,-1.65){部分反射镜};
+  \draw[<->,guide] (.1,2.18)--(4.9,2.18) node[midway,above]{$d$};
+  \draw[thick,DeepBlue] (-1.4,-1.254)--(0,-1.10)--(5,-.55)--(0,0)--(5,.55)--(0,1.10)--(5,1.65);
+  \draw[-{Latex[length=2mm]},thick,DeepBlue] (5,-.55)--(6.4,-.396);
+  \draw[-{Latex[length=2mm]},thick,DeepBlue] (5,.55)--(6.4,.704);
+  \draw[-{Latex[length=2mm]},thick,DeepBlue] (5,1.65)--(6.4,1.804);
+  \node[right] at (6.4,.704){逐次透射束};
+\end{tikzpicture}
+\figcap{Fabry--P\'erot腔中的多次反射与透射。右侧各束平行；用会聚透镜在后焦面叠加同方向的光束，或在远场观察其共同角谱。}
+\end{center}
+
+相邻纵模满足 $2nd\cos r=m\lambda_0$。近轴且介质色散可忽略时，相邻共振频率之差（自由光谱范围）为
+\[
+ \Delta\nu_{\rm FSR}=\frac{c}{2nd}.
+\]
+在高反射率近似下，令 $\delta=2m\pi+\varepsilon$ 且
+$\sin(\varepsilon/2)\simeq\varepsilon/2$。透射强度降到峰值一半时
+$\mathcal F\varepsilon^2/4=1$，故单个透射峰的频率半高全宽为
+\[
+ \delta\nu_{1/2}=\frac{\Delta\nu_{\rm FSR}}{\mathcal F_{\rm in}},
+ \qquad
+ \mathcal F_{\rm in}=\frac{\pi\sqrt R}{1-R},
+\]
+其中 $\mathcal F_{\rm in}$ 称为精细度（finesse）。注意 Airy 公式中的系数 $\mathcal F$ 与精细度
+$\mathcal F_{\rm in}$ 不是同一个量；前者控制峰形，后者是“相邻峰间距与单峰宽度之比”。
+
+例如 $d=1.00\,\mathrm{cm}$、$n=1$、$R=0.95$ 时，
+$\Delta\nu_{\rm FSR}=15.0\,\mathrm{GHz}$，$\mathcal F_{\rm in}\approx61.2$，
+因而 $\delta\nu_{1/2}\approx245\,\mathrm{MHz}$。若两条谱线的频差远小于这个峰宽，它们在该腔的透射谱上不能清楚分开；
+增大 $R$ 会压窄峰，但也会增加建立稳定腔场所需的往返次数，并提高对镜面平行度和机械稳定性的要求。
+
+这个频域结论还有直接的时域解释。关掉入射光后，腔内光每经过一个往返时间
+$t_{\rm rt}=2nd/c$，能量乘以 $R^2$，所以
+\[
+ U(t)=U(0)\exp\!\left(-\frac{t}{\tau_E}\right),
+ \qquad
+ \tau_E=-\frac{t_{\rm rt}}{2\ln R}
+ \simeq\frac{nd}{c(1-R)}.
+\]
+高反射率近似下，谱峰半高全宽满足
+\[
+ \boxed{\delta\nu_{1/2}\simeq\frac1{2\pi\tau_E}}.
+\]
+因此“峰越窄”与“腔内能量衰减越慢”是同一物理事实的频域和时域表述；测量关断后的环降曲线，
+也能反推出腔损耗和精细度。
+\end{starread}

@@ -1,0 +1,2020 @@
+\begingroup
+\tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
+\RenewDocumentEnvironment{xesolution}{+b}{%
+  \par\nobreak\smallskip\nobreak\begingroup\small
+  \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\tcbset{breakable/.default=false}
+\chapter{洛伦兹力与带电粒子运动}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-eighth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-eighth-section/assets/}}
+\section{洛伦兹力与回旋轨道}
+
+% Restrained diagrams for Lesson 7.  Every arrow follows F=q v x B.
+
+\newcommand{\fieldInto}{\mathord{\otimes}}
+\newcommand{\fieldOut}{\mathord{\odot}}
+
+\newcommand{\lorentzDirectionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \begin{scope}[xshift=-5.2cm]
+    \draw[rounded corners=4pt,draw=RuleGray] (-2.1,-1.55) rectangle (2.1,1.55);
+    \fill[DeepBlue] (0,0) circle (3pt) node[below left] {$+q$};
+    \draw[vector] (0,0)--(1.55,0) node[right] {$\vect v$};
+    \draw[vector] (0,0)--(0,1.18) node[above] {$\vect F$};
+    \node[font=\Large] at (-1.25,0.65) {$\fieldInto$};
+    \node[TextGray] at (0,-1.9) {$q>0$，$\vect B$ 入纸面};
+  \end{scope}
+  \begin{scope}
+    \draw[rounded corners=4pt,draw=RuleGray] (-2.1,-1.55) rectangle (2.1,1.55);
+    \fill[Ink] (0,0) circle (3pt) node[above left] {$-q$};
+    \draw[vector] (0,0)--(1.55,0) node[right] {$\vect v$};
+    \draw[vector] (0,0)--(0,-1.18) node[below] {$\vect F$};
+    \node[font=\Large] at (-1.25,0.65) {$\fieldInto$};
+    \node[TextGray] at (0,-1.9) {$q<0$，受力反向};
+  \end{scope}
+  \begin{scope}[xshift=5.2cm]
+    \draw[rounded corners=4pt,draw=RuleGray] (-2.1,-1.55) rectangle (2.1,1.55);
+    \fill[DeepBlue] (0,0) circle (3pt);
+    \node at (0.35,-0.48) {$+q$};
+    \draw[guide,dashed] (0,0)--(-0.72,-0.52)--(-0.72,0.78)--(0,0);
+    \draw[vector] (0,0)--(1.42,0) node[right] {$\vect v$};
+    \draw[vector] (0,0)--(-0.72,-0.52) node[below left] {$\vect B$};
+    \draw[vector] (0,0)--(0,1.30) node[above] {$\vect F$};
+    \node[TextGray,font=\small] at (0,-1.9) {三维正交示意（纸面上为投影）};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}$\vect F=q\vect v\times\vect B$；先按正电荷定向，负电荷再反向}
+\end{center}}
+
+\newcommand{\gyroHelixDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \begin{scope}[xshift=-4.4cm]
+    \draw[curve] (0,0) circle (1.55);
+    \node[font=\Large] at (0,0) {$\fieldOut$};
+    \fill[DeepBlue] (0,1.55) circle (2.6pt) node[above left] {$q>0$};
+    \draw[vector] (0,1.55)--(1.25,1.55) node[right] {$\vect v_\perp$};
+    \draw[vector] (0,1.55)--(0,0.48) node[right] {$\vect F$};
+    \draw[<->] (0,0)--(1.55,0);
+    \node[above=2pt,inner sep=0.5pt] at (0.78,0) {$r_{\rm c}$};
+    \draw[->,DeepBlue,thick] (1.85,0.35) arc[start angle=10,end angle=-70,radius=0.55];
+    \node[TextGray] at (0,-2.05) {$v_\parallel=0$：匀速圆周运动};
+  \end{scope}
+  \begin{scope}[xshift=3.3cm]
+    \draw[axis] (-0.5,0)--(7.0,0) node[right] {$\vect B$};
+    \draw[guide,dashed] (0,0)--(6.2,0);
+    % Oblique projection of a true helix.  The cosine term supplies the
+    % front/back displacement, so the path forms visible loops rather than
+    % being mistaken for a transverse sine wave.
+    \draw[DeepBlue,very thick,domain=0:1440,samples=440,smooth,variable=\t]
+      plot ({0.0042*\t+0.70*cos(\t)},{0.78*sin(\t)});
+    \fill[DeepBlue] (0,0) circle (2.4pt);
+    \draw[vector] (0,0)--(1.4,0) node[below] {$\vect v_\parallel$};
+    \draw[vector] (0,0)--(0,1.0) node[left] {$\vect v_\perp$};
+    \node[TextGray] at (3.1,-1.55) {$v_\parallel\ne0$：沿磁场轴线作螺旋运动};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\particleTracksContext}{%
+\historyfigure[0.76\linewidth]{particle-tracks-built-in-v1.png}%
+{云雾室与气泡室径迹。曲率给出动量信息，弯曲方向结合磁场方向可判定电荷符号。}\label{ch22:fig:s38-7-3}}
+
+\newcommand{\cyclotronDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (-3.5,-2.5) arc[start angle=270,end angle=90,radius=2.5] -- (-0.25,2.5)--(-0.25,-2.5)--cycle;
+  \fill[SoftGray] (3.5,-2.5) arc[start angle=-90,end angle=90,radius=2.5] -- (0.25,2.5)--(0.25,-2.5)--cycle;
+  \draw[DeepBlue,thick] (-3.5,-2.5) arc[start angle=270,end angle=90,radius=2.5] -- (-0.25,2.5)--(-0.25,-2.5)--cycle;
+  \draw[DeepBlue,thick] (3.5,-2.5) arc[start angle=-90,end angle=90,radius=2.5] -- (0.25,2.5)--(0.25,-2.5)--cycle;
+  \node at (-1.7,0) {D}; \node at (1.7,0) {D};
+  \draw[<->,Ink,thick] (-0.18,2.9)--(0.18,2.9) node[midway,above=3pt] {交变电压};
+  \node[font=\Large] at (4.7,1.65) {$\fieldOut$};
+  \node[right] at (5.05,1.65) {$\vect B$};
+  \draw[DeepBlue,very thick,domain=0:900,samples=240,smooth]
+    plot ({0.0028*\x*cos(\x)},{0.0028*\x*sin(\x)});
+  \draw[vector] (0.1,0)--(0.9,0) node[below right] {$q\Delta U$};
+  \node[TextGray,align=left,anchor=west] at (4.35,-0.15)
+    {$\omega_{\rm rf}=\omega_{\rm c}=|q|B/m$\\[2pt]
+     每过狭缝一次，动能增加 $|q|\Delta U$};
+\end{tikzpicture}
+
+{\small\color{TextGray}回旋加速器俯视图：D 形盒内由磁场弯转，狭缝处由交变电场加速}
+\end{center}}
+
+\newcommand{\zeemanSpectrumDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[inner sep=0] at (-4.2,0.4) {\includegraphics[width=5.0cm]{lorentz-zeeman-built-in-v1.png}};
+  \node[TextGray] at (-5.35,-2.05) {洛伦兹};
+  \node[TextGray] at (-3.05,-2.05) {塞曼};
+  \begin{scope}[xshift=0.2cm]
+    \node[TextGray] at (2.2,1.8) {无磁场};
+    \node[TextGray,font=\small] at (2.2,-2.8) {锌谱线 $\lambda_0\simeq468.0\,\mathrm{nm}$};
+    \draw[Ink,very thick] (2.2,-0.8)--(2.2,1.35);
+    \node[TextGray] at (6.2,1.8) {加磁场};
+    \draw[DeepBlue,very thick] (5.25,-0.8)--(5.25,1.35);
+    \draw[Ink,very thick] (6.2,-0.8)--(6.2,1.35);
+    \draw[DeepBlue,very thick] (7.15,-0.8)--(7.15,1.35);
+    \draw[<->] (5.25,-1.2)--(6.2,-1.2);
+    \draw[<->] (6.2,-1.2)--(7.15,-1.2);
+    \node[below=2pt,inner sep=0.5pt] at (5.73,-1.2) {$\Delta\omega$};
+    \node[below=2pt,inner sep=0.5pt] at (6.68,-1.2) {$\Delta\omega$};
+    \node[TextGray,align=center] at (4.7,-2.05)
+      {$\omega_0$ 与 $\omega_0\pm |q|B/(2m)$\\弱场下形成对称三线分裂};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\driftDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \draw[axis] (-0.4,0)--(9.4,0) node[right] {$\vect v_D$};
+  \draw[DeepBlue,very thick,domain=0:720,samples=220,smooth]
+    plot ({0.012*\x-0.72*sin(\x)},{0.72*(1-cos(\x))});
+  \draw[TextGray,dashed,domain=0:720,samples=220,smooth]
+    plot ({0.012*\x},{0.72});
+  \foreach \x in {1.2,5.5,9.0}{\node[font=\large] at (\x,2.2) {$\fieldInto$};}
+  \draw[vector] (0.8,-0.55)--(2.4,-0.55) node[midway,below] {$\vect F\times\vect B$};
+  \node[TextGray,align=left,anchor=west] at (9.7,0.9)
+    {$\displaystyle\vect v_D=\frac{\vect F\times\vect B}{qB^2}$\\导向中心匀速平移};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\splitProductsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \begin{scope}[xshift=-4.2cm]
+    \node[font=\large] at (-2.55,1.05) {$\fieldInto$};
+    \node[left=2pt] at (-2.25,1.05) {$\vect B$};
+    \fill[DeepBlue] (0,2.0) circle (2.5pt);
+    \node[above=8pt,inner sep=0.5pt] at (0,2.0) {$P_0$};
+    \draw[DeepBlue,very thick] (0,2.0) arc[start angle=90,end angle=450,radius=1.0];
+    \draw[Ink,very thick] (0,2.0) arc[start angle=90,end angle=-270,radius=2.0];
+    \draw[vector] (0,2.0)--(-1.25,2.0);
+    \draw[vector] (0,2.0)--(1.25,2.0);
+    \node[above=2pt,anchor=south east,inner sep=0.5pt] at (-0.42,2.0) {$+q,m,\ v_0$};
+    \node[above=2pt,anchor=south west,inner sep=0.5pt] at (0.42,2.0) {$-q,2m,\ v_0$};
+    \node[TextGray,align=center,font=\small] at (0,-2.45)
+      {碰撞前：半径 $r,2r$\\共同返回周期 $2T$};
+  \end{scope}
+  \begin{scope}[xshift=4.2cm]
+    \fill[DeepBlue] (0,-1.1) circle (2.5pt) node[below left] {$P_0$};
+    \draw[DeepBlue,very thick] (0,-1.1) arc[start angle=-90,end angle=630,radius=2.0];
+    \draw[Ink,very thick] (0,-1.1) arc[start angle=-90,end angle=-450,radius=0.8];
+    \draw[vector] (0,-1.1)--(1.55,-1.1);
+    \draw[vector] (0,-1.1)--(-1.0,-1.1);
+    \node[below=2pt,anchor=north west,inner sep=0.5pt] at (0.45,-1.1) {$5v_0/3$};
+    \node[below=2pt,anchor=north east,inner sep=0.5pt] at (-0.35,-1.1) {$v_0/3$};
+    \node[TextGray,align=center,font=\small] at (0,-2.45)
+      {第一次碰撞后：半径 $5r/3,2r/3$\\再过 $2T$ 恢复初态};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\beamFocusDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \coordinate (BeamO) at (0,0);
+  \coordinate (BeamZ) at (1.2,0);
+  \coordinate (BeamV) at (1.35,0.45);
+  \draw[axis] (0,0)--(9.0,0) node[right] {$z$};
+  \draw[thick] (8,-2.0)--(8,2.0) node[above] {荧光屏};
+  \draw[DeepBlue,very thick,domain=0:720,samples=220,smooth]
+    plot ({0.0111*\x},{0.75*sin(\x)});
+  \draw[TextGray,dashed] (0,0)--(8,0);
+  \draw[vector] (0,0)--(1.35,0.45) node[above] {$\vect v$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.25]
+    {angle=BeamZ--BeamO--BeamV};
+  \draw[<->] (0,-1.45)--(8,-1.45);
+  \node[below=2pt,inner sep=0.5pt] at (4,-1.45) {$L$};
+  \draw[<->,DeepBlue] (8.35,0)--node[right] {$\rho_{\max}$}(8.35,0.72);
+\end{tikzpicture}
+
+{\small\color{TextGray}纵向磁场使横向速度转过相位 $\omega_{\rm c}L/v$；整数圈处重新聚焦}
+\end{center}}
+
+\newcommand{\magneticBilliardDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (BucketO) at (0,0);
+  \draw[curve] (0,0) circle (3.0);
+  \coordinate (P) at (0,-3);
+  \coordinate (C) at (-0.866,-3.5);
+  \coordinate (Qhit) at (-1.396,-2.652);
+  \coordinate (Rin) at (0,-1.8);
+  \coordinate (Vtip) at (-0.65,-1.7);
+  \draw[DeepBlue,very thick] (P) arc[start angle=30,end angle=122,radius=1.0];
+  \draw[guide] (0,0)--(P) (0,0)--(-2.52,-1.62);
+  \draw[guide] (C)--(P);
+  \fill[DeepBlue] (P) circle (2.5pt) node[below] {小孔};
+  \fill[Ink] (C) circle (2.2pt) node[below left] {回旋圆心};
+  \draw[vector] (P)--++(-0.65,1.3) node[left] {$\vect v$};
+  \draw pic[draw,"$\theta$",angle radius=7mm,angle eccentricity=1.25]
+    {angle=Rin--P--Vtip};
+  \draw pic[draw,"$\delta$",angle radius=10mm,angle eccentricity=1.25]
+    {angle=Qhit--BucketO--P};
+  \draw[<->] (C)--(P);
+  \node[right=2pt,inner sep=0.5pt] at ($(C)!0.52!(P)$) {$r_{\rm c}$};
+  \node[TextGray,align=left,anchor=west] at (4.15,0.4)
+    {每次反射保持入射角；\\相邻碰撞点的圆心角恒为 $\delta$。\\[2pt]
+     $\delta/(2\pi)\in\mathbb Q$ 时才会返回小孔。};
+  \node[font=\large] at (1.9,1.9) {$\fieldInto$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\velocitySelectorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-4,1.65)--(4,1.65) (-4,-1.65)--(4,-1.65);
+  \foreach \x in {-3.5,-2.5,...,3.5}{
+    \node at (\x,1.95) {$+$}; \node at (\x,-1.95) {$-$};
+    \node[font=\large,TextGray] at (\x,0.75) {$\fieldInto$};
+  }
+  \fill[DeepBlue] (-2.2,0) circle (3pt) node[below left] {$+q$};
+  \draw[vector] (-2.2,0)--(-0.5,0) node[right] {$\vect v$};
+  \draw[vector] (-2.2,0)--(-2.2,1.1) node[left] {$qvB$};
+  \draw[vector] (-2.2,0)--(-2.2,-1.1) node[left] {$qE$};
+  \draw[vector] (2.8,1.1)--(2.8,-0.7) node[midway,right] {$\vect E$};
+  \node[TextGray] at (0,-2.55) {只有 $v=E/B$ 的粒子不偏转；电荷符号改变时两力同时反向};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\crossedFieldCycloidDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[thick] (-0.3,2.3)--(9.0,2.3) (-0.3,-0.1)--(9.0,-0.1);
+  \foreach \x in {0.2,1.2,...,8.7}{\node at (\x,2.6) {$+$}; \node at (\x,-0.4) {$-$};}
+  \draw[DeepBlue,very thick,domain=0:720,samples=220,smooth]
+    plot ({0.012*\x-0.72*sin(\x)},{2.3-0.72*(1-cos(\x))});
+  \foreach \x in {1.2,4.5,7.8}{\node[font=\large,TextGray] at (\x,1.25) {$\fieldInto$};}
+  \draw[<->] (8.7,2.3)--node[right] {$h_{\max}$}(8.7,0.86);
+  \node[TextGray] at (4.4,-0.9) {$h_{\max}=2mE/(|q|B^2)$；轨迹为沿 $\vect E\times\vect B$ 方向推进的摆线};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gravityDriftDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.92cm,y=0.92cm,>=Latex]
+  \fill[SoftGray] (-0.5,-0.35) rectangle (9.4,-0.75);
+  \draw[thick] (-0.5,-0.35)--(9.4,-0.35) node[right] {地面};
+  \draw[DeepBlue,very thick,domain=0:620,samples=210,smooth]
+    plot ({8.0-0.013*\x+0.45*sin(\x)},{2.7-0.62*(1-cos(\x))-0.28*sin(\x)});
+  \fill[DeepBlue] (8.0,2.7) circle (2.5pt) node[above] {初始位置};
+  \draw[vector] (8.0,2.7)--(8.0,1.7) node[right] {$\vect v_0$};
+  \draw[vector] (8.0,3.0)--(6.5,3.0) node[midway,above] {$\vect v_D$};
+  \draw[<->] (8.75,-0.35)--node[right] {$H$}(8.75,2.7);
+  \node[font=\large] at (5.2,2.9) {$\fieldOut$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\alternatingLayersDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.0cm,y=0.82cm,>=Latex]
+  \foreach \k in {0,2,4}{\fill[PaleBlue] (0,\k) rectangle (8,\k+1);}
+  \foreach \k in {1,3,5}{\fill[SoftGray] (0,\k) rectangle (8,\k+1);}
+  \foreach \k in {0,...,6}{\draw[RuleGray] (0,\k)--(8,\k);}
+  \node[anchor=east] at (-0.2,0.5) {电场层};
+  \node[anchor=east] at (-0.2,1.5) {第1磁场层};
+  \node[anchor=east] at (-0.2,2.5) {电场层};
+  \node[anchor=east] at (-0.2,3.5) {第2磁场层};
+  \node[anchor=east] at (-0.2,4.5) {电场层};
+  \node[anchor=east] at (-0.2,5.5) {第3磁场层};
+  \foreach \y in {0.5,2.5,4.5}{\draw[vector] (7.4,\y-0.25)--(7.4,\y+0.28) node[above] {$\vect E$};}
+  \foreach \y in {1.5,3.5,5.5}{\node[font=\large] at (7.4,\y) {$\fieldInto$};}
+  \draw[DeepBlue,very thick] (1.0,0)--(1.0,1)
+    .. controls (1.0,1.45) and (0.65,1.75) .. (0.55,2.0)
+    --(0.55,3.0)
+    .. controls (0.55,3.45) and (0.0,3.85) .. (0.15,4.0)
+    --(0.15,5.0)
+    .. controls (0.15,5.55) and (-0.15,5.75) .. (0.05,5.95);
+  \draw[<->] (8.35,0)--node[right] {$d$}(8.35,1);
+  \node[TextGray] at (4.0,-0.55) {穿过第 $k$ 个磁场层后，$v_x=-k\omega_{\rm c}d$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\hallDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (-3,-1); \coordinate (B) at (2,-1);
+  \coordinate (C) at (3.5,0.2); \coordinate (D) at (-1.5,0.2);
+  \coordinate (At) at (-3,1); \coordinate (Bt) at (2,1);
+  \coordinate (Ct) at (3.5,2.2); \coordinate (Dt) at (-1.5,2.2);
+  \fill[PaleBlue] (A)--(B)--(C)--(D)--cycle;
+  \fill[SoftGray] (At)--(Bt)--(Ct)--(Dt)--cycle;
+  \draw[thick] (A)--(B)--(C)--(D)--cycle (At)--(Bt)--(Ct)--(Dt)--cycle
+    (A)--(At) (B)--(Bt) (C)--(Ct) (D)--(Dt);
+  \draw[vector] (-4.2,0.5)--(-2.0,0.5) node[midway,above] {$I\parallel x$};
+  \draw[vector] (0.2,-2.0)--(2.0,-0.55) node[midway,below right] {$\vect B\parallel y$};
+  \draw[vector] (2.6,1.85)--(2.6,0.15) node[midway,right] {$\vect E_H\parallel -z$};
+  \node[DeepBlue] at (-0.2,1.78) {$+$};
+  \node[Ink] at (-0.2,-0.58) {$-$};
+  \draw[<->] (-3.35,-1)--node[left] {$a$}(-3.35,1);
+  \draw[<->] (-3,-1.35)--node[below] {$c$}(2,-1.35);
+  \draw[<->] (2.35,-1.15)--node[below right] {$b$}(3.75,0.0);
+\end{tikzpicture}
+
+{\small\color{TextGray}霍尔电场抵消载流子的横向洛伦兹力；电势差的符号可判定载流子电性}
+\end{center}}
+
+\newcommand{\corbinoDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \fill[SoftGray,even odd rule] (0,0) circle (2.8) (0,0) circle (1.25);
+  \draw[curve] (0,0) circle (2.8) (0,0) circle (1.25);
+  \foreach \a in {0,45,...,315}{
+    \draw[vector] ({1.35*cos(\a)},{1.35*sin(\a)})--({2.35*cos(\a)},{2.35*sin(\a)});
+  }
+  \draw[DeepBlue,thick,->] (2.0,0) arc[start angle=0,end angle=55,radius=2.0];
+  \node[DeepBlue] at (2.7,1.55) {$j_\varphi$};
+  \draw[<->] (0,0)--(1.25,0);
+  \draw[<->] (0,0)--(-2.8,0);
+  \node[above=2pt,inner sep=0.5pt] at (0.63,0) {$a$};
+  \node[below=2pt,inner sep=0.5pt] at (-1.4,0) {$b$};
+  \node[font=\Large] at (0,0) {$\fieldOut$};
+  \node[TextGray,align=left,anchor=west] at (4.0,0.5)
+    {图示电子载流子，$q_c<0$；\\无磁场：$\vect j\parallel\vect E_r$；\\有轴向磁场：电流产生方位分量，\\径向电导降为 $\sigma_0/(1+\mu^2B^2)$。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\epicycleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[guide] (0,0) circle (2.2);
+  \draw[curve] (0.45,0) circle (2.2);
+  \fill[Ink] (0,0) circle (2pt) node[below left] {$O$};
+  \fill[DeepBlue] (0.45,0) circle (2pt) node[below right] {$C$};
+  \draw[<->] (0,0)--(0.45,0);
+  \node[above=3pt,inner sep=0.5pt] at (0.225,0) {$\delta$};
+  \draw[DeepBlue,thick,->] (2.65,0) arc[start angle=0,end angle=-70,radius=2.2];
+  \node[TextGray,align=left,anchor=west] at (4.0,0.3)
+    {$C$ 为移动后的导向中心；\\径向小扰动只把回旋圆心略微移开；\\相对原点的半径以 $\omega_{\rm c}$ 周期起伏。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\radialFieldOrbitDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (0,0) circle (1.8);
+  \node[font=\Large] at (0,0) {$\fieldInto$};
+  \node[TextGray,right] at (0.3,0) {$\vect B$};
+  \fill[DeepBlue] (0,1.8) circle (2.6pt) node[above right] {$+q$};
+  \draw[vector] (0,1.8)--(-1.25,1.8) node[left] {$\vect v$};
+  \draw[vector] (0,1.8)--(0,0.45) node[right] {$\vect F_B$};
+  \draw[vector] (0,1.8)--(0,2.65) node[right] {$\vect F_E$};
+  \draw[guide] (-2.4,0)--(-.2,0) (-2.4,1.8)--(-.2,1.8);
+  \draw[<->] (-2.4,0)--(-2.4,1.8) node[midway,left]{$R$};
+  \draw[DeepBlue,thick,->] (-2.15,0.25) arc[start angle=175,end angle=245,radius=0.65];
+  \node[TextGray,align=left,anchor=west] at (3.1,0.35)
+    {$B$ 入纸面、$+q$ 逆时针时磁力向内；\\向外电场力抵消一部分磁向心力。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dampedSpiralDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (S) at (-1.4,0);
+  \coordinate (P) at (0.6,0);
+  \draw[DeepBlue,very thick,domain=0:920,samples=260,smooth]
+    plot ({0.6-2.0*exp(-0.0032*\x)*cos(\x)},{-2.0*exp(-0.0032*\x)*sin(\x)});
+  \fill[DeepBlue] (S) circle (2.5pt) node[below] {初始位置};
+  \fill[Ink] (P) circle (2.8pt) node[right] {$\vect r_\infty$};
+  \draw[vector] (S)--++(1.35,0) node[above] {$\vect v_0$};
+  \node[TextGray,align=left,anchor=west] at (3.2,0)
+    {速度按 $e^{-\gamma t/m}$ 衰减；\\轨迹绕有限终点作圆形收敛螺旋。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dampedDriftDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \draw[axis] (-0.3,0)--(9.0,0) node[right] {$x$};
+  \draw[axis] (0,-1.2)--(0,2.4) node[above] {$y$};
+  \draw[guide] (0,0)--(8.7,1.55);
+  \draw[DeepBlue,very thick,domain=0:620,samples=240,smooth]
+    plot ({0.013*\x+0.72*(1-exp(-0.006*\x))*sin(\x)},
+          {0.0025*\x+0.75*exp(-0.006*\x)*sin(\x)});
+  \draw[vector] (6.0,1.08)--(7.6,1.36) node[above] {$\vect v_\infty$};
+  \node[TextGray] at (4.3,-1.55) {回旋瞬态指数衰减，长期运动趋于匀速斜向漂移};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\magneticMomentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \begin{scope}[xshift=-4.2cm]
+    \draw[curve] (0,0) circle (1.6);
+    \fill[DeepBlue] (0,1.6) circle (2.6pt) node[above] {$q$};
+    \draw[vector] (0,1.6)--(1.2,1.6) node[right] {$\vect v_\perp$};
+    \node[font=\Large] at (-0.32,0.25) {$\fieldOut$};
+    \node[font=\Large] at (0.32,-0.25) {$\fieldInto$};
+    \node[TextGray,left] at (-0.62,0.25) {$\vect B$};
+    \node[TextGray,right] at (0.62,-0.25) {$\vect\mu$};
+    \node[TextGray] at (0,-2.25) {$\mu=mv_\perp^2/(2B)=E_\perp/B$};
+  \end{scope}
+  \begin{scope}[xshift=3.2cm]
+    \draw[DeepBlue,thick] (-3,-2.0) .. controls (-1,-1.1) and (1,-1.1) .. (3,-2.0);
+    \draw[DeepBlue,thick] (-3,2.0) .. controls (-1,1.1) and (1,1.1) .. (3,2.0);
+    \foreach \y in {-1.4,-0.7,0,0.7,1.4}{\draw[->,TextGray] (-2.8,\y)--(2.8,{0.65*\y});}
+    \draw[DeepBlue,very thick,domain=0:720,samples=180,smooth]
+      plot ({-2.4+0.0067*\x},{0.55*sin(\x)*(1-0.00065*\x)});
+    \draw[vector] (-2.3,0)--(-0.8,0) node[below] {$v_\parallel$};
+    \node[TextGray,align=center] at (0,-2.55)
+      {$\rho/L_B\ll1$ 时，$\mu$ 为绝热不变量；\\进入强场区时 $v_\perp$ 增大、$v_\parallel$ 减小。};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+% All curves below share the initial conditions used in the adjacent solution.
+\newcommand{\rTwoDataPath}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-eighth-section/assets/trajectory-data}
+\newenvironment{rTwoFigure}{\par\noindent\begin{minipage}{\linewidth}\centering}{\end{minipage}\par\medskip}
+\newcommand{\cyclotronExtractionDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+ \begin{scope}[xshift=-3.4cm]
+  \draw[thick](-.2,.7)--(-2,.7)--(-2,-.7)--(-.2,-.7);
+  \draw[thick](.2,.7)--(2,.7)--(2,-.7)--(.2,-.7);
+  \foreach \x in {-1.2,0,1.2}{\draw[vector](\x,1.3)--(\x,-1.3);}
+  \draw[DeepBlue,densely dashed](-1.9,0)--(1.9,0);
+  \node at(0,1.7){D 形电极的侧剖面};
+  \node[align=center,text width=4.8cm,font=\footnotesize] at(0,-1.9){束流在中空腔内\\$\boldsymbol B$垂直轨道平面};
+ \end{scope}
+ \begin{scope}[xshift=3.2cm]
+  \draw[guide](-2,0)..controls(-.6,0)and(0,.8)..(1,1.3);
+  \draw[DeepBlue,thick,->](-2,0)..controls(-.5,0)and(.2,-.3)..(2,-.3);
+  \draw[thick](-.9,-.8)--(.3,-.8);
+  \node[below=3pt,font=\footnotesize]at(-.3,-.8){负偏转板};
+  \draw[thin](1,-.55)--(1,.25);
+  \draw[thin](1,.25)--(1,1.6)node[above]{薄铝窗};
+  \draw[very thick](2,-.75)--(2,.2)node[above]{靶};
+  \node[above] at(-1.1,.4){虚线：未引出时};
+  \node[align=center,text width=4.8cm,font=\footnotesize] at(0,-1.9){实线：正离子被引向窗口\\再轰击靶};
+ \end{scope}
+\end{tikzpicture}
+\end{rTwoFigure}}
+\renewcommand{\magneticMomentDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[scale=.84,>=Latex]
+\begin{scope}[xshift=-3cm]
+ \draw[curve](0,0)circle(1.25);\fill(0,1.25)circle(2pt)node[above]{$+q$};
+ \draw[vector](0,1.25)--(1,1.25)node[right]{$v_\perp$};
+ \node at(-.2,.35){$\fieldOut\ B$};\node at(.2,-.35){$\fieldInto\ \mu$};
+ \node at(0,-1.7){$\mu=E_\perp/B$};
+\end{scope}
+\begin{scope}[xshift=.8cm]
+ \foreach \a in {-1.4,-.9,0,.9,1.4}{
+  \draw[TextGray,->,domain=0:6,samples=60,variable=\t]plot(\t,{\a/sqrt(1+.15*\t)});
+ }
+ \draw[DeepBlue,thick]plot file {\rTwoDataPath/mirror.dat};
+ \node[above]at(3,1.6){向右磁场逐渐增强};
+ \node[align=center]at(3,-2){回旋半径减小，$v_\perp$增大\\$v_\parallel$减小；图为缓变近似投影};
+\end{scope}
+\end{tikzpicture}\end{rTwoFigure}}
+\renewcommand{\gyroHelixDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[scale=.76,>=Latex]
+\begin{scope}[xshift=-3cm]
+ \draw[curve] (0,0) circle(1.4);
+ \node at(0,0){$\fieldOut\ B$};
+ \foreach \a in {90,210,330}{
+  \fill[DeepBlue] (\a:1.4) circle(2pt);
+  \draw[vector] (\a:1.4)--++({.65*sin(\a)},{-.65*cos(\a)});
+  \draw[vector,TextGray] (\a:1.4)--(\a:.8);
+ }
+ \node[above] at(0,1.55){$q>0$};
+ \node[below,align=center] at(0,-1.7){切向箭头：速度\\向心箭头：磁力};
+\end{scope}
+\begin{scope}[xshift=1cm]
+ \draw[axis] (-.4,0)--(6.6,0) node[right]{$\boldsymbol B$};
+ \draw[DeepBlue,thick,domain=0:1440,samples=450,variable=\t]
+ plot({.0042*\t+.70*(cos(\t)-1)},{.78*sin(\t)});
+ \fill[DeepBlue] (0,0) circle(2pt) node[below left]{$P$};
+ \draw[vector] (0,0)--(1,0);
+ \draw[thin] (.8,0)--(1.1,-.95)--(2.3,-.95) node[right]{$v_\parallel$};
+ \draw[vector] (0,0)--(0,1.12) node[above]{$v_\perp$};
+ \draw[<->] (0,-1.2)--(1.512,-1.2) node[midway,below]{$h$};
+ \node at(3,-2){螺旋线的斜投影};
+\end{scope}
+\end{tikzpicture}
+\end{rTwoFigure}}
+
+\renewcommand{\driftDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=.70cm,y=.65cm,>=Latex]
+ \foreach \row/\sgn/\name in {0/1/{质子},1/-1/{电子}}{
+  \begin{scope}[yshift={-3.4*\row cm}]
+   \draw[DeepBlue,thick,domain=0:720,samples=240,variable=\t]
+    plot({.50*(pi*\t/180-sin(\t))},{\sgn*.50*(1-cos(\t))});
+   \draw[->] (1.8,-1.4)--(3.5,-1.4);\node at(2.6,-1.8){$\boldsymbol v_E$};
+   \node[anchor=east]at(-.3,0){\name};
+  \end{scope}}
+ \node at(3,2){$\boldsymbol E$向上，$\boldsymbol B$出纸面};
+ \begin{scope}[xshift=7cm]
+ \foreach \row/\sgn/\name in {0/1/{质子},1/-1/{电子}}{
+  \begin{scope}[yshift={-3.4*\row cm}]
+   \draw[DeepBlue,thick,domain=0:360,samples=200,variable=\t]
+    plot({3-\sgn*.45*(pi*\t/180-sin(\t))},{-.45*(1-cos(\t))});
+   \draw[->] ({3+\sgn*.7},-1.4)--({3-\sgn*.7},-1.4);
+   \node at(3,-1.8){$\boldsymbol v_g$};
+  \end{scope}}
+ \node at(3,2){$\boldsymbol g$向下，$\boldsymbol B$出纸面};
+ \end{scope}
+\end{tikzpicture}
+\par\smallskip{\small 各图分别归一化长度尺度，不比较回旋半径大小；电漂移同向，重力漂移随电荷改号而反向。}
+\end{rTwoFigure}}
+
+\renewcommand{\cyclotronDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \filldraw[fill=PaleBlue,draw=DeepBlue] (-.12,-2) arc(-90:-270:2)--cycle;
+ \filldraw[fill=SoftGray,draw=DeepBlue] (.12,-2) arc(-90:90:2)--cycle;
+ \node at(-1.65,.9){D};\node at(1.65,.9){D};
+ \node at(1.45,1.4){$\fieldOut\ B$};
+ \def\rTwoY{0}
+ \foreach \k in {1,...,8}{
+  \pgfmathsetmacro{\rr}{.42*sqrt(\k)}
+  \ifodd\k
+   \draw[DeepBlue,thick] (-.12,\rTwoY)--(.12,\rTwoY);
+   \draw[DeepBlue,thick] (.12,\rTwoY) arc(90:-90:\rr);
+   \pgfmathparse{\rTwoY-2*\rr}\xdef\rTwoY{\pgfmathresult}
+  \else
+   \draw[DeepBlue,thick] (.12,\rTwoY)--(-.12,\rTwoY);
+   \draw[DeepBlue,thick] (-.12,\rTwoY) arc(-90:-270:\rr);
+   \pgfmathparse{\rTwoY+2*\rr}\xdef\rTwoY{\pgfmathresult}
+  \fi
+ }
+ \fill (0,0) circle(2pt);
+ \draw[->] (.12,.07)--(.43,-.10);
+ \draw[thin] (-.12,-2)--(-.5,-2.55)--(-.5,-2.9);
+ \draw[thin] (.12,-2)--(.5,-2.55)--(.5,-2.9);
+ \node[draw,inner xsep=6pt,minimum height=.6cm,anchor=north] at(0,-2.9){高频振荡器};
+ \node[anchor=west,align=left] at(2.7,.6){盒内：定半径圆弧\\[3pt]过缝：动能增加 $|q|\Delta U$\\[3pt]$r_k\propto\sqrt{k}$};
+ \node[anchor=west,align=left] at(2.7,-1.9){窄缝用小间隔表示；\\实际加速轨迹连续。};
+ \draw[thin] (0,2.15)--(0,2.5) node[above]{加速缝};
+\end{tikzpicture}
+\par\smallskip{\small 俯视图中磁场出纸面，正粒子顺时针弯转；半径只在过缝加速后增大。}
+\end{rTwoFigure}}
+
+\renewcommand{\splitProductsDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[scale=.9,>=Latex]
+\begin{scope}[xshift=-3.6cm]
+ \draw[DeepBlue,thick] (0,0) arc(90:330:1.3);
+ \draw[Ink,dashed,thick] (0,0) arc(90:-30:1.3);
+ \coordinate(P) at(0,0);\coordinate(C) at(0,-1.3);
+ \coordinate(Q) at({sqrt(3)*1.3/2},{-1.5*1.3});
+ \draw[guide] (P)--(C)--(Q);
+ \fill(P) circle(2pt) node[above=12pt]{$P_0$};
+ \fill(Q) circle(2pt) node[right]{$P_1$};
+ \fill(C) circle(2pt) node[left]{$C_0$};
+ \draw[vector] (P)--(-1.2,0) node[above]{$2v_0$};
+ \draw[vector] (P)--(.6,0) node[above right]{$v_0$};
+ \node at(-1.8,-1.2){$\fieldInto\ B$};
+ \node[align=center] at(0,-3.5){实线：$+q,m$；虚线：$-q,2m$\\首段同圆反向，$\Delta t=2T/3$};
+\end{scope}
+\begin{scope}[xshift=3.1cm,yshift=-1.3cm,scale=.9]
+ \foreach \k in {0,...,5}{
+  \coordinate(P\k) at({1.3*cos(180+60*\k)},{1.3*sin(180+60*\k)});
+  \fill(P\k) circle(2pt);
+  \node at({1.65*cos(180+60*\k)},{1.65*sin(180+60*\k)}){$P_{\k}$};
+ }
+ \draw[DeepBlue,->] (P0)--(P1);\draw[guide] (P1)--(P2)--(P3)--(P4)--(P5)--(P0);
+ \node[align=center] at(0,-2.5){六个碰撞点（连线不是轨迹）\\$P_6=P_0$，总周期 $4T$};
+\end{scope}
+\end{tikzpicture}
+\end{rTwoFigure}}
+
+\renewcommand{\beamFocusDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=.8cm,y=.8cm,>=Latex]
+ \foreach \k/\phase/\lab in {0/270/{未聚焦},1/360/{首个近轴焦点}}{
+ \begin{scope}[yshift={-3.8*\k cm}]
+ \draw[axis] (0,0)--(8.8,0) node[right]{$z$};
+ \draw[thick] (8,-1.4)--(8,1.4) node[above]{屏};
+ \foreach \amp in {-.48,-.24,.24,.48}{
+  \draw[DeepBlue,domain=0:8,samples=150,variable=\t] plot(\t,{\amp*(1-cos(\phase*\t/8))});
+ }
+ \fill(0,0) circle(2pt) node[below left]{$O$};
+ \draw[<->] (0,-1.3)--(8,-1.3) node[midway,below]{$L$};
+ \node[anchor=west] at(9,.6){\lab};
+ \ifnum\k=0
+ \draw[<->] (8.35,-.48)--(8.35,.48);
+ \node[anchor=west] at(9,-.3){投影包络};
+ \fi
+ \end{scope}}
+\end{tikzpicture}
+\par\smallskip{\small 同一组近轴螺旋束在含轴平面上的投影；屏上最大径向位移需由两个横向分量合成。}
+\end{rTwoFigure}}
+
+\renewcommand{\magneticBilliardDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[scale=1.05,>=Latex]
+ \def\R{2.3}\def\rc{1}\def\ang{30}
+ \pgfmathsetmacro{\del}{2*atan2(cos(\ang),\R+sin(\ang))}
+ \coordinate(O) at(0,0);\coordinate(P) at(0,-\R);
+ \coordinate(C) at({-cos(\ang)},{-\R-sin(\ang)});
+ \coordinate(Q) at({-\R*sin(\del)},{-\R*cos(\del)});
+ \draw[curve] (O) circle(\R);
+ \draw[DeepBlue,very thick] (P) arc(30:{150-\del}:1);
+ \draw[guide] (P)--(O)--(Q) (C)--(P) (C)--(Q);
+ \draw[vector] (P)--++(-.5,.866) node[above left]{$\boldsymbol v$};
+ \fill(P) circle(2pt) node[below right]{$P$（小孔）};
+ \fill(Q) circle(2pt) node[left]{$Q$};\fill(C) circle(2pt) node[below left]{$C$};
+ \fill(O) circle(2pt) node[above]{$O$};
+ \draw (0,-1.86) arc(90:120:.44) node[midway,above]{$\theta$};
+ \draw (0,-.65) arc(-90:{-90-\del}:.65);
+ \node at(-.26,-.89){$\delta$};
+ \node[anchor=west,align=left] at(2.8,.4){$OP=OQ=R$\\$CP=CQ=r_{\rm c}$\\$CP\perp\boldsymbol v$\\[4pt]$\fieldInto\ B,\quad q>0$};
+\end{tikzpicture}
+\end{rTwoFigure}}
+
+\renewcommand{\crossedFieldCycloidDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+ \draw[thick] (-.3,2.3)--(9.5,2.3) (-.3,-.1)--(9.5,-.1);
+ \foreach \x in {0,1,...,9}{\node at(\x,2.65){$+$};\node at(\x,-.4){$-$};}
+ \draw[DeepBlue,very thick,domain=0:720,samples=300,variable=\t]
+ plot({.72*(pi*\t/180-sin(\t))},{2.3-.72*(1-cos(\t))});
+ \fill(0,2.3) circle(2pt);\node[above left] at(0,2.8){$v(0)=0$};
+ \node at(4.5,1.5){$\fieldInto\ B$};
+ \draw[<->] (9.3,2.3)--(9.3,.86) node[midway,right]{$h_{\max}$};
+\end{tikzpicture}
+\par\smallskip{\small 正电荷从上板静止释放；每个尖点处速度为零，$h_{\max}=2mE/(qB^2)$。}
+\end{rTwoFigure}}
+
+\renewcommand{\gravityDriftDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+ \draw[thick] (-.2,0)--(8.8,0) node[right]{地面};
+ \draw[DeepBlue,thick,domain=0:720,samples=300,variable=\t]
+ plot({7+.3*(sin(\t)-pi*\t/180)+(cos(\t)-1)},{2+.3*(cos(\t)-1)-sin(\t)});
+ \fill(7,2) circle(2pt) node[above right]{初始位置};
+ \draw[vector] (7,2)--(7,1.3) node[right]{$v_0$};
+ \draw[vector] (5.8,2.5)--(4.7,2.5) node[midway,above]{$v_D$};
+ \draw[<->] (8.2,0)--(8.2,2) node[midway,right]{$H$};
+ \node at(2.5,3.15){$q>0,\quad\fieldOut\ B$};
+\end{tikzpicture}
+\par\smallskip{\small 本图取不触地的一组参数；开始时切线竖直向下，回旋中心向左漂移。}
+\end{rTwoFigure}}
+
+\renewcommand{\alternatingLayersDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=.68cm,y=.68cm,>=Latex]
+ \foreach \k in {0,2,4}{\fill[PaleBlue] (-1,\k) rectangle(8,\k+1);}
+ \foreach \k in {1,3,5}{\fill[SoftGray] (-1,\k) rectangle(8,\k+1);}
+ \foreach \k in {0,...,6}{\draw[RuleGray] (-1,\k)--(8,\k);}
+ \draw[DeepBlue,very thick] plot file {\rTwoDataPath/layers.dat};
+ \foreach \y in {.5,2.5,4.5}{\draw[vector](7,\y-.2)--(7,\y+.2);\node[right] at(7.2,\y){$E$};}
+ \foreach \y/\n in {1.5/1,3.5/2,5.5/3}{\node at(7,\y){$\fieldInto$};\node[left]at(-1,\y){第\n 磁场层};}
+ \draw[<->] (8.5,0)--(8.5,1) node[midway,right]{$d$};
+\end{tikzpicture}
+\par\smallskip{\small 图取 $\Lambda=2.5$，在第三磁场层内转向；水平速度不会在界面处突变。}
+\end{rTwoFigure}}
+
+\renewcommand{\dampedSpiralDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[scale=1.05,>=Latex]
+ \draw[axis] (-1,0)--(3,0) node[right]{$x$};\draw[axis] (0,-.3)--(0,3.7) node[above]{$y$};
+ \draw[DeepBlue,thick,domain=0:1260,samples=450,variable=\t]
+ plot({2/(1+.22^2)*(.22+exp(-.22*pi*\t/180)*(-.22*cos(\t)+sin(\t)))},
+ {2/(1+.22^2)*(1+exp(-.22*pi*\t/180)*(-.22*sin(\t)-cos(\t)))});
+ \fill(0,0) circle(2pt) node[below left]{$O$};
+ \fill({.44/(1+.22^2)},{2/(1+.22^2)}) circle(2pt);
+ \draw[thin] ({.44/(1+.22^2)},{2/(1+.22^2)})--(2.8,2.1) node[right]{$\boldsymbol r_\infty$};
+ \draw[vector] (0,0)--(1,0) node[below]{$v_0$};
+ \node[anchor=west,align=left] at(3.8,1){$\fieldInto\ B,\quad q>0$\\初始速度沿 $+x$\\终点有 $y_\infty>0$};
+\end{tikzpicture}
+\end{rTwoFigure}}
+
+\renewcommand{\dampedDriftDiagram}{\begin{rTwoFigure}
+\begin{tikzpicture}[x=.7cm,y=.7cm,>=Latex]
+ \pgfmathsetmacro{\ux}{1/(1+.25^2)}\pgfmathsetmacro{\uy}{.25/(1+.25^2)}
+ \pgfmathsetmacro{\cr}{((3-\ux)*.25-\uy)/(1+.25^2)}
+ \pgfmathsetmacro{\ci}{(-(3-\ux)-.25*\uy)/(1+.25^2)}
+ \draw[axis] (-.3,0)--(12.6,0) node[right]{$x$};\draw[axis](0,-3)--(0,2)node[above]{$y$};
+ \draw[guide] (0,{\ci-\uy*\cr/\ux})--(12,{\ci+\uy*(12-\cr)/\ux});
+ \draw[DeepBlue,thick,domain=0:720,samples=350,variable=\t]
+ plot({\ux*pi*\t/180+\cr*(1-exp(-.25*pi*\t/180)*cos(\t))-\ci*exp(-.25*pi*\t/180)*sin(\t)},
+ {\uy*pi*\t/180+\ci*(1-exp(-.25*pi*\t/180)*cos(\t))+\cr*exp(-.25*pi*\t/180)*sin(\t)});
+ \draw[vector](0,0)--(1,0)node[above]{$v_0$};
+ \node[anchor=west]at(6,-2.5){$E\parallel+y,\quad\fieldOut\ B$};
+ \draw[vector](9,.8)--(10.5,1.175)node[above]{$\boldsymbol v_\infty$};
+\end{tikzpicture}
+\par\smallskip{\small 虚线是长期直线渐近线；两个方向的回旋瞬态均指数衰减。}
+\end{rTwoFigure}}
+
+
+磁场与电场都是矢量场，但它们对点电荷的作用方式不同。静电场可以直接改变粒子的动能；磁场只对
+运动电荷产生与速度垂直的力。这个“始终垂直”看似只是方向信息，实际上决定了回旋、螺旋、漂移、
+速度选择、霍尔效应以及粒子探测器中几乎全部的轨迹结构。
+
+人们很早就认识磁体，却曾长期把电与磁看成两类彼此独立的自然现象。电流磁效应和电磁感应相继被发现
+以后，运动电荷、电流、磁场和变化电场才逐渐被纳入统一的电磁理论。这一统一不只是概念整理：发电机、
+电动机、远距离输电和通信技术由此建立，成为第二次工业革命的重要物理基础。后面的讨论将从运动电荷
+在磁场中的受力出发，再过渡到电流的受力、电流产生的磁场以及变化电磁场。
+
+磁现象最直观的入口是磁铁：磁体有南、北两极，同名磁极相斥、异名磁极相吸。把磁铁置于铺有铁屑的
+薄板下方，铁屑会沿局部磁场方向排列，显出一组从一极附近弯向另一极附近的曲线。图中每一点的切线
+方向给出该处磁场方向；这些曲线只是磁场的可视化，不是空间中真实存在的细线。
+
+\historyfigure[0.72\linewidth]{magnet-field-built-in-v1.png}%
+{马蹄形磁铁上方铁屑形成的磁场分布；每条曲线在局部的切向给出磁场方向。}\label{ch22:fig:s38-7-1}
+
+
+\subsection{磁场与洛伦兹力（Lorentz force）}
+
+
+在给定惯性系中，电量为 $q$、速度为 $\vect v$ 的点粒子处在磁感应强度为 $\vect B$ 的磁场中，
+所受磁力为
+\begin{equation}
+  \boxed{\vect F_B=q\vect v\times\vect B},
+  \qquad F_B=|q|vB\sin\theta .
+\end{equation}
+方向先按右手定则判断 $\vect v\times\vect B$，再由电荷正负决定是否反向。磁力同时垂直于
+$\vect v$ 与 $\vect B$。因此
+\begin{equation}
+  \vect F_B\cdot\vect v=0,
+  \qquad \frac{\dd}{\dd t}\left(\frac12mv^2\right)=0.
+\end{equation}
+纯磁场不改变速率与动能，只改变速度方向；所谓“磁场加速粒子”通常是磁场负责弯转，真正增加动能的
+仍是电场。
+
+\lorentzDirectionDiagram
+
+国际单位制中 $B$ 的单位是特斯拉（T），磁通量
+\begin{equation}
+  \Phi_B=\int_S\vect B\cdot\dd\vect S
+\end{equation}
+的单位是韦伯（Wb），且 $\SI{1}{T}=\SI{1}{Wb.m^{-2}}$。常用换算为
+$\SI{1}{T}=10^4\,\mathrm G$。高斯在一些工程和天体物理资料中仍很常见，因为日常磁场若用特斯拉表示
+往往是很小的数。永久磁体可产生数特斯拉量级的磁场，脉冲装置能够短时达到更高数值；中子星表面则可
+达到远超实验室磁场的极端量级。因此，讨论磁场强弱时还必须同时说明它是稳态场、脉冲场还是天体环境。
+
+
+% EM teaching enrichment 20260927
+\paragraph{把右手判断写成分量核对}
+若 $\boldsymbol v=v\boldsymbol e_x$、$\boldsymbol B=B\boldsymbol e_z$，则
+$\boldsymbol v\times\boldsymbol B=-vB\boldsymbol e_y$。正电荷向 $-y$ 偏，电子向 $+y$ 偏。
+同时有 $\dd K/\dd t=q\boldsymbol E\cdot\boldsymbol v$：即使电、磁场同时存在，瞬时改变动能的仍只有电场项。轨迹弯曲只能说明存在横向加速度，不能单独证明粒子能量增加。
+
+
+\subsection{匀强磁场中的回旋与螺旋运动}
+
+
+把速度分解为平行、垂直于磁场的两部分：
+\begin{equation}
+  \vect v=\vect v_\parallel+\vect v_\perp .
+\end{equation}
+$\vect v_\parallel$ 不受磁力影响而保持不变；$\vect v_\perp$ 在垂直于磁场的平面内作匀速圆周运动。
+由 $|q|v_\perp B=mv_\perp^2/r_{\rm c}$ 得
+\begin{equation}
+  \boxed{r_{\rm c}=\frac{mv_\perp}{|q|B}=\frac{p_\perp}{|q|B}},
+  \qquad
+  \boxed{\omega_{\rm c}=\frac{|q|B}{m}},
+\end{equation}
+\begin{equation}
+  \boxed{T_{\rm c}=\frac{2\pi m}{|q|B}},
+  \qquad
+  f_{\rm c}=\frac{|q|B}{2\pi m}.
+\end{equation}
+经典非相对论范围内，回旋角频率与速率无关。若 $v_\parallel\ne0$，圆周运动同时沿磁场方向平移，
+形成螺旋线；每一圈沿轴线前进的螺距为
+\begin{equation}
+  h=v_\parallel T_{\rm c}=\frac{2\pi m v_\parallel}{|q|B}.
+\end{equation}
+
+\gyroHelixDiagram
+
+轨迹曲率还能反推出粒子动量 $p_\perp=|q|Br_{\rm c}$。若粒子穿过物质后损失能量，曲率半径减小；
+结合弯曲方向、磁场方向和已知运动方向，还可判定电荷符号。这是云雾室、气泡室以及现代径迹探测器的
+基本判读逻辑。
+
+1932 年 Anderson 在置于磁场中的云雾室内加入一块铅板：粒子穿过铅板会损失能量，因而板后轨迹的
+曲率变大。这样不仅能由弯曲方向判断电荷符号，还能由板前、板后的半径变化辨认粒子的运动方向。照片中
+出现的粒子带正电，但射程和电离能力又不像质子，于是被认定为狄拉克预言的电子反粒子——正电子。
+
+气泡室把同一思想推广到更高能粒子反应。已知外磁场后，轨迹的切向给出速度方向，曲率给出横向动量，
+顶点位置显示粒子在哪里发生散射或衰变。早期分析需要人工检查海量照片；欧洲核子研究中心确认弱中性流
+时，候选事例就是从约一百四十万张照片中筛出的少数事件。格拉泽因发明气泡室获得 1960 年诺贝尔
+物理学奖。这些历史事例说明图像并非装饰，而是把电荷、动量和相互作用类型转化为可测量证据的仪器。
+
+\particleTracksContext
+
+
+% EM teaching enrichment 20260927
+\paragraph{螺距与半径测出的是不同速度分量}
+给定同一粒子的轨迹半径 $r_c$、螺距 $h$ 和场强 $B$，可依次求
+\[
+ v_\perp=\frac{|q|Br_c}{m},\qquad
+ |v_\parallel|=\frac{|q|Bh}{2\pi m},\qquad
+ \tan\alpha=\frac{2\pi r_c}{h},
+\]
+其中 $\alpha$ 是速度与磁场轴的锐夹角，$h$ 取每圈轴向位移的大小。总动能由两分量平方和得到，而不是用螺旋半径反推总速率。
+$h\to0$ 回到平面圆周；$r_c\to0$ 回到沿场直线。轨迹的几何螺旋若没有运动方向信息，仍不足以独自确定电荷正负。
+
+
+\subsection{回旋方向与运动方程的完整解}
+
+
+仅记半径和周期还不够，许多题目需要同时判断圆心位置、转向和离开磁场的边界点。设匀强磁场
+$\vect B=B\uvec z$，则横向分量满足
+\begin{equation}
+ m\dot v_x=qBv_y,
+ \qquad
+ m\dot v_y=-qBv_x.
+\end{equation}
+定义带符号回旋角频率 $\Omega=qB/m$，解可写为
+\begin{align}
+ v_x(t)&=v_{x0}\cos\Omega t+v_{y0}\sin\Omega t,\notag\\
+ v_y(t)&=v_{y0}\cos\Omega t-v_{x0}\sin\Omega t.
+\end{align}
+正电荷在 $B$ 指向纸面外时顺时针转动，负电荷方向相反。积分一次得到导向中心
+\begin{equation}
+ X=x+\frac{mv_y}{qB},
+ \qquad
+ Y=y-\frac{mv_x}{qB},
+\end{equation}
+在纯匀强磁场中保持不变。由初始位置和初速度先求 $(X,Y)$，再画半径
+$r_c=mv_\perp/(|q|B)$ 的圆，比凭弯曲方向猜圆心更可靠。
+
+粒子从有界磁场区域射出时，轨迹只取完整圆的一段。圆弧所对圆心角 $\Delta\phi$ 同时决定飞行
+时间和弦长：
+\begin{equation}
+ t=\frac{\Delta\phi}{\omega_c},
+ \qquad
+ \ell_{\rm chord}=2r_c\sin\frac{\Delta\phi}{2}.
+\end{equation}
+处理矩形、圆形或扇形磁场边界时，应先用几何求圆心角，再求时间，不能把穿越时间简单写成
+直线长度除以速率。
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{先定圆心，再选真正的出射交点}
+例如 $q>0$，粒子从原点以 $v_0\uvec x$ 进入 $\vect B=B\uvec z$，有圆心 $(0,-r_c)$，
+\[
+ x=r_c\sin\Omega t,\qquad y=r_c(\cos\Omega t-1).
+\]
+若磁场为条带 $0\le x\le a$ 且 $0<a<r_c$，首次碰到远边界的时间为
+$t=\arcsin(a/r_c)/\Omega$，此时 $v_y<0$。同一个圆与 $x=a$ 的另一个交点对应更晚时刻，
+粒子早已离开磁场，不能继续沿原圆推算。若 $a>r_c$，轨迹到不了远边界，而在半周后返回 $x=0$。
+边界问题的核心是把代数交点按时间排序，并逐一检查是否仍处在磁场内部。
+
+
+\subsection{经典公式的相对论边界}
+
+
+速度接近光速时，动量应写成 $\vect p=\gamma m\vect v$。回旋半径仍满足
+\begin{equation}
+ r_c=\frac{p_\perp}{|q|B},
+\end{equation}
+但角频率变为
+\begin{equation}
+ \omega_c=\frac{|q|B}{\gamma m}.
+\end{equation}
+随着能量升高，$\gamma$ 增大，固定射频的经典回旋加速器逐渐失谐。同步回旋加速器通过改变频率，
+同步加速器则同时调节磁场和射频，使高能粒子保持在设计轨道上。竞赛题若未说明相对论效应，通常
+默认 $v\ll c$；若给出的能量与静能 $mc^2$ 同量级，就必须改用相对论动量和能量关系。
+
+% EM teaching enrichment 20260927
+\paragraph{以动能为已知量时的连续表达}
+总能量 $\mathcal E=K+mc^2$ 与动量满足 $\mathcal E^2=p^2c^2+m^2c^4$，故垂直入射时
+\[
+ r_c=\frac{\sqrt{K(K+2mc^2)}}{|q|Bc}.
+\]
+$K\ll mc^2$ 时恢复 $\sqrt{2mK}/(|q|B)$；$K\gg mc^2$ 时近似 $K/(|q|Bc)$。低能区半径随 $\sqrt K$ 增大，高能区近似随 $K$ 增大，是判断题中经典近似能否继续使用的直观尺度检验。
+
+
+
+% EM structure and teaching revision 20260928
+\subsection{从实验数据判断模型范围}
+粒子垂直磁场运动时，测得曲率半径直接给出 $p=|q|Br$。低速区用 $K=p^2/(2m)$，而相对论关系为
+\[
+ K=\sqrt{m^2c^4+p^2c^2}-mc^2.
+\]
+把根式按 $p/(mc)$ 展开，首项才是经典动能。因此“半径公式仍成立”不代表经典能量和周期公式仍成立；高能粒子的回旋角频率为 $|q|B/(\gamma m)$。
+若粒子由电压差大小 $U$ 加速且初始静止，经典模型先给出 $K=|q|U$，再检查 $|q|U\ll mc^2$。对于电子，静能约为 $511\,\mathrm{keV}$：几千电子伏特的加速通常可作低速近似，而达到数百千电子伏特时不能再忽略相对论修正。
+有界磁场问题还要检查几何可达性。先确定圆心、半径和真实绕行方向，再比较候选交点的到达时间；切线接触边界与穿越边界不同。若粒子在到达某个代数交点之前已离开磁区，后续轨迹就必须换用新区的运动方程。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【基本计算】}\label{ch22:ex:s38-7-1}
+质量为 $m$、电量为 $q$ 的粒子由静止经过电压 $U$ 加速，随后垂直注入磁感应强度为 $B$ 的匀强
+磁场。求其回旋半径，忽略相对论效应。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+加速电场所做的功转化为动能。用 $Q=|q|$ 表示电荷量的大小，则
+\[
+  QU=\frac{p^2}{2m},
+  \qquad p=\sqrt{2mQU}.
+\]
+进入磁场后 $p=QBr$，所以
+\begin{equation}
+  \boxed{r=\frac{\sqrt{2mQU}}{QB}
+  =\sqrt{\frac{2mU}{QB^2}}}.
+\end{equation}
+式中使用的是使粒子获得能量的电势差大小；电荷正负只改变弯曲方向，不改变半径。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【比例关系】}\label{ch22:ex:s38-7-2}
+电子、质子、$\alpha$ 粒子都经过电压 $U$ 加速，再垂直注入同一匀强磁场 $B$。求三者的回旋半径
+与周期之比。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+相同加速电压下
+\[
+  r=\sqrt{\frac{2mU}{QB^2}}\propto\sqrt{\frac mQ},
+  \qquad T=\frac{2\pi m}{QB}\propto\frac mQ.
+\]
+因此
+\begin{equation}
+  \boxed{r_e:r_p:r_\alpha
+  =\sqrt{m_e}:\sqrt{m_p}:\sqrt{\frac{m_\alpha}{2}}},
+\end{equation}
+\begin{equation}
+  \boxed{T_e:T_p:T_\alpha=m_e:m_p:\frac{m_\alpha}{2}}.
+\end{equation}
+若取 $m_\alpha\simeq4m_p$，则
+$r_e:r_p:r_\alpha=\sqrt{m_e}:\sqrt{m_p}:\sqrt{2m_p}$，
+$T_e:T_p:T_\alpha=m_e:m_p:2m_p$。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【统统算出来】}\label{ch22:ex:s38-7-3}
+质量为 $m$、电量为 $q$ 的粒子以速率 $v$ 垂直进入匀强磁场 $B$。忽略重力、电磁辐射与相对论
+效应，求周期和频率、动能和动量、关于回旋圆心的角动量、等效电流、轨道所围磁通量以及轨道磁矩。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+记 $Q=|q|$。由 $r=mv/(QB)$、$\omega_{\rm c}=QB/m$ 依次得到
+\begin{align}
+  T&=\frac{2\pi m}{QB},
+  & f&=\frac{QB}{2\pi m},\\
+  E_k&=\frac12mv^2,
+  & p&=mv,\\
+  L&=mvr=\frac{m^2v^2}{QB},
+  & |I|&=\frac{Q}{T}=\frac{Q^2B}{2\pi m},\\
+  \Phi_B&=B\pi r^2=\frac{\pi m^2v^2}{Q^2B},
+  & |\mu|&=|I|\pi r^2=\frac{mv^2}{2B}=\frac{E_k}{B}.
+\end{align}
+方向关系为
+\begin{equation}
+  \boxed{\vect\mu=\frac{q}{2m}\vect L}.
+\end{equation}
+对由磁力维持的回旋运动，$\vect\mu$ 总与 $\vect B$ 反向。磁通量与角动量的大小还满足
+$\Phi_B=\pi L/Q$。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【磁场中的裂变产物】}\label{ch22:ex:s38-7-4}
+匀强磁场 $\vect B$ 垂直纸面向里。一个静止的中性粒子裂变成两个粒子：质量分别为
+$m,2m$，电量分别为 $+q,-q$，前者以 $2v_0$ 向左、后者以 $v_0$ 向右运动。二者相碰时作完全弹性碰撞且不
+交换电量。定量描述后续运动。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.85]
+ \fill[DeepBlue] (-.25,0) circle(2.5pt);\fill[Ink] (.25,0) circle(2.5pt);
+ \draw[vector] (-.4,0)--(-2.7,0) node[midway,above]{$2v_0$};
+ \draw[vector] (.4,0)--(1.55,0) node[midway,above]{$v_0$};
+ \node[below] at (-.8,-.3){$m,+q$};\node[below] at (.8,-.3){$2m,-q$};
+ \node at (3,1){$\otimes\ B$};
+ \node[font=\small] at (0,-1.1){同一裂变点，两粒子仅为辨认而稍分开};
+\end{tikzpicture}
+\end{center}
+\figcap{裂变后的瞬时速度、质量与电荷。}\label{ch22:fig:em22-question-4}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+\textbf{初态与第一次相遇。} 取向右为 $+x$、向上为 $+y$，裂变点为 $P_0$。
+初始总动量 $m(-2v_0)+2m(v_0)=0$，与静止母粒子相符。两个磁力均向下，回旋半径分别为
+\[
+ r_1=\frac{m(2v_0)}{qB},\qquad r_2=\frac{2mv_0}{qB},\qquad
+ r_1=r_2\equiv r,\quad \omega=\frac{qB}{m},\quad T=\frac{2\pi}{\omega}.
+\]
+因此图中两粒子从同一点沿同一个圆反向运动，正粒子角速度为 $+\omega$，负粒子为 $-\omega/2$。
+首次相遇需相对转角为 $2\pi$，即
+\[
+ (\omega+\omega/2)\Delta t=2\pi,\qquad \boxed{\Delta t=2T/3}.
+\]
+此时正粒子逆时针转 $4\pi/3$，负粒子顺时针转 $2\pi/3$，到达图中的 $P_1$。
+
+\textbf{碰撞。} 两速度沿同一圆的切线反向，大小仍为 $2v_0,v_0$。碰撞时间极短，磁场冲量可忽略。
+以正粒子碰前速度方向为正，一维完全弹性碰撞公式给出
+\[
+ u_1'=\frac{m-2m}{3m}(2v_0)+\frac{4m}{3m}(-v_0)=-2v_0,
+ \qquad
+ u_2'=\frac{2m}{3m}(2v_0)+\frac{m}{3m}(-v_0)=v_0.
+\]
+两粒子各自反向而不改速率，总动量仍为零、总动能仍为 $3mv_0^2$。
+碰后共用的新圆心为 $C_1=2P_1-C_0$：半径大小不变，但磁力因速度反向而反向。
+
+\splitProductsDiagram
+
+\textbf{重复过程。} 每次都在同一个半径为 $r$ 的圆上反向追遇，故相邻碰撞间隔始终为 $2T/3$。
+令 $\mathcal R(\beta)$ 为平面逆时针转角 $\beta$ 的旋转，取 $P_0=(0,0)$，则可递推写出全部碰撞点与
+第 $k$ 次碰撞后的速度（$k=0$表示裂变后）：
+\[
+ \boldsymbol v_{1,k}=\mathcal R(k\pi/3)(-2v_0,0),\qquad
+ \boldsymbol v_{2,k}=-\boldsymbol v_{1,k}/2,
+\]
+\[
+ P_{k+1}-P_k=\mathcal R(k\pi/3)
+ \left(\frac{\sqrt3 r}{2},-\frac{3r}{2}\right).
+\]
+后一个式子来自首段转过 $4\pi/3$ 后的弦向量；下一段出发方向比上一段转过
+$4\pi/3+\pi=7\pi/3$，模 $2\pi$ 即 $\pi/3$。
+因此六条等长弦依次转 $60^\circ$，六个碰撞位置构成正六边形；六次碰撞后位置和两粒子的速度同时恢复。
+完整周期为 $6(2T/3)=\boxed{4T}$。这个 $4T$ 来自六段同半径轨道，不能理解成两组内切圆之间往返。
+任一段的连续轨迹也已确定：令 $J(x,y)=(-y,x)$，$C_k=P_k+J\boldsymbol v_{1,k}/\omega$，则在
+$0\le s\le2T/3$ 内，两粒子位置分别为
+\[
+ \boldsymbol r_1=C_k+\mathcal R(\omega s)(P_k-C_k),\qquad
+ \boldsymbol r_2=C_k+\mathcal R(-\omega s/2)(P_k-C_k).
+\]
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【自聚焦】}\label{ch22:ex:s38-7-5}
+质量为 $m$、电量大小为 $Q$ 的粒子经电压 $U$ 加速后大致沿 $z$ 方向射出，方向与 $z$ 轴的最大
+夹角为 $\theta\ll1$，出射口在 $z=0$。在 $z=L$ 放置荧光屏：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 无磁场时亮斑多大？
+  \item 加沿 $z$ 方向的匀强磁场 $B$ 后亮斑多大？怎样选择 $B$ 使亮斑最小？
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+加速后的速率
+\[
+  v=\sqrt{\frac{2QU}{m}}.
+\]
+无磁场时，最大横向速度为 $v\theta$，飞行时间为 $L/v$，故亮斑半径
+\begin{equation}
+  \boxed{\rho_0=L\theta}
+\end{equation}
+（若题目把“大小”理解为直径，则再乘 $2$）。
+
+加纵向磁场后，横向速度以 $\omega_{\rm c}=QB/m$ 转动，而纵向速度近似仍为 $v$。设初始横向
+速度为复数 $u_\perp(0)$，则
+\[
+  \Delta r_\perp(t)=\int_0^t u_\perp(0)\e^{\mathrm i\omega_{\rm c}t'}\dd t',
+\]
+其大小为
+\[
+  |\Delta r_\perp|=\frac{2u_\perp(0)}{\omega_{\rm c}}
+  \left|\sin\frac{\omega_{\rm c}t}{2}\right|.
+\]
+取 $u_\perp(0)\le v\theta$、$t=L/v$，亮斑半径为
+\begin{equation}
+  \boxed{\rho_B=\frac{2mv\theta}{QB}
+  \left|\sin\frac{QBL}{2mv}\right|}.
+\end{equation}
+若
+\begin{equation}
+  \frac{QBL}{mv}=2\pi n,
+  \qquad
+  \boxed{B_n=\frac{2\pi n m v}{QL}},\quad n=1,2,\ldots,
+\end{equation}
+所有近轴粒子的横向速度恰转整数圈，屏上重新聚焦；最小非零磁场取 $n=1$。
+
+\beamFocusDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【请君入瓮】}\label{ch22:ex:s38-7-6}
+半径为 $R$ 的圆柱形桶内有垂直横截面的匀强磁场 $B$。质量为 $m$、电量大小为 $Q$ 的粒子从桶壁
+小孔以速率 $v$ 入射，和桶壁均作完全弹性碰撞。先讨论沿半径入射，再讨论入射方向与向内半径成
+$\theta$ 的情形：粒子何时能从原小孔出去？
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.75]
+ \foreach \x/\ang/\lab in {0/90/径向入射,6/120/斜入射}{
+  \begin{scope}[shift={(\x,0)}]
+   \draw[thick] (272:1.7) arc[start angle=272,end angle=628,radius=1.7];
+   \fill (0,0) circle(1.5pt) node[above left]{$O$};
+   \draw[guide] (0,-1.7)--(0,0);\node[right=2pt] at (0,-.95){$R$};
+   \draw[vector] (0,-1.7)--++(\ang:1.45) node[pos=.6,left=3pt]{$\boldsymbol v$};
+   \node at (.9,.7){$\otimes B$};\node[below] at (0,-1.85){\lab};
+   \ifnum\ang=120
+    \draw[thin] (0,-.92) arc[start angle=90,end angle=120,radius=.78];
+    \node at (-.35,-.55){$\theta$};
+   \fi
+  \end{scope}}
+\end{tikzpicture}
+\end{center}
+\figcap{从桶壁小孔径向入射或以角度 $\theta$ 斜入射。}\label{ch22:fig:em22-question-6}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+粒子的回旋半径为 $r_{\rm c}=mv/(QB)$。圆壁反射只改变速度的法向分量，速率和入射角不变；圆形
+边界又有转动对称性，所以相邻两次碰壁点在桶心所张的圆心角恒为 $\delta$。粒子能够回到小孔的
+充要条件是存在正整数 $N,k$ 使
+\begin{equation}
+  N\delta=2\pi k,
+  \qquad\text{即}\qquad \boxed{\frac{\delta}{2\pi}\in\mathbb Q}.
+\end{equation}
+
+沿半径入射时，桶心、回旋圆心和碰撞点构成直角三角形，几何上
+\begin{equation}
+  \delta=2\arctan\frac{r_{\rm c}}R.
+\end{equation}
+故可写成
+\begin{equation}
+  \boxed{\frac{r_{\rm c}}R=\tan\frac{k\pi}{N}},
+  \qquad 0<k<\frac N2.
+\end{equation}
+
+一般入射时，把 $\theta$ 规定为从向内半径朝洛伦兹偏转侧量取的有向角。两圆交点几何给出
+\begin{equation}
+  \boxed{\tan\frac\delta2=
+  \frac{r_{\rm c}\cos\theta}{R+r_{\rm c}\sin\theta}}.
+\end{equation}
+具体地，取小孔 $P=(0,-R)$，正电荷、磁场入纸面，速度方向为 $(-\sin\theta,\cos\theta)$。
+图中回旋圆心为 $C=(-r_{\rm c}\cos\theta,-R-r_{\rm c}\sin\theta)$。
+另一个交点记为 $Q=(-R\sin\delta,-R\cos\delta)$。用 $|Q-C|^2=|P-C|^2$ 消去半径，得
+\[
+ r_{\rm c}\cos\theta\sin\delta
+ =(R+r_{\rm c}\sin\theta)(1-\cos\delta).
+\]
+再用半角公式即得上式。对 $|\theta|<\pi/2$，用
+$\delta=2\operatorname{atan2}(r_{\rm c}\cos\theta,R+r_{\rm c}\sin\theta)$ 选取 $0<\delta<2\pi$，
+避免分母为负时丢失角度分支。图中虚线 $OP,OQ$ 正是定义圆心角的两条半径。
+若从另一侧倾斜入射，只需令 $\theta\to-\theta$。把由此算出的 $\delta$ 代入
+$\delta/(2\pi)\in\mathbb Q$，便得到一般逃出条件。若该比为无理数，碰撞点会在圆周上稠密分布，
+但在理想的零尺寸小孔模型中永不精确返回。
+
+\magneticBilliardDiagram
+\end{xesolution}
+
+
+
+\section{交叉场、漂移与载流子输运}
+
+\subsection{匀强横向力场中的导向中心漂移}
+
+
+粒子除磁力外再受与 $\vect B$ 垂直的恒力 $\vect F$：
+\begin{equation}
+  m\frac{\dd\vect v}{\dd t}=q\vect v\times\vect B+\vect F.
+\end{equation}
+令 $\vect v=\vect v_D+\vect u$，选取恒定的 $\vect v_D$ 使
+$q\vect v_D\times\vect B+\vect F=0$，则 $\vect u$ 仍满足纯回旋运动方程。由此
+\begin{equation}
+  \boxed{\vect v_D=\frac{\vect F\times\vect B}{qB^2}}.
+\end{equation}
+若 $\vect F=q\vect E$，得到与电荷符号、质量都无关的
+\begin{equation}
+  \boxed{\vect v_E=\frac{\vect E\times\vect B}{B^2}};
+\end{equation}
+若 $\vect F=m\vect g$，则
+\begin{equation}
+  \boxed{\vect v_g=\frac{m\vect g\times\vect B}{qB^2}},
+\end{equation}
+正、负电荷的重力漂移方向相反，因而可能造成电荷分离。
+
+\driftDiagram
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{漂移公式的方向与适用条件}
+由 $q\vect v_D\times\vect B+\vect F=0$ 出发，再与 $\vect B$ 作叉乘。
+因为选择 $\vect v_D\perp\vect B$ 且 $\vect F\perp\vect B$，三重积给出
+$-qB^2\vect v_D+\vect F\times\vect B=0$，从而得到上述漂移速度。
+若 $\vect B=B\uvec z$、$\vect F=F\uvec x$，则
+\[
+ \vect v_D=-\frac{F}{qB}\uvec y.
+\]
+正、负电荷沿相反方向漂移；换成电力 $\vect F=q\vect E$ 后，电荷符号消去，漂移方向相同。
+在漂移参考系中只剩纯磁场回旋，因此实验室轨迹是圆周运动与匀速平移的叠加，并非沿外力方向持续加速。
+若外力含沿磁场分量，该分量仍使粒子沿场加速，须另列纵向方程；外力或磁场随空间显著变化时，这个恒定漂移分解不再直接成立。
+
+
+\subsection{交叉电磁场、速度选择与漂移}
+
+
+若 $\vect E\perp\vect B$，满足
+\begin{equation}
+ \vect E+\vect v\times\vect B=\vect0
+\end{equation}
+的粒子不发生横向偏转。速度选择器通常令粒子束、$\vect E$、$\vect B$ 两两垂直，选出的速率为
+\begin{equation}
+ \boxed{v=\frac EB}.
+\end{equation}
+方向必须使电力与磁力相反；改变电荷正负会同时反转两种力，因而同一速度方向的正、负电荷都可
+满足无偏转条件。
+
+对任意初速度，运动可分成以 $\vect v_E=\vect E\times\vect B/B^2$ 匀速移动的导向中心和绕
+导向中心的回旋。因为 $\vect v_E$ 与 $q,m$ 无关，理想均匀交叉场不会靠这一漂移分离正负电荷。
+若外力不是 $q\vect E$，一般漂移
+\begin{equation}
+ \vect v_D=\frac{\vect F\times\vect B}{qB^2}
+\end{equation}
+会随电荷符号改变，才可能造成电荷分离。
+
+霍尔效应正是磁力造成横向电荷积累，积累建立的霍尔电场最终与磁力平衡。若载流子漂移速度为
+$\vect v_d$，稳态有
+\begin{equation}
+ q(\vect E_H+\vect v_d\times\vect B)=0.
+\end{equation}
+对宽度 $w$、厚度 $d$ 的矩形导体，电流 $I=n|q|v_dwd$，霍尔电压大小为
+\begin{equation}
+ \boxed{|U_H|=\frac{IB}{n|q|d}}.
+\end{equation}
+霍尔电压极性可以判断主要载流子的电荷符号，大小则可测载流子浓度。
+
+
+% EM teaching enrichment 20260927
+\paragraph{选择速度之后如何测质量}
+先用交叉场选出 $v=E/B_s$，再进入只有垂直匀强磁场 $B_a$ 的分析区，半径满足
+\[
+ r=\frac{mv}{|q|B_a},\qquad
+ \frac m{|q|}=\frac{rB_aB_s}{E}.
+\]
+这里选速区与分析区的磁场分别记为 $B_s,B_a$，不能未经题设认定为同一个场强。测得半径给出质荷比；若电荷态未知，仅靠这一组数据不能唯一确定质量。同速且同电荷态的同位素才可由半径直接区分。
+
+
+% EM structure and teaching revision 20260928
+\subsection{霍尔平衡与载流子浓度}
+稳定载流子横向不再加速时，$q(\boldsymbol E_H+\boldsymbol v_d\times\boldsymbol B)=0$。电荷符号在这一步约去，但把漂移速度换为常规电流 $I=nqv_dwd$ 时，符号又通过 $q$ 进入测量关系。
+取电流沿 $+x$、磁场沿 $+z$、宽度沿 $y$，定义 $U_H=V(-w/2)-V(w/2)$，有
+\[
+ E_y=v_dB,\qquad U_H=E_yw=\frac{IB}{nqd}.
+\]
+宽度消去，厚度 $d$ 留在分母。测出电压的符号可以判断单一载流子模型中的电荷符号，测出大小可以求浓度。
+例如 $I=1\,\mathrm A$、$B=0.50\,\mathrm T$、$d=0.10\,\mathrm{mm}$，若 $|U_H|=1.0\,\mathrm{mV}$、$|q|=e$，则 $n\simeq3.1\times10^{25}\,\mathrm{m^{-3}}$。把毫米误作米会造成三个数量级的错误。
+普通霍尔条形样品可在侧边积累电荷，圆环几何却没有同样的开路侧边；科尔比诺圆盘必须同时求径向和环向的运动。两种装置不能仅靠替换样品宽度互相套用公式。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【速度选择器】}\label{ch22:ex:s38-7-7}
+一束 $\alpha$ 粒子向右射出，速率各不相同。设计装置只让速率为 $v$ 的粒子沿直线通过。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+让匀强电场、匀强磁场和粒子速度两两垂直，并使电场力与磁力反向。直线通过的条件为
+\begin{equation}
+  Q E=QvB,
+  \qquad \boxed{v=\frac EB}.
+\end{equation}
+速率偏大的粒子磁力占优，偏小的粒子电场力占优，二者向相反方向偏转。该关系与粒子质量、电量大小
+无关；若电荷改号，两种力同时反向，仍可选择相同速率。
+
+\velocitySelectorDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【漂移运动】}\label{ch22:ex:s38-7-8}
+平行板电容器电压为 $U$、板间距为 $d$，板间有平行极板且垂直纸面的匀强磁场 $B$。质量为 $m$、
+正电量为 $Q$ 的粒子从正极板附近由静止释放。若要求粒子不能到达负极板，$B$ 至少多大？
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.8]
+ \draw[very thick] (-3,1.2)--(3,1.2) (-3,-1.2)--(3,-1.2);
+ \foreach \x in {-2.7,-1.8,...,2.7}{\node[above] at (\x,1.2){$+$};\node[below] at (\x,-1.2){$-$};}
+ \foreach \x in {-2,-.5,1,2.5}{\node at (\x,0){$\otimes$};}
+ \draw[<->] (3.45,-1.2)--(3.45,1.2) node[midway,right]{$d$};
+ \fill[DeepBlue] (-1,1.03) circle(2.5pt);\node[below right=2pt] at (-1,.85){$m,+Q;\ v_0=0$};
+ \draw[vector] (-2.7,.7)--(-2.7,-.7) node[midway,left]{$\boldsymbol E$};
+ \node at (.4,-.6){$B$ 入纸面};\node[font=\small] at (0,-1.95){两板电势差为 $U$};
+\end{tikzpicture}
+\end{center}
+\figcap{正电荷从正极板附近静止释放，轨迹待求。}\label{ch22:fig:em22-question-8}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+板间电场大小 $E=U/d$。取 $\vect E$ 向下、$\vect B$ 入纸面，则导向中心以
+$v_D=E/B$ 水平漂移，粒子相对导向中心以 $\omega_{\rm c}=QB/m$ 回旋。从静止初态积分可得摆线
+\[
+  x=\frac{v_D}{\omega_{\rm c}}(\omega_{\rm c}t-\sin\omega_{\rm c}t),
+  \qquad
+  y=\frac{v_D}{\omega_{\rm c}}(1-\cos\omega_{\rm c}t),
+\]
+其中 $y$ 沿电场方向由正极板量起。最大下降距离
+\begin{equation}
+  y_{\max}=\frac{2v_D}{\omega_{\rm c}}
+  =\frac{2mE}{QB^2}=\frac{2mU}{QB^2d}.
+\end{equation}
+临界条件 $y_{\max}=d$，故
+\begin{equation}
+  \boxed{B_{\min}=\frac1d\sqrt{\frac{2mU}{Q}}}.
+\end{equation}
+若要求轨迹严格不接触负极板，应取 $B>B_{\min}$。
+
+\crossedFieldCycloidDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【花式漂移】}\label{ch22:ex:s38-7-9}
+在地球赤道附近，把地面近似为平面、地磁场近似为匀强场。质量为 $m$、电量为 $q$ 的粒子从地面
+上方 $H$ 处以速率 $v_0$ 竖直向下运动，且 $H\ll R_\oplus$。求粒子不与地面相碰的条件，以及任意
+时刻它到初始位置的距离。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+取 $y$ 轴竖直向上，初始位置为 $(0,H)$，地面为 $y=0$；令地磁场沿 $+z$ 方向，并记有号回旋频率
+\[
+  \Omega=\frac{qB}{m}.
+\]
+运动方程为
+\[
+  \dot v_x=\Omega v_y,
+  \qquad
+  \dot v_y=-\Omega v_x-g,
+  \qquad v_x(0)=0,\quad v_y(0)=-v_0.
+\]
+把恒定的重力漂移 $v_{D,x}=-g/\Omega$ 分离出来，积分得到
+\begin{align}
+  x(t)&=-\frac g\Omega t+\frac g{\Omega^2}\sin\Omega t
+       +\frac{v_0}{\Omega}(\cos\Omega t-1),\\
+  y(t)&=H+\frac g{\Omega^2}(\cos\Omega t-1)
+       -\frac{v_0}{\Omega}\sin\Omega t.
+\end{align}
+电荷改号时 $x$ 方向反转，但竖直下降的最大值不变。令
+$\omega_{\rm c}=|\Omega|$，一个回旋周期内相对初始高度的最大下降量是
+\begin{equation}
+  \Delta y_{\max}=\frac g{\omega_{\rm c}^2}
+  +\sqrt{\left(\frac g{\omega_{\rm c}^2}\right)^2
+  +\left(\frac{v_0}{\omega_{\rm c}}\right)^2}.
+\end{equation}
+因此严格不碰地的条件为
+\begin{equation}
+  \boxed{H>\frac g{\omega_{\rm c}^2}
+  +\sqrt{\frac{g^2}{\omega_{\rm c}^4}+\frac{v_0^2}{\omega_{\rm c}^2}}}.
+\end{equation}
+任意时刻到初始位置的距离则是
+\begin{equation}
+  \boxed{s(t)=\sqrt{x(t)^2+[y(t)-H]^2}},
+\end{equation}
+其中 $x(t),y(t)$ 由上式给出。第一项造成持续的水平漂移，余下项为有界回旋。
+
+\gravityDriftDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【交替电磁场】}\label{ch22:ex:s38-7-10}
+空间沿竖直方向交替分布电场层与磁场层，每层厚度均为 $d$。电场 $\vect E$ 向上，磁场 $\vect B$
+垂直纸面向里。质量为 $m$、正电量为 $q$ 的粒子从第一电场层底部由静止释放。它最多能到达第几层
+磁场？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+电场每帮助粒子向上通过一层，动能增加 $qEd$。所以进入第 $k$ 个磁场层时
+\begin{equation}
+  v_k^2=\frac{2kqEd}{m}.
+\end{equation}
+令 $\omega=qB/m$。在磁场层内
+\[
+  \dot v_x=-\omega v_y,
+  \qquad \dot y=v_y,
+\]
+故
+\begin{equation}
+  \frac{\dd}{\dd t}(v_x+\omega y)=0.
+\end{equation}
+粒子每向上穿过一个厚度 $d$ 的磁场层，$v_x$ 就减少 $\omega d$。因此进入第 $k$ 层前已穿过
+$k-1$ 个磁场层，$v_{x,\mathrm{in}}=-(k-1)\omega d$；若能穿出第 $k$ 层，则
+\[
+  v_{x,\mathrm{out}}=-k\omega d.
+\]
+磁场不改变总速率，所以穿出条件是 $v_k^2-v_{x,\mathrm{out}}^2\ge0$：
+\begin{equation}
+  2k\frac{qE}{m}d-k^2\left(\frac{qB}{m}\right)^2d^2\ge0,
+\end{equation}
+即
+\begin{equation}
+  k\le \Lambda,
+  \qquad \Lambda=\frac{2mE}{qB^2d}.
+\end{equation}
+它能完整穿过的磁场层数为 $\lfloor\Lambda\rfloor$，随后还会进入下一电场层并到达下一磁场层，
+但不能再穿出。因此最多到达
+\begin{equation}
+  \boxed{N_{\max}=\lfloor\Lambda\rfloor+1
+  =\left\lfloor\frac{2mE}{qB^2d}\right\rfloor+1}
+\end{equation}
+层磁场（临界擦边时约定按上方电场层处理）。若 $\Lambda$ 恰为整数，边界处为法向分量 $v_y=0$，
+而切向分量 $v_x=-k\omega d\ne0$。理想阶跃场在界面的取值必须规定：若按上方电场处理，粒子会重新
+向上加速，仍得上述式子；若按磁场侧处理，则在此切触后返回，不能把“到达界面”等同于“穿过界面”。
+真实过渡区应按实际场分布求解，非整数 $\Lambda$ 的结论不受这个临界约定影响。
+图中界面两侧位置与速度连续，后续电场段不能再画成竖直线。
+
+\alternatingLayersDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【霍尔效应】}\label{ch22:ex:s38-7-11}
+长方体导体沿 $x$ 方向通电流 $I$，长度、沿磁场的宽度和竖直厚度分别为 $c,b,a$。载流子数密度为
+$n$，每个载流子带电 $+q$，外加磁场沿 $y$ 方向。稳定后上下表面的霍尔电势差是多少？若载流子
+带电 $-q$，结果怎样？说明其用途，并判断理想单载流子模型中纵向电阻是否改变。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.67]
+ \coordinate(A)at(-3,-1);\coordinate(B)at(2,-1);\coordinate(C)at(3.5,.2);\coordinate(D)at(-1.5,.2);
+ \coordinate(At)at(-3,1);\coordinate(Bt)at(2,1);\coordinate(Ct)at(3.5,2.2);\coordinate(Dt)at(-1.5,2.2);
+ \fill[SoftGray] (At)--(Bt)--(Ct)--(Dt)--cycle;
+ \draw[thick] (A)--(B)--(C)--(Ct)--(Dt)--(At)--cycle (At)--(Bt)--(Ct) (B)--(Bt);
+ \draw[guide] (A)--(D)--(C) (D)--(Dt);
+ \draw[vector] (-4.4,0)--(-3,0) node[midway,above]{$I\parallel x$};
+ \draw[vector] (1.8,-2.3)--(3.3,-1.1) node[below right]{$\boldsymbol B\parallel y$};
+ \draw[<->] (-3.45,-1)--(-3.45,1) node[pos=.15,left]{$a$};
+ \draw[<->] (-3,-1.45)--(2,-1.45) node[midway,below]{$c$};
+ \draw[<->] (2.35,-1.15)--(3.85,.05) node[midway,right]{$b$};
+ \draw (0,1.6)--(0,3)--(5,3)--(5,1.0);
+ \draw (0,-1)--(0,-2.6)--(5,-2.6)--(5,.2);
+ \draw (5,.6) circle(.4);\node at(5,.6){V};
+ \node[right,font=\small] at(5.55,.6){上下表面电势差};
+\end{tikzpicture}
+\end{center}
+\figcap{霍尔测量的导体尺寸、外磁场与电流方向；V 表示高内阻电压表。}\label{ch22:fig:em22-question-11}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+垂直于电流方向的横截面积为 $ab$，故电流密度和漂移速率满足
+\begin{equation}
+  j_x=\frac{I}{ab}=nqv_d,
+  \qquad v_d=\frac{I}{nqab}.
+\end{equation}
+载流子被磁力推向上下表面，电荷积累建立霍尔电场。稳定时横向电流为零，
+\[
+  qE_H=qv_dB,
+  \qquad E_H=v_dB.
+\]
+上下表面相距 $a$，所以
+\begin{equation}
+  \boxed{|U_H|=E_Ha=\frac{IB}{nqb}}.
+\end{equation}
+为给出极性，按题设取常规电流沿 $+x$、磁场沿 $+y$，以竖直向上为 $+z$，组成右手坐标系。
+正载流子受到 $q\boldsymbol v_d\times\boldsymbol B$ 的方向为 $+z$，故稳态霍尔电场向下，上表面电势较高。明确规定
+$U_H=V_{\text{上}}-V_{\text{下}}$ 后，有
+\[
+ \boxed{U_H=+\frac{IB}{nqb}\quad(\text{正载流子})}.
+\]
+若载流子改为 $-q$，在给定常规电流方向下漂移速度也反向，但电荷符号同时改变；最终霍尔电场与
+原来反向，$U_H$ 的符号改变、大小不变。因此霍尔电压既可测磁场，也可判定主要载流子正负并测量
+载流子浓度。
+
+在理想均匀、单载流子德鲁德模型中，横向霍尔电场恰好抵消横向磁力，纵向关系仍为
+$E_x=\rho j_x$，故四端测得的纵向电阻不变。真实材料若有多种载流子、复杂能带或几何混入，则可能
+出现磁阻。
+
+\hallDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【科尔比诺】}\label{ch22:ex:s38-7-12}
+内、外半径分别为 $a,b$ 的圆环形导体电阻率为 $\rho$、载流子迁移率为 $\mu$，轴向长度为 $L$，且
+$L\gg a,b$。内外圆柱面间加电压 $U$。求无磁场时的电流；再加轴向磁场 $B$ 后电流如何改变，并说明
+这种结构的用途。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.75]
+ \fill[SoftGray,even odd rule] (0,0)circle(1.9) (0,0)circle(.8);
+ \draw[thick] (0,0)circle(1.9) (0,0)circle(.8);
+ \draw[thin] (0,0)--(30:.8) node[midway,above]{$a$};
+ \draw[thin] (0,0)--(210:1.9) node[midway,below]{$b$};
+ \node at (-1.05,1.0){$\odot B$};
+ \draw (.8,0)--(3,0)--(3,-2.5)--(1.7,-2.5);
+ \draw (0,-1.9)--(0,-2.5)--(1.3,-2.5);
+ \draw[thick] (1.3,-2.68)--(1.3,-2.32) (1.7,-2.8)--(1.7,-2.2);
+ \node[below] at(1.5,-2.85){$U$};
+ \node[align=left,anchor=west,font=\small] at(3.7,.7){圆柱横截面\\轴向长度 $L$\\电阻率 $\rho$，迁移率 $\mu$};
+\end{tikzpicture}
+\end{center}
+\figcap{同轴圆柱导体的横截面。引线绝缘，仅端点接触内、外电极，电压加在两圆柱面之间。}\label{ch22:fig:em22-question-12}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+半径 $r$ 处电流通过的面积为 $2\pi rL$，微元电阻
+\[
+  \dd R=\frac{\rho\,\dd r}{2\pi rL}.
+\]
+积分得
+\begin{equation}
+  R_0=\frac{\rho}{2\pi L}\ln\frac ba,
+  \qquad
+  \boxed{I_0=\frac{2\pi LU}{\rho\ln(b/a)}}.
+\end{equation}
+
+加轴向磁场后，径向漂移会受到方位方向的洛伦兹力。科尔比诺圆环中不能靠静电荷建立一个沿整圈
+同向、线积分非零的静电场来完全抵消这种偏转，因此出现方位电流，径向电导降低。单载流子德鲁德
+模型可以直接求出这一电导。取 $B$ 沿 $+z$，载流子带符号电荷为 $q_c$，质量为 $m_c$，弛豫时间为 $\tau$。
+稳态平均速度满足 $0=q_c(\boldsymbol E+\boldsymbol v\times\boldsymbol B)-m_c\boldsymbol v/\tau$。
+轴对称静电场的 $E_\varphi=0$，于是
+\[
+ v_r=\frac{q_c\tau}{m_c}(E_r+Bv_\varphi),\qquad
+ v_\varphi=-\frac{q_c\tau B}{m_c}v_r.
+\]
+把第二式代入第一式，令 $\mu=|q_c|\tau/m_c$、$\sigma_0=nq_c^2\tau/m_c=1/\rho$，得到
+\[
+ v_r=\frac{q_c\tau E_r/m_c}{1+\mu^2B^2},\qquad
+ j_r=\frac{\sigma_0 E_r}{1+\mu^2B^2},\qquad
+ j_\varphi=-\frac{q_c\tau B}{m_c}j_r.
+\]
+因此
+\begin{equation}
+  \sigma_{rr}(B)=\frac{\sigma_0}{1+(\mu B)^2}.
+\end{equation}
+所以
+\begin{equation}
+  \boxed{R(B)=R_0[1+(\mu B)^2]},
+  \qquad
+  \boxed{I(B)=\frac{I_0}{1+(\mu B)^2}}.
+\end{equation}
+这种没有横向边界积累霍尔电荷的圆环几何可以直接测量磁阻，进而求迁移率或作为磁场传感结构。
+
+\corbinoDiagram
+\end{xesolution}
+
+
+
+\section{缓变场、扰动与阻尼运动}
+
+\subsection{缓变磁场中的绝热近似}
+
+
+若磁场在一个回旋半径内变化很小、在一个回旋周期内变化很慢，粒子仍可在局部看成回旋，第一
+绝热不变量近似守恒：
+\begin{equation}
+ \boxed{\frac{p_\perp^2}{2mB}=\mu=\text{常量}}.
+\end{equation}
+粒子进入更强磁场时，横向动能随 $B$ 增大；总动能若不变，平行动能便减小。当平行速度降到零，
+粒子会被反射，形成磁镜。这个机制说明磁场虽然不做功，仍能在平行和垂直两个运动分量之间重新
+分配动能。
+
+轴对称缓变磁场还可使偏离轴线的粒子受到平均聚焦作用。实际粒子束装置常把均匀场中的回旋、
+场边缘的方向变化和多段磁场组合起来，实现选速、聚焦与动量分析。使用局部回旋近似时必须检查
+$r_c$ 是否远小于磁场变化尺度；若二者同量级，简单的导向中心图像不再可靠。
+
+
+% EM teaching enrichment 20260927
+\paragraph{磁镜反射条件的逐步求法}
+在静态磁场且无电场做功时，总动能 $K$ 不变。设起点场强为 $B_0$、速度与场夹角为 $\alpha_0$，则
+$\mu=K\sin^2\alpha_0/B_0$，沿磁力线到场强 $B$ 处有
+\[
+ K_\parallel=K-\mu B
+ =K\left(1-\frac B{B_0}\sin^2\alpha_0\right).
+\]
+反射发生在 $K_\parallel=0$，即 $B_m=B_0/\sin^2\alpha_0$。若装置最大场强为 $B_{\max}$，能被反射须满足
+$\sin^2\alpha_0\ge B_0/B_{\max}$；过于沿场的粒子会从损失锥逃逸。这个判据同时依赖能量守恒与绝热不变量，两者缺一不可。
+
+
+\subsection{线性阻尼与小扰动的求解框架}
+取匀强磁场 $\boldsymbol B=B\boldsymbol e_z$，并在横向运动中加入线性阻力 $-m\nu\boldsymbol v$。这里 $\nu>0$ 的单位为时间的倒数。令 $w=v_x+\mathrm i v_y$、$\Omega=qB/m$，运动方程化为
+\[
+ \dot w+(\nu+\mathrm i\Omega)w=\frac q m(E_x+\mathrm iE_y).
+\]
+无电场时 $w(t)=w_0e^{-\nu t}e^{-\mathrm i\Omega t}$：速度方向仍以带符号回旋频率旋转，而速率指数衰减，动能按 $e^{-2\nu t}$ 衰减。此时瞬时曲率半径随速率变小；轨迹并非围绕一个固定圆心的同心圆，位置应再对速度积分。
+
+恒定横向电场下，先求稳定速度
+\[
+ w_\infty=\frac{q(E_x+\mathrm iE_y)}{m(\nu+\mathrm i\Omega)},\qquad
+ w(t)=w_\infty+(w_0-w_\infty)e^{-(\nu+\mathrm i\Omega)t}.
+\]
+取 $E_y=0$，稳定速度包含沿电场的耗散分量和横向分量：
+\[
+ v_{x,\infty}=\frac{qE_x\nu}{m(\nu^2+\Omega^2)},\qquad
+ v_{y,\infty}=-\frac{qE_x\Omega}{m(\nu^2+\Omega^2)}.
+\]
+令 $\nu\to0$，稳定特解退回 $v_x=0,v_y=-E_x/B$；但无阻尼时初值引起的回旋不会衰减，所以这不表示所有粒子都自动趋向匀速漂移。令 $B\to0$，则回到电场与阻力平衡的漂移速度。
+
+若外场随位置缓慢变化，小扰动法要围绕指定参考轨道展开，把 $\boldsymbol r=\boldsymbol r_0+\delta\boldsymbol r$、$\boldsymbol v=\boldsymbol v_0+\delta\boldsymbol v$ 代入，减去参考轨道方程，只保留扰动的一次项。常数项没有消去通常意味着参考轨道本身不满足原方程；丢弃二次项之前也应说明扰动位移相对场变化尺度足够小。稳定性由线性解是否增长判断，不能只凭某个瞬时力的方向下结论。
+
+例题若把阻力系数记为 $\gamma$、写成 $-\gamma\boldsymbol v$，则本小节的衰减率应取 $\nu=\gamma/m$；这两种系数的单位不同。
+
+% EM structure and teaching revision 20260928
+\subsection{磁镜条件与绝热近似的两重检查}
+无电场且磁场随位置缓慢变化时，总动能保持不变，而第一绝热不变量
+$\mu=m v_\perp^2/(2B)$ 近似保持。由初始磁场 $B_0$ 与俯仰角 $\alpha_0$ 得
+\[
+ v_\parallel^2=v^2\left(1-\frac{B}{B_0}\sin^2\alpha_0\right),\qquad
+ B_{\mathrm{turn}}=\frac{B_0}{\sin^2\alpha_0}.
+\]
+磁镜反射发生在纵向速度降到零时；总速率没有下降，只是平行与垂直分量重新分配。若沿途最大场为 $B_{\max}$，反射要求 $\sin^2\alpha_0\ge B_0/B_{\max}$。
+这个判据还要满足绝热条件：一回旋半径内场的相对变化很小，典型地 $r_c|\nabla B|/B\ll1$；还应检查粒子沿场前进时一回旋周期内所经历的场变化，例如 $|v_\parallel\partial_\parallel B|/(|\Omega|B)\ll1$，其中 $|\Omega|=|q|B/m$。仅有横向回旋半径很小，对 $v_\parallel\gg v_\perp$ 的粒子并不充分。若场本身随时间变化，也需回旋周期远小于场的变化时间。磁场在一个锐利界面突然改变时，应按分区轨迹匹配，不能直接宣称磁矩跨界不变。
+若存在碰撞、辐射或强阻尼，总动能和磁矩可能同时改变。解题时把精确守恒量、近似不变量和纯几何约束分别列出，才知道哪一步需要额外假设。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【磁场中的小扰动】}\label{ch22:ex:s38-7-13}
+柱形区域内有垂直纸面的匀强磁场 $B$。质量为 $m$、电量为 $+q$ 的粒子在半径 $R$ 处绕圆心作匀速
+圆周运动。受到很小的径向扰动后，径向运动的周期是多少？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+匀强磁场中任意平面轨迹都是回旋圆。小的径向速度或位移扰动不会改变回旋频率，只会使新回旋圆的
+圆心相对原圆心产生一个小位移 $\delta$。若新圆半径仍记作 $R+\order{\delta}$，则相对原圆心的距离
+\[
+  r(t)=\sqrt{R^2+\delta^2+2R\delta\cos(\omega_{\rm c}t+\varphi_0)}
+  \simeq R+\delta\cos(\omega_{\rm c}t+\varphi_0).
+\]
+故径向小振动角频率就是回旋角频率：
+\begin{equation}
+  \boxed{\omega_r=\omega_{\rm c}=\frac{qB}{m}},
+  \qquad
+  \boxed{T_r=\frac{2\pi m}{qB}}.
+\end{equation}
+
+\epicycleDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【电磁场中的小扰动】}\label{ch22:ex:s38-7-14}
+柱形区域内有垂直纸面向里的匀强磁场 $B$，并有径向向外的电场
+$E=\alpha/r$，$\alpha>0$。质量为 $m$、电量为 $+q$ 的粒子在半径 $R$ 处作逆时针匀速圆周运动。求径向小扰动的
+周期。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.8]
+ \draw[thick] (0,0)circle(1.7);\node at(0,.35){$\otimes B$};
+ \foreach \a in {0,60,120,180,240,300}{\draw[vector] (\a:.8)--(\a:1.35);}
+ \node[right] at(2.2,.2){$E=\alpha/r$，径向向外};
+ \fill[DeepBlue] (0,1.7)circle(2pt) node[above right]{$m,+q$};
+ \draw[vector] (0,1.7)--(-1.2,1.7) node[left]{$\boldsymbol v$};
+ \draw[->] (0,0)--(0,-1.7) node[pos=.25,right=2pt]{$R$};
+\end{tikzpicture}
+\end{center}
+\figcap{径向向外电场与给定的逆时针圆周初态。}\label{ch22:fig:em22-question-14}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+先判断转向：图中正电荷在圆顶向左运动，$B$入纸面，故磁力向内、电场力向外。
+若改成顺时针，二力都向外，就不能维持圆周运动。参数 $\alpha=Er$ 的单位为伏特，电场力的系数为 $q\alpha$。
+
+记 $\omega_B=qB/m>0$，圆周运动角速度为 $\Omega>0$。磁力向内，径向力平衡为
+\begin{equation}
+  qBR\Omega=mR\Omega^2+\frac{q\alpha}R,
+\end{equation}
+即
+\begin{equation}
+  \Omega^2-\omega_B\Omega+\frac{q\alpha}{mR^2}=0.
+\end{equation}
+圆轨道存在需 $\omega_B^2\ge4q\alpha/(mR^2)$。
+
+在轴对称场中正则角动量守恒，可写为
+\begin{equation}
+  r^2\left(\dot\varphi-\frac{\omega_B}{2}\right)
+  =R^2\left(\Omega-\frac{\omega_B}{2}\right).
+\end{equation}
+令 $r=R+x$、$|x|\ll R$，则
+\[
+  \delta\dot\varphi=-\frac{2}{R}
+  \left(\Omega-\frac{\omega_B}{2}\right)x.
+\]
+径向方程为 $\ddot r=r\dot\varphi^2-\omega_Br\dot\varphi+q\alpha/(mr)$。
+记 $a=q\alpha/m$，在 $R,\Omega$ 附近展开，并减去圆轨道的零阶平衡式：
+\[
+ \ddot x=(\Omega^2-\omega_B\Omega-a/R^2)x
+       +R(2\Omega-\omega_B)\delta\dot\varphi.
+\]
+由 $\Omega^2-\omega_B\Omega=-a/R^2$ 和上面的角速度变化式，系数变为
+$-2a/R^2-(2\Omega-\omega_B)^2$。再用 $(2\Omega-\omega_B)^2=\omega_B^2-4a/R^2$，得到
+\begin{equation}
+  \ddot x+\left(\omega_B^2-\frac{2q\alpha}{mR^2}\right)x=0.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\omega_r=\sqrt{\omega_B^2-\frac{2q\alpha}{mR^2}}},
+  \qquad
+  \boxed{T_r=\frac{2\pi}{\sqrt{(qB/m)^2-2q\alpha/(mR^2)}}}.
+\end{equation}
+圆轨道的存在条件已经保证根号内为正。$q\alpha/(mR^2)$ 的量纲为时间的负二次方；
+令 $\alpha\to0$，即回到纯磁场的 $\omega_r=\omega_B$。
+
+\radialFieldOrbitDiagram
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【磁场中的阻尼运动】}\label{ch22:ex:s38-7-15}
+匀强磁场 $B$ 垂直纸面向里。正电粒子 $m,+q$ 从原点以 $v_0$ 沿 $+x$ 方向运动，同时受到线性阻力
+$\vect f=-\gamma\vect v$。求任意时刻的位置及最终停止位置。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+记
+\[
+  a=\frac\gamma m,
+  \qquad \omega=\frac{qB}{m}.
+\]
+运动方程为
+\[
+  \dot v_x=-av_x-\omega v_y,
+  \qquad
+  \dot v_y=\omega v_x-av_y.
+\]
+令 $u=v_x+\mathrm i v_y$，则
+\[
+  \dot u=(-a+\mathrm i\omega)u,
+  \qquad u(0)=v_0,
+\]
+所以
+\begin{equation}
+  v_x=v_0\e^{-at}\cos\omega t,
+  \qquad
+  v_y=v_0\e^{-at}\sin\omega t.
+\end{equation}
+下图的初始切线沿 $+x$，磁力使轨迹向上弯转；标出的极限点将在积分后确定。
+\dampedSpiralDiagram
+再积分一次：
+\begin{align}
+  x(t)&=\frac{v_0}{a^2+\omega^2}
+  \left[a+\e^{-at}(-a\cos\omega t+\omega\sin\omega t)\right],\\
+  y(t)&=\frac{v_0}{a^2+\omega^2}
+  \left[\omega+\e^{-at}(-a\sin\omega t-\omega\cos\omega t)\right].
+\end{align}
+令 $t\to\infty$，最终位置为
+\begin{equation}
+  \boxed{(x_\infty,y_\infty)=
+  \frac{v_0}{a^2+\omega^2}(a,\omega)}.
+\end{equation}
+速度指数衰减而方向继续转动，故轨迹不是无限延伸的螺旋，而是收敛到有限终点。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【电磁场中的阻尼运动】}\label{ch22:ex:s38-7-16}
+匀强磁场 $B$ 垂直纸面向外，匀强电场 $E$ 沿 $+y$ 方向。正电粒子 $m,+q$ 从原点以 $v_0$ 沿
+$+x$ 方向运动，并受线性阻力 $\vect f=-\gamma\vect v$。求任意时刻的位置并概括运动规律。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+令
+\[
+  a=\frac\gamma m,
+  \qquad \omega=\frac{qB}{m},
+  \qquad b=\frac{qE}{m},
+  \qquad u=v_x+\mathrm i v_y.
+\]
+分量方程合并为
+\begin{equation}
+  \dot u=-(a+\mathrm i\omega)u+\mathrm i b.
+\end{equation}
+稳态速度为
+\begin{equation}
+  u_\infty=\frac{\mathrm i b}{a+\mathrm i\omega}
+  =\frac{b\omega}{a^2+\omega^2}
+  +\mathrm i\frac{ba}{a^2+\omega^2}.
+\end{equation}
+因此完整速度和位置（令 $z=x+\mathrm i y$）为
+\begin{equation}
+  \boxed{u(t)=u_\infty+(v_0-u_\infty)\e^{-(a+\mathrm i\omega)t}},
+\end{equation}
+\begin{equation}
+  \boxed{z(t)=u_\infty t+
+  \frac{v_0-u_\infty}{a+\mathrm i\omega}
+  \left[1-\e^{-(a+\mathrm i\omega)t}\right]}.
+\end{equation}
+这已经同时给出 $x(t)=\Re z(t)$ 与 $y(t)=\Im z(t)$。运动由两部分组成：以
+$\omega$ 回转、以 $e^{-at}$ 衰减的瞬态，加上恒定漂移
+\begin{equation}
+  \boxed{\vect v_\infty=
+  \frac{q^2}{\gamma^2+q^2B^2}
+  \left(BE\,\uvec x+\frac{\gamma E}{q}\,\uvec y\right)}.
+\end{equation}
+当 $\gamma\to0$ 时恢复纯 $\vect E\times\vect B$ 漂移 $v_x=E/B$；阻力存在时还出现沿电场方向的
+速度分量。长期轨迹趋于沿 $\vect v_\infty$ 的直线。
+
+\dampedDriftDiagram
+\end{xesolution}
+
+
+
+\section{磁矩、频移与加速装置}
+
+\subsection{磁场中的角动量与轨道磁矩}
+
+
+电荷作圆周运动等效为环电流。周期 $T=2\pi/\omega_c$，电流为 $I=q/T$，轨道面积为
+$\pi r_c^2$，故磁矩
+\begin{equation}
+ \vect\mu=I\vect S.
+\end{equation}
+它与机械轨道角动量 $\vect L=m\vect r\times\vect v$ 的关系为
+\begin{equation}
+ \boxed{\vect\mu=\frac q{2m}\vect L}.
+\end{equation}
+负电荷的磁矩与角动量方向相反。外磁场中的相互作用能为
+\begin{equation}
+ U=-\vect\mu\cdot\vect B,
+\end{equation}
+非均匀磁场还会对磁矩产生指向强场或弱场的净力。正常塞曼效应的经典频移正与轨道磁矩
+和外场的耦合有关。
+
+磁场存在时应区分机械动量 $m\vect v$ 与正则动量。若用矢势
+$\vect B=\nabla\times\vect A$，拉格朗日量为
+\begin{equation}
+ \mathcal L=\frac12mv^2+q\vect A\cdot\vect v-q\varphi,
+\end{equation}
+相应正则动量为 $\vect p=m\vect v+q\vect A$。多数高中竞赛轨迹题只需机械动量，但涉及对称性、
+广义动量或量子磁效应时，两者不能混用。
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{磁矩与磁场的夹角不能只看电荷符号}
+纯匀强磁场中的回旋满足 $r_c=mv_\perp/(|q|B)$。取沿真实运动绕行方向的面积矢量，
+环电流定义直接给出 $\vect\mu=(q/2m)\vect L$，其中角动量对回旋中心计算。
+正电荷与负电荷的回旋方向相反，但它们形成的常规环电流方向相同，磁矩均与外磁场相反。
+其大小为
+\[
+ |\vect\mu|=\frac{|q|v_\perp r_c}{2}=\frac{mv_\perp^2}{2B}=\frac{K_\perp}{B}.
+\]
+前面绝热不变量中的 $\mu$ 指这个正的大小。
+对于固定磁矩的回路可用 $U=-\vect\mu\cdot\vect B$ 讨论外场作用；
+回旋粒子的轨道和磁矩会随场改变，不能把相互作用能再机械地加到已给出的回旋动能上重复计数。
+
+
+\subsection{正常塞曼效应的经典图像}
+
+
+经典模型把原子中的电子近似成各向同性谐振子，固有角频率为 $\omega_0$。令磁场沿 $z$ 轴，电子在
+$z$ 方向的运动不受磁力影响，频率仍为 $\omega_0$；在垂直于磁场的平面内，两种相反旋向的圆偏振
+模式可由分量方程求出。电子电荷为 $-e$，记 $\omega_c=eB/m_e>0$，有
+\[
+ \ddot x=-\omega_0^2x-\omega_c\dot y,\qquad
+ \ddot y=-\omega_0^2y+\omega_c\dot x,\qquad
+ \ddot z=-\omega_0^2z.
+\]
+取圆偏振试探解 $x=A\cos\omega t,\ y=sA\sin\omega t$，其中 $s=\pm1$ 表示两种旋向。
+代入第一式得 $-\omega^2=-\omega_0^2-s\omega_c\omega$；第二式给出同一条件。于是两种模式满足
+\begin{equation}
+  \omega^2\mp\omega_{\rm c}\omega-\omega_0^2=0,
+  \qquad \omega_{\rm c}=\frac{eB}{m_e}.
+\end{equation}
+故正频率为
+\begin{equation}
+  \omega_\pm=\sqrt{\omega_0^2+\frac{\omega_{\rm c}^2}{4}}
+  \pm\frac{\omega_{\rm c}}2
+  \simeq \omega_0\pm\frac{eB}{2m_e}
+\end{equation}
+（末式为弱场近似）。于是原来的一条谱线分裂为等间隔三条。真实原子光谱需要量子力学解释，但这个
+经典推导准确抓住了正常塞曼分裂与 $B$ 成正比的结构。
+
+塞曼效应是近代物理建立前经典电子模型少有的定量成功之一。无外场时的一条谱线，在磁场中分裂为
+中央不变的一条和分列两侧的两条，间隔随 $B$ 增大。洛伦兹把物质中的束缚电子看成具有线性回复力的
+振子：沿磁场方向的振动不受磁力影响，垂直方向的两个相反旋向则分别被磁力“加快”和“减慢”。洛伦兹
+和塞曼因相关工作共同获得 1902 年诺贝尔物理学奖；今天对反常分裂、精细结构和选择定则的解释
+必须使用量子力学，但这里的经典模型仍清楚展示了方向与频移的来源。
+
+\zeemanSpectrumDiagram
+
+
+\subsection{回旋加速器}
+
+
+回旋加速器用两个相互绝缘的 D 形盒提供近似无电场的回旋区，在狭缝处施加交变电压。若射频角频率
+满足
+\begin{equation}
+  \omega_{\rm rf}=\omega_{\rm c}=\frac{|q|B}{m},
+\end{equation}
+粒子每次通过狭缝时电场方向都恰好帮助它加速。若装置的最大轨道半径为 $R$，非相对论极限下最大
+动能为
+\begin{equation}
+  \boxed{E_{k,\max}=\frac{q^2B^2R^2}{2m}}.
+\end{equation}
+能量升高后相对论质量效应使回旋频率下降，固定频率的电场将逐渐失谐，这是经典回旋加速器的限制。
+
+劳伦斯因回旋加速器的发明与发展获得 1939 年诺贝尔物理学奖。实际装置在 D 形盒上下布置大型
+磁极或线圈，在盒间狭缝接入高频振荡器；粒子在盒内只弯转，在狭缝处才被电场加速。
+达到约 $730\,\mathrm{MeV}$ 质子能量的历史大型装置采用同步回旋方案，不能直接套用上述固定频率的
+非相对论模型。高能区需通过改变射频频率、调整磁场或采用同步加速方案补偿相对论失谐。
+
+\cyclotronDiagram
+
+图中的俯视光滑圆弧对应下面装置剖视图中两个中空的 D 形电极内部。上下磁极与铜色励磁线圈
+提供近似垂直于电极平面的磁场；两个绝缘馈电端分别连接高频电源的两端。电极置于真空腔内，
+粒子达到外缘后由引出结构送入右侧束流管。剖视图强调部件空间关系，轨迹计算采用上面的俯视模型。
+\begin{rTwoFigure}
+\includegraphics[width=.86\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-eighth-section/assets/cyclotron-apparatus-built-in.png}
+\captionof{figure}{回旋加速器的装置结构：磁极、励磁线圈、真空腔与 D 形电极。}
+\label{ch22:fig:cyclotron-apparatus}
+\end{rTwoFigure}
+中空结构和束流引出细节见下图。左侧是经过加速缝的侧剖面，虚线轨道位于电极腔内，
+不是穿过金属。右侧的负偏转板吸引正离子，使其偏离继续回旋的虚线路径，进入轰击室；
+薄铝窗把真空区与外侧隔开，同时允许足够高能的离子通过，靶放在引出束流的路径上。
+气体入口用于给中心离子源供气，真空系统负责维持束流运动区的低气压。
+\cyclotronExtractionDiagram
+
+
+% EM teaching enrichment 20260927
+\paragraph{逐次过缝的能量账}
+若每次过缝获得近似相同的能量 $|q|U_g$，从动能 $K_0$ 起，过 $n$ 次缝后
+$K_n=K_0+n|q|U_g$，对应盒内半径
+\[
+ r_n=\frac{\sqrt{2m(K_0+n|q|U_g)}}{|q|B}.
+\]
+所以等量增能并不对应等距增大半径，外圈间隔反而逐渐变小。一整圈通常过缝两次，所需时间近似 $nT_c/2$；起始和引出的位置还可能各差一段圆弧。
+恒频同步要求每个半圈的时间相同，并忽略过缝时间。把“电压每周期的变化”和“粒子每次到缝的相位”对应起来，比只背共振频率更有用。
+
+
+% EM structure and teaching revision 20260928
+\subsection{回旋加速的同步与失谐}
+理想回旋加速器的匀强磁场只负责弯转，交变电场在电极缝隙中做功。非相对论粒子每半周回到缝隙，时间为 $\pi m/(|q|B)$，所以高频电压必须在这段时间内反号，驱动频率等于回旋频率。
+若每次过缝时电压大小近似为 $U_g$，且粒子总在加速相位通过，则每次获得动能 $|q|U_g$。经过 $N$ 次过缝，忽略初能与损失，有
+\[
+ K_N=N|q|U_g,\qquad r_N=\sqrt{\frac{2mNU_g}{|q|B^2}}.
+\]
+因而半径随 $\sqrt N$ 增长，轨道间距逐渐变小。半径达到装置外缘 $R$ 时，经典最大动能为 $q^2B^2R^2/(2m)$，它同时受到装置尺寸与磁场强度限制。
+高能区中 $\gamma$ 增大，回旋周期随之变长，恒频电源与粒子到缝时间失配。此时即使磁场强度和电极电压不变，粒子也可能在不合适的相位减速；调整驱动频率或磁场才可能恢复同步。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【运动电荷的轨道磁矩】}\label{ch22:ex:s38-7-17}
+平面电流环的磁矩定义为 $\vect\mu=I\vect S$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求带电粒子在匀强磁场中回旋运动的等效磁矩；
+  \item 在沿轴线缓慢变化的磁场中，若粒子回旋很多圈后磁场才明显改变，写出局部轨道磁矩；
+  \item 证明该磁矩在上述缓变条件下近似守恒。
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+\textbf{(1) 匀强场。}
+令 $v_\perp$ 为垂直磁场的速度，回旋半径 $\rho=mv_\perp/(Q B)$，周期
+$T=2\pi m/(QB)$。等效电流大小 $Q/T$，所以
+\begin{equation}
+  \boxed{\mu=\frac{Q}{T}\pi\rho^2
+  =\frac{mv_\perp^2}{2B}=\frac{E_\perp}{B}}.
+\end{equation}
+矢量方向由真实电流方向按右手定则确定。对无论正负电荷的自由回旋，$\vect\mu$ 都与局部
+$\vect B$ 反向；同时仍有 $\vect\mu=(q/2m)\vect L$。
+
+\textbf{(2) 缓变轴向场。}
+设磁场沿导向中心弧长 $s$ 缓慢变化，局部回旋半径为 $\rho$，场变化尺度
+$L_B=B/|\dd B/\dd s|$。当
+\begin{equation}
+  \frac{\rho}{L_B}\ll1,
+  \qquad
+  \frac1{\omega_{\rm c}B}\left|\frac{\dd B}{\dd t}\right|\ll1,
+\end{equation}
+一个周期内磁场近似不变，可以逐点定义
+\begin{equation}
+  \boxed{\mu(s)=\frac{mv_\perp^2(s)}{2B(s)}}.
+\end{equation}
+下图左侧给出回旋电流与磁矩的方向；右侧沿磁场增强方向，轨道半径逐渐减小，
+平行速度同时减小。下面从磁力分量与能量关系推导这一变化。
+\magneticMomentDiagram
+
+\textbf{(3) 绝热守恒。}
+先给出不依赖作用量定理的证明。取局部磁轴为 $z$，轴对称场在轴附近满足
+$\nabla\cdot\boldsymbol B=0$，故 $B_r\simeq-(r/2)\,\dd B_z/\dd z$。
+一次回旋内把 $B_z$ 视为常量，带符号电荷为 $q$ 的粒子有 $v_\varphi=-qB\rho/m$。
+利用 $\boldsymbol e_\varphi\times\boldsymbol e_r=-\boldsymbol e_z$，轴向平均磁力为
+\[
+ F_\parallel=-qv_\varphi B_r
+ =-\frac{q^2B\rho^2}{2m}\frac{\dd B}{\dd s}
+ =-\frac{mv_\perp^2}{2B}\frac{\dd B}{\dd s}=-\mu\frac{\dd B}{\dd s}.
+\]
+磁场不做总功，$E_\perp+E_\parallel$保持不变。因此
+\[
+ \frac{\dd E_\perp}{\dd t}=-F_\parallel v_\parallel
+ =\frac{E_\perp}{B}\frac{\dd B}{\dd s}\frac{\dd s}{\dd t}
+ =\frac{E_\perp}{B}\frac{\dd B}{\dd t},\qquad
+ \frac{\dd}{\dd t}\frac{E_\perp}{B}=0
+\]
+在所取缓变近似的精度内成立。这解释了横向与纵向动能的交换，而不把磁矩守恒当作证明的前提。
+
+也可用正则作用量表述。此处必须取正则动量 $\boldsymbol p_{\rm can}=m\boldsymbol v+q\boldsymbol A$，
+不是半径公式里的机械动量。采用 $\boldsymbol A=\boldsymbol B\times\boldsymbol r/2$，沿实际回旋方向积分，
+机械项为 $4\pi E_\perp/\omega_c$，磁矢势项为其负的一半，故
+\begin{equation}
+  J=\oint\vect p_{{\rm can},\perp}\cdot\dd\vect r_\perp
+  =\frac{2\pi E_\perp}{\omega_{\rm c}}
+  =\frac{2\pi m}{Q}\frac{E_\perp}{B}
+\end{equation}
+是绝热不变量，因此
+\begin{equation}
+  \boxed{\frac{\dd}{\dd t}\left(\frac{E_\perp}{B}\right)\simeq0},
+  \qquad \boxed{\mu\simeq\text{常量}}.
+\end{equation}
+等价地，导向中心沿磁场方向受到平均镜力
+\begin{equation}
+  F_\parallel=-\mu\frac{\dd B}{\dd s}.
+\end{equation}
+粒子进入强场区时，$E_\perp=\mu B$ 增加；因磁场不做总功，总动能守恒，故平行动能相应减少，
+甚至在 $v_\parallel=0$ 处反射，形成磁镜。若磁场在一圈内变化显著，上述绝热守恒便会失效。
+
+\end{xesolution}
+}
+
+\endgroup
+
+\endgroup

@@ -1,0 +1,321 @@
+\input{ch13-diagrams.tex}
+\section{流体运动学与物质导数}\label{ch13:sec:material}
+
+流体由大量不断更换邻居的质元组成。拉格朗日描述（Lagrangian description）给每个质元贴上初始标签 $\vect a$，记录其位置 $\vect r(\vect a,t)$；欧拉描述（Eulerian description）则在空间各点记录速度、密度和压强场
+\begin{equation}
+ \vect v=\vect v(\vect r,t),\qquad \rho=\rho(\vect r,t),\qquad p=p(\vect r,t).
+\end{equation}
+两种描述说的是同一群质元。固定初始标签 $\vect a$，对其位置求时间导数，就得到该质元此刻的速度：
+\[
+ \vect v\bigl(\vect r(\vect a,t),t\bigr)
+ =\left.\frac{\partial\vect r(\vect a,t)}{\partial t}\right|_{\vect a}.
+\]
+左边先找到质元当前所在的位置，再读取空间速度场；右边始终跟踪同一个质元。标签 $\vect a$ 不能在求导时随意改变。
+竞赛流体题通常使用欧拉描述，但研究某个质元所经历的变化时必须沿它的轨迹求导。若标量场为 $f(\vect r,t)$，物质导数（material derivative）为
+\begin{equation}
+ \frac{\mathrm D f}{\mathrm Dt}
+ =\frac{\partial f}{\partial t}+\vect v\cdot\nabla f.
+\end{equation}
+这是多元函数链式法则的直接结果。把沿质元轨迹读到的量写成
+$f(x(t),y(t),z(t),t)$，则
+\[
+ \frac{\dd f}{\dd t}=\frac{\partial f}{\partial t}
+ +\frac{\partial f}{\partial x}\frac{\dd x}{\dd t}
+ +\frac{\partial f}{\partial y}\frac{\dd y}{\dd t}
+ +\frac{\partial f}{\partial z}\frac{\dd z}{\dd t}.
+\]
+代入 $\dd x/\dd t=v_x$ 等关系，后三项才合写成 $\vect v\cdot\nabla f$。
+第一项描述固定位置随时间的变化，后三项描述质元移动到不同位置而读到的变化；二者都不能遗漏。
+因此流体质元的加速度不是单纯的 $\partial\vect v/\partial t$，而是
+\begin{equation}
+ \vect a=\frac{\mathrm D\vect v}{\mathrm Dt}
+ =\frac{\partial\vect v}{\partial t}+(\vect v\cdot\nabla)\vect v.
+\end{equation}
+第二项是对流加速度：即使某点的速度场不随时间改变，质元进入速度不同的区域时仍可有加速度。
+
+迹线是一个质元随时间走过的轨迹，满足 $\dd\vect r/\dd t=\vect v(\vect r,t)$；流线是在同一时刻处处与速度相切的曲线。定常流动中二者重合；非定常流动中一般不重合，非定常流动时不能把某一时刻画出的流线当成质元未来轨迹。
+对固定时刻 $t_0$，流线可用参数 $s$ 表示为 $\dd\vect r/\dd s=\lambda(s)\vect v(\vect r,t_0)$。
+在相应分量非零处，也常写成
+\[
+ \frac{\dd x}{v_x(x,y,z,t_0)}=\frac{\dd y}{v_y(x,y,z,t_0)}
+ =\frac{\dd z}{v_z(x,y,z,t_0)}.
+\]
+某分量为零时应使用参数形式，不能除以零。前面的流管图中，$C_1,C_2$ 之间的侧壁由同一组流线组成，速度沿侧壁而不穿过它。
+
+为比较相邻质元，令两位置相差 $\delta\vect r$，作一阶展开：
+\[
+ v_i(\vect r+\delta\vect r)=v_i(\vect r)
+ +\sum_j\frac{\partial v_i}{\partial x_j}\delta x_j+O(|\delta\vect r|^2).
+\]
+第一项给出共同平动。剩余的速度梯度可分解成对称和反对称两部分：
+\begin{equation}
+ \frac{\partial v_i}{\partial x_j}
+ =D_{ij}+\Omega_{ij},
+ \quad
+ D_{ij}=\frac12\left(\frac{\partial v_i}{\partial x_j}+\frac{\partial v_j}{\partial x_i}\right),
+ \quad
+ \Omega_{ij}=\frac12\left(\frac{\partial v_i}{\partial x_j}-\frac{\partial v_j}{\partial x_i}\right).
+\end{equation}
+$D_{ij}$ 描述局部拉伸和剪切速率，$\Omega_{ij}$ 描述刚体式转动；涡量 $\vect\omega=\nabla\times\vect v$，局部流体微团的角速度为 $\vect\omega/2$。不可压缩条件是 $\nabla\cdot\vect v=\operatorname{tr}\mathbf D=0$，表示质元体积不随运动改变，并不等价于“速度处处相同”。
+具体地，$\boldsymbol\Omega\,\delta\vect r=(\vect\omega/2)\times\delta\vect r$，所以它只改变相邻质元连线的方向。
+连线长度平方的变化率则为
+\[
+ \frac{\dd}{\dd t}|\delta\vect r|^2
+ =2\,\delta\vect r\cdot\mathbf D\,\delta\vect r,
+\]
+反对称部分的贡献为零。故 $\mathbf D$ 才描述变形快慢；它的量纲是 $\mathrm{s^{-1}}$，不同于弹性体中无量纲的应变。
+
+\section{静止流体}\label{ch13:sec:statics}
+
+静止流体不能承受持续剪切应力：一旦持续受切向力，普通流体会不断变形，而不是保持静止。
+任取内部一个面，其表面力只能沿法线；如果不同方向的正应力不等，换一个倾斜截面便会出现切向分量，与静止矛盾。
+所以静止流体的应力各向同性。取拉伸应力为正，应力张量为
+\[
+ \boldsymbol\sigma=-p\mathbf I.
+\]
+体积 $V$ 内流体所受周围流体的压力合力为
+\[
+ \vect F_p=-\oint_{\partial V}p\vect n\,\dd S
+ =-\int_V\nabla p\,\dd V,
+\]
+其中 $\vect n$ 是向外单位法向，第二步对各分量使用高斯定理。因此单位体积的压力合力为 $-\nabla p$。
+若外体积力密度为 $\vect f$，静力平衡要求 $\nabla p=\vect f$。这还意味着在光滑单连通区域内
+$\nabla\times\vect f=0$；注意 $\vect f$ 是单位体积的力，不能与单位质量外力混淆。
+在重力场中 $\vect f=\rho\vect g$，取竖直向上为 $z$，薄层受力平衡给出
+\begin{equation}
+ \frac{\dd p}{\dd z}=-\rho g.
+\end{equation}
+不可压缩液体密度恒定时，深度增加 $h$，压强增加 $\rho gh$。同一连通静止液体中，同一水平面压强相等；
+平直界面或忽略表面张力时，不同液体交界面两侧压强连续；曲面界面还可能存在后文讨论的拉普拉斯压差。
+物体浸入液体后，液体对其表面的压力合力等于把相同体积液体移走所失去的压力合力：
+\[
+ \vect F_B=-\int_{V_{\text{排}}}\rho\vect g\,\dd V.
+\]
+故浮力等于排开流体的重量、方向与重力相反。密度均匀时，其作用线通过排开体积的几何中心；密度不均匀时应取排开流体的质量中心。
+
+\input{ch13-statics-teaching.tex}
+\section{连续性方程与伯努利方程}\label{ch13:sec:bernoulli}
+
+一般质量守恒写成
+\begin{equation}
+ \frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\vect v)=0.
+\end{equation}
+对固定控制体，质量的增加率等于净流入率：
+\[
+ \frac{\dd}{\dd t}\int_V\rho\,\dd V
+ =-\oint_{\partial V}\rho\vect v\cdot\vect n\,\dd S.
+\]
+把右边化成体积分，利用控制体可以任意选取，才得到上面的局部式。
+再展开 $\nabla\cdot(\rho\vect v)=\vect v\cdot\nabla\rho+\rho\nabla\cdot\vect v$，可写成
+\[
+ \boxed{\frac{\mathrm D\rho}{\mathrm Dt}+\rho\nabla\cdot\vect v=0}.
+\]
+这说明散度正负控制质元体积的胀缩；质量不变时密度随之降低或升高。不可压缩流体满足
+$\mathrm D\rho/\mathrm Dt=0$，因而 $\nabla\cdot\vect v=0$；不同质元原本可以有不同密度。
+对稳定的一维流管，质量流率 $\dot m=\rho Av$ 沿程不变；不可压缩时化为 $Av=\text{常量}$。
+
+无黏、不可压缩流体沿同一条流线作稳定流动时，欧拉方程（Euler equation）沿流线积分得到
+\begin{equation}
+ p+\frac12\rho v^2+\rho gz=\text{常量}.
+\end{equation}
+三项分别是单位体积的压强能、动能和重力势能。伯努利方程（Bernoulli equation）不能跨越泵、涡轮、强黏性耗散区随意使用，
+也不能在旋涡流中默认所有流线具有同一常量。
+下面把推导写开。对无黏质元应用牛顿定律，压力合力密度为 $-\nabla p$，故
+\[
+ \rho\frac{\mathrm D\vect v}{\mathrm Dt}=-\nabla p+\rho\vect g.
+\]
+在定常流中，沿流线取弧长 $s$，切向加速度为 $v\,\dd v/\dd s$。沿切向投影得到
+\[
+ \rho v\frac{\dd v}{\dd s}=-\frac{\dd p}{\dd s}-\rho g\frac{\dd z}{\dd s},
+ \qquad \dd(v^2/2)+\frac{\dd p}{\rho}+g\,\dd z=0.
+\]
+密度为常数时逐项积分，就是伯努利方程。
+\FluidBernoulliDiagram
+图~\ref{ch13:fig:bernoulli}也给出功—能解释。相同短时间内，两端移过的质量相等：
+$\dd m=\rho A_1\dd s_1=\rho A_2\dd s_2$。
+两端压力总功为
+\[
+ \dd W_p=p_1A_1\dd s_1-p_2A_2\dd s_2
+ =\dd m\left(\frac{p_1}{\rho}-\frac{p_2}{\rho}\right).
+\]
+它等于动能与重力势能的增加
+$\dd m[(v_2^2-v_1^2)/2+g(z_2-z_1)]$。
+出口压力做负功，正是式中压强项不能漏掉的原因。
+
+更一般地，对定常、无黏、正压流体，若密度可写成压强的单值函数 $\rho=\rho(p)$，沿流线有
+\begin{equation}
+ \frac{v^2}{2}+gz+\int^p\frac{\dd p'}{\rho(p')}=\text{常量}.
+\end{equation}
+不可压缩时 $\rho$ 为常量，积分项化为 $p/\rho$；可压缩气流中密度和内能通常与温度耦合，不能仍把 $p+\rho v^2/2+\rho gz$ 当作普适守恒式。
+若是定常、无黏、绝热且没有激波等不可逆过程的流动，单位质量内能 $u$ 满足
+\[
+ \dd u=-p\,\dd(1/\rho)=\frac{p}{\rho^2}\dd\rho.
+\]
+定义单位质量焓 $h_{\rm sp}=u+p/\rho$，则
+\[
+ \dd h_{\rm sp}=\dd u+\frac{\dd p}{\rho}-\frac p{\rho^2}\dd\rho
+ =\frac{\dd p}{\rho}.
+\]
+代回沿流线的动力学式，得到
+\[
+ \boxed{h_{\rm sp}+\frac{v^2}{2}+gz=\text{沿该流线的常量}}.
+\]
+这里焓含有内能，不能只保留 $p/\rho$。例如理想气体的内能随温度改变，气流加速可能伴随温度降低。
+受热驱动的自然对流还涉及密度变化和浮力；液体密度变化虽小，也不能一概删去其浮力效应。
+常用近似是在质量守恒中取无散速度场，而在重力项中保留小密度差；这与“所有动力学都与温度无关”不同。
+
+\begin{origexamplebox}{小孔流出速度}\label{ch13:ex:outlet}
+大水箱自由液面到侧壁小孔的高度差为 $h$，水箱横截面远大于小孔。忽略黏性，求流出速度。
+\end{origexamplebox}
+\begin{xesolution}
+在自由液面与小孔出口之间使用伯努利方程。两点都与大气相通，压强项相消；大水箱自由液面速度近似为零：
+\FluidOutletDiagram
+图~\ref{ch13:fig:outlet}中 $z_A-z_B=h$，$v_A\simeq0$，于是
+\[
+ p_0+\rho gh=p_0+\frac12\rho v^2.
+\]
+所以
+\[
+ \boxed{v=\sqrt{2gh}}.
+\]
+这与物体自由下落高度 $h$ 的速度相同，但流体微元的真实轨迹和压强变化并不等同于一个孤立质点自由落体。
+\end{xesolution}
+
+\section{动量流与流体作用力}\label{ch13:sec:momentum}
+
+稳定流动中，控制体所受外力等于流出动量流率减去流入动量流率：
+\begin{equation}
+ \sum\vect F=\sum_{\rm out}\dot m\vect v-
+ \sum_{\rm in}\dot m\vect v.
+\end{equation}
+这里的外力包括压强、重力和固体壁面对流体的力。求流体对管壁的力时，最后还要用牛顿第三定律反向。
+
+\begin{origexamplebox}{水射流正撞平板}\label{ch13:ex:jet-plate}
+密度为 $\rho$、截面积为 $A$、速度为 $v$ 的稳定水射流垂直撞击静止大平板，撞后水沿板面向四周流走。忽略重力，求水对板的平均力。
+\end{origexamplebox}
+\begin{xesolution}
+取法向为 $x$ 轴。质量流率 $\dot m=\rho Av$。流入法向速度为 $v$，流出水流沿板面，法向速度为零。
+\FluidPlateDiagram
+图~\ref{ch13:fig:jet-plate}中虚线包围转向区；图右箭头是水对板的力，列控制体方程时应使用它的反作用力。
+平板对水的力为
+\[
+ F_{\text{板对水},x}=\dot m(0-v)=-\rho Av^2.
+\]
+所以水对板的力方向沿来流方向，大小
+\[
+ \boxed{F=\rho Av^2}.
+\]
+量纲为 $\mathrm{kg\,m^{-3}}\cdot\mathrm{m^2}\cdot\mathrm{m^2s^{-2}}=\mathrm N$。
+\end{xesolution}
+
+\input{ch13-momentum-teaching.tex}
+\section{黏性、层流与相似准则}\label{ch13:sec:viscosity}
+
+牛顿流体（Newtonian fluid）的剪切应力与速度梯度成正比：
+\begin{equation}
+ \tau=\eta\frac{\partial v_x}{\partial y},
+\end{equation}
+其中 $\eta$ 为动力黏度。半径 $R$、长度 $L$ 的圆管内充分发展层流满足哈根--泊肃叶定律（Hagen--Poiseuille law）
+\begin{equation}
+ Q=\frac{\pi R^4}{8\eta L}\Delta p.
+\end{equation}
+\FluidShearDiagram
+图~\ref{ch13:fig:shear}中，上下两流层沿 $x$ 流动，速度只随法向坐标 $y$ 改变。
+速度差除以层间距是剪切速率；乘以动力黏度才是单位面积的切向力。
+$\eta$ 的单位为 $\mathrm{Pa\,s}$，另定义运动黏度
+\[
+ \boxed{\nu=\eta/\rho},\qquad [\nu]=\mathrm{m^2/s}.
+\]
+推导圆管流量时，设 $G=\Delta p/L>0$，距轴 $r$ 处的定常速度为 $v_z(r)$。沿轴的力平衡给出
+$\eta r^{-1}\dd[r\,\dd v_z/\dd r]/\dd r=-G$。
+积分一次为 $r\,\dd v_z/\dd r=-Gr^2/(2\eta)+C$；轴心速度梯度有限要求 $C=0$。
+再积分并用管壁无滑移条件 $v_z(R)=0$：
+\[
+ v_z(r)=\frac{G}{4\eta}(R^2-r^2),\qquad
+ Q=\int_0^R v_z(r)\,2\pi r\dd r
+ =\frac{\pi GR^4}{8\eta}.
+\]
+这一步同时说明充分发展、直圆管、不可压缩牛顿流体和无滑移边界等条件为何重要。
+流量对半径的四次方依赖说明细管尺寸误差会产生很大影响。雷诺数（Reynolds number）
+\begin{equation}
+ \mathrm{Re}=\frac{\rho v\ell}{\eta}
+\end{equation}
+比较惯性与黏性效应；其临界值依赖几何和扰动，不能把某个数值当成所有流动的普适分界。
+
+低雷诺数下，半径 $R$ 的球以速度 $v$ 在黏性流体中缓慢运动，斯托克斯阻力（Stokes drag）为 $6\pi\eta Rv$。
+
+\begin{origexamplebox}{小球在黏性液体中的终端速度}\label{ch13:ex:settling}
+密度为 $\rho_s$、半径为 $R$ 的小球在密度 $\rho_f$、黏度 $\eta$ 的液体中下落。假设满足斯托克斯阻力，求终端速度。
+\end{origexamplebox}
+\begin{xesolution}
+终端状态合力为零。向下重力减去浮力等于向上黏性阻力：
+\FluidSettlingDiagram
+图~\ref{ch13:fig:settling}按下沉情形画出三个力；向下为正，平衡式为
+\[
+ \frac43\pi R^3(\rho_s-\rho_f)g=6\pi\eta Rv_t.
+\]
+因此
+\[
+ \boxed{v_t=\frac{2(\rho_s-\rho_f)gR^2}{9\eta}}.
+\]
+该式要求 $\rho_s>\rho_f$ 且雷诺数足够小；若小球上浮，速度方向反向，大小用密度差绝对值。
+解出后可以代回 $\mathrm{Re}=2\rho_fR|v_t|/\eta$ 检查是否远小于1。
+这里特征长度取球直径 $2R$；若检验不满足，就必须更换阻力模型，而不是继续相信代数上求出的速度。
+\end{xesolution}
+
+\section{表面张力}\label{ch13:sec:surface}
+
+表面张力 $\gamma$ 既可理解为沿界面单位长度的拉力，也可理解为增加单位面积界面所需的可逆功。
+曲面两侧压强差满足Laplace公式；球形液滴只有一个界面，肥皂泡有内外两个界面：
+\begin{equation}
+ \Delta p_{\rm drop}=\frac{2\gamma}{R},\qquad
+ \Delta p_{\rm bubble}=\frac{4\gamma}{R}.
+\end{equation}
+半径越小，维持曲率所需压强差越大。毛细管中接触角为 $\theta$ 时，液面升降高度为
+\begin{equation}
+ h=\frac{2\gamma\cos\theta}{\rho gr}.
+\end{equation}
+
+\input{ch13-surface-teaching.tex}
+\section{流体运动方程（选读）}\label{ch13:sec:equations-reading}
+\begin{starread}{欧拉方程与纳维--斯托克斯方程}
+无黏流体的局部动力学方程为
+\[
+ \rho\left(\frac{\partial\vect v}{\partial t}+\vect v\cdot\nabla\vect v\right)
+ =-\nabla p+\rho\vect g.
+\]
+加入牛顿黏性应力后得到不可压缩纳维--斯托克斯方程（Navier--Stokes equation）
+\[
+ \rho\left(\frac{\partial\vect v}{\partial t}+\vect v\cdot\nabla\vect v\right)
+ =-\nabla p+\eta\nabla^2\vect v+\rho\vect g,
+ \qquad \nabla\cdot\vect v=0.
+\]
+非线性对流项使涡旋、边界层和湍流问题远比一维管流复杂。竞赛计算若采用伯努利或泊肃叶模型，
+必须先说明忽略或保留了哪些项。
+
+对可压缩牛顿流体，黏性应力的常用形式为
+\[
+ \boldsymbol\tau=\eta\left[\nabla\vect v+(\nabla\vect v)^{\mathsf T}
+ -\frac23(\nabla\cdot\vect v)\mathbf 1\right]+\zeta(\nabla\cdot\vect v)\mathbf 1,
+\]
+其中 $\eta$ 是剪切黏度，$\zeta$ 是体黏度。不可压缩且 $\eta$ 均匀时才简化为动量方程中的 $\eta\nabla^2\vect v$。这说明泊肃叶流、低雷诺数绕流和可压缩声流采用的黏性模型虽同源，保留的项并不相同。
+其来由是把总应力分为 $\boldsymbol\sigma=-p\mathbf I+\boldsymbol\tau$。
+不含局部力偶的微小流体立方体满足角动量平衡，要求 $\tau_{xy}=\tau_{yx}$ 等，因此应力张量对称。
+形变率还可分成无迹部分与纯体积变化：
+\[
+ \mathbf D=\left(\mathbf D-\frac13\nabla\cdot\vect v\,\mathbf I\right)
+ +\frac13\nabla\cdot\vect v\,\mathbf I.
+\]
+各向同性牛顿流体的应力分别与这两部分成正比，所以出现剪切黏度和体黏度两个系数。
+热力学压强 $p$ 与总正应力的平均值在可压缩黏性流动中未必相同，不能把包含体黏度项的全部 $\boldsymbol\tau$ 都称为无迹偏应力。
+对任意小控制体，表面应力的合力密度为 $\nabla\cdot\boldsymbol\sigma$，故一般动量式为
+\[
+ \rho\frac{\mathrm D\vect v}{\mathrm Dt}=-\nabla p+\nabla\cdot\boldsymbol\tau+\rho\vect g.
+\]
+若 $\eta,\zeta$ 均匀，逐项求散度得到
+\[
+ \nabla\cdot\boldsymbol\tau=\eta\nabla^2\vect v+
+ \left(\zeta+\frac\eta3\right)\nabla(\nabla\cdot\vect v).
+\]
+再用不可压缩条件，后一项才消失。方程虽然形式紧凑，三维非线性流动的存在性、正则性以及湍流描述仍涉及深刻数学问题；写出方程不等于已经求出了任意流动。
+\end{starread}

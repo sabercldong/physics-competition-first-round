@@ -1,0 +1,477 @@
+力是改变物体速度的原因。在外力作用下，物体的速度会发生变化。牛顿第二定律集中描述
+力与加速度的瞬时关系；在此基础上得到的动量定理，则说明力对时间的积累——冲量——
+怎样改变物体的动量。除了动量，还可以用另一个物理量描述运动物体的性质，这就是动能。
+本节要建立的核心联系是：力在空间位移上的积累形成“功”，总功等于物体动能的变化。
+
+以下在惯性系中讨论质量不变的质点，$\vec F_{\text{合}}$ 表示它受到的合力。
+如图~\ref{ch08:fig:workDerivationDiagram}，质点在 $t$ 时刻位于 $A$，速度为 $\vec v_A$；
+经过 $\Delta t$ 到达 $B$，速度为 $\vec v_B$。先定义速度增量
+\[
+\Delta\vec v=\vec v_B-\vec v_A.
+\]
+速度有方向，因此应先作矢量相加，再求模的平方，不能直接把速率相加。
+\workDerivationDiagram
+\begin{equation}
+ v_B^2-v_A^2=2\vec v_A\cdot\Delta\vec v+|\Delta\vec v|^2.
+ \label{ch08:eq:velocity-square}
+\end{equation}
+式~\eqref{ch08:eq:velocity-square} 是精确恒等式。若加速度随时间连续，短时间内
+$\Delta\vec v=\vec a_A\Delta t+o(\Delta t)$，其中 $o(\Delta t)/\Delta t\to0$。
+设 $\vec a_A$ 与 $\vec v_A$ 夹角为 $\theta$，则保留一阶项时
+\begin{equation}
+ v_B^2-v_A^2=2a_Av_A\cos\theta\,\Delta t+o(\Delta t).
+\end{equation}
+这里不能把 $|\Delta\vec v|^2$ 当作恒等于零；它在除以 $\Delta t$ 后取极限时才消失。
+同样，$\Delta\vec r=\vec v_A\Delta t+o(\Delta t)$，$v_A\Delta t$ 只是小段位移大小的一阶近似。
+两边除以 $\Delta t$ 并令 $\Delta t\to0$，再用牛顿第二定律，得到
+\begin{equation}
+ \frac{\dd}{\dd t}\left(\frac12mv^2\right)
+ =m\vec v\cdot\frac{\dd\vec v}{\dd t}
+ =\vec F_{\text{合}}\cdot\vec v.
+ \label{ch08:eq:kinetic-rate}
+\end{equation}
+定义动能 $E_k=\tfrac12mv^2$。利用 $\dd\vec r=\vec v\,\dd t$，上式可写成
+\begin{equation}
+ \dd E_k=\vec F_{\text{合}}\cdot\dd\vec r.
+ \label{ch08:eq:differential-work-energy}
+\end{equation}
+任意力 $\vec F$ 与实际位移微元的夹角为 $\theta$ 时，其功定义为
+\begin{equation}
+ \dd W=\vec F\cdot\dd\vec r=F\cos\theta\,\dd s,
+ \qquad \dd s=|\dd\vec r|.
+ \label{ch08:eq:work-element}
+\end{equation}
+功和动能都是标量，没有空间方向；动能非负，功则可以为正、负或零。
+力沿运动方向的分量作正功，反向分量作负功，垂直于瞬时位移的分量不作功。
+在有限过程中，把实际路径分段、求和并取分段长度趋于零的极限：
+\begin{equation}
+ W_{A\to B}=\lim_{\max\Delta s_i\to0}\sum_i\vec F_i\cdot\Delta\vec r_i
+ =\int_A^B\vec F\cdot\dd\vec r.
+ \label{ch08:eq:work-integral}
+\end{equation}
+将式~\eqref{ch08:eq:differential-work-energy} 沿同一过程积分，中间状态的动能增减相互衔接，得到
+\begin{equation}
+ W_{\text{合}}(A\to B)=E_{k,B}-E_{k,A}
+ =\frac12mv_B^2-\frac12mv_A^2.
+ \label{ch08:eq:work-energy}
+\end{equation}
+合力功等于各分力功的代数和。总功为正，
+物体动能增加；总功为负，物体动能减小。直观地说，沿运动方向推物体通常使其速率增大，
+逆着运动方向施力通常使其速率减小；但严格判断仍应以力与位移的夹角以及全过程功的
+代数和为准。
+
+\subsection{功和动能的确定}
+
+应用动能定理可以使许多问题大为简化，但必须先明确研究对象、过程的初末状态，以及各力
+所做功的正负。对恒力而言，只有力在位移方向上的分量做功；垂直于位移的力不做功。
+
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 4.1}
+以下各图中 $A,B$ 两点的高度差均为 $h$。物体分别沿图示各条路径由 $A$ 到 $B$，
+求每一过程中重力所做的功。
+\probdiagFourOne
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourOne} 的各条路径具有同一高度差；在图~\ref{ch08:fig:soldiagFourOne} 中把端点记为 $y_A,y_B$。
+取竖直向上为 $y$ 轴正方向。重力为 $\vec G=-mg\,\vec e_y$，任意一小段位移中重力做功
+\[
+ \dd W_G=\vec G\cdot\dd\vec r=-mg\,\dd y.
+\]
+从 $A$ 到 $B$ 累积：
+\[
+ W_G=-mg\int_{y_A}^{y_B}\dd y
+ =mg(y_A-y_B).
+\]
+\soldiagFourOne
+由于所有图中 $y_A-y_B=h$，无论路径是直线、折线、曲线，途中是否先升高或绕行，
+均有
+\[
+ \boxed{W_G=mgh}.
+\]
+重力功只由初、末位置的高度差决定，与实际路径的形状和长度无关。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例 4.2}
+质量为 $m$ 的物体在与水平方向夹角为 $\theta$ 的恒力 $F$ 作用下，沿摩擦系数为
+$\mu$ 的水平面向右运动距离 $L$。求在此过程中恒力 $F$、摩擦力 $f$、重力 $mg$
+以及支持力 $N$ 所做的功。若初速度为 $v_0$、方向向右，求物体最后的速度。
+\probdiagFourTwo
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourTwo} 给出 $F$ 与水平线的夹角，图~\ref{ch08:fig:soldiagFourTwo} 分别标出四个力。
+物体在竖直方向没有位移。若全过程保持与水平面接触，则
+\[
+ N+F\sin\theta-mg=0,
+ \qquad
+ N=mg-F\sin\theta.
+\]
+滑动摩擦力大小为
+\[
+ f=\mu N=\mu(mg-F\sin\theta),
+\]
+方向与位移相反。各力所做的功分别为
+\[
+ \boxed{W_F=FL\cos\theta},
+ \qquad
+ \boxed{W_f=-\mu(mg-F\sin\theta)L},
+\]
+\[
+ \boxed{W_G=0},
+ \qquad
+ \boxed{W_N=0}.
+\]
+\soldiagFourTwo
+对物体应用动能定理：
+\[
+ FL\cos\theta-\mu(mg-F\sin\theta)L
+ =\frac12mv^2-\frac12mv_0^2.
+\]
+所以
+\[
+ \boxed{
+ v=\sqrt{v_0^2+\frac{2L}{m}
+ \left[F\cos\theta-\mu(mg-F\sin\theta)\right]}}.
+\]
+这一表达式要求 $N\ge0$，且物体确实向右滑完整段距离 $L$。若根号内在到达 $L$ 前
+已降为零，物体会先停下，摩擦力方向和后续运动必须重新判断。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例 4.3}
+如图，质量为 $m$ 的小球系在劲度系数为 $k$、原长为 $l_0$ 的轻弹簧一端，弹簧另一端
+固定在 $O$ 点。开始时小球位于水平位置 $A$，弹簧处于原长。小球由 $A$ 自由释放，
+下落到 $O$ 点正下方的 $B$ 点时，弹簧伸长量为 $l_0/n$，其中 $n>0$。已知小球能够到达该状态，求其速率。
+\probdiagFourThree
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourThree} 标出两个状态，虚线只连接始末位置，不用于指定运动轨迹。
+在 $A$ 点弹簧长度为原长 $l_0$，在 $B$ 点弹簧长度为
+\[
+ OB=l_0+\frac{l_0}{n}=l_0\left(1+\frac1n\right).
+\]
+因此小球下降的高度就是 $OB$。重力做功
+\[
+ W_G=mg\,l_0\left(1+\frac1n\right).
+\]
+令弹簧伸长量为 $x=l-l_0$，径向向外为正。弹力为 $-kx\vec e_r$，
+而实际位移在径向上的投影为 $\dd l=\dd x$，所以即使轨迹弯曲，也有
+\[
+ \dd W_{\rm s}=(-kx\vec e_r)\cdot\dd\vec r=-kx\,\dd x.
+\]
+从 $x=0$ 积分到 $x=l_0/n$，得到
+\[
+ W_{\rm s}=-\int_0^{l_0/n}kx\,\dd x=-\frac12k\left(\frac{l_0}{n}\right)^2.
+\]
+图~\ref{ch08:fig:soldiagFourThree} 将高度差和形变量分开标出，分别用于计算重力功和弹力功。
+\soldiagFourThree
+小球由静止释放，由动能定理
+\[
+ mg\,l_0\left(1+\frac1n\right)
+ -\frac12k\frac{l_0^2}{n^2}
+ =\frac12mv^2.
+\]
+故
+\[
+ \boxed{
+ v=\sqrt{2gl_0\left(1+\frac1n\right)
+ -\frac{k l_0^2}{mn^2}}}.
+\]
+弹力虽然在曲线路径上方向不断改变，但其总功只由弹簧初、末形变量决定。
+根号内各项量纲均为速度平方。它必须非负；题给的 $n$ 是实际到达状态的参数，不能把任意 $n$ 都当作必可实现的运动状态。
+\end{xesolution}
+
+\subsection{多个物体的情况}
+
+动能定理不但适用于单个质点，也适用于由多个质点构成的力学系统。系统的总动能等于
+各质点动能的代数和。与动量定理不同，系统内力的总功一般不为零；求系统总动能的变化
+时，外力功和内力功都不能遗漏。例如枪和子弹的总动量在发射过程中可以守恒，但火药内力
+做正功，使系统总动能明显增加。
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{例 4.4}
+如图，把弹簧的一端固定在墙上，另一端系物体 $A$。将弹簧压缩 $x_1$ 后，在 $A$ 的
+右边紧靠放置物体 $B$，然后撤去外力。物体 $A,B$ 均在光滑水平面上，质量分别为
+$m_A,m_B$，弹簧劲度系数为 $k$。求物体 $A$ 移动的最大距离。
+\probdiagFourFour
+\end{origexamplebox}
+
+\begin{xesolution}
+按图~\ref{ch08:fig:probdiagFourFour}，以弹簧连接点在原长时的位置为 $x=0$，伸长为正。
+弹簧由压缩状态恢复时，$A$ 推着 $B$ 一起向右运动。在弹簧仍被压缩的阶段，两物体速度
+相同，可看作总质量为 $m_A+m_B$ 的整体。此时 $x<0$，共同加速度及 $A$ 对 $B$ 的接触力为
+\[
+ a=\frac{-kx}{m_A+m_B},\qquad N=m_Ba=\frac{-m_Bkx}{m_A+m_B}>0.
+\]
+因此在恢复原长之前不会分离；到 $x=0$ 时 $N$ 才降为零。由动能定理
+\[
+ \frac12kx_1^2
+ =\frac12(m_A+m_B)V^2,
+\]
+故
+\[
+ V=x_1\sqrt{\frac{k}{m_A+m_B}}.
+\]
+越过原长位置后，弹簧开始伸长并向左拉 $A$，而 $A$ 不能“拉住”右侧的 $B$，所以两物体
+在弹簧原长处恰好分离。此后 $B$ 以速度 $V$ 匀速前进，$A$ 单独继续向右并拉伸弹簧。
+\soldiagFourFour
+图~\ref{ch08:fig:soldiagFourFour} 的三行分别表示初态、分离和 $A$ 到达最右端；三行使用相同的 $x=0$。
+设 $A$ 在原长位置右侧继续移动的最大距离为 $x_2$，则
+\[
+ \frac12m_AV^2=\frac12kx_2^2,
+\]
+从而
+\[
+ x_2=x_1\sqrt{\frac{m_A}{m_A+m_B}}.
+\]
+物体 $A$ 从初始压缩位置到最右端的总路程为 $x_1+x_2$，所以
+\[
+ \boxed{
+ s_{A,\max}=x_1\left(1+\sqrt{\frac{m_A}{m_A+m_B}}\right)}.
+\]
+若只问相对弹簧原长位置的最大伸长，则答案是 $x_2$；本题问的是 $A$ 从初始位置起移动的
+最大距离，因此还要加上先前走过的 $x_1$。
+\end{xesolution}
+
+\Needspace{0.28\textheight}
+\begin{origexamplebox}{例 4.5}
+光滑水平面上有一块足够长、质量为 $M$、初始静止的板 $B$。某时刻质量为 $m$、
+速度为 $v_0$ 的物体 $A$ 冲上板的上表面，两者间的动摩擦因数为 $\mu$。求从开始相对
+滑动到相对速度变为零的过程中，摩擦力对两个物体所做的功各为多少；并求整个系统的
+动能变化量。
+\end{origexamplebox}
+
+\begin{xesolution}
+水平方向没有外力，达到共同速度 $V$ 时由动量守恒
+\[
+ mv_0=(m+M)V,
+ \qquad
+ V=\frac{m}{m+M}v_0.
+\]
+滑动期间，$A$ 的加速度为 $-\mu g$，板 $B$ 的加速度为 $\mu mg/M$。相对速度由
+$v_0$ 减到零。相对加速度为两加速度之差，故
+\[
+ a_{A/B}=-\mu g-\frac{\mu mg}{M},\qquad
+ 0=v_0-\mu g\left(1+\frac mM\right)t.
+\]
+所需时间为
+\[
+ t=\frac{Mv_0}{\mu g(m+M)}.
+\]
+两物体相对地面的位移分别为
+\[
+ s_A=\frac{v_0+V}{2}\,t,
+ \qquad
+ s_B=\frac{V}{2}\,t.
+\]
+\soldiagFourFive
+图~\ref{ch08:fig:soldiagFourFive} 中 $s_A>s_B$，两位移都相对地面计算。
+摩擦力对 $A$ 方向向左，对 $B$ 方向向右，因此
+\[
+ \boxed{
+ W_{f,A}=-\mu mgs_A
+ =-\frac{mM(M+2m)}{2(m+M)^2}v_0^2},
+\]
+\[
+ \boxed{
+ W_{f,B}=+\mu mgs_B
+ =\frac{m^2M}{2(m+M)^2}v_0^2}.
+\]
+系统动能变化为两摩擦功之和：
+\[
+ \boxed{
+ \Delta E_k=W_{f,A}+W_{f,B}
+ =-\frac{mM}{2(m+M)}v_0^2}.
+\]
+两个摩擦力大小相等、方向相反，但作用点相对地面的位移不同，所以它们的功不互相抵消。
+损失的机械能等于摩擦力与相对滑动距离的乘积。也可分别核验
+$W_{f,A}=\tfrac12m(V^2-v_0^2)$、$W_{f,B}=\tfrac12MV^2$，代入共同速度即得到同样结果。
+这里取 $\mu>0$；减小 $\mu$ 会延长滑动时间，最终损失却不变，而 $\mu=0$ 时根本不会达到共同速度，不能套用这一终态。
+\end{xesolution}
+
+\subsection{不同参考系中的动能定理}
+
+功依赖于力的作用点在所选参考系中的位移，动能依赖于物体在所选参考系中的速度，因此
+二者都与参考系有关。只有在惯性参考系中，动能定理才能直接写成通常形式；同一过程可以
+在不同惯性系中使用动能定理，但必须在同一个参考系内同时计算功和动能。
+
+\begin{origexamplebox}{例 4.6}
+一列火车以速度 $v_0$ 做匀速直线运动。火车上的人在光滑水平面上用恒力 $F$ 向前拉动质量为 $m$ 的物体，
+使它相对火车向前移动距离 $L$。物体起初相对火车静止。先在火车参考系中求物体最后的
+速度，再在相对地面静止的参考系中描述同一过程，并列出动能定理方程。
+\end{origexamplebox}
+
+\begin{xesolution}
+火车做匀速直线运动，火车系与地面系都是惯性系。设物体相对火车的末速度为 $u$。在火车
+系中，力的作用点位移为 $L$，动能定理给出
+\[
+ FL=\frac12mu^2,
+ \qquad
+ \boxed{u=\sqrt{\frac{2FL}{m}}}.
+\]
+设拉动持续时间为 $t$。由于 $u=Ft/m$，所以 $m u=Ft$。在地面系中，物体的初、末速度
+分别为 $v_0$ 和 $v_0+u$；同一时间内，力的作用点相对地面的位移为 $L+v_0t$。
+\soldiagFourSix
+图~\ref{ch08:fig:soldiagFourSix} 的两行对应同一过程：地面位移等于车内位移加上火车的位移。
+地面系中的动能定理为
+\[
+ \boxed{
+ F(L+v_0t)
+ =\frac12m(v_0+u)^2-\frac12mv_0^2}.
+\]
+展开右端并利用 $FL=\tfrac12mu^2$、$Ft=mu$，两边完全相等。不同惯性系中功和动能
+变化的数值可以不同，但各自在本参考系内仍满足动能定理。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{例 4.7}
+同上，但火车以加速度 $a$ 做匀加速运动。在火车参考系和地面参考系中分别直接使用
+动能定理，能否得到正确结果？若要使动能定理在火车参考系中也成立，应怎样处理？
+\end{origexamplebox}
+
+\begin{xesolution}
+地面系近似为惯性系，因而可以直接使用动能定理。设过程开始时火车和物体的地面速度均为
+$v_0$，持续时间为 $t$。物体只受水平拉力 $F$，故地面加速度为 $F/m$：
+\[
+ v_{\rm f}=v_0+\frac{F}{m}t,
+ \qquad
+ x_{\rm obj}=v_0t+\frac12\frac{F}{m}t^2.
+\]
+地面系中有
+\[
+ \boxed{
+ Fx_{\rm obj}
+ =\frac12m\left(v_0+\frac{F}{m}t\right)^2-\frac12mv_0^2}.
+\]
+火车系以加速度 $a$ 运动，不是惯性系。若仍只把 $F$ 的功写成 $FL$，将不能得到正确的
+相对运动。要在火车系中使用动能定理，必须给物体加入方向与火车加速度相反的惯性力
+\[
+ \vec F_{\rm in}=-m\vec a.
+\]
+\soldiagFourSeven
+图~\ref{ch08:fig:soldiagFourSeven} 中真实拉力向右、惯性力向左。
+若拉力与火车加速度同向，且 $F>ma$，物体相对火车由静止向前移动距离 $L$，则
+\[
+ (F-ma)L=\frac12mu_{\rm rel}^2,
+\]
+所以
+\[
+ \boxed{u_{\rm rel}
+ =\sqrt{2\left(\frac{F}{m}-a\right)L}}.
+\]
+若 $F=ma$，相对加速度为零，物体始终相对火车静止，不会完成 $L>0$ 的车内位移。
+若 $F<ma$，物体相对火车向后运动；用有符号位移 $\xi<0$ 写
+$(F-ma)\xi=\tfrac12mu_{\rm rel}^2$，两边仍为非负，不能把“向前移动 $L$”的根式硬套到此分支。
+惯性力不是新的相互作用力，而是为了在非惯性系中继续使用牛顿定律和动能定理而引入的
+等效力。
+\end{xesolution}
+
+\subsection{功与力的关系：虚功原理初步}
+
+杠杆、轮轴、齿轮、定滑轮和动滑轮
+等简单机械可以组合成复杂装置，把动力转化为所需要的形式。机械的一端连接动力源，动力
+可以来自人力、蒸汽机或电动机；另一端是输出端，用来提升重物或产生其他运动。
+
+机械不能创造能量，但可以储存能量。无摩擦、无其他损耗时，输入功与输出功的正确关系是
+\[
+ W_{\rm in}=W_{\rm out}+\Delta E_{\rm machine}.
+\]
+只有机械本身的动能、势能等不变时，才有输入功等于输出功；无摩擦本身并不能保证这一点。
+在这个条件下，机械用较小的力克服较大的阻力，代价是动力作用点移动更长的距离，“省力”不意味着“省功”。
+
+图~\ref{ch08:fig:movingPulleyDiagram} 为轻绳、轻滑轮构成的理想动滑轮，绳不可伸长，下方重物质量为 $m$。
+取竖直向上为正，固定端高度为 $y_f$，自由端高度为 $y_e$，轮心高度为 $y_p$。
+绳长为 $(y_f-y_p)+(y_e-y_p)+\pi R=\text{常量}$，所以
+$\Delta y_e=2\Delta y_p$。自由端向上移动 $L$ 时，重物向上移动 $L/2$。
+重物匀速上升，动能不变，因此拉力的功等于重力势能的增加：
+\movingPulleyDiagram
+\begin{equation}
+ F L=mg\frac{L}{2}.
+\end{equation}
+消去共同的位移尺度 $L$，得到
+\begin{equation}
+ F=\frac12mg.
+\end{equation}
+如果装置处于平衡而并未实际运动，也可以假想一次符合绳长约束的微小位移，记作 $\delta y$。
+它不是已经发生的位移，也不要求给它分配一段时间。理想约束下，平衡要求主动外力的总虚功为零：
+\[
+ F\delta y_e-mg\delta y_p=0,\qquad \delta y_e=2\delta y_p.
+\]
+由此同样得到 $F=mg/2$。这就是虚功原理在本例中的用法。
+它把允许的位移关系与平衡条件结合起来，可避免逐个求出约束复杂系统中的支持力和内部绳张力。
+
+\subsection{变力作功}
+
+作用力不是恒力时，仍可使用动能定理，关键是正确计算变力的功。建立直角坐标系，把力写成
+$(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
+\begin{equation}
+ \dd W=F_x\dd x+F_y\dd y+F_z\dd z=\vec F\cdot\dd\vec r.
+\end{equation}
+在有限过程中，应把各微小功累积起来，即
+\[
+ W=\int_A^B\vec F\cdot\dd\vec r.
+\]
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{例 4.8}
+两个物体间的相互吸引力大小与它们之间的距离成反比。固定其中一个物体，求另一个物体
+由相距 $r_A$ 运动到相距 $r_B$ 的过程中，该吸引力所做的功。
+\end{origexamplebox}
+
+\begin{xesolution}
+设吸引力大小为
+\[
+ F=\frac{k}{r},
+ \qquad k>0.
+\]
+取径向向外为正方向，吸引力的径向分量为 $F_r=-k/r$。因此
+\[
+ W_{A\to B}
+ =\int_{r_A}^{r_B}F_r\,\dd r
+ =-\int_{r_A}^{r_B}\frac{k}{r}\,\dd r.
+\]
+\soldiagFourEight
+图~\ref{ch08:fig:soldiagFourEight} 区分有限的始末距离与当前位置上的径向位移微元。积分得到
+\[
+ \boxed{W_{A\to B}=k\ln\frac{r_A}{r_B}}.
+\]
+若题目所说“大小”专指绝对值，则为
+\[
+ \boxed{|W|=k\left|\ln\frac{r_A}{r_B}\right|}.
+\]
+当物体向内运动，即 $r_B<r_A$ 时，引力与位移同向，功为正；向外运动时功为负。
+\end{xesolution}
+
+\begin{origexamplebox}{例 4.9}
+两个物体间的相互吸引力大小与它们之间距离的平方成反比。固定其中一个物体，求另一个
+物体由相距 $r_A$ 运动到相距 $r_B$ 的过程中，该吸引力所做的功。
+\end{origexamplebox}
+
+\begin{xesolution}
+设吸引力大小为
+\[
+ F=\frac{k}{r^2},
+ \qquad k>0.
+\]
+仍取径向向外为正，故 $F_r=-k/r^2$：
+\[
+ W_{A\to B}
+ =-\int_{r_A}^{r_B}\frac{k}{r^2}\,\dd r
+ =\left.\frac{k}{r}\right|_{r_A}^{r_B}.
+\]
+\soldiagFourNine
+图~\ref{ch08:fig:soldiagFourNine} 画出 $r_B>r_A$ 时力的大小曲线：阴影面积为正，而向外运动的引力功为负。
+所以功及其绝对值分别为
+\[
+\boxed{
+ W_{A\to B}=k\left(\frac1{r_B}-\frac1{r_A}\right)},
+\qquad
+\boxed{
+ |W|=k\left|\frac1{r_B}-\frac1{r_A}\right|}.
+\]
+符号判断与例 4.8 相同：向内运动时引力做正功，向外运动时引力做负功。
+\end{xesolution}

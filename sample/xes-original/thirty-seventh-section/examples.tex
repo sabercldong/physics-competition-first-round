@@ -1,0 +1,478 @@
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 6.1【电流源】}
+小明利用一个电流源向外供电，但是小红却误以为是一个电压源。小明发现无法说服小红，即电流源和
+电压源是等价的。试帮助小明证明这个结论，并利用这个关系求解电压源并联的公式。
+\end{origexamplebox}
+
+\sourceTransformExampleFigure
+\diagramcaption{解图：电压源串联内阻与电流源并联内阻的端口方向。两图对同一负载给出相同的 $U,I$。}
+
+\begin{xesolution}
+这里的“等价”指\textbf{带内阻电源的端口等价}，并不是说孤立的理想电压源与孤立的理想电流源可以
+无条件互换。设实际电压源的电动势为 $E$、串联内阻为 $r$，负载端电压为 $U$，向负载输出的电流为
+$I$。由 KVL，端口关系为
+\[
+  U=E-Ir,
+  \qquad I=\frac Er-\frac Ur.
+\]
+若改用输出电流 $I_{\rm N}=E/r$ 的理想电流源，并在端口并联同一个电阻 $r$，KCL 给出
+\[
+  I=I_{\rm N}-\frac Ur=\frac Er-\frac Ur,
+\]
+与上式完全相同。因此
+\[
+  \boxed{E\ \text{串联}\ r
+  \quad\Longleftrightarrow\quad
+  I_{\rm N}=\frac Er\ \text{并联}\ r}.
+\]
+
+现在把 $n$ 个电压源 $(E_i,r_i)$ 同极性并联。先把每一支路变成诺顿形式：电流源 $E_i/r_i$ 与
+$r_i$ 并联。并联电流源的电流相加，并联内阻的电导相加，故
+\[
+  I_{\rm N,eq}=\sum_{i=1}^n\frac{E_i}{r_i},
+  \qquad
+  \frac1{r_{\rm eq}}=\sum_{i=1}^n\frac1{r_i}.
+\]
+再变回电压源，得到
+\[
+  \boxed{r_{\rm eq}=\left(\sum_{i=1}^n\frac1{r_i}\right)^{-1}},
+  \qquad
+  \boxed{E_{\rm eq}=r_{\rm eq}\sum_{i=1}^n\frac{E_i}{r_i}}.
+\]
+对两个电源，公式化为
+\[
+  \boxed{r_{\rm eq}=\frac{r_1r_2}{r_1+r_2},\qquad
+  E_{\rm eq}=\frac{E_1r_2+E_2r_1}{r_1+r_2}}.
+\]
+若某支路极性相反，应把相应 $E_i$ 取负。两个电动势不同、内阻又被理想化为零的电压源不能直接并联，
+因为模型会要求无限大的环流；真实电源的内阻正是公式成立所必需的物理条件。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 6.2【田电阻】}
+有一个田字格的电阻网络，每条边电阻为 $R$，试求：
+
+(1) 对角线两个点 $A,C$ 的等效电阻；
+
+(2) 相邻的两个顶点 $A,B$ 的等效电阻。
+\gridProblemFigure
+\diagramcaption{图 6.6：第 2 题。九个交点都是节点，十二个相邻节点间的线段各代表一个电阻 $R$。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+\textbf{(1) 对角端点 $A,C$。} 令 $\varphi_A=V,\ \varphi_C=0$。关于对角线 $AC$ 反射，成对节点
+等势；再结合绕中心旋转 $180^\circ$ 后交换 $A,C$，可知中心点和另两个外角的电势均为 $V/2$。
+与 $A$ 相邻的两个边中点等势，设其电势为 $x$。其中任一点连接 $A$ 和两个 $V/2$ 节点，KCL 给出
+\[
+  \frac{x-V}{R}+2\frac{x-V/2}{R}=0,
+  \qquad x=\frac{2V}{3}.
+\]
+从 $A$ 流出的总电流是
+\[
+  I=2\frac{V-x}{R}=\frac{2V}{3R},
+\]
+故
+\[
+  \boxed{R_{AC}=\frac VI=\frac32R}.
+\]
+
+\gridPotentialDiagonalFigure
+\diagramcaption{解图（1）：把 $A,C$ 的电势分别归一化为 $1,0$。同色节点等势，标注放在网格空隙内而不遮挡支路。}
+
+\textbf{(2) 相邻外角 $A,B$。} 仍令 $\varphi_A=V,\ \varphi_B=0$。左右反射同时交换两个端点，
+所以竖直中线上的三个节点均为 $V/2$。设左边中点电势为 $u$、左上角为 $w$，其右侧镜像节点的
+电势分别为 $V-u,V-w$。左上角和左边中点的 KCL 为
+\[
+  2w-u-\frac V2=0,
+  \qquad
+  3u-V-w-\frac V2=0.
+\]
+解得 $u=7V/10,\ w=3V/5$。从 $A$ 流出的电流
+\[
+  I=\frac{V-V/2}{R}+\frac{V-7V/10}{R}=\frac{4V}{5R},
+\]
+因此
+\[
+  \boxed{R_{AB}=\frac54R}.
+\]
+
+\gridPotentialAdjacentFigure
+\diagramcaption{解图（2）：相邻端点激励不再具有对角情形的全部对称性；图中的九个电势已经逐点满足 KCL。}
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 6.3【正四面体电阻】}
+有一个正四面体框架的电阻网络，每条边电阻为 $R$，试求任意两点间的等效电阻。
+\tetrahedronProblemFigure
+\diagramcaption{图 6.7：第 3 题。四个顶点、六条棱均完整画出；交叉处没有节点。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+从任意两顶点 $A,B$ 接入电源。其余两顶点 $C,D$ 在保持 $A,B$ 不动的对称变换下可以交换，所以
+$\varphi_C=\varphi_D$，连接 $C,D$ 的电阻中没有电流，可删去。此后 $A$ 到 $B$ 之间有三条并联支路：
+一条是直接的 $R$，另两条分别是 $A-C-B$ 和 $A-D-B$，每条为 $2R$。于是
+\[
+  \frac1{R_{AB}}=\frac1R+\frac1{2R}+\frac1{2R}=\frac2R,
+  \qquad
+  \boxed{R_{AB}=\frac R2}.
+\]
+这个结论与所选顶点无关，因为正四面体的任意两顶点在网络拓扑上完全等价。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 6.4【$N$ 边形电阻】}
+有一个 $N$ 边形电阻网络（图中 $N=5$），每条边、每条对角线都用阻值为 $R$ 的电阻相连，试求
+任意两点间的等效电阻。
+\completeGraphProblemFigure
+\diagramcaption{图 6.8：第 4 题。图示为 $K_5$；一般情形是任意两顶点之间都有且只有一个电阻 $R$。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+取所求端点为 $A,B$，加电压 $V$。其余 $N-2$ 个顶点在保持 $A,B$ 不变的任意置换下都等价，故电势
+相同。它们之间虽有大量电阻，但每一条两端等势，电流均为零。由交换 $A,B$ 的反对称性，这些中间点
+电势都是 $V/2$。
+
+从 $A$ 流出的电流包括直接流向 $B$ 的 $V/R$，以及流向 $N-2$ 个中间点的
+$(N-2)V/(2R)$：
+\[
+  I=\frac VR+(N-2)\frac{V}{2R}=\frac{NV}{2R}.
+\]
+所以
+\[
+  \boxed{R_{AB}=\frac{2R}{N}}.
+\]
+代入 $N=4$ 就得到上一题正四面体的 $R/2$；二者本质上分别是完全图 $K_N$ 与 $K_4$。
+
+\completeGraphReductionFigure
+\diagramcaption{解图：固定端点 $A,B$ 后，其余 $N-2$ 点全部等势。虚线框表示把这些点视为同一电势层，而非新增导线。}
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 6.5【变种八边形电阻】}
+有一个八边形电阻网络，除最长的对角线外，每条边、每条对角线都用阻值为 $R$ 的电阻相连，试求相距
+最远的两点间的等效电阻。
+\octagonProblemFigure
+\diagramcaption{图 6.9：第 5 题。八边形中唯独四条直径不接电阻；任意其他两顶点之间均接一个 $R$。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+相距最远的端点 $A,B$ 互为对顶点，它们之间恰好没有直径支路。设端电势为 $V,0$，试令其余六点均为
+$V/2$：任一中间点与 $A,B$ 相连的两支路电流相互抵消，与其他中间点相连的支路电流为零，所以各点
+KCL均满足。正电阻网络在端电势给定后内部电势解唯一，故这就是实际电势，不需要声称任意交换顶点都
+保持网络不变。每个中间点都通过一个 $R$ 接到 $A$，并通过另一个 $R$ 接到
+$B$；中间点之间的支路两端等势，均无电流。
+
+网络于是化成六条相同的 $A$--中间点--$B$ 支路并联，每条阻值 $2R$：
+\[
+  \boxed{R_{AB}=\frac{2R}{6}=\frac R3}.
+\]
+这里不能误加一条 $A,B$ 间的直接电阻；“最长对角线除外”正是本题与完全图 $K_8$ 的区别。
+
+\octagonReductionFigure
+\diagramcaption{解图：六个蓝色中间点等势，内部连线均不载流；真正参与端口电流的是六条长度为两个电阻的并联通路。}
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 6.6【正方体电阻】}
+有一个立方体电阻网络，每条棱电阻为 $R$。求：
+
+(1) 相邻两顶点；
+
+(2) 面对角线两顶点；
+
+(3) 体对角线两顶点的等效电阻。
+\cubeProblemFigure
+\diagramcaption{图 6.10：第 6 题。实线和虚线共同构成立方体的十二条棱；虚线只表示被遮挡的三条棱。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+统一令输入端电势为 $V$、输出端为 $0$。下图列出三种接法中所有顶点的归一化电势，数值由对称性合并
+节点后写 KCL 得到；把每个内部节点的相邻电势代入，都可直接验证流入等于流出。
+
+\cubePotentialFigure
+\diagramcaption{解图：三种端点选择的归一化电势。每个数值紧邻顶点外侧，虚线棱与实线棱的空间关系保持一致。}
+
+\textbf{(1) 相邻顶点。} 用三位坐标 $000$ 至 $111$ 标记立方体顶点，一条棱只改变其中一位。
+取 $000$ 为输入端、$100$ 为输出端。交换后两坐标可知 $010,001$ 等势，记为 $x$；
+反转第一坐标同时交换端电势，可知 $110,101$ 电势为 $V-x$。另记 $011$ 电势为 $y$，则 $111$ 为 $V-y$。
+在 $010$ 和 $011$ 两点分别列KCL：
+\[
+ (x-V)+(x-(V-x))+(x-y)=0,\qquad
+ 2(y-x)+(y-(V-y))=0.
+\]
+整理为 $4x-y=2V,\ 4y-2x=V$，消去 $y$ 得 $14x=9V$，再得 $y=4V/7$。
+因此输入端除直达输出端的一条棱外，另两条棱通向电势均为 $9V/14$ 的节点，
+所以
+\[
+  I=\frac VR+2\frac{V-9V/14}{R}=\frac{12V}{7R},
+  \qquad
+  \boxed{R_{\text{邻}}=\frac{7R}{12}}.
+\]
+
+\textbf{(2) 面对角线顶点。} 取 $000$ 输入、$110$ 输出。交换前两坐标以及同时反转这两位，
+可知 $100,010,101,011$ 电势均为 $V/2$。令 $001$ 的电势为 $x$，它的邻点为 $000,101,011$，故
+\[
+ (x-V)+2(x-V/2)=0,\qquad x=2V/3.
+\]
+输入端的两个同面邻点电势均为 $V/2$，第三个邻点电势为 $2V/3$，故
+\[
+  I=2\frac{V-V/2}{R}+\frac{V-2V/3}{R}=\frac{4V}{3R},
+  \qquad
+  \boxed{R_{\text{面}}=\frac{3R}{4}}.
+\]
+
+\textbf{(3) 体对角线顶点。} 输入端的三个邻点等势，设为 $x$；输出端的三个邻点由反对称性为 $V-x$。
+任取一个 $x$ 节点，它连接输入端和两个 $V-x$ 节点，故
+\[
+  \frac{x-V}{R}+2\frac{x-(V-x)}R=0,
+  \qquad x=\frac{3V}{5}.
+\]
+于是
+\[
+  I=3\frac{V-3V/5}{R}=\frac{6V}{5R},
+  \qquad
+  \boxed{R_{\text{体}}=\frac{5R}{6}}.
+\]
+三种结果依次增大，但这不是由“几何距离”直接决定的，而是由端点选择后整个网络允许的并联通道决定。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 6.7【无穷网络】}
+求图示无限电阻网络中 $a,b$ 两点间的等效电阻。图中每个电阻的阻值均为 $R$。
+\infiniteLadderProblemFigure
+\diagramcaption{图 6.11：第 7 题。上下两条横向支路和每一根竖直梯档都为 $R$，网络向右无限延伸。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+设整个无限梯形网络的等效电阻为 $X$。删去最左边一格后，余下部分与原网络完全相同，因此从第一对
+竖直节点向右看进去仍是 $X$。在这两个节点之间，第一根竖直电阻 $R$ 与余下网络 $X$ 并联；它们外侧
+还各串联一个横向电阻 $R$。所以
+\[
+  X=2R+\frac{RX}{R+X}.
+\]
+
+\ladderRecursionFigure
+\diagramcaption{解图：虚线框内的无限尾部仍等效为 $X$。两只横向 $R$ 串在 $R\parallel X$ 的两侧。}
+
+令 $x=X/R$，有
+\[
+  x=2+\frac{x}{1+x},
+  \qquad x^2-2x-2=0.
+\]
+电阻必须为正，舍去 $x=1-\sqrt3$，得到
+\[
+  \boxed{R_{ab}=X=(1+\sqrt3)R}.
+\]
+回代可见 $X>2R$，与“入口处必经上下两个 $R$，中间还有有限并联电阻”的结构相符。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 6.8【三端无穷网络】}
+求图示无限电阻网络中 $A,C$ 两点和 $A,B$ 两点之间的等效电阻，已知图中每个电阻值均为 $R$。
+\threeRailProblemFigure
+\diagramcaption{第 8 题原图重绘：三条横向链向右无限延伸，相邻两行在每一列以竖直电阻连接；左端为 $A,B,C$。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+这个网络有三个端口，不能只用一个标量电阻表示尾部。利用上下反射对称，把每一列的三个电势分解成
+彼此独立的三种横向模式：
+\[
+  \boldsymbol e_0=(1,1,1),\qquad
+  \boldsymbol e_1=(1,0,-1),\qquad
+  \boldsymbol e_3=(1,-2,1).
+\]
+这些模式可直接从KCL导出。令一列的电势向量为 $\boldsymbol V=(V_A,V_B,V_C)^{\mathsf T}$，
+流向本列两根竖直电阻的电流向量为
+\[
+ \boldsymbol I_{\rm vertical}=\frac1R
+ \begin{pmatrix}1&-1&0\\-1&2&-1\\0&-1&1\end{pmatrix}\boldsymbol V
+ =\frac1R L\boldsymbol V.
+\]
+逐项相乘得到 $L\boldsymbol e_0=0$、$L\boldsymbol e_1=\boldsymbol e_1$、
+$L\boldsymbol e_3=3\boldsymbol e_3$。横向三根电阻同为 $R$，不会混合这些正交模式，
+因此后两种模式分别看到无量纲横向电导 $\mu=1,3$。
+端口一注入一抽出、总电流为零，不激发沿链流动的共同模式；各列相同的共同电势只表示参考电势的选择。
+
+\threeRailModesFigure
+\diagramcaption{解图：三行节点的两个有效电势模式。箭头长度表示相对电势（或注入电流）分量，不是实际支路。}
+
+设某一模式从边界看入的无量纲输入电导为 $y_\mu$，真实电导为 $y_\mu/R$。越过最左边的横向电阻后，
+节点处同时接有横向电导 $\mu/R$ 和一个完全相同的无限尾部 $y_\mu/R$。串并联关系给出
+\[
+  y_\mu=\frac{\mu+y_\mu}{1+\mu+y_\mu},
+\]
+所以
+\[
+  y_\mu^2+\mu y_\mu-\mu=0,
+  \qquad
+  y_1=\frac{\sqrt5-1}{2},
+  \qquad
+  y_3=\frac{\sqrt{21}-3}{2}.
+\]
+
+为说明端口电阻如何组合，令单位模态向量为 $\boldsymbol u_j=\boldsymbol e_j/|\boldsymbol e_j|$，
+注入电流为 $I\boldsymbol b$。其模态电流是 $I(\boldsymbol b\cdot\boldsymbol u_j)$，模态电压是
+$IR(\boldsymbol b\cdot\boldsymbol u_j)/y_j$。端电压为 $\boldsymbol b\cdot\boldsymbol V$，故
+\[
+ R_{\rm port}=R\sum_{j=1,3}\frac{(\boldsymbol b\cdot\boldsymbol u_j)^2}{y_j}.
+\]
+对 $A,C$ 注入与抽出的电流向量正比于 $(1,0,-1)=\boldsymbol e_1$，只激发 $\mu=1$ 模式。该向量
+长度平方为 $2$，故
+\[
+  \boxed{R_{AC}=\frac{2R}{y_1}=(1+\sqrt5)R}.
+\]
+
+对 $A,B$，向量 $(1,-1,0)$ 在归一化的 $\boldsymbol e_1,\boldsymbol e_3$ 上的投影平方分别为
+$1/2,3/2$。两个正交模式的电压降相加：
+\[
+  R_{AB}=R\left(\frac{1/2}{y_1}+\frac{3/2}{y_3}\right)
+  =\boxed{\frac{4+\sqrt5+\sqrt{21}}4R}.
+\]
+数值上 $R_{AB}\approx2.70466R$、$R_{AC}\approx3.23607R$。这也符合端点距离直觉：$A,C$ 分处
+最上、最下两行，等效电阻较大。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 6.9【嵌套网络】}
+如图所示，框架由同种金属丝制成，单位长度的电阻为 $\rho$。一连串内接等边三角形的数目可认为趋向
+无穷，取 $AB$ 边长为 $a$，以后每个三角形的边长依次减小一半。求框架上 $A,B$ 两点间的电阻。
+\nestedTriangleProblemFigure
+\diagramcaption{图 6.12：第 9 题。每个新三角形的三个顶点是上一三角形的三边中点，方向逐级交替。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+任意一层以后仍是一个关于三个端点完全对称的三端网络，所以可把边长为 $a$ 的完整无限网络等效成
+三角形连接，设每一条等效支路为
+\[
+  x(a)=k\rho a,
+\]
+其中无量纲常数 $k$ 与尺度无关。记 $r=\rho a$。外三角形的每条边被中点分成两个 $r/2$；中点围成的
+无限内网边长为 $a/2$，其三角形等效支路就是 $kr/2$。
+
+\nestedTriangleRecursionFigure
+\diagramcaption{解图：把中点以内的无限嵌套部分替换成三条 $kr/2$。外层六段金属丝各为 $r/2$。}
+
+在图中令 $A,B$ 电势为 $V,0$。反射对称性与电势反对称性给出 $C$ 及 $AB$ 中点电势为 $V/2$；
+令 $CA$ 中点电势为 $u$，则 $CB$ 中点为 $V-u$。在 $CA$ 中点列KCL：
+\[
+ \frac{u-V}{r/2}+\frac{u-V/2}{r/2}
+ +\frac{u-V/2}{kr/2}+\frac{u-(V-u)}{kr/2}=0.
+\]
+乘 $kr/2$ 后得 $(2k+3)u=3(k+1)V/2$。从 $A$ 流入的总电流为
+\[
+ I=\frac{V-V/2}{r/2}+\frac{V-u}{r/2}
+ =\frac{3(k+2)V}{(2k+3)r}.
+\]
+所以 $A,B$ 间等效电阻
+\[
+  R_{AB}=\frac{r(2k+3)}{3(k+2)}.
+\]
+另一方面，若从完整三端网络的等效三角形看，$A,B$ 之间是一条 $kr$ 与另两条串联的 $2kr$ 并联，
+因此
+\[
+  R_{AB}=kr\parallel 2kr=\frac{2kr}{3}.
+\]
+令两式相等：
+\[
+  \frac{2k}{3}=\frac{2k+3}{3(k+2)},
+  \qquad 2k^2+2k-3=0.
+\]
+取正根 $k=(\sqrt7-1)/2$，最终
+\[
+  \boxed{R_{AB}=\frac{\sqrt7-1}{3}\,\rho a}.
+\]
+结果小于只保留外三角形时的 $2\rho a/3$，因为不断加入的内接金属丝提供了额外并联通路。
+\end{xesolution}
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{例题 6.10【分形电阻】}
+如图，考虑大三角形 $ABC$，取每条边的中点并连接，得到第二阶图形，其中含有三个正立小正三角形。
+把中间的倒立三角形镂空，便得到一阶“镂垫”。对每一个保留的小三角形重复相同操作，得到更高阶图形。
+如此无穷进行，得到谢尔宾斯基三角形，也称谢尔宾斯基镂垫。讨论下列性质：
+
+(1) 最终镂垫的总面积是多少？
+
+(2) 最终镂垫的总边长是多少（内、外边界均计入）？
+
+(3) 若所有边都由单位长度电阻为 $\lambda$ 的电阻丝构成，$AB$ 两点的等效电阻为多少？
+
+(4) 讨论上述结果。
+\sierpinskiProblemFigure
+\diagramcaption{图 6.13：第 10 题。前三阶图形由同一中点规则生成；白色倒三角形是被镂空的部分。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+设最初等边三角形边长为 $a$、面积为 $S_0=\sqrt3a^2/4$。
+
+\textbf{(1) 面积。} 每次操作把一个实心三角形分成四个全等小三角形，只保留其中三个。因此第 $n$ 次
+操作后
+\[
+  S_n=S_0\left(\frac34\right)^n.
+\]
+令 $n\to\infty$，得到
+\[
+  \boxed{S_\infty=0}.
+\]
+
+\textbf{(2) 总边长。} 第 $n$ 阶有 $3^n$ 个最小正三角形，每个边长 $a/2^n$；这些三角形彼此只在
+顶点相接，不共享完整边。把每条几何线段只计一次，总边长为
+\[
+  L_n=3^n\cdot3\frac{a}{2^n}
+  =3a\left(\frac32\right)^n.
+\]
+所以
+\[
+  \boxed{L_\infty=\infty}.
+\]
+
+\textbf{(3) 等效电阻。} 第 $n$ 阶的最小边长为 $a/2^n$，每段电阻
+\[
+  r_n=\lambda\frac{a}{2^n}.
+\]
+若所有最小边的电阻都暂记为 $r$，三角形初阶的端点电阻为 $2r/3$。下面推导增加一阶的比例。
+把三个小三角形拼接成一阶网，九条边均为 $r$。令 $A,B$ 电势为 $V,0$，则 $C$ 与 $AB$ 中点为 $V/2$；
+$CA,CB$ 中点分别为 $u,V-u$。前一中点连接 $A,C$ 及另外两个中点，KCL给出
+\[
+ (u-V)+(u-V/2)+(u-V/2)+(u-(V-u))=0,
+ \qquad u=3V/5.
+\]
+所以 $I=(V-V/2)/r+(V-3V/5)/r=9V/(10r)$，一阶端电阻为 $10r/9$。
+与初阶 $2r/3$ 相比，比例为 $5/3$。任意更高阶的子网都可等效为对称三端三角形，因而同一比例逐阶适用。
+因此
+\[
+  R_n=\frac23\left(\frac53\right)^n r_n
+  =\frac{2\lambda a}{3}\left(\frac56\right)^n.
+\]
+
+\sierpinskiResistanceFigure
+\diagramcaption{解图：每一阶由三个缩小到 $1/2$ 的同型三端网络拼成；拓扑使等效电阻乘 $5/3$，长度缩放又使单段电阻乘 $1/2$。}
+
+取极限得
+\[
+  \boxed{R_{AB}=0}.
+\]
+这是理想无限阶模型的极限，不表示有限粗细的真实金属丝会有严格为零的电阻。
+
+\textbf{(4) 讨论。} 这个分形同时具有“面积趋于零、总边长趋于无穷、端点电阻趋于零”三种看似矛盾
+的性质。它们分别测量二维占据、线性边界和电流并联通道，不应互相替代。面积每阶乘 $3/4$；总边长
+每阶乘 $3/2$；电阻则是拓扑因子 $5/3$ 与几何缩放 $1/2$ 的乘积，即每阶乘 $5/6$。真实导线有有限
+线径、接触电阻和最小结构尺度，递归在某一阶必然停止，因而真实面积、长度和电阻都保持有限且非零。
+\end{xesolution}

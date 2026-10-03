@@ -1,0 +1,426 @@
+\section{统计力学}
+
+\subsection{相空间、系综与配分函数}
+
+考虑不显含时间的拉格朗日系统 $L(q_\alpha,\dot q_\alpha)$。定义
+\[
+ p_\alpha=\frac{\partial L}{\partial\dot q_\alpha},
+ \qquad
+ H(q,p)=\sum_\alpha p_\alpha\dot q_\alpha-L,
+\]
+哈密顿方程为
+\[
+ \dot q_\alpha=\frac{\partial H}{\partial p_\alpha},
+ \qquad
+ \dot p_\alpha=-\frac{\partial H}{\partial q_\alpha}.
+\]
+把 $f$ 个广义坐标和 $f$ 个广义动量合成相坐标
+$\vect\xi=(q_1,\ldots,q_f,p_1,\ldots,p_f)$，则
+\[
+ \dot{\vect\xi}=\mathsf J\nabla_\xi H,
+ \qquad
+ \mathsf J=\begin{pmatrix}0&\mathsf1\\-\mathsf1&0\end{pmatrix}.
+\]
+与量子态计数协调的无量纲相体积元取为
+$\dd\Omega=\dd^f q\,\dd^f p/h^f$。系综是在相空间内沿哈密顿轨道运动的大量代表点，其归一化密度记为 $\rho(\vect\xi,t)$。
+
+\begin{advtheorem}{刘维尔定理}\label{advA2:thm:liouville}
+哈密顿相流不可压缩，沿任一相轨道
+\[
+ \boxed{\frac{D\rho}{Dt}=0}.
+\]
+等价地，相空间任意随流体积保持不变。
+\end{advtheorem}
+证明：相空间概率守恒给出连续性方程
+\[
+ \frac{\partial\rho}{\partial t}
+ +\nabla_\xi\cdot(\rho\dot{\vect\xi})=0.
+\]
+哈密顿方程使相流散度为
+\[
+ \nabla_\xi\cdot\dot{\vect\xi}
+ =\sum_\alpha\left(
+ \frac{\partial^2H}{\partial q_\alpha\partial p_\alpha}
+ -\frac{\partial^2H}{\partial p_\alpha\partial q_\alpha}
+ \right)=0.
+\]
+因此连续性方程化为
+$\partial_t\rho+\dot{\vect\xi}\cdot\nabla_\xi\rho=D\rho/Dt=0$。这也补足了源资料中省略的证明。
+
+玻尔兹曼在分子混沌等动力学假设下得到粗粒化的 $H$ 定理，
+$H_{\rm B}=\int\rho\ln\rho\,\dd\Omega$ 随时间不增。要注意：刘维尔定理保证孤立哈密顿体系的\emph{细粒化}吉布斯熵
+$-k\int\rho\ln\rho\,\dd\Omega$ 不变；不可逆熵增来自粗粒化或约化描述，二者并不矛盾。
+
+微正则系综固定 $N,E,V$。令
+\[
+ \omega(N,E,V)=\int_{E\le H<E+\Delta E}\dd\Omega,
+ \qquad
+ \rho=\begin{cases}1/\omega,&E\le H<E+\Delta E,\\0,&\text{其余},\end{cases}
+\]
+并记 $\Omega_E=\int_{H\le E}\dd\Omega$，则窄能壳中
+$\omega\simeq(\partial\Omega_E/\partial E)_{N,V}\Delta E$。系综平均为
+$\langle A\rangle=\int A\rho\,\dd\Omega$，熵为
+$S=-k\int\rho\ln\rho\,\dd\Omega=k\ln\omega$。
+
+\begin{advexamplebox}{等概率分布使微正则熵最大}\label{advA2:ex:microcanonical-maximum}
+证明：在给定能壳和归一化条件下，均匀分布 $\rho=1/\omega$ 使
+$S=-k\int\rho\ln\rho\,\dd\Omega$ 最大。
+\end{advexamplebox}
+\begin{advsolution}
+对任意归一化分布 $\rho$，与均匀分布 $\rho_0=1/\omega$ 的相对熵满足
+\[
+ D(\rho\Vert\rho_0)=\int\rho\ln\frac{\rho}{\rho_0}\dd\Omega\ge0.
+\]
+于是
+\[
+ -\int\rho\ln\rho\,\dd\Omega
+ \le-\int\rho\ln\rho_0\,\dd\Omega=\ln\omega.
+\]
+等号只在 $\rho=\rho_0$ 几乎处处成立时取得。也可用拉格朗日乘子变分，二阶变分
+$-k\int(\delta\rho)^2/(2\rho)\dd\Omega<0$ 保证是最大值。
+\end{advsolution}
+
+两个弱耦合体系交换能量时，总态数
+$\omega_1(E_1)\omega_2(E-E_1)$ 在平衡处最大，给出
+\[
+ \frac1{T_i}=\left(\frac{\partial S_i}{\partial E_i}\right)_{V_i,N_i},
+ \qquad T_1=T_2.
+\]
+同理，允许体积和粒子交换时分别得到
+$(\partial S/\partial V)_{E,N}=p/T$、
+$(\partial S/\partial N)_{E,V}=-\mu/T$，以及
+$p_1=p_2,\mu_1=\mu_2$，从微观态计数恢复
+$\dd E=T\dd S-p\dd V+\mu\dd N$。
+
+小体系与大热库接触时，把热库熵在总能量附近展开：
+\[
+ \ln\omega_B(E_T-E)=\text{常数}-\frac{E}{kT}+\cdots,
+\]
+故正则系综权重为 $e^{-E/(kT)}$。若还与粒子库接触，展开中出现化学势项，巨正则权重为
+$e^{-(E-\mu N)/(kT)}$。
+
+\begin{advdefinition}{配分函数与巨配分函数}\label{advA2:def:partition-functions}
+\[
+ Z(N,V,T)=\int e^{-\beta H_N}\dd\Omega_N,
+ \qquad
+ \Xi(\mu,V,T)=\sum_{N=0}^\infty e^{\beta\mu N}Z(N,V,T),
+ \quad \beta=\frac1{kT}.
+\]
+热力学势为
+\[
+ F=-kT\ln Z,
+ \qquad
+ \Omega=-kT\ln\Xi=-pV.
+\]
+\end{advdefinition}
+由此
+\[
+ U=-\frac{\partial\ln Z}{\partial\beta},
+ \quad
+ \mu=F_N,\quad p=-F_V,\quad S=-F_T.
+\]
+
+\begin{advexamplebox}{由巨配分函数直接求热力学量}\label{advA2:ex:grand-observables}
+用 $\Xi(\mu,V,T)$ 写出平均粒子数、压强、熵和内能。
+\end{advexamplebox}
+\begin{advsolution}
+对 $z=e^{\beta\mu}$ 求导，
+\[
+ \boxed{\langle N\rangle
+ =z\frac{\partial\ln\Xi}{\partial z}
+ =kT\left(\frac{\partial\ln\Xi}{\partial\mu}\right)_{T,V}}.
+\]
+由 $\Omega=-kT\ln\Xi=-pV$，
+\[
+ \boxed{p=\frac{kT}{V}\ln\Xi},
+ \qquad
+ \boxed{S=k\ln\Xi+kT
+ \left(\frac{\partial\ln\Xi}{\partial T}\right)_{\mu,V}}.
+\]
+固定 $z,V$ 对 $\beta$ 求导得到
+\[
+ \boxed{U=-\left(\frac{\partial\ln\Xi}{\partial\beta}\right)_{z,V}},
+\]
+等价形式是在固定 $\mu$ 时
+$U-\mu N=-(\partial\ln\Xi/\partial\beta)_{\mu,V}$。最后
+$U=TS-pV+\mu N$ 可作一致性校验。
+\end{advsolution}
+
+\subsection{经典统计结论}
+
+无内禀简并的自由粒子单态配分函数写成
+\[
+ z_1=\int_0^\infty g(\varepsilon)e^{-\beta\varepsilon}\dd\varepsilon.
+\]
+
+\begin{advexamplebox}{不同维数自由粒子的态密度}\label{advA2:ex:density-of-states}
+求一、二、三维非相对论自由粒子和无质量相对论粒子的态密度 $g(\varepsilon)$。
+\end{advexamplebox}
+\begin{advsolution}
+每个平动量子态占据相空间体积 $(2\pi\hbar)^d$。先数动量球内态数，再对能量求导。
+对 $\varepsilon=p^2/(2m)$，
+\[
+ \boxed{g_{3}(\varepsilon)=\frac{V(2m)^{3/2}}{4\pi^2\hbar^3}\varepsilon^{1/2}},
+\]
+\[
+ \boxed{g_{2}(\varepsilon)=\frac{Am}{2\pi\hbar^2}},
+ \qquad
+ \boxed{g_{1}(\varepsilon)=\frac{L}{\pi\hbar}\sqrt{\frac{m}{2\varepsilon}}}.
+\]
+对 $\varepsilon=pc$，
+\[
+ \boxed{g_{3}^{\rm rel}=\frac{V\varepsilon^2}{2\pi^2\hbar^3c^3}},
+ \quad
+ \boxed{g_{2}^{\rm rel}=\frac{A\varepsilon}{2\pi\hbar^2c^2}},
+ \quad
+ \boxed{g_{1}^{\rm rel}=\frac{L}{\pi\hbar c}}.
+\]
+每一式的 $g\dd\varepsilon$ 都无量纲；若存在自旋简并度，还应整体乘以简并因子。
+\end{advsolution}
+
+\begin{advexamplebox}{自由粒子配分函数与物态方程}\label{advA2:ex:free-particle-partition}
+计算三维非相对论和无质量相对论自由粒子的单态配分函数，并证明平均能量分别为
+$3kT/2$、$3kT$，且分别满足 $pV=2E/3$、$pV=E/3$。
+\end{advexamplebox}
+\begin{advsolution}
+令热德布罗意波长
+\[
+ \lambda_T=\sqrt{\frac{2\pi\hbar^2}{mkT}}.
+\]
+高斯积分给出非相对论单粒子
+$z_1=V/\lambda_T^3\propto VT^{3/2}$；无质量粒子由
+$\int_0^\infty\varepsilon^2e^{-\beta\varepsilon}\dd\varepsilon=2/\beta^3$ 得
+\[
+ z_1^{\rm rel}=\frac{V(kT)^3}{\pi^2\hbar^3c^3}\propto VT^3.
+\]
+于是 $E_1=-\partial_\beta\ln z_1$ 分别为 $3kT/2$ 和 $3kT$。两者都因 $\ln z_1$ 含 $\ln V$ 而给出
+$p=kT(\partial\ln z_1/\partial V)_T=kT/V$，所以
+\[
+ \boxed{pV=\frac23E}\quad\text{和}\quad
+ \boxed{pV=\frac13E}.
+\]
+这里 $E$ 可指单粒子平均能量；乘以粒子数后关系不变。
+\end{advsolution}
+
+经典全同粒子必须除去置换重复计数：$Z_N=z_1^N/N!$。斯特林公式
+$\ln N!\simeq N\ln N-N$ 使自由能和熵恢复广延性。
+
+\begin{advexamplebox}{单原子经典理想气体熵}\label{advA2:ex:classical-entropy}
+由 $Z_N=(V/\lambda_T^3)^N/N!$ 证明
+\[
+ S=\frac32Nk\ln T+Nk\ln\frac VN+Nks_0,
+ \quad
+ s_0=\frac32\ln\frac{mk}{2\pi\hbar^2}+\frac52.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+用 $F=-kT\ln Z_N$、$S=-(\partial F/\partial T)_{V,N}$：
+\[
+ S=Nk\left[\ln\frac{V}{N\lambda_T^3}+\frac52\right].
+\]
+展开 $\lambda_T$ 便得到题式。它与前面的萨克--泰特洛德结果完全一致；$1/N!$ 若遗漏，会多出非广延的 $Nk\ln N$，这就是吉布斯佯谬的经典表现。
+\end{advsolution}
+
+\begin{advexamplebox}{$N$ 个一维经典谐振子}\label{advA2:ex:harmonic-partition}
+计算 $N$ 个频率为 $\omega$、彼此独立且固定在不同位置的一维经典谐振子的配分函数、内能与热容。
+\end{advexamplebox}
+\begin{advsolution}
+单振子的哈密顿量 $H=p^2/(2m)+m\omega^2q^2/2$，故
+\[
+ z=\frac1h\int_{-\infty}^{\infty}\!\dd p\dd q\,e^{-\beta H}
+ =\frac{kT}{\hbar\omega}.
+\]
+振子依附在不同位置，彼此可分辨，不除以 $N!$：
+\[
+ \boxed{Z=z^N=\left(\frac{kT}{\hbar\omega}\right)^N},
+ \quad
+ \boxed{U=NkT},\quad \boxed{C_V=Nk}.
+\]
+两个二次项各贡献 $kT/2$，与能量均分定理一致。低温时经典结果失效，量子配分函数应取
+$e^{-\beta\hbar\omega/2}/(1-e^{-\beta\hbar\omega})$。
+\end{advsolution}
+
+\begin{advexamplebox}{$N$ 个三自由度刚体转子}\label{advA2:ex:rigid-rotor-partition}
+主惯量为 $I_1,I_2,I_3$ 的非线性刚体分子只有转动自由度。求其高温经典配分函数，并给出转动内能与热容。
+\end{advexamplebox}
+\begin{advsolution}
+对欧拉角和三个共轭角动量作高斯积分，单分子转动配分函数为
+\[
+ z_{\rm rot}=\frac{\sqrt\pi}{\sigma}
+ \left(\frac{8\pi^2kT}{h^2}\right)^{3/2}
+ \sqrt{I_1I_2I_3},
+\]
+其中 $\sigma$ 是分子取向的对称数。若这些转子位于固定晶格点，$Z=z_{\rm rot}^N$；若作为全同自由分子的内部因子，则它进入
+$Z=(z_{\rm trans}z_{\rm rot})^N/N!$。因 $z_{\rm rot}\propto T^{3/2}$，
+\[
+ \boxed{U_{\rm rot}=\frac32NkT},
+ \qquad \boxed{C_{V,\rm rot}=\frac32Nk}.
+\]
+三项角动能各贡献 $kT/2$。
+\end{advsolution}
+
+\begin{advexamplebox}{匀强电场中的刚性偶极子}\label{advA2:ex:dipole-partition}
+$N$ 个大小为 $d$ 的刚性电偶极子置于匀强电场 $E$ 中，忽略动能。求配分函数、平均偶极矩与弱场极化率。
+\end{advexamplebox}
+\begin{advsolution}
+取 $x=dE/(kT)$。单偶极子取向积分为
+\[
+ z_1=\int e^{x\cos\theta}\dd\Omega
+ =4\pi\frac{\sinh x}{x},
+ \qquad Z=z_1^N.
+\]
+沿场方向的平均偶极矩为
+\[
+ \langle d_\parallel\rangle
+ =kT\frac{\partial\ln z_1}{\partial E}
+ =d\mathcal L(x),
+ \quad \mathcal L(x)=\coth x-\frac1x.
+\]
+故极化强度
+$P=Nd\mathcal L(x)/V$。弱场 $\mathcal L(x)=x/3+O(x^3)$，
+\[
+ \boxed{\chi_e=\frac1{\varepsilon_0}\frac{\partial P}{\partial E}
+ =\frac{Nd^2}{3\varepsilon_0VkT}}.
+\]
+强场 $x\to\infty$ 时 $P\to Nd/V$，正确再现饱和极化。
+\end{advsolution}
+
+\subsection{费米统计与玻色统计}
+
+把单粒子态记为 $\varepsilon_i$、占据数记为 $n_i$，则
+$E=\sum_i n_i\varepsilon_i,N=\sum_i n_i$。每个态的巨配分函数为
+\[
+ \Xi_i=\sum_{n_i}e^{-\beta(\varepsilon_i-\mu)n_i}.
+\]
+费米子有 $n_i=0,1$；玻色子有 $n_i=0,1,2,\ldots$。
+
+\begin{advexamplebox}{费米--狄拉克与玻色--爱因斯坦分布}\label{advA2:ex:quantum-distributions}
+求两种统计的平均占据数和巨势，并写出压强公式。
+\end{advexamplebox}
+\begin{advsolution}
+令 $z_i=e^{-\beta(\varepsilon_i-\mu)}$。费米子
+$\Xi_i=1+z_i$，玻色子 $\Xi_i=(1-z_i)^{-1}$。用
+$\langle n_i\rangle=z_i\partial_{z_i}\ln\Xi_i$，
+\[
+ \boxed{\langle n_i\rangle=\frac1{e^{(\varepsilon_i-\mu)/(kT)}\pm1}},
+\]
+上号对应费米、下号对应玻色。又
+\[
+ \boxed{\Omega=\mp kT\sum_i\ln\!\left(1\pm e^{-\beta(\varepsilon_i-\mu)}\right)},
+\]
+因此
+\[
+ \boxed{pV=\pm kT\sum_i\ln\!\left(1\pm e^{-\beta(\varepsilon_i-\mu)}\right)}.
+\]
+玻色式要求 $\mu$ 不超过基态能量；费米式自动体现泡利不相容原理。
+\end{advsolution}
+
+三维理想费米气在零温下把单粒子态填充到费米能
+\[
+ \varepsilon_F=\frac{\hbar^2}{2m}
+ \left(\frac{6\pi^2N}{gV}\right)^{2/3},
+ \qquad p_F=\frac{2N\varepsilon_F}{5V},
+\]
+其中 $g$ 是内禀简并度。
+
+\begin{advexamplebox}{金属电子的低温热容}\label{advA2:ex:fermi-heat-capacity}
+证明 $T\ll T_F$ 时理想费米气的电子热容为
+\[
+ \boxed{C_V=\frac{\pi^2}{2}Nk\frac{kT}{\varepsilon_F}}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+索末菲展开给出定粒子数下
+\[
+ U(T)=U(0)+\frac{\pi^2}{6}g(\varepsilon_F)(kT)^2+O(T^4).
+\]
+三维自由电子态密度在费米面满足
+$g(\varepsilon_F)=3N/(2\varepsilon_F)$，故
+\[
+ U(T)-U(0)=\frac{\pi^2}{4}N\frac{(kT)^2}{\varepsilon_F}.
+\]
+对 $T$ 求导即得题式。只有费米面附近宽度约 $kT$ 的电子能被热激发，所以热容比经典值 $3Nk/2$ 小一个 $T/T_F$ 因子。
+\end{advsolution}
+
+理想玻色气的激发态粒子数为
+\[
+ N_e=\int_0^\infty\frac{g(\varepsilon)\dd\varepsilon}
+ {e^{(\varepsilon-\mu)/(kT)}-1}.
+\]
+三维均匀气体在临界温度以下有 $\mu=0$、
+\[
+ N_0=N\left[1-\left(\frac T{T_c}\right)^{3/2}\right].
+\]
+
+\begin{advexamplebox}{玻色--爱因斯坦凝聚的热容曲线}\label{advA2:ex:bec-heat-capacity}
+定性并定量说明三维理想玻色气定容热容随温度的变化，并画出临界点附近曲线。
+\end{advexamplebox}
+\begin{advsolution}
+$T<T_c$ 时
+\[
+ U=\frac32kT\frac{V}{\lambda_T^3}\zeta(5/2),
+\]
+故
+\[
+ \boxed{C_V=\frac{15}{4}Nk
+ \frac{\zeta(5/2)}{\zeta(3/2)}
+ \left(\frac T{T_c}\right)^{3/2}}.
+\]
+它从零按 $T^{3/2}$ 增加，在 $T_c^-$ 达到约 $1.93Nk$。$T>T_c$ 时化学势转为负值，热容从同一数值连续接出，随后趋向经典极限 $3Nk/2$；一阶导数在 $T_c$ 处不连续，形成尖点而非潜热跃变。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ \draw[axis] (0,0)--(5.2,0) node[right]{$T/T_c$};
+ \draw[axis] (0,0)--(0,2.5) node[above]{$C_V/(Nk)$};
+ \draw[curve,domain=.02:1,samples=100] plot ({3*\x},{1.926*\x^(1.5)});
+ \draw[curve,domain=1:1.65,samples=80] plot ({3*\x},{1.5+.426*exp(-3*(\x-1))});
+ \draw[guide] (3,0)--(3,2.02);
+ \draw[guide] (0,1.5)--(5.0,1.5) node[right]{$3/2$};
+ \node[below] at (3,0) {$1$};
+\end{tikzpicture}
+\bookcaption{三维理想玻色气热容在凝聚温度处连续但有尖点}\label{advA2:fig:bec-heat-capacity}
+\end{minipage}\end{center}
+\end{advsolution}
+
+\begin{advexamplebox}{稀薄量子气体的第二维里修正}\label{advA2:ex:quantum-virial}
+对三维非相对论理想费米气和玻色气：
+\begin{enumerate}
+ \item 写出经典极限的化学势、内能和压强。
+ \item 给出弱简并条件，并求到 $n\lambda_T^3/g$ 一阶的 $\mu,U,p$。
+ \item 把物态方程与无排斥体积的范德瓦耳斯形式
+ $(p+aN^2/V^2)V=NkT$ 比较，说明这种等价的物理边界。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+令 $\eta=+1$ 表示费米统计、$\eta=-1$ 表示玻色统计，逸度
+$z=e^{\mu/(kT)}$，并记 $x=n\lambda_T^3/g$。经典麦克斯韦--玻尔兹曼极限为
+\[
+ \boxed{\mu_{\rm MB}=kT\ln x},\qquad
+ \boxed{U_{\rm MB}=\frac32NkT},\qquad
+ \boxed{p_{\rm MB}=nkT}.
+\]
+弱简并条件是
+\[
+ \boxed{x=\frac{n\lambda_T^3}{g}\ll1},
+\]
+即平均每个热波包和每个内禀态中的粒子数远小于1。展开分布函数，
+\[
+ x=z-\eta\frac{z^2}{2^{3/2}}+O(z^3),
+ \qquad
+ \frac{p\lambda_T^3}{gkT}
+ =z-\eta\frac{z^2}{2^{5/2}}+O(z^3).
+\]
+反解并保留一阶修正：
+\[
+ \boxed{\mu=kT\left[\ln x+\eta\frac{x}{2^{3/2}}\right]},
+\]
+\[
+ \boxed{p=nkT\left[1+\eta\frac{x}{2^{5/2}}\right]},
+ \qquad
+ \boxed{U=\frac32pV}.
+\]
+与 $p=nkT-an^2$ 比较，
+\[
+ \boxed{a(T)=-\eta\frac{kT\lambda_T^3}{2^{5/2}g}}.
+\]
+费米统计给出正压修正，可看成“统计排斥”；玻色统计给出负压修正，可看成“统计聚集”。它只是第二维里系数的数学等价，并不意味着无相互作用量子粒子之间真的出现了范德瓦耳斯力；密度升高后高阶项不可忽略，等价立即失效。
+\end{advsolution}

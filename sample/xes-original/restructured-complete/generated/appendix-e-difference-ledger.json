@@ -1,0 +1,1524 @@
+{
+  "policy": {
+    "automatic_unique_threshold": 0.55,
+    "probable_duplicate_threshold": 0.82,
+    "manual_review_is_not_acceptance": true
+  },
+  "comparisons": [
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【统统算出来】",
+      "old_label": "ch19:ex:s18-29-1",
+      "best_2020_match": {
+        "ratio": 0.5103,
+        "source": "s32",
+        "title": "【统统算出来】"
+      },
+      "new_label": "ch19:ex:s32-1-1",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【奇妙的电场线】",
+      "old_label": "ch19:ex:s18-29-2",
+      "best_2020_match": {
+        "ratio": 0.5191,
+        "source": "s32",
+        "title": "【奇妙的电场线】"
+      },
+      "new_label": "ch19:ex:s32-1-2",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【球壳空洞】",
+      "old_label": "ch19:ex:s18-29-3",
+      "best_2020_match": {
+        "ratio": 0.525,
+        "source": "s32",
+        "title": "【球壳空洞】"
+      },
+      "new_label": "ch19:ex:s32-1-3",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【电偶极子】",
+      "old_label": "ch19:ex:s18-29-4",
+      "best_2020_match": {
+        "ratio": 0.6803,
+        "source": "s32",
+        "title": "【直线电四极子】"
+      },
+      "new_label": "ch19:ex:s32-1-5",
+      "status": "included_unique_variant",
+      "review_note": "自动匹配到了电四极子，但电荷构型、远场阶数和场线方程均不同；整题收入附录。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【直线电四极子】",
+      "old_label": "ch19:ex:s18-29-5",
+      "best_2020_match": {
+        "ratio": 0.8267,
+        "source": "s32",
+        "title": "【直线电四极子】"
+      },
+      "new_label": "ch19:ex:s32-1-5",
+      "status": "verified_duplicate",
+      "review_note": "两版均为 -q,+2q,-q 的等间距直线四极子；2020主章已保留几何图、远场与场线推导。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【无穷大厚板】",
+      "old_label": "ch19:ex:s18-29-6",
+      "best_2020_match": {
+        "ratio": 0.7019,
+        "source": "s32",
+        "title": "【无穷大厚板】"
+      },
+      "new_label": "ch19:ex:s32-1-6",
+      "status": "verified_duplicate_with_source_correction",
+      "review_note": "2019题面把正电荷置于正体电荷厚板中，力不具回复性却要求周期；2020版改为 -q 后模型自洽并完整分段求周期。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s18",
+      "old_title": "【电子透镜】",
+      "old_label": "ch19:ex:s18-29-7",
+      "best_2020_match": {
+        "ratio": 0.7519,
+        "source": "s32",
+        "title": "【电子透镜】"
+      },
+      "new_label": "ch19:ex:s32-1-7",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【电势算电场】",
+      "old_label": "ch19:ex:s19-30-1",
+      "best_2020_match": {
+        "ratio": 0.3163,
+        "source": "s33",
+        "title": "【电势算电场】"
+      },
+      "new_label": "ch19:ex:s33-2-1",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【均匀带电球】",
+      "old_label": "ch19:ex:s19-30-2",
+      "best_2020_match": {
+        "ratio": 0.6036,
+        "source": "s33",
+        "title": "【均匀带电球】"
+      },
+      "new_label": "ch19:ex:s33-2-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【相互作用能】",
+      "old_label": "ch19:ex:s19-30-3",
+      "best_2020_match": {
+        "ratio": 0.6667,
+        "source": "s33",
+        "title": "【相互作用能】"
+      },
+      "new_label": "ch19:ex:s33-2-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【零等势面】",
+      "old_label": "ch19:ex:s19-30-4",
+      "best_2020_match": {
+        "ratio": 0.7478,
+        "source": "s33",
+        "title": "【零等势面】"
+      },
+      "new_label": "ch19:ex:s33-2-4",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【无限长导线】",
+      "old_label": "ch19:ex:s19-30-5",
+      "best_2020_match": {
+        "ratio": 0.838,
+        "source": "s33",
+        "title": "【无限长导线】"
+      },
+      "new_label": "ch19:ex:s33-2-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【有限长导线】",
+      "old_label": "ch19:ex:s19-30-6",
+      "best_2020_match": {
+        "ratio": 0.5989,
+        "source": "s33",
+        "title": "【有限长导线】"
+      },
+      "new_label": "ch19:ex:s33-2-6",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【同性相斥】",
+      "old_label": "ch19:ex:s19-30-7",
+      "best_2020_match": {
+        "ratio": 0.7177,
+        "source": "s33",
+        "title": "【同性相斥】"
+      },
+      "new_label": "ch19:ex:s33-2-7",
+      "status": "verified_duplicate_with_condition_restored",
+      "review_note": "2019版明确准静态过程；已把“缓慢移动、始终近似平衡”补回2020主章题设。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【Bohr 氢原子】",
+      "old_label": "ch19:ex:s19-30-8",
+      "best_2020_match": {
+        "ratio": 0.6512,
+        "source": "s33",
+        "title": "【玻尔氢原子】"
+      },
+      "new_label": "ch19:ex:s33-2-8",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 19,
+      "old_source": "s19",
+      "old_title": "【$\\alpha$ 粒子散射】",
+      "old_label": "ch19:ex:s19-30-9",
+      "best_2020_match": {
+        "ratio": 0.5745,
+        "source": "s33",
+        "title": "【$\\alpha$ 粒子散射】"
+      },
+      "new_label": "ch19:ex:s33-2-9",
+      "status": "verified_duplicate",
+      "review_note": "2020解答已补明 +2e、入射动能、双曲线轨迹、Rutherford截面及Geiger--Marsden与Rutherford的历史分工。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【异号导体】",
+      "old_label": "ch20:ex:s20-31-1",
+      "best_2020_match": {
+        "ratio": 0.9062,
+        "source": "s34",
+        "title": "【异号导体】"
+      },
+      "new_label": "ch20:ex:s34-3-1",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【同号导体】",
+      "old_label": "ch20:ex:s20-31-2",
+      "best_2020_match": {
+        "ratio": 0.786,
+        "source": "s34",
+        "title": "【同号导体】"
+      },
+      "new_label": "ch20:ex:s34-3-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【凭空相吸】",
+      "old_label": "ch20:ex:s20-31-3",
+      "best_2020_match": {
+        "ratio": 0.6243,
+        "source": "s34",
+        "title": "【凭空相吸】"
+      },
+      "new_label": "ch20:ex:s34-3-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【同性相吸】",
+      "old_label": "ch20:ex:s20-31-4",
+      "best_2020_match": {
+        "ratio": 0.6577,
+        "source": "s34",
+        "title": "【同性相吸】"
+      },
+      "new_label": "ch20:ex:s34-3-4",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【球内屏蔽】",
+      "old_label": "ch20:ex:s20-31-5",
+      "best_2020_match": {
+        "ratio": 0.7342,
+        "source": "s34",
+        "title": "【球内屏蔽】"
+      },
+      "new_label": "ch20:ex:s34-3-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【能量】",
+      "old_label": "ch20:ex:s20-31-6",
+      "best_2020_match": {
+        "ratio": 0.7912,
+        "source": "s34",
+        "title": "【能量】"
+      },
+      "new_label": "ch20:ex:s34-3-6",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【电像法】",
+      "old_label": "ch20:ex:s20-31-7",
+      "best_2020_match": {
+        "ratio": 0.7551,
+        "source": "s34",
+        "title": "【电像法】"
+      },
+      "new_label": "ch20:ex:s34-3-7",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【半球和平面】",
+      "old_label": "ch20:ex:s20-31-8",
+      "best_2020_match": {
+        "ratio": 0.819,
+        "source": "s34",
+        "title": "【半球和平面】"
+      },
+      "new_label": "ch20:ex:s34-3-8",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【能量相关】",
+      "old_label": "ch20:ex:s20-31-9",
+      "best_2020_match": {
+        "ratio": 0.8227,
+        "source": "s34",
+        "title": "【能量相关】"
+      },
+      "new_label": "ch20:ex:s34-3-9",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s20",
+      "old_title": "【匀强电场中的导体球】",
+      "old_label": "ch20:ex:s20-31-10",
+      "best_2020_match": {
+        "ratio": 0.7563,
+        "source": "s34",
+        "title": "【匀强电场中的导体球】"
+      },
+      "new_label": "ch20:ex:s34-3-10",
+      "status": "verified_duplicate_with_appendix_extension",
+      "review_note": "基本边值解完全相同；2019版独有的极化率、非均匀场受力和极限检验保留在附录补充推导。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【统统算出来】",
+      "old_label": "ch20:ex:s21-32-1",
+      "best_2020_match": {
+        "ratio": 0.2436,
+        "source": "s34",
+        "title": "【球内屏蔽】"
+      },
+      "new_label": "ch20:ex:s34-3-5",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【两个导体球】",
+      "old_label": "ch20:ex:s21-32-2",
+      "best_2020_match": {
+        "ratio": 0.6667,
+        "source": "s35",
+        "title": "【两个导体球】"
+      },
+      "new_label": "ch20:ex:s35-4-2",
+      "status": "verified_duplicate_with_appendix_extension",
+      "review_note": "相切双球答案相同；2019版独有的有限中心距级数及相切极限保留在附录补充推导。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【两个圆柱】",
+      "old_label": "ch20:ex:s21-32-3",
+      "best_2020_match": {
+        "ratio": 0.873,
+        "source": "s35",
+        "title": "【两个圆柱】"
+      },
+      "new_label": "ch20:ex:s35-4-3",
+      "status": "verified_duplicate_with_condition_restored",
+      "review_note": "已在2020主章题设补明 L>2R、两柱平行且带等量异号线电荷，解答和双极坐标图一致。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【改造电容器】",
+      "old_label": "ch20:ex:s21-32-4",
+      "best_2020_match": {
+        "ratio": 0.5462,
+        "source": "s35",
+        "title": "【改造电容器】"
+      },
+      "new_label": "ch20:ex:s35-4-4",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【奇妙的吸引力】",
+      "old_label": "ch20:ex:s21-32-5",
+      "best_2020_match": {
+        "ratio": 0.4271,
+        "source": "s35",
+        "title": "【奇妙的吸引力】"
+      },
+      "new_label": "ch20:ex:s35-4-5",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【匀强电场中的电介质球】",
+      "old_label": "ch20:ex:s21-32-6",
+      "best_2020_match": {
+        "ratio": 0.8197,
+        "source": "s35",
+        "title": "【匀强电场中的电介质球】"
+      },
+      "new_label": "ch20:ex:s35-4-6",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【能量怎么多了】",
+      "old_label": "ch20:ex:s21-32-7",
+      "best_2020_match": {
+        "ratio": 0.5695,
+        "source": "s35",
+        "title": "【能量怎么多了】"
+      },
+      "new_label": "ch20:ex:s35-4-7",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【充电过程】",
+      "old_label": "ch20:ex:s21-32-8",
+      "best_2020_match": {
+        "ratio": 0.5101,
+        "source": "s35",
+        "title": "【充电过程】"
+      },
+      "new_label": "ch20:ex:s35-4-8",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【电容充电】",
+      "old_label": "ch20:ex:s21-32-9",
+      "best_2020_match": {
+        "ratio": 0.6345,
+        "source": "s35",
+        "title": "【电容充电】"
+      },
+      "new_label": "ch20:ex:s35-4-9",
+      "status": "verified_duplicate",
+      "review_note": "2020解答已显式求出浮置中心电势和三块外极板电荷，并检查电荷守恒，覆盖2019全部子问。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【电容串并联】",
+      "old_label": "ch20:ex:s21-32-10",
+      "best_2020_match": {
+        "ratio": 0.7736,
+        "source": "s35",
+        "title": "【电容串并联】"
+      },
+      "new_label": "ch20:ex:s35-4-10",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 20,
+      "old_source": "s21",
+      "old_title": "【超大电容】",
+      "old_label": "ch20:ex:s21-32-11",
+      "best_2020_match": {
+        "ratio": 0.474,
+        "source": "s35",
+        "title": "【超大电容】"
+      },
+      "new_label": "ch20:ex:s35-4-11",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【惯性维持的电流】",
+      "old_label": "ch21:ex:s22-33-1",
+      "best_2020_match": {
+        "ratio": 0.7775,
+        "source": "s36",
+        "title": "【惯性维持的电流】"
+      },
+      "new_label": "ch21:ex:s36-5-1",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【暂态电流】",
+      "old_label": "ch21:ex:s22-33-2",
+      "best_2020_match": {
+        "ratio": 0.7132,
+        "source": "s36",
+        "title": "【暂态电流】"
+      },
+      "new_label": "ch21:ex:s36-5-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【转动的带电环】",
+      "old_label": "ch21:ex:s22-33-3",
+      "best_2020_match": {
+        "ratio": 0.6565,
+        "source": "s36",
+        "title": "【转动的带电环】"
+      },
+      "new_label": "ch21:ex:s36-5-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【真空二极管】",
+      "old_label": "ch21:ex:s22-33-4",
+      "best_2020_match": {
+        "ratio": 0.4506,
+        "source": "s36",
+        "title": "【真空二极管】"
+      },
+      "new_label": "ch21:ex:s36-5-4",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【导电厚球壳】",
+      "old_label": "ch21:ex:s22-33-5",
+      "best_2020_match": {
+        "ratio": 0.7543,
+        "source": "s36",
+        "title": "【导电厚球壳】"
+      },
+      "new_label": "ch21:ex:s36-5-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【电离计数器】",
+      "old_label": "ch21:ex:s22-33-6",
+      "best_2020_match": {
+        "ratio": 0.3912,
+        "source": "s36",
+        "title": "【电离计数器】"
+      },
+      "new_label": "ch21:ex:s36-5-6",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【圆环电阻】",
+      "old_label": "ch21:ex:s22-33-7",
+      "best_2020_match": {
+        "ratio": 0.5283,
+        "source": "s36",
+        "title": "【圆环电阻】"
+      },
+      "new_label": "ch21:ex:s36-5-7",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s22",
+      "old_title": "【双电源供电】",
+      "old_label": "ch21:ex:s22-33-8",
+      "best_2020_match": {
+        "ratio": 0.5844,
+        "source": "s36",
+        "title": "【双电源供电】"
+      },
+      "new_label": "ch21:ex:s36-5-8",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【电流源】",
+      "old_label": "ch21:ex:s23-34-1",
+      "best_2020_match": {
+        "ratio": 0.6667,
+        "source": "s37",
+        "title": "【电流源】"
+      },
+      "new_label": "ch21:ex:s37-6-1",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【田电阻】",
+      "old_label": "ch21:ex:s23-34-2",
+      "best_2020_match": {
+        "ratio": 0.5946,
+        "source": "s37",
+        "title": "【田电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【正四面体电阻】",
+      "old_label": "ch21:ex:s23-34-3",
+      "best_2020_match": {
+        "ratio": 0.7674,
+        "source": "s37",
+        "title": "【正四面体电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【$N$ 边形电阻】",
+      "old_label": "ch21:ex:s23-34-4",
+      "best_2020_match": {
+        "ratio": 0.7068,
+        "source": "s37",
+        "title": "【$N$ 边形电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-4",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【变种八边形电阻】",
+      "old_label": "ch21:ex:s23-34-5",
+      "best_2020_match": {
+        "ratio": 0.6207,
+        "source": "s37",
+        "title": "【变种八边形电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【正方体电阻】",
+      "old_label": "ch21:ex:s23-34-6",
+      "best_2020_match": {
+        "ratio": 0.3247,
+        "source": "s37",
+        "title": "【正四面体电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-3",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【无穷网络】",
+      "old_label": "ch21:ex:s23-34-7",
+      "best_2020_match": {
+        "ratio": 0.3697,
+        "source": "s37",
+        "title": "【无穷网络】"
+      },
+      "new_label": "ch21:ex:s37-6-7",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【三端无穷网络】",
+      "old_label": "ch21:ex:s23-34-8",
+      "best_2020_match": {
+        "ratio": 0.459,
+        "source": "s37",
+        "title": "【田电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-2",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【嵌套网络】",
+      "old_label": "ch21:ex:s23-34-9",
+      "best_2020_match": {
+        "ratio": 0.6915,
+        "source": "s37",
+        "title": "【嵌套网络】"
+      },
+      "new_label": "ch21:ex:s37-6-9",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 21,
+      "old_source": "s23",
+      "old_title": "【分形电阻】",
+      "old_label": "ch21:ex:s23-34-10",
+      "best_2020_match": {
+        "ratio": 0.2912,
+        "source": "s37",
+        "title": "【分形电阻】"
+      },
+      "new_label": "ch21:ex:s37-6-10",
+      "status": "included_unique_candidate",
+      "review_note": "题设或物理模型与最佳匹配项不同；整题及其解答、题意图收入附录。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【基本计算】",
+      "old_label": "ch22:ex:s24-35-1",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【基本计算】"
+      },
+      "new_label": "ch22:ex:s38-7-1",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【比例关系】",
+      "old_label": "ch22:ex:s24-35-2",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【比例关系】"
+      },
+      "new_label": "ch22:ex:s38-7-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【统统算出来】",
+      "old_label": "ch22:ex:s24-35-3",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【统统算出来】"
+      },
+      "new_label": "ch22:ex:s38-7-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【磁场中的裂变产物】",
+      "old_label": "ch22:ex:s24-35-4",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【磁场中的裂变产物】"
+      },
+      "new_label": "ch22:ex:s38-7-4",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【自聚焦】",
+      "old_label": "ch22:ex:s24-35-5",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【自聚焦】"
+      },
+      "new_label": "ch22:ex:s38-7-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【请君入瓮】",
+      "old_label": "ch22:ex:s24-35-6",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【请君入瓮】"
+      },
+      "new_label": "ch22:ex:s38-7-6",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【速度选择器】",
+      "old_label": "ch22:ex:s24-35-7",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【速度选择器】"
+      },
+      "new_label": "ch22:ex:s38-7-7",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【漂移运动】",
+      "old_label": "ch22:ex:s24-35-8",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【漂移运动】"
+      },
+      "new_label": "ch22:ex:s38-7-8",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【花式漂移】",
+      "old_label": "ch22:ex:s24-35-9",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【花式漂移】"
+      },
+      "new_label": "ch22:ex:s38-7-9",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【交替电磁场】",
+      "old_label": "ch22:ex:s24-35-10",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【交替电磁场】"
+      },
+      "new_label": "ch22:ex:s38-7-10",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【Hall 效应】",
+      "old_label": "ch22:ex:s24-35-11",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【Hall 效应】"
+      },
+      "new_label": "ch22:ex:s38-7-11",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【Corbino】",
+      "old_label": "ch22:ex:s24-35-12",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【Corbino】"
+      },
+      "new_label": "ch22:ex:s38-7-12",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【磁场中的小扰动】",
+      "old_label": "ch22:ex:s24-35-13",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【磁场中的小扰动】"
+      },
+      "new_label": "ch22:ex:s38-7-13",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【电磁场中的小扰动】",
+      "old_label": "ch22:ex:s24-35-14",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【电磁场中的小扰动】"
+      },
+      "new_label": "ch22:ex:s38-7-14",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【磁场中的阻尼运动】",
+      "old_label": "ch22:ex:s24-35-15",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【磁场中的阻尼运动】"
+      },
+      "new_label": "ch22:ex:s38-7-15",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【电磁场中的阻尼运动】",
+      "old_label": "ch22:ex:s24-35-16",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【电磁场中的阻尼运动】"
+      },
+      "new_label": "ch22:ex:s38-7-16",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 22,
+      "old_source": "s24",
+      "old_title": "【运动电荷的轨道磁矩】",
+      "old_label": "ch22:ex:s24-35-17",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s38",
+        "title": "【运动电荷的轨道磁矩】"
+      },
+      "new_label": "ch22:ex:s38-7-17",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【长直电流线】",
+      "old_label": "ch23:ex:s25-36-1",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【长直电流线】"
+      },
+      "new_label": "ch23:ex:s39-8-1",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【半无限大电流面】",
+      "old_label": "ch23:ex:s25-36-2",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【半无限大电流面】"
+      },
+      "new_label": "ch23:ex:s39-8-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【电流环】",
+      "old_label": "ch23:ex:s25-36-3",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【电流环】"
+      },
+      "new_label": "ch23:ex:s39-8-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【密绕螺线管】",
+      "old_label": "ch23:ex:s25-36-4",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【密绕螺线管】"
+      },
+      "new_label": "ch23:ex:s39-8-4",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【电路安培力】",
+      "old_label": "ch23:ex:s25-36-5",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【电路安培力】"
+      },
+      "new_label": "ch23:ex:s39-8-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【和牛顿第三定律】",
+      "old_label": "ch23:ex:s25-36-6",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【和牛顿第三定律】"
+      },
+      "new_label": "ch23:ex:s39-8-6",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【电流环力矩】",
+      "old_label": "ch23:ex:s25-36-7",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【电流环力矩】"
+      },
+      "new_label": "ch23:ex:s39-8-7",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【电子显微镜】",
+      "old_label": "ch23:ex:s25-36-8",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【电子显微镜】"
+      },
+      "new_label": "ch23:ex:s39-8-8",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 23,
+      "old_source": "s25",
+      "old_title": "【自旋进动】",
+      "old_label": "ch23:ex:s25-36-9",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s39",
+        "title": "【自旋进动】"
+      },
+      "new_label": "ch23:ex:s39-8-9",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【大小圆环】",
+      "old_label": "ch24:ex:s26-37-1",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【大小圆环】"
+      },
+      "new_label": "ch24:ex:s40-9-1",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【奇怪的圆环】",
+      "old_label": "ch24:ex:s26-37-2",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【奇怪的圆环】"
+      },
+      "new_label": "ch24:ex:s40-9-2",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒加电阻】",
+      "old_label": "ch24:ex:s26-37-3",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒加电阻】"
+      },
+      "new_label": "ch24:ex:s40-9-3",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒加小棒】",
+      "old_label": "ch24:ex:s26-37-4",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒加小棒】"
+      },
+      "new_label": "ch24:ex:s40-9-4",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒再加小棒】",
+      "old_label": "ch24:ex:s26-37-5",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒再加小棒】"
+      },
+      "new_label": "ch24:ex:s40-9-5",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒加电容】",
+      "old_label": "ch24:ex:s26-37-6",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒加电容】"
+      },
+      "new_label": "ch24:ex:s40-9-6",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒加电感】",
+      "old_label": "ch24:ex:s26-37-7",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒加电感】"
+      },
+      "new_label": "ch24:ex:s40-9-7",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒加电源】",
+      "old_label": "ch24:ex:s26-37-8",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒加电源】"
+      },
+      "new_label": "ch24:ex:s40-9-8",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小棒大结局】",
+      "old_label": "ch24:ex:s26-37-9",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小棒大结局】"
+      },
+      "new_label": "ch24:ex:s40-9-9",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【小环的响应】",
+      "old_label": "ch24:ex:s26-37-10",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【小环的响应】"
+      },
+      "new_label": "ch24:ex:s40-9-10",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【貌似简谐振动】",
+      "old_label": "ch24:ex:s26-37-11",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【貌似简谐振动】"
+      },
+      "new_label": "ch24:ex:s40-9-11",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【感生电动势】",
+      "old_label": "ch24:ex:s26-37-12",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【感生电动势】"
+      },
+      "new_label": "ch24:ex:s40-9-12",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【这是测的啥】",
+      "old_label": "ch24:ex:s26-37-13",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【这是测的啥】"
+      },
+      "new_label": "ch24:ex:s40-9-13",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【这也可以测】",
+      "old_label": "ch24:ex:s26-37-14",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【这也可以测】"
+      },
+      "new_label": "ch24:ex:s40-9-14",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【奇妙的田字格】",
+      "old_label": "ch24:ex:s26-37-15",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【奇妙的田字格】"
+      },
+      "new_label": "ch24:ex:s40-9-15",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【万能的 Kirchhoff】",
+      "old_label": "ch24:ex:s26-37-16",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【万能的 Kirchhoff】"
+      },
+      "new_label": "ch24:ex:s40-9-16",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【自感线圈】",
+      "old_label": "ch24:ex:s26-37-17",
+      "best_2020_match": {
+        "ratio": 0.9875,
+        "source": "s40",
+        "title": "【自感线圈】"
+      },
+      "new_label": "ch24:ex:s40-9-17",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【互感线圈】",
+      "old_label": "ch24:ex:s26-37-18",
+      "best_2020_match": {
+        "ratio": 0.9909,
+        "source": "s40",
+        "title": "【互感线圈】"
+      },
+      "new_label": "ch24:ex:s40-9-18",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【RLC 回路】",
+      "old_label": "ch24:ex:s26-37-19",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【RLC 回路】"
+      },
+      "new_label": "ch24:ex:s40-9-19",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【电源凑热闹】",
+      "old_label": "ch24:ex:s26-37-20",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【电源凑热闹】"
+      },
+      "new_label": "ch24:ex:s40-9-20",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    },
+    {
+      "chapter": 24,
+      "old_source": "s26",
+      "old_title": "【磁悬浮列车】",
+      "old_label": "ch24:ex:s26-37-21",
+      "best_2020_match": {
+        "ratio": 1.0,
+        "source": "s40",
+        "title": "【磁悬浮列车】"
+      },
+      "new_label": "ch24:ex:s40-9-21",
+      "status": "verified_duplicate",
+      "review_note": "题设条件、子问和物理模型逐项一致；2020主章的解答不少于完成求解所需步骤，2019题意图的物理作用已由主章对应图覆盖。"
+    }
+  ],
+  "included": [
+    {
+      "source": "s18",
+      "title": "【统统算出来】",
+      "appendix_label": "appE:ex:s18-29-1"
+    },
+    {
+      "source": "s18",
+      "title": "【奇妙的电场线】",
+      "appendix_label": "appE:ex:s18-29-2"
+    },
+    {
+      "source": "s18",
+      "title": "【球壳空洞】",
+      "appendix_label": "appE:ex:s18-29-3"
+    },
+    {
+      "source": "s18",
+      "title": "【电偶极子】",
+      "appendix_label": "appE:ex:s18-29-4"
+    },
+    {
+      "source": "s19",
+      "title": "【电势算电场】",
+      "appendix_label": "appE:ex:s19-30-1"
+    },
+    {
+      "source": "s21",
+      "title": "【统统算出来】",
+      "appendix_label": "appE:ex:s21-32-1"
+    },
+    {
+      "source": "s21",
+      "title": "【改造电容器】",
+      "appendix_label": "appE:ex:s21-32-4"
+    },
+    {
+      "source": "s21",
+      "title": "【奇妙的吸引力】",
+      "appendix_label": "appE:ex:s21-32-5"
+    },
+    {
+      "source": "s21",
+      "title": "【充电过程】",
+      "appendix_label": "appE:ex:s21-32-8"
+    },
+    {
+      "source": "s21",
+      "title": "【超大电容】",
+      "appendix_label": "appE:ex:s21-32-11"
+    },
+    {
+      "source": "s22",
+      "title": "【真空二极管】",
+      "appendix_label": "appE:ex:s22-33-4"
+    },
+    {
+      "source": "s22",
+      "title": "【电离计数器】",
+      "appendix_label": "appE:ex:s22-33-6"
+    },
+    {
+      "source": "s22",
+      "title": "【圆环电阻】",
+      "appendix_label": "appE:ex:s22-33-7"
+    },
+    {
+      "source": "s23",
+      "title": "【正方体电阻】",
+      "appendix_label": "appE:ex:s23-34-6"
+    },
+    {
+      "source": "s23",
+      "title": "【无穷网络】",
+      "appendix_label": "appE:ex:s23-34-7"
+    },
+    {
+      "source": "s23",
+      "title": "【三端无穷网络】",
+      "appendix_label": "appE:ex:s23-34-8"
+    },
+    {
+      "source": "s23",
+      "title": "【分形电阻】",
+      "appendix_label": "appE:ex:s23-34-10"
+    }
+  ]
+}

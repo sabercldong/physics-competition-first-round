@@ -1,0 +1,357 @@
+% Diagrams for Lesson 37: electromagnetic induction.
+\newcommand{\faradayHistoryContext}{%
+  \historyfigure[0.93\linewidth]{faraday-ring-redraw.png}%
+  {左：Faraday 肖像；右：铁环上的双线圈、检流计与电池构成早期电磁感应实验}}
+
+\newcommand{\fluxOrientationDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[curve] (0,0) ellipse (2.7 and 1.25);
+  \draw[->,DeepBlue,very thick] (2.55,0.35) arc[start angle=16,end angle=105,x radius=2.7,y radius=1.25];
+  \node[DeepBlue] at (2.35,1.25) {回路正向};
+  \draw[vector] (0,0)--(0,2.15) node[above] {$\vect n$};
+  \foreach \x in {-1.7,-0.8,0.15,1.1,1.9}{
+    \draw[component] (\x,-1.65)--(\x,1.65);
+  }
+  \node[DeepBlue] at (2.35,0.0) {$\vect B$};
+  \node[align=left,anchor=west] at (3.7,0.35)
+    {$\displaystyle\Phi_B=\int_S\vect B\cdot\dd\vect S$\\[5pt]
+     $\displaystyle\mathcal E=-\frac{\dd\Phi_B}{\dd t}$\\[5pt]
+     负号表示感应效应阻碍磁通的改变};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\motionalRodDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,very thick] (-3,1.5)--(3,1.5);
+  \draw[Ink,very thick] (-3,-1.5)--(3,-1.5);
+  \draw[DeepBlue,very thick] (0,-1.65)--(0,1.65);
+  \draw[vector] (0.2,0)--(2.0,0) node[right] {$\vect v$};
+  \draw[<->] (-2.6,-1.5)--node[left] {$\ell$}(-2.6,1.5);
+  \foreach \x in {-2.1,-1.3,-0.5,0.7,1.5,2.3}{
+    \foreach \y in {-0.9,0,0.9}{\node[TextGray] at (\x,\y) {$\times$};}
+  }
+  \node[DeepBlue] at (2.55,1.0) {$\vect B$};
+  \draw[vector] (0,-0.4)--(0,0.95);
+  \node[anchor=south east] at (-0.15,0.95) {$q(\vect v\times\vect B)$};
+  \node[align=left,anchor=west] at (3.4,0.3)
+    {$\displaystyle\mathcal E_{\rm m}=\int(\vect v\times\vect B)\cdot\dd\vect\ell$\\[5pt]
+     $\displaystyle\mathcal E_{\rm m}=B\ell v$ （三者两两垂直）};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\movingLoopDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] plot[smooth cycle] coordinates{(-2,-0.7)(-1,1.2)(0.8,1.0)(2.0,0)(1.1,-1.1)(-0.8,-1.3)};
+  \draw[->,DeepBlue,very thick] (1.65,0.55) arc[start angle=25,end angle=95,x radius=2.0,y radius=1.2];
+  \draw[vector] (-1.2,-0.5)--(-0.25,0.15) node[above] {$\vect v$};
+  \foreach \p in {(-1.5,0.3),(-0.5,0.7),(0.45,0.35),(1.05,-0.45),(-0.2,-0.75)}
+    {\node[TextGray] at \p {$\times$};}
+  \node[DeepBlue] at (2.5,-0.4) {$\vect B$};
+  \node[align=left,anchor=west] at (3.4,0.2)
+   {$\displaystyle\mathcal E=\oint_C(\vect E+\vect v\times\vect B)\cdot\dd\vect\ell$\\[5pt]
+    $\displaystyle\mathcal E=-\frac{\dd}{\dd t}\int_{S(t)}\vect B\cdot\dd\vect S$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\vortexFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.0);
+  \foreach \r in {0.65,1.25,2.65,3.35}{
+    \draw[DeepBlue,thick,->] (\r,0) arc[start angle=0,end angle=145,radius=\r];
+    \draw[DeepBlue,thick] (-\r,0) arc[start angle=180,end angle=360,radius=\r];
+  }
+  \foreach \x in {-1.1,0,1.1}{\foreach \y in {-1.0,0,1.0}{
+    \pgfmathparse{\x*\x+\y*\y<3.5?1:0}\ifnum\pgfmathresult=1\node[TextGray] at (\x,\y) {$\times$};\fi}}
+  \draw[<->] (0,-2.25)--node[below] {$R$}(2.0,-2.25);
+  \node[align=left,anchor=west] at (4.1,0.25)
+    {$\displaystyle E_\varphi(r)=-\frac r2\dot B,\quad r\le R$\\[6pt]
+     $\displaystyle E_\varphi(r)=-\frac{R^2}{2r}\dot B,\quad r\ge R$\\[4pt]
+     感生电场线闭合，不是静电场};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\selfInductanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \foreach \x in {-2.4,-2.0,...,2.4}{\draw[Ink,thick] (\x,0) ellipse (0.22 and 1.45);}
+  \draw[DeepBlue,->,very thick] (-3.0,0)--(3.0,0) node[right] {$\vect B$};
+  \draw[vector] (2.55,-1.2)--(2.55,-0.15) node[right] {$I$};
+  \draw[guide,dashed] (-2.6,-1.75) rectangle (2.6,1.75);
+  \node[align=left,anchor=west] at (4.0,0.25)
+    {$\displaystyle\Lambda=N\Phi=LI$\\[5pt]
+     $\displaystyle\mathcal E_L=-\frac{\dd(LI)}{\dd t}$\\[5pt]
+     $\displaystyle W_L=\frac12LI^2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\mutualInductanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (-2.0,-0.25) ellipse (2.3 and 1.1);
+  \draw[curve] (2.0,0.45) ellipse (2.0 and 0.95);
+  \draw[->,DeepBlue,very thick] (-0.1,0.15) arc[start angle=10,end angle=70,x radius=2.3,y radius=1.1];
+  \draw[->,DeepBlue,very thick] (3.75,0.7) arc[start angle=15,end angle=70,x radius=2.0,y radius=0.95];
+  \node at (-2.0,-0.25) {$1$}; \node at (2.0,0.45) {$2$};
+  \node[DeepBlue] at (-0.1,1.25) {$I_1$}; \node[DeepBlue] at (3.75,1.4) {$I_2$};
+  \foreach \x in {-0.7,0.1,0.9}{\draw[component] (\x,-1.5) to[bend left=18] (\x+0.9,1.8);}
+  \node[align=left,anchor=west] at (5.0,0.45)
+   {$\Phi_2=M_{12}I_1,\quad\Phi_1=M_{21}I_2$\\[5pt]
+    $\boxed{M_{12}=M_{21}}$\\[5pt]
+    $W=\tfrac12L_1I_1^2+MI_1I_2+\tfrac12L_2I_2^2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\concentricLoopsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (0,0) circle (2.0); \draw[DeepBlue,very thick] (0,0) circle (1.1);
+  \draw[->,Ink,thick] (1.85,0.75) arc[start angle=22,end angle=-45,radius=2.0];
+  \draw[->,DeepBlue,thick] (0.95,0.55) arc[start angle=30,end angle=120,radius=1.1];
+  \node[Ink] at (2.6,0.4) {原电流}; \node[DeepBlue] at (0,1.55) {感应电流};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\magnetThreeLoopsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[fill=SoftGray] (-1.8,-0.65) rectangle (1.8,0.65);
+  \node at (-1.25,0) {$S$}; \node at (1.25,0) {$N$};
+  \foreach \x in {-3.4,0,3.4}{\draw[DeepBlue,very thick] (\x,0) ellipse (0.33 and 1.25);}
+  \draw[vector] (0,-1.8)--(-1.8,-1.8) node[midway,below] {$\vect v_M$};
+  \draw[vector] (-3.4,-1.6)--(-4.4,-1.6) node[left] {$\vect a_1$};
+  \draw[vector] (0,-1.6)--(-1.0,-1.6) node[left] {$\vect a_2$};
+  \draw[vector] (3.4,-1.6)--(2.4,-1.6) node[left] {$\vect a_3$};
+  \node[TextGray] at (-3.4,1.65) {收缩}; \node[TextGray] at (0,1.65) {扩张}; \node[TextGray] at (3.4,1.65) {扩张};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodResistorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.45) to[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}] (-2.7,0.45)--(-2.7,1.4);
+  \node[left] at (-2.7,0) {$R$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55); \node[right] at (0.8,0.65) {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v$};
+  \draw[<->] (-2.2,-1.4)--node[right] {$L$}(-2.2,1.4);
+  \foreach \x in {-1.7,-0.7,0.3,1.4,2.3}{\foreach \y in {-0.75,0,0.75}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node[align=left,anchor=west] at (3.7,0.2)
+    {$\displaystyle I=\frac{BLv}{R}$\\[4pt]
+     $\displaystyle m\dot v=-\frac{B^2L^2}{R}v$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\twoRodDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[DeepBlue,very thick] (-1.5,-1.55)--(-1.5,1.55); \draw[DeepBlue,very thick] (1.5,-1.55)--(1.5,1.55);
+  \node[above] at (-1.5,1.62) {$m,R$}; \node[above] at (1.5,1.62) {$m,R$};
+  \draw[vector] (1.7,0)--(2.9,0) node[right] {$v_0$};
+  \foreach \x in {-2.4,-0.5,0.5,2.4}{\foreach \y in {-0.7,0,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \draw[<->] (-3.25,-1.4)--node[left] {$L$}(-3.25,1.4);
+  \node[align=left,anchor=west] at (3.7,0.1)
+   {$v_{\rm cm}=v_0/2$\\[4pt]$u=v_2-v_1=v_0\e^{-t/\tau}$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\unequalRodDiagram}{%
+\begin{center}\begin{tikzpicture}[x=0.85cm,y=0.85cm,>=Latex]
+  \draw[Ink,very thick] (-5,1.0)--(-1,1.0); \draw[Ink,very thick] (-5,-1.0)--(-1,-1.0);
+  \draw[DeepBlue,very thick] (-4.0,-1.15)--(-4.0,1.15) node[above] {$m_1$};
+  \draw[Ink,dotted,very thick] (-1,0)--(1,0);
+  \draw[Ink,very thick] (1,1.8)--(5,1.8); \draw[Ink,very thick] (1,-1.8)--(5,-1.8);
+  \draw[DeepBlue,very thick] (4.0,-1.95)--(4.0,1.95) node[above] {$m_2$};
+  \draw[vector] (4.2,0)--(5.5,0) node[right] {$v_0$};
+  \node at (-2.2,0) {$B_1,L_1$}; \node at (2.2,0) {$B_2,L_2$};
+  \foreach \x in {-4.7,-3.2,-1.7,1.5,3.0,4.6}{\node[TextGray] at (\x,0.55) {$\times$};}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodCapacitorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.25); \draw[Ink,very thick] (-3.05,-0.25)--(-2.35,-0.25);
+  \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,very thick] (-2.7,0.25)--(-2.7,1.4);
+  \node[left] at (-2.7,0) {$C$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node[align=left,anchor=west] at (3.5,0.2)
+    {$q=CBLv$\\[4pt]$m(v-v_0)=-BLq$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodInductorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.6);
+  \draw[Ink,thick] (-2.7,-0.6) to[decorate,decoration={coil,aspect=0.65,segment length=5pt,amplitude=5pt}] (-2.7,0.6);
+  \draw[Ink,very thick] (-2.7,0.6)--(-2.7,1.4); \node[left] at (-2.9,0) {$\mathcal L$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node[align=left,anchor=west] at (3.5,0.2)
+    {$\mathcal L\dot I=B\ell v$\\[4pt]$m\dot v=-B\ell I$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodSourceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.55);
+  \draw[Ink,thick] (-2.7,-0.55) to[decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}] (-2.7,0.1);
+  \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,thick] (-2.9,0.55)--(-2.5,0.55);
+  \draw[Ink,very thick] (-2.7,0.55)--(-2.7,1.4); \node[left] at (-2.85,-0.25) {$R$}; \node[left] at (-2.9,0.5) {$\mathcal E$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\equivalentCircuitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,very thick] (-4,0)--(-2.7,0);
+  \draw[Ink,thick] (-2.7,0) to[decorate,decoration={zigzag,segment length=5pt,amplitude=2.5pt}] (-0.9,0);
+  \node[above] at (-1.8,0.25) {$R$};
+  \draw[Ink,very thick] (-0.9,0)--(0.0,0);
+  \draw[Ink,very thick] (0,-0.75)--(0,0.75); \draw[Ink,very thick] (0.45,-0.75)--(0.45,0.75);
+  \node[above] at (0.22,0.9) {$C_m=m/(B^2L^2)$};
+  \draw[Ink,very thick] (0.45,0)--(2.0,0);
+  \node[align=left,anchor=west] at (3.0,0.2)
+   {$U=RI+U_m$\\[4pt]$I=C_m\dot U_m$\\[4pt]$\tfrac12mv^2=\tfrac12C_mU_m^2$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chargedRingDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,very thick] (0,0) circle (2.4);
+  \fill[DeepBlue] (2.4,0) circle (3pt);
+  \node[anchor=south west] at (2.5,0.12) {$m,+q$};
+  \draw[->,DeepBlue,very thick] (2.0,1.15) arc[start angle=30,end angle=105,radius=2.4];
+  \node[DeepBlue] at (2.8,1.5) {$\dot\theta$};
+  \foreach \x in {-1.1,0,1.1}{\foreach \y in {-1.1,0,1.1}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node at (0,0) {$B(t)$};
+  \draw[vector] (2.32,-0.32)--(1.05,-0.32)
+    node[midway,below] {$a_r=-R\dot\theta^2$};
+  \draw[axis] (2.48,0.32)--(3.75,0.32)
+    node[right,align=left] {径向正向\\$N_r,\ qR\dot\theta B$ 均取代数值};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chordParticleDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.5);
+  \draw[Ink,very thick] (-2.15,-1.25)--(2.15,-1.25);
+  \fill[DeepBlue] (0,-1.25) circle (3pt) node[below] {$m,+q$};
+  \draw[<->] (0,0)--node[right] {$h$}(0,-1.25);
+  \draw[axis] (-2.2,-1.75)--(2.4,-1.75) node[right] {$x$};
+  \node[TextGray] at (-1.4,1.0) {$\times$}; \node[TextGray] at (0,1.0) {$\times$}; \node[TextGray] at (1.4,1.0) {$\times$};
+  \node at (0,1.65) {$B_0\sin\omega t$};
+  \node[align=left,anchor=west] at (3.5,0)
+    {$\displaystyle m\ddot x=\frac{qh}{2}\dot B$\\[5pt]
+     $\displaystyle x=\frac{qhB_0}{2m\omega}(1-\cos\omega t)$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chordEmfDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.5);
+  \draw[Ink,very thick] (-3.2,-1.2)--(4.3,-1.2);
+  \coordinate (A) at (-2.19,-1.2); \coordinate (C) at (2.19,-1.2); \coordinate (D) at (4.1,-1.2);
+  \fill[DeepBlue] (A) circle (2.5pt) node[below] {$A$}; \fill[DeepBlue] (C) circle (2.5pt) node[below] {$C$}; \fill[Ink] (D) circle (2.5pt) node[below] {$D\to\infty$};
+  \draw[<->] (0,0)--node[right] {$h$}(0,-1.2);
+  \foreach \r in {0.8,1.6,3.2}{\draw[DeepBlue,thick,->] (\r,0) arc[start angle=0,end angle=105,radius=\r];}
+  \node[TextGray] at (0,0) {$\dot B=k$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\circularVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.76,>=Latex]
+  \draw[Ink,very thick] (0,0) circle (2.4);
+  \coordinate (A) at (150:2.4); \coordinate (C) at (30:2.4);
+  \fill[DeepBlue] (A) circle (2.5pt) node[left] {$A$}; \fill[DeepBlue] (C) circle (2.5pt) node[right] {$C$};
+  \draw[Ink,thick] (A) to[out=115,in=65,looseness=1.05]
+    node[midway,circle,draw,fill=white,inner sep=2pt] {$V_1$} (C);
+  \draw[Ink,thick] (A) .. controls (-3.2,-2.8) and (3.2,-2.8) ..
+    node[pos=0.5,circle,draw,fill=white,inner sep=2pt] {$V_2$} (C);
+  \draw[Ink,thick] (A)--(-0.35,0.2);
+  \draw[Ink,thick] (0.35,0.2)--(C);
+  \node[circle,draw,fill=white,inner sep=2pt] at (0,0.2) {$V_3$};
+  \foreach \x in {-1,0,1}{\node[TextGray] at (\x,-0.65) {$\times$};}
+  \node at (0,-1.15) {$\dot B=k$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\squareVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.76,>=Latex]
+  \draw[Ink,very thick] (-2,-2) rectangle (2,2);
+  \draw[Ink,thick] (-2,2.55)--(2,2.55); \node[circle,draw,fill=white,inner sep=2pt] at (0,2.55) {$V_1$};
+  \draw[Ink,thick] (2.55,-2)--(2.55,2); \node[circle,draw,fill=white,inner sep=2pt] at (2.55,0) {$V_2$};
+  \draw[Ink,thick] (-2,-2.55)--(2,-2.55); \node[circle,draw,fill=white,inner sep=2pt] at (0,-2.55) {$V_3$};
+  \draw[Ink,thick] (-2.55,-2)--(-2.55,2); \node[circle,draw,fill=white,inner sep=2pt] at (-2.55,0) {$V_4$};
+  \node[left] at (-2,0.75) {$R_1$}; \node[right] at (2,0.75) {$R_2$};
+  \node[TextGray] at (0,0) {$\times\ B(t)$}; \draw[<->] (-2,-2.85)--node[below] {$a$}(2,-2.85);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\gridCurrentDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[Ink,very thick] (-2,-2) grid[step=2] (2,2);
+  \draw[->,DeepBlue,very thick] (-2,2)--(0,2);
+  \draw[->,DeepBlue,very thick] (0,2)--(2,2);
+  \draw[->,DeepBlue,very thick] (2,2)--(2,0);
+  \draw[->,DeepBlue,very thick] (2,0)--(2,-2);
+  \draw[->,DeepBlue,very thick] (2,-2)--(0,-2);
+  \draw[->,DeepBlue,very thick] (0,-2)--(-2,-2);
+  \draw[->,DeepBlue,very thick] (-2,-2)--(-2,0);
+  \draw[->,DeepBlue,very thick] (-2,0)--(-2,2);
+  \node[DeepBlue] at (2.6,0) {$I_0$};
+  \node[TextGray] at (0,0.35) {内部支路}; \node[TextGray] at (0,-0.35) {$I=0$};
+  \draw[<->] (-2,-2.5)--node[below] {$2a$}(2,-2.5);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\solenoidSplitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \foreach \x in {-4.0,-3.6,...,4.0}{\draw[Ink,thick] (\x,0) ellipse (0.2 and 1.15);}
+  \draw[guide,dashed] (0,-1.55)--(0,1.55);
+  \draw[<->] (-4.2,-1.65)--node[below] {$l_1$}(0,-1.65);
+  \draw[<->] (0,-1.65)--node[below] {$l_2$}(4.2,-1.65);
+  \draw[vector] (-3.7,0)--(3.7,0) node[right] {$B=\mu_0nI$};
+  \node[align=left,anchor=west] at (5.0,0.15)
+    {$L=\mu_0n^2A(l_1+l_2)$\\[4pt]$=L_1+L_2$ （理想长螺线管）};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\mutualLoopsProofDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[curve] (-2.6,0) ellipse (1.35 and 0.9); \draw[curve] (2.6,0.4) ellipse (1.25 and 0.8);
+  \draw[vector] (-1.5,0.35)--(1.9,0.7) node[midway,above] {$\vect r_{12}$};
+  \draw[vector] (-3.2,-0.65)--(-2.2,-0.85) node[below] {$\dd\vect\ell_1$};
+  \draw[vector] (2.0,-0.15)--(3.0,-0.25) node[below] {$\dd\vect\ell_2$};
+  \node[align=left,anchor=west] at (4.6,0.25)
+   {$\displaystyle M_{12}=\frac{\mu_0}{4\pi}\oint_{C_1}\!\oint_{C_2}
+   \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{r_{12}}$\\[6pt]
+    交换 $1,2$ 后积分核不变};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rlcDiagram}[1]{%
+\begin{center}\begin{tikzpicture}[scale=0.70,>=Latex]
+  \draw[Ink,very thick] (-4,0.9)--(-3.2,0.9);
+  \draw[Ink,very thick] (-3.2,0.3)--(-3.2,1.5); \draw[Ink,very thick] (-2.75,0.5)--(-2.75,1.3);
+  \node[above] at (-3.0,1.5) {$C,\ U$};
+  \draw[Ink,very thick] (-2.75,0.9)--(-1.7,0.9);
+  \draw[Ink,thick] (-1.7,0.9) to[decorate,decoration={coil,aspect=0.65,segment length=5pt,amplitude=5pt}] (0.3,0.9);
+  \node[above] at (-0.7,1.45) {$L$};
+  \draw[Ink,thick] (0.3,0.9) to[decorate,decoration={zigzag,segment length=5pt,amplitude=2.5pt}] (2.2,0.9);
+  \node[above] at (1.25,1.25) {$R$};
+  \draw[Ink,very thick] (2.2,0.9)--(3.0,0.9)--(3.0,-0.9);
+  \ifnum#1=1
+    \draw[Ink,very thick] (3.0,-0.9)--(0.25,-0.9);
+    \draw[Ink,very thick] (-0.2,-0.9)--(-4,-0.9)--(-4,0.9);
+    \draw[Ink,very thick] (-0.2,-1.4)--(-0.2,-0.4); \draw[Ink,very thick] (0.25,-1.2)--(0.25,-0.6);
+    \node[below] at (0,-1.35) {$\mathcal E$};
+  \else
+    \draw[Ink,very thick] (3.0,-0.9)--(-4,-0.9)--(-4,0.9);
+  \fi
+  \draw[->,DeepBlue,very thick] (-1.6,0.38)--(0.8,0.38) node[midway,above] {$I(t)$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\travelingFieldTrainDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.72,>=Latex]
+  \draw[Ink,very thick] (-4,1.25)--(4,1.25); \draw[Ink,very thick] (-4,-1.25)--(4,-1.25);
+  \draw[DeepBlue,very thick,fill=PaleBlue] (-1.4,-1.25) rectangle (1.4,1.25);
+  \node at (0,0) {$m$}; \draw[<->] (-1.4,-1.62)--node[below] {$a$}(1.4,-1.62);
+  \draw[<->] (-3.4,-1.25)--node[left] {$L$}(-3.4,1.25);
+  \draw[vector] (1.55,0.45)--(3.0,0.45) node[right] {$v$};
+  \foreach \x in {-3.2,-2.4,-0.8,0,0.8,2.4,3.2}{\node[TextGray] at (\x,0.75) {$\times$};}
+  \draw[->,TextGray,thick] (-3.5,-0.65)--(3.5,-0.65)
+    node[right] {$v_\phi$};
+  \node[align=left,anchor=west] at (4.6,0.2)
+    {$B=B_0\cos(kx-\omega t)$\\[4pt]$v_\phi=\omega/k$};
+\end{tikzpicture}\end{center}}

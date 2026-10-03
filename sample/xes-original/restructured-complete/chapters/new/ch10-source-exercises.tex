@@ -1,0 +1,385 @@
+\Needspace{18\baselineskip}
+\section{综合问题：振动系统的建模}
+
+\begin{origexamplebox}{摩擦面上的两物块与弹簧}\label{ch10:ex:friction}
+质量分别为 $M=3.6\,\mathrm{kg}$ 和 $m=1.8\,\mathrm{kg}$ 的物块 $A,B$，连接在原长
+$l_0=0.30\,\mathrm m$、劲度系数 $k=24\,\mathrm{N/m}$ 的弹簧两端。两物块与水平面间的动、静摩擦因数均取
+$\mu=0.30$，$g=10\,\mathrm{m/s^2}$。开始时弹簧长 $l=1.20\,\mathrm m$，系统由静止释放。
+求两物块相碰前瞬间的速度和从释放到相碰的时间。物块尺寸忽略，碰撞发生在弹簧长度降为零时。
+
+初始装置见图~\ref{ch10:fig:friction-problem}。
+\chTenFrictionProblemFigure
+\end{origexamplebox}
+\begin{xesolution}
+取水平向右为正，图\ref{ch10:fig:friction}中$A$在左、$B$在右，$r=x_B-x_A$。初始弹力$k(l-l_0)=21.6\,\mathrm N$，大于两者最大静摩擦力$10.8\,\mathrm N$、$5.4\,\mathrm N$，故释放后$A$向右、$B$向左。
+\chTenFrictionFigure
+第一阶段两者均滑动。摩擦力对$A$向左、对$B$向右；有符号弹力用$k(r-l_0)$表示，即使弹簧后来压缩也适用：
+\[
+ M\ddot x_A=k(r-l_0)-\mu Mg,\qquad
+ m\ddot x_B=-k(r-l_0)+\mu mg.
+\]
+令
+\[
+ \omega^2=k\left(\frac1M+\frac1m\right)=20\,\mathrm{s^{-2}}.
+\]
+由两物块方程相减，得到
+\[
+ \ddot r+\omega^2\left(r-l_0-\frac{2\mu g}{\omega^2}\right)=0.
+\]
+两运动方程相加，质心加速度为
+\[
+ \dot V=\frac{\mu g(m-M)}{M+m}=-1.00\,\mathrm{m/s^2},
+ \qquad V=-(1.00\,\mathrm{m/s^2})t.
+\]
+相对运动平衡值为$r_e=l_0+2\mu g/\omega^2=0.60\,\mathrm m$。由$r(0)=1.20\,\mathrm m,\dot r(0)=0$得到（下式长度数值以米计）
+\[
+ r=0.60+0.60\cos\omega t,\qquad
+ \dot r=-0.60\omega\sin\omega t.
+\]
+所以
+\[
+ v_A=V-\frac{m}{M+m}\dot r
+ =-(1.00\,\mathrm{m/s^2})t+(0.20\,\mathrm m)\omega\sin\theta,
+ \qquad \theta=\omega t.
+\]
+$A$ 先于碰撞停下；首次非零停下时刻由
+\[
+ \theta_1=4\sin\theta_1
+\]
+确定。零根是释放瞬间，必须排除；函数$\theta-4\sin\theta$在$2.4$与$2.5$间变号，且此区间单调，二分迭代得到$\theta_1=2.47458$。于是
+\[
+ t_1=0.55333\,\mathrm s,\qquad
+ r_1=0.12860\,\mathrm m,\qquad
+ \dot r_1=-1.6600\,\mathrm{m/s}.
+\]
+
+此时$r_1>0$，尚未相碰，$v_B=\dot r_1<0$。第二阶段弹簧对$A$向左，静摩擦力应向右，不再是第一阶段的方向。到相碰为止弹簧最大压缩力不超过 $kl_0=7.2\,\mathrm N$，
+小于 $\mu Mg=10.8\,\mathrm N$，故静摩擦足以使 $A$ 保持静止。$B$ 单独向左运动，满足
+\[
+ \ddot r+\omega_B^2(r-r_B)=0,\qquad
+ \omega_B=\sqrt{\frac{k}{m}},\qquad
+ r_B=l_0+\frac{\mu mg}{k}=0.525\,\mathrm m.
+\]
+令第二阶段时间为 $\tau$，则
+\[
+ r=r_B+(r_1-r_B)\cos\omega_B\tau
+ +\frac{\dot r_1}{\omega_B}\sin\omega_B\tau.
+\]
+取$r=0$的最小正根，得$\tau=0.09282\,\mathrm s$。对上式逐项求导，
+\[
+ v_B=-(r_1-r_B)\omega_B\sin\omega_B\tau+\dot r_1\cos\omega_B\tau,
+\]
+得到碰撞前
+\[
+ \boxed{v_A=0},\qquad
+ \boxed{v_B=-1.0843\,\mathrm{m/s}},\qquad
+ \boxed{t=t_1+\tau=0.64615\,\mathrm s}.
+\]
+负号表示向左。能量校验可由两物块位移求摩擦功：$A$滑动路程约$0.20405\,\mathrm m$，$B$至相碰的总路程约$0.99595\,\mathrm m$。初始弹性势能$9.72\,\mathrm J$等于末态弹性能$1.08\,\mathrm J$、$B$动能约$1.05816\,\mathrm J$与摩擦损耗约$7.58184\,\mathrm J$之和。若忽略$A$中途停下及静摩擦阶段，便会把相对运动按同一方程错误外推。
+\end{xesolution}
+
+\begin{origexamplebox}{飞球调速器的小振动}\label{ch10:ex:governor}
+两个质量均为 $m$ 的小球由四根长为 $l$ 的轻杆连接上、下套筒；上套筒固定，下套筒质量为 $M$，可沿竖直轴无摩擦滑动。
+装置绕轴以恒定角速度 $\omega_0$ 转动，忽略杆与套筒的转动惯量。求：（1）平衡时两套筒距离；
+（2）在该平衡位置附近的竖直小振动角频率；（3）若轴改为自由转动、总角动量守恒，小振动角频率如何改变？
+
+初始装置见图~\ref{ch10:fig:governor-problem}。
+\chTenGovernorProblemFigure
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch10:fig:governor}画通过两球与转轴的瞬时竖直截面。每球位于两套筒中间高度，离转轴半径为$\rho$。取向下的套筒间距为$y$，由直角三角形得
+\[
+ \rho=\sqrt{l^2-\frac{y^2}{4}}.
+\]
+\chTenGovernorFigure
+由$\rho^2+y^2/4=l^2$求导，得$\dot\rho=-y\dot y/(4\rho)$；每球的竖直速度为$\dot y/2$。两球在子午面内的径向、竖直动能加上下套筒动能为
+\[
+ T_y=m\left(\dot\rho^2+\frac14\dot y^2\right)+\frac12M\dot y^2
+ =\frac12\left(M+\frac m2+\frac{my^2}{8\rho^2}\right)\dot y^2.
+\]
+利用$4\rho^2+y^2=4l^2$，化为
+\[
+ T_y=\frac12\left(M+\frac{ml^2}{2\rho^2}\right)\dot y^2.
+\]
+恒角速度由外部驱动维持时，两球转动动能为 $m\rho^2\omega_0^2$，重力势能为
+$-(M+m)gy$。约化拉格朗日量为$T_y+m\rho^2\omega_0^2-U_g$，因此用于$y$运动的有效势能为
+\[
+ U_\omega=-(M+m)gy-m\omega_0^2(l^2-y^2/4).
+\]
+以$U_\omega'=0$求平衡，等价于
+\[
+ -\frac12m\omega_0^2y_0+(M+m)g=0,\qquad
+ \boxed{y_0=\frac{2(M+m)g}{m\omega_0^2}}.
+\]
+存在该构形还要求$0<y_0<2l$，即$\omega_0^2>(M+m)g/(ml)$。记
+\[
+ \rho_0^2=l^2-\frac{y_0^2}{4},\qquad
+ M_{\rm eff}=M+\frac{ml^2}{2\rho_0^2},
+\]
+由$U_\omega''=m\omega_0^2/2$读出回复系数。令$y=y_0+\eta$，变惯性引起的$\dot\eta^2$项为二阶，线性方程只保留平衡处惯性：$M_{\rm eff}\ddot\eta+(m\omega_0^2/2)\eta=0$，所以
+\[
+ \boxed{\Omega_{\omega}=\omega_0
+ \sqrt{\frac{m}{2M_{\rm eff}}}}.
+\]
+
+轴自由时，总角动量 $J=2m\rho^2\omega$ 守恒。消去循环坐标后，有效势能多出
+$J^2/(4m\rho^2)$，即$U_J=-(M+m)gy+J^2/(4m\rho^2)$。令$D=\rho^2=l^2-y^2/4$，逐次求导得
+\[
+ U_J'=-(M+m)g+\frac{J^2y}{8mD^2},\qquad
+ U_J''=\frac{J^2}{8mD^2}\left(1+\frac{y^2}{D}\right).
+\]
+比较同一平衡构形、平衡角速度同为$\omega_0$时，$J=2mD_0\omega_0$，一阶平衡条件仍相同，而二阶曲率为
+\[
+ \frac{m\omega_0^2}{2}\left(1+\frac{y_0^2}{\rho_0^2}\right),
+\]
+故
+\[
+ \boxed{\Omega_J=\omega_0
+ \sqrt{\frac{m}{2M_{\rm eff}}
+ \left(1+\frac{y_0^2}{\rho_0^2}\right)}}.
+\]
+套筒向下运动会减小$\rho$，角动量守恒使转速增大，因此自由轴情形附加回复更强。两结果根号内均无量纲。自由轴时可用$T_y+U_J$守恒；恒速驱动时装置可能与驱动机构交换功，不能混用能量条件。
+\end{xesolution}
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{落链与零原长弹簧}\label{ch10:ex:chain}
+原长为零、劲度系数为 $k$ 的弹簧悬挂线密度为 $\lambda$ 的长软链；链的下部平放在地板上。
+天花板与地板距离为 $H$，重力加速度为 $g$。（1）求平衡时弹簧长和悬垂链长；（2）把悬垂链长从平衡值改变
+$\delta_0$ 后静止释放，求小振动角频率；（3）计及链节在地板处非弹性拾取、沉积造成的能量损失，求弱衰减下的振幅包络。
+初始装置见图~\ref{ch10:fig:chain-problem}。
+\chTenChainProblemFigure
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch10:fig:chain}中$x$是悬垂链长，也是连接点离地高度，向上增加；弹簧长为$H-x$。$\dot x>0$时拾取地板上的静链，$\dot x<0$时运动链沉积。假设链足够长，地板上始终有静止余链，链节不反弹。
+\chTenChainFigure
+平衡时
+\[
+ k(H-x_0)=\lambda gx_0,\qquad
+ \boxed{x_0=\frac{kH}{k+\lambda g}},\qquad
+ \boxed{s_0=H-x_0=\frac{\lambda gH}{k+\lambda g}}.
+\]
+以地板为重力势能零面，悬垂链的重心在$x/2$，故
+\[
+ U(x)=\frac12k(H-x)^2+\frac12\lambda gx^2
+ =U(x_0)+\frac12(k+\lambda g)(x-x_0)^2.
+\]
+上移时，进入移动部分的链节初速度为零，动量平衡为$\dd(\lambda x\dot x)/\dd t=k(H-x)-\lambda gx$，即
+\[
+ \lambda x\ddot x=-(k+\lambda g)(x-x_0)-\lambda\dot x^2\quad(\dot x>0).
+\]
+下移时，离开移动部分的链节带走动量，质量流项抵消求导中的$\lambda\dot x^2$，得到
+\[
+ \lambda x\ddot x=-(k+\lambda g)(x-x_0)\quad(\dot x<0).
+\]
+取$q=x-x_0$。小振动线性阶中，$\dot q^2$和$q\ddot q$为二阶，两式共同化为$\lambda x_0\ddot q+(k+\lambda g)q=0$。运动质量近似为$\lambda x_0$，故
+\[
+ \boxed{\omega=\sqrt{\frac{k+\lambda g}{\lambda x_0}}
+ =\frac{k+\lambda g}{\sqrt{\lambda kH}}}.
+\]
+
+地板处单位时间转入或转出运动部分的链质量为$\lambda|\dot q|$；完全非弹性的速度改变每次损失
+$\tfrac12\lambda|\dot q|^3\dd t$。令一个周期内 $q=A\cos\omega t$，则
+\[
+ \Delta E=-\frac12\lambda A^3\omega^2
+ \int_0^{2\pi}|\sin u|^3\dd u
+ =-\frac43\lambda A^3\omega^2.
+\]
+这里$\int_0^{2\pi}|\sin u|^3\dd u=4\int_0^{\pi/2}\sin^3u\dd u$，令$z=\cos u$，后一积分为$\int_0^1(1-z^2)\dd z=2/3$。损耗率也可通过对$E=\lambda x\dot x^2/2+U$求导、分别代入两条分段方程验证为$\dot E=-\lambda|\dot x|^3/2$。
+又振动能$E-U(x_0)\simeq\tfrac12\lambda x_0\omega^2A^2$、$T=2\pi/\omega$，故$\lambda x_0\omega^2A\dot A\simeq\Delta E/T$，平均化得到
+\[
+ \frac{\dd A}{\dd t}=-\frac{2\omega}{3\pi x_0}A^2.
+\]
+积分$\dd(1/A)/\dd t=2\omega/(3\pi x_0)$，若以$\delta_0>0$表示初始偏离的大小，则
+\[
+ \boxed{A(t)=\frac{\delta_0}
+ {1+\dfrac{2\omega\delta_0}{3\pi x_0}t}}.
+\]
+若$\delta_0$带符号，公式中改用$|\delta_0|$。包络按反比例式而非指数衰减，因为耗散率与$|\dot q|^3$成正比。要求$A\ll x_0$、$A\ll H-x_0$且每周期包络变化很小，连接点不到地板或天花板，余链未被提完。$\lambda g$与$k$同为$\mathrm{N/m}$，所得$\omega$为频率量纲。
+\end{xesolution}
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{弹性轻杆连接的两球与可分离斜劈}\label{ch10:ex:wedges}
+两个完全相同的 $45^\circ$ 斜劈质量均为 $m$，放在光滑水平面上；两个质量均为 $m$ 的小球分别从两斜面的最高点静止释放。
+两球由水平弹性轻杆连接，杆的自由长度为 $L_0$、劲度系数为 $k$，初始恰为自由长度。斜劈可以彼此分离，
+球与斜面光滑接触。释放瞬间不计为一次“达到极小”；已知支持力第二次达到极小时两球恰好到达地面。
+求支持力第二次达到极大时弹性杆的长度。
+
+初始装置见图~\ref{ch10:fig:wedges-problem}。
+\chTenWedgeProblemFigure
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch10:fig:wedges}两侧的斜面均严格为$45^\circ$。只看右半边，令斜劈向外位移为$X$，球沿斜面向左下滑$s$，并定义球相对初始位置的水平位移
+\[
+ q=X-s\cos45^\circ.
+\]
+\chTenWedgeFigure
+杆长为$L=L_0+2q$。每劈速度为$\dot X=\dot q+\dot s/\sqrt2$，每球水平速度为$\dot q$、向下速度为$\dot s/\sqrt2$。把两劈和两球的动能相加，得到
+\[
+ T=m(\dot q+\dot s/\sqrt2)^2+m(\dot q^2+\dot s^2/2).
+\]
+杆形变为$2q$，两球下降均为$s/\sqrt2$，因此整理后
+\[
+ T=m\left(2\dot q^2+\sqrt2\dot q\dot s+\dot s^2\right),\qquad
+ U=2kq^2-\sqrt2mgs.
+\]
+分别对$q,s$用拉格朗日方程，得到
+\[
+ 4m\ddot q+\sqrt2m\ddot s+4kq=0,\qquad
+ \sqrt2m\ddot q+2m\ddot s-\sqrt2mg=0.
+\]
+第二式给$\ddot s=(g-\ddot q)/\sqrt2$，代入第一式消去$s$：
+\[
+ 3\ddot q+\frac{4k}{m}q+g=0.
+\]
+令
+\[
+ \omega=\sqrt{\frac{4k}{3m}},\qquad A=\frac{mg}{4k},
+\]
+利用 $q(0)=\dot q(0)=0$ 得
+\[
+ q=A(\cos\omega t-1),\qquad
+ L=L_0+\frac{mg}{2k}(\cos\omega t-1).
+\]
+右球的竖直向上方程为$N/\sqrt2-mg=-m\ddot s/\sqrt2$，其中杆力水平，不贡献竖直分量。故
+\[
+ N=\sqrt2mg-m\ddot s=\frac m{\sqrt2}(g+\ddot q),
+ \qquad\ddot q=-\frac g3\cos\omega t.
+\]
+代入得到单侧支持力
+\[
+ N=\frac{mg}{\sqrt2}\left(1-\frac13\cos\omega t\right).
+\]
+释放后不把 $t=0$ 计作一次“达到极小”，则第二次极大在 $\omega t=3\pi$，早于第二次极小
+$\omega t=4\pi$；题给落地条件保证上述接触解在该时刻仍有效。此时 $\cos\omega t=-1$，所以
+\[
+ \boxed{L=L_0-\frac{mg}{k}}.
+\]
+全过程$N>0$，没有因负支持力提前脱离；$mg/k$是长度量纲。物理上还需$L_0>mg/k$，否则杆先缩到零长，模型失效。将两条拉格朗日方程分别乘$\dot q,\dot s$相加，可验$\dd(T+U)/\dd t=0$，斜劈运动已计入总动能，整个系统机械能守恒。
+\end{xesolution}
+
+\begin{origexamplebox}{球面上三个等量点电荷的简正模}\label{ch10:ex:charges}
+三个质量均为 $m$、电荷量均为 $Q$ 的点电荷被限制在半径为 $R$ 的球面上，只能沿切平面运动，
+相互作用为 $KQ^2/r^2$，其中 $K$ 为库仑常量。（1）描述稳定平衡构形；（2）数出转动和振动自由度；
+（3）求小振动的不同角频率及简并度。
+
+作为计数参照，非线性三原子水分子共有9个位置坐标，扣除整体平动3个、转动3个，剩3个内部振动：键角弯曲、两氢氧键对称伸缩和反对称伸缩。两种伸缩频率通常较接近，弯曲频率较低。本题同样要区分内部形变和整体转动。
+\end{origexamplebox}
+\begin{xesolution}
+令$d_{ij}=|\vect r_i-\vect r_j|$，由$|\vect r_i|=R$得
+\[
+ \sum_{i<j}d_{ij}^2=9R^2-|\vect r_1+\vect r_2+\vect r_3|^2\leq9R^2.
+\]
+函数$z^{-1/2}$在$z>0$严格凸，故
+\[
+ \sum_{i<j}\frac1{d_{ij}}\geq
+ \frac3{\sqrt{\tfrac13\sum d_{ij}^2}}\geq\frac{\sqrt3}{R}.
+\]
+两步取等要求三边相等且$\sum_i\vect r_i=0$，因此三个电荷位于某一大圆上，夹角均为$120^\circ$，形成边长$\sqrt3R$的正三角形。这证明全局最低势能，而非仅凭“三对距离尽可能大”猜测。图\ref{ch10:fig:charges}取大圆为$xy$平面。
+\chTenChargesFigure
+每个电荷有两个切向自由度，共6个；球面限制了整体平移，整体构形在三维空间有3个转动自由度，
+余下3个为振动自由度。
+
+取平衡方位角$\phi_i=0,2\pi/3,4\pi/3$，沿大圆的小角位移为$a_i$，垂直大圆的无量纲位移为$z_i$。球面坐标可写为
+\[
+ \frac{\vect r_i}{R}=(\sqrt{1-z_i^2}\cos(\phi_i+a_i),
+ \sqrt{1-z_i^2}\sin(\phi_i+a_i),z_i).
+\]
+对一对电荷记$\Delta=\phi_i-\phi_j$、$\delta=a_i-a_j$，点积展开为
+\[
+ c_{ij}=\frac{\vect r_i\cdot\vect r_j}{R^2}
+ =-\frac12-\sin\Delta\,\delta+\frac14\delta^2
+ +\frac14(z_i^2+z_j^2)+z_iz_j+O(3).
+\]
+设$c_{ij}=-1/2+\epsilon_{ij}$，则
+\[
+ \frac R{d_{ij}}=[2(1-c_{ij})]^{-1/2}
+ =\frac1{\sqrt3}\left(1+\frac{\epsilon_{ij}}3+\frac{\epsilon_{ij}^2}{6}\right)+O(3).
+\]
+二阶$\delta^2$系数为$[1/12+\sin^2\Delta/6]/\sqrt3=5/(24\sqrt3)$。三对相加，一次项相消，势能
+\[
+ U=\sum_{i<j}\frac{KQ^2}{|\vect r_i-\vect r_j|}
+\]
+展开到二阶为
+\[
+ U=\frac{KQ^2}{R}\left[\sqrt3+\frac12\vect a^{\mathsf T}\mathbf H_a\vect a
+ +\frac12\vect z^{\mathsf T}\mathbf H_z\vect z\right]+O(3),
+\]
+\[
+ \mathbf H_a=\frac5{12\sqrt3}\begin{pmatrix}2&-1&-1\\-1&2&-1\\-1&-1&2\end{pmatrix},\quad
+ \mathbf H_z=\frac1{3\sqrt3}\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}.
+\]
+这些矩阵已提出$KQ^2/R$，其元素和本征值均无量纲。$\mathbf H_a(1,1,1)^{\mathsf T}=0$对应绕$z$轴整体转动；在$\sum a_i=0$的子空间，$\mathbf H_a\vect a=5\vect a/(4\sqrt3)$，可选$(1,-1,0)$、$(1,1,-2)$两个独立振型。$\mathbf H_z(1,1,1)^{\mathsf T}=(1,1,1)^{\mathsf T}/\sqrt3$，对应三球同向离开大圆；$\sum z_i=0$的两个零模则是绕平面内轴整体转动。因此非零本征值为
+\[
+ \lambda_1=\frac{\sqrt3}{3}\quad(1\text{重}),\qquad
+ \lambda_2=\frac{5\sqrt3}{12}\quad(2\text{重}).
+\]
+而二阶动能为 $\tfrac12mR^2\sum_i(\dot a_i^2+\dot z_i^2)$。故三个振动模的频率为
+\[
+ \boxed{\omega_1^2=\frac{KQ^2}{mR^3}\frac{\sqrt3}{3}}\quad(1\text{重}),
+ \qquad
+ \boxed{\omega_2^2=\frac{KQ^2}{mR^3}\frac{5\sqrt3}{12}}\quad(2\text{重}).
+\]
+共3个零模与3个振动模，和自由度计数一致，非零二阶系数为正，故除整体取向外稳定。量纲检查：$KQ^2/R^3$是力除以长度，再除质量为$\mathrm{s^{-2}}$；电荷趋零时回复作用消失，频率也趋零。
+\end{xesolution}
+
+\Needspace{16\baselineskip}
+\begin{origexamplebox}{弹簧摆势能的三阶展开与内共振}\label{ch10:ex:spring-pendulum}
+原长为 $l_0$、劲度系数为 $k$ 的轻弹簧悬挂质量为 $m$ 的小球。以平衡位置为原点，$x$ 为水平位移，
+$y$ 为竖直向下位移。把势能写到三阶小量
+\[
+ V=\frac12m(\omega_1^2x^2+\omega_2^2y^2)
+ +ax^3+bx^2y+cxy^2+dy^3,
+\]
+求全部系数，并讨论最低阶非线性耦合产生的内共振条件。
+\end{origexamplebox}
+\begin{xesolution}
+平衡长度
+\[
+ L=l_0+\frac{mg}{k}.
+\]
+图\ref{ch10:fig:spring-pendulum}中球到悬点距离为$r=\sqrt{x^2+(L+y)^2}$。势能（略去常量）为
+\[
+ V=\frac12k(r-l_0)^2-mgy.
+\]
+\chTenSpringPendulumFigure
+当$|x|,|y|\ll L$，先提出正的$L+y$，逐阶展开：
+\[
+ r=(L+y)\sqrt{1+\frac{x^2}{(L+y)^2}}
+ =L+y+\frac{x^2}{2(L+y)}+O(4).
+\]
+再对$1/(L+y)$用几何级数，得
+\[
+ r=L+y+\frac{x^2}{2L}-\frac{x^2y}{2L^2}+O(4)
+\]
+$O(4)$表示$x,y$总次数至少4，相应$L$的幂补足量纲。令$e=L-l_0=mg/k$，平方并保留至三阶：
+\[
+ (r-l_0)^2=e^2+2ey+y^2+\frac eLx^2
+ +\left(\frac1L-\frac e{L^2}\right)x^2y+O(4).
+\]
+乘$k/2$、减$mgy$后，线性项因$ke=mg$消失，利用$L-e=l_0$得到
+\[
+ V=\frac12\frac{mg}{L}x^2+\frac12ky^2
+ +\frac{kl_0}{2L^2}x^2y+O(4).
+\]
+因此
+\[
+ \boxed{\omega_1^2=\frac gL},\qquad
+ \boxed{\omega_2^2=\frac km},
+\]
+\[
+ \boxed{a=c=d=0},\qquad
+ \boxed{b=\frac{kl_0}{2L^2}}.
+\]
+$x\to-x$的对称性排除了$x^3,xy^2$；$x=0$时竖直弹簧恰好线性，故无$y^3$。$b$单位为能量/长度三次方。由$F_x=-\partial V/\partial x,F_y=-\partial V/\partial y$得
+\[
+ m\ddot x+\frac{mg}{L}x+2bxy=0,\qquad
+ m\ddot y+ky+bx^2=0.
+\]
+若先取$x\simeq A\cos\omega_1t$，则$x^2=A^2(1+\cos2\omega_1t)/2$，所以$x^2y$项使竖直模受到平均偏移作用及频率约$2\omega_1$的驱动，同时$2byx$使水平模受到竖直振动的参数调制；
+最低阶强内共振条件为
+\[
+ \boxed{\omega_2\simeq2\omega_1},\qquad
+ \frac{k}{m}\simeq\frac{4g}{L}.
+\]
+结合$L=l_0+mg/k$，精确线性频率比为2时有$kl_0=3mg$。远离该条件时，三阶项主要造成小的频率修正和高次谐波；接近共振时，两模可显著交换能量，但没有外界无限供能。将两方程乘对应速度相加，可验在所保留阶数内$\dd(T+V)/\dd t=0$。特别地$l_0=0$时$b=0$，这一阶的耦合消失，不能只看频率关系便断言相同机制仍存在。
+\end{xesolution}

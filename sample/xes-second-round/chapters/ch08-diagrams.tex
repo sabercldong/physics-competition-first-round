@@ -1,0 +1,237 @@
+\newcommand{\figFlowKinematics}{%
+\begin{center}
+\begin{tikzpicture}[scale=.83]
+ \foreach \s in {-1.25,-.62,0,.62,1.25}{
+  \draw[curve,postaction={decorate},decoration={markings,mark=at position .58 with {\arrow{Latex}}}]
+   (-5,\s) .. controls (-2.8,\s+.5) and (-1.2,\s-.45) .. (0,\s)
+   .. controls (1.6,\s+.55) and (3.2,\s-.35) .. (5,\s+.12);
+ }
+ \draw[DeepBlue!16,line width=8pt,opacity=.65]
+  (-5,-.62) .. controls (-2.8,-.12) and (-1.2,-1.07) .. (0,-.62)
+  .. controls (1.6,-.07) and (3.2,-.97) .. (5,-.5);
+ \draw[guide,orange!85!black,thick]
+  (-4.45,1.55) .. controls (-2.9,.55) and (-1.1,.95) .. (.4,-.15)
+  .. controls (1.8,-1.2) and (3.25,-.45) .. (4.45,-1.55);
+ \fill[orange!85!black] (-4.45,1.55) circle(2.3pt);
+ \node[labelclean,anchor=west] at (-4.25,1.72){质元起点};
+ \node[labelclean] at (3.55,-1.48){迹线};
+ \node[labelclean] at (3.75,1.45){某时刻的流线};
+ \node[labelclean] at (-2.55,-1.78){相邻流线围成流管};
+\end{tikzpicture}
+\bookcaption{欧拉描述中的流线与流管；橙色虚线表示同一流体质元跨越不同时刻的迹线。}
+\label{r2ch08:fig:001}
+\end{center}}
+
+\newcommand{\figHydrostatic}{%
+\begin{center}
+\begin{tikzpicture}[scale=.84]
+ \fill[Blue!10] (-4.5,-1.55) rectangle (4.5,1.45);
+ \draw[curve] (-4.5,1.45)--(4.5,1.45);
+ \draw[guide] (-3.85,.75)--(3.8,.75);
+ \node[labelclean,anchor=east] at (-3.9,.75){$z_1$};
+ \draw[guide] (-3.85,-.95)--(3.8,-.95);
+ \node[labelclean,anchor=east] at (-3.9,-.95){$z_2$};
+ \draw[curve,fill=orange!28] (-1.25,-1.02) .. controls (-1.55,-.45) and (-1.15,.3) .. (-.55,.42)
+  .. controls (.15,.62) and (1.18,.32) .. (1.36,-.32)
+  .. controls (1.55,-.92) and (.55,-1.25) .. (-1.25,-1.02);
+ \foreach \p/\a/\len in {-1.18/165/.75,-.95/125/.65,-.4/88/.55,.35/70/.6,1.05/35/.72,1.28/-20/.9,.72/-75/1.0,-.15/-105/.95,-.9/-145/.82}{
+  \draw[component] (\p,{-.25+.18*cos(70*\p)})--++({\len*cos(\a)},{\len*sin(\a)});
+ }
+ \draw[vector] (0,-.15)--++(0,1.35) node[right=4pt]{$\vect F_{\!b}$};
+ \draw[component] (3.15,-.8)--++(0,-.95) node[right=4pt]{$\rho\vect g$};
+ \node[labelclean] at (2.75,.18){$\nabla p=\rho\vect g$};
+\end{tikzpicture}
+\bookcaption{静止流体中的压强随深度增加；浸没物体表面压力的合力为浮力。}
+\label{r2ch08:fig:002}
+\end{center}}
+
+\newcommand{\figBernoulliTube}{%
+\begin{center}
+\begin{tikzpicture}[scale=.78]
+ \fill[Blue!12] (-5,-1.25)--(-1.3,-1.05)--(1.0,.75)--(5,.92)--(5,1.82)--(.65,1.65)--(-1.65,-.15)--(-5,-.3)--cycle;
+ \draw[curve] (-5,-1.25)--(-1.3,-1.05)--(1.0,.75)--(5,.92);
+ \draw[curve] (-5,-.3)--(-1.65,-.15)--(.65,1.65)--(5,1.82);
+ \draw[very thick,DeepBlue] (-3.95,-1.18)--(-4.18,-.34);
+ \draw[very thick,DeepBlue] (3.72,.87)--(3.68,1.77);
+ \draw[vector] (-4.25,-.74)--++(1.15,.12) node[midway,below=5pt]{$v_1$};
+ \draw[vector] (3.25,1.30)--++(1.05,.05) node[midway,above=5pt]{$v_2$};
+ \node[labelclean] at (-4.72,-1.75){截面1：$A_1,\rho_1,p_1$};
+ \node[labelclean] at (3.82,2.22){截面2：$A_2,\rho_2,p_2$};
+ \draw[axis] (-5.45,-1.62)--(-5.45,2.28) node[above]{$z$};
+ \draw[<->,TextGray] (-5.2,-1.62)--(-5.2,-.76) node[midway,right=3pt]{$z_1$};
+ \draw[<->,TextGray] (5.25,-1.62)--(5.25,1.34) node[midway,right=3pt]{$z_2$};
+\end{tikzpicture}
+\bookcaption{沿同一流管选取两个截面；质量流率守恒，欧拉方程沿流线积分得到伯努利关系。}
+\label{r2ch08:fig:003}
+\end{center}}
+
+\newcommand{\figNewtonViscosity}{%
+\begin{center}
+\begin{tikzpicture}[scale=.84]
+ \draw[ground] (-4.6,-1.35)--(4.6,-1.35);
+ \draw[very thick] (-4.6,1.35)--(4.6,1.35);
+ \draw[vector] (-1.0,1.7)--(1.35,1.7) node[midway,above=4pt]{上板速度 $V$};
+ \foreach \y/\x in {-1.05/.6,-.6/1.25,-.15/1.9,.3/2.55,.75/3.2,1.1/3.85}{
+  \draw[vector] (-3.55,\y)--++(\x,0);
+ }
+ \draw[<->,TextGray] (4.05,-1.35)--(4.05,1.35) node[midway,right=5pt]{$d$};
+ \draw[component] (-.9,.4)--++(1.25,0) node[midway,above=4pt]{$\tau$};
+ \draw[component] (.35,.05)--++(-1.25,0) node[midway,below=4pt]{$-\tau$};
+ \node[labelclean] at (0,-.9){$v_x(y)$};
+ \node[labelclean] at (0,.95){$\dd v_x/\dd y$};
+\end{tikzpicture}
+\bookcaption{牛顿黏性流体的简单剪切：速度梯度产生相反方向的切应力。}
+\label{r2ch08:fig:004}
+\end{center}}
+
+\newcommand{\figUTubeModes}{%
+\begin{center}
+\begin{tikzpicture}[scale=.72]
+ \draw[very thick] (-5.2,2.35)--(-5.2,-1.45)--(5.2,-1.45)--(5.2,2.35);
+ \draw[very thick] (-4.75,2.35)--(-4.75,-1.0)--(4.75,-1.0)--(4.75,2.35);
+ \fill[TextGray!28] (-5.18,1.18) rectangle (-4.77,-1.0);
+ \fill[TextGray!28] (-4.75,-1.43) rectangle (-3.95,-1.02);
+ \fill[TextGray!28] (3.15,-1.43) rectangle (4.75,-1.02);
+ \fill[TextGray!28] (4.77,-1.0) rectangle (5.18,1.18);
+ \node[labelclean] at (0,-1.23){等温气柱 $L=100\,\mathrm{cm}$};
+ \node[labelclean] at (0,-.58){平衡压强 $P=\rho g(p_0+h)$};
+ \draw[<->,TextGray] (-5.55,-1.0)--(-5.55,1.18) node[midway,left=4pt]{$h=24\,\mathrm{cm}$};
+ \draw[<->,TextGray] (5.55,-1.0)--(5.55,1.18) node[midway,right=4pt]{$h$};
+ \draw[<->,TextGray] (-4.75,-1.82)--(-3.95,-1.82) node[midway,below=3pt]{$8\,\mathrm{cm}$};
+ \draw[<->,TextGray] (3.15,-1.82)--(4.75,-1.82) node[midway,below=3pt]{$36\,\mathrm{cm}$};
+ \draw[vector] (-3.8,-.62)--++(.8,0) node[midway,above=4pt]{$x_1$};
+ \draw[vector] (3.0,-.62)--++(-.8,0) node[midway,above=4pt]{$x_2$};
+ \draw[<->,TextGray] (-4.75,1.72)--(4.75,1.72) node[midway,above=3pt]{$p_0=76\,\mathrm{cm}$};
+\end{tikzpicture}
+\bookcaption{两段水银封闭等温气柱；$x_1,x_2$ 均取向气柱内侧为正。}
+\label{r2ch08:fig:005}
+\end{center}}
+
+\newcommand{\figCouette}{%
+\begin{center}
+\begin{tikzpicture}[scale=.78]
+ \begin{scope}[xshift=-3.7cm]
+  \fill[Blue!12] (0,0) circle(2.25);
+  \fill[PaleGold] (0,0) circle(1.15);
+  \draw[curve] (0,0) circle(2.25);
+  \draw[curve] (0,0) circle(1.15);
+  \draw[->,DeepBlue,thick] (-1.45,1.35) arc[start angle=138,end angle=465,radius=1.75];
+  \node[labelclean] at (0,2.72){内筒 $\omega_0$，外筒静止};
+  \draw[axis] (0,0)--(2.25,0) node[midway,above=4pt]{$r$};
+  \node[labelclean] at (.58,-.35){$R_1$};
+  \node[labelclean] at (1.72,-.35){$R_2$};
+ \end{scope}
+ \begin{scope}[xshift=3.5cm]
+  \draw[axis] (-.4,-1.65)--(3.7,-1.65) node[right]{$r$};
+  \draw[axis] (-.4,-1.65)--(-.4,2.25) node[above]{$\omega$};
+  \draw[curve,domain=.85:3.35,samples=100,smooth] plot (\x,{2.6*(3.35*3.35/(\x*\x)-1)/(3.35*3.35/(.85*.85)-1)-1.25});
+  \draw[guide] (.85,-1.65)--(.85,1.35);
+  \draw[guide] (3.35,-1.65)--(3.35,-1.25);
+  \node[labelclean,below=4pt] at (.85,-1.65){$R_1$};
+  \node[labelclean,below=4pt] at (3.35,-1.65){$R_2$};
+  \node[labelclean] at (1.65,1.55){$\omega(r)=A+B/r^2$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{同轴圆筒间的稳态旋转层流及角速度剖面；无滑移条件固定两端值。}
+\label{r2ch08:fig:006}
+\end{center}}
+
+\newcommand{\figHangar}{%
+\begin{center}
+\begin{tikzpicture}[scale=.82]
+ \draw[ground] (-4.7,0)--(4.7,0);
+ \draw[curve,fill=Blue!8] (-3.1,0) arc[start angle=180,end angle=0,radius=3.1]--cycle;
+ \draw[very thick,orange!85!black] (-3.1,0)--(-2.25,0);
+ \node[labelclean,above=5pt] at (-2.7,0){开口 $A$};
+ \coordinate (O) at (0,0);\fill (O) circle(2pt);\node[labelclean,below=5pt] at (O){$O$};
+ \draw[axis] (O)--(3.85,0) node[right]{$x$};
+ \draw[component] (O)--(1.75,2.35) node[midway,left=4pt]{$R$};
+ \draw[thin,TextGray] (1.0,0) arc[start angle=0,end angle=53,radius=1.0];
+ \node[labelclean] at (1.05,.52){$\theta$};
+ \foreach \y in {.55,1.05,1.55,2.05,2.55}{
+  \draw[DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .72 with {\arrow{Latex}}}]
+   (-4.55,\y) .. controls (-2.2,\y+.05) and (-1.7,{3.0-.25*\y}) .. (0,{3.25-.16*\y})
+   .. controls (1.7,{3.0-.25*\y}) and (2.2,\y+.05) .. (4.55,\y);
+ }
+ \draw[vector] (0,1.0)--++(0,1.55) node[right=4pt]{$\vect F$};
+ \node[labelclean] at (3.2,2.92){来流 $v_0$};
+\end{tikzpicture}
+\bookcaption{半圆形飞机棚外的势流；门口 $A$ 决定棚内压强，屋面压差产生竖直合力。}
+\label{r2ch08:fig:007}
+\end{center}}
+
+\newcommand{\figFunnel}{%
+\begin{center}
+\begin{tikzpicture}[scale=.83]
+ \draw[curve] (-3.25,2.05)--(0,-2.0)--(3.25,2.05);
+ \fill[Blue!20] (-3.0,1.73)--(0,-2.0)--(3.0,1.73)--cycle;
+ \draw[very thick,DeepBlue] (-3.0,1.73)--(3.0,1.73);
+ \draw[guide] (-1.55,-.05)--(1.55,-.05);
+ \node[labelclean,right=5pt] at (1.55,-.05){水面降至 $H/2$};
+ \draw[<->,TextGray] (-3.72,-2.0)--(-3.72,2.05) node[midway,left=4pt]{$H$};
+ \draw[<->,TextGray] (0,2.38)--(3.25,2.38) node[midway,above=3pt]{$R$};
+ \draw[very thick] (-.14,-2.0)--(-.14,-2.48);
+ \draw[very thick] (.14,-2.0)--(.14,-2.48);
+ \draw[vector] (0,-2.48)--++(0,-.85) node[right=4pt]{$v=\sqrt{2gh}$};
+ \draw[<->,TextGray] (-.14,-2.22)--(.14,-2.22) node[midway,left=8pt]{$2r$};
+ \node[labelclean] at (2.8,.95){$A(h)=\pi R^2h^2/H^2$};
+\end{tikzpicture}
+\bookcaption{圆锥漏斗排水：截面积随水深平方变化，小孔流速由托里拆利定律给出。}
+\label{r2ch08:fig:008}
+\end{center}}
+
+\newcommand{\figShallowRay}{%
+\begin{center}
+\begin{tikzpicture}[scale=.73]
+ \begin{scope}[xshift=-4.1cm]
+  \draw[ground] (-3.0,-1.2)--(3.15,-1.2);
+  \fill[Blue!18] (-3.0,-1.2)--(2.65,.45)--(3.15,.45)--(3.15,-1.2)--cycle;
+  \draw[curve] (-3.0,-1.2)--(2.65,.45);
+  \draw[very thick,DeepBlue] (-2.25,-1.0)--(1.85,.2);
+  \node[labelclean] at (-2.45,-.68){深水点 $B$};
+  \node[labelclean] at (2.38,.73){岸线 $A$};
+  \draw[thin,TextGray] (1.6,-1.2) arc[start angle=0,end angle=22,radius=1.0];
+  \node[labelclean] at (1.72,-.93){$\alpha$};
+  \node[labelclean] at (0,1.05){剖面：$h=y\tan\alpha$};
+ \end{scope}
+ \begin{scope}[xshift=4.2cm]
+  \draw[axis] (-3.0,-1.45)--(3.15,-1.45) node[right]{$x$（沿岸）};
+  \draw[axis] (-3.0,-1.45)--(-3.0,2.05) node[above]{$y$（离岸）};
+  \draw[curve,domain=0:180,samples=140,smooth,variable=\t]
+   plot ({-2.45+2.45*(\t+sin(\t))/180},{-1.45+3.0*(1+cos(\t))/2});
+  \fill[DeepBlue] (-2.45,1.55) circle(2.4pt);
+  \node[labelclean,anchor=east] at (-2.55,1.62){$B$};
+  \fill[DeepBlue] (0,-1.45) circle(2.4pt);
+  \node[labelclean,below=5pt] at (0,-1.45){$A$};
+  \draw[vector] (-2.45,1.55)--++(.85,0) node[midway,above=4pt]{初始方向};
+  \node[labelclean] at (1.35,.62){摆线轨迹};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{浅水波靠岸：左图给出斜坡水深，右图为水平面内由 $B$ 弯向岸线 $A$ 的射线。}
+\label{r2ch08:fig:009}
+\end{center}}
+
+\newcommand{\figHose}{%
+\begin{center}
+\begin{tikzpicture}[scale=.78]
+ \coordinate (O) at (-2.5,2.3);
+ \coordinate (E) at (-4.55,-.2);
+ \coordinate (J) at (-.95,-1.45);
+ \draw[guide] (O)--(-2.5,-.95)--(.65,-.95);
+ \draw[curve,line width=4.2pt] (O)--(E)--(J);
+ \fill (O) circle(3pt);\node[labelclean,above=6pt] at (O){转轴 $O$};
+ \draw[vector] (-2.82,1.92)--++(-.5,-.62) node[midway,left=4pt]{$\vect v_{\rm in}$};
+ \draw[vector] (-.95,-1.45)--++(1.35,-.48) node[midway,above=5pt]{$\vect v_{\rm out}$};
+ \draw[component] (-.9,-.9)--++(-1.25,.45) node[midway,above=4pt]{水流反力};
+ \draw[<->,TextGray] (-3.75,1.12)--(-5.02,-.48) node[midway,left=4pt]{$l$};
+ \draw[<->,TextGray] (-4.4,-.68)--(-.9,-1.93) node[midway,below=4pt]{$l$};
+ \draw[thin,TextGray] (-2.5,-.25) arc[start angle=-90,end angle=-129,radius=.72];
+ \node[labelclean] at (-2.92,-.45){$\alpha$};
+ \coordinate (C) at (-2.84,-.36);
+ \fill[orange!85!black] (C) circle(2.5pt);
+ \draw[vector,orange!85!black] (C)--++(0,-1.15) node[left=4pt]{$m\vect g$};
+ \node[labelclean,anchor=west] at (.45,1.25){灰虚线：未转动位置};
+\end{tikzpicture}
+\bookcaption{直角软管绕入口转轴转动；射流反力矩与软管重力矩在稳定角 $\alpha$ 处平衡。}
+\label{r2ch08:fig:010}
+\end{center}}

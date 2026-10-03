@@ -1,0 +1,12 @@
+% EM structure and teaching revision 20260928
+\subsection{电流连续性与载流子建立时间}
+宏观电流密度由各类载流子的定向运动叠加：$\boldsymbol j=\sum_s n_sq_s\boldsymbol v_s$。电子的平均漂移方向与常规电流方向相反，但其随机热运动通常远快于漂移；随机速度在平衡状态下的平均值为零。
+取简单碰撞模型，电子电荷为 $-e$、平均弛豫时间为 $\tau$，恒定外场接通后
+\[
+ m\frac{\dd\boldsymbol v_d}{\dd t}=-e\boldsymbol E-\frac m\tau\boldsymbol v_d,
+ \qquad\boldsymbol v_d(t)=-\frac{e\tau}{m}\boldsymbol E(1-e^{-t/\tau}).
+\]
+长时间后得到 $\boldsymbol j=ne^2\tau\boldsymbol E/m$。这说明欧姆关系是该线性模型的稳定响应，而非任何材料、任何时间下都成立的定义。
+局部电荷守恒写为 $\partial\rho/\partial t+\nabla\cdot\boldsymbol j=0$。稳定电流满足 $\nabla\cdot\boldsymbol j=0$，但不要求电流密度处处相同；在变截面导体中 $j=I/S$，较细处的场和单位体积发热都可能更大。
+实际建立过程还受电磁扰动传播和电路储能影响，因此微观碰撞时间不能直接替代整条电路的RC或LR时间常数。
+

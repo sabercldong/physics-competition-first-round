@@ -1,0 +1,27 @@
+% Contract: ellipse (a,b)=(2.0,1.2); boost V=-v ex, gamma=a/b.
+% Circle is x-vt=b cos(theta),y=b sin(theta); arrows tangent, CCW.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}
+  \draw[thick] (0,0) ellipse(2 and 1.2);
+  \draw[->] (-2.4,0)--(2.4,0) node[right]{$x_0$};
+  \draw[->] (0,-1.5)--(0,1.75) node[above]{$y_0$};
+  \node[below=4pt] at (1,0){$a$};\node[left=4pt] at (0,.7){$b$};
+  \draw[DeepBlue,thick,->] (2,-.35)--(2,.35) node[right=4pt]{$u$};
+  \draw[DeepBlue,thick,->] (.45,1.2)--(-.45,1.2) node[above=5pt]{$u$};
+  \node at (1.1,.5){$\pm\sigma_0$};
+  \node at (0,-2){$S_0$：截面静止};
+ \end{scope}
+ \begin{scope}[xshift=7cm]
+  \draw[thick] (0,0) circle(1.2);
+  \draw[->] (-1.6,0)--(2,0) node[right]{$x-vt$};
+  \draw[->] (0,-1.5)--(0,1.75) node[above]{$y$};
+  \coordinate (P) at (45:1.2);
+  \draw (0,0)--(P);\node[above left=3pt] at (45:.8){$b$};
+  \draw (.48,0) arc(0:45:.48);\node at (23:.75){$\theta$};
+  \fill (P) circle(1.8pt);
+  \draw[thin] (P)--(1.55,1.2);\node[right=3pt] at (1.55,1.2){$\sigma,\vect K$};
+  \draw[DeepBlue,thick,->] (1.4,-.8)--(2.2,-.8) node[midway,below=3pt]{$v$};
+  \node at (0,-2){$S$：圆截面右移};
+ \end{scope}
+ \draw[->] (4.3,.55)--(3.1,.55) node[midway,above=4pt]{$\vect V=-v\vect e_x$};
+\end{tikzpicture}

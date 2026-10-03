@@ -1,0 +1,430 @@
+% Restrained TikZ redraws based on the source figures.
+
+\newcommand{\eulerDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  % The three Euler rotations are separated into orthographic views.  Each
+  % panel contains only the two rays that define its angle; this avoids the
+  % depth ambiguity of superposing six axes and three rotation planes.
+
+  % (1) View along +z: alpha fixes the line of nodes in the fixed xy plane.
+  \begin{scope}
+    \coordinate (Oa) at (1.50,0.40);
+    \node[DeepBlue,font=\small\bfseries] at (1.50,2.48)
+      {(1) 绕固定轴 $z$ 转 $\alpha$};
+    \draw[fill=PaleBlue,draw=RuleGray,thin] (Oa) circle (1.18);
+    \draw[axis] ($(Oa)+(-0.72,0)$)--($(Oa)+(1.55,0)$)
+      node[right] {$x$};
+    \draw[axis] ($(Oa)+(0,-0.72)$)--($(Oa)+(0,1.48)$)
+      node[above] {$y$};
+    \draw[vector] (Oa)--($(Oa)+(35:1.62)$)
+      node[above right] {$N$};
+    \draw[->,DeepBlue,thick] ($(Oa)+(0:0.62)$)
+      arc[start angle=0,end angle=35,radius=0.62];
+    \node[DeepBlue,fill=white,inner sep=0.5pt]
+      at ($(Oa)+(17.5:0.86)$) {$\alpha$};
+    \draw[DeepBlue,thick,fill=white] (Oa) circle (0.105);
+    \fill[DeepBlue] (Oa) circle (0.032);
+    \node[DeepBlue,below left=5pt] at (Oa) {$z$};
+    \node[TextGray,font=\small,align=center] at (1.50,-1.27)
+      {俯视固定平面 $xy$\\$\alpha:\ x\longrightarrow N$};
+  \end{scope}
+
+  \node[TextGray] at (4.02,0.42) {$\Longrightarrow$};
+
+  % (2) View along +N: both planes contain N, so they appear as two lines.
+  % Rotating about N tilts z into the body-fixed Z direction by beta.
+  \begin{scope}[xshift=4.45cm]
+    \coordinate (Ob) at (1.50,0.40);
+    \node[DeepBlue,font=\small\bfseries] at (1.50,2.48)
+      {(2) 绕节线 $N$ 转 $\beta$};
+    \draw[TextGray,thin] ($(Ob)+(-1.36,0)$)--($(Ob)+(1.36,0)$);
+    \node[TextGray,below=2pt] at ($(Ob)+(-1.08,0)$) {$xy$};
+    \draw[DeepBlue,thick] ($(Ob)+(145:1.36)$)--($(Ob)+(-35:1.36)$);
+    \node[DeepBlue,below right=1pt] at ($(Ob)+(-35:1.02)$) {$XY$};
+    \draw[axis] (Ob)--($(Ob)+(90:1.62)$) node[above] {$z$};
+    \draw[vector] (Ob)--($(Ob)+(55:1.70)$) node[above right] {$Z$};
+    \draw[->,DeepBlue,thick] ($(Ob)+(90:0.60)$)
+      arc[start angle=90,end angle=55,radius=0.60];
+    \node[DeepBlue,fill=white,inner sep=0.5pt]
+      at ($(Ob)+(72.5:0.85)$) {$\beta$};
+    \draw[DeepBlue,thick,fill=white] (Ob) circle (0.105);
+    \fill[DeepBlue] (Ob) circle (0.032);
+    \node[DeepBlue,below left=5pt] at (Ob) {$N$};
+    \node[TextGray,font=\small,align=center] at (1.50,-1.27)
+      {沿 $N$ 方向观察\\$\beta=\angle zOZ$};
+  \end{scope}
+
+  \node[TextGray] at (8.47,0.42) {$\Longrightarrow$};
+
+  % (3) View along +Z: gamma is measured in the body-fixed XY plane from
+  % the line of nodes to the body-fixed X axis.
+  \begin{scope}[xshift=8.90cm]
+    \coordinate (Oc) at (1.50,0.40);
+    \node[DeepBlue,font=\small\bfseries] at (1.50,2.48)
+      {(3) 绕固连轴 $Z$ 转 $\gamma$};
+    \draw[fill=PaleBlue,draw=RuleGray,thin] (Oc) circle (1.18);
+    \draw[guide] ($(Oc)+(-1.34,0)$)--($(Oc)+(1.58,0)$)
+      node[right] {$N$};
+    \draw[vector] (Oc)--($(Oc)+(35:1.62)$)
+      node[above right] {$X$};
+    \draw[vector] (Oc)--($(Oc)+(125:1.48)$)
+      node[above left] {$Y$};
+    \draw[->,DeepBlue,thick] ($(Oc)+(0:0.62)$)
+      arc[start angle=0,end angle=35,radius=0.62];
+    \node[DeepBlue,fill=white,inner sep=0.5pt]
+      at ($(Oc)+(17.5:0.86)$) {$\gamma$};
+    \draw[DeepBlue,thick,fill=white] (Oc) circle (0.105);
+    \fill[DeepBlue] (Oc) circle (0.032);
+    \node[DeepBlue,below left=5pt] at (Oc) {$Z$};
+    \node[TextGray,font=\small,align=center] at (1.50,-1.27)
+      {俯视固连平面 $XY$\\$\gamma:\ N\longrightarrow X$};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 15.1\quad $z$--$N$--$Z$ 欧拉角的三步定义：先定节线方位，再定倾角，最后定刚体自转方位}
+\end{center}}
+
+\newcommand{\rollingKinematicsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  % Left: the wheel's translation and rotation.
+  \draw[thick] (-0.8,0)--(4.65,0);
+  \foreach \x in {-0.6,-0.1,...,4.5}{\draw[TextGray] (\x,0)--++(-0.16,-0.16);}
+  \coordinate (C) at (1.55,1.28);
+  \draw[curve] (C) circle (1.28);
+  \fill (C) circle (1.8pt) node[below left=2pt] {$C$};
+  \draw[vector] (C)--++(2.05,0) node[above] {$\vect v_C$};
+  \draw[->,DeepBlue,very thick] (0.76,2.28) arc[start angle=132,end angle=-145,radius=1.28];
+  \node[DeepBlue,left] at (0.34,2.23) {$\omega$};
+
+  % Right: velocity construction about the instantaneous centre P.
+  \begin{scope}[xshift=6.2cm]
+    \draw[thick] (-1.85,0)--(3.30,0);
+    \foreach \x in {-1.7,-1.2,...,3.2}{\draw[TextGray] (\x,0)--++(-0.16,-0.16);}
+    \coordinate (D) at (0,1.28);
+    \coordinate (P) at (0,0);
+    \draw[curve] (D) circle (1.28);
+    \fill (D) circle (1.8pt) node[below left=2pt] {$C$};
+    \fill[DeepBlue] (P) circle (2.3pt) node[below=3pt] {$P$};
+    % The arrow lengths use one common scale factor, so that
+    % |v_X|/PX is the same for C,Q,P' and S.
+    \draw[vector] (D)--++(0.77,0) node[above] {$\vect v_C$};
+    \coordinate (Q) at (-1.16,1.82);
+    \coordinate (Pp) at (0.30,2.52);
+    \coordinate (S) at (0.86,0.34);
+    \fill (Q) circle (1.6pt) node[left] {$Q$};
+    \fill (Pp) circle (1.6pt) node[above left=1pt] {$P'$};
+    \fill (S) circle (1.6pt) node[above right=2pt,fill=white,inner sep=0.5pt] {$S$};
+    \draw[guide,dashed] (P)--(Q) (P)--(Pp) (P)--(S);
+    % For instantaneous rotation about P every velocity is exactly
+    % perpendicular to the radius drawn from P.
+    \draw[vector] (Q)--++(1.09,0.70) node[pos=0.48,above left=-1pt] {$\vect v_Q$};
+    \draw[vector] (Pp)--++(1.51,-0.18) node[right=2pt] {$\vect v_{P'}$};
+    \draw[vector] (S)--++(0.20,-0.52) node[pos=0.75,right=5pt,fill=white,inner sep=0.7pt] {$\vect v_S$};
+    \draw[TextGray] ($(Q)+(0.10,-0.10)$)--++(0.18,0.14)--++(-0.14,0.18);
+    \draw[TextGray] ($(S)+(-0.10,-0.02)$)--++(0.16,-0.14)--++(0.14,0.16);
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 15.2\quad 无滑动时接触点 $P$ 是瞬时转动中心；任一点速度均垂直于它与 $P$ 的连线}
+\end{center}}
+
+\newcommand{\inclineRollingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (6.3,0);
+  \coordinate (T) at (1.0,3.2);
+  \draw[thick] (A)--(B)--(T)--cycle;
+
+  % Compute one orthonormal basis from the incline itself.  Put P on the
+  % incline first, then set C=P+R*n, so the circle is exactly tangent at P.
+  \pgfmathsetmacro{\inclineLength}{sqrt(5.3*5.3+3.2*3.2)}
+  \pgfmathsetmacro{\tangentX}{5.3/\inclineLength}
+  \pgfmathsetmacro{\tangentY}{-3.2/\inclineLength}
+  \pgfmathsetmacro{\normalX}{3.2/\inclineLength}
+  \pgfmathsetmacro{\normalY}{5.3/\inclineLength}
+  \def\wheelRadius{0.9}
+  \coordinate (P) at ($(T)!0.48!(B)$);
+  \coordinate (C) at
+    ($(P)+({\wheelRadius*\normalX},{\wheelRadius*\normalY})$);
+  \draw[curve] (C) circle (\wheelRadius);
+
+  % All arrows reuse the same tangent/normal directions: f is exactly
+  % upslope, N lies on PC, a_C is exactly downhill, and mg is vertical.
+  \draw[vector] (P)--++({-1.20*\tangentX},{-1.20*\tangentY})
+    node[above left=2pt,fill=white,inner sep=0.7pt] {$\vect f$};
+  \draw[vector] (P)--++({2.05*\normalX},{2.05*\normalY})
+    node[above right=2pt,fill=white,inner sep=0.7pt] {$\vect N$};
+  \draw[vector] (C)--++({1.35*\tangentX},{1.35*\tangentY})
+    node[below right=2pt,fill=white,inner sep=0.7pt] {$\vect a_C$};
+  \draw[vector] (C)--++(0,-0.86)
+    node[pos=0.66,right=4pt,fill=white,inner sep=0.7pt] {$m\vect g$};
+
+  % Clockwise angular acceleration for rolling down the incline.
+  \draw[->,DeepBlue,thick] ($(C)+(205:0.64)$)
+    arc[start angle=205,end angle=125,radius=0.64];
+  \node[DeepBlue,anchor=east,fill=white,inner sep=0.5pt]
+    at ($(C)+(-0.72,0.16)$) {$\beta$};
+
+  % Draw the physical points last so force arrows cannot hide them.
+  \fill (C) circle (1.7pt)
+    node[above left=2pt,fill=white,inner sep=0.5pt] {$C$};
+  \fill (P) circle (1.7pt)
+    node[below left=3pt,fill=white,inner sep=0.5pt] {$P$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=T--B--A};
+  % The source also emphasizes that the exterior may be circular while the
+  % internal mass distribution is quite different.  Restore that comparison
+  % as a compact inset rather than implying that only uniform disks roll.
+  \begin{scope}[xshift=9.5cm,yshift=1.95cm,scale=0.62]
+    \draw[thick] (-2.5,-0.65)--(2.5,-0.65);
+    \foreach \x/\rin in {-1.45/0.18,0/0.42,1.45/0.08}{
+      \draw[curve] (\x,0) circle (0.62);
+      \draw[DeepBlue,thick,fill=PaleBlue] (\x,0) circle (\rin);
+      \fill (\x,0) circle (1.3pt);
+    }
+    \node[TextGray,align=center,fill=white,inner sep=1pt] at (0,-2.20)
+      {相同外半径，不同质量分布\\转动惯量不同};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 15.3\quad 圆形刚体沿粗糙斜面向下纯滚动}
+\end{center}}
+
+\newcommand{\brakeWheelDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (1.15,0);
+  \draw[curve] (O) circle (1.75);
+  \fill (O) circle (1.8pt);
+  \draw[thick] (O)--(-1.25,-1.25) node[midway,below left] {$R$};
+  \draw[<->] (O)--node[fill=white,inner sep=1pt] {$r$}(P);
+  \fill (P) circle (1.4pt);
+  \draw[vector] (P)--++(0,1.65) node[above] {$\vect f$};
+  \draw[TextGray] ($(P)+(-0.18,0)$)--++(0,0.18)--++(0.18,0);
+  \draw[->,DeepBlue,very thick] (-1.35,1.1) arc[start angle=140,end angle=415,radius=1.75];
+  \node[DeepBlue,left] at (-1.75,1.45) {$\omega_0$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\twoWheelsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \coordinate (C1) at (0,0);
+  \coordinate (C2) at (3.35,0);
+  \draw[curve] (C1) circle (1.8);
+  \draw[curve] (C2) circle (1.55);
+  \node at (C1) {$m_1,R_1$}; \node at (C2) {$m_2,R_2$};
+  \draw[->,DeepBlue,very thick] (-1.25,1.3) arc[start angle=135,end angle=405,radius=1.8];
+  \draw[<-,DeepBlue,very thick] (2.4,1.2) arc[start angle=140,end angle=400,radius=1.55];
+  \node[above] at (-1.5,1.7) {$\omega_{10}$};
+  \node[above] at (4.65,1.45) {$\omega_{20}$};
+  \fill[DeepBlue] (1.73,0) circle (2.3pt) node[below=4pt] {$P$};
+  \draw[vector] (1.73,0)--++(0,0.92) node[left] {$\vect f_1$};
+  \draw[vector] (1.73,0)--++(0,-0.92) node[right] {$\vect f_2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\billiardRollingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-0.7,0)--(6.2,0);
+  \foreach \x in {-0.5,0,...,6}{\draw[TextGray] (\x,0)--++(-0.16,-0.16);}
+  \coordinate (C) at (2.0,1.1);
+  \draw[curve] (C) circle (1.1);
+  \node[above left] at (1.35,1.78) {$m,R$};
+  \draw[vector] (C)--++(2.0,0) node[above] {$v_0$};
+  \draw[vector] (2.0,0)--++(-1.4,0) node[below] {$f=\mu mg$};
+  \draw[->,DeepBlue,very thick] (1.3,1.9) arc[start angle=135,end angle=-145,radius=1.1];
+  \node[TextGray,align=left,anchor=west] at (4.25,1.45)
+    {$v(t)=v_0-\mu gt$\\[5pt]$\displaystyle\omega(t)=\frac{5\mu gt}{2R}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ballsCollisionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-0.8,0)--(6.4,0);
+  \coordinate (W) at (1.6,1.0); \coordinate (R) at (3.6,1.0);
+  \draw[curve] (W) circle (1.0); \draw[curve] (R) circle (1.0);
+  \node[align=center] at (W) {白球\\[-1pt]$\scriptstyle m,R$};
+  \node[align=center] at (R) {红球\\[-1pt]$\scriptstyle m,R$};
+  \draw[vector] (W)--++(1.3,0) node[above] {$v_0$};
+  \draw[->,DeepBlue,very thick] (1.0,1.75) arc[start angle=135,end angle=-150,radius=1.0];
+  \node[DeepBlue,left] at (0.65,1.7) {$\omega_0$};
+  \node[TextGray,right] at (5.0,1.1) {$v_0=\omega_0R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\bounceSpinDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-2.6,0)--(2.8,0);
+  \coordinate (C) at (0,1.35);
+  \draw[curve] (C) circle (1.0);
+  \draw[vector] (C)--++(0,-1.9) node[right] {$v_0$};
+  \draw[->,DeepBlue,very thick] (-0.7,2.05) arc[start angle=135,end angle=455,radius=1.0];
+  \node[DeepBlue,left] at (-1.0,2.2) {$\omega_0$};
+  \draw[vector] (0,0.35)--++(-1.45,0) node[below] {$J_t$};
+  \draw[vector] (0,0.35)--++(0,1.45) node[right] {$J_n$};
+  \node[TextGray,align=left,anchor=west] at (3.25,1.35)
+    {切向冲量与接触点相对滑动方向相反\\法向冲量使竖直速度反向};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\massivePulleyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-2.2,3.9)--(2.2,3.9);
+  \foreach \x in {-2,-1.5,...,2}{\draw[TextGray] (\x,3.9)--++(-0.2,0.2);}
+  \draw[thick] (0,3.9)--(0,3.1);
+  \draw[curve] (0,2.4) circle (0.75) node {$M,R$};
+  \draw[thick] (-0.75,2.4)--(-0.75,0.5) (0.75,2.4)--(0.75,1.0);
+  \draw[thick] (-0.75,0.5) rectangle ++(-0.65,-0.65) node[midway] {$m_1$};
+  \draw[thick] (0.75,1.0) rectangle ++(0.65,-0.65) node[midway] {$m_2$};
+  \draw[vector] (-1.65,1.0)--++(0,-1.0) node[left] {$\vect a_1$};
+  \draw[vector] (1.65,0.25)--++(0,1.0) node[right] {$\vect a_2$};
+  \node[TextGray,align=left,anchor=west] at (2.5,2.25)
+    {$a_1=a_2=a$\\绳与轮缘无相对滑动：$a=\beta R$};
+\end{tikzpicture}
+\end{center}}
+
+% Source figure 15.9: the visual clue belongs to the problem itself.  The
+% cutaway makes the essential physical distinction visible without relying
+% on decorative clip art: the cooked egg rotates as one rigid body, whereas
+% the liquid interior of the raw egg lags behind the shell.
+\newcommand{\eggRollingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (A) at (-0.7,3.45);
+  \coordinate (B) at (7.7,0);
+  \coordinate (Cbase) at (-0.7,0);
+  \draw[thick] (A)--(B);
+  \foreach \t in {0.05,0.12,...,0.96}{
+    \coordinate (P) at ($(A)!\t!(B)$);
+    \draw[TextGray] (P)--++(-0.10,-0.24);
+  }
+  \draw[thick] (-0.7,0)--(7.7,0)--(A)--cycle;
+  \draw pic[draw,"$\theta$",angle radius=7mm,angle eccentricity=1.35]
+    {angle=A--B--Cbase};
+
+  % Cooked egg: concentric solid interior and common angular velocity.
+  \begin{scope}[shift={(1.55,2.72)},rotate=-22]
+    \draw[curve,fill=Gold!15] (0,0) ellipse[x radius=0.58,y radius=0.78];
+    \draw[DeepBlue,thick,fill=DeepBlue!9] (0,0) ellipse[x radius=0.32,y radius=0.45];
+    \draw[->,DeepBlue,very thick] (-0.67,0.28)
+      arc[start angle=158,end angle=455,x radius=0.70,y radius=0.92];
+  \end{scope}
+  \node[fill=white,inner sep=1.5pt] at (1.45,1.72) {熟鸡蛋：整体近似刚体};
+  \draw[vector] (1.20,2.62)--++(1.35,-0.56) node[above right=-1pt] {$v$（熟鸡蛋）};
+
+  % Raw egg: shell and liquid are shown with different rotations.
+  \begin{scope}[shift={(4.55,1.48)},rotate=-22]
+    \draw[curve,fill=Gold!12] (0,0) ellipse[x radius=0.58,y radius=0.78];
+    \draw[DeepBlue!55,thick,fill=DeepBlue!5] (0.02,-0.04)
+      ellipse[x radius=0.34,y radius=0.46];
+    \draw[->,DeepBlue,very thick] (-0.68,0.26)
+      arc[start angle=158,end angle=400,x radius=0.70,y radius=0.92];
+    \draw[->,TextGray,thick] (0.24,0.23)
+      arc[start angle=40,end angle=-205,x radius=0.24,y radius=0.33];
+    \draw[TextGray,thin] (-0.25,-0.10)..controls(-0.05,0.08)and(0.10,-0.25)..(0.28,-0.02);
+  \end{scope}
+  \draw[vector] (4.17,1.39)--++(1.28,-0.53) node[above right=-1pt] {$v$（生鸡蛋）};
+  \node[fill=white,inner sep=1.5pt] at (5.07,0.57) {生鸡蛋：液体相对外壳滞后};
+
+  \draw[guide,dashed] (6.65,0.43)--(6.65,-0.15);
+  \node[TextGray,below] at (6.65,-0.15) {同一终点比较到达时间与滚动稳定性};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 15.9\quad 同一斜面上同时释放生、熟鸡蛋；内部状态决定滚动响应}
+\end{center}}
+
+\newcommand{\torqueWorkDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \coordinate (O) at (0,2.8);
+  \coordinate (H) at (4.7,2.8);
+  \coordinate (P) at (4.4,0.35);
+  \draw[thick] (-1.4,2.8)--(1.4,2.8);
+  \foreach \x in {-1.2,-0.8,...,1.2}{\draw[TextGray] (\x,2.8)--++(-0.18,0.18);}
+  \draw[curve] (O)--(4.4,0.35);
+  \fill[DeepBlue] (2.2,1.58) circle (2.7pt) node[above] {$m_2$};
+  \fill[DeepBlue] (4.4,0.35) circle (2.7pt) node[above] {$m_1$};
+  \node[above left] at (1.1,2.2) {$l$}; \node[above left] at (3.3,0.95) {$l$};
+  \draw[guide] (O)--++(4.7,0);
+  \draw pic[draw,"$\theta$",angle radius=10mm,angle eccentricity=1.3]
+    {angle=H--O--P};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\percussionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-1.4,3.8)--(1.4,3.8);
+  \foreach \x in {-1.2,-0.8,...,1.2}{\draw[TextGray] (\x,3.8)--++(-0.18,0.18);}
+  \draw[curve] (0,3.8)--(0,-0.2);
+  \fill (0,3.8) circle (2pt);
+  \draw[vector] (-2.2,1.15)--(0,1.15) node[midway,above] {$\vect J$};
+  \draw[<->] (0.45,-0.2)--node[right] {$L$}(0.45,3.8);
+  \draw[<->] (-0.45,-0.2)--node[left] {$a$}(-0.45,1.15);
+  \draw[<->] (-0.95,1.15)--node[left] {$x=L-a$}(-0.95,3.8);
+  \node[TextGray,right] at (1.2,1.8) {打击中心：$x=2L/3$，即 $a=L/3$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\supportedRodDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  % Whole rod: only external forces appear.
+  \begin{scope}[xshift=-3.7cm]
+    \node[TextGray] at (0,2.15) {整杆受力};
+    \draw[curve] (-2.5,0.9)--(2.5,0.9) node[midway,above=3pt] {$m,L$};
+    \draw[thick] (-2.25,0.9)--++(-0.38,-0.58)--++(0.76,0)--cycle;
+    \draw[thick] (2.25,0.9)--++(-0.38,-0.58)--++(0.76,0)--cycle;
+    \draw[vector] (-2.25,0.35)--++(0,1.25) node[left] {$\vect N_A$};
+    \draw[vector] (2.25,0.35)--++(0,1.25) node[right] {$\vect N_B$};
+    \draw[vector] (0,0.9)--++(0,-1.25) node[right] {$m\vect g$};
+  \end{scope}
+
+  % Isolated left half: the cut supplies both a shear force and a bending moment.
+  \begin{scope}[xshift=3.9cm]
+    \node[TextGray] at (0,2.15) {截取左半杆};
+    \draw[curve] (-2.5,0.9)--(0.25,0.9);
+    \draw[thick] (-2.25,0.9)--++(-0.38,-0.58)--++(0.76,0)--cycle;
+    \draw[vector] (-2.25,0.35)--++(0,1.25) node[left] {$\vect N_A$};
+    \draw[vector] (-1.0,0.9)--++(0,-1.15) node[right] {$\dfrac{m\vect g}{2}$};
+    \draw[guide] (0.25,-0.25)--(0.25,1.65) node[above] {截面};
+    \draw[vector] (0.25,0.9)--++(0,-1.15) node[right] {$\vect Q$};
+    \draw[->,DeepBlue,thick] (0.73,1.24) arc[start angle=35,end angle=315,radius=0.48];
+    \node[DeepBlue,right] at (1.17,1.15) {$M_{\rm int}$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chimneyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (T) at (3.4,5.1);
+  \coordinate (V) at (0,5.1);
+  \draw[guide] (O)--(0,5.7);
+  \draw[curve,line width=2.0pt] (O)--(T);
+  \fill (O) circle (2pt);
+  \coordinate (X) at (1.25,1.88);
+  \draw[DeepBlue,thick] ($(X)+(-0.3,0.2)$)--($(X)+(0.3,-0.2)$);
+  \draw[vector] (X)--++(-1.1,0.73) node[left=3pt,fill=white,inner sep=0.7pt] {$Q(x)$};
+  \draw[->,DeepBlue,thick] (1.75,2.25) arc[start angle=210,end angle=520,radius=0.4];
+  \node[DeepBlue,right=3pt,fill=white,inner sep=0.7pt] at (2.15,2.3) {$M(x)$};
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=T--O--V};
+  \draw[<->,TextGray] ($(O)+(0.24,-0.16)$)--node[below right] {$x$}($(X)+(0.24,-0.16)$);
+  \coordinate (E) at (2.72,4.08);
+  \draw[vector] (E)--++(0,-0.90) node[pos=0.62,right=4pt,fill=white,inner sep=0.7pt] {$\lambda\,\dd x\,\vect g$};
+  \draw[TextGray] ($(E)+(-0.18,0.10)$)--++(0.36,-0.20);
+  \node[TextGray,right,align=left] at (4.35,3.35)
+    {$x$ 从基底沿杆向上量\\截面作用含剪力 $Q(x)$ 与弯矩 $M(x)$};
+\end{tikzpicture}
+\end{center}}

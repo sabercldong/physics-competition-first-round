@@ -1,0 +1,13 @@
+% Contract: 90-degree photon scattering; recoil direction from p_e=p-p'.
+\begin{tikzpicture}[font=\small,>=Latex]
+ \coordinate (O) at (0,0);
+ \draw[vector] (-3.6,0)--(O) node[midway,above=6pt] {入射光子 $\lambda$};
+ \draw[guide] (O)--(3.1,0);
+ \draw[vector] (O)--(0,2.7) node[above] {散射光子 $\lambda'$};
+ \draw[vector] (O)--(2.7,-2.6108) node[right=5pt] {$\vect p_e$};
+ \fill (O) circle (1.5pt);
+ \node[below left=8pt] at (O) {$O$};
+ \draw[DeepBlue,->] (.7,0) arc[start angle=0,end angle=90,radius=.7];
+ \node at (1.2,1.05) {$\theta=90^\circ$};
+ \node[align=center] at (-2,-1.1) {电子初始静止\\散射点为 $O$};
+\end{tikzpicture}

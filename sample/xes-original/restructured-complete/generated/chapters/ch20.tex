@@ -1,0 +1,2532 @@
+\begingroup
+\tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
+\RenewDocumentEnvironment{xesolution}{+b}{%
+  \par\nobreak\smallskip\nobreak\begingroup\small
+  \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\tcbset{breakable/.default=false}
+\chapter{导体、电介质与电容器}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fourth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fourth-section/assets/}}
+\section{导体平衡、屏蔽与电荷响应}
+
+本节先用等势与电荷守恒确定导体的约束。后面的异号导体题还会用到静电势的最大值原理：无电荷区域的电势满足拉普拉斯方程，非恒定解不能在区域内部取得严格极大或极小值，极值由边界控制。这为判断导体电势与表面电荷符号提供工具；唯一性定理及电像构造将在下一节系统展开。
+
+% All annotations have transparent backgrounds so labels never mask curves.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.55pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.4pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.3pt},
+  xesline/.style={draw=Ink,line width=.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1pt},
+  xesarrow/.style={-{Latex[length=2.1mm,width=1.3mm]},draw=DeepBlue,line width=.9pt},
+  fieldline/.style={draw=DeepBlue,line width=.82pt,postaction={decorate},
+    decoration={markings,mark=at position .58 with {\arrow{Latex[length=1.65mm,width=1.05mm]}}}},
+  eqline/.style={draw=RuleGray,line width=.66pt,densely dashed}
+}
+
+
+\newcommand{\conductorFieldFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/conductor-pair.pdf}
+\end{center}}
+
+
+\newcommand{\inductionSequenceFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \x/\tag in {0/(a),2.7/(b),5.4/(c),8.1/(d),10.8/(e)}{
+    \begin{scope}[shift={(\x,0)}]
+      \fill[DeepBlue!6] (0,0) circle (.67);\draw[xesblue] (0,0) circle (.67);
+      \node[xestiny] at (0,-1.0) {\tag};
+    \end{scope}}
+  % (a) neutral
+  \foreach \a in {0,60,...,300}{\node[xestiny,text=DeepBlue] at (\a:.48) {$+$};\node[xestiny,text=Ink] at (\a+30:.35) {$-$};}
+  % negative rod and polarized spheres in b--d
+  \foreach \x in {2.7,5.4,8.1}{
+    \fill[Ink!15,rounded corners=2pt] (\x-1.35,-.18) rectangle (\x-.82,.18);
+    \draw[Ink,line width=.65pt,rounded corners=2pt] (\x-1.35,-.18) rectangle (\x-.82,.18);
+    \foreach \dx in {-1.24,-1.08,-.92}{\node[xestiny,text=Ink] at (\x+\dx,0) {$-$};}
+    \foreach \a in {125,155,185,215}{\node[xestiny,text=DeepBlue] at ($(\x,0)+(\a:.52)$) {$+$};}}
+  \foreach \a in {-55,-20,20,55}{\node[xestiny,text=Ink] at ($(2.7,0)+(\a:.52)$) {$-$};}
+  % ground lead in c
+  \draw[xesline] (5.92,-.32)--(6.35,-.32)--(6.35,-.62);
+  \draw[xesline] (6.08,-.62)--(6.62,-.62) (6.17,-.73)--(6.53,-.73) (6.27,-.84)--(6.43,-.84);
+  % (e) retained positive charge redistributes
+  \foreach \a in {0,45,...,315}{\node[xestiny,text=DeepBlue] at ($(10.8,0)+(\a:.51)$) {$+$};}
+  \node[xessmall,align=center] at (5.4,-1.42) {靠近负电体 $\rightarrow$ 接地 $\rightarrow$ 先断地线 $\rightarrow$ 移走负电体};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\faradayCageFigure}{%
+\begin{center}
+  \includegraphics[width=.78\linewidth]{faraday-cage-built-in-v2.png}
+
+  \vspace{.25em}
+  {\footnotesize\color{TextGray}
+    紫白色放电只接触金属网笼外表面；笼内人员所在区域没有放电通道。}
+\end{center}}
+
+\newcommand{\discretePotentialFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.95cm,y=1cm]
+  \draw[xesline,-{Latex[length=1.8mm]}] (-.4,0)--(11.8,0) node[xeslabel,below left] {$x$};
+  \fill[DeepBlue!24] (0,-.16) rectangle (10.5,.16);
+  \foreach \i in {0,...,10}{\fill[DeepBlue] (\i*1.05,0) circle (2.1pt);}
+  \node[xeslabel,below=6pt] at (0,0) {$A$};\node[xeslabel,below=6pt] at (10.5,0) {$B$};
+  \foreach \i/\lab in {0/0,1/1,2/2,4/{n-1},5/n,6/{n+1},8/{N-2},9/{N-1},10/N}{
+    \node[xestiny,above=5pt] at (\i*1.05,0) {$\varphi_{\lab}$};}
+  \draw[<->,Gold!85,line width=.7pt] (5.25,-.45)--(6.3,-.45);
+  \node[xestiny,text=Gold!80!black] at (5.78,-.68) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\groundedSphereImageFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/grounded-sphere.pdf}
+\end{center}}
+
+
+\newcommand{\ionosphereFigure}{%
+\begin{center}
+  \includegraphics[width=.82\linewidth]{ionosphere-communication-built-in-v2.png}
+
+  \vspace{.25em}
+  \begin{tikzpicture}[baseline=-.55ex]
+    \draw[orange!88!black,line width=1.25pt,-{Latex[length=1.8mm]}] (0,0)--(1.25,0);
+    \node[xessmall,anchor=west] at (1.4,0) {$\omega<\omega_p$：在电离层返回地面};
+    \draw[cyan!70!DeepBlue,line width=1.25pt,-{Latex[length=1.8mm]}] (6.0,0)--(7.25,0);
+    \node[xessmall,anchor=west] at (7.4,0) {$\omega>\omega_p$：穿透电离层到达卫星};
+  \end{tikzpicture}
+\end{center}}
+
+\newcommand{\plasmaSlabFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!8] (0,0) rectangle (9.2,3.5);\draw[xesblue] (0,0) rectangle (9.2,3.5);
+  \fill[DeepBlue!30] (0,0) rectangle (.65,3.5);
+  \fill[Gold!25] (8.55,0) rectangle (9.2,3.5);
+  \foreach \x in {1.0,1.7,...,8.2}{\foreach \y in {.55,1.25,1.95,2.65}{\node[xestiny,text=RuleGray] at (\x,\y) {$+$};}}
+  \node[xessmall,text=Ink] at (.33,1.75) {$-\sigma$};
+  \node[xessmall,text=Ink] at (8.88,1.75) {$+\sigma$};
+  \foreach \y in {.65,1.35,2.05,2.75}{\draw[xesarrow] (8.3,\y)--(.9,\y);}
+  \node[xeslabel] at (4.6,-.55) {$\boldsymbol E'=-\dfrac{nq}{\varepsilon_0}x\,\hat{\boldsymbol x}$};
+  \draw[<->,Gold!80,line width=.65pt] (8.55,3.83)--(9.2,3.83);\node[xestiny,text=Gold!80!black] at (8.88,4.05) {$x$};
+  \node[xessmall,anchor=west] at (9.55,2.55) {载流子整体右移};
+  \node[xessmall,anchor=west] at (9.55,1.78) {$\boldsymbol E'$ 指向左};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\twoConductorPatchFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!7] (-2,0) circle (1.1);\draw[xesblue] (-2,0) circle (1.1);
+  \fill[DeepBlue!7] (2,0) circle (.85);\draw[xesblue] (2,0) circle (.85);
+  \foreach \a in {110,145,180,215,250}{\node[xestiny,text=DeepBlue] at ($(-2,0)+(\a:.92)$) {$+$};}
+  \foreach \a in {-55,-20,20,55}{\node[xestiny,text=DeepBlue] at ($(-2,0)+(\a:.92)$) {$+$};}
+  \foreach \a in {135,165,195,225}{\node[xestiny,text=Ink] at ($(2,0)+(\a:.68)$) {$-$};}
+  \foreach \a in {-48,-16,16,48}{\node[xestiny,text=DeepBlue] at ($(2,0)+(\a:.68)$) {$+$};}
+  \draw[RuleGray,-{Latex[length=1.55mm]},line width=.6pt] (.82,.35)--(.25,.35);
+  \node[xessmall,anchor=south] at (.53,.42) {感应增强};
+  \node[xessmall] at (-2,-1.48) {$A:+Q$，表面电荷保持同号};
+  \node[xessmall] at (2,-1.48) {$B:-q$，远侧可能出现正斑块};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargedIsolatedSphereImageFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!7] (0,0) circle (1.45);\draw[xesblue] (0,0) circle (1.45);
+  \fill[Ink] (4.0,0) circle (5pt);\node[xeslabel,above=5pt] at (4,0) {$+q$};
+  \fill[Ink] ({1.45*1.45/4},0) circle (4.5pt);
+  \fill[DeepBlue] (0,0) circle (4.5pt);
+  \node[xessmall,anchor=east] at (-1.72,-.68) {$q_0=q+qR/a$};
+  \draw[RuleGray,-{Latex[length=1.45mm]},line width=.5pt] (-1.62,-.62)--(-.12,-.08);
+  \node[xessmall,anchor=west,align=left] at (1.45,.76) {$q'=-qR/a$\\$b=R^2/a$};
+  \draw[RuleGray,-{Latex[length=1.45mm]},line width=.5pt] (1.35,.68)--(.64,.1);
+  \draw[<->,Gold!80,line width=.65pt] (0,-1.78)--(4,-1.78);\node[xestiny,text=Gold!80!black] at (2,-2.03) {$a$};
+  \draw[-{Latex[length=1.7mm]},DeepBlue,line width=.8pt] (3.85,.4)--(3.1,.4);\node[xessmall,above] at (3.48,.43) {吸引};
+  \draw[-{Latex[length=1.7mm]},Gold!80!black,line width=.8pt] (4.15,-.4)--(4.85,-.4);\node[xessmall,below] at (4.5,-.43) {斥力};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cavityImageFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.15pt] (0,0) circle (1.75);
+  \fill[Ink] (-.78,0) circle (5pt);\node[xeslabel,below=5pt] at (-.78,0) {$-q$};
+  \fill[DeepBlue] ({-1.75*1.75/.78},0) circle (5pt);\node[xeslabel,below=5pt] at ({-1.75*1.75/.78},0) {$+qR/d$};
+  \fill[Ink] (0,0) circle (1.6pt);\node[xessmall,below=4pt] at (0,0) {$O$};
+  \draw[<->,Gold!80,line width=.65pt] (-.78,.45)--(0,.45);\node[xestiny,text=Gold!80!black] at (-.39,.67) {$d$};
+  \draw[<->,Gold!80,line width=.65pt] ({-1.75*1.75/.78},-.55)--(0,-.55);\node[xestiny,text=Gold!80!black] at (-1.97,-.78) {$R^2/d$};
+  \draw[xesline] (1.75,0)--(2.35,0)--(2.35,-.55);
+  \draw[xesline] (2.08,-.55)--(2.62,-.55) (2.17,-.68)--(2.53,-.68) (2.27,-.81)--(2.43,-.81);
+  \node[xessmall,align=left,anchor=west] at (3.25,.48) {像电荷在球外，\\只用于球腔内部};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cornerImagesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!5] (0,0) rectangle (4.8,4.0);
+  \draw[xesblue,line width=1.2pt] (-4.8,0)--(4.8,0) (0,-4.0)--(0,4.0);
+  \fill[DeepBlue] (2.3,1.65) circle (5pt);\node[xeslabel,above right] at (2.3,1.65) {$+q$};
+  \fill[Ink] (-2.3,1.65) circle (5pt);\node[xeslabel,above left] at (-2.3,1.65) {$-q$};
+  \fill[Ink] (2.3,-1.65) circle (5pt);\node[xeslabel,below right] at (2.3,-1.65) {$-q$};
+  \fill[DeepBlue] (-2.3,-1.65) circle (5pt);\node[xeslabel,below left] at (-2.3,-1.65) {$+q$};
+  \draw[RuleGray,densely dashed] (2.3,1.65)--(-2.3,1.65) (2.3,1.65)--(2.3,-1.65);
+  \draw[<->,Gold!80,line width=.6pt] (0,2.55)--(2.3,2.55);\node[xestiny,text=Gold!80!black] at (1.15,2.78) {$a$};
+  \draw[<->,Gold!80,line width=.6pt] (3.15,0)--(3.15,1.65);\node[xestiny,text=Gold!80!black] at (3.38,.83) {$b$};
+  \node[xessmall,anchor=west] at (5.35,2.25) {第一象限为真实区域};
+  \node[xessmall,anchor=west] at (5.35,1.48) {每跨过一块接地板，像电荷变号};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\hemisphereImagesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.1pt] (-5,0)--(-1.45,0) (1.45,0)--(5,0);
+  \draw[xesblue,line width=1.1pt] (-1.45,0) arc[start angle=180,end angle=0,radius=1.45];
+  \fill[DeepBlue] (0,3.25) circle (5pt);\node[xeslabel,above=4pt] at (0,3.25) {$+q$};
+  \fill[Ink] (0,-3.25) circle (4.5pt);\node[xeslabel,below=4pt] at (0,-3.25) {$-q$};
+  \fill[Ink] (0,{1.45*1.45/3.25}) circle (4.5pt);\node[xeslabel,right=5pt] at (0,{1.45*1.45/3.25}) {$-qR/a$};
+  \fill[DeepBlue] (0,{-1.45*1.45/3.25}) circle (4.5pt);\node[xeslabel,right=5pt] at (0,{-1.45*1.45/3.25}) {$+qR/a$};
+  \draw[<->,Gold!80,line width=.6pt] (-.42,0)--(-.42,3.25);\node[xestiny,text=Gold!80!black] at (-.68,1.63) {$a$};
+  \node[xessmall,anchor=west] at (5.55,1.35) {四电荷同时使平面与半球面电势为零};
+  \node[xessmall,anchor=west] at (5.55,.55) {三个像电荷均位于真实区域之外};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\planeEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.2,0)}]
+    \draw[xesblue,line width=1.05pt] (-2.15,0)--(2.15,0);
+    \foreach \x in {-2.0,-1.5,...,2.0}{\draw[RuleGray,line width=.4pt] (\x,0)--(\x-.18,-.22);}
+    \draw[xesarrow] (0,1.05)--(0,2.18);
+    \draw[DeepBlue,line width=.65pt,densely dashed,-{Latex[length=1.55mm]}] (0,-1.05)--(0,-2.18);
+    \draw[DeepBlue,line width=.7pt] (0,1.0) circle (4.2pt);\node[xestiny,anchor=west] at (.15,1.0) {$a$};
+    \fill[DeepBlue] (0,2.3) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,2.3) {$+q$};
+    \draw[Ink,line width=.7pt] (0,-1.0) circle (4.2pt);\node[xestiny,anchor=west] at (.15,-1.0) {$-a$};
+    \fill[Ink] (0,-2.3) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,-2.3) {$-q$（像）};
+    \node[xessmall,align=center] at (0,3.0) {缓慢移动\\真实电荷与感应分布同步调整};
+  \end{scope}
+  \begin{scope}[shift={(3.55,0)}]
+    \draw[xesblue,line width=1.05pt] (-2.15,0)--(2.15,0);
+    \foreach \x in {-2.0,-1.5,...,2.0}{\draw[RuleGray,line width=.4pt] (\x,0)--(\x-.18,-.22);}
+    \draw[xesarrow] (0,1.05)--(0,2.18);
+    \draw[DeepBlue,line width=.7pt] (0,1.0) circle (4.2pt);\node[xestiny,anchor=west] at (.15,1.0) {$a$};
+    \fill[DeepBlue] (0,2.3) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,2.3) {$+q$};
+    \fill[Ink] (0,-1.0) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,-1.0) {$-q$（初始像）};
+    \node[xessmall,align=center] at (0,3.0) {瞬时移动\\初始感应分布暂时不变};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\uniformFieldSphereFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/uniform-sphere.pdf}
+\end{center}}
+
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emCornerQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!5] (0,0) rectangle (4.8,4.0);
+  \draw[xesblue,line width=1.2pt] (0,0)--(4.8,0) (0,0)--(0,4.0);
+  \fill[DeepBlue] (2.3,1.65) circle (5pt);\node[xeslabel,above right] at (2.3,1.65) {$+q$};
+  \draw[<->,Gold!80,line width=.6pt] (0,2.55)--(2.3,2.55);\node[xestiny,text=Gold!80!black] at (1.15,2.78) {$a$};
+  \draw[<->,Gold!80,line width=.6pt] (3.15,0)--(3.15,1.65);\node[xestiny,text=Gold!80!black] at (3.38,.83) {$b$};
+\end{tikzpicture}
+\end{center}}
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emHemisphereQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.1pt] (-5,0)--(-1.45,0) (1.45,0)--(5,0);
+  \draw[xesblue,line width=1.1pt] (-1.45,0) arc[start angle=180,end angle=0,radius=1.45];
+  \draw[xesline] (0,0)--(35:1.45) node[midway,below right]{$R$};
+  \fill[DeepBlue] (0,3.25) circle (5pt);\node[xeslabel,above=4pt] at (0,3.25) {$+q$};
+  \draw[<->,Gold!80,line width=.6pt] (-.42,0)--(-.42,3.25);\node[xestiny,text=Gold!80!black] at (-.68,1.63) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+
+第19章分别从力和能量两个角度考察了电场，引入了描述电场的矢量场
+$\boldsymbol E$ 与标量场 $\varphi$。电场强度可以用于一般电磁问题，电势则专用于静电场。电场线和
+等势面虽然是图形化的表达，却能把许多空间关系直接呈现出来。此前主要讨论电场对少数点电荷的作用，
+本章开始研究电场与宏观物质的相互作用。
+
+所有宏观物质都由原子构成，原子由带正电的原子核与核外电子组成。把物质置于外电场中，正、负电荷会
+受到方向相反的作用；物质内部电荷能否移动，决定了它对外电场的响应方式。
+
+
+\subsection{导体和绝缘体}
+
+
+孤立原子中的电子受原子核束缚。许多原子聚集成固体以后，每个电子不仅受到最近原子核的作用，也受到
+周围大量原子的影响。某些距离原子核较远的电子不再局限于单个原子，而可以在整个固体中运动。准确描述
+这一现象需要量子理论；在宏观静电学中，可以把导体理解为含有大量可移动载流子的物质，把绝缘体理解为
+电荷在外场作用下仍基本束缚在原处的物质。
+
+金属是典型导体。向金属传递一些电荷后，电荷不会固定在接触点附近，而会在极短时间内重新分布到导体
+表面。要让导体长期带电，必须用绝缘体把它与其他导电区域隔开，否则电荷会迅速流失。玻璃、橡胶和干燥
+木材是常见绝缘体；它们经过摩擦后，电荷可以长时间停留在局部区域。
+
+上述“自由电子”和“完全束缚电子”的图像是简化模型。真实材料的导电性还随温度、杂质、场强和频率
+变化；绝缘体在足够强的电场下也会击穿。但这一模型已经足以建立静电平衡的主要规律。
+
+应当进一步说明，这里所谓“自由”并不是电子完全不受原子核和晶格作用。电子在固体中始终处于所有离子
+实产生的周期势场里，还会与晶格振动、杂质和其他电子碰撞。导体与绝缘体的本质差别，是材料中是否存在
+能够在很小外场下改变占据状态并形成宏观电流的载流子。金属中的载流子数目很大，所以外场一出现，表面
+电荷就能在极短时间内完成重新分布；绝缘体中的电荷只能产生很小的束缚位移，通常表现为极化而不是持续
+导电。半导体处在二者之间，其载流子数目可被温度、光照或掺杂显著改变。
+
+导体得到的多余电荷会遍布它的可达表面，而不会停在最初接触的位置。这里的“表面”包括外表面，也可能
+包括含有内部电荷的空腔表面；究竟分布到哪一部分，要由静电平衡条件共同决定。若导体与另一个导体直接
+接触，它们将构成一个新的整体等势体，电荷继续移动，直到整个连通导体达到共同电势。因此实验中常用
+绝缘支架、绝缘手柄或真空把带电导体与环境隔离。
+
+
+\subsection{静电平衡}
+
+
+把导体放入预先存在的外电场，内部载流子立即受力并发生定向移动。载流子到达导体边界后不能继续离开，
+于是表面出现净电荷。这些表面电荷又产生电场，并与外电场叠加。只要导体内部总电场不为零，电荷分布就
+还会继续改变；最终导体内部处处无场，宏观状态不再改变，这就是\textbf{静电平衡}。移动后留在表面的净
+电荷称为\textbf{感应电荷}。
+
+图~\ref{ch20:fig:s34-3-1}以一个带正电导体和一个净电荷为零的导体为例。中性导体靠近带电体的一侧出现负感应电荷，远侧
+出现正感应电荷；电场线从正电荷出发，终止于负电荷或延伸到无穷远。导体表面本身是等势面，导体内部
+没有电场线。
+
+\par\noindent\begin{minipage}{\linewidth}
+\conductorFieldFigure
+\diagramcaption{静电平衡状态下两个导体的电场线、等势线与感应电荷分布。以两球为例，实线为场线、虚线为等势线；电场线垂直球面，延伸到画框外的线并非在框边终止。}\label{ch20:fig:s34-3-1}
+\end{minipage}\par\medskip
+
+根据形成静电平衡的过程，可以得到以下性质。
+
+\begin{enumerate}[label=\arabic*.]
+  \item \textbf{导体材料内部电场处处为零。}如果某处 $\boldsymbol E\ne0$，可移动电荷仍会受力，电荷分布
+  还会变化，因而不可能处于静电平衡。
+
+  \item \textbf{导体材料内部没有净体电荷。}在导体内部取任意闭合高斯面，因为面上
+  $\boldsymbol E=0$，电通量为零，所包围的净电荷也必为零。因此导体的多余电荷只能分布在表面。
+
+  \item \textbf{整个导体是等势体，表面是等势面。}导体内部任意两点间的电势差为
+  $-\int\boldsymbol E\cdot\dd\boldsymbol l=0$。把导体连接到大地称为接地；大地可吸收或提供大量电荷，
+  通常规定接地导体的电势为零。
+
+  \item \textbf{导体表面外侧的电场垂直于表面。}若存在切向分量，表面电荷会沿导体表面流动。取一个
+  横跨导体表面的极薄柱形高斯面，导体内侧电场为零，得到表面外侧法向电场与面电荷密度的关系
+  \begin{equation}
+    \boxed{E_n=\frac{\sigma}{\varepsilon_0}}.
+  \end{equation}
+  其中 $E_n$ 以导体外法线方向为正。$\sigma>0$ 时电场指向导体外，$\sigma<0$ 时指向导体内。
+\end{enumerate}
+
+图~\ref{ch20:fig:s34-3-2}给出用静电感应使导体带正电的完整顺序。起初导体呈电中性；把带负电物体靠近导体，导体左侧聚集
+正电荷、右侧聚集负电荷；保持负电体不动并将导体接地，电子受排斥流入大地，导体上只剩净正电荷；先
+断开地线，导体上的正电荷被保留下来；最后移走负电体，正电荷重新分布到整个外表面。顺序不能颠倒：若
+先移走带电体再断开地线，电荷会经地线回到大地，导体仍为中性。
+
+\par\noindent\begin{minipage}{\linewidth}
+\inductionSequenceFigure
+\diagramcaption{一个完整的静电感应带电过程。图中负电棒始终位于导体左侧，接地只发生在步骤 (c)。}\label{ch20:fig:s34-3-2}
+\end{minipage}\par\medskip
+
+感应电荷的总量和局部分布必须分开理解。未接地的中性导体在感应过程中总电荷始终为零，但近端、远端可
+分别出现等量异号电荷；接地以后，地线允许电荷进入或离开，导体总电荷不再固定。断开地线只固定导体的
+总电荷，并不固定表面电荷分布；当外部带电体继续移动时，表面电荷仍会沿导体重新排列。正因如此，静电
+感应问题不能只画几个“正、负号”就结束，还必须同时检查总电荷守恒、导体电势条件和表面法向电场方向。
+
+接地也不能简单理解为“把所有电荷都导走”。它真正固定的是导体电势。为了使电势达到零，大地可能吸收
+电子，也可能向导体提供电子，方向取决于外部电荷的符号和几何位置。图~\ref{ch20:fig:s34-3-2}中负电棒排斥电子，所以电子
+从导体流向大地；若靠近的是正电棒，过程中的电荷流向和最后带电符号都将反转。
+
+静电平衡时，同一导体表面不可能有一条电场线从正电荷区域出发、再终止于该导体的负电荷区域。因为沿
+电场线电势必须下降，而同一导体各点电势相等。把这一结论用于内部无电荷的封闭导体壳：空腔内表面任意
+两点之间不能由电场线连接；又由包围空腔的高斯面可知内表面总电荷为零，于是空腔内表面处处无电荷，
+空腔内电场为零。这就是静电屏蔽。
+
+法拉第笼是静电屏蔽的典型应用。完整金属外壳可以阻止外部静电场进入内部；网状金属笼对变化较慢、波长
+远大于网孔的电磁场也有明显屏蔽作用。屏蔽结构可保护敏感仪器免受射频干扰，也可以把无线电发射设备的
+干扰限制在内部。遭遇雷击或静电放电时，电流主要沿导体笼外表面传导，内部人员和设备受到保护。
+
+图~\ref{ch20:fig:s34-3-3} 的金属网构成连通屏蔽壳；在上述静电条件下，壳内无电荷的空腔与外界电场隔离。
+
+\par\noindent\begin{minipage}{\linewidth}
+\faradayCageFigure
+\diagramcaption{法拉第笼的屏蔽情景。理想静电极限下腔内无场；雷击瞬态的安全还依赖连接、接地及屏蔽完整性。}\label{ch20:fig:s34-3-3}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{带电空腔：把内表面与外表面分开}
+中性孤立导体壳内放入电荷 $q$，在导体材料内取包围空腔的高斯面，因 $E=0$，有
+$q+Q_{\rm inner}=0$。再由壳的净电荷守恒得 $Q_{\rm outer}=q$。这两步只决定总量；内电荷偏心时内表面电荷一般不均匀。
+若外表面为球面、外界无其他电荷，外部解由球形等势边界确定为球心点电荷 $q$ 的场，与空腔内电荷偏心方向无关。
+若壳接地且外界无其他电荷，外表面可以不带电，外部场为零；此时壳总电荷已由地线改变，不能再使用原来的中性约束。
+
+
+\subsection{等离子体频率}
+
+
+导体最终达到静电平衡，不仅因为内部存在可移动载流子，还因为载流子的运动会耗散能量。竖直弹簧下突然
+挂上重物，若没有阻力，重物不会停在新的静力平衡位置，而会围绕它持续振动；只有阻尼耗散机械能，重物
+才会最终静止。导体中的载流子也一样：若完全没有碰撞和电阻，它们不会停在屏蔽外场的电荷分布上，而会
+围绕电中性位置集体振荡。
+
+把弹簧的过程说得更具体些：重物刚挂上时，原来的弹簧长度不是新的静力平衡位置。重力先使重物向下加速，
+弹簧伸长后恢复力增大；重物经过平衡位置时仍有速度，于是继续向下，随后被拉回。没有空气阻力和弹簧内耗
+时，这一往复过程永不停止。导体中载流子的惯性对应重物质量，表面电荷产生的恢复场对应弹簧恢复力，碰撞
+和电阻则对应阻尼。通常金属中的碰撞时间很短，因此宏观观察只看到迅速建立的静电平衡，而看不到长时间
+的自由振荡。
+
+设导体中可移动载流子的质量为 $m$、电荷为 $q$、数密度为 $n$。外电场 $E_0$ 沿 $+x$ 方向突然加上，
+载流子整体位移 $x$ 后，样品两侧出现面电荷，大小为 $\sigma=nqx$。这些面电荷在内部产生恢复场
+\[
+  E'=-\frac{nq}{\varepsilon_0}x.
+\]
+
+图中以正载流子向右位移表示正负面电荷的几何关系。
+若载流子是电子，$q=-e$，在向右外场下平衡位移 $x_0<0$，电子向左；
+两端面的符号仍应从乘积 $nqx$ 判断，不能仅由位移方向猜测。
+\plasmaSlabFigure
+
+忽略碰撞和阻尼，每个载流子的运动方程为
+\[
+  qE_0-\frac{nq^2}{\varepsilon_0}x=m\ddot x.
+\]
+整理为
+\begin{equation}
+  \boxed{\ddot x+\frac{nq^2}{m\varepsilon_0}x=\frac{qE_0}{m}}.
+\end{equation}
+这是围绕平衡位置 $x_0=\varepsilon_0E_0/(nq)$ 的简谐振动，固有角频率为
+\begin{equation}
+  \boxed{\omega_p=\left(\frac{nq^2}{m\varepsilon_0}\right)^{1/2}}.
+\end{equation}
+
+若平均阻力为 $-m\nu\dot x$，令 $y=x-x_0$，则
+\[
+ \ddot y+\nu\dot y+\omega_p^2y=0,\qquad
+ s_\pm=\frac{-\nu\pm\sqrt{\nu^2-4\omega_p^2}}2.
+\]
+当 $0<\nu<2\omega_p$ 时为衰减振荡，振幅包络为 $e^{-\nu t/2}$；
+$\nu=2\omega_p$ 时为临界阻尼；$\nu>2\omega_p$ 时为非振荡的过阻尼趋近。
+特别是 $\nu\gg\omega_p$ 时，慢根 $s_+\simeq-\omega_p^2/\nu$，
+弛豫时间约为 $\nu/\omega_p^2$，所以不能笼统说“碰撞越强，平衡越快”。
+弱阻尼而外场交变时，在适当驱动下可于 $\omega\approx\omega_p$ 附近出现强响应。因此“静电平衡”和“等离子体振荡”并不矛盾：前者是有耗散、长时间极限，后者是惯性
+不可忽略时的动力学行为。
+
+等离子体是离子和电子组成、能够表现出集体行为的带电粒子体系。离子质量远大于电子，最简单近似下可把
+离子视为静止背景，只考虑电子相对离子的振荡；此时带符号电荷为 $q=-e$、$m=m_e$，频率中的 $q^2=e^2$，$\omega_p$ 主要由电子数密度决定。
+电子偏离电中性位置后，电荷分离产生恢复场；电子越过平衡位置时仍有惯性，于是形成等离子体振荡。
+
+等离子体频率公式还说明等离子体频率只由载流子数密度、电荷量和质量决定，与样品在理想无限均匀近似下的横向
+尺寸无关。电子的质量很小，所以电子等离子体频率通常很高；离子也可以振荡，但其特征频率低得多。在
+有限等离子体中还会出现边界效应、温度效应和不同传播方向的多种波模，等离子体频率公式给出的是最基本的均匀纵向
+集体振荡尺度。
+
+地球约 $60\,\mathrm{km}$ 以上的高层大气受到太阳高能辐射和宇宙线作用而部分电离，形成电离层。入射电磁波的频率低于电离层的等离
+子体频率时，电子能够集体响应并使电磁波被反射；频率足够高时，电磁波可以穿过电离层。短波通信可借助
+电离层一次或多次反射跨越地平线，而卫星通信需要采用能够穿透电离层的较高频率。
+
+图~\ref{ch20:fig:s34-3-6} 中橙色路径表示被电离层折回的通信波，蓝色路径穿过电离层到达卫星；两条路径对应不同的频率条件。
+
+\par\noindent\begin{minipage}{\linewidth}
+\ionosphereFigure
+\diagramcaption{电离层反射实现远距离通信。图中同时区分低频反射与高频穿透。}\label{ch20:fig:s34-3-6}
+\end{minipage}\par\medskip
+
+现实导体中的碰撞使载流子振荡衰减，系统才会趋于静电平衡；在高频电磁场或等离子体中，惯性和集体振荡
+则不能忽略。静电平衡与等离子体频率看似分属静力学和动力学，实际是同一套电荷重新分布机制在有、无
+耗散两种极限下的表现。
+
+% EM teaching enrichment 20260927
+\paragraph{把振荡模型接回电荷弛豫}
+在强碰撞极限，线性碰撞模型给出（电导率的微观推导见第21章） $\sigma=nq^2/(m\nu)$，从而
+\[
+ \frac{\nu}{\omega_p^2}=\frac{\varepsilon_0}{\sigma}.
+\]
+这正是忽略惯性后，由电荷连续性与 $\boldsymbol j=\sigma\boldsymbol E$ 得到的体电荷弛豫时间：
+$\partial_t\rho=-\nabla\cdot\boldsymbol j=-\sigma\rho/\varepsilon_0$。
+二者相符须满足强碰撞近似，不能把 $\varepsilon_0/\sigma$ 生硬解释为任意金属中电子惯性运动的真实完成时间。静电模型的使用应比较观测时间与材料响应时间，而不只是看电源是否标为直流。
+
+
+
+
+% EM structure and teaching revision 20260928
+\subsection{接地、孤立与相连导体的条件选择}
+导体内部场为零只给出导体等势，还不足以决定它的电势值或总电荷。孤立导体给定总电荷 $Q$，其电势待求；接地导体给定电势，电荷可以经地线流入流出；导线连接的多个导体电势相等，但通常只守恒它们的总电荷。
+例如两个相距很远的金属球，半径为 $R_1,R_2$，忽略相互影响。用细导线连接后
+\[
+ \frac{Q_1}{R_1}=\frac{Q_2}{R_2},\qquad Q_1+Q_2=Q,
+ \qquad Q_i=\frac{QR_i}{R_1+R_2}.
+\]
+球面场强却满足 $E_1/E_2=R_2/R_1$；等势不意味着等电荷或等场强。若两球靠得很近，各自电势还包含对方电荷的贡献，上述孤立球近似便不再成立。
+在有空腔的问题中，先用导体材料内部的高斯面确定内表面总感应电荷，再按接地或孤立条件确定外表面电荷。偏心电荷通常使内表面分布不均匀，却不妨碍用高斯定律求其总量。把“总电荷已知”与“分布已知”分开，是避免误用球对称公式的关键。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【异号导体】}\label{ch20:ex:s34-3-1}
+小明使导体 $A,B$ 分别带电 $+Q,-q$，若 $Q>q$。由于二者会产生静电感应，问导体 $A$ 上是否有可能
+出现负电荷，导体 $B$ 上是否有可能出现正电荷？若 $Q=q$，结果有无变化？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+题目只给了净电荷，没有给导体形状、尺寸和间距，因此应先区分“必然结论”和“取决于几何的结论”。
+
+静电平衡时每个导体各有一个常电势 $V_A,V_B$。在导体外部，电势满足拉普拉斯方程。若某导体处在整个
+外部区域的最高电势，它的表面向外离开时电势只能降低，因此
+$E_n=-\partial\varphi/\partial n\ge0$，由 $\sigma=\varepsilon_0E_n$ 可知该导体表面不可能出现负电荷。
+
+当 $Q>q$ 时，系统总电荷 $Q-q>0$，正电导体 $A$ 是两导体中的高电势者；否则若净负电的 $B$ 处在最高
+电势，最大值原理将迫使它表面处处 $\sigma\ge0$，与其净电荷为负矛盾。因此
+\[
+  \boxed{A\text{ 表面不出现负电荷}}.
+\]
+$B$ 的净电荷为负，所以它至少有一部分表面带负电；但若 $A$ 的影响足够强，$B$ 远离 $A$ 的一侧可以出现
+正电荷斑块。因此
+\[
+  \boxed{B\text{ 表面可能出现正电荷}\quad\text{但并非必然}}.
+\]
+
+\twoConductorPatchFigure
+
+当 $Q=q$ 时系统总电荷为零。只有两个导体时，$V_A>0>V_B$：$A$ 是电势最大边界，$B$ 是电势最小边界。
+最大值原理和最小值原理分别给出
+\[
+  \boxed{\sigma_A\ge0,\qquad \sigma_B\le0}.
+\]
+也就是说，$A$ 不出现负电荷，$B$ 不出现正电荷；净电通量从 $A$ 流出并由 $B$ 流入。尖角处面电荷密度
+可以很大，但符号不变。以上结论默认只有这两个导体、无额外外场，也不讨论封闭空腔内另置电荷的特殊拓扑。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【同号导体】}\label{ch20:ex:s34-3-2}
+小明使导体 $A,B$ 分别带电 $+Q,+q$，若 $Q>q$。由于二者会产生静电感应，问导体 $A$ 上是否有可能
+出现负电荷，导体 $B$ 上是否有可能出现负电荷？若 $Q=q$，结果有无变化？若有更多的球（比如 100 个），
+能得出什么定性结论？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+两个导体净电荷都为正，并不意味着每个表面点都一定带正电。决定局部面电荷符号的是该点外侧法向电场，
+而决定法向电场的是两个导体的电势和几何形状。
+
+设 $V_A,V_B>0$。电势较高的导体是外部区域的最大电势边界，表面必有 $\sigma\ge0$；电势较低的导体
+面对高电势导体时，离开其表面电势可能先升高，于是 $E_n<0$，局部可以出现负电荷。不过它的净电荷仍为
+正，所以其余表面必须有更多正电荷。
+
+仅由 $Q>q$ 不能判断 $V_A$ 与 $V_B$ 的大小，因为电势还取决于导体电容，也就是尺寸、形状和相互位置。
+因此对任意导体，能确定的是
+\[
+  \boxed{\text{电势较高者不出现负电荷；电势较低者可能出现负电荷斑块。}}
+\]
+若 $A,B$ 是半径相同、环境对称的两球，则 $Q>q$ 会给出 $V_A>V_B$；此时 $A$ 表面全为正电荷，$B$
+在两球很近时可能于迎向 $A$ 的一面出现负电荷。
+
+对一般导体，即使 $Q=q$，尺寸、形状不同仍可使 $V_A\ne V_B$，所以电势较低者仍可能出现负电荷斑块；等量电荷本身并不排除这种现象。
+
+当两个相同球带等量正电 $Q=q$ 且放置对称时，$V_A=V_B$。把两球视作处于同一电势的复合边界，外部
+电势从正值降到无穷远的零，因此两球表面均有 $\sigma\ge0$，球间也没有从一个球终止到另一个球的电场线。
+
+推广到 100 个导体：至少有一个处于最高电势的导体，其表面不可能出现负电荷；较低电势导体可能出现
+局部负电荷。若 100 个完全相同的球在对称环境中带等量电荷，使它们电势相同，则所有球表面均不出现负
+电荷。若几何和电荷量不对称，不能仅凭“每个球净带正电”推出每处面电荷都为正。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【凭空相吸】}\label{ch20:ex:s34-3-3}
+小明梦到两个金属球本身都不带电。由于小扰动，某一个球体内的电荷分布发生了一些变化，进而两个球互相
+静电感应、局部带电并相互吸引。醒来后小明觉得这个现象不对，却说不清哪里不对。请解释。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+两个球都不带净电荷，且没有外加电荷和外场。电势函数
+\[
+  \varphi(\boldsymbol r)=0
+\]
+满足全部条件：球外无体电荷、无穷远电势为零、两个球各为等势体且各自总电荷为零。唯一性定理说明这就
+是唯一的静电平衡解，所以
+\[
+  \boxed{\boldsymbol E=0,\qquad \sigma_A=\sigma_B=0}.
+\]
+
+从能量角度看也一样。任何自发的正负电荷分离都会建立非零电场，增加
+$\int\varepsilon_0E^2/2\,\dd V>0$。系统没有外界能量来源，不会从能量最低的无场状态自动跳到更高能量
+状态。短暂的热涨落或量子涨落会很快衰减，不能形成持续的经典静电吸引。
+
+现实中的两个“中性物体相吸”可能来自外部带电体诱导、接触电势、残余电荷，或微观尺度的色散力；这些
+都增加了题目梦境中没有给出的物理条件，并不是两个理想中性导体凭空产生稳定静电感应。
+\end{xesolution}
+
+
+
+\section{唯一性定理与电像法}
+
+\subsection{唯一性定理}
+
+
+定性规律可以判断静电平衡的许多特征；要确定空间中电势和电场的具体分布，还需要静电场的唯一性定理。
+由
+$\boldsymbol E=-\boldsymbol\nabla\varphi$ 与 $\boldsymbol\nabla\cdot\boldsymbol E=\rho/\varepsilon_0$
+联立，得到
+\begin{equation}
+  \boxed{\frac{\partial^2\varphi}{\partial x^2}
+  +\frac{\partial^2\varphi}{\partial y^2}
+  +\frac{\partial^2\varphi}{\partial z^2}
+  =-\frac{\rho}{\varepsilon_0}}.
+\end{equation}
+这就是泊松方程。无电荷区域中 $\rho=0$，它退化为拉普拉斯方程
+$\nabla^2\varphi=0$。
+
+中学阶段不需要直接求解一般的三维偏微分方程，但离散化可以直观说明为什么必须给出边界条件。设电荷和
+电势只随 $x$ 变化，则
+\begin{equation}
+  \boxed{\frac{\dd^2\varphi}{\dd x^2}=-\frac{\rho(x)}{\varepsilon_0}}.
+\end{equation}
+
+离散化的思想与测量城市温度很相似。温度本来是位置的连续函数，但实际不可能在每一个数学点都放置温度
+计；只要在足够密的观测站取得温度，再利用相邻点之间的变化，就能近似恢复整座城市的温度分布。电势也
+一样：先在有限个节点上求 $\varphi_n$，节点越密，离散结果越接近连续函数。泊松方程的离散式不是
+额外的物理假设，而是连续二阶导数的差分近似。
+在 $A,B$ 之间取间距均为 $a$ 的离散点，点 $n$ 处的电势为 $\varphi_n$。其右、左两侧一阶导数分别近似为
+$\bigl(\varphi_{n+1}-\varphi_n\bigr)/a$ 与
+$\bigl(\varphi_n-\varphi_{n-1}\bigr)/a$，因此二阶导数的离散形式为
+\begin{equation}
+  \boxed{\frac{\varphi_{n+1}+\varphi_{n-1}-2\varphi_n}{a^2}
+  =-\frac{\rho_n}{\varepsilon_0}}.
+\end{equation}
+
+图~\ref{ch20:fig:s34-3-4} 中节点 $n$ 与两侧相邻节点均相距 $a$，所以其二阶差分恰由上式三项构成；$A,B$ 的电势不再作为未知量。
+
+\par\noindent\begin{minipage}{\linewidth}
+\discretePotentialFigure
+\diagramcaption{把 $A,B$ 之间连续的电势分布离散化。相邻节点间距均为 $a$，端点电势是边界条件。}\label{ch20:fig:s34-3-4}
+\end{minipage}\par\medskip
+
+对每一个内部节点都列一个方程，就得到包含大量未知电势的线性方程组。内部节点的电荷密度必须已知；对
+最靠近两端的节点，方程还会包含端点 $A,B$ 的电势，因此边界电势也必须给定。令 $a\to0$，离散点无限
+细密，便回到连续的泊松方程。
+
+静电场唯一性定理可以表述为：给定区域内的电荷分布，并在边界上给定适当条件，区域内的电势和电场便
+唯一确定。常见边界条件有三类：边界电势已知；边界法向电场已知；一部分边界给电势、另一部分边界给
+法向电场。导体是等势体，所以“某个导体电势已知”本身就是一种边界条件；若只给导体的总电荷，还需用
+总电荷约束共同确定导体电势。
+
+为什么内部电荷和边界条件缺一不可，可以直接从差分方程看出。对 $n=2,3,\ldots,N-2$，方程右侧由
+$\rho_n$ 给定；但对最靠近左端的 $n=1$，方程包含端点未知量 $\varphi_0$，对最靠近右端的
+$n=N-1$，方程包含 $\varphi_N$。若不给 $A,B$ 的电势，未知数就比独立方程多，整体可以发生不受限制的
+改变。三维问题虽然节点更多、邻接关系更复杂，逻辑完全相同：内部的泊松方程规定局部曲率，边界
+条件负责把所有局部关系闭合成唯一的全局解。
+
+若给定的是边界法向场而非边界电势，由高斯定律还必须满足总通量与区域内总电荷相容。纯诺依曼
+边界条件只决定电势到一个任意加法常量，但这个常量不影响电场；混合边界条件则把两类信息分别施加在
+不同边界部分。这三种分支条件，正是狄利克雷、诺依曼和混合边界条件在静电学中的对应。
+
+唯一性定理的力量在于：只要构造出一个满足相同区域电荷分布和相同边界条件的电势函数，就不必再去求
+复杂的感应电荷分布；这个构造出来的解就是唯一的物理解。
+
+
+\subsection{电像法}
+
+
+静电平衡问题通常同时包含给定电荷和导体表面上未知的感应电荷。直接积分感应电荷非常困难。若能在所
+研究区域之外放置若干假想点电荷，使它们与真实电荷共同产生的电势恰好满足导体边界条件，那么由唯一性
+定理可知，假想电荷在研究区域内的作用与真实感应电荷完全等效。这就是\textbf{电像法}。像电荷不是真实
+电荷，只能放在研究区域之外，不能把它当成物体的一部分去计算受力。
+
+电像法的经典例子是：半径为 $R$ 的接地导体球，球心为 $C$；球外轴线上距球心 $L>R$ 处放一点电荷
+$+Q$。在球内同一轴线上、距球心 $l$ 处放一个像电荷 $-q$。只要整个球面电势为零，球外电场就与真实
+问题完全相同。取轴线上球面的近、远两个点 $a,b$，有
+\[
+  \frac{1}{4\pi\varepsilon_0}
+  \left(\frac{Q}{L-R}-\frac{q}{R-l}\right)=0,
+  \qquad
+  \frac{1}{4\pi\varepsilon_0}
+  \left(\frac{Q}{L+R}-\frac{q}{R+l}\right)=0.
+\]
+解得
+\begin{equation}
+  \boxed{q=\frac RLQ,\qquad l=\frac RL R=\frac{R^2}{L}}.
+\end{equation}
+
+这里只在球面上选取两个点列方程，看起来似乎不足以保证整个球面电势都为零。关键在于所得参数同时满足
+$Ll=R^2$ 和 $q/Q=R/L$。对球面任意点 $P$，三角形几何给出
+$r_1/r_2=L/R$，从而 $Q/r_1=q/r_2$；所以任意 $P$ 的电势都为零。近、远两点的方程只是求出候选参数，
+任意点的距离比关系才完成对整个边界条件的验证。电像法中的每一次构造都应做这样的全边界检查，不能只
+验证图上少数特殊点。
+
+威廉·汤姆孙（后来获封开尔文勋爵）系统发展了这一方法。它之所以巧妙，是因为我们不必知道每一
+小块球面上到底聚集了多少感应电荷，只需找到一个位于禁入区域内的简单点电荷系统，使球外电势满足完全
+相同的方程和边界条件。像电荷的位置落在导体内部，那里不是所求球外区域，因此像电荷产生的奇点不会
+污染真实解。
+
+图~\ref{ch20:fig:s34-3-5} 中 $C$ 是球心，$P$ 严格位于球面；$CP=R$，真实电荷与像电荷到 $C$ 的距离分别为 $L,l$。
+
+\par\noindent\begin{minipage}{\linewidth}
+\groundedSphereImageFigure
+\diagramcaption{接地导体球的电像法几何。真实电荷为 $+Q$，像电荷为 $-q$，且 $Ll=R^2$。}\label{ch20:fig:s34-3-5}
+\end{minipage}\par\medskip
+
+对球面上任意点 $P$，几何关系保证
+$r_1/r_2=L/R=Q/q$，所以 $Q/r_1-q/r_2=0$；球面确为零等势面。像电荷的
+位置和大小确定后，外电荷受到的吸引力等于它与像电荷之间的库仑力：
+\[
+  F=\frac{1}{4\pi\varepsilon_0}\frac{Qq}{(L-l)^2}.
+\]
+外电荷与接地球组成系统的静电势能不是两个真实点电荷势能，而是
+\[
+  U=\frac12Q\varphi_{\rm ind}(Q)
+  =-\frac12\frac{1}{4\pi\varepsilon_0}\frac{Qq}{L-l}.
+\]
+因子 $1/2$ 来自导体感应电荷随真实电荷逐步建立；若把像电荷误当真实电荷，这个因子会被遗漏。
+
+把真实电荷与像电荷的场在球外叠加，在球面处取法向分量，再用 $\sigma=\varepsilon_0 E_n$，得到距真实电荷为 $r_1$ 的球面
+点上的感应电荷密度
+\begin{equation}
+  \boxed{\sigma=-\frac{1}{4\pi}\frac{Q(L^2-R^2)}{Rr_1^3}}.
+\end{equation}
+这里已经约去 $\varepsilon_0$；结果的单位为电荷面密度。球面各处 $\sigma<0$，且离 $Q$ 越近，$r_1$
+越小，负感应电荷密度的绝对值越大。
+
+
+% EM teaching enrichment 20260927
+\paragraph{先用平面模型检验力与能量}
+电荷 $q$ 距无限接地平面为 $a$，像电荷为镜像位置的 $-q$，二者相距 $2a$。
+真实电荷受力大小 $kq^2/(4a^2)$，指向平面；系统与感应有关的势能却为
+\[
+ U(a)=\frac12q\varphi_{\rm ind}=-\frac{kq^2}{4a},\qquad
+ F_a=-\frac{\dd U}{\dd a}=-\frac{kq^2}{4a^2}.
+\]
+求力时像电荷场可直接使用；求位置导数时像的位置和感应分布随 $a$ 一起改变。像法只在导体外替代感应场，像电荷所在处不是一个真实可访问的受力粒子。
+
+
+% EM structure and teaching revision 20260928
+\subsection{电像构造的验收与能量系数}
+电像法的替代电荷只能放在不求解的区域。构造完成后依次检查：真实电荷位置的奇性、导体表面的等势条件、远处或其他边界条件。满足这些条件后，唯一性定理才保证指定区域内的电势正确；替代区域内部的场没有对应的物理意义。
+点电荷 $q$ 距无限接地平面 $a$，像电荷为平面另一侧的 $-q$。真实电荷所受吸力大小为 $kq^2/(4a^2)$，缓慢从远处移到 $a$ 时体系能量变化为
+\[
+ W(a)=\int_{\infty}^{a}\frac{kq^2}{4s^2}\dd s
+ =-\frac{kq^2}{4a}.
+\]
+这里外力沿离开平面的方向，故外力沿坐标 $s$ 的分量为正。若把真电荷和像电荷误当成两个独立的真实点电荷，会写出 $-kq^2/(2a)$，多出一倍。
+两种处理的区别在于真实导体表面的感应电荷会随 $q$ 的移动重新分布。在线性接地边界下，组装给出 $W=\tfrac12q\varphi_{\mathrm{ind}}$；有另加外场或固定偏置时，外加场能与感应能应分别计账，不能把所有电势项都一律乘以二分之一。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【同性相吸】}\label{ch20:ex:s34-3-4}
+把一点电荷 $+q$ 放在距球心 $a$ 处，旁边是半径为 $R$、净电荷也为 $+q$ 的孤立金属球，$a>R$。竟然
+可能出现同性相吸。请定量解释。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+孤立带电球与接地球的差别是：除了保证球面等势，还必须保证球上总电荷为 $+q$。先放置接地球所需的像
+电荷
+\[
+  q'=-\frac{qR}{a},\qquad b=\frac{R^2}{a},
+\]
+再在球心放一个像电荷
+\[
+  q_0=q-q'=q+\frac{qR}{a}.
+\]
+球心电荷在球面上只增加一个常量电势，不破坏“球面等势”；两个像电荷的代数和为球的真实净电荷 $+q$。
+
+\chargedIsolatedSphereImageFigure
+
+取远离球心的方向为正。真实电荷受到球心像电荷的斥力，以及偏心负像电荷的吸力：
+\[
+  F=k\frac{qq_0}{a^2}-k\frac{q|q'|}{(a-b)^2}
+  =kq^2\left[\frac1{a^2}+\frac{R}{a^3}
+  -\frac{Ra}{(a^2-R^2)^2}\right],
+  \qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+前两项表示净正电荷带来的斥力，最后一项表示近侧强烈集中的负感应电荷带来的吸力。令 $x=a/R$，临界条件
+$F=0$ 化为
+\[
+  (x-1)^2(x+1)^3=x^4.
+\]
+大于 1 的解为黄金比 $x=(1+\sqrt5)/2$。因此
+\[
+  \boxed{R<a<\frac{1+\sqrt5}{2}R\quad\Longrightarrow\quad F<0\quad\text{两者相吸}},
+\]
+而 $a>(1+\sqrt5)R/2$ 时净作用为斥力。距离很近时，负感应电荷集中在球的近端，其吸力随间隙减小增长得
+比远处分散正电荷的斥力快，所以即使两物体净电荷同号，仍能相吸。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【球内屏蔽】}\label{ch20:ex:s34-3-5}
+用一个内半径为 $R$、外半径为 $R_o>R$ 的同心接地金属球壳把一点电荷 $-q$ 封在球腔内，点电荷距球心为 $x$。求：
+\begin{enumerate}[label=(\arabic*)]
+  \item 空间中的电场分布；
+  \item 感应电荷的面密度分布；
+  \item 若球壳不接地，而是净电荷为零，结果怎样变化；
+  \item 为什么电荷在壳外时有“静电屏蔽”，在壳内时却不能使腔内无场？
+\end{enumerate}
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.8]
+
+ \fill[SoftGray,even odd rule](0,0)circle(2.1)(0,0)circle(1.5);
+ \draw[thick](0,0)circle(2.1)(0,0)circle(1.5);
+ \fill(-.7,0)circle(3pt)node[below=3pt]{$-q$};\fill(0,0)circle(1pt)node[below right]{$O$};
+ \draw[<->](-.7,.45)--(0,.45)node[midway,above]{$x$};
+ \draw(0,0)--(60:1.5)node[midway,right]{$R$};\draw(0,0)--(240:2.1)node[pos=.45,right=3pt]{$R_o$};
+ \draw(2.1,0)--(3,0)--(3,-.65);\draw(2.65,-.65)--(3.35,-.65)(2.75,-.8)--(3.25,-.8)(2.9,-.95)--(3.1,-.95);
+
+\end{tikzpicture}\end{center}
+\figcap{接地同心金属球壳与腔内偏心点电荷。}\label{ch20:fig:em-source-thirty-fourth-section-5}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+记 $d=x<R$，取 $z$ 轴从球心指向真实电荷，真实电荷的位置矢量为 $\boldsymbol d$。为使半径 $R$ 的内球面
+电势为零，在同一轴线上球外放像电荷
+\[
+  q'=+\frac{qR}{d},\qquad
+  \boldsymbol d'=\frac{R^2}{d^2}\boldsymbol d.
+\]
+
+图~\ref{ch20:fig:s34-3-7} 中真实电荷到球心距离为 $d<R$；像点距离为 $R^2/d>R$，因而不在要求电场的球腔内。
+
+\par\noindent\begin{minipage}{\linewidth}
+\cavityImageFigure
+\diagramcaption{球腔内点电荷的像位于球面之外。像电荷不在所求球腔区域内。}\label{ch20:fig:s34-3-7}
+\end{minipage}\par\medskip
+
+\textbf{(1) 接地球壳的电场。} 球腔 $r<R$ 内的电势为
+\[
+  \boxed{\varphi(\boldsymbol r)=\frac1{4\pi\varepsilon_0}
+  \left[-\frac q{|\boldsymbol r-\boldsymbol d|}
+  +\frac{qR/d}{|\boldsymbol r-\boldsymbol d'|}\right]},
+\]
+电场为 $\boldsymbol E=-\boldsymbol\nabla\varphi$。导体材料内部 $\boldsymbol E=0$。球壳接地后，外表面
+没有净电荷，外部边界电势和无穷远电势均为零，由唯一性定理
+\[
+  \boxed{\boldsymbol E_{\rm outside}=0}.
+\]
+
+以上像电荷写法取 $0<d<R$。若真实电荷恰在球心，取 $d\to0$ 的极限即可：
+球腔内 $\varphi=-kq/r+kq/R$，$\boldsymbol E=-kq\hat{\boldsymbol r}/r^2$；
+内表面 $\sigma_{\rm in}=q/(4\pi R^2)$，避免把发散的像电荷坐标当作真实奇点。
+
+\textbf{(2) 内表面面电荷密度。} 令 $\theta$ 为球面点与 $+z$ 轴的夹角，该点到真实电荷的距离为
+$s=(R^2+d^2-2Rd\cos\theta)^{1/2}$。由球腔侧法向场得到
+\[
+  \boxed{\sigma_{\rm in}(\theta)=
+  \frac{q(R^2-d^2)}{4\pi R\bigl(R^2+d^2-2Rd\cos\theta\bigr)^{3/2}}}.
+\]
+真实电荷为负，所以内壁感应电荷处处为正；离电荷最近的 $\theta=0$ 处最大。积分可得内表面总感应电荷
+$+q$。接地时外表面电荷为零，地面提供了这 $+q$ 电荷。
+
+\textbf{(3) 球壳孤立且净电荷为零。} 导体材料内部仍须无场，因此内表面的电荷分布和上式完全不变，总量
+仍为 $+q$。为使球壳总电荷为零，外表面必须带 $-q$。外表面为半径 $R_o$ 的球面，则这部分电荷均匀
+分布，外部电场等效于球心的 $-q$：
+\[
+  \boldsymbol E_{\rm outside}=-\frac1{4\pi\varepsilon_0}
+  \frac q{r^2}\hat{\boldsymbol r}.
+\]
+球腔内电场不变，只是电势整体增加常量 $-q/(4\pi\varepsilon_0R_o)$。
+
+\textbf{(4) 屏蔽的方向性。} 外部电荷只改变导体外表面的电荷分布；空腔边界仍为等势面，且腔内无真实
+电荷，唯一解是腔内无场。内部真实电荷却直接出现在空腔的泊松方程中，边界为等势并不能把它产生的
+腔内电场消去，只能迫使内表面出现感应电荷。导体材料仍屏蔽了“穿过金属”的场；接地时外部无场，孤立
+时外表面补偿电荷还会产生外场。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【能量】}\label{ch20:ex:s34-3-6}
+计算前文接地导体球外放点电荷的问题，以及例~\ref{ch20:ex:s34-3-5} 接地球腔内放点电荷的问题中，系统的有限静电势能。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+导体感应问题的有限相互作用能统一写成
+\[
+  U=\frac12q_{\rm real}\varphi_{\rm ind}(\boldsymbol r_{\rm real}).
+\]
+这里 $\varphi_{\rm ind}$ 是全部感应电荷在真实电荷处产生的电势。因感应电荷随真实电荷逐渐建立，不能把
+像电荷当成另一个独立真实电荷；前面的 $1/2$ 必须保留。
+
+\textbf{1. 球外点电荷。} $+Q$ 距接地球心 $L>R$，像电荷为 $-QR/L$，像位置为 $R^2/L$。因此
+\[
+  \boxed{U_{\rm out}=-\frac1{4\pi\varepsilon_0}
+  \frac{Q^2R}{2(L^2-R^2)}}.
+\]
+把它对 $L$ 求负导数，恰好得到例题正文中真实电荷所受的吸力。
+
+\textbf{2. 球腔内点电荷。} $-q$ 距球心 $d<R$，像电荷为 $+qR/d$，二者间距为
+$(R^2-d^2)/d$，故
+\[
+  \boxed{U_{\rm in}=-\frac1{4\pi\varepsilon_0}
+  \frac{q^2R}{2(R^2-d^2)}}.
+\]
+当电荷靠近球面时 $d\to R$，能量趋向负无穷，与局部近似为点电荷靠近接地无限平面的结果一致。
+
+若例~\ref{ch20:ex:s34-3-5}中的球壳改为孤立且净电荷为零，外表面 $-q$ 的场还带来有限能量修正
+$+q^2/(8\pi\varepsilon_0R_o)$，所以
+\[
+  U_{\rm neutral}=U_{\rm in}+\frac{q^2}{8\pi\varepsilon_0R_o}.
+\]
+这里比较的是扣除了点电荷自身无穷大自能后的相互作用能。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【电像法】}\label{ch20:ex:s34-3-7}
+两个互相垂直、半无限大的接地金属板围成空间的四分之一。以交线在截面内的交点为原点，两板分别为
+$x=0$ 与 $y=0$，在第一象限 $(a,b)$ 处放一点电荷 $+q$。求第一象限中的电场。
+\par\noindent\begin{minipage}{\linewidth}
+\emCornerQuestion
+\figcap{相互垂直的两接地导体板与真实点电荷；像电荷待构造。}\label{ch20:fig:em-source-thirty-fourth-section-7}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+先关于 $x=0$ 镜像，放置 $-q$ 于 $(-a,b)$，使 $x=0$ 面电势为零；再关于 $y=0$ 镜像，放置 $-q$ 于
+$(a,-b)$。但这两个像电荷会破坏另一块板的零电势条件，因此还必须在 $(-a,-b)$ 放置 $+q$。四电荷关于
+每块板都是等量异号镜像，故两块板上电势同时为零。
+
+图~\ref{ch20:fig:s34-3-8} 的真实求解域是第一象限，另三个点都是像点；逐块检查镜像的相反符号即可验证两板零电势。
+
+\par\noindent\begin{minipage}{\linewidth}
+\cornerImagesFigure
+\diagramcaption{两块正交接地板的三个像电荷。只有第一象限的 $+q$ 是真实电荷。}\label{ch20:fig:s34-3-8}
+\end{minipage}\par\medskip
+
+在第一象限取观察点 $\boldsymbol r=(x,y,z)$，令
+\[
+  \boldsymbol r_1=(a,b,0),\quad
+  \boldsymbol r_2=(-a,b,0),\quad
+  \boldsymbol r_3=(a,-b,0),\quad
+  \boldsymbol r_4=(-a,-b,0).
+\]
+电势与电场分别为
+\[
+  \boxed{\varphi(\boldsymbol r)=\frac q{4\pi\varepsilon_0}
+  \left(\frac1{|\boldsymbol r-\boldsymbol r_1|}
+  -\frac1{|\boldsymbol r-\boldsymbol r_2|}
+  -\frac1{|\boldsymbol r-\boldsymbol r_3|}
+  +\frac1{|\boldsymbol r-\boldsymbol r_4|}\right)},
+\]
+\[
+  \boxed{\boldsymbol E(\boldsymbol r)=\frac q{4\pi\varepsilon_0}
+  \left(\frac{\boldsymbol r-\boldsymbol r_1}{|\boldsymbol r-\boldsymbol r_1|^3}
+  -\frac{\boldsymbol r-\boldsymbol r_2}{|\boldsymbol r-\boldsymbol r_2|^3}
+  -\frac{\boldsymbol r-\boldsymbol r_3}{|\boldsymbol r-\boldsymbol r_3|^3}
+  +\frac{\boldsymbol r-\boldsymbol r_4}{|\boldsymbol r-\boldsymbol r_4|^3}\right)}.
+\]
+三个像电荷都位于第一象限之外，所以没有在真实区域内引入虚假奇点，构造合法。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【半球和平面】}\label{ch20:ex:s34-3-8}
+一个无限大接地平面上方凸起一个半径为 $R$ 的半球，球心在平面内。在球心正上方 $a>R$ 处放置一点
+电荷 $+q$，求上方空间中的电场。若半球改为向下凹入平面的半球形凹槽，为什么同样的有限像电荷构造不能
+直接使用？
+\par\noindent\begin{minipage}{\linewidth}
+\emHemisphereQuestion
+\figcap{接地导体平面上的半球凸起及轴线上真实点电荷。}\label{ch20:fig:em-source-thirty-fourth-section-8}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+取平面为 $z=0$，真实电荷位于 $z=a$。要同时使平面和半径 $R$ 的球面电势为零，需要三枚像电荷：
+\[
+  -q\text{ 位于 }z=-a,\qquad
+  -\frac{qR}{a}\text{ 位于 }z=\frac{R^2}{a},\qquad
+  +\frac{qR}{a}\text{ 位于 }z=-\frac{R^2}{a}.
+\]
+前两枚 $\pm q$ 关于平面反号镜像，后两枚 $\mp qR/a$ 也关于平面反号镜像，所以平面电势为零；在球面上，
+$+q$ 与上方球内像电荷相消，$-q$ 与下方球内像电荷相消，所以半球面电势也为零。
+
+图~\ref{ch20:fig:s34-3-9} 中四个点都在对称轴上；关于平面成对反射使平面电势为零，关于球面的像变换使半球面电势为零。
+
+\par\noindent\begin{minipage}{\linewidth}
+\hemisphereImagesFigure
+\diagramcaption{接地平面上凸半球的三像电荷构造。粗蓝线是实际导体边界。}\label{ch20:fig:s34-3-9}
+\end{minipage}\par\medskip
+
+对上半空间且半球外的观察点，电势为四个点电荷电势的代数和，电场为其负梯度：
+\[
+  \boxed{\varphi(\boldsymbol r)=\frac1{4\pi\varepsilon_0}
+  \left[
+  \frac q{|\boldsymbol r-a\hat{\boldsymbol z}|}
+  -\frac q{|\boldsymbol r+a\hat{\boldsymbol z}|}
+  -\frac{qR/a}{|\boldsymbol r-(R^2/a)\hat{\boldsymbol z}|}
+  +\frac{qR/a}{|\boldsymbol r+(R^2/a)\hat{\boldsymbol z}|}
+  \right]},
+  \qquad \boldsymbol E=-\boldsymbol\nabla\varphi.
+\]
+
+若半球向下凹，球内上方点 $z=R^2/a$ 属于真实可达空间，而不是导体内部。把像电荷放在那里会在真实
+区域制造一个并不存在的奇点，违反电像法的基本要求。此时边界虽仍由平面和半球面组成，但简单的有限
+反射不再封闭，必须改用其他坐标方法、积分方程或数值方法求解。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【能量相关】}\label{ch20:ex:s34-3-9}
+一个无穷大的接地金属板，一侧距板 $a$ 处放置一点电荷 $+q$。
+\begin{enumerate}[label=(\arabic*)]
+  \item 系统电势能为多大？
+  \item 缓慢将点电荷拉至距板 $2a$ 处，需要做功多少？
+  \item 瞬间将点电荷移至距板 $2a$ 处，需要做功多少？
+  \item 后两问为何不同？差值对应的能量去了哪里？
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+这里“瞬间移动”采用明确的冻结感应电荷近似：在搬运阶段保持原有面电荷分布，
+只计算真实电荷在该固定静电场中的势能变化；不把这一步解释为真实电荷的无限速运动。
+若实际问极快运动时外力的总功，还必须给出运动过程，并计入惯性和电磁辐射，
+仅凭初末位置不能决定这些附加项。
+接地平面的像电荷为位于板另一侧对称位置的 $-q$。真实电荷与像电荷距离为 $2a$。
+
+\planeEnergyFigure
+
+\textbf{(1) 初始能量。} 导体感应问题保留 $1/2$ 因子：
+\[
+  \boxed{U(a)=\frac12q\left(-\frac{kq}{2a}\right)
+  =-\frac{kq^2}{4a}=-\frac{q^2}{16\pi\varepsilon_0a}}.
+\]
+
+\textbf{(2) 缓慢移动。} 感应电荷在每一时刻都跟随真实电荷调整，外力做功等于系统能量增量：
+\[
+  \boxed{W_{\rm slow}=U(2a)-U(a)
+  =-\frac{kq^2}{8a}+\frac{kq^2}{4a}
+  =\frac{kq^2}{8a}}.
+\]
+
+\textbf{(3) 瞬时移动。} 移动发生得足够快时，板上的初始感应电荷分布来不及改变。在这个极短阶段，它的
+外部作用仍等效于固定在 $z=-a$ 的像电荷 $-q$。真实电荷从 $z=a$ 跳到 $z=2a$，它与固定感应场的距离
+从 $2a$ 变为 $3a$，故外力做功为
+\[
+  \boxed{W_{\rm fast}=q\left(-\frac{kq}{3a}+\frac{kq}{2a}\right)
+  =\frac{kq^2}{6a}}.
+\]
+
+\textbf{(4) 能量去向。} 瞬移完成后，旧感应电荷分布不是新位置对应的静电平衡分布。表面电荷重新流动，
+最终达到 $U(2a)$。瞬时过程比准静态过程多输入
+\[
+  \boxed{W_{\rm fast}-W_{\rm slow}=\frac{kq^2}{24a}}.
+\]
+这部分能量在感应电荷的暂态运动中转化为焦耳热，或以电磁辐射形式向外传出；两者的份额取决于暂态动力学，不能由静电模型确定；它没有保留在最终静电场中。
+若理想导体完全无耗散，电荷会持续振荡，不能立即到达新的静电平衡，这正与前文等离子体振荡的讨论呼应。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【匀强电场中的导体球】}\label{ch20:ex:s34-3-10}
+把半径为 $R$ 的中性导体球放置在原本沿 $+z$ 方向的匀强电场
+$\boldsymbol E_0=E_0\hat{\boldsymbol z}$ 中，求空间中的电势、电场及球面感应电荷分布。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+无导体时可取电势 $\varphi_0=-E_0r\cos\theta$。导体球外需要补上一个位于球心、沿 $+z$ 方向的偶极子
+势 $A\cos\theta/r^2$。令球面 $r=R$ 为等势面：
+\[
+  -E_0R\cos\theta+\frac{A\cos\theta}{R^2}=\text{常量}.
+\]
+球不带净电荷，所以没有 $1/r$ 单极项；取球内常电势为零，得到 $A=E_0R^3$。于是
+\[
+  \boxed{\varphi(r,\theta)=
+  \begin{cases}
+    -E_0\left(r-\dfrac{R^3}{r^2}\right)\cos\theta,&r\ge R,\\[6pt]
+    0,&r<R.
+  \end{cases}}
+\]
+球外电场的球坐标分量为
+\[
+  \boxed{E_r=E_0\left(1+2\frac{R^3}{r^3}\right)\cos\theta,
+  \qquad
+  E_\theta=-E_0\left(1-\frac{R^3}{r^3}\right)\sin\theta},
+\]
+球内 $\boldsymbol E=0$。在 $r=R$，$E_\theta=0$，所以场线严格垂直球面；法向场为
+$E_r(R)=3E_0\cos\theta$，故
+\[
+  \boxed{\sigma(\theta)=3\varepsilon_0E_0\cos\theta}.
+\]
+北半球 $\cos\theta>0$ 带正感应电荷，南半球带负感应电荷，总感应电荷为零。远处附加项等同于偶极矩
+\[
+  \boxed{\boldsymbol p=4\pi\varepsilon_0R^3\boldsymbol E_0}.
+\]
+
+\par\noindent\begin{minipage}{\linewidth}
+\uniformFieldSphereFigure
+\diagramcaption{匀强电场中的中性导体球。实线为电场线，虚线为等势线；球内无场，球面切向场为零。}
+\end{minipage}\par\medskip
+
+取图中外场箭头方向为 $+z$ 轴，极角 $\theta$ 也从这一方向量起。场线在
+球面两极处最密，恰对应 $|\sigma|$ 最大；赤道处球面场为零；离开球面后，赤道外侧的场逐渐恢复，场线绕过导体而不进入其内部。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fifth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fifth-section/assets/}}
+\section{电容的定义与导体组}
+
+% Labels are deliberately transparent: no white boxes may cover geometry.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.55pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.4pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.3pt},
+  xesline/.style={draw=Ink,line width=.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1pt},
+  xesarrow/.style={-{Latex[length=2.1mm,width=1.3mm]},draw=DeepBlue,line width=.9pt},
+  fieldline/.style={draw=DeepBlue,line width=.82pt,postaction={decorate},
+    decoration={markings,mark=at position .57 with {\arrow{Latex[length=1.65mm,width=1.05mm]}}}},
+  circuit/.style={draw=Ink,line width=.9pt,line cap=round,line join=round}
+}
+
+
+\newcommand{\capacitorFieldFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/capacitor-pair.pdf}
+\end{center}}
+
+
+\newcommand{\parallelPlateFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  % geometry panel
+  \begin{scope}[shift={(-4.45,0)}]
+    \fill[Gold!18] (-1.5,-1.25)--(-.72,-.85)--(-.72,1.25)--(-1.5,.85)--cycle;
+    \draw[xesblue] (-1.5,-1.25)--(-.72,-.85)--(-.72,1.25)--(-1.5,.85)--cycle;
+    \fill[DeepBlue!10] (.4,-1.25)--(1.18,-.85)--(1.18,1.25)--(.4,.85)--cycle;
+    \draw[xesblue] (.4,-1.25)--(1.18,-.85)--(1.18,1.25)--(.4,.85)--cycle;
+    \node[xeslabel,anchor=east] at (-1.58,.65) {$+Q$};
+    \node[xeslabel,anchor=west] at (1.26,.65) {$-Q$};
+    \draw[<->,Gold!80!black,line width=.65pt] (-.68,-1.55)--(.37,-1.55);
+    \node[xestiny,text=Gold!70!black] at (-.15,-1.8) {$d$};
+    \node[xessmall] at (0,1.65) {面积 $A$，板间距 $d$};
+  \end{scope}
+  \node[inner sep=0pt] at (3,0) {\includegraphics[width=6.7cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/plate-edges.pdf}};
+
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\coaxialCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.0,0)}]
+    \fill[DeepBlue!9] (-1.45,-1.55) rectangle (1.45,1.25);
+    \draw[xesblue] (-1.45,-1.55)--(-1.45,1.25) (1.45,-1.55)--(1.45,1.25);
+    \draw[xesblue] (0,1.25) ellipse (1.45 and .42);
+    \draw[xesblue] (-1.45,-1.55) arc[start angle=180,end angle=360,x radius=1.45,y radius=.42];
+    \fill[Gold!28] (-.62,-1.55) rectangle (.62,1.25);
+    \draw[Gold!80!black,line width=.9pt] (-.62,-1.55)--(-.62,1.25) (.62,-1.55)--(.62,1.25);
+    \draw[Gold!80!black,line width=.9pt] (0,1.25) ellipse (.62 and .2);
+    \node[xessmall] at (0,-2.1) {同轴圆柱，长度 $h$};
+    \draw[<->,Gold!75!black,line width=.6pt] (1.8,-1.55)--(1.8,1.25);
+    \node[xestiny,text=Gold!70!black,anchor=west] at (1.95,-.15) {$h$};
+  \end{scope}
+  \begin{scope}[shift={(3.2,0)}]
+    \fill[DeepBlue!8] (0,0) circle (1.65);
+    
+    \fill[Gold!26] (0,0) circle (.56);
+    \draw[xesblue] (0,0) circle (1.65);
+    \draw[Gold!80!black,line width=.9pt] (0,0) circle (.56);
+    \foreach \a in {15,45,...,345}{\draw[fieldline] (\a:.62)--(\a:1.55);}
+    \draw[Ink,line width=.55pt] (0,0)--(-.56,0);\node[xestiny,above] at (-.28,.05) {$a$};
+    \draw[Ink,line width=.55pt] (0,0)--(1.65,0);\node[xestiny,below] at (1.12,-.04) {$b$};
+    \node[xessmall] at (0,-2.1) {横截面：$a<r<b$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\capacitorParallelFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[circuit] (-3,-1.7)--(-3,1.7)--(-1.0,1.7);
+  \draw[circuit] (1.0,1.7)--(3,1.7)--(3,-1.7);
+  \draw[circuit] (-3,0)--(-1.0,0) (1.0,0)--(3,0);
+  \draw[circuit] (-3,-1.7)--(-.45,-1.7) (.45,-1.7)--(3,-1.7);
+  \draw[circuit,line width=1.4pt] (-1.0,1.42)--(-1.0,1.98) (1.0,1.42)--(1.0,1.98);
+  \draw[circuit,line width=1.4pt] (-1.0,-.28)--(-1.0,.28) (1.0,-.28)--(1.0,.28);
+  \draw[circuit,line width=1.4pt] (-.45,-2.08)--(-.45,-1.32) (.45,-1.94)--(.45,-1.46);
+  \node[xeslabel,above] at (0,1.98) {$C_1$};
+  \node[xeslabel,above] at (0,.28) {$C_2$};
+  \node[xeslabel,below] at (0,-2.08) {$U$};
+  \node[xessmall] at (0,1.15) {$Q_1=C_1U$};
+  \node[xessmall] at (0,-.58) {$Q_2=C_2U$};
+  \node[xessmall,align=left,anchor=west] at (4.0,.35) {两端电压相同\\总电荷相加};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\capacitorSeriesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[circuit] (-3,-1.45)--(-3,1.45)--(-1.55,1.45);
+  \draw[circuit] (-.75,1.45)--(.75,1.45);
+  \draw[circuit] (1.55,1.45)--(3,1.45)--(3,-1.45);
+  \draw[circuit] (-3,-1.45)--(-.45,-1.45) (.45,-1.45)--(3,-1.45);
+  \draw[circuit,line width=1.4pt] (-1.55,1.17)--(-1.55,1.73) (-.75,1.17)--(-.75,1.73);
+  \draw[circuit,line width=1.4pt] (.75,1.17)--(.75,1.73) (1.55,1.17)--(1.55,1.73);
+  \draw[circuit,line width=1.4pt] (-.45,-1.83)--(-.45,-1.07) (.45,-1.69)--(.45,-1.21);
+  \node[xeslabel,above] at (-1.15,1.76) {$C_1$};
+  \node[xeslabel,above] at (1.15,1.76) {$C_2$};
+  \node[xeslabel,below] at (0,-1.87) {$U$};
+  \node[xessmall,align=center] at (0,.55) {中间导体净电荷为零\\两电容电荷量均为 $Q$};
+  \node[xessmall] at (0,-.45) {$U=Q/C_1+Q/C_2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\greenSphereFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Gold!16] (-1.3,0) circle (1.25);\draw[xesblue] (-1.3,0) circle (1.25);
+  \fill[Ink] (3.35,0) circle (2.2pt);\node[xeslabel,above=4pt] at (3.35,0) {$P$};
+  \fill[Ink] (-1.3,0) circle (1.7pt);
+  \draw[xesline] (-1.3,0)--(3.35,0);
+  \node[xeslabel,above] at (1.0,0) {$r$};
+  \node[xessmall,align=left,anchor=west] at (4.25,.35) {状态 A：球带单位电荷\\状态 B：$P$ 点放电荷 $q$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\greenTwoConductorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!10] (-2.6,0) ellipse (1.3 and .95);\draw[xesblue] (-2.6,0) ellipse (1.3 and .95);
+  \fill[Gold!16] (2.4,.1) ellipse (1.05 and 1.18);\draw[xesblue] (2.4,.1) ellipse (1.05 and 1.18);
+  \node[xeslabel,align=center] at (-2.6,0) {$Q_1$\\$\varphi_1$};
+  \node[xeslabel,align=center] at (2.4,.1) {$Q_2$\\$\varphi_2$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-1.15,0)--(1.2,0);
+  \node[xessmall,text=Gold!70!black,above] at (0,.05) {静电感应耦合};
+  \node[xessmall] at (0,-1.55) {另一状态用 $Q'_i,\varphi'_i$ 表示，几何形状保持不变};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dielectricMeterFigure}{%
+\begin{center}
+\includegraphics[width=.93\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-meter.png}
+\end{center}}
+
+
+\newcommand{\polarizationFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.6,0)}]
+    \draw[xesblue] (-2.1,-1.45) rectangle (2.1,1.45);
+    \foreach \x in {-1.45,0,1.45}{\foreach \y in {-0.85,0,.85}{
+      \fill[DeepBlue!20] (\x-.24,\y) ellipse (.38 and .2);
+      \fill[Gold!35] (\x+.24,\y) ellipse (.38 and .2);
+      \node[xestiny,text=Ink] at (\x-.28,\y) {$-$};
+      \node[xestiny,text=Ink] at (\x+.28,\y) {$+$};}}
+    \draw[xesarrow] (-1.8,1.9)--(1.8,1.9);
+    \node[xessmall,above] at (0,1.93) {$\boldsymbol E_0$};
+    \node[xessmall] at (0,-1.8) {微观：偶极矩沿外场排列};
+  \end{scope}
+  \begin{scope}[shift={(3.6,0)}]
+    \draw[xesblue] (-2.1,-1.45) rectangle (2.1,1.45);
+    \foreach \y in {-1.1,-.55,0,.55,1.1}{
+      \node[xestiny,text=Ink] at (-1.82,\y) {$-$};
+      \node[xestiny,text=Ink] at (1.82,\y) {$+$};
+      \draw[-{Latex[length=1.65mm]},Gold!80!black,line width=.72pt] (1.35,\y)--(-1.35,\y);}
+    \node[xessmall,text=Gold!70!black] at (0,.28) {$\boldsymbol E_p$};
+    \node[xessmall] at (0,-1.8) {宏观：束缚面电荷产生反向极化场};
+    \node[xestiny,anchor=east] at (-2.25,0) {$-\sigma_p$};
+    \node[xestiny,anchor=west] at (2.25,0) {$+\sigma_p$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\exampleParallelFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.25pt] (-3,.75)--(3,.75);
+  \draw[xesblue,line width=1.25pt] (-3,-.75)--(3,-.75);
+  \draw[<->,Gold!75!black,line width=.65pt] (3.35,-.75)--(3.35,.75);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (3.52,0) {$d$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3,-1.18)--(3,-1.18);
+  \node[xestiny,text=Gold!70!black] at (0,-1.42) {$l$};
+  \node[xessmall] at (0,1.15) {$S=l^2$};
+  \foreach \x in {-2.5,-1.5,...,2.5}{\draw[fieldline] (\x,.62)--(\x,-.62);}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\exampleSphericalFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  
+  \fill[Gold!16] (0,0) circle (.9);
+  \draw[xesblue] (0,0) circle (1.7);
+  \draw[Gold!80!black,line width=.9pt] (0,0) circle (.9);
+  \draw[xesline] (0,0)--(.9,0) node[xestiny,pos=.62,above] {$R_1$};
+  \draw[xesline] (0,0)--(1.7,0) node[xestiny,pos=.82,below] {$R_2$};
+  \foreach \a in {15,45,...,345}{\draw[fieldline] (\a:.97)--(\a:1.62);}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\touchingSpheresFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!7] (-1.25,0) circle (1.25);\draw[xesblue] (-1.25,0) circle (1.25);
+  \fill[DeepBlue!7] (1.25,0) circle (1.25);\draw[xesblue] (1.25,0) circle (1.25);
+  \draw[xesline] (1.25,0)--(2.13,.88);
+  \node[xeslabel,above] at (1.72,.48) {$R$};
+  \node[xessmall] at (0,-1.65) {两球接触并处于同一电势 $V$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\touchingSphereImagesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue] (-1.55,0) circle (1.55);\draw[xesblue] (1.55,0) circle (1.55);
+  \draw[RuleGray,densely dashed,line width=.55pt] (-3.2,0)--(3.2,0);
+  \foreach \x/\sgn in {-1.55/DeepBlue,-.78/Ink,-.52/DeepBlue,-.39/Ink,
+                         1.55/DeepBlue,.78/Ink,.52/DeepBlue,.39/Ink}{
+    \fill[\sgn] (\x,0) circle (3.1pt);}
+  % 接触点附近的像电荷十分密集；用错层引线避免 q_2,q_3,q_4 互相覆盖。
+  \node[xestiny,above=3pt] at (-1.55,0) {$q_1$};
+  \draw[RuleGray,line width=.45pt] (-.78,-.05)--(-.90,-.34)
+    node[xestiny,below] {$q_2$};
+  \draw[RuleGray,line width=.45pt] (-.52,.05)--(-.70,.38)
+    node[xestiny,above] {$q_3$};
+  \draw[RuleGray,line width=.45pt] (-.39,-.05)--(-.48,-.64)
+    node[xestiny,below] {$q_4$};
+  \node[xestiny,above=3pt] at (1.55,0) {$q_1$};
+  \draw[RuleGray,line width=.45pt] (.78,-.05)--(.90,-.34)
+    node[xestiny,below] {$q_2$};
+  \draw[RuleGray,line width=.45pt] (.52,.05)--(.70,.38)
+    node[xestiny,above] {$q_3$};
+  \draw[RuleGray,line width=.45pt] (.39,-.05)--(.48,-.64)
+    node[xestiny,below] {$q_4$};
+  \node[xessmall] at (0,-1.95) {$x_n=R/n,\quad q_n=4\pi\varepsilon_0RV\,(-1)^{n-1}/n$};
+  \node[xessmall] at (0,-2.43) {两侧电荷序列都向接触点聚集};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\twoCylindersFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-cylinders.pdf}
+\end{center}}
+
+
+\newcommand{\modifiedCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.5,0)}]
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,-.9) rectangle (0,.9);
+    \draw[RuleGray,line width=.55pt] (0,-.9)--(0,.9);
+    \node[xessmall] at (-1,0) {$\varepsilon_r$};\node[xessmall] at (1,0) {真空};
+    \node[xessmall] at (0,-1.42) {(a) 占一半面积：两个电容并联};
+  \end{scope}
+  \begin{scope}[shift={(3.5,0)}]
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,0) rectangle (2,.9);
+    \draw[RuleGray,line width=.55pt] (-2,0)--(2,0);
+    \node[xessmall] at (0,.45) {$\varepsilon_r$};\node[xessmall] at (0,-.48) {真空};
+    \node[xessmall] at (0,-1.42) {(b) 占一半厚度：两个电容串联};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dielectricInsertionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (-4,1)--(4,1) (-4,-1)--(4,-1);
+  \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-4,-.9) rectangle (1.0,.9);
+  \draw[Gold!80!black,line width=.75pt] (1.0,-.9)--(1.0,.9);
+  \draw[<->,Gold!75!black,line width=.65pt] (-4,1.38)--(1.0,1.38);
+  \node[xestiny,text=Gold!70!black] at (-1.5,1.62) {$x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (1.0,1.38)--(4,1.38);
+  \node[xestiny,text=Gold!70!black] at (2.5,1.62) {$a-x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (4.35,-1)--(4.35,1);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (4.5,0) {$d$};
+  \draw[xesarrow] (.6,0)--(1.75,0);\node[xessmall,above] at (1.18,.05) {$F$};
+  \node[xessmall] at (-1.5,0) {$\varepsilon_r$};
+  \node[xessmall] at (0,-1.48) {极板宽度为 $b$，总面积 $S=ab$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\yCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (O) at (0,0);
+  \draw[circuit] (O)--(0,.62);
+  \draw[circuit,line width=1.35pt] (-.34,.62)--(.34,.62) (-.34,1.02)--(.34,1.02);
+  \draw[circuit] (0,1.02)--(0,1.85);
+  \node[xeslabel,anchor=west] at (.45,.82) {$C_1$};\node[xeslabel,above] at (0,1.85) {$\varphi_1$};
+  \begin{scope}[rotate=120]
+    \draw[circuit] (0,0)--(0,.72);
+    \draw[circuit,line width=1.35pt] (-.34,.72)--(.34,.72) (-.34,1.12)--(.34,1.12);
+    \draw[circuit] (0,1.12)--(0,1.95);
+  \end{scope}
+  \node[xeslabel] at (-1.85,-1.18) {$\varphi_2$};\node[xeslabel] at (-1.00,-1.02) {$C_2$};
+  \begin{scope}[rotate=-120]
+    \draw[circuit] (0,0)--(0,.72);
+    \draw[circuit,line width=1.35pt] (-.34,.72)--(.34,.72) (-.34,1.12)--(.34,1.12);
+    \draw[circuit] (0,1.12)--(0,1.95);
+  \end{scope}
+  \node[xeslabel] at (1.85,-1.18) {$\varphi_3$};\node[xeslabel] at (1.00,-1.02) {$C_3$};
+  \fill[DeepBlue] (O) circle (2.3pt);\node[xessmall,anchor=west] at (.18,.12) {浮置中性节点，电势 $V$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dielectricSphereFieldFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-sphere.pdf}
+\end{center}}
+
+
+\newcommand{\polarizationEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.3,0)}]
+    \draw[xesblue] (-1.7,-1.0) rectangle (1.7,1.0);
+    \foreach \x in {-1.15,0,1.15}{\draw[decorate,decoration={zigzag,segment length=3pt,amplitude=2pt},Gold!75!black,line width=.7pt] (\x-.35,0)--(\x+.35,0);}
+    \foreach \x in {-1.15,0,1.15}{\node[xestiny] at (\x-.48,0) {$-$};\node[xestiny] at (\x+.48,0) {$+$};}
+    \node[xessmall] at (0,-1.38) {无外场：微观“弹簧”未拉伸};
+  \end{scope}
+  \begin{scope}[shift={(3.3,0)}]
+    \draw[xesblue] (-1.7,-1.0) rectangle (1.7,1.0);
+    \foreach \x in {-1.15,0,1.15}{\draw[decorate,decoration={zigzag,segment length=3pt,amplitude=2pt},Gold!75!black,line width=.7pt] (\x-.55,0)--(\x+.55,0);}
+    \foreach \x in {-1.15,0,1.15}{\node[xestiny] at (\x-.7,0) {$-$};\node[xestiny] at (\x+.7,0) {$+$};}
+    \draw[xesarrow] (-1.45,.68)--(1.45,.68);\node[xessmall,above] at (0,.71) {$\boldsymbol E$};
+    \node[xessmall] at (0,-1.38) {有外场：极化自由度也储存能量};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargingEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[draw=DeepBlue,line width=.9pt,rounded corners=2pt,minimum width=2.3cm,minimum height=1.0cm,text=Ink,fill=DeepBlue!6] (S) at (-3.6,0) {电源 $C\mathcal E^2$};
+  \node[draw=DeepBlue,line width=.9pt,rounded corners=2pt,minimum width=2.4cm,minimum height=1.0cm,text=Ink,fill=DeepBlue!6] (C) at (0,1.15) {电容场能 $\tfrac12C\mathcal E^2$};
+  \node[draw=Gold!80!black,line width=.9pt,rounded corners=2pt,minimum width=2.4cm,minimum height=1.0cm,text=Ink,fill=Gold!12] (H) at (0,-1.15) {焦耳热 $\tfrac12C\mathcal E^2$};
+  \draw[xesarrow] (S.east)--(C.west);\draw[-{Latex[length=2.1mm]},Gold!80!black,line width=.9pt] (S.east)--(H.west);
+  \node[xessmall,align=left,anchor=west] at (2.1,.25) {$R>0$ 时分配比例与 $R$ 无关；\\$R\to0^+$ 只使过程更快。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\earthCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!16] (0,0) circle (2.05);\draw[xesblue] (0,0) circle (2.05);
+  \draw[Gold!80!black,line width=3.3pt,opacity=.7] (0,0) circle (2.34);
+  \node[xessmall] at (0,0) {地球};
+  \node[xestiny] at (0,-.45) {半径 $R_\oplus$，电荷 $-Q$};
+  \draw[<->,Gold!75!black,line width=.65pt] (2.05,0)--(2.34,0);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (2.48,0) {$d=5\,\mathrm{km}$};
+  \node[xessmall,anchor=west] at (3.35,.62) {等效大气上边界：$+Q$};
+  \draw[RuleGray,-{Latex[length=1.5mm]},line width=.55pt] (3.2,.55)--(2.25,.35);
+  \node[xessmall,anchor=west] at (3.35,-.35) {$C=4\pi\varepsilon_0\dfrac{R_\oplus(R_\oplus+d)}{d}$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emParallelQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.25pt] (-3,.75)--(3,.75);
+  \draw[xesblue,line width=1.25pt] (-3,-.75)--(3,-.75);
+  \draw[<->,Gold!75!black,line width=.65pt] (3.35,-.75)--(3.35,.75);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (3.52,0) {$d$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3,-1.18)--(3,-1.18);
+  \node[xestiny,text=Gold!70!black] at (0,-1.42) {$l$};
+  \node[xessmall] at (0,1.15) {$S=l^2$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emSphericalQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  
+  \fill[Gold!16] (0,0) circle (.9);
+  \draw[xesblue] (0,0) circle (1.7);
+  \draw[Gold!80!black,line width=.9pt] (0,0) circle (.9);
+  \draw[xesline] (0,0)--(.9,0) node[xestiny,pos=.62,above] {$R_1$};
+  \draw[xesline] (0,0)--(1.7,0) node[xestiny,pos=.82,below] {$R_2$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emModifiedQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \path[use as bounding box] (-5.55,-1.7) rectangle (5.55,1.15);
+  \begin{scope}[shift={(-3.5,0)}]
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,-.9) rectangle (0,.9);
+    \draw[RuleGray,line width=.55pt] (0,-.9)--(0,.9);
+    \node[xessmall] at (-1,0) {$\varepsilon_r$};\node[xessmall] at (1,0) {真空};
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \node[xessmall] at (0,-1.42) {(a) 占一半面积};
+  \end{scope}
+  \begin{scope}[shift={(3.5,0)}]
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,0) rectangle (2,.9);
+    \draw[RuleGray,line width=.55pt] (-2,0)--(2,0);
+    \node[xessmall] at (0,.45) {$\varepsilon_r$};\node[xessmall] at (0,-.48) {真空};
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \node[xessmall] at (0,-1.42) {(b) 占一半厚度};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emInsertionQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (-4,1)--(4,1) (-4,-1)--(4,-1);
+  \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-4,-.9) rectangle (1.0,.9);
+  \draw[Gold!80!black,line width=.75pt] (1.0,-.9)--(1.0,.9);
+  \draw[<->,Gold!75!black,line width=.65pt] (-4,1.38)--(1.0,1.38);
+  \node[xestiny,text=Gold!70!black] at (-1.5,1.62) {$x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (1.0,1.38)--(4,1.38);
+  \node[xestiny,text=Gold!70!black] at (2.5,1.62) {$a-x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (4.35,-1)--(4.35,1);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (4.5,0) {$d$};
+  \node[xessmall] at (-1.5,0) {$\varepsilon_r$};
+  \node[xessmall] at (0,-1.48) {极板宽度为 $b$，总面积 $S=ab$};
+\end{tikzpicture}
+\end{center}}
+
+
+本章前文讨论了导体在静电平衡状态下的性质：导体内部电场为零，整个导体是等势体，电荷分布在表面。
+当几个导体共同存在时，每个导体都可以用其电荷和电势描述；改变一个导体的电荷，还会通过静电感应
+改变其他导体的表面电荷分布与电势。本章把这种相互作用定量化。最简单的量是孤立导体的电容以及由
+两个导体构成的电容器的电容；在此基础上，还要讨论一般导体组、介质极化和电位移矢量。
+
+
+\subsection{孤立导体的电容}
+
+
+先设想空间中有许多导体，其中只有一个导体不接地，其余导体均与大地相连，电势固定为零。给这个
+孤立导体电荷 $Q$ 后，它达到静电平衡并具有电势 $U$。由静电场的唯一性和叠加原理可知：导体的几何
+形状、位置及周围接地边界不变时，把所有电荷同时放大 $k$ 倍，电势也放大 $k$ 倍。因此 $Q$ 与 $U$
+成正比，写成
+\begin{equation}
+  \boxed{Q=CU}.
+\end{equation}
+比例系数 $C$ 称为该孤立导体的电容。它只由导体的形状、大小、位置以及周围边界决定，与本次给它多少
+电荷无关。在国际单位制中电容的单位是法拉，$1\,\mathrm F=1\,\mathrm C/\mathrm V$；实际孤立导体的
+电容通常很小，常用 $\mu\mathrm F$、$\mathrm{nF}$ 和 $\mathrm{pF}$。
+
+半径为 $R$ 的孤立导体球外没有其他导体。球带电 $Q$ 时，球面外电场与位于球心的点电荷相同，取无穷远
+电势为零，球面电势为
+\[
+  U=\int_R^{\infty}\frac{Q}{4\pi\varepsilon_0r^2}\,\mathrm dr
+   =\frac{Q}{4\pi\varepsilon_0R}.
+\]
+代入定义得到
+\begin{equation}
+  \boxed{C=\frac QU=4\pi\varepsilon_0R}.
+\end{equation}
+可见球半径越大，达到相同电势所需的电荷越多，电容也越大。例如 $R=1\,\mathrm m$ 时，电容仍只有
+约 $111\,\mathrm{pF}$。
+
+若孤立导体的电容为 $C$，把它从不带电缓慢充到电荷 $Q$。中间状态带电 $q$ 时电势为 $q/C$，再搬入
+$\mathrm dq$ 所做的功为 $(q/C)\mathrm dq$。总静电能为
+\begin{equation}
+  \boxed{W=\int_0^Q\frac qC\,\mathrm dq
+  =\frac{Q^2}{2C}=\frac12QU=\frac12CU^2}.
+\end{equation}
+这些能量保存在导体带电所建立的电场中。由于静电场能量密度非负，电容也必为正数。
+
+
+\subsection{电容器的电容}
+
+
+取两个彼此绝缘的导体，分别带 $+Q$ 和 $-Q$。若它们的放置使电场主要限制在两者之间，这一导体组
+称为电容器，两个导体称为两极。带正电的一极为正极，另一极为负极。
+
+图~\ref{ch20:fig:s35-4-1} 以两球为例，正球上的场线沿外法线发出，负球上的场线沿内法线进入；两球各自等势，但电势一般不同。
+
+\par\noindent\begin{minipage}{\linewidth}
+\capacitorFieldFigure
+\diagramcaption{双极电容器的两球示例。两极带等量异号电荷，电场线由正极指向负极。}\label{ch20:fig:s35-4-1}
+\end{minipage}\par\medskip
+
+由唯一性定理，两极电荷量 $Q$ 与电势差 $U=\varphi_+-\varphi_-$ 成正比：
+\begin{equation}
+  \boxed{Q=CU}.
+\end{equation}
+这里的 $C$ 是电容器的电容量。孤立导体与双极电容器的两式 $Q=CU$ 形式相同，但含义不同：孤立导体的 $U$ 是相对无穷远
+或接地边界的电势，双极电容器的 $U$ 是两极之间的电势差。电容器的电容由两极的大小、形状、相对位置
+以及两极间介质决定。
+
+最简单的是平行板电容器。两块面积均为 $A$ 的平面导体板正对放置，板间距为 $d$。真实电场在中央近似
+均匀，在边缘向外弯曲；当板的线度远大于 $d$ 时，边缘场只占很小部分，可以忽略。
+
+图~\ref{ch20:fig:s35-4-2} 左侧标出面积 $A$ 和间距 $d$；右侧场线在板间中央近乎平行，只有边缘附近明显弯曲，因此下文匀强近似要求极板尺度远大于 $d$。
+
+\par\noindent\begin{minipage}{\linewidth}
+\parallelPlateFigure
+\diagramcaption{平行板电容器的几何参数与实际电场。右图为无限延伸方向的截面模型：上板带正电、下板带负电；中央近似匀强，边缘场由同一电势边界求得。}\label{ch20:fig:s35-4-2}
+\end{minipage}\par\medskip
+
+忽略边缘效应时，每块板的面电荷密度为 $\sigma=Q/A$。单个无限大带电面的场强为
+$\sigma/(2\varepsilon_0)$，两板之间同向叠加、外部反向抵消，所以
+\[
+  E=\frac{\sigma}{\varepsilon_0}=\frac{Q}{\varepsilon_0A},\qquad
+  U=Ed=\frac{Qd}{\varepsilon_0A}.
+\]
+因此
+\begin{equation}
+  \boxed{C=\varepsilon_0\frac Ad}.
+\end{equation}
+板面积越大，相同电势差下能够存储的电荷越多；板距越大，相同电荷产生的电势差越大。因此 $C$ 正比于
+$A$、反比于 $d$。
+
+另一种常见结构是同轴圆柱电容器。内、外导体半径分别为 $a,b$，共同长度为 $h$。忽略两端边缘场，
+在 $a<r<b$ 处取半径 $r$、长度 $h$ 的同轴圆柱高斯面。若内柱带 $+Q$，则
+\[
+  E(r)\,2\pi rh=\frac{Q}{\varepsilon_0},\qquad
+  E(r)=\frac{Q}{2\pi\varepsilon_0h}\frac1r.
+\]
+
+图~\ref{ch20:fig:s35-4-3} 的横截面中，积分面半径必须满足 $a<r<b$；沿径向从 $a$ 积到 $b$，才能得到两导体间的电势差。
+
+\par\noindent\begin{minipage}{\linewidth}
+\coaxialCapacitorFigure
+\diagramcaption{同轴圆柱形电容器。电场只存在于 $a<r<b$，并沿径向分布。}\label{ch20:fig:s35-4-3}
+\end{minipage}\par\medskip
+
+两极之间的电势差为
+\[
+  U=\int_a^bE(r)\,\mathrm dr
+   =\frac{Q}{2\pi\varepsilon_0h}\ln\frac ba,
+\]
+所以
+\begin{equation}
+  \boxed{C=\frac{2\pi\varepsilon_0h}{\ln(b/a)}}.
+\end{equation}
+它正比于长度 $h$。外半径 $b$ 固定时，$a$ 越接近 $b$，$\ln(b/a)$ 越小，电容迅速增大。
+若保持 $Q$ 不变，电势差减小，而内表面场 $Q/(2\pi\varepsilon_0ha)$ 反而随 $a$ 增大而减小；
+若保持电压不变，场强的变化须代入 $Q=CU$ 后另作判断。公式假定圆柱足够长；实际电容器尺寸有限时，两端边缘场会修正结果。
+
+
+\subsection{导体组的一般理论}
+
+
+设有 $N$ 个形状与位置固定的导体。某一静电平衡状态下，第 $i$ 个导体的电荷和电势分别为
+$Q_i,\varphi_i$；保持几何结构不变，再建立另一状态 $Q'_i,\varphi'_i$。由格林定理可得静电倒易
+关系
+\begin{equation}
+  \boxed{\sum_iQ_i\varphi'_i=\sum_iQ'_i\varphi_i}.
+\end{equation}
+它把一个状态的电荷与另一个状态的电势交叉相乘再求和，两种交叉方式所得结果完全相同。
+其条件是几何结构、介质分布和线性互易的介电响应在两状态中相同，无穷远边界项消失。
+在导体外区域使用 $\boldsymbol E=-\nabla\varphi$、$\boldsymbol D=\varepsilon\boldsymbol E$，
+有 $\boldsymbol D\cdot\nabla\varphi'=\boldsymbol D'\cdot\nabla\varphi$。
+区域内无自由体电荷时，
+\[
+ \nabla\cdot(\varphi'\boldsymbol D-\varphi\boldsymbol D')=0.
+\]
+积分并用散度定理。区域在导体表面的外法线指入导体，故该处通量分别为 $-Q_i$、$-Q_i'$；
+又因各导体等势，边界积分便给出
+$-\sum_i\varphi_i'Q_i+\sum_i\varphi_iQ_i'=0$。
+若区域另有固定点电荷，还须把它们的 $q\varphi'$ 与 $q'\varphi$ 项一起计入。
+
+先看一个导体球与球外点 $P$。状态 A 中球带单位电荷，$P$ 点不放电荷；状态 B 中球不带净电荷，
+$P$ 点放电荷 $q$。状态 A 在距离球心 $r$ 的 $P$ 点产生电势
+$1/(4\pi\varepsilon_0r)$。把两状态代入倒易关系，状态 B 中球的电势立即得到
+\[
+  \varphi=\frac{q}{4\pi\varepsilon_0r}.
+\]
+这说明外点电荷使中性导体球发生复杂的表面电荷重排，但球的共同电势仍可不求分布而直接得到。
+
+图~\ref{ch20:fig:s35-4-6} 中距离 $r$ 从球心量到 $P$；交换球上电荷与 $P$ 处电荷时，球的位置和半径均保持不变。
+
+\par\noindent\begin{minipage}{\linewidth}
+\greenSphereFigure
+\diagramcaption{格林倒易定理的一个例子。两种状态共用同一导体球和同一点 $P$。}\label{ch20:fig:s35-4-6}
+\end{minipage}\par\medskip
+
+再取两个任意导体。状态 A 的量为 $Q_1,Q_2,\varphi_1,\varphi_2$，状态 B 的量带撇号。倒易关系成为
+\begin{equation}
+  \boxed{Q_1\varphi'_1+Q_2\varphi'_2
+   =Q'_1\varphi_1+Q'_2\varphi_2}.
+\end{equation}
+
+图~\ref{ch20:fig:s35-4-7} 将两导体的电荷与电势一一配对；倒易关系比较的是同一几何下的两个状态，而不是把两导体互换位置。
+
+\par\noindent\begin{minipage}{\linewidth}
+\greenTwoConductorFigure
+\diagramcaption{格林倒易定理的另一个例子。两导体形状和位置固定，只改变各自电荷。}\label{ch20:fig:s35-4-7}
+\end{minipage}\par\medskip
+
+几个特殊选择很有用：若状态 A 中仅导体 1 带电 $Q$，状态 B 中仅导体 2 带相同电荷 $Q$，则
+$\varphi'_1=\varphi_2$，说明相互感应的影响具有对称性；若两状态中分别把一个导体接地、另一个保持
+同一电势，可得两种情况下接地导体的感应总电荷相同。还可以选取单位电势状态，构造导体组的电容系数
+矩阵，并由倒易定理证明矩阵是对称的。
+还可直接处理一边定电荷、一边接地的混合条件：设状态 A 为 $Q_1=Q$、$\varphi_2=0$，
+状态 B 为 $\varphi_1'=0$、$Q_2'=Q'$，则
+\[
+ Q_2\varphi_2'=Q_1'\varphi_1.
+\]
+这里两侧分别是“感应电荷乘另一状态的非零电势”，不能误删感应电荷项。
+它与分别指定净电荷或指定电势的前两种选择，均由同一个两导体倒易式直接得到。
+另一个混合选择更适合用于感应电荷的计算：状态 A 令 $\varphi_1=V_*$、$Q_2=0$；
+状态 B 令 $\varphi_1'=0$、$Q_2'=Q_*$。代入倒易式后左侧两项均为零，故
+\[
+ 0=Q_1'V_*+Q_*\varphi_2,\qquad
+ \boxed{\frac{Q_1'}{Q_*}=-\frac{\varphi_2}{V_*}}.
+\]
+也就是说，在导体 2 中性时把导体 1 升到给定电势所得的导体 2 电势，
+可反求导体 1 接地、向导体 2 加入给定电荷时导体 1 的感应电荷。
+采用参考量 $V_*,Q_*$ 后，两边都是无量纲比值，不能直接把有不同单位的电荷与电势写成相等。
+
+
+% EM structure and teaching revision 20260928
+\subsection{从几何求电容的完整流程}
+电容不是给定电荷本身的性质，而是导体几何、介质和边界条件共同决定的比例系数。两端电容器依次选定自由电荷 $+Q,-Q$，求介质中的场，再沿从正极到负极的路径算电压，最后消去 $Q$。
+例如长为 $\ell$、内外半径 $a,b$ 的同轴圆柱，忽略端部效应，介电常数为 $\varepsilon$，则
+\[
+ E_r(r)=\frac{Q}{2\pi\varepsilon\ell r},\quad
+ U=\int_a^b E_r\dd r=\frac{Q\ln(b/a)}{2\pi\varepsilon\ell},\quad
+ C=\frac{2\pi\varepsilon\ell}{\ln(b/a)}.
+\]
+若间隙 $d=b-a\ll a$，利用 $\ln(1+d/a)\simeq d/a$ 得
+$C\simeq\varepsilon(2\pi a\ell)/d$，正好退回展开为平行板后的近似。
+多导体问题中，必须先说明哪两部分作为端口、其余导体是接地还是悬浮。一般关系为 $Q_i=\sum_j C_{ij}V_j$；改变悬浮导体的约束，相当于消去一组不同的未知电势，得到的端口等效电容也可能不同。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【统统算出来】}\label{ch20:ex:s35-4-1}
+如图，最简单的双极电容为平行板电容器、球电容器和柱电容器，各参数如图。且平行板边长
+$l\gg d$，柱电容器长度远大于极板间距。试利用高斯定理求解这三个电容器的电容。
+\begin{center}
+\begin{minipage}{.53\linewidth}\emParallelQuestion\end{minipage}
+\begin{minipage}{.40\linewidth}\emSphericalQuestion\end{minipage}
+\end{center}
+\figcap{平行板与同心球形电容器的几何尺寸。}\label{ch20:fig:em-capacitors-question}
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.7]
+
+ \draw[thick](0,0)circle(1.35)(0,0)circle(.55);
+ \draw(0,0)--(140:.55)node[midway,above]{$a$};\draw(0,0)--(-35:1.35)node[midway,below]{$b$};
+ \node[align=left,anchor=west]at(2.2,.25){同轴圆柱横截面\\轴向长度 $h$\\内、外导体半径 $a,b$};
+
+\end{tikzpicture}\end{center}
+\figcap{柱形电容器的横截面与长度定义。}\label{ch20:fig:em-source-thirty-fifth-section-1}
+\end{origexamplebox}\par\nopagebreak[4]
+
+图~\ref{ch20:fig:s35-4-10} 的板间距为 $d$，板面边长为 $l$，故用来包围极板电荷的高斯面有效面积为 $S=l^2$。
+
+\par\noindent\begin{minipage}{\linewidth}
+\exampleParallelFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-1}的平行板电容器，$S=l^2$。}\label{ch20:fig:s35-4-10}
+\end{minipage}\par\medskip
+
+图~\ref{ch20:fig:s35-4-11} 中场仅分布于 $R_1<r<R_2$；两导体之间的电压须沿半径方向积分。
+
+\par\noindent\begin{minipage}{\linewidth}
+\exampleSphericalFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-1}的同心球形电容器，内、外半径分别为 $R_1,R_2$。}\label{ch20:fig:s35-4-11}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+三种结构都具有足够的对称性。统一方法是：先由高斯定理求 $E$，再沿场线积分求电势差 $U$，
+最后使用 $C=Q/U$。
+
+\textbf{(1) 平行板电容器。} 忽略边缘效应，两极之间
+\[
+ E=\frac{Q}{\varepsilon_0S},\qquad U=Ed=\frac{Qd}{\varepsilon_0S},
+\]
+故
+\[
+ \boxed{C_{\rm p}=\varepsilon_0\frac Sd=\varepsilon_0\frac{l^2}{d}}.
+\]
+
+\textbf{(2) 同心球形电容器。} 在 $R_1<r<R_2$ 取半径为 $r$ 的球面，
+\[
+ E(r)4\pi r^2=\frac Q{\varepsilon_0},\qquad
+ E(r)=\frac{Q}{4\pi\varepsilon_0r^2}.
+\]
+所以
+\[
+ U=\int_{R_1}^{R_2}E(r)\,\mathrm dr
+ =\frac{Q}{4\pi\varepsilon_0}\left(\frac1{R_1}-\frac1{R_2}\right),
+\]
+从而
+\[
+ \boxed{C_{\rm s}=4\pi\varepsilon_0\frac{R_1R_2}{R_2-R_1}}.
+\]
+令 $R_2\to\infty$，自然退化为孤立球的 $C=4\pi\varepsilon_0R_1$。
+
+\textbf{(3) 同轴圆柱电容器。} 按题图取内、外半径 $a,b$、轴向长度 $h$，忽略端部效应，
+\[
+ E(r)2\pi rh=\frac Q{\varepsilon_0},\qquad
+ U=\int_{a}^{b}\frac{Q}{2\pi\varepsilon_0hr}\,\mathrm dr
+ =\frac{Q}{2\pi\varepsilon_0h}\ln\frac{b}{a}.
+\]
+因此
+\[
+ \boxed{C_{\rm c}=\frac{2\pi\varepsilon_0h}{\ln(b/a)}}.
+\]
+这里每一步都使用了实际存在电场的区域：平行板在两板之间，球形在两球面之间，圆柱形在两同轴柱面之间。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【两个导体球】}\label{ch20:ex:s35-4-2}
+两个导体球紧挨着，半径均为 $R$。试求这两个球作为一个导体的单极电容。
+\par\noindent\begin{minipage}{\linewidth}
+\touchingSpheresFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-2}。两球相切并电连接，整个导体处于同一电势。}\label{ch20:fig:s35-4-12}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+图~\ref{ch20:fig:s35-4-12} 的接触点是两球的公共点；在计算电容时，两球应视为同一等势导体，而非两个独立电容器。
+
+
+\begin{xesolution}
+令两球共同电势为 $V$，接触点为坐标原点，两球心位于 $x=\pm R$。可用一列像电荷表示球外电势：
+在每个球内、距接触点 $R/n$ 的轴线上放置
+\[
+ q_n=4\pi\varepsilon_0RV\frac{(-1)^{n-1}}n,
+ \qquad n=1,2,\ldots
+\]
+下面验证这个序列为何成立。令 $K=4\pi\varepsilon_0RV$。
+在右球球心 $x=R$ 放 $q_1=K$，其自身在右球面产生常电势 $V$。
+左侧第 $n$ 枚电荷在 $x=-R/n$，距右球心为 $R+R/n$；关于右球反演，
+\[
+ q_{n+1}=-\frac{R}{R+R/n}q_n=-\frac n{n+1}q_n,\qquad
+ x_{n+1}=R-\frac{R^2}{R+R/n}=\frac{R}{n+1}.
+\]
+因此左侧第 $n$ 枚与右侧第 $n+1$ 枚在右球面电势相消，只留下右球心的 $V$。
+左右互换同理，故两个球面都是电势 $V$。接触点处取连续极限。
+这两列像电荷产生的等势面恰包含两个相切球面。像电荷只是计算工具；它们的总和等于真实导体所带总电荷。
+
+\par\noindent\begin{minipage}{\linewidth}
+\touchingSphereImagesFigure
+\diagramcaption{解图：相切双球的像电荷序列。两列交错符号的像电荷向接触点聚集。}
+\end{minipage}\par\medskip
+
+一个球对应的总电荷为
+\[
+ Q_1=\sum_{n=1}^{\infty}q_n
+ =4\pi\varepsilon_0RV\left(1-\frac12+\frac13-\frac14+\cdots\right)
+ =4\pi\varepsilon_0RV\ln2.
+\]
+两球对称，所以 $Q=2Q_1$。因此组合导体的单极电容为
+\[
+ \boxed{C=\frac QV=8\pi\varepsilon_0R\ln2}.
+\]
+该值小于两个相距很远的孤立球电容之和 $8\pi\varepsilon_0R$；接触后彼此的正电势抬高，使达到同一
+电势所需的总电荷略少。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【两个圆柱】}\label{ch20:ex:s35-4-3}
+两根无穷长平行圆柱导体的半径均为 $R$，圆心距为 $L>2R$；两柱分别带等量异号线电荷。
+试求这一双极电容器单位长度的电容。
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.8]
+
+ \draw[thick](-2.1,0)circle(1)(2.1,0)circle(1);
+ \fill(-2.1,0)circle(1pt);\fill(2.1,0)circle(1pt);
+ \draw(-2.1,0)--++(55:1)node[midway,above left]{$R$};\draw(2.1,0)--++(55:1)node[midway,above left]{$R$};
+ \draw[dashed](-2.1,0)--(-2.1,-1.6)(2.1,0)--(2.1,-1.6);
+ \draw[<->](-2.1,-1.5)--(2.1,-1.5)node[midway,below]{$L$};
+ \node at(-2.1,1.45){$-\lambda$};\node at(2.1,1.45){$+\lambda$};
+
+\end{tikzpicture}\end{center}
+\figcap{无穷长平行导体圆柱的横截面，半径与圆心距如图。}\label{ch20:fig:em-source-thirty-fifth-section-3}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\noindent\begin{minipage}{\linewidth}
+\twoCylindersFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-3}。两圆柱截面是双极坐标中的两条等坐标圆。}\label{ch20:fig:s35-4-13}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+先说明为什么圆柱截面可由两条虚拟线电荷构造。令 $d=L/2$、$a=\sqrt{d^2-R^2}$，
+在图~\ref{ch20:fig:s35-4-13}中 $x=\pm a$ 放虚拟线电荷 $\pm\lambda$。它们位于各自圆柱内部，
+只在柱外使用对应电势 $\varphi=(\lambda/2\pi\varepsilon_0)\ln(r_-/r_+)$。
+取 $\xi=\ln(r_-/r_+)$ 为常量，配方得到圆心 $a\coth\xi$、半径 $a/|\sinh\xi|$；
+因此选择 $\cosh\xi_0=d/R$ 就恰好得到两条真实圆柱边界。
+每柱外围的高斯面包围一根虚拟线电荷，故计算出的 $\lambda$ 就是真实单位长度总电荷。
+
+这是二维静电问题。采用双极坐标 $(\xi,\eta)$，其尺度因子为
+\[
+ h_\xi=h_\eta=\frac a{\cosh\xi-\cos\eta}.
+\]
+两个圆柱面可取为 $\xi=\pm\xi_0$。由双极坐标几何关系
+\[
+ R=\frac a{\sinh\xi_0},\qquad
+ \frac L2=a\coth\xi_0,
+\]
+消去 $a$ 得
+\[
+ \cosh\xi_0=\frac{L}{2R},\qquad
+ \xi_0=\operatorname{arcosh}\frac{L}{2R}.
+\]
+令两柱电势分别为 $+U/2$ 和 $-U/2$。满足拉普拉斯方程及边界条件的电势是
+\[
+ \varphi(\xi)=\frac{U}{2\xi_0}\xi.
+\]
+在 $\xi=\xi_0$ 的圆柱面上，法向电场大小
+$E_n=(1/h_\xi)\,\partial\varphi/\partial\xi$，弧元为
+$\mathrm ds=h_\eta\mathrm d\eta$。因此单位长度电荷量
+\[
+ \lambda=\varepsilon_0\int_0^{2\pi}E_n\,\mathrm ds
+ =\varepsilon_0\int_0^{2\pi}\frac{U}{2\xi_0}\,\mathrm d\eta
+ =\frac{\pi\varepsilon_0U}{\xi_0}.
+\]
+单位长度电容为
+\[
+ \boxed{C'=\frac\lambda U
+ =\frac{\pi\varepsilon_0}{\operatorname{arcosh}(L/2R)}
+ =\frac{\pi\varepsilon_0}
+ {\ln\!\left[\dfrac{L+\sqrt{L^2-4R^2}}{2R}\right]}}.
+\]
+当 $L\gg R$ 时，$C'\simeq\pi\varepsilon_0/\ln(L/R)$。
+\end{xesolution}
+
+
+
+\section{电介质、极化与界面条件}
+
+\subsection{电介质与相对介电常数}
+
+
+两极之间是真空的电容器称为真空电容器。实际装置往往在两极之间填充橡胶、玻璃、石蜡、纸等不导电
+物质，这些绝缘材料称为电介质。它们不允许自由电荷像导体中那样长距离迁移，因此不能产生导体式的
+静电屏蔽；但内部正负电荷可以发生微小相对位移，从而改变电场。
+
+对于均匀、线性、各向同性介质，在几何结构不变且全部有效电场区域被填满的近似下，把同一种电介质完全填满不同形状的真空电容器，电容都按相同倍数增大。这个只由材料决定的
+倍数称为相对介电常数 $\varepsilon_r$。若原真空电容为 $C_0$，完全填充后
+\begin{equation}
+  \boxed{C=\varepsilon_rC_0}.
+\end{equation}
+
+图~\ref{ch20:fig:s35-4-8}中先充电再断开电源，接入高输入阻抗静电计；要求静电计输入电容远小于待测电容，
+且观测时间远短于漏电时间常数。这样电容器自由电荷近似不变。
+右图的介质紧贴两块极板并覆盖全部正对面积，不能留有额外空气层；右侧表针较小的偏转表示 $U$ 降低。
+\par\noindent\begin{minipage}{\linewidth}
+\dielectricMeterFigure
+\diagramcaption{插入电介质使电容增大的实验情景。插入过程中电容器与外界绝缘，$Q_0$ 不变，因此高输入阻抗静电计的电压读数降低。}\label{ch20:fig:s35-4-8}
+\end{minipage}\par\medskip
+
+\begin{table}[htbp]
+\centering
+\small
+\booktablecaption{室温下典型电介质的相对介电常数与击穿场强}\label{ch20:tab:s35-4-1}
+\begin{tabular}{lcc}
+\toprule
+材料 & 相对介电常数 $\varepsilon_r$ & 击穿场强 $E_{\rm b}/(\mathrm{V\,m^{-1}})$\\
+\midrule
+干燥空气 & $1.00059$ & $3\times10^6$\\
+石英 & $3.78$ & $24\times10^6$\\
+纸 & $3.7$ & $16\times10^6$\\
+玻璃 & $5.6$ & $14\times10^6$\\
+水 & $80$ & --\\
+橡胶 & $6.7$ & $12\times10^6$\\
+尼龙 & $3.4$ & $14\times10^6$\\
+聚苯乙烯 & $2.56$ & $24\times10^6$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+所有表中材料都有 $\varepsilon_r>1$。在自由电荷 $Q$ 固定、介质把电场区域完全填满时，电容增大
+$\varepsilon_r$ 倍，电势差和电场相应变为真空时的 $1/\varepsilon_r$。电场的减小来自介质内部原子或
+分子的极化，而不是自由电荷被导走。
+
+
+% EM teaching enrichment 20260927
+\paragraph{部分填充为何不能直接乘一个常数}
+面积 $A$、间距 $d$ 的平行板中，介质沿电场方向占厚度 $t$，余下是真空，忽略边缘效应。各层自由电荷对应的 $D_n$ 相同，电压分别相加，等效为串联：
+\[
+ C=\frac{\varepsilon_0A}{d-t+t/\varepsilon_r}.
+\]
+若介质贯穿板距、只占正对面积 $A_1$，其余面积 $A-A_1$ 为真空，两区电压相同，等效为并联：
+\[
+ C=\frac{\varepsilon_0}{d}\bigl[\varepsilon_rA_1+(A-A_1)\bigr].
+\]
+取 $t=0,d$ 或 $A_1=0,A$ 均应回到真空与全填充极限。判断串并联应沿场线看各区共享电压还是共享法向自由电荷。
+
+
+\subsection{介质极化与电位移矢量}
+
+
+经典图像中，可把绝缘体看成许多中性原子或分子。外电场作用时，正、负电荷中心发生微小分离，形成
+电偶极子；原来具有永久偶极矩的分子也会出现取向。偶极矩总体趋向外场方向，其产生的附加电场却在
+介质内部反向抵消一部分外场，因此实际电场减小。
+
+图~\ref{ch20:fig:s35-4-9} 左侧每个偶极矩由负端指向正端，右侧由束缚面电荷产生的场则指向左，因而抵消一部分向右的外加场。
+
+\par\noindent\begin{minipage}{\linewidth}
+\polarizationFigure
+\diagramcaption{外场作用下电介质的极化。左图是微观偶极矩取向，右图是等效束缚面电荷及其反向极化场。}\label{ch20:fig:s35-4-9}
+\end{minipage}\par\medskip
+
+若每个分子的平均电偶极矩为矢量 $\boldsymbol p$，单位体积内分子数为 $N$，均匀极化时定义极化强度
+\begin{equation}
+  \boxed{\boldsymbol P=N\boldsymbol p}.
+\end{equation}
+$\boldsymbol P$ 是单位体积内电偶极矩的矢量和。均匀极化体内部的偶极电荷相互抵消，只在边界留下束缚
+面电荷；一般情况下束缚体电荷密度为 $\rho_{\rm b}=-\boldsymbol\nabla\cdot\boldsymbol P$，束缚面电荷
+密度为 $\sigma_{\rm b}=\boldsymbol P\cdot\hat{\boldsymbol n}$。
+
+为把自由电荷和极化束缚电荷分开，引入电位移矢量
+\begin{equation}
+  \boxed{\boldsymbol D=\varepsilon_0\boldsymbol E+\boldsymbol P}.
+\end{equation}
+它是对材料响应进行记账的辅助场，并不是另一种独立的基本相互作用。由
+$\boldsymbol\nabla\cdot\boldsymbol E=(\rho_{\rm f}+\rho_{\rm b})/\varepsilon_0$ 和
+$\rho_{\rm b}=-\boldsymbol\nabla\cdot\boldsymbol P$ 可得
+\begin{equation}
+  \boxed{\oint_S\boldsymbol D\cdot\mathrm d\boldsymbol S=Q_{\rm f}},
+\end{equation}
+其中 $Q_{\rm f}$ 只包括曲面内的自由电荷，不把介质极化产生的束缚电荷重复计算。
+
+外场不太强时，许多电介质的响应近似线性。单个原子的诱导偶极矩可写为
+\begin{equation}
+  \boxed{\boldsymbol p=\alpha\boldsymbol E_{\rm loc}},
+\end{equation}
+其中 $\alpha$ 为原子极化率，$\boldsymbol E_{\rm loc}$ 是原子所在位置的局域场。宏观各向同性线性介质中
+$\boldsymbol P=\varepsilon_0\chi_e\boldsymbol E$，于是
+\begin{equation}
+  \boxed{\boldsymbol D=\varepsilon_0\boldsymbol E+\boldsymbol P
+  =\varepsilon_r\varepsilon_0\boldsymbol E},
+\end{equation}
+并有 $\varepsilon_r=1+\chi_e$。因此相对介电常数反映了微观粒子在外场中的可极化程度。
+
+若考虑球形空穴给出的局域场修正，对于数密度为 $N$、极化率为 $\alpha$ 的非极性稀薄介质，可得到
+克劳修斯--莫索蒂关系
+\begin{equation}
+  \boxed{\alpha=\frac{3\varepsilon_0}{N}\,
+  \frac{\varepsilon_r-1}{\varepsilon_r+2}}.
+\end{equation}
+它说明可以由宏观测得的 $\varepsilon_r$ 反推微观极化率。关系式假设各向同性、线性、粒子间关联较弱；
+对强极性液体、晶体各向异性或强场情形，需要更精细的模型。
+
+% EM teaching enrichment 20260927
+\paragraph{界面条件把宏观场与束缚电荷接起来}
+取法线从介质1指向介质2，薄盒高斯面给出
+$D_{2n}-D_{1n}=\sigma_f$；静电场的小矩形环路给出 $E_{2t}=E_{1t}$。
+无自由面电荷时连续的是 $D_n$，一般不是 $E_n$。
+例如场垂直于真空与介质界面，$D_n=D$，则 $E_{\rm vac}=D/\varepsilon_0$、$E_{\rm diel}=D/(\varepsilon_r\varepsilon_0)$。
+介质中 $P=D(1-1/\varepsilon_r)$，端面束缚电荷为 $\pm P$。这组关系同时说明了自由电荷不变、场减弱与束缚电荷出现的原因；不能把束缚电荷再次加进 $\oint\boldsymbol D\cdot\dd\boldsymbol S$ 的右侧。
+
+
+
+
+% EM structure and teaching revision 20260928
+\subsection{分层介质：同电压还是同自由电荷}
+对线性、各向同性、无明显边缘效应的平板结构，介质分层方向决定等效连接。若两层沿电场方向依次排列，厚度为 $d_1,d_2$，界面无自由电荷，则法向位移 $D=Q/S$ 在两层中相同，电压为
+\[
+ U=E_1d_1+E_2d_2=\frac QS\left(\frac{d_1}{\varepsilon_1}+\frac{d_2}{\varepsilon_2}\right),\qquad
+ C=\frac S{d_1/\varepsilon_1+d_2/\varepsilon_2}.
+\]
+若介质左右并排、共同跨接两块极板，则两部分电压相同，电荷相加，得到
+$C=(\varepsilon_1S_1+\varepsilon_2S_2)/d$。不能仅凭“各占一半”选择串联或并联。
+取 $d_1=d_2=d/2$、$\varepsilon_1=\varepsilon_0$、$\varepsilon_2=4\varepsilon_0$，沿场分层得到 $C=1.6\varepsilon_0S/d$，等面积并排则为 $2.5\varepsilon_0S/d$。低介电常数层中的场更强，也更可能先达到击穿阈值。
+上述计算假定介质响应线性且几何保持不变。若要求介质受力，还要说明电源是否连接，并把电源的能量交换纳入功的计算。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【改造电容器】}\label{ch20:ex:s35-4-4}
+如图，一个平行板电容器的极板面积为 $S$、间距为 $d$。
+
+(1) 在左边一半插入相对介电常数为 $\varepsilon_r$ 的介质，电容变为多大？变大还是变小？
+
+(2) 在上边一半插入相对介电常数为 $\varepsilon_r$ 的介质，电容变为多大？变大还是变小？
+\emModifiedQuestion\figcap{介质分别占一半正对面积或一半板间厚度。}\label{ch20:fig:em-modified-question}
+\end{origexamplebox}\par\nopagebreak[4]
+
+图~\ref{ch20:fig:s35-4-14} 左图的两部分共有相同板间电压；右图的两层沿电场方向依次排列，分别对应并联与串联。
+
+\par\noindent\begin{minipage}{\linewidth}
+\modifiedCapacitorFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-4}。左图按面积分区，应视为并联；右图按厚度分层，应视为串联。}\label{ch20:fig:s35-4-14}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+原电容为 $C_0=\varepsilon_0S/d$。
+
+\textbf{(1) 按面积分区。} 两个区域的电势差均为同一个 $U$，相当于并联：
+\[
+ C_1=\varepsilon_r\varepsilon_0\frac{S/2}{d},\qquad
+ C_2=\varepsilon_0\frac{S/2}{d}.
+\]
+故
+\[
+ \boxed{C=C_1+C_2=\frac{\varepsilon_r+1}{2}C_0}.
+\]
+
+\textbf{(2) 按厚度分层。} 电场依次穿过厚度均为 $d/2$ 的介质层和真空层，自由面电荷相同，相当于串联：
+\[
+ C_1=\varepsilon_r\varepsilon_0\frac S{d/2}=2\varepsilon_rC_0,
+ \qquad C_2=\varepsilon_0\frac S{d/2}=2C_0.
+\]
+所以
+\[
+ \boxed{C=\frac{C_1C_2}{C_1+C_2}
+ =\frac{2\varepsilon_r}{\varepsilon_r+1}C_0}.
+\]
+因为 $\varepsilon_r>1$，两种改造都使电容增大；但两者通常不相等。判断“并联还是串联”的依据不是
+图画在左边还是上边，而是各区域共享电压还是依次承受电压。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【匀强电场中的电介质球】}\label{ch20:ex:s35-4-6}
+半径为 $R$、相对介电常数为 $\varepsilon_r$ 的电介质球放在匀强电场
+$\boldsymbol E_0=E_0\hat{\boldsymbol z}$ 中，求空间中的电场。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\noindent\begin{minipage}{\linewidth}
+\dielectricSphereFieldFigure
+\diagramcaption{解图：$\varepsilon_r=4$ 时的电介质球，$+z$ 沿外场。线表示场的方向，线密度不用于跨介质比较 $E$ 的大小；界面处切向 $E$、法向 $D$ 连续。}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+问题关于 $z$ 轴对称，且远处电势应趋于 $-E_0r\cos\theta$。球内电势在原点必须有限，球外附加项
+必须在无穷远消失，因此设
+\[
+ \varphi_{\rm in}=-Ar\cos\theta,
+ \qquad
+ \varphi_{\rm out}=-E_0r\cos\theta+\frac{B\cos\theta}{r^2}.
+\]
+球面 $r=R$ 上没有自由面电荷，故电势连续、法向电位移连续：
+\[
+ \varphi_{\rm in}=\varphi_{\rm out},\qquad
+ \varepsilon_r\varepsilon_0E_{r,\rm in}=\varepsilon_0E_{r,\rm out}.
+\]
+比较两侧 $\cos\theta$ 的系数，第一条边界条件给出 $A=E_0-B/R^3$；
+由 $E_r=-\partial\varphi/\partial r$，第二条给出
+$\varepsilon_r A=E_0+2B/R^3$。将第一式代入第二式：
+\[
+ (\varepsilon_r+2)\frac B{R^3}=(\varepsilon_r-1)E_0.
+\]
+再回代即得
+\[
+ A=\frac{3E_0}{\varepsilon_r+2},\qquad
+ B=\frac{\varepsilon_r-1}{\varepsilon_r+2}E_0R^3.
+\]
+所以球内电场为
+\[
+ \boxed{\boldsymbol E_{\rm in}=\frac{3}{\varepsilon_r+2}\boldsymbol E_0}.
+\]
+球外电场分量为
+\[
+ \boxed{\begin{aligned}
+ E_r&=E_0\cos\theta+
+ 2\frac{\varepsilon_r-1}{\varepsilon_r+2}E_0\frac{R^3}{r^3}\cos\theta,\\
+ E_\theta&=-E_0\sin\theta+
+ \frac{\varepsilon_r-1}{\varepsilon_r+2}E_0\frac{R^3}{r^3}\sin\theta.
+ \end{aligned}}
+\]
+附加项正是位于球心、方向沿 $\boldsymbol E_0$ 的偶极子场。等效偶极矩为
+\[
+ \boldsymbol p_{\rm eff}=4\pi\varepsilon_0R^3
+ \frac{\varepsilon_r-1}{\varepsilon_r+2}\boldsymbol E_0.
+\]
+\end{xesolution}
+
+
+
+\section{电容网络、储能与充放电}
+
+\subsection{电容的连接}
+
+
+多个电容器构成的系统，在外部端口看来可以由一个等效电容代替。并联时，所有电容器接在相同的两个
+节点之间，因此两端电势差相同。两个电容 $C_1,C_2$ 并接到电压 $U$ 上，有
+$Q_1=C_1U,Q_2=C_2U$；电源搬运的总电荷是
+\[
+  Q=Q_1+Q_2=(C_1+C_2)U.
+\]
+
+图~\ref{ch20:fig:s35-4-4} 的两支路连接同一对节点，所以每个电容器的电压均为 $U$，而电源提供的电荷量等于各支路电荷量之和。
+
+\par\noindent\begin{minipage}{\linewidth}
+\capacitorParallelFigure
+\diagramcaption{电容并联。各支路电压相同，等效电容由总电荷与端电压之比确定。}\label{ch20:fig:s35-4-4}
+\end{minipage}\par\medskip
+
+于是多个电容并联时
+\begin{equation}
+  \boxed{C_{\mathrm{eq}}=C_1+C_2+\cdots}.
+\end{equation}
+
+串联时，相邻电容器之间的连接导体与外界绝缘。如果初始不带净电荷，它在充电后仍保持净电荷为零；
+因此相邻两块极板带等量异号电荷，各电容器的电荷量大小均为 $Q$。总电压为
+\[
+  U=U_1+U_2+\cdots=Q\left(\frac1{C_1}+\frac1{C_2}+\cdots\right).
+\]
+
+图~\ref{ch20:fig:s35-4-5} 中两电容器之间的导线与两片内侧极板组成孤立中性导体，因此内侧两片极板的电荷等量异号。
+
+\par\noindent\begin{minipage}{\linewidth}
+\capacitorSeriesFigure
+\diagramcaption{电容串联。中间浮置导体净电荷守恒，故各电容器的电荷量大小相同。}\label{ch20:fig:s35-4-5}
+\end{minipage}\par\medskip
+
+所以
+\begin{equation}
+  \boxed{\frac1{C_{\mathrm{eq}}}=\frac1{C_1}+\frac1{C_2}+\cdots}.
+\end{equation}
+并联增加可存储电荷的有效面积，等效电容增大；串联增加等效极板距离，等效电容小于任一个串联电容。
+电容的串、并联规律恰与电阻的串、并联规律相反，而形式上与弹簧劲度系数的连接规律相似。
+
+
+% EM teaching enrichment 20260927
+\paragraph{中间导体预先带电时}
+两电容 $C_1,C_2$ 串接，左端电势 $U$、右端为零，中间浮置导体预带净电荷 $q_0$。设中点电势为 $V$，该导体相邻两片极板的电荷相加为
+\[
+ C_1(V-U)+C_2V=q_0,
+ \qquad V=\frac{C_1U+q_0}{C_1+C_2}.
+\]
+只有 $q_0=0$ 才恢复通常的等电量串联关系。断开或重接电容后，应先圈出仍然孤立的导体并守恒其净电荷，再写每只电容的电压关系。
+
+
+\subsection{电容储能}
+
+
+容量为 $C$ 的电容器最初不带电。当两极已有电荷量 $q$ 时，电势差为 $u=q/C$。从负极向正极再搬运
+电量 $\mathrm dq$，外界需要输入
+\begin{equation}
+  \mathrm dW=u\,\mathrm dq=\frac qC\,\mathrm dq.
+\end{equation}
+把电荷从 $0$ 积分到 $Q$，得到
+\begin{equation}
+  \boxed{W=\int_0^Q\frac qC\,\mathrm dq
+  =\frac{Q^2}{2C}=\frac12QU=\frac12CU^2}.
+\end{equation}
+该能量以电场形式储存在两极之间。使用三个等价形式时必须说明控制量：若 $Q$ 固定，改变几何形状时
+宜用 $Q^2/(2C)$；若接在理想恒压源上，电源也会交换能量，单看电容场能不足以直接判断受力。
+
+
+% EM teaching enrichment 20260927
+\paragraph{恒压与恒电荷：同一吸力的两种能量账}
+平行板间距取 $d$，增大 $d$ 的方向为广义坐标正向。固定 $Q$ 时
+$W=Q^2d/(2\varepsilon_0A)$，故
+$F_d=-\partial W/\partial d=-Q^2/(2\varepsilon_0A)$，负号表示吸引。
+固定 $U$ 时，电源功 $\dd W_s=U\dd Q=U^2\dd C$，场能改变为 $\dd W=U^2\dd C/2$，两者之差才是电力机械功。因此
+\[
+ F_d=\frac12U^2\frac{\dd C}{\dd d}
+ =-\frac{\varepsilon_0AU^2}{2d^2}.
+\]
+两种表达用 $Q=CU$ 可相互转化。也可由表面电荷只受“另一块板”所生场得到压力 $p=\varepsilon_0E^2/2$，直接用总场 $\sigma/\varepsilon_0$ 乘本板电荷会把力算大一倍。
+
+
+% EM structure and teaching revision 20260928
+\subsection{充电过程为何不能只算末态储能}
+电容通过电阻 $R$ 接到恒压源 $U_0$，初始电压为零。由 $U_0=Ri+u_C$ 与 $i=C\dd u_C/\dd t$ 得
+\[
+ u_C=U_0(1-e^{-t/(RC)}),\qquad i=\frac{U_0}{R}e^{-t/(RC)}.
+\]
+电源总供能为 $\int_0^\infty U_0i\dd t=CU_0^2$，电容末态只储存 $CU_0^2/2$，另半转化为焦耳热。减小 $R$ 会增大峰值电流、缩短过程，却不改变理想模型中总焦耳热。
+两个初始电压为 $U_1,U_2$ 的电容 $C_1,C_2$ 同名端相连，且体系无外接电源时，总电荷守恒给出
+\[
+ U_f=\frac{C_1U_1+C_2U_2}{C_1+C_2},\qquad
+ W_i-W_f=\frac12\frac{C_1C_2}{C_1+C_2}(U_1-U_2)^2.
+\]
+能量减少量不会因为连接线画成理想导线就自动消失。实际过程还可能涉及导线电感、电磁辐射及介质损耗；若严格设为无损LC系统，则会振荡而不自行停在上述平衡末态。先说明终态能否建立，再使用末态电荷约束。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【奇妙的吸引力】}\label{ch20:ex:s35-4-5}
+把相对介电常数为 $\varepsilon_r$ 的电介质部分插入平行板电容器。极板长为 $a$、宽为 $b$、间距为
+$d$，介质插入长度为 $x$，如图。利用虚功法求介质受到的力：
+
+(1) 电容器电荷 $Q$ 恒定；
+
+(2) 电容器接在电压为 $U$ 的理想电源上。
+
+两问均用电容器内的电场 $E$ 表示结果。
+\emInsertionQuestion\figcap{介质插入长度与电容器尺寸；受力方向待求。}\label{ch20:fig:em-insertion-question}
+\end{origexamplebox}\par\nopagebreak[4]
+
+图~\ref{ch20:fig:s35-4-15} 中 $x$ 向右增加，表示介质插入更深；因此由能量求得的正 $F$ 指向右。
+
+\par\noindent\begin{minipage}{\linewidth}
+\dielectricInsertionFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-5}。介质区和真空区并联，电场方向竖直，吸引力沿插入方向。}\label{ch20:fig:s35-4-15}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+忽略边缘场。插入部分与未插入部分共享相同板间电压，因此
+\[
+ C(x)=\varepsilon_r\varepsilon_0\frac{bx}{d}
+      +\varepsilon_0\frac{b(a-x)}d
+ =\frac{\varepsilon_0b}{d}\bigl[a+(\varepsilon_r-1)x\bigr],
+\]
+从而
+\[
+ \frac{\mathrm dC}{\mathrm dx}
+ =\frac{\varepsilon_0b}{d}(\varepsilon_r-1)>0.
+\]
+
+\textbf{(1) 定电荷。} 电容场能 $W=Q^2/(2C)$，虚位移 $\mathrm dx$ 时
+\[
+ F=-\frac{\mathrm dW}{\mathrm dx}
+ =\frac{Q^2}{2C^2}\frac{\mathrm dC}{\mathrm dx}.
+\]
+又 $Q/C=U=Ed$，故
+\[
+ \boxed{F=\frac12\varepsilon_0(\varepsilon_r-1)b d\,E^2}.
+\]
+
+\textbf{(2) 定电压。} 电容器本身的场能是 $CU^2/2$，但介质移动时电源还要搬运电荷
+$\mathrm dQ=U\,\mathrm dC$。把电容器与电源作为整体，其与机械坐标有关的势能是
+\[
+ \mathcal G=\frac12CU^2-UQ=-\frac12CU^2.
+\]
+因此
+\[
+ F=-\frac{\mathrm d\mathcal G}{\mathrm dx}
+ =\frac12U^2\frac{\mathrm dC}{\mathrm dx}
+ =\boxed{\frac12\varepsilon_0(\varepsilon_r-1)b d\,E^2}.
+\]
+两问用瞬时场强 $E$ 表示时形式相同，方向都指向增大 $x$ 的方向，即介质被吸入电容器。定电压情形若
+遗漏电源做功，会错误地得到相反的力。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【能量怎么多了】}\label{ch20:ex:s35-4-7}
+线性电介质中的电场能量密度为
+$u=\tfrac12\varepsilon_r\varepsilon_0E^2$，而真空中在相同场强下只有
+$u_0=\tfrac12\varepsilon_0E^2$。试提出一个物理图像解释这个现象。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\noindent\begin{minipage}{\linewidth}
+\polarizationEnergyFigure
+\diagramcaption{解图：极化可类比为微观正负电荷之间的“弹簧”被拉伸；建立同样场强时还要为极化自由度输入能量。}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+线性介质中
+\[
+ \boldsymbol D=\varepsilon_0\boldsymbol E+\boldsymbol P,
+ \qquad
+ u=\frac12\boldsymbol E\cdot\boldsymbol D
+ =\frac12\varepsilon_0E^2+\frac12\boldsymbol E\cdot\boldsymbol P.
+\]
+第一项是真空电场能；第二项是建立极化时外界对束缚正、负电荷做功所对应的能量。可以把原子内部的
+正负电荷中心想成由微观弹性约束连接：外场把它们拉开，形成偶极矩，同时在材料的极化自由度中储存
+能量。因此在\emph{相同实际场强 $E$} 下，介质比真空多出
+\[
+ u-u_0=\frac12\boldsymbol E\cdot\boldsymbol P
+ =\frac12(\varepsilon_r-1)\varepsilon_0E^2.
+\]
+这并不意味着插入介质后能量一定增加。若自由电荷 $Q$ 固定，插入介质使 $E$ 减小，电容器总能量
+$Q^2/(2C)$ 反而降低，差值转化为机械功；若电压固定，电源继续输送电荷，场能增加，增加的能量来自
+电源。必须先说明固定的是 $E$、$Q$ 还是 $U$。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【充电过程】}\label{ch20:ex:s35-4-8}
+用电动势为 $\mathcal E$ 的电源给电容 $C$ 充电。
+
+(1) 若电路中有电阻 $R$，直至充电完成，电源做功多少，发热多少？
+
+(2) 若电阻 $R\to0^+$，电源做功多少，发热多少？
+
+(3) 如果电路中完全没有电阻，答案会有什么变化？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\noindent\begin{minipage}{\linewidth}
+\chargingEnergyFigure
+\diagramcaption{解图：理想恒压源经任意正电阻给电容充电时，电源做功的一半进入电场，另一半成为焦耳热。}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+充电完成后 $Q=C\mathcal E$。电源每搬运电量 $\mathrm dq$ 做功
+$\mathcal E\,\mathrm dq$，所以总功
+\[
+ W_{\rm s}=\int_0^Q\mathcal E\,\mathrm dq
+ =\mathcal EQ=C\mathcal E^2.
+\]
+电容器最终储能
+\[
+ W_C=\frac12C\mathcal E^2.
+\]
+由能量守恒，电阻发热
+\[
+ \boxed{Q_R=W_{\rm s}-W_C=\frac12C\mathcal E^2}.
+\]
+
+也可直接积分验证。$RC$ 电路电流
+$i(t)=(\mathcal E/R)e^{-t/(RC)}$，因此
+\[
+ Q_R=\int_0^\infty i^2R\,\mathrm dt
+ =\frac{\mathcal E^2}{R}\int_0^\infty e^{-2t/(RC)}\,\mathrm dt
+ =\frac12C\mathcal E^2.
+\]
+结果与 $R$ 的大小无关。故 $R\to0^+$ 时，充电时间趋于零、瞬时功率趋于无穷，但积分后的电源功和
+发热仍分别为 $C\mathcal E^2$ 与 $C\mathcal E^2/2$。
+
+若令 $R$ \emph{严格等于零}，同时又把电感、辐射和电源内阻全部忽略，理想模型在接通瞬间要求电容
+电压跳变并产生冲激电流，问题本身不再自洽。真实电路总有电感或辐射损耗；若只保留电感 $L$ 而没有
+任何耗散，系统会发生 $LC$ 振荡，电容也不会不可逆地停在“充电完成”状态。因此第(2)问的极限不能
+简单替代第(3)问的严格零电阻模型。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【电容充电】}\label{ch20:ex:s35-4-9}
+如图，三个电容器初始均不带电，连接成 $Y$ 型，三条外支路的电势分别为
+$\varphi_1,\varphi_2,\varphi_3$。求三个电容器外侧极板所带电荷。
+\par\noindent\begin{minipage}{\linewidth}
+\yCapacitorFigure
+\diagramcaption{例~\ref{ch20:ex:s35-4-9}。三个电容器的内侧极板连接成一个浮置中性节点。}\label{ch20:fig:s35-4-16}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+图~\ref{ch20:fig:s35-4-16} 的三个内侧极板连接在同一节点上，电势均为 $V$；该节点与外界不导通，所以其总电荷保持为零。
+
+
+\begin{xesolution}
+设中心浮置节点电势为 $V$。第 $i$ 个电容器外侧极板的电荷为
+\[
+ q_i=C_i(\varphi_i-V).
+\]
+中心节点由三个内侧极板和连接导线组成，初始净电荷为零，又与外界绝缘，所以始终满足
+\[
+ \sum_{i=1}^3C_i(V-\varphi_i)=0.
+\]
+由此
+\[
+ \boxed{V=\frac{C_1\varphi_1+C_2\varphi_2+C_3\varphi_3}
+ {C_1+C_2+C_3}}.
+\]
+代回得
+\[
+ \boxed{q_i=C_i\left(\varphi_i-
+ \frac{\sum_jC_j\varphi_j}{\sum_jC_j}\right)}.
+\]
+显式写出例如
+\[
+ q_1=\frac{C_1}{C_1+C_2+C_3}
+ \bigl[C_2(\varphi_1-\varphi_2)+C_3(\varphi_1-\varphi_3)\bigr],
+\]
+其余两式循环置换指标即可。可检查 $q_1+q_2+q_3=0$，这与整个三电容系统初始总电荷为零一致。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【电容串并联】}\label{ch20:ex:s35-4-10}
+证明两个电容器串联或并联时都可以等效成一个电容器，求出等效公式，并讨论更多电容器串、并联时
+是否也可以等效。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+等效的含义是：从外部两个端口看，在任意端电压 $U$ 下，系统从电源取得的总电荷 $Q$ 与某个单电容
+$C_{\rm eq}$ 完全相同，即 $Q=C_{\rm eq}U$。
+
+\textbf{并联：} 各电容两端电压均为 $U$，总电荷
+\[
+ Q=\sum_iQ_i=\sum_iC_iU,
+\]
+故
+\[
+ \boxed{C_{\rm eq}=\sum_iC_i}.
+\]
+
+\textbf{串联：} 每个中间浮置节点初始净电荷为零，因此各电容器电荷量大小均为 $Q$。总电压
+\[
+ U=\sum_iU_i=Q\sum_i\frac1{C_i},
+\]
+故
+\[
+ \boxed{\frac1{C_{\rm eq}}=\sum_i\frac1{C_i}}.
+\]
+结论可直接推广到任意多个纯并联或纯串联电容。由串、并联组成的两端网络可逐级化简；更一般的线性
+两端电容网络，只要内部节点初始无净电荷，也存在一个等效电容，但未必能只用一次串并联公式求出，
+需要先列内部节点电荷守恒方程。若网络有三个以上独立外端口，则通常需要电容系数矩阵，不能用一个
+标量电容完整描述。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【超大电容】}\label{ch20:ex:s35-4-11}
+开尔文曾把大气层构造为一个电容器模型：地球表面是一个极板，带有
+$5\times10^5\,\mathrm C$ 的负电荷；把距地表 $5\,\mathrm{km}$ 的同心球面作为带正电的等效外极板，两极之间的大气层厚度为 $5\,\mathrm{km}$。
+
+(1) 求这个球形电容器的电容；
+
+(2) 求地球表面的电场能量密度以及球形电容器的总能量；
+
+(3) 已知空气电阻率为 $3\times10^{13}\,\Omega\!\cdot\!\mathrm m$，求两极间大气层的电阻；
+
+(4) 大气电容与电阻构成 $RC$ 放电回路，求时间常数；
+
+(5) 若平均一次雷电向地面补充 $25\,\mathrm C$ 电荷，为维持上述电荷量，全球每天平均需要多少次雷电？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\noindent\begin{minipage}{\linewidth}
+\earthCapacitorFigure
+\diagramcaption{解图：地球表面与高空等效层构成同心球形电容器；大气同时提供漏电电阻。}
+\end{minipage}\par\medskip
+
+\begin{xesolution}
+取地球半径 $R_\oplus=6.4\times10^6\,\mathrm m$，大气等效厚度
+$d=5.0\times10^3\,\mathrm m$，外层半径 $R_\oplus+d$，电荷量大小
+$Q=5.0\times10^5\,\mathrm C$。
+
+\textbf{(1) 电容。} 同心球形电容公式给出
+\[
+ C=4\pi\varepsilon_0\frac{R_\oplus(R_\oplus+d)}d
+ \simeq4\pi\varepsilon_0\frac{R_\oplus^2}{d}
+ =\boxed{0.912\,\mathrm F}.
+\]
+
+\textbf{(2) 能量密度与总能量。} 地表场强
+\[
+ E(R_\oplus)=\frac{Q}{4\pi\varepsilon_0R_\oplus^2}
+ \simeq1.10\times10^2\,\mathrm{V/m}.
+\]
+故地表能量密度
+\[
+ \boxed{u(R_\oplus)=\frac12\varepsilon_0E^2
+ \simeq5.33\times10^{-8}\,\mathrm{J/m^3}}.
+\]
+总能量
+\[
+ \boxed{W=\frac{Q^2}{2C}\simeq1.37\times10^{11}\,\mathrm J}.
+\]
+相应电势差约为 $U=Q/C\simeq5.48\times10^5\,\mathrm V$。
+
+\textbf{(3) 大气电阻。} 径向电流通过半径 $r$ 处面积 $4\pi r^2$，微元电阻
+$\mathrm dR=\rho\,\mathrm dr/(4\pi r^2)$，因此
+\[
+ R_{\rm air}=\frac\rho{4\pi}
+ \left(\frac1{R_\oplus}-\frac1{R_\oplus+d}\right)
+ =\boxed{2.91\times10^2\,\Omega}.
+\]
+
+\textbf{(4) 时间常数。} 两个球壳使用完全相同的几何因子，故
+\[
+ \tau=R_{\rm air}C=\rho\varepsilon_0
+ =\boxed{2.66\times10^2\,\mathrm s}\approx4.43\,\mathrm{min}.
+\]
+
+\textbf{(5) 雷电次数。} 为维持近似恒定的 $Q$，平均补充电流需抵消漏电流
+$I=Q/\tau$。一天需要补充的电荷为 $Q(86400\,\mathrm s)/\tau$，所以
+\[
+ N=\frac{Q}{\tau}\frac{86400}{25}
+ \simeq\boxed{6.5\times10^6\ \text{次/天}}.
+\]
+这个数值是题设均匀电阻率和固定等效高度模型的预测，不能单凭它认定真实全球雷电次数或验证大气电路。
+真实电导率随高度变化，雷暴供电机制与单次输送电荷也有分布；本模型用于说明电容储能与漏电并存时的收支关系。
+\end{xesolution}
+}
+
+\endgroup
+
+\endgroup

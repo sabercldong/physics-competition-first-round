@@ -1,0 +1,182 @@
+{
+  "scope": "本轮只修订ch31/ch32；不把二轮静电场练习误计入近代物理验收，不宣称全书遗漏为零。",
+  "sources": {
+    "r2-spring": {
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/兴趣二阶春季.pdf",
+      "sha256": "7d47436e2942ee0a77afb18a8ea9abf4fa3d6e22831466ce6b19935b0fd9251c"
+    }
+  },
+  "pages": [
+    {
+      "source_id": "r2-spring",
+      "physical_page": 115,
+      "objects": "洛伦兹变换、间隔、四矢量与伪内积",
+      "target": "ch31 §§31.1,31.5选读；A6-relativity 洛伦兹矩阵与四矢量",
+      "status": "expanded_and_cross_reference"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 116,
+      "objects": "固有时、尺缩、同时性、速度、四速度、四动量",
+      "target": "ch31 §§31.1—31.5；A6-relativity 常见四矢量",
+      "status": "expanded_and_cross_reference"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 117,
+      "objects": "相对论力、功率、本征加速度、快度、碰撞、动量中心系",
+      "target": "ch31 §31.5及选读；A6例 accelerating-rod",
+      "status": "expanded_and_cross_reference"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 118,
+      "objects": "反应能、阈能、四电流、四波矢",
+      "target": "ch31 §31.4、31.5选读、例31.8；Q值另见ch32例32.11",
+      "status": "expanded_and_cross_reference"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 119,
+      "objects": "光行差、多普勒、四力密度",
+      "target": "ch31 §31.4及31.5选读",
+      "status": "expanded"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 120,
+      "objects": "空白页",
+      "target": "不进入学生正文",
+      "status": "excluded_blank_confirmed"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 143,
+      "objects": "热辐射、朗伯角分布、光电效应、康普顿、玻尔假设",
+      "target": "ch32 §§32.1,32.2,32.4",
+      "status": "expanded"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 144,
+      "objects": "玻尔轨道及能级、精细结构常数、电子长度、物质波、概率与不确定性",
+      "target": "ch32 §§32.3—32.5；A6-quantum-mechanics 平面波与概率解释",
+      "status": "corrected_and_cross_reference"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 145,
+      "objects": "静电场练1：同质量带电环/质点；练2a：扇形板；练2b：无限线电荷",
+      "target": "撤销ch32归属；待后续静电场来源专项追踪",
+      "status": "not_accepted_in_this_review"
+    },
+    {
+      "source_id": "r2-spring",
+      "physical_page": 146,
+      "objects": "静电场练3a—d：两倾斜电偶极子相互作用、力、力矩、平衡朝向",
+      "target": "撤销ch32归属；待后续静电场来源专项追踪",
+      "status": "not_accepted_in_this_review"
+    }
+  ],
+  "corrections": [
+    "120为确认空白，不是教学对象。",
+    "143—144属于量子论；145—146属于静电场习题。",
+    "源144页电子长度比值有误，改为约化康普顿波长=alpha*a0、经典电子半径=alpha^2*a0。",
+    "源115页“经典物理没有协变性”过于笼统：牛顿理论也可具有伽利略协变性，不能理解为没有任何协变性。"
+  ],
+  "unresolved_out_of_scope": [
+    {
+      "pages": [
+        145,
+        146
+      ],
+      "reason": "已检查图文并检索ch19/A4，未证实三题全部条件和子问具有新版落点；不自动改记mapped，也不称其为空白。"
+    }
+  ],
+  "figure_map": [
+    {
+      "figure": "31.1",
+      "label": "ch31:fig:mm-lab",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "31.2",
+      "label": "ch31:fig:light-clock",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "31.3",
+      "label": "ch31:fig:spacetime-axes",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "31.4",
+      "label": "ch31:fig:simultaneity",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "31.5",
+      "label": "ch31:fig:velocity-components",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "31.6",
+      "label": "ch31:fig:inelastic-collision",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.1",
+      "label": "ch32:fig:blackbody",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.2",
+      "label": "ch32:fig:photoelectric-line",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.3",
+      "label": "ch32:fig:compton",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.4",
+      "label": "ch32:fig:electron-diffraction",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.5",
+      "label": "ch32:fig:hydrogen-levels",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.6",
+      "label": "ch32:fig:binding-curve",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.7",
+      "label": "ch32:fig:fusion-q",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    },
+    {
+      "figure": "32.8",
+      "label": "ch32:fig:decay-chain",
+      "origin": "历史情景教学图（31.1）或扩展技术图；不冒充源页编号图",
+      "body_reference_verified": true
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+% Restrained diagrams for Lesson 36.  Vector directions and integration geometry
+% are kept explicit so that every figure can be read together with its proof.
+
+\newcommand{\fieldInto}{\mathord{\otimes}}
+\newcommand{\fieldOut}{\mathord{\odot}}
+
+\newcommand{\ampereForceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[SoftGray] (-4.6,-0.38) rectangle (1.0,0.38);
+  \draw[Ink,thick] (-4.6,-0.38) rectangle (1.0,0.38);
+  \draw[vector] (-3.9,0)--(-1.9,0) node[midway,below] {$\vect v_d$};
+  \fill[DeepBlue] (-3.9,0) circle (3pt) node[above] {$q$};
+  \draw[<->] (-4.35,-0.7)--node[fill=white,inner sep=1pt] {$\dd\ell$}(0.75,-0.7);
+  \foreach \x in {-4.0,-3.0,...,0.0}{
+    \node[font=\Large,DeepBlue] at (\x,1.0) {$\fieldInto$};
+  }
+  \node[DeepBlue] at (0.65,1.0) {$\vect B$};
+  \draw[vector] (-3.9,0)--(-3.9,1.45) node[left] {$\dd\vect F$};
+  \node[align=left,anchor=west] at (2.0,0.75)
+    {$I=nqAv_d$，$\dd N=nA\,\dd\ell$\\[4pt]
+     $\displaystyle\dd\vect F=\dd N(q\vect v_d\times\vect B)
+       =I\,\dd\vect\ell\times\vect B$};
+\end{tikzpicture}
+
+{\small\color{TextGray}Ampere 力就是导线中载流子所受 Lorentz 力的宏观合力}
+\end{center}}
+
+\newcommand{\bentWireResultDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \x in {-0.3,0.7,...,7.7}{\draw[DeepBlue!45,->] (\x,-0.7)--++(0,3.4);}
+  \node[DeepBlue] at (8.3,2.6) {$\vect B$};
+  \draw[Ink,very thick] (0,0)
+    .. controls (1.2,1.8) and (2.1,-0.35) .. (3.2,1.15)
+    .. controls (4.3,2.65) and (5.9,0.55) .. (7.2,2.0);
+  \fill[DeepBlue] (0,0) circle (2.5pt) node[below] {$a$};
+  \fill[DeepBlue] (7.2,2.0) circle (2.5pt) node[above] {$b$};
+  \draw[vector] (0,0)--(1.1,0.95) node[left] {$I$};
+  \draw[vector,DeepBlue] (0,0)--(7.2,2.0) node[midway,below] {$\vect L_{ab}$};
+  \node[TextGray,align=center] at (3.7,-1.2)
+    {$\displaystyle\vect F=I\!\int_a^b\dd\vect\ell\times\vect B
+      =I\vect L_{ab}\times\vect B$；闭合回路在匀强磁场中合力为零};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\loopTorqueDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[DeepBlue,very thick] (-2.5,-1.1)--(1.2,-1.1)--(2.5,1.1)--(-1.2,1.1)--cycle;
+  \draw[vector] (-0.5,-1.1)--(0.8,-1.1) node[below] {$I$};
+  \node[font=\Large] at (-2.5,-0.25) {$\fieldOut$};
+  \node[left=4pt] at (-2.5,-0.25) {$\vect F_1$};
+  \node[font=\Large] at (2.5,0.25) {$\fieldInto$};
+  \node[right=4pt] at (2.5,0.25) {$\vect F_2$};
+  \draw[vector] (0,0)--(0.8,1.7) node[above] {$\vect\mu=I\vect S$};
+  \draw[vector] (0,0)--(2.35,0) node[right] {$\vect B$};
+  \draw[->,DeepBlue,thick] (1.0,1.15) arc[start angle=55,end angle=5,radius=1.3];
+  \node[DeepBlue] at (1.65,1.15) {$\vect\tau$};
+  \node[TextGray,align=left,anchor=west] at (4.1,0.4)
+    {$\displaystyle\vect\tau=\vect\mu\times\vect B$\\
+     $\displaystyle U=-\vect\mu\cdot\vect B$\\[2pt]
+     $\vect\mu\parallel\vect B$ 为稳定平衡};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\motorHelmholtzContext}{%
+\historyfigure[0.9\linewidth]{motor-helmholtz-redraw.png}%
+{左：换向器使线圈力矩在每半周后保持驱动方向；右：两同轴线圈的间距等于半径时，中部磁场最均匀}}
+
+\newcommand{\ampereLawDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (0,0) ellipse (3.3 and 1.65);
+  \draw[->,DeepBlue,very thick] (3.15,0.45) arc[start angle=16,end angle=78,x radius=3.3,y radius=1.65];
+  \node[DeepBlue] at (2.75,1.65) {环路正向};
+  \foreach \p/\lab in {(-1.6,0.35)/I_1,(0.15,-0.35)/I_2,(1.55,0.5)/I_3}{
+    \node[font=\Large] at \p {$\fieldOut$};
+    \node[below=4pt] at \p {$\lab$};
+  }
+  \node[font=\Large] at (4.7,0.1) {$\fieldInto$};
+  \node[below=4pt] at (4.7,0.1) {$I_4$（环路外）};
+  \node[align=left,anchor=west] at (6.0,0.5)
+    {$\displaystyle\oint_C\vect B\cdot\dd\vect\ell=\mu_0 I_{\rm enc}$\\[4pt]
+     环路外电流改变局部 $\vect B$，\\但不改变该环量};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\wireSolenoidDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \begin{scope}[xshift=-4.5cm]
+    \draw[Ink,very thick] (0,-2.1)--(0,2.1);
+    \draw[vector] (0,-1.4)--(0,-0.1) node[left] {$I$};
+    \foreach \r in {0.7,1.35,2.0}{
+      \draw[DeepBlue,thick,->] (\r,0) arc[start angle=0,end angle=145,x radius=\r,y radius=0.42*\r];
+      \draw[DeepBlue,thick] (-\r,0) arc[start angle=180,end angle=360,x radius=\r,y radius=0.42*\r];
+    }
+    \draw[<->] (0,-2.5)--node[fill=white,inner sep=1pt] {$r$}(2.0,-2.5);
+    \node[TextGray] at (0,-3.05) {$B=\mu_0I/(2\pi r)$};
+  \end{scope}
+  \begin{scope}[xshift=3.4cm]
+    \foreach \x in {0,0.45,...,5.4}{
+      \draw[Ink,thick] (\x,-1.35) ellipse (0.25 and 1.35);
+    }
+    \draw[DeepBlue,->,thick] (-0.6,0.65)--(6.0,0.65);
+    \draw[DeepBlue,->,thick] (-0.6,0)--(6.0,0);
+    \draw[DeepBlue,->,thick] (-0.6,-0.65)--(6.0,-0.65);
+    \draw[guide,dashed] (-0.4,-2.0) rectangle (3.7,2.0);
+    \node[TextGray,align=center] at (2.7,2.45)
+      {理想无限长密绕螺线管};
+    \node[TextGray,align=center] at (2.7,-3.05)
+      {$B_{\rm in}=\mu_0nI$，$B_{\rm out}=0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\biotSavartDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \draw[Ink,very thick] (-4,-1.2) .. controls (-2.3,1.8) and (-0.7,-0.4) .. (0.8,1.2);
+  \coordinate (Q) at (-1.9,0.75);
+  \coordinate (P) at (4.2,1.55);
+  \fill[DeepBlue] (Q) circle (2.4pt);
+  \fill[Ink] (P) circle (2.4pt) node[right] {$P$};
+  \draw[vector] (Q)--++(1.25,0.25) node[above] {$I\dd\vect\ell$};
+  \draw[vector,DeepBlue] (Q)--(P) node[midway,below] {$\vect r$};
+  \node[font=\Large,DeepBlue] at ($(P)+(0,0.85)$) {$\fieldOut$};
+  \node[right=3pt] at ($(P)+(0,0.85)$) {$\dd\vect B$};
+  \node[align=left,anchor=west] at (-0.1,-1.2)
+    {$\displaystyle\dd\vect B=\frac{\mu_0}{4\pi}
+      \frac{I\,\dd\vect\ell\times\vect r}{r^3}$\\[5pt]
+     稳恒电流必须闭合；最终对整个回路积分};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\loopAxisDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[axis] (-1.0,0)--(8.2,0) node[right] {$z$};
+  \draw[DeepBlue,very thick] (0,0) ellipse (0.8 and 2.05);
+  \draw[vector] (0,-2.05) arc[start angle=-90,end angle=-15,x radius=0.8,y radius=2.05] node[right] {$I$};
+  \fill[Ink] (0,0) circle (2.2pt) node[below left] {$O$};
+  \fill[DeepBlue] (5.4,0) circle (2.5pt) node[below] {$P$};
+  \coordinate (Q) at (0,1.45);
+  \draw[vector,DeepBlue] (Q)--(5.4,0) node[midway,above] {$\vect R$};
+  \draw[vector] (5.4,0)--++(1.25,0.8) node[right] {$\dd\vect B$};
+  \draw[vector] (5.4,0)--++(1.45,0) node[right] {$\dd\vect B_z$};
+  \draw[<->] (0,-2.45)--node[fill=white,inner sep=1pt] {$z$}(5.4,-2.45);
+  \draw[<->] (-0.25,0)--node[left,fill=white,inner sep=1pt] {$R$}(-0.25,2.05);
+  \node[TextGray,align=left,anchor=west] at (8.9,0.4)
+    {横向分量成对抵消，\\仅轴向分量相加：\\[3pt]
+     $\displaystyle B_z=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\helmholtzDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \draw[DeepBlue,very thick] (-2.5,0) ellipse (0.75 and 2.25);
+  \draw[DeepBlue,very thick] (2.5,0) ellipse (0.75 and 2.25);
+  \draw[axis] (-4.3,0)--(4.3,0) node[right] {$x$};
+  \draw[<->] (-2.5,2.65)--node[fill=white,inner sep=2pt] {$2D$}(2.5,2.65);
+  \draw[<->] (-2.5,0)--node[left,fill=white,inner sep=1pt] {$R$}(-2.5,2.25);
+  \draw[vector] (-2.55,-2.15) arc[start angle=-92,end angle=-18,x radius=0.75,y radius=2.25] node[right] {$NI$};
+  \begin{scope}[xshift=7.1cm,yshift=-0.2cm]
+    \draw[axis] (-2.8,0)--(2.8,0) node[right] {$x$};
+    \draw[axis] (0,-0.2)--(0,2.6) node[above] {$B$};
+    \draw[DeepBlue,very thick,domain=-2.5:2.5,samples=100]
+      plot (\x,{1.55-0.03*\x*\x*\x*\x});
+    \draw[TextGray,dashed] (-2.4,1.55)--(2.4,1.55);
+    \node[TextGray] at (0,-0.6) {$2D=R$ 时 $B''(0)=0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\magneticGaussDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \shade[ball color=SoftGray,opacity=0.65] (0,0) ellipse (3.0 and 1.65);
+  \draw[curve] (0,0) ellipse (3.0 and 1.65);
+  \draw[Ink,very thick] (-0.55,0) rectangle (0.55,2.0);
+  \node at (0,1.62) {N}; \node at (0,0.38) {S};
+  \foreach \x in {-1.9,-1.25,-0.6,0.6,1.25,1.9}{
+    \draw[DeepBlue,thick,->] (\x,1.25) .. controls (1.15*\x,2.25) and (1.15*\x,-1.0) .. (\x,-1.25);
+  }
+  \node[align=left,anchor=west] at (4.4,0.6)
+    {磁感线没有起点或终点；\\穿出闭合面的通量必等于穿入量：\\[5pt]
+     $\displaystyle\boxed{\oint_S\vect B\cdot\dd\vect S=0}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\finiteWireDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \coordinate (WireU) at (0,2.8);
+  \coordinate (WireD) at (0,-2.6);
+  \coordinate (WireH) at (0,0);
+  \draw[Ink,very thick] (0,-2.6)--(0,2.8);
+  \draw[vector] (0,-2.1)--(0,-0.8) node[left] {$I$};
+  \coordinate (P) at (4.3,0);
+  \fill[DeepBlue] (P) circle (2.6pt) node[right] {$P$};
+  \draw[guide] (0,0)--(P) node[midway,below] {$r$};
+  \draw[guide] (0,2.8)--(P) (0,-2.6)--(P);
+  \draw pic[draw,"$\theta_1$",angle radius=9mm,angle eccentricity=1.25]
+    {angle=WireU--P--WireH};
+  \draw pic[draw,"$\theta_2$",angle radius=7mm,angle eccentricity=1.3]
+    {angle=WireH--P--WireD};
+  \node[font=\Large] at (5.35,0.8) {$\fieldInto$};
+  \node[TextGray,align=left,anchor=west] at (6.0,-0.4)
+    {$\displaystyle B=\frac{\mu_0I}{4\pi r}
+       (\sin\theta_1+\sin\theta_2)$\\[3pt]
+     无限长极限：$\theta_1=\theta_2=\pi/2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\currentSheetDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (SheetL) at (-4.1,0);
+  \coordinate (SheetR) at (3.2,0);
+  \coordinate (SheetH) at (0,0);
+  \draw[Ink,very thick] (-4.6,0)--(4.6,0);
+  \foreach \x in {-4,-3.2,...,4}{\node[font=\large] at (\x,-0.28) {$\fieldInto$};}
+  \node[below] at (3.9,-0.65) {面电流 $j$};
+  \coordinate (P) at (0,3.0);
+  \fill[DeepBlue] (P) circle (2.5pt) node[above] {$A$};
+  \draw[guide] (P)--(0,0) node[midway,right] {$a$};
+  \draw[guide] (P)--(-4.1,0) (P)--(3.2,0);
+  \draw pic[draw,"$\theta_1$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=SheetL--P--SheetH};
+  \draw pic[draw,"$\theta_2$",angle radius=11mm,angle eccentricity=1.25]
+    {angle=SheetH--P--SheetR};
+  \draw[vector] (P)--++(1.55,0) node[above] {$B_x$};
+  \draw[vector] (P)--++(0,1.15) node[right] {$B_y$};
+  \node[TextGray,align=left,anchor=west] at (5.3,1.4)
+    {每条窄条等效为无限长直电流；\\左右分量积分后，非对称时还会有 $B_y$。\\[3pt]
+     无限宽极限：$B=\mu_0j/2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\idealHelixDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \begin{scope}[xshift=-4.1cm]
+    \foreach \y in {-2,-1.2,...,2}{\draw[DeepBlue,thick] (0,\y) ellipse (1.45 and 0.34);}
+    \draw[vector] (1.3,-2.05)--(1.55,-1.2) node[right] {$I$};
+    \node[TextGray] at (0,-2.75) {“只旋不进”：纯方位面电流 $K_\varphi=nI$};
+  \end{scope}
+  \begin{scope}[xshift=4.1cm]
+    \draw[DeepBlue,very thick,domain=-720:720,samples=260,smooth]
+      plot ({1.45*cos(\x)},{0.0015*\x});
+    \draw[guide,dashed] (0,-2.2)--(0,2.2);
+    \draw[vector] (1.45,-1.45)--(1.28,-0.55) node[right] {$I$};
+    \draw[vector] (2.0,-0.9)--(2.0,0.7) node[right] {$K_z$};
+    \node[TextGray] at (0,-2.75) {真实螺旋：另有轴向面电流 $K_z=I/(2\pi R)$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\resistorGridForceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \foreach \x in {0,1.5,3.0}{\draw[Ink,thick] (\x,0)--(\x,3.0);}
+  \foreach \y in {0,1.5,3.0}{\draw[Ink,thick] (0,\y)--(3.0,\y);}
+  \fill[DeepBlue] (0,0) circle (2.7pt) node[below left] {入};
+  \fill[DeepBlue] (3,3) circle (2.7pt) node[above right] {出};
+  \draw[vector,DeepBlue] (0,0)--(3,3) node[midway,above left] {$\vect L$};
+  \draw[vector] (-0.7,-0.2)--(-0.7,1.2) node[left] {$I$};
+  \draw[vector] (3.7,1.8)--(3.7,3.2) node[right] {$I$};
+  \begin{scope}[xshift=6.2cm,yshift=0.6cm]
+    \coordinate (GridO) at (0,0);
+    \coordinate (GridN) at (0,2.7);
+    \coordinate (GridB) at (1.65,1.65);
+    \draw[axis] (0,0)--(2.7,0) node[right] {$\vect e_1$};
+    \draw[axis] (0,0)--(0,2.7) node[above] {$\vect n$};
+    \draw[vector] (0,0)--(1.65,1.65) node[right] {$\vect B$};
+    \draw pic[draw,"$45^\circ$",angle radius=8mm,angle eccentricity=1.35]
+      {angle=GridB--GridO--GridN};
+    \node[TextGray,align=left,anchor=west] at (3.5,1.2)
+      {$\displaystyle\sum_e I_e\vect\ell_e=I\vect L$\\[3pt]
+       $\displaystyle\vect F=I\vect L\times\vect B$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\currentElementsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \coordinate (A) at (-3.6,-1.2); \coordinate (B) at (2.5,1.2);
+  \draw[vector] (A)--++(1.4,1.0) node[above] {$I_1\dd\vect\ell_1$};
+  \draw[vector] (B)--++(-1.0,1.35) node[above] {$I_2\dd\vect\ell_2$};
+  \draw[vector,DeepBlue] (A)--(B) node[midway,below] {$\vect r$};
+  \draw[vector] (A)--++(-0.7,1.35) node[left] {$\dd\vect F_{1\leftarrow2}$};
+  \draw[vector] (B)--++(1.0,-0.9) node[right] {$\dd\vect F_{2\leftarrow1}$};
+  \node[TextGray,align=center] at (-0.5,-2.4)
+    {一般两电流元的两力既不等大反向，也不共线；孤立电流元不是可独立存在的物体};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\magneticLensDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.82cm,y=0.82cm,>=Latex]
+  \draw[axis] (-7.0,0)--(7.4,0) node[right] {$z$};
+  \draw[DeepBlue,very thick] (0,0) ellipse (0.35 and 2.25);
+  \draw[vector] (0,-2.2) arc[start angle=-90,end angle=-15,x radius=0.35,y radius=2.25] node[right] {$I$};
+  \draw[thick] (-5.6,-1.4)--(-5.6,1.4) node[above] {物面};
+  \draw[thick] (5.0,-1.4)--(5.0,1.4) node[above] {像面};
+  \fill[Ink] (-5.6,0) circle (2.3pt);
+  \fill[Ink] (5.0,0) circle (2.3pt);
+  \draw[DeepBlue,very thick] (-5.6,0)--(0,1.2)--(5.0,0);
+  \draw[DeepBlue,very thick,dashed] (-5.6,0)--(0,-0.95)--(5.0,0);
+  \draw[<->] (-5.6,-1.75)--node[fill=white,inner sep=1pt] {$u$}(0,-1.75);
+  \draw[<->] (0,-1.75)--node[fill=white,inner sep=1pt] {$v$}(5.0,-1.75);
+  \draw[->,DeepBlue,thick] (0.75,2.35) arc[start angle=10,end angle=300,radius=0.45];
+  \node[DeepBlue] at (1.65,2.1) {Larmor 转角 $\phi_L$};
+  \node[TextGray,align=left,anchor=west] at (7.8,0.7)
+    {$\displaystyle\frac1u+\frac1v=\frac1f$\\[4pt]
+     $\displaystyle\frac1f=\frac{q^2}{4m^2v_0^2}\int B_z^2\dd z$\\[4pt]
+     $\displaystyle\phi_L=\frac{q}{2mv_0}\int B_z\dd z$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\spinPrecessionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72,>=Latex]
+  \draw[axis] (0,-2.2)--(0,3.0) node[above] {$\vect B_0$};
+  \draw[DeepBlue,thick,dashed] (0,1.0) ellipse (2.2 and 0.65);
+  \draw[vector] (0,0)--(1.85,1.65) node[right] {$\vect s\parallel\vect\mu$};
+  \draw[->,DeepBlue,very thick] (1.45,1.55) arc[start angle=30,end angle=150,x radius=1.35,y radius=0.48];
+  \node[DeepBlue] at (0,2.25) {$\omega_0=\gamma B_0$};
+  \begin{scope}[xshift=6.4cm]
+    \draw[axis] (0,-2.2)--(0,3.0) node[above] {$\vect B_0$};
+    \draw[vector,DeepBlue] (0,0)--(2.0,0) node[right] {$\vect B_1$};
+    \draw[vector] (0,0)--(0,2.15) node[left] {初始 $\vect s$};
+    \draw[->,Ink,very thick] (0,2.15) arc[start angle=90,end angle=-80,radius=2.15];
+    \node[TextGray,align=center] at (0,-2.8)
+      {随动系：自旋以 $\Omega_R=\gamma B_1$ 绕 $\vect B_1$ 翻转};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}

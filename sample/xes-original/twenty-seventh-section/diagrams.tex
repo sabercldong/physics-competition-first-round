@@ -1,0 +1,221 @@
+% Diagrams for Lesson 38: electromagnetic fields and superconductors.
+\newcommand{\maxwellOnnesContext}{%
+  \historyfigure{maxwell-onnes-context.png}%
+  {左：Maxwell 与电磁场理论；右：Kamerlingh Onnes 与低温超导实验。人物图用于建立历史情境，公式与物理结构见后文示意图。}}
+
+\newcommand{\displacementCurrentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.86cm,y=1cm,>=Latex]
+  % wires and plates
+  \draw[Ink,very thick] (-4.7,0)--(-1.05,0);
+  \draw[Ink,very thick] (1.05,0)--(4.7,0);
+  \draw[Ink,line width=2.2pt] (-1.05,-1.75)--(-1.05,1.75);
+  \draw[Ink,line width=2.2pt] (1.05,-1.75)--(1.05,1.75);
+  \draw[vector] (-4.15,0.35)--(-2.35,0.35) node[midway,above] {$I$};
+  \foreach \y in {-1.25,-0.65,0,0.65,1.25}{
+    \draw[component] (-0.78,\y)--(0.78,\y);
+  }
+  \node[DeepBlue] at (0,1.72) {$\partial\vect D/\partial t$};
+  \node[below] at (-1.05,-1.88) {$+Q$};
+  \node[below] at (1.05,-1.88) {$-Q$};
+  % common boundary and spanning surfaces
+  \draw[DeepBlue,very thick] (-2.15,0) ellipse (0.28 and 1.23);
+  \node[DeepBlue,anchor=east] at (-2.45,1.15) {$C$};
+  \draw[fill=DeepBlue!5,draw=DeepBlue,thick,opacity=0.82]
+    (-2.15,-1.22) .. controls (-1.65,-0.78) and (-1.55,0.78) .. (-2.15,1.22)
+    .. controls (-2.67,0.78) and (-2.67,-0.78) .. cycle;
+  \node[DeepBlue] at (-1.9,-1.48) {$S_1$};
+  \draw[fill=TextGray!6,draw=TextGray,thick,dashed,opacity=0.85]
+    (-2.15,-1.22) .. controls (-0.15,-2.18) and (0.55,-1.0) .. (0.08,0)
+    .. controls (0.55,1.0) and (-0.15,2.18) .. (-2.15,1.22)
+    .. controls (-2.67,0.78) and (-2.67,-0.78) .. cycle;
+  \node[TextGray] at (0.0,-1.58) {$S_2$};
+  \node[align=left,anchor=west] at (5.15,0.25)
+    {$S_1$ 穿过导线：$I_{\rm c}=I$\\[4pt]
+     $S_2$ 穿过极板间隙：$I_{\rm c}=0$\\[4pt]
+     但 $I_{\rm d}=\dfrac{\dd}{\dd t}\!\int_{S_2}\vect D\cdot\dd\vect S=I$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\continuityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[draw=RuleGray,fill=SoftGray,minimum width=4.2cm,minimum height=1.15cm,align=center] (charge)
+    at (-4.7,0) {$\nabla\cdot\vect j=-\dfrac{\partial\rho}{\partial t}$\\电荷连续性};
+  \node[draw=RuleGray,fill=white,minimum width=4.2cm,minimum height=1.15cm,align=center] (ampere)
+    at (0,0) {$\nabla\times\vect B=\mu_0\vect j$\\取散度后要求 $\nabla\cdot\vect j=0$};
+  \node[draw=DeepBlue,fill=PaleBlue,minimum width=4.7cm,minimum height=1.15cm,align=center] (fixed)
+    at (4.9,0) {$\nabla\times\vect B=\mu_0\vect j+\mu_0\dfrac{\partial\vect D}{\partial t}$\\与电荷连续性相容};
+  \draw[->,TextGray,thick] (charge)--node[above]{一般不相容}(ampere);
+  \draw[->,DeepBlue,very thick] (ampere)--node[above]{补上位移电流}(fixed);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\planeWaveThreeDDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x={(1.05cm,0cm)},y={(0cm,1cm)},z={(0.46cm,-0.34cm)},>=Latex]
+  \draw[axis] (0,0,0)--(8.25,0,0) node[right] {$x$（传播方向）};
+  \draw[axis] (0,0,0)--(0,2.05,0) node[above] {$y$};
+  \draw[axis] (0,0,0)--(0,0,2.4) node[below right] {$z$};
+  \draw[DeepBlue,very thick,domain=0:7.5,samples=120,smooth,variable=\t]
+    plot ({\t},{1.18*sin(72*\t)},0);
+  \draw[TextGray,very thick,domain=0:7.5,samples=120,smooth,variable=\t]
+    plot ({\t},0,{1.05*sin(72*\t)});
+  \foreach \t in {0.65,3.15,5.65}{
+    \pgfmathsetmacro{\ey}{1.18*sin(72*\t)}
+    \pgfmathsetmacro{\bz}{1.05*sin(72*\t)}
+    \draw[->,DeepBlue,thick] (\t,0,0)--(\t,\ey,0);
+    \draw[->,TextGray,thick] (\t,0,0)--(\t,0,\bz);
+  }
+  \node[DeepBlue,fill=white,inner sep=1pt] at (1.15,1.50,0) {$\vect E\parallel\uvec y$};
+  \node[TextGray,fill=white,inner sep=1pt] at (2.0,0,1.52) {$\vect B\parallel\uvec z$};
+  \draw[->,DeepBlue,line width=1.2pt] (5.55,1.72,0)--(7.4,1.72,0)
+    node[midway,above] {$\vect S\parallel\vect k$};
+  \node[DeepBlue,fill=white,inner sep=1pt] at (7.15,-1.55,0)
+    {$\vect E\times\vect B\parallel +\uvec x$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\poyntingBalanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[fill=SoftGray,draw=RuleGray,thick] (-2.2,-1.4) rectangle (2.2,1.4);
+  \node at (0,0.75) {体积 $V$};
+  \draw[->,DeepBlue,line width=1.1pt] (2.2,0.55)--(3.45,0.55) node[right] {$\vect S\cdot\dd\vect A$};
+  \draw[->,DeepBlue,line width=1.1pt] (2.2,-0.35)--(3.15,-0.35);
+  \draw[->,DeepBlue,line width=1.1pt] (-2.2,0.15)--(-3.1,0.15);
+  \draw[vector] (-1.15,-0.65)--(0.55,-0.65) node[right] {$\vect j$};
+  \draw[->,TextGray,very thick] (-1.15,-0.15)--(0.55,-0.15) node[right] {$\vect E$};
+  \node[align=left,anchor=west] at (4.15,0.15)
+    {$\displaystyle\frac{\dd}{\dd t}\int_Vu\,\dd V$
+     $+\displaystyle\oint_{\partial V}\vect S\cdot\dd\vect A$
+     $=-\displaystyle\int_V\vect j\cdot\vect E\,\dd V$\\[6pt]
+     场能减少 $=$ 向外输运 $+$ 对物质做功};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\radiationPatternDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (0,-3.0)--(0,3.15) node[above] {$\vect a$};
+  \draw[axis] (-3.15,0)--(3.15,0) node[right] {辐射最强};
+  \draw[DeepBlue,very thick,domain=0:360,samples=220,smooth,variable=\t]
+    plot ({2.55*sin(\t)*abs(sin(\t))},{2.55*cos(\t)*abs(sin(\t))});
+  \fill[Ink] (0,0) circle (2.4pt) node[below right] {$q$};
+  \draw[->,TextGray,thick] (0,0)--(35:2.15) node[midway,above left] {$r$};
+  \draw[->,DeepBlue,thick] (0,1.0) arc[start angle=90,end angle=35,radius=1.0];
+  \node[DeepBlue] at (0.65,1.05) {$\theta$};
+  \node[TextGray] at (0.72,2.65) {$\theta=0$：无辐射};
+  \node[align=left,anchor=west] at (4.0,0.5)
+    {$E_{\rm rad}\propto\dfrac{a\sin\theta}{r}$\\[5pt]
+     $\dfrac{\dd P}{\dd\Omega}\propto\sin^2\theta$\\[5pt]
+     远区场横向，且随 $1/r$ 衰减};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\thomsonScatteringDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (-5.0,0)--(5.25,0) node[right] {$x$};
+  \draw[DeepBlue,very thick,domain=-4.7:-0.75,samples=70,smooth,variable=\t]
+    plot ({\t},{0.65*sin(165*\t)});
+  \draw[->,DeepBlue,thick] (-3.0,1.15)--(-1.5,1.15) node[midway,above] {入射波};
+  \fill[Ink] (0,0) circle (3pt) node[below right] {$e^-$};
+  \draw[<->,DeepBlue,very thick] (0,-1.15)--(0,1.15) node[above] {$\vect a\parallel\vect E$};
+  \foreach \ang in {-60,-30,30,60,120,150,210,240}{
+    \draw[TextGray,thick,->] ({0.55*cos(\ang)},{0.55*sin(\ang)})--({2.65*cos(\ang)},{2.65*sin(\ang)});
+  }
+  \draw[DeepBlue,very thick] (0,0) ellipse (2.65 and 0.78);
+  \node[align=left,anchor=west] at (5.55,0.25)
+    {电子被入射场驱动\\并向各方向再辐射\\[4pt]
+     $\displaystyle\sigma_T=\frac{8\pi}{3}r_e^2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\superconductivityTimeline}{%
+\begin{center}
+\begin{tikzpicture}[x=0.86cm,y=1cm,>=Latex]
+  \draw[axis] (-0.2,0)--(13.3,0) node[right] {时间};
+  \foreach \x/\year/\desc in {
+    0.7/1911/{Hg，$4.2\,$K},
+    3.55/1933/{迈斯纳效应},
+    6.4/1987/{铜氧化物，$T_c>77\,$K},
+    9.25/2001/{MgB$_2$，$39\,$K},
+    12.1/2015/{高压硫氢化物}}
+  {
+    \fill[DeepBlue] (\x,0) circle (2.6pt);
+    \draw[TextGray] (\x,0.12)--(\x,0.7);
+    \node[align=center,anchor=south,font=\scriptsize,text width=2.25cm] at (\x,0.72) {\year\\\desc};
+  }
+  \node[TextGray,align=left,anchor=north west,font=\small,text width=13.5cm] at (0.65,-0.38)
+    {这是一条概念史线索，不表示“临界温度越高，材料越容易应用”；临界磁场、电流密度与制备条件同样关键。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\meissnerComparisonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[font=\bfseries] at (-4.0,2.2) {理想导体：冻结原有磁通};
+  \node[font=\bfseries,DeepBlue] at (4.0,2.2) {超导体：迈斯纳排磁};
+  \draw[fill=SoftGray,draw=Ink,thick] (-5.4,-1.25) rectangle (-2.6,1.25);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (2.6,-1.25) rectangle (5.4,1.25);
+  \foreach \x in {-5.0,-4.45,-3.9,-3.35,-2.8}{
+    \draw[TextGray,thick,->] (\x,-1.9)--(\x,1.9);
+  }
+  \draw[DeepBlue,thick,->] (3.15,-1.9) .. controls (3.15,-1.55) and (2.25,-1.48) .. (2.15,-1.18)
+    .. controls (1.85,-0.55) and (1.85,0.55) .. (2.15,1.18)
+    .. controls (2.25,1.48) and (3.15,1.55) .. (3.15,1.9);
+  \draw[DeepBlue,thick,->] (3.65,-1.9) .. controls (3.65,-1.55) and (1.85,-1.50) .. (1.72,-1.15)
+    .. controls (1.38,-0.55) and (1.38,0.55) .. (1.72,1.15)
+    .. controls (1.85,1.50) and (3.65,1.55) .. (3.65,1.9);
+  \draw[DeepBlue,thick,->] (4.35,-1.9) .. controls (4.35,-1.55) and (6.15,-1.50) .. (6.28,-1.15)
+    .. controls (6.62,-0.55) and (6.62,0.55) .. (6.28,1.15)
+    .. controls (6.15,1.50) and (4.35,1.55) .. (4.35,1.9);
+  \draw[DeepBlue,thick,->] (4.85,-1.9) .. controls (4.85,-1.55) and (5.75,-1.48) .. (5.85,-1.18)
+    .. controls (6.15,-0.55) and (6.15,0.55) .. (5.85,1.18)
+    .. controls (5.75,1.48) and (4.85,1.55) .. (4.85,1.9);
+  \node[align=center,font=\small] at (-4.0,-2.35) {$E=0\Rightarrow\dd\Phi/\dd t=0$\\内部可保留初始 $B$};
+  \node[align=center,font=\small,DeepBlue] at (4.0,-2.35) {降到 $T_c$ 以下后\\体内磁场被排斥至表面附近};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\levitationDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[rounded corners=2pt,fill=SoftGray,draw=Ink,thick] (-1.65,1.45) rectangle (1.65,2.3);
+  \node at (-0.82,1.88) {$N$}; \node at (0.82,1.88) {$S$};
+  \draw[fill=PaleBlue,draw=DeepBlue,very thick] (-2.6,-0.55) ellipse (2.6 and 0.62);
+  \draw[fill=PaleBlue,draw=DeepBlue,very thick] (-2.6,-0.55)--(-2.6,-1.0)
+    arc[start angle=180,end angle=360,x radius=2.6,y radius=0.62]--(2.6,-0.55);
+  \node[DeepBlue] at (0,-0.7) {超导体};
+  \foreach \sx in {-1.15,-0.55,0.55,1.15}{
+    \draw[TextGray,thick,->] (\sx,1.45) .. controls ({1.6*\sx},0.55) and ({1.7*\sx},0.15) .. ({2.0*\sx},-0.15);
+  }
+  \draw[->,DeepBlue,line width=1.1pt] (-0.45,0.1)--(-0.45,1.2) node[left] {$F_{\rm m}$};
+  \draw[->,Ink,line width=1.1pt] (0.45,1.2)--(0.45,0.1) node[right] {$mg$};
+  \node[align=left,anchor=west] at (4.0,0.75)
+    {表面屏蔽电流改变磁场分布\\产生向上的磁力；稳定悬浮还与\\材料钉扎、磁体几何等因素有关。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\superconductingRingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \cx/\lab in {-4.6/{降温穿越 $T_c$},0/{撤去外场},4.6/{持续电流保磁通}}{
+    \draw[DeepBlue,line width=2pt] (\cx,0) ellipse (1.45 and 0.68);
+    \node[align=center,font=\small] at (\cx,-1.35) {\lab};
+  }
+  \foreach \x in {-5.3,-4.6,-3.9}{\draw[TextGray,thick,->] (\x,-1.0)--(\x,1.45);}
+  \draw[TextGray,dashed,->] (-0.55,-0.92)--(-0.55,0.92);
+  \draw[TextGray,dashed,->] (0,-0.92)--(0,0.92);
+  \draw[->,DeepBlue,thick] (1.15,0.1) arc[start angle=8,end angle=115,x radius=1.45,y radius=0.68];
+  \node[TextGray,font=\small] at (0,1.35) {$\Phi_{\rm ext}\downarrow$};
+  \foreach \x in {3.9,4.6,5.3}{\draw[DeepBlue,thick,->] (\x,-0.92)--(\x,1.12);}
+  \draw[->,DeepBlue,very thick] (5.55,0.15) arc[start angle=8,end angle=120,x radius=1.45,y radius=0.68];
+  \node[DeepBlue] at (5.65,0.85) {$I_{\rm p}$};
+  \draw[->,TextGray,thick] (-2.9,0)--(-1.7,0);
+  \draw[->,TextGray,thick] (1.7,0)--(2.9,0);
+  \node[align=center,anchor=north] at (0,-2.0)
+    {$\displaystyle\frac{\dd}{\dd t}(\Phi_{\rm ext}+LI)=0$\quad：外磁通减小时，持续电流补偿其变化};
+\end{tikzpicture}
+\end{center}}

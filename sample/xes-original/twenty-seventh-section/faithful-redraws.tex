@@ -1,0 +1,34 @@
+% Independently redrawn data-rich replacement for the source superconductivity chart.
+\newcommand{\superconductivityChartFaithful}{%
+\begin{center}
+\resizebox{0.96\linewidth}{!}{%
+\begin{tikzpicture}[x=0.105cm,y=0.036cm,>=Latex]
+  \draw[axis] (1900,0)--(2022,0) node[right] {年份};
+  \draw[axis] (1900,0)--(1900,215) node[above] {$T_c/\mathrm K$};
+  \foreach \x in {1900,1920,...,2020}{\draw[TextGray] (\x,0)--(\x,-4) node[below,font=\scriptsize] {\x};}
+  \foreach \y in {0,20,...,200}{\draw[TextGray] (1900,\y)--(1897.8,\y) node[left,font=\scriptsize] {\y};\draw[TextGray!45,dotted] (1900,\y)--(2020,\y);}
+  % historical guide curve
+  \draw[DeepBlue,thick] (1911,4.2)--(1930,9.2)--(1941,16)--(1954,18)--(1973,23.2)
+    --(1986,35)--(1987,93)--(1988,125)--(1993,133)--(2001,39)--(2008,55)--(2015,203);
+  % representative materials, with marker families echoing the original data plot
+  \foreach \x/\y/\lab in {
+    1911/4.2/Hg,1930/9.2/Nb,1941/16/NbN,1954/18/Nb$_3$Sn,1973/23.2/Nb$_3$Ge,
+    1986/35/LaBaCuO,1987/93/YBaCuO,1988/110/BiSrCaCuO,1988/125/TlBaCaCuO,
+    1993/133/HgBaCaCuO,2001/39/MgB$_2$,2008/26/LaOFeAs,2008/55/SmFeAs,
+    2015/203/H$_3$S（高压）}{
+      \fill[white,draw=DeepBlue,thick] (\x,\y) circle (2.2pt);
+      \node[anchor=south west,font=\scriptsize,inner sep=1.5pt] at (\x,\y) {\lab};
+  }
+  \foreach \x/\y/\lab in {1913/7/Pb,1933/10/NbC,1965/12/Nb$_3$Al,1991/18/K$_3$C$_{60}$,2001/4/CeCoIn$_5$,2006/11/CaC$_6$}{
+    \fill[Ink] (\x,\y) rectangle +(0.9,3.0); \node[anchor=north,font=\scriptsize] at (\x+0.4,\y-2) {\lab};
+  }
+  % engineering reference temperatures shown at the right of the source figure
+  \foreach \y/\lab in {4.2/{液氦},20/{液氢},77/{液氮}}{
+    \draw[TextGray,dashed] (2011,\y)--(2020,\y);
+    \draw[->,TextGray,thick] (2020,\y)--(2026,\y) node[right,font=\scriptsize] {\lab};
+  }
+  \node[align=left,anchor=north west,font=\scriptsize,TextGray,text width=7cm] at (1902,-14)
+    {常压材料与高压材料用同一纵轴展示，但实验条件不同；图中点位用于呈现材料族与历史跃迁，不作为工程性能排名。};
+\end{tikzpicture}}%
+\par\smallskip{\small\color{TextGray}图 38.9：不同年代代表性超导材料的临界温度；标出了液氦、液氢和液氮温区。}
+\end{center}}

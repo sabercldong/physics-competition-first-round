@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "assets": [
+    {
+      "path": "assets/ch17/critical-cell.png",
+      "prompt": "Use case: scientific-educational. Asset type: restrained Chinese physics textbook illustration, wide 3:1 composition. Create a new realistic educational illustration of the SAME sealed high-pressure optical observation cell shown three times side by side in identical framing, no text at all. Each cell has a substantial steel rim and a central vertical transparent viewing window. Left: transparent fluid with a distinct horizontal liquid-vapor meniscus halfway up the window; middle: near critical point, entire window milky opalescent, no sharp interface; right: transparent uniform supercritical fluid, no interface anywhere. White backdrop, subtle gray metal, no decorative particles, no graphs, no invented gauges or writing, no labels. All three cells identical size and hardware. This is an explanatory illustration, not a historical photo. High clarity for printing.",
+      "inspection": "Three consistent cells: visible liquid meniscus, opalescence, uniform phase. Educational scene, not an archival photograph."
+    },
+    {
+      "path": "assets/ch17/contrail.png",
+      "prompt": "Use case scientific-educational. New wide 3:1 realistic editorial illustration for a physics textbook, no text, no labels. A distant twin engine passenger jet high in a pale blue cold clear sky flying towards upper right, seen obliquely from below and behind. Two white condensation trails start a SHORT visible distance behind the two engine exhausts, run backwards to lower left, widen gradually farther behind and become soft dispersing ice-crystal clouds; trails do not emanate from wing tips or nose. Aircraft anatomically plausible, just two engines symmetrically under wings, small relative to long trails. No logos, watermarks, ornamental frames. Restrained colors, crisp light aircraft and visible white trails against blue for print. This is an illustrative scene, not a claimed archival photograph.",
+      "inspection": "Twin engine jet; two trails behind engines, widening aft. Educational scene."
+    }
+  ]
+}

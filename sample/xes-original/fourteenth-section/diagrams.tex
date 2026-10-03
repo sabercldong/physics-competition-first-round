@@ -1,0 +1,354 @@
+% TikZ figures redrawn from the source.  Blue annotations in solution figures
+% are added for the present edition.
+
+\newcommand{\extremaDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.78cm,y=0.62cm,>=Latex]
+  \foreach \s in {0,4,8,12}{
+    \draw[axis] (\s,0)--++(3,0) node[right] {$x$};
+    \draw[axis] (\s+0.25,-0.35)--++(0,2.75) node[above] {$y$};
+  }
+  \draw[curve,domain=-1.05:1.05,smooth,variable=\t]
+    plot ({1.65+\t},{0.25+1.35*\t*\t});
+  \draw[tangent] (0.9,0.25)--(2.4,0.25);
+  \node[below] at (1.6,-0.35) {(1)};
+  \draw[curve,domain=-1.05:1.05,smooth,variable=\t]
+    plot ({5.65+\t},{1.9-1.2*\t*\t});
+  \draw[tangent] (4.9,1.9)--(6.4,1.9);
+  \node[below] at (5.6,-0.35) {(2)};
+  \draw[curve,domain=-1.15:1.15,smooth,variable=\t]
+    plot ({9.65+\t},{1.05+0.42*\t*\t*\t});
+  \draw[tangent] (8.9,1.05)--(10.4,1.05);
+  \node[below] at (9.6,-0.35) {(3)};
+  \draw[curve,smooth] plot coordinates
+    {(12.65,1.1) (12.9,1.85) (13.25,1.2) (13.55,1.2)
+     (13.85,0.45) (14.2,1.9) (14.6,1.1)};
+  \draw[tangent] (12.75,1.85)--(13.35,1.85);
+  \draw[tangent] (13.2,1.2)--(13.75,1.2);
+  \draw[tangent] (13.55,0.45)--(14.1,0.45);
+  \draw[tangent] (13.9,1.9)--(14.45,1.9);
+  \node[below] at (13.6,-0.35) {(4)};
+\end{tikzpicture}
+{\small\color{TextGray}图 1.1\quad 函数的导数为零的各种情况}
+\end{center}}
+
+\newcommand{\probdiagOneFour}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-2,0) arc[start angle=180,end angle=0,radius=2];
+  \draw[thick] (-2,0)--(2,0);
+  \coordinate (C) at (0,0);
+  \coordinate (P) at ({2*sin(38)},{2*cos(38)});
+  \draw[guide] (C)--(0,2);
+  \draw[guide] (C)--(P);
+  \draw[thick] (P)--++(0,2.0);
+  % 两只固定导向块分列杆的两侧，二者之间留缝让杆竖直滑动。
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(-0.78,1.04)$) rectangle ($(P)+(-0.10,1.30)$);
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(0.10,1.04)$) rectangle ($(P)+(0.78,1.30)$);
+  \draw[->,very thick] ($(P)+(0,2.0)$)--++(0,0.65);
+  \draw[vector] (2.15,0.25)--++(0.9,0) node[right] {$v_0$};
+  \coordinate (Top) at (0,2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=P--C--Top};
+  \node at (-0.95,0.25) {$R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\soldiagOneFour}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-2,0) arc[start angle=180,end angle=0,radius=2];
+  \draw[thick] (-2,0)--(2,0);
+  \coordinate (C) at (0,0);
+  \coordinate (P) at ({2*sin(38)},{2*cos(38)});
+  \draw[guide] (C)--(P);
+  \node[below left=2pt] at ($(C)!0.43!(P)$) {$R$};
+  \draw[guide] (C)--(0,2);
+  \draw[thick] (P)--++(0,2);
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(-0.78,1.04)$) rectangle ($(P)+(-0.10,1.30)$);
+  \draw[thick,fill=DeepBlue!6]
+    ($(P)+(0.10,1.04)$) rectangle ($(P)+(0.78,1.30)$);
+  \draw[vector] (-2.4,0.25)--++(1.1,0) node[above] {$\dot X=v_0$};
+  \draw[component] (P)--++(0,1.05);
+  \node[right=4pt] at ($(P)+(0,0.78)$) {$\dot y$};
+  \draw[component] (P)--++(-1.18,0);
+  \node[right=7pt] at (P) {$R\cos\theta\,|\dot\theta|$};
+  \coordinate (Top) at (0,2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=P--C--Top};
+  \node[align=center,TextGray] at (0,-0.75)
+    {$x_{\rm rod}=X+R\sin\theta$\\$y=R\cos\theta$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneSix}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-3,0)--(3,0);
+  \node[right] at (3,0.28) {$n_1$};
+  \node[right] at (3,-0.28) {$n_2$};
+  \coordinate (A) at (-2.2,2.0);
+  \coordinate (P) at (0.35,0);
+  \coordinate (B) at (2.25,-1.55);
+  \draw[thick] (A)--(P)--(B);
+  \draw[guide] (P)--++(0,1.35);
+  \draw[guide] (P)--++(0,-1.25);
+  \node[left] at (A) {$A$}; \node[above right] at (P) {$P$}; \node[right] at (B) {$B$};
+  \coordinate (PN) at (0.35,1);
+  \draw pic[draw,->,"$\alpha$",angle radius=7mm,angle eccentricity=1.35]
+    {angle=PN--P--A};
+  \coordinate (PS) at (0.35,-1);
+  \draw pic[draw,<- ,"$\beta$",angle radius=7mm,angle eccentricity=1.35]
+    {angle=PS--P--B};
+  \draw[<->] (-2.2,-0.35)--(0.35,-0.35);
+  \node[above=1pt] at (-0.925,-0.35) {$x$};
+  \draw[<->] (-2.2,-0.72)--(2.25,-0.72);
+  \node[below=1pt] at (0.025,-0.72) {$L$};
+  \draw[<->] (-2.55,0)--node[left] {$h_1$}(-2.55,2);
+  \draw[<->] (2.55,0)--node[right] {$h_2$}(2.55,-1.55);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneSeven}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=0.8cm,>=Latex]
+  \begin{scope}
+    \draw[axis] (0,0)--(3.3,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.0) node[above] {$p$};
+    \draw[curve] (1,2)--(2,1);
+    \draw[guide] (1,0)--(1,2)--(0,2);
+    \draw[guide] (2,0)--(2,1)--(0,1);
+    \node[above right] at (1,2) {$A$}; \node[above right] at (2,1) {$B$};
+    \node[below] at (1,0) {$V_0$}; \node[below] at (2,0) {$2V_0$};
+    \node[left] at (0,1) {$p_0$}; \node[left] at (0,2) {$2p_0$};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \draw[axis] (0,0)--(3.3,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,3.0) node[above] {$p$};
+    \draw[curve] (1.55,1.55) circle[radius=0.78];
+    \draw[guide] (1.55,0)--(1.55,1.55)--(0,1.55);
+    \node[above right] at (1.55,1.55) {$(p_0,V_0)$};
+    \node[below] at (1.55,0) {$V_0$}; \node[left] at (0,1.55) {$p_0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneEight}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (U) at (0,1.45); \coordinate (D) at (0,-1.45); \coordinate (P) at (3.2,0);
+  \fill[white] (U) circle (0.21); \draw[thick] (U) circle (0.21);
+  \fill[white] (D) circle (0.21); \draw[thick] (D) circle (0.21);
+  \fill[white] (P) circle (0.13); \draw[thick] (P) circle (0.13);
+  \draw[guide] (U)--(D); \draw[guide] (U)--(P); \draw[guide] (D)--(P);
+  \draw[thick] (0,0)--(P);
+  \node[above left=4pt] at (U) {$M$};
+  \node[below left=4pt] at (D) {$M$};
+  \node[left=5pt] at (0,0.72) {$L$};
+  \node[left=5pt] at (0,-0.72) {$L$};
+  \node[above=4pt] at (1.55,0) {$x$};
+  \draw[vector] (P)--++(-1.1,0);
+  \node[below=5pt] at (2.70,0) {$\vec F$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\soldiagOneNine}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \pgfmathsetmacro{\throwD}{(sqrt(3)+3*sqrt(11))/8}
+  \draw[thick] (1.9,0)--(6.5,0);
+  \coordinate (S) at ({4.6-1.25*\throwD},0); \coordinate (C) at (4.6,1.25);
+  \coordinate (K) at ({4.6-1.25*sqrt(3)/2},1.875); \coordinate (T) at (4.6,2.5);
+  \draw[thick] (C) circle[radius=1.25];
+  \draw[curve,domain=-\throwD:0,samples=90,variable=\x]
+    plot ({4.6+1.25*\x},{1.25*(2-\x/sqrt(3)-4*\x*\x/3)});
+  \draw[tangent] ($(K)+(-0.38,-0.658)$)--($(K)+(0.38,0.658)$);
+  \fill[DeepBlue] (K) circle (1.7pt) node[above left] {相切点};
+  \draw[guide] (4.6,0)--(T);
+  \draw[<->] ({4.6-1.25*\throwD},-.4)--(4.6,-.4);
+  \node[below=1pt] at (3.6875,-0.4) {$d_0$};
+  \draw[<->] (6.15,0)--node[right] {$2R$}(6.15,2.5);
+  \draw[guide] (T)--(6.3,2.5);
+  \draw[vector] (S)--++(.42,{.42*sqrt(11)}) node[left] {$\vec v_0$};
+  \coordinate (SR) at ($(S)+(1,0)$); \coordinate (SV) at ($(S)+(.42,{.42*sqrt(11)})$);
+  \draw pic[draw,->,"$\theta_0$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=SR--S--SV};
+  \node[anchor=west] at (5.65,3.10) {球顶目标};
+  \draw[TextGray,thin] (5.60,3.02)--(T);
+  \node[TextGray,align=center] at (4.1,-1.15)
+    {临界轨迹先与球面相切，再到达球顶};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\potentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.65cm,>=Latex]
+  \begin{scope}
+    \coordinate (O) at (0,2.2); \coordinate (M) at (-1.25,0.2);
+    \fill (O) circle (1.5pt) node[above right] {$O$};
+    \draw[thick] (O)--(M) node[midway,left] {$l$};
+    \fill (M) circle (2.5pt) node[left] {$m$};
+    \draw[guide] (O)--++(0,-1.45);
+    \coordinate (OD) at (0,0.75);
+    \draw pic[draw,->,"$\theta$",angle radius=7mm,angle eccentricity=1.35]
+      {angle=M--O--OD};
+  \end{scope}
+  \begin{scope}[xshift=4.4cm]
+    \draw[axis] (-0.2,0)--(5.0,0) node[right] {$x$};
+    \draw[axis] (0,-0.3)--(0,3.1) node[above] {$V(x)$};
+    \draw[curve,smooth] plot coordinates
+      {(0.2,2.5) (0.75,1.0) (1.2,0.42) (1.75,1.15) (2.35,2.25)
+       (2.95,1.25) (3.6,0.62) (4.15,1.15) (4.7,2.35)};
+    \draw[guide] (1.2,0)--(1.2,0.42);
+    \draw[guide] (2.35,0)--(2.35,2.25);
+    \draw[guide] (3.6,0)--(3.6,0.62);
+    \fill[DeepBlue] (1.2,0.42) circle (1.8pt);
+    \fill[DeepBlue] (2.35,2.25) circle (1.8pt);
+    \fill[DeepBlue] (3.6,0.62) circle (1.8pt);
+    \node[below=2pt] at (1.2,0) {$S_1$};
+    \node[below=2pt] at (2.35,0) {$U$};
+    \node[below=2pt] at (3.6,0) {$S_2$};
+    \node[DeepBlue] at (1.0,3.25) {稳定};
+    \draw[DeepBlue,thin] (1.0,2.98)--(1.2,.57);
+    \node[above=5pt,DeepBlue] at (2.35,2.25) {不稳定};
+    \node[DeepBlue] at (3.9,3.25) {稳定};
+    \draw[DeepBlue,thin] (3.9,2.98)--(3.6,.77);
+  \end{scope}
+\end{tikzpicture}
+\figcap{左：单摆的角度约定；右：势能曲线的局部极小点与局部极大点。}
+\end{center}}
+
+\newcommand{\probdiagOneTen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (B) at (0,0); \coordinate (A) at (3.0,0); \coordinate (M) at (0,-2.0);
+  \draw[thick] (0,0.45)--(0,-2.45);
+  \draw[thick] (B)--(A);
+  \draw[decorate,decoration={coil,aspect=0.35,segment length=4pt,amplitude=3pt},thick]
+    (M)--(A);
+  \fill (M) circle (2.8pt) node[left] {$m$};
+  \fill (A) circle (1.7pt) node[right] {$A$}; \node[left] at (B) {$B$};
+  \draw[<->] (0,0.35)--(3,0.35);
+  \node[above=1pt] at (1.5,0.35) {$h$};
+  \draw[<->] (-0.45,0)--(-0.45,-2);
+  \node[left=1pt] at (-0.45,-1) {$x$};
+  \node[below right] at (1.55,-1.05) {$\ell=\sqrt{h^2+x^2}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneEleven}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (O) at (0,3.1);
+  \draw[thick] (O)--(-2.05,0); \draw[thick] (O)--(2.05,0);
+  \draw[thick] (-2.05,0) arc[start angle=180,end angle=360,x radius=2.05,y radius=0.32];
+  \draw[guide] (-2.05,0) arc[start angle=180,end angle=0,x radius=2.05,y radius=0.32];
+  \draw[very thick,DeepBlue] (-1.15,1.35) arc[start angle=180,end angle=360,x radius=1.15,y radius=0.22];
+  \draw[guide] (-1.15,1.35) arc[start angle=180,end angle=0,x radius=1.15,y radius=0.22];
+  \draw[axis] (O)--(0,0.55);
+  \draw[guide] (O)--(2.55,3.1);
+  \draw[guide] (0,1.35)--(2.55,1.35);
+  \draw[<->] (2.4,3.1)--node[right=4pt] {$x$}(2.4,1.35);
+  \coordinate (OD) at (0,1.8); \coordinate (RB) at (2.05,0);
+  \draw pic[draw,->,"$\alpha$",angle radius=8mm,angle eccentricity=1.62]
+    {angle=OD--O--RB};
+  \draw[TextGray] (-1.05,1.35)--(-2.25,1.0);
+  \node[anchor=east,DeepBlue] at (-2.3,1.0) {$\ell=2\pi x\tan\alpha$};
+  \node[above] at (O) {$O$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneTwelve}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (L) at (-1.75,0); \coordinate (R) at (1.75,0); \coordinate (T) at (0,2.35);
+  \draw[thick] (-2.5,0)--(2.5,0);
+  \draw[thick] (L)--(T)--(R);
+  \draw[decorate,decoration={coil,aspect=0.35,segment length=4pt,amplitude=3pt},thick]
+    (L)--(R);
+  \fill (T) circle (2.8pt) node[above right] {$m$};
+  \node[left] at (-1.12,1.15) {$l$}; \node[right] at (1.12,1.15) {$l$};
+  \node[above=5pt] at (0,0) {$k$};
+  \coordinate (RL) at (-2.5,0);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=T--R--RL};
+  \draw[<->] (-1.75,-0.72)--(1.75,-0.72);
+  \node[below=3pt] at (0,-0.72) {$2l\cos\theta$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\incrementDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=0.85cm,>=Latex]
+  \draw[axis] (0,0)--(6,0) node[right] {$x$};
+  \draw[axis] (0,0)--(0,4.0) node[above] {$y$};
+  \draw[curve,domain=0.7:5.2,smooth,variable=\x]
+    plot ({\x},{0.55+0.13*exp(0.62*\x)});
+  \coordinate (P) at (4.1,{0.55+0.13*exp(0.62*4.1)});
+  \coordinate (Q) at (4.8,{0.55+0.13*exp(0.62*4.8)});
+  \draw[guide] (P)--(4.1,0);
+  \draw[guide] (Q)--(4.8,0);
+  \node[below left=3pt] at (4.1,0) {$x_0$};
+  \node[below right=3pt] at (4.8,0) {$x_0+\Delta x$};
+  \draw[guide] (P)--(0,{0.55+0.13*exp(0.62*4.1)}) node[left] {$y_0$};
+  \draw[guide] (Q)--(0,{0.55+0.13*exp(0.62*4.8)});
+  \draw[<->] (4.1,1.0)--(4.8,1.0);
+  \node[below=1pt] at (4.45,1.0) {$\Delta x$};
+  \draw[<->] (5.2,{0.55+0.13*exp(0.62*4.1)})--node[right] {$\Delta y$}
+    (5.2,{0.55+0.13*exp(0.62*4.8)});
+  \node[above left] at (3.0,1.7) {$y(x)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\probdiagOneSixteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (0,-2.2); \coordinate (O) at (0,0); \coordinate (X) at (2.6,0); \coordinate (DX) at (3.35,0);
+  \draw[thick,->] (-0.5,0)--(4.2,0);
+  \draw[guide] (A)--(O);
+  \draw[thick] (A)--(X); \draw[thick] (A)--(DX);
+  \fill (A) circle (2.5pt) node[below left] {$A$};
+  \node[above] at (O) {$O$};
+  \node[above left=1pt] at (X) {$x$};
+  \node[above right=1pt] at (DX) {$x+\Delta x$};
+  \draw[<->] (-0.35,0)--node[left] {$h$}(-0.35,-2.2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=X--A--O};
+  \draw pic[draw,->,angle radius=17mm]
+    {angle=DX--A--X};
+  \coordinate (DeltaMid) at (1.36,-1.18);
+  \node (DeltaLabel) at (3.8,-1.50) {$\Delta\theta$};
+  \draw[guide] (DeltaLabel.west)--(DeltaMid);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\soldiagOneSixteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (0,-2.2); \coordinate (O) at (0,0);
+  \coordinate (X) at (2.6,0); \coordinate (DX) at (3.35,0);
+  \draw[thick,->] (-0.5,0)--(4.2,0);
+  \draw[guide] (A)--(O);
+  \draw[thick] (A)--(X); \draw[thick] (A)--(DX);
+  \fill (A) circle (2.5pt) node[below left] {$A$};
+  \node[above] at (O) {$O$};
+  \node[above left=1pt] at (X) {$x$};
+  \node[above right=1pt] at (DX) {$x+\Delta x$};
+  \draw[<->] (-0.35,0)--node[left] {$h$}(-0.35,-2.2);
+  \draw pic[draw,->,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=X--A--O};
+  \draw pic[draw,->,DeepBlue,angle radius=17mm]
+    {angle=DX--A--X};
+  \node[DeepBlue] (DeltaLabel) at (3.25,-1.75) {$\Delta\theta$};
+  \draw[guide] (DeltaLabel.west)--(1.36,-1.18);
+  \draw[component] (2.6,.85)--(3.35,.85) node[midway,above] {$\Delta x$};
+  \draw[guide] (X)--(2.6,.95) (DX)--(3.35,.95);
+  \node[align=left,TextGray] at (6.05,-.75)
+    {$\displaystyle \tan\theta=\frac{x}{h}$\\[3pt]
+     $\displaystyle \Delta\theta\simeq
+       \frac{h\,\Delta x}{h^2+x^2}$};
+\end{tikzpicture}
+\end{center}}

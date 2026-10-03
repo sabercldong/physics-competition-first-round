@@ -1,0 +1,181 @@
+刚体是忽略形变的理想质点系：任意两质点之间的距离在运动中保持不变。真实固体受力后都会
+发生形变，只有形变相对物体尺度很小、且对所研究运动的影响可忽略时，才采用刚体模型。
+它不是“绝对坚硬”的真实材料；局部压缩、弹性波、内部振动及断裂需要另行考虑。
+
+\subsection{位置、姿态与自由度}
+质心的三个坐标只确定位置，不确定朝向。例如一本书可以质心不动而转动。自由三维刚体需要
+三个位置参数和三个姿态参数，共六个构型自由度。固定一点后剩三个转动自由度；固定一条轴后
+剩一个；平面运动有两个平移和一个转动自由度。无滑动接触还在速度层面增加约束，不能重复计数。
+
+欧拉角（Euler angles）是一组描述姿态的坐标。取原点都在质心的两组右手轴：xyz的方向
+保持相对惯性系不变，XYZ与刚体固连。前者若随质心加速平移，其原点并非惯性系中的固定点，
+“方向固定”不等于“整个坐标系是惯性系”。采用 $z$--$N$--$Z$ 转动约定：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.4em]
+ \item 绕z转$\alpha$，把x转到节线N；N是xy与XY平面的交线，取向由转动约定给出。
+ \item 绕N按右手规则转$\beta$，把z转到Z。
+ \item 绕Z转$\gamma$，把N转到固连轴X。
+\end{enumerate}
+图~\ref{ch09:fig:euler}把三次转动分开画；第二面板N指向纸内，因而正$\beta$在该观察方向下是顺时针。
+三面板的视向不同，不能把它们的纸面左右直接当成同一组三维坐标。
+\eulerDiagram
+通常约定 $0\le\alpha,\gamma<2\pi$、$0\le\beta\le\pi$。
+当$\beta$为0或$\pi$时，两平面重合，节线不唯一，$\alpha$与$\gamma$不能独立确定；这是坐标退化，不是刚体失去姿态。
+因此欧拉角只在排除退化并固定角度范围后局部唯一。位置和姿态确定\textbf{构型}；要确定
+动力学状态，还须给质心速度和角速度，或等价的广义速度。
+
+有限转动一般不可交换，先绕一轴再绕另一轴与倒序结果不同。无穷小转动在一阶近似下才可按
+矢量相加。故实际角速度应为
+\begin{equation}
+ \vect\omega=\dot\alpha\,\uvec e_z+\dot\beta\,\uvec e_N+\dot\gamma\,\uvec e_Z,
+\end{equation}
+右侧三根轴不通常互相垂直，应投影到同一组轴再求分量；三个角的导数不是三个固定直角分量。
+定轴或平面运动只需一个角$\varphi$时，才可直接以有符号量写 $\omega=\dot\varphi$、$\beta=\ddot\varphi$。
+
+\subsection{刚体速度、加速度与瞬心}
+平动中$\omega$=0，各点速度相同，任一固连线段始终平行于自身；定轴转动中固连轴不动，
+各点绕该轴作圆周运动；平面平行运动则包含质心平动及绕质心的转动，车轮和滑杆是常见模型。
+对刚体任意两点A、B，有
+\begin{equation}
+ \vect v_B=\vect v_A+\vect\omega\times\overrightarrow{AB}.\label{ch09:eq:rigid-velocity}
+\end{equation}
+与 $\overrightarrow{AB}$ 点乘，可得
+$(\vect v_B-\vect v_A)\cdot\overrightarrow{AB}=0$，即相对速度在连线方向上的分量为零。
+这也等于对固定长度条件 $\overrightarrow{AB}\cdot\overrightarrow{AB}=\text{常量}$ 求导。
+
+平面运动且$\omega$不为零时，速度场可等效为绕瞬时速度为零的点P转动。若已知两点速度方向，
+过两点作各自速度的垂线，其非平行交点给出瞬心；平行等速的特殊情形应回到速度方程判断，
+不能强求一个有限交点。瞬心可以位于刚体之外的延伸速度场中，不一定是实际材料点。
+对非零速度纯平动，$\omega$=0，不存在有限距离的瞬时静止点。
+
+图~\ref{ch09:fig:rolling}中车轮向右纯滚，接触地面的P瞬时静止，故任一点Q满足
+$\vect v_Q=\vect\omega\times\overrightarrow{PQ}$。
+速度必须垂直PQ，且 $v_Q/\omega=PQ$。顶点 $P'$ 到P的距离为2R，故顶点速率为质心速率的两倍。
+\rollingKinematicsDiagram
+瞬心不是一个始终固定的铰点。下一时刻轮缘接触地面的是另一个材料点，所以不能把整个过程
+当成绕同一P的定轴转动。对同一对材料点，式~\eqref{ch09:eq:rigid-velocity}求导给出
+\begin{equation}
+ \vect a_B=\vect a_A+\vect\beta\times\overrightarrow{AB}
+ +\vect\omega\times(\vect\omega\times\overrightarrow{AB}).
+\end{equation}
+第二项是切向项，第三项是法向项。P瞬时速度为零，不代表其加速度为零。
+例如水平面上以恒定质心速度纯滚的圆轮，接地点材料点有竖直向上的加速度 $\omega^2R$。
+因此瞬心法可用于速度，不能未经推导就用 $\sum M_P=I_P\beta$ 代替质心动力学方程。
+
+\subsection{刚体的动量与角动量}
+将各质元速度相加，利用相对质心速度的质量加权和为零，得到
+\begin{equation}
+ \vect P=M\vect v_C,\qquad \sum\vect F_{\rm ext}=M\vect a_C.
+\end{equation}
+同一外力无论作用在何处，对质心加速度的贡献相同；但对转动的作用由其作用线决定。
+角动量则为 $\vect L_O=\overrightarrow{OC}\times M\vect v_C+\vect L_C$。
+前一节已说明 $\vect L_C$ 不一定与 $\vect\omega$ 平行，图~\ref{ch09:fig:nonparallel}给出具体反例。
+\nonparallelAngularDiagram
+设轻杆两端各质量m，质心O到各端距离l，杆与竖直轴夹角$\alpha$。图中 $+x$ 向右、$+z$ 向上，
+为右手系，$+y$ 指向纸内。若 $\vect\omega=(0,0,\omega)$，上端A满足
+\begin{equation}
+ \vect r_A=(l\sin\alpha,0,l\cos\alpha),\qquad
+ \vect v_A=(0,\omega l\sin\alpha,0).
+\end{equation}
+下端B的位置、速度均相反，所以两端对O的角动量相同，求和为
+\begin{equation}
+ \vect L_O=2m\vect r_A\times\vect v_A
+ =2ml^2\omega(-\sin\alpha\cos\alpha,0,\sin^2\alpha).
+\end{equation}
+当 $0<\alpha<\pi/2$，它既有负x分量又有正z分量，不与竖直角速度同向。
+其轴向分量仍是 $L_z=(2ml^2\sin^2\alpha)\omega=I_z\omega$。
+这说明标量轴向关系可以正确，而向量式 $\vect L=I\vect\omega$ 却不成立。
+
+一般关系为 $\vect L_C=\mathbf I_C\vect\omega$。仅沿主惯量轴转动时，角动量与角速度
+平行，才能用一个标量惯量描述整个向量关系；球对称物体每个过中心方向都是主轴。
+一般自由三维转动即使外力矩为零，L保持固定，刚体的轴仍可能摆动。
+
+对平面刚体，最常用的方程组是
+\begin{equation}
+ \sum F_x=Ma_{Cx},\qquad \sum F_y=Ma_{Cy},\qquad \sum M_C=I_C\beta.
+\end{equation}
+最后一式只取垂直运动平面的分量，转轴、力矩和$\beta$使用同一正方向。若物体确绕惯性系中的固定轴
+转动，也可用关于该轴的惯量写 $\sum M=I\beta$。对任意运动点则须使用前一节的参考点变换式，
+不能因为某点瞬时静止就视为始终固定。摩擦、支持力通常是联立方程的未知量，不应先凭直觉定值。
+
+\subsection{斜面纯滚动与摩擦判据}
+设质量M、外半径R、绕质心轴惯量I的圆形刚体从静止沿倾角$\theta$的固定斜面下滚，
+无外加驱动转矩。沿坡向下及顺时针为正，先假设静摩擦沿坡向上。
+图~\ref{ch09:fig:incline}中P为接触点，$CP=R$ 且CP垂直斜面；N沿CP，重力通过C。
+\inclineRollingDiagram
+法向没有质心加速度，切向和转动方程分别为
+\begin{equation}
+ N=Mg\cos\theta,\qquad Mg\sin\theta-f=Ma_C,\qquad fR=I\beta.
+\end{equation}
+若不滑动，$a_C=\beta R$，因此 $f=Ia_C/R^2$，代回切向方程：
+\begin{equation}
+ Mg\sin\theta=(M+I/R^2)a_C,
+ \qquad \boxed{a_C=\frac{g\sin\theta}{1+I/(MR^2)}}.
+\end{equation}
+继而求出实际所需的静摩擦
+\begin{equation}
+ f=\frac{I}{I+MR^2}Mg\sin\theta,\qquad
+ \boxed{\mu_s\ge\frac fN=\frac{I}{I+MR^2}\tan\theta}.
+\end{equation}
+只有满足不等式，纯滚动假设才自洽。否则改用动摩擦 $\mu_kN$，并撤去 $a_C=\beta R$，
+分别求平动与转动，直到接触点相对速度归零后再判断能否维持纯滚动。
+
+令 $\kappa=I/(MR^2)$，图中实心球、实心圆柱、薄壁圆筒分别有
+$\kappa=2/5,1/2,1$，相应加速度为 $5g\sin\theta/7,2g\sin\theta/3,g\sin\theta/2$。
+在同一坡面、相同质心沿坡路程、同样从静止出发且均不滑时，实心球先到，薄壁圆筒后到。
+总质量与绝对尺寸从比值中约去，决定先后的是质量分布。
+
+静摩擦方向并非永远向上坡：加外转矩、改变作用力位置或让接触面运动，都可能使其反向或为零。
+应先判断没有摩擦时接触点的相对滑动趋势，再用方程的正负校验。固定面上纯滚时
+$P_f=\vect f\cdot\vect v_P=0$，但摩擦仍同时改变平动和转动动能；这两部分的功率相加为零。
+运动传送带上的接触点对地速度不为零，静摩擦对物体可以做非零功。
+
+\subsection{动能、外力功率与转动功}
+任一质元速度分解为 $\vect v_i=\vect v_C+\vect\omega\times\vect r_i'$。
+平方并求和，混合项含 $\sum_i m_i\vect r_i'=0$，因此
+\begin{equation}
+ E_k=\frac12Mv_C^2+\frac12\sum_i m_i|\vect\omega\times\vect r_i'|^2.
+\end{equation}
+平面刚体的角速度沿同一法向，第二项成为 $I_C\omega^2/2$；一般三维情形为
+$\vect\omega\cdot\mathbf I_C\vect\omega/2$。不能把一般三维运动也一律套单个I。
+
+外力作用点速度不同，应先逐力计算功率。利用标量三重积恒等式，
+\begin{align}
+ P&=\sum_i\vect F_i\cdot(\vect v_C+\vect\omega\times\vect r_i')\\
+ &=\left(\sum_i\vect F_i\right)\cdot\vect v_C+
+ \left(\sum_i\vect r_i'\times\vect F_i\right)\cdot\vect\omega\\
+ &=\vect F_{\rm ext}\cdot\vect v_C+\vect M_C\cdot\vect\omega.
+\end{align}
+第一项给质心平动动能变化率，第二项给转动动能变化率。同一外力可同时参与两部分，
+不能在计算功率时任意把作用点搬到质心。理想刚性约束的成对内力不对整体做净功，
+但能在部分物体之间传递能量；若含主动内部驱动或可变形自由度，需另计相应功和储能。
+
+绕固定轴转动，作用点的切向位移为 $r_\perp\dd\varphi$，故
+\begin{equation}
+ \dd W=M_{\rm axis}\dd\varphi,\qquad P=M_{\rm axis}\omega,
+ \qquad W=\int_{\varphi_1}^{\varphi_2}M_{\rm axis}(\varphi)\dd\varphi=\Delta E_k.
+\end{equation}
+恒力矩且I不变才对应恒角加速度；力臂随姿态改变时应积分，不能简单用初始力矩乘总转角。
+对纯滚动下坡，也可令势能减少等于两部分动能之和；它与动力学结果相符，且说明把物体当作
+仅平动的质点会高估下坡速度和加速度。
+
+\subsection{碰撞、打击与截面内力}
+短时碰撞应同时考虑线冲量和冲量矩，对固定矩心O有
+\begin{equation}
+ M(\vect v_C^+-\vect v_C^-)=\vect J_{\rm ext},\qquad
+ \vect L_O^+-\vect L_O^-=\int\vect M_O^{\rm ext}\dd t.
+\end{equation}
+若只有某一接触冲量J，对质心还有
+$\Delta\vect L_C=\overrightarrow{CP}\times\vect J$；平面情况下可再写成I乘角速度改变量。
+选择固定支点或碰撞点取矩，常能消去该处冲量矩，但不一定能消去其余外冲量矩。
+打击中心就是平动与转动响应恰好配合，使固定支点不需提供冲量的打击位置；并非简单的几何中点。
+
+碰撞通常伴随形变、声、热，动量或角动量守恒不保证动能守恒。仅有法向恢复系数等于1时，
+还须查看切向摩擦是否耗能，不能直接宣称全部动能不变。
+生鸡蛋内部液体引入相对流动自由度，不是单一角速度刚体；既要考虑流体参与转动的程度，
+也要考虑耗散，后面的生熟鸡蛋题说明这一模型边界。
+
+刚体假设各点距离不变，不意味着内部作用为零。杆或烟囱靠轴力、剪力和弯矩维持整体运动。
+分析方法是先用整体方程求运动，再在待考察位置截开，对其中一段补齐截面相互作用，分别列力
+与力矩方程。具体题里某项可以为零；只有实际非零的内力分布才用于比较断裂位置。
+能量法适合连接状态、求角速度，动力学适合求瞬时反力及加速度，两者配合并以量纲、方向和
+极限情况相互校验，不能仅靠整体能量判断哪个截面最危险。

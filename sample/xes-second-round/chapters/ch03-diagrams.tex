@@ -1,0 +1,572 @@
+% 第3章图：标签背景全部透明；文字避开杆、接触轮廓和力线。
+\newcommand{\figConstraintRelease}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \begin{scope}[xshift=-4.6cm]
+  \draw[ground] (-1.2,2.3)--(1.2,2.3); \draw[thick] (0,2.3)--(0,.55); \fill (0,.38) circle(.18);
+  \draw[vector] (.35,.45)--(.35,-.55) node[right=4pt]{$mg$};
+  \node[labelclean,below=12pt] at (0,-.25){绳紧：$r=l$};
+ \end{scope}
+ \begin{scope}
+  \fill[Blue!15] (-1.5,-.45) rectangle (1.5,.15); \draw[thick] (-1.5,.15)--(1.5,.15);
+  \draw[DeepBlue,very thick] (-.55,-.05) .. controls (0,.35) and (.65,.25) .. (1.0,-.05)
+     .. controls (.5,-.3) and (0,-.3) .. cycle;
+  \node[labelclean,below=9pt] at (0,-.45){水面：$z\le0$};
+ \end{scope}
+ \begin{scope}[xshift=4.6cm]
+  \draw[ground] (-1.5,0)--(1.5,0); \draw[thick] (0,.25) circle(.18);
+  \draw[guide,->] (0,.45) .. controls (.4,1.4) and (1.0,1.8) .. (1.3,1.45);
+  \node[labelclean,below=8pt] at (0,0){地面：$z\ge0$};
+ \end{scope}
+\end{tikzpicture}\bookcaption{单边约束在等号成立时作用，离开边界后解除}\label{r2ch03:fig:001}\end{center}}
+
+\newcommand{\figUnicycleConstraint}{%
+\begin{center}\begin{tikzpicture}[scale=.84]
+ \draw[ground] (-3,-1.3)--(3,-1.3); \draw[thick] (0,0) circle(1.3);
+ \draw[vector] (0,0)--(1.1,.65) node[above right=3pt]{$\vect e_\theta$};
+ \draw[vector] (0,0)--(-.65,1.1) node[above left=3pt]{$\vect e_\perp$};
+ \draw[->,DeepBlue] (.7,.25) arc[start angle=20,end angle=75,radius=.65];
+ \node[labelclean,right=4pt] at (.8,.65){$\dot\phi$};
+ \draw[thick] (0,1.3)--(0,2.0); \draw[thick] (-.45,1.65)--(.45,1.65);
+ \node[labelclean,align=left] at (4.6,.55){无侧滑条件\\$\dot x=R\dot\phi\cos\theta$\\$\dot y=R\dot\phi\sin\theta$};
+\end{tikzpicture}\bookcaption{独轮车的局部无侧滑约束}\label{r2ch03:fig:002}\end{center}}
+
+\newcommand{\figRigidEulerAngles}{%
+\begin{center}\begin{tikzpicture}[scale=.9]
+ % Orthographic projection P(x,y,z)=(-x+y,-.45x-.45y+z).
+ % The body triad is obtained from a proper Z-X-Z Euler rotation
+ % Rz(35 deg) Rx(30 deg) Rz(-20 deg), so both triads are right-handed.
+ \coordinate (O) at (0,0);
+ \coordinate (x) at (-2.15,-.97); \coordinate (y) at (2.15,-.97);
+ \coordinate (z) at (0,2.55);
+ \coordinate (X) at (-1.38,-1.56); \coordinate (Y) at (2.26,.36);
+ \coordinate (Z) at (-1.50,1.98);
+ \coordinate (Np) at (-.55,-1.41); \coordinate (Nm) at (.55,1.41);
+ % Reference plane first; its far half is dashed to make front/back explicit.
+ \draw[guide,dashed] (-2.25,-.12) .. controls (-1.10,-1.22) and (1.10,-1.22) .. (2.25,-.12);
+ \draw[guide] (2.25,-.12) .. controls (1.10,.98) and (-1.10,.98) .. (-2.25,-.12);
+ \draw[axis] (O)--(x) node[left=3pt]{$x$};
+ \draw[axis] (O)--(y) node[right=3pt]{$y$};
+ \draw[axis] (O)--(z) node[above=3pt]{$z$};
+ % The node line is the intersection of the fixed xy and body XY planes.
+ \draw[guide,dashed] (Np)--(O); \draw[axis] (O)--(Nm) node[above right=2pt]{$N$};
+ % Body-fixed right-handed triad, computed from the same rotation matrix.
+ \draw[vector] (O)--(X) node[below left=2pt]{$X$};
+ \draw[vector] (O)--(Y) node[right=3pt]{$Y$};
+ \draw[vector] (O)--(Z) node[above left=2pt]{$Z$};
+ % Euler rotations: about z, then N, finally Z. Curved leaders avoid every axis.
+ \draw[component,->] (-.78,-.52) .. controls (-.42,-.92) and (-.20,-1.02) .. (Np);
+ \node[labelclean,anchor=east] at (-2.58,-.58){$\psi$：绕 $z$};
+ \draw[component,->] (-.12,1.75) .. controls (-.55,2.13) and (-1.02,2.18) .. (-1.30,1.84);
+ \node[labelclean,anchor=east] at (-2.58,1.28){$\theta$：绕 $N$};
+ \draw[component,->] (-1.05,.78) .. controls (-1.42,.48) and (-1.54,.05) .. (-1.37,-.32);
+ \node[labelclean,anchor=east] at (-2.58,.34){$\phi$：绕 $Z$};
+ \fill (O) circle(1.8pt); \node[labelclean,below right=2pt] at (O){$O$};
+ \node[labelclean,anchor=west,align=left] at (3.02,1.30){固定系 $Oxyz$\\固连系 $OXYZ$\\$N$ 为两平面的交线};
+ \typeout{R2GEO:EULER3D=1.00000,35.00000,30.00000,-20.00000}
+\end{tikzpicture}\bookcaption{欧拉角依次绕固定轴 $z$、节线 $N$ 和固连轴 $Z$ 转动}\label{r2ch03:fig:003}\end{center}}
+
+\newcommand{\figSurfaceCurveConstraint}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \begin{scope}[xshift=-3.3cm]
+  \fill[Blue!12] (-2,-.6) -- (1.2,-1.0) -- (2,1.0) -- (-1.2,1.3) -- cycle;
+  \draw[curve] (-2,-.6)--(1.2,-1)--(2,1)--(-1.2,1.3)--cycle;
+  \fill (.2,.2) circle(2.5pt);
+  \draw[TextGray] (.2,.2)--(-.20,1.34);
+  \node[labelclean,above=3pt] at (-.20,1.34){$F(x,y,z)=0$};
+ \end{scope}
+ \begin{scope}[xshift=3.3cm]
+  \draw[curve] plot[smooth] coordinates{(-2,-.7)(-1,.8)(.2,.2)(1.2,1.1)(2,-.3)};
+  \fill (.2,.2) circle(2.5pt);
+  \node[labelclean,below=11pt] at (.3,-.05){$F=0,\ G=0$};
+ \end{scope}
+\end{tikzpicture}\bookcaption{面约束减少一个自由度，空间曲线约束减少两个自由度}\label{r2ch03:fig:004}\end{center}}
+
+\newcommand{\figThreeBodyOneRope}{%
+\begin{center}\begin{tikzpicture}[scale=.8]
+ \coordinate (A) at (-2.4,-.8); \coordinate (B) at (0,1.8); \coordinate (C) at (2.5,-.7);
+ \draw[thick] (A)--(B)--(C)--cycle;
+ \foreach \p/\n/\pos in {A/1/below left,B/2/above,C/3/below right}{\fill (\p) circle(.17);\node[labelclean,\pos=5pt] at (\p){$m_{\n}$};}
+ \draw[vector] (A)--($(A)!.65!(B)$); \draw[vector] (A)--($(A)!.65!(C)$);
+ \node[labelclean,below=11pt] at (0,-1.0){一根闭合轻绳：总长度只有一个约束};
+\end{tikzpicture}\bookcaption{三物体由同一根闭合轻绳约束}\label{r2ch03:fig:005}\end{center}}
+
+\newcommand{\figTorqueGeneralized}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \fill (0,0) circle(2pt); \node[labelclean,below left=4pt] at (0,0){$O$};
+ \draw[thick] (0,0)--(3,1.4); \fill (3,1.4) circle(2pt); \node[labelclean,above=4pt] at (3,1.4){$P$};
+ \draw[vector] (3,1.4)--(2.35,2.7) node[above left=3pt]{$\vect F$};
+ \draw[vector] (0,0)--(3,1.4) node[midway,below=5pt]{$\vect r$};
+ \draw[component,->] (1.1,.2) arc[start angle=12,end angle=38,radius=1.1];
+ \node[labelclean] at (.82,1.02){$\delta\theta$};
+ \draw[guide,->] (3,1.4) arc[start angle=25,end angle=55,radius=3.3];
+ \node[labelclean,right=5pt] at (3.45,1.95){$\delta\vect r=\delta\vect\theta\times\vect r$};
+\end{tikzpicture}\bookcaption{力矩是转角自由度对应的广义力}\label{r2ch03:fig:006}\end{center}}
+
+\newcommand{\figPulleyGeneralized}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \draw[ground] (-2.3,2.8)--(2.3,2.8); \draw[thick] (0,2.2) circle(.36);
+ \draw[thick] (-.36,2.2)--(-.36,.9); \draw[thick] (.36,2.2)--(.36,1.15);
+ \draw[thick] (0,1.0) circle(.38);
+ \draw[thick] (-.38,1)--(-.38,-.25); \draw[thick] (.38,1)--(.38,-.25);
+ \foreach \x/\n in {-1.35/1,-.38/2,.38/3}{
+   \draw[fill=SoftGray] (\x-.25,-.75) rectangle(\x+.25,-.25);
+   \node[labelclean,below=4pt,font=\scriptsize] at (\x,-.75){$m_{\n}$};
+ }
+ \draw[thick] (-1.35,2.8)--(-1.35,-.25); \draw[guide,<->] (1.35,.2)--(1.35,1.55) node[midway,right=4pt]{$x$};
+ \draw[guide,<->] (2.05,-.7)--(2.05,.25) node[midway,right=4pt]{$y$};
+\end{tikzpicture}\bookcaption{两个自由度的复合滑轮组}\label{r2ch03:fig:007}\end{center}}
+
+\newcommand{\figForceSystemKinds}{%
+\begin{center}\begin{tikzpicture}[scale=.7]
+ \begin{scope}[xshift=-4.8cm]
+  \draw[thick] (-1.5,-.8) rectangle(1.5,.8);
+  \foreach \x in {-1.1,-.55,0,.55,1.1}{\draw[vector] (\x,0)--(\x,.65);}
+  \node[labelclean,below=8pt] at (0,-.8){分布力系};
+ \end{scope}
+ \begin{scope}
+  \fill (0,0) circle(2pt);
+  \foreach \a in {20,145,260}{\draw[vector] (0,0)--(\a:1.45);}
+  \node[labelclean,below=11pt] at (0,-1.3){共点力系};
+ \end{scope}
+ \begin{scope}[xshift=4.8cm]
+  \draw[thick] (-1.5,-.8) rectangle(1.5,.8);
+  \draw[vector] (-1,-.3)--(-.3,.55); \draw[vector] (.9,.4)--(.2,1.15); \draw[vector] (.8,-.4)--(1.55,-.2);
+  \node[labelclean,below=8pt] at (0,-.8){空间力系};
+ \end{scope}
+\end{tikzpicture}\bookcaption{分布、共点与一般空间力系}\label{r2ch03:fig:008}\end{center}}
+
+\newcommand{\figActionReactionAxioms}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \draw[thick] (-3,-.55) rectangle(-.6,.55); \draw[thick] (.6,-.55) rectangle(3,.55);
+ \draw[vector] (-.6,0)--(.55,0) node[midway,above=5pt]{$\vect F_{12}$};
+ \draw[vector] (.6,0)--(-.55,0) node[midway,below=5pt]{$\vect F_{21}$};
+ \draw[guide] (-3.5,0)--(3.5,0);
+ \node[labelclean,above=12pt] at (0,.55){等大、反向、共线};
+\end{tikzpicture}\bookcaption{二力平衡与作用反作用公理的共线条件}\label{r2ch03:fig:009}\end{center}}
+
+\newcommand{\figForceSliding}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \draw[guide] (-3,0)--(3,0); \fill (-1.6,0) circle(2pt); \fill (1.2,0) circle(2pt);
+ \draw[vector] (-1.6,0)--(.2,0) node[midway,above=5pt]{$\vect F$};
+ \draw[vector] (1.2,0)--(3,0) node[midway,below=5pt]{$\vect F$};
+ \node[labelclean,above=9pt] at (-1.6,0){$P$}; \node[labelclean,above=9pt] at (1.2,0){$Q$};
+\end{tikzpicture}\bookcaption{力沿同一作用线滑移不改变对刚体的效果}\label{r2ch03:fig:010}\end{center}}
+
+\newcommand{\figCouple}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \draw[guide] (-2,-.75)--(2,-.75); \draw[guide] (-2,.75)--(2,.75);
+ \draw[vector] (-1.5,-.75)--(1.1,-.75) node[midway,below=5pt]{$\vect F$};
+ \draw[vector] (1.5,.75)--(-1.1,.75) node[midway,above=5pt]{$-\vect F$};
+ \draw[<->,TextGray] (2.15,-.75)--(2.15,.75) node[midway,right=4pt]{$d$};
+ \draw[component,->] (.5,0) arc[start angle=0,end angle=280,radius=.5];
+ \node[labelclean] at (0,0){$\vect M$};
+\end{tikzpicture}\bookcaption{力偶及其力偶矩}\label{r2ch03:fig:011}\end{center}}
+
+\newcommand{\figAcceleratingTable}{%
+\begin{center}\begin{tikzpicture}[scale=.75]
+ \draw[thick] (-2.2,1.2)--(2.2,1.2); \draw[thick] (-1.5,1.2)--(-1.5,0); \draw[thick] (1.5,1.2)--(1.5,0);
+ \draw[ground] (-2.7,0)--(2.7,0);
+ \draw[vector] (0,1.2)--(0,.1);
+ \draw[vector] (-1.5,0)--(-1.5,1.0);
+ \draw[vector] (1.5,0)--(1.5,1.0);
+ \draw[vector] (0,.75)--(-1.2,.75);
+ \draw[vector] (-1.5,.15)--(-.35,.15);
+ \node[labelclean,right=5pt] at (0,.46){$mg$};
+ \node[labelclean,above left=4pt] at (-1.5,1.0){$N_1$};
+ \node[labelclean,above right=4pt] at (1.5,1.0){$N_2$};
+ \node[labelclean,font=\scriptsize] at (-.66,.98){$ma$};
+ \node[labelclean,below=5pt] at (-.92,.15){$f$};
+\end{tikzpicture}\bookcaption{加速车厢中桌子的等效力偶分解}\label{r2ch03:fig:012}\end{center}}
+
+\newcommand{\figCoupleSum}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \draw[component,->] (-2,0) arc[start angle=0,end angle=280,radius=.55]; \node[labelclean] at (-2,0){$\vect M_1$};
+ \draw[component,->] (0,0) arc[start angle=0,end angle=280,radius=.55]; \node[labelclean] at (0,0){$\vect M_2$};
+ \draw[component,->] (2,0) arc[start angle=0,end angle=280,radius=.55]; \node[labelclean] at (2,0){$\vect M_3$};
+ \draw[vector] (-.9,-1.15)--(.9,-1.15) node[midway,below=4pt]{$\sum_i\vect M_i$};
+\end{tikzpicture}\bookcaption{力偶可自由搬移并按矢量求和}\label{r2ch03:fig:013}\end{center}}
+
+\newcommand{\figForceTranslation}{%
+\begin{center}\begin{tikzpicture}[scale=.8]
+ \fill (-2,0) circle(2pt); \node[labelclean,below=5pt] at (-2,0){$P$};
+ \fill (1.2,0) circle(2pt); \node[labelclean,below=5pt] at (1.2,0){$O$};
+ \draw[vector] (-2,0)--(-2,1.7) node[left=4pt]{$\vect F$};
+ \draw[vector] (1.2,0)--(1.2,1.7) node[right=4pt]{$\vect F$};
+ \draw[guide] (-2,0)--(1.2,0) node[midway,below=5pt]{$\vect R$};
+ \draw[component,->] (2.25,.5) arc[start angle=0,end angle=280,radius=.5]; \node[labelclean,right=5pt] at (2.6,.5){$-\vect R\times\vect F$};
+\end{tikzpicture}\bookcaption{力平移到简化中心时附加一个力偶}\label{r2ch03:fig:014}\end{center}}
+
+\newcommand{\figThreeForceTriangle}{%
+\begin{center}\begin{tikzpicture}[scale=.76]
+ \begin{scope}[xshift=-3.1cm]
+  \coordinate (O) at (0,0); \foreach \a/\n in {20/1,145/2,260/3}{\draw[vector] (O)--(\a:1.7) node[pos=.85,above=3pt]{$\vect F_{\n}$};}
+  \node[labelclean,below=8pt] at (0,-1.7){作用线共点};
+ \end{scope}
+ \begin{scope}[xshift=3.1cm]
+  \draw[vector] (0,0)--(2,0) node[midway,below=4pt]{$\vect F_1$};
+  \draw[vector] (2,0)--(.75,1.55) node[midway,right=4pt]{$\vect F_2$};
+  \draw[vector] (.75,1.55)--(0,0) node[midway,left=4pt]{$\vect F_3$};
+  \node[labelclean,below=8pt] at (1,-.2){闭合力三角形};
+ \end{scope}
+\end{tikzpicture}\bookcaption{三力平衡的汇交条件与力三角形}\label{r2ch03:fig:015}\end{center}}
+
+\newcommand{\figRealVirtualPath}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \coordinate (A) at (-3,0); \coordinate (B) at (3,0);
+ \draw[curve,->] (A) parabola bend (0,2.2) (B);
+ \draw[guide,->] (A) .. controls (-.5,2.9) and (1.1,1.3) .. (B);
+ \fill (A) circle(2pt); \fill (B) circle(2pt);
+ \node[labelclean,below=5pt] at (A){$A$}; \node[labelclean,below=5pt] at (B){$B$};
+ \draw[curve] (-1.88,3.25)--(-1.30,3.25);
+ \node[labelclean,anchor=west] at (-1.18,3.25){实路径 $\vect r(t)$};
+ \draw[guide,dashed] (-1.88,2.65)--(-1.30,2.65);
+ \node[labelclean,anchor=west] at (-1.18,2.65){邻近允许路径};
+ \draw[vector] (.25,1.94)--(.65,1.55) node[midway,right=5pt]{$\delta\vect r$};
+\end{tikzpicture}\bookcaption{同一时刻比较实路径与邻近允许运动得到虚位移}\label{r2ch03:fig:016}\end{center}}
+
+% 习题题意图与解图。
+\newcommand{\figTwoCylindersWall}{%
+\begin{center}\begin{tikzpicture}[scale=.92]
+ % A simultaneously touches floor and wall; B touches the same wall and A.
+ % R=1.5, r=.75 is only the drawing scale. The relation used is
+ % Delta x=R-r and Delta y=2sqrt(Rr), so the center distance is R+r.
+ \pgfmathsetmacro{\Rbig}{1.5}
+ \pgfmathsetmacro{\rsmall}{.75}
+ \pgfmathsetmacro{\wallx}{3}
+ \pgfmathsetmacro{\Ax}{\wallx-\Rbig}
+ \pgfmathsetmacro{\Ay}{\Rbig}
+ \pgfmathsetmacro{\Bx}{\wallx-\rsmall}
+ \pgfmathsetmacro{\By}{\Rbig+2*sqrt(\Rbig*\rsmall)}
+ \pgfmathsetmacro{\alphafig}{atan2(\By-\Ay,\Bx-\Ax)}
+ \typeout{R2GEO:TWOCYL=\Rbig,\rsmall,\wallx,\Ax,\Ay,\Bx,\By,\alphafig}
+ \draw[ground] (-.25,0)--(\wallx,0);
+ \draw[ground] (\wallx,0)--(\wallx,4.7);
+ \draw[thick] (\Ax,\Ay) circle(\Rbig);
+ \draw[thick] (\Bx,\By) circle(\rsmall);
+ \fill (\Ax,\Ay) circle(1.6pt); \fill (\Bx,\By) circle(1.6pt);
+ \draw[guide] (\Ax,\Ay)--(\Bx,\By);
+ \node[labelclean] at (.70,1.05){$A$}; \node[labelclean] at (2.08,3.86){$B$};
+ \node[labelclean] at (1.22,.62){$R$}; \node[labelclean] at (2.62,3.85){$r$};
+ \draw[->,TextGray] ($(\Ax,\Ay)+(.55,0)$)
+    arc[start angle=0,end angle=\alphafig,radius=.55];
+ \node[labelclean] at (2.02,1.79){$\alpha$};
+ \fill (\Ax,0) circle(1.7pt); \fill (\wallx,\Ay) circle(1.7pt);
+ \fill (\wallx,\By) circle(1.7pt);
+\end{tikzpicture}\bookcaption{两圆柱与地面、墙面的接触关系}\label{r2ch03:fig:017}\end{center}}
+
+\newcommand{\figTrussCut}{%
+\begin{center}\begin{tikzpicture}[scale=.88]
+ \coordinate (n8) at (0,0);   \coordinate (n2) at (1.35,0);
+ \coordinate (n5) at (2.70,0);\coordinate (n7) at (4.05,0);
+ \coordinate (n9) at (5.40,0);
+ \coordinate (n1) at (1.35,1.30);\coordinate (n4) at (2.70,1.30);
+ \coordinate (n6) at (4.05,1.30);\coordinate (n3) at (2.70,2.60);
+ % 外缘、水平杆、竖杆与四根斜腹杆均按源题拓扑连接。
+ \draw[thick] (n8)--(n1)--(n3)--(n6)--(n9);
+ \draw[thick] (n8)--(n2)--(n5)--(n7)--(n9);
+ \draw[thick] (n1)--(n4)--(n6) (n1)--(n2) (n3)--(n4)--(n5) (n6)--(n7);
+ \draw[thick] (n1)--(n5) (n2)--(n4) (n4)--(n7) (n5)--(n6);
+ \foreach \p/\n/\where in {n8/8/below left,n2/2/below,n5/5/below,n7/7/below,n9/9/below right,n1/1/left,n4/4/right,n6/6/right,n3/3/left}{
+   \fill (\p) circle(1.8pt);\node[labelclean,\where=3pt] at (\p){$\n$};}
+ \draw[vector] (n1)++(0,.72)--(n1) node[pos=0,left=4pt]{$P$};
+ \draw[vector] (n3)++(0,.72)--(n3) node[pos=0,right=4pt]{$P/2$};
+ \draw[ground] (n8)++(-.35,-.16)--++(.70,0);
+ \draw[ground] (n9)++(-.35,-.16)--++(.70,0);
+ \draw[TextGray!85] (n8)--($(n8)+(0,-.68)$) (n2)--($(n2)+(0,-.68)$);
+ \draw[TextGray!85,<->] ($(n8)+(0,-.58)$)--($(n2)+(0,-.58)$)
+      node[midway,below=3pt]{$l$};
+ \draw[TextGray!85] (n9)--($(n9)+(.68,0)$) (n6)--($(n6)+(2.03,0)$);
+ \draw[TextGray!85,<->] ($(n9)+(.58,0)$)--($(n9)+(.58,1.30)$)
+      node[midway,right=3pt]{$l$};
+\end{tikzpicture}\bookcaption{源题桁架：节点、杆件连接与两处外载}\label{r2ch03:fig:018}\end{center}}
+
+\newcommand{\figHoopRodSupport}{%
+\begin{center}\begin{tikzpicture}[scale=.86]
+ % 圆环面以竖直椭圆表示；AP 沿离开环面的透视方向，不能画在环面内。
+ \coordinate (O) at (0,1.70);\coordinate (P) at (0,0);
+ \coordinate (B) at (1.22,.88);\coordinate (A) at (3.05,-.18);
+ \draw[thick] (O) ellipse[x radius=1.48,y radius=1.70];
+ \draw[guide,dashed] (O)--(P);\draw[thick] (O)--(B);
+ \draw[very thick] (A)--(B);\draw[very thick] (A)--(P);
+ \fill (O) circle(1.8pt);\fill (P) circle(1.8pt);\fill (A) circle(1.8pt);\fill (B) circle(1.8pt);
+ \node[labelclean,left=4pt] at (O){$O$};\node[labelclean,below left=3pt] at (P){$P$};
+ \node[labelclean,below right=3pt] at (A){$A$};\node[labelclean,right=4pt] at (B){$B$};
+ \draw[->,TextGray] (O)++(0,-.58) arc[start angle=-90,end angle=-34,radius=.58];
+ \node[labelclean,left=2pt] at (.20,1.08){$\theta$};
+ \draw[guide,dashed] (A)--++(-.42,.25)--++(-.25,-.43);
+\end{tikzpicture}\bookcaption{竖直圆环与环面外斜杆：$AP$ 垂直于圆环平面}\label{r2ch03:fig:019}\end{center}}
+
+\newcommand{\figBoxTip}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \pgfmathsetmacro{\Lbox}{1.6}
+ \pgfmathsetmacro{\ag}{.75}
+ \pgfmathsetmacro{\normag}{sqrt(1+\ag*\ag)}
+ \pgfmathsetmacro{\xp}{-\Lbox*\ag/\normag}
+ \pgfmathsetmacro{\yp}{2*\Lbox-\Lbox/\normag}
+ \pgfmathsetmacro{\xs}{-.78}
+ \typeout{R2GEO:BOXTIP=\Lbox,\ag,\xp,\yp,\xs}
+ \draw[thick] (-\Lbox,0) rectangle (\Lbox,{2*\Lbox});
+ \draw[ground] (-2.25,0)--(2.25,0);
+ \draw[thick] (0,{2*\Lbox})--(\xp,\yp);
+ \fill (\xp,\yp) circle(.18);
+ \draw[TextGray] (\xp,\yp)--(-1.90,1.78);
+ \node[labelclean,anchor=east] at (-1.98,1.78){摆球 $m$};
+ \draw[spring] (\Lbox,.22)--(\xs,.22);
+ \fill (\xs,.22) circle(.18);
+ \node[labelclean,below=7pt] at (\xs,.22){弹簧球 $m$};
+ \node[labelclean,above=7pt] at (.62,.22){$k,l$};
+ \draw[vector] (-\Lbox,{2*\Lbox})--(-.30,{2*\Lbox})
+   node[midway,above=5pt]{$F$};
+ \draw[vector] (1.95,2.55)--(2.85,2.55) node[midway,above=4pt]{$\vect a$};
+ \fill (\Lbox,0) circle(2pt);
+ \node[labelclean,below right=4pt] at (\Lbox,0){临界支点 $C$};
+ \draw[guide,dashed] (0,{2*\Lbox})--(0,{\Lbox*.9});
+ \draw[->,TextGray] (0,{2*\Lbox-.65}) arc[start angle=-90,end angle=-127,radius=.65];
+ \draw[TextGray] (-.42,2.57)--(-1.83,2.82);
+ \node[labelclean,anchor=east] at (-1.91,2.82){$\tan\theta=a/g$};
+\end{tikzpicture}\bookcaption{自由平移箱内的摆球和弹簧球均向加速度反向偏移}\label{r2ch03:fig:020}\end{center}}
+
+\newcommand{\figConeInHole}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \coordinate (V) at (0,-2.35); \coordinate (C) at (0,1.25);
+ \coordinate (P) at (0,2.00);
+ \draw[very thick] (-2.1,2.45)--(V)--(2.1,2.45);
+ \draw[guide,->] (0,-2.7)--(0,2.85) node[above]{$z$};
+ \draw[ground] (-3.35,2.00)--(-1.91,2.00);
+ \draw[ground] (1.91,2.00)--(3.35,2.00);
+ \draw[TextGray!85,<->] (-1.91,1.72)--(1.91,1.72)
+      node[pos=.23,below=3pt]{$2r$};
+ \fill (C) circle(2pt); \node[labelclean,right=5pt] at (C){质心 $C$};
+ \node[labelclean] at (-2.48,2.32){孔面 $P$};
+ \draw[TextGray!85,<->] (-2.72,-2.35)--(-2.72,2.00)
+      node[midway,left=4pt]{$z_P=r\cot\alpha$};
+ \draw[TextGray!85,<->] (2.72,-2.35)--(2.72,1.25)
+      node[midway,right=4pt]{$z_C=3h/4$};
+ \draw[->,TextGray] (0,-.78) arc[start angle=90,end angle=67.3,radius=1.05];
+ \node[labelclean] at (.38,-.56){$\alpha$};
+ \node[labelclean,below left=3pt] at (V){锥顶};
+\end{tikzpicture}\bookcaption{倒置圆锥的轴截面：孔面与质心高度的比较决定稳定性}\label{r2ch03:fig:021}\end{center}}
+
+\newcommand{\figHoseUnroll}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \coordinate (C) at (1.0,1.25);
+ \draw[ground] (-4.35,0)--(4.15,0); \draw[thick] (C) circle(1.25);
+ \foreach \rr in {.35,.65,.95}{\draw[guide] (C) circle(\rr);}
+ \draw[very thick] (-3.75,0)--(1.0,0);
+ \fill (-3.75,0) circle(2pt); \node[labelclean,below=5pt] at (-3.75,0){固定端};
+ \draw[vector] (2.35,1.25)--(3.75,1.25) node[midway,above=4pt]{$v=\dot x$};
+ \draw[vector] (-3.75,.28)--(-4.75,.28) node[midway,above=4pt]{$F$};
+ \draw[guide,<->] (C)--(2.25,1.25) node[midway,below=4pt]{$r$};
+ \node[labelclean] at (1.0,2.78){$M_r=Mu$};
+ \draw[guide,<->] (-3.75,-.48)--(1.0,-.48) node[midway,below=4pt]{$x=L(1-u)$};
+\end{tikzpicture}\bookcaption{卷盘向右运动，水带在底部瞬时静止并留在固定端一侧}\label{r2ch03:fig:025}\end{center}}
+
+\newcommand{\figThreeBodyRegion}{%
+\begin{center}\begin{tikzpicture}[scale=.86]
+ \begin{scope}[xshift=-3.05cm]
+  \path[fill=Blue!12,draw=DeepBlue,thick]
+   plot[domain=0:1,samples=80]
+    ({1.5*((1-\x)^2-\x^2)/(1+\x^2+(1-\x)^2)},
+     {2.598/(1+\x^2+(1-\x)^2)})
+   -- plot[domain=0:1,samples=80]
+    ({1.5*(\x^2-1)/(1+\x^2+(1-\x)^2)},
+     {2.598*(1-\x)^2/(1+\x^2+(1-\x)^2)})
+   -- plot[domain=0:1,samples=80]
+    ({1.5*(1-(1-\x)^2)/(1+\x^2+(1-\x)^2)},
+     {2.598*\x^2/(1+\x^2+(1-\x)^2)}) -- cycle;
+  \draw[thick] (0,2.598)--(-1.5,0)--(1.5,0)--cycle;
+  \node[labelclean,above=3pt] at (0,2.598){$T_1=Q$};
+  \node[labelclean,below=3pt] at (-1.5,0){$T_2=Q$};
+  \node[labelclean,below=3pt] at (1.5,0){$T_3=Q$};
+  \node[labelclean] at (0,.88){允许区};
+  \node[labelclean] at (0,-1.02){(a) 等质量子粒};
+ \end{scope}
+ \begin{scope}[xshift=3.05cm]
+  \fill[Blue!12] (.75,1.299)--(-.75,1.299)--(0,0)--cycle;
+  \draw[curve] (.75,1.299)--(-.75,1.299)--(0,0)--cycle;
+  \draw[thick] (0,2.598)--(-1.5,0)--(1.5,0)--cycle;
+  \node[labelclean,above=3pt] at (0,2.598){$E_1=E_0$};
+  \node[labelclean,below=3pt] at (-1.5,0){$E_2=E_0$};
+  \node[labelclean,below=3pt] at (1.5,0){$E_3=E_0$};
+  \node[labelclean] at (0,.84){允许区};
+  \node[labelclean] at (0,-1.02){(b) 三光子};
+ \end{scope}
+\end{tikzpicture}\bookcaption{三体衰变的三元能量图：边界均由三动量共线给出}\label{r2ch03:fig:026}\end{center}}
+
+\newcommand{\figThreeBallLink}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \coordinate (A) at (-2,0); \coordinate (B) at (0,1.2); \coordinate (C) at (2,0);
+ \draw[very thick] (A)--(B)--(C);
+ \foreach \p in {A,B,C}{\fill (\p) circle(.18);}
+ \node[labelclean,below left=5pt] at (A){$A$};
+ \node[labelclean,above=5pt] at (B){$B$};
+ \node[labelclean,above=5pt] at (C){$C$};
+ \draw[vector] (A)--++(0,1.35) node[left=4pt]{$J$};
+ \draw[guide,<->] (A)++(0,-.45)--(C)++(0,-.45) node[midway,below=4pt]{$d_{AC}$};
+\end{tikzpicture}\bookcaption{两根铰杆连接三等质量小球}\label{r2ch03:fig:028}\end{center}}
+
+\newcommand{\figTripod}{%
+\begin{center}\begin{tikzpicture}[scale=.69]
+ \begin{scope}[xshift=-3.65cm]
+  \coordinate (O) at (0,0); \coordinate (Y) at (0,3.25);
+  \coordinate (A) at (-2.55,-.72); \coordinate (B) at (2.55,-.58);
+  \coordinate (C) at (-1.18,1.18);
+  \fill[SoftGray] (-3.15,-1.08)--(3.15,-1.08)--(2.35,1.58)--(-2.35,1.58)--cycle;
+  \draw[TextGray] (-3.15,-1.08)--(3.15,-1.08)--(2.35,1.58)--(-2.35,1.58)--cycle;
+  \foreach \p in {A,B,C}{\draw[guide,dashed] (O)--(\p);}
+  \draw[guide,dashed] (O)--(Y);
+  \draw[guide] (-3.28,0)--(0,0);
+  \draw[guide] (-3.28,3.25)--(0,3.25);
+  \draw[TextGray!85,<->] (-3.28,0)--(-3.28,3.25) node[midway,left=5pt]{$h$};
+  \draw[very thick] (Y)--(A) (Y)--(B) (Y)--(C);
+  \foreach \p/\n/\pos in {O/O/below,Y/Y/above,A/A/below left,B/B/below right,C/C/left}{
+    \fill (\p) circle(2pt);\node[labelclean,\pos=4pt] at (\p){$\n$};}
+  \draw[vector] ($(Y)+(.18,-.05)$)--++(0,-1.05) node[right=5pt]{$G$};
+  \node[labelclean] at (0,-1.62){(a) 空间结构};
+ \end{scope}
+ \begin{scope}[xshift=3.55cm]
+  \coordinate (O) at (0,0); \coordinate (A) at (200:2.15);
+  \coordinate (B) at (350:2.15); \coordinate (C) at (72:2.15);
+  \draw[->,TextGray] (-.25,0)--(2.72,0) node[right]{$x$};
+  \draw[->,TextGray] (0,-.25)--(0,2.72) node[above]{$y$};
+  \node[labelclean] at (2.12,1.72){$\odot\,z$};
+  \foreach \p/\n/\an in {A/A/200,B/B/350,C/C/72}{
+    \draw[thick] (O)--(\p);\fill (\p) circle(2pt);
+    \node[labelclean] at ($ (\p)+(\an:.28) $){$\n$};}
+  \fill (O) circle(2pt); \node[labelclean,above left=3pt] at (O){$O$};
+  \draw[->,TextGray] (.52,0) arc[start angle=0,end angle=72,radius=.52];
+  \node[labelclean] at (.68,.48){$\alpha_3$};
+  \node[labelclean] at (-.58,-.48){$\alpha_1$};
+  \node[labelclean] at (1.15,-.58){$\alpha_2$};
+  \draw[TextGray!85,<->] (O)--(A) node[pos=.72,above=4pt]{$\rho$};
+  \node[labelclean] at (0,-1.62){(b) 水平投影};
+ \end{scope}
+\end{tikzpicture}\bookcaption{三脚架的空间位置、右手坐标与水平投影}\label{r2ch03:fig:029}\end{center}}
+
+\newcommand{\figRollingHoops}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \draw[thick] (0,0) circle(2.5); \draw[thick] ({1.65*cos(45)},{1.65*sin(45)}) circle(.85);
+ \draw[guide] (0,0)--({1.65*cos(45)},{1.65*sin(45)});
+ \draw[->,TextGray] (.8,0) arc (0:45:.8); \node[labelclean] at (1.0,.35){$\theta$};
+ \draw[component,->] (1.6,1.35) arc (0:260:.35); \node[labelclean,right=4pt] at (2,1.35){$\phi$};
+\end{tikzpicture}\bookcaption{小圆环在大圆环内侧纯滚}\label{r2ch03:fig:030}\end{center}}
+
+\newcommand{\figFarmCart}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \coordinate (H) at (-4.05,0);\coordinate (O) at (0,1.08);\coordinate (F) at (1.35,1.44);
+ \draw[ground] (-4.5,0)--(2.25,0);
+ \draw[very thick] (H)--(F);\draw[very thick] ($(H)+(0,.12)$)--($(F)+(0,.12)$);
+ \draw[fill=SoftGray] (O) circle(.63);\draw[thick] (O) circle(.63);
+ \fill (O) circle(2pt);\fill (H) circle(2pt);\fill (F) circle(2pt);
+ \node[labelclean] at (O){$O$};
+ \node[labelclean,below left=3pt] at (H){把手末端 $H$};
+ \node[labelclean,above right=3pt] at (F){前端对齐};
+ \draw[guide,dashed] (O)--($(O)+(-1.15,0)$);
+ \draw[->,TextGray] ($(O)+(-.82,0)$) arc[start angle=180,end angle=195,radius=.82];
+ \node[labelclean] at (-1.35,.28){$\varphi$};
+ \draw[guide,<->] ($(H)+(-.08,.74)$)--($(O)+(-.08,.74)$)
+   node[midway,above left=3pt]{$3l/2$};
+ \draw[guide,<->] ($(O)+(.08,.84)$)--($(F)+(.08,.84)$)
+   node[midway,above=3pt]{$l/2$};
+ \draw[guide,<->] (1.85,0)--(1.85,1.08) node[midway,right=3pt]{$r$};
+ \draw[component,->] ($(O)+(.35,0)$) arc[start angle=0,end angle=-250,radius=.35];
+\end{tikzpicture}\bookcaption{触地瞬间的侧视几何：把手末端距车轴 $3l/2$}\label{r2ch03:fig:022}\end{center}}
+
+\newcommand{\figDoubleHelix}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \draw[guide] (0,-2.5)--(0,2.8);
+ \draw[curve,domain=-360:360,samples=160] plot ({1.35*cos(\x)},{.0065*\x});
+ \draw[curve,domain=-360:360,samples=160] plot ({1.35*cos(\x+180)},{.0065*\x});
+ \draw[<->,TextGray] (-1.65,-1.1)--(-1.65,.95) node[midway,left=4pt]{$H$};
+ \draw[<->,TextGray] (0,2.3)--(1.35,2.3) node[midway,above=4pt]{$R$};
+ \draw[vector] (2.1,1.2)--(2.1,.15) node[right=4pt]{$\lambda g\,\dd s$};
+\end{tikzpicture}\bookcaption{固定螺母中的对称双螺旋线螺丝}\label{r2ch03:fig:023}\end{center}}
+
+\newcommand{\figCylinderBalls}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \begin{scope}[xshift=-3.65cm]
+  \coordinate (O) at (0,0); \coordinate (Q) at (120:1.25);
+  \coordinate (P) at (225:1.25); \coordinate (B) at ($(P)+(315:1.55)$);
+  \draw[thick] (O) circle(1.25);
+  \draw[very thick] (Q) arc[start angle=120,end angle=225,radius=1.25];
+  \draw[very thick] (P)--(B);
+  \fill (Q) circle(1.7pt); \fill (P) circle(1.7pt); \fill (B) circle(.16);
+  \node[labelclean,above=4pt] at (Q){$Q$};
+  \node[labelclean,left=4pt] at (P){切点 $P$};
+  \node[labelclean,right=5pt] at (B){$m/2$};
+  \node[labelclean,left=3pt] at ($(P)!.56!(B)$){$xR$};
+  \draw[guide] (O)--(P);
+  \draw[component,->] (.55,0) arc[start angle=0,end angle=-250,radius=.55];
+  \node[labelclean] at (0,0){$q$};
+  \node[labelclean,below=4pt] at (0,-2.32){(a) 绳仍与筒面相切};
+ \end{scope}
+ \begin{scope}[xshift=3.45cm]
+  \coordinate (O) at (0,0); \coordinate (Q) at (150:1.25);
+  \coordinate (Qp) at (-30:1.25); \coordinate (B) at ($(Q)+(195:1.65)$);
+  \coordinate (Bp) at ($(Qp)+(15:1.65)$);
+  \draw[thick] (O) circle(1.25);
+  \draw[guide,dashed] (Q)--(Qp);
+  \draw[very thick] (Q)--(B); \draw[very thick] (Qp)--(Bp);
+  \fill (Q) circle(1.7pt); \fill (Qp) circle(1.7pt);
+  \fill (B) circle(.16); \fill (Bp) circle(.16);
+  \node[labelclean,above left=3pt] at (Q){$Q$};
+  \node[labelclean,below right=3pt] at (Qp){$Q'$};
+  \node[labelclean,below=6pt] at ($(Q)!.56!(B)$){$XR$};
+  \node[labelclean,above left=11pt] at (B){$m/2$};
+  \node[labelclean,above right=4pt] at (Bp){$m/2$};
+  \draw[->,TextGray] ($(Q)+(150:.46)$) arc[start angle=150,end angle=195,radius=.46];
+  \node[labelclean,left=3pt] at ($(Q)+(173:.74)$){$\theta$};
+  \node[labelclean,below=4pt] at (0,-2.32){(b) 完全打开后};
+ \end{scope}
+ \typeout{R2GEO:ROPE=1.25000,1.55000,0.00000}
+\end{tikzpicture}\bookcaption{对称两支中取一支建模；另一支关于筒心中心对称}\label{r2ch03:fig:024}\end{center}}
+
+\newcommand{\figMovingWell}{%
+\begin{center}\begin{tikzpicture}[scale=.76]
+ \draw[axis] (-3,0)--(3.2,0) node[right]{$x$}; \draw[axis] (-3,0)--(-3,2.7) node[above]{$V$};
+ \draw[curve] (-2.7,2.5) .. controls (-2.5,.5) and (-2.2,.05) .. (-1.8,0);
+ \draw[curve] (1.8,0) .. controls (2.2,.05) and (2.5,.5) .. (2.7,2.5);
+ \draw[guide,->] (2.0,1.6)--(2.8,1.6) node[midway,above=4pt]{$u$};
+ \draw[<->,TextGray] (-1.8,-.35)--(1.8,-.35) node[midway,below=4pt]{$L(t)$};
+\end{tikzpicture}\bookcaption{一侧缓慢移动的一维陡壁势阱}\label{r2ch03:fig:031}\end{center}}
+
+\newcommand{\figInsectRod}{%
+\begin{center}\begin{tikzpicture}[scale=.8]
+ \draw[ground] (-1.3,2.7)--(1.3,2.7); \fill (0,2.7) circle(2pt);
+ \draw[very thick] (0,2.7)--(1.25,-.15); \fill (.65,1.22) circle(.16);
+ \node[labelclean,right=5pt] at (.65,1.22){小虫 $m$，$s=vt$};
+ \draw[guide,dashed] (0,2.7)--(0,-.35);
+ \draw[->,TextGray] (0,1.8) arc[start angle=-90,end angle=-66,radius=.9];
+ \node[labelclean] at (.25,1.75){$\theta$};
+\end{tikzpicture}\bookcaption{小虫沿悬挂均匀杆缓慢爬行}\label{r2ch03:fig:032}\end{center}}
+
+\newcommand{\figPolarizedAtoms}{%
+\begin{center}\begin{tikzpicture}[scale=.76]
+ \fill[red!35] (-2.3,0) circle(.2); \fill[red!35] (2.3,0) circle(.2);
+ \fill[DeepBlue] (-1.6,0) circle(.16); \fill[DeepBlue] (1.6,0) circle(.16);
+ \draw[<->,TextGray] (-2.3,-.92)--(2.3,-.92) node[midway,below=4pt]{$R$};
+ \draw[<->,TextGray] (-2.3,.70)--(-1.6,.70) node[midway,above=4pt]{$x_1$};
+ \draw[<->,TextGray] (1.6,.70)--(2.3,.70) node[midway,above=4pt]{$x_2$};
+ \node[labelclean,below left=7pt] at (-2.3,0){$+q$};
+ \node[labelclean,below right=7pt] at (-1.6,0){$-q$};
+ \node[labelclean,below right=7pt] at (2.3,0){$+q$};
+ \node[labelclean,below left=7pt] at (1.6,0){$-q$};
+\end{tikzpicture}\bookcaption{两个可极化原子的耦合振子模型}\label{r2ch03:fig:033}\end{center}}
+
+\newcommand{\figSmallCylinderOnLarge}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \coordinate (O) at (0,0);\def\ang{132}
+ \coordinate (C) at ({3.05*cos(\ang)},{3.05*sin(\ang)});
+ \draw[thick,domain=18:162,samples=80] plot ({2.15*cos(\x)},{2.15*sin(\x)});
+ \draw[thick] (C) circle(.90);
+ \draw[guide,dashed] (O)--(0,2.75);
+ \draw[guide] (O)--(C);
+ \fill (O) circle(1.8pt);\fill (C) circle(1.8pt);
+ \node[labelclean,below=4pt] at (O){$O$};\node[labelclean,above left=4pt] at (C){$C$};
+ \draw[->,TextGray] (0,1.02) arc[start angle=90,end angle=132,radius=1.02];
+ \node[labelclean,left=3pt] at (-.38,.98){$\theta$};
+ \draw[guide,->] (O)--({2.15*cos(35)},{2.15*sin(35)}) node[midway,below right=2pt]{$R$};
+ \draw[guide,<->] (C)--++({.90*cos(42)},{.90*sin(42)}) node[midway,above left=2pt]{$r$};
+ \draw[component,->] (C)++(.52,0) arc[start angle=0,end angle=-255,radius=.52];
+ \node[labelclean,right=5pt] at ($(C)+(.72,.05)$){$\omega$};
+\end{tikzpicture}\bookcaption{小圆柱在固定大圆柱外侧由顶端滚下}\label{r2ch03:fig:027}\end{center}}

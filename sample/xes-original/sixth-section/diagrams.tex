@@ -1,0 +1,272 @@
+% Original problem figures and added solution diagrams for Section 2.3.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  sollabel/.style={font=\footnotesize,fill=none,inner sep=0.7pt,outer sep=1.2pt,text=Ink},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{\par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}#1：#2\par}\vspace{0.2em}}
+
+\newcommand{\probdiagTwoTwentyFour}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.86]
+ \draw[solbody] (-2.7,-1.1) rectangle (2.5,1.7);
+ \draw[solbody] (-1.75,-1.45) circle(.35) (1.45,-1.45) circle(.35);
+ \coordinate (O) at (.4,1.7); \coordinate (B) at ($(O)+(-115:2)$);
+ \draw[solbody] (O)--(B); \fill (B) circle(3pt);
+ \node[sollabel,left=5pt] at (B) {$m$};
+ \node[sollabel,above=3pt] at (O) {$O$};
+ \draw[solgeom] (O)--++(0,-2.3);
+ \draw[draw=TextGray] ($(O)+(-90:1)$) arc[start angle=-90,end angle=-115,radius=1];
+ \node[sollabel] at ($(O)+(-102.5:1.4)$) {$\theta_1$};
+ \draw[solforce] (1,2.35)--(2.2,2.35) node[right,sollabel] {$a$};
+\end{tikzpicture}\diagcaption{图 2.24}{车向右匀加速；平衡时细绳与竖直线夹角为 $\theta_1$。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwentyFour}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.9]
+ \node[solpanel] at (-2.4,2.7) {平衡时：三力矢量和为零};
+ \fill (-2.4,.4) circle(2pt);
+ \draw[solforce] (-2.4,.4)--++(0,-1.5) node[below,sollabel] {$mg$};
+ \draw[solforce] (-2.4,.4)--++({-1.5*tan(25)},0) node[left,sollabel] {$ma$};
+ \draw[solforce] (-2.4,.4)--++({1.5*tan(25)},1.5) node[above right,sollabel] {$T$};
+ \node[solpanel] at (2.3,2.7) {从竖直位置静止释放};
+ \coordinate (O) at (3.5,1.9);
+ \coordinate (Bz) at ($(O)+(-90:2.6)$);
+ \coordinate (Be) at ($(O)+(-115:2.6)$);
+ \coordinate (Bt) at ($(O)+(-140:2.6)$);
+ \draw[solgeom] (O)--(Bz);
+ \draw[solgeom] (O)--(Be);
+ \draw[solbody] (O)--(Bt);
+ \draw[solgeom] (Bz) arc[start angle=-90,end angle=-140,radius=2.6];
+ \foreach \P/\lab/\anc in {Bz/B_0/below right,Be/B_e/below,Bt/B_2/left}{
+  \fill (\P) circle(2pt) node[\anc=4pt,sollabel] {$\lab$};
+ }
+ \node[sollabel,above right=3pt] at (O) {$O$};
+ \draw[draw=TextGray] ($(O)+(-90:.72)$) arc[start angle=-90,end angle=-115,radius=.72];
+ \node[sollabel] at ($(O)+(-102.5:1.02)$) {$\theta_1$};
+ \draw[draw=TextGray] ($(O)+(-90:1.6)$) arc[start angle=-90,end angle=-140,radius=1.6];
+ \node[sollabel] at ($(O)+(-122:1.95)$) {$\theta_2$};
+ \draw[solforce] (4.65,1.2)--++(-115:1.25) node[right=5pt,sollabel] {$\vec g_{\rm eff}$};
+\end{tikzpicture}\diagcaption{解图}{$B_0$ 为释放点，$B_e$ 为平衡点，$B_2$ 为另一端点；$OB_e$ 平行于有效重力，$\theta_2=2\theta_1$。}\end{minipage}\end{center}}
+
+\newcommand{\probdiagTwoTwentyFive}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.76]
+  \draw[solbody] (-1.35,-1.55) rectangle (1.35,1.55);
+  \fill[Ink] (0,.45) circle (3.5pt);
+  \draw[solforce] (1.85,.45)--++(0,-1.25) node[below,sollabel] {$g$};
+\end{tikzpicture}\diagcaption{图 2.25}{电梯与内部物体同时自由下落。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwentyFive}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.78]
+  \fill[Ink] (0,0) circle (3pt);
+  \draw[solforce] (0,0)--++(0,-1.25) node[below,sollabel] {$mg$};
+  \draw[solforce] (0,0)--++(0,1.25) node[above,sollabel] {$F_i=mg$};
+  \node[sollabel] at (2.2,.2) {$\vec g_{\rm eff}=\vec g-\vec g=0$};
+\end{tikzpicture}\diagcaption{解图}{在自由落体电梯系中，惯性力与重力抵消，局部呈现失重。}\end{minipage}\end{center}}
+
+\newcommand{\probdiagTwoTwentySix}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.87]
+ \def\th{22}
+ \draw[solbody] (-2.8,-1.2) rectangle (2.8,1.8);
+ \draw[solbody] (-1.85,-1.55) circle(.35) (1.65,-1.55) circle(.35);
+ \coordinate (L) at (-1.9,-.85);
+ \coordinate (R) at (2.3,-.85);
+ \coordinate (P) at ($(L)+(4.2,{4.2*tan(\th)})$);
+ \coordinate (S) at ($(L)+(\th:.45)$);
+ \coordinate (B) at ($(S)+({90+\th}:.38)$);
+ \draw[solbody] (L)--(R)--(P)--cycle;
+ \begin{scope}[shift={(B)},rotate=\th]\draw[solbody,fill=white] (-.45,-.38) rectangle (.45,.38);\end{scope}
+ \node[sollabel] at (B) {$m$};
+ \draw (L)++(1.3,0) arc[start angle=0,end angle=\th,radius=1.3];
+ \node[sollabel] at ($(L)+(11:1.68)$) {$\theta$};
+ \draw[solforce] (-2.9,.5)--(-4,.5) node[left,sollabel] {$a$};
+\end{tikzpicture}\diagcaption{图 2.26}{汽车向左加速，物块从斜面底端释放；物块底面与斜面贴合。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwentySix}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \draw[solgeom] (202:2)--(22:2.4);
+ \fill (0,0) circle(2pt);
+ \draw[solforce] (0,0)--(1.6,0) node[right,sollabel] {$ma$};
+ \draw[solforce] (0,0)--(0,-1.5) node[below,sollabel] {$mg$};
+ \draw[solforce] (0,0)--(112:1.5) node[above left,sollabel] {$N$};
+ \draw[solgeom,->] ($(0,0)+(112:.7)$)--++(22:1.7) node[above right=3pt,sollabel] {$a_{\parallel}$};
+\end{tikzpicture}\diagcaption{解图}{$N$ 垂直斜面；沿斜面向上取正，$a_{\parallel}=a\cos\theta-g\sin\theta$。}\end{minipage}\end{center}}
+
+\newcommand{\probdiagTwoTwentySeven}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85]
+ \def\al{26}
+ \coordinate (L) at (-2.5,-1);
+ \coordinate (R) at (2.5,-1);
+ \coordinate (P) at ($(L)+(0,{5*tan(\al)})$);
+ \coordinate (S) at ($(P)!.56!(R)$);
+ \coordinate (B) at ($(S)+({90-\al}:.42)$);
+ \draw[solbody] (L)--(R)--(P)--cycle;
+ \begin{scope}[shift={(B)},rotate=-\al]\draw[solbody,fill=white] (-.43,-.42) rectangle (.43,.42);\end{scope}
+ \node[sollabel] at (B) {$m$};
+ \draw[solforce] ($(B)+({90-\al}:.42)$)--++({90-\al}:1) node[above right,sollabel] {$N$};
+ \draw (R)++({180-\al}:.8) arc[start angle={180-\al},end angle=180,radius=.8];
+ \node[sollabel] at ($(R)+(167:1.12)$) {$\alpha$};
+ \draw[solforce] (-3.7,0)--(-2.55,0) node[midway,above,sollabel] {$F$};
+\end{tikzpicture}\diagcaption{图 2.27}{水平力推动斜面向右；支持力 $N$ 垂直于接触面。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwentySeven}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=1]
+ \draw[solgeom] (154:1.8)--(-26:1.8);
+ \fill (0,0) circle(2pt);
+ \draw[solforce] (0,0)--(0,-1.5) node[below,sollabel] {$mg$};
+ \draw[solforce] (0,0)--({-1.5*tan(26)},0) node[left,sollabel] {$ma$};
+ \draw[solforce] (0,0)--({1.5*tan(26)},1.5) node[above right,sollabel] {$N$};
+\end{tikzpicture}\diagcaption{解图}{虚线与题图斜面同向；平衡时 $N$ 正好抵消重力和惯性力的合力，并与斜面垂直。}\end{minipage}\end{center}}
+
+\newcommand{\probdiagTwoTwentyEight}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.72]
+  % The two slopes deliberately have visibly different inclinations, as in the
+  % source figure: alpha is the gentler left slope and beta the steeper right one.
+  \coordinate (L) at (-3.05,-1.05);
+  \coordinate (P) at (.65,1.55);
+  \coordinate (R) at (2.15,-1.05);
+  \draw[solbody,fill=SoftGray] (L)--(P)--(R)--cycle;
+  \draw[solbody] (-3.65,-1.05)--(3.25,-1.05);
+  \foreach \x in {-3.55,-3.20,...,3.15}
+    \draw[solgeom] (\x,-1.05)--++(-.16,-.18);
+
+  % Each block is drawn in local slope coordinates; y=0 is its contact face.
+  \coordinate (SL) at ($(L)!.48!(P)$);
+  \pgfmathsetmacro{\leftang}{atan2(2.6,3.7)}
+  \pgfmathsetmacro{\rightang}{-atan2(2.6,1.5)}
+  \begin{scope}[shift={(SL)},rotate=\leftang]
+    \draw[solbody,fill=white] (-.43,0) rectangle (.43,.72);
+    \node[sollabel] at (0,.36) {$m_1$};
+    \node[sollabel] at (0,.98) {$A$};
+  \end{scope}
+  \coordinate (SR) at ($(P)!.58!(R)$);
+  \begin{scope}[shift={(SR)},rotate=\rightang]
+    \draw[solbody,fill=white] (-.43,0) rectangle (.43,.72);
+    \node[sollabel] at (0,.36) {$m_2$};
+    \node[sollabel] at (0,.98) {$B$};
+  \end{scope}
+
+  \draw[solgeom] ([xshift=.43cm]L) arc[start angle=0,end angle=35.1,radius=.43];
+  \draw[solgeom] ([shift={(120:.40)}]R) arc[start angle=120,end angle=180,radius=.40];
+  \node[sollabel] at (-2.45,-.78) {$\alpha$};
+  \node[sollabel] at (1.68,-.73) {$\beta$};
+  \node[sollabel] at (-.05,-.25) {$M$};
+\end{tikzpicture}\diagcaption{图 2.28}{双斜面在光滑水平面上自由运动。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwentyEight}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.75]
+  \coordinate (L) at (-3.05,-.85);
+  \coordinate (P) at (.65,1.75);
+  \coordinate (R) at (2.15,-.85);
+  \draw[solgeom] (L)--(P)--(R)--cycle;
+  \draw[axis] (-3.60,-.85)--(3.45,-.85) node[right,sollabel] {$x$};
+
+  \coordinate (SL) at ($(L)!.48!(P)$);
+  \pgfmathsetmacro{\leftang}{atan2(2.6,3.7)}
+  \pgfmathsetmacro{\rightang}{-atan2(2.6,1.5)}
+  \begin{scope}[shift={(SL)},rotate=\leftang]
+    \draw[solbody,fill=white] (-.35,0) rectangle (.35,.58);
+    \node[sollabel] at (0,.29) {$m_1$};
+    \draw[solforce] (-.10,1.02)--++(-1.15,0);
+  \end{scope}
+  \coordinate (SR) at ($(P)!.58!(R)$);
+  \begin{scope}[shift={(SR)},rotate=\rightang]
+    \draw[solbody,fill=white] (-.35,0) rectangle (.35,.58);
+    \node[sollabel] at (0,.29) {$m_2$};
+    \draw[solforce] (.10,1.02)--++(1.05,0);
+  \end{scope}
+
+  \node[sollabel] at (-2.5,1.65) {$s_1\ (+)$};
+  \node[sollabel] at (3.12,1.35) {$s_2\ (+)$};
+  \draw[solforce] (-.30,-1.22)--++(1.25,0)
+    node[right,sollabel] {$\ddot X=A\ (+)$};
+  \node[sollabel] at (-2.45,-.57) {$\alpha$};
+  \node[sollabel] at (1.68,-.52) {$\beta$};
+\end{tikzpicture}\diagcaption{解图}{取 $x$ 轴向右；$s_1,s_2$ 分别沿左右斜面向下为正，斜面加速度 $A=\ddot X$ 向右为正。}\end{minipage}\end{center}}
+
+\newcommand{\probdiagTwoTwentyNine}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.76]
+  \fill[TextGray!45] (-2.3,-1.0) rectangle (2.3,1.0); \draw[solbody] (-2.3,-1.0) rectangle (2.3,1.0);
+  \fill[white,draw=Ink] (0,.15) circle (.22);
+  \draw[solforce] (2.55,0)--++(1.0,0) node[right,sollabel] {$a$};
+\end{tikzpicture}\diagcaption{图 2.29}{装满水的水箱向前加速，水中有气泡。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwentyNine}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \foreach \b in {-.8,0,.8}{\draw[solgeom] (-2.1,{1.68+\b})--(2.1,{-1.68+\b});}
+ \fill[white,draw=Ink] (0,0) circle(.14);
+ \draw[solforce] (0,0)--(-1.12,-1.4) node[below left=4pt,sollabel] {$\vec g_{\rm eff}=(-a,-g)$};
+ \draw[solforce] (0,0)--(1.12,1.4) node[above right=4pt,sollabel] {浮力};
+ \node[sollabel,anchor=west] at (2.35,-1.1) {等压线};
+ \draw[draw=TextGray] (2.3,-1.2)--(1.9,-1.52);
+\end{tikzpicture}\diagcaption{解图}{等压线沿 $(g,-a)$ 方向，与有效重力 $(-a,-g)$ 垂直；压力向左下方增大，浮力指向右上方。}\end{minipage}\end{center}}
+
+% 题图保留杆、转轴、质点与给定量；半径投影及圆轨迹在解图中构造。
+\newcommand{\probdiagTwoThirty}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \def\th{35}
+ \coordinate (O) at (0,-1.1);
+ \coordinate (P) at ($(O)+({90-\th}:2.6)$);
+ \draw[solgeom] (O)--(0,2.6) node[above,sollabel] {转轴};
+ \draw[solbody] (O)--++({90-\th}:3.6);
+ \fill (O) circle(1.5pt) node[below left,sollabel] {$O$};
+ \fill (P) circle(2.5pt) node[right=4pt,sollabel] {$P$};
+ \draw[draw=TextGray] ($(O)+(0,.65)$) arc[start angle=90,end angle={90-\th},radius=.65];
+ \node[sollabel] at ($(O)+(72.5:.94)$) {$\theta$};
+ \draw[<->,draw=TextGray] ($(O)+(-35:.4)$)--($(P)+(-35:.4)$) node[midway,below right=4pt,sollabel] {$l$};
+ \draw[->,draw=TextGray] (-.65,2.1) arc[start angle=180,end angle=350,x radius=.65,y radius=.17];
+ \node[sollabel] at (.9,2.2) {$\omega$};
+\end{tikzpicture}\diagcaption{图 2.30}{质点在杆上距固定端 $O$ 为 $l$ 处，杆与竖直转轴夹角为 $\theta$。}\end{minipage}\end{center}}
+
+
+\newcommand{\soldiagTwoThirtyGeometry}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \def\th{35}
+ \coordinate (O) at (0,-1.1);
+ \coordinate (P) at ($(O)+({90-\th}:2.6)$);
+ \coordinate (H) at (O |- P);
+ \pgfmathsetmacro{\rad}{2.6*sin(\th)}
+ \draw[solgeom] ($(H)+(-\rad,0)$) arc[start angle=180,end angle=0,x radius=\rad,y radius=.3];
+ \draw[solbody] ($(H)+(-\rad,0)$) arc[start angle=180,end angle=360,x radius=\rad,y radius=.3];
+ \draw[solgeom] (O)--(0,2.6) node[above,sollabel] {转轴};
+ \draw[solbody] (O)--++({90-\th}:3.6);
+ \fill (O) circle(1.5pt) node[below left,sollabel] {$O$};
+ \fill (P) circle(2.5pt) node[right=4pt,sollabel] {$P$};
+ \draw[solgeom] (H)--(P) node[midway,above=5pt,sollabel] {$r$};
+ \draw[draw=TextGray] ($(O)+(0,.65)$) arc[start angle=90,end angle={90-\th},radius=.65];
+ \node[sollabel] at ($(O)+(72.5:.94)$) {$\theta$};
+ \draw[<->,draw=TextGray] ($(O)+(-35:.4)$)--($(P)+(-35:.4)$) node[midway,below right=4pt,sollabel] {$l$};
+ \draw[->,draw=TextGray] (-.65,2.1) arc[start angle=180,end angle=350,x radius=.65,y radius=.17];
+ \node[sollabel] at (.9,2.2) {$\omega$};
+\end{tikzpicture}\diagcaption{解图}{$OP=l$，水平转动半径 $r=l\sin\theta$；圆轨道后半部以虚线表示。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoThirty}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \node[solpanel] at (-2.3,2.3) {旋转系中的受力};
+ \coordinate (P) at (-2.3,0);
+ \draw[solgeom] ($(P)+(235:1.8)$)--($(P)+(55:1.8)$);
+ \fill (P) circle(2pt);
+ \draw[solforce] (P)--++(1.5,0) node[right,sollabel] {$F_{\rm cf}$};
+ \draw[solforce] (P)--++(0,-1.5) node[below,sollabel] {$mg$};
+ \draw[solforce] (P)--++(145:1.35) node[above left,sollabel] {$N$};
+ \draw[<->,draw=TextGray] ($(P)+(-35:.8)+(235:.4)$)--++(55:.8) node[midway,below right=6pt,sollabel] {$f_s$};
+ \node[solpanel] at (2.9,2.3) {沿杆方向的投影};
+ \coordinate (Q) at (2.9,0);
+ \draw[solgeom] ($(Q)+(235:1.9)$)--($(Q)+(55:1.9)$);
+ \fill (Q) circle(2pt);
+ \draw[solforce] (Q)--++(55:1.3) node[pos=.65,right=8pt,sollabel] {$F_{{\rm cf},\parallel}$};
+ \draw[solforce] (Q)--++(235:1.3) node[pos=.7,below right=7pt,sollabel] {$mg\cos\theta$};
+\end{tikzpicture}\diagcaption{解图}{两图的杆方向相同；$N$ 垂直杆，$F_{{\rm cf},\parallel}=m\omega^2l\sin^2\theta$，$f_s$ 沿杆方向并可取正或负。}\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoThirtyOne}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.86]
+  \draw[solbody] (0,0) circle (2.05);
+  \fill[Ink] (0,0) circle (1.5pt) node[below left=3pt,sollabel] {转轴};
+  \fill[DeepBlue] (2.05,0) circle (3.5pt) node[right=5pt,sollabel] {实验对象};
+  \draw[solgeom] (0,0)--(2.05,0)
+    node[pos=.48,below=4pt,sollabel] {$r=7\,\mathrm m$};
+  \draw[solforce] (2.05,0)--(.62,0)
+    node[pos=.58,above=4pt,sollabel] {$a_c=5g$};
+  \draw[solgeom,-{Latex[length=1.7mm]}] (2.05,0)--++(0,1.05)
+    node[above=3pt,sollabel] {$v$};
+\end{tikzpicture}\diagcaption{解图}{离心机提供大小为 $5g$ 的水平向心加速度。}\end{minipage}\end{center}}

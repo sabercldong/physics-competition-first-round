@@ -1,0 +1,185 @@
+%<append:虚光源干涉与公共照明区>
+\Needspace{8\baselineskip}\begin{origexamplebox}{光源宽度怎样降低条纹反差}
+\label{ch29:ex:depth-source-width}
+沿用例~\ref{ch29:ex:s44-21-7} 的双面镜对称配置，取 $R=0.10\,\mathrm m$、$L=2.10\,\mathrm m$、$\alpha=20'$、$\lambda=600\,\mathrm{nm}$。把点光源改为沿 $x$ 方向、以 $(0,R)$ 为中心、全宽为 $w$ 的均匀线光源，不同源点彼此不相干。忽略源宽引起的振幅差和渐晕，仅考察所有源点均能照亮的近轴区域。（1）求条纹可见度随 $w$ 的关系；（2）求条纹第一次完全消失的源宽，并说明“能看见条纹”能否定义一个唯一最大源宽。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+一个源点经两镜形成的两束光彼此相干，但两个不同源点的场不能保持稳定相位，所以应先求每个源点的干涉强度，再把强度相加。例~\ref{ch29:ex:s44-21-7} 已得横移 $s$ 时中央亮纹移动 $Ms$，其中
+\[
+ M=\frac LR=21,\qquad
+ \Delta y=\frac{\lambda(L+R\cos\alpha)}{2R\sin\alpha}
+ \approx1.134\,\mathrm{mm}.
+\]
+这说明源上很小的横向距离可以在屏上变为较大的条纹错位。记 $k_y=2\pi/\Delta y$，来自源元 $\dd s$ 的强度可写为
+\[
+ \dd I=C[1+\cos k_y(y-Ms)]\dd s,
+ \qquad -w/2\le s\le w/2,
+\]
+其中 $C$ 为单位源宽贡献的平均强度。积分中的正弦项因关于 $s=0$ 对称而抵消，余下
+\[
+ I(y)=Cw\left[1+
+ \frac{\sin(k_yMw/2)}{k_yMw/2}\cos(k_yy)\right].
+\]
+因此
+\begin{equation}\label{ch29:eq:depth-source-visibility}
+ \boxed{\mathcal V(w)=\left|\frac{\sin(\pi Mw/\Delta y)}{\pi Mw/\Delta y}\right|}.
+\end{equation}
+当 $w\to0$ 时，分式趋于1，回到理想点光源；第一次为零时 $Mw=\Delta y$，故
+\[
+ \boxed{w_0=\frac{\Delta y}{M}=54.0\,\mu\mathrm m}.
+\]
+
+% Figure design: optical coherence, analytic plot rather than invented trend.
+% Print width 9cm, minimum label 9pt; x=w/w0 in [0,2.5], V in [0,1].
+% Main blue curve abs(sin(pi*x)/(pi*x)), value at 0 defined by limit.
+% Dashed guides only at first zero x=1; zero at x=2 also labelled.
+% ASCII: V |\_ /\_ / ; horizontal axis w/w0. No boxes or opaque tags.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=2.6cm,y=2.5cm,>=Latex,every node/.style={fill=none,font=\small,inner sep=2pt}]
+ \draw[->] (0,0)--(2.65,0) node[right]{$w/w_0$};
+ \draw[->] (0,0)--(0,1.17) node[above]{$\mathcal V$};
+ \draw[DeepBlue,thick] (0,1)--(.004,{abs(sin(180*.004)/(pi*.004))});
+ \draw[DeepBlue,thick,domain=.004:2.5,samples=301]
+ plot(\x,{abs(sin(180*\x)/(pi*\x))});
+ \draw[guide] (1,0)--(1,1);
+ \node[left] at (0,1){$1$};\node[below left] at (0,0){$0$};
+ \node[below] at (1,0){$1$};\node[below] at (2,0){$2$};
+ \node[above,align=center] at (1.72,.61){第一次零点后\\还有低反差条纹};
+\end{tikzpicture}
+\figcap{均匀非相干线光源的宽度效应。横轴按第一次零点的源宽归一化。\label{ch29:fig:depth-source-visibility}}
+\end{minipage}\end{center}
+
+图~\ref{ch29:fig:depth-source-visibility} 显示 $w>w_0$ 后可见度不总为零，还存在较弱的旁瓣。实际“可见”要指定反差阈值、噪声和渐晕，因此题目若只说“具有一定反差”而不给标准，就没有唯一的最大允许宽度。这里的 $w_0$ 是清楚定义的第一次零点，不应偷换成普遍的可见性界限；其他源强分布也会给出不同的可见度函数。
+\end{xesolution}
+%</append>
+%<block:电场叠加、光程差与干涉强度>
+\subsection{为什么相加的是电场而不是亮度}
+设两束同频、同偏振光到达同一点的电场为
+\[
+ E_1=A_1\cos\omega t,\qquad E_2=A_2\cos(\omega t-\delta).
+\]
+探测器响应于总电场平方的时间平均，而不是响应于某一时刻的电场。展开平方并分别平均：
+\[
+ \langle(E_1+E_2)^2\rangle
+ =\frac{A_1^2}2+\frac{A_2^2}2+A_1A_2\cos\delta.
+\]
+因此强度除了 $I_1+I_2$，还多出含相位差的交叉项。相位稳定时，交叉项可以为正，也可以为负；相位在探测时间内均匀漂移时，$\langle\cos\delta\rangle=0$，才退化为直接相加强度。所谓“频率相同”只是必要条件之一，不能保证两个独立普通光源长期保持固定相位差。
+
+完全相干且同偏振时，
+\[
+ I_{\max}=(\sqrt{I_1}+\sqrt{I_2})^2,\qquad
+ I_{\min}=(\sqrt{I_1}-\sqrt{I_2})^2.
+\]
+只有 $I_1=I_2$ 时暗纹才降为零。改变两路强度比例会改变条纹反差，却不一定改变条纹位置。若两电场偏振方向成角 $\psi$，交叉项还要乘 $\cos\psi$；互相正交的偏振在不加检偏器时不产生这一标量干涉项。
+
+\subsection{统一光程差和附加相位的记账方式}
+指定第二路减第一路，记几何传播光程差为 $\Delta=\mathcal L_2-\mathcal L_1$。对给定时间因子约定，把两束在观察点的相位差写为
+\[
+ \delta=\frac{2\pi\Delta}{\lambda_0}+\delta_{\rm extra}.
+\]
+其中 $\delta_{\rm extra}$ 收集分束、反射以及源端的相对相位。必须整套使用同一约定；若调换两路编号，光程差和附加相位都应反号，最终强度不变。明纹条件是 $\delta=2m\pi$，不是在所有场合都直接写 $\Delta=m\lambda_0$。薄膜和劳埃德镜中的明暗翻转，正来自不能遗漏的附加相位。
+%</block>
+%<block:杨氏双缝与条纹移动>
+\subsection{先写两段路，再使用小角近似}
+双缝间距为 $d$，缝位于 $y=\pm d/2$，屏距为 $L$。屏上坐标为 $y$ 的点到下、上两缝的距离分别为
+\[
+ r_-=\sqrt{L^2+(y+d/2)^2},\qquad
+ r_+=\sqrt{L^2+(y-d/2)^2}.
+\]
+有理化给出精确关系
+\[
+ r_--r_+=\frac{2dy}{r_-+r_+}.
+\]
+当 $|y|,d\ll L$ 时，分母可取 $2L$，于是 $\Delta\simeq dy/L$。相邻明纹光程差相差一个波长，因此 $\Delta y=\lambda L/d$。这里“等间距”是近轴屏坐标中的近似；大角度观察时应先求满足 $d\sin\theta=m\lambda$ 的角度，再用 $y=L\tan\theta$，不能把 $\tan\theta$ 与 $\sin\theta$ 混用。
+
+源缝不在中垂线上时，光从源到双缝之前已经累积了路差，所以完整差值为
+\[
+ \Delta=(\mathcal L_{S\to -}-\mathcal L_{S\to +})+(r_--r_+).
+\]
+插片、移动源或改变一路介质，本质上都是改变第一项或增加一个常量程差。求条纹向哪侧移动时，先判断哪一路变长，再判断屏上往哪侧移动可以使该路变短以补偿，而不要只记“向薄片侧移动”的口令；若装置换了成像方向，口令可能失效。
+%</block>
+%<block:虚光源干涉与公共照明区>
+\subsection{等效光源解决路差，边缘光线决定能否看见}
+双棱镜、双面镜和对切透镜看似不同，都可以分成三步：先用反射或成像规律找到一对相干的等效源；再从它们到屏的距离计算相位差；最后追踪器件边缘所允许的真实光线，确定屏上两束共同到达的区域。
+
+第二步给出的条纹是一个数学上的延拓图样。只有落在第三步公共照明区内的部分才真正可见。把虚源到屏的连线反向延长时，还必须检查它是否穿过对应镜面或透镜的有效口径；否则虽然能算出路差，实际却没有那一路光。这是题目中的有限镜长、半透镜边缘和挡光片不能略去的原因。
+
+若近轴明纹中心为 $y_m=y_0+m\Delta y$，公共照明区为闭区间 $[a,b]$，那么允许级次满足
+\[
+ \frac{a-y_0}{\Delta y}\le m\le\frac{b-y_0}{\Delta y}.
+\]
+用上取整与下取整分别确定两端，得到
+\begin{equation}\label{ch29:eq:depth-fringe-count}
+ N=\max\!\left\{0,
+ \left\lfloor\frac{b-y_0}{\Delta y}\right\rfloor
+ -\left\lceil\frac{a-y_0}{\Delta y}\right\rceil+1\right\}.
+\end{equation}
+所以仅给宽度 $b-a$，而不给条纹相对窗口的位置，通常不能确定条数。若题目明确允许调节相位，才可另求平移图样时的最大数。边缘不计入、或要求亮带完整落入窗口时，端点不等式也要相应改变。
+
+劳埃德镜只有一路经过反射，而双面镜的两路通常各反射一次；前者常需计入相对半波损失，后者在同样反射条件下这部分相位会抵消。等效源法只替代了路径几何，并不会自动替你处理反射相位。
+%</block>
+%<block:薄膜干涉与增透膜>
+\subsection{增透为何既要求膜厚，也要求折射率匹配}
+膜厚决定相位，界面折射率决定反射振幅。只有相位相反而振幅不等，反射仍不能完全消失。以下取正入射、各介质无吸收且非磁性，入射介质、单层膜和半无限基底的折射率依次为 $n_0,n,n_s$。
+
+用电场振幅的比值定义反射系数，两个界面的系数为
+\[
+ r_{01}=\frac{n_0-n}{n_0+n},\qquad
+ r_{12}=\frac{n-n_s}{n+n_s}.
+\]
+负号已经包含反射的 $\pi$ 相变，使用这组带符号系数时不能再额外加一次“半波损失”。从膜内向入射侧反射有 $r_{10}=-r_{01}$；两次透射系数满足
+\[
+ t_{01}t_{10}=\frac{2n_0}{n_0+n}\frac{2n}{n_0+n}
+ =1-r_{01}^2.
+\]
+设膜厚为 $t$，单程相位为 $\phi=2\pi nt/\lambda_0$，往返相位因子为 $q=\exp(2\ii\phi)$。第一束反射振幅为 $r_{01}$，进入膜后从底面反射并透回来的第一束为 $t_{01}t_{10}r_{12}q$，以后每多往返一次就乘 $r_{10}r_{12}q$。把等比级数相加，得到总反射系数
+\[
+ r=r_{01}+\frac{(1-r_{01}^2)r_{12}q}{1+r_{01}r_{12}q}
+ =\frac{r_{01}+r_{12}q}{1+r_{01}r_{12}q}.
+\]
+最薄的四分之一波膜满足 $nt=\lambda_0/4$，因此 $q=-1$。要使分子为零，还必须有 $r_{01}=r_{12}$。代入并交叉相乘：
+\[
+ (n_0-n)(n+n_s)=(n-n_s)(n_0+n)
+ \quad\Longrightarrow\quad n^2=n_0n_s.
+\]
+所以理想单层增透膜的两个条件为 $n=\sqrt{n_0n_s}$ 和 $t=\lambda_0/(4n)$。仅满足厚度条件时通常只能减弱反射；改变波长或入射角后，相位和振幅匹配也会改变，不能认为这一层膜对所有颜色和方向都完全增透。
+%</block>
+%<block:劈尖与牛顿环>
+\subsection{把条纹位置转化成膜厚位置}
+在单色光近于垂直入射、恰有一次相对半波损失时，空气膜的反射暗纹满足 $2t=m\lambda_0$。劈尖小角为 $\alpha$，距接触线的坐标为 $x$，则 $t=x\tan\alpha\simeq\alpha x$，从而
+\[
+ x_m=\frac{m\lambda_0}{2\alpha},\qquad
+ x_{m+1}-x_m=\frac{\lambda_0}{2\alpha}.
+\]
+因此直而等间距的条纹意味着所测截面上的厚度近似线性增加。若有局部凸起，条纹要沿保持同一厚度的位置弯曲；判断凸凹时必须说明观察的是哪一界面以及空气膜变厚还是变薄。
+
+牛顿环中，球面曲率半径为 $R$、离轴半径为 $\rho$。几何关系不是 $t=\rho^2/R$，而是
+\[
+ \rho^2+(R-t)^2=R^2,
+ \quad \rho^2=2Rt-t^2,
+ \quad t\simeq\frac{\rho^2}{2R}\ (t\ll R).
+\]
+于是反射暗环半径满足 $\rho_m^2=m\lambda_0R$。相邻暗环的半径差并不恒定，恒定的是半径平方差。测量时使用
+\[
+ D_{m+p}^2-D_m^2=4p\lambda_0R
+\]
+（$D_m=2\rho_m$），能避开把中央某个环误认作第零级的影响。
+
+若透镜并未真正接触平板，中心存在间隙 $t_0$，应写 $t=t_0+\rho^2/(2R)$。此时中心未必为暗，环的绝对级次也改变，但相隔 $p$ 级的直径平方差公式仍成立。把“中心必须暗”当作不带条件的规律，会把灰尘、接触不良和膜厚偏置误解释成新现象。
+%</block>
+%<block:迈克耳孙干涉仪与测量>
+\subsection{移动镜面、计数与折射率测量}
+镜面沿其法线移动 $\Delta l$ 时，一路光往返的几何长度改变 $2\Delta l$。在空气近似为真空且近轴时，若观察点有 $N$ 个完整条纹周期通过，便有
+\[
+ 2|\Delta l|=N\lambda_0.
+\]
+因子2来自同一路的去程和回程，不来自仪器有两条臂。计数给出的是变化量，通常不能确定初始绝对级次；镜面向哪侧移动，则必须另外通过机械位移或条纹运动方向判断。
+
+若在一路放入长度为 $l$ 的气室，折射率从 $n_a$ 变为 $n_b$，光在气室中往返，其他条件不变，则光程变化为 $2l(n_b-n_a)$，于是
+\[
+ |n_b-n_a|=\frac{N\lambda_0}{2l}.
+\]
+若装置只单程通过待测片，分母便没有2。做题时先把实际路径逐段列出来，再决定“一次”还是“两次”，比记忆仪器名称更可靠。
+
+把一块斜放玻璃板插入一路时，除了改变相位，还可能引起横向位移和色散。白光干涉要求两臂不仅几何长度接近，所经过玻璃的厚度也应匹配；补偿板的作用就是让不同频率的相位能够同时接近匹配，不能仅凭某一单色光的零程差认定白光条件已满足。
+%</block>

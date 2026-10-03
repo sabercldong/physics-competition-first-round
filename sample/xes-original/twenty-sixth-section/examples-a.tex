@@ -1,0 +1,347 @@
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.1【大小圆环】}
+两个同心导电圆环放置在同一平面上，回路电阻大小均为 $r$。
+
+(1) 若大圆环中突然通入顺时针电流，求小圆环中感生电流的方向；
+
+(2) 若小圆环中突然通入顺时针电流，求大圆环中感生电流的方向。
+\end{origexamplebox}
+
+\begin{xesolution}
+规定垂直纸面向外为磁通正方向。
+
+(1) 大环的顺时针电流使穿过小环的向里磁通从零增大。小环要用向外的磁场阻碍这个增量，故其感生电流
+为逆时针。
+
+(2) 互感系数具有互易性，$M_{12}=M_{21}$。小环的顺时针电流同样使大环中的向里磁通增大，所以大环
+中的感生电流也为逆时针。结果与谁是“大环”无关，只由磁通的变化方向决定。
+
+\concentricLoopsDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.2【奇怪的圆环】}
+一个条形磁铁的周围有三个导体圆环，分别位于 $S$ 极左侧、磁铁中部和 $N$ 极右侧，三环与磁铁同轴。
+若磁铁突然向左运动，判断三个圆环的加速度方向，以及它们各自有扩张还是收缩的趋势。
+\end{origexamplebox}
+
+\begin{xesolution}
+用“相对运动受到电磁阻尼”先判断轴向力，再由感应电流的磁矩判断径向张力。
+
+左环面对正在接近的 $S$ 极，穿过它的磁通增大。感应电流使圆环与接近的磁极相斥，因此左环向左加速；其感应磁矩
+与当地外磁场反向，各段导线受径向向内的 Ampere 力，故有收缩趋势。
+
+右环面对正在远离的 $N$ 极，原磁通减小。它用同向磁矩维持磁通，与磁铁相吸，所以向左加速；磁矩与外场同向，有扩张趋势。
+
+中环在完全对称的初始位置上有 $\partial\Phi/\partial x=0$，所以理想化的瞬间感应电流和加速度都可为零。磁铁稍微左移后，
+通过中环的磁通减小，中环会向左追随磁铁，并有扩张趋势。
+
+\magnetThreeLoopsDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.3【小棒加电阻】}
+一根导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。棒的质量为 $m$，左侧电阻为 $R$，
+导轨和棒的电阻不计。初始时棒以速度 $v_0$ 向右运动。
+
+(1) 求任意时刻导体棒的速度；
+
+(2) 求从开始运动到 $t\to\infty$ 通过电阻的总电量。
+\end{origexamplebox}
+
+\begin{xesolution}
+棒向右运动时回路面积增大，向里磁通增大。感应电流的 Ampere 力必然向左。当速度为 $v$ 时，
+\begin{equation}
+  \mathcal E=BLv,
+  \qquad I=\frac{BL}{R}v,
+  \qquad m\dot v=-BLI=-\frac{B^2L^2}{R}v.
+\end{equation}
+令
+\begin{equation}
+  \tau=\frac{mR}{B^2L^2},
+\end{equation}
+得
+\begin{equation}
+  \boxed{v(t)=v_0\e^{-t/\tau}}.
+\end{equation}
+总电量可以直接积分，也可用冲量消去时间：
+\begin{equation}
+  q_{\rm tot}=\int_0^\infty I\dd t
+  =\frac{BL}{R}v_0\tau
+  =\boxed{\frac{mv_0}{BL}}.
+\end{equation}
+结果与 $R$ 无关：电阻越大，瞬时电流越小，但衰减时间按同样比例变长。
+
+\rodResistorDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.4【小棒加小棒】}
+两根导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。两棒质量均为 $m$、电阻均为 $R$，
+导轨电阻不计。右棒初速为 $v_0$ 向右，左棒初始静止。
+
+(1) 求任意时刻左右两棒的速度；
+
+(2) 求两棒从开始运动到 $t\to\infty$ 的相对位移。
+\end{origexamplebox}
+
+\begin{xesolution}
+记左、右棒速度为 $v_1,v_2$，相对速度 $u=v_2-v_1$。回路电动势只与面积变化率有关：
+\begin{equation}
+  \mathcal E=BLu,
+  \qquad I=\frac{BL}{2R}u.
+\end{equation}
+左棒受力向右，右棒受力向左，故
+\begin{equation}
+  m\dot v_1=BLI,
+  \qquad m\dot v_2=-BLI.
+\end{equation}
+因而质心速度不变，$V_{\rm cm}=v_0/2$，而
+\begin{equation}
+  \dot u=-\frac{B^2L^2}{mR}u.
+\end{equation}
+令 $\tau=mR/(B^2L^2)$，得
+\begin{equation}
+  \boxed{v_1=\frac{v_0}{2}\left(1-\e^{-t/\tau}\right)},
+  \qquad
+  \boxed{v_2=\frac{v_0}{2}\left(1+\e^{-t/\tau}\right)}.
+\end{equation}
+两棒的相对位移为
+\begin{equation}
+  \boxed{\Delta x_{\rm rel}=\int_0^\infty u\dd t
+  =v_0\tau=\frac{mRv_0}{B^2L^2}}.
+\end{equation}
+
+\twoRodDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.5【小棒再加小棒】}
+两根导体棒分别横跨在左右两组导轨上，左侧导轨宽度为 $L_1$、磁场为 $B_1$，右侧导轨宽度为 $L_2$、磁场为 $B_2$，
+中间用很长的过渡导轨连接。两棒质量分别为 $m_1,m_2$，回路总电阻为 $R$。右棒初速为 $v_0$ 向右，左棒初始静止。
+
+(1) 求任意时刻两棒的速度；
+
+(2) 找出运动中的一个守恒量。
+\end{origexamplebox}
+
+\begin{xesolution}
+记 $k_1=B_1L_1$、$k_2=B_2L_2$。按图中回路方向取正，瞬时感应电动势为
+\begin{equation}
+  \mathcal E=k_2v_2-k_1v_1,
+  \qquad I=\frac{k_2v_2-k_1v_1}{R}.
+\end{equation}
+两棒的方程是
+\begin{equation}
+  m_1\dot v_1=k_1I,
+  \qquad m_2\dot v_2=-k_2I.
+\end{equation}
+于是
+\begin{equation}
+  \frac{\dd}{\dd t}\left(\frac{m_1v_1}{k_1}+\frac{m_2v_2}{k_2}\right)=0,
+\end{equation}
+所求守恒量可取为
+\begin{equation}
+  \boxed{\frac{m_1v_1}{B_1L_1}+\frac{m_2v_2}{B_2L_2}
+  =\frac{m_2v_0}{B_2L_2}}.
+\end{equation}
+再令 $y=k_2v_2-k_1v_1$，有
+\begin{equation}
+  \dot y=-\frac1R\left(\frac{k_1^2}{m_1}+\frac{k_2^2}{m_2}\right)y,
+  \qquad
+  y(0)=k_2v_0.
+\end{equation}
+定义
+\begin{equation}
+  D=k_1^2m_2+k_2^2m_1,
+  \qquad \tau=\frac{Rm_1m_2}{D},
+\end{equation}
+积分得
+\begin{align}
+  \boxed{v_1(t)}&=\boxed{\frac{k_1k_2m_2}{D}v_0\left(1-\e^{-t/\tau}\right)},\\
+  \boxed{v_2(t)}&=\boxed{\frac{k_1^2m_2+k_2^2m_1\e^{-t/\tau}}{D}v_0}.
+\end{align}
+当 $t\to\infty$ 时 $k_2v_2=k_1v_1$，也就是总动生电动势降为零。
+
+\unequalRodDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.6【小棒加电容】}
+一根质量为 $m$ 的导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路中串联电容 $C$，
+所有电阻均忽略。棒初速为 $v_0$ 向右，电容初始不带电。描述 $t=0$ 后导体棒的运动。
+\end{origexamplebox}
+
+\begin{xesolution}
+零电阻与“初始电容不带电、棒却有非零速度”不能在普通时间尺度上同时满足；闭合回路后会出现一个极短的充电暂态。
+设暂态后电容带电量为 $q$、棒速为 $v$，则回路方程和棒的冲量方程分别为
+\begin{equation}
+  \frac qC=BLv,
+  \qquad m(v-v_0)=-BLq.
+\end{equation}
+解得
+\begin{equation}
+  \boxed{v=\frac{m}{m+CB^2L^2}v_0},
+  \qquad
+  \boxed{q=\frac{mCBL}{m+CB^2L^2}v_0}.
+\end{equation}
+随后电流为零，棒以上式速度做匀速直线运动。纯粹的“零电阻、零自感”模型会把暂态压成冲击，无法可靠追踪其中的
+能量辐射或微小焦耳热；引入任意小电阻后取极限，上述最终状态不变。
+
+\rodCapacitorDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.7【小棒加电感】}
+一根质量为 $m$ 的导体棒横跨在宽度为 $\ell$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路中串联自感为 $\mathcal L$
+的理想电感，电阻忽略。棒初速为 $v_0$ 向右，电感初始无电流。描述 $t=0$ 后导体棒的运动。
+\end{origexamplebox}
+
+\begin{xesolution}
+取感应电流 $I$ 的正方向使它对棒产生向左的力。电路与力学方程为
+\begin{equation}
+  \mathcal L\dot I=B\ell v,
+  \qquad m\dot v=-B\ell I.
+\end{equation}
+对第二式再求导并代入第一式，得
+\begin{equation}
+  \ddot v+\Omega^2v=0,
+  \qquad
+  \Omega=\frac{B\ell}{\sqrt{m\mathcal L}}.
+\end{equation}
+用 $v(0)=v_0$、$I(0)=0$ 得
+\begin{equation}
+  \boxed{v(t)=v_0\cos\Omega t},
+  \qquad
+  \boxed{I(t)=v_0\sqrt{\frac m{\mathcal L}}\sin\Omega t},
+\end{equation}
+\begin{equation}
+  \boxed{x(t)-x(0)=\frac{v_0}{\Omega}\sin\Omega t}.
+\end{equation}
+棒的动能和电感磁能周期性交换：
+\begin{equation}
+  \frac12mv^2+\frac12\mathcal LI^2=\frac12mv_0^2.
+\end{equation}
+
+\rodInductorDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.8【小棒加电源】}
+一根质量为 $m$ 的导体棒横跨在宽度为 $\ell$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路总电阻为 $R$，
+并接入恒定电源 $\mathcal E$，电源极性使安培力指向右。棒初速为 $v_0$ 向右。描述 $t=0$ 后导体棒的运动。
+\end{origexamplebox}
+
+\begin{xesolution}
+取电源电动势为 $\mathcal E$，并按题干约定其极性使安培力向右，则电流和运动方程为
+\begin{equation}
+  I=\frac{\mathcal E-B\ell v}{R},
+  \qquad
+  m\dot v=B\ell I.
+\end{equation}
+运动电动势 $B\ell v$ 是电源的反电动势。定义
+\begin{equation}
+  v_\infty=\frac{\mathcal E}{B\ell},
+  \qquad \tau=\frac{mR}{B^2\ell^2},
+\end{equation}
+得
+\begin{equation}
+  \boxed{v(t)=v_\infty+(v_0-v_\infty)\e^{-t/\tau}}.
+\end{equation}
+若 $v_0<v_\infty$，电源使棒加速；若 $v_0>v_\infty$，反电动势大于电源，电流反向，棒减速；两种情况都趋向同一终端速度。
+
+\rodSourceDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.9【小棒大结局】}
+一根质量为 $m$、电阻为 $R$ 的导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。
+
+(1) 若 $R=0$，推导棒两端电压 $U$ 与流过棒的电流 $I$ 的关系，辨认其等效元件与参数；
+
+(2) 若 $R\ne0$，再求 $U$--$I$ 关系与等效元件；
+
+(3) 用该结论重新理解前面的电阻、电容、电感和电源问题。
+\end{origexamplebox}
+
+\begin{xesolution}
+把棒的动生电动势记为 $U_m=BLv$，取正电流的 Ampere 力使棒向右，则
+\begin{equation}
+  m\dot v=BLI.
+\end{equation}
+因而
+\begin{equation}
+  \dot U_m=BL\dot v=\frac{B^2L^2}{m}I,
+  \qquad
+  \boxed{I=C_m\dot U_m},
+  \qquad
+  \boxed{C_m=\frac{m}{B^2L^2}}.
+\end{equation}
+当 $R=0$ 时，$U=U_m$，所以这根可运动导体棒在电学端口上等效为电容 $C_m$。其“电场能”正好就是棒的动能：
+\begin{equation}
+  \frac12C_mU_m^2=\frac12\frac{m}{B^2L^2}(BLv)^2=\frac12mv^2.
+\end{equation}
+当棒有电阻 $R$ 时，端口方程为
+\begin{equation}
+  \boxed{U=RI+U_m},
+  \qquad I=C_m\dot U_m,
+\end{equation}
+因而等效为电阻 $R$ 与电容 $C_m$ 串联，电容初电压为 $U_m(0)=BLv_0$。
+
+前面诸问题因此统一为基本电路：例 37.3 是 $RC_m$ 放电；例 37.6 是机械等效电容与真实电容的瞬态电荷重分配；
+例 37.7 是 $\mathcal LC_m$ 振荡；例 37.8 是电源对 $RC_m$ 的充电。
+
+\equivalentCircuitDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.10【小环的响应】}
+半径为 $R$ 的固定绝缘大圆环与匀强磁场垂直，一个质量为 $m$、电荷为 $+q$ 的小环套在大环上，可无摩擦滑动。规定绕“垂直纸面
+向里”的轴按右手螺旋法则为角坐标 $\theta$ 正向，初始 $\theta=0$ 且静止。
+
+(1) $B(t)=\alpha t$；
+
+(2) $B(t)=B_0\sin\omega t$；
+
+(3) $B(t)=B_0\cos\omega t$。
+
+分别求小环的角速度、位置以及大环对小环的径向支持力。
+\end{origexamplebox}
+
+\begin{xesolution}
+半径 $R$ 处的感生电场为
+\begin{equation}
+  E_\theta=-\frac R2\dot B.
+\end{equation}
+切向方程 $mR\ddot\theta=qE_\theta$ 给出一个对任意 $B(t)$ 都成立的通式：
+\begin{equation}
+  \boxed{\dot\theta(t)=-\frac q{2m}\,[B(t)-B(0)]},
+  \qquad
+  \boxed{\theta(t)=-\frac q{2m}\int_0^t[B(t')-B(0)]\dd t'}.
+\end{equation}
+取径向向外为正。磁力的径向分量为 $qR\dot\theta B$，径向加速度为 $-R\dot\theta^2$，故大环的有符号支持力为
+\begin{equation}
+  \boxed{N_r=-mR\dot\theta^2-qR\dot\theta B}.
+\end{equation}
+$N_r>0$ 表示支持力向外，$N_r<0$ 表示向内。
+
+三种情况依次为
+\begin{align}
+  B=\alpha t:\quad
+  &\boxed{\dot\theta=-\frac{q\alpha}{2m}t},
+  &\boxed{\theta=-\frac{q\alpha}{4m}t^2};\\
+  B=B_0\sin\omega t:\quad
+  &\boxed{\dot\theta=-\frac{qB_0}{2m}\sin\omega t},
+  &\boxed{\theta=\frac{qB_0}{2m\omega}(\cos\omega t-1)};\\
+  B=B_0\cos\omega t:\quad
+  &\boxed{\dot\theta=\frac{qB_0}{2m}(1-\cos\omega t)},
+  &\boxed{\theta=\frac{qB_0}{2m}\left(t-\frac{\sin\omega t}{\omega}\right)}.
+\end{align}
+将各自的 $B(t),\dot\theta(t)$ 代入 $N_r$ 通式即得支持力。例如第 (1) 问中
+\begin{equation}
+  \boxed{N_r=\frac{q^2R\alpha^2t^2}{4m}},
+\end{equation}
+方向向外：此时磁力向内且大于所需向心力，大环必须向外拉住小环。
+
+\chargedRingDiagram
+\end{xesolution}

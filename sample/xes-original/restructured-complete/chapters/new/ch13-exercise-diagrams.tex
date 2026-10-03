@@ -1,0 +1,137 @@
+\newcommand{\FluidCoupledHgDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.66,>=Latex]
+ \fill[TextGray!30] (-.16,2.4)--(.16,2.4)--(.16,.16)--(.8,.16)--(.8,-.16)--(-.16,-.16)--cycle;
+ \fill[TextGray!30] (10.8,-.16)--(14.56,-.16)--(14.56,2.4)--(14.24,2.4)--(14.24,.16)--(10.8,.16)--cycle;
+ \draw[thick] (-.16,3.1)--(-.16,-.16)--(14.56,-.16)--(14.56,3.1);
+ \draw[thick] (.16,3.1)--(.16,.16)--(14.24,.16)--(14.24,3.1);
+ \draw[DeepBlue,thick] (-.16,2.4)--(.16,2.4) (14.24,2.4)--(14.56,2.4) (.8,-.16)--(.8,.16) (10.8,-.16)--(10.8,.16);
+ \node at (5.8,.65) {封闭空气};
+ \node[above right] at (.35,2.6) {$p_0$};\node[above left] at (14.05,2.6) {$p_0$};
+ \draw[<->,TextGray] (-.9,0)--(-.9,2.4) node[midway,left]{$24\,\mathrm{cm}$};
+ \draw[<->,TextGray] (15.2,0)--(15.2,2.4) node[midway,right]{$24\,\mathrm{cm}$};
+ \foreach \xx in {0,.8,10.8,14.4}{\draw[dotted,TextGray] (\xx,-.22)--(\xx,-1.15);}
+ \draw[<->,TextGray] (0,-.75)--(.8,-.75) node[midway,below=6pt]{$8\,\mathrm{cm}$};
+ \draw[<->,TextGray] (.8,-.75)--(10.8,-.75) node[midway,below=6pt]{$\ell=100\,\mathrm{cm}$};
+ \draw[<->,TextGray] (10.8,-.75)--(14.4,-.75) node[midway,below=6pt]{$36\,\mathrm{cm}$};
+\end{tikzpicture}\figcap{平衡时两段水银柱之间封住空气。尺寸按管道中心线计，左右开口均通大气。}\label{ch13:fig:coupled-hg}\end{center}}
+
+\newcommand{\FluidCouetteDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[thick] (0,0) circle(2.2) (0,0) circle(.85);
+ \fill (0,0) circle(1.5pt) node[below left]{$O$};
+ \draw[->,DeepBlue,thick] ({1.12*cos(20)},{1.12*sin(20)}) arc(20:85:1.12);
+ \node[right] at (.65,1.22) {$\omega_0$};
+ \draw[<->,TextGray] (0,0)--(-.85,0);
+ \draw[TextGray,thin] (-.5,0)--(-1.1,-.5);
+ \node[left] at (-1.1,-.5) {$R_1$};
+ \draw[<->,TextGray] (0,0)--({2.2*cos(125)},{2.2*sin(125)}) node[midway,left=5pt]{$R_2$};
+ \draw[<->,TextGray] (0,0)--(1.45,0);
+ \node at (1.2,-.45) {$r$};
+ \fill (1.45,0) circle(1.5pt) node[below right]{$P$};
+ \draw[->,DeepBlue,thick] (1.45,0)--(1.45,.95) node[right]{$v_\theta$};
+ \node[right] at (2.6,0) {外筒固定};
+ \node[below] at (0,-2.55) {$z$ 轴竖直向上，图为水平截面};
+\end{tikzpicture}\figcap{同轴圆筒的水平截面。内筒以 $\omega_0$ 转动，外筒固定；$P$ 为间隙中的考察点。}\label{ch13:fig:couette}\end{center}}
+
+\newcommand{\FluidHangarDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \input{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/ch13/cylinder-paths.tex}
+ \draw[thick] (-2.2,0) arc(180:0:2.2);
+ \draw[->,TextGray] (-4.2,0)--(4.5,0) node[right]{$x$};
+ \fill (-2.2,0) circle(1.6pt);\node[below] at (-2.2,-.15) {$A$（门口）};
+ \fill (0,0) circle(1.6pt) node[below]{$O$};
+ \coordinate (B) at ({2.2*cos(55)},{2.2*sin(55)});
+ \draw[TextGray] (0,0)--(B);\fill (B) circle(1.6pt);
+ \draw[TextGray,thin] (.8,1.7)--(B);
+ \node[left] at (.7,1.7) {$B$};\node[left] at (.55,.95) {$R$};
+ \draw[TextGray] (.65,0) arc(0:55:.65);\node at (.92,.35) {$\theta$};
+ \node[above left] at (-2.4,4.1) {来流向左};
+\end{tikzpicture}\figcap{半圆柱机库的横截面与题设流线。$A$ 为敞开的门口，$R$ 为半径，$\theta$ 从正 $x$ 方向量起。}\label{ch13:fig:hangar}\end{center}}
+
+\newcommand{\FluidFunnelDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \def\aa{.16}\def\RR{2.4}\def\HH{3.4}\def\hh{2.65}
+ \pgfmathsetmacro{\rh}{\aa+(\RR-\aa)*\hh/\HH}
+ \fill[Blue!12] (-\aa,0)--(-\rh,\hh)--(\rh,\hh)--(\aa,0)--cycle;
+ \draw[thick] (-\RR,\HH)--(-\aa,0) (\aa,0)--(\RR,\HH);
+ \draw[DeepBlue,thick] (-\rh,\hh)--(\rh,\hh);
+ \draw[DeepBlue,thick] (-\aa,0)--(-\aa,-1) (\aa,0)--(\aa,-1);
+ \draw[->,DeepBlue,thick] (0,-.4)--(0,-1.25) node[midway,right=7pt]{$Q$};
+ \draw[<->,TextGray] (-3,0)--(-3,\HH) node[midway,left]{$H$};
+ \draw[<->,TextGray] (2.9,0)--(2.9,\hh) node[midway,right]{$h$};
+ \draw[dotted,TextGray] (\aa,0)--(2.9,0) (\rh,\hh)--(2.9,\hh);
+ \draw[<->,TextGray] (0,3.85)--(\RR,3.85) node[midway,above]{$R$};
+ \draw[TextGray,thin] (-\aa,-1.25)--(-\aa,-1.68) (\aa,-1.25)--(\aa,-1.68);
+ \draw[->,TextGray] (-.9,-1.55)--(-\aa,-1.55);
+ \draw[->,TextGray] (.9,-1.55)--(\aa,-1.55);
+ \node[below] at (0,-1.65) {有限开口 $2a$};
+\end{tikzpicture}\figcap{圆锥形漏斗与连通的有限出口。$H$、$h$ 均从出口量起，图示排液过程中的一个状态。}\label{ch13:fig:funnel}\end{center}}
+
+\newcommand{\FluidShoreDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \begin{scope}[shift={(-5.6,1.4)}]
+  \fill[Blue!12] (0,0)--(4.2,0)--(4.2,-1.2)--cycle;
+  \draw[DeepBlue,thick] (0,0)--(4.2,0);
+  \draw[Ink,thick] (-.7,.2)--(4.2,-1.2);
+  \draw[TextGray] (1.1,0) arc(0:-15.9454:1.1);
+  \node at (1.4,-.22) {$\alpha$};
+  \fill (0,0) circle(1.5pt) node[above] {岸};
+  \node[above] at (3.1,.15) {水面};
+  \node[below] at (3.1,-1.3) {岸坡剖面};
+ \end{scope}
+ \begin{scope}[shift={(.2,0)}]
+  \fill[Blue!8] (0,0) rectangle (3.6,2.7);
+  \draw[->,TextGray] (0,0)--(3.9,0) node[right]{$x$};
+  \draw[->,TextGray] (0,0)--(0,3) node[above]{$y$};
+  \draw[DeepBlue,very thick,domain=0:180,samples=120,variable=\p]
+   plot ({pi*\p/180+sin(\p)},{1+cos(\p)});
+  \fill (0,2) circle(1.8pt) node[left]{$B(0,y_0)$};
+  \fill (pi,0) circle(1.8pt) node[below]{$A$};
+  \draw[->,DeepBlue,thick] (0,2)--(.8,2) node[midway,above=5pt]{$\vect c_0$};
+  \node[below] at (1,-.4) {岸线 $y=0$};
+ \end{scope}
+\end{tikzpicture}\figcap{左为岸坡剖面，水只在水面与坡底之间；右为原题所给的弯向岸边的射线示意，$B$ 在离岸坐标轴上。}\label{ch13:fig:shore}\end{center}}
+
+\newcommand{\FluidHoseDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.95,>=Latex]
+ \def\ang{25}\def\LL{2.65}
+ \coordinate (O) at (0,0);
+ \coordinate (E) at ({-\LL*sin(\ang)},{-\LL*cos(\ang)});
+ \coordinate (P) at ({\LL*(cos(\ang)-sin(\ang))},{-\LL*(cos(\ang)+sin(\ang))});
+ \draw[dashed,TextGray] (O)--(0,-\LL)--(\LL,-\LL);
+ \draw[DeepBlue,line width=2pt] (O)--(E)--(P);
+ \foreach \pt in {O,E,P}{\fill (\pt) circle(1.7pt);}
+ \node[above] at (O) {$O$};\node[left=5pt] at (E) {$E$};\node[below=7pt] at (P) {$P$};
+ \draw[->,Ink] ($(O)!.25!(E)$)--($(O)!.65!(E)$);
+ \draw[->,Ink] ($(E)!.25!(P)$)--($(E)!.65!(P)$);
+ \draw[TextGray] (0,-.75) arc(-90:{-90-\ang}:.75);
+ \node[right] at (.15,-.95) {$\theta$};
+ \coordinate (d1) at ({-.6*cos(\ang)},{.6*sin(\ang)});
+ \coordinate (d2) at ({-.55*sin(\ang)},{-.55*cos(\ang)});
+ \draw[<->,TextGray] ($(O)+(d1)$)--($(E)+(d1)$) node[midway,left=5pt]{$L$};
+ \draw[<->,TextGray] ($(E)+(d2)$)--($(P)+(d2)$) node[midway,below=5pt]{$L$};
+ \draw[->,Ink] (2.6,-.2)--(2.6,-1.4) node[right]{$\vect g$};
+ \draw[->,DeepBlue,thick] (P)--++({.85*cos(\ang)},{-.85*sin(\ang)}) node[right]{出流方向};
+\end{tikzpicture}\figcap{两段等长管在 $E$ 处保持直角；实线仅示意未知偏角，虚线为题设的角度参考构形。}\label{ch13:fig:hose}\end{center}}
+
+\newcommand{\FluidHoseAnalysisDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.95,>=Latex]
+ \def\ang{31.0809622}\def\LL{2.65}
+ \coordinate (O) at (0,0);
+ \coordinate (E) at ({-\LL*sin(\ang)},{-\LL*cos(\ang)});
+ \coordinate (P) at ({\LL*(cos(\ang)-sin(\ang))},{-\LL*(cos(\ang)+sin(\ang))});
+ \draw[dashed,TextGray] (O)--(0,-\LL)--(\LL,-\LL);
+ \draw[DeepBlue,line width=2pt] (O)--(E)--(P);
+ \foreach \pt in {O,E,P}{\fill (\pt) circle(1.7pt);}
+ \node[above] at (O) {$O$};\node[left=5pt] at (E) {$E$};\node[below=7pt] at (P) {$P$};
+ \draw[->,Ink] ($(O)!.25!(E)$)--($(O)!.65!(E)$);
+ \draw[->,Ink] ($(E)!.25!(P)$)--($(E)!.65!(P)$);
+ \draw[TextGray] (0,-.75) arc(-90:{-90-\ang}:.75);
+ \node[right] at (.15,-.95) {$\theta=31.1^\circ$};
+ \coordinate (d1) at ({-.6*cos(\ang)},{.6*sin(\ang)});
+ \coordinate (d2) at ({-.55*sin(\ang)},{-.55*cos(\ang)});
+ \draw[<->,TextGray] ($(O)+(d1)$)--($(E)+(d1)$) node[midway,left=5pt]{$L$};
+ \draw[<->,TextGray] ($(E)+(d2)$)--($(P)+(d2)$) node[midway,below=5pt]{$L$};
+ \draw[->,Ink] (2.6,-.2)--(2.6,-1.4) node[right]{$\vect g$};
+ \draw[->,DeepBlue,thick] (P)--++({.85*cos(\ang)},{-.85*sin(\ang)}) node[right]{$u=Q/A$};
+\end{tikzpicture}\figcap{两段等长管在 $E$ 处保持直角；实线按求得的稳定角度绘制，虚线为比较用初始构形。}\label{ch13:fig:hose-analysis}\end{center}}

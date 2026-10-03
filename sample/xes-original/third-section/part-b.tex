@@ -1,0 +1,229 @@
+\subsection{是否滑动？}
+
+对于存在静摩擦力的平衡系统，求解平衡问题时有一个需要注意的地方就是静摩擦力
+并不是可以无限增加的，而是有一最大值。通常来说，静摩擦力的最大值与相互接触且有相对
+滑动趋势的物体之间接触面的性质以及相互之间的压力有关，可写成
+\[
+  f_{\max}=\mu_{\rm s}N,
+\]
+其中 $\mu_{\rm s}$ 为静摩擦系数。
+
+在处理此类问题时，一般来说首先假设两者间存在静摩擦力，在静摩擦力和其它所有力
+共同作用下保持平衡。但最后还要判断平衡所需的摩擦力是否超过上限：若
+$|f|\le\mu_{\rm s}N$，则可能保持静止，其中等号对应临界静止；若
+$|f|>\mu_{\rm s}N$，假设的静力平衡才不可能实现，物体将发生相对滑动。
+
+\sourcefigure[0.43\linewidth]{fig-1-2.png}
+\origcaption{图 1.2：全反力示意图}
+图中将接触力矢量平移到共同起点以说明合成关系，不表示这些力实际作用在物块顶面。
+
+除了用摩擦力和压力比值的方法判断是否滑动以外，还可以考虑可能滑动物体与接触
+表面之间压力和静摩擦力的合力，有时将其称为全反力。如图 1.2 所示的 $F$ 就是全反力，它
+与接触面垂线的夹角 $\alpha$ 是标志全反力的一个重要的物理量。从图中可以看出，当 $\alpha$ 为已知
+时，压力 $N=F\cos\alpha$，摩擦力 $f=F\sin\alpha$，所以不发生滑动的条件此时就变成了
+\begin{equation}
+  \sin\alpha\le\mu_{\rm s}\cos\alpha,\qquad \text{或}\qquad \tan\alpha\le\mu_{\rm s},
+\end{equation}
+也就是说，全反力和法线夹角的正切不大于静摩擦系数时，接触面可能保持相对静止；等号
+对应摩擦角达到极限，超过这一角度才不可能相对静止。
+
+\begin{origexamplebox}{例 1.18}
+木箱质量为 $M$，与地面间的动摩擦因数为 $\mu$，用斜向上的力 $F$ 拉木箱使之沿水平
+地面匀速前进，如图所示，问角 $\alpha$ 为何值时拉力 $F$ 最小？这个最小值为多大？
+\sourcefigure[0.42\linewidth]{ex-1-18.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+木箱受拉力 $F$、重力 $Mg$、地面支持力 $N$ 和滑动摩擦力 $f$，方向如解图所示：
+\soldiagOneEighteen
+由解图可见，木箱水平向右匀速运动，摩擦力向左，且 $f=\mu N$。水平方向平衡给出
+\[
+  F\cos\alpha=\mu N.
+\]
+竖直方向上，拉力的向上分量减小了地面支持力，故
+\[
+  N+F\sin\alpha=Mg.
+\]
+消去 $N$，得到
+\[
+  F=\frac{\mu Mg}{\cos\alpha+\mu\sin\alpha}.
+\]
+要使 $F$ 最小，应使分母最大。写成
+\[
+  \cos\alpha+\mu\sin\alpha
+  =\sqrt{1+\mu^2}\cos(\alpha-\arctan\mu),
+\]
+可知
+\[
+  \boxed{\alpha=\arctan\mu},
+  \qquad
+  \boxed{F_{\min}=\frac{\mu Mg}{\sqrt{1+\mu^2}}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.19}
+筷子夹鸡蛋（只考虑在水平光滑桌面上）的摩擦紧锁问题：设筷子与鸡蛋的摩擦
+系数为 $\mu$，求筷子多大角度时在水平桌面上始终不会把鸡蛋滑出。
+\sourcefigure[0.44\linewidth]{ex-1-19.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+取关于角平分线对称的两个接触点。设每根筷子对鸡蛋的正压力为 $N$。两正压力沿角平分
+线向外，而极限摩擦力沿筷子指向 $O$：
+\soldiagOneNineteen
+由解图可知，两正压力沿角平分线向外的合力为
+\[
+  2N\sin\frac\theta2.
+\]
+鸡蛋将要向外滑出时，两处摩擦力均沿筷子指向 $O$，其沿角平分线向内的最大合力为
+\[
+  2\mu N\cos\frac\theta2.
+\]
+发生摩擦紧锁要求后者不小于前者，即
+\[
+  2\mu N\cos\frac\theta2\ge 2N\sin\frac\theta2.
+\]
+所以
+\[
+  \boxed{\tan\frac\theta2\le\mu},
+  \qquad\text{即}\qquad
+  \boxed{\theta\le2\arctan\mu}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.20}
+有一长 $l$ 质量为 $M$ 的均匀杆 $AB$，$A$ 端顶在竖直的粗糙墙壁上，杆端与墙间的摩擦
+系数为 $\mu$，$B$ 端用一强度足够而不可伸长的绳悬挂，绳的另一端固定在墙壁 $C$ 点，木杆呈
+水平状态，绳与杆的夹角为 $\theta$，求杆能保持平衡时 $\mu$ 与 $\theta$ 应满足的条件。杆保持平衡时，杆
+上有一点 $P$ 存在，若 $A$ 与 $P$ 点间挂一质量足够大的重物，则可以破坏平衡，而在 $PB$ 间
+任一点悬挂任意重物均不能破坏平衡。求 $PA$ 距离 $x$。
+\sourcefigure[0.46\linewidth]{ex-1-20.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+杆、墙面和细绳的受力关系如解图所示；附加重物的位置暂记为 $y$：
+\soldiagOneTwenty
+先考虑没有附加重物的木杆。设绳张力为 $T$，墙面对杆的支持力和摩擦力分别为 $N$、
+$f$。对 $A$ 点取矩：
+\[
+  T\sin\theta\,l=Mg\frac l2,
+  \qquad
+  T\sin\theta=\frac{Mg}{2}.
+\]
+再由水平、竖直方向平衡得到
+\[
+  N=T\cos\theta=\frac{Mg}{2}\cot\theta,
+  \qquad
+  f=Mg-T\sin\theta=\frac{Mg}{2}.
+\]
+静摩擦条件 $f\le\mu N$ 因而给出
+\[
+  \boxed{\mu\ge\tan\theta}.
+\]
+
+现在在距 $A$ 点为 $y$ 的位置悬挂质量为 $m$ 的重物。重复上述计算：
+\[
+  T\sin\theta=\frac{Mg}{2}+mg\frac yl,
+\]
+\[
+  f=\frac{Mg}{2}+mg\left(1-\frac yl\right),
+  \qquad
+  N=\left(\frac{Mg}{2}+mg\frac yl\right)\cot\theta.
+\]
+若无论 $m$ 多大都不能破坏平衡，则除原先的 $\mu\ge\tan\theta$ 外，还必须使 $m$ 的
+系数满足
+\[
+  1-\frac yl\le\mu\frac yl\cot\theta.
+\]
+临界点 $P$ 满足等号，于是
+\[
+  \boxed{x=AP=\frac{l\tan\theta}{\mu+\tan\theta}}.
+\]
+当悬挂点位于 $AP$ 内时，可用足够重的物体破坏平衡；位于 $PB$ 内时，任意重物都不能
+使接触处超过静摩擦极限。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.21}
+如图，一人对一均匀细杆的一端施力，力的方向总与杆垂直，要将杆从地板上无
+滑动地慢慢抬到竖直位置，试求杆与地板间的静摩擦因数至少应为多大？
+\sourcefigure[0.40\linewidth]{ex-1-21.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+设杆长为 $L$、质量为 $m$，杆与地板夹角为 $\theta$。外力 $F$ 始终垂直于杆。对杆的下端
+取矩最方便，因为地板处的两个力都不产生力矩：
+\soldiagOneTwentyOne
+由解图有
+\[
+  FL=mg\frac L2\cos\theta,
+  \qquad
+  F=\frac{mg}{2}\cos\theta.
+\]
+由水平、竖直方向平衡可得地板处的摩擦力和支持力：
+\[
+  f=F\sin\theta=\frac{mg}{2}\sin\theta\cos\theta,
+\]
+\[
+  N=mg-F\cos\theta
+  =\frac{mg}{2}\left(1+\sin^2\theta\right).
+\]
+整个抬起过程中均不滑动，要求
+\[
+  \mu\ge\max_{0\le\theta\le\pi/2}\frac fN
+  =\max_{0\le\theta\le\pi/2}
+  \frac{\sin\theta\cos\theta}{1+\sin^2\theta}.
+\]
+在 $0\le\theta<\pi/2$ 内令 $t=\tan\theta\ge0$，上式化为 $t/(1+2t^2)$。
+由非负平方 $(\sqrt2t-1)^2\ge0$ 得
+\[
+ 1+2t^2\ge2\sqrt2t.
+\]
+当 $t>0$ 时，两边除以正数 $1+2t^2$，得
+$t/(1+2t^2)\le1/(2\sqrt2)$，等号恰在 $t=1/\sqrt2$ 时成立。
+$t=0$ 时此比值为零；当 $\theta\to\pi/2$、$t\to\infty$ 时也趋于零，
+所以两端都不提供更大的摩擦要求。因此
+\[
+  \boxed{\mu_{\min}=\frac{1}{2\sqrt2}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.22}
+质量均为 $m$ 的两环 $A$、$B$ 用长为 $a$ 的细线相连在水平杆上，在细线的中点拴有
+一质量为 $M$ 的物块 $C$，$A$、$B$ 环与杆间的静摩擦系数为 $\mu$，求平衡情况下的两环的最大距离
+$x$。
+\sourcefigure[0.50\linewidth]{ex-1-22.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+系统关于中点对称。每一侧细线长度为 $a/2$。设细线与水平方向夹角为 $\beta$，则
+\[
+  \cos\beta=\frac xa,
+  \qquad
+  \sin\beta=\frac{\sqrt{a^2-x^2}}{a}.
+\]
+中间结点和任一圆环的受力应分开研究：
+\soldiagOneTwentyTwo
+在中间结点处列竖直方向平衡方程：
+\[
+  2T\sin\beta=Mg,
+  \qquad
+  T=\frac{Mg}{2\sin\beta}.
+\]
+对任一圆环，细线的竖直分量为 $T\sin\beta=Mg/2$，所以杆对环的支持力为
+\[
+  N=\left(m+\frac M2\right)g.
+\]
+环将要滑动时
+\[
+  T\cos\beta=\mu N.
+\]
+代入 $T$ 和几何关系得
+\[
+  Mx=\mu(2m+M)\sqrt{a^2-x^2}.
+\]
+因此两环能够保持平衡的最大距离为
+\[
+  \boxed{x_{\max}=
+  \frac{a\mu(2m+M)}{\sqrt{M^2+\mu^2(2m+M)^2}}}.
+\]
+\end{xesolution}

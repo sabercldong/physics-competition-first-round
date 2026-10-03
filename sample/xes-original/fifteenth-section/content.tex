@@ -1,0 +1,516 @@
+回到运动学中，假设一艘船沿给定航线行驶。规定一个正方向后，为了确定船的位置，需要知道
+它相对港口的带符号位移。船员能够记录船在不同时刻沿航线的速度，并据此推断当前位置。
+如果船始终作匀速直线运动，只需用速度乘时间即可得到位移；但实际速度会不断变化，因而
+需要由速度随时间的函数计算变速运动中的位移。若另求航程，才应把各段路程作为正量相加。
+
+\partitionDiagram
+
+把时间分成许多小段。设物体在时刻 $t$ 的速度为 $v(t)$，若时间段 $\Delta t$ 足够小，
+可近似认为速度在这段时间内不变，于是从 $t$ 到 $t+\Delta t$ 的位移近似为
+\begin{equation}
+ \Delta x\simeq v(t)\Delta t.
+\end{equation}
+在 $x$--$t$ 图像上，这段位移是以 $v(t)$ 为斜率的短直线段在竖直方向的投影；在
+$v$--$t$ 图像上，它是宽为 $\Delta t$、高为 $v(t)$ 的窄矩形面积。把所有小段相加，
+并令 $\Delta t$ 趋于零，折线趋近真实的 $x(t)$ 曲线，矩形面积之和趋近 $v$--$t$
+曲线下的面积。
+
+已知位置函数时，速度由
+\begin{equation}
+ v(t)=\frac{\dd x}{\dd t}(t)
+\end{equation}
+给出。现在要解决的是它的逆问题：已知一条曲线各点的导数，怎样求曲线本身。解决这类
+问题的方法就是积分。
+
+若函数 $F(x)$ 的导数为 $f(x)$，则称 $F(x)$ 是 $f(x)$ 的一个原函数，并写成
+\begin{equation}
+ \int f(x)\dd x=F(x)+C,
+\end{equation}
+这称为 $f(x)$ 的不定积分（indefinite integration），其中 $f(x)$ 为被积函数，$x$ 为
+积分变量，$C$ 为积分常数。若原函数已知，则 $f(x)$ 在 $x_1$ 到 $x_2$ 之间的定积分为
+\begin{equation}
+ \int_{x_1}^{x_2}f(x)\dd x
+ =\left.F(x)\right|_{x_1}^{x_2}=F(x_2)-F(x_1).
+\end{equation}
+
+\integralDiagram
+
+积分可以处理曲线面积、复杂形体体积以及许多连续求和问题。基本思想是把复杂对象分割
+成简单的小对象，先算出每个小对象的相应量，再在小对象趋于无穷小时把它们积分起来。
+积分的线性规律为
+\begin{equation}
+ \int af(x)\dd x=a\int f(x)\dd x,
+\end{equation}
+\begin{equation}
+ \int[f(x)+g(x)]\dd x
+ =\int f(x)\dd x+\int g(x)\dd x.
+\end{equation}
+
+\Needspace{0.32\textheight}
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 1.17}
+设 $a>0,k>0$。计算通过坐标原点的直线 $f(x)=kx$ 在 $x=0$ 到 $x=a$ 之间与横轴所围成的几何面积。
+\areaLineDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+把区间 $[0,a]$ 分成许多宽为 $\dd x$ 的小段，每个窄条的面积为
+\[
+ \dd S=f(x)\dd x=kx\dd x.
+\]
+将它们相加：
+\[
+ S=\int_0^a kx\dd x
+ =\left.\frac12kx^2\right|_0^a
+ =\boxed{\frac12ka^2}.
+\]
+这正是底为 $a$、高为 $ka$ 的三角形面积 $\frac12a\cdot ka$。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{例 1.18}
+设 $a>0,k>0$。计算抛物线 $f(x)=kx^2$ 在 $x=0$ 到 $x=a$ 之间与横轴所围成的几何面积。
+\areaParabolaDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+取宽为 $\dd x$ 的竖直窄条，其面积元为
+\[
+ \dd S=kx^2\dd x.
+\]
+因此
+\[
+ S=\int_0^a kx^2\dd x
+ =\left.\frac{kx^3}{3}\right|_0^a
+ =\boxed{\frac13ka^3}.
+\]
+若以外接矩形面积 $a\cdot ka^2=ka^3$ 作比较，抛物线下的面积恰为它的三分之一。
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例 1.19}
+把下列计算圆面积的分割思路用积分表示出来并计算圆的面积，与熟悉的公式
+$S=\pi R^2$ 比较。
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 从圆心出发把圆分成许多扇形，每个扇形的顶角为 $\dd\theta$；
+ \item 把圆分成许多厚度为 $\dd r$ 的圆环，每个圆环的内半径为 $r$；
+ \item 把圆切成许多矩形，每个矩形到圆心的距离为 $x$，宽为 $\dd x$。
+\end{enumerate}
+\circlePartitionsDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+三种分割方式都在计算同一个圆面积，只是所选面积元不同。
+
+\textbf{(a) 扇形分割。}\quad 半径为 $R$、圆心角为 $\dd\theta$ 的小扇形面积为
+\[
+ \dd S=\frac12R^2\dd\theta.
+\]
+绕圆一周：
+\[
+ S=\int_0^{2\pi}\frac12R^2\dd\theta
+ =\boxed{\pi R^2}.
+\]
+
+\textbf{(b) 圆环分割。}\quad 半径为 $r$、厚度为 $\dd r$ 的薄圆环可近似展开成长为
+$2\pi r$、宽为 $\dd r$ 的矩形：
+\[
+ \dd S=2\pi r\dd r,
+ \qquad
+ S=\int_0^R2\pi r\dd r=\boxed{\pi R^2}.
+\]
+
+\textbf{(c) 竖条分割。}\quad 距圆心横坐标为 $x$ 的竖条，其高度由
+$x^2+y^2=R^2$ 给出：
+\[
+ h(x)=2\sqrt{R^2-x^2}.
+\]
+所以
+\[
+ S=\int_{-R}^{R}2\sqrt{R^2-x^2}\dd x
+ =4\int_0^R\sqrt{R^2-x^2}\dd x.
+\]
+令 $x=R\sin\phi$，$\dd x=R\cos\phi\dd\phi$：
+\[
+ S=4R^2\int_0^{\pi/2}\cos^2\phi\dd\phi
+ =4R^2\cdot\frac\pi4
+ =\boxed{\pi R^2}.
+\]
+三种积分都得到熟悉的圆面积公式。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.20}
+利用积分证明圆锥体体积是同底等高圆柱体积的 $1/3$。
+\end{origexamplebox}
+
+\begin{xesolution}
+设圆锥高为 $H$、底面半径为 $R$。从锥顶起沿轴线建立坐标 $x$，在 $x$ 处取厚度为
+$\dd x$ 的圆盘。由相似三角形
+\[
+ r(x)=\frac{R}{H}x.
+\]
+圆盘体积元为
+\[
+ \dd V=\pi r^2(x)\dd x
+ =\pi\frac{R^2}{H^2}x^2\dd x.
+\]
+从锥顶累加到底面：
+\[
+ V=\int_0^H\pi\frac{R^2}{H^2}x^2\dd x
+ =\pi\frac{R^2}{H^2}\cdot\frac{H^3}{3}
+ =\boxed{\frac13\pi R^2H}.
+\]
+同底等高圆柱体积为 $\pi R^2H$，故圆锥体积恰为其三分之一。
+\end{xesolution}
+
+在物理中经常会遇到复杂的求和过程。若一个物理量发生变化，与它相关的量也随之改变，
+直接求和往往并不现实；但把变化过程分成无穷多足够小的部分时，各小段中的物理量变化
+通常可以近似表达。
+
+例如物体在某时刻速度为 $v$，在无限小时间 $\dd t$ 内可近似看作匀速运动：
+\begin{equation}
+ \Delta x\simeq v(t)\Delta t,
+\end{equation}
+在 $\Delta t\to0$ 的极限下写成
+\begin{equation}
+ \dd x=v\dd t.
+\end{equation}
+已知 $v(t)$ 时，从 $t_1$ 到 $t_2$ 的位移为
+\begin{equation}
+ x(t_2)-x(t_1)=\int_{t_1}^{t_2}v(t)\dd t.
+\end{equation}
+这里得到的是带符号的位移；若要求路程，应在速度变号处分段积分 $|v(t)|$。
+
+又如某物体的热容量随温度变化为 $C(T)$，在小温区 $\Delta T$ 内吸收的热量近似为
+\begin{equation}
+ \Delta Q\simeq C(T)\Delta T.
+\end{equation}
+取极限得 $\dd Q=C(T)\dd T$，所以物体从 $T_1$ 升温至 $T_2$ 所需热量为
+\begin{equation}
+ Q=\int_{T_1}^{T_2}C(T)\dd T.
+\end{equation}
+
+\begin{origexamplebox}{例 1.21}
+利用积分写出下列两个物体质量的表达式：
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 轴对称物体的底部为 $x=0$、顶部为 $x=H$，半径随 $x$ 的关系为 $r(x)$，
+ 密度随高度的关系为 $\rho(x)$；
+ \item 半径为 $R$ 的球对称物体，密度与距球心距离 $r$ 的关系由函数 $\rho(r)$ 给出。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+质量元总是 $\dd m=\rho\dd V$，关键在于按对称性选择体积元。
+
+\textbf{(a)} 在高度 $x$ 处取厚度 $\dd x$ 的薄圆盘：
+\[
+ \dd V=\pi r^2(x)\dd x,
+ \qquad
+ \dd m=\rho(x)\pi r^2(x)\dd x.
+\]
+所以
+\[
+ \boxed{M=\int_0^H\rho(x)\pi r^2(x)\dd x}.
+\]
+
+\textbf{(b)} 在距球心 $r$ 处取厚度 $\dd r$ 的薄球壳，其体积元为
+$4\pi r^2\dd r$，故
+\[
+ \boxed{M=4\pi\int_0^R\rho(r)r^2\dd r}.
+\]
+\massElementsDiagram
+两个式子的上下限都从对称中心或底部开始，直到物体边界；量纲均为
+$[\rho][\text{体积}]=[\text{质量}]$。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例 1.22}
+一维运动中，外力与物体位置的关系为 $F(x)$。物体从 $x_1$ 运动到 $x_2$ 时，外力的功为
+\[
+ W_{12}=\int_{x_1}^{x_2}F(x)\dd x.
+\]
+计算下列情况下给定外力所做的功：
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+ \item 弹性力 $F=-kx$ 从 $x_1$ 到 $x_2$ 的功；
+ \item 万有引力 $F=-\dfrac{Gm_1m_2}{r^2}$ 从 $r_1$ 到 $r_2$ 的功；
+ \item 分子力 $F=\dfrac{A}{r^6}-\dfrac{B}{r^{12}}$ 从 $r_1$ 到 $r_2$ 的功；
+ \item 理想气体分别经过准静态等温过程和准静态可逆绝热过程，从体积 $V_1$ 膨胀到 $V_2$ 对外所做的功。
+\end{enumerate}
+\pvWorkDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(a)}
+\[
+ W=\int_{x_1}^{x_2}(-kx)\dd x
+ =\boxed{\frac12k(x_1^2-x_2^2)}.
+\]
+它等于弹性势能的减少量。
+
+\textbf{(b)} 取径向向外为正：
+\[
+ W=\int_{r_1}^{r_2}-\frac{Gm_1m_2}{r^2}\dd r
+ =\boxed{Gm_1m_2\left(\frac1{r_2}-\frac1{r_1}\right)}.
+\]
+若物体向内运动，$r_2<r_1$，引力做正功。
+
+\textbf{(c)}
+\begin{align*}
+ W&=\int_{r_1}^{r_2}\left(\frac A{r^6}-\frac B{r^{12}}\right)\dd r\\
+ &=\boxed{\left[-\frac{A}{5r^5}+\frac{B}{11r^{11}}\right]_{r_1}^{r_2}}.
+\end{align*}
+
+\textbf{(d)} 气体准静态膨胀时，气体对外做功 $W=\int p\dd V$。
+这里 $n$ 是气体的物质的量，$R_g$ 是摩尔气体常量，$T$ 是热力学温度。
+以下取一定量理想气体，并把相应过程方程作为本题积分练习的已知规律；
+过程方程的物理推导在热学中讨论。
+
+等温过程中 $pV=nR_gT$，温度不变：
+\[
+ W_{\rm iso}=\int_{V_1}^{V_2}\frac{nR_gT}{V}\dd V
+ =nR_gT[\ln V]_{V_1}^{V_2}
+ =\boxed{nR_gT\ln\frac{V_2}{V_1}}.
+\]
+对于可逆绝热过程，还要求所讨论温区内的定压、定容摩尔热容 $C_p,C_V$
+可视为常量。记热容比 $\gamma=C_p/C_V>1$，过程方程为 $pV^\gamma=C$，
+其中 $C$ 是沿这条绝热线保持不变的常数，不是热容。于是
+\begin{align*}
+ W_{\rm ad}
+ &=\int_{V_1}^{V_2}CV^{-\gamma}\dd V\\
+ &=\frac{C}{1-\gamma}
+   \left(V_2^{1-\gamma}-V_1^{1-\gamma}\right)\\
+ &=\boxed{\frac{p_1V_1-p_2V_2}{\gamma-1}}.
+\end{align*}
+图中曲线下的阴影面积就是相应过程的功；同一初态膨胀到同一体积时，绝热线下降更快，
+其曲线下面积小于等温过程。
+\end{xesolution}
+
+积分还能处理物理量之间更复杂的依赖关系。通常先用小量分析写出过程中的物理关系，再
+取极限得到微分方程，最后通过积分得到所需结果。
+
+\begin{origexamplebox}{例 1.23}
+质量为 $m$ 的质点受到正比于速度的阻力 $f=-\alpha v$，在其作用下作减速运动。设
+$t=0$ 时速度为 $v_0$，且位于坐标原点 $x=0$。求速度随时间的规律 $v(t)$、前进距离
+随时间的关系 $x(t)$，以及速度与位移的关系 $v(x)$。
+\end{origexamplebox}
+
+\begin{xesolution}
+取初速度方向为正。牛顿第二定律给出
+\[
+ m\frac{\dd v}{\dd t}=-\alpha v.
+\]
+分离变量并代入 $v(0)=v_0$：
+\[
+ \int_{v_0}^{v}\frac{\dd v'}{v'}
+ =-\frac\alpha m\int_0^t\dd t',
+\]
+故
+\[
+ \boxed{v(t)=v_0\e^{-\alpha t/m}}.
+\]
+再由 $\dd x=v\dd t$：
+\[
+ x(t)=\int_0^tv_0\e^{-\alpha t'/m}\dd t'
+ =\boxed{\frac{mv_0}{\alpha}
+ \left(1-\e^{-\alpha t/m}\right)}.
+\]
+若直接求 $v(x)$，利用 $\dd v/\dd t=v\dd v/\dd x$：
+\[
+ mv\frac{\dd v}{\dd x}=-\alpha v.
+\]
+在 $v>0$ 的运动阶段约去 $v$ 并积分，得到
+\[
+ \boxed{v(x)=v_0-\frac\alpha m x}.
+\]
+当 $t\to\infty$ 时速度渐近于零，极限位移为
+$x_\infty=mv_0/\alpha$，与 $v(x)=0$ 给出的结果一致。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.24}
+物体在重力作用下下落，同时受到正比于速度的阻力 $f=-\alpha v$。已知 $t=0$ 时它在
+竖直向下坐标系的原点处静止，求此后速度随时间的关系 $v(t)$。
+\end{origexamplebox}
+
+\begin{xesolution}
+取竖直向下为正，运动方程为
+\[
+ m\frac{\dd v}{\dd t}=mg-\alpha v.
+\]
+引入终端速度 $v_\infty=mg/\alpha$，则
+\[
+ \frac{\dd v}{\dd t}=\frac\alpha m(v_\infty-v).
+\]
+分离变量并用 $v(0)=0$：
+\[
+ \int_0^v\frac{\dd v'}{v_\infty-v'}
+ =\frac\alpha m\int_0^t\dd t'.
+\]
+因此
+\[
+ \boxed{v(t)=\frac{mg}{\alpha}
+ \left(1-\e^{-\alpha t/m}\right)}.
+\]
+初始时 $v=0$、加速度为 $g$；时间足够长时 $v\to mg/\alpha$、加速度趋于零，符合受力
+平衡的终端速度图景。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.25}
+质点在 $t=0$ 时位于坐标原点，初速度为 $v_0$。它受到正比于速度平方的阻力
+$f=-\beta v^2$。求速度随时间衰减的规律 $v(t)$。
+\end{origexamplebox}
+
+\begin{xesolution}
+在速度尚为正的阶段，运动方程为
+\[
+ m\frac{\dd v}{\dd t}=-\beta v^2.
+\]
+分离变量：
+\[
+ \int_{v_0}^{v}\frac{\dd v'}{v'^2}
+ =-\frac\beta m\int_0^t\dd t'.
+\]
+于是
+\[
+ -\frac1v+\frac1{v_0}=-\frac\beta m t,
+\]
+即
+\[
+ \boxed{v(t)=\frac{v_0}{1+\frac{\beta v_0}{m}t}}.
+\]
+与线性阻力的指数衰减不同，平方阻力下速度按 $1/t$ 的量级衰减。阻力写作
+$-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能始终与速度反向。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{例 1.26}
+坐标原点处有质量为 $M$ 的物体 $A$，它始终保持静止。在距它 $r_0$ 处有另一个质量远小
+于它的质点，在二者万有引力作用下由静止出发落向 $A$。求它们相撞的时间。
+\end{origexamplebox}
+
+\begin{xesolution}
+把小质点视为试探质点，并把中心物体视为质点；“相撞”即 $r\to0$。机械能守恒给出
+\[
+ \frac12mv^2-\frac{GMm}{r}=-\frac{GMm}{r_0},
+\]
+因此向内运动的速率为
+\[
+ v(r)=\sqrt{2GM\left(\frac1r-\frac1{r_0}\right)}.
+\]
+\radialFallDiagram
+图中虚圈表示 $t=0$ 时位于 $r_0$ 的初始位置，实点表示当前位于 $r$ 的位置；速度箭头指向
+半径减小的方向，所以 $\dd r/\dd t<0$。
+由于 $\dd r/\dd t=-v$，下落时间为
+\[
+ t=\int_0^{r_0}\frac{\dd r}
+ {\sqrt{2GM(1/r-1/r_0)}}.
+\]
+令 $r=r_0\sin^2\phi$，则 $\dd r=2r_0\sin\phi\cos\phi\dd\phi$，积分化为
+\[
+ t=2r_0\sqrt{\frac{r_0}{2GM}}
+ \int_0^{\pi/2}\sin^2\phi\dd\phi.
+\]
+利用 $\int_0^{\pi/2}\sin^2\phi\dd\phi=\pi/4$，得到
+\[
+ \boxed{t=\frac{\pi}{2\sqrt2}
+ \sqrt{\frac{r_0^3}{GM}}}.
+\]
+小质点的质量被约去，体现了引力场中自由落体时间与试探质量无关。若中心物体有有限
+半径 $R_A$，真正碰到表面的时间应把积分下限改为 $R_A$，会小于上述结果。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.27}
+放射性衰变是随机过程。对含有大量同类原子的样品，用 $N(t)$ 表示尚未衰变原子数的期望值
+（实际宏观样品中也可视为平均数）。在无穷小时间间隔中，期望衰变数正比于当前期望总数，即
+\[
+ \frac{\dd N}{\dd t}=-\lambda N,
+\]
+其中 $\lambda$ 为衰变常数。若 $t=0$ 时有 $N_0$ 个放射性原子，求任意时刻 $t$ 尚未
+衰变的原子数期望值；并给出衰变常数与半衰期 $\tau_{1/2}$ 的关系。
+\end{origexamplebox}
+
+\begin{xesolution}
+分离变量并积分：
+\[
+ \int_{N_0}^{N(t)}\frac{\dd N'}{N'}
+ =-\lambda\int_0^t\dd t'.
+\]
+所以
+\[
+ \ln\frac{N(t)}{N_0}=-\lambda t,
+ \qquad
+ \boxed{N(t)=N_0\e^{-\lambda t}}.
+\]
+半衰期定义为 $N(\tau_{1/2})=N_0/2$，代入上式：
+\[
+ \frac12=\e^{-\lambda\tau_{1/2}},
+\]
+因此
+\[
+ \boxed{\tau_{1/2}=\frac{\ln2}{\lambda}},
+ \qquad
+ \boxed{\lambda=\frac{\ln2}{\tau_{1/2}}}.
+\]
+衰变常数的量纲是时间的倒数；样品经过 $n$ 个半衰期后剩余比例为 $2^{-n}$。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{例 1.28}
+用定积分给出任意光滑曲线 $y(x)$ 在 $x_1$ 到 $x_2$ 之间的部分曲线长度 $L_{12}$。
+\arcLengthDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+在曲线上取相邻两点。图中右侧把局部三角形放大：横、纵两条直角边分别表示
+$\dd x,\dd y$，斜边表示弧长微元 $\dd s$。局部曲线段在极限
+下可看作切线上的小直线段，由勾股定理
+\[
+ \dd s=\sqrt{(\dd x)^2+(\dd y)^2}.
+\]
+把 $\dd x$ 提出：
+\[
+ \dd s=\sqrt{1+\left(\frac{\dd y}{\dd x}\right)^2}\,|\dd x|.
+\]
+若沿 $x$ 增大的方向从 $x_1$ 走到 $x_2$，且 $x_2>x_1$，则
+\[
+ \boxed{L_{12}=\int_{x_1}^{x_2}
+ \sqrt{1+[y'(x)]^2}\dd x}.
+\]
+被积函数始终不小于 $1$，所以弧长不小于两端点的水平距离 $x_2-x_1$；这是公式的一个
+直接检验。
+\end{xesolution}
+
+\Needspace{0.39\textheight}
+\begin{origexamplebox}{例 1.29}
+坐标系中有 $A,B$ 两点，坐标分别为 $(0,H)$ 和 $(L,0)$。一条光滑轨道 $y(x)$ 连接
+$A,B$。求物体由 $A$ 点从静止出发、沿该轨道下落到 $B$ 点所需的时间。
+\trackTimeDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+假设轨道光滑且没有能量损失。物体到达横坐标 $x$ 处时下降高度为 $H-y(x)$。由机械能
+守恒
+\[
+ \frac12mv^2=mg[H-y(x)],
+\]
+故速率为
+\[
+ v(x)=\sqrt{2g[H-y(x)]}.
+\]
+沿轨道的弧长元由例 1.28 给出：
+\[
+ \dd s=\sqrt{1+[y'(x)]^2}\dd x.
+\]
+而 $\dd t=\dd s/v$，所以总时间为
+\[
+ \boxed{t_{AB}=\int_0^L
+ \frac{\sqrt{1+[y'(x)]^2}}
+ {\sqrt{2g[H-y(x)]}}\dd x}.
+\]
+\trackTimeSolutionDiagram
+积分在起点处的分母趋于零，因此这是需要检查收敛性的反常积分；其是否收敛取决于轨道离开 $A$ 点的
+方式。若起点切线具有非零向下斜率，则 $H-y(x)$ 与 $x$ 同阶，积分像
+$\int\dd x/\sqrt{x}$ 一样收敛；若起点是严格水平且曲线足够光滑，物体可能不能自行
+离开静止点，相应积分会发散。该式也是最速降线问题的出发点，但这里只要求给出任意
+已知轨道的下落时间。
+\end{xesolution}

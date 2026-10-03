@@ -1,0 +1,34 @@
+\newif\ifAdvHideHeading
+\RenewDocumentEnvironment{advexamplebox}{m}{%
+  \refstepcounter{advexample}%
+  \begin{tcolorbox}[
+    enhanced,unbreakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={例~\theadvexample\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.4pt}{0pt}{DeepBlue}]
+}{\end{tcolorbox}}
+
+\RenewDocumentEnvironment{advsolution}{+b}{%
+  \par\smallskip\begingroup\small\noindent
+  \ifAdvHideHeading\global\AdvHideHeadingfalse\else{\bfseries\color{DeepBlue}解答}\quad\fi #1\par\endgroup\smallskip
+}{}
+
+\RenewDocumentEnvironment{advdefinition}{m +b}{%
+  \refstepcounter{advdefinition}%
+  \begin{tcolorbox}[
+    enhanced,unbreakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={定义~\theadvdefinition\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleGold,borderline west={1.2pt}{0pt}{Gold}]
+  #2
+  \end{tcolorbox}
+}{}
+
+\RenewDocumentEnvironment{advtheorem}{m +b}{%
+  \refstepcounter{advtheorem}%
+  \begin{tcolorbox}[
+    enhanced,unbreakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={定理~\theadvtheorem\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.2pt}{0pt}{DeepBlue}]
+  #2
+  \end{tcolorbox}
+}{}
+

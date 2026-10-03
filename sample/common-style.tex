@@ -1,0 +1,173 @@
+% Shared style for the combined handout.  Section files keep standalone
+% preambles for now, while the master document uses this single definition.
+\usepackage[a4paper,top=20mm,bottom=22mm,left=19mm,right=19mm,headheight=24pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{siunitx}
+\usepackage{booktabs,tabularx,array,multicol}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,angles,quotes,patterns}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\definecolor{Ink}{HTML}{202326}
+\definecolor{DeepBlue}{HTML}{294E69}
+\definecolor{Blue}{HTML}{47687D}
+\definecolor{PaleBlue}{HTML}{F3F5F6}
+\definecolor{Gold}{HTML}{6E777D}
+\definecolor{PaleGold}{HTML}{F6F6F5}
+\definecolor{Green}{HTML}{5B6D76}
+\definecolor{PaleGreen}{HTML}{F3F5F6}
+\definecolor{Alert}{HTML}{666B6F}
+\definecolor{PaleAlert}{HTML}{F6F6F6}
+\definecolor{RuleGray}{HTML}{D3D7DA}
+\definecolor{TextGray}{HTML}{61686D}
+\definecolor{SoftGray}{HTML}{F6F6F6}
+
+\color{Ink}
+\sisetup{
+  per-mode=symbol,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  exponent-product=\times
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DeepBlue,
+  urlcolor=Blue,
+  pdfsubject={高中物理竞赛一轮资料重排讲义},
+  pdfauthor={物理竞赛一轮资料编写组}
+}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlist{nosep,leftmargin=2em}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\numberwithin{equation}{section}
+\counterwithin{table}{section}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+
+\ctexset{
+  chapter={
+    format=\raggedright\LARGE\bfseries\color{Ink},
+    titleformat=\LARGE\bfseries\color{Ink},
+    beforeskip=0pt,
+    afterskip=18pt
+  },
+  section={
+    format=\Large\bfseries\color{DeepBlue},
+    beforeskip=1.8ex,
+    afterskip=1.0ex
+  },
+  subsection={
+    format=\large\bfseries\color{Ink},
+    beforeskip=1.5ex,
+    afterskip=0.8ex
+  },
+  subsubsection={format=\normalsize\bfseries\color{Ink}}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{TextGray}高中物理竞赛一轮讲义}
+\fancyhead[R]{\small\color{TextGray}第一章\quad 数学与物理工具}
+\fancyfoot[C]{\small\color{TextGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{RuleGray}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\dimens}[1]{\operatorname{dim}\!\left(#1\right)}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\uvec}[1]{\hat{\vect{#1}}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\order}[1]{\mathcal O\!\left(#1\right)}
+\DeclareMathOperator{\proj}{proj}
+\newcommand{\examplesource}[1]{%
+  \par{\small\color{TextGray}题源：#1}\par
+}
+
+\newtcolorbox{goalbox}{
+  enhanced,breakable,
+  colback=PaleBlue,colframe=Blue,
+  boxrule=0.7pt,arc=2mm,
+  title={本节目标},fonttitle=\bfseries,
+  coltitle=DeepBlue,
+  attach boxed title to top left={xshift=5mm,yshift=-2mm},
+  boxed title style={colback=white,colframe=Blue,boxrule=0.7pt,arc=1.5mm}
+}
+
+\newtcolorbox{sourcebox}{
+  enhanced,breakable,
+  colback=SoftGray,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={题源说明},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=SoftGray,
+  borderline west={1.2pt}{0pt}{TextGray}
+}
+
+\newtcolorbox[auto counter,number within=section]{examplebox}[2][]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={例题~\thetcbcounter\quad #2},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue},
+  #1
+}
+
+\newtcolorbox{methodbox}[1]{
+  enhanced,breakable,
+  colback=PaleBlue,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={方法：#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.2pt}{0pt}{DeepBlue}
+}
+
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,
+  colback=SoftGray,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={易错提醒：#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=SoftGray,
+  borderline west={1.2pt}{0pt}{TextGray}
+}
+
+\newtcolorbox{extensionbox}[1]{
+  enhanced,breakable,
+  colback=PaleGold,colframe=Gold,
+  boxrule=0.5pt,arc=0mm,
+  title={拓展：#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleGold,
+  borderline west={1.2pt}{0pt}{DeepBlue}
+}
+
+\newtcolorbox{summarybox}{
+  enhanced,breakable,
+  colback=PaleBlue,colframe=DeepBlue,
+  boxrule=0.9pt,arc=1.5mm,
+  title={本节小结},fonttitle=\bfseries,
+  coltitle=white,colbacktitle=DeepBlue
+}
+
+\newtcolorbox{exercisebox}[1]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.7pt,arc=1.5mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=DeepBlue,colbacktitle=PaleBlue
+}
+
+\tikzset{
+  vector/.style={-{Latex[length=2.5mm]},very thick,draw=DeepBlue},
+  component/.style={-{Latex[length=2.2mm]},thick,draw=TextGray},
+  axis/.style={-{Latex[length=2mm]},thin,draw=TextGray},
+  guide/.style={densely dashed,draw=TextGray},
+  curve/.style={very thick,draw=DeepBlue},
+  tangent/.style={thick,draw=TextGray},
+  secant/.style={thick,draw=DeepBlue}
+}

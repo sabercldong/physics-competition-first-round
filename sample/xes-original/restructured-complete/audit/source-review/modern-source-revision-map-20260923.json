@@ -1,0 +1,605 @@
+{
+  "scope": "spring-II exercise lectures10,11,14 only; chapters1-30 and full source prose not certified",
+  "source_pdf": "/Users/dongxingxi/Downloads/学而思资料/二轮/兴趣二阶春季.pdf",
+  "source_sha256": "7d47436e2942ee0a77afb18a8ea9abf4fa3d6e22831466ce6b19935b0fd9251c",
+  "source_hashes": {
+    "advanced/A6.tex": "9508b0e645e0d3b09d2d85da3ed759eb2336024fee1f783b77f0db1f674f2070",
+    "advanced/A6-relativity.tex": "596b2169f369a2e87525a7a04c5dcc3299c2bdf6d2c162d97011ffb44fd140e4",
+    "advanced/A6-source-exercises.tex": "45d6cb6d485541ef95360827305328748f19b99b7ed47c7965223070cf2d27ba",
+    "advanced/A6-source-more.tex": "a17b71569b4e334f829c8e6a97aa78cbf7a710c28a6e06495f84f39779d3d9ca",
+    "chapters/new/ch31-relativity.tex": "75d841e735a840a9bb6a98e2e59f138761cd8dc958339dc9b447ed8cb69a25c8",
+    "chapters/new/ch32-modern.tex": "bbb616164b99eea7e345180e92417d67a7bca78eb14781914ff56d5d424757cb"
+  },
+  "counts": {
+    "source_questions": 21,
+    "newly_recovered_questions": 16,
+    "previously_present_questions": 5,
+    "question_figure_groups": 9,
+    "question_subpanels": 13,
+    "unmapped_questions_in_this_inventory": 0,
+    "unmapped_figure_groups_in_this_inventory": 0,
+    "A6_examples": 34,
+    "A6_solutions": 34
+  },
+  "questions": [
+    {
+      "source_object_id": "spring-II:exercise:L10:Q1",
+      "physical_pages": [
+        193
+      ],
+      "printed_pages": [
+        49
+      ],
+      "target_label": "advA6:ex:closed-clock",
+      "target_example": "A6.19",
+      "target_printed_page": 23,
+      "target_A6_pdf_physical_page": 25,
+      "covered_subquestions": [
+        "一周固有时",
+        "局部同步接缝差及可持续性",
+        "不等式与等号"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L10:Q1:figure",
+          "target_asset": "assets/diagrams-modern/closed-clock-source.tex",
+          "source_panels": 1,
+          "sha256": "7663f8a678031c9b705a06516f2179e6f300cb53cac523619f41c91e9d3c0aa5",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L10:Q2",
+      "physical_pages": [
+        193,
+        194
+      ],
+      "printed_pages": [
+        49,
+        50
+      ],
+      "target_label": "advA6:ex:rod-pulse-aberration",
+      "target_example": "A6.24",
+      "target_printed_page": 30,
+      "target_A6_pdf_physical_page": 32,
+      "covered_subquestions": [
+        "静止杆方向和长度",
+        "脉冲方向和两种长度约定",
+        "不换系望远镜朝向",
+        "换系望远镜和恒星方向"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L10:Q2:figure",
+          "target_asset": "assets/diagrams-modern/rod-telescope-source.tex",
+          "source_panels": 2,
+          "sha256": "7d6860e1780f2857df38a8d7b3545240ad7e66ec9ad3becea1b154b26262c608",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L10:Q3",
+      "physical_pages": [
+        195
+      ],
+      "printed_pages": [
+        51
+      ],
+      "target_label": "advA6:ex:radiation-angle",
+      "target_example": "A6.26",
+      "target_printed_page": 33,
+      "target_A6_pdf_physical_page": 35,
+      "covered_subquestions": [
+        "发射与接收强度角分布",
+        "所见星数与同时位置角密度及条件"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L10:Q4",
+      "physical_pages": [
+        195,
+        196
+      ],
+      "printed_pages": [
+        51,
+        52
+      ],
+      "target_label": "advA6:ex:accelerating-rod",
+      "target_example": "A6.1",
+      "target_printed_page": 2,
+      "target_A6_pdf_physical_page": 4,
+      "covered_subquestions": [
+        "收缩率及lambda/mu/nu",
+        "本征加速度与纵向力",
+        "头尾信号频移及刚性条件"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L10:Q5",
+      "physical_pages": [
+        196,
+        197
+      ],
+      "printed_pages": [
+        52,
+        53
+      ],
+      "target_label": "advA6:ex:relativistic-accelerator",
+      "target_example": "A6.2",
+      "target_printed_page": 3,
+      "target_A6_pdf_physical_page": 5,
+      "covered_subquestions": [
+        "磁场及三段电荷",
+        "Y/Z速度与新系三段电荷",
+        "不套场变换求新系场"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L10:Q5:figure",
+          "target_asset": "assets/diagrams-modern/accelerator-source.tex",
+          "source_panels": 1,
+          "sha256": "3474f7622f4025ceb8fe29af4be45cdab0c9b80696e959621c7a701a10ee5735",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L10:Q6",
+      "physical_pages": [
+        198
+      ],
+      "printed_pages": [
+        54
+      ],
+      "target_label": "advA6:ex:synchrotron",
+      "target_example": "A6.27",
+      "target_printed_page": 34,
+      "target_A6_pdf_physical_page": 36,
+      "covered_subquestions": [
+        "原子经典寿命",
+        "弯道平均每光口功率",
+        "接收脉冲持续时间"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L10:Q7",
+      "physical_pages": [
+        199
+      ],
+      "printed_pages": [
+        55
+      ],
+      "target_label": "advA6:ex:successive-boosts",
+      "target_example": "A6.28",
+      "target_printed_page": 35,
+      "target_A6_pdf_physical_page": 37,
+      "covered_subquestions": [
+        "同步钟方法",
+        "洛伦兹坐标方法"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q1",
+      "physical_pages": [
+        200
+      ],
+      "printed_pages": [
+        56
+      ],
+      "target_label": "advA6:ex:nuclear-resonance",
+      "target_example": "A6.20",
+      "target_printed_page": 24,
+      "target_A6_pdf_physical_page": 26,
+      "covered_subquestions": [
+        "发射反冲",
+        "吸收反冲与运动共振",
+        "一般D及低速结果",
+        "单核与晶体模型区别"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L11:Q1:figure",
+          "target_asset": "assets/diagrams-modern/recoil-resonance-source.tex",
+          "source_panels": 2,
+          "sha256": "36e9ab0ddefd8990dfa9b0ad754615b973605e4dc20ecdb2707860a66fcf1f3b",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q2",
+      "physical_pages": [
+        200,
+        201
+      ],
+      "printed_pages": [
+        56,
+        57
+      ],
+      "target_label": "advA6:ex:photon-scattering",
+      "target_example": "A6.21",
+      "target_printed_page": 26,
+      "target_A6_pdf_physical_page": 28,
+      "covered_subquestions": [
+        "实中间态不可能性",
+        "波矢允许面",
+        "频率方向关系和极值"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L11:Q2:figure",
+          "target_asset": "assets/diagrams-modern/photon-scattering-source.tex",
+          "source_panels": 2,
+          "sha256": "3bf38f00f01fbfaeec674af80e1476ece2b9f63afc494b36136688ac2f667ed6",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q3",
+      "physical_pages": [
+        201,
+        202
+      ],
+      "printed_pages": [
+        57,
+        58
+      ],
+      "target_label": "advA6:ex:pursuit-doppler",
+      "target_example": "A6.25",
+      "target_printed_page": 32,
+      "target_A6_pdf_physical_page": 34,
+      "covered_subquestions": [
+        "距离",
+        "力及方向",
+        "迟延接收频率"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L11:Q3:figure",
+          "target_asset": "assets/diagrams-modern/pursuit-source.tex",
+          "source_panels": 1,
+          "sha256": "c8dbc7942991ac136c738a473906d62a7ae6950a88e59238f994795ddffa7563",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q4",
+      "physical_pages": [
+        202
+      ],
+      "printed_pages": [
+        58
+      ],
+      "target_label": "advA6:ex:wire-field-transform",
+      "target_example": "A6.29",
+      "target_printed_page": 36,
+      "target_A6_pdf_physical_page": 38,
+      "covered_subquestions": [
+        "原系力",
+        "新系力",
+        "一般横向场变换"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q5",
+      "physical_pages": [
+        203
+      ],
+      "printed_pages": [
+        59
+      ],
+      "target_label": "advA6:ex:nuclear-chain-speed",
+      "target_example": "A6.30",
+      "target_printed_page": 36,
+      "target_A6_pdf_physical_page": 38,
+      "covered_subquestions": [
+        "反常结合能质量",
+        "二体递推",
+        "最大末快度和速度"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q6",
+      "physical_pages": [
+        204
+      ],
+      "printed_pages": [
+        60
+      ],
+      "target_label": "advA6:ex:elliptic-cylinder",
+      "target_example": "A6.3",
+      "target_printed_page": 5,
+      "target_A6_pdf_physical_page": 7,
+      "covered_subquestions": [
+        "原系磁场及换系速度",
+        "面电荷与面电流",
+        "移动边界下新系内场"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L11:Q6:figure",
+          "target_asset": "assets/diagrams-modern/elliptic-current-source.tex",
+          "source_panels": 2,
+          "sha256": "9ddb4e1904415b7e4dcad29b716305d9b432130faff48c7a2b33bf988a07929e",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L11:Q7",
+      "physical_pages": [
+        205,
+        206
+      ],
+      "printed_pages": [
+        61,
+        62
+      ],
+      "target_label": "advA6:ex:grand-neutrino",
+      "target_example": "A6.4",
+      "target_printed_page": 7,
+      "target_A6_pdf_physical_page": 9,
+      "covered_subquestions": [
+        "反应阈能",
+        "一般入射能量定角电子端点",
+        "阈值特例与全能量上确界"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q1",
+      "physical_pages": [
+        217
+      ],
+      "printed_pages": [
+        73
+      ],
+      "target_label": "advA6:ex:toponium-estimate",
+      "target_example": "A6.31",
+      "target_printed_page": 37,
+      "target_A6_pdf_physical_page": 39,
+      "covered_subquestions": [
+        "基态间距",
+        "周期与激发态标度",
+        "寿命判据"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q2",
+      "physical_pages": [
+        217,
+        218
+      ],
+      "printed_pages": [
+        73,
+        74
+      ],
+      "target_label": "advA6:ex:finite-fermi-gas",
+      "target_example": "A6.32",
+      "target_printed_page": 38,
+      "target_A6_pdf_physical_page": 40,
+      "covered_subquestions": [
+        "经典绝热指数",
+        "驻波量子化",
+        "有限N奇偶求和及力",
+        "长度减半的功"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q3",
+      "physical_pages": [
+        218
+      ],
+      "printed_pages": [
+        74
+      ],
+      "target_label": "advA6:ex:infinite-well",
+      "target_example": "A6.8",
+      "target_printed_page": 14,
+      "target_A6_pdf_physical_page": 16,
+      "covered_subquestions": [
+        "势阱边界条件",
+        "归一化波函数",
+        "能级"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": "Existing advanced problem: multi-source mapping"
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q4",
+      "physical_pages": [
+        219
+      ],
+      "printed_pages": [
+        75
+      ],
+      "target_label": "advA6:ex:rutherford-recoil",
+      "target_example": "A6.22",
+      "target_printed_page": 27,
+      "target_A6_pdf_physical_page": 29,
+      "covered_subquestions": [
+        "质心与实验室角变换",
+        "反冲氢核截面",
+        "反冲动能"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L14:Q4:figure",
+          "target_asset": "assets/diagrams-modern/rutherford-recoil-source.tex",
+          "source_panels": 1,
+          "sha256": "673bf89f82f92ddad1bfdf912a44a408a84784901465eaceb21d4aa693c7c9dd",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q5",
+      "physical_pages": [
+        219,
+        220
+      ],
+      "printed_pages": [
+        75,
+        76
+      ],
+      "target_label": "advA6:ex:neutron-gravity",
+      "target_example": "A6.23",
+      "target_printed_page": 29,
+      "target_A6_pdf_physical_page": 31,
+      "covered_subquestions": [
+        "菱形及倾转几何",
+        "重力相位",
+        "两个端口强度",
+        "非理想分束条件"
+      ],
+      "figures": [
+        {
+          "source_object_id": "spring-II:exercise:L14:Q5:figure",
+          "target_asset": "assets/diagrams-modern/neutron-interferometer-source.tex",
+          "source_panels": 1,
+          "sha256": "f921f4c039495c23ea500f4e5bf4234d3f98152b6b2db4d5ae713c62020709bb",
+          "manual_visual_status": "reviewed_current_render",
+          "review_record": "audit/第31—32章题图与解答修订记录_20260923.md",
+          "reviewed_pdf_sha256": "d7ab00643bbbaa6bf394f4dc35136a0e960802f32e3a4e10a1c205ac3c92af00"
+        }
+      ],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q6",
+      "physical_pages": [
+        220
+      ],
+      "printed_pages": [
+        76
+      ],
+      "target_label": "advA6:ex:landau-action",
+      "target_example": "A6.33",
+      "target_printed_page": 39,
+      "target_A6_pdf_physical_page": 41,
+      "covered_subquestions": [
+        "正则作用量",
+        "横向能级",
+        "机械与正则角动量区别"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    },
+    {
+      "source_object_id": "spring-II:exercise:L14:Q7",
+      "physical_pages": [
+        221
+      ],
+      "printed_pages": [
+        77
+      ],
+      "target_label": "advA6:ex:action-optics",
+      "target_example": "A6.34",
+      "target_printed_page": 39,
+      "target_A6_pdf_physical_page": 41,
+      "covered_subquestions": [
+        "作用量相位常量",
+        "等效折射率势能",
+        "圆轨道向心力",
+        "相位闭合角动量"
+      ],
+      "figures": [],
+      "mapping_status": "mapped",
+      "content_review": "main-agent source comparison and independent physics review; not a whole-source prose audit",
+      "merge_note": ""
+    }
+  ],
+  "visual_review": {
+    "status": "scoped rendered-page review complete",
+    "final_geometry_recheck": "A6 page 29: k3/k0, k4/k0 and hydrogen-target legend clear",
+    "four_fresh_reviewers_gate_passed": false,
+    "limitation": "Runtime agent quota: two fresh reviewers, one existing reviewer, and main-agent review; not four fresh reviewers"
+  },
+  "published": false,
+  "global_release_gate_passed": false
+}

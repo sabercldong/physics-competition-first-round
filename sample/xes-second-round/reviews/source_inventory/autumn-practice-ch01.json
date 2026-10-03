@@ -1,0 +1,97 @@
+{
+  "source_id": "autumn_practice_2020",
+  "source_sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba",
+  "independent_visual_inventory": true,
+  "review_scope": "仅确认源页对象清单和现稿落点；不替代题解、技术图和整章最终验收。2026-09-04逐页查看1—8页原件预览并对照工作文本。",
+  "pages": [
+    {
+      "physical_page": 1, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-001.jpg",
+      "objects": [
+        {"id":"heading-01","object_type":"heading","source_number":"第一讲","source_locator":"页首：第一讲 运动的描述与计算","description":"习题第一讲标题","target_id":"r2ch01:sec:practice-motion"},
+        {"id":"q01","object_type":"practice","source_number":"第一讲1","source_locator":"上部：写出极坐标下仰角为α的从原点出发的抛体运动","description":"极坐标抛体题全部条件与三个任务","target_id":"r2ch01:pr:001"},
+        {"id":"q01a","object_type":"subquestion","source_number":"第一讲1/运动方程","source_locator":"第1题：运动方程","description":"求极坐标运动方程","target_id":"r2ch01:pr:001"},
+        {"id":"q01b","object_type":"subquestion","source_number":"第一讲1/轨迹方程","source_locator":"第1题：并得到轨迹方程","description":"消参得到轨迹方程","target_id":"r2ch01:pr:001"},
+        {"id":"q01c","object_type":"subquestion","source_number":"第一讲1/远离条件","source_locator":"第1题末句：始终远离原点","description":"判断始终远离原点的条件","target_id":"r2ch01:pr:001"},
+        {"id":"q02","object_type":"practice","source_number":"第一讲2","source_locator":"中部：倾角为α的足够宽广的斜坡","description":"塔高h、初速v0、斜坡可控面积","target_id":"r2ch01:pr:002"},
+        {"id":"q03","object_type":"practice","source_number":"第一讲3","source_locator":"下部：编号3及(1)(2)两小问","description":"火箭运动与着陆制动复合题","target_id":"r2ch01:pr:003"},
+        {"id":"q03a","object_type":"subquestion","source_number":"第一讲3(1)","source_locator":"固体燃料火箭：求发射后速度、高度随时间关系","description":"火箭求速度和高度；源题没有给出初始速度高度","target_id":"r2ch01:pr:003","notes":"现稿保留一般初值vi、yi；地面静止发射作为特例，不以特例替代原题"},
+        {"id":"eq03a","object_type":"formula","source_number":"第一讲3(1)/加速度","source_locator":"第3题(1)行内公式 a=k exp(-λt)-v/τ-g","description":"推力衰减、线性阻力和重力的加速度式","target_id":"r2ch01:pr:003"},
+        {"id":"q03b","object_type":"subquestion","source_number":"第一讲3(2)","source_locator":"飞机着陆：求速度与坐标关系，再求与时间关系","description":"平方阻力着陆：v(x)、v(t)，初速度v0、坐标0","target_id":"r2ch01:pr:003"},
+        {"id":"eq03b","object_type":"formula","source_number":"第一讲3(2)/加速度","source_locator":"第3题(2)：a=-βv²，β为正常量","description":"平方阻力模型及β正值条件","target_id":"r2ch01:pr:003"}
+      ]
+    },
+    {
+      "physical_page": 2, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-002.jpg",
+      "objects": [
+        {"id":"q04","object_type":"practice","source_number":"第一讲4","source_locator":"上部：求椭圆上一运动点的速度与加速度","description":"椭圆上四种运动规律的共同任务","target_id":"r2ch01:pr:004"},
+        {"id":"q04a","object_type":"subquestion","source_number":"第一讲4(a)","source_locator":"第4题a：绕一焦点做面积速度恒定","description":"绕焦点面积速度恒定","target_id":"r2ch01:pr:004"},
+        {"id":"q04b","object_type":"subquestion","source_number":"第一讲4(b)","source_locator":"第4题b：绕中心做面积速度恒定","description":"绕中心面积速度恒定","target_id":"r2ch01:pr:004"},
+        {"id":"q04c","object_type":"subquestion","source_number":"第一讲4(c)","source_locator":"第4题c：绕一焦点做角速度恒定","description":"绕焦点角速度恒定","target_id":"r2ch01:pr:004"},
+        {"id":"q04d","object_type":"subquestion","source_number":"第一讲4(d)","source_locator":"第4题d：绕中心做角速度恒定","description":"绕中心角速度恒定","target_id":"r2ch01:pr:004"},
+        {"id":"q05","object_type":"practice","source_number":"第一讲5","source_locator":"页底：极坐标系中的方程对应曲线叫做心脏线","description":"画心脏线并求最大曲率半径","target_id":"r2ch01:pr:005"},
+        {"id":"eq05","object_type":"formula","source_number":"第一讲5/曲线","source_locator":"第5题行内公式r=A(1-cosθ)","description":"心脏线的极坐标定义","target_id":"r2ch01:pr:005"}
+      ]
+    },
+    {
+      "physical_page": 3, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-003.jpg",
+      "objects": [
+        {"id":"q06","object_type":"practice","source_number":"第一讲6","source_locator":"上部：作匀加速曲线运动的物体","description":"1、2、3秒经过三个位置，求加速度","target_id":"r2ch01:pr:006"},
+        {"id":"eq06","object_type":"formula","source_number":"第一讲6/几何条件","source_locator":"AB=8m，BC=6m，AB垂直BC","description":"长度和正交条件；三个等时位置","target_id":"r2ch01:pr:006"},
+        {"id":"q07","object_type":"practice","source_number":"第一讲7","source_locator":"中部：飞行物自地面以匀速vf向上空垂直飞行","description":"目标和导弹同时出发、间隔L、导弹始终追踪、v>vf","target_id":"r2ch01:pr:007","notes":"目标速率vf统一记为u；全部运动条件保留"},
+        {"id":"q07a","object_type":"subquestion","source_number":"第一讲7/轨迹","source_locator":"第7题末句：求导弹的运动轨迹","description":"导弹追踪轨迹","target_id":"r2ch01:pr:007"},
+        {"id":"q07b","object_type":"subquestion","source_number":"第一讲7/总弧长","source_locator":"第7题末句：和其总弧长","description":"到命中为止的轨迹总长度","target_id":"r2ch01:pr:007"}
+      ]
+    },
+    {
+      "physical_page": 4, "printed_page": null, "classification": "excluded",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-004.jpg",
+      "exclusion_reason": "仅页眉与页脚，正文区域为空白，没有教学对象。",
+      "objects": []
+    },
+    {
+      "physical_page": 5, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-005.jpg",
+      "objects": [
+        {"id":"heading-02","object_type":"heading","source_number":"第二讲","source_locator":"页首：第二讲 转动系、接触系、纯滚系、牵连系","description":"习题第二讲标题","target_id":"r2ch01:sec:practice-frames"},
+        {"id":"q01","object_type":"practice","source_number":"第二讲1","source_locator":"上部：一圆锥沿半径为r的轮I表面作定点纯滚动","description":"相等半径双轮外滚、r母线、90度顶角、中心D相对速率ω0r、OAC共线时B加速度","target_id":"r2ch01:pr:008"},
+        {"id":"fig01","object_type":"figure","source_number":"第二讲1/未编号图","source_locator":"右上配图：固定轮II、轮I、OAC共线、锥体ABCD、xyz","description":"轮间外接触与圆锥接触母线、轴截面和坐标关系","target_id":"r2ch01:fig:013","notes":"单幅空间图分解为俯视和轴截面；保留O/A/B/C/D、双轮、半径和母线的全部结构信息；几何审查另记"},
+        {"id":"q02","object_type":"practice","source_number":"第二讲2","source_locator":"中部：某刚体在空间中运动，给定三点位置与速度","description":"三点瞬时速度求空间螺旋轴","target_id":"r2ch01:pr:009"},
+        {"id":"eq02","object_type":"formula","source_number":"第二讲2/给定向量","source_locator":"A(0,0,0)、B(1,1,0)、C(1,1,1)及三组速度","description":"全部位置与速度分量数据","target_id":"r2ch01:pr:009"},
+        {"id":"q02a","object_type":"subquestion","source_number":"第二讲2/判定与轴线","source_locator":"第2题后半：是否存在直线、求螺旋轴直线方程","description":"存在性与螺旋轴位置","target_id":"r2ch01:pr:009"},
+        {"id":"q02b","object_type":"subquestion","source_number":"第二讲2/速度","source_locator":"第2题末：螺旋轴速度与刚体角速度","description":"轴向速度与角速度","target_id":"r2ch01:pr:009"},
+        {"id":"q03","object_type":"practice","source_number":"第二讲3","source_locator":"页底：刚体作平面平行运动，其上任一点A速度u(t)","description":"刚体速度瞬心、空间速度瞬心及加速度关系证明","target_id":"r2ch01:pr:010"},
+        {"id":"eq03","object_type":"formula","source_number":"第二讲3/待证式","source_locator":"第3题末：aC=vC′叉乘ω","description":"瞬心材料点加速度与空间瞬心速度关系","target_id":"r2ch01:pr:010"}
+      ]
+    },
+    {
+      "physical_page": 6, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-006.jpg",
+      "objects": [
+        {"id":"q04","object_type":"practice","source_number":"第二讲4","source_locator":"上部：半径r圆柱在水平地面纯滚，斜杆与柱面纯滚","description":"A端可滑但不离地、柱心恒速v0、求杆角速度与角加速度","target_id":"r2ch01:pr:011"},
+        {"id":"fig04","object_type":"figure","source_number":"第二讲4/未编号图","source_locator":"右上配图：斜杆AB、圆柱O、地面、φ和v0","description":"柱与地面、柱与杆双相切及运动方向","target_id":"r2ch01:fig:014"}
+      ]
+    },
+    {
+      "physical_page": 7, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-007.jpg",
+      "objects": [
+        {"id":"q05","object_type":"practice","source_number":"第二讲5","source_locator":"上部：半径4√3cm圆盘绕O匀速转，扭转弹簧压杆","description":"圆盘半径、ω=1.5、φ=30度、O1D=4cm、扭转弹簧保持接触；求D速度加速度","target_id":"r2ch01:pr:012","notes":"补回旧稿省掉的扭转弹簧保持接触条件；切杆图采用精确相切参数"},
+        {"id":"fig05","object_type":"figure","source_number":"第二讲5/未编号图","source_locator":"右上图：O/C/O1共线、B切点、杆端D、转向ω和φ","description":"圆盘偏心转动、切杆固定铰及杆端位置","target_id":"r2ch01:fig:015"},
+        {"id":"q06","object_type":"practice","source_number":"第二讲6","source_locator":"中部：轻绳缠绕卵形柱面、初速度后展开","description":"一般未知轨迹卵形柱面，动能T与已展开绳长l","target_id":"r2ch01:pr:013"},
+        {"id":"q06a","object_type":"subquestion","source_number":"第二讲6/守恒证明","source_locator":"第6题：说明为什么这个过程中动能应当守恒","description":"证明无功与动能守恒","target_id":"r2ch01:pr:013"},
+        {"id":"q06b","object_type":"subquestion","source_number":"第二讲6/拉力","source_locator":"第6题末：当打开绳长为l时，求绳上拉力","description":"参数化求拉力，不依赖给定柱面轨迹方程","target_id":"r2ch01:pr:013"}
+      ]
+    },
+    {
+      "physical_page": 8, "printed_page": null, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-008.jpg",
+      "objects": [
+        {"id":"q07","object_type":"practice","source_number":"第二讲7","source_locator":"上部：曲柄OA长r、套筒AC、摇杆O1CB，瞬时角速度ω","description":"φ0、AC=a、O1C=b、摇杆竖直时求角速度与角加速度","target_id":"r2ch01:pr:014","notes":"源题只给瞬时角速度，不擅自设角加速度为零；现稿保留ε参数并单列匀速特例"},
+        {"id":"fig07","object_type":"figure","source_number":"第二讲7/未编号图","source_locator":"右上图：曲柄OA、套筒C、竖直O1CB、a/b/φ0/ω","description":"滑动套筒与摇杆的接触连接、铰点和方向","target_id":"r2ch01:fig:017"}
+      ]
+    }
+  ]
+}

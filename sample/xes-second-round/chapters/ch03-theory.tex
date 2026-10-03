@@ -1,0 +1,426 @@
+\section{约束}
+\label{r2ch03:sec:constraint}
+
+复杂体系中有三个反复出现的线索：能量函数决定体系的运动结构；不同体系都可抽象出一个特征数字——自由度；约束越多，直接受力分析中的未知约束力往往越多，但当体系只剩少数自由度时，广义坐标和能量方法反而会显著简化问题。本章仍以牛顿定律为基础，只是把直角坐标换成更贴合约束的广义坐标，并把“力的矢量效果”和“力在允许位移上所做的功”统一起来。
+
+\subsection{约束分类}
+
+约束是对运动的限制。直接接触、沿曲面滑动或滚动，以及轻绳、轻杆、曲杆、套筒和光滑铰链等连接，都同时带来约束方程与约束力。
+
+\textbf{单边约束与双边约束。} 绳长为 $l$ 的小球、位于水面以下的鱼和位于地面以上的物体，分别满足
+\begin{equation}
+ x^2+y^2+z^2\le l^2,\qquad z\le0,\qquad z\ge0 .
+ \label{r2ch03:eq:001}
+\end{equation}
+等号成立时限制被激活并产生约束力；严格不等时约束解除。图~\ref{r2ch03:fig:001} 直观区分了边界与解除状态。为建立统一理论，通常把激活的单边约束分段处理成双边等式，如刚杆约束 $x^2+y^2+z^2=l^2$ 或平面约束 $z=0$。
+\figConstraintRelease
+
+\textbf{完整约束与非完整约束。} 不含速度的 $f(q_i,t)=0$ 是几何约束；含速度的
+\begin{equation}
+ \sum_i a_i(q,t)\dot q_i+a_0(q,t)=0
+ \label{r2ch03:eq:002}
+\end{equation}
+是微分约束。若式~\eqref{r2ch03:eq:002} 可积分成坐标与时间之间的有限关系，它仍是完整约束；否则为非完整约束。
+
+半径为 $R$ 的轮子在直线上纯滚时
+\[
+ z=R,\qquad \dot x=R\dot\phi
+ \quad\Longrightarrow\quad x-R\phi=\text{常量},
+\]
+所以无滑动条件可积。独轮车在水平面上运动时，图~\ref{r2ch03:fig:002} 中车轮朝向为 $\theta$，其局部无侧滑条件为
+\begin{equation}
+ \dot x=R\dot\phi\cos\theta,\qquad
+ \dot y=R\dot\phi\sin\theta .
+ \label{r2ch03:eq:003}
+\end{equation}
+它们一般不能积分为 $F(x,y,\theta,\phi)=0$。独轮车可以回到同一位置和朝向而车轮累计转角不同，这正说明约束只在每一瞬间限制允许速度，却不在全局位形之间给出单值关系。
+\figUnicycleConstraint
+
+\textbf{稳定约束与非稳定约束。} 约束方程不显含时间称稳定约束，例如
+\[
+ x^2+y^2+z^2=l^2,\qquad \dd x=R\cos\theta\,\dd\phi .
+\]
+若绳长或轮径主动随时间变化，则可能成为
+\[
+ x^2+y^2+z^2=(l+vt)^2,\qquad
+ \dd x=(R+vt)\cos\theta\,\dd\phi ,
+\]
+称为非稳定约束。非稳定完整约束仍可用拉格朗日方法处理，但约束可以对实位移做功，机械能不必守恒。
+
+\subsection{广义坐标与自由度}
+
+自由度是满足全部约束时可以独立改变的坐标微分个数。三维空间中，一个质点、线状刚体、非线状刚体的无约束自由度分别是 $3,5,6$。若体系含 $a$ 个质点、$b$ 个线状刚体、$c$ 个非线状刚体，并有 $r$ 个独立约束，则
+\begin{equation}
+ s=3a+5b+6c,\qquad f=s-r .
+ \label{r2ch03:eq:004}
+\end{equation}
+线状刚体可由两端点的六个坐标减去一个定长约束得到五个自由度；非线状刚体可由三个不共线固连点的九个坐标减去三条距离约束得到六个自由度。图~\ref{r2ch03:fig:003} 中非线状刚体的三个转动自由度可描述为进动、章动与自转；理想线段绕自身轴转动不改变位形，也不改变理想模型的能量，因而不是独立自由度。
+\figRigidEulerAngles
+
+约束物的个数与独立约束方程的个数必须区分：
+\begin{itemize}
+ \item 光滑曲面限制质点给一个方程；光滑空间曲线通常是两个曲面的交线，给两个独立方程，如图~\ref{r2ch03:fig:004}。
+ \item 绝对粗糙的接触若完全固定质点，则可限制三个平移自由度。
+ \item 一根刚杆或一根绳连接两点，只给一个距离关系；同一根绳绕过滑轮时各段长度可互相交换，仍由总绳长关系约束。若换成两根独立绳，则是两个约束。
+ \item 平面铰链连接两个物体给两个坐标相等条件，空间球铰给三个。$n$ 个物体共铰时独立连接次数为 $n-1$，所以约束数为 $2(n-1)$ 或 $3(n-1)$。
+\end{itemize}
+\figSurfaceCurveConstraint
+
+以三点 $1,2,3$ 由同一闭合绳约束为例，图~\ref{r2ch03:fig:005} 的总长度条件只有一个；绳张力虽在同一点沿两段绳作用，但两分量共享同一张力大小，合起来只对应一个独立约束反力。
+\figThreeBodyOneRope
+
+若体系含 $h$ 个完整约束和 $k$ 个非完整约束，应先保留 $f'=s-h$ 个广义坐标 $q_1,\ldots,q_{f'}$，再用 $k$ 个速度约束限制允许速度：
+\begin{equation}
+ \vect r_k=\vect r_k(q_i,t),\qquad
+ \dot{\vect r}_k=\frac{\partial\vect r_k}{\partial t}
+ +\sum_i\frac{\partial\vect r_k}{\partial q_i}\dot q_i,\qquad
+ f_j(q_i,\dd q_i,\dd t)=0 .
+ \label{r2ch03:eq:005}
+\end{equation}
+对完整体系，最终留下的 $f=s-r$ 个广义坐标相互独立；若约束还稳定，则 $\partial\vect r_k/\partial t=0$。
+
+\subsection{约束力与广义力}
+
+约束力是被动力：它的大小和方向同时由约束性质与体系实际运动决定。解除某约束后运动一般会偏离原约束面；约束力的作用正是让运动持续满足约束方程。若理想完整约束 $f_j(\{\vect r_k\},t)=0$，相应反力可写成
+\begin{equation}
+ \vect R_k=\sum_j\lambda_j\nabla_k f_j .
+ \label{r2ch03:eq:006}
+\end{equation}
+同一个约束方程产生的各质点反力共享同一个乘子 $\lambda_j$。粗糙曲线除两个必要法向反力外还可能有切向摩擦；这个附加分量不是维持几何约束所必需的，故理想约束理论不会自动给出它。
+
+作用在点 $\vect r$ 的力 $\vect F$ 对广义坐标 $q_i$ 的广义力定义为
+\begin{equation}
+ \dd W=\vect F\cdot\dd\vect r=\sum_iQ_i\,\dd q_i,\qquad
+ Q_i=\vect F\cdot\frac{\partial\vect r}{\partial q_i}.
+ \label{r2ch03:eq:007}
+\end{equation}
+对多个作用点只需把各力的贡献相加。广义力不必具有普通力的量纲；与角坐标对应的是力矩，与体积对应的是负压强，与电荷对应的是电势差。
+这种“广义力×广义位移”的结构并不局限于力学。准静态压缩中 $\delta W=-p\,\dd V$，所以体积 $V$ 的共轭广义力是 $-p$；电路中 $\delta W=U\,\dd Q$，所以电荷 $Q$ 的共轭量是电势差 $U$。判断一对量是否共轭，应检查乘积是否为能量，而不是要求广义力本身的单位一定为牛顿。
+
+图~\ref{r2ch03:fig:006} 中刚体绕固定轴 $\uvec e$ 转过 $\delta\theta$，作用点位移为
+$\delta\vect r=\delta\theta\,\uvec e\times\vect r$，故
+\[
+ \delta W=\vect F\cdot(\delta\theta\,\uvec e\times\vect r)
+ =[(\vect r\times\vect F)\cdot\uvec e]\,\delta\theta .
+\]
+所以沿转轴的力矩分量就是转角的广义力。
+\figTorqueGeneralized
+
+图~\ref{r2ch03:fig:007} 的复合滑轮组取两个自由度 $x,y$，三个物体向下位移为
+\[
+ s_1=-x,\qquad s_2=x-y,\qquad s_3=x+y .
+\]
+重力对应的广义力和动能分别为
+\begin{align}
+ Q_x&=(-m_1+m_2+m_3)g,& Q_y&=(m_3-m_2)g, \label{r2ch03:eq:008}\\
+ T&=\frac12(m_1+m_2+m_3)\dot x^2
+ +\frac12(m_2+m_3)\dot y^2+(m_3-m_2)\dot x\dot y . \label{r2ch03:eq:009}
+\end{align}
+令 $z=y+(m_3-m_2)x/(m_2+m_3)$ 可消去交叉项，体系在新广义坐标中等效成两个独立“广义质量”受恒定广义力的问题。这也说明选取广义坐标不仅是记号替换，还能显露体系的动力学结构。具体地，
+\begin{align*}
+ T&=\frac12\left(m_1+\frac{4m_2m_3}{m_2+m_3}\right)\dot x^2
+   +\frac12(m_2+m_3)\dot z^2,\\
+ Q'_x&=\left(\frac{4m_2m_3}{m_2+m_3}-m_1\right)g,
+ &Q'_z&=(m_3-m_2)g,
+\end{align*}
+从而
+\[
+ \ddot x=
+ \frac{\frac{4m_2m_3}{m_2+m_3}-m_1}
+      {\frac{4m_2m_3}{m_2+m_3}+m_1} g,
+ \qquad
+ \ddot z=\frac{m_3-m_2}{m_3+m_2} g.
+\]
+最后必须由 $y=z-(m_3-m_2)x/(m_2+m_3)$ 求回 $\ddot y$。$z$ 只是为对角化动能引入的坐标，不是原滑轮组中某个物体的竖直位移。
+\figPulleyGeneralized
+
+\section{力系化简}
+\label{r2ch03:sec:force-system}
+
+\subsection{静力学公理体系}
+
+力系描述物体各作用点上的受力。连续分布力系写成矢量力密度 $\vect f(\vect r)$；共点力系写成 $\{\vect F_i\}$；一般离散空间力系写成 $\{(\vect r_i,\vect F_i)\}$。图~\ref{r2ch03:fig:008} 展示三种图像。离散力也可借助 Dirac $\delta$ 函数写成
+\begin{equation}
+ \vect f(\vect r)=\sum_i\vect F_i\delta(\vect r-\vect r_i),\qquad
+ \int_D\delta(\vect r)\,\dd V=
+ \begin{cases}1,&\vect0\in D,\\0,&\vect0\notin D.\end{cases}
+ \label{r2ch03:eq:010}
+\end{equation}
+\figForceSystemKinds
+
+力系可逐点相加并作数乘。若两个力系对刚体产生相同效果，记作 $\mathcal F\equiv\mathcal G$；这种关系满足反身、对称、传递，并与加法和数乘相容。等效于零力系的力系称平衡力系，所有平衡力系构成平衡核 $\mathcal K$。于是
+\begin{equation}
+ \mathcal F\equiv\mathcal G
+ \quad\Longleftrightarrow\quad
+ \mathcal F-\mathcal G\in\mathcal K .
+ \label{r2ch03:eq:011}
+\end{equation}
+因而与给定力系 $\mathcal F$ 等效的全部力系构成它的等效类
+\[
+ [\mathcal F]=\{\mathcal F+\mathcal K_0\mid \mathcal K_0\in\mathcal K\}.
+\]
+这个写法把“在力系上任意增减一个平衡力系，对刚体效果不变”表达得更明确。不同等效类之间不可互相替代；力系化简的目标，就是在同一等效类中找到最简单的代表。
+
+静力学的基本公理可整理为：
+\begin{enumerate}
+ \item 力系服从线性叠加；
+ \item 等效关系与线性运算相容；
+ \item 二力平衡的充要条件是等大、反向、共线；
+ \item 约束内力满足作用反作用关系；
+ \item 系统平衡的充要条件是存在一组约束力，使每一隔离部分都平衡。
+\end{enumerate}
+图~\ref{r2ch03:fig:009} 强调“共线”不可省略。把各部分的平衡方程相加，内力成对消去，得刚化原理：系统平衡时，其全部外力必构成平衡力系；这是必要条件，但对含未知内力的可动系统一般不是充分条件。
+\figActionReactionAxioms
+
+由二力平衡立即得到力的滑移性质：力沿自身作用线移动，不改变对刚体的效果，见图~\ref{r2ch03:fig:010}。两个非平行力可先沿作用线滑到交点，再按平行四边形法则求合力。
+\figForceSliding
+
+两个等大反向但不共线的力组成力偶，图~\ref{r2ch03:fig:011} 中
+\begin{equation}
+ \vect M=(\vect r_1-\vect r_2)\times\vect F .
+ \label{r2ch03:eq:012}
+\end{equation}
+力偶矩与矩心无关，力偶可以在刚体内自由搬移。加速车厢中桌子的支持力、重力、摩擦和惯性力可分解成若干力偶，如图~\ref{r2ch03:fig:012}；力偶系的等效合力偶是各力偶矩的矢量和，见图~\ref{r2ch03:fig:013}。
+\figCouple
+\figAcceleratingTable
+\figCoupleSum
+
+力的平移定理是一般化简的核心。把作用在 $\vect r$ 的力平移到 $\vect r+\vect R$，必须附加力偶
+\begin{equation}
+ (\vect r,\vect F)\equiv
+ \{(\vect r+\vect R,\vect F),-\vect R\times\vect F\}.
+ \label{r2ch03:eq:013}
+\end{equation}
+图~\ref{r2ch03:fig:014} 同时画出了平移后的同向力和补偿力偶。
+\figForceTranslation
+
+三力平衡还要求三条作用线共点（平行情况看作交于无穷远），且三力首尾相接组成闭合三角形；图~\ref{r2ch03:fig:015} 中这两个条件分别控制作用线几何和力的大小。
+\figThreeForceTriangle
+
+\subsection{力系向一点简化}
+
+任取简化中心 $O$，一般离散力系的主矢和主矩为
+\begin{equation}
+ \vect F=\sum_i\vect F_i,\qquad
+ \vect M_O=\sum_i\vect r_i\times\vect F_i .
+ \label{r2ch03:eq:014}
+\end{equation}
+连续分布时把求和换成体积分。改以位矢为 $\vect R$ 的点 $P$ 作中心，
+\begin{equation}
+ \vect M_P=\vect M_O-\vect R\times\vect F .
+ \label{r2ch03:eq:015}
+\end{equation}
+因此主矢与中心无关，主矩随中心改变。平衡的充要条件是在任一点同时有 $\vect F=\vect0,\vect M_O=\vect0$。
+
+平面力系最终只能化为平衡力系、一个单力或一个单力偶。空间力系还可能留下力螺旋：主力与不可消去的主矩平行。若 $\vect F\ne0$，把主矩分解成平行、垂直于 $\vect F$ 的部分，选择
+\[
+ \vect R=\frac{\vect F\times\vect M_O}{F^2}
+\]
+可消去垂直分量；平行分量决定力螺旋的螺距。
+
+\section{平衡问题：矢量力学}
+\label{r2ch03:sec:vector-statics}
+
+\subsection{平衡问题的要素}
+
+典型平衡问题包含四类要素：
+\begin{itemize}
+ \item \textbf{体系结构}：质点和刚体的组成、约束方程、自由度、独立约束反力和平衡方程数，均由模型预先确定；
+ \item \textbf{约束力}：总是被动的未知量；
+ \item \textbf{主动力}：重力等可能已知，外加力、弹力或由摩擦规律决定的力也可能未知；
+ \item \textbf{位形变量}：零自由度系统由几何约束确定；有自由度系统的平衡位置必须由平衡条件求出。
+\end{itemize}
+解题前先把这四类量分开，可避免把“接触未脱离”“摩擦未达极限”等不等式遗漏。
+
+\subsection{平衡条件与判据}
+
+完整的方程组由三部分组成：几何约束方程、主动力结构方程（例如 $F_s=k\Delta l$ 或 $|f_s|\le\mu_sN$）以及平衡条件。对质点或刚体，任取单位方向 $\uvec e_l$、矩心 $\vect R$，
+\begin{align}
+ &\sum_i\uvec e_l\cdot\vect F_i=0, \label{r2ch03:eq:016}\\
+ &\sum_i\uvec e_l\cdot[(\vect r_i-\vect R)\times\vect F_i]=0 . \label{r2ch03:eq:017}
+\end{align}
+矩心取在未知力作用线上可消去该力；投影方向取与未知力垂直也可消去它。整体法消去内力，隔离法求约束反力，二者应配合使用。
+
+平面质点需要两个不平行方向的力平衡；平面刚体需要三个独立标量方程，常用形式是
+\begin{equation}
+ \sum F_x=0,\qquad \sum F_y=0,\qquad \sum M_O=0.
+ \label{r2ch03:eq:018}
+\end{equation}
+也可采用“一力平衡加两矩平衡”，但两矩心连线不能垂直于所取力投影方向；或采用三个不共线矩心的力矩平衡。
+
+空间质点需要三个不共面的投影方向；非线状空间刚体需要三力平衡加三力矩平衡，共六个独立标量方程：
+\begin{equation}
+ \sum F_x=\sum F_y=\sum F_z=0,\qquad
+ \sum M_x=\sum M_y=\sum M_z=0 .
+ \label{r2ch03:eq:019}
+\end{equation}
+线状刚体绕自身轴的力矩方程退化，独立方程数为五。独立平衡方程数恰等于相应物体在无约束时的自由度数。
+
+\subsection{亚静定、静定与超静定}
+
+设无约束自由度为 $s$，独立约束数为 $r$：
+\begin{enumerate}
+ \item $r<s$：剩余 $f=s-r$ 个自由度，称亚静定。主动力给定时，$s$ 个平衡方程可同时求 $r$ 个约束反力和 $f$ 个平衡位形变量；若位形被额外指定，体系可能根本无法平衡。
+ \item $r=s$：位形由约束完全确定，$s$ 个反力可由 $s$ 个平衡方程唯一求得，称静定。
+ \item $r>s$：几何约束存在冗余，而未知反力超过刚体平衡方程数，称超静定或静不定。仅凭刚体平衡不能唯一分配反力，必须增加弹性变形、接触刚度或兼容条件。
+\end{enumerate}
+带多个静摩擦接触的系统常是静不定的；平衡要求至少存在一组反力满足全部摩擦锥不等式，而不是先把每一点摩擦都擅自取成 $\mu_sN$。
+
+\section{平衡问题：虚功原理}
+\label{r2ch03:sec:virtual-work}
+
+对完整约束体系，任一点坐标可写成 $\vect r_k(q_i,t)$。在同一时刻作满足约束的无穷小位形变化，定义虚位移
+\begin{equation}
+ \delta\vect r_k=\sum_i\frac{\partial\vect r_k}{\partial q_i}\delta q_i,\qquad
+ \sum_k\nabla_k f_j\cdot\delta\vect r_k=0 .
+ \label{r2ch03:eq:020}
+\end{equation}
+虚位移不是体系在 $\dd t$ 内真正走过的位移；它比较的是同一时刻的两个相邻允许位形。图~\ref{r2ch03:fig:016} 用实路径和邻近允许路径表示这个区别。
+\figRealVirtualPath
+
+\subsection{理想约束}
+
+理想约束有两个等价定义：反力是约束梯度的线性组合，或反力对任意允许虚位移总虚功为零：
+\begin{equation}
+ \vect R_k=\sum_j\lambda_j\nabla_kf_j
+ \quad\Longleftrightarrow\quad
+ \delta W_R=\sum_k\vect R_k\cdot\delta\vect r_k=0 .
+ \label{r2ch03:eq:021}
+\end{equation}
+把虚位移按独立的 $\delta q_i$ 展开，理想约束在每个广义坐标上的总广义力均为零：
+\[
+ Q^{(R)}_i=\sum_k\vect R_k\cdot
+ \frac{\partial\vect r_k}{\partial q_i}=0 .
+\]
+光滑固定面、理想铰链、不可伸长轻绳和轻杆通常按理想约束处理；滑动摩擦和滚动阻力一般不是。
+
+\subsection{亚静定问题的虚功原理}
+
+平衡时各质点和刚体的主动力与约束力合力为零；对允许虚位移作功并利用式~\eqref{r2ch03:eq:021}，得到
+\begin{equation}
+ \boxed{\delta W=\sum_k\vect F_k\cdot\delta\vect r_k
+ =\sum_iQ_i\delta q_i=0}.
+ \label{r2ch03:eq:022}
+\end{equation}
+由于 $\delta q_i$ 相互独立，平衡条件就是 $Q_i=0$。矢量法用 $s$ 个方程同时求约束力和位形；虚功法直接消去理想约束力，只留下 $f=s-r$ 个关于平衡位形的方程。
+
+\subsection{静定反力的求解}
+
+若要用虚功求静定系统某个约束反力，可解除该约束，并把未知反力作为外加主动力放回原作用点。解除一个独立约束便增加一个自由度；令新系统在原位形上的总虚功为零，即可求出该反力。解除多个约束时要选相应个数的独立虚位移，所得广义力方程必须线性独立。
+
+\section{分析力学初步（选读）}
+\label{r2ch03:sec:lagrange}
+
+\subsection{实位移、虚位移与能量的广义坐标表示}
+
+非稳定约束下，真实位移为
+\begin{equation}
+ \dd\vect r_k=\sum_i\frac{\partial\vect r_k}{\partial q_i}\dd q_i
+ +\frac{\partial\vect r_k}{\partial t}\dd t ,
+ \label{r2ch03:eq:023}
+\end{equation}
+而虚位移仍取同一时刻，故没有最后一项。理想非稳定约束可以做实功，却仍不做虚功。
+
+把刚体细分为受约束质点后，总动能可统一写为
+\[
+ T=\frac12\sum_km_k\dot{\vect r}_k^{\,2}.
+\]
+代入
+$\dot{\vect r}_k=\sum_i(\partial\vect r_k/\partial q_i)\dot q_i+
+\partial\vect r_k/\partial t$，得到
+\begin{equation}
+ T=T_2+T_1+T_0
+ =\sum_{ij}A_{ij}\dot q_i\dot q_j+\sum_iB_i\dot q_i+C ,
+ \label{r2ch03:eq:024}
+\end{equation}
+其中
+\[
+ A_{ij}=\frac12\sum_km_k
+ \frac{\partial\vect r_k}{\partial q_i}\cdot
+ \frac{\partial\vect r_k}{\partial q_j},\quad
+ B_i=\sum_km_k\frac{\partial\vect r_k}{\partial q_i}\cdot
+ \frac{\partial\vect r_k}{\partial t},\quad
+ C=\frac12\sum_km_k\left(\frac{\partial\vect r_k}{\partial t}\right)^2 .
+\]
+稳定约束下 $T_1=T_0=0$。与 $q_i$ 共轭的广义动量和动能的勒让德变换为
+\begin{equation}
+ p_i=\frac{\partial T}{\partial\dot q_i},\qquad
+ U=\sum_ip_i\dot q_i-T=T_2-T_0 .
+ \label{r2ch03:eq:025}
+\end{equation}
+
+若全部主动力由势能 $V(\vect r_k,t)$ 产生，则
+\begin{equation}
+ \vect F_k=-\nabla_kV,\qquad Q_i=-\frac{\partial V}{\partial q_i}.
+ \label{r2ch03:eq:026}
+\end{equation}
+显含时间的势能仍能正确给出力，但 $T+V$ 不必守恒，因为
+$-\dd V=\sum_iQ_i\dd q_i-(\partial V/\partial t)\dd t$。
+
+\subsection{拉格朗日方程}
+
+对牛顿方程
+$m_k\ddot{\vect r}_k=\vect F_k+\vect R_k$ 乘允许虚位移并求和，理想约束力虚功消失。利用
+\[
+ \frac{\partial\dot{\vect r}_k}{\partial\dot q_i}
+ =\frac{\partial\vect r_k}{\partial q_i},\qquad
+ \frac{\dd}{\dd t}\frac{\partial\vect r_k}{\partial q_i}
+ =\frac{\partial\dot{\vect r}_k}{\partial q_i},
+\]
+可把惯性项化成动能偏导，得到
+\begin{equation}
+ \boxed{\frac{\dd}{\dd t}\frac{\partial T}{\partial\dot q_i}
+ -\frac{\partial T}{\partial q_i}=Q_i}.
+ \label{r2ch03:eq:027}
+\end{equation}
+这说明广义动量的变化除了受广义力驱动，还包含由坐标几何引起的 $\partial T/\partial q_i$ 项。
+
+例如平面极坐标中
+\[
+ T=\frac12m(\dot r^2+r^2\dot\theta^2),\quad
+ Q_r=F_r,\quad Q_\theta=rF_\theta ,
+\]
+式~\eqref{r2ch03:eq:027} 给出
+\[
+ F_r+m r\dot\theta^2=\frac{\dd}{\dd t}(m\dot r),\qquad
+ rF_\theta=\frac{\dd}{\dd t}(mr^2\dot\theta),
+\]
+正是径向牛顿方程与角动量定理。
+
+保守体系令 $L=T-V$，则
+\begin{equation}
+ \boxed{\frac{\dd}{\dd t}\frac{\partial L}{\partial\dot q_i}
+ -\frac{\partial L}{\partial q_i}=0}.
+ \label{r2ch03:eq:028}
+\end{equation}
+广义势能还可以含速度。若把速度相关的那一项仍记为 $V(q,\dot q,t)$，其产生的广义力必须按
+\[
+ Q_i=-\frac{\partial V}{\partial q_i}
+ +\frac{\dd}{\dd t}\frac{\partial V}{\partial\dot q_i}
+\]
+计算，不能只取第一项。带电粒子在电磁场中的一种规范约定为
+\[
+ L=\frac12m\dot{\vect r}^{\,2}-q\phi+q\dot{\vect r}\cdot\vect A ,
+\]
+它导出
+$m\ddot{\vect r}=q(\vect E+\dot{\vect r}\times\vect B)$，
+其中 $\vect E=-\nabla\phi-\partial\vect A/\partial t$、$\vect B=\nabla\times\vect A$。
+
+若某坐标 $q_i$ 不显含于 $L$，则 $\partial L/\partial q_i=0$，相应 $p_i$ 守恒；这就是循环坐标与动量守恒。定义哈密顿量
+\begin{equation}
+ H=\sum_ip_i\dot q_i-L,\qquad
+ \frac{\dd H}{\dd t}=-\frac{\partial L}{\partial t}.
+ \label{r2ch03:eq:029}
+\end{equation}
+因此 $L$ 不显含时间时 $H$ 守恒；对稳定约束和普通势能，$H=T+V$。
+
+\subsection{再论冲击问题}
+
+把拉格朗日方程在极短碰撞时间内积分。若 $\partial T/\partial q_i$ 有界，其积分随碰撞历时趋于零，于是
+\begin{equation}
+ p_i^+-p_i^-=\mathcal I_i,\qquad
+ \mathcal I_i=\sum_k\vect I_k\cdot
+ \frac{\partial\vect r_k}{\partial q_i},
+ \label{r2ch03:eq:030}
+\end{equation}
+其中 $\vect I_k$ 是实际冲量，$\mathcal I_i$ 是广义冲量。这个形式自动消去了理想约束冲量，特别适合铰接机构和刚体系统；但恢复系数、粗糙接触的切向冲量上限等碰撞本构关系仍须另行给出。

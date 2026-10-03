@@ -1,0 +1,97 @@
+\subsection{光度学}
+
+辐射度量学描述电磁辐射本身，光度学则把人眼的明视觉响应纳入测量。
+国际单位制以发光强度为基本量，其单位为坎德拉（candela，$\mathrm{cd}$）。
+按照现行定义，频率 $540\times10^{12}\,\mathrm{Hz}$ 的单色辐射，
+光视效能固定为 $683\,\mathrm{lm/W}$。这一定义与旧的“特定光源”实物基准不同，
+本质上把坎德拉归结为瓦特和人眼标准响应。
+
+对波长为 $\lambda$ 的单色辐射，引入 CIE 明视觉光视效率函数 $V(\lambda)$。
+若辐射强度为 $\mathcal I$，发光强度为 $I$，则
+\[
+ I=K_mV(\lambda)\mathcal I,\qquad
+ K_m\simeq683\,\mathrm{lm/W}.
+\]
+对连续光谱，若辐射强度谱为 $\mathcal i(\lambda)$，
+\[
+ \mathcal I=\int\mathcal i(\lambda)\,\dd\lambda,\qquad
+ I=K_m\int V(\lambda)\mathcal i(\lambda)\,\dd\lambda.
+\]
+图 \ref{advA5:fig:luminosity-function} 显示 $V(\lambda)$ 在约
+$555\,\mathrm{nm}$ 附近达到峰值，紫端和红端迅速衰减。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+ width=.82\textwidth,height=5.8cm,
+ xmin=380,xmax=730,ymin=0,ymax=1.08,
+ xlabel={波长 $\lambda/\mathrm{nm}$},
+ ylabel={$V(\lambda)$},
+ grid=major,
+ axis line style={RuleGray},
+ tick label style={font=\small},
+ label style={font=\small},
+ every axis plot/.append style={very thick,DeepBlue},
+]
+\addplot[smooth] coordinates {
+(380,.000039)(400,.000396)(420,.004)(440,.023)(460,.060)
+(480,.139)(500,.323)(520,.710)(530,.862)(540,.954)(550,.995)
+(555,1)(560,.995)(570,.952)(580,.870)(590,.757)(600,.631)
+(610,.503)(620,.381)(630,.265)(640,.175)(650,.107)(660,.061)
+(670,.032)(680,.017)(690,.00821)(700,.00410)(710,.00209)
+(720,.00105)(730,.00052)};
+\addplot[Gold!85!black,dashed] coordinates {(555,0)(555,1)};
+\node[anchor=south west,font=\small] at (axis cs:600,.94) {峰值约 $555\,\mathrm{nm}$};
+\end{axis}
+\end{tikzpicture}
+\bookcaption{CIE 明视觉光视效率函数}
+\label{advA5:fig:luminosity-function}
+\end{minipage}\end{center}
+
+常用光度量与辐射度量的对应关系为
+\begin{table}[htbp]
+\centering
+\caption{光度量与辐射度量的对应}
+\begin{tabular}{llll}
+\toprule
+光度量&单位&辐射度量&单位\\
+\midrule
+光能量&$\mathrm{lm\,s}$&辐射能量&$\mathrm J$\\
+光通量 $\Phi$&$\mathrm{lm}$&辐射通量 $P$&$\mathrm W$\\
+发光强度 $I$&$\mathrm{cd}$&辐射强度 $\mathcal I$&$\mathrm{W/sr}$\\
+亮度 $B$&$\mathrm{cd/m^2}$&辐亮度 $\mathcal B$&$\mathrm{W/(sr\,m^2)}$\\
+照度 $E$&$\mathrm{lx}$&辐照度&$\mathrm{W/m^2}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+若辐射通量谱为 $p(\lambda)$，则
+\[
+ P=\int p(\lambda)\,\dd\lambda,\qquad
+ \Phi=\int K_mV(\lambda)p(\lambda)\,\dd\lambda.
+\]
+光源的总光视效能定义为 $K=\Phi/P$。这里 $P$ 是辐射功率，故 $K$ 取决于光谱；若以输入电功率为分母评价灯具，则还须计入电能转化为辐射的效率，
+不能只由某个“代表波长”估计。
+
+点光源对某方向的发光强度、被照面的照度分别为
+\[
+ I=\frac{\dd\Phi}{\dd\Omega},\qquad
+ E=\frac{\dd\Phi}{\dd S}.
+\]
+面光源沿与法线夹角为 $\theta$ 的方向的亮度为
+\[
+ B=\frac{\dd^2\Phi}{\dd\Omega\,\dd S\cos\theta}.
+\]
+若 $B$ 与方向无关，则称为 Lambert 发射体。此时
+$\dd S\cos\theta$ 正是沿观察方向看到的投影面积。
+
+无吸收的理想光学系统还满足三种彼此关联的不变量：
+\[
+ \dd G=n^2\cos\theta\,\dd S\,\dd\Omega,
+ \qquad n(y_1u_2-y_2u_1)=n'(y'_1u'_2-y'_2u'_1),
+ \qquad \frac{B}{n^2}=\frac{B'}{n'^2}.
+\]
+中间一式是同一傍轴系统内两条近轴光线的拉格朗日不变量，$u_i$ 为小倾角；不能把任意单条光线的 $nyu$ 当作处处不变。最后一式对同一频率、无损被动传输成立，在物像方折射率相等时简化为亮度不变。
+它说明被动光具可以放大像或增大收集立体角，却不能同时提高单位投影面积、单位立体角的辐射亮度；
+这正是光学扩展量守恒的内容。

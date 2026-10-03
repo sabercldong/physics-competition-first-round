@@ -1,0 +1,397 @@
+% Restrained diagrams for Lesson 35.  Every arrow follows F=q v x B.
+
+\newcommand{\fieldInto}{\mathord{\otimes}}
+\newcommand{\fieldOut}{\mathord{\odot}}
+
+\newcommand{\lorentzDirectionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \begin{scope}[xshift=-5.2cm]
+    \draw[rounded corners=4pt,draw=RuleGray] (-2.1,-1.55) rectangle (2.1,1.55);
+    \fill[DeepBlue] (0,0) circle (3pt) node[below left] {$+q$};
+    \draw[vector] (0,0)--(1.55,0) node[right] {$\vect v$};
+    \draw[vector] (0,0)--(0,1.18) node[above] {$\vect F$};
+    \node[font=\Large] at (-1.25,0.65) {$\fieldInto$};
+    \node[TextGray] at (0,-1.9) {$q>0$，$\vect B$ 入纸面};
+  \end{scope}
+  \begin{scope}
+    \draw[rounded corners=4pt,draw=RuleGray] (-2.1,-1.55) rectangle (2.1,1.55);
+    \fill[Ink] (0,0) circle (3pt) node[above left] {$-q$};
+    \draw[vector] (0,0)--(1.55,0) node[right] {$\vect v$};
+    \draw[vector] (0,0)--(0,-1.18) node[below] {$\vect F$};
+    \node[font=\Large] at (-1.25,0.65) {$\fieldInto$};
+    \node[TextGray] at (0,-1.9) {$q<0$，受力反向};
+  \end{scope}
+  \begin{scope}[xshift=5.2cm]
+    \draw[rounded corners=4pt,draw=RuleGray] (-2.1,-1.55) rectangle (2.1,1.55);
+    \fill[DeepBlue] (0,0) circle (3pt) node[below left] {$+q$};
+    \draw[vector] (0,0)--(1.35,0.85) node[right] {$\vect v$};
+    \draw[vector] (0,0)--(-0.65,1.04) node[above] {$\vect F$};
+    \draw[vector] (0,0)--(0,-1.15) node[below] {$\vect B$};
+    \node[TextGray] at (0,-1.9) {三者两两垂直};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}$\vect F=q\vect v\times\vect B$；先按正电荷定向，负电荷再反向}
+\end{center}}
+
+\newcommand{\gyroHelixDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \begin{scope}[xshift=-4.4cm]
+    \draw[curve] (0,0) circle (1.55);
+    \node[font=\Large] at (0,0) {$\fieldOut$};
+    \fill[DeepBlue] (0,1.55) circle (2.6pt) node[above left] {$q>0$};
+    \draw[vector] (0,1.55)--(1.25,1.55) node[right] {$\vect v_\perp$};
+    \draw[vector] (0,1.55)--(0,0.48) node[right] {$\vect F$};
+    \draw[<->] (0,0)--node[fill=white,inner sep=1pt] {$r_{\rm c}$}(1.55,0);
+    \draw[->,DeepBlue,thick] (1.85,0.35) arc[start angle=10,end angle=-70,radius=0.55];
+    \node[TextGray] at (0,-2.05) {$v_\parallel=0$：匀速圆周运动};
+  \end{scope}
+  \begin{scope}[xshift=3.3cm]
+    \draw[axis] (-0.5,0)--(7.0,0) node[right] {$\vect B$};
+    \draw[DeepBlue,very thick,domain=0:720,samples=180,smooth]
+      plot ({0.0085*\x},{0.85*sin(\x)});
+    \draw[TextGray,thin,domain=0:720,samples=180,smooth,dashed]
+      plot ({0.0085*\x},{0.30*cos(\x)});
+    \fill[DeepBlue] (0,0) circle (2.4pt);
+    \draw[vector] (0,0)--(1.4,0) node[below] {$\vect v_\parallel$};
+    \draw[vector] (0,0)--(0,1.0) node[left] {$\vect v_\perp$};
+    \node[TextGray] at (3.1,-1.45) {$v_\parallel\ne0$：沿磁场轴线作螺旋运动};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\particleTracksContext}{%
+\historyfigure[0.76\linewidth]{particle-tracks-redraw.png}%
+{云雾室与气泡室径迹：曲率给出动量信息，弯曲方向结合磁场方向可判定电荷符号}}
+
+\newcommand{\cyclotronDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (-3.5,-2.5) arc[start angle=270,end angle=90,radius=2.5] -- (-0.25,2.5)--(-0.25,-2.5)--cycle;
+  \fill[SoftGray] (3.5,-2.5) arc[start angle=-90,end angle=90,radius=2.5] -- (0.25,2.5)--(0.25,-2.5)--cycle;
+  \draw[DeepBlue,thick] (-3.5,-2.5) arc[start angle=270,end angle=90,radius=2.5] -- (-0.25,2.5)--(-0.25,-2.5)--cycle;
+  \draw[DeepBlue,thick] (3.5,-2.5) arc[start angle=-90,end angle=90,radius=2.5] -- (0.25,2.5)--(0.25,-2.5)--cycle;
+  \node at (-1.7,0) {D}; \node at (1.7,0) {D};
+  \draw[<->,Ink,thick] (-0.18,2.9)--(0.18,2.9) node[midway,above=3pt] {交变电压};
+  \node[font=\Large] at (4.7,1.65) {$\fieldOut$};
+  \node[right] at (5.05,1.65) {$\vect B$};
+  \draw[DeepBlue,very thick,domain=0:900,samples=240,smooth]
+    plot ({0.0028*\x*cos(\x)},{0.0028*\x*sin(\x)});
+  \draw[vector] (0.1,0)--(0.9,0) node[below right] {$q\Delta U$};
+  \node[TextGray,align=left,anchor=west] at (4.35,-0.15)
+    {$\omega_{\rm rf}=\omega_{\rm c}=|q|B/m$\\[2pt]
+     每过狭缝一次，动能增加 $|q|\Delta U$};
+\end{tikzpicture}
+
+{\small\color{TextGray}回旋加速器俯视图：D 形盒内由磁场弯转，狭缝处由交变电场加速}
+\end{center}}
+
+\newcommand{\zeemanSpectrumDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[inner sep=0] at (-4.2,0.4) {\includegraphics[width=5.0cm]{lorentz-zeeman-redraw.png}};
+  \node[TextGray] at (-5.35,-2.05) {Lorentz};
+  \node[TextGray] at (-3.05,-2.05) {Zeeman};
+  \begin{scope}[xshift=0.2cm]
+    \node[TextGray] at (2.2,1.8) {无磁场};
+    \draw[Ink,very thick] (2.2,-0.8)--(2.2,1.35);
+    \node[TextGray] at (6.2,1.8) {加磁场};
+    \draw[DeepBlue,very thick] (5.25,-0.8)--(5.25,1.35);
+    \draw[Ink,very thick] (6.2,-0.8)--(6.2,1.35);
+    \draw[DeepBlue,very thick] (7.15,-0.8)--(7.15,1.35);
+    \draw[<->] (5.25,-1.2)--node[fill=white,inner sep=1pt] {$\Delta\omega$}(6.2,-1.2);
+    \draw[<->] (6.2,-1.2)--node[fill=white,inner sep=1pt] {$\Delta\omega$}(7.15,-1.2);
+    \node[TextGray,align=center] at (4.7,-2.05)
+      {$\omega_0$ 与 $\omega_0\pm |q|B/(2m)$\\弱场下形成对称三线分裂};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\driftDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \draw[axis] (-0.4,0)--(9.4,0) node[right] {$\vect v_D$};
+  \draw[DeepBlue,very thick,domain=0:720,samples=220,smooth]
+    plot ({0.012*\x-0.72*sin(\x)},{0.72*(1-cos(\x))});
+  \draw[TextGray,dashed,domain=0:720,samples=220,smooth]
+    plot ({0.012*\x},{0.72});
+  \foreach \x in {1.2,5.5,9.0}{\node[font=\large] at (\x,2.2) {$\fieldInto$};}
+  \draw[vector] (0.8,-0.55)--(2.4,-0.55) node[midway,below] {$\vect F\times\vect B$};
+  \node[TextGray,align=left,anchor=west] at (9.7,0.9)
+    {$\displaystyle\vect v_D=\frac{\vect F\times\vect B}{qB^2}$\\导向中心匀速平移};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\splitProductsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \begin{scope}[xshift=-4.2cm]
+    \node[font=\large] at (0,2.75) {$\fieldInto$};
+    \fill[DeepBlue] (0,2.0) circle (2.5pt) node[above left] {$P_0$};
+    \draw[DeepBlue,very thick] (0,2.0) arc[start angle=90,end angle=450,radius=1.0];
+    \draw[Ink,very thick] (0,2.0) arc[start angle=90,end angle=-270,radius=2.0];
+    \draw[vector] (0,2.0)--(-1.25,2.0) node[above] {$+q,m,\ v_0$};
+    \draw[vector] (0,2.0)--(1.25,2.0) node[above] {$-q,2m,\ v_0$};
+    \node[TextGray,align=center,font=\small] at (0,-2.45)
+      {碰撞前：半径 $r,2r$\\共同返回周期 $2T$};
+  \end{scope}
+  \begin{scope}[xshift=4.2cm]
+    \fill[DeepBlue] (0,-1.1) circle (2.5pt) node[below left] {$P_0$};
+    \draw[DeepBlue,very thick] (0,-1.1) arc[start angle=-90,end angle=630,radius=2.0];
+    \draw[Ink,very thick] (0,-1.1) arc[start angle=-90,end angle=-450,radius=0.8];
+    \draw[vector] (0,-1.1)--(1.55,-1.1) node[below] {$5v_0/3$};
+    \draw[vector] (0,-1.1)--(-1.0,-1.1) node[below] {$v_0/3$};
+    \node[TextGray,align=center,font=\small] at (0,-2.45)
+      {第一次碰撞后：半径 $5r/3,2r/3$\\再过 $2T$ 恢复初态};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\beamFocusDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \coordinate (BeamO) at (0,0);
+  \coordinate (BeamZ) at (1.2,0);
+  \coordinate (BeamV) at (1.35,0.45);
+  \draw[axis] (0,0)--(9.0,0) node[right] {$z$};
+  \draw[thick] (8,-2.0)--(8,2.0) node[above] {荧光屏};
+  \draw[DeepBlue,very thick,domain=0:720,samples=220,smooth]
+    plot ({0.0111*\x},{0.75*sin(\x)});
+  \draw[TextGray,dashed] (0,0)--(8,0);
+  \draw[vector] (0,0)--(1.35,0.45) node[above] {$\vect v$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.25]
+    {angle=BeamZ--BeamO--BeamV};
+  \draw[<->] (0,-1.45)--node[fill=white,inner sep=1pt] {$L$}(8,-1.45);
+  \draw[<->,DeepBlue] (8.35,0)--node[right] {$\rho_{\max}$}(8.35,0.72);
+\end{tikzpicture}
+
+{\small\color{TextGray}纵向磁场使横向速度转过相位 $\omega_{\rm c}L/v$；整数圈处重新聚焦}
+\end{center}}
+
+\newcommand{\magneticBilliardDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \coordinate (BucketO) at (0,0);
+  \draw[curve] (0,0) circle (3.0);
+  \coordinate (P) at (0,-3);
+  \coordinate (C) at (-0.866,-3.5);
+  \coordinate (Qhit) at (-1.396,-2.652);
+  \coordinate (Rin) at (0,-1.8);
+  \coordinate (Vtip) at (-0.65,-1.7);
+  \draw[DeepBlue,very thick] (P) arc[start angle=30,end angle=122,radius=1.0];
+  \draw[guide] (0,0)--(P) (0,0)--(-2.52,-1.62);
+  \draw[guide] (C)--(P);
+  \fill[DeepBlue] (P) circle (2.5pt) node[below] {小孔};
+  \fill[Ink] (C) circle (2.2pt) node[below left] {回旋圆心};
+  \draw[vector] (P)--++(-0.65,1.3) node[left] {$\vect v$};
+  \draw pic[draw,"$\theta$",angle radius=7mm,angle eccentricity=1.25]
+    {angle=Rin--P--Vtip};
+  \draw pic[draw,"$\delta$",angle radius=10mm,angle eccentricity=1.25]
+    {angle=Qhit--BucketO--P};
+  \draw[<->] (C)--node[fill=white,inner sep=1pt] {$r_{\rm c}$}(P);
+  \node[TextGray,align=left,anchor=west] at (4.15,0.4)
+    {每次反射保持入射角；\\相邻碰撞点的圆心角恒为 $\delta$。\\[2pt]
+     $\delta/(2\pi)\in\mathbb Q$ 时才会返回小孔。};
+  \node[font=\large] at (1.9,1.9) {$\fieldInto$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\velocitySelectorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-4,1.65)--(4,1.65) (-4,-1.65)--(4,-1.65);
+  \foreach \x in {-3.5,-2.5,...,3.5}{
+    \node at (\x,1.95) {$+$}; \node at (\x,-1.95) {$-$};
+    \node[font=\large,TextGray] at (\x,0.75) {$\fieldInto$};
+  }
+  \fill[DeepBlue] (-2.2,0) circle (3pt) node[below left] {$+q$};
+  \draw[vector] (-2.2,0)--(-0.5,0) node[right] {$\vect v$};
+  \draw[vector] (-2.2,0)--(-2.2,1.1) node[left] {$qvB$};
+  \draw[vector] (-2.2,0)--(-2.2,-1.1) node[left] {$qE$};
+  \draw[vector] (2.8,1.1)--(2.8,-0.7) node[midway,right] {$\vect E$};
+  \node[TextGray] at (0,-2.55) {只有 $v=E/B$ 的粒子不偏转；电荷符号改变时两力同时反向};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\crossedFieldCycloidDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[thick] (-0.3,2.3)--(9.0,2.3) (-0.3,-0.1)--(9.0,-0.1);
+  \foreach \x in {0.2,1.2,...,8.7}{\node at (\x,2.6) {$+$}; \node at (\x,-0.4) {$-$};}
+  \draw[DeepBlue,very thick,domain=0:720,samples=220,smooth]
+    plot ({0.012*\x-0.72*sin(\x)},{2.3-0.72*(1-cos(\x))});
+  \foreach \x in {1.2,4.5,7.8}{\node[font=\large,TextGray] at (\x,1.25) {$\fieldInto$};}
+  \draw[<->] (8.7,2.3)--node[right] {$h_{\max}$}(8.7,0.86);
+  \node[TextGray] at (4.4,-0.9) {$h_{\max}=2mE/(|q|B^2)$；轨迹为沿 $\vect E\times\vect B$ 方向推进的摆线};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gravityDriftDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.92cm,y=0.92cm,>=Latex]
+  \fill[SoftGray] (-0.5,-0.35) rectangle (9.4,-0.75);
+  \draw[thick] (-0.5,-0.35)--(9.4,-0.35) node[right] {地面};
+  \draw[DeepBlue,very thick,domain=0:620,samples=210,smooth]
+    plot ({0.013*\x-0.45*sin(\x)},{2.7-0.62*(1-cos(\x))-0.28*sin(\x)});
+  \fill[DeepBlue] (0,2.7) circle (2.5pt) node[above] {初始位置};
+  \draw[vector] (0,2.7)--(0,1.7) node[left] {$\vect v_0$};
+  \draw[vector] (8.0,3.0)--(6.5,3.0) node[midway,above] {$\vect v_D$};
+  \draw[<->] (-0.3,-0.35)--node[left] {$H$}(-0.3,2.7);
+  \node[font=\large] at (5.2,2.9) {$\fieldOut$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\alternatingLayersDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.0cm,y=0.82cm,>=Latex]
+  \foreach \k in {0,2,4}{\fill[PaleBlue] (0,\k) rectangle (8,\k+1);}
+  \foreach \k in {1,3,5}{\fill[SoftGray] (0,\k) rectangle (8,\k+1);}
+  \foreach \k in {0,...,6}{\draw[RuleGray] (0,\k)--(8,\k);}
+  \node[anchor=east] at (-0.2,0.5) {电场层};
+  \node[anchor=east] at (-0.2,1.5) {第1磁场层};
+  \node[anchor=east] at (-0.2,2.5) {电场层};
+  \node[anchor=east] at (-0.2,3.5) {第2磁场层};
+  \node[anchor=east] at (-0.2,4.5) {电场层};
+  \node[anchor=east] at (-0.2,5.5) {第3磁场层};
+  \foreach \y in {0.5,2.5,4.5}{\draw[vector] (7.4,\y-0.25)--(7.4,\y+0.28) node[above] {$\vect E$};}
+  \foreach \y in {1.5,3.5,5.5}{\node[font=\large] at (7.4,\y) {$\fieldInto$};}
+  \draw[DeepBlue,very thick] (1.0,0)--(1.0,1)
+    .. controls (1.0,1.45) and (0.65,1.75) .. (0.55,2.0)
+    --(0.55,3.0)
+    .. controls (0.55,3.45) and (0.0,3.85) .. (0.15,4.0)
+    --(0.15,5.0)
+    .. controls (0.15,5.55) and (-0.15,5.75) .. (0.05,5.95);
+  \draw[<->] (8.35,0)--node[right] {$d$}(8.35,1);
+  \node[TextGray] at (4.0,-0.55) {穿过第 $k$ 个磁场层后，$v_x=-k\omega_{\rm c}d$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\hallDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (-3,-1); \coordinate (B) at (2,-1);
+  \coordinate (C) at (3.5,0.2); \coordinate (D) at (-1.5,0.2);
+  \coordinate (At) at (-3,1); \coordinate (Bt) at (2,1);
+  \coordinate (Ct) at (3.5,2.2); \coordinate (Dt) at (-1.5,2.2);
+  \fill[PaleBlue] (A)--(B)--(C)--(D)--cycle;
+  \fill[SoftGray] (At)--(Bt)--(Ct)--(Dt)--cycle;
+  \draw[thick] (A)--(B)--(C)--(D)--cycle (At)--(Bt)--(Ct)--(Dt)--cycle
+    (A)--(At) (B)--(Bt) (C)--(Ct) (D)--(Dt);
+  \draw[vector] (-4.2,0.5)--(-2.0,0.5) node[midway,above] {$I\parallel x$};
+  \draw[vector] (0.2,-2.0)--(2.0,-0.55) node[midway,below right] {$\vect B\parallel y$};
+  \draw[vector] (2.6,0.15)--(2.6,1.85) node[midway,right] {$\vect E_H\parallel z$};
+  \node[DeepBlue] at (-0.2,1.78) {$+$};
+  \node[Ink] at (-0.2,-0.58) {$-$};
+  \draw[<->] (-3.35,-1)--node[left] {$a$}(-3.35,1);
+  \draw[<->] (-3,-1.35)--node[below] {$c$}(2,-1.35);
+  \draw[<->] (2.35,-1.15)--node[below right] {$b$}(3.75,0.0);
+\end{tikzpicture}
+
+{\small\color{TextGray}Hall 电场抵消载流子的横向 Lorentz 力；电势差的符号可判定载流子电性}
+\end{center}}
+
+\newcommand{\corbinoDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \fill[SoftGray,even odd rule] (0,0) circle (2.8) (0,0) circle (1.25);
+  \draw[curve] (0,0) circle (2.8) (0,0) circle (1.25);
+  \foreach \a in {0,45,...,315}{
+    \draw[vector] ({1.35*cos(\a)},{1.35*sin(\a)})--({2.35*cos(\a)},{2.35*sin(\a)});
+  }
+  \draw[DeepBlue,thick,->] (2.0,0) arc[start angle=0,end angle=55,radius=2.0];
+  \node[DeepBlue] at (2.7,1.55) {$j_\varphi$};
+  \draw[<->] (0,0)--node[fill=white,inner sep=1pt] {$a$}(1.25,0);
+  \draw[<->] (0,0)--node[fill=white,inner sep=1pt] {$b$}(-2.8,0);
+  \node[font=\Large] at (0,0) {$\fieldOut$};
+  \node[TextGray,align=left,anchor=west] at (4.0,0.5)
+    {无磁场：$\vect j\parallel\vect E_r$；\\有轴向磁场：电流产生方位分量，\\径向电导降为 $\sigma_0/(1+\mu^2B^2)$。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\epicycleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[guide] (0,0) circle (2.2);
+  \draw[curve] (0.45,0) circle (2.2);
+  \fill[Ink] (0,0) circle (2pt) node[below left] {$O$};
+  \fill[DeepBlue] (0.45,0) circle (2pt) node[below] {新导向中心};
+  \draw[<->] (0,0)--node[above,fill=white,inner sep=1pt] {$\delta$}(0.45,0);
+  \draw[DeepBlue,thick,->] (2.65,0) arc[start angle=0,end angle=-70,radius=2.2];
+  \node[TextGray,align=left,anchor=west] at (4.0,0.3)
+    {径向小扰动只把回旋圆心略微移开；\\相对原点的半径以 $\omega_{\rm c}$ 周期起伏。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\radialFieldOrbitDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (0,0) circle (1.8);
+  \node[font=\Large] at (0,0) {$\fieldInto$};
+  \node[TextGray,right] at (0.3,0) {$\vect B$};
+  \fill[DeepBlue] (0,1.8) circle (2.6pt) node[above right] {$+q$};
+  \draw[vector] (0,1.8)--(-1.25,1.8) node[left] {$\vect v$};
+  \draw[vector] (0,1.8)--(0,0.45) node[right] {$\vect F_B$};
+  \draw[vector] (0,1.8)--(0,2.65) node[right] {$\vect F_E$};
+  \draw[<->] (0,0)--node[right,fill=white,inner sep=1pt] {$R$}(0,1.8);
+  \draw[DeepBlue,thick,->] (-2.15,0.25) arc[start angle=175,end angle=105,radius=0.65];
+  \node[TextGray,align=left,anchor=west] at (3.1,0.35)
+    {$B$ 入纸面、$+q$ 逆时针时磁力向内；\\向外电场力抵消一部分磁向心力。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dampedSpiralDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (S) at (-1.4,0);
+  \coordinate (P) at (0.6,0);
+  \draw[DeepBlue,very thick,domain=0:920,samples=260,smooth]
+    plot ({0.6-2.0*exp(-0.0032*\x)*cos(\x)},{-2.0*exp(-0.0032*\x)*sin(\x)});
+  \fill[DeepBlue] (S) circle (2.5pt) node[below] {初始位置};
+  \fill[Ink] (P) circle (2.8pt) node[right] {$\vect r_\infty$};
+  \draw[vector] (S)--++(1.35,0) node[above] {$\vect v_0$};
+  \node[TextGray,align=left,anchor=west] at (3.2,0)
+    {速度按 $e^{-\gamma t/m}$ 衰减；\\轨迹绕有限终点作圆形收敛螺旋。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dampedDriftDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=0.95cm,>=Latex]
+  \draw[axis] (-0.3,0)--(9.0,0) node[right] {$x$};
+  \draw[axis] (0,-1.2)--(0,2.4) node[above] {$y$};
+  \draw[guide] (0,0)--(8.7,1.55);
+  \draw[DeepBlue,very thick,domain=0:620,samples=240,smooth]
+    plot ({0.013*\x+0.72*(1-exp(-0.006*\x))*sin(\x)},
+          {0.0025*\x+0.75*exp(-0.006*\x)*sin(\x)});
+  \draw[vector] (6.0,1.08)--(7.6,1.36) node[above] {$\vect v_\infty$};
+  \node[TextGray] at (4.3,-1.55) {回旋瞬态指数衰减，长期运动趋于匀速斜向漂移};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\magneticMomentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \begin{scope}[xshift=-4.2cm]
+    \draw[curve] (0,0) circle (1.6);
+    \fill[DeepBlue] (0,1.6) circle (2.6pt) node[above] {$q$};
+    \draw[vector] (0,1.6)--(1.2,1.6) node[right] {$\vect v_\perp$};
+    \node[font=\Large] at (-0.32,0.25) {$\fieldOut$};
+    \node[font=\Large] at (0.32,-0.25) {$\fieldInto$};
+    \node[TextGray,left] at (-0.62,0.25) {$\vect B$};
+    \node[TextGray,right] at (0.62,-0.25) {$\vect\mu$};
+    \node[TextGray] at (0,-2.25) {$\mu=mv_\perp^2/(2B)=E_\perp/B$};
+  \end{scope}
+  \begin{scope}[xshift=3.2cm]
+    \draw[DeepBlue,thick] (-3,-2.0) .. controls (-1,-1.1) and (1,-1.1) .. (3,-2.0);
+    \draw[DeepBlue,thick] (-3,2.0) .. controls (-1,1.1) and (1,1.1) .. (3,2.0);
+    \foreach \y in {-1.4,-0.7,0,0.7,1.4}{\draw[->,TextGray] (-2.8,\y)--(2.8,{0.65*\y});}
+    \draw[DeepBlue,very thick,domain=0:720,samples=180,smooth]
+      plot ({-2.4+0.0067*\x},{0.55*sin(\x)*(1-0.00065*\x)});
+    \draw[vector] (-2.3,0)--(-0.8,0) node[below] {$v_\parallel$};
+    \node[TextGray,align=center] at (0,-2.55)
+      {$\rho/L_B\ll1$ 时，$\mu$ 为绝热不变量；\\进入强场区时 $v_\perp$ 增大、$v_\parallel$ 减小。};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}

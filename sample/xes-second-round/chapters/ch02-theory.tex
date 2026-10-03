@@ -1,0 +1,823 @@
+\section{牛顿定律}
+\label{r2ch02:sec:newton}
+
+\subsection{从运动分类到相互作用观点}
+\label{r2ch02:sec:history}
+
+亚里士多德把运动区分为“自然运动”和“强迫运动”，却错误地认为重物下落得更快。伽利略用理想实验和相对性思想澄清惯性与自由落体；笛卡尔、惠更斯等人得到碰撞、动能和运动量方面的大量结果；牛顿把这些成果统一为以\textbf{相互作用}为核心的动力学。后来拉格朗日和哈密顿把力学写成能量函数或作用量的理论，马赫批评绝对时空观，爱因斯坦则把引力解释为弯曲时空中的测地线运动。现代天体物理和粒子物理常同时使用“相互作用图像”和“几何图像”，但在低速、弱引力、宏观尺度上，牛顿力学仍是最有效的基本模型。
+
+这段历史并非把旧理论简单地逐项作废。实验会揭示一个理论的边界，新的数学形式又常把旧理论中有效的部分保留为近似。物理学研究自然界存在的运动，既寻找可计算的规律，也寻找对规律的解释。运动形式虽多，却可能由少数结构相似的方程描述；同一种运动也可能在不同理论中获得不同解释。相互作用观点与几何观点是两条重要线索，而不是宣称一切解释只有两种、并且彼此排斥。
+
+亚里士多德把天体运行、物体下落归于自然运动（natural motion），把风推动树木等归于强迫运动（violent motion）。这种分类把运动与物体的“自然位置”联系起来，却不能正确解释真空中不同质量物体的自由落体。伽利略的关键进展是把经验、理想实验、定量关系与参考系选择联系起来，区分维持运动和改变运动。笛卡尔与惠更斯对碰撞和运动量的研究，则显示出寻找不变量的重要性；这些历史上的量和表述不能不加区别地全部当成现代形式的牛顿第二定律或能量守恒定律。
+
+牛顿的相互作用观点把地面上的受力运动和天体运动置于共同框架：改变运动状态的原因是物体受到其他物体的作用。在场论中，粒子之间的影响用场的传播及场与粒子的耦合来描述，不再把瞬时超距影响当成普遍机制。自由场可以按平面波模式展开，量子化后用这些模式的激发描述粒子；相互作用会引起散射、能量和动量交换，也可能在相应条件下引起粒子的产生或湮灭。这里的“自由传播”和“相互作用”具有延续性，但不能把场强改变机械地等同于某个经典质点的加速。
+
+拉格朗日与哈密顿发展出的分析力学（analytical mechanics），用拉格朗日量、哈密顿量或作用量组织复杂系统的方程。其优点不仅是形式紧凑，还在于能清楚处理约束、对称性与守恒量，并为场论、统计物理和量子理论提供语言。马赫则追问：惯性是否应由整个宇宙的物质分布参与决定？这是对绝对时空观的批评和进一步研究的方向，不能直接当成已经由牛顿方程证明的结论。
+
+爱因斯坦的几何观点把自由落体理解为弯曲时空中的测地线（geodesic）运动。测地线是给定几何中“尽可能直”的自由运动轨迹，并非任意三维坐标图上的直线；受火箭推力或支撑力的物体也不沿自由落体测地线。天体物理、粒子物理中，几何结构和相互作用描述仍经常共同出现。因此学习牛顿力学既要掌握它的计算能力，也要知道何时需把质点、力和绝对时间模型进一步推广。
+
+经典力学（classical mechanics）包括牛顿力学（Newtonian mechanics）以及与它相容的分析力学表述。本章先采用牛顿形式。历史上的两部重要著作是伽利略的《两门新科学的对话与数学证明》（\textit{Discorsi e dimostrazioni matematiche intorno a due nuove scienze}）与牛顿的《自然哲学的数学原理》（\textit{Philosophiæ Naturalis Principia Mathematica}）。这里的经典模型采用伽利略变换，不是相对论理论本身；在适当的低速极限中，它与相对论给出的结果近似一致。
+
+经典牛顿力学采用绝对时间、三维欧氏空间和伽利略变换，以质点为物质模型、以力为相互作用模型。三个定律的逻辑次序不可颠倒：第一定律确定惯性系，第二定律说明力怎样改变运动，第三定律刻画相互作用的相互性。
+
+\subsection{牛顿第一定律与惯性系}
+\label{r2ch02:sec:newton-first}
+
+先概括三条定律的内容，再讨论它们的逻辑。第一定律说，不受外力的质点保持静止或匀速直线运动；第二定律说，在惯性系中合力等于质量乘加速度；第三定律说，在适用的经典质点相互作用模型中，一对作用力与反作用力等大、反向且共线。它们分别涉及参考系、运动改变和相互作用的成对结构，不能只把三条公式当成相互独立的计算口诀。
+
+牛顿第一定律并非第二定律令 $\vect F=0$ 的普通特例，因为写 $\vect F=m\vect a$ 之前必须先知道在哪一类参考系中它成立。孤立质点在惯性系中满足
+\begin{equation}
+ \vect r(t)=\vect r(0)+\vect v_0t,\qquad \vect v_0=\text{常矢量}.
+ \label{r2ch02:eq:001}
+\end{equation}
+所有相对某惯性系作匀速直线平动、坐标轴不转动的参考系也是惯性系；它们之间由伽利略变换联系。
+
+为把“匀速直线”写清楚，式~\eqref{r2ch02:eq:001} 等价于
+\[
+ \begin{pmatrix}x(t)\\y(t)\\z(t)\end{pmatrix}
+ =\begin{pmatrix}x(0)\\y(0)\\z(0)\end{pmatrix}
+ +t\begin{pmatrix}v_x\\v_y\\v_z\end{pmatrix},
+ \qquad \dot v_x=\dot v_y=\dot v_z=0.
+\]
+这里“孤立”是指没有需要计入的外界相互作用；远离其他物体只是实现这种近似的一种办法，不保证在任何外场中都不受力。设新参考系的原点以常速度 $\vect V$ 移动，坐标轴平行，则 $\vect v'=\vect v-\vect V$ 仍为常矢量，所以同一个孤立质点在新系中也作匀速直线运动。
+
+牛顿的历史表述包含绝对空间和优先的静止背景。现代使用惯性系时，只需承认存在一族满足惯性规律的等价参考系，并不需要也不能靠这族参考系内部的力学实验挑出一个可测的“最初惯性系”。第一定律与时空背景的联系，在于它规定自由运动的标准；不能把它单独当成一个无需其他假设就证明空间全部几何性质的定理。先规定背景与参照标准，再陈述规律的共同形式，这种组织理论的次序也可帮助理解狭义相对论的基本假设，但两套假设的物理内容并不相同。
+
+\subsection{牛顿第二定律：质量、力与适用范围}
+\label{r2ch02:sec:newton-second}
+
+相互作用（interaction）比日常所说的“推拉”更广。光在物质中发生吸收和散射，原子之间因电子云的量子涨落产生色散吸引，都属于相互作用；后者是范德瓦耳斯作用的一种来源。描述光需要场，描述电子云需要波函数和相应动力学，不能仅靠把所有对象画成小球就解释其微观机制。牛顿模型把受研究的对象近似为质点（mass point），把相互作用近似为力（force），用质量（mass）描述惯性。牛顿曾用微粒观点理解光，这是历史模型，不等于光子可以套用有静质量质点的 $m\vect a$ 方程。
+
+在这套经典模型中，质量有三项需要区分的性质。\textbf{可加性}是把质量 $m_1,m_2$ 组成系统时总质量为 $m_1+m_2$；\textbf{可比性}是质量比可由可重复的实验确定；\textbf{固有性}是同一固定组成的质点在改变经典参考系后质量不变。动量即使在某一系中守恒，换系后数值也可以改变；质量的参考系不变性并不是这种意义的“某个运动过程的守恒”。相对论中应采用不变质量的定义，物体或复合系统的质量还与其内部能量有关，不能笼统说成“换系后质量不守恒”。
+
+例如，用碰撞比较质量时，令未知质量 $m$ 以速度 $u$ 向右运动，标准质量 $m_0$ 以速度 $xu$ 向左运动，并使它们在外冲量可忽略的条件下黏合。若碰后整体恰好静止，则
+\[
+ mu-m_0xu=0,\qquad \frac{m}{m_0}=x.
+\]
+调整 $x$ 直到整体静止，就得到质量比。这里必须说清两物体的运动方向、外冲量条件和“整体静止”；仅看到其中一个物体瞬时停下，并不能从这条式子确定质量。实验定义与作为理论规律的动量关系相互校验，不是把同一个未知力与未知质量互相定义一遍就完成测量。
+
+质量具有可加性、可比性和在经典模型中的固有性。力则描述相互作用的强度与方向，并在经典伽利略变换下保持不变。牛顿第二定律写成
+\begin{equation}
+ \boxed{\vect F=m\vect a=\frac{\dd\vect p}{\dd t}},
+ \qquad \vect p=m\vect v .
+ \label{r2ch02:eq:002}
+\end{equation}
+这里不是用力循环定义质量，也不是用质量循环定义力；质量和相互作用必须先有独立的实验定义，式~\eqref{r2ch02:eq:002} 才是可检验的动力学规律。质量的可加性又与力的叠加原理相协调：相同的力质量比产生相同的加速度。
+
+式~\eqref{r2ch02:eq:002} 在此针对质量固定的质点；对有物质流入流出的子系统，不能把 $\dd(m\vect v)/\dd t$ 不加通量项地当成外力。合力是各作用力的矢量和，但具体相互作用是否线性叠加，还要服从所选模型。例如施力装置本身会变形，接触力就可能随系统状态改变，不能理解成每个施力物体的作用永远不受其他物体影响。
+
+在平行轴的伽利略变换下，$\vect a'=\vect a$、$m'=m$，同一真实合力的几何矢量也不变，故另一惯性系中仍有 $\vect F'=m\vect a'$。坐标轴若作固定转动，矢量的坐标分量会一起转动，而不是每个分量数值保持不变。相对性本身并不能唯一导出 $\vect F=m\vect a$；即使先尝试写成 $\vect F/m=\vect f(\vect v,\vect a)$，仍须由实验及模型假设确定函数。经典方程取 $\vect f=\vect a$，意味着两倍合力作用在同一质量上产生两倍加速度；把力与质量都加倍则加速度不变。前者是经验规律，后者说明这一规律与可加性相容，不是仅由数学比例关系证明自然界必然如此。
+
+\subsection{牛顿第三定律与守恒结构}
+\label{r2ch02:sec:newton-third}
+
+物理规律是在明确条件下经过检验的抽象，不是从少量公式就能无条件解释宇观到微观的所有现象。第三定律不告诉我们任意两种物体相互作用力的具体函数，却规定了这对力的结构。下面记 $\vect F_{12}$ 为质点1施加给质点2的力，$\vect F_{21}$ 反之；必须先固定下标含义。
+
+牛顿第三定律要求一对质点的相互作用力等大、反向并共线：
+\begin{equation}
+ \vect F_{12}+\vect F_{21}=\vect0,\qquad
+ \vect r_2\times\vect F_{12}+\vect r_1\times\vect F_{21}=\vect0.
+ \label{r2ch02:eq:003}
+\end{equation}
+第一式对应孤立二体系统的总动量不变，第二式进一步保证总角动量不变。更现代的观点是：空间平移对称性导出动量守恒，旋转对称性导出角动量守恒。存在有限传播速度或场动量时，只看粒子部分的一对力未必同时满足第三定律；把场的动量、角动量纳入封闭系统后，守恒律才恢复为严格形式。
+
+也可以在只有两个质点、没有额外场动量的封闭模型中反过来理解这两式。若总动量守恒，由各质点动量定理，
+\[
+ 0=\frac{\dd}{\dd t}(\vect p_1+\vect p_2)
+ =\vect F_{21}+\vect F_{12}.
+\]
+若总角动量同时守恒，再利用上一式，
+\[
+ 0=\vect r_1\times\vect F_{21}+\vect r_2\times\vect F_{12}
+ =(\vect r_2-\vect r_1)\times\vect F_{12}.
+\]
+当两质点位置不同，这就要求力沿连心线。因而等大反向来自线动量关系，共线性还需角动量关系；两者不能只凭一条动量守恒式一起推出。这种反推用于揭示模型的结构，不是以第三定律证明动量守恒后，又把同一守恒律当独立前提进行循环论证。
+
+从更广的角度看，一个子系统的动量变化可以由另一个子系统或场的动量变化补偿。例如一个物体原先运动、另一个静止，若整体孤立，初始非零总动量不能凭内部作用变成相反方向的总动量；但其中任意一个物体的动量可以反向。诺特定理（Noether's theorem）把作用量的连续对称性与守恒量联系起来：空间平移对应总动量，空间旋转对应总角动量。这里需要动力学作用量的对称性，仅说“方程可以换一种坐标表示”并不够。分析力学正提供了系统处理这些结构的方法；去掉第三定律而又不加入其他动量载体，并不会自动得到一个自洽的封闭理论。
+
+\subsection{质点系与质心运动}
+\label{r2ch02:sec:centre-of-mass}
+
+许多复杂物体可用足够多的质点近似，再在需要时取连续介质极限。用质心替代系统，只保留总质量和整体平动信息，不意味着物体的转动、形变和内部运动都消失。质心（center of mass，CM）是质量加权的平均位置，不一定位于真实物质内部。
+
+质点系由 $\{m_i,\vect r_i\}$ 构成。总质量和质心定义为
+\begin{equation}
+ M=\sum_i m_i,\qquad
+ \vect r_C=\frac1M\sum_i m_i\vect r_i,\qquad
+ \vect v_C=\frac1M\sum_i m_i\vect v_i,\qquad
+ \vect a_C=\frac1M\sum_i m_i\vect a_i.
+ \label{r2ch02:eq:004}
+\end{equation}
+质心计算满足交换律和结合律，因此可把若干子系统先分别等效为位于各自质心的质点，再求总质心；割补法和负质量法只是同一线性关系的反用。
+
+把系统分为两组，质量分别为 $M_1,M_2$，质心分别为 $\vect r_{C1},\vect r_{C2}$，则
+\[
+ \frac{M_1\vect r_{C1}+M_2\vect r_{C2}}{M_1+M_2}
+ =\frac{\sum_{i\in1}m_i\vect r_i+\sum_{j\in2}m_j\vect r_j}
+ {\sum_{i\in1}m_i+\sum_{j\in2}m_j}
+ =\vect r_C.
+\]
+这一步给出组合法的证明，例如先把几根均匀杆分别等效到杆中点，再求杆架质心。反过来，已知整个系统和被挖去部分的质心，剩余部分满足
+\[
+ \vect r_{C1}=\frac{M\vect r_C-M_2\vect r_{C2}}{M-M_2},
+ \qquad M=M_1+M_2.
+\]
+“负质量”只是这里减去被挖部分的计算记号，不是真实负质量物体。在各 $m_i$ 固定时，对质心定义一次、二次求导，才能得到式~\eqref{r2ch02:eq:004} 的速度、加速度加权平均式；变质量子系统不满足这种无需附加项的求导形式。
+
+把第 $i$ 个质点的合力分成外力与内力，
+$\vect F_i^{\rm tot}=\vect F_i+\sum_{j\ne i}\vect F_{ji}$。对所有质点的牛顿方程求和，内力按第三定律成对抵消，得到
+\[
+ \sum_i m_i\vect a_i
+ =\sum_i\vect F_i+\sum_{i<j}(\vect F_{ij}+\vect F_{ji})
+ =\sum_i\vect F_i.
+\]
+其中“内力”和“外力”由系统边界决定；$\vect F_i$ 只表示第 $i$ 个质点受到的外力合力，不能与它的总受力混写。利用 $\sum_i m_i\vect a_i=M\vect a_C$，才得到
+\begin{equation}
+ \boxed{\sum_i\vect F_i=M\vect a_C}.
+ \label{r2ch02:eq:005}
+\end{equation}
+这就是质心运动定律。合外力为零时，质心静止或作匀速直线运动。
+
+\subsubsection{质心系的六项性质及证明}
+\label{r2ch02:sec:cm-properties}
+
+以质心为原点、坐标轴相对惯性系不转动的参考系称为质心系。它只作平动，若 $\vect a_C\ne0$ 则是非惯性系。记 $\vect r_i'=\vect r_i-\vect r_C$、$\vect v_i'=\vect v_i-\vect v_C$，由定义有
+\[
+ \sum_i m_i\vect r_i'=0,\qquad
+ \sum_i m_i\vect v_i'=0.
+\]
+以下各式都是在同一个、轴不转动的质心系中讨论。
+
+第一，质心系中第 $i$ 个质点的平动惯性力为 $\vect f_i^{\rm in}=-m_i\vect a_C$，所以
+\[
+ \sum_i\vect f_i^{\rm in}=-M\vect a_C=-\vect F_{\rm ext},\qquad
+ \sum_i(\vect F_i+\vect f_i^{\rm in})=0.
+\]
+为零的是\textbf{真实合外力与惯性力合力之和}，不是惯性力合力单独为零。例如整体以加速度 $\vect a_C$ 运动时，后者恰好等于 $-M\vect a_C$。
+
+第二，平动惯性力对质心的总力矩为
+\[
+ \sum_i\vect r_i'\times\vect f_i^{\rm in}
+ =-\left(\sum_i m_i\vect r_i'\right)\times\vect a_C=0.
+\]
+每个质点的力矩不必为零，求和为零才是质心选择的作用。
+
+第三，质心系总动量 $\vect P'=\sum_i m_i\vect v_i'=0$。这不要求各质点静止，也不要求惯性系中 $\vect P=0$；它只去除了共同平动。
+
+第四，惯性力对\emph{相对运动}的总功率、从而总功为零：
+\[
+ \sum_i\vect f_i^{\rm in}\cdot\vect v_i'
+ =-\vect a_C\cdot\sum_i m_i\vect v_i'=0.
+\]
+这里必须使用相对速度 $\vect v_i'$，不能换成惯性系速度后还声称同一功率为零。
+
+第五，以任意点 $A$ 为原点的质量二阶矩为
+\[
+ \sum_i m_i|\vect r_i-\vect r_A|^2
+ =\sum_i m_i|\vect r_i'|^2+M|\vect r_C-\vect r_A|^2.
+\]
+展开平方时的交叉项为 $2(\vect r_C-\vect r_A)\cdot\sum_i m_i\vect r_i'=0$，所以 $A=C$ 时最小。对一组平行转轴，同样在垂直轴的平面内作这个分解，得到 $I_A=I_C+Md^2$；$d$ 为两轴距离，因此过质心的轴具有最小转动惯量。
+
+第六，质心选择使整体平动与内部运动的混合项消失，后面动量、角动量和动能的柯尼希分解就是应用这两条质量加权和为零的恒等式。任意基点也能写运动分解，但一般会多出交叉项；不是说非质心位置完全不能分解，而是不能不加条件地使用质心形式的简洁结论。
+
+\subsection{非惯性系中的动力学}
+\label{r2ch02:sec:noninertial}
+
+设动系原点相对惯性系的加速度为 $\vect a_O$，角速度和角加速度分别为 $\vect\omega,\dot{\vect\omega}$。对动系中的位置、速度、加速度加撇，有
+\begin{equation}
+ \vect a=\vect a_O+\dot{\vect\omega}\times\vect r'
+ +\vect\omega\times(\vect\omega\times\vect r')
+ +2\vect\omega\times\vect v'+\vect a'.
+ \label{r2ch02:eq:006}
+\end{equation}
+代入惯性系的 $\vect F=m\vect a$，可把附加项移到左边：
+\begin{equation}
+ \vect F-m\vect a_O-m\dot{\vect\omega}\times\vect r'
+ -m\vect\omega\times(\vect\omega\times\vect r')
+ -2m\vect\omega\times\vect v'=m\vect a'.
+ \label{r2ch02:eq:007}
+\end{equation}
+四项依次为平动惯性力、欧拉惯性力、离心惯性力和科里奥利力。前三类只依赖参考系的运动及质点位置，科里奥利力还依赖相对速度并始终与相对速度垂直。若研究刚体，每个质元的惯性力不同，合力矩中还可能出现回转效应，不能只在质心处补一个等效力。
+
+分别看清它们的条件。平动惯性力与质点在动系中的速度、位置无关，但只有 $\vect a_O$ 恒定时才是恒力。欧拉惯性力的大小为 $m|\dot{\vect\omega}\times\vect r'|$，离心惯性力可写为 $m\omega^2\vect r_\perp'$，其中 $\vect r_\perp'$ 是到瞬时转轴的垂直位矢；转轴变向时，$\dot{\vect\omega}$ 未必与 $\vect\omega$ 平行，不能用同一个“离轴距离”概括两项。科里奥利力大小为 $2m\omega v'\sin\chi$，$\chi$ 是 $\vect\omega$ 与 $\vect v'$ 的夹角；相对速度沿转轴时它为零，并非一有相对运动就必定非零。因为
+\[
+ (-2m\vect\omega\times\vect v')\cdot\vect v'=0,
+\]
+科里奥利力对相对运动不做功。以上是同一真实合力在不同参考系中的表达转换；真实力的几何矢量不因坐标记号改变而改变，但转动坐标轴下的分量通常不同。
+
+\section{动量定律}
+\label{r2ch02:sec:momentum}
+
+后面的动量、角动量和动能定理都从牛顿方程出发，但采用不同的数学处理。对每一种量，要区分三个层次：惯性系中的整个系统、把总质量集中在质心处所代表的整体运动，以及相对质心的内部运动。三种动力学量与三个描述层次构成这一部分的基本结构；质点则是质点系只有一个成员的特例。守恒结论还需要相应的力、力矩或功率条件，不能把“有一个定理”直接等同于“这个量总是守恒”。
+
+\subsection{质点的动量及分量守恒}
+\label{r2ch02:sec:point-momentum}
+
+动量（momentum）定义为 $\vect p=m\vect v$。质量固定时，
+\[
+ \frac{\dd\vect p}{\dd t}=m\frac{\dd\vect v}{\dd t}=m\vect a=\vect F,
+\]
+即式~\eqref{r2ch02:eq:002} 的动量形式。若某一\emph{固定直角方向}上的合力分量为零，该方向的动量导数为零，动量分量守恒。极坐标的基矢会转动，因而 $F_\theta=0$ 并不意味着 $p_\theta$ 守恒；事实上
+\[
+ F_\theta=m(r\ddot\theta+2\dot r\dot\theta),\qquad
+ \frac{\dd}{\dd t}(mr^2\dot\theta)=rF_\theta.
+\]
+所以这时守恒的是 $L_z=mr^2\dot\theta=rp_\theta$。上式已用极坐标加速度解释原因，不需把这个区别留到更高阶理论中才说明。
+
+\subsection{质点系与质心分解}
+\label{r2ch02:sec:system-momentum}
+
+先把每个质点的方程写清楚。$\vect F_i$ 是系统外部对第 $i$ 个质点的合力，$\vect F_{ji}$ 是系统内第 $j$ 个质点对它的力，于是
+\[
+ m_i\vect a_i=\vect F_i+\sum_{j\ne i}\vect F_{ji}.
+\]
+对所有 $i$ 求和，每一对内力在 $\vect F_{ji}+\vect F_{ij}=0$ 的条件下抵消；质量固定使 $\sum_i m_i\vect a_i=\dd(\sum_i m_i\vect v_i)/\dd t$。因此得到下面的系统方程，而不是对每个质点分别忽略内力。
+
+质点系总动量和合外力为
+\begin{equation}
+ \vect P=\sum_i m_i\vect v_i=M\vect v_C,\qquad
+ \vect F_{\rm ext}=\sum_i\vect F_i,\qquad
+ \boxed{\vect F_{\rm ext}=\frac{\dd\vect P}{\dd t}}.
+ \label{r2ch02:eq:008}
+\end{equation}
+把运动分为质心平动和相对质心运动，记 $\vect v_i'=\vect v_i-\vect v_C$，则
+\begin{equation}
+ \vect P=\underbrace{M\vect v_C}_{\vect P_C}
+ +\underbrace{\sum_i m_i\vect v_i'}_{\vect P'=0}.
+ \label{r2ch02:eq:009}
+\end{equation}
+外力也可分成作用于质心的主矢和质心系中的剩余主矢；后一项因惯性力与外力恰好抵消而为零。这些“整体量=质心量+相对质心量”的关系统称柯尼希定理。
+
+这里“主矢”就是力系的矢量和，而不是把每一个力都移动到质心后仍保留它的全部力矩效果。记整体平动所对应的合力为 $\vect F_C=\vect F_{\rm ext}$，质心系的有效合力为
+\[
+ \vect F'=\sum_i(\vect F_i-m_i\vect a_C)
+ =\vect F_{\rm ext}-M\vect a_C=0.
+\]
+相应有
+\[
+ \vect P_C=M\vect v_C=\vect P,\qquad \vect P'=0,
+ \qquad \vect F_{\rm ext}=\vect F_C+\vect F',\qquad
+ \vect P=\vect P_C+\vect P'.
+\]
+两部分分别满足 $\dot{\vect P}_C=\vect F_C$ 和 $\dot{\vect P}'=\vect F'=0$。这种柯尼希分解（König's theorem）中的零项依赖质心定义，不是把复杂系统内部的所有运动都视为不存在。
+
+动量守恒的严格对象必须是封闭系统。若某部分受“外力”，就要把施力物体以及传递作用的场一并纳入；电磁作用等存在场动量的情形，只计算粒子动量可能出现表面上的不守恒。
+
+例如相隔一定距离的带电物体，其状态改变的影响不会瞬时到达另一个物体，因而不能要求只属于粒子的两力在同一时刻始终等大反向。场也能储存、输运动量，封闭系统应满足 $\dd(\vect P_{\rm matter}+\vect P_{\rm field})/\dd t=0$；对有限区域还要计入穿过边界的动量通量。两个孤立电流元的磁力也不能脱离完整电路、载流电荷和电磁场独立套用质点第三定律。不是给场机械地配上一个普通质点“反作用力”就结束了，而是需要使用包含场的局域动量平衡。在场贡献可以忽略的经典近似下，才回到仅对质点求和的形式。
+
+\section{角动量定律}
+\label{r2ch02:sec:angular}
+
+\subsection{质点的角动量与矩心}
+\label{r2ch02:sec:point-angular}
+
+相对惯性系中的固定矩心 $O$，质点的力矩（torque，亦称moment of force）和角动量（angular momentum）为
+\begin{equation}
+ \vect M_O=\vect r\times\vect F,\qquad
+ \vect L_O=\vect r\times\vect p,\qquad
+ \boxed{\vect M_O=\frac{\dd\vect L_O}{\dd t}}.
+ \label{r2ch02:eq:010}
+\end{equation}
+证明时对 $\vect r\times m\vect v$ 求导，附加项 $\vect v\times m\vect v$ 恒为零。矩心的选择是物理解题的一部分：固定点可直接使用式~\eqref{r2ch02:eq:010}；若矩心移动，必须明确动量是否采用相对速度、导数是否跟随动点，不能机械套用固定点公式。平面有心力满足 $\vect F\parallel\vect r$，故相对力心的角动量守恒。
+
+把证明的两项写出：
+\[
+ \frac{\dd}{\dd t}(\vect r\times m\vect v)
+ =\underbrace{\vect v\times m\vect v}_{0}
+ +\vect r\times m\vect a
+ =\vect r\times\vect F.
+\]
+用 $\vect r$ 对牛顿方程作叉积是得到这一结果的直接构造；旋转对称性与角动量守恒的更一般联系由诺特定理给出。矩心（center of moment）不同，$\vect r$ 以及力矩、角动量数值都会改变，定理却必须在一套一致定义下使用。例如对随时间移动的点 $A$，若仍用惯性系动量定义
+\[
+ \vect L_A=\sum_i(\vect r_i-\vect r_A)\times m_i\vect v_i,
+\]
+则直接求导得到
+\[
+ \frac{\dd\vect L_A}{\dd t}
+ =\vect M_A^{\rm ext}-\vect v_A\times\vect P.
+\]
+若改用相对速度 $\vect v_i-\vect v_A$ 定义相对角动量，则相应附加项是
+$-M(\vect r_C-\vect r_A)\times\vect a_A$。若坐标轴还转动，还需转换矢量导数。故“此刻该点恰好速度为零”不等于所有关于动点的定理都能无条件沿用；选质心或固定点，正是为了使适用的附加项消失。
+
+\subsection{质点系角动量与两部分的定理}
+\label{r2ch02:sec:system-angular}
+
+质点系的总角动量与合外力矩满足
+\begin{equation}
+ \vect L_O=\sum_i\vect r_i\times m_i\vect v_i,\qquad
+ \vect M_O^{\rm ext}=\sum_i\vect r_i\times\vect F_i,\qquad
+ \boxed{\vect M_O^{\rm ext}=\frac{\dd\vect L_O}{\dd t}}.
+ \label{r2ch02:eq:011}
+\end{equation}
+这里既用了相互作用力等大反向，也用了共线性，因而内力矩成对抵消。
+对每个质点先写 $\vect r_i\times m_i\vect a_i=\vect r_i\times\vect F_i+\sum_{j\ne i}\vect r_i\times\vect F_{ji}$。求和后，一对内力矩为
+\[
+ \vect r_i\times\vect F_{ji}+\vect r_j\times\vect F_{ij}
+ =(\vect r_j-\vect r_i)\times\vect F_{ij}=0,
+\]
+这才是式~\eqref{r2ch02:eq:011} 只需外力矩的理由。以质心为分点，
+\begin{equation}
+ \vect L_O=\vect r_C\times M\vect v_C
+ +\sum_i\vect r_i'\times m_i\vect v_i'
+ \equiv \vect L_C+\vect L',
+ \quad
+ \vect M_O=\vect r_C\times\vect F_{\rm ext}+\vect M'.
+ \label{r2ch02:eq:012}
+\end{equation}
+质心系的平动惯性力对质心的总矩为零，因此两部分各自满足相应的角动量定理。
+
+式~\eqref{r2ch02:eq:012} 中，$\vect L_C$ 专指“把总质量集中在质心处”对固定点 $O$ 的轨道角动量，$\vect L'$ 才是系统相对质心的角动量；不能把这两种“关于质心”的说法混淆。展开求和，
+\[
+\begin{aligned}
+ \vect L_O
+ &=\sum_i(\vect r_C+\vect r_i')\times m_i(\vect v_C+\vect v_i')\\
+ &=\vect r_C\times M\vect v_C
+   +\left(\sum_i m_i\vect r_i'\right)\times\vect v_C
+   +\vect r_C\times\sum_i m_i\vect v_i'
+   +\sum_i\vect r_i'\times m_i\vect v_i'\\
+ &=\vect L_C+\vect L'.
+\end{aligned}
+\]
+中间两项分别因位置与速度的质量加权和为零而消失。外力矩则直接拆成
+\[
+ \vect M_O^{\rm ext}=\vect r_C\times\vect F_{\rm ext}
+ +\sum_i\vect r_i'\times\vect F_i
+ \equiv\vect M_C+\vect M'.
+\]
+惯性力相对质心的总矩已证明为零，因此
+\[
+ \frac{\dd\vect L_C}{\dd t}=\vect M_C,\qquad
+ \frac{\dd\vect L'}{\dd t}=\vect M'.
+\]
+某一部分角动量是否守恒，需分别检查它对应的力矩。涉及场时，也必须把场的角动量与边界输运纳入，才能讨论封闭体系的总角动量守恒。
+
+\section{能量定律}
+\label{r2ch02:sec:energy}
+
+动能定理与前两节有相似的推导结构，但有一个关键区别：内力的总功率一般不抵消。动能并不普遍守恒，机械能也需要保守力和相应约束条件；总能量守恒则要求纳入内能、场能以及与外界的能量交换，不能仅从一个任意给定的 $\vect F=m\vect a$ 机械模型中无条件推出。
+
+\subsection{功率、功和动能}
+\label{r2ch02:sec:point-energy}
+
+力对质点的瞬时功率、有限过程做功和动能定义为
+\begin{equation}
+ \mathcal P=\vect F\cdot\vect v,\qquad
+ W_{1\to2}=\int_{t_1}^{t_2}\mathcal P\,\dd t
+ =\int_{1}^{2}\vect F\cdot\dd\vect r,\qquad
+ T=\frac12mv^2.
+ \label{r2ch02:eq:013}
+\end{equation}
+牛顿第二定律两边点乘速度，得到
+\[
+ \vect F\cdot\vect v
+ =m\dot{\vect v}\cdot\vect v
+ =\frac m2\frac{\dd}{\dd t}(\vect v\cdot\vect v)
+ =\frac{\dd}{\dd t}\left(\frac12mv^2\right).
+\]
+这里用的是 $\dd(\vect v\cdot\vect v)=2\vect v\cdot\dd\vect v$，不能把微分符号省掉后写成 $\dd(v^2)=2\vect v\cdot\vect v$。于是
+\begin{equation}
+ \boxed{\mathcal P=\frac{\dd T}{\dd t}},
+ \qquad W_{1\to2}=T_2-T_1.
+ \label{r2ch02:eq:014}
+\end{equation}
+功（work）针对一个具体过程，功率（power）针对某一时刻，动能（kinetic energy）则是状态量。若合力始终与速度垂直，动能不变：例如质点在固定光滑椭球面上只受法向约束力，或电荷只受静磁场中的磁力而无电场及其他做功作用。光滑面上若还有重力，不能仅因面光滑就认定动能守恒。
+
+\subsection{质点系动能与内力功}
+\label{r2ch02:sec:system-kinetic}
+
+质点系的总动能定理必须计入内力功率：
+\begin{equation}
+ T=\sum_i\frac12m_iv_i^2,\qquad
+ \mathcal P=\sum_i\vect F_i\cdot\vect v_i
+ +\sum_{\{ij\}}(\vect F_{ij}\cdot\vect v_j+\vect F_{ji}\cdot\vect v_i)
+ =\frac{\dd T}{\dd t}.
+ \label{r2ch02:eq:015}
+\end{equation}
+内力虽成对等大反向，却作用在不同速度的点上，功率一般不抵消。
+具体地，一对内力功率为 $\vect F_{ij}\cdot(\vect v_j-\vect v_i)$，两点相对运动时通常非零。式~\eqref{r2ch02:eq:015} 的 $\sum_{\{ij\}}$ 表示每一无序质点对只计一次，故
+\[
+ \sum_{\{ij\}}=\sum_{i=2}^{n}\sum_{j=1}^{i-1},
+ \qquad \text{最多有}\ \frac{n(n-1)}2\ \text{对}.
+\]
+若使用 $\sum_i\sum_{j\ne i}$ 却又把每对两力功率都写进去，就会重复计算。逐质点将
+$\vect F_i\cdot\vect v_i+\sum_{j\ne i}\vect F_{ji}\cdot\vect v_i=m_i\vect a_i\cdot\vect v_i$
+求和，即得总功率等于总动能变化率。质心分解给出
+\begin{equation}
+ T=\frac12Mv_C^2+\sum_i\frac12m_iv_i'^2\equiv T_C+T',
+ \qquad \mathcal P=\mathcal P_C+\mathcal P'.
+ \label{r2ch02:eq:016}
+\end{equation}
+这就是动能的柯尼希定理。质心系惯性力总功率为
+$-\vect a_C\cdot\sum_i m_i\vect v_i'=0$。
+
+具体证明不是把总速度的平方误当成各相对速度平方的和，而要先展开：
+\[
+\begin{aligned}
+ T&=\frac12\sum_i m_i(\vect v_C+\vect v_i')\cdot(\vect v_C+\vect v_i')\\
+  &=\frac12Mv_C^2+\vect v_C\cdot\sum_i m_i\vect v_i'
+    +\frac12\sum_i m_iv_i'^2=T_C+T'.
+\end{aligned}
+\]
+功率的两部分也要定义清楚：
+\[
+ \mathcal P_C=\vect F_{\rm ext}\cdot\vect v_C,\qquad
+ \mathcal P'=\sum_i\vect F_i\cdot\vect v_i'
+ +\sum_{\{ij\}}(\vect F_{ij}\cdot\vect v_j'+\vect F_{ji}\cdot\vect v_i').
+\]
+外力对共同速度的功率给出 $\mathcal P_C$；内力乘共同速度的和为零；惯性力乘相对速度的总和也为零。因此 $\mathcal P=\mathcal P_C+\mathcal P'$，且分别有
+\[
+ \dot T_C=\mathcal P_C,\qquad \dot T'=\mathcal P'.
+\]
+即使 $\vect F_i=0$、相互作用完全封闭，也仍可能有 $\dot T=\sum_{\{ij\}}\mathcal P_{ij}\ne0$。例如两个同号带电小球由静止相互排斥，两球动能都增加，不是一个把自己的动能交给另一个；增加的动能来自相互作用势能或场能。功率说明能量以多快的速率转入动能，并不说明其来源必定也是另一个物体的动能。对于完整、时间平移对称的动力学系统，能量守恒有更一般的理论依据；具体经典问题中则必须补入势能、约束和内能的适用假设。
+
+\subsection{保守力、约束力和耗散力}
+\label{r2ch02:sec:other-energy}
+
+\subsubsection{保守力与势能}
+\label{r2ch02:sec:conservative}
+
+势能（potential energy）不是为了凑出一个常量而任意添加的函数，它必须通过空间导数给出实际的力。给定质量、相互作用势、约束与完整初始条件，才可建立相应的运动初值问题；粒子数多、初始状态复杂和方程非线性，会使实际求解困难。不能因此把所有微观相互作用都假定成一个仅依赖位置的二体势，本节只先讨论满足这种条件的经典模型。
+
+二体保守相互作用由不显含速度和时间的势能 $V(\vect r_1,\vect r_2)$ 描述：
+\begin{equation}
+ \vect F_{12}=-\nabla_2V,\qquad \vect F_{21}=-\nabla_1V,\qquad
+ \dd V=-\vect F_{12}\cdot\dd\vect r_2-\vect F_{21}\cdot\dd\vect r_1.
+ \label{r2ch02:eq:017}
+\end{equation}
+若还要求空间平移、旋转对称和第三定律，则 $V$ 只能依赖粒子间距 $R=|\vect r_1-\vect r_2|$，两力沿连心线且等大反向。
+梯度下标表示对哪个质点的坐标求导。例如
+\[
+\begin{array}{lll}
+ F_{12x}=-\dfrac{\partial V}{\partial x_2},&
+ F_{12y}=-\dfrac{\partial V}{\partial y_2},&
+ F_{12z}=-\dfrac{\partial V}{\partial z_2},\\[5pt]
+ F_{21x}=-\dfrac{\partial V}{\partial x_1},&
+ F_{21y}=-\dfrac{\partial V}{\partial y_1},&
+ F_{21z}=-\dfrac{\partial V}{\partial z_1}.
+\end{array}
+\]
+对位置的小变化，势能增量的一阶部分为全微分 $\dd V=\nabla_1V\cdot\dd\vect r_1+\nabla_2V\cdot\dd\vect r_2$；有限增量不能直接等同于这个一阶式。
+平移对称性使势只依赖相对位矢，旋转对称性再使它只依赖距离：
+\[
+ R=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}.
+\]
+定义 $\uvec e_{12}=(\vect r_2-\vect r_1)/R$、$\uvec e_{21}=-\uvec e_{12}$，于是
+\[
+ \vect F_{12}=-\frac{\dd V}{\dd R}\uvec e_{12},\qquad
+ \vect F_{21}=-\frac{\dd V}{\dd R}\uvec e_{21},\qquad
+ \vect F_{12}\cdot\dd\vect r_2+\vect F_{21}\cdot\dd\vect r_1=-\dd V.
+\]
+总内力做功转入总动能，恰等于势能减少，所以对只有这种相互作用的封闭系统，
+\begin{equation}
+ \dd T=-\dd V,\qquad E=T+V=\text{常量}.
+ \label{r2ch02:eq:018}
+\end{equation}
+静磁场使带电粒子动能守恒，却不能由普通位置势 $V(\vect r)$ 产生，因此“某次运动中能量数值不变”不能反过来作为保守力的定义；含速度的广义势属于分析力学的更广框架。
+
+式~\eqref{r2ch02:eq:018} 意味着 $E(t)=E(0)$。若施力源固定，把测试质点与每个源之间的静态势相加，就得到单质点势 $V(\vect r)$ 及 $\vect F=-\nabla V$。对磁力则不同：同一位置、不同速度对应不同的 $q\vect v\times\vect B$，不能选一个常数 $V$ 来代表这个非零的力。
+
+含速度的广义势提供另一种表述，但不能仍只取负梯度。以电磁场为例，令 $\Phi$ 为电标势、$\vect A$ 为磁矢势，
+\[
+ U_g=q\Phi-q\vect v\cdot\vect A,\qquad
+ Q_i=\frac{\dd}{\dd t}\frac{\partial U_g}{\partial v_i}
+      -\frac{\partial U_g}{\partial x_i}.
+\]
+在直角坐标下展开，$Q_i=q[-\partial_i\Phi-\partial_t A_i+\sum_jv_j(\partial_iA_j-\partial_jA_i)]$，正是洛伦兹力分量。多出的速度导数项不能省略。相应的能量函数是
+$T+U_g-\sum_i v_i\partial U_g/\partial v_i=T+q\Phi$，不是简单的 $T+U_g$；静磁场中取 $\Phi=0$ 时，仍是动能守恒。这说明磁力有广义势表述，并不使它成为本节所定义的位置势保守力。
+
+\subsubsection{约束力与广义坐标}
+\label{r2ch02:sec:constraints}
+
+约束把若干坐标限制在 $f(q_1,q_2)=0$ 上，允许的虚位移满足
+$f_{,1}\delta q_1+f_{,2}\delta q_2=0$。理想约束力不对任意允许虚位移做总功，因而具有
+\begin{equation}
+ Q_1=\lambda\frac{\partial f}{\partial q_1},\qquad
+ Q_2=\lambda\frac{\partial f}{\partial q_2},\qquad
+ Q_1\delta q_1+Q_2\delta q_2=0.
+ \label{r2ch02:eq:019}
+\end{equation}
+光滑面、不可伸长轻绳和理想轻杆是常见模型。单摆中拉力不做功，因此可只用 $T=ml^2\dot\theta^2/2$ 和 $V=mgl(1-\cos\theta)$ 描述能量。
+
+单摆以角度 $\theta$ 作为广义坐标（generalized coordinate），能量函数为 $H(\theta,\dot\theta)=T+V$。重力的广义力为
+\[
+ Q_\theta=-\frac{\partial V}{\partial\theta}=-mgl\sin\theta,
+ \qquad Q_\theta\,\dd\theta=-\dd V.
+\]
+$Q_\theta$ 是力矩量纲；广义力不一定具有普通力的量纲，必须与其对应广义坐标的微分相乘才是功。固定支点、绳长不变时，拉力沿半径而位移沿圆弧，所以不做功；理想轻绳也没有被单独计入的伸缩储能。
+
+例如两质点由长 $l$ 的轻杆连接，有完整约束
+\[
+ f=(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2-l^2=0.
+\]
+若其余坐标固定，只让 $x_1,x_2$ 改变，这就成为两广义坐标的例子；一般三维运动则必须对全部六个坐标求微分。对任意非奇异的单个约束 $f(q_1,q_2)=0$，允许虚位移在 $\nabla f$ 的垂直方向上。理想约束力与每一允许虚位移垂直，故 $(Q_1,Q_2)$ 与 $\nabla f$ 平行，只有\emph{同一个}比例系数 $\lambda$，这证明了式~\eqref{r2ch02:eq:019}。
+
+理想约束的严格条件是虚功为零。约束不显含时间时，实际运动的位移也满足同一齐次关系，所以总实际功率为零；两个被轻杆连接的物体，杆力可对各自做非零功，但两项之和为零。约束若为 $f(q,t)=0$，则沿实际运动有
+\[
+ \sum_i f_{,i}\dot q_i=-f_{,t},\qquad
+ \sum_i Q_i\dot q_i=-\lambda f_{,t},
+\]
+一般不为零。移动的光滑支撑面就可能向系统输入能量，不能仅因“光滑”便宣布所有约束力不做功。
+
+\subsubsection{内能、耗散与功能关系}
+\label{r2ch02:sec:dissipation}
+
+一个宏观小球即使整体静止，内部粒子也不一定静止。若不单独追踪其内部有序运动，质心系中的内部能量可记为
+\[
+ U=V_{\rm int}+\sum_i\frac12m_i v_i'^2,\qquad
+ \sum_i m_i\vect v_i'=0.
+\]
+若把整体转动、振动或形变也作为宏观自由度单列，则须把这些有序部分从上述 $U$ 中分出，不能与热力学内能重复计数。把小球整体以速度 $\vect u$ 抛出而不改变内部状态时，
+\[
+ \vect P=M\vect u,\qquad T_C=\frac12Mu^2=\frac{P^2}{2M},\qquad
+ H=U+T_C.
+\]
+最后一式由柯尼希定理得到；$\vect u=0$ 只消去了整体平动能，并未使内能为零。总动量为零的系统仍可有巨大的内部动能，不能一般地把系统总动能写成 $P^2/(2M)$。
+
+宏观“质点”常是许多微观粒子的一个整体近似。多个这样的物体组成系统时，要区分整体动能、物体之间的相互作用势能、以及各物体的内能。摩擦和黏滞等耗散力（dissipative force）把有序机械运动的能量转成内部无规则运动；在无外部热功输入、耗散损失留在所选系统内部的模型中，满足
+\begin{equation}
+ \Delta U=-W_{\rm diss}\ge0,\qquad
+ \frac{\dd}{\dd t}(T+V)=\mathcal P_{\rm ext}-\dot Q_{\rm diss}.
+ \label{r2ch02:eq:020}
+\end{equation}
+势能释放和外力输入都可能补偿耗散造成的机械能降低，所以判断动能增减不能只看摩擦力。
+
+其中 $W_{\rm diss}\le0$ 是耗散力对所选全部宏观自由度所做的总功，$\dot Q_{\rm diss}=-\mathcal P_{\rm diss}\ge0$ 表示转入内能的速率，不是约定为外界传入的热流。若 $\vect F_{ij}^{\rm diss}$ 表示真实的耗散内力，则
+\[
+ \mathcal P_{\rm diss}
+ =\sum_{\{ij\}}(\vect F_{ij}^{\rm diss}\cdot\vect v_j
+                 +\vect F_{ji}^{\rm diss}\cdot\vect v_i),\qquad
+ \frac{\dd(T+V)}{\dd t}=\sum_i\vect F_i\cdot\vect v_i+\mathcal P_{\rm diss}.
+\]
+真实耗散力的功率已经是负数，应当\emph{加上}它；只有把耗散速率另定义为正数时才写减号。单个物体受到摩擦也可能被加速，需看摩擦接触的两侧和驱动装置是否一起列入系统。热力学第二定律约束的是总熵产生，不能把它简化为“任何系统的宏观动能必定下降”；有热流、外功或势能释放时必须完整列出能量交换。
+
+\section{位力定律（选读）}
+\label{r2ch02:sec:virial}
+
+位力定律不直接对应一个处处守恒的新物理量，却能把力、动能与质量分布联系起来，在束缚运动、热平衡和扩散问题中有用。这里保留为选读。
+
+\subsection{质点的位力与平均关系}
+\label{r2ch02:sec:point-virial}
+
+位力（virial）把角动量构造中的叉积改成点积：
+\begin{equation}
+ \mathcal V=\vect r\cdot\vect F,\qquad
+ G=\vect r\cdot\vect p=\frac{\dd}{\dd t}\left(\frac12mr^2\right).
+ \label{r2ch02:eq:021}
+\end{equation}
+令 $I_r=mr^2/2$，则 $\dot I_r=G$。$I_r$ 是质量二阶矩的一半，并非不加区别地指绕某条轴的转动惯量。直接求导时，点积不像叉积那样把速度乘速度消去：
+\[
+ \dot G=\dot{\vect r}\cdot m\vect v+\vect r\cdot m\dot{\vect v}
+       =mv^2+\vect r\cdot\vect F=2T+\mathcal V.
+\]
+所以 $\mathcal V=\dot G$ 并不成立，正确结果是
+\begin{equation}
+ \boxed{\mathcal V=\frac{\dd G}{\dd t}-2T}.
+ \label{r2ch02:eq:022}
+\end{equation}
+对稳定束缚运动作长时间平均，$G$ 有界，故 $\langle\dot G\rangle=0$。若势能为齐次函数 $V\propto r^n$，由 $\vect r\cdot\vect F=-nV$ 得 $2\langle T\rangle=n\langle V\rangle$。万有引力 $n=-1$，因此 $2\langle T\rangle=-\langle V\rangle$。
+
+\subsection{布朗运动与扩散系数}
+\label{r2ch02:sec:brownian}
+
+考虑浸在温度为 $\Theta$ 的均匀热浴中的布朗粒子，以 $\Theta$ 避免与动能 $T$ 混淆。随机分子碰撞产生力 $\vect f(t)$，平均阻力为 $-\gamma\vect v$，于是
+\[
+ m\dot{\vect v}=\vect f(t)-\gamma\vect v,\qquad
+ \mathcal V=\vect r\cdot\vect f(t)-\frac\gamma2\frac{\dd r^2}{\dd t}.
+\]
+阻尼系数 $\gamma$ 可以通过缓慢施加恒力 $\vect F_0$ 测得：达到稳态漂移时，$\langle\vect v\rangle=\vect F_0/\gamma$。这把耗散参数与可测的迁移响应联系起来。
+
+必须区分 $\langle\vect f\rangle=0$ 与 $\langle\vect r\cdot\vect f\rangle=0$：随机力平均为零，不能单独推出它与粒子位置的乘积平均也为零。以下采用\emph{欠阻尼、无记忆的热浴模型}，随机力满足
+\[
+ \langle f_i(t)\rangle=0,\qquad
+ \langle f_i(t)f_j(s)\rangle=2\gamma k_{\rm B}\Theta\,
+ \delta_{ij}\delta(t-s).
+\]
+$\delta_{ij}$ 是克罗内克符号，$\delta(t-s)$ 是表示瞬时相关的狄拉克分布；这是一种时间尺度分离后的白噪声近似。在这一惯性模型中，位置是速度的时间积分，当前噪声增量与已有位置不相关，故 $\langle\vect r\cdot\vect f\rangle=0$。有记忆的随机力或不同的随机积分模型不能照抄这一步。
+
+先沿时间积分位力定理，得到与实验长时平均对应的关系
+\[
+ \int_0^t\vect r\cdot\vect f\,\dd s
+ -\frac\gamma2[r^2(t)-r^2(0)]
+ =G(t)-G(0)-2\int_0^t T(s)\,\dd s.
+\]
+若初始速度已取热平衡分布，$\langle T\rangle=3k_{\rm B}\Theta/2$，并令 $\vect r(0)=0$。为避免把扩散过程中增长的单条随机轨迹误称为有界，直接对上式取系综平均。记 $Y(t)=\langle r^2(t)\rangle$，利用 $\langle G\rangle=m\dot Y/2$，得到
+\[
+ m\ddot Y+\gamma\dot Y=6k_{\rm B}\Theta,
+ \qquad Y(0)=\dot Y(0)=0.
+\]
+令 $\tau_m=m/\gamma$。先解 $\dot Y$ 的一阶方程，再积分：
+\[
+ \dot Y=\frac{6k_{\rm B}\Theta}{\gamma}(1-\e^{-t/\tau_m}),\qquad
+ Y=\frac{6k_{\rm B}\Theta}{\gamma}
+       [t-\tau_m(1-\e^{-t/\tau_m})].
+\]
+在 $t\gg\tau_m$ 的扩散极限，主导项给出
+\begin{equation}
+ \langle r^2(t)\rangle\simeq6Dt,\qquad
+ D=\frac{k_{\rm B}\Theta}{\gamma}.
+ \label{r2ch02:eq:023}
+\end{equation}
+各向同性时 $\langle x^2\rangle=\langle y^2\rangle=\langle z^2\rangle=Y/3\simeq2Dt$。$D$ 的量纲为 $\mathrm{m^2/s}$。短时展开反而有 $Y\simeq(3k_{\rm B}\Theta/m)t^2$，对应惯性弹道运动，说明长时的 $6Dt$ 不能当作任意时刻的精确式。扩散系数与阻尼的这条爱因斯坦—斯莫卢霍夫斯基关系（Einstein–Smoluchowski relation），是热涨落与耗散联系的基本形式，而不是只凭“随机”二字即可推出的结论。
+
+\subsection{质点系的位力及气体物态方程}
+\label{r2ch02:sec:system-virial}
+
+对质点系，定义 $G=\sum_i\vect r_i\cdot m_i\vect v_i$，$T$ 为总动能。各质点位力求和时，内力位力一般不为零。沿用 $\vect F_{ij}$ 为 $i$ 对 $j$ 的力，定义 $\vect r_{ij}=\vect r_i-\vect r_j$，则每对内力项为
+\[
+ \vect r_j\cdot\vect F_{ij}+\vect r_i\cdot\vect F_{ji}
+ =-\vect r_{ij}\cdot\vect F_{ij}.
+\]
+因此
+\begin{equation}
+ \sum_i\vect r_i\cdot\vect F_i
+ -\sum_{\{ij\}}\vect r_{ij}\cdot\vect F_{ij}
+ =\frac{\dd G}{\dd t}-2T.
+ \label{r2ch02:eq:024}
+\end{equation}
+对固定容器中的稳定平衡气体，微观的 $I_r=\sum_i m_ir_i^2/2$ 仍有涨落，但它的平衡平均可写为 $\langle I_r\rangle=\int \rho r^2\dd V/2$ 并不随时间改变；只要求边界项 $[G(t)-G(0)]/t$ 的平均趋于零，不必断言每一时刻 $G=0$。理想气体内部相互作用的位力可忽略，容器壁对气体的力指向内侧。令 $\dd\vect S$ 为外法向面积元，平衡压强 $p$ 均匀，壁力的平均外位力为
+\[
+ \left\langle\sum_i\vect r_i\cdot\vect F_i\right\rangle
+ =-p\oint\vect r\cdot\dd\vect S
+ =-p\int_V(\nabla\cdot\vect r)\dd V=-3pV.
+\]
+最后一步用到 $\nabla\cdot\vect r=3$。也可把 $\vect r\cdot\dd\vect S/3$ 看成由原点连向小面元的有向锥体体积，再对闭合表面求和。平动能量均分给出 $\langle T\rangle=3Nk_{\rm B}\Theta/2=3\nu R\Theta/2$，与位力关系 $-3pV=-2\langle T\rangle$ 联立，得到
+\[
+ pV=Nk_{\rm B}\Theta=\nu R\Theta.
+\]
+若分子间存在相互作用，就应保留式~\eqref{r2ch02:eq:024} 的内力项。低密度区的昂内斯位力展开（Onnes virial expansion）写成
+\[
+ p=R\Theta\left(\frac1{v_m}+\frac{B_2(\Theta)}{v_m^2}
+                  +\frac{B_3(\Theta)}{v_m^3}+\cdots\right),
+ \qquad v_m=\frac V\nu.
+\]
+$v_m$ 是摩尔体积，不是速度；首项相当于 $B_1=1$。$B_2,B_3$ 分别为第二、第三位力系数，量纲依次为摩尔体积及其平方。系数由相互作用与统计关联决定；第三系数含三粒子关联，并不意味着必须存在独立的三体力。这一展开的定量计算需要统计物理，并非把理想气体式随意添几项。
+
+\section{碰撞问题}
+\label{r2ch02:sec:collision}
+
+本节以质点、刚体及理想约束下的碰撞为主。连续弹性体中的应力传播和动量输运涉及更多自由度；在讨论多体模型的边界时会指出它们的作用，但不把连续体的运动直接压缩为一次无条件适用的两体正碰。
+
+\subsection{二质点正碰}
+\label{r2ch02:sec:point-collision}
+
+碰撞是短时间内相互作用很强、速度发生显著改变的过程。研究碰撞前后状态时，可把接触力在有限接触时间内的积分等效成冲量。所谓“瞬时碰撞”是接触时间相对于其他运动时间很短的极限模型，并不是材料真的承受无限大的力。只有外力冲量相对于碰撞冲量可忽略时，才能对碰撞系统使用动量守恒；接触点位置、刚体姿态在这段时间内近似不变也需要检查。
+
+先看两质点沿一直线的正碰。取从物体1指向物体2为正向，碰前速度为 $v_1>v_2$，碰后为 $v_1',v_2'$。若系统所受外冲量可忽略，总有
+\[
+ m_1v_1+m_2v_2=m_1v_1'+m_2v_2'.
+\]
+若还假设碰撞完全弹性，则另有
+\[
+ \frac12m_1v_1^2+\frac12m_2v_2^2
+ =\frac12m_1v_1'^2+\frac12m_2v_2'^2.
+\]
+这两式足以求完全弹性正碰的末速度，但仅把内部过程当作“黑箱”，尚未说明能量如何暂时储存在形变中，以及非弹性时动能如何减少。不能对任意碰撞同时套用这两条守恒式。
+
+还要区分力对实际作用点做的功和用质心位移计算的量。人迎面撞向固定墙面并撑住时，理想固定墙面接触点的位移为零，墙对该接触点的实际功为零；然而墙的冲量使人的质心减速，$\int\vect F_{\rm wall}\cdot\dd\vect r_C$ 可以为负。后者进入质心平动动能定理，不等于墙向整个人传递的总能量。人的平动动能可变为身体形变能和内能；若人主动发力，还可能有体内化学能转化。把人当作无内部结构的质点时，这些区别被隐去，不能再据此解释内部能量变化。
+
+为保留过程信息，可以对两个等效质点施加一对有限时间的相互作用力；两质点在模型中不必几何重合，关键是冲量与相关速度、能量变化和所研究过程一致。设物体2所受作用力为 $F(t)\geqslant0$，物体1所受力为 $-F(t)$。图~\ref{r2ch02:fig:001}(a) 的阴影面积定义截至时刻 $t$ 的累积冲量；(b) 把这个面积画成随时间变化的函数：
+\begin{equation}
+ i(t)=\int_0^tF(t')\,\dd t',\qquad I=i(\tau).
+ \label{r2ch02:eq:025}
+\end{equation}
+这里 $\tau$ 是接触持续时间，$i(0)=0$、$i(\tau)=I$。$F\geqslant0$ 保证 $i$ 单调不减，可以用 $k=i/I\in[0,1]$ 标记碰撞进程。若有关时间段内 $F>0$，每个 $0<k<1$ 唯一对应时刻 $t_k$；若存在 $F=0$ 的平台，反函数可能不唯一，但以冲量作积分变量的公式仍成立。图中 $t_k$、阴影面积 $kI$ 和累积曲线上的高度 $kI$ 表示同一阶段。
+在严格递增并连续的情形，可以把这层对应明确写为
+\[
+ i(t_k)=kI,\qquad t_k=i^{-1}(kI),\qquad i^{-1}(0)=0,\quad i^{-1}(I)=\tau.
+\]
+\figImpulseHistory
+
+由动量定理，冲量累计到 $i$ 时两质点的瞬时速度为
+\[
+ u_1(i)=v_1-\frac{i}{m_1},\qquad
+ u_2(i)=v_2+\frac{i}{m_2}.
+\]
+在 $i=I$ 时，$v_1'=v_1-I/m_1$、$v_2'=v_2+I/m_2$。力的功率分别为 $-Fu_1$ 和 $Fu_2$；利用 $\dd i=F\dd t$，逐一积分得
+\[
+\begin{aligned}
+ W_1&=-\int_0^I\left(v_1-\frac{i}{m_1}\right)\dd i
+     =-Iv_1+\frac{I^2}{2m_1},\\
+ W_2&= \int_0^I\left(v_2+\frac{i}{m_2}\right)\dd i
+     = Iv_2+\frac{I^2}{2m_2}.
+\end{aligned}
+\]
+把末速度代入，就有不含 $F(t)$ 具体形状的端点式：
+\begin{equation}
+ W_1=-\frac I2(v_1+v_1'),\qquad
+ W_2= \frac I2(v_2+v_2').
+ \label{r2ch02:eq:026}
+\end{equation}
+例如 $W_1=-Iv_1+I^2/(2m_1)=m_1(v_1'^2-v_1^2)/2$，直接还原动能定理。更一般地，若 $\vect v_P$ 为受力物质点的速度，$\dd\vect I=\vect F\dd t$，则
+\[
+ W=\int\vect F\cdot\vect v_P\,\dd t
+   =\int\vect v_P\cdot\dd\vect I.
+\]
+此式不能把 $\vect v_P$ 不加区分地换成刚体质心速度。
+
+定义碰前接近相对速率 $v=v_1-v_2>0$、碰后分离相对速率 $v'=v_2'-v_1'\geqslant0$，以及恢复系数
+\begin{equation}
+ e=\frac{v'}v,\qquad
+ \Delta T=W_1+W_2=\frac I2(v'-v).
+ \label{r2ch02:eq:027}
+\end{equation}
+为看清四类碰撞，引入约化质量 $\mu=m_1m_2/(m_1+m_2)$。两速度式相减给出
+\[
+ v'= -v+I\left(\frac1{m_1}+\frac1{m_2}\right)
+     =-v+\frac I\mu.
+\]
+因此
+\[
+ I=\mu(1+e)v,\qquad
+ \Delta T=-\frac12\mu(1-e^2)v^2,
+\]
+并且
+\[
+ v_1'=v_1-\frac{m_2(1+e)}{m_1+m_2}(v_1-v_2),\qquad
+ v_2'=v_2+\frac{m_1(1+e)}{m_1+m_2}(v_1-v_2).
+\]
+分离条件要求 $I\geqslant\mu v$。$I<\mu v$ 时两物体仍在接近，不能把这一中间阶段当作碰撞结束。
+\begin{enumerate}
+ \item $e=0$：两者末速度相同，$I=\mu v$；称完全非弹性碰撞。对给定总动量，末态平动动能最小，损失为 $\mu v^2/2$。它不必意味着永久粘连，但若无进一步分离，两者当时只能共同运动。
+ \item $0<e<1$：碰后能分离，但 $v'<v$，总动能减少。相互作用中的一部分储能未恢复为这两个物体的平动动能，而留在振动、声和内能等自由度中。
+ \item $e=1$：$I=2\mu v$，$v'=v$，$\Delta T=0$，为完全弹性碰撞。由动量守恒分解动能差也可得到 $v_1-v_2=v_2'-v_1'$；等质量时随即有 $v_1'=v_2$、$v_2'=v_1$，即交换速度。
+ \item $e>1$：$v'>v$，平动动能增加，称超弹性碰撞；增加的能量来自预存弹性能、内能或化学能等，并非总能量不守恒。爆炸也是内部能转为分离动能的例子，但若初始相对速度 $v=0$，比值 $e=v'/v$ 没有定义，应直接使用动量和能量关系。
+\end{enumerate}
+恢复系数一般取决于材料、速度和接触状态，不应无条件视作材料的固定常数。冲量量纲为质量乘速度，功的量纲为冲量乘速度；$e=0,1$ 的极限也分别还原最大动能损失和动能守恒。
+
+\subsection{自由刚体碰撞与多体碰撞}
+\label{r2ch02:sec:rigid-collision}
+
+图~\ref{r2ch02:fig:002} 中，两刚体的物质接触点 $P_1,P_2$ 在碰撞瞬间占据同一空间位置 $P$，但速度未必相同。取从下方物体1指向上方物体2的公法线为 $\uvec n$，公切线为 $\uvec t$。光滑接触只有法向冲量；粗糙接触还可能有切向冲量，两物体所受总冲量始终等大反向。图中的 $\vect I_2$ 与 $\vect I_1=-\vect I_2$ 是同一对作用的两个冲量，不是两个不相关的外冲量。
+\figRigidImpact
+
+先说明“接触点速度与累计冲量成线性关系”的含义。以一个自由平面刚体为例，质量为 $M$，质心转动惯量为 $J$，$\vect r=\overrightarrow{CP}$。若碰撞中位置和姿态的改变可忽略，且没有其他不可忽略冲量，累计冲量为 $\vect i$ 时
+\[
+ \vect V=\vect V^-+\frac{\vect i}{M},\qquad
+ \omega=\omega^-+\frac{(\vect r\times\vect i)\cdot\uvec k}{J}.
+\]
+于是接触点速度
+\[
+ \vect v_P=\vect V+\omega\uvec k\times\vect r
+          =\vect v_P^-+\mathsf A\vect i,\qquad
+ \mathsf A=\frac1M\mathsf 1+
+ \frac{(\uvec k\times\vect r)(\uvec k\times\vect r)^{\mathsf T}}J.
+\]
+这里 $\mathsf 1$ 是平面单位矩阵，上标 $\mathsf T$ 表示转置；两个列矢量的外积给出矩阵。$\mathsf A$ 为常对称矩阵，它同时包含质心平移与绕质心转动的响应。
+
+若累计冲量始终沿固定方向，可写 $\vect i=k\vect I$。这时
+\[
+ \vect v_P(k)=(1-k)\vect v_P^-+k\vect v_P^+,
+\]
+即接触点速度在两个端点之间作线性插值，因而
+\[
+ W=\int_0^1\vect v_P(k)\cdot\vect I\,\dd k
+   =\frac12\vect I\cdot(\vect v_P^-+\vect v_P^+).
+\]
+粗糙碰撞中冲量方向可以改变，此时不能再假定 $\vect i=k\vect I$；但只要上述固定几何的常对称响应仍适用，仍有
+\[
+\begin{aligned}
+ W&=\int(\vect v_P^-+\mathsf A\vect i)\cdot\dd\vect i
+   =\vect v_P^-\cdot\vect I+\frac12\vect I^{\mathsf T}\mathsf A\vect I,\\
+ \vect v_P^+&=\vect v_P^-+\mathsf A\vect I.
+\end{aligned}
+\]
+所以同样得到
+\begin{equation}
+ W=\frac12\vect I\cdot(\vect v_P^-+\vect v_P^+).
+ \label{r2ch02:eq:028}
+\end{equation}
+它适用于这一刚体冲量模型，不是任何变形接触、任何有限持续过程的普遍端点公式。有其他冲量、姿态显著变化或接触点迁移时，应从实际速度响应重新积分。
+
+令 $\vect I_2=\vect I$。把两刚体的功相加，有
+\[
+ \Delta T=\frac12\vect I\cdot
+ \left[(\vect v_{P_2}^--\vect v_{P_1}^-)
+       +(\vect v_{P_2}^+-\vect v_{P_1}^+)\right].
+\]
+对光滑碰撞 $\vect I=I_n\uvec n$，定义
+\[
+ v_n=(\vect v_{P_1}^--\vect v_{P_2}^-)\cdot\uvec n>0,
+ \qquad
+ v_n'=(\vect v_{P_2}^+-\vect v_{P_1}^+)\cdot\uvec n\geqslant0,
+\]
+便得到 $\Delta T=I_n(v_n'-v_n)/2$。所以在这一无摩擦模型中，完全弹性的等价条件是法向分离速率等于法向接近速率。若存在切向冲量，即使法向恢复系数等于1，切向滑移仍可能耗散动能；必须同时检查切向功，不能单凭 $e_n=1$ 宣称总动能守恒。
+
+\subsubsection{多个物体接触时，连接方式也是条件}
+\label{r2ch02:sec:multiple-collision}
+图~\ref{r2ch02:fig:003}(a) 是五球牛顿摆装置，等大的球在最低点依次相切；悬线使各球主要在同一竖直平面内摆动。把一个端球提起后释放，碰撞时它的速度近似水平，冲量沿球心连线传播。图(b) 将短接触过程抽象为五个等质量球；圆内编号1—5始终指向同一物体，不把碰前、碰后的球画在同一时刻而误数成六个。
+\figNewtonCradle
+
+如果把每次接触近似为相邻两球的弹性正碰，球1以速度 $v$ 撞静止球2，两者交换速度；球2再把速度传给球3，依次传到球5。最终理想状态为球1—4静止、球5以速度 $v$ 离开。这一逐次传递图像说明了牛顿摆的主要现象；真实同时接触中的压缩脉冲需由弹性接触模型决定，动量与动能守恒两式本身不足以唯一确定五个末速度。
+
+若将球2—5刚性连接成质量 $4m$ 的整体，问题就不同了。此时以 $m_1=m$、$m_2=4m$、$v_1=v$、$v_2=0$、$e=1$ 代入正碰公式，得到
+\[
+ v_1'=-\frac35v,\qquad V_{2\text{—}5}'=\frac25v.
+\]
+球1反弹，后四球共同前进；动量为 $-3mv/5+4m(2v/5)=mv$，动能为
+\[
+ \frac12m\frac{9v^2}{25}+\frac12(4m)\frac{4v^2}{25}
+ =\frac12mv^2.
+\]
+两种模型都守恒，却因连接条件不同而有不同结果。不能把“相互接触”直接等同于“刚性连接”。
+
+在理想刚性约束模型中，约束冲量通过整个连通体系分配；固定理想约束的总功为零，但这不意味着每个物体所受约束力分别不做功。真实材料中信息以有限的弹性波速 $c_s$ 传播。可比较尺度 $L$ 上的传播时间 $L/c_s$ 与接触时间 $\tau$：传播很快且连接足够刚时，整体模型较合适；当局部接触和脉冲传递不能忽略时，应按弹性多体系统处理。仅以入射速度“大或小”作判断不够，还须给出材料、尺寸、接触刚度和连接方式。

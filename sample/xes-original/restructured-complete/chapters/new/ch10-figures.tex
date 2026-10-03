@@ -1,0 +1,318 @@
+% Chapter-local, deterministic geometry. Text nodes never have opaque fill.
+\newenvironment{chTenFigure}{\par\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}\par}
+\tikzset{chTenLabel/.style={font=\small,fill=none,inner sep=3pt},chTenArrow/.style={-{Latex[length=2mm]},DeepBlue,thick}}
+\pgfplotsset{chTenPlot/.style={axis lines=left,tick label style={font=\scriptsize},label style={font=\small,fill=none},legend style={draw=none,fill=none,font=\scriptsize},title style={font=\small},grid=none}}
+
+\newcommand{\chTenPhaseFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,every node/.style=chTenLabel]
+\draw[->](-3.4,0)--(3.4,0)node[right]{$x$};\draw[->](0,-2.3)--(0,2.35)node[above]{$v$};
+\draw[DeepBlue,thick,domain=0:360,samples=121]plot({2.6*cos(\x)},{1.55*sin(\x)});
+\draw[chTenArrow,domain=75:45,samples=16]plot({2.6*cos(\x)},{1.55*sin(\x)});
+\draw[chTenArrow,domain=245:215,samples=16]plot({2.6*cos(\x)},{1.55*sin(\x)});
+\node[below right]at(2.68,-.08){$A$};\node[below left]at(-2.68,-.08){$-A$};
+\node[above left]at(-.08,1.63){$A\omega_0$};\node[below right]at(.08,-1.63){$-A\omega_0$};
+\node at(4.1,1.1){\shortstack{$x=A\cos\psi$\\$v=-A\omega_0\sin\psi$}};
+\end{tikzpicture}
+\figcap{无阻尼相轨迹沿顺时针方向运动；在顶部$v>0$，状态点向右移动。}\label{ch10:fig:phase}
+\end{chTenFigure}}
+
+\newcommand{\chTenVerticalFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-1,0)--(6.5,0);
+\foreach \p/\h/\txt in {0/1.65/原长参照,2.5/2.4/平衡位置,5/3.05/瞬时位置}{
+ \draw[spring](\p,0)--(\p,-\h);\fill[DeepBlue](\p,-\h)circle(3pt);
+ \node[below]at(\p,-3.55){\txt};}
+\draw[guide](0,-1.65)--(6.3,-1.65);\draw[guide](2.5,-2.4)--(6.3,-2.4);
+\draw[<->](3.45,-1.65)--(3.45,-2.4)node[midway,right]{$y_0$};
+\draw[<->](6,-2.4)--(6,-3.05)node[midway,right]{$x$};
+\node[right]at(5.1,-3.1){$m$};
+\end{tikzpicture}\figcap{伸长$y=y_0+x$；辅助水平线只用于比较三个位置。}\label{ch10:fig:vertical-spring}\end{chTenFigure}}
+
+\newcommand{\chTenPendulumFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(O)at(0,0);\coordinate(C)at({2.5*sin(28)},{-2.5*cos(28)});
+\draw[guide](O)--(0,-.18) (0,-.55)--(0,-3.3);\draw[thick](O)--(C);
+\draw[DeepBlue,thick,rotate around={28:(O)}](-.48,-.7)rectangle(.48,-2.95);
+\fill(O)circle(2pt)node[above left]{$O$};\fill(C)circle(2pt)node[right]{$C$};
+\draw[chTenArrow](C)--++(0,-1.0)node[right]{$Mg$};
+\draw(0,-.5)arc(-90:-62:.5);\node[left]at(-.55,-.25){$\theta$};\draw[TextGray](-.5,-.25)--(.1,-.49);
+\draw[<->](-.78,-.415)--($(C)+(-.78,-.415)$)node[midway,left]{$a$};\node[right]at(2.1,-.7){转轴垂直纸面};
+\end{tikzpicture}\figcap{复摆绕固定轴$O$转动，$OC=a$；重力作用于质心$C$。}\label{ch10:fig:physical-pendulum}\end{chTenFigure}}
+
+\newcommand{\chTenDampingFigure}{\begin{chTenFigure}
+\begin{tikzpicture}
+\begin{axis}[chTenPlot,width=.31\linewidth,height=4.7cm,xmin=0,xmax=9,ymin=-.7,ymax=1.1,xlabel={$\omega_0t$},ylabel={$x/x_0$},title={欠阻尼：$\gamma/\omega_0=.2$}]
+\addplot[DeepBlue,thick,domain=0:9,samples=140]{exp(-.2*x)*(cos(deg(sqrt(.96)*x))+.2/sqrt(.96)*sin(deg(sqrt(.96)*x)))};\end{axis}
+\begin{axis}[chTenPlot,at={(.335\linewidth,0)},anchor=south west,width=.31\linewidth,height=4.7cm,xmin=0,xmax=9,ymin=-.7,ymax=1.1,xlabel={$\omega_0t$},title={临界：$\gamma/\omega_0=1$}]
+\addplot[DeepBlue,thick,domain=0:9,samples=100]{(1+x)*exp(-x)};\end{axis}
+\begin{axis}[chTenPlot,at={(.67\linewidth,0)},anchor=south west,width=.31\linewidth,height=4.7cm,xmin=0,xmax=9,ymin=-.7,ymax=1.1,xlabel={$\omega_0t$},title={过阻尼：$\gamma/\omega_0=2$}]
+\addplot[DeepBlue,thick,domain=0:9,samples=100]{.5*(1+2/sqrt(3))*exp((-2+sqrt(3))*x)+.5*(1-2/sqrt(3))*exp((-2-sqrt(3))*x)};\end{axis}
+\end{tikzpicture}\figcap{同一初始位移、零初速度下的三类响应；坐标标度完全相同。}\label{ch10:fig:damping-types}\end{chTenFigure}}
+
+\newcommand{\chTenEnvelopeFigure}{\begin{chTenFigure}
+\begin{tikzpicture}\begin{axis}[chTenPlot,width=.86\linewidth,height=5.4cm,xmin=0,xmax=30,ymin=-1.1,ymax=1.2,xlabel={$\omega_0t$},ylabel={$x/A_0$},legend pos=north east]
+\addplot[DeepBlue,thick,domain=0:30,samples=350]{exp(-.08*x)*cos(deg(sqrt(1-.08^2)*x))};\addlegendentry{位移}
+\addplot[TextGray,dashed,domain=0:30]{exp(-.08*x)};\addlegendentry{$\pm\mathrm e^{-\gamma t}$}
+\addplot[TextGray,dashed,domain=0:30,forget plot]{-exp(-.08*x)};
+\end{axis}\end{tikzpicture}\figcap{弱阻尼示例$\gamma/\omega_0=0.08$；虚线给振幅包络，不是另一条运动轨迹。}\label{ch10:fig:damping-envelope}\end{chTenFigure}}
+
+\newcommand{\chTenDampedPhaseFigure}{\begin{chTenFigure}
+\begin{tikzpicture}
+\begin{axis}[chTenPlot,width=.46\linewidth,height=6cm,axis equal image,xmin=-1.2,xmax=1.2,ymin=-1.2,ymax=1.2,xlabel={$x/A_0$},ylabel={$v/(A_0\omega_0)$},title={真实相轨迹：$\gamma/\omega_0=.2$}]
+\addplot[DeepBlue,thick,domain=0:28,samples=450]({exp(-.2*x)*cos(deg(sqrt(.96)*x))},{-exp(-.2*x)*(.2*cos(deg(sqrt(.96)*x))+sqrt(.96)*sin(deg(sqrt(.96)*x))});
+\addplot[DeepBlue,->,thick,domain=.5:1,samples=12]({exp(-.2*x)*cos(deg(sqrt(.96)*x))},{-exp(-.2*x)*(.2*cos(deg(sqrt(.96)*x))+sqrt(.96)*sin(deg(sqrt(.96)*x))});\end{axis}
+\begin{axis}[chTenPlot,at={(.52\linewidth,0)},anchor=south west,width=.46\linewidth,height=6cm,axis equal image,xmin=-1.2,xmax=1.2,ymin=-1.2,ymax=1.2,xlabel={$X/A_0$},ylabel={$Y/A_0$},title={扣除包络：$\gamma/\omega_0=.5$}]
+\addplot[TextGray,dashed,domain=-1:1]{-x};\addplot[DeepBlue,thick,domain=0:360,samples=180]({cos(x)},{-.5*cos(x)-sqrt(.75)*sin(x)});\end{axis}
+\end{tikzpicture}\figcap{左图螺旋收缩；右图$Y=\mathrm e^{\gamma t}v/\omega_0$，虚线为长轴方向。左右阻尼值分别标明。}\label{ch10:fig:damped-phase}\end{chTenFigure}}
+
+\newcommand{\chTenResonanceFigure}{\begin{chTenFigure}
+\begin{tikzpicture}
+\begin{axis}[chTenPlot,width=.46\linewidth,height=6cm,xmin=0,xmax=2,ymin=0,ymax=21,xlabel={$\omega/\omega_0$},ylabel={$Ak/F_0$},legend pos=north east]
+\addplot[Ink,dashdotted,thick,domain=0:2,samples=500]{1/sqrt((1-x^2)^2+(.05*x)^2)};\addlegendentry{$Q=20$}
+\addplot[DeepBlue,thick,domain=0:2,samples=350]{1/sqrt((1-x^2)^2+(.1*x)^2)};\addlegendentry{$Q=10$}
+\addplot[Blue,dashed,thick,domain=0:2,samples=220]{1/sqrt((1-x^2)^2+(.2*x)^2)};\addlegendentry{$Q=5$}
+\addplot[TextGray,densely dotted,thick,domain=0:2,samples=120]{1/sqrt((1-x^2)^2+(2*x)^2)};\addlegendentry{$Q=0.5$}\end{axis}
+\begin{axis}[chTenPlot,at={(.52\linewidth,0)},anchor=south west,width=.46\linewidth,height=6cm,xmin=0,xmax=2,ymin=0,ymax=3.3,xlabel={$\omega/\omega_0$},ylabel={$\delta$},ytick={0,1.570796,3.141593},yticklabels={$0$,$\pi/2$,$\pi$}]
+\addplot[Ink,dashdotted,thick,domain=0:2,samples=500]{rad(atan2(.05*x,1-x^2))};
+\addplot[DeepBlue,thick,domain=0:2,samples=350]{rad(atan2(.1*x,1-x^2))};
+\addplot[Blue,dashed,thick,domain=0:2,samples=220]{rad(atan2(.2*x,1-x^2))};
+\addplot[TextGray,densely dotted,thick,domain=0:2,samples=120]{rad(atan2(2*x,1-x^2))};\end{axis}
+\end{tikzpicture}\figcap{同组参数的幅频和相频曲线；较强阻尼$Q=0.5$没有正频率的位移峰。}\label{ch10:fig:resonance}\end{chTenFigure}}
+
+\newcommand{\chTenProfileFigure}{\begin{chTenFigure}
+\begin{tikzpicture}\begin{axis}[chTenPlot,width=.8\linewidth,height=5.6cm,xmin=-4,xmax=4,ymin=0,ymax=1.12,xlabel={$(z-z_0)/\Gamma$},ylabel={相对峰高},legend pos=north east]
+\addplot[DeepBlue,thick,domain=-4:4,samples=160]{1/(1+x^2)};\addlegendentry{洛伦兹型}
+\addplot[TextGray,dashed,thick,domain=-4:4,samples=160]{exp(-ln(2)*x^2)};\addlegendentry{高斯型}
+\draw[guide](axis cs:-1,0)--(axis cs:-1,.5)--(axis cs:1,.5)--(axis cs:1,0);
+\draw[<->](axis cs:-1,.18)--(axis cs:1,.18)node[midway,below,font=\small,fill=none]{全宽$2\Gamma$};
+\end{axis}\end{tikzpicture}\figcap{相同峰高、相同半高全宽时的两种线型；峰外长尾明显不同。}\label{ch10:fig:profiles}\end{chTenFigure}}
+
+\newcommand{\chTenCoupledPendulaFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(A)at(0,0);\coordinate(B)at(4,0);\coordinate(P)at({2.6*sin(18)},{-2.6*cos(18)});\coordinate(Q)at({4+2.6*sin(-12)},{-2.6*cos(-12)});
+\draw[ground](-.7,0)--(4.7,0);\draw[thick](A)--(P) (B)--(Q);\draw[spring](P)--(Q);
+\draw[guide](A)--(0,-.4) (0,-1)--(0,-3) (B)--(4,-.4) (4,-1)--(4,-3);\fill(P)circle(3pt)node[below left]{$m$};\fill(Q)circle(3pt)node[below right]{$m$};
+\node[right]at(.7,-1.45){$l$};\node[left]at(3.4,-1.45){$l$};
+\draw(0,-.7)arc(-90:-72:.7);\node[left]at(-.4,-.62){$\theta_1$};\draw[TextGray](-.38,-.62)--(.11,-.69);
+\draw(4,-.7)arc(-90:-102:.7);\node[right]at(4.4,-.62){$\theta_2$};\draw[TextGray](4.38,-.62)--(3.93,-.69);
+\draw[<->](0,.5)--(4,.5)node[midway,above]{$d$};\node[above]at(2.15,-2.15){$k_c$};
+\end{tikzpicture}\figcap{两球间弹簧实际连接在球上；图中第二个角为负，两角正向约定仍一致。}\label{ch10:fig:coupled-pendula}\end{chTenFigure}}
+
+\newcommand{\chTenCoupledMassFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-5,-.6)--(-5,.6) (5,-.6)--(5,.6);
+\draw[spring](-5,0)--(-3.2,0) (-1.8,0)--(1.8,0) (3.2,0)--(5,0);
+\draw[thick](-3.2,-.5)rectangle(-1.8,.5);\draw[thick](1.8,-.5)rectangle(3.2,.5);
+\node at(-2.5,0){$m$};\node at(2.5,0){$m$};
+\node at(-4.1,.65){$k$};\node at(0,.65){$k_c$};\node at(4.1,.65){$k$};
+\draw[guide](-2.5,-.6)--(-2.5,-1.1) (2.5,-.6)--(2.5,-1.1);
+\draw[chTenArrow](-2.5,-.85)--(-1.6,-.85)node[right]{$x_1$};\draw[chTenArrow](2.5,-.85)--(3.4,-.85)node[right]{$x_2$};
+\end{tikzpicture}\figcap{图示平衡构形；短虚线为坐标零点，箭头只规定位移正向，不表示此刻的实际位移。}\label{ch10:fig:coupled-masses}\end{chTenFigure}}
+
+\newcommand{\chTenDoublePendulumFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(O)at(0,0);\coordinate(P)at({2.2*sin(23)},{-2.2*cos(23)});\coordinate(Q)at($(P)+({2.2*sin(-18)},{-2.2*cos(-18)})$);
+\draw[guide](O)--(0,-.4) (0,-1)--(0,-2.5) (P)--++(0,-.4) ($(P)+(0,-1)$)--++(0,-1.3);\draw[thick](O)--(P)--(Q);
+\fill(O)circle(2pt)node[above]{$O$};\fill(P)circle(3pt)node[right]{$m_1=m$};\fill(Q)circle(3pt)node[below left]{$m_2=m$};
+\draw(0,-.7)arc(-90:-67:.7);\node[left]at(-.5,-.62){$\theta_1$};\draw[TextGray](-.48,-.62)--(.14,-.68);
+\draw($(P)+(0,-.7)$)arc(-90:-108:.7);\node[right]at($(P)+(.55,-.62)$){$\theta_2$};\draw[TextGray]($(P)+(.5,-.62)$)--($(P)+(-.11,-.69)$);
+\node[right]at(.78,-1.35){$l$};\node[left]at($(P)+(-.65,-1.5)$){$l$};
+\end{tikzpicture}\figcap{串接双摆。第二杆角从上球处的竖直虚线量起。}\label{ch10:fig:double-pendulum}\end{chTenFigure}}
+
+\newcommand{\chTenDoubleModesFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \dx/\sg/\txt in {0/1/低频模,5/-1/高频模}{\begin{scope}[xshift=\dx cm]
+\coordinate(O)at(0,0);\coordinate(P)at({2*sin(12)},{-2*cos(12)});\coordinate(Q)at($(P)+({2*sin(\sg*sqrt(2)*12)},{-2*cos(\sg*sqrt(2)*12)})$);
+\draw[guide](O)--(0,-3.95) (P)--++(0,-1.9);\draw[thick](O)--(P)--(Q);\fill(P)circle(3pt);\fill(Q)circle(3pt);
+\node[above]at(0,0){\txt};\node[right]at($(P)+(.15,0)$){$\theta_1$};\node[below]at($(Q)+(0,-.2)$){$\theta_2=\ifnum\sg<0-\fi\sqrt2\theta_1$};
+\draw[chTenArrow]($(O)+(0,-.65)$)arc(-90:-72:.65);
+\draw[chTenArrow]($(P)+(0,-.65)$)arc(-90:{-90+\sg*24}:.65);
+\end{scope}}
+\end{tikzpicture}\figcap{双摆的两个模态；低频同向、高频反向，下杆角振幅均较大。}\label{ch10:fig:double-modes}\end{chTenFigure}}
+
+\newcommand{\chTenRingBase}{
+\draw[TextGray](0,0)circle(1.4);
+\foreach \j in {0,...,5}{\pgfmathsetmacro{\ang}{60*\j}\fill[DeepBlue](\ang:1.4)circle(2.2pt);\ifnum\j=0\node[font=\scriptsize,fill=none]at(1.75,.23){$\j$};\else\ifnum\j=3\node[font=\scriptsize,fill=none]at(-1.75,.23){$\j$};\else\node[font=\scriptsize,fill=none]at(\ang:1.75){$\j$};\fi\fi}}
+\newcommand{\chTenBenzeneModelFigure}{\begin{chTenFigure}
+\begin{minipage}{.46\linewidth}\centering\includegraphics[width=.96\linewidth]{assets/ch10/benzene-model.png}\par\small 苯：六个碳、六个氢\end{minipage}\hfill
+\begin{minipage}{.46\linewidth}\centering\begin{tikzpicture}[every node/.style=chTenLabel]
+\chTenRingBase
+\foreach \j in {0,...,5}{\draw[chTenArrow]({60*\j}:1.4)--++({60*\j+90}:.48);}
+\node at(0,-2.25){$x_j$均沿逆时针切向};
+\end{tikzpicture}\end{minipage}
+\figcap{真实分子的立体结构与六坐标简化模型；左图淡蓝区域表示离域电子云的空间示意，不是额外原子。}\label{ch10:fig:benzene-model}\end{chTenFigure}}
+
+\newcommand{\chTenRingSymmetryFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \dx/\kind in {0/0,4.3/1,8.6/2}{\begin{scope}[xshift=\dx cm,scale=.9]
+\chTenRingBase
+\ifnum\kind=0\draw[chTenArrow](15:.85)arc(15:75:.85);\node at(0,-2.3){$C_6:60^\circ$};
+\else\ifnum\kind=1\draw[guide](30:2)--(210:2);\node at(0,-2.3){$C_2:180^\circ$};
+\else\draw[guide](-2,0)--(2,0);\node at(0,-2.3){$C'_2:180^\circ$};\fi\fi
+\end{scope}}\end{tikzpicture}\figcap{三种对称操作；后二图虚线是环面内的旋转轴，而不是粒子的运动轨迹。}\label{ch10:fig:ring-symmetry}\end{chTenFigure}}
+
+\newcommand{\chTenOneRingMode}[2]{\begin{tikzpicture}[scale=.75,every node/.style=chTenLabel]
+\chTenRingBase
+\foreach \v[count=\j from 0] in {#1}{\ifnum\v=0\else\draw[chTenArrow]({60*\j}:1.4)--++({60*\j+90}:{.58*\v});\fi}
+\node[font=\small]at(0,-2.45){#2};\end{tikzpicture}}
+\newcommand{\chTenRingModesFigure}{\begin{chTenFigure}
+\chTenOneRingMode{1,1,0,-1,-1,0}{$m\omega^2/k=1$}\hspace{.8cm}
+\chTenOneRingMode{0,1,1,0,-1,-1}{同频旋转伙伴}\par\medskip
+\chTenOneRingMode{1,-1,0,1,-1,0}{$m\omega^2/k=3$}\hspace{.8cm}
+\chTenOneRingMode{0,1,-1,0,1,-1}{同频旋转伙伴}
+\figcap{两组二重简并实振型。相邻点的箭头必须按各自切向比较，不能只按纸面左右比较。}\label{ch10:fig:ring-modes}\end{chTenFigure}}
+
+\newcommand{\chTenMonoChainFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \j in {0,...,4}{\fill[DeepBlue](2.1*\j,0)circle(4pt);\node[above]at(2.1*\j,.3){$m$};}
+\foreach \j in {0,...,3}{\draw[spring](2.1*\j+.14,0)--(2.1*\j+1.96,0);}
+\node[left]at(-.3,0){$\cdots$};\node[right]at(8.7,0){$\cdots$};
+\foreach \j/\txt in {1/{j-1},2/{j},3/{j+1}}{\draw[chTenArrow](2.1*\j,-.55)--++(.6,0)node[below]{$u_{\txt}$};}
+\draw[<->](2.1,.85)--(4.2,.85)node[midway,above]{$a$};
+\end{tikzpicture}\figcap{单原子链的平衡格距$a$及向右位移坐标。}\label{ch10:fig:mono-chain}\end{chTenFigure}}
+
+\newcommand{\chTenMonoDispersionFigure}{\begin{chTenFigure}\begin{tikzpicture}\begin{axis}[chTenPlot,width=.72\linewidth,height=5.5cm,xmin=-1.1,xmax=1.1,ymin=0,ymax=2.25,xlabel={$qa/\pi$},ylabel={$\omega/\sqrt{k/m}$},xtick={-1,0,1},ytick={0,1,2}]
+\addplot[DeepBlue,thick,domain=-1:1,samples=201]{2*abs(sin(90*x))};\addplot[TextGray,dashed,domain=-1:1]{2};
+\draw[guide](axis cs:-1,0)--(axis cs:-1,2);\draw[guide](axis cs:1,0)--(axis cs:1,2);
+\end{axis}\end{tikzpicture}\figcap{单原子链色散；两端达到截止频率，斜率降为零。}\label{ch10:fig:mono-dispersion}\end{chTenFigure}}
+
+\newcommand{\chTenDiatomicChainFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \j in {0,...,5}{\pgfmathtruncatemacro{\odd}{mod(\j,2)}\ifnum\odd=0\fill[DeepBlue](1.7*\j,0)circle(5pt);\node[above]at(1.7*\j,.35){$M$};\else\draw[DeepBlue,thick](1.7*\j,0)circle(3pt);\node[above]at(1.7*\j,.35){$m$};\fi}
+\foreach \j in {0,...,4}{\draw[spring](1.7*\j+.18,0)--(1.7*\j+1.52,0);}
+\draw[<->](3.4,1.45)--(6.8,1.45)node[midway,above]{晶胞$a$};
+\draw[<->](3.4,-1.4)--(5.1,-1.4)node[midway,below]{$a/2$};
+\draw[chTenArrow](3.4,-.55)--++(.6,0)node[midway,below]{$u_j$};\draw[chTenArrow](5.1,-.55)--++(.6,0)node[midway,below]{$v_j$};
+\draw[guide](2.55,-1)rectangle(5.95,.95);
+\end{tikzpicture}\figcap{虚框圈出同一晶胞内的一重一轻两原子；相邻距离与晶胞长度不混用。}\label{ch10:fig:diatomic-chain}\end{chTenFigure}}
+
+\newcommand{\chTenDiatomicDispersionFigure}{\begin{chTenFigure}\begin{tikzpicture}\begin{axis}[chTenPlot,width=.8\linewidth,height=6cm,xmin=-1.1,xmax=1.42,ymin=0,ymax=3.5,xlabel={$qa/\pi$},ylabel={$\omega/\sqrt{k/M}$},xtick={-1,0,1},legend pos=south east]
+\addplot[DeepBlue,thick,domain=-1:1,samples=150]{sqrt(5-sqrt(25-16*sin(90*x)^2))};\addlegendentry{声学支}
+\addplot[TextGray,thick,domain=-1:1,samples=150]{sqrt(5+sqrt(25-16*sin(90*x)^2))};\addlegendentry{光学支}
+\draw[guide](axis cs:-1,1.414214)--(axis cs:1.1,1.414214);\draw[guide](axis cs:-1,2.828427)--(axis cs:1.1,2.828427);
+\draw[<->](axis cs:1.18,1.414214)--(axis cs:1.18,2.828427)node[midway,right,font=\small,fill=none]{禁带};
+\end{axis}\end{tikzpicture}\figcap{双原子链示例$M=4m$。水平虚线对应$\sqrt{2k/M}$与$\sqrt{2k/m}$；区中心上支为$\sqrt{2k(1/M+1/m)}$。}\label{ch10:fig:diatomic-dispersion}\end{chTenFigure}}
+\newcommand{\chTenFrictionFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-.5,0)--(8,0);\draw[thick](0,0)rectangle(1.25,.8);\draw[thick](6.1,0)rectangle(7.35,.8);
+\node at(.625,.4){$A,M$};\node at(6.725,.4){$B,m$};\draw[spring](1.25,.4)--(6.1,.4);
+\draw[chTenArrow](.2,1.1)--(1.2,1.1)node[above]{$v_A$};\draw[chTenArrow](7.1,1.1)--(6.1,1.1)node[above]{$v_B$};
+\draw[<->](.625,-.55)--(6.725,-.55)node[midway,below]{$r=x_B-x_A$};
+\draw[->](8.2,.1)--++(.7,0)node[right]{$x$};
+\node[anchor=west]at(0,-1.7){第一阶段：$f_A$向左，$f_B$向右。};
+\node[anchor=west]at(0,-2.35){第二阶段：$v_A=0$，$f_A$向右；$v_B<0$，$f_B$仍向右。};
+\end{tikzpicture}\figcap{物块形状仅为识别符号，计算中按质点取中心间距；两阶段摩擦方向分别标明。}\label{ch10:fig:friction}\end{chTenFigure}}
+
+\newcommand{\chTenGovernorFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(T)at(0,2);\coordinate(B)at(0,-2);\coordinate(P)at(2,0);\coordinate(Q)at(-2,0);
+\draw[guide](0,-3.1)--(0,3.0);\draw[thick](T)--(P)--(B)--(Q)--cycle;
+\draw[thick](-.17,1.78)rectangle(.17,2.22);\draw[thick](-.22,-2.23)rectangle(.22,-1.77);
+\fill[DeepBlue](P)circle(4pt);\fill[DeepBlue](Q)circle(4pt);
+\node[below left]at(-2.13,-.1){$m$};\node[right]at(2.13,0){$m$};\node[left]at(-.35,-2){$M$};\node[above left]at(-.2,2.23){固定套筒};
+\draw[guide](.2,2)--(3.35,2) (.2,-2)--(3.35,-2);\draw[<->](3.15,-2)--(3.15,2)node[midway,right]{$y$};
+\draw[<->](0,0)--(2,0)node[midway,above]{$\rho$};
+\node[above right]at(1.12,1.1){$l$};\node[below right]at(1.12,-1.1){$l$};
+\draw[guide](-.2,2)--(-3.15,2) (-2.15,0)--(-3.15,0);
+\draw[<->](-3,0)--(-3,2)node[midway,left]{$y/2$};
+\draw[chTenArrow,domain=210:345,samples=30]plot({.75*cos(\x)},{-2.75+.2*sin(\x)});\node[right]at(.9,-2.75){$\omega$};
+\end{tikzpicture}\figcap{飞球调速器的瞬时子午截面；四根铰臂等长，球与两套筒的高度差均为$y/2$。}\label{ch10:fig:governor}\end{chTenFigure}}
+
+\newcommand{\chTenChainFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-1.2,4.5)--(6.5,4.5);\draw[ground](-1.2,0)--(6.5,0);
+\draw[spring](0,4.5)--(0,2.5);\fill(0,2.5)circle(2pt)node[left]{$P$};
+\foreach \j in {0,...,11}{\draw[DeepBlue,thick](0,{.125+.2*\j})ellipse(.085 and .125);}
+\draw[DeepBlue,thick](0,2.45)--(0,2.5);
+\draw[DeepBlue,thick](0,.19)to[out=-90,in=180](.3,.12)--(1.7,.12)to[out=0,in=-90](1.85,.25)to[out=90,in=0](1.6,.37)--(.6,.37);
+\draw[guide](.2,2.5)--(3.5,2.5);\draw[<->](3.2,0)--(3.2,2.5)node[midway,right]{$x$};\draw[<->](3.2,2.5)--(3.2,4.5)node[midway,right]{$s=H-x$};
+\draw[<->](6,0)--(6,4.5)node[midway,right]{$H$};
+\node[right]at(.45,1.5){移动部分$\lambda x$};\node[below]at(.9,-.2){地板上的静止余链};
+\draw[chTenArrow](-.75,1.05)--(-.75,2.05)node[midway,left]{$\dot x>0$};
+\end{tikzpicture}\figcap{零原长弹簧、悬垂链与地板余链；箭头示上移拾取阶段，下移时发生沉积。}\label{ch10:fig:chain}\end{chTenFigure}}
+
+\newcommand{\chTenWedgeFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.86]
+\draw[ground](-4.1,0)--(4.1,0);
+\draw[thick](-3,0)--(-3,3)--(0,0)--cycle;\draw[thick](0,0)--(3,3)--(3,0)--cycle;
+\fill[DeepBlue](-3,3)circle(3pt);\fill[DeepBlue](3,3)circle(3pt);\draw[thick,DeepBlue](-3,3)--(3,3);
+\node[above]at(0,3.15){初始杆长$L_0$};\node at(-2.1,.6){$m$};\node at(2.1,.6){$m$};
+\draw(.85,0)arc(0:45:.85);\node at(1.25,.42){$45^\circ$};
+\node at(0,-.65){初始构形：球按质点表示};
+\begin{scope}[xshift=7.3cm]
+\draw[ground](-1,0)--(4.6,0);\draw[guide](0,0)--(3,3);
+\draw[thick](.8,0)--(3.8,3)--(3.8,0)--cycle;
+\coordinate(P)at(2.65,1.85);\fill[DeepBlue](P)circle(3pt)node[below right]{$P$};
+\draw[DeepBlue,thick](-.9,1.85)--(P);\node[above]at(.2,1.95){弹性杆};
+\draw[chTenArrow](P)--++(-.7,.7);\node[left]at(1.6,2.55){$N$};
+\draw[guide](3.8,3)--(2.9,3.9) (P)--(1.75,2.75);
+\draw[<->](2.9,3.9)--(1.75,2.75)node[midway,above left]{$s$};
+\draw[guide](3,3)--(3,3.8) (3.8,3)--(3.8,3.8);\draw[chTenArrow](3,3.6)--(3.8,3.6)node[midway,above]{$X$};
+\draw[guide](3,-.2)--(3,-.8) (2.65,-.2)--(2.65,-.8);
+\draw[chTenArrow](3,-.6)--(2.65,-.6);\node[left]at(2.45,-.6){$q=X-s/\sqrt2$};
+\end{scope}\end{tikzpicture}\figcap{左图为严格$45^\circ$初始构形；右图放大右半边的运动几何，虚斜线为初始斜面。$N$垂直当前斜面。}\label{ch10:fig:wedges}\end{chTenFigure}}
+
+\newcommand{\chTenChargeMode}[2]{\begin{tikzpicture}[scale=.6,every node/.style=chTenLabel]
+\draw[TextGray](0,0)circle(1.5);
+\foreach \v[count=\j from 0] in {#1}{\fill[DeepBlue]({120*\j}:1.5)circle(3pt);\ifnum\v=0\else\draw[chTenArrow]({120*\j}:1.5)--++({120*\j+90}:{.35*\v});\fi}
+\node at(0,-2.2){#2};\end{tikzpicture}}
+\newcommand{\chTenChargesFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[TextGray](0,0)circle(1.7);
+\draw[DeepBlue,thick](0:1.7)--(120:1.7)--(240:1.7)--cycle;
+\foreach \j in {0,1,2}{\fill[DeepBlue]({120*\j}:1.7)circle(3pt);}
+\draw[->](0,0)--(2.5,0)node[right]{$x$};\draw[->](0,0)--(0,2.4)node[above]{$y$};
+\node at(-.38,.55){$\odot\ z$};\node[above right]at(1.7,.1){1};\node[above left]at(120:1.8){2};\node[below left]at(240:1.8){3};\node[below]at(0,-2.0){大圆正视，$z$轴朝向读者};
+\end{tikzpicture}\hspace{.4cm}
+\chTenChargeMode{1,-1,0}{$\vect a\propto(1,-1,0)$}\hspace{.2cm}
+\chTenChargeMode{1,1,-2}{$\vect a\propto(1,1,-2)$}\par
+\begin{tikzpicture}[every node/.style=chTenLabel]
+\foreach \x in {0,1.7,3.4}{\draw[DeepBlue,thick](\x,0)circle(.17);\fill(\x,0)circle(1pt);}
+\node[right]at(4,0){$z_1=z_2=z_3>0$：三球均出大圆平面};
+\end{tikzpicture}
+\figcap{平衡构形、两个大圆内振型及一个离面振型。各圆均从右侧点1起逆时针编号；切向箭头表示$a_i$。}\label{ch10:fig:charges}\end{chTenFigure}}
+
+\newcommand{\chTenSpringPendulumFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(O)at(0,3.6);\coordinate(E)at(0,.7);\coordinate(P)at(2,-.3);
+\draw[ground](-.8,3.6)--(.8,3.6);\draw[guide](O)--(E);\draw[spring](O)--(P);\fill(P)circle(3pt)node[below right]{$P,m$};
+\draw[->](E)--(3.6,.7)node[right]{$x$};\draw[->](E)--(0,-1.2)node[below]{$y$};
+\fill(E)circle(2pt)node[left]{$E$};\node[above]at(O){$O$};
+\draw[guide](P)--(2,.7);\draw[<->](-.55,.7)--(-.55,3.6)node[midway,left]{$L$};
+\draw[<->](2.8,-.3)--(2.8,.7)node[midway,right]{$y$};\node[right]at(1.35,1.75){$r$};
+\node at(2.6,2.9){$OP^2=x^2+(L+y)^2$};
+\end{tikzpicture}\figcap{平衡点$E$与瞬时位置$P$；$y$向下为正，弹簧长度$r$从悬点$O$量起。}\label{ch10:fig:spring-pendulum}\end{chTenFigure}}
+
+% 初始装置图仅含题设；分析量与受力另见解答图。
+\newcommand{\chTenFrictionProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-.5,0)--(8,0);\draw[thick](0,0)rectangle(1.25,.8);\draw[thick](6.1,0)rectangle(7.35,.8);
+\node at(.625,.4){$A,M$};\node at(6.725,.4){$B,m$};\draw[spring](1.25,.4)--(6.1,.4);
+\node[above]at(3.675,.8){$k,\ l_0$};
+\draw[guide](.625,-.1)--(.625,-.8) (6.725,-.1)--(6.725,-.8);
+\draw[<->](.625,-.6)--(6.725,-.6)node[midway,below]{$l$};\node[right]at(8,0){$\mu$};
+\end{tikzpicture}\figcap{由静止释放的初始状态；物块按质点建模，间距按两中心计。}\label{ch10:fig:friction-problem}\end{chTenFigure}}
+
+\newcommand{\chTenGovernorProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.8]
+\coordinate(T)at(0,2);\coordinate(B)at(0,-2);\coordinate(P)at(2,0);\coordinate(Q)at(-2,0);
+\draw[guide](0,-3.1)--(0,3);\draw[thick](T)--(P)--(B)--(Q)--cycle;
+\draw[thick](-.17,1.78)rectangle(.17,2.22);\draw[thick](-.22,-2.23)rectangle(.22,-1.77);
+\fill[DeepBlue](P)circle(4pt);\fill[DeepBlue](Q)circle(4pt);
+\node[left]at(-2.15,0){$m$};\node[right]at(2.15,0){$m$};
+\node[above left]at(-.2,2.23){固定套筒};\node[left]at(-.4,-2){$M$};\node[right]at(.4,-2){可沿轴滑动};
+\node[above right]at(1.12,1.1){$l$};\node[below right]at(1.12,-1.1){$l$};
+\node[above left]at(-1.12,1.1){$l$};\node[below left]at(-1.12,-1.1){$l$};
+\draw[chTenArrow,domain=210:345,samples=30]plot({.75*cos(\x)},{-2.75+.2*sin(\x)});\node[right]at(.9,-2.75){$\omega_0$};
+\end{tikzpicture}\figcap{调速器的装置截面：两球、四根等长轻杆与上、下套筒。}\label{ch10:fig:governor-problem}\end{chTenFigure}}
+
+\newcommand{\chTenChainProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.8]
+\draw[ground](-1.2,4.5)--(4.5,4.5);\draw[ground](-1.2,0)--(4.5,0);
+\draw[spring](0,4.5)--(0,2.5);\fill(0,2.5)circle(2pt);
+\foreach \j in {0,...,11}{\draw[DeepBlue,thick](0,{.125+.2*\j})ellipse(.085 and .125);}
+\draw[DeepBlue,thick](0,2.45)--(0,2.5);
+\draw[DeepBlue,thick](0,.19)to[out=-90,in=180](.3,.12)--(1.7,.12)to[out=0,in=-90](1.85,.25)to[out=90,in=0](1.6,.37)--(.6,.37);
+\node[right]at(.4,3.5){$k$，原长为零};\node[right]at(.4,1.6){线密度 $\lambda$};\node[below]at(.9,-.2){地板上的余链};
+\draw[<->](4,0)--(4,4.5)node[midway,right]{$H$};
+\end{tikzpicture}\figcap{悬于零原长弹簧下的软链，下部平放在地板上。}\label{ch10:fig:chain-problem}\end{chTenFigure}}
+
+\newcommand{\chTenWedgeProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.8]
+\draw[ground](-4.1,0)--(4.1,0);
+\draw[thick](-3,0)--(-3,3)--(0,0)--cycle;\draw[thick](0,0)--(3,3)--(3,0)--cycle;
+\fill[DeepBlue](-3,3)circle(3pt);\fill[DeepBlue](3,3)circle(3pt);\draw[thick,DeepBlue](-3,3)--(3,3);
+\node[above]at(0,3.15){$L_0,\ k$};\node[above left]at(-3,3){$m$};\node[above right]at(3,3){$m$};
+\node at(-2.1,.6){$m$};\node at(2.1,.6){$m$};
+\draw(.85,0)arc(0:45:.85);\node at(1.25,.42){$45^\circ$};
+\draw(-.85,0)arc(180:135:.85);\node at(-1.25,.42){$45^\circ$};
+\end{tikzpicture}\figcap{两球在斜面顶端由静止释放，水平弹性轻杆初始处于自由长度。}\label{ch10:fig:wedges-problem}\end{chTenFigure}}

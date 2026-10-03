@@ -1,0 +1,16 @@
+\subsection{衰变方式与计数模型}
+常见衰变方式可用守恒量区分：
+\begin{align*}
+ {}^A_ZX&\to{}^{A-4}_{Z-2}Y+{}^4_2\mathrm{He} &&(\alpha),\\
+ {}^A_ZX&\to{}^A_{Z+1}Y+e^-+\bar\nu_e &&(\beta^-),\\
+ {}^A_ZX&\to{}^A_{Z-1}Y+e^++\nu_e &&(\beta^+),\\
+ {}^A_ZX^*&\to{}^A_ZX+\gamma &&(\gamma).
+\end{align*}
+$\beta$ 衰变中的电子或正电子是在相互作用中产生的，不是从核内预先存放的经典电子中取出。三体末态中能量在带电轻子、中微子与反冲核之间分配，所以电子能谱连续；这不表示每次衰变的总能量不守恒。$\gamma$ 跃迁不改变核的 $A,Z$。
+若用中性原子质量并忽略电子结合能差，$\beta^-$ 衰变约有 $Q=[M_X-M_Y]c^2$，而 $\beta^+$ 衰变约有 $Q=[M_X-M_Y-2m_e]c^2$；后者额外需要两个电子静能的质量差门槛。不能把两式混用。
+
+探测器的净计数率还与效率 $\varepsilon$ 有关：$R(t)=\varepsilon\mathcal A(t)$。若效率稳定、只计单一核素且背景已扣除，间隔 $\Delta t$ 的计数率比满足
+\[
+ \lambda=\frac1{\Delta t}\ln\frac{R(t)}{R(t+\Delta t)}.
+\]
+从 $t=0$ 到 $\Delta t$ 的期望净计数应积分：$C=\varepsilon N_0(1-e^{-\lambda\Delta t})$，只有 $\lambda\Delta t\ll1$ 时才可近似为初始计数率乘时间。任意区间 $[t,t+\Delta t]$ 应将上式的 $N_0$ 换为 $N(t)$。若有恒定背景，应先减去背景再取对数；若子核也能被计数，应先建立衰变链模型。

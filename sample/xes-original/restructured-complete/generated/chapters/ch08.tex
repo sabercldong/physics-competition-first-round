@@ -1,0 +1,1619 @@
+\begingroup
+\tcbset{breakable/.default=false}
+\chapter{功、能量和守恒定律}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/tenth-section/}}
+\section{功、功率与动能定理}
+% Technical geometry and labels share one coordinate system per panel.
+\tikzset{solbody/.style={draw=Ink,line width=.8pt},solpath/.style={draw=Ink,line width=.8pt},
+ solforce/.style={-{Latex[length=2mm]},draw=DeepBlue,line width=.9pt},
+ solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=.8pt},
+ solgeom/.style={draw=TextGray,densely dashed,line width=.5pt},
+ sollabel/.style={font=\scriptsize,fill=none,inner sep=1.5pt},
+ solpanel/.style={font=\scriptsize\bfseries,text=TextGray},
+ spring/.style={decorate,decoration={coil,segment length=4pt,amplitude=2.5pt},draw=Ink}}
+\newcommand{\diagcaption}[2]{\refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+\newenvironment{workfig}{\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}}
+
+\newcommand{\workDerivationDiagram}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \node[solpanel] at (1.6,2.8) {(a) 轨迹与切向速度};
+ \draw[solpath,domain=0:2.7,samples=60] plot (\x,{.25*\x*\x});
+ \coordinate (A) at (.5,.0625); \coordinate (B) at (1.5,.5625);
+ \fill (A) circle (1.6pt) node[below,sollabel] {$A$};
+ \fill (B) circle (1.6pt);\node[sollabel] at (1.4,1) {$B$};
+ \draw[solforce] (A)--++(1,.25) node[below right,sollabel] {$\vec v_A$};
+ \draw[solforce] (B)--++(1,.75) node[right,sollabel] {$\vec v_B$};
+ \draw[solforce] (A)--++(0,1.3) node[left,sollabel] {$\vec a_A$};
+ \draw[TextGray] ($(A)+(14.036:.45)$) arc(14.036:90:.45);
+ \node[sollabel] at ($(A)+(53:.68)$) {$\theta$};
+ \begin{scope}[xshift=5cm]
+ \node[solpanel] at (1.2,2.8) {(b) 精确的速度矢量关系};
+ \coordinate (P) at (0,0); \coordinate (Q) at (2,.5); \coordinate (S) at (2,1.5);
+ \draw[solforce] (P)--(Q) node[midway,below,sollabel] {$\vec v_A$};
+ \draw[solforce] (P)--(S) node[midway,above left,sollabel] {$\vec v_B$};
+ \draw[solforce] (Q)--(S) node[midway,right,sollabel] {$\Delta\vec v$};
+ \node[sollabel] at (1,-.7) {$\vec v_B=\vec v_A+\Delta\vec v$};
+ \end{scope}
+\end{tikzpicture}\diagcaption{示意图}{速度沿轨迹切线；速度增量是两个速度矢量之差。}
+\label{ch08:fig:workDerivationDiagram}\end{workfig}}
+
+\newcommand{\probdiagFourOne}{%
+\begin{workfig}\begin{tikzpicture}[xscale=.82,yscale=.72]
+ \draw[solgeom](-.25,2.8)--(11.55,2.8);\draw[solgeom](-.25,0)--(11.55,0);
+ \foreach \x in {0,2.35,3.875,5.6,6.9}{\node[sollabel,above]at(\x,2.8){$A$};}
+ \node[sollabel,above right]at(8.425,2.8){$A$};\node[sollabel,above left]at(10.525,2.8){$A$};
+ \foreach \x in {0,.4,1.725,3.2,4.95,7.075,8.95}{\node[sollabel,below]at(\x,0){$B$};}
+ \draw[solpath](0,2.8)--(0,0);
+ \draw[solpath](2.35,2.8)--(.4,0);
+ \draw[solpath](3.875,2.8)--(3.2,.93)--(1.725,0);
+ \draw[solpath](5.6,2.8)--(5.1,2.075)--(5.025,1.575)--(4.675,1.4)--(4.575,1.025)--(4.15,1.025)--(3.975,.525)--(3.2,0);
+ \draw[solpath](6.9,2.8)..controls(7.2,1.8)and(5.8,.6)..(4.95,0);
+ \draw[solpath](7.075,0)--(8.25,4.1)--(8.425,2.8);
+ \draw[solpath](8.95,0)..controls(9.2,5.0)and(11.25,5.2)..(10.525,2.8);
+ \draw[<->,TextGray](11.35,0)--(11.35,2.8)node[midway,right,sollabel]{$h$};
+\end{tikzpicture}\diagcaption{题图}{七条路径的始末高度差都为 $h$。}\label{ch08:fig:probdiagFourOne}\end{workfig}}
+
+\newcommand{\soldiagFourOne}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solgeom] (-2,1.5)--(3,1.5);\draw[solgeom] (-2,-1)--(3,-1);
+ \draw[solpath] (-1.5,1.5)..controls(-1.5,-.3)and(2,.5)..(2,-1);
+ \fill (-1.5,1.5) circle(1.7pt) node[above,sollabel] {$A:y_A$};
+ \fill (2,-1) circle(1.7pt) node[below,sollabel] {$B:y_B$};
+ \draw[solforce] (-1,0)--(-1,-.8) node[left,sollabel] {$m\vec g$};
+ \draw[<->,DeepBlue] (3,-1)--(3,1.5) node[midway,right,sollabel] {$h=y_A-y_B$};
+\end{tikzpicture}\diagcaption{解图}{重力功的积分只保留竖直坐标的始末差。}\label{ch08:fig:soldiagFourOne}\end{workfig}}
+
+\newcommand{\probdiagFourTwo}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody] (-2.2,0)--(3.8,0);
+ \draw[solbody,fill=SoftGray] (-.5,0) rectangle (.5,.7);\node[sollabel] at (0,.35) {$m$};
+ \draw[solforce] (.5,.55)--++(30:2) node[right,sollabel] {$F$};
+ \draw[solgeom] (.5,.55)--(1.9,.55);
+ \draw[TextGray] (1.2,.55) arc(0:30:.7);\node[sollabel] at (1.55,.81) {$\theta$};
+ \node[sollabel,above] at (-1.5,0) {$\mu$};
+ \draw[solflow] (-.5,-.5)--(2.5,-.5) node[midway,below,sollabel] {$L$};
+\end{tikzpicture}\diagcaption{题图}{力 $F$ 向右上方，物体沿水平面向右滑动。}\label{ch08:fig:probdiagFourTwo}\end{workfig}}
+
+\newcommand{\soldiagFourTwo}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody] (-2,0)--(2.7,0);\draw[solbody,fill=SoftGray] (-.5,0) rectangle(.5,.8);
+ \draw[solforce] (.5,.6)--++(30:1.7) node[right,sollabel] {$F$};
+ \draw[solforce] (0,.8)--(0,2) node[above,sollabel] {$N$};
+ \draw[solforce] (0,.4)--(0,-1.1) node[below,sollabel] {$mg$};
+ \draw[solforce] (-.5,.15)--(-1.7,.15) node[above left,sollabel] {$f=\mu N$};
+ \draw[solflow] (1,-.55)--(2.5,-.55) node[midway,below,sollabel] {$\Delta\vec r$};
+ \node[sollabel,align=left,anchor=west] at (3.5,1) {$W_F=FL\cos\theta$\\[5pt]$W_f=-fL$\\[5pt]$W_N=W_G=0$};
+\end{tikzpicture}\diagcaption{解图}{竖直方向合力为零；各力作功须与水平位移配对。}\label{ch08:fig:soldiagFourTwo}\end{workfig}}
+
+\newcommand{\probdiagFourThree}{%
+\begin{workfig}\begin{tikzpicture}[scale=.85]
+ \coordinate(O) at (0,1.8);\coordinate(A) at (2.4,1.8);\coordinate(B) at (0,-1.4);
+ \draw[spring] (O)--(A);\draw[spring] (O)--(B);
+ \fill (O) circle(2pt) node[above left,sollabel] {$O$};\fill(A)circle(3pt)node[right,sollabel]{$A$};
+ \fill(B)circle(3pt)node[below,sollabel]{$B$};
+ \node[sollabel] at (1.2,2.15) {$l_0,\ k$};\node[sollabel] at (2.7,1.35) {$m$};
+ \draw[solgeom] (A)--(B);\node[sollabel,align=left,anchor=west] at (2.1,-.2) {虚线仅连接\!始末位置\\不表示轨迹};
+ \draw[solgeom] (-1.25,-.6)--(.3,-.6);
+ \draw[<->,TextGray] (-.8,-.6)--(-.8,1.8)node[midway,left,sollabel]{$l_0$};
+ \draw[<->,TextGray] (-.8,-1.4)--(-.8,-.6)node[midway,left,sollabel]{$l_0/n$};
+\end{tikzpicture}\diagcaption{题图}{两条弹簧线表示先后两个状态，并非同时存在两根弹簧。}\label{ch08:fig:probdiagFourThree}\end{workfig}}
+
+\newcommand{\soldiagFourThree}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solgeom] (0,1.5)--(6,1.5);\draw[solgeom] (0,-.8)--(6,-.8);
+ \fill (1,1.5)circle(2pt)node[above,sollabel]{$A$};\fill (4,-.8)circle(2pt)node[below,sollabel]{$B$};
+ \node[sollabel,align=left,anchor=west] at (1.5,2.15) {$x_A=0,\quad E_{k,A}=0$};
+ \node[sollabel,align=left,anchor=west] at (.4,.35) {$x_B=l_0/n$\\[6pt]$W_{\rm s}=-k(l_0/n)^2/2$};
+ \draw[<->,DeepBlue] (5.7,-.8)--(5.7,1.5)node[midway,right,sollabel]{$l_0(1+1/n)$};
+\end{tikzpicture}\diagcaption{解图}{高度差决定重力功，弹簧形变量的平方差决定弹力功。}\label{ch08:fig:soldiagFourThree}\end{workfig}}
+
+\newcommand{\probdiagFourFour}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody] (-3.5,0)--(4,0);\draw[solbody] (-3.3,0)--(-3.3,1.1);
+ \draw[spring] (-3.3,.4)--(-1.3,.4);
+ \draw[solbody,fill=SoftGray] (-1.3,0)rectangle(-.5,.8);\node[sollabel]at(-.9,.4){$A$};
+ \draw[solbody] (-.5,0)rectangle(.3,.8);\node[sollabel]at(-.1,.4){$B$};
+ \draw[solgeom] (1,0)--(1,1.25);\node[sollabel,above]at(1,1.25){原长连接点 $x=0$};
+ \draw[solgeom] (-1.3,0)--(-1.3,-.65);
+ \draw[<->,DeepBlue] (-1.3,-.5)--(1,-.5)node[midway,below,sollabel]{$x_1$};
+ \draw[solflow] (2,.5)--(3.4,.5)node[right,sollabel]{$+x$};
+\end{tikzpicture}\diagcaption{题图}{以 $A$ 左侧弹簧连接点为位置标志，初态为 $x=-x_1$。}\label{ch08:fig:probdiagFourFour}\end{workfig}}
+
+\newcommand{\soldiagFourFour}{%
+\begin{workfig}\begin{tikzpicture}[scale=.85]
+ \foreach \y/\a/\b in {3.2/-1.8/-1,1.6/0/.8,0/1.1/3.0}{
+ \draw[solbody](-3,\y)--(4,\y);\draw[solbody](-3,\y)--++(0,.7);
+ \draw[spring](-3,{\y+.35})--(\a,{\y+.35});
+ \draw[solbody,fill=SoftGray](\a,\y)rectangle++(.8,.7);\node[sollabel]at({\a+.4},{\y+.35}){$A$};
+ \draw[solbody](\b,\y)rectangle++(.8,.7);\node[sollabel]at({\b+.4},{\y+.35}){$B$};}
+ \draw[solgeom](0,-.5)--(0,4.15);\node[sollabel,above]at(0,4.15){$x=0$};
+ \node[sollabel,anchor=east]at(-3.4,3.55){初始压缩};
+ \node[sollabel,anchor=east]at(-3.4,1.95){原长处分离};
+ \node[sollabel,anchor=east]at(-3.4,.35){$A$ 的最右端};
+ \draw[solflow](.1,2.55)--(.7,2.55)node[midway,above,sollabel]{$V$};
+ \draw[solflow](1,2.55)--(1.6,2.55)node[midway,above,sollabel]{$V$};
+ \draw[solflow](3.1,1)--(3.9,1)node[midway,above,sollabel]{$V$};
+ \node[sollabel]at(1.5,1){$v_A=0$};
+ \draw[<->,DeepBlue](-1.8,-.5)--(0,-.5)node[midway,below,sollabel]{$x_1$};
+ \draw[<->,DeepBlue](0,-.5)--(1.1,-.5)node[midway,below,sollabel]{$x_2$};
+\end{tikzpicture}\diagcaption{解图}{三行使用同一原长基准；分离后 $B$ 匀速，$A$ 继续伸长弹簧至转折。}\label{ch08:fig:soldiagFourFour}\end{workfig}}
+
+\newcommand{\soldiagFourFive}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody,fill=SoftGray](-2,0)rectangle(3,.55);\node[sollabel]at(2.3,.27){$B,M$};
+ \draw[solbody](-.8,.55)rectangle(.2,1.25);\node[sollabel]at(-.3,.95){$A,m$};
+ \draw[solforce](-.8,.7)--(-2,.7)node[above,sollabel]{$f_A$};
+ \draw[solforce](3,.27)--(4.2,.27)node[right,sollabel]{$f_B$};
+ \draw[solflow](-1,1.8)--(2,1.8)node[midway,above,sollabel]{$s_A$};
+ \draw[solflow](-1,-.5)--(.5,-.5)node[midway,below,sollabel]{$s_B$};
+ \draw[solgeom](.5,-.5)--(.5,-1.25);\draw[solgeom](2,1.8)--(2,1.3);\draw[solgeom](2,0)--(2,-1.25);
+ \draw[<->,DeepBlue](.5,-1.2)--(2,-1.2)node[midway,below,sollabel]{$s_A-s_B$};
+\end{tikzpicture}\diagcaption{解图}{$A$ 与板接触，摩擦力等大反向；位移箭头比较同一时间内的地面位移。}\label{ch08:fig:soldiagFourFive}\end{workfig}}
+
+\newcommand{\soldiagFourSix}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \foreach \y/\len in {1.8/2.5,0/4.3}{
+ \draw[solbody](0,\y)--(5,\y);\draw[solbody,fill=SoftGray](.3,\y)rectangle(1,{\y+.6});
+ \draw[solforce](1,{\y+.3})--(2,{\y+.3})node[right,sollabel]{$F$};
+ \draw[solflow](.3,{\y-.4})--(\len,{\y-.4});}
+ \node[sollabel,anchor=east]at(-.4,2.1){火车系：$0\to u$};
+ \node[sollabel,anchor=east]at(-.4,.3){地面系：$v_0\to v_0+u$};
+ \node[sollabel,below]at(1.4,1.4){$L$};\node[sollabel,below]at(2.3,-.4){$L+v_0t$};
+\end{tikzpicture}\diagcaption{解图}{同一物体、同一时间区间，在两个惯性系中配对比较位移和动能。}\label{ch08:fig:soldiagFourSix}\end{workfig}}
+
+\newcommand{\soldiagFourSeven}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody](-2.5,0)--(3,0);\draw[solbody,fill=SoftGray](-.5,0)rectangle(.5,.8);
+ \draw[solforce](.5,.4)--(2,.4)node[right,sollabel]{$F$};
+ \draw[solforce](-.5,.4)--(-2,.4)node[left,sollabel]{$ma$};
+ \draw[solflow](-1,1.5)--(1,1.5)node[midway,above,sollabel]{火车加速度 $a$};
+ \draw[solflow](0,-.5)--(2,-.5)node[midway,below,sollabel]{$L$（$F>ma$）};
+\end{tikzpicture}\diagcaption{解图}{惯性力大小 $ma$、方向向左；图示向前位移只对应 $F>ma$ 的分支。}\label{ch08:fig:soldiagFourSeven}\end{workfig}}
+
+\newcommand{\movingPulleyDiagram}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody](.4,2.3)--(1.3,2.3);\draw[solbody](0,0)circle(.8);
+ % Rope: left free end, lower semicircle, right fixed end; draw after pulley.
+ \draw[DeepBlue,line width=1pt](-.8,1.4)--(-.8,0)arc(180:360:.8)--(.8,2.3);
+ \fill(.8,2.3)circle(2pt);\node[sollabel,above]at(.8,2.3){固定端};
+ \draw[solbody](0,0)--(0,-1.2);\fill(0,0)circle(2pt);\node[sollabel,above]at(0,.05){轮轴};
+ \draw[solbody,fill=SoftGray](-.35,-1.85)rectangle(.35,-1.2);\node[sollabel]at(0,-1.5){$m$};
+ \draw[solforce](-.8,1.4)--(-.8,2.35)node[left,sollabel]{$F$};
+ \draw[solforce](0,-1.85)--(0,-2.55)node[right,sollabel]{$mg$};
+ \draw[solflow](-1.65,.9)--(-1.65,1.9)node[midway,left,sollabel]{$\Delta y_e=L$};
+ \draw[solflow](1.55,-.25)--(1.55,.25)node[midway,right,sollabel]{$\Delta y_p=L/2$};
+ \node[sollabel,align=left,anchor=west]at(2.3,1.5){蓝线：绕轮缘的绳\\中线：连接轮轴与重物的挂杆};
+\end{tikzpicture}\diagcaption{原理图}{位移箭头表示同一过程的上升量，不是某段绳的长度。}\label{ch08:fig:movingPulleyDiagram}\end{workfig}}
+
+\newcommand{\soldiagFourEight}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solflow](0,0)--(7,0)node[right,sollabel]{$r$};\fill(0,0)circle(3pt)node[below,sollabel]{固定点};
+ \fill(1.5,0)circle(2pt)node[below,sollabel]{$r_A$};\fill(5.5,0)circle(2pt)node[below,sollabel]{$r_B$};
+ \fill(3.5,0)circle(2pt)node[below,sollabel]{$r$};
+ \draw[solforce](3.5,.8)--(2.2,.8)node[midway,above,sollabel]{$\vec F$（向内）};
+ \draw[solflow](3.5,-.7)--(4.2,-.7)node[midway,below,sollabel]{$\dd r>0$};
+\end{tikzpicture}\diagcaption{解图}{图示向外的一小段位移；引力功微元为 $-(k/r)\dd r$。}\label{ch08:fig:soldiagFourEight}\end{workfig}}
+
+\newcommand{\soldiagFourNine}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[fill=Blue!12,draw=none](1.4,0)--plot[domain=1.4:3.7,samples=60](\x,{1.6/(\x*\x)})--(3.7,0)--cycle;
+ \draw[solflow](0,0)--(5,0)node[right,sollabel]{$r$};\draw[solflow](0,0)--(0,3.6)node[above,sollabel]{$F=k/r^2$};
+ \draw[solpath,domain=.7:4.7,samples=80]plot(\x,{1.6/(\x*\x)});
+ \foreach \r/\name in {1.4/A,3.7/B}{\draw[solgeom](\r,0)--(\r,{1.6/(\r*\r)});\node[sollabel,below]at(\r,0){$r_\name$};}
+ \node[sollabel,align=left,anchor=west]at(2,2.2){阴影面积 $=k(1/r_A-1/r_B)$\\[5pt]图示 $r_B>r_A$，故 $W<0$};
+\end{tikzpicture}\diagcaption{解图}{阴影是力的大小对距离的积分；功的正负还须结合运动方向。}\label{ch08:fig:soldiagFourNine}\end{workfig}}
+
+
+力是改变物体速度的原因。在外力作用下，物体的速度会发生变化。牛顿第二定律集中描述
+力与加速度的瞬时关系；在此基础上得到的动量定理，则说明力对时间的积累——冲量——
+怎样改变物体的动量。除了动量，还可以用另一个物理量描述运动物体的性质，这就是动能。
+本节要建立的核心联系是：力在空间位移上的积累形成“功”，总功等于物体动能的变化。
+
+以下在惯性系中讨论质量不变的质点，$\vec F_{\text{合}}$ 表示它受到的合力。
+如图~\ref{ch08:fig:workDerivationDiagram}，质点在 $t$ 时刻位于 $A$，速度为 $\vec v_A$；
+经过 $\Delta t$ 到达 $B$，速度为 $\vec v_B$。先定义速度增量
+\[
+\Delta\vec v=\vec v_B-\vec v_A.
+\]
+速度有方向，因此应先作矢量相加，再求模的平方，不能直接把速率相加。
+\workDerivationDiagram
+\begin{equation}
+ v_B^2-v_A^2=2\vec v_A\cdot\Delta\vec v+|\Delta\vec v|^2.
+ \label{ch08:eq:velocity-square}
+\end{equation}
+式~\eqref{ch08:eq:velocity-square} 是精确恒等式。若加速度随时间连续，短时间内
+$\Delta\vec v=\vec a_A\Delta t+o(\Delta t)$，其中 $o(\Delta t)/\Delta t\to0$。
+设 $\vec a_A$ 与 $\vec v_A$ 夹角为 $\theta$，则保留一阶项时
+\begin{equation}
+ v_B^2-v_A^2=2a_Av_A\cos\theta\,\Delta t+o(\Delta t).
+\end{equation}
+这里不能把 $|\Delta\vec v|^2$ 当作恒等于零；它在除以 $\Delta t$ 后取极限时才消失。
+同样，$\Delta\vec r=\vec v_A\Delta t+o(\Delta t)$，$v_A\Delta t$ 只是小段位移大小的一阶近似。
+两边除以 $\Delta t$ 并令 $\Delta t\to0$，再用牛顿第二定律，得到
+\begin{equation}
+ \frac{\dd}{\dd t}\left(\frac12mv^2\right)
+ =m\vec v\cdot\frac{\dd\vec v}{\dd t}
+ =\vec F_{\text{合}}\cdot\vec v.
+ \label{ch08:eq:kinetic-rate}
+\end{equation}
+定义动能 $E_k=\tfrac12mv^2$。利用 $\dd\vec r=\vec v\,\dd t$，上式可写成
+\begin{equation}
+ \dd E_k=\vec F_{\text{合}}\cdot\dd\vec r.
+ \label{ch08:eq:differential-work-energy}
+\end{equation}
+任意力 $\vec F$ 与实际位移微元的夹角为 $\theta$ 时，其功定义为
+\begin{equation}
+ \dd W=\vec F\cdot\dd\vec r=F\cos\theta\,\dd s,
+ \qquad \dd s=|\dd\vec r|.
+ \label{ch08:eq:work-element}
+\end{equation}
+功和动能都是标量，没有空间方向；动能非负，功则可以为正、负或零。
+力沿运动方向的分量作正功，反向分量作负功，垂直于瞬时位移的分量不作功。
+在有限过程中，把实际路径分段、求和并取分段长度趋于零的极限：
+\begin{equation}
+ W_{A\to B}=\lim_{\max\Delta s_i\to0}\sum_i\vec F_i\cdot\Delta\vec r_i
+ =\int_A^B\vec F\cdot\dd\vec r.
+ \label{ch08:eq:work-integral}
+\end{equation}
+将式~\eqref{ch08:eq:differential-work-energy} 沿同一过程积分，中间状态的动能增减相互衔接，得到
+\begin{equation}
+ W_{\text{合}}(A\to B)=E_{k,B}-E_{k,A}
+ =\frac12mv_B^2-\frac12mv_A^2.
+ \label{ch08:eq:work-energy}
+\end{equation}
+合力功等于各分力功的代数和。总功为正，
+物体动能增加；总功为负，物体动能减小。直观地说，沿运动方向推物体通常使其速率增大，
+逆着运动方向施力通常使其速率减小；但严格判断仍应以力与位移的夹角以及全过程功的
+代数和为准。
+
+\subsection{功和动能的确定}
+
+应用动能定理可以使许多问题大为简化，但必须先明确研究对象、过程的初末状态，以及各力
+所做功的正负。对恒力而言，只有力在位移方向上的分量做功；垂直于位移的力不做功。
+
+\subsubsection*{恒力功、功率与动能定理的使用范围}
+
+恒力的大小和方向都不变，可从式~\eqref{ch08:eq:work-integral} 的积分号内提出：
+\[
+ W=\vec F\cdot\int_A^B\dd\vec r
+  =\vec F\cdot(\vec r_B-\vec r_A)=F|\vec r_B-\vec r_A|\cos\theta.
+\]
+这里用的是始末位置之间的位移，不是弯曲路径的长度。变力一般不能这样提出积分号，必须沿实际路径计算。
+点积还说明只有切向分量作功；法向力即使很大也可能不作功，但它仍可改变速度方向。
+
+功率表示作功的快慢。时间间隔 $\Delta t$ 内的平均功率为 $\overline P=W/\Delta t$；令时间间隔趋于零，得到瞬时功率
+\begin{equation}
+ P=\frac{\dd W}{\dd t}
+ =\vec F\cdot\frac{\dd\vec r}{\dd t}
+ =\vec F\cdot\vec v=F_t v.
+ \label{ch08:eq:power}
+\end{equation}
+$F_t$ 是力沿速度方向的有符号分量。功的单位是焦耳，$1\,\mathrm J=1\,\mathrm{N\,m}$；功率单位是瓦特，
+$1\,\mathrm W=1\,\mathrm{J/s}$。只有牵引力平行于速度且 $v>0$ 时，才能由此写成 $F=P/v$。
+因此匀功率与恒牵引力不是同一条件：匀功率时速度升高，牵引力减小。不能把这个理想关系直接外推到静止启动瞬间；实际机器的牵引力有上限。
+
+也可以在直角坐标中逐项验证式~\eqref{ch08:eq:kinetic-rate}。把牛顿第二定律的三个分量分别乘以相应速度分量，再相加：
+\begin{align*}
+ F_xv_x+F_yv_y+F_zv_z
+ &=m\left(v_x\frac{\dd v_x}{\dd t}+v_y\frac{\dd v_y}{\dd t}+v_z\frac{\dd v_z}{\dd t}\right)\\
+ &=\frac{\dd}{\dd t}\left[\frac m2(v_x^2+v_y^2+v_z^2)\right]
+ =\frac{\dd E_k}{\dd t}.
+\end{align*}
+再乘 $\dd t$ 并积分，左边利用 $v_x\dd t=\dd x$ 等关系化为合力功，右边成为末动能减初动能。
+所以动能定理是牛顿第二定律沿实际路径的积分形式，适于联系速率和位置；若还要求时间或速度方向，通常要配合运动学或分量方程。
+
+对质点系，外力功与内力功共同决定总动能变化。两个物体间作用力等大反向，但其作用点位移一般不同，
+所以内力总功未必为零；弹簧伸缩、碰撞形变和摩擦发热都体现了这一点。只有把内力功转化为相应势能或内能，
+才能写成更完整的能量关系。参考系改变时速度、动能和功都会改变，但在同一惯性系中二者始终满足动能定理。
+
+虚功方法研究满足约束的假想无穷小位移。理想约束力对允许的虚位移的总功为零，平衡时主动外力的总虚功也为零。
+它把合力、合力矩平衡改写到约束允许的坐标中，常能避开未知支持力和绳张力；后文将用动滑轮说明。
+
+
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-1}
+以下各图中 $A,B$ 两点的高度差均为 $h$。物体分别沿图示各条路径由 $A$ 到 $B$，
+求每一过程中重力所做的功。
+\probdiagFourOne
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourOne} 的各条路径具有同一高度差；在图~\ref{ch08:fig:soldiagFourOne} 中把端点记为 $y_A,y_B$。
+取竖直向上为 $y$ 轴正方向。重力为 $\vec G=-mg\,\vec e_y$，任意一小段位移中重力做功
+\[
+ \dd W_G=\vec G\cdot\dd\vec r=-mg\,\dd y.
+\]
+从 $A$ 到 $B$ 累积：
+\[
+ W_G=-mg\int_{y_A}^{y_B}\dd y
+ =mg(y_A-y_B).
+\]
+\soldiagFourOne
+由于所有图中 $y_A-y_B=h$，无论路径是直线、折线、曲线，途中是否先升高或绕行，
+均有
+\[
+ \boxed{W_G=mgh}.
+\]
+重力功只由初、末位置的高度差决定，与实际路径的形状和长度无关。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-2}
+质量为 $m$ 的物体在与水平方向夹角为 $\theta$ 的恒力 $F$ 作用下，沿摩擦系数为
+$\mu$ 的水平面向右运动距离 $L$。求在此过程中恒力 $F$、摩擦力 $f$、重力 $mg$
+以及支持力 $N$ 所做的功。若初速度为 $v_0$、方向向右，求物体最后的速度。
+\probdiagFourTwo
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourTwo} 给出 $F$ 与水平线的夹角，图~\ref{ch08:fig:soldiagFourTwo} 分别标出四个力。
+物体在竖直方向没有位移。若全过程保持与水平面接触，则
+\[
+ N+F\sin\theta-mg=0,
+ \qquad
+ N=mg-F\sin\theta.
+\]
+滑动摩擦力大小为
+\[
+ f=\mu N=\mu(mg-F\sin\theta),
+\]
+方向与位移相反。各力所做的功分别为
+\[
+ \boxed{W_F=FL\cos\theta},
+ \qquad
+ \boxed{W_f=-\mu(mg-F\sin\theta)L},
+\]
+\[
+ \boxed{W_G=0},
+ \qquad
+ \boxed{W_N=0}.
+\]
+\soldiagFourTwo
+对物体应用动能定理：
+\[
+ FL\cos\theta-\mu(mg-F\sin\theta)L
+ =\frac12mv^2-\frac12mv_0^2.
+\]
+所以
+\[
+ \boxed{
+ v=\sqrt{v_0^2+\frac{2L}{m}
+ \left[F\cos\theta-\mu(mg-F\sin\theta)\right]}}.
+\]
+这一表达式要求 $N\ge0$，且物体确实向右滑完整段距离 $L$。若根号内在到达 $L$ 前
+已降为零，物体会先停下，摩擦力方向和后续运动必须重新判断。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-3}
+如图，质量为 $m$ 的小球系在劲度系数为 $k$、原长为 $l_0$ 的轻弹簧一端，弹簧另一端
+固定在 $O$ 点。开始时小球位于水平位置 $A$，弹簧处于原长。小球由 $A$ 自由释放，
+下落到 $O$ 点正下方的 $B$ 点时，弹簧伸长量为 $l_0/n$，其中 $n>0$。已知小球能够到达该状态，求其速率。
+\probdiagFourThree
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourThree} 标出两个状态，虚线只连接始末位置，不用于指定运动轨迹。
+在 $A$ 点弹簧长度为原长 $l_0$，在 $B$ 点弹簧长度为
+\[
+ OB=l_0+\frac{l_0}{n}=l_0\left(1+\frac1n\right).
+\]
+因此小球下降的高度就是 $OB$。重力做功
+\[
+ W_G=mg\,l_0\left(1+\frac1n\right).
+\]
+令弹簧伸长量为 $x=l-l_0$，径向向外为正。弹力为 $-kx\vec e_r$，
+而实际位移在径向上的投影为 $\dd l=\dd x$，所以即使轨迹弯曲，也有
+\[
+ \dd W_{\rm s}=(-kx\vec e_r)\cdot\dd\vec r=-kx\,\dd x.
+\]
+从 $x=0$ 积分到 $x=l_0/n$，得到
+\[
+ W_{\rm s}=-\int_0^{l_0/n}kx\,\dd x=-\frac12k\left(\frac{l_0}{n}\right)^2.
+\]
+图~\ref{ch08:fig:soldiagFourThree} 将高度差和形变量分开标出，分别用于计算重力功和弹力功。
+\soldiagFourThree
+小球由静止释放，由动能定理
+\[
+ mg\,l_0\left(1+\frac1n\right)
+ -\frac12k\frac{l_0^2}{n^2}
+ =\frac12mv^2.
+\]
+故
+\[
+ \boxed{
+ v=\sqrt{2gl_0\left(1+\frac1n\right)
+ -\frac{k l_0^2}{mn^2}}}.
+\]
+弹力虽然在曲线路径上方向不断改变，但其总功只由弹簧初、末形变量决定。
+根号内各项量纲均为速度平方。它必须非负；题给的 $n$ 是实际到达状态的参数，不能把任意 $n$ 都当作必可实现的运动状态。
+\end{xesolution}
+
+\subsection{多个物体的情况}
+
+动能定理不但适用于单个质点，也适用于由多个质点构成的力学系统。系统的总动能等于
+各质点动能的代数和。与动量定理不同，系统内力的总功一般不为零；求系统总动能的变化
+时，外力功和内力功都不能遗漏。例如枪和子弹的总动量在发射过程中可以守恒，但火药内力
+做正功，使系统总动能明显增加。
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-4}
+如图，把弹簧的一端固定在墙上，另一端系物体 $A$。将弹簧压缩 $x_1$ 后，在 $A$ 的
+右边紧靠放置物体 $B$，然后撤去外力。物体 $A,B$ 均在光滑水平面上，质量分别为
+$m_A,m_B$，弹簧劲度系数为 $k$。求物体 $A$ 移动的最大距离。
+\probdiagFourFour
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+按图~\ref{ch08:fig:probdiagFourFour}，以弹簧连接点在原长时的位置为 $x=0$，伸长为正。
+弹簧由压缩状态恢复时，$A$ 推着 $B$ 一起向右运动。在弹簧仍被压缩的阶段，两物体速度
+相同，可看作总质量为 $m_A+m_B$ 的整体。此时 $x<0$，共同加速度及 $A$ 对 $B$ 的接触力为
+\[
+ a=\frac{-kx}{m_A+m_B},\qquad N=m_Ba=\frac{-m_Bkx}{m_A+m_B}>0.
+\]
+因此在恢复原长之前不会分离；到 $x=0$ 时 $N$ 才降为零。由动能定理
+\[
+ \frac12kx_1^2
+ =\frac12(m_A+m_B)V^2,
+\]
+故
+\[
+ V=x_1\sqrt{\frac{k}{m_A+m_B}}.
+\]
+越过原长位置后，弹簧开始伸长并向左拉 $A$，而 $A$ 不能“拉住”右侧的 $B$，所以两物体
+在弹簧原长处恰好分离。此后 $B$ 以速度 $V$ 匀速前进，$A$ 单独继续向右并拉伸弹簧。
+\soldiagFourFour
+图~\ref{ch08:fig:soldiagFourFour} 的三行分别表示初态、分离和 $A$ 到达最右端；三行使用相同的 $x=0$。
+设 $A$ 在原长位置右侧继续移动的最大距离为 $x_2$，则
+\[
+ \frac12m_AV^2=\frac12kx_2^2,
+\]
+从而
+\[
+ x_2=x_1\sqrt{\frac{m_A}{m_A+m_B}}.
+\]
+物体 $A$ 从初始压缩位置到最右端的总路程为 $x_1+x_2$，所以
+\[
+ \boxed{
+ s_{A,\max}=x_1\left(1+\sqrt{\frac{m_A}{m_A+m_B}}\right)}.
+\]
+若只问相对弹簧原长位置的最大伸长，则答案是 $x_2$；本题问的是 $A$ 从初始位置起移动的
+最大距离，因此还要加上先前走过的 $x_1$。
+\end{xesolution}
+
+\Needspace{0.28\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-5}
+光滑水平面上有一块足够长、质量为 $M$、初始静止的板 $B$。某时刻质量为 $m$、
+速度为 $v_0$ 的物体 $A$ 冲上板的上表面，两者间的动摩擦因数为 $\mu$。求从开始相对
+滑动到相对速度变为零的过程中，摩擦力对两个物体所做的功各为多少；并求整个系统的
+动能变化量。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+水平方向没有外力，达到共同速度 $V$ 时由动量守恒
+\[
+ mv_0=(m+M)V,
+ \qquad
+ V=\frac{m}{m+M}v_0.
+\]
+滑动期间，$A$ 的加速度为 $-\mu g$，板 $B$ 的加速度为 $\mu mg/M$。相对速度由
+$v_0$ 减到零。相对加速度为两加速度之差，故
+\[
+ a_{A/B}=-\mu g-\frac{\mu mg}{M},\qquad
+ 0=v_0-\mu g\left(1+\frac mM\right)t.
+\]
+所需时间为
+\[
+ t=\frac{Mv_0}{\mu g(m+M)}.
+\]
+两物体相对地面的位移分别为
+\[
+ s_A=\frac{v_0+V}{2}\,t,
+ \qquad
+ s_B=\frac{V}{2}\,t.
+\]
+\soldiagFourFive
+图~\ref{ch08:fig:soldiagFourFive} 中 $s_A>s_B$，两位移都相对地面计算。
+摩擦力对 $A$ 方向向左，对 $B$ 方向向右，因此
+\[
+ \boxed{
+ W_{f,A}=-\mu mgs_A
+ =-\frac{mM(M+2m)}{2(m+M)^2}v_0^2},
+\]
+\[
+ \boxed{
+ W_{f,B}=+\mu mgs_B
+ =\frac{m^2M}{2(m+M)^2}v_0^2}.
+\]
+系统动能变化为两摩擦功之和：
+\[
+ \boxed{
+ \Delta E_k=W_{f,A}+W_{f,B}
+ =-\frac{mM}{2(m+M)}v_0^2}.
+\]
+两个摩擦力大小相等、方向相反，但作用点相对地面的位移不同，所以它们的功不互相抵消。
+损失的机械能等于摩擦力与相对滑动距离的乘积。也可分别核验
+$W_{f,A}=\tfrac12m(V^2-v_0^2)$、$W_{f,B}=\tfrac12MV^2$，代入共同速度即得到同样结果。
+这里取 $\mu>0$；减小 $\mu$ 会延长滑动时间，最终损失却不变，而 $\mu=0$ 时根本不会达到共同速度，不能套用这一终态。
+\end{xesolution}
+
+\section{功与动能的参考系依赖}
+
+功依赖于力的作用点在所选参考系中的位移，动能依赖于物体在所选参考系中的速度，因此
+二者都与参考系有关。只有在惯性参考系中，动能定理才能直接写成通常形式；同一过程可以
+在不同惯性系中使用动能定理，但必须在同一个参考系内同时计算功和动能。
+
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-6}
+一列火车以速度 $v_0$ 做匀速直线运动。火车上的人在光滑水平面上用恒力 $F$ 向前拉动质量为 $m$ 的物体，
+使它相对火车向前移动距离 $L$。物体起初相对火车静止。先在火车参考系中求物体最后的
+速度，再在相对地面静止的参考系中描述同一过程，并列出动能定理方程。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+火车做匀速直线运动，火车系与地面系都是惯性系。设物体相对火车的末速度为 $u$。在火车
+系中，力的作用点位移为 $L$，动能定理给出
+\[
+ FL=\frac12mu^2,
+ \qquad
+ \boxed{u=\sqrt{\frac{2FL}{m}}}.
+\]
+设拉动持续时间为 $t$。由于 $u=Ft/m$，所以 $m u=Ft$。在地面系中，物体的初、末速度
+分别为 $v_0$ 和 $v_0+u$；同一时间内，力的作用点相对地面的位移为 $L+v_0t$。
+\soldiagFourSix
+图~\ref{ch08:fig:soldiagFourSix} 的两行对应同一过程：地面位移等于车内位移加上火车的位移。
+地面系中的动能定理为
+\[
+ \boxed{
+ F(L+v_0t)
+ =\frac12m(v_0+u)^2-\frac12mv_0^2}.
+\]
+展开右端并利用 $FL=\tfrac12mu^2$、$Ft=mu$，两边完全相等。不同惯性系中功和动能
+变化的数值可以不同，但各自在本参考系内仍满足动能定理。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-7}
+同上，但火车以加速度 $a$ 做匀加速运动。在火车参考系和地面参考系中分别直接使用
+动能定理，能否得到正确结果？若要使动能定理在火车参考系中也成立，应怎样处理？
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+地面系近似为惯性系，因而可以直接使用动能定理。设过程开始时火车和物体的地面速度均为
+$v_0$，持续时间为 $t$。物体只受水平拉力 $F$，故地面加速度为 $F/m$：
+\[
+ v_{\rm f}=v_0+\frac{F}{m}t,
+ \qquad
+ x_{\rm obj}=v_0t+\frac12\frac{F}{m}t^2.
+\]
+地面系中有
+\[
+ \boxed{
+ Fx_{\rm obj}
+ =\frac12m\left(v_0+\frac{F}{m}t\right)^2-\frac12mv_0^2}.
+\]
+火车系以加速度 $a$ 运动，不是惯性系。若仍只把 $F$ 的功写成 $FL$，将不能得到正确的
+相对运动。要在火车系中使用动能定理，必须给物体加入方向与火车加速度相反的惯性力
+\[
+ \vec F_{\rm in}=-m\vec a.
+\]
+\soldiagFourSeven
+图~\ref{ch08:fig:soldiagFourSeven} 中真实拉力向右、惯性力向左。
+若拉力与火车加速度同向，且 $F>ma$，物体相对火车由静止向前移动距离 $L$，则
+\[
+ (F-ma)L=\frac12mu_{\rm rel}^2,
+\]
+所以
+\[
+ \boxed{u_{\rm rel}
+ =\sqrt{2\left(\frac{F}{m}-a\right)L}}.
+\]
+若 $F=ma$，相对加速度为零，物体始终相对火车静止，不会完成 $L>0$ 的车内位移。
+若 $F<ma$，物体相对火车向后运动；用有符号位移 $\xi<0$ 写
+$(F-ma)\xi=\tfrac12mu_{\rm rel}^2$，两边仍为非负，不能把“向前移动 $L$”的根式硬套到此分支。
+惯性力不是新的相互作用力，而是为了在非惯性系中继续使用牛顿定律和动能定理而引入的
+等效力。
+\end{xesolution}
+
+\subsection{功与力的关系：虚功原理初步}
+
+杠杆、轮轴、齿轮、定滑轮和动滑轮
+等简单机械可以组合成复杂装置，把动力转化为所需要的形式。机械的一端连接动力源，动力
+可以来自人力、蒸汽机或电动机；另一端是输出端，用来提升重物或产生其他运动。
+
+机械不能创造能量，但可以储存能量。无摩擦、无其他损耗时，输入功与输出功的正确关系是
+\[
+ W_{\rm in}=W_{\rm out}+\Delta E_{\rm machine}.
+\]
+只有机械本身的动能、势能等不变时，才有输入功等于输出功；无摩擦本身并不能保证这一点。
+在这个条件下，机械用较小的力克服较大的阻力，代价是动力作用点移动更长的距离，“省力”不意味着“省功”。
+
+图~\ref{ch08:fig:movingPulleyDiagram} 为轻绳、轻滑轮构成的理想动滑轮，绳不可伸长，下方重物质量为 $m$。
+取竖直向上为正，固定端高度为 $y_f$，自由端高度为 $y_e$，轮心高度为 $y_p$。
+绳长为 $(y_f-y_p)+(y_e-y_p)+\pi R=\text{常量}$，所以
+$\Delta y_e=2\Delta y_p$。自由端向上移动 $L$ 时，重物向上移动 $L/2$。
+重物匀速上升，动能不变，因此拉力的功等于重力势能的增加：
+\movingPulleyDiagram
+\begin{equation}
+ F L=mg\frac{L}{2}.
+\end{equation}
+消去共同的位移尺度 $L$，得到
+\begin{equation}
+ F=\frac12mg.
+\end{equation}
+如果装置处于平衡而并未实际运动，也可以假想一次符合绳长约束的微小位移，记作 $\delta y$。
+它不是已经发生的位移，也不要求给它分配一段时间。理想约束下，平衡要求主动外力的总虚功为零：
+\[
+ F\delta y_e-mg\delta y_p=0,\qquad \delta y_e=2\delta y_p.
+\]
+由此同样得到 $F=mg/2$。这就是虚功原理在本例中的用法。
+它把允许的位移关系与平衡条件结合起来，可避免逐个求出约束复杂系统中的支持力和内部绳张力。
+
+\subsection{变力作功}
+
+作用力不是恒力时，仍可使用动能定理，关键是正确计算变力的功。建立直角坐标系，把力写成
+$(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
+\begin{equation}
+ \dd W=F_x\dd x+F_y\dd y+F_z\dd z=\vec F\cdot\dd\vec r.
+\end{equation}
+在有限过程中，应把各微小功累积起来，即
+\[
+ W=\int_A^B\vec F\cdot\dd\vec r.
+\]
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-8}
+两个物体间的相互吸引力大小与它们之间的距离成反比。固定其中一个物体，求另一个物体
+由相距 $r_A$ 运动到相距 $r_B$ 的过程中，该吸引力所做的功。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设吸引力大小为
+\[
+ F=\frac{k}{r},
+ \qquad k>0.
+\]
+取径向向外为正方向，吸引力的径向分量为 $F_r=-k/r$。因此
+\[
+ W_{A\to B}
+ =\int_{r_A}^{r_B}F_r\,\dd r
+ =-\int_{r_A}^{r_B}\frac{k}{r}\,\dd r.
+\]
+\soldiagFourEight
+图~\ref{ch08:fig:soldiagFourEight} 区分有限的始末距离与当前位置上的径向位移微元。积分得到
+\[
+ \boxed{W_{A\to B}=k\ln\frac{r_A}{r_B}}.
+\]
+若题目所说“大小”专指绝对值，则为
+\[
+ \boxed{|W|=k\left|\ln\frac{r_A}{r_B}\right|}.
+\]
+当物体向内运动，即 $r_B<r_A$ 时，引力与位移同向，功为正；向外运动时功为负。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch08:ex:s10-4-9}
+两个物体间的相互吸引力大小与它们之间距离的平方成反比。固定其中一个物体，求另一个
+物体由相距 $r_A$ 运动到相距 $r_B$ 的过程中，该吸引力所做的功。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设吸引力大小为
+\[
+ F=\frac{k}{r^2},
+ \qquad k>0.
+\]
+仍取径向向外为正，故 $F_r=-k/r^2$：
+\[
+ W_{A\to B}
+ =-\int_{r_A}^{r_B}\frac{k}{r^2}\,\dd r
+ =\left.\frac{k}{r}\right|_{r_A}^{r_B}.
+\]
+\soldiagFourNine
+图~\ref{ch08:fig:soldiagFourNine} 画出 $r_B>r_A$ 时力的大小曲线：阴影面积为正，而向外运动的引力功为负。
+所以功及其绝对值分别为
+\[
+\boxed{
+ W_{A\to B}=k\left(\frac1{r_B}-\frac1{r_A}\right)},
+\qquad
+\boxed{
+ |W|=k\left|\frac1{r_B}-\frac1{r_A}\right|}.
+\]
+符号判断与例~\ref{ch08:ex:s10-4-8} 相同：向内运动时引力做正功，向外运动时引力做负功。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eleventh-section/}}
+\section{势能与机械能守恒}
+\tikzset{solbody/.style={draw=Ink,line width=.8pt},solpath/.style={draw=Ink,line width=.8pt},
+ solforce/.style={-{Latex[length=2mm]},draw=DeepBlue,line width=.9pt},
+ solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=.8pt},
+ solgeom/.style={draw=TextGray,densely dashed,line width=.5pt},
+ sollabel/.style={font=\scriptsize,fill=none,inner sep=1.5pt},
+ solpanel/.style={font=\scriptsize\bfseries,text=TextGray},
+ spring/.style={decorate,decoration={coil,segment length=4pt,amplitude=2.5pt},draw=Ink}}
+\newcommand{\diagcaption}[2]{\refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+\newenvironment{energyfig}{\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}}
+% Generated by tools/generate_ch08_geometry.py
+\newcommand{\screenedPotentialCurve}{\draw[solpath] (0.40000000,-1.26860129)--(0.42000000,-1.17739386)--(0.44000000,-1.09554935)--(0.46000000,-1.02178726)--(0.48000000,-0.95504559)--(0.50000000,-0.89443654)--(0.52000000,-0.83921253)--(0.54000000,-0.78873977)--(0.56000000,-0.74247769)--(0.58000000,-0.69996252)--(0.60000000,-0.66079430)--(0.62000000,-0.62462641)--(0.64000000,-0.59115703)--(0.66000000,-0.56012225)--(0.68000000,-0.53129036)--(0.70000000,-0.50445717)--(0.72000000,-0.47944208)--(0.74000000,-0.45608482)--(0.76000000,-0.43424272)--(0.78000000,-0.41378841)--(0.80000000,-0.39460782)--(0.82000000,-0.37659853)--(0.84000000,-0.35966839)--(0.86000000,-0.34373421)--(0.88000000,-0.32872077)--(0.90000000,-0.31455991)--(0.92000000,-0.30118970)--(0.94000000,-0.28855379)--(0.96000000,-0.27660079)--(0.98000000,-0.26528376)--(1.00000000,-0.25455974)--(1.02000000,-0.24438936)--(1.04000000,-0.23473647)--(1.06000000,-0.22556781)--(1.08000000,-0.21685277)--(1.10000000,-0.20856312)--(1.12000000,-0.20067278)--(1.14000000,-0.19315763)--(1.16000000,-0.18599535)--(1.18000000,-0.17916523)--(1.20000000,-0.17264806)--(1.22000000,-0.16642599)--(1.24000000,-0.16048241)--(1.26000000,-0.15480184)--(1.28000000,-0.14936987)--(1.30000000,-0.14417304)--(1.32000000,-0.13919879)--(1.34000000,-0.13443534)--(1.36000000,-0.12987172)--(1.38000000,-0.12549761)--(1.40000000,-0.12130336)--(1.42000000,-0.11727991)--(1.44000000,-0.11341874)--(1.46000000,-0.10971186)--(1.48000000,-0.10615176)--(1.50000000,-0.10273134)--(1.52000000,-0.09944396)--(1.54000000,-0.09628332)--(1.56000000,-0.09324349)--(1.58000000,-0.09031890)--(1.60000000,-0.08750425)--(1.62000000,-0.08479455)--(1.64000000,-0.08218509)--(1.66000000,-0.07967140)--(1.68000000,-0.07724926)--(1.70000000,-0.07491465)--(1.72000000,-0.07266379)--(1.74000000,-0.07049308)--(1.76000000,-0.06839910)--(1.78000000,-0.06637862)--(1.80000000,-0.06442855)--(1.82000000,-0.06254598)--(1.84000000,-0.06072812)--(1.86000000,-0.05897232)--(1.88000000,-0.05727608)--(1.90000000,-0.05563700)--(1.92000000,-0.05405280)--(1.94000000,-0.05252129)--(1.96000000,-0.05104042)--(1.98000000,-0.04960821)--(2.00000000,-0.04822277)--(2.02000000,-0.04688231)--(2.04000000,-0.04558510)--(2.06000000,-0.04432951)--(2.08000000,-0.04311398)--(2.10000000,-0.04193699)--(2.12000000,-0.04079713)--(2.14000000,-0.03969302)--(2.16000000,-0.03862336)--(2.18000000,-0.03758688)--(2.20000000,-0.03658240)--(2.22000000,-0.03560875)--(2.24000000,-0.03466484)--(2.26000000,-0.03374961)--(2.28000000,-0.03286205)--(2.30000000,-0.03200120)--(2.32000000,-0.03116611)--(2.34000000,-0.03035590)--(2.36000000,-0.02956970)--(2.38000000,-0.02880671)--(2.40000000,-0.02806612)--(2.42000000,-0.02734718)--(2.44000000,-0.02664916)--(2.46000000,-0.02597136)--(2.48000000,-0.02531311)--(2.50000000,-0.02467375)--(2.52000000,-0.02405267)--(2.54000000,-0.02344927)--(2.56000000,-0.02286296)--(2.58000000,-0.02229320)--(2.60000000,-0.02173945)--(2.62000000,-0.02120120)--(2.64000000,-0.02067795)--(2.66000000,-0.02016923)--(2.68000000,-0.01967457)--(2.70000000,-0.01919353)--(2.72000000,-0.01872569)--(2.74000000,-0.01827064)--(2.76000000,-0.01782797)--(2.78000000,-0.01739730)--(2.80000000,-0.01697828)--(2.82000000,-0.01657053)--(2.84000000,-0.01617371)--(2.86000000,-0.01578750)--(2.88000000,-0.01541157)--(2.90000000,-0.01504562)--(2.92000000,-0.01468934)--(2.94000000,-0.01434245)--(2.96000000,-0.01400466)--(2.98000000,-0.01367571)--(3.00000000,-0.01335534)--(3.02000000,-0.01304330)--(3.04000000,-0.01273934)--(3.06000000,-0.01244323)--(3.08000000,-0.01215474)--(3.10000000,-0.01187365)--(3.12000000,-0.01159975)--(3.14000000,-0.01133282)--(3.16000000,-0.01107269)--(3.18000000,-0.01081914)--(3.20000000,-0.01057199)--(3.22000000,-0.01033107)--(3.24000000,-0.01009619)--(3.26000000,-0.00986720)--(3.28000000,-0.00964392)--(3.30000000,-0.00942619)--(3.32000000,-0.00921386)--(3.34000000,-0.00900679)--(3.36000000,-0.00880483)--(3.38000000,-0.00860783)--(3.40000000,-0.00841566)--(3.42000000,-0.00822820)--(3.44000000,-0.00804531)--(3.46000000,-0.00786686)--(3.48000000,-0.00769275)--(3.50000000,-0.00752285)--(3.52000000,-0.00735705)--(3.54000000,-0.00719524)--(3.56000000,-0.00703731)--(3.58000000,-0.00688317)--(3.60000000,-0.00673271)--(3.62000000,-0.00658583)--(3.64000000,-0.00644244)--(3.66000000,-0.00630246)--(3.68000000,-0.00616578)--(3.70000000,-0.00603232)--(3.72000000,-0.00590201)--(3.74000000,-0.00577475)--(3.76000000,-0.00565048)--(3.78000000,-0.00552911)--(3.80000000,-0.00541056)--(3.82000000,-0.00529477)--(3.84000000,-0.00518167)--(3.86000000,-0.00507119)--(3.88000000,-0.00496326)--(3.90000000,-0.00485781)--(3.92000000,-0.00475479)--(3.94000000,-0.00465413)--(3.96000000,-0.00455578)--(3.98000000,-0.00445967)--(4.00000000,-0.00436575)--(4.02000000,-0.00427397)--(4.04000000,-0.00418427)--(4.06000000,-0.00409660)--(4.08000000,-0.00401091)--(4.10000000,-0.00392715)--(4.12000000,-0.00384528)--(4.14000000,-0.00376524)--(4.16000000,-0.00368700)--(4.18000000,-0.00361051)--(4.20000000,-0.00353573);}
+
+
+\newcommand{\gravityPathsDiagram}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \coordinate(A)at(2.7,1.5);\coordinate(B)at(-2.7,-1);
+ \draw[solpath](A)--(B);
+ \draw[solpath](A)..controls(1.2,2.3)and(-1.8,2.3)..(B);
+ \draw[solpath](A)..controls(1,.9)and(-.8,1.2)..(B);
+ \draw[solpath](A)..controls(2.4,-.3)and(.2,-1.6)..(B);
+ \fill(A)circle(2pt)node[above right,sollabel]{$A,y_A$};\fill(B)circle(2pt)node[below left,sollabel]{$B,y_B$};
+ \draw[solgeom](-3.2,1.5)--(3,1.5);\draw[solgeom](-3.2,-1)--(3,-1);
+ \draw[<->,DeepBlue](-3.2,-1)--(-3.2,1.5)node[midway,left,sollabel]{$h$};
+\end{tikzpicture}\diagcaption{示意图}{只有在物体可达且保持固定轨道约束时，才能比较这些路径的终态速率。}\label{ch08:fig:gravityPathsDiagram}\end{energyfig}}
+
+\newcommand{\probdiagFourTen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.85]
+ \begin{scope}[xshift=-3.5cm,yshift=3.6cm]
+ \node[solpanel]at(0,1.7){(1) 不脱离的光滑槽};
+ \draw[solpath](-1.6,-.6)--(-.3,-.6)..controls(.9,-.6)and(.1,.8)..(.9,1.3);
+ \draw[solpath](-1.6,-.72)--(-.3,-.72)..controls(1.03,-.72)and(.23,.72)..(1.03,1.3);
+ \fill(-1.2,-.66)circle(2pt);\draw[solflow](-1.2,-.3)--(-.4,-.3)node[midway,above,sollabel]{$v$};
+ \end{scope}
+ \begin{scope}[xshift=3.5cm,yshift=3.6cm]
+ \node[solpanel]at(0,1.7){(2) 斜抛};\draw[solgeom](-1.5,-.6)--(1.5,-.6);
+ \fill(-1,-.6)circle(2pt);\draw[solforce](-1,-.6)--++(40:1.8)node[right,sollabel]{$v$};
+ \draw[TextGray](-.4,-.6)arc(0:40:.6);\node[sollabel]at(-.15,-.35){$\theta$};
+ \end{scope}
+ \foreach \pos/\title in {-3.5/{(3) 珠子套在细圆环上},3.5/{(4) 质点沿圆柱内壁}}{
+ \begin{scope}[xshift=\pos cm]
+ \node[solpanel]at(0,1.75){\title};\draw[solbody](0,0)circle(1.1);
+ \draw[solgeom](0,0)--(135:1.1)node[midway,left,sollabel]{$R$};
+ \draw[solflow](.25,-1.4)--(1.15,-1.4)node[right,sollabel]{$v$};
+ \end{scope}}
+ \draw[DeepBlue,line width=1pt](-3.5,-1.1)circle(.12);
+ \node[sollabel,below]at(-3.9,-1.3){套孔};\draw[TextGray](-3.9,-1.3)--(-3.62,-1.15);
+ \fill(3.5,-1.1)circle(2.2pt);
+\end{tikzpicture}\diagcaption{题图}{第三种约束可双向作用；第四种只能由内壁向圆心推压。}\label{ch08:fig:probdiagFourTen}\end{energyfig}}
+
+\newcommand{\soldiagFourTen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3.6cm]
+ \node[solpanel]at(0,2.9){套环：不发生脱离};\draw[solbody](0,0)circle(1.35);
+ \draw[DeepBlue,line width=1pt](45:1.35)circle(.13);
+ \draw[solforce](45:1.35)--(45:.4)node[below right,sollabel]{$N$};
+ \node[sollabel,align=center]at(0,-2){此处只画向内的一种状态\\其他状态允许反向};
+ \end{scope}
+ \begin{scope}[xshift=3.2cm]
+ \def\rr{1.6}\def\cc{-.8}\pgfmathsetmacro\ss{sqrt(1-\cc*\cc)}\pgfmathsetmacro\uu{sqrt(-\cc*\rr)}
+ \pgfmathsetmacro\ta{\uu*\ss}
+ \coordinate(O)at(0,0);\coordinate(D)at({\rr*\ss},{-\rr*\cc});
+ \node[solpanel]at(0,2.9){内壁：$D$ 点 $N=0$ 后脱离};
+ \draw[solbody](O)circle(\rr);\fill(O)circle(1.5pt)node[below left,sollabel]{$O$};
+ \draw[solgeom](0,-\rr)--(O)--(D);\fill(D)circle(2pt);\node[sollabel,anchor=west]at($(D)+(.25,.35)$){$D$};
+ \draw[TextGray](0,-.43)arc(-90:53.1301:.43);\node[sollabel]at(.65,-.3){$\varphi_{\rm d}$};
+ \draw[Blue,line width=.9pt,domain=0:{1.2*\ta},samples=80,variable=\t]
+ plot({\rr*\ss+\uu*\cc*\t},{-\rr*\cc+\uu*\ss*\t-.5*\t*\t});
+ \draw[solforce](D)--++({1.2*\cc},{1.2*\ss})node[above,sollabel]{$\vec u_{\rm d}$};
+ \draw[solgeom](2.25,{-\rr*\cc})--(D);
+ \draw[solforce](2.25,{-\rr*\cc})--++(0,{1.2*\ss})node[right,sollabel]{$u_{{\rm d},y}$};
+ \draw[<->,TextGray](-2,-\rr)--(-2,{-\rr*\cc})node[midway,left,sollabel]{$R(1-c)$};
+ \node[sollabel]at(0,-2){蓝线由抛体方程确定};
+ \end{scope}
+\end{tikzpicture}\diagcaption{解图}{右图取 $c=-0.8$ 展示脱离到首次最高点附近的运动，抛出切线与半径垂直。}\label{ch08:fig:soldiagFourTen}\end{energyfig}}
+
+\newcommand{\probdiagFourEleven}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \def\rr{2}\coordinate(O)at(0,0);\coordinate(D)at(45:\rr);
+ \draw[solbody](-2.6,0)--(3,0);\draw[solbody](-\rr,0)arc(180:0:\rr);
+ \fill(0,\rr)circle(2.5pt)node[above,sollabel]{初态质点 $m$};
+ \fill(O)circle(1.5pt)node[below,sollabel]{$O$};\draw[solgeom](0,\rr)--(O)--(D);
+ \fill(D)circle(1.5pt);\node[sollabel]at(1.1,.65){$R$};
+ \draw[TextGray](45:.65)arc(45:90:.65);\node[sollabel]at(67.5:.92){$\theta$};
+\end{tikzpicture}\diagcaption{题图}{初态位于圆面顶点；角度 $\theta$ 从竖直向上的半径量起。}\label{ch08:fig:probdiagFourEleven}\end{energyfig}}
+
+\newcommand{\soldiagFourEleven}{%
+\begin{energyfig}\begin{tikzpicture}[scale=1]
+ \def\rr{2}\pgfmathsetmacro\ss{sqrt(5)/3}\def\cc{.6666666667}
+ \pgfmathsetmacro\uu{sqrt(2*\rr/3)}\pgfmathsetmacro\ux{\uu*\cc}\pgfmathsetmacro\uy{-\uu*\ss}
+ \pgfmathsetmacro\tf{\uy+sqrt(\uy*\uy+2*\rr*\cc)}\pgfmathsetmacro\xf{\rr*\ss+\ux*\tf}
+ \coordinate(D)at({\rr*\ss},{\rr*\cc});
+ \draw[solbody](-2.5,0)--(3.4,0);\draw[solbody](-\rr,0)arc(180:0:\rr);
+ \draw[solgeom](0,\rr)--(0,0)--(D);\fill(0,0)circle(1.5pt)node[below left,sollabel]{$O$};
+ \fill(D)circle(2pt)node[above right,sollabel]{$D$};
+ \draw[Blue,line width=1pt,domain=0:\tf,samples=80,variable=\t]
+ plot({\rr*\ss+\ux*\t},{\rr*\cc+\uy*\t-.5*\t*\t});
+ \draw[solforce](D)--++({.95*\cc},{-.95*\ss})node[right,sollabel]{$\vec u$};
+ \draw[solforce](D)--++(0,-.75)node[below left,sollabel]{$mg$};
+ \draw[TextGray](41.8103:.5)arc(41.8103:90:.5);\node[sollabel]at(65:.8){$\theta$};
+ \fill(\xf,0)circle(2pt)node[above right,sollabel]{落点};
+ \draw[solgeom](0,0)--(0,-.55);\draw[solgeom](\xf,0)--(\xf,-.55);
+ \draw[<->,DeepBlue](0,-.45)--(\xf,-.45)node[midway,below,sollabel]{$x$};
+ \node[sollabel,align=left]at(-1.3,2.6){$D$ 点：$N=0$\\$\cos\theta=2/3$};
+\end{tikzpicture}\diagcaption{解图}{脱离速度沿圆面切线，落点在半圆右端之外；脱离后仅受重力。}\label{ch08:fig:soldiagFourEleven}\end{energyfig}}
+
+\newcommand{\probdiagFourTwelve}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \def\rr{1.8}\draw[solbody](-3,-\rr)--(0,-\rr)arc(-90:90:\rr);
+ \fill(-2.2,-\rr)circle(2pt)node[above,sollabel]{$m$};
+ \draw[solflow](-1.9,{-\rr+.4})--(-.8,{-\rr+.4})node[midway,above,sollabel]{$v$};
+ \fill(0,0)circle(1.5pt)node[left,sollabel]{$O$};
+ \draw[solgeom](0,0)--(45:\rr)node[midway,above left,sollabel]{$R$};
+ \node[sollabel,anchor=west]at(2.4,0){右半圆内壁};
+\end{tikzpicture}\diagcaption{题图}{水平段在圆弧最低点相切，质点先沿右半圆上升。}\label{ch08:fig:probdiagFourTwelve}\end{energyfig}}
+
+\newcommand{\soldiagFourTwelve}{%
+\begin{energyfig}\begin{tikzpicture}[scale=1]
+ \def\rr{1.9}\pgfmathsetmacro\cc{-1/sqrt(3)}\pgfmathsetmacro\ss{sqrt(2/3)}
+ \pgfmathsetmacro\uu{sqrt(-\rr*\cc)}\pgfmathsetmacro\tf{-\rr*\ss/(\uu*\cc)}
+ \coordinate(D)at({\rr*\ss},{-\rr*\cc});
+ \draw[solbody](-2.2,-\rr)--(0,-\rr)arc(-90:90:\rr);
+ \fill(0,0)circle(1.5pt)node[left,sollabel]{$O$};\fill(D)circle(2pt);\node[sollabel,anchor=west]at($(D)+(.3,.25)$){$D$};
+ \draw[solgeom](0,-\rr)--(0,0)--(D);\node[sollabel]at(1,.3){$R$};
+ \draw[TextGray](0,-.5)arc(-90:35.2644:.5);\node[sollabel]at(.75,-.35){$\varphi$};
+ \draw[Blue,line width=1pt,domain=0:\tf,samples=100,variable=\t]
+ plot({\rr*\ss+\uu*\cc*\t},{-\rr*\cc+\uu*\ss*\t-.5*\t*\t});
+ \draw[solforce](D)--++({1.05*\cc},{1.05*\ss})node[above right,sollabel]{$\vec u$};
+ \draw[solforce](D)--++(0,-.65)node[above left,sollabel]{$mg$};
+ \node[sollabel,align=left,anchor=east]at(-.65,1.15){$D$ 点 $N=0$\\[4pt]$u_x<0,\ u_y>0$};
+\end{tikzpicture}\diagcaption{解图}{脱离后轨迹沿切线进入圆内，水平坐标单调减小，随后经过 $O$。}\label{ch08:fig:soldiagFourTwelve}\end{energyfig}}
+
+\newcommand{\soldiagFourThirteen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3.6cm]
+ \node[solpanel]at(0,2.6){(3) 四次势能};\draw[solflow](-1.6,0)--(1.8,0)node[right,sollabel]{$x$};
+ \draw[solflow](0,-.3)--(0,2)node[above,sollabel]{$E_p$};
+ \draw[solpath,domain=-1.25:1.25,samples=60]plot(\x,{.65*\x*\x*\x*\x});
+ \node[sollabel]at(0,-.75){$x=0$ 稳定，$E_p''(0)=0$};
+ \end{scope}
+ \begin{scope}[xshift=1.7cm]
+ \node[solpanel]at(2,2.6){(4) 由定积分确定的吸引势};
+ \draw[solflow](0,0)--(4.5,0)node[right,sollabel]{$r$};
+ \draw[solflow](0,-1.8)--(0,1.2)node[above,sollabel]{$E_p$};
+ \screenedPotentialCurve
+ \node[sollabel,align=left]at(2.3,1.35){$E_p'(r)=ke^{-\alpha r}/r^2>0$\\[5pt]$r\to\infty$ 时 $E_p\to0^-$};
+ \end{scope}
+\end{tikzpicture}\diagcaption{解图}{曲线纵坐标为势能；斜率的负值才是力，不能只凭曲线大致形状作判断。}\label{ch08:fig:soldiagFourThirteen}\end{energyfig}}
+
+\newcommand{\probdiagFourFourteen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3cm]
+ \node[solpanel]at(0,2.3){(1)(2) 沿弹簧轴线运动};
+ \draw[solbody](-2,0)--(1.8,0);\draw[solbody](-2,0)--(-2,1);
+ \draw[spring](-2,.35)--(.5,.35);\draw[solbody,fill=SoftGray](.5,0)rectangle(1.3,.7);
+ \node[sollabel,above left]at(-2,.35){$A$};\node[sollabel]at(.9,.35){$m$};
+ \draw[solflow](.5,1.2)--(1.6,1.2)node[midway,above,sollabel]{$v_1$ 或 $v_2$};
+ \end{scope}
+ \begin{scope}[xshift=3.6cm]
+ \node[solpanel]at(0,2.3){(3) 竖直运动的三个位置};
+ \draw[solbody](-.7,1.7)--(.7,1.7);\node[sollabel,above left]at(0,1.7){$A$};
+ \draw[spring](0,1.7)--(0,-1.5);\fill(0,-1.5)circle(3pt);\node[sollabel]at(.30,-1.88){$m$};
+ \foreach \y/\txt in {.4/{原长 $x=0$},-.5/{平衡 $x=x_{\rm e}$},-1.5/{初态 $x=h$}}{
+ \draw[solgeom](-.5,\y)--(.6,\y);\node[sollabel,anchor=west]at(.85,\y){\txt};}
+ \draw[<->,TextGray](-1,-1.5)--(-1,.4)node[midway,left,sollabel]{$h$};
+ \draw[solflow](-1.9,-1.5)--(-1.9,-.6)node[left,sollabel]{$v_3$};
+ \end{scope}
+\end{tikzpicture}\diagcaption{题图}{右图展示 $h>x_{\rm e}$ 的一个初态，解答同时适用于其他 $h$；速度方向与位移基准分开标注。}\label{ch08:fig:probdiagFourFourteen}\end{energyfig}}
+
+\newcommand{\soldiagFourFourteen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3.6cm]
+ \node[solpanel]at(0,2.3){水平：平衡在原长位置};
+ \draw[solflow](-1.8,0)--(1.9,0)node[right,sollabel]{$x$};\draw[solflow](0,-.2)--(0,1.7)node[above,sollabel]{$E_p$};
+ \draw[solpath,domain=-1.5:1.5,samples=60]plot(\x,{.65*\x*\x});
+ \node[sollabel,below]at(0,-.25){$0$};\end{scope}
+ \begin{scope}[xshift=1.8cm]
+ \node[solpanel]at(1.6,2.3){竖直：平衡位置向下移动};
+ \draw[solflow](-.3,0)--(3.8,0)node[right,sollabel]{$x$};\draw[solflow](0,-.6)--(0,1.7)node[above,sollabel]{$E_p$};
+ \draw[solpath,domain=-.2:3.3,samples=60]plot(\x,{.6*(\x-1.4)^2-.45});
+ \draw[solgeom](1.4,-1)--(1.4,1.2);\node[sollabel,below]at(1.4,-1){$x_{\rm e}=mg/k$};
+ \draw[solgeom](.2,.414)--(2.6,.414);\node[sollabel,anchor=west]at(2.75,.5){$E$};
+ \draw[<->,DeepBlue](1.4,1.15)--(2.6,1.15)node[midway,above,sollabel]{$\mathcal A$};
+ \draw[solgeom](2.6,.414)--(2.6,1.15);
+ \end{scope}
+\end{tikzpicture}\diagcaption{解图}{最低点斜率为零；右图的能量水平线与势阱相交于两个转折点。}\label{ch08:fig:soldiagFourFourteen}\end{energyfig}}
+
+
+不同的力，做功的性质可能很不相同。一类是重力、理想弹簧弹力等力：它们所做的功只与
+物体的初、末位置有关，与物体在力作用下经过的轨迹无关。另一类是滑动摩擦力等各种阻力：
+它们所做的功与实际经过的路程有关。阻力会消耗机械能，工程设计中常设法减小它，但在真实
+环境中又难以完全避免。当物体在无阻力的空间中运动，或者阻力小到可以忽略时，运动会表现
+出一个十分清楚的共同性质。但“没有阻力”还不够：只有保守力作功、其他力不作功时，才有本节讨论的机械能守恒。
+
+\subsection{重力作用下物体的运动}
+
+如图~\ref{ch08:fig:gravityPathsDiagram}，地球表面附近有高度差为 $h$ 的两点 $A,B$。在两点之间设置若干形状
+不同、固定不动的光滑轨道，让物体从 $A$ 点沿轨道运动。以下比较以物体确能到达 $B$、途中保持约束为前提；
+若路径先升高，初动能还须足够越过最高处。轨道对物体的压力始终垂直于轨道切线，
+因而不做功；重力功只取决于初、末位置的高度差：
+\gravityPathsDiagram
+\begin{equation}
+ W_G=mgh .
+\end{equation}
+设所有物体在 $A$ 点的初速率均为 $v_A$，由动能定理
+\begin{equation}
+ mgh=\frac12mv_B^2-\frac12mv_A^2.
+\end{equation}
+移项得到
+\begin{equation}
+ \frac12mv_B^2=\frac12mv_A^2+mgh.\label{ch08:eq:gravity-kinetic}
+\end{equation}
+虽然物体在 $B$ 点的速度方向受到各自轨道的限制，但它们的速率和动能相同，与所走路径
+无关。也就是说，到达 $B$ 点时的动能等于 $A$ 点的动能与从 $A$ 到 $B$ 的重力功之和；
+轨道只改变速度方向，并不改变这个能量关系。
+
+建立竖直向上的 $y$ 轴，设 $A,B$ 两点纵坐标为 $y_A,y_B$，则
+\begin{equation}
+ h=y_A-y_B.
+\end{equation}
+代入式~\eqref{ch08:eq:gravity-kinetic}：
+\begin{equation}
+ \frac12mv_B^2=\frac12mv_A^2+mg(y_A-y_B).
+\end{equation}
+进一步整理为
+\begin{equation}
+ \frac12mv_B^2+mgy_B
+ =\frac12mv_A^2+mgy_A.
+\end{equation}
+定义物体在重力场中的重力势能为
+\begin{equation}
+ E_p(y)=mgy.\label{ch08:eq:gravity-potential}
+\end{equation}
+上述推理并不依赖 $A,B$ 两点处在某两个特殊高度，因此对运动中任意选取的两个位置都成立。
+于是，当物体只受重力以及不做功的约束力时，动能与重力势能之和保持不变。定义机械能
+\begin{equation}
+ E=E_k+E_p=\frac12mv^2+mgy,
+\end{equation}
+则整个运动过程中 $E$ 为常量。势能零点可以任意选择；改变零点只会给所有势能同时加上
+一个常数，不影响势能差和运动规律。
+
+\begin{origexamplebox}{}\label{ch08:ex:s11-4-10}
+质量均为 $m$ 的质点，初速率均为 $v$。轨道固定、无摩擦，不计空气阻力。
+高度从初始位置算起，圆周运动均由最低点开始。求以下各情况下首次上升所能达到的最大高度：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 沿一条高度单调上升且无限高的弯曲光滑槽运动，槽保证质点不脱离；
+ \item 以与水平面夹角为 $\theta$ 的方向斜向抛出，$0\le\theta\le\pi/2$；
+ \item 套在半径为 $R$ 的光滑圆环上运动；
+ \item 在半径为 $R$ 的光滑圆柱体内部运动。
+\end{enumerate}
+\probdiagFourTen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourTen} 的第三种是套住细圆环的珠子，第四种是内壁单侧接触，不能把二者当作同一约束。
+以下高度均从初始位置所在的水平面算起。
+
+\textbf{(1) 无限高的光滑轨道}\quad 物体受到的支持力不做功。到达最高点时速率为零，
+\[
+ \frac12mv^2=mgH_1,
+ \qquad
+ \boxed{H_1=\frac{v^2}{2g}}.
+\]
+
+\textbf{(2) 斜抛}\quad 重力没有水平分量，所以 $v_x=v\cos\theta$ 保持不变。
+最高点只有竖直分速度为零，并非总速度为零。将最高点仍有的水平动能扣除：
+\[
+ mgH_2=\frac12mv^2-\frac12m(v\cos\theta)^2=\frac12m(v\sin\theta)^2.
+\]
+因此
+\[
+ \frac12m(v\sin\theta)^2=mgH_2,
+ \qquad
+ \boxed{H_2=\frac{v^2\sin^2\theta}{2g}}.
+\]
+
+\textbf{(3) 套在圆环上}\quad 圆环可同时提供指向圆心或背离圆心的约束力，质点不会
+脱离圆环。这是不同状态下可出现的两种方向，并非同时存在两个支持力。
+若初始动能不足以到达环顶，它在中途反向；若能到达环顶，几何上的最大高度
+就是 $2R$：
+\[
+ \boxed{H_3=\min\left(\frac{v^2}{2g},\,2R\right)}.
+\]
+
+临界情况 $v^2=4gR$ 下，理想质点无限接近环顶，到达时间趋于无穷；此时 $2R$ 严格说是高度上确界。
+
+\textbf{(4) 在圆柱体内部}\quad 这一情形的约束力只能指向圆心，物体可能脱离内壁。
+令质点沿内壁从最低点上升的圆心角为 $\varphi$，并记
+\[
+ q=\frac{v^2}{gR}.
+\]
+在接触阶段，能量守恒和径向方程分别为
+\[
+ u^2=v^2-2gR(1-\cos\varphi),
+ \qquad
+ N=m\left(\frac{u^2}{R}+g\cos\varphi\right).
+\]
+代入可得 $N=mg(q-2+3\cos\varphi)$。若 $q\le2$，速度先在下半圆降为零；
+若 $q\ge5$，环顶仍有 $N=mg(q-5)\ge0$，能保持接触。
+所以仅当 $2<q<5$ 时，物体在上半圆由 $N=0$ 脱离。令
+\[
+ c=\cos\varphi_{\rm d}=\frac{2-q}{3},
+\]
+则脱离速度满足 $u_{\rm d}^2=-gRc$。图~\ref{ch08:fig:soldiagFourTen} 的右图中，$D$ 为脱离点，
+速度沿切线，竖直分量为 $u_{{\rm d},y}=u_{\rm d}\sin\varphi_{\rm d}$。之后作斜抛，
+向上速度降为零前增加的高度为 $u_{{\rm d},y}^2/(2g)$。与脱离点高度相加，
+得到
+\[
+ H_4
+ =R(1-c)+\frac{u_{\rm d}^2(1-c^2)}{2g}
+ =R\left(1-\frac32c+\frac12c^3\right).
+\]
+\soldiagFourTen
+综上，
+\[
+ \boxed{
+ H_4=
+ \begin{cases}
+ \dfrac{v^2}{2g},&0\le q\le2,\\[6pt]
+ R\left(1-\dfrac32c+\dfrac12c^3\right),
+   &2<q<5,\quad c=\dfrac{2-q}{3},\\[6pt]
+ 2R,&q\ge5.
+ \end{cases}}
+\]
+第一段中质点在到达圆环侧面以前已经反向；中间一段先脱离再作抛体；最后一段始终接触
+内壁并越过最高点。在 $q=2,5$ 处相邻表达式分别都给出 $R,2R$，结果连续，每项均为长度。
+这里问首次上升；如果再碰到内壁，后续还与碰撞模型有关。只用能量写 $H=v^2/(2g)$ 会漏掉约束失效后的运动。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s11-4-11}
+一个质量为 $m$ 的质点从固定在水平面上、半径为 $R$ 的半圆柱形光滑表面的顶端由静止
+开始下滑。求质点脱离圆柱体时，质点与圆心连线和竖直方向的夹角 $\theta$；并求落地点
+与圆心的距离。理想的正顶点静止状态是非稳定平衡；“开始下滑”按微小扰动趋于零的极限理解。
+\probdiagFourEleven
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourEleven} 中半圆的圆心在地面，顶点距圆心确为 $R$。
+设质点在圆柱面上运动到圆心角 $\theta$ 时速率为 $u$。从顶端由静止下滑，机械能守恒：
+\[
+ \frac12mu^2=mgR(1-\cos\theta),
+ \qquad
+ u^2=2gR(1-\cos\theta).
+\]
+取指向圆心为径向正方向。质点在圆柱外表面运动时
+\[
+ mg\cos\theta-N=\frac{mu^2}{R}.
+\]
+脱离瞬间 $N=0$，所以
+\[
+ g\cos\theta=\frac{u^2}{R}.
+\]
+与能量式联立：
+\[
+ \cos\theta=2(1-\cos\theta),
+ \qquad
+ \boxed{\cos\theta=\frac23},
+\]
+即
+\[
+ \boxed{\theta=\arccos\frac23}.
+\]
+此时
+\[
+ \sin\theta=\frac{\sqrt5}{3},
+ \qquad
+ u=\sqrt{\frac{2gR}{3}}.
+\]
+\soldiagFourEleven
+图~\ref{ch08:fig:soldiagFourEleven} 以圆心为原点、水平向右为 $x$ 轴、竖直向上为 $y$ 轴。
+半径方向为 $(\sin\theta,\cos\theta)$，向右下方的单位切向量为 $(\cos\theta,-\sin\theta)$，二者点积为零。
+所以脱离点坐标和速度分量为
+\[
+ x_0=\frac{\sqrt5}{3}R,\quad
+ y_0=\frac23R,\quad
+ u_x=\frac23\sqrt{\frac{2gR}{3}},\quad
+ u_y=-\frac{\sqrt5}{3}\sqrt{\frac{2gR}{3}}.
+\]
+脱离后水平速度不变、竖直加速度为 $-g$。落地时 $y=0$，故
+\[
+ \frac12gt^2-u_yt-y_0=0,\qquad t=\frac{u_y+\sqrt{u_y^2+2gy_0}}{g}.
+\]
+另一根为负，不能表示脱离后的时刻。代入 $u_y$ 和 $y_0$，得到
+\[
+ t=\sqrt{\frac{R}{g}}\,
+ \frac{\sqrt{46}-\sqrt{10}}{3\sqrt3}.
+\]
+因此落地点到圆心的水平距离为
+\[
+ \boxed{
+ x=x_0+u_xt
+ =\frac{5\sqrt5+4\sqrt{23}}{27}\,R}.
+\]
+结果约为 $1.12458R$，大于半圆右端的横坐标 $R$，量纲也是长度。
+脱离后支持力消失，必须改用抛体运动，不能把圆周运动方程继续使用到落地。
+\end{xesolution}
+
+\Needspace{0.33\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s11-4-12}
+如图，光滑水平面上质量为 $m$ 的物体以初速度 $v$ 运动，冲向一个半径为 $R$ 的光滑
+圆形表面。图~\ref{ch08:fig:probdiagFourTwelve} 的圆弧为固定的右半圆内壁，与水平面在最低点相切。
+求使物体脱离圆弧后能够击中圆心 $O$ 的初速度 $v$。
+\probdiagFourTwelve
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+以圆心 $O$ 为原点，令物体从圆弧最低点开始运动，半径由竖直向下转过角
+$\varphi$。接触点坐标为
+\[
+ x=R\sin\varphi,\qquad y=-R\cos\varphi.
+\]
+设脱离时速率为 $u$。物体在圆弧内侧运动，能量守恒和脱离条件为
+\[
+ u^2=v^2-2gR(1-\cos\varphi),
+\qquad
+ N=m\left(\frac{u^2}{R}+g\cos\varphi\right)=0.
+\]
+因此
+\begin{equation}
+ u^2=-gR\cos\varphi,\qquad v^2=gR(2-3\cos\varphi).
+ \label{ch08:eq:circle-entry}
+\end{equation}
+脱离点在右上象限，故 $\cos\varphi<0$。切向速度分量为
+\[
+ u_x=u\cos\varphi,\qquad u_y=u\sin\varphi.
+\]
+若抛体经过圆心，则存在 $t>0$ 使
+\[
+ 0=R\sin\varphi+u\cos\varphi\,t,
+\]
+\[
+ 0=-R\cos\varphi+u\sin\varphi\,t-\frac12gt^2.
+\]
+\soldiagFourTwelve
+图~\ref{ch08:fig:soldiagFourTwelve} 中 $D$ 在右上方、速度指向左上方，抛出后水平分速度保持为负。
+令 $c=\cos\varphi<0$、$s=\sin\varphi>0$。由横坐标方程得
+\[
+ t=-\frac{Rs}{uc}>0.
+\]
+代入纵坐标方程，除以 $R$，再用 $u^2=-gRc$：
+\[
+ 0=-c-\frac{s^2}{c}-\frac{gRs^2}{2u^2c^2}
+   =-c-\frac{s^2}{c}+\frac{s^2}{2c^3}.
+\]
+乘以 $2c^3$ 并代入 $s^2=1-c^2$，逐项整理：
+\[
+ 0=-2c^4-2s^2c^2+s^2
+ =-2c^4-2(1-c^2)c^2+1-c^2=1-3c^2.
+\]
+因此
+\[
+ 1-3\cos^2\varphi=0.
+\]
+结合 $\cos\varphi<0$：
+\[
+ \cos\varphi=-\frac1{\sqrt3}.
+\]
+代入式~\eqref{ch08:eq:circle-entry}，得到
+\[
+ \boxed{v=\sqrt{(2+\sqrt3)\,gR}}.
+\]
+结果中 $v^2/(gR)=2+\sqrt3$ 在 $2$ 与 $5$ 之间，符合在上半圆脱离的条件；$\sqrt{gR}$ 的量纲为速度。
+这里“击中圆心”发生在脱离后的抛体阶段；若不先判定脱离条件，不能确定正确的初速度。
+\end{xesolution}
+
+\section{保守力、势能与稳定性}
+
+重力做功只与始末高度有关。具有同样性质的力称为保守力。保守力的关键性质可整理为：
+\begin{enumerate}[leftmargin=2.2em]
+ \item 保守力的大小和方向只由位置决定，不显含时间或速度。近地面重力、固定端理想弹簧
+ 弹力，以及以后学习的万有引力、静电场中的电场力，都是典型例子。
+ \item 保守力做功只与初、末位置有关，与实际路径无关。重力功只取决于高度差，弹簧弹力
+ 的功只取决于始、末形变量。
+ \item 由路径无关性立即得到：物体沿任意闭合路径运动一周，保守力的总功必为零。
+ \item 对保守力可以定义只依赖位置的势能。势能不依赖物体的速度、运动时间或到达该位置
+ 的路径，并且
+ \[
+ W_{A\to B}=E_p(A)-E_p(B)=-\Delta E_p.
+ \]
+ 势能的形式由相应的保守力决定，势能零点可以自由选取；真正影响运动的是势能差。
+ \item 已知保守力随位置的关系并选定势能零点，可以求出各位置的势能；反过来，已知势能
+ 也可以求出力的大小和方向。空间中势能相等的点构成等势面，保守力与等势面垂直，并指向
+ 势能下降最快的方向。
+ \item 若物体只受保守力和不做功的约束力作用，便可把机械能定义为动能与各项势能之和，
+ 且运动过程中机械能保持不变；这个常量可由运动中任意一个位置的动能和势能确定。
+\end{enumerate}
+重力势能已由式~\eqref{ch08:eq:gravity-potential} 给出。劲度系数为 $k$ 的理想弹簧，形变量为 $x$ 时，弹性势能为
+\begin{equation}
+ E_p(x)=\frac12kx^2.
+\end{equation}
+对于万有引力，若把无穷远处选作势能零点，两质量 $M,m$ 相距 $r$ 时的势能为
+\begin{equation}
+ E_p(r)=-\frac{GMm}{r}.
+\end{equation}
+势能的绝对值取决于零点选择，真正决定运动的是势能差。一维微小位移满足
+$F_x\dd x=-\dd E_p$，故 $F_x=-\dd E_p/\dd x$：曲线斜率为正时力向负方向，斜率为负时力向正方向。
+三维情况下，势能一般是 $E_p(x,y,z)$，全微分为
+\[
+ \dd E_p=\frac{\partial E_p}{\partial x}\dd x+
+ \frac{\partial E_p}{\partial y}\dd y+\frac{\partial E_p}{\partial z}\dd z.
+\]
+例如 $\partial E_p/\partial x$ 表示保持 $y,z$ 不变时，势能随 $x$ 的变化率。
+与 $\vec F\cdot\dd\vec r=-\dd E_p$ 逐项比较，三个分量分别是对应偏导数的负值。
+把三个偏导数组成矢量，称为势能的梯度，记为
+\[
+ \nabla E_p=\left(\frac{\partial E_p}{\partial x},\frac{\partial E_p}{\partial y},\frac{\partial E_p}{\partial z}\right),
+ \qquad \vec F=-\nabla E_p.
+\]
+在梯度非零的地方，梯度指向势能增加最快的方向；因此保守力与等势面垂直，指向势能降低最快的方向。
+若物体只受保守力作用，则动能和相应势能之和守恒，即
+\[
+ E=E_k+E_p=\text{常量}.
+\]
+
+\Needspace{22\baselineskip}
+\begin{origexamplebox}{}\label{ch08:ex:s11-4-13}
+判断下列各力是否为保守力；若是，分析其势能函数的性质。各小题独立，系数取正值；
+$a$ 在第(1)问是力随时间增加的系数，不是加速度，各题 $\alpha$ 的单位由所在公式决定。
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 正比于时间的拉力 $f=a t$；
+ \item 正比于速度、方向与速度相反的阻力 $f=-\alpha v$；
+ \item 正比于坐标三次方的力 $f=-kx^3$；
+ \item 随距离变化的吸引力
+ \[
+ f(r)=-k\frac{e^{-\alpha r}}{r^2}.
+ \]
+\end{enumerate}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+\textbf{(1)} $f=at$ 显含时间。同一位置在不同时刻受到的力不同，不能由单值的位置势能
+确定，因而不是通常意义下的保守力。
+
+\textbf{(2)} $f=-\alpha v$ 依赖速度。其瞬时功率为
+\[
+ P=fv=-\alpha v^2\le0,
+\]
+机械能随运动永久耗散，故不是保守力。
+
+\textbf{(3)} $f=-kx^3$ 只依赖位置，在一维中为保守力。由
+\[
+ -\frac{\dd E_p}{\dd x}=-kx^3
+\]
+得到
+\[
+ \boxed{E_p(x)=\frac{k}{4}x^4+C}.
+\]
+若取 $E_p(0)=0$，则 $C=0$。势能在 $x=0$ 取得稳定极小值，关于原点对称。
+但最低点的二阶导数为零，小振动不能直接当作具有非零固有频率的简谐振动。
+
+\textbf{(4)} 这是只依赖距离的中心力，在 $r>0$ 的区域内为保守力。取
+$E_p(\infty)=0$，可写成
+\[
+ \boxed{
+ E_p(r)=-\int_r^\infty
+ k\frac{e^{-\alpha s}}{s^2}\,\dd s}.
+\]
+上述定积分已经完整定义了势能，不必依赖特殊函数。若进一步引入指数积分函数
+\[
+ \operatorname{Ei}(-z)=-\int_z^\infty\frac{e^{-t}}{t}\,\dd t,\qquad z>0,
+\]
+注意 $\dd(e^{-\alpha s}/s)/\dd s=-\alpha e^{-\alpha s}/s-e^{-\alpha s}/s^2$，因此分部积分可得
+\[
+ \int_r^\infty\frac{e^{-\alpha s}}{s^2}\dd s
+ =\frac{e^{-\alpha r}}r-\alpha\int_r^\infty\frac{e^{-\alpha s}}s\dd s
+ =\frac{e^{-\alpha r}}r+\alpha\operatorname{Ei}(-\alpha r).
+\]
+于是也可表示为
+\[
+ E_p(r)
+ =-k\left[
+ \frac{e^{-\alpha r}}{r}
+ +\alpha\,\operatorname{Ei}(-\alpha r)
+ \right].
+\]
+\soldiagFourThirteen
+图~\ref{ch08:fig:soldiagFourThirteen} 的右图用这个定积分作图，而不是 $-ke^{-\alpha r}/r$；后者求负导数会多出一项，不能代表题给的力。
+由微积分基本定理，$E_p'(r)=ke^{-\alpha r}/r^2>0$，负导数恰为题给的引力。
+它随 $r$ 单调增加：$r\to\infty$ 时趋于 $0$，$r\to0^+$ 时趋于 $-\infty$，对应始终
+指向内侧的吸引力。前三项中，只有第 (3) 项具有普通的位置势能；第 (4) 项虽形式复杂，
+但是否保守只取决于它是位置的单值中心力，而不取决于积分能否用初等函数表示。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{}\label{ch08:ex:s11-4-14}
+劲度系数为 $k$、自然长度为 $l_0$ 的弹簧一端固定在给定点 $A$，另一端连接质量为
+$m$ 的物体。前两问限定物体沿弹簧轴线作一维运动，弹簧可拉伸也可压缩，忽略碰壁等几何限制。
+求以下各情况下弹簧的最大伸长量：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 物体在与 $A$ 同一水平面的光滑平面上运动。初始时弹簧为原长，物体初速度为
+ $v_1$；
+ \item 仍在上述光滑水平面内运动。初始时弹簧压缩量为 $\delta l$，初速度为 $v_2$，
+ 方向指向平衡位置。若初速度方向背离平衡位置，结果如何？
+ \item 物体在通过 $A$ 的竖直线上运动。初始时位于原长位置以下 $h$ 处，速度 $v_3$
+ 竖直向上。若初速度改为竖直向下，结果如何？
+\end{enumerate}
+\probdiagFourFourteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourFourteen} 将水平轴线和竖直轴线分开表示，固定点都记为 $A$。
+以下用 $x$ 表示弹簧相对原长的形变量，规定伸长为正；“最大伸长量”就是运动中最大的
+$x$。
+
+\textbf{(1)} 水平面上没有重力势能变化。初态 $x=0$，在最大伸长处速度为零：
+\[
+\frac12mv_1^2=\frac12kx_{\max}^2,
+\qquad
+\boxed{x_{\max}=v_1\sqrt{\frac{m}{k}}}.
+\]
+
+\textbf{(2)} 初态为 $x=-\delta l$。在正向最大伸长处速度为零，故
+\[
+\frac12mv_2^2+\frac12k(\delta l)^2
+=\frac12kx_{\max}^2,
+\qquad
+\boxed{
+ x_{\max}=\sqrt{(\delta l)^2+\frac{m}{k}v_2^2}}.
+\]
+初速度若背离平衡位置，物体先到压缩侧的转折点，再向另一侧运动；由于总机械能不变，
+最终的最大伸长量仍相同，只有到达各转折点的先后次序改变。
+
+\textbf{(3)} 取竖直向下为 $x$ 正方向，忽略与原长 $l_0$ 有关的势能常数：
+\[
+E_p(x)=\frac12kx^2-mgx
+=\frac12k\left(x-\frac{mg}{k}\right)^2+\text{常量}.
+\]
+竖直运动的平衡形变量和相对该位置的振幅分别为
+\[
+x_{\rm e}=\frac{mg}{k},
+\qquad
+\mathcal A=\sqrt{\left(h-\frac{mg}{k}\right)^2+\frac{m}{k}v_3^2}.
+\]
+\soldiagFourFourteen
+这里 $\mathcal A$ 表示振幅，区别于固定点 $A$。它来自初态与转折点的能量比较：
+\[
+ \frac12mv_3^2+\frac12k(h-x_{\rm e})^2=\frac12k\mathcal A^2.
+\]
+图~\ref{ch08:fig:soldiagFourFourteen} 中势阱关于 $x_{\rm e}$ 对称，两个转折点为 $x_{\rm e}\pm\mathcal A$。
+最大伸长位置为 $x_{\rm e}+\mathcal A$，所以
+\[
+\boxed{
+ x_{\max}=\frac{mg}{k}
+ +\sqrt{\left(h-\frac{mg}{k}\right)^2+\frac{m}{k}v_3^2}}.
+\]
+把初速度由向上改为向下，只改变速度符号，不改变机械能和振幅，故最大伸长量仍不变。
+取 $v_3=0,h=x_{\rm e}$ 时振幅为零，物体保持平衡，结果给出 $x_{\max}=x_{\rm e}$。
+若前两问不限制为沿轴线运动，非径向初速度会产生角动量；最大伸长处径向速度虽为零，切向速度却不一定为零。
+此时需另用角动量守恒和包含切向动能的能量式，不能直接使用本题的一维答案。
+\end{xesolution}
+
+\subsection{势能方法的适用范围与稳定性}
+
+势能函数也常记为 $U$。近地面重力势能 $mgy$、万有引力势能 $-GMm/r$、弹簧势能 $kx^2/2$
+来自不同的力随位置的关系，不能跨越适用范围混用。尤其当高度与地球半径可比时，$g$ 随位置变化，$mgy$ 不再准确。
+
+先选出已用势能 $U$ 表示的、与时间无关的保守相互作用；把所有尚未计入 $U$ 的力的功合记为 $W_{\rm other}$。
+动能定理给出 $\Delta K=-\Delta U+W_{\rm other}$，所以
+\begin{equation}
+ \Delta(K+U)=W_{\rm other}.
+ \label{ch08:eq:other-work}
+\end{equation}
+当 $W_{\rm other}=0$，机械能守恒。若还要把右边分为外力功和非保守内力功，两类必须互不重叠，
+不能把同一个外部摩擦力计算两次。也不能既写重力功，又把同一重力势能变化列入左边。
+在固定外场中可以把外场作用写入势能；例如研究近地面质点时使用 $mgy$，不必每次显式计算地球的运动。
+但若场源也运动或相互作用显含时间，就须重新检查这个简化是否成立。
+
+一维平衡点 $x_0$ 满足 $U'(x_0)=0$，即合力为零。若 $U''(x_0)>0$，势能在该点取局部极小，
+微小偏离后出现指向平衡点的回复力，是稳定平衡；若 $U''(x_0)<0$，回复方向相反，平衡不稳定。
+在二阶导数为正的平衡点附近展开：
+\[
+ U(x)\simeq U(x_0)+\frac12U''(x_0)(x-x_0)^2,
+ \qquad F_x\simeq-U''(x_0)(x-x_0).
+\]
+与 $m\ddot x=-k_{\rm eff}(x-x_0)$ 比较可知，$k_{\rm eff}=U''(x_0)$，故小振动角频率
+$\omega=\sqrt{U''(x_0)/m}$。如果 $U''(x_0)=0$，这个二阶判据不能定性，必须继续查看更高阶项；
+例如 $U=kx^4/4$ 仍是稳定势阱，却不是上述线性回复模型。
+
+给定一维总机械能 $E$，允许位置满足 $E\ge U(x)$；转折点满足 $E=U(x)$。在允许区间内
+\[
+ |v(x)|=\sqrt{\frac{2[E-U(x)]}{m}}.
+\]
+这只能先给出速率，运动方向由所处的往返分支确定。若需时间，在方向不变的一段上取
+$v(x)=\pm\sqrt{2[E-U(x)]/m}$，再积分 $t_B-t_A=\int_{x_A}^{x_B}\dd x/v(x)$。
+因此能量曲线既能判断可达区域，也能与运动方程配合求运动时间。
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirteenth-section/}}
+\section{能量的转化与守恒}
+机械能守恒是有条件的，能量守恒则讨论系统中所有形式的能量。摩擦、非弹性碰撞或物体的塑性形变
+会使宏观机械能减少，但这部分能量并没有消失，而是转入物体的内能、形变能、声能等其他形式。
+
+能量并不只有动能和势能。物体的无规则热运动、电磁场、光辐射等也与能量有关；不同的能量形式可以在相互作用中转化。
+例如摩擦使运动减慢并使接触体温度升高，电动机把电能转化为机械能，发光过程又可以把内部能量转化为辐射能。
+这些形式不能各自孤立看待：研究一种形式减少了多少，还要追踪它传到哪个物体、变成哪种形式。
+
+能量概念的适用范围也不限于具有确定位置、确定速度的经典质点。光没有静止质量，却能传递能量；微观系统即使不能
+按经典轨道描述，也仍然可以讨论它与外界交换的能量。物理研究依靠可观测的相互作用，能量传递是把不同现象联系起来的重要线索，
+但不应把“能量”与物体的质量或某一个可见运动简单等同。
+
+人们对能量的认识并不是一次完成的。在研究热、机械运动以及新的微观现象时，曾对能量是否守恒提出过疑问。
+面对表面上不相等的初末能量，不能仅凭一句“守恒”结束讨论，而要检验测量误差、系统边界，以及是否遗漏了热、辐射或其他携能对象。
+将这些独立测得的能量传递纳入比较，才构成对守恒关系的实验检验。能量守恒有广泛的实验依据；本章在经典力学的适用范围内，
+把它用于明确选定的系统，而不是用它替代对具体过程和相互作用的分析。
+
+\subsection{先选系统，再写能量守恒关系}
+
+“能量守恒”必须对一个明确的系统而言。同一个过程，选取的系统边界不同，方程中的“外力做功”和
+“系统内部的能量转化”也不同。对一个无质量穿过边界的封闭系统，取“外界传入系统”为正，可写成
+\begin{equation}
+  \Delta E_{\rm sys}=W_{\rm ext}+Q,
+  \label{ch08:eq:general-energy-account}
+\end{equation}
+其中 $W_{\rm ext}$ 是外界通过宏观功传入的能量，$Q$ 是由于温差传入的能量。在通常的短时间力学过程中，
+若热传递可忽略，可取 $Q=0$。
+
+对孤立系统，$W_{\rm ext}=Q=0$，于是
+\begin{equation}
+  \boxed{\Delta E_{\rm sys}=0}.
+  \label{ch08:eq:isolated-energy}
+\end{equation}
+这里的 $E_{\rm sys}$ 不只是动能加势能，而是系统的总能量。在本章可用的层次上，常写为
+\begin{equation}
+  E_{\rm sys}=K+U+E_{\rm int}+E_{\rm other}.
+  \label{ch08:eq:energy-components}
+\end{equation}
+其中 $K$ 是宏观动能，$U$ 是保守相互作用所对应的势能，$E_{\rm int}$ 可包括与无规则热运动、塑性形变等相关的内部能量。
+
+图~\ref{ch08:fig:energy-forms} 表示孤立系统中能量形式可以改变，而总能量保持不变；箭头只是转化示例，不表示转化只能单向发生。
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[node distance=11mm and 24mm]
+  \node[draw=RuleGray,fill=PaleBlue,minimum width=25mm,minimum height=9mm] (mech) {机械能 $K+U$};
+  \node[draw=RuleGray,fill=SoftGray,minimum width=23mm,minimum height=9mm,right=of mech] (int) {内能 $E_{\rm int}$};
+  \node[draw=RuleGray,fill=SoftGray,minimum width=23mm,minimum height=9mm,right=of int] (other) {其他形式};
+  \draw[-{Latex[length=2.2mm]},thick,draw=DeepBlue] (mech)--node[above,font=\scriptsize,fill=none]{摩擦、形变}(int);
+  \draw[-{Latex[length=2.2mm]},thick,draw=TextGray] (int)--node[above,font=\small]{转化}(other);
+  \node[below=7mm of int,font=\small\color{TextGray}] {总量不变，分项可改变};
+\end{tikzpicture}
+\refstepcounter{figure}\par\smallskip{\scriptsize\color{TextGray}图~\thefigure\quad 孤立系统内部的能量转化示例。\par}
+\label{ch08:fig:energy-forms}
+\end{minipage}\end{center}
+
+\subsection{“机械能损失”不等于“能量损失”}
+
+若把已选定的保守力全部纳入势能，机械能定义为
+\[
+  E_{\rm mech}=K+U.
+\]
+对只有这些保守力做功的过程，$\Delta E_{\rm mech}=0$。若有滑动摩擦、流体阻力等非保守作用，则一般有
+\begin{equation}
+  \Delta E_{\rm mech}=W_{\rm nc}.
+  \label{ch08:eq:mechanical-energy-change}
+\end{equation}
+式 \eqref{ch08:eq:mechanical-energy-change} 描述机械能的变化，而不是说总能量减少了 $|W_{\rm nc}|$。
+
+摩擦问题尤其需要先说清系统。若只选滑块为系统，地面对它的摩擦是外力；若选“滑块+地面”为系统，
+这一接触作用变成内部作用，宏观机械能的减少对应系统内能的增加。不知道材料细节时，通常只能确定两接触体
+内能增量的总和，不能凭空判定热量如何在两者之间分配。
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{粗糙水平面上的停车距离}\label{ch08:ex:s13-4-21}
+质量为 $m$ 的滑块以速度 $v_0$ 沿粗糙水平面滑动，动摩擦因数为 $\mu_k$。求滑块停下前的距离，
+并分别用“滑块”和“滑块+地面”为系统说明能量变化。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+滑块竖直方向平衡，所以 $N=mg$，滑动摩擦力大小为 $f_k=\mu_kmg$。设停车距离为 $s$。
+
+若只选滑块为系统，摩擦力是外力，由动能定理
+\[
+  0-\frac12mv_0^2=-\mu_kmgs,
+\]
+因而
+\[
+  \boxed{s=\frac{v_0^2}{2\mu_kg}}.
+\]
+若改选“滑块+地面”为系统，摩擦成为内部作用。忽略对外散热和声音携带的能量，总能量守恒给出
+\[
+  \frac12mv_0^2=\Delta E_{\rm int},
+\]
+即
+\[
+  \boxed{\Delta E_{\rm int}=\mu_kmgs=\frac12mv_0^2}.
+\]
+两种写法对同一过程的描述完全一致，只是系统边界不同。
+\end{xesolution}
+
+\subsection{含摩擦的弹簧系统：别忘了分段和启动条件}
+
+\begin{origexamplebox}{弹簧能否把物块送到原长位置}\label{ch08:ex:s13-4-22}
+水平粗糙面上，质量为 $m$ 的物块与劲度系数为 $k$ 的水平弹簧相连。弹簧原长位置记为 $O$。
+以物块左侧弹簧连接点为位置标志，先从原长位置 $O$ 向右拉到 $x=a>0$ 处由静止释放。
+已知最大静摩擦因数为 $\mu_s$，动摩擦因数为 $\mu_k$，$\mu_s\ge\mu_k\ge0$。
+求物块能够启动、到达 $O$ 点和通过 $O$ 点的条件。
+
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=0.9,every node/.style={font=\scriptsize,fill=none}]
+  \draw[thick] (-3.2,-0.8)--(3.4,-0.8);
+  \foreach \x in {-3.0,-2.6,...,3.2}{\draw[thin,TextGray] (\x,-0.8)--++(-0.18,-0.18);}
+  \draw[thick] (-3.0,0.15)--(-3.0,-0.8);
+  \draw[decorate,decoration={coil,aspect=0.45,segment length=3.5mm,amplitude=2.2mm},thick]
+    (-3.0,-0.3)--(1.8,-0.3);
+  \draw[fill=PaleBlue,thick] (1.8,-0.8) rectangle (2.8,0.2);
+  \node at (2.3,-.3) {$m$};
+  \draw[guide] (0,-.8)--(0,-1.4) node[below]{$O:x=0$};
+  \draw[guide] (1.8,-.8)--(1.8,-1.4);
+  \draw[<->] (0,-1.2)--(1.8,-1.2) node[midway,above]{$a$};
+  \draw[-{Latex}] (1.8,.7)--(.8,.7) node[midway,above] {释放后向左};
+\end{tikzpicture}
+\refstepcounter{figure}\par\smallskip{\scriptsize\color{TextGray}图~\thefigure\quad 物块底面与粗糙面接触；$a$ 从同一个连接点的原长位置量起。\par}
+\label{ch08:fig:rough-spring}
+\end{minipage}\end{center}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch08:fig:rough-spring} 中弹簧向左拉，启动前静摩擦力向右。释放瞬间弹簧力大小为 $ka$。
+若 $ka\le\mu_smg$，静摩擦可以平衡它，物块可保持静止；不依赖额外扰动而启动的条件为
+\begin{equation}
+  \boxed{ka>\mu_smg}.
+  \label{ch08:eq:spring-start}
+\end{equation}
+启动后，从 $x=a$ 向左运动到某一位置 $x$ 时，摩擦力所做的功为 $-\mu_kmg(a-x)$。对“物块+弹簧”写机械能变化关系，
+\[
+  \frac12mv^2+\frac12kx^2
+  =\frac12ka^2-\mu_kmg(a-x).
+\]
+整理任一中间位置的速度：
+\[
+ mv^2=(a-x)\bigl[k(a+x)-2\mu_kmg\bigr].
+\]
+从 $a$ 到 $0$ 的途中，第一因子非负，第二因子的最小值出现在 $x=0$。
+所以只要原点处的能量条件满足，途中不会先停下；不能只检查末态而不管过程可达性。
+在 $O$ 点有 $x=0$，因而
+\begin{equation}
+  \frac12mv_O^2=\frac12ka^2-\mu_kmga.
+  \label{ch08:eq:spring-at-origin}
+\end{equation}
+式 \eqref{ch08:eq:spring-at-origin} 右边非负时，物块才能到达 $O$；严格为正时才能以非零速度通过。因此
+\[
+  \boxed{a\ge\frac{2\mu_kmg}{k}\quad\text{可到达 }O},
+\]
+\[
+  \boxed{a>\frac{2\mu_kmg}{k}\quad\text{可通过 }O}.
+\]
+完整答案必须同时满足启动条件 \eqref{ch08:eq:spring-start}。这也说明为什么不能把“摩擦因数”只记成一个统一的 $\mu$：
+启动由 $\mu_s$ 控制，滑动阶段的能量损失则由 $\mu_k$ 控制。
+\end{xesolution}
+
+\Needspace{16\baselineskip}
+\subsection{非弹性碰撞：动量守恒，动能不守恒}
+
+\begin{origexamplebox}{子弹射入木块}\label{ch08:ex:s13-4-23}
+质量为 $m$ 的子弹以速度 $u$ 水平射入质量为 $M$ 的静止木块并留在其中。碰撞时间极短，
+可忽略水平外力冲量。求共同速度以及碰撞中增加的内能。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+以“子弹+木块”为系统。碰撞时间内水平外力冲量可忽略，所以水平动量守恒。设碰后共同速度为 $v$，
+\[
+  m u=(M+m)v,\qquad \boxed{v=\frac{m}{M+m}u}.
+\]
+将共同速度代入碰撞前后的宏观动能差，逐项化简：
+\begin{align*}
+  \Delta E_{\rm int}
+  &=\frac12mu^2-\frac12(M+m)v^2\\
+  &=\frac12mu^2-\frac12(M+m)
+    \left(\frac{m}{M+m}u\right)^2\\
+  &=\boxed{\frac12\frac{mM}{m+M}u^2}.
+\end{align*}
+在忽略碰撞期间对外散热和声音携能的近似下，这一动能减少量转化为子弹与木块的内能和永久形变能。
+不能在这一碰撞中同时强行使用“动量守恒”和“动能守恒”。
+\end{xesolution}
+
+\subsection{一个可执行的解题次序}\nopagebreak[4]
+
+处理能量转化问题时，可以按以下顺序检查：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+  \item 用一句话写清系统包含哪些物体，以及初、末状态。
+  \item 判断哪些相互作用纳入势能，不要把同一个保守力同时既写成功又写成势能变化。
+  \item 列出跨过系统边界的功、热和其他能量传递。
+  \item 若有摩擦、碰撞或形变，明确机械能减少后转入了哪一项，不要简写成“能量消失”。
+  \item 最后检查结果的符号、量纲和极限情形。
+\end{enumerate}
+\nopagebreak[4]
+能量方法的优势是跨越中间过程，直接联系两个状态；它的代价是通常不直接给出时间、轨迹和力的瞬时值。
+竞赛题中若既问速度又问支持力或时间，常见的组合是：先用能量法求状态量，再用牛顿定律或冲量定理求局部过程量。
+}
+
+\endgroup

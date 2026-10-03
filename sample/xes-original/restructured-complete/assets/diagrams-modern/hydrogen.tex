@@ -1,0 +1,19 @@
+% Contract: upper levels proportional in eV; explicitly broken axis below n=2.
+\begin{tikzpicture}[font=\small,>=Latex]
+ \draw[axis] (-2.6,-.35)--(-2.6,.7);
+ \draw[axis] (-2.6,1.25)--(-2.6,6.15) node[above] {$E\;(\mathrm{eV})$};
+ \draw (-2.72,.86)--(-2.48,1.00); \draw (-2.72,1.06)--(-2.48,1.20);
+ \foreach \n/\y/\en in {1/0/-13.6,2/2.2/-3.40,3/4.089/-1.51,4/4.75/-0.85}{
+  \draw[DeepBlue,thick] (-.1,\y)--(4.8,\y);
+  \node[left=6pt] at (-.1,\y) {$n=\n$};
+  \node[left=5pt] at (-2.6,\y) {$\en$};
+ }
+ \draw[TextGray,dashed] (-.1,5.6)--(4.8,5.6);
+ \node[left=6pt] at (-.1,5.6) {$n=\infty$};
+ \node[left=5pt] at (-2.6,5.6) {$0$};
+ \draw[vector] (1.4,5.6)--(1.4,2.2);
+ \draw[vector] (3.8,4.089)--(3.8,2.2);
+ \node[below=8pt,align=center] at (1.4,2.2) {巴耳末系限};
+ \node[below=8pt] at (3.8,2.2) {$3\to2$};
+ \node at (2.4,.9) {纵轴断开};
+\end{tikzpicture}

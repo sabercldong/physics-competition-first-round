@@ -1,0 +1,202 @@
+% TikZ diagrams for the added solutions.  Each diagram contains only the
+% geometric or force quantities used immediately in the accompanying text.
+
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solpoint/.style={circle,fill=Ink,inner sep=1.2pt},
+  sollabel/.style={font=\footnotesize,fill=none,inner sep=0.7pt,outer sep=1.2pt,text=Ink},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+
+\newcommand{\soldiagcaption}[1]{%
+  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}解图：#1\par}\vspace{0.2em}%
+}
+
+\newcommand{\diagcaption}[2]{%
+  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}#1：#2\par}\vspace{0.2em}%
+}
+
+\newcommand{\soldiagTwoOne}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=0.90]
+  \draw[axis] (-3.0,0)--(3.2,0) node[right,sollabel] {$x$};
+  \fill[Ink] (-2.1,0) circle (1.3pt) node[above left,sollabel] {$x<0$};
+  \fill[Ink] (2.1,0) circle (1.3pt) node[above right,sollabel] {$x>0$};
+  \draw[solforce] (-2.1,0)--++(0.95,0) node[above,sollabel] {$F>0$};
+  \draw[solforce] (2.1,0)--++(-0.95,0) node[above,sollabel] {$F<0$};
+  \fill[Ink] (0,0) circle (1.3pt) node[below,sollabel] {$x=0$};
+\end{tikzpicture}
+\soldiagcaption{$F=-m\omega^2x$ 始终指向 $x=0$，是与位移成正比的回复力。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTwo}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
+ \coordinate (O) at (0,0); \coordinate (P) at (35:1.8);
+ \draw[axis] (-2.4,0)--(2.7,0) node[right,sollabel] {$x$};
+ \draw[axis] (0,-2.05)--(0,2.55) node[above,sollabel] {$y$};
+ \draw[solbody] (O) circle (1.8);
+ \fill (O) circle (1.3pt) node[below left,sollabel] {$O$};
+ \fill (P) circle (1.5pt) node[right=5pt,sollabel] {$P$};
+ \draw[solgeom] (O)--(P) node[pos=.45,below right=4pt,sollabel] {$A$};
+ \draw[solforce] (P)--($(P)!.65!(O)$) node[pos=.65,above left=4pt,sollabel] {$\vec F$};
+ \draw[solgeom,-{Latex[length=2mm]}] (P)--++(125:1.05)
+   node[above left=3pt,sollabel] {$\vec v$};
+\end{tikzpicture}
+\soldiagcaption{$\omega>0$ 时逆时针运动，速度是位置函数的导数，合力沿半径向内。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoThree}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.90,x={(1cm,0cm)},y={(-.48cm,-.28cm)},z={(0cm,1cm)}]
+ \draw[axis] (0,0,0)--(2.35,0,0) node[right,sollabel] {$x$};
+ \draw[axis] (0,0,0)--(0,2.1,0) node[below left,sollabel] {$y$};
+ \draw[axis] (0,0,0)--(0,0,3.95) node[above,sollabel] {$z$};
+ \fill (0,0,0) circle(1.3pt);
+ \node[sollabel] at (.45,0,.55) {$O$};
+ \draw[solgeom,domain=0:360,samples=100,variable=\t] plot ({1.4*cos(\t)},{1.4*sin(\t)},0);
+ \draw[curve,domain=0:630,samples=230,variable=\t] plot ({1.4*cos(\t)},{1.4*sin(\t)},{.0055*\t});
+ \coordinate (P) at ({1.4*cos(480)},{1.4*sin(480)},{.0055*480});
+ \coordinate (H) at (0,0,{.0055*480});
+ \coordinate (Pz) at ({1.4*cos(480)},{1.4*sin(480)},0);
+ \coordinate (V) at ({1.4*cos(480)-.55*1.4*sin(480)},{1.4*sin(480)+.55*1.4*cos(480)},{.0055*480+.55*.0055*180/pi});
+ \draw[solgeom] (P)--(Pz);
+ \fill (Pz) circle (1pt) node[left=7pt,sollabel] {$P_0$};
+ \fill (P) circle (1.4pt) node[below left=6pt,sollabel] {$P$};
+ \fill (H) circle (1pt) node[right=5pt,sollabel] {$H$};
+ \draw[solforce] (P)--(H) node[pos=.55,below=9pt,sollabel] {$\vec F$};
+ \draw[solgeom,-{Latex[length=2mm]}] (P)--(V) node[above left=3pt,sollabel] {$\vec v$};
+\end{tikzpicture}
+\soldiagcaption{图取 $q(t)=ut,\ u>0$；底部虚圆为水平投影，$PH$ 是同一高度上的径向线段。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoFour}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.86]
+ \begin{scope}[xshift=-3.5cm]
+  \draw[axis] (0,0)--(3.5,0) node[right,sollabel] {$x$};
+  \draw[axis] (0,0)--(0,2.25) node[above,sollabel] {$v$};
+  \draw[curve] (0,1.75)--(3,0);
+  \node[left=3pt,sollabel] at (0,1.75) {$v_0$};
+  \node[below=4pt,sollabel] at (3,0) {$v_0/\alpha$};
+  \node[sollabel] at (1.9,1.6) {$v=v_0-\alpha x$};
+ \end{scope}
+ \begin{scope}[xshift=2.3cm]
+  \draw[axis] (-1.3,0)--(2,0) node[right,sollabel] {$x$};
+  \fill (0,0) circle (2pt);
+  \draw[solforce] (0,0)--(-1.1,0) node[pos=.6,above=4pt,sollabel] {$\vec F$};
+  \draw[solgeom,-{Latex[length=2mm]}] (0,.65)--(1.2,.65) node[right,sollabel] {$\vec v$};
+  \node[sollabel] at (.25,-.65) {质点受力};
+ \end{scope}
+\end{tikzpicture}
+\soldiagcaption{左图描述状态变化；右图在空间中表示速度向右、阻力向左。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoFive}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=0.88]
+  \draw[axis] (-0.25,0)--(4.45,0) node[right,sollabel] {$x$};
+  \draw[solforce] (0.40,0.30)--++(1.10,0) node[above,sollabel] {$\vec F$};
+  \draw[solgeom,-{Latex[length=1.7mm]}] (0.40,-0.30)--++(0.90,0)
+    node[midway,below,sollabel] {$v_0$};
+  \draw[solgeom,-{Latex[length=1.7mm]}] (3.00,-0.30)--++(1.20,0)
+    node[midway,below,sollabel] {$v_1$};
+  \fill[Ink] (0.40,0) circle (1.3pt);
+  \fill[Ink] (3.00,0) circle (1.3pt);
+  \draw[<->,draw=TextGray] (0.40,0.65)--(3.00,0.65) node[midway,above,sollabel] {$s$};
+\end{tikzpicture}
+\soldiagcaption{取恒力方向为正，则 $a=F/m$，位移和速度均可使用匀加速公式。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoSix}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.88]
+ \draw[axis] (-.3,0)--(4.7,0) node[right,sollabel] {$x$};
+ \draw[axis] (0,.5)--(0,-3.35) node[below,sollabel] {$y$};
+ \node[above left,sollabel] at (0,0) {$O$};
+ \draw[curve,domain=0:4.3,samples=90] plot (\x,{-.38*\x-.075*\x*\x});
+ \coordinate (P) at (2.5,{-.38*2.5-.075*2.5*2.5});
+ \draw[solgeom,-{Latex[length=2mm]}] (0,0)--(1.1,{-.38*1.1})
+   node[pos=.65,above=14pt,sollabel] {$\vec v_0$};
+ \fill (P) circle (1.4pt);
+ \draw[solforce] (P)--++(0,-1.1) node[below,sollabel] {$\vec F$};
+ \node[sollabel] at (3.3,-.65) {$y=Ax+Bx^2$};
+\end{tikzpicture}
+\soldiagcaption{轨迹从 $O$ 出发，$y$ 轴沿恒力方向；初速度箭头沿起点切线。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoSeven}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=0.86]
+  \coordinate (O) at (0,0);
+  \coordinate (P) at (35:1.80);
+  \draw[solbody] (O) circle (1.80);
+  \fill[Ink] (O) circle (1.3pt) node[below left,sollabel] {$O$};
+  \fill[Ink] (P) circle (1.4pt);
+  \draw[solgeom,-{Latex[length=1.7mm]}] (P)--++(-55:1.00) node[right,sollabel] {$\vec v$};
+  \draw[solforce] (P)--++(215:1.10) node[pos=.7,above left=5pt,sollabel] {$\vec F$};
+  \draw[solgeom] (O)--(P) node[midway,below right,sollabel] {$R$};
+  \draw[solgeom,-{Latex[length=1.5mm]}] ($(O)+(90:2.22)$)
+    arc[start angle=90,end angle=35,radius=2.22];
+  \node[sollabel] at (2.4,2.35) {向右转};
+\end{tikzpicture}
+\soldiagcaption{恒定大小且始终垂直于速度的力只改变速度方向，不改变速率。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoEight}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel] at (-2.25,1.50) {(整体)};
+  \draw[solbody] (-3.80,-0.55)--(-0.60,-0.55);
+  \draw[solbody,fill=white] (-3.20,-0.55) rectangle (-2.45,0.20);
+  \draw[solbody,fill=white] (-1.75,-0.55) rectangle (-1.00,0.20);
+  \draw[solbody] (-2.45,-0.17)--(-1.75,-0.17);
+  \draw[solforce] (-1.00,-0.17)--++(0.90,0) node[right,sollabel] {$F$};
+  \node[sollabel] at (-2.82,-0.16) {$m_2$};
+  \node[sollabel] at (-1.38,-0.16) {$m_1$};
+
+  \node[solpanel] at (2.10,1.50) {(分离 $m_2$)};
+  \draw[solbody] (0.65,-0.55)--(3.80,-0.55);
+  \draw[solbody,fill=white] (1.50,-0.55) rectangle (2.35,0.30);
+  \draw[solforce] (2.35,-0.10)--++(0.95,0) node[right,sollabel] {$T$};
+  \node[sollabel] at (1.92,-0.10) {$m_2$};
+\end{tikzpicture}
+\soldiagcaption{先对整体求共同加速度，再分离 $m_2$ 求绳张力，可避免同时解两个方程。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoNine}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+\foreach \x/\title/\fr in {0/共同运动/f,5.4/超过极限/\mu mg}{
+ \begin{scope}[xshift=\x cm]
+ \node[solpanel] at (0,2.1) {\title};
+ \fill (0,1) circle(2pt) node[below=5pt,sollabel] {$m$};
+ \draw[solforce] (0,1)--(1.35,1) node[midway,above=4pt,sollabel] {$\fr$};
+ \fill (0,-.6) circle(2pt) node[below=5pt,sollabel] {$M$};
+ \draw[solforce] (0,-.6)--(-1.35,-.6) node[midway,above=4pt,sollabel] {$\fr$};
+ \draw[solforce] (0,-.6)--(1.5,-.6) node[midway,above=4pt,sollabel] {$F$};
+ \end{scope}
+}
+\end{tikzpicture}
+\soldiagcaption{分离两物块，只列水平力；上块摩擦向右，下块受到向左的反作用力。超过极限后用 $\mu mg$ 替代 $f$。}
+\end{minipage}\end{center}}
+
+\newcommand{\soldiagTwoTen}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=0.82]
+  \draw[solbody] (-3.20,1.00)--(0.65,1.00);
+  \draw[solbody,fill=white] (-2.45,1.00) rectangle (-1.55,1.90);
+  \node[sollabel] at (-2.00,1.45) {$m_1$};
+  \draw[solbody] (-1.55,1.90)--(1.15,1.90);
+  \draw[solbody] (1.15,1.90) arc[start angle=90,end angle=0,radius=0.55];
+  \draw[solbody] (1.70,1.35)--(1.70,-0.35);
+  \draw[solbody] (1.15,1.35) circle (0.55);
+  \draw[solbody,fill=white] (1.25,-1.20) rectangle (2.15,-0.35);
+  \node[sollabel] at (1.70,-0.77) {$m_2$};
+  \draw[solforce] (-2.00,1.90)--++(0.95,0) node[above,sollabel] {$T$};
+  \draw[solforce] (1.70,-0.35)--++(0,0.90) node[right,sollabel] {$T$};
+  \draw[solforce] (1.70,-1.20)--++(0,-.85) node[below,sollabel] {$m_2g$};
+  \draw[solgeom,-{Latex[length=1.6mm]}] (-2.00,0.68)--++(0.85,0) node[below,sollabel] {$a$};
+  \draw[solgeom,-{Latex[length=1.6mm]}] (2.45,-0.35)--++(0,-0.85) node[right,sollabel] {$a$};
+\end{tikzpicture}
+\soldiagcaption{轻绳不可伸长，故 $m_1$ 向右和 $m_2$ 向下的加速度大小相等。}
+\end{minipage}\end{center}}

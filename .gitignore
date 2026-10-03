@@ -1,0 +1,47 @@
+# macOS and editor files
+.DS_Store
+._*
+*.swp
+*.swo
+
+# Local archives, intermediate builds, OCR scratch files, and runtimes
+archive/
+tmp/
+build*/
+.ocr-next*/
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+node_modules/
+/ocrpage.jpg
+font_qa*/
+word_qa*/
+.lo*/
+.libreoffice*/
+
+# LaTeX and office application intermediate files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.nav
+*.snm
+*.vrb
+.~lock.*
+~$*
+
+# Local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+id_rsa
+id_ed25519

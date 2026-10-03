@@ -1,0 +1,711 @@
+\section{方程与谐振}
+\label{r2ch04:sec:harmonic}
+
+振动是物理学中最常见的运动形态之一。机械振动、电路中的电荷振荡、晶格振动以及量子体系的近似运动，在线性近似下都归结为谐振子。若物理量 $Q$ 围绕平衡值 $Q_0$ 周期变化，并可写成
+\begin{equation}
+ Q(t)=Q_0+\Delta Q\cos(\omega t+\phi),
+ \label{r2ch04:eq:001}
+\end{equation}
+就称 $Q$ 做简谐振动（simple harmonic oscillation）。其中 $\Delta Q$ 是振幅，$\omega$ 是角频率，$\phi$ 是初相位，$\omega t+\phi$ 是相位。周期和频率分别为 $T=2\pi/\omega$ 与 $\nu=\omega/(2\pi)$。
+
+\subsection{复数表示与状态描述}
+
+为简化线性运算，可把实振动看成复物理量的实部：
+\begin{equation}
+ \widetilde Q(t)=Q_0+\widetilde{\Delta Q}\,\e^{\ii\omega t},
+ \qquad \widetilde{\Delta Q}=\Delta Q\e^{\ii\phi},
+ \qquad Q=\Re\widetilde Q .
+ \label{r2ch04:eq:002}
+\end{equation}
+复振幅同时记录振幅与初相位。由于求导只需乘以 $\ii\omega$，
+\begin{equation}
+ \dot{\widetilde Q}=\ii\omega(\widetilde Q-Q_0),
+ \qquad
+ \ddot{\widetilde Q}=-\omega^2(\widetilde Q-Q_0),
+ \label{r2ch04:eq:003}
+\end{equation}
+所以多个同频振动的叠加、相位差以及受迫振动的稳态解都适合用复数处理。计算能量等二次量时必须先取实部，不能把复数平方直接当作实物理量平方。
+
+复数表示还把“同频线性叠加”化成平面矢量相加。若
+$Q_1=A_1\cos(\omega t+\phi_1)$、$Q_2=A_2\cos(\omega t+\phi_2)$，则合振动的复振幅为
+\[
+ \widetilde A=A_1\e^{\ii\phi_1}+A_2\e^{\ii\phi_2}.
+\]
+于是合振幅和初相位分别是 $|\widetilde A|$ 与 $\arg\widetilde A$。这里能够直接相加的前提是角频率相同；不同频率的振动叠加通常不再是单一简谐振动。
+
+以下令平衡位置为 $x=0$。若 $x=A\cos(\omega t+\phi)$，则
+\begin{equation}
+ v=-\omega A\sin(\omega t+\phi),\qquad
+ a=-\omega^2x.
+ \label{r2ch04:eq:004}
+\end{equation}
+后一式说明加速度始终指向平衡位置，且大小与位移成正比。消去相位还得到
+\begin{equation}
+ v^2+\omega^2x^2=\omega^2A^2,
+ \label{r2ch04:eq:005}
+\end{equation}
+它在 $x$--$v$ 相平面中是一条椭圆。只给 $x$ 或只给 $v$ 都不能唯一确定相位，因为三角函数存在多值性；同时给定 $x,v$ 的符号后，相位才在模 $2\pi$ 意义下确定。两个状态之间应选连续增加的相位分支，时间差为 $\Delta t=\Delta\phi/\omega$。
+
+具体地，由位移得到的候选相位为
+\[
+ \phi_t=\pm\arccos\frac{x}{A}+2n\pi,
+\]
+再由 $v=-\omega A\sin\phi_t$ 的符号筛去错误分支。类似地，由速度反推相位时也必须用位移所在象限判别。相位本身可以相差 $2n\pi$，但沿一条真实运动轨迹的相位不能突然跳变。这一要求在处理“从一个给定状态运动到另一个状态的最短时间”时尤其重要。
+
+\subsection{两个判据及其等价性}
+
+简谐振动常用两个等价判据：线性回复判据和“此消彼长”判据，
+\begin{equation}
+ \ddot q=-\omega^2q
+ \quad\Longleftrightarrow\quad
+ \dot q^{\,2}+\omega^2q^2=\omega^2A^2
+ \quad\Longleftrightarrow\quad
+ q=A\cos(\omega t+\phi).
+ \label{r2ch04:eq:006}
+\end{equation}
+由左向中，只需用 $\ddot q=(\dd q/\dd t)(\dd\dot q/\dd q)=\dot q\,\dd\dot q/\dd q$，于是
+\[
+ \dot q\,\dd\dot q+\omega^2q\,\dd q
+ =\dd\!\left(\frac12\dot q^{\,2}+\frac12\omega^2q^2\right)=0.
+\]
+反向证明可从 $\dot q=\pm\omega\sqrt{A^2-q^2}$ 分离变量积分。符号的改变发生在转折点，不会破坏相位连续性。这两个判据分别适合从动力学方程或能量守恒出发判断运动。
+
+“此消彼长”判据实际上是一条能量椭圆。把等式乘以合适的惯性系数 $M/2$，可写成
+\[
+ \frac12M\dot q^{\,2}+\frac12M\omega^2q^2
+ =\frac12M\omega^2A^2.
+\]
+左侧第一项在平衡位置最大、转折点为零；第二项则恰好相反。两项之和守恒并不足以保证任意运动都是简谐振动，关键还在于两项必须分别是速度和坐标的正二次型。若势能含 $q^3,q^4$ 等项，运动仍可周期却不再严格正弦。
+
+\subsection{稳定平衡附近的小振动}
+
+设完整的一自由度保守体系以 $q$ 为广义坐标，稳定平衡位置 $q_0$ 满足
+\[
+ V'(q_0)=0,\qquad V''(q_0)>0.
+\]
+令 $\delta=q-q_0$。在 $|\delta|$ 足够小时，动能和势能可保留到二阶：
+\begin{equation}
+ T=\frac12M(q_0)\dot\delta^{\,2}+\order{\delta\dot\delta^{\,2}},
+ \qquad
+ V=V(q_0)+\frac12V''(q_0)\delta^2+\order{\delta^3}.
+ \label{r2ch04:eq:007}
+\end{equation}
+略去不影响运动的常数 $V(q_0)$，能量成为两个正平方项之和，故
+\begin{equation}
+ \omega=\sqrt{\frac{V''(q_0)}{M(q_0)}}.
+ \label{r2ch04:eq:008}
+\end{equation}
+这里 $M(q_0)$ 是广义惯性系数，不一定等于某个物体的质量。它必须从动能的二次项读取，不能只凭几何猜测。
+
+这一结论也说明小振动为何如此普遍。稳定平衡要求势能在局部具有极小值；任何足够光滑的极小值，在足够小的邻域内首先表现为开口向上的抛物线。动能在速度足够小时首先表现为速度的二次型，所以无论原系统的几何结构多么复杂，它在一个稳定自由度上的最低阶近似都与弹簧振子相同。
+
+实际使用时应按下列顺序进行：
+
+\begin{enumerate}
+ \item 选择能够唯一描述位形的广义坐标，写出准确的动能与势能；
+ \item 用 $V'(q_0)=0$ 找平衡点，并用 $V''(q_0)>0$ 检查稳定性；
+ \item 同时在 $q_0$ 附近展开 $T,V$，保留 $\dot\delta^2$ 与 $\delta^2$；
+ \item 读取广义惯性系数与广义刚度，最后再求频率。
+\end{enumerate}
+
+若约束本身随坐标变化，动能中的 $M(q)$ 也会变化。但
+$M(q)\dot q^2=M(q_0)\dot\delta^2+M'(q_0)\delta\dot\delta^2+\cdots$，后一项为三阶小量，所以在线性小振动中只取 $M(q_0)$。
+
+以长为 $l$ 的单摆为例，$T=\tfrac12ml^2\dot\theta^2$，$V=mgl(1-\cos\theta)$，平衡点为 $\theta=0$，因此
+\begin{equation}
+ \omega=\sqrt{\frac gl},\qquad
+ T_0=2\pi\sqrt{\frac lg}.
+ \label{r2ch04:eq:009}
+\end{equation}
+这个周期只在小摆角极限成立。摆角增大后，$\sin\theta\ne\theta$，周期开始依赖振幅；这种偏离正是非线性项的效果。
+
+例如最大摆角为 $\theta_{\max}$ 时，精确周期可写成完全椭圆积分。小振幅展开的首个修正为
+\[
+ T=T_0\left(1+\frac{\theta_{\max}^2}{16}+\order{\theta_{\max}^4}\right).
+\]
+它既给出误差的数量级，也提醒我们：角度必须用弧度代入级数。
+
+\section{阻尼振动与受迫振动}
+\label{r2ch04:sec:damped}
+
+\subsection{阻尼振动的三种区域}
+
+质量为 $m$、劲度系数为 $k$ 的振子若受到线性阻力 $-\gamma\dot x$，满足
+\begin{equation}
+ \ddot x+2\beta\dot x+\omega_0^2x=0,
+ \qquad
+ \beta=\frac{\gamma}{2m},\qquad \omega_0=\sqrt{\frac km}.
+ \label{r2ch04:eq:010}
+\end{equation}
+令 $x\propto\e^{st}$，特征根为 $s=-\beta\pm\sqrt{\beta^2-\omega_0^2}$。于是三种阻尼区域的解为
+\begin{equation}
+ \begin{array}{ll}
+ 0<\beta<\omega_0:&x=\e^{-\beta t}[A\cos(\omega_dt)+B\sin(\omega_dt)],\quad
+ \omega_d=\sqrt{\omega_0^2-\beta^2},\\[2mm]
+ \beta=\omega_0:&x=(A+Bt)\e^{-\beta t},\\[1mm]
+ \beta>\omega_0:&x=A\e^{(-\beta+\sqrt{\beta^2-\omega_0^2})t}
+ +B\e^{(-\beta-\sqrt{\beta^2-\omega_0^2})t}.
+ \end{array}
+ \label{r2ch04:eq:011}
+\end{equation}
+图~\ref{r2ch04:fig:001} 把三种解画在各自平衡线附近。欠阻尼仍越过平衡位置；临界阻尼是不发生越过时最快回到平衡的边界；过阻尼包含一个很慢的指数衰减分量，增大阻力反而会拖慢最终回归。
+
+也可沿用 $x=A\e^{\ii\omega t}$ 的习惯，把特征方程写成
+\[
+ \omega^2-2\ii\beta\omega-\omega_0^2=0.
+\]
+欠阻尼时两根的实部给振动频率，正虚部在 $\e^{\ii\omega t}$ 中给指数衰减；过阻尼时两根纯虚，不再产生过零振荡；临界阻尼出现重根，第二个线性无关解必须乘以 $t$。这三种形式是同一个二阶线性方程在判别式三种符号下的结果。
+
+阻尼系数 $\gamma$ 的量纲为质量除以时间，而 $m/\gamma$ 是速度在仅受黏滞阻力时衰减的特征时间。用 $\beta=\gamma/(2m)$ 后，阻尼强弱与固有频率可以直接比较。
+
+临界阻尼“最快”需要说明比较标准。欠阻尼的包络衰减率是 $\beta$，所以在欠阻尼区增加 $\beta$ 会加快衰减；而强过阻尼的慢根近似
+\[
+ s_{\rm slow}=-\beta+\sqrt{\beta^2-\omega_0^2}
+ \simeq-\frac{\omega_0^2}{2\beta},
+\]
+增大 $\beta$ 反而使慢根更接近零。两种趋势在 $\beta=\omega_0$ 交界。
+\figDampingRegimes
+
+小阻尼 $\beta\ll\omega_0$ 时，$\omega_d\simeq\omega_0$，而振幅按
+\begin{equation}
+ A(t)=A_0\e^{-\beta t}
+ \label{r2ch04:eq:012}
+\end{equation}
+衰减。图~\ref{r2ch04:fig:002} 中两条虚线是 $\pm A_0\e^{-\beta t}$，它们是振动曲线的包络而非新的运动轨迹。
+\figDampedEnvelope
+
+一个周期内的平均能量与平均耗散功率在小阻尼近似下为
+\begin{equation}
+ \overline E\simeq\frac12m\omega_0^2A^2,\qquad
+ \overline P_{\rm loss}=\gamma\overline{\dot x^{\,2}}\simeq2\beta\overline E.
+ \label{r2ch04:eq:013}
+\end{equation}
+定义品质因数 $Q$ 和损耗角 $\delta$：
+\begin{equation}
+ Q=\frac{\omega_0}{2\beta},\qquad
+ \sin\delta=\frac{\beta}{\omega_0}=\frac1{2Q}.
+ \label{r2ch04:eq:014}
+\end{equation}
+$Q$ 越大，单位振动周期损失的能量比例越小。相平面图~\ref{r2ch04:fig:003} 中，无阻尼轨道是闭合椭圆，欠阻尼轨道则螺旋趋向原点；把共同衰减因子消去后，位置与速度之间额外的相位偏移也由损耗角刻画。
+
+由 $\dot E=-\gamma\dot x^2$ 对一个周期取平均，
+\[
+ -\frac{\dd\overline E}{\dd t}
+ =\frac{\omega_0}{Q}\overline E,
+\]
+故能量按 $\e^{-2\beta t}$ 衰减，而振幅按 $\e^{-\beta t}$ 衰减。一个周期损失的能量比例近似为
+\[
+ \frac{|\Delta E|}{E}\simeq\frac{2\pi}{Q}.
+\]
+因此 $Q$ 也可理解为“储存能量与每弧度损失能量之比”。不同教材在损耗角的定义上可能相差一个因子2；使用时应同时写清 $Q$ 与 $\beta$ 的关系。
+
+相图中的倾斜也可直接计算。令
+$X=x\e^{\beta t}$、$W=\dot x\e^{\beta t}$，则
+\[
+ X=A\cos\omega_dt,\qquad
+ W=-A\omega_d\sin\omega_dt-\beta A\cos\omega_dt.
+\]
+去掉衰减后，$X$ 与 $W$ 不再严格相差 $\pi/2$，而是多出
+$\delta=\arctan(\beta/\omega_d)=\arcsin(\beta/\omega_0)$。所以损耗角既可由能量损失定义，也可由位置—速度相位差定义；阻尼越强，相椭圆倾斜越明显。
+\figDampedPhase
+
+\subsection{受迫振动、共振与谱线宽度}
+
+施加简谐策动力 $F(t)=F_0\cos\omega t$ 后，方程为
+\begin{equation}
+ \ddot x+2\beta\dot x+\omega_0^2x=\frac{F_0}{m}\cos\omega t.
+ \label{r2ch04:eq:015}
+\end{equation}
+通解由随时间衰减的暂态解与策动频率为 $\omega$ 的稳态解组成。用复数猜解 $\widetilde x=A\e^{\ii\omega t}$，得到
+\begin{equation}
+ A=\frac{F_0/m}{\omega_0^2-\omega^2+2\ii\beta\omega},\quad
+ |A|=\frac{F_0/m}{\sqrt{(\omega_0^2-\omega^2)^2+4\beta^2\omega^2}},\quad
+ \tan\phi=-\frac{2\beta\omega}{\omega_0^2-\omega^2}.
+ \label{r2ch04:eq:016}
+\end{equation}
+相位必须连续选支：$\omega$ 从零增大到无穷时，$\phi$ 从 $0$ 连续降到 $-\pi$。图~\ref{r2ch04:fig:004} 同时显示幅频与相频特性。
+
+令无量纲频率比 $u=\omega/\omega_0$，式~\eqref{r2ch04:eq:016} 可整理为
+\[
+ |A|=\frac{QF_0/(m\omega_0^2)}
+ {\sqrt{Q^2(1-u^2)^2+u^2}},\qquad
+ \cos\phi=\frac{Q(1-u^2)}
+ {\sqrt{Q^2(1-u^2)^2+u^2}}.
+\]
+这说明改变 $Q$ 不会改变低频静态位移 $F_0/k$，却会显著改变共振附近的峰高与峰宽。
+\figForcedResponse
+
+频率很低时，弹性力近似与外力平衡，$|A|\simeq F_0/k$ 且同相；频率很高时，惯性项主导，$|A|\simeq F_0/(m\omega^2)$ 且反相；$\omega$ 接近 $\omega_0$ 时发生共振。位移振幅达到极大的频率以及相位差恰为 $-\pi/2$ 的频率分别为
+\begin{equation}
+ \omega_{\rm amp}=\sqrt{\omega_0^2-2\beta^2}
+ =\omega_0\sqrt{1-\frac1{2Q^2}},\qquad
+ \omega_{\rm phase}=\omega_0.
+ \label{r2ch04:eq:017}
+\end{equation}
+小阻尼时两者几乎重合。在 $\omega=\omega_0$ 处，$|A|=QF_0/(m\omega_0^2)$，因此 $Q$ 也是共振放大倍数。此时外力与速度同相，平均输入功率恰好补偿耗散功率。
+
+在相位共振点，
+\[
+ F(t)=F_0\cos\omega_0t,\qquad
+ \dot x(t)=\omega_0|A|\cos\omega_0t,
+\]
+故平均输入功率为 $\overline P_{\rm in}=F_0\omega_0|A|/2$。把
+$F_0=m\omega_0^2|A|/Q$ 代入，恰得
+$\overline P_{\rm in}=\omega_0\overline E/Q$。这里“共振放大”并非违反能量守恒；较大的稳态能量来自外力在许多个周期中的持续输入。
+
+若用强度 $I\propto|A|^2$ 描述共振峰，小阻尼下峰形在中心附近近似洛伦兹型。图~\ref{r2ch04:fig:005} 对比了洛伦兹型和高斯型；前者远离中心后的翼部衰减较慢。半高全宽（FWHM）满足
+\begin{equation}
+ \Delta\omega\simeq\frac{\omega_0}{Q}=2\beta,\qquad
+ Q\simeq\frac{\omega_0}{\Delta\omega}.
+ \label{r2ch04:eq:018}
+\end{equation}
+因此同一个 $Q$ 同时刻画能量损耗、共振放大与谱线锐度。
+
+为避免把“峰形相似”误解为“两个函数完全相同”，把标准洛伦兹型与高斯型并列写出：
+\[
+ L(x)=\frac{1}{\pi}\frac{\Gamma}{(x-x_0)^2+\Gamma^2},
+ \qquad
+ G(x)=\frac{1}{\sqrt{2\pi}\sigma}
+ \exp\!\left[-\frac{(x-x_0)^2}{2\sigma^2}\right].
+\]
+二者都归一化为 $\int_{-\infty}^{\infty}f(x)\,\dd x=1$，但翼部行为不同：洛伦兹型按 $|x|^{-2}$ 衰减，高斯型则按指数衰减。对 $L(x)$，峰值为 $1/(\pi\Gamma)$，令函数降到峰值一半即得 $|x-x_0|=\Gamma$，故半高全宽为 $2\Gamma$。注意归一化常数不影响峰宽，而“强度”必须对应振幅平方，不能把 $|A|$ 自身当成谱线强度。
+
+半高宽的近似可直接从强度
+\[
+ I(u)\propto\frac1{(1-u^2)^2+u^2/Q^2}
+\]
+看出。在 $u\simeq1$ 附近令 $u=1+\epsilon$，则
+$1-u^2\simeq-2\epsilon$，分母近似为
+$4\epsilon^2+1/Q^2$，这是标准洛伦兹形式。半高点满足
+$4\epsilon^2=1/Q^2$，两点之差为 $1/Q$，于是得到式~\eqref{r2ch04:eq:018}。当阻尼不小时，共振中心、峰值与半高宽的这些简式都要改用精确表达式。
+
+不做 $u\simeq1$ 近似时，半高点可直接从四次分母求得。令 $z=u^2$，并以峰值点 $z_0=1-1/(2Q^2)$ 为基准，半高条件就成为关于 $z$ 的二次方程。只有在 $Q\gg1$ 时，它的两根开方之差才化为 $1/Q$。这也解释了为什么实验上常以“窄峰”为前提用 $Q=\omega_0/\Delta\omega$；宽峰体系则应报告完整响应曲线。
+\figLineShapes
+
+\section{多自由度小振动（选读）}
+\label{r2ch04:sec:normal-modes}
+
+\subsection{惯性矩阵与弹性矩阵}
+
+设保守体系有 $n$ 个广义坐标 $q_i$，稳定平衡点取为 $q_i=0$。保留二阶小量后，
+\begin{equation}
+ T=\frac12\sum_{i,j=1}^nT_{ij}\dot q_i\dot q_j,\qquad
+ V=\frac12\sum_{i,j=1}^nV_{ij}q_iq_j,\qquad
+ T_{ij}=T_{ji},\quad V_{ij}=V_{ji}.
+ \label{r2ch04:eq:019}
+\end{equation}
+惯性矩阵 $\vect T$ 必须正定；若弹性矩阵 $\vect V$ 正定，平衡点才在二阶近似下稳定。若 $\vect V$ 有负本征方向，体系沿该方向不稳定；若有零本征值，则二阶判据失效，必须检查更高阶项或识别整体平移、整体转动等零模。
+
+从完整系统的平衡条件看，第 $i$ 个广义力是
+\[
+ Q_i=\sum_a\vect F_a\cdot\frac{\partial\vect r_a}{\partial q_i}.
+\]
+保守力系中 $Q_i=-\partial V/\partial q_i$，因而平衡要求每个 $\partial V/\partial q_i$ 都为零。令 $q_i=q_{i0}+\delta_i$，势能的多元泰勒展开为
+\[
+ V=V_0+\frac12\sum_{ij}
+ \left.\frac{\partial^2V}{\partial q_i\partial q_j}\right|_0
+ \delta_i\delta_j
+\frac1{3!}\sum_{ijk}
+ \left.\frac{\partial^3V}{\partial q_i\partial q_j\partial q_k}\right|_0
+ \delta_i\delta_j\delta_k+\cdots .
+\]
+一阶项消失是平衡条件的直接结果，而不是额外假设。在二阶项非退化且正定时，三阶及更高阶才能一致看成小量；若二阶项退化，就不能先验地删掉高阶项。
+
+势能二次型来自平衡点处的 Hessian 矩阵：
+\[
+ V_{ij}=\left.\frac{\partial^2V}{\partial q_i\partial q_j}\right|_{\vect q=0}.
+\]
+混合偏导在光滑条件下可交换，因此 $V_{ij}=V_{ji}$。动能矩阵同理由
+$T_{ij}=\partial^2T/(\partial\dot q_i\partial\dot q_j)$ 给出。即使最初写出的交叉项系数不对称，也总可以把它的对称部分作为矩阵，因为反对称部分在
+$\sum_{ij}A_{ij}q_iq_j$ 中恒为零。
+
+正定性的物理含义也应区分。动能出现负方向不可能；出现零方向常表示坐标冗余或理想化物体的某个无惯性自由度。势能出现负方向表示平衡不稳定；出现零方向可能是整体对称运动，也可能意味着必须考察三、四阶项才能判断稳定性。
+
+展开式中三阶项不会成为普通稳定小振动的领头项，是因为二阶正定项对任意非零偏离都为正；当二阶项退化时，这个理由不再成立。此时若最低非零项为奇次，它会在平衡点两侧异号，平衡不可能稳定；若最低非零项为偶次且正，才可能形成非谐的稳定小振动。
+
+任意实对称二次型都可通过逐步配方对角化。例如
+\[
+ F=\frac12f_{11}x_1^2+x_1(f_{12}x_2+f_{13}x_3+\cdots)
+ +F'(x_2,x_3,\ldots)
+\]
+中，令
+\[
+ x_1'=x_1+\frac{f_{12}}{f_{11}}x_2+
+ \frac{f_{13}}{f_{11}}x_3+\cdots,
+\]
+就能消去所有含 $x_1'$ 的交叉项；对剩余变量重复即可得到完全平方和。这一过程还给出二次型的符号判定：动能的对角系数不能为负；势能只要出现一个负系数，平衡点就必然不稳定。
+
+单独对角化 $T$ 或 $V$ 并不困难，真正的问题是同一个坐标变换能否同时消去两者的交叉项。如果先用配方把动能化成平方和，新势能一般又会产生混合项；反之亦然。简正坐标正是为同时对角化而构造的。
+
+图~\ref{r2ch04:fig:006} 的耦合摆在小角度下有
+\begin{equation}
+ \vect T_{\rm c}=ml^2\begin{pmatrix}1&0\\0&1\end{pmatrix},\qquad
+ \vect V_{\rm c}=mgl\begin{pmatrix}1+\varepsilon&-\varepsilon\\-\varepsilon&1+\varepsilon\end{pmatrix},\qquad
+ \varepsilon=\frac{kl}{mg}.
+ \label{r2ch04:eq:020}
+\end{equation}
+这里弹簧自然长等于两摆平衡时的间距。对称模中两摆同向，弹簧不伸缩；反对称模中弹簧交替伸缩。
+
+若两悬点间距为 $d$，弹簧的瞬时长度应先写成精确几何式
+\[
+ d'=\sqrt{[d+l\sin\theta_2-l\sin\theta_1]^2+
+ [l\cos\theta_2-l\cos\theta_1]^2}.
+\]
+准确能量为
+\[
+ T=\frac12ml^2(\dot\theta_1^2+\dot\theta_2^2),\qquad
+ V=mgl(2-\cos\theta_1-\cos\theta_2)+\frac12k(d'-d)^2.
+\]
+在小角近似中，$d'-d=l(\theta_2-\theta_1)+\order{\theta^2}$，才得到式~\eqref{r2ch04:eq:020}。先写精确几何再展开，可以避免把竖直高度差等二阶量错误计入线性刚度。
+\figCoupledPendula
+
+图~\ref{r2ch04:fig:007} 的等长等质量双摆采用 $\theta_1$ 表示上杆绝对转角、$\theta_2$ 表示下杆绝对转角。二阶近似给出
+\begin{equation}
+ \vect T_{\rm d}=ml^2\begin{pmatrix}2&1\\1&1\end{pmatrix},\qquad
+ \vect V_{\rm d}=mgl\begin{pmatrix}2&0\\0&1\end{pmatrix}.
+ \label{r2ch04:eq:021}
+\end{equation}
+耦合摆的交叉项出现在势能，双摆的交叉项出现在动能；单独把一个二次型配方，并不能保证另一个也被对角化。
+
+双摆的精确能量为
+\[
+\begin{aligned}
+ T&=\frac12ml^2\dot\theta_1^2+
+ \frac12ml^2\!\left(\dot\theta_1^2+\dot\theta_2^2+
+ 2\dot\theta_1\dot\theta_2\cos(\theta_1-\theta_2)\right),\\
+ V&=mgl(1-\cos\theta_1)+
+ mgl[(1-\cos\theta_1)+(1-\cos\theta_2)].
+\end{aligned}
+\]
+第一项是上球动能，括号内是下球速度平方；势能中上杆转角同时抬高两个小球。令
+$\cos(\theta_1-\theta_2)\simeq1$、$1-\cos\theta\simeq\theta^2/2$，便准确回到式~\eqref{r2ch04:eq:021}。
+
+以双摆为例，只把动能配方可令
+$\vartheta_1=\theta_1+\theta_2/2$、$\vartheta_2=\theta_2$，此时动能无交叉项，但势能立即出现
+$-mgl\,\vartheta_1\vartheta_2$。因此需要的不是分别配方，而是寻找同一个线性变换同时对角化两个正定二次型。
+
+一般线性变换可写成 $\vect q=\vect B\vect Q$。代入两个二次型后，
+\[
+ \vect T\longmapsto\vect B^{\mathsf T}\vect T\vect B,\qquad
+ \vect V\longmapsto\vect B^{\mathsf T}\vect V\vect B.
+\]
+这种“左乘转置、右乘原矩阵”的变换称为合同变换，与只做相似变换求普通矩阵本征值不同。广义本征问题的作用，正是构造一个使两次合同变换都成为对角矩阵的 $\vect B$。
+\figDoublePendulum
+
+\subsection{广义本征值问题与简正坐标}
+
+拉格朗日方程把线性化运动写成矩阵形式
+\begin{equation}
+ \vect T\,\ddot{\vect q}+\vect V\,\vect q=\vect0.
+ \label{r2ch04:eq:022}
+\end{equation}
+寻找所有坐标同频振动的模式 $\vect q=\vect b\cos(\omega t+\phi)$，得到广义本征值问题
+\begin{equation}
+ (\vect V-\omega^2\vect T)\vect b=\vect0,\qquad
+ \det(\vect V-\omega^2\vect T)=0.
+ \label{r2ch04:eq:023}
+\end{equation}
+行列式给出 $n$ 个计重数的 $\omega_i^2$。不同本征值的本征向量关于惯性矩阵正交：
+\begin{equation}
+ \omega_r^2\ne\omega_s^2
+ \quad\Longrightarrow\quad
+ \vect b_r^{\mathsf T}\vect T\vect b_s=0.
+ \label{r2ch04:eq:024}
+\end{equation}
+证明只需分别左乘两组本征方程，并利用 $\vect T,\vect V$ 的对称性相减。若某一频率简并，可在该本征子空间内再作正交化。
+
+把证明写开：若
+$\vect V\vect b_r=\omega_r^2\vect T\vect b_r$、
+$\vect V\vect b_s=\omega_s^2\vect T\vect b_s$，则
+\[
+ \vect b_r^{\mathsf T}\vect V\vect b_s
+ =\omega_s^2\vect b_r^{\mathsf T}\vect T\vect b_s.
+\]
+另一方面对第一式转置并右乘 $\vect b_s$，利用矩阵对称性，左侧相同而右侧为
+$\omega_r^2\vect b_r^{\mathsf T}\vect T\vect b_s$。两式相减即得正交性。由于 $\vect T$ 正定，本征向量的“长度”
+$\vect b_i^{\mathsf T}\vect T\vect b_i$ 始终为正。
+
+把各本征向量并成变换矩阵 $\vect B=(\vect b_1,\ldots,\vect b_n)$，令 $\vect q=\vect B\vect Q$，就能同时把动能和势能对角化：
+\[
+ T=\frac12\sum_iT_i\dot Q_i^2,\qquad
+ V=\frac12\sum_iT_i\omega_i^2Q_i^2.
+\]
+$Q_i$ 称简正坐标，$\omega_i$ 称简正频率。任意小振动都是这些简正模的线性组合，初始条件决定每个模的振幅和相位。
+
+用矩阵语言，这个变换给出
+\[
+ \vect B^{\mathsf T}\vect T\vect B
+ =\operatorname{diag}(T_1,\ldots,T_n),\qquad
+ \vect B^{\mathsf T}\vect V\vect B
+ =\operatorname{diag}(T_1\omega_1^2,\ldots,T_n\omega_n^2).
+\]
+每个 $Q_i$ 独立满足 $\ddot Q_i+\omega_i^2Q_i=0$。这就是“简正”的两层含义：每个坐标做简谐运动，不同模又在惯性内积下正交。
+
+对式~\eqref{r2ch04:eq:021} 的双摆，特征方程为 $2(g/l-\omega^2)^2=\omega^4$，所以
+\begin{equation}
+ \omega_1^2=(2-\sqrt2)\frac gl,\quad \vect b_1\propto(1,\sqrt2)^{\mathsf T};
+ \qquad
+ \omega_2^2=(2+\sqrt2)\frac gl,\quad \vect b_2\propto(1,-\sqrt2)^{\mathsf T}.
+ \label{r2ch04:eq:025}
+\end{equation}
+低频模中两杆大致同向，高频模中两杆反向。振幅比不是普通欧氏正交，而是满足式~\eqref{r2ch04:eq:024} 的惯性加权正交。
+
+特征行列式的具体计算为
+\[
+ \det\begin{pmatrix}
+ 2g/l-2\omega^2&-\omega^2\\
+ -\omega^2&g/l-\omega^2
+ \end{pmatrix}=0.
+\]
+把两个根分别代回任一行，就得到
+$\theta_2/\theta_1=\sqrt2$ 与 $-\sqrt2$。代回另一行可作代数核验，代回原能量可作物理核验：低频模的两杆转向相同、相对运动较弱，因此频率较低；高频模反向，等效回复更强。
+
+若希望把结果真正写成坐标变换，可选
+\[
+ \begin{pmatrix}\theta_1\\\theta_2\end{pmatrix}
+ =
+ \begin{pmatrix}1&1\\ \sqrt2&-\sqrt2\end{pmatrix}
+ \begin{pmatrix}Q_1\\Q_2\end{pmatrix}.
+\]
+把它代回式~\eqref{r2ch04:eq:021}，动能与势能中的 $Q_1Q_2$、$\dot Q_1\dot Q_2$ 项同时消失。一般初始位形并不等于某一个本征向量，所以两个频率会同时出现，原角坐标的运动看起来不再是单一正弦。
+
+上述变换的逆变换应显式写出，因为它把实验可观测的两个摆角分解成两个简正坐标：
+\[
+ Q_1=\frac12\theta_1+\frac{\sqrt2}{4}\theta_2,
+ \qquad
+ Q_2=\frac12\theta_1-\frac{\sqrt2}{4}\theta_2.
+\]
+直接代回能量，得
+\[
+ \begin{aligned}
+ T={}&\frac12\,2(2+\sqrt2)ml^2\dot Q_1^2
+      +\frac12\,2(2-\sqrt2)ml^2\dot Q_2^2,\\
+ V={}&\frac12\,4mgl Q_1^2+
+      \frac12\,4mgl Q_2^2.
+ \end{aligned}
+\]
+于是每个坐标独立满足
+$\ddot Q_i+\omega_i^2Q_i=0$，而频率平方正是“新弹性系数除以新惯性系数”。这一步同时检验了本征值计算、坐标变换和能量对角化，三者必须给出同一组频率。
+
+\subsection{利用对称性识别简正模}
+
+对于耦合摆，左右交换不改变方程。因此本征模可选为交换操作的本征态：
+\begin{equation}
+ \begin{array}{c|c|c}
+ \text{模式}&(\theta_1,\theta_2)&\text{角频率}\\ \hline
+ \text{对称模}&(1,1)&\omega_S=\sqrt{g/l},\\
+ \text{反对称模}&(1,-1)&\omega_A=\sqrt{(1+2\varepsilon)g/l}.
+ \end{array}
+ \label{r2ch04:eq:026}
+\end{equation}
+这不是说任意运动都保持对称，而是说线性方程的解空间可以按对称操作分解；一般初始状态仍是若干不同对称类型的叠加。
+
+对称操作必须保持能量函数不变。例如左右交换后，耦合摆的动能与弹簧势能形式均不变，所以动力学算符与交换算符可取共同本征向量。对称的原因并不保证任意初始条件产生对称的运动；不对称初态会同时激发对称模和反对称模。这种“方程有对称性而具体运动未必有”的区别，是理解对称性破缺的起点。
+
+把苯分子的平面环振动简化成图~\ref{r2ch04:fig:008} 的六个等质量质点，并只保留相邻质点间劲度系数为 $k$ 的弹性耦合。以沿环切向的小位移 $x_i$ 为坐标，
+\begin{equation}
+ T=\frac12m\sum_{i=1}^6\dot x_i^2,\qquad
+ V=\frac12k\sum_{i=1}^6(x_{i+1}-x_i)^2,\qquad
+ m\ddot x_i=-2kx_i+kx_{i-1}+kx_{i+1},
+ \label{r2ch04:eq:027}
+\end{equation}
+其中角标按模6循环。
+\figBenzeneModel
+
+图~\ref{r2ch04:fig:009} 的 $C_6$ 操作把每个坐标循环移到下一个位置，能量和方程保持不变。其本征态满足 $x_{i+1}=\lambda x_i$，且连续作用六次必须回到原态，故 $\lambda^6=1$。令 $\lambda=\e^{\ii q}$，$q=2\pi n/6$，便得到
+\begin{equation}
+ \omega(q)=2\sqrt{\frac km}\left|\sin\frac q2\right|,\qquad
+ q=0,\ \pm\frac\pi3,\ \pm\frac{2\pi}3,\ \pi.
+ \label{r2ch04:eq:028}
+\end{equation}
+\figCyclicSymmetry
+
+这个结论也可以从任意一个已知模式系统地构造。设 $\vect u$ 是某一频率下的解，$w=\e^{\ii\pi/3}$，则六个循环像
+$\vect u,C_6\vect u,\ldots,C_6^5\vect u$ 的加权和
+\[
+ \vect u^{(r)}=\sum_{j=0}^{5}w^{rj}C_6^j\vect u,
+ \qquad r=0,1,\ldots,5,
+\]
+满足 $C_6\vect u^{(r)}=w^{-r}\vect u^{(r)}$。这是六点离散傅里叶变换：循环平移在这组基中已经对角化。因为真实位移必须为实数，复共轭的 $r$ 与 $6-r$ 应组合成余弦型和正弦型两个实模式，这就是二重简并的来源。
+
+对于只有一重的模式，任一对称操作作用后不能产生线性无关的新解，因而它必须同时是这些操作的本征态。二重旋转的本征值只能为 $\pm1$。在六环模型中，全部分量相同的
+$(1,1,1,1,1,1)$ 是零频整体转动；正负交替的
+$(1,-1,1,-1,1,-1)$ 是频率最高的单态。中间两档则无法在所有对称操作下都只乘一个常数，必须把两个独立模式一起保留。
+
+六边形还具有绕对边中点连线或对角线作 $180^\circ$ 旋转的二重对称操作。这些操作把坐标互换并可能改变切向位移的符号。把不同对称操作联合起来，可以继续区分同一频率下的简并模式；这正是分子振动光谱中群论分类的物理基础。
+
+例如选定编号方向后，一类二重操作可写成
+\[
+ (x_1,x_2,x_3,x_4,x_5,x_6)
+ \mapsto(-x_2,-x_1,-x_6,-x_5,-x_4,-x_3).
+\]
+负号来自切向基矢在空间转动后反向，而不是位移大小本身变负。对称操作作用于一个解后仍得到同频解，所以一组简并模式在这些操作下彼此混合。只有把整个简并子空间看作一个整体，对称性才保持完整。
+
+例如从
+$\vect u_1=(1,-1,0,1,-1,0)$ 出发，旋转一个格点得
+$\vect u_2=(0,1,-1,0,1,-1)$，而再旋转所得向量满足
+$C_6^2\vect u_1=-\vect u_1-\vect u_2$。因此旋转不会生成第三个独立方向，该频率的简并度恰为2。对
+$(1,1,0,-1,-1,0)$ 也可作同样检验。把两组代回式~\eqref{r2ch04:eq:027}，分别得 $\omega^2=3k/m$ 与 $\omega^2=k/m$，这与循环波数公式完全相合。
+
+$q$ 与 $-q$ 给相同频率，可组成图~\ref{r2ch04:fig:010} 所示的两组独立实驻波，因此中间两档频率二重简并。六个模依次为：一个 $\omega=0$ 的整体转动零模，两组二重简并的 $\sqrt{k/m}$ 与 $\sqrt{3k/m}$ 模，以及一个 $2\sqrt{k/m}$ 的交替反相模。
+\figDegenerateModes
+
+把模式用六个位置的相对振幅列出，可选为
+\[
+\begin{array}{c|c|c}
+\text{频率}&\text{代表性实模式}&\text{简并度}\\ \hline
+0&(1,1,1,1,1,1)&1\\
+\sqrt{k/m}&(1,1,0,-1,-1,0),\ (0,1,1,0,-1,-1)&2\\
+\sqrt{3k/m}&(1,-1,0,1,-1,0),\ (0,1,-1,0,1,-1)&2\\
+2\sqrt{k/m}&(1,-1,1,-1,1,-1)&1
+\end{array}
+\]
+同一简并子空间中的两组基可以作任意正交线性组合，故画法并不唯一，但频率和子空间是唯一的。
+
+还可以从算符的对易关系理解这张表。设线性动力学算符为 $D$，循环旋转为 $C_6$，因为旋转前后方程不变，所以
+\[
+ DC_6=C_6D.
+\]
+若 $D\vect u=\omega^2\vect u$，则
+$D(C_6\vect u)=\omega^2(C_6\vect u)$。因此对称操作只能把一个模式送到同频子空间中。若该子空间一维，$C_6\vect u$ 只能是 $\vect u$ 的常数倍；若为二维，$C_6$ 可在其中表现为一个平面旋转矩阵。群表示的基本思想就是：不只问一个模式画成什么样，还要问整个简并子空间在对称操作下如何变换。
+
+对零模 $(1,1,1,1,1,1)$，每根等效弹簧的两端位移相同，故势能始终为零，它表示整环的刚性转动而不是内部振动。对交替模 $(1,-1,1,-1,1,-1)$，每一根弹簧都以最大的相对位移变形，因而它给出最高频率。这两个极限不用行列式就能通过能量图像判断，并可用来检验表中其余结果的频率顺序。
+
+由这个简化模型过渡到真实分子时，计数原则不变：一个含 $N$ 个原子的非线性分子共有 $3N$ 个笛卡尔坐标，扣除3个整体平动和3个整体转动，留下 $3N-6$ 个振动自由度。简并意味着多个线性无关坐标共享同一频率，因此“振动自由度数”与“不同谱线频率数”一般不相等。
+
+\clearpage
+实际苯分子有12个原子，每个原子有三个空间坐标；扣除三项整体平动和三项整体转动后有30个振动自由度。图~\ref{r2ch04:fig:011} 说明这些模式仍可依对称性分类，其中若干频率二重简并。分子振动能级近似为 $E_n=(n+\tfrac12)\hbar\omega$，相邻能级差对应红外吸收 $h\nu=\hbar\omega$。
+\figBenzeneModeTable
+
+\section{非线性摄动（选读）}
+\label{r2ch04:sec:nonlinear}
+
+小振动只保留势能二阶项。若要研究有限振幅带来的频移、波形畸变或不同模之间的能量交换，就必须保留三阶及更高阶项。单自由度势能可写成
+\begin{equation}
+ V(q)=\frac12m\omega_0^2q^2+\frac13\alpha q^3+\frac14\lambda q^4+\cdots,
+ \qquad
+ \ddot q+\omega_0^2q+\frac\alpha m q^2+\frac\lambda m q^3=0.
+ \label{r2ch04:eq:029}
+\end{equation}
+二次非线性会产生直流偏置和二次谐波，三次非线性则直接导致基频随振幅改变。以对称的 Duffing 振子 $\alpha=0$ 为例，用 Lindstedt--Poincaré 方法消去一阶摄动中的共振项，得到
+\begin{equation}
+ \omega(A)=\omega_0\left[1+\frac{3\lambda A^2}{8m\omega_0^2}+\order{(\lambda A^2)^2}\right].
+ \label{r2ch04:eq:030}
+\end{equation}
+$\lambda>0$ 为硬化，振幅越大频率越高；$\lambda<0$ 为软化。单摆的四次势能项为负，所以其周期随振幅增加。
+
+所谓“摄动”不是把非线性项直接删掉，而是先以线性解为零阶近似，再逐阶修正波形与频率。若仍固定使用 $\omega_0$ 展开，修正方程中会出现与齐次解同频的项，导致形式上随时间增长的“久期项”；把频率也展开并选择修正量抵消久期项，才能得到在许多周期内都有效的近似。
+
+非线性还破坏线性叠加原理。两个单独的解相加一般不再是解，振幅也会影响频率，所以相位差会随时间逐渐积累。这是有限振幅摆、非线性弹簧和大振幅晶格振动中出现频谱展宽与能量转移的共同原因。
+
+多自由度体系的三次势能会出现 $q_i^2q_j$ 等耦合项。若 $q_i\sim\cos\omega_i t$，则 $q_i^2$ 含有 $0$ 与 $2\omega_i$ 两种频率，所以当
+\begin{equation}
+ \omega_j\simeq2\omega_i
+ \label{r2ch04:eq:031}
+\end{equation}
+时会发生二比一内共振：一个模能够持续向另一个模输送能量。配套练习中的弹簧摆正是这一模型。
+
+\section{格波}
+\label{r2ch04:sec:lattice}
+
+晶体中的原子实在平衡格点附近振动，并通过相邻原子间的弹性作用耦合。宏观声波是有规则的长波格振动；无规则的格振动叠加构成固体热运动。量子化后，每个简正模的能量激发称为声子（phonon）。
+
+一个原子受到扰动会通过邻近键把扰动传给其他原子，因此格振动天然是多自由度集体运动，而不是每个原子彼此独立的振子。导热和传声都依赖这种耦合。把热运动分解成格波简正模，再对每个模量子化，才会得到低温固体热容的正确趋势。
+
+高键强度与低原子质量通常同时提高声速和晶格导热能力。金刚石的纵波声速约为
+$1.2\times10^4\ \mathrm{m/s}$，室温热导率可达
+$2.0\times10^3\ \mathrm{W/(m\cdot K)}$ 量级。这些数量并不是一维链模型的直接计算结果，但它们说明“弹性耦合强、格波传播快”的图像与真实固体一致。
+
+\subsection{单原子一维链}
+
+图~\ref{r2ch04:fig:012} 中质量均为 $m$ 的原子以间距 $a$ 排列，相邻原子由等效劲度系数 $k$ 耦合。第 $n$ 个原子的位移满足
+\begin{equation}
+ m\ddot x_n=k(x_{n+1}-2x_n+x_{n-1}).
+ \label{r2ch04:eq:032}
+\end{equation}
+\figMonoatomicChain
+
+取行波形式 $x_n=A\e^{\ii(Kna-\omega t)}$，得到精确色散关系
+\begin{equation}
+ \omega(K)=2\sqrt{\frac km}\left|\sin\frac{Ka}{2}\right|,\qquad
+ -\frac\pi a\le K\le\frac\pi a.
+ \label{r2ch04:eq:033}
+\end{equation}
+图~\ref{r2ch04:fig:013} 中的区间称第一布里渊区。相差倒格矢 $2\pi/a$ 的波矢在所有格点上给出相同相位，因此不代表新的格波。布里渊区边界 $|K|=\pi/a$ 时相邻原子反相，频率达到截止值 $2\sqrt{k/m}$。
+\figMonoDispersion
+
+也可先令相邻振幅比为 $\lambda$，取 $x_n=\lambda^nA\e^{-\ii\omega t}$，得到
+\[
+ \lambda+\lambda^{-1}=2-\frac{m\omega^2}{k}.
+\]
+传播波要求 $|\lambda|=1$，于是 $\lambda=\e^{\ii Ka}$。当 $\omega>2\sqrt{k/m}$ 时，$\lambda$ 变成模不等于1的实数：一个方向指数增长、另一个方向指数衰减。物理上只能保留远离驱动源衰减的分支，所以此频段不能在无限均匀链中传播，而只形成倏逝响应。这给出截止频率的另一种解释。
+
+相速度和群速度分别为
+\begin{equation}
+ v_{\rm p}=\frac\omega K,\qquad
+ v_{\rm g}=\frac{\dd\omega}{\dd K}.
+ \label{r2ch04:eq:034}
+\end{equation}
+相位前进方向由 $v_{\rm p}$ 描述，能量与波包传播方向通常由 $v_{\rm g}$ 描述。接近布里渊区边界时 $v_{\rm g}\to0$，所以边界模近似驻波。
+
+$K=\pi/a$ 与 $K=-\pi/a$ 在格点上给出同一个状态，因而第一布里渊区的两个端点应视为相接。若沿色散曲线把 $K$ 连续增加越过边界，再折回第一布里渊区，群速度会改变符号。仅凭相速度的符号判断格波传播方向会在这里失效。
+
+长波极限 $|Ka|\ll1$ 下，
+\begin{equation}
+ \omega\simeq a\sqrt{\frac km}|K|,\qquad
+ v_{\rm g}\simeq a\sqrt{\frac km}.
+ \label{r2ch04:eq:035}
+\end{equation}
+相邻原子几乎同相，离散晶格退化为连续介质中的声波。
+
+长波速度 $a\sqrt{k/m}$ 与连续介质的 $\sqrt{E/\rho}$ 形式一致：$ka$ 对应一维杆的等效弹性模量，$m/a$ 对应线密度。这个对应关系说明连续介质理论正是晶格理论在波长远大于晶格常数时的极限。
+
+短波极限没有简单的连续介质对应。当最短波长为 $2a$ 时，相邻原子严格反相，每个原子两侧的弹簧同时提供回复力，频率达到最大；但群速度为零，能量不再沿链输运。这说明“振动得快”与“传播得快”是不同概念。
+
+\subsection{双原子链与声学支、光学支}
+
+图~\ref{r2ch04:fig:014} 的一个原胞含质量 $M,m$ 两个原子，原胞间距为 $a$。令第 $n$ 个原胞中的位移为 $x_n,y_n$，则
+\begin{equation}
+ M\ddot x_n=-2kx_n+k(y_n+y_{n-1}),\qquad
+ m\ddot y_n=-2ky_n+k(x_n+x_{n+1}).
+ \label{r2ch04:eq:036}
+\end{equation}
+\figDiatomicChain
+
+代入 $x_n=A\e^{\ii(Kna-\omega t)}$、$y_n=B\e^{\ii(Kna-\omega t)}$，非零振幅要求
+\begin{equation}
+ (2k-M\omega^2)(2k-m\omega^2)-4k^2\cos^2\frac{Ka}{2}=0.
+ \label{r2ch04:eq:037}
+\end{equation}
+所以每个 $K$ 对应两支频率：
+\begin{equation}
+ \omega_\pm^2(K)=\frac{k(M+m)}{Mm}
+ \pm\frac{k}{Mm}\sqrt{(M+m)^2-4Mm\sin^2\frac{Ka}{2}}.
+ \label{r2ch04:eq:038}
+\end{equation}
+图~\ref{r2ch04:fig:015} 中，负号支从 $K=0,\omega=0$ 出发，长波时两种原子近同相，称声学支；正号支在 $K=0$ 仍有有限频率，原胞内两种原子近反相，常与红外电磁波耦合，称光学支。两支之间可能存在没有传播模的频率间隙。
+\figAcousticOptical
+
+振幅比也包含重要信息。由第一行动力学方程，
+\[
+ \frac BA=\frac{2k-M\omega^2}{k(1+\e^{-\ii Ka})}.
+\]
+在声学支的长波端，$B/A\to1$，两种原子同相平移；在光学支的长波端，满足
+$MA+mB=0$，原胞质心近似不动而两种原子反相。若 $m\ll M$，光学支主要由轻原子的快速振动承担，声学支则主要体现重原子的慢集体运动。
+
+在质量比 $\eta=m/M\ll1$ 时，声学支近似
+\[
+ \omega_-\simeq2\sqrt{\frac{k}{2M}}\left|\sin\frac{Ka}{2}\right|,
+\]
+而光学支的主尺度为
+$\omega_+\simeq2\sqrt{k/(2m)}$。前者可理解为两个重原子之间的两根弹簧串联，后者可理解为轻原子夹在近乎不动的重原子之间振动。
+
+几个特征点可以直接检验式~\eqref{r2ch04:eq:038}。在 $K=0$，声学支给 $\omega_-=0$，对应整条链共同平移；光学支给
+\[
+ \omega_+^2(0)=2k\left(\frac1M+\frac1m\right),
+\]
+对应每个原胞内的二体反相振动。在布里渊区边界 $\cos(Ka/2)=0$，两种质量的方程解耦；一支只有较重原子振动，另一支只有较轻原子振动。若 $M\ne m$，两支边界频率不同，于是形成间隙；若 $M=m$，把原胞重新选成只含一个原子，两支只是单原子色散曲线的折叠。
+
+色散曲线上的每一点代表一个简正模。量子理论把每个模的能量写成 $(n+\tfrac12)\hbar\omega$；晶格周期性还使电子能量形成允带与禁带。这里的格波分析展示了能带思想的力学原型：周期对称性限制波矢，而每个波矢可以对应多个分支。
+
+自由电子的能量 $E=\hbar^2K^2/(2m_e)$ 随 $K$ 连续形成抛物线；被单个原子强束缚的电子则形成离散能级。晶体中的电子处于二者之间：它可以跨越许多晶胞传播，却受到周期势场调制，于是离散能级展宽成允带，相邻允带之间可能留下禁带。布洛赫定理把这种周期体系的本征态写成平面波乘以晶格周期函数。虽然完整电子能带需要量子力学，本章的双原子格波已经清楚展示了“同一波矢对应多个分支”和“分支之间出现间隙”的基本图像。

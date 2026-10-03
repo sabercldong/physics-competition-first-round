@@ -1,0 +1,555 @@
+导体中存在能够在材料内部宏观移动的自由电荷；绝缘体中的电荷则主要束缚在原子、分子或晶格
+附近。外电场加上以后，导体内的自由电荷会重新分布，直到不再发生定向移动。此时虽然电荷已经
+静止，表面电荷产生的附加电场却仍然存在，并与外电场共同构成最终的静电场。
+
+\subsection*{导体的静电平衡}
+
+设导体已经达到静电平衡。若导体内部仍有非零电场，自由电荷便会继续受力移动，与“平衡”矛盾，
+所以
+\begin{equation}
+  \boxed{\vect E_{\rm in}=0}.
+\end{equation}
+由 $\vect E=-\nabla\varphi$ 可知，整块连通导体是等势体，其表面也是等势面。导体内部任取高斯面，
+因高斯面上电场处处为零，包围的净电荷必为零。因此没有置于空腔中的独立电荷时，导体的过剩
+净电荷只能分布在表面。
+
+表面若存在切向电场，自由电荷会沿表面移动；故平衡时表面外的电场只能沿法线方向。取跨越导体
+表面的薄柱形高斯面，可得
+\begin{equation}
+  \boxed{E_n^{\rm(out)}-E_n^{\rm(in)}=\frac{\sigma}{\varepsilon_0}}.
+\end{equation}
+导体内侧 $E_n^{\rm(in)}=0$，于是紧邻表面外侧有
+\begin{equation}
+  \boxed{E_n^{\rm(out)}=\frac{\sigma}{\varepsilon_0}}.
+\end{equation}
+这里的正法线由导体指向外部；$\sigma>0$ 时电场向外，$\sigma<0$ 时电场向内。该关系是局部
+关系，不要求导体为球形，也不能把弯曲表面的电场误写成无限大平面两侧的
+$\sigma/(2\varepsilon_0)$。
+
+\twoConductorFieldDiagram
+
+\conductorEquilibriumDiagram
+
+把外电荷靠近中性导体时，导体两侧出现异号感应电荷，但导体的总电荷仍为零。若要用接地得到
+带电导体，操作次序不能颠倒：保持外电荷不动时接地，使一部分自由电荷经大地流入或流出；随后
+先断开地线，再移走外电荷。若先移走外电荷而仍保持接地，导体会重新与大地交换电荷，通常回到
+中性状态。
+
+\inductionGroundingDiagram
+
+闭合导体空腔内若没有放置电荷，腔内边界电势为常量，唯一的静电解就是常量电势，因而腔内
+$\vect E=0$。这就是静电屏蔽。它并不是说导体“阻挡”了已有的电场线，而是表面感应电荷重新
+分布后，使空腔中满足边界条件的唯一解恰好为零场。
+
+\historyfigure[0.42\linewidth]{faraday-cage-redraw.png}{Faraday 笼：放电止于导电笼外表面}
+
+图中应观察的是长电弧终止在导电笼的外表面，而笼内的人并不处在放电通道中。外加电场使
+笼上的自由电荷重新分布，在静电或变化足够缓慢的情况下，导体内部保持近似等势，笼内场强
+很小。若电场快速变化，实际屏蔽效果还与网孔尺寸、材料和频率有关；因此实验图体现的是
+静电屏蔽的边界条件，而不是“任何金属网在任何情况下都能完全隔绝电场”。
+
+\subsection*{静电场唯一性定理}
+
+电势满足 Poisson 方程
+\begin{equation}
+  \boxed{\nabla^2\varphi=-\frac{\rho}{\varepsilon_0}},
+\end{equation}
+无自由电荷区域则满足 Laplace 方程 $\nabla^2\varphi=0$。给定区域内的电荷密度，并在边界上
+给定电势；或给定适当的法向电场且固定一个电势参考后，区域内的静电势由这些条件唯一确定。
+
+以给定边界电势为例，假设 $\varphi_1$、$\varphi_2$ 都是解，令
+$u=\varphi_1-\varphi_2$。则 $\nabla^2u=0$ 且边界上 $u=0$。由 Green 恒等式
+\begin{equation}
+  \int_V|\nabla u|^2\dd V
+  =\oint_{\partial V}u\frac{\partial u}{\partial n}\dd S
+   -\int_Vu\nabla^2u\dd V=0.
+\end{equation}
+因此 $\nabla u=0$，而边界上的零值又使 $u=0$，两组解只能相同。这个结论使我们不必直接追踪
+导体表面连续分布的感应电荷：只要用若干辅助点电荷构造出的电势满足相同的方程和边界条件，
+它就是所求区域中的真实电势。
+
+\discretePotentialDiagram
+
+\subsection*{电像法}
+
+半径为 $R$ 的接地导体球，球心为 $O$。在球外距球心 $L>R$ 处放置点电荷 $Q$。在球内同一直线
+上放置辅助电荷
+\begin{equation}
+  \boxed{q'=-\frac{R}{L}Q,\qquad l=\frac{R^2}{L}},
+\end{equation}
+其中 $l$ 是像电荷到球心的距离。球面上任一点 $P$ 到 $Q$ 和 $q'$ 的距离之比恒为 $L/R$，故
+\begin{equation}
+  \left.\varphi(P)\right|_{r=R}
+  =k\left(\frac{Q}{PQ}+\frac{q'}{Pq'}\right)=0,
+  \qquad k=\frac1{4\pi\varepsilon_0}.
+\end{equation}
+球外真实区域内没有像电荷，且球面电势与接地条件一致；由唯一性定理，这个“真实电荷加像电荷”
+的场就是球外的真实电场。
+
+\sphereImageDiagram
+
+像电荷只是求导体外场的数学替代物，不能解释成导体内部真的聚集了一个点电荷。真实点电荷受到
+导体的力，却可以直接按它与像电荷之间的库仑力计算：
+\begin{equation}
+  \boxed{F=-k\frac{Q^2RL}{(L^2-R^2)^2}},
+\end{equation}
+负号表示力指向球心。若 $\theta$ 是球面点的半径与 $OQ$ 的夹角，球面的感应电荷密度为
+\begin{equation}
+  \boxed{\sigma(\theta)=
+  -\frac{Q(L^2-R^2)}{4\pi R
+  \left(L^2+R^2-2LR\cos\theta\right)^{3/2}}}.
+\end{equation}
+积分可得接地球从大地取得的总感应电荷 $Q_{\rm ind}=-QR/L$，恰等于像电荷的电荷量。
+
+力的计算不需要附加因子 $1/2$；系统能量却需要。导体的感应电荷随真实电荷逐渐移入而建立，故
+接地球与外点电荷系统的能量为
+\begin{equation}
+  \boxed{U=\frac12Q\varphi_{\rm ind}(Q)
+  =-\frac{kQ^2R}{2(L^2-R^2)}}.
+\end{equation}
+
+\subsection*{等离子体振荡}
+
+等离子体中正、负电荷在宏观上近似中和。设电子数密度为 $n$，把电子云相对于静止的正离子背景
+整体平移一个很小的距离 $\xi$。两端留下等效面电荷密度 $\pm ne\xi$，因而内部回复电场大小为
+\begin{equation}
+  E=\frac{ne\xi}{\varepsilon_0}.
+\end{equation}
+单个电子满足
+\begin{equation}
+  m\ddot\xi=-eE=-\frac{ne^2}{\varepsilon_0}\xi,
+\end{equation}
+所以电子云作简谐振荡，其等离子体角频率为
+\begin{equation}
+  \boxed{\omega_p=\sqrt{\frac{ne^2}{m\varepsilon_0}}}.
+\end{equation}
+更一般地，若载流粒子的质量为 $m$、电荷量绝对值为 $|q|$，则
+$\omega_p=\sqrt{nq^2/(m\varepsilon_0)}$。该推导忽略了热运动、碰撞、边缘效应和离子运动，适合
+描述均匀等离子体的长波小振幅振荡。
+
+\plasmaOscillationDiagram
+
+\ionosphereDiagram
+
+\input{expanded-theory.tex}
+\input{source-restoration.tex}
+\input{full-source-restoration.tex}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 31.1【异号导体】}
+导体 $A$、$B$ 分别带电 $+Q$、$-q$，且 $Q>q$。由于二者会产生静电感应，问：导体 $A$
+上是否可能出现负电荷？导体 $B$ 上是否可能出现正电荷？若 $Q=q$，结果有无变化？
+\end{origexamplebox}
+
+\begin{xesolution}
+表面电荷的局部符号不能只看净电荷，而要结合导体电势。电场线从较高电势出发，终止于较低
+电势或无穷远；同一导体是等势体，电场线不可能从它的一处出发又终止于它的另一处。
+
+本题中 $V_A>V_B$。又因总电荷 $Q-q>0$，可知 $V_A>0$，所以 $A$ 是 $A$、$B$ 与无穷远三者
+中的最高电势边界。最高电势导体表面外的电场只能指向外部，故
+\[
+  \boxed{A\text{ 的表面不可能出现负电荷区}}.
+\]
+$B$ 的电势可能为正、为零或为负，这取决于两导体的形状、大小和间距。当 $V_B>0$ 时，$B$ 的
+背离 $A$ 一侧可以有少量正电荷，而面对 $A$ 的一侧有较多负电荷，总电荷仍为 $-q$。因此
+\[
+  \boxed{B\text{ 上可能出现正电荷，但不是必然出现}}.
+\]
+
+若 $Q=q$，总电荷为零。此时 $V_A>0>V_B$：$A$ 是最高电势边界，$B$ 是最低电势边界。于是
+$A$ 表面处处非负，$B$ 表面处处非正；除去电荷密度恰为零的特殊点，可分别说成只带正电和只带
+负电。因而 $Q=q$ 时，$B$ 上也不可能出现正电荷区。
+
+\pairPotentialDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 31.2【同号导体】}
+导体 $A$、$B$ 分别带电 $+Q$、$+q$，且 $Q>q$。由于二者会产生静电感应，问：两导体上是否
+可能出现负电荷？若 $Q=q$，结果有无变化？若有更多带正电的导体，例如 $100$ 个，能得出什么
+定性结论？
+\end{origexamplebox}
+
+\begin{xesolution}
+两个导体的净电荷均为正，因此它们的电势均高于无穷远的零电势。取其中电势较高的导体。它是
+全空间的最高电势边界，所以其表面电荷密度处处满足 $\sigma\ge0$，不可能出现负电荷区。电势
+较低的导体面对高电势导体的一侧，则可能因强烈感应而出现负电荷区，同时在其他区域保留更多
+正电荷，使净电荷仍为正。
+
+净电荷较大不等于电势一定较高。孤立导体的电势还取决于尺寸、形状、距离和其他导体的位置，
+所以仅由 $Q>q$ 不能断定是 $A$ 还是 $B$ 出现负电荷；能确定的是
+\[
+  \boxed{\text{两导体不可能同时出现负电荷区}}.
+\]
+
+当 $Q=q$ 时，若两导体并不全同且放置不对称，它们的电势仍可不同，上述结论不变。只有在形状、
+大小和环境也完全对称时，两者电势相等；此时两块导体共同构成最高电势边界，表面均不会出现
+负电荷。
+
+对 $100$ 个净电荷均为正的导体，选电势最高者，它的表面一定处处非负。因此
+\[
+  \boxed{\text{无论几何怎样，至少有一个导体不含负电荷区。}}
+\]
+其他较低电势导体是否出现负电荷区仍需由具体几何决定。
+\end{xesolution}
+
+\Needspace{0.3\textheight}
+\begin{origexamplebox}{例题 31.3【凭空相吸】}
+两个金属球本来都不带电。设一次小扰动使某个球内的电荷分布发生变化，进而两个球都因静电感应
+而局部带电并相互吸引。这种状态能否自发形成并稳定保持？
+\end{origexamplebox}
+
+\begin{xesolution}
+不能。两个球都不带净电荷、无外电荷，并取无穷远电势为零。静电平衡时两球各自是等势体，但
+电势值尚待确定。若存在宏观电荷分离，就会在球内或球间产生电场；自由电荷立即受力移动，并在
+导体电阻、辐射等机制下耗散能量。
+
+最终平衡态可直接由能量判断。静电场能量
+\[
+  U_E=\frac{\varepsilon_0}{2}\int E^2\dd V\ge0.
+\]
+在两球均中性且无外场的约束下，$E=0$、两球电势都为零的状态满足全部边界条件，并取得绝对最小
+能量 $U_E=0$；由唯一性定理，它也是唯一的静电平衡解。任何宏观电荷分离都对应 $U_E>0$，不能
+靠无源小扰动长期维持。
+
+微观热涨落当然会造成瞬时、随机的电荷密度波动，但其平均值为零，且不能按题设方式形成持续的
+宏观静电吸引。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 31.4【同性相吸】}
+在半径为 $R$、净电荷为 $+q$ 的孤立金属球外，沿球心方向距球心 $a>R$ 处放置点电荷 $+q$。
+实验中可能出现同性相吸。定量解释这一现象。
+\end{origexamplebox}
+
+\begin{xesolution}
+先把导体球看成接地球。它对外电荷 $+q$ 的极化作用由
+\[
+  q_1=-\frac{qR}{a},\qquad r_1=\frac{R^2}{a}
+\]
+描述。接地球的总感应电荷为 $q_1$，但本题金属球的净电荷必须保持 $+q$，所以还要在球心加入
+中心像电荷
+\[
+  q_0=q-q_1=q\left(1+\frac Ra\right).
+\]
+中心像电荷提供整体的同号排斥，偏心负像电荷提供近距离极化吸引。外点电荷所受沿球心连线的力为
+\begin{align*}
+  F&=kq\left[\frac{q_0}{a^2}
+  +\frac{q_1}{(a-R^2/a)^2}\right]\\
+  &=\boxed{kq^2\left[
+  \frac{1+R/a}{a^2}-\frac{Ra}{(a^2-R^2)^2}\right]}.
+\end{align*}
+规定远离球心为正，$F<0$ 就表示吸引。
+
+令 $x=a/R>1$。临界条件 $F=0$ 化为
+\[
+  (x-1)^2(x+1)^3=x^4.
+\]
+其大于 $1$ 的最近实根恰为黄金比
+\[
+  x=\frac{1+\sqrt5}{2}.
+\]
+因此
+\begin{equation}
+  \boxed{R<a<\frac{1+\sqrt5}{2}R\quad\Longrightarrow\quad F<0}.
+\end{equation}
+点电荷足够靠近球面时，负感应电荷集中在最近处，它产生的吸引随间隙减小而迅速增大，超过金属
+球其余正电荷的排斥，于是出现“净电荷同号、合力相吸”。
+
+\isolatedSphereDiagram
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 31.5【球内屏蔽】}
+半径为 $R$ 的接地金属球壳内放置点电荷 $-q$，它距球心为 $x<R$。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 空间中的电场分布；
+  \item 感应电荷的面密度分布；
+  \item 若球壳不接地而保持净电荷为零，结果怎样变化；
+  \item 为什么外部电荷不能在空腔内产生电场，而内部电荷却可能在球壳外产生电场？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $z$ 轴沿球心指向真实电荷，真实电荷位于 $z=x$。在球外同一轴线上放置像电荷
+\[
+  q'=+\frac{qR}{x},\qquad z'=\frac{R^2}{x}.
+\]
+它位于所求的球内区域之外，不会在球内引入新的奇点。
+
+\textbf{(1) 接地时的电势和电场。}对 $r<R$，
+\begin{equation}
+  \varphi(\vect r)=k\left[
+  -\frac q{|\vect r-x\uvec z|}
+  +\frac{qR/x}{|\vect r-(R^2/x)\uvec z|}\right],
+  \qquad \vect E=-\nabla\varphi.
+\end{equation}
+在 $r=R$ 上两项相消。球壳金属内部电场为零；球壳外边界电势为零且无外部电荷，所以球外
+$\varphi=0$、$\vect E=0$。
+
+\textbf{(2) 内表面感应电荷。}设 $\theta$ 为球面半径与 $+z$ 轴的夹角。由球内电势沿法线求导，
+得到内表面面电荷密度
+\begin{equation}
+  \boxed{\sigma_{\rm in}(\theta)=
+  \frac{q(R^2-x^2)}{4\pi R
+  (R^2+x^2-2Rx\cos\theta)^{3/2}}}.
+\end{equation}
+它处处为正，并在最靠近 $-q$ 的位置 $\theta=0$ 最大。积分结果为
+$Q_{\rm in}=+q$。接地时外表面没有电荷。
+
+\textbf{(3) 球壳孤立且净电荷为零。}内表面仍必须感应 $+q$，因为在金属内部取高斯面，包围的
+真实电荷与内表面电荷之和必须为零。为了使球壳自身净电荷为零，外表面还要带 $-q$。球形外表面
+为等势面，外部又没有其他电荷，所以这部分电荷均匀分布：
+\[
+  \boxed{\sigma_{\rm out}=-\frac{q}{4\pi R^2}},
+  \qquad
+  \boxed{\varphi_{\rm out}(r)=-\frac{kq}{r}}.
+\]
+球内的电场与接地情形相同，电势整体再加常量 $-kq/R$；加常量不改变电场。
+
+\textbf{(4)} 外电荷作用于闭合、无电荷空腔时，空腔边界是常电势，腔内无奇点，唯一解为常量，
+所以腔内场为零。内部电荷则在腔内引入了 Poisson 方程的奇点，内表面必须出现等量异号感应
+电荷；若导体孤立且净电荷固定，电荷守恒又迫使外表面出现补偿电荷，从而产生外部电场。若球壳
+接地，补偿电荷可流入大地，外部场才重新为零。
+
+\innerSphereDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 31.6【能量】}
+计算前述接地导体球外点电荷系统，以及例题 31.5 中接地球壳内点电荷系统的静电势能。
+\end{origexamplebox}
+
+\begin{xesolution}
+设接地球外的点电荷为 $Q$，距球心 $L>R$。像电荷为 $-QR/L$，它与真实电荷的距离为
+$(L^2-R^2)/L$。真实电荷处的感应电势为
+\[
+  \varphi_{\rm ind}(Q)
+  =-\frac{kQR}{L^2-R^2}.
+\]
+导体表面电荷是随 $Q$ 从零逐渐建立的，故系统能量不是 $Q\varphi_{\rm ind}$，而是
+\begin{equation}
+  \boxed{U_{\rm out}=\frac12Q\varphi_{\rm ind}(Q)
+  =-\frac{kQ^2R}{2(L^2-R^2)}}.
+\end{equation}
+
+例题 31.5 中真实电荷为 $-q$，距球心 $x<R$；像电荷为 $+qR/x$，两者距离为
+$(R^2-x^2)/x$。因此
+\[
+  \varphi_{\rm ind}(-q)=\frac{kqR}{R^2-x^2},
+\]
+从而
+\begin{equation}
+  \boxed{U_{\rm in}=\frac12(-q)\varphi_{\rm ind}(-q)
+  =-\frac{kq^2R}{2(R^2-x^2)}}.
+\end{equation}
+两式都为负，且点电荷越靠近球面，能量越低。直接对能量关于 $L$ 或 $x$ 求负梯度，可复核像
+电荷给出的吸引力。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 31.7【电像法】}
+两个相互正交的半无限大接地金属板围成空间的四分之一。以交线为 $z$ 轴，两板分别位于
+$x=0$、$y=0$，在第一象限的 $(a,b,0)$ 处放置点电荷 $+q$。求 $x>0,y>0$ 区域的电场。
+\end{origexamplebox}
+
+\begin{xesolution}
+仅对 $x=0$ 镜像会破坏 $y=0$ 上的零电势，仅对 $y=0$ 镜像也一样。必须同时放置三个像电荷：
+\[
+  -q\text{ 位于 }(-a,b,0),\qquad
+  -q\text{ 位于 }(a,-b,0),\qquad
+  +q\text{ 位于 }(-a,-b,0).
+\]
+关于任一接地平面对称的电荷都成等量异号配对，所以两个平面上的电势同时为零。
+
+记
+\[
+  \vect r_1=(a,b,0),\quad \vect r_2=(-a,b,0),\quad
+  \vect r_3=(a,-b,0),\quad \vect r_4=(-a,-b,0).
+\]
+第一象限中的电势与电场为
+\begin{align*}
+  \varphi(\vect r)&=kq\left(
+  \frac1{|\vect r-\vect r_1|}-\frac1{|\vect r-\vect r_2|}
+  -\frac1{|\vect r-\vect r_3|}+\frac1{|\vect r-\vect r_4|}\right),\\
+  \boxed{\vect E(\vect r)}&=\boxed{kq\left[
+  \frac{\vect r-\vect r_1}{|\vect r-\vect r_1|^3}
+  -\frac{\vect r-\vect r_2}{|\vect r-\vect r_2|^3}
+  -\frac{\vect r-\vect r_3}{|\vect r-\vect r_3|^3}
+  +\frac{\vect r-\vect r_4}{|\vect r-\vect r_4|^3}
+  \right]}.
+\end{align*}
+三个像电荷都位于真实求解区域之外，故该构造满足唯一性定理的全部条件。
+
+\quarterPlaneDiagram
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 31.8【半球和平面】}
+一个无限大接地平面向上凸起半径为 $R$ 的半球，半球球心位于平面内。在球心正上方
+$a>R$ 处放置点电荷 $+q$，求导体外的电场。若半球改为向下凹入平面，为什么不能用同样的
+有限个像电荷处理？
+\end{origexamplebox}
+
+\begin{xesolution}
+取平面为 $z=0$，半球球心为原点。真实电荷 $+q$ 位于 $z=a$。为同时满足平面与半球面上的
+零电势，放置三枚像电荷：
+\begin{center}
+\begin{tabular}{c c}
+\toprule
+位置 & 电荷量\\
+\midrule
+$z=-a$ & $-q$\\
+$z=R^2/a$ & $-qR/a$\\
+$z=-R^2/a$ & $+qR/a$\\
+\bottomrule
+\end{tabular}
+\end{center}
+第一枚是 $+q$ 关于接地平面的镜像；第二枚是 $+q$ 关于接地球面的 Kelvin 像；第三枚同时是
+前两枚分别关于球面、平面的配对像。
+
+用柱坐标 $(\rho,z)$，在 $z>0$ 且 $\rho^2+z^2>R^2$ 的真实区域内，
+\begin{align*}
+  \varphi(\rho,z)=kq\bigg[&
+  \frac1{\sqrt{\rho^2+(z-a)^2}}
+  -\frac1{\sqrt{\rho^2+(z+a)^2}}\\
+  &-\frac{R/a}{\sqrt{\rho^2+(z-R^2/a)^2}}
+  +\frac{R/a}{\sqrt{\rho^2+(z+R^2/a)^2}}
+  \bigg],
+\end{align*}
+\begin{equation}
+  \boxed{\vect E=-\nabla\varphi}.
+\end{equation}
+在平面上，关于 $z=0$ 的两对电荷分别相消；在半球面上，每个外电荷与它的 Kelvin 像分别
+相消，所以两类导体边界都满足 $\varphi=0$。
+
+若半球向下凹入，原来的 $z=R^2/a$ 像点会落入真实可达的凹腔区域，成为不允许出现的虚假奇点。
+继续作平面镜像和球面反演会不断产生新的像，有限四电荷构造不再闭合。因此不能照搬上面的有限
+像电荷解；通常需采用无穷像电荷级数、分离变量或数值边界法。
+
+\hemisphereImageDiagram
+\end{xesolution}
+
+\Needspace{0.4\textheight}
+\begin{origexamplebox}{例题 31.9【能量相关】}
+无穷大接地金属板的一侧，距板 $a$ 处放置点电荷 $+q$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 系统静电势能为多大；
+  \item 缓慢将点电荷拉到距板 $2a$ 处，外力做功多少；
+  \item 瞬间将点电荷拉到距板 $2a$ 处，外力做功多少；
+  \item 后两问的结果为什么不同，差值对应的能量去了哪里？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+在金属板另一侧对称位置放置像电荷 $-q$，真实电荷与像电荷的距离为 $2a$。
+
+\textbf{(1)} 真实电荷处的感应电势为 $-kq/(2a)$。系统能量是其一半：
+\begin{equation}
+  \boxed{U(a)=\frac12q\left(-\frac{kq}{2a}\right)
+  =-\frac{kq^2}{4a}}.
+\end{equation}
+
+\textbf{(2) 缓慢移动。}每一时刻金属板上的感应电荷都来得及调整到新的静电平衡，所以外力功
+等于平衡态能量之差：
+\begin{equation}
+  \boxed{W_{\rm slow}=U(2a)-U(a)
+  =-\frac{kq^2}{8a}+\frac{kq^2}{4a}
+  =\frac{kq^2}{8a}}.
+\end{equation}
+
+\textbf{(3) 瞬间移动。}在极短移动时间内，板上的感应电荷分布可近似看作仍保持初态分布。初态
+感应电荷在板上方产生的电势，等效于固定在 $z=-a$ 的像电荷 $-q$。真实电荷从 $z=a$ 移到
+$z=2a$ 时，外力功为
+\begin{align*}
+  W_{\rm fast}
+  &=q\left[\varphi_{\rm old}(2a)-\varphi_{\rm old}(a)\right]\\
+  &=q\left(-\frac{kq}{3a}+\frac{kq}{2a}\right)
+  =\boxed{\frac{kq^2}{6a}}.
+\end{align*}
+这里不能再乘 $1/2$：移动阶段被拉动的是完整的真实电荷，而旧感应电荷暂时固定不变。
+
+\textbf{(4)} 瞬移结束后，初态感应电荷分布并不是距离 $2a$ 时的平衡分布。导体内出现短暂电流，
+表面电荷重新分布，并伴随焦耳热和少量电磁辐射。两种外力功之差
+\begin{equation}
+  \boxed{W_{\rm fast}-W_{\rm slow}=\frac{kq^2}{24a}}
+\end{equation}
+正是随后驰豫过程中耗散掉的能量。慢速过程始终近似静电平衡，没有这部分额外耗散。
+
+\groundPlaneEnergyDiagram
+\end{xesolution}
+
+\Needspace{0.4\textheight}
+\begin{origexamplebox}{例题 31.10【匀强电场中的导体球】}
+半径为 $R$ 的中性导体球置于匀强电场 $\vect E_0$ 中，求空间中的电场分布。
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $z$ 轴沿 $\vect E_0$，以无穷远处的匀强场电势
+$\varphi_0=-E_0r\cos\theta$ 为背景。轴对称、球外无电荷的 Laplace 方程通解中，满足无穷远
+条件且只含一阶角向项的形式为
+\[
+  \varphi_{\rm out}=\left(-E_0r+\frac{A}{r^2}\right)\cos\theta.
+\]
+导体球面必须是等势面。因球中性且问题关于赤道反对称，可把球面电势常量取为零。代入 $r=R$
+得 $A=E_0R^3$，故
+\begin{equation}
+  \boxed{\varphi(r,\theta)=
+  \begin{cases}
+  0,&r\le R,\\[3pt]
+  -E_0\left(r-\dfrac{R^3}{r^2}\right)\cos\theta,&r>R.
+  \end{cases}}
+\end{equation}
+球外电场的球坐标分量为
+\begin{align*}
+  \boxed{E_r}&=\boxed{E_0\left(1+2\frac{R^3}{r^3}\right)\cos\theta},\\
+  \boxed{E_\theta}&=\boxed{-E_0\left(1-\frac{R^3}{r^3}\right)\sin\theta},
+  \qquad E_\phi=0.
+\end{align*}
+在球面上 $E_\theta(R)=0$，符合导体表面无切向场；法向场
+$E_r(R)=3E_0\cos\theta$，所以
+\begin{equation}
+  \boxed{\sigma(\theta)=3\varepsilon_0E_0\cos\theta}.
+\end{equation}
+右半球带正电，左半球带负电，总感应电荷为零。附加项
+$E_0R^3\cos\theta/r^2$ 等效于球心处的偶极子，其偶极矩为
+\begin{equation}
+  \boxed{\vect p=4\pi\varepsilon_0R^3\vect E_0}.
+\end{equation}
+
+场线在球面处只能沿法向进入或离开，不能穿过导体内部。图 31.11 中靠近两极的场线更密，正好
+对应 $|\sigma|$ 在 $\theta=0,\pi$ 处最大；赤道上 $\cos\theta=0$，表面感应电荷密度为零，场线
+也与球面相切前后平滑转向。图形中的正、负号表示感应电荷重新分布，并不表示导体球获得了净电荷。
+
+在离球很远的区域 $r\gg R$，附加电势按 $r^{-2}$ 衰减，外场趋近原来的匀强场；在球面附近，
+偶极修正与背景场同量级，才显著改变场线。沿电场轴，球面外法向场达到 $3E_0$；沿赤道方向，
+法向场为零。用这些轴线极限检查解析式，既能确认正负号，也能把公式与图中的疏密变化对应起来。
+
+若外加场方向反转，感应电荷正负区域同时交换，而球内仍保持零场；若球具有额外净电荷，则还要
+在线性叠加中加入球对称的 $Q/(4\pi\varepsilon_0r)$ 项。前者改变偶极项方向，后者增加单极项，
+两种效应在图像和远场衰减阶数上可以清楚地区分。
+
+\uniformFieldSphereDiagram
+
+还可以直接检验球的中性条件。把右半球的感应电荷积分：
+\[
+ Q_+=\int_0^{2\pi}\!\int_0^{\pi/2}
+ 3\varepsilon_0E_0\cos\theta\,R^2\sin\theta\,\dd\theta\dd\phi
+ =3\pi\varepsilon_0E_0R^2,
+\]
+左半球给出 $Q_-=-Q_+$，故总电荷严格为零。尽管净电荷为零，正、负电荷中心分离仍产生非零
+偶极矩；这正是“中性”与“没有电学响应”之间的区别。
+
+球的极化率由 $\vect p=\alpha\vect E_0$ 定义，因此孤立导体球有
+\[
+ \boxed{\alpha=4\pi\varepsilon_0R^3}.
+\]
+在均匀场中，诱导偶极子的合力为零；若外场缓慢随空间变化，靠近强场一侧的表面电荷受力更大，
+中性导体仍会被吸向场强较大的区域。其低阶受力可写成
+$\vec F\simeq\tfrac12\alpha\nabla(E^2)$，其中因子 $1/2$ 来自感应偶极矩随外场建立的过程。
+
+这也解释了为何中性小纸屑会被带电体吸引：纸屑先被外场极化，近端异号电荷受到的吸引强于远端
+同号电荷受到的排斥。若把外场近似为严格均匀，只有力矩或内部应力而没有净平动力；必须保留场的
+空间不均匀性，才能得到净吸引。图 31.11 给出的是均匀场基准解，非均匀场可在小球尺度远小于
+外场变化尺度时，把局部场代入上述偶极近似。
+\end{xesolution}

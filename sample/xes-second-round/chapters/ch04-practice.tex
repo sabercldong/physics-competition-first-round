@@ -1,0 +1,223 @@
+\section{配套习题：简谐振动}
+\label{r2ch04:sec:practice}
+
+\begin{practicebox}{弹性绳连接的两物块}
+质量分别为 $M=\SI{3.6}{kg}$ 和 $m=\SI{1.8}{kg}$ 的两物块置于水平粗糙地面上，由原长 $l_0=\SI{0.30}{m}$、劲度系数 $k=\SI{24}{N/m}$ 的弹性轻绳连接。地面摩擦因数为 $\mu=0.30$，取 $g=\SI{10}{m/s^2}$。把两物块拉开到间距 $l=\SI{1.20}{m}$ 后由静止释放。求两物块第一次相碰时的相对速度和所需时间。
+\label{r2ch04:pr:001}
+\begin{solution}
+弹性绳只能受拉，故运动必须分为“绳绷紧”和“绳松弛”两段。图~\ref{r2ch04:fig:016} 中令伸长量为 $x$，右块相对左块的速度为 $\dot x$。第一段两块相向运动，摩擦力方向相反，因此
+\begin{equation}
+ \ddot x+\Omega^2x=2\mu g,\qquad
+ \Omega^2=k\left(\frac1M+\frac1m\right)=20,\qquad
+ x(t)=0.30+0.60\cos(2\sqrt5\,t).
+ \label{r2ch04:eq:039}
+\end{equation}
+绳刚恢复原长时 $x=0$，所以
+\[
+ t_1=\frac{\pi}{3\sqrt5}=\SI{0.4683}{s},\qquad
+ \dot x_1=-\frac{3\sqrt{15}}5=\SI{-2.324}{m/s}.
+\]
+质心所受合外力为 $\mu(m-M)g$，故 $V_C=-t$（SI制）。在 $t_1$ 时，
+\[
+ v_M=-t_1+\frac{\sqrt{15}}5=\SI{0.3063}{m/s},\qquad
+ v_m=-t_1-\frac{2\sqrt{15}}5=\SI{-2.018}{m/s}.
+\]
+绳随后松弛。左块先在 $\tau_M=v_M/(\mu g)=\SI{0.1021}{s}$ 后停下并保持静止；此时两块间隙为
+\[
+ d=\SI{0.09403}{m},\qquad |v_m|=\SI{1.711}{m/s}.
+\]
+右块继续左移，设再经过 $\tau$ 相碰，则 $d-|v_m|\tau+\tfrac12\mu g\tau^2=0$。取第一次到达的较小根，
+\[
+ \tau=\frac{|v_m|-\sqrt{v_m^2-2\mu gd}}{\mu g}=\SI{0.05772}{s}.
+\]
+所以
+\[
+ \boxed{t=t_1+\tau_M+\tau=\SI{0.6283}{s}},\qquad
+ \boxed{v_{\rm rel}=\sqrt{v_m^2-2\mu gd}=\SI{1.538}{m/s}}.
+\]
+若把弹性绳误当成可受压弹簧，会得到错误的“半周期后相碰且相对速度为零”；分段条件正是本题关键。
+\figElasticRopeBlocks
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{瓦特飞球调速器}
+两个质量均为 $m$ 的球通过四根长均为 $l$ 的无质量铰臂，与竖直轴上的上、下套筒相连。上套筒固定，下套筒质量为 $M$，可沿轴无摩擦滑动。装置先以恒定角速度 $\omega_0$ 转动，忽略下套筒的转动惯量。求：(a) 平衡时两套筒间距；(b) 保持 $\omega_0$ 恒定时的竖直小振动角频率；(c) 转轴自由转动、角动量守恒时的小振动角频率。
+\label{r2ch04:pr:002}
+\begin{solution}
+按图~\ref{r2ch04:fig:017} 记套筒间距为 $h$，球到轴的距离为
+$\rho=\sqrt{l^2-h^2/4}$。两球的转动惯量为 $I(h)=2m\rho^2$。恒角速度时，在共转系中的有效势能为
+\begin{equation}
+ U_{\omega}(h)=-(M+m)gh-m\omega_0^2\left(l^2-\frac{h^2}{4}\right).
+ \label{r2ch04:eq:040}
+\end{equation}
+由 $U_\omega'(h_0)=0$，
+\[
+ \boxed{h_0=\frac{2(M+m)g}{m\omega_0^2}},\qquad
+ \rho_0=\sqrt{l^2-\frac{h_0^2}{4}}.
+\]
+存在该平衡的几何条件是 $0<h_0<2l$。
+
+当 $h$ 缓慢变化时，两球同时具有竖直和径向速度。总动能中与 $\dot h^2$ 有关的部分为
+\begin{equation}
+ T_h=\frac12\mathcal M(h)\dot h^2,\qquad
+ \mathcal M(h)=M+\frac{ml^2}{2\rho^2}.
+ \label{r2ch04:eq:041}
+\end{equation}
+固定转速时 $U_\omega''(h_0)=m\omega_0^2/2$，故
+\[
+ \boxed{\Omega_{\omega}^2=
+ \frac{m\omega_0^2/2}{M+ml^2/(2\rho_0^2)}}.
+\]
+
+自由转动时应固定角动量 $J=I_0\omega_0$，相应的有效势能改为
+$U_J=-(M+m)gh+J^2/[2I(h)]$。在同一个平衡点，
+\begin{equation}
+ U_J''(h_0)=\frac{m\omega_0^2}{2}\left(1+\frac{h_0^2}{\rho_0^2}\right),\qquad
+ \boxed{\Omega_J^2=
+ \frac{\frac12m\omega_0^2(1+h_0^2/\rho_0^2)}{M+ml^2/(2\rho_0^2)}}.
+ \label{r2ch04:eq:042}
+\end{equation}
+因此自由转动时，套筒扰动引起的转速反馈额外增加回复刚度，$\Omega_J>\Omega_\omega$。各频率平方的量纲均为 $\mathrm{s}^{-2}$。
+\figFlyballGovernor
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{弹簧悬挂软链的衰减振动}
+原长为零、劲度系数为 $k$ 的弹簧悬挂一条总长为 $L$、线密度为 $\lambda$ 的软链。链的一部分竖直悬垂，余下部分静置于地板；天花板到地板的高度为 $H$。求：(a) 平衡时弹簧长度与悬垂链长；(b) 将悬垂长度偏离平衡值 $\delta_0$ 后释放时的小振动角频率；(c) 计及链环落地和被提起时的非弹性能量损失，求慢变振幅。
+\label{r2ch04:pr:003}
+\begin{solution}
+图~\ref{r2ch04:fig:018} 中令悬垂链长为 $y$，弹簧长为 $H-y$。平衡时弹簧拉力等于悬垂链重：
+\begin{equation}
+ k(H-y_0)=\lambda gy_0,\qquad
+ \boxed{y_0=\frac{kH}{k+\lambda g}},\qquad
+ \boxed{x_0=H-y_0=\frac{\lambda gH}{k+\lambda g}}.
+ \label{r2ch04:eq:043}
+\end{equation}
+还需 $L>y_0$，否则没有链段留在地板上。
+
+小振动时运动链段的质量近似为 $\lambda y_0$，回复力对 $\delta=y-y_0$ 的线性系数为 $k+\lambda g$，故
+\begin{equation}
+ \lambda y_0\ddot\delta+(k+\lambda g)\delta=0,\qquad
+ \boxed{\Omega=\sqrt{\frac{k+\lambda g}{\lambda y_0}}
+ =\frac{k+\lambda g}{\sqrt{\lambda kH}}}.
+ \label{r2ch04:eq:044}
+\end{equation}
+这一步把 $y$ 在惯性系数中的变化视为高阶小量，与小振动近似一致。
+
+当链以速度 $|\dot y|$ 在地板处被停止或从静止链堆中被并入运动段时，单位时间交换的质量为 $\lambda|\dot y|$，平均不可逆损失功率为 $P_{\rm loss}=\tfrac12\lambda|\dot y|^3$。令 $\delta=A(t)\cos\Omega t$，且 $A$ 在一个周期内近似不变。利用
+$\langle|\sin^3\Omega t|\rangle=4/(3\pi)$ 与
+$E=\tfrac12\lambda y_0\Omega^2A^2$，得到
+\begin{equation}
+ \frac{\dd A}{\dd t}=-\frac{2\Omega}{3\pi y_0}A^2,\qquad
+ \boxed{A(t)=\frac{A_0}{1+\dfrac{2\Omega A_0}{3\pi y_0}t}}.
+ \label{r2ch04:eq:045}
+\end{equation}
+振幅呈代数衰减而非指数衰减，因为损失率正比于速度三次方，并非线性黏滞阻尼。
+\figHangingChain
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{可分离斜劈上的弹性轻杆}
+光滑水平地面上放置两个可分离的相同斜劈，斜劈质量均为 $m$、斜角均为 $45^\circ$。两质量均为 $m$ 的质点从两斜劈最高点由静止释放，质点间由劲度系数为 $k$ 的水平轻弹性杆连接，杆的初始长度等于自由长度。已知斜面对质点的支持力第二次达到极小时，杆恰好落地。求支持力第二次达到极大时的杆长。
+\label{r2ch04:pr:004}
+\begin{solution}
+这道题的关键是斜劈可以水平移动，不能把杆长简单等同于质点高度。按图~\ref{r2ch04:fig:019} 只分析右半边：设斜劈水平位移为 $X$，质点沿斜面距底端为 $s$，杆长为 $L=2(X+s\cos\theta)$，质点高度 $y=s\sin\theta$。利用左右对称性，把两斜劈和两质点的动能写成 $L,y$：
+\begin{equation}
+ T=m\left(\frac12\dot L^2-\cot\theta\,\dot L\dot y+\csc^2\theta\,\dot y^2\right),\qquad
+ V=2mgy+\frac12k(L-L_0)^2.
+ \label{r2ch04:eq:046}
+\end{equation}
+令 $\theta=45^\circ$，拉格朗日方程给出
+\[
+ m\ddot L-m\ddot y+k(L-L_0)=0,\qquad
+ -m\ddot L+4m\ddot y+2mg=0.
+\]
+记 $\Omega^2=4k/(3m)$，结合 $L(0)=L_0,\dot L(0)=0$，得到
+\begin{equation}
+ L(t)=L_0-\frac{mg}{2k}+\frac{mg}{2k}\cos\Omega t,\qquad
+ y(t)=\frac{L_0}{2}-\frac{gt^2}{4}-\frac{g}{6\Omega^2}(1-\cos\Omega t).
+ \label{r2ch04:eq:047}
+\end{equation}
+由单个质点的竖直方程 $m\ddot y=N\cos45^\circ-mg$，
+\[
+ N(t)=\sqrt2\,mg\left(\frac12-\frac16\cos\Omega t\right).
+\]
+释放瞬间是第一次极小，第二次极小在 $t=2\pi/\Omega$。题设说此时 $y=0$，代入式~\eqref{r2ch04:eq:047} 得
+$L_0=2\pi^2g/\Omega^2=3\pi^2mg/(2k)$。支持力第二次极大在 $t=3\pi/\Omega$，此时 $\cos\Omega t=-1$，故
+\begin{equation}
+ \boxed{L_{N\text{第二次极大}}=L_0-\frac{mg}{k}
+ =\left(\frac{3\pi^2}{2}-1\right)\frac{mg}{k}}.
+ \label{r2ch04:eq:048}
+\end{equation}
+检查 $0<t<2\pi/\Omega$ 时式~\eqref{r2ch04:eq:047} 的 $y(t)>0$，所以杆不会提前触地；支持力也始终为正，质点没有脱离斜面。
+\figSeparatingWedges
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{球面上的三个等电荷}
+半径为 $R$ 的光滑绝缘球面上约束着三个相同点粒子，每个粒子的电荷量为 $Q$、惯性质量为 $m$；粒子只可沿球面切向运动，库仑力大小为 $kQ^2/r^2$。求：(a) 稳定平衡构型；(b) 整体转动与内部振动各有多少自由度；(c) 不同的小振动频率。
+\label{r2ch04:pr:005}
+\begin{solution}
+源题若只给电荷量而不给惯性质量，频率无法确定；这里把每个粒子的质量明确记为 $m$。库仑势能在三条弦长尽可能均匀时取极小，故图~\ref{r2ch04:fig:020} 的稳定构型为：三点位于任意一个过球心的大圆上，圆心角均为 $120^\circ$，三点构成边长 $\sqrt3R$ 的正三角形。
+
+每个粒子在球面上有两个自由度，总计6个。平衡正三角形的空间取向有3个整体转动自由度，因此还有3个内部振动自由度。
+
+在第 $i$ 个平衡点取沿大圆切向坐标 $a_i$ 和垂直于大圆平面的切向坐标 $b_i$，实际位移为 $R a_i,R b_i$。把总势能展开到二阶，除去常数后可写成
+\begin{equation}
+ V^{(2)}=\frac{kQ^2}{2R}\left[
+ \frac{5\sqrt3}{36}\sum_{i<j}(a_i-a_j)^2
+ +\frac{\sqrt3}{9}(b_1+b_2+b_3)^2\right].
+ \label{r2ch04:eq:049}
+\end{equation}
+$a_1=a_2=a_3$ 和满足 $b_1+b_2+b_3=0$ 的两维子空间是三种整体转动零模。余下的两个面内模简并，另有一个三点同向离开大圆的“伞形”模。由 $T=\tfrac12mR^2\sum(\dot a_i^2+\dot b_i^2)$，三种内部自由度只产生两个不同频率：
+\begin{equation}
+ \boxed{\omega_{\rm in}^2=\frac{5\sqrt3}{12}\frac{kQ^2}{mR^3}}
+ \quad(\text{二重简并}),\qquad
+ \boxed{\omega_{\rm out}^2=\frac{\sqrt3}{3}\frac{kQ^2}{mR^3}}
+ \quad(\text{非简并}).
+ \label{r2ch04:eq:050}
+\end{equation}
+两式均具有 $\mathrm{s}^{-2}$ 的量纲；整体转动不改变任意两点距离，故其频率严格为零。
+\figChargesOnSphere
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{弹簧摆势能的三阶展开与内共振}
+原长为 $l_0$、劲度系数为 $k$ 的轻弹簧下端悬挂质量为 $m$ 的小球。重力加速度为 $g$。以平衡位置为原点，取横向位移为 $x$、竖直向下位移为 $y$，把势能展开为
+\[
+ V=\frac12m(\omega_1^2x^2+\omega_2^2y^2)+ax^3+bx^2y+cxy^2+dy^3+\order{4}.
+\]
+求各系数并讨论低阶内共振条件。
+\label{r2ch04:pr:006}
+\begin{solution}
+图~\ref{r2ch04:fig:021} 中平衡长度
+$r_e=l_0+mg/k$。小球相对悬点的实际距离为
+\[
+ r=\sqrt{x^2+(r_e+y)^2}
+ =r_e+y+\frac{x^2}{2r_e}-\frac{x^2y}{2r_e^2}+\order{4}.
+\]
+势能为 $V=\tfrac12k(r-l_0)^2-mg(r_e+y)$。利用平衡关系 $k(r_e-l_0)=mg$，展开并合并同次项：
+\begin{equation}
+ V=\frac12\frac{mg}{r_e}x^2+\frac12ky^2
+ +\frac{k l_0}{2r_e^2}x^2y+\order{4}.
+ \label{r2ch04:eq:051}
+\end{equation}
+所以
+\[
+ \boxed{\omega_1^2=\frac g{r_e}},\qquad
+ \boxed{\omega_2^2=\frac km},\qquad
+ \boxed{a=c=d=0,\quad b=\frac{k l_0}{2r_e^2}}.
+\]
+$a=c=0$ 来自系统关于 $x\mapsto-x$ 的左右对称性；$d=0$ 是因为严格沿竖直方向运动时，弹簧势能在平衡点附近恰为二次函数。
+
+耦合项 $x^2y$ 使 $x^2$ 中的 $2\omega_1$ 分量驱动纵向振动，因此最低阶内共振条件为
+\begin{equation}
+ \boxed{\omega_2\simeq2\omega_1}
+ \quad\Longleftrightarrow\quad
+ \boxed{\frac{k}{m}\simeq\frac{4g}{l_0+mg/k}}.
+ \label{r2ch04:eq:052}
+\end{equation}
+远离该条件时，三阶项只引起小频移和高次谐波；接近条件时，横、纵两模之间会出现显著的周期性交换能量。
+\figSpringPendulumExpansion
+\end{solution}
+\end{practicebox}

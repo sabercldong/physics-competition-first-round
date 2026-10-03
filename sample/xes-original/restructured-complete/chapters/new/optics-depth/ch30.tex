@@ -1,0 +1,150 @@
+%<append:波片与相位延迟>
+\Needspace{8\baselineskip}\begin{origexamplebox}{用波片测量部分偏振光}
+\label{ch30:ex:depth-cai67}
+部分椭圆偏振光沿 $z$ 方向传播，通过理想线偏振检偏器。透振轴沿 $x$ 轴时透射强度最大，为 $1.5I_0$；沿 $y$ 轴时最小，为 $I_0$。
+（1）透振轴与 $x$ 轴成角 $\theta$ 时，透射强度怎样变化？是否依赖光束中自然光所占比例？
+（2）在检偏器前加入两本征轴沿 $x,y$ 的理想四分之一波片，发现检偏器透振轴与 $x$ 轴成 $30^\circ$ 时透射强度最大。求这个最大值及原入射光中非偏振成分所占比例。把部分偏振光看成一束完全偏振光与一束互不相干的自然光的叠加。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+第一问不能直接把 $1.5I_0$ 代入马吕斯定律，因为光束不是纯线偏振。用 $X,Y$ 表示完全偏振部分沿椭圆两主轴的分量强度，$U$ 表示自然光部分的总强度。自然光通过任意方向的理想检偏器都贡献 $U/2$。由两个极值方向得
+\[
+ X+\frac U2=1.5I_0,\qquad
+ Y+\frac U2=I_0,
+ \qquad X-Y=0.5I_0.
+\]
+椭圆主轴分量相差 $\pi/2$，投影后的交叉项时间平均为零。因此
+\[
+ I(\theta)=X\cos^2\theta+Y\sin^2\theta+\frac U2
+ =\boxed{I_0+0.5I_0\cos^2\theta}.
+\]
+也可写为 $1.25I_0+0.25I_0\cos2\theta$。给定测得的两个极值后，曲线不再显含 $U$；但是这不表示 $U=0$。仅旋转线偏振片，还不足以确定有多少自然光。
+
+四分之一波片使两个主轴分量的相对相位再改变 $\pm\pi/2$，于是完全偏振部分变成线偏振；自然光部分仍为自然光，总强度也不变。图~\ref{ch30:fig:depth-cai67} 将两个阶段画在同一横向坐标约定下。最大透射方向为 $+30^\circ$，说明波片后线偏振方向为该方向（模 $\pi$），故
+\[
+ \tan30^\circ=\sqrt{Y/X},\qquad Y=X/3.
+\]
+和 $X-Y=0.5I_0$ 联立，得到
+\[
+ X=0.75I_0,\qquad Y=0.25I_0,\qquad U=1.5I_0.
+\]
+
+% Figure design: transverse polarization states, not a longitudinal ray diagram.
+% Width <=12cm; two equal 4cm panels, separated by 1.6cm. Labels >=9pt.
+% Left ellipse semi-axes sqrt(.75)*1.7 and sqrt(.25)*1.7, ratio sqrt(3).
+% Right line at 30 degrees, same energy radius sqrt(X+Y)*1.7.
+% No rotation arrow: incident helicity is not inferred by this measurement.
+% Solid blue field loci, thin gray axes, transparent labels, no connectors.
+% ASCII: [Ex horizontal, Ey vertical: ellipse]  [same axes: / line at 30deg].
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[>=Latex,every node/.style={fill=none,font=\small,inner sep=2pt}]
+ \begin{scope}
+  \draw[->,gray] (-1.85,0)--(1.95,0) node[right]{$E_x$};
+  \draw[->,gray] (0,-1.18)--(0,1.48) node[above]{$E_y$};
+  \draw[DeepBlue,thick] (0,0) ellipse[x radius={1.7*sqrt(.75)},y radius=.85];
+  \node[below,align=center] at (0,-1.5){波片前的完全偏振部分\\振幅比 $\sqrt{X/Y}=\sqrt3$};
+ \end{scope}
+ \begin{scope}[xshift=6.4cm]
+  \draw[->,gray] (-1.85,0)--(1.95,0) node[right]{$E_x$};
+  \draw[->,gray] (0,-1.18)--(0,1.48) node[above]{$E_y$};
+  \draw[DeepBlue,thick] (210:1.7)--(30:1.7);
+  \draw (.75,0) arc[start angle=0,end angle=30,radius=.75];
+  \node at (15:1.18){$30^\circ$};
+  \node[below,align=center] at (0,-1.5){波片后的完全偏振部分\\两个分量同相，成为线偏振};
+ \end{scope}
+\end{tikzpicture}
+\figcap{蓝线为电矢量端点轨迹，不是光路；未画出的自然光经波片后仍非偏振。\label{ch30:fig:depth-cai67}}
+\end{minipage}\end{center}
+
+原入射总强度为 $X+Y+U=2.5I_0$，所以非偏振成分比例为
+\[
+ \boxed{\frac{U}{X+Y+U}=\frac{1.5}{2.5}=60\%}.
+\]
+检偏器沿新线偏振方向时，完全偏振部分 $X+Y=I_0$ 全部透过，自然光透过一半，于是
+\[
+ \boxed{I_{\max}'=X+Y+\frac U2=1.75I_0}.
+\]
+与其垂直时只有自然光的一半通过，$I_{\min}'=0.75I_0$；两者之和仍为 $2.5I_0$，与总入射强度一致。波片提高了旋转检偏器时的最大透射值，但没有创造能量，只把原先藏在相位关系中的信息转成可选择透过的线偏振方向。
+\end{xesolution}
+%</append>
+%<block:单缝衍射与圆孔图样>
+\subsection{从整条缝的相干叠加得到暗纹}
+设缝宽为 $a$，横向坐标为 $x\in[-a/2,a/2]$，入射光在缝内振幅均匀、相位相同。远场观察方向与轴成角 $\theta$，缝内相隔 $x$ 的两点向该方向传播时相差光程 $x\sin\theta$。把振幅密度记为常量 $C$，则
+\[
+ U(\theta)=C\int_{-a/2}^{a/2}
+ \exp\!\left(\frac{2\pi\ii x\sin\theta}{\lambda}\right)\dd x.
+\]
+积分后，以 $U(0)=Ca$ 归一化，得到
+\[
+ \frac{U(\theta)}{U(0)}=\frac{\sin\beta}{\beta},
+ \qquad \beta=\frac{\pi a\sin\theta}{\lambda}.
+\]
+因此强度为 $I(0)(\sin\beta/\beta)^2$。在 $\beta=0$ 处应取极限1，不是把“分母为零”解释为强度无穷大。暗纹来自 $\beta=m\pi$，但必须排除 $m=0$，即 $a\sin\theta=m\lambda$、$m=\pm1,\pm2,\ldots$。
+
+第一对暗纹围成中央主极大。近轴屏距为 $L$ 时，它的全宽约为 $2\lambda L/a$；在焦距为 $f$ 的透镜后焦面上，改为 $2\lambda f/a$。圆孔的图样来自对圆形面积积分，不能把缝宽直接改叫孔径而继续用单缝系数；第一暗环对应 $1.22\lambda/D$ 的角半径。
+%</block>
+%<block:孔径、分辨率与成像限制>
+\subsection{“看见”“分开”和“成像清晰”是不同问题}
+一个点源即使远小于分辨尺度，只要送到探测器的光足够多，仍可能被检测到；分辨两个相邻点，则要求它们各自的像斑没有重叠到难以区分。讨论分辨本领时，必须先说明被比较的是两点的间距、两点的角距，还是一个物体本身的大小。
+
+对相距 $s$、距离约为 $L$ 的两个远处物点，小角近似给出 $\Delta\theta\simeq s/L$。圆孔瑞利判据于是写成
+\[
+ \frac{s}{L}\gtrsim1.22\frac{\lambda}{D},
+ \qquad D\gtrsim1.22\frac{\lambda L}{s}.
+\]
+这里 $s,L,D,\lambda$ 都是长度，两边角度均为无量纲。若结果要求几米口径，却画成手持放大镜大小，应先检查纳米到米、角秒到弧度的换算。
+
+瑞利判据主要针对两个非相干点源、相近亮度与理想圆孔。它是常用的可分辨标准，不是任何图像处理方法都不能突破的绝对信息边界。实际还要考虑大气扰动、像差、噪声和采样；在竞赛题明确要求“仅计衍射限制”时，才忽略这些因素。
+%</block>
+%<block:多缝干涉与光栅衍射>
+\subsection{多缝峰的位置、宽度和缺级分别由什么决定}
+设共有 $N$ 条相同狭缝，缝宽为 $a$、中心间距为 $d$，正入射单色光。相邻缝向方向 $\theta$ 发出的光相位差为 $\varphi=2\pi d\sin\theta/\lambda$。若单缝的振幅为 $U_1(\theta)$，总振幅是等比和
+\[
+ U_N=U_1\sum_{j=0}^{N-1}e^{\ii j\varphi}
+ =U_1e^{\ii(N-1)\varphi/2}
+ \frac{\sin(N\varphi/2)}{\sin(\varphi/2)}.
+\]
+取模平方可看出两个不同因素：单缝衍射包络决定大范围内的强弱，多缝干涉因子在包络内形成狭窄主峰。主峰方向满足 $d\sin\theta=m\lambda$，只与间距有关；主峰角宽随照亮的缝数增加而减小。
+
+在第 $m$ 级主峰附近，令 $\varphi=2m\pi+\varepsilon$。最近暗纹满足 $N\varepsilon/2=\pm\pi$，故主峰到一侧暗纹的角距近似为
+\[
+ \delta\theta\simeq\frac{\lambda}{Nd\cos\theta_m}.
+\]
+如果某个主峰恰好遇到单缝包络的零点，则同时有
+\[
+ d\sin\theta=m\lambda,\qquad a\sin\theta=p\lambda\quad(p\ne0),
+\]
+所以 $ma/d=p$ 时该级缺失。不能先按 $|m\lambda/d|\le1$ 统计可传播级次，再把它们全当成可见亮峰。
+
+对两条相近谱线，主峰位置之差约为 $\Delta\theta=m\Delta\lambda/(d\cos\theta_m)$。令这一差值达到单个主峰的半宽尺度，得到光栅的瑞利分辨本领
+\[
+ \frac{\lambda}{\Delta\lambda}\simeq |m|N.
+\]
+它说明照亮的总缝数与级次共同决定分辨能力。增大 $d$ 并不会自动提高分辨本领；还需考虑在固定光栅宽度下 $N$ 会如何变化、该级是否缺级以及不同级光谱是否重叠。
+%</block>
+%<block:晶体衍射与布拉格定律>
+\subsection{布拉格角从晶面量起}
+晶面间距为 $d$，光线与晶面的夹角为 $\theta_B$。来自相邻晶面、沿同一方向出射的两束波，下层一路多走的入射段和出射段各为 $d\sin\theta_B$，因此程差是 $2d\sin\theta_B$。相长条件为 $2d\sin\theta_B=m\lambda$。
+
+这里的 $\theta_B$ 不是光线与晶面法线的夹角。若题目给的是相对法线角 $i$，同一公式须写成 $2d\cos i=m\lambda$；若给的是入射束与衍射束之间的散射角，则通常为 $2\theta_B$。三种角之间的换算必须先完成，再代入数值。
+
+晶面反射只是描述晶体周期散射的有效几何模型，并不是每一晶面都像涂银镜面那样独立反射。布拉格条件给出可能相长的方向；晶胞中原子的分布还可能使某些满足该条件的峰消失。仅要求几何衍射角时可以不计算结构因子，但不能据此声称所有级次强度都相同。
+%</block>
+%<block:偏振态、偏振片与强度>
+\subsection{先区分自然光、线偏振光和部分偏振光}
+自然光没有长期固定的横向振动方向。通过理想线偏振片后，平均透射强度为原来的一半，这是对全部方向取平均的结果。已经线偏振的光通过与其方向成角 $\alpha$ 的检偏器时，振幅先投影为 $E\cos\alpha$，再平方得到 $I=I_0\cos^2\alpha$。这两个公式适用的入射态不同，不能在每经过一片偏振片时都机械地再乘 $1/2$。
+
+两片正交偏振片之间加第三片时，第一片输出已经是线偏振。中间片把它投影到新的透振方向，最后一片再作一次投影，所以透射强度可以从零变成非零。这不表示新偏振片产生了额外光能：每一步的透射强度仍不超过上一步，改变的是送到最后一片的偏振方向。
+
+圆偏振光与自然光通过旋转线偏振片时，透射强度都可以不随角度变化。仅凭这一实验不能区分二者，因为它只比较两个正交方向上的平均强度，丢掉了相位关系。加四分之一波片把相位信息转成振幅方向信息，才可以进一步判别；后面波片一节将给出具体计算。
+%</block>
+%<block:波片与相位延迟>
+\subsection{振幅分解与相位延迟不能混成一步}
+以波片两条本征偏振方向为坐标轴。入射线偏振与第一轴成角 $\alpha$，首先作振幅分解：$E_x=E_0\cos\alpha$、$E_y=E_0\sin\alpha$。无吸收理想波片不会把这两个分量的振幅任意放大，而是在厚度 $t$ 上让它们积累不同相位：
+\[
+ \delta=\frac{2\pi}{\lambda_0}(n_y-n_x)t.
+\]
+输出是否线偏振、椭圆偏振或圆偏振，取决于振幅比与 $\delta$ 两项。四分之一波片只保证相差为 $\pi/2$ 的奇数倍；若入射方向不是与两轴成 $45^\circ$，两个振幅不等，输出一般是椭圆而非圆。
+
+为避免旋向歧义，写电场参数式时还应规定观察方向与时间因子。例如沿传播方向看、取
+$E_x=A\cos\omega t$、$E_y=B\cos(\omega t-\delta)$，就可以代入 $t=0$ 及一个微小正时间，直接判断电矢量怎样转动。只写“左旋”而不说沿光看还是迎光看，可能把同一物理态叫成相反的名称。
+%</block>

@@ -1,0 +1,178 @@
+\subsection*{回旋方向与运动方程的完整解}
+
+仅记半径和周期还不够，许多题目需要同时判断圆心位置、转向和离开磁场的边界点。设匀强磁场
+$\vect B=B\uvec z$，则横向分量满足
+\begin{equation}
+ m\dot v_x=qBv_y,
+ \qquad
+ m\dot v_y=-qBv_x.
+\end{equation}
+定义带符号回旋角频率 $\Omega=qB/m$，解可写为
+\begin{align}
+ v_x(t)&=v_{x0}\cos\Omega t+v_{y0}\sin\Omega t,\notag\\
+ v_y(t)&=v_{y0}\cos\Omega t-v_{x0}\sin\Omega t.
+\end{align}
+正电荷在 $B$ 指向纸面外时顺时针转动，负电荷方向相反。积分一次得到导向中心
+\begin{equation}
+ X=x+\frac{mv_y}{qB},
+ \qquad
+ Y=y-\frac{mv_x}{qB},
+\end{equation}
+在纯匀强磁场中保持不变。由初始位置和初速度先求 $(X,Y)$，再画半径
+$r_c=mv_\perp/(|q|B)$ 的圆，比凭弯曲方向猜圆心更可靠。
+
+粒子从有界磁场区域射出时，轨迹只取完整圆的一段。圆弧所对圆心角 $\Delta\phi$ 同时决定飞行
+时间和弦长：
+\begin{equation}
+ t=\frac{\Delta\phi}{\omega_c},
+ \qquad
+ \ell_{\rm chord}=2r_c\sin\frac{\Delta\phi}{2}.
+\end{equation}
+处理矩形、圆形或扇形磁场边界时，应先用几何求圆心角，再求时间，不能把穿越时间简单写成
+直线长度除以速率。
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{先定圆心，再选真正的出射交点}
+例如 $q>0$，粒子从原点以 $v_0\uvec x$ 进入 $\vect B=B\uvec z$，有圆心 $(0,-r_c)$，
+\[
+ x=r_c\sin\Omega t,\qquad y=r_c(\cos\Omega t-1).
+\]
+若磁场为条带 $0\le x\le a$ 且 $0<a<r_c$，首次碰到远边界的时间为
+$t=\arcsin(a/r_c)/\Omega$，此时 $v_y<0$。同一个圆与 $x=a$ 的另一个交点对应更晚时刻，
+粒子早已离开磁场，不能继续沿原圆推算。若 $a>r_c$，轨迹到不了远边界，而在半周后返回 $x=0$。
+边界问题的核心是把代数交点按时间排序，并逐一检查是否仍处在磁场内部。
+
+\subsection*{磁场中的角动量与轨道磁矩}
+
+电荷作圆周运动等效为环电流。周期 $T=2\pi/\omega_c$，电流为 $I=q/T$，轨道面积为
+$\pi r_c^2$，故磁矩
+\begin{equation}
+ \vect\mu=I\vect S.
+\end{equation}
+它与机械轨道角动量 $\vect L=m\vect r\times\vect v$ 的关系为
+\begin{equation}
+ \boxed{\vect\mu=\frac q{2m}\vect L}.
+\end{equation}
+负电荷的磁矩与角动量方向相反。外磁场中的相互作用能为
+\begin{equation}
+ U=-\vect\mu\cdot\vect B,
+\end{equation}
+非均匀磁场还会对磁矩产生指向强场或弱场的净力。正常 Zeeman 效应的经典频移正与轨道磁矩
+和外场的耦合有关。
+
+磁场存在时应区分机械动量 $m\vect v$ 与正则动量。若用矢势
+$\vect B=\nabla\times\vect A$，Lagrange 量为
+\begin{equation}
+ \mathcal L=\frac12mv^2+q\vect A\cdot\vect v-q\varphi,
+\end{equation}
+相应正则动量为 $\vect p=m\vect v+q\vect A$。多数高中竞赛轨迹题只需机械动量，但涉及对称性、
+广义动量或量子磁效应时，两者不能混用。
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{磁矩与磁场的夹角不能只看电荷符号}
+纯匀强磁场中的回旋满足 $r_c=mv_\perp/(|q|B)$。取沿真实运动绕行方向的面积矢量，
+环电流定义直接给出 $\vect\mu=(q/2m)\vect L$，其中角动量对回旋中心计算。
+正电荷与负电荷的回旋方向相反，但它们形成的常规环电流方向相同，磁矩均与外磁场相反。
+其大小为
+\[
+ |\vect\mu|=\frac{|q|v_\perp r_c}{2}=\frac{mv_\perp^2}{2B}=\frac{K_\perp}{B}.
+\]
+下一节绝热不变量中的 $\mu$ 指这个正的大小。
+对于固定磁矩的回路可用 $U=-\vect\mu\cdot\vect B$ 讨论外场作用；
+回旋粒子的轨道和磁矩会随场改变，不能把相互作用能再机械地加到已给出的回旋动能上重复计数。
+
+\subsection*{交叉电磁场、速度选择与漂移}
+
+若 $\vect E\perp\vect B$，满足
+\begin{equation}
+ \vect E+\vect v\times\vect B=\vect0
+\end{equation}
+的粒子不发生横向偏转。速度选择器通常令粒子束、$\vect E$、$\vect B$ 两两垂直，选出的速率为
+\begin{equation}
+ \boxed{v=\frac EB}.
+\end{equation}
+方向必须使电力与磁力相反；改变电荷正负会同时反转两种力，因而同一速度方向的正、负电荷都可
+满足无偏转条件。
+
+对任意初速度，运动可分成以 $\vect v_E=\vect E\times\vect B/B^2$ 匀速移动的导向中心和绕
+导向中心的回旋。因为 $\vect v_E$ 与 $q,m$ 无关，理想均匀交叉场不会靠这一漂移分离正负电荷。
+若外力不是 $q\vect E$，一般漂移
+\begin{equation}
+ \vect v_D=\frac{\vect F\times\vect B}{qB^2}
+\end{equation}
+会随电荷符号改变，才可能造成电荷分离。
+
+Hall 效应正是磁力造成横向电荷积累，积累建立的 Hall 电场最终与磁力平衡。若载流子漂移速度为
+$\vect v_d$，稳态有
+\begin{equation}
+ q(\vect E_H+\vect v_d\times\vect B)=0.
+\end{equation}
+对宽度 $w$、厚度 $d$ 的矩形导体，电流 $I=n|q|v_dwd$，Hall 电压大小为
+\begin{equation}
+ \boxed{|U_H|=\frac{IB}{n|q|d}}.
+\end{equation}
+Hall 电压极性可以判断主要载流子的电荷符号，大小则可测载流子浓度。
+
+
+% EM teaching enrichment 20260927
+\paragraph{选择速度之后如何测质量}
+先用交叉场选出 $v=E/B_s$，再进入只有垂直匀强磁场 $B_a$ 的分析区，半径满足
+\[
+ r=\frac{mv}{|q|B_a},\qquad
+ \frac m{|q|}=\frac{rB_aB_s}{E}.
+\]
+这里选速区与分析区的磁场分别记为 $B_s,B_a$，不能未经题设认定为同一个场强。测得半径给出质荷比；若电荷态未知，仅靠这一组数据不能唯一确定质量。同速且同电荷态的同位素才可由半径直接区分。
+
+\subsection*{缓变磁场中的绝热近似}
+
+若磁场在一个回旋半径内变化很小、在一个回旋周期内变化很慢，粒子仍可在局部看成回旋，第一
+绝热不变量近似守恒：
+\begin{equation}
+ \boxed{\frac{p_\perp^2}{2mB}=\mu=\text{常量}}.
+\end{equation}
+粒子进入更强磁场时，横向动能随 $B$ 增大；总动能若不变，平行动能便减小。当平行速度降到零，
+粒子会被反射，形成磁镜。这个机制说明磁场虽然不做功，仍能在平行和垂直两个运动分量之间重新
+分配动能。
+
+轴对称缓变磁场还可使偏离轴线的粒子受到平均聚焦作用。实际粒子束装置常把均匀场中的回旋、
+场边缘的方向变化和多段磁场组合起来，实现选速、聚焦与动量分析。使用局部回旋近似时必须检查
+$r_c$ 是否远小于磁场变化尺度；若二者同量级，简单的导向中心图像不再可靠。
+
+
+% EM teaching enrichment 20260927
+\paragraph{磁镜反射条件的逐步求法}
+在静态磁场且无电场做功时，总动能 $K$ 不变。设起点场强为 $B_0$、速度与场夹角为 $\alpha_0$，则
+$\mu=K\sin^2\alpha_0/B_0$，沿磁力线到场强 $B$ 处有
+\[
+ K_\parallel=K-\mu B
+ =K\left(1-\frac B{B_0}\sin^2\alpha_0\right).
+\]
+反射发生在 $K_\parallel=0$，即 $B_m=B_0/\sin^2\alpha_0$。若装置最大场强为 $B_{\max}$，能被反射须满足
+$\sin^2\alpha_0\ge B_0/B_{\max}$；过于沿场的粒子会从损失锥逃逸。这个判据同时依赖能量守恒与绝热不变量，两者缺一不可。
+
+\subsection*{经典公式的相对论边界}
+
+速度接近光速时，动量应写成 $\vect p=\gamma m\vect v$。回旋半径仍满足
+\begin{equation}
+ r_c=\frac{p_\perp}{|q|B},
+\end{equation}
+但角频率变为
+\begin{equation}
+ \omega_c=\frac{|q|B}{\gamma m}.
+\end{equation}
+随着能量升高，$\gamma$ 增大，固定射频的经典回旋加速器逐渐失谐。同步回旋加速器通过改变频率，
+同步加速器则同时调节磁场和射频，使高能粒子保持在设计轨道上。竞赛题若未说明相对论效应，通常
+默认 $v\ll c$；若给出的能量与静能 $mc^2$ 同量级，就必须改用相对论动量和能量关系。
+
+% EM teaching enrichment 20260927
+\paragraph{以动能为已知量时的连续表达}
+总能量 $\mathcal E=K+mc^2$ 与动量满足 $\mathcal E^2=p^2c^2+m^2c^4$，故垂直入射时
+\[
+ r_c=\frac{\sqrt{K(K+2mc^2)}}{|q|Bc}.
+\]
+$K\ll mc^2$ 时恢复 $\sqrt{2mK}/(|q|B)$；$K\gg mc^2$ 时近似 $K/(|q|Bc)$。低能区半径随 $\sqrt K$ 增大，高能区近似随 $K$ 增大，是判断题中经典近似能否继续使用的直观尺度检验。
+

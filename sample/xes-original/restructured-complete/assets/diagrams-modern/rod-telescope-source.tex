@@ -1,0 +1,37 @@
+% Source spring-II p194 lecture10 problem2, both original technical panels.
+% Telescope: theta=60deg,beta=.4; theta3=atan(sin(theta)/(cos(theta)+beta)).
+% Stellar direction at aperture is NOT telescope axis; both are drawn separately.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}[shift={(-3.5,0)}]
+  \draw[->] (0,0)--(3.1,0) node[right]{$x$};
+  \draw[->] (0,0)--(0,3.25) node[above]{$y,S$};
+  \draw[->,TextGray] (.28,-.28)--(3.1,-.28) node[right]{$x'$};
+  \draw[->,TextGray] (.28,-.28)--(.28,2.9) node[above right]{$S'$};
+  \draw[DeepBlue,line width=3pt] (0,0)--({2.8*cos(60)},{2.8*sin(60)});
+  \node[right=7pt] at (.7,1.21){$l$};
+  \draw (.72,0) arc[start angle=0,end angle=60,radius=.72];
+  \node at (.88,.43){$\theta$};
+  \draw[->,thick] (.65,2.75)--(1.45,2.75) node[midway,above]{$v$};
+  \node at (1.35,-.85){(a) 静止发光杆与两个参考系};
+ \end{scope}
+ \begin{scope}[shift={(1.9,.25)}]
+  \pgfmathsetmacro{\tt}{atan(sin(60)/(cos(60)+.4))}
+  \coordinate (L) at ({2*cos(\tt)},{2*sin(\tt)});
+  \draw[TextGray] (-.65,-.6)--(-.65,.35) arc[start angle=180,end angle=0,radius=1.25]--(1.85,-.6)--cycle;
+  \begin{scope}[rotate=\tt]
+   \draw[thick] (0,-.08) rectangle (2,.08);
+   \draw[thick] (2,-.14)--(2,.14);
+  \end{scope}
+  \draw[dashed] (0,0)--(1.1,0);
+  \draw (.67,0) arc[start angle=0,end angle=\tt,radius=.67];
+  \node at (.95,.32){$\theta_3$};
+  \draw[dashed,DeepBlue] (L)--++(60:1.55);
+  \draw[dashed] (L)--++(1.15,0);
+  \draw ($(L)+(.58,0)$) arc[start angle=0,end angle=60,radius=.58];
+  \node at ($(L)+(.74,.4)$){$\theta$};
+  \node at ($(L)+(60:1.7)$){$\ast$};
+  \node[right=3pt] at ($(L)+(60:1.7)$){恒星};
+  \draw[->,thick] (2,-.42)--(2.8,-.42) node[midway,below]{$v$};
+  \node at (1.1,-1.1){(b) 运动天文台中的望远镜};
+ \end{scope}
+\end{tikzpicture}

@@ -1,0 +1,286 @@
+\section{线偏振、圆偏振与椭圆偏振}
+
+沿 $z$ 传播的单色平面波可写成两个正交分量
+\begin{align}
+ E_x&=A_x\cos(kz-\omega t),\\
+ E_y&=A_y\cos(kz-\omega t+\delta).
+\end{align}
+$\delta=0$ 或 $\pi$ 时电场端点沿固定直线运动，是线偏振；$A_x=A_y$ 且
+$\delta=\pm\pi/2$ 时为圆偏振；一般情况为椭圆偏振。旋向必须同时说明观察方向或传播方向约定，
+只写“左旋、右旋”而不说明视向可能产生歧义。
+
+\begin{center}
+\begin{tikzpicture}[scale=.82,>=Latex]
+  \begin{scope}[xshift=-4.2cm]
+    \draw[axis] (-1.6,0)--(1.7,0) node[right]{$E_x$};
+    \draw[axis] (0,-1.4)--(0,1.5) node[above]{$E_y$};
+    \draw[curve] (-1.25,-.75)--(1.25,.75);
+    \node[below] at (0,-1.65){线偏振};
+  \end{scope}
+  \begin{scope}
+    \draw[axis] (-1.6,0)--(1.7,0) node[right]{$E_x$};
+    \draw[axis] (0,-1.4)--(0,1.5) node[above]{$E_y$};
+    \draw[curve] (0,0) circle (1.05);
+    \draw[->,DeepBlue,thick] (1.05,0) arc[start angle=0,end angle=45,radius=1.05];
+    \node[below] at (0,-1.65){圆偏振};
+  \end{scope}
+  \begin{scope}[xshift=4.2cm]
+    \draw[axis] (-1.6,0)--(1.7,0) node[right]{$E_x$};
+    \draw[axis] (0,-1.4)--(0,1.5) node[above]{$E_y$};
+    \draw[curve,rotate=25] (0,0) ellipse (1.3 and .65);
+    \node[below] at (0,-1.65){椭圆偏振};
+  \end{scope}
+\end{tikzpicture}
+\figcap{固定空间点处电场矢量端点的三种轨迹。圆图取 $\delta=+\pi/2$，$+x$ 向右、$+y$ 向上；从 $+z$ 侧迎着传播方向看，随时间增加端点从 $+x$ 转向 $+y$。坐标轴是电场分量，不是光路。}
+\end{center}
+
+\section{偏振片与马吕斯定律}
+
+理想线偏振片只透过沿透光轴的电场分量。振幅投影为 $E=E_0\cos\theta$，所以强度满足
+\begin{equation}
+ I=I_0\cos^2\theta.
+\end{equation}
+自然光通过第一片理想偏振片后强度减半，之后再用马吕斯定律（Malus' law）。两片互相垂直的偏振片之间插入第三片时，
+反而会出现透射光，因为中间偏振片先把状态投影到新的方向。
+
+\begin{origexamplebox}{三片偏振片}
+自然光强度为 $I_0$，依次通过透光轴为 $0^\circ,45^\circ,90^\circ$ 的三片理想偏振片。求最终强度，并与只放首尾两片比较。
+\end{origexamplebox}
+\begin{xesolution}
+第一片后 $I_1=I_0/2$。第二片与第一片夹角 $45^\circ$：
+\[
+ I_2=I_1\cos^245^\circ=\frac{I_0}{4}.
+\]
+第三片与第二片仍夹角 $45^\circ$，所以
+\[
+ \boxed{I_3=I_2\cos^245^\circ=\frac{I_0}{8}}.
+\]
+若只放 $0^\circ$ 与 $90^\circ$ 两片，第二片前的线偏振方向与其轴垂直，理想透射强度为零。
+\end{xesolution}
+
+界面反射也能选择偏振：第27章已经由菲涅尔公式推出布儒斯特角，并说明该角度处 p 偏振反射消失。
+因此水面、玻璃等自然反光常以 s 偏振为主，摄影偏振镜可通过转动压低相应方向的眩光。
+
+\section{波片与相位延迟}
+
+双折射材料对两条本征偏振方向具有不同折射率 $n_f,n_s$。厚度为 $d$ 的波片引入相位差
+\begin{equation}
+ \Delta\phi=\frac{2\pi}{\lambda_0}(n_s-n_f)d.
+\end{equation}
+$\Delta\phi=\pi/2$ 为四分之一波片，可在线偏振与椭圆/圆偏振之间转换；$\Delta\phi=\pi$ 为半波片，可把线偏振方向旋转两倍于入射偏振与快轴的夹角。
+
+\begin{origexamplebox}{四分之一波片产生圆偏振}
+线偏振光入射四分之一波片，偏振方向与快轴夹角为 $45^\circ$。证明出射光为圆偏振，并说明条件改变后的结果。
+\end{origexamplebox}
+\begin{xesolution}
+令快轴为 $x$、慢轴为 $y$，入射偏振的有向角为 $\alpha$。按前面的 $kz-\omega t$ 约定，去掉两分量的共同相位后，可写
+\[
+ E_x=E_0\cos\alpha\cos\psi,\qquad
+ E_y=E_0\sin\alpha\cos(\psi+\pi/2)=-E_0\sin\alpha\sin\psi.
+\]
+当 $\sin\alpha\cos\alpha\ne0$ 时，消去 $\psi$ 得
+\[
+ \frac{E_x^2}{E_0^2\cos^2\alpha}
+ +\frac{E_y^2}{E_0^2\sin^2\alpha}=1.
+\]
+在 $\alpha=45^\circ$ 时，两半轴均为 $E_0/\sqrt2$，因此轨迹为圆。完整的分类是：
+$\alpha=45^\circ+90^\circ m$ 时为圆偏振；$\alpha=90^\circ m$ 时只激发一个本征分量，仍是线偏振；其余角度为非退化椭圆偏振。这里 $m$ 为整数。$135^\circ$ 同样能产生圆偏振，但两分量的相对符号改变，旋向与 $45^\circ$ 时相反。
+
+旋向可用固定点的时间变化判断，而不依赖含混的左右旋名称：在上述约定和 $\alpha=45^\circ$ 下，取 $\psi=0$ 的时刻，$E_x>0,E_y=0$；随时间增加，$\psi$ 减小，$E_y$ 转为正值，故端点从 $+x$ 向 $+y$ 转动。若波长改变，相位延迟一般不再恰为 $\pi/2$，还须同时检验等幅与正交相位两项条件。
+\end{xesolution}
+
+\section{相干矩阵与部分偏振}
+
+完全偏振光可由一个确定的复振幅矢量描述；自然光或部分偏振光还含随机涨落，需要使用相干矩阵
+\begin{equation}
+ \mathbf J=
+ \left\langle
+ \begin{pmatrix}E_x\\E_y\end{pmatrix}
+ \begin{pmatrix}E_x^*&E_y^*\end{pmatrix}
+ \right\rangle
+ =\begin{pmatrix}J_{xx}&J_{xy}\\J_{yx}&J_{yy}\end{pmatrix}.
+\end{equation}
+对角元是两个正交分量的强度，$\operatorname{tr}\mathbf J=I$ 为总强度，非对角元记录两分量的相干性。取一种常用旋向约定，斯托克斯参数（Stokes parameters）为
+\begin{equation}
+ S_0=J_{xx}+J_{yy},\quad S_1=J_{xx}-J_{yy},\quad
+ S_2=2\Re J_{xy},\quad S_3=2\Im J_{xy}.
+\end{equation}
+偏振度
+\begin{equation}
+ \mathcal P=\frac{\sqrt{S_1^2+S_2^2+S_3^2}}{S_0}
+\end{equation}
+在 $0$ 与 $1$ 之间。$\mathcal P=1$ 等价于 $\det\mathbf J=0$，表示完全偏振；理想自然光满足 $\mathbf J=(I/2)\mathbf 1$，故 $\mathcal P=0$。这也说明“每一瞬间电场都有方向”并不意味着长时间平均后的光必为完全偏振。
+
+\section{单轴晶体与双折射}
+
+单轴晶体有一条光轴。这里“光轴”是沿该方向传播不发生双折射的方向，不是一根可见的几何轴，也不等同于器件的中心线。
+主截面是光轴与波矢共同张成的平面。寻常光（ordinary wave，o光）的折射率 $n_o$ 与传播方向无关；非寻常光（extraordinary wave，e光）的有效折射率随波矢与光轴夹角 $\theta$ 改变：
+\begin{equation}
+ \frac1{n_e^2(\theta)}
+ =\frac{\cos^2\theta}{n_o^2}+\frac{\sin^2\theta}{n_e^2}.
+\end{equation}
+式中右端的 $n_e$ 是波矢垂直光轴时的主折射率。$\theta=0$ 时 $n_e(0)=n_o$，所以沿光轴传播两束简并。
+$n_e>n_o$ 称正单轴晶体，$n_e<n_o$ 称负单轴晶体。
+
+寻常光的电场垂直主截面，非寻常光的电位移 $\vect D$ 位于主截面内。在各向异性介质中，坡印廷矢量
+$\vect S$ 一般不平行于波矢 $\vect k$，所以e光的能流方向会相对波法线发生走离；画双折射光路时必须区分“波矢折射”和“光束能流方向”。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[axis] (-3.1,0)--(3.2,0) node[right]{$k_x$};
+  \draw[axis] (0,-2.2)--(0,2.4) node[above]{$k_z$（光轴）};
+  \draw[DeepBlue,very thick] (0,0) circle (1.65);
+  \draw[TextGray,very thick] (0,0) ellipse (2.25 and 1.65);
+  \draw[vector] (0,0)--(1.55,1.35) node[above right]{$\vect k$};
+  \draw[->,DeepBlue] (0,1.0) arc[start angle=90,end angle=41,radius=1.0];
+  \node[clearlabel] at (.42,1.02) {$\theta$};
+  \node[clearlabel,anchor=east] at (-2.0,1.65) {o光};
+  \draw[thin,TextGray] (-1.94,1.54)--(-1.01,1.30);
+  \node[clearlabel,anchor=west] at (2.45,-1.0) {e光};
+  \draw[thin,TextGray] (2.39,-.96)--(1.94,-.84);
+\end{tikzpicture}
+\figcap{正单轴晶体的等频波矢面截面。圆对应o光，横向较长的椭圆对应e光；两曲线在光轴方向相切。}\label{ch30:fig:index-ellipse}
+\end{center}
+图~\ref{ch30:fig:index-ellipse} 中沿光轴的两个截距相同，直观对应 $n_e(0)=n_o$。
+
+下题改用负单轴晶体，此时e光椭圆的横向半轴小于o光圆半径，与图中的正单轴情形相反；两者沿光轴仍简并。
+
+\begin{origexamplebox}{非寻常光的方向折射率}
+某负单轴晶体 $n_o=1.66$、$n_e=1.49$。波矢与光轴夹角为 $45^\circ$。求e光的有效折射率，并检验它应落在哪个范围。
+\end{origexamplebox}
+\begin{xesolution}
+代入方向折射率公式：
+\[
+ \frac1{n_e^2(45^\circ)}
+ =\frac12\left(\frac1{1.66^2}+\frac1{1.49^2}\right).
+\]
+因此
+\[
+ \boxed{n_e(45^\circ)\approx1.57}.
+\]
+结果位于 $1.49$ 与 $1.66$ 之间；若算出超出两主折射率范围，通常是把折射率椭圆的半轴或角度定义颠倒了。
+$\theta\to0$ 时公式给出 $n_o$，$\theta\to90^\circ$ 时给出主值 $n_e$。
+\end{xesolution}
+
+\begin{center}
+\begin{tikzpicture}[scale=.92,>=Latex]
+  % 纯几何图：两束从同一入射点分开，出射面横移由同一组 d,rho 计算。
+  % 布局：入射 -> 晶片(0<=z<=5) -> 平行出射；标注在外侧，无白底。
+  \fill[DeepBlue!5] (0,-1.4) rectangle (5,2.1);
+  \draw[very thick] (0,-1.4)--(0,2.1) (5,-1.4)--(5,2.1);
+  \coordinate (A) at (0,0); \coordinate (B) at (5,0);
+  \coordinate (C) at (5,{5*tan(15)});
+  \draw[vector] (-2,0)--(A) node[midway,above=5pt]{入射光};
+  \draw[DeepBlue,thick] (A)--(C);
+  \draw[vector] (C)--(7,{5*tan(15)}) node[right]{e光能流};
+  \draw[component] (A)--(B);
+  \draw[vector] (B)--(7,0) node[right]{o光};
+  \draw[guide] (0,-.4)--(0,2.4);
+  \draw[TextGray] (1.1,0) arc[start angle=0,end angle=15,radius=1.1];
+  \node at (1.5,.50) {$\rho$};
+  \draw[<->] (5.65,0)--(5.65,{5*tan(15)}) node[midway,right=4pt]{$\Delta x$};
+  \draw[<->] (0,-1.7)--(5,-1.7) node[midway,below]{$d$};
+  \draw[TextGray,thick] (2.5,-1.05)--(3.15,-.40);
+  \node[below] at (2.8,-1.05) {光轴方向};
+  \node[above left] at (A){$A$};\node[below left] at (B){$B$};
+  \node[above left] at (C){$C$};
+\end{tikzpicture}
+\figcap{正入射单轴晶片的一种双折射几何。o光不偏折，e光能流可因走离而产生横向分离。}\label{ch30:fig:double-refraction}
+\end{center}
+
+\begin{origexamplebox}{晶片后的两束横向分离}
+厚度为 $d$ 的平行晶片中，o光沿法线传播，e光的能流与法线夹角为走离角 $\rho$。忽略出射面的额外横移，求两束在出射面处的间距，并给出小角近似。
+\end{origexamplebox}
+\begin{xesolution}
+图~\ref{ch30:fig:double-refraction} 中 $A$ 是共同入射点，$AB=d$ 沿晶片法线，$BC=\Delta x$ 为出射面内的横移。由直角三角形 $ABC$ 得
+\[
+ \boxed{\Delta x=d\tan\rho}.
+\]
+当 $|\rho|\ll1$（弧度）时
+\[
+ \boxed{\Delta x\simeq d\rho}.
+\]
+间距符号由走离方向决定，通常报告其绝对值。$d$ 乘无量纲三角函数仍是长度；$\rho\to0$ 时两束重合，符合沿光轴或无各向异性时的极限。
+\end{xesolution}
+
+\section{快轴、慢轴与波片计算}
+
+同一真空波长 $\lambda_0$ 下，相位积累为 $2\pi nd/\lambda_0$。折射率较小的本征方向相速度较大，称快轴；
+折射率较大的方向称慢轴。若 $\Delta n=n_s-n_f>0$，厚度 $d$ 引入的慢轴相对快轴延迟为
+\begin{equation}
+ \delta=\frac{2\pi}{\lambda_0}\Delta n\,d.
+\end{equation}
+实际波片允许延迟多加 $2\pi m$，所以四分之一波片和半波片可以是零级或多级。多级波片对波长和温度更敏感。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[axis] (-.2,0)--(5.5,0) node[right]{快轴 $f$};
+  \draw[axis] (0,-.2)--(0,3.5) node[above]{慢轴 $s$};
+  \draw[vector] (0,0)--(3.5,2.4) node[above right]{$\vect E_{\rm in}$};
+  \draw[component] (0,0)--(3.5,0) node[midway,below]{$E_f$};
+  \draw[component] (0,0)--(0,2.4) node[midway,left]{$E_s$};
+  \draw[guide] (3.5,0)--(3.5,2.4)--(0,2.4);
+  \draw[->,DeepBlue] (1.1,0) arc[start angle=0,end angle=34.5,radius=1.1];
+  \node[clearlabel] at (1.3,.36) {$\alpha$};
+\end{tikzpicture}
+\figcap{入射线偏振在波片快、慢轴上的分解。波片改变两分量相位，不改变理想情况下的分量振幅。}\label{ch30:fig:waveplate-components}
+\end{center}
+图~\ref{ch30:fig:waveplate-components} 的两个投影给出快、慢轴上的分量振幅。仅当相对相位为 $\pm\pi/2$ 时，这两个方向才是偏振椭圆的主轴；一般相位差下椭圆会倾斜，不能把任意坐标分量直接称为椭圆半轴。
+
+\begin{origexamplebox}{零级四分之一波片的厚度}
+材料在波长 $\lambda_0=600\,\mathrm{nm}$ 时有 $n_s-n_f=0.0090$。求最薄四分之一波片的厚度；若制成厚度为该值的5倍，判断其等效延迟。
+\end{origexamplebox}
+\begin{xesolution}
+最薄四分之一波片要求 $\delta=\pi/2$：
+\[
+ d_0=\frac{\lambda_0}{4\Delta n}
+ =\frac{600\,\mathrm{nm}}{4\times0.0090}
+ =\boxed{16.7\,\mu\mathrm m}.
+\]
+厚度 $5d_0$ 的延迟为 $5\pi/2=2\pi+\pi/2$，对单色完全偏振光等效于四分之一波片；但它是更高阶波片，波长改变时额外的 $2\pi$ 也会变化，因此色散敏感性不同。
+量纲上波长除以无量纲折射率差仍为长度。
+\end{xesolution}
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  % 纯几何：两方向关于水平快轴镜像，角度严格为正负20度。
+  % 横向8cm，字号沿用正文图样；两角标位于弧外，直线不穿标签。
+  \draw[axis] (-3,0)--(3.4,0) node[right]{快轴 $x$};
+  \draw[axis] (0,-1.65)--(0,1.8) node[above]{慢轴 $y$};
+  \draw[DeepBlue,very thick] (-2.6,{-2.6*tan(20)})--(2.6,{2.6*tan(20)});
+  \draw[TextGray,very thick,dashed] (-2.6,{2.6*tan(20)})--(2.6,{-2.6*tan(20)});
+  \draw[DeepBlue] (1.0,0) arc[start angle=0,end angle=20,radius=1.0];
+  \draw[TextGray] (1.5,0) arc[start angle=0,end angle=-20,radius=1.5];
+  \node[anchor=west] at (1.2,1.05) {$+\alpha$};
+  \node[anchor=west] at (1.6,-1.2) {$-\alpha$};
+  \node at (-2.1,1.55) {出射偏振};
+  \node at (-2.1,-1.55) {入射偏振};
+\end{tikzpicture}
+\figcap{半波片把入射线偏振关于快轴镜像，因此偏振方位转过 $2\alpha$。}\label{ch30:fig:half-wave}
+\end{center}
+图~\ref{ch30:fig:half-wave} 中实线与虚线关于快轴对称，故两者方位差为 $2\alpha$。
+
+\begin{origexamplebox}{半波片旋转偏振方向}
+线偏振方向与半波片快轴夹角为 $\alpha=20^\circ$。半波片后接一检偏器；为使透射强度最大，检偏器相对原偏振方向应转多少度？若检偏器保持原方向，透射强度是入射到检偏器前强度的多少？
+\end{origexamplebox}
+\begin{xesolution}
+把入射场分解到快、慢轴，半波片使两分量相差 $\pi$，等价于偏振方向关于快轴反射。因此出射偏振相对原方向转过
+\[
+ 2\alpha=\boxed{40^\circ}.
+\]
+检偏器转到新方向时透射最大。若仍沿原方向，根据马吕斯定律
+\[
+ \boxed{\frac I{I_{\rm before}}=\cos^2(40^\circ)\approx0.587}.
+\]
+$\alpha\to0$ 时出射方向不变；快轴转动 $\Delta\alpha$ 会使偏振方向转动 $2\Delta\alpha$，与半波片常用于偏振旋转相符。
+\end{xesolution}
+
+\begin{starread}{晶体光学与琼斯矩阵}
+各向异性晶体中介电响应是张量，波矢方向与能流方向一般不重合。单轴晶体具有寻常光和非寻常光，后者折射率随传播方向变化，
+因此一个入射光束可分裂成两束。完全偏振的相干变换可用琼斯矢量和矩阵表示：
+\[
+ \vect E=\begin{pmatrix}E_x\\E_y\end{pmatrix},\qquad
+ \mathbf J_{\rm pol}(\theta)=\vect e_\theta\vect e_\theta^{\mathsf T}.
+\]
+这里的琼斯（Jones）矢量只适用于完全偏振光；部分偏振光不能由单个琼斯矢量完整描述，需要斯托克斯参数或相干矩阵。吸收、散射和退偏器件还需更一般的穆勒（Mueller）矩阵。
+\end{starread}

@@ -1,0 +1,134 @@
+\documentclass[UTF8,zihao=-4,openany]{ctexbook}
+
+\usepackage[a4paper,top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\definecolor{accent}{HTML}{2F5D73}
+\hypersetup{
+  unicode=true,
+  colorlinks=false,
+  pdfborder={0 0 0},
+  bookmarksopen=true,
+  bookmarksnumbered=false,
+  pdftitle={高中物理竞赛一轮讲义：2020春电磁学全十讲},
+  pdfauthor={高中物理竞赛一轮讲义}
+}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+\begin{document}
+
+\pdfbookmark[0]{标题页}{cover}
+\begin{titlepage}
+  \centering
+  \vspace*{40mm}
+  {\color{accent}\rule{0.72\textwidth}{1.1pt}}\par
+  \vspace{13mm}
+  {\zihao{1}\bfseries 高中物理竞赛一轮讲义\par}
+  \vspace{9mm}
+  {\zihao{2}\bfseries 2020春电磁学全十讲\par}
+  \vspace{8mm}
+  {\zihao{-2}第32—41节\quad 含解答与解图\par}
+  \vspace{13mm}
+  {\color{accent}\rule{0.72\textwidth}{1.1pt}}\par
+  \vfill
+  {\zihao{-4}依据《2020春高一物理》第1—10讲整理\par}
+  \vspace{14mm}
+\end{titlepage}
+
+\clearpage
+\pdfbookmark[0]{目录}{contents}
+\begin{center}
+  {\zihao{2}\bfseries 目录}\par
+  \vspace{10mm}
+\end{center}
+
+\renewcommand{\arraystretch}{1.42}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.13\textwidth}
+                >{\raggedright\arraybackslash}p{0.67\textwidth}
+                >{\raggedleft\arraybackslash}p{0.08\textwidth}}
+  \toprule
+  \textbf{讲次} & \textbf{主题} & \textbf{PDF页} \\
+  \midrule
+  第1讲（第32节） & 电场的基本性质 & 3 \\
+  第2讲（第33节） & 电势能与电势 & 15 \\
+  第3讲（第34节） & 静电平衡 & 30 \\
+  第4讲（第35节） & 电介质、电容器 & 46 \\
+  第5讲（第36节） & 电流 & 63 \\
+  第6讲（第37节） & 复杂电阻网络 & 79 \\
+  第7讲（第38节） & Lorentz 力 & 94 \\
+  第8讲（第39节） & Ampere 力，Ampere 定律 & 115 \\
+  第9讲（第40节） & 电磁感应：基本原理 & 132 \\
+  第10讲（第41节） & 补充阅读：电磁场与超导体（选讲） & 157 \\
+  \bottomrule
+\end{tabular}
+
+\vfill
+{\small\color{gray}目录页码为合订本 PDF 的物理页码。}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第1讲：电场的基本性质},{lecture:1}}
+]{../thirty-second-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第2讲：电势能与电势},{lecture:2}}
+]{../thirty-third-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第3讲：静电平衡},{lecture:3}}
+]{../thirty-fourth-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第4讲：电介质、电容器},{lecture:4}}
+]{../thirty-fifth-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第5讲：电流},{lecture:5}}
+]{../thirty-sixth-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第6讲：复杂电阻网络},{lecture:6}}
+]{../thirty-seventh-section/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第7讲：Lorentz 力},{lecture:7}}
+]{../thirty-eighth-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第8讲：Ampere 力，Ampere 定律},{lecture:8}}
+]{../thirty-ninth-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第9讲：电磁感应：基本原理},{lecture:9}}
+]{../fortieth-section/build/main.pdf}
+
+\includepdf[
+  pages=-,
+  pagecommand={},
+  addtotoc={1,chapter,1,{第10讲：补充阅读——电磁场与超导体（选讲）},{lecture:10}}
+]{../forty-first-section/build/main.pdf}
+
+\end{document}

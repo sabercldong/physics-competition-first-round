@@ -1,0 +1,349 @@
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.11【貌似简谐振动】}
+半径为 $R$ 的圆柱形区域内有垂直纸面向里的匀强磁场
+$B=B_0\sin\omega t$。在距离圆心 $h$ 的一条弦上有光滑直轨，带电质点 $m,+q$ 被约束在轨道中，初始位于弦中点且静止。
+
+(1) 求粒子的运动规律和任意时刻的位置；
+
+(2) 求保证粒子不离开磁场区域的参数条件。
+\end{origexamplebox}
+
+\begin{xesolution}
+取轨道方向向右为 $x$ 轴，原点在弦中点。对于圆柱内的匀强时变磁场，感生电场可写为
+\begin{equation}
+  \vect E=-\frac12\dot B_z\,\uvec z\times\vect r.
+\end{equation}
+磁场指向纸内，在圆心下方距离 $h$ 的弦上，电场沿轨道的分量与 $x$ 无关：
+\begin{equation}
+  E_x=\frac h2\dot B=\frac{hB_0\omega}{2}\cos\omega t.
+\end{equation}
+磁力与轨道方向垂直，由轨道的支持力平衡，因而只有电场力改变 $x$ 向运动：
+\begin{equation}
+  m\ddot x=\frac{qhB_0\omega}{2}\cos\omega t.
+\end{equation}
+由 $x(0)=0,\dot x(0)=0$ 得
+\begin{equation}
+  \boxed{\dot x(t)=\frac{qhB_0}{2m}\sin\omega t},
+  \qquad
+  \boxed{x(t)=\frac{qhB_0}{2m\omega}(1-\cos\omega t)}.
+\end{equation}
+这是绕平衡位置 $x_c=qhB_0/(2m\omega)$ 的简谐形运动，但驱动来自时变磁场，并非恢复力。弦的半长为
+$s=\sqrt{R^2-h^2}$，而 $|x|$ 的最大值为 $|q|hB_0/(m\omega)$，故条件为
+\begin{equation}
+  \boxed{\frac{|q|hB_0}{m\omega}\le\sqrt{R^2-h^2}}.
+\end{equation}
+
+\chordParticleDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.12【感生电动势】}
+半径为 $R$ 的圆柱区域内有垂直纸面向里的匀强磁场
+$B=B_0+kt$。距圆心 $h$ 处有一条无限长直导线 $AD$，与圆的两个交点为 $A,C$，$D$ 位于 $C$ 右侧无穷远处。求沿 $A\to C$、$C\to D$ 两段的感生电动势。
+\end{origexamplebox}
+
+\begin{xesolution}
+令 $s=\sqrt{R^2-h^2}$，并取导线向右为积分正向。磁场向里增大时，感生电场从读者视角看为逆时针，因而在圆心下方的导线上其分量向右。
+
+圆内电场 $E_\varphi=kr/2$。在水平线 $y=-h$ 上，其 $x$ 分量为常量 $kh/2$，故
+\begin{equation}
+  \boxed{\mathcal E_{AC}=\int_{-s}^{s}\frac{kh}{2}\dd x
+  =kh\sqrt{R^2-h^2}}.
+\end{equation}
+圆外电场 $E_\varphi=kR^2/(2r)$，而水平分量为
+\begin{equation}
+  E_x=\frac{kR^2h}{2(x^2+h^2)}.
+\end{equation}
+因此
+\begin{align}
+  \mathcal E_{CD}
+  &=\frac{kR^2h}{2}\int_s^\infty\frac{\dd x}{x^2+h^2}\\
+  &=\frac{kR^2}{2}\left(\frac\pi2-\arctan\frac{s}{h}\right)
+   =\boxed{\frac{kR^2}{2}\arcsin\frac hR}.
+\end{align}
+后一段虽然完全位于无磁场区域，感生电场却并不为零；这正是涡旋电场与“局部磁力”图像的区别。
+
+\chordEmfDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.13【这是测的啥】}
+半径为 $R$ 的圆柱区域内有垂直纸面向里的匀强磁场 $B=B_0+kt$。边缘处放置一根不均匀的圆形电阻线，两端点为 $A,C$。
+劣弧 $AC$ 的圆心角为 $2\pi/3$、电阻为 $r_0/4$；优弧 $AC$ 的圆心角为 $4\pi/3$、电阻为 $r_0/3$。电压表 $V_1,V_2$ 分别紧贴劣弧和优弧连接 $A,C$；
+$V_3$ 的两根导线从 $A,C$ 沿径向通到圆心。求三表示数并解释它们测量的物理量。
+\end{origexamplebox}
+
+\begin{xesolution}
+总感应电动势的大小为
+\begin{equation}
+  \mathcal E_0=k\pi R^2.
+\end{equation}
+电阻线中的电流为
+\begin{equation}
+  I=\frac{\mathcal E_0}{r_0/4+r_0/3}
+  =\frac{12\mathcal E_0}{7r_0}.
+\end{equation}
+$V_1,V_2$ 的导线各自紧贴被测电阻弧，电压表与电阻弧围成的面积可趋于零，所以它们读出的是相应电阻上的 Ohm 压降：
+\begin{equation}
+  \boxed{V_1=I\frac{r_0}{4}=\frac37\mathcal E_0},
+  \qquad
+  \boxed{V_2=I\frac{r_0}{3}=\frac47\mathcal E_0}.
+\end{equation}
+$V_3$ 的两根引线都沿径向，引线上 $\vect E_{\rm ind}\cdot\dd\vect\ell=0$。劣弧和两根径向线围成的扇形面积为 $\pi R^2/3$，其感应电动势为 $\mathcal E_0/3$。因此
+\begin{equation}
+  \boxed{V_3=\left|I\frac{r_0}{4}-\frac{\mathcal E_0}{3}\right|
+  =\frac{2}{21}\mathcal E_0}.
+\end{equation}
+$V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意一段电阻压降。时变磁场中 $\oint\vect E\cdot\dd\vect\ell\ne0$，“两点间电压”会依赖电压表引线的路径。
+
+\circularVoltmetersDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.14【这也可以测】}
+边长为 $a$ 的正方形导线框放在垂直纸面向里的匀强磁场 $B=B_0+kt$ 中。左、右两边电阻分别为 $R_1,R_2$，上、下两边电阻忽略。
+电压表 $V_1,V_2,V_3,V_4$ 分别紧贴上、右、下、左四边连接。求各表示数并解释其物理意义。
+\end{origexamplebox}
+
+\begin{xesolution}
+线框的感应电动势大小为 $\mathcal E_0=ka^2$，电流大小为
+\begin{equation}
+  I=\frac{ka^2}{R_1+R_2}.
+\end{equation}
+紧贴某一边的电压表与该边围成的面积趋于零，因此其读数就是该边的 Ohm 压降。上下两边无电阻，故
+\begin{equation}
+  \boxed{V_1=0},
+  \qquad
+  \boxed{V_2=\frac{R_2}{R_1+R_2}ka^2},
+\end{equation}
+\begin{equation}
+  \boxed{V_3=0},
+  \qquad
+  \boxed{V_4=\frac{R_1}{R_1+R_2}ka^2}.
+\end{equation}
+虽然 $V_1$ 和 $V_3$ 都连在左右两侧导体之间，但它们的引线路径不同。在涡旋电场中，不能脱离测量路径把“两点电压”当成唯一的标量。
+
+\squareVoltmetersDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.15【奇妙的田字格】}
+一个总边长为 $2a$ 的“田”字格电阻网络放在垂直纸面向里的匀强磁场 $B=B_0+kt$ 中。每根导线的单位长度电阻为 $r/a$，因而每段长为 $a$ 的小边电阻为 $r$。求各支路电流。
+\end{origexamplebox}
+
+\begin{xesolution}
+四个边长为 $a$ 的小方格所围面积相同，每个网孔的感应电动势都是
+\begin{equation}
+  \mathcal E_c=ka^2,
+\end{equation}
+且方向都为逆时针。由四重旋转对称性，四个网孔电流必然相等，记为 $i$。每一条内部十字支路都是两个相邻网孔的公用边，两个等大网孔电流在其上方向相反，故内部支路的实际电流为零。
+
+对任一小网孔写 Kirchhoff 方程，只有位于外边界的两段电阻产生压降：
+\begin{equation}
+  2ri=ka^2.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{i=\frac{ka^2}{2r}}.
+\end{equation}
+外周八段小边均通有大小 $ka^2/(2r)$ 的逆时针电流，中央十字的四段电流均为零。
+
+\gridCurrentDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.16【万能的 Kirchhoff】}
+证明：任意复杂的、仅含电阻和理想电源的线性网络放入匀强时变磁场 $B=B_0+kt$ 中，只要所有支路参数和各独立回路所围面积均已知，就能求出所有支路电流；并证明此时仍满足电源叠加定理。
+\end{origexamplebox}
+
+\begin{xesolution}
+为网络选取 $n$ 个独立网孔电流，组成列向量 $\vect i$。记 $\vect R$ 为由支路电阻组成的网孔电阻矩阵，$\vect e$ 为理想电源在各网孔中的代数和，
+$\vect S=(S_1,\ldots,S_n)^{\mathsf T}$ 为有符号面积列向量。Faraday--Kirchhoff 方程可写成
+\begin{equation}
+  \boxed{\vect R\vect i=\vect e-k\vect S}.
+\end{equation}
+对被动电阻网络，在选取独立网孔后 $\vect R$ 为正定矩阵，因而可逆。所以
+\begin{equation}
+  \boxed{\vect i=\vect R^{-1}\vect e-k\vect R^{-1}\vect S}.
+\end{equation}
+再用网孔--支路关联矩阵即可恢复所有支路电流。上式的第一项是普通电源单独作用的响应，第二项是时变磁场等效电源单独作用的响应，两者线性相加，故叠加定理仍然成立。
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.17【自感线圈】}
+一个理想密绕长螺线管的长度为 $l$、半径为 $R$、单位长度匂数为 $n$。
+
+(1) 求其自感；
+
+(2) 若把它看成左右两部分，整体自感是否等于两部分自感之和？
+\end{origexamplebox}
+
+\begin{xesolution}
+螺线管内部磁场为 $B=\mu_0nI$，截面积 $A=\pi R^2$，总匂数 $N=nl$。磁链为
+\begin{equation}
+  \Lambda=N\Phi=(nl)(\mu_0nI)(\pi R^2).
+\end{equation}
+所以
+\begin{equation}
+  \boxed{L=\frac\Lambda I=\mu_0n^2\pi R^2l}.
+\end{equation}
+若左右两段长度为 $l_1,l_2$，且 $l_1+l_2=l$，在“足够长、端部效应可忽略”的理想模型中
+\begin{equation}
+  L_1+L_2=\mu_0n^2\pi R^2(l_1+l_2)=L.
+\end{equation}
+因而在该近似下答案是“等于”。对真实有限长线圈，分割后会改变边缘场和两段的互感，简单可加性不再严格成立。
+
+\solenoidSplitDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.18【互感线圈】}
+两个单匂线圈放置在任意位置，分别通入电流 $I_1,I_2$。证明：1 号线圈产生的磁场穿过 2 号线圈的磁通量与 $I_1$ 之比，等于 2 号线圈产生的磁场穿过 1 号线圈的磁通量与 $I_2$ 之比，即 $M_{12}=M_{21}$。
+\end{origexamplebox}
+
+\begin{xesolution}
+使用稳恒线电流的矢势
+\begin{equation}
+  \vect A_1(\vect r_2)=\frac{\mu_0I_1}{4\pi}
+  \oint_{C_1}\frac{\dd\vect\ell_1}{r_{12}}.
+\end{equation}
+由 Stokes 定理，1 号线圈在 2 号线圈中建立的磁通为
+\begin{align}
+  \Phi_{2\leftarrow1}
+  &=\oint_{C_2}\vect A_1\cdot\dd\vect\ell_2\\
+  &=\frac{\mu_0I_1}{4\pi}\oint_{C_2}\!\oint_{C_1}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{r_{12}}.
+\end{align}
+因此
+\begin{equation}
+  M_{12}=\frac{\Phi_{2\leftarrow1}}{I_1}
+  =\frac{\mu_0}{4\pi}\oint_{C_1}\!\oint_{C_2}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{r_{12}}.
+\end{equation}
+交换积分次序及下标 $1,2$，点积和距离 $r_{12}$ 均不变，所以
+\begin{equation}
+  \boxed{M_{12}=M_{21}}.
+\end{equation}
+两回路的形状、大小和相对位置可以任意，证明只用到线性介质中的 Biot--Savart 结构。
+
+\mutualLoopsProofDiagram
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.19【RLC 回路】}
+电阻 $R$、电感 $L$、电容 $C$ 串联成回路。初始电流为零，电容初电压为 $U$。$t=0$ 闭合开关，求任意时刻的放电电流。
+\end{origexamplebox}
+
+\begin{xesolution}
+记电容器带电量为 $q$，并把放电方向的电流取为 $I=-\dot q$。则
+\begin{equation}
+  L\ddot q+R\dot q+\frac qC=0,
+  \qquad q(0)=CU,
+  \qquad \dot q(0)=0.
+\end{equation}
+特征根为
+\begin{equation}
+  s_\pm=-\frac{R}{2L}\pm
+  \sqrt{\left(\frac{R}{2L}\right)^2-\frac1{LC}}.
+\end{equation}
+对 $s_+\ne s_-$，电流的统一表达式为
+\begin{equation}
+  \boxed{I(t)=\frac UL\,
+  \frac{\e^{s_+t}-\e^{s_-t}}{s_+-s_-}}.
+\end{equation}
+当 $R<2\sqrt{L/C}$ 时，记
+\begin{equation}
+  \alpha=\frac{R}{2L},
+  \qquad
+  \omega_d=\sqrt{\frac1{LC}-\alpha^2},
+\end{equation}
+则欠阻尼电流为
+\begin{equation}
+  \boxed{I(t)=\frac{U}{L\omega_d}\e^{-\alpha t}\sin\omega_dt}.
+\end{equation}
+临界阻尼 $R=2\sqrt{L/C}$ 时，
+\begin{equation}
+  \boxed{I(t)=\frac UL,t\e^{-Rt/(2L)}}.
+\end{equation}
+过阻尼情形直接使用实根形式。电流的初值为零是电感电流不能突变的结果，而非“电容还没开始放电”。
+
+\rlcDiagram{0}
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.20【电源凑热闹】}
+电阻 $R$、电感 $L$、电容 $C$ 与恒定电源 $\mathcal E$ 串联成回路。初始电流为零，电容初电压为 $U$。$t=0$ 闭合开关，求任意时刻的电流。
+\end{origexamplebox}
+
+\begin{xesolution}
+取电源充电方向为电流正方向，令 $q$ 为电容正极板电量，$I=\dot q$。回路方程为
+\begin{equation}
+  L\ddot q+R\dot q+\frac qC=\mathcal E,
+  \qquad q(0)=CU,
+  \qquad \dot q(0)=0.
+\end{equation}
+把 $q=C\mathcal E+y$ 代入，$y$ 满足与上题完全相同的齐次方程，只是初值由 $CU$ 换成 $C(U-\mathcal E)$。因此
+\begin{equation}
+  \boxed{I(t)=\frac{\mathcal E-U}{L}\,
+  \frac{\e^{s_+t}-\e^{s_-t}}{s_+-s_-}},
+\end{equation}
+其中 $s_\pm$ 与上题相同。欠阻尼时
+\begin{equation}
+  \boxed{I(t)=\frac{\mathcal E-U}{L\omega_d}
+  \e^{-\alpha t}\sin\omega_dt}.
+\end{equation}
+若 $U=\mathcal E$，初始电容电压已与电源平衡，回路不产生电流；若 $U>\mathcal E$，上式给出负电流，即电容反向向电源一侧放电。
+
+\rlcDiagram{1}
+\end{xesolution}
+
+\Needspace{0.12\textheight}
+\begin{origexamplebox}{例题 37.21【磁悬浮列车】}
+把列车等效为一个长为 $a$、宽为 $L$、总电阻为 $R_c$ 且自感可忽略的闭合导体框，质量为 $m$。导轨中存在行波磁场
+\begin{equation*}
+  B(x,t)=B_0\cos(kx-\omega t),
+\end{equation*}
+方向垂直导体框平面。
+
+(1) 若某时刻车体左边坐标为 $x$、向右速度为 $v$，求瞬时电磁动力；
+
+(2) 解释这种行波磁场为何能驱动列车。
+\end{origexamplebox}
+
+\begin{xesolution}
+令
+\begin{equation}
+  \xi=k\left(x+\frac a2\right)-\omega t,
+  \qquad
+  \delta=\frac{ka}{2},
+  \qquad
+  v_\phi=\frac\omega k.
+\end{equation}
+穿过导体框的磁通为
+\begin{align}
+  \Phi(x,t)
+  &=L\int_x^{x+a}B_0\cos(kx'-\omega t)\dd x'\\
+  &=\frac{2LB_0}{k}\sin\delta\cos\xi.
+\end{align}
+跟随车体求时间导数，得总感应电动势
+\begin{equation}
+  \mathcal E=-\frac{\dd\Phi}{\dd t}
+  =2LB_0\sin\delta\sin\xi\,(v-v_\phi).
+\end{equation}
+忽略自感时 $I=\mathcal E/R_c$。对回路做微小平移，磁场力可写为 $F_x=I\,\partial\Phi/\partial x$，而
+\begin{equation}
+  \frac{\partial\Phi}{\partial x}=-2LB_0\sin\delta\sin\xi.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{F_x=\frac{4L^2B_0^2}{R_c}\sin^2\!\delta\,\sin^2\!\xi\,(v_\phi-v)}.
+\end{equation}
+若在一个磁场周期上取平均，
+\begin{equation}
+  \boxed{\langle F_x\rangle=\frac{2L^2B_0^2}{R_c}
+  \sin^2\!\frac{ka}{2}\,(v_\phi-v)}.
+\end{equation}
+当列车慢于行波相速 $v_\phi$ 时，平均力向右，使列车加速；当列车快于行波时，力改为阻力。导体框的速度因而被拉向行波相速，这就是直线感应电机与部分磁悬浮驱动的基本图像。若保留车体自感 $L_c$，只需把 $I=\mathcal E/R_c$ 改为 $L_c\dot I+R_cI=\mathcal E$，不改变“趋向同步”的结论。
+
+\travelingFieldTrainDiagram
+\end{xesolution}

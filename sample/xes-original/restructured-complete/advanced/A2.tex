@@ -1,0 +1,617 @@
+\begingroup
+\input{advanced/layout.tex}
+\AdvancedUnit{2}{热学}
+
+\section{热力学}
+
+\subsection{热力学定律与基本关系}
+
+热力学（thermodynamics）研究宏观体系的平衡态与状态变化。研究对象可以是易拉罐中的饮料、大气中的气团，也可以是外磁场中的超导体；选定对象称为\emph{体系}，其余部分称为外界。第一定律排除第一类永动机，第二定律排除把单一热源吸收的热量全部变成功的循环装置，第三定律则说明绝对零度不能由有限步骤达到。不同表述的逻辑起点虽有差别，但最终必须给出相同的可观测预言。
+
+体系处于平衡态时，内部各子体系之间以及体系与外界之间均无宏观净流。体系具有内能 $U$；第 $i$ 种物质用粒子数 $N_i$ 表示，辐射等粒子数不守恒的成分则不必把粒子数列为独立变量。
+
+\begin{advtheorem}{宏观态的完备参数组}\label{advA2:thm:macrostate}
+一个平衡宏观态可由内能、宏观广义坐标和各组分粒子数完整描述：
+\[
+ A=A(U,\{X_\alpha\},\{N_i\}).
+\]
+若只保留一个体积坐标，则写成 $A=A(U,V,\{N_i\})$。
+\end{advtheorem}
+这里“完整”意味着参数空间与宏观状态空间之间是一一对应：不存在遗漏状态，同一组参数也不代表两个不同的宏观态。实际过程若不能视为连续平衡态序列，称为非准静态过程；全过程都经过平衡态的理想极限称为准静态过程。准静态还不自动等于可逆，只有不存在摩擦、有限温差传热等耗散时才可逆。
+
+均匀体系中的量分为广延量和强度量。广延量随体系复制而同比放大，
+\[
+ A(\lambda U,\lambda V,\lambda N)=\lambda A(U,V,N),
+\]
+强度量则满足 $a(\lambda U,\lambda V,\lambda N)=a(U,V,N)$。内能、体积和粒子数既是广延量，又对互不相互作用的子体系具有加性；大量相同体系构成系综。孤立体系满足 $U,V,N$ 均不与外界交换。
+
+\begin{advtheorem}{熵原理}\label{advA2:thm:entropy-principle}
+平衡热力学可用一个加性态函数
+\[
+ S=S(U,V,N)
+\]
+组织。在本节所讨论的正温度体系中，熵随内能单调增加；孤立体系的可逆过程总熵不变，不可逆过程总熵增加。
+\end{advtheorem}
+
+\begin{advdefinition}{温度、压强与化学势}\label{advA2:def:intensives}
+对单组分简单体系定义
+\[
+ \left(\frac{\partial S}{\partial U}\right)_{V,N}=\frac1T,
+ \quad
+ \left(\frac{\partial S}{\partial V}\right)_{U,N}=\frac pT,
+ \quad
+ \left(\frac{\partial S}{\partial N}\right)_{U,V}=-\frac\mu T.
+\]
+因此
+\begin{equation}\label{advA2:eq:entropy-fundamental}
+ \dd S=\frac{\dd U}{T}+\frac pT\dd V-\frac\mu T\dd N,
+ \qquad
+ \dd U=T\dd S-p\dd V+\mu\dd N.
+\end{equation}
+\end{advdefinition}
+式\eqref{advA2:eq:entropy-fundamental}立即解释三个自发交换方向：热量从高温流向低温，机械平衡要求两侧压强相等，可交换粒子时平衡要求化学势相等。
+
+\begin{advexamplebox}{小压强一侧为何仍可能膨胀}\label{advA2:ex:pressure-temperature}
+两个子体系满足 $p_1<p_2$ 且 $T_1<T_2$。在固定各子体系内能与粒子数的熵虚变分中，解释为什么体积从体系2转给体系1仍可能使总熵增加；说明这是否就是自由绝热活塞的实际运动判据。
+\end{advexamplebox}
+\begin{advsolution}
+令 $\dd V_1=-\dd V_2>0$，并按题设在状态空间中固定 $U_1,U_2,N_1,N_2$，则
+\[
+ \dd S_{\rm tot}
+ =\left(\frac{p_1}{T_1}-\frac{p_2}{T_2}\right)\dd V_1.
+\]
+决定方向的是 $p/T$，不是单独的 $p$。例如取
+$p_1=1,T_1=1,p_2=2,T_2=3$，虽然 $p_1<p_2$，却有
+$p_1/T_1>p_2/T_2$，所以 $\dd V_1>0$ 对应熵增。单位检查：$p\dd V/T$ 的单位为能量除以温度，正是熵。这里比较的是受约束的邻近平衡态。实际绝热活塞移动时两侧一般还发生压强功引起的内能变化；总容器绝热并不意味着各侧 $\dd U_i=0$。因此不能据此断言自由活塞会自发向高压侧移动。
+\end{advsolution}
+
+\newcommand{\ASecondThermodynamicsLater}{%
+\subsection{热力学函数}
+
+\begin{advdefinition}{五个常用热力学势}\label{advA2:def:potentials}
+对单组分体系，常用势及其自然变量为
+\[
+\begin{array}{c|c|c}
+\text{势}&\text{定义}&\text{全微分}\\ \hline
+U(S,V,N)&U&\dd U=T\dd S-p\dd V+\mu\dd N\\
+H(S,p,N)&U+pV&\dd H=T\dd S+V\dd p+\mu\dd N\\
+F(T,V,N)&U-TS&\dd F=-S\dd T-p\dd V+\mu\dd N\\
+G(T,p,N)&U-TS+pV&\dd G=-S\dd T+V\dd p+\mu\dd N\\
+\Omega(T,V,\mu)&F-\mu N&\dd\Omega=-S\dd T-p\dd V-N\dd\mu
+\end{array}
+\]
+均匀宏观体系有 $\Omega=-pV$。源资料把 $-\Omega=pV$ 记作巨势；本卷采用统计物理中更常见的符号约定，并在后文保持一致。
+\end{advdefinition}
+
+\begin{advtheorem}{麦克斯韦关系}\label{advA2:thm:maxwell}
+由各热力学势的混合偏导可交换，得到
+\[
+ \left(\frac{\partial T}{\partial V}\right)_S
+ =-\left(\frac{\partial p}{\partial S}\right)_V,
+ \quad
+ \left(\frac{\partial T}{\partial p}\right)_S
+ =\left(\frac{\partial V}{\partial S}\right)_p,
+\]
+\[
+ \left(\frac{\partial S}{\partial V}\right)_T
+ =\left(\frac{\partial p}{\partial T}\right)_V,
+ \quad
+ \left(\frac{\partial S}{\partial p}\right)_T
+ =-\left(\frac{\partial V}{\partial T}\right)_p.
+\]
+\end{advtheorem}
+例如最后两式分别来自 $F_{TV}=F_{VT}$ 与 $G_{Tp}=G_{pT}$。这一方法同时说明每个偏导中必须固定哪个自然变量，不能只凭符号记忆。
+
+\begin{advexamplebox}{吉布斯--亥姆霍兹方程}\label{advA2:ex:gibbs-helmholtz}
+证明
+\[
+ \boxed{\left[\frac{\partial(G/T)}{\partial T}\right]_p=-\frac{H}{T^2}}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+在定压下 $G_T=-S$，而 $G=H-TS$。因此
+\[
+ \left[\frac{\partial(G/T)}{\partial T}\right]_p
+ =\frac{TG_T-G}{T^2}
+ =\frac{-TS-(H-TS)}{T^2}=-\frac H{T^2}.
+\]
+两边单位均为熵除以温度。
+\end{advsolution}
+
+\begin{advexamplebox}{液膜表面张力与表面热力学}\label{advA2:ex:surface-thermodynamics}
+面积为 $A$ 的液膜，其表面自由能为 $F_s=\gamma(T)A$。
+\begin{enumerate}
+ \item 求表面熵与表面内能。
+ \item 若 $\gamma=C(T_c-T)$，等温增加面积 $\Delta A$，求外力功与吸热。
+ \item 若 $\gamma=CT_c(1-T/T_c)^a$ 且 $1<a<2$，保持面积不变加热时表面层吸热还是放热？这是否意味着整个液体具有负热容？
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+表面功项为 $\gamma\dd A$，故
+\[
+ \dd F_s=-S_s\dd T+\gamma\dd A,
+ \quad
+ \boxed{S_s=-A\gamma'(T)},
+ \quad
+ \boxed{U_s=F_s+TS_s=A[\gamma-T\gamma']}.
+\]
+等温拉伸时
+\[
+ \boxed{W_{\rm ext}=\gamma\Delta A},
+ \qquad
+ \boxed{Q=T\Delta S_s=-T\gamma'\Delta A}.
+\]
+对线性定律，$W_{\rm ext}=C(T_c-T)\Delta A$，$Q=CT\Delta A>0$。
+
+定面积时表面热容
+\[
+ C_A=T\left(\frac{\partial S_s}{\partial T}\right)_A
+ =-TA\gamma''(T).
+\]
+当 $1<a<2$ 时 $\gamma''>0$，故表面\emph{贡献}为负，即升温时表面层向体相释放能量。这不等于完整孤立液体的总热容为负：表面层不是可独立隔离的宏观体系，体相热容与表面--体相能量交换必须同时计入。临界点附近还要考虑涨落，经验幂律也不能任意外推。
+\end{advsolution}
+
+\begin{advexamplebox}{重力场中理想气体与悬挂球争议}\label{advA2:ex:gravity-heat-capacity}
+质量为 $m$ 的经典分子在 $0\le z\le H$ 内运动，外场势能为 $mgz$。除竖直势能外，每个分子的二次型自由度给出热容 $fk/2$。
+\begin{enumerate}
+ \item 求 $N$ 个分子的 $U(g,T)$ 与定 $g$ 热容 $C_g$，并比较 $g=0$ 与 $g\to\infty$。
+ \item 对一般处在外场 $g$ 中的物体，令总质量为 $M$、质心高度为 $z(T,g)$，定义
+ $\alpha_z=z^{-1}(\partial z/\partial T)_g$。推导 $(\partial C_g/\partial g)_T$。
+ \item 地面上承托的球与天花板下悬挂的球吸收相同热量时，能否仅凭“膨胀时重力做功的正负”断言谁升温更多？
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+单粒子的竖直构型配分因子为
+\[
+ Z_z=\int_0^H e^{-mgz/(kT)}\dd z
+ =\frac{1-e^{-x}}{\beta mg},
+ \qquad x=\frac{mgH}{kT}.
+\]
+因此平均重力势能为
+\[
+ \langle mgz\rangle=-\frac{\partial\ln Z_z}{\partial\beta}
+ =kT\left(1-\frac{x}{e^x-1}\right).
+\]
+于是
+\[
+ \boxed{U=N\left[\frac f2kT+kT\left(1-\frac{x}{e^x-1}\right)\right]},
+\]
+\[
+ \boxed{C_g=Nk\left[\frac f2+1-\frac{x^2e^x}{(e^x-1)^2}\right]}.
+\]
+$x\to0$ 时括号中的重力贡献趋于零；$x\to\infty$ 时趋于1，所以
+$C_g\to Nfk/2$ 与 $Nk(f/2+1)$。极限连续且热容为正。
+
+把重力势能包括在体系能量中，亥姆霍兹自由能满足
+\[
+ \dd F=-S\dd T+Mz\dd g.
+\]
+混合偏导给出
+\[
+ \left(\frac{\partial S}{\partial g}\right)_T
+ =-M\left(\frac{\partial z}{\partial T}\right)_g=-Mz\alpha_z.
+\]
+再对 $C_g=T(\partial S/\partial T)_g$ 求导：
+\[
+ \boxed{\left(\frac{\partial C_g}{\partial g}\right)_T
+ =-MT\frac{\partial(z\alpha_z)}{\partial T}
+ =-MT\left(\frac{\partial^2z}{\partial T^2}\right)_g}.
+\]
+直接把上面的气体质心 $z=(kT/mg)-H/(e^x-1)$ 代入，可复现 $C_g$ 对 $g$ 的变化。
+
+对两个球，支承方式改变了应力分布、质心高度函数和热容。升温量应由完整的
+$\Delta T=Q/C_g$ 决定，不能把“内能增加”与“温度增加”直接等同。若假设仅靠支承方向便能无条件得到固定温差，把两球交替接触热库并互换支承即可构造从单一热源循环取功的装置，违背第二定律。因此争议推理中不严谨的是忽略状态方程、弹性能和热容，仅按重力功符号比较温升。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-2.7cm]
+  \draw[ground] (-1.2,0)--(1.2,0);
+  \draw[very thick,fill=DeepBlue!6] (0,.72) circle(.72);
+  \draw[vector] (0,.72)--(0,.15) node[midway,right]{$Mg$};
+  \node at (0,-.45) {地面承托};
+ \end{scope}
+ \begin{scope}[xshift=2.7cm]
+  \draw[ground] (-1.2,2.25)--(1.2,2.25);
+  \draw[very thick] (0,2.25)--(0,1.45);
+  \draw[very thick,fill=DeepBlue!6] (0,.73) circle(.72);
+  \draw[vector] (0,.73)--(0,.16) node[midway,right]{$Mg$};
+  \node at (0,-.45) {绳悬挂};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{支承方式改变约束和应力，不能只按重力功的正负判断温升}\label{advA2:fig:supported-balls}
+\end{minipage}\end{center}
+图\ref{advA2:fig:supported-balls}只表达约束差别；比较温升时必须为两种约束分别求 $z(T,g)$ 与 $C_g$。
+\end{advsolution}
+
+\subsection{相平衡与相变}
+
+同一温度、压强下，相共存要求两相的化学势相等。对单组分物质，$\dd\mu=-s\dd T+v\dd p$，故沿共存线
+\[
+ \frac{\dd p}{\dd T}=\frac{s_2-s_1}{v_2-v_1}
+ =\frac{\ell}{T(v_2-v_1)}.
+\]
+这里 $s,v,\ell$ 必须统一为每摩尔量或每单位质量量。分母很小时不能直接使用“液体体积可忽略”的蒸气近似。
+
+\paragraph{由自由能得到等面积条件。}
+等温线上若状态方程出现回折，机械稳定要求 $(\partial p/\partial v)_T<0$；斜率为正的部分不是可稳定保持的均匀相。
+记摩尔 Helmholtz 自由能为 $f$，则 $\dd f=-p\dd v$。两端相同 $p_*$ 且 $\mu=f+p_*v$ 相等，给出
+\[
+ \int_{v_1}^{v_2}[p(v,T)-p_*]\dd v=0.
+\]
+这就是 Maxwell 等面积条件，确定的是两相共存端点；$(\partial p/\partial v)_T=0$ 给出的旋节边界只标记均匀相局部稳定性丧失。临界点处两端合并，常见光滑状态方程满足一、二阶体积导数同时为零。解题时应先问所求是共存、局部稳定，还是临界条件，三者不能互换。
+
+
+\begin{advtheorem}{范德瓦耳斯流体的临界点与对比状态方程}\label{advA2:thm:vdw}
+对
+\[
+ \left(p+\frac{N^2a}{V^2}\right)(V-Nb)=NkT,
+\]
+临界常数和对比状态方程为
+\[
+ \boxed{V_c=3Nb,\quad p_c=\frac{a}{27b^2},\quad kT_c=\frac{8a}{27b}},
+\]
+\[
+ \boxed{\left(\pi+\frac3{v^2}\right)(3v-1)=8t},
+ \quad v=\frac V{V_c},\ \pi=\frac p{p_c},\ t=\frac T{T_c}.
+\]
+\end{advtheorem}
+证明：把压强写成
+$p=NkT/(V-Nb)-N^2a/V^2$。临界等温线的水平拐点满足
+$(\partial p/\partial V)_T=(\partial^2p/\partial V^2)_T=0$；联立即得三项临界常数。代入无量纲变量后，材料参数 $a,b$ 全部消失，得到对比状态方程。
+
+两相平衡要求 $T_1=T_2,p_1=p_2,\mu_1=\mu_2$。一级相变中 $\mu$ 的一阶导数，即摩尔熵和摩尔体积，可以跃变；连续相变的一阶导数连续而二阶导数可跃变。
+
+\begin{advtheorem}{克拉珀龙与埃伦费斯关系}\label{advA2:thm:clapeyron}
+一级相变共存曲线满足
+\[
+ \boxed{\frac{\dd p}{\dd T}=\frac{\Delta s}{\Delta v}=\frac{L}{T\Delta v}}.
+\]
+连续相变在相界上若 $s,v$ 连续，则
+\[
+ \boxed{\frac{\dd p}{\dd T}=\frac{\Delta c_p}{Tv\Delta\alpha}
+ =\frac{\Delta\alpha}{\Delta\kappa_T}}.
+\]
+\end{advtheorem}
+证明：两相化学势相等，沿共存线微分
+$-s_1\dd T+v_1\dd p=-s_2\dd T+v_2\dd p$，即得克拉珀龙式。连续相变时再分别对 $\Delta s=0$、$\Delta v=0$ 沿相界求全微分，利用
+$s_T=c_p/T,s_p=-v\alpha,v_T=v\alpha,v_p=-v\kappa_T$，便得两条埃伦费斯关系。
+
+\begin{advexamplebox}{超导临界场、潜热与热容突变}\label{advA2:ex:superconducting-transition}
+正常--超导相变的热力学临界场满足
+\[
+ H_c(T)=H_0\left(1-\frac{T^2}{T_c^2}\right).
+\]
+求相变潜热，并求零场二级相变点的单位体积热容突变。
+\end{advexamplebox}
+\begin{advsolution}
+采用SI制，凝聚能密度满足
+\[
+ g_n-g_s=\frac{\mu_0H_c^2}{2}.
+\]
+因此
+\[
+ s_n-s_s=-\mu_0H_c\frac{\dd H_c}{\dd T},
+ \qquad
+ L=T(s_n-s_s)=-\mu_0TH_cH_c'.
+\]
+代入给定函数，
+\[
+ \boxed{L(T)=2\mu_0H_0^2\frac{T^2}{T_c^2}
+ \left(1-\frac{T^2}{T_c^2}\right)}.
+\]
+在零场端点 $T=T_c$，$H_c=0$，所以潜热为零；但
+\[
+ c_s-c_n=T\frac{\dd(s_s-s_n)}{\dd T}
+ =\mu_0T[(H_c')^2+H_cH_c'']
+\]
+给出
+\[
+ \boxed{\Delta c\big|_{T_c}=\frac{4\mu_0H_0^2}{T_c}}.
+\]
+若采用高斯制，只需把 $\mu_0H_c^2/2$ 换成 $H_c^2/(8\pi)$；物理结论不变。
+\end{advsolution}
+
+平均场海森堡模型把每个自旋受到的近邻交换作用替换成与平均磁化强度成正比的分子场。对自旋 $1/2$，令单自旋磁矩 $\mu_s=\hbar\gamma/2$，饱和磁矩 $M_0=N\mu_s$。若每个自旋有 $n$ 个近邻，交换能标为 $\hbar J$，零外场自洽方程可写成
+\begin{equation}\label{advA2:eq:weiss-self-consistent}
+ m=\tanh\!\left(\frac{T_c}{T}m\right),
+ \qquad m=\frac M{M_0},\qquad
+ kT_c=\frac{n\hbar J}{4}.
+\end{equation}
+
+\begin{advexamplebox}{外斯模型的临界温度}\label{advA2:ex:weiss-critical}
+由自洽方程在正温度下，证明自发磁化的非零解只在 $T<T_c=n\hbar J/(4k)$ 时出现，并检查 $T=T_c$。
+\end{advexamplebox}
+\begin{advsolution}
+$m=0$ 总是解。临界点附近展开 $\tanh x=x-x^3/3+\cdots$：
+\[
+ m=\frac{T_c}{T}m-\frac13\left(\frac{T_c}{T}m\right)^3+\cdots.
+\]
+非零解要求线性项斜率 $T_c/T>1$，即 $T<T_c$。在 $T=T_c$，由于 $|\tanh m|<|m|$ 对所有 $m\ne0$ 成立，仍只有 $m=0$。$T>T_c$ 时右端曲线在原点斜率小于1，且始终被 $m$ 直线压住，故没有别的交点。
+\end{advsolution}
+
+\begin{advexamplebox}{铁磁相变曲线与临界指数}\label{advA2:ex:weiss-curve}
+证明零场相变曲线可写成
+\[
+ \frac{T}{T_c}=\frac{2m}{\ln[(1+m)/(1-m)]},
+\]
+求 $M_0$ 并确定 $T\to T_c^-$ 时磁化强度的临界指数。
+\end{advexamplebox}
+\begin{advsolution}
+对式\eqref{advA2:eq:weiss-self-consistent}取反双曲正切：
+\[
+ \frac{T_c}{T}m=\operatorname{artanh}m
+ =\frac12\ln\frac{1+m}{1-m},
+\]
+即得题式。自旋全同向时
+$\boxed{M_0=N\hbar\gamma/2}$。临界附近由上例展开式，
+\[
+ m^2\simeq3\left(1-\frac T{T_c}\right),
+ \quad
+ \boxed{M\propto(T_c-T)^{1/2}}.
+\]
+平均场磁化临界指数为 $1/2$。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \draw[axis] (0,0)--(4.5,0) node[right]{$T/T_c$};
+ \draw[axis] (0,0)--(0,2.8) node[above]{$M/M_0$};
+ \draw[curve] plot[smooth] coordinates {
+   (0,2.4) (.72,2.40) (1.44,2.37) (2.16,2.18)
+   (2.88,1.70) (3.24,1.26) (3.42,.91) (3.60,0)};
+ \draw[guide] (3.6,0)--(3.6,2.55);
+ \node[below] at (3.6,0) {$1$};
+ \node[left] at (0,2.4) {$1$};
+\end{tikzpicture}
+\bookcaption{平均场磁化强度在临界点连续降为零，近临界区呈平方根律}\label{advA2:fig:weiss-curve}
+\end{minipage}\end{center}
+\end{advsolution}
+
+\begin{advexamplebox}{居里--外斯定律}\label{advA2:ex:curie-weiss}
+在线性弱场区求磁化率，并证明 $1/\chi$ 与 $T-T_c$ 成正比。
+\end{advexamplebox}
+\begin{advsolution}
+把分子场写成 $B_{\rm eff}=B+\lambda M$。弱场高温下
+\[
+ M=N\mu_s\tanh\frac{\mu_s(B+\lambda M)}{kT}
+ \simeq\frac{N\mu_s^2}{kT}(B+\lambda M).
+\]
+定义 $T_c=N\mu_s^2\lambda/k$，解得
+\[
+ \boxed{\chi=\frac{\partial M}{\partial B}
+ =\frac{N\mu_s^2/k}{T-T_c}},
+ \qquad
+ \boxed{\frac1\chi=\frac{k}{N\mu_s^2}(T-T_c)}.
+\]
+当 $\lambda\to0$ 时退化为居里定律 $\chi\propto1/T$。
+\end{advsolution}
+
+朗道理论用序参量 $\phi$ 的对称性组织相变。若体系在 $\phi\to-\phi$ 下不变，最低阶展开可写成
+\[
+ F=F_0+a(T-T_c)\phi^2+b\phi^4+\cdots,
+ \qquad b>0.
+\]
+$T<T_c$ 时平衡序参量为
+$\phi_\pm=\pm\sqrt{-a(T-T_c)/(2b)}$。熵与热容分别为
+\[
+ S=-\left(\frac{\partial F}{\partial T}\right)_\phi,
+ \qquad C=T\left(\frac{\partial S}{\partial T}\right),
+\]
+从而在平均场近似中热容出现有限跃变
+$\Delta C=a^2T_c/(2b)$。
+
+\begin{advexamplebox}{六次朗道势与一级相变}\label{advA2:ex:landau-first-order}
+证明当
+\[
+ F(\phi)=F_0+a\phi^2-b\phi^4+c\phi^6,
+ \qquad a,b,c>0,
+\]
+随控制参量改变时可以发生一级相变，并求两相等自由能时的非零序参量与 $a$。
+\end{advexamplebox}
+\begin{advsolution}
+令 $x=\phi^2\ge0$。非零驻点满足
+\[
+ a-2bx+3cx^2=0.
+\]
+一级相变共存时，$\phi=0$ 与非零极小值具有相同自由能，故还需
+$ax-bx^2+cx^3=0$。两式联立得
+\[
+ \boxed{x=\phi^2=\frac b{2c}},
+ \qquad
+ \boxed{a=\frac{b^2}{4c}}.
+\]
+在共存点序参量从0跳到 $\sqrt{b/(2c)}$，故是一级相变；$c>0$ 保证大 $|\phi|$ 时自由能有下界。若加入空间非均匀与电磁耦合，得到朗道--金兹堡泛函
+\[
+ F=F_n+\alpha|\psi|^2+\frac\beta2|\psi|^4
+ +\frac1{2m}\left|(-i\hbar\nabla-2e\vect A)\psi\right|^2
+ +\frac{|\vect B|^2}{2\mu_0}.
+\]
+\end{advsolution}
+
+}
+
+\begin{advexamplebox}{欧拉齐次函数定理}\label{advA2:ex:euler-homogeneous}
+若 $A(\lambda x_1,\ldots,\lambda x_n)=\lambda^kA(x_1,\ldots,x_n)$，证明
+\[
+ \boxed{kA=\sum_i x_i\frac{\partial A}{\partial x_i}}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+固定 $x_i$，对缩放参数求导：
+\[
+ \frac{\dd}{\dd\lambda}A(\lambda x_i)
+ =\sum_i x_i\frac{\partial A}{\partial(\lambda x_i)}
+ =k\lambda^{k-1}A(x_i).
+\]
+令 $\lambda=1$ 即得结论。对广延热力学量 $k=1$；对强度量 $k=0$，相应加权和为零。
+\end{advsolution}
+
+\begin{advexamplebox}{萨克--泰特洛德方程给出的理想气体热力学}\label{advA2:ex:sackur-tetrode}
+单原子经典理想气体满足
+\[
+ \frac{S}{Nk}=\ln\!\left[
+ \frac VN\left(\frac{4\pi m}{3h^2}\frac UN\right)^{3/2}
+ \right]+\frac52.
+\]
+以 $N,V,T$ 为自变量求 $U,S,p,\mu$。
+\end{advexamplebox}
+\begin{advsolution}
+由熵基本关系，
+\[
+ \frac1T=\left(\frac{\partial S}{\partial U}\right)_{V,N}
+ =\frac{3Nk}{2U},
+\]
+故
+\[
+ \boxed{U=\frac32NkT},\qquad
+ \boxed{p=T\left(\frac{\partial S}{\partial V}\right)_{U,N}
+ =\frac{NkT}{V}}.
+\]
+代回熵式，
+\[
+ \boxed{S=Nk\left\{\ln\!\left[
+ \frac VN\left(\frac{2\pi mkT}{h^2}\right)^{3/2}\right]+\frac52\right\}}.
+\]
+再由 $\mu=-T(\partial S/\partial N)_{U,V}$，或用下述欧拉关系，得到
+\[
+ \boxed{\mu=-kT\ln\!\left[
+ \frac VN\left(\frac{2\pi mkT}{h^2}\right)^{3/2}\right]}.
+\]
+$U$ 与 $pV$ 均与 $NkT$ 同量纲；稀薄极限 $V/N\to\infty$ 时 $\mu\to-\infty$，符合经典气体极限。
+\end{advsolution}
+
+熵式和能量式分别称为熵表象与能量表象的基本关系。绝对零点附近还需第三定律约束积分常数。
+
+\begin{advtheorem}{热力学第三定律的能量表述}\label{advA2:thm:third-law}
+在基态不具有宏观简并的通常情形，$T\to0$ 时熵趋于与外参量无关的常数，可取为零，且
+\[
+ \lim_{S\to0}\left(\frac{\partial U}{\partial S}\right)_{V,N}=0,
+ \qquad
+ U(S,V,N)=U_0(V,N)+\int_0^S T\,\dd S.
+\]
+\end{advtheorem}
+广延性还给出 $U(S,V,N)=Nu(S/N,V/N)$，以后用小写字母表示每粒子量。
+
+\begin{advexamplebox}{化学势关系与吉布斯--杜亥姆关系}\label{advA2:ex:gibbs-duhem}
+证明
+\[
+ \mu=u-Ts+pv,
+ \qquad U=TS-pV+\mu N,
+\]
+并写出吉布斯--杜亥姆关系。
+\end{advexamplebox}
+\begin{advsolution}
+$U(S,V,N)$ 是一次齐次函数。对它应用例\ref{advA2:ex:euler-homogeneous}，再用
+$U_S=T,U_V=-p,U_N=\mu$，得
+\[
+ \boxed{U=TS-pV+\mu N}.
+\]
+除以 $N$ 即有 $\mu=u-Ts+pv$。对欧拉式求微分，并与
+$\dd U=T\dd S-p\dd V+\mu\dd N$ 比较，消去同类项：
+\[
+ \boxed{S\dd T-V\dd p+N\dd\mu=0}.
+\]
+这说明三个强度量不能任意独立改变。
+\end{advsolution}
+
+对定粒子数体系，焓 $H=U+pV$ 满足 $\dd H=T\dd S+V\dd p$。定义
+\[
+ C_p=T\left(\frac{\partial S}{\partial T}\right)_p
+ =\left(\frac{\partial H}{\partial T}\right)_p,
+ \quad
+ C_V=T\left(\frac{\partial S}{\partial T}\right)_V
+ =\left(\frac{\partial U}{\partial T}\right)_V,
+\]
+\[
+ \alpha=\frac1V\left(\frac{\partial V}{\partial T}\right)_p,
+ \quad
+ \beta=\frac1p\left(\frac{\partial p}{\partial T}\right)_V,
+ \quad
+ \kappa_T=-\frac1V\left(\frac{\partial V}{\partial p}\right)_T,
+ \quad
+ \kappa_S=-\frac1V\left(\frac{\partial V}{\partial p}\right)_S.
+\]
+
+\begin{advtheorem}{能态定理}\label{advA2:thm:energy-state}
+\[
+ \boxed{\left(\frac{\partial U}{\partial V}\right)_T+p
+ =T\left(\frac{\partial p}{\partial T}\right)_V}.
+\]
+\end{advtheorem}
+证明：令 $F=U-TS$，则
+$\dd F=-S\dd T-p\dd V$，因而
+$(\partial S/\partial V)_T=(\partial p/\partial T)_V$。又
+\[
+ \left(\frac{\partial U}{\partial V}\right)_T
+ =\left(\frac{\partial F}{\partial V}\right)_T
+ +T\left(\frac{\partial S}{\partial V}\right)_T
+ =-p+T\left(\frac{\partial p}{\partial T}\right)_V.
+\]
+
+\begin{advexamplebox}{膨胀系数、压强系数与等温压缩系数}\label{advA2:ex:alpha-beta-kappa}
+证明 $\alpha=\beta\kappa_Tp$。
+\end{advexamplebox}
+\begin{advsolution}
+把状态方程写成 $V=V(T,p)$。在定体积线上
+\[
+ 0=\left(\frac{\partial V}{\partial T}\right)_p\dd T
+ +\left(\frac{\partial V}{\partial p}\right)_T\dd p,
+\]
+所以
+\[
+ \left(\frac{\partial p}{\partial T}\right)_V
+ =-\frac{V\alpha}{-V\kappa_T}=\frac{\alpha}{\kappa_T}.
+\]
+左侧又等于 $p\beta$，故 $\boxed{\alpha=p\beta\kappa_T}$。理想气体给出
+$\alpha=1/T,\beta=1/T,\kappa_T=1/p$，校验成立。
+\end{advsolution}
+
+\begin{advexamplebox}{热容比与压缩系数比}\label{advA2:ex:cp-cv-kappa}
+证明
+\[
+ \boxed{\frac{C_p}{C_V}=\frac{\kappa_T}{\kappa_S}}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+把熵写成 $S(T,V)$。由麦克斯韦关系
+$(\partial S/\partial V)_T=(\partial p/\partial T)_V$，
+\[
+ \dd S=\frac{C_V}{T}\dd T
+ +\left(\frac{\partial p}{\partial T}\right)_V\dd V.
+\]
+沿绝热线令 $\dd S=0$，再与状态方程微分联立，可得
+\[
+ \kappa_S=\kappa_T-\frac{TV\alpha^2}{C_p}.
+\]
+另一方面
+$C_p-C_V=TV\alpha^2/\kappa_T$。消元便得
+$\kappa_S=\kappa_TC_V/C_p$，即所求。稳定体系中
+$C_p\ge C_V>0$，所以 $\kappa_T\ge\kappa_S>0$，方向也正确。
+\end{advsolution}
+
+\begin{advexamplebox}{两种热容之差}\label{advA2:ex:cp-minus-cv}
+证明
+\[
+ \boxed{C_p-C_V=\alpha\beta pVT}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+由
+\[
+ C_p-C_V=T\left[\left(\frac{\partial S}{\partial T}\right)_p
+ -\left(\frac{\partial S}{\partial T}\right)_V\right]
+\]
+及链式法则，
+\[
+ C_p-C_V
+ =T\left(\frac{\partial S}{\partial V}\right)_T
+ \left(\frac{\partial V}{\partial T}\right)_p
+ =T(p\beta)(V\alpha).
+\]
+因此得到题式。用例\ref{advA2:ex:alpha-beta-kappa}也可写成
+$C_p-C_V=TV\alpha^2/\kappa_T\ge0$；理想气体代入后为 $Nk$，与
+$C_p=5Nk/2,C_V=3Nk/2$ 一致。
+\end{advsolution}
+
+\ASecondThermodynamicsLater
+\input{advanced/A2-statistics.tex}
+
+\clearpage\endgroup

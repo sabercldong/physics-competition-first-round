@@ -1,0 +1,114 @@
+\documentclass[UTF8,zihao=-4,openany]{ctexbook}
+
+\usepackage[a4paper,top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+\definecolor{accent}{HTML}{2F5D73}
+\hypersetup{
+  unicode=true,
+  colorlinks=false,
+  pdfborder={0 0 0},
+  bookmarksopen=true,
+  bookmarksnumbered=false,
+  pdftitle={高中物理竞赛一轮讲义：完整精修合订本},
+  pdfauthor={高中物理竞赛一轮讲义}
+}
+\setcounter{tocdepth}{0}
+% addtotoc 只建立无编号目录项与书签，避免把 K1 和“第1节”误排成“第一章、第二章”。
+\setcounter{secnumdepth}{-2}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+\pagenumbering{arabic}
+
+\begin{document}
+
+\pdfbookmark[0]{标题页}{cover}
+\begin{titlepage}
+  \centering
+  \vspace*{42mm}
+  {\color{accent}\rule{0.72\textwidth}{1.1pt}\par}
+  \vspace{14mm}
+  {\zihao{1}\bfseries 高中物理竞赛一轮讲义\par}
+  \vspace{10mm}
+  {\zihao{2}\bfseries 完整精修合订本\par}
+  \vspace{9mm}
+  {\zihao{-2}力学补编·运动学 K1—K11\quad 第1—45节\par}
+  \vspace{8mm}
+  {\zihao{-3}含完整解答与解图\par}
+  \vspace{14mm}
+  {\color{accent}\rule{0.72\textwidth}{1.1pt}\par}
+  \vfill
+  {\zihao{-4}逐节整理·分册验收版\par}
+  \vspace{14mm}
+\end{titlepage}
+
+\pdfbookmark[0]{总目录}{contents}
+\tableofcontents
+
+% 力学补编·运动学：跳过原分册标题页和目录，保留序言及 K1—K11 正文。
+\includepdf[pages=3-5,pagecommand={},addtotoc={3,chapter,1,{力学补编·运动学：序言},{kin:preface}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=6,pagecommand={},addtotoc={6,chapter,1,{K1　理想物理模型：质点},{kin:k1}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=7-19,pagecommand={},addtotoc={7,chapter,1,{K2　时间、位移、速度与加速度},{kin:k2}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=20-28,pagecommand={},addtotoc={20,chapter,1,{K3　运动的合成与分解},{kin:k3}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=29-36,pagecommand={},addtotoc={29,chapter,1,{K4　抛体运动},{kin:k4}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=37-44,pagecommand={},addtotoc={37,chapter,1,{K5　圆周运动},{kin:k5}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=45-52,pagecommand={},addtotoc={45,chapter,1,{K6　平面内的曲线运动},{kin:k6}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=53-61,pagecommand={},addtotoc={53,chapter,1,{K7　相对运动与参考系},{kin:k7}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=62-65,pagecommand={},addtotoc={62,chapter,1,{K8　受约束的运动},{kin:k8}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=66-69,pagecommand={},addtotoc={66,chapter,1,{K9　刚体运动},{kin:k9}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=70-73,pagecommand={},addtotoc={70,chapter,1,{K10　流体运动},{kin:k10}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+\includepdf[pages=74-78,pagecommand={},addtotoc={74,chapter,1,{K11　运动学综合},{kin:k11}}]{../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf}
+
+% 第1—36节：从逐节验收后的稳定成品纳入。
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第1节：力的基本性质},{sec:01}}]{../修订成稿_含解答与解图/01_力的基本性质_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第2节：受力分析},{sec:02}}]{../修订成稿_含解答与解图/02_受力分析_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第3节：质点与刚体的静力平衡},{sec:03}}]{../修订成稿_含解答与解图/03_质点与刚体的静力平衡_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第4节：牛顿运动定律},{sec:04}}]{../修订成稿_含解答与解图/04_牛顿运动定律_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第5节：牛顿运动定律应用},{sec:05}}]{../修订成稿_含解答与解图/05_牛顿运动定律应用_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第6节：非惯性系与惯性力},{sec:06}}]{../修订成稿_含解答与解图/06_非惯性系与惯性力_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第7节：动量定理},{sec:07}}]{../修订成稿_含解答与解图/07_动量定理_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第8节：动量守恒},{sec:08}}]{../修订成稿_含解答与解图/08_动量守恒_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第9节：变质量系统},{sec:09}}]{../修订成稿_含解答与解图/09_变质量系统_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第10节：功与功率、动能定理},{sec:10}}]{../修订成稿_含解答与解图/10_功与功率_动能定理_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第11节：势能与机械能守恒},{sec:11}}]{../修订成稿_含解答与解图/11_势能与机械能守恒_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第12节：碰撞与机械能守恒的应用},{sec:12}}]{../修订成稿_含解答与解图/12_碰撞与机械能守恒的应用_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第13节：能量的转化与守恒定律},{sec:13}}]{../修订成稿_含解答与解图/13_能量的转化与守恒定律_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第14节：导数及其应用},{sec:14}}]{../修订成稿_含解答与解图/14_导数及其应用_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第15节：积分及其应用},{sec:15}}]{../修订成稿_含解答与解图/15_积分及其应用_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第16节：角动量},{sec:16}}]{../修订成稿_含解答与解图/16_角动量_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第17节：刚体动力学},{sec:17}}]{../修订成稿_含解答与解图/17_刚体动力学_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第18节：电场的基本性质},{sec:18}}]{../修订成稿_含解答与解图/18_电场的基本性质_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第19节：电势能与电势},{sec:19}}]{../修订成稿_含解答与解图/19_电势能与电势_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第20节：静电平衡},{sec:20}}]{../修订成稿_含解答与解图/20_静电平衡_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第21节：电介质与电容器},{sec:21}}]{../修订成稿_含解答与解图/21_电介质与电容器_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第22节：电流},{sec:22}}]{../修订成稿_含解答与解图/22_电流_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第23节：复杂电阻网络},{sec:23}}]{../修订成稿_含解答与解图/23_复杂电阻网络_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第24节：Lorentz力},{sec:24}}]{../修订成稿_含解答与解图/24_Lorentz力_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第25节：Ampere力与Ampere定律},{sec:25}}]{../修订成稿_含解答与解图/25_Ampere力与Ampere定律_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第26节：电磁感应基本原理},{sec:26}}]{../修订成稿_含解答与解图/26_电磁感应基本原理_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第27节：电磁场与超导体},{sec:27}}]{../修订成稿_含解答与解图/27_电磁场与超导体_含推导与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第28节：热物理——温度和物态},{sec:28}}]{../修订成稿_含解答与解图/28_热物理_温度和物态_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第29节：热力学第一定律},{sec:29}}]{../修订成稿_含解答与解图/29_热力学第一定律_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第30节：热力学第二定律},{sec:30}}]{../修订成稿_含解答与解图/30_热力学第二定律_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第31节：相变},{sec:31}}]{../修订成稿_含解答与解图/31_相变_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第32节：电场的基本性质},{sec:32}}]{../修订成稿_含解答与解图/32_电场的基本性质_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第33节：电势能与电势},{sec:33}}]{../修订成稿_含解答与解图/33_电势能与电势_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第34节：静电平衡},{sec:34}}]{../修订成稿_含解答与解图/34_静电平衡_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第35节：电介质与电容器},{sec:35}}]{../修订成稿_含解答与解图/35_电介质与电容器_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第36节：电流},{sec:36}}]{../修订成稿_含解答与解图/36_电流_含解答与解图.pdf}
+
+% 第37—45节：使用本轮分册验收后覆盖的正式成品。
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第37节：复杂电阻网络},{sec:37}}]{../../../output/pdf/高中物理竞赛一轮讲义_第37节_复杂电阻网络_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第38节：Lorentz力},{sec:38}}]{../../../output/pdf/高中物理竞赛一轮讲义_第38节_Lorentz力_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第39节：Ampere力与Ampere定律},{sec:39}}]{../../../output/pdf/高中物理竞赛一轮讲义_第39节_Ampere力与Ampere定律_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第40节：电磁感应基本原理},{sec:40}}]{../../../output/pdf/高中物理竞赛一轮讲义_第40节_电磁感应基本原理_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第41节：补充阅读——电磁场与超导体},{sec:41}}]{../../../output/pdf/高中物理竞赛一轮讲义_第41节_补充阅读电磁场与超导体_含推导与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第42节：几何光学——光线的性质},{sec:42}}]{../../../output/pdf/高中物理竞赛一轮讲义_第42节_几何光学光线的性质_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第43节：几何光学——成像},{sec:43}}]{../../../output/pdf/高中物理竞赛一轮讲义_第43节_几何光学成像_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第44节：波动光学——干涉},{sec:44}}]{../../../output/pdf/高中物理竞赛一轮讲义_第44节_波动光学干涉_含解答与解图.pdf}
+\includepdf[pages=-,pagecommand={},addtotoc={1,chapter,1,{第45节：波动光学——衍射},{sec:45}}]{../../../output/pdf/高中物理竞赛一轮讲义_第45节_波动光学衍射_含解答与解图.pdf}
+
+\end{document}

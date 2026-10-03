@@ -1,0 +1,2395 @@
+\begingroup
+\tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
+\RenewDocumentEnvironment{xesolution}{+b}{%
+  \par\nobreak\smallskip\nobreak\begingroup\small
+  \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+\chapter{电磁感应}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fortieth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fortieth-section/assets/}}
+\section{磁通法、楞次定律与发电机}
+
+% Diagrams for Lesson 9: electromagnetic induction.
+\newcommand{\faradayHistoryContext}{%
+  \historyfigure[0.93\linewidth]{faraday-ring-built-in-v1.png}%
+  {左：法拉第肖像；右：铁环上的双线圈、检流计与电池构成早期电磁感应实验}}
+
+\newcommand{\movingMagnetExperimentFigure}{%
+\begin{center}
+\resizebox{0.98\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[inner sep=0] at (0,0)
+    {\includegraphics[width=14cm]{moving-magnet-experiment-built-in-v1.png}};
+  \node[anchor=east,align=center] at (-7.35,2.35)
+    {(a) 靠近\\$\vect v_M\leftarrow$};
+  \node[anchor=east,align=center] at (-7.35,0)
+    {(b) 静止\\$\vect v_M=\vect0$};
+  \node[anchor=east,align=center] at (-7.35,-2.35)
+    {(c) 远离\\$\vect v_M\rightarrow$};
+\end{tikzpicture}}%
+\figcap{磁铁靠近时检流计向一侧偏转；停住时回零；远离时反向偏转。}\label{ch24:fig:s40-9-2}
+\end{center}}
+
+\newcommand{\fluxOrientationDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[curve] (0,0) ellipse (2.7 and 1.25);
+  \draw[->,DeepBlue,very thick] (2.55,0.35) arc[start angle=16,end angle=105,x radius=2.7,y radius=1.25];
+  \node[DeepBlue] at (2.5,2.0) {回路正向};
+  \draw[vector] (0,0)--(0,2.15) node[above] {$\vect n$};
+  \foreach \x in {-1.7,-0.8,0.15,1.1,1.9}{
+    \draw[component] (\x,-1.65)--(\x,1.65);
+  }
+  \node[DeepBlue] at (2.35,0.0) {$\vect B$};
+  \node[align=left,anchor=west] at (3.7,0.35)
+    {$\displaystyle\Phi_B=\int_S\vect B\cdot\dd\vect S$\\[5pt]
+     $\displaystyle\mathcal E=-\frac{\dd\Phi_B}{\dd t}$\\[5pt]
+     负号表示感应效应阻碍磁通的改变};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\motionalRodDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,very thick] (-3,1.5)--(3,1.5);
+  \draw[Ink,very thick] (-3,-1.5)--(3,-1.5);
+  \draw[Ink,very thick] (-3,-1.5)--(-3,-0.55)
+    decorate[decoration={zigzag,segment length=4pt,amplitude=2pt}] {-- (-3,0.55)}--(-3,1.5);
+  \node[anchor=west] at (-2.78,0) {$R$};
+  \draw[DeepBlue,very thick] (0,-1.65)--(0,1.65);
+  \draw[vector] (0.2,0.35)--(1.75,0.35) node[right] {$\vect v$};
+  \draw[vector] (-0.18,-0.25)--(-1.45,-0.25) node[left] {$\vect F_B$};
+  \draw[vector] (0.18,-0.85)--(1.45,-0.85) node[right] {$\vect F_{\rm ext}$};
+  \draw[<->] (-3.55,-1.5)--node[left] {$\ell$}(-3.55,1.5);
+  \foreach \x in {-2.1,-1.3,0.7,1.5}{
+    \foreach \y in {-1.2,1.15}{\node[TextGray] at (\x,\y) {$\times$};}
+  }
+  \node[DeepBlue] at (2.55,1.0) {$\vect B$};
+  \draw[vector] (0,-0.82)--(0,0.82) node[left] {$I$};
+  \draw[->,DeepBlue,thick] (-0.55,1.5)--(-1.65,1.5) node[midway,above] {$I$};
+  \draw[->,DeepBlue,thick] (-1.65,-1.5)--(-0.55,-1.5);
+  \node[align=left,anchor=west] at (3.4,0.3)
+    {$\displaystyle\mathcal E_{\rm m}=\int(\vect v\times\vect B)\cdot\dd\vect\ell$\\[5pt]
+     $\displaystyle\mathcal E_{\rm m}=B\ell v$ （三者两两垂直）\\[5pt]
+     $\displaystyle I=\frac{B\ell v}{R},\quad F_B=BI\ell$\\[4pt]
+     $q>0:\ q(\vect v\times\vect B)$ 沿棒向上};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\movingLoopDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve,postaction={decorate},decoration={markings,mark=at position .38 with {\arrow{Latex}}}]
+    plot[smooth cycle] coordinates{(-2,-0.7)(-1,1.2)(0.8,1.0)(2.0,0)(1.1,-1.1)(-0.8,-1.3)};
+  \node[DeepBlue,anchor=south west] at (0.45,1.12) {$C$ 正向};
+  \draw[vector] (-1.2,-0.5)--(-0.25,0.15) node[above] {$\vect v$};
+  \foreach \p in {(-1.5,0.3),(-0.5,0.7),(0.45,0.35),(1.05,-0.45),(-0.2,-0.75)}
+    {\node[TextGray] at \p {$\times$};}
+  \node[DeepBlue] at (2.5,-0.4) {$\vect B$};
+  \node[align=left,anchor=west] at (3.4,0.2)
+   {$\displaystyle\mathcal E=\oint_C(\vect E+\vect v\times\vect B)\cdot\dd\vect\ell$\\[5pt]
+    $\displaystyle\mathcal E=-\frac{\dd}{\dd t}\int_{S(t)}\vect B\cdot\dd\vect S$\\[5pt]
+    图示特例：匀强 $\vect B$ 中刚性平移，$\mathcal E=0$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\vortexFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.0);
+  \foreach \r in {0.65,1.25,2.65,3.35}{
+    \draw[DeepBlue,thick,->] (\r,0) arc[start angle=0,end angle=180,radius=\r];
+    \draw[DeepBlue,thick] (-\r,0) arc[start angle=180,end angle=360,radius=\r];
+  }
+  \foreach \x in {-1.1,0,1.1}{\foreach \y in {-1.0,0,1.0}{
+    \pgfmathparse{\x*\x+\y*\y<3.5?1:0}\ifnum\pgfmathresult=1\node[TextGray] at (\x,\y) {$\times$};\fi}}
+  \draw[<->] (0,-3.85)--node[below] {$R$}(2.0,-3.85);
+  \node[align=left,anchor=west] at (4.1,0.25)
+    {$\displaystyle E_\varphi(r)=-\frac r2\dot B,\quad r\le R$\\[6pt]
+     $\displaystyle E_\varphi(r)=-\frac{R^2}{2r}\dot B,\quad r\ge R$\\[4pt]
+     图示 $\dot B>0$ 向纸内；$\varphi$ 正向为顺时针\\感生电场沿逆时针};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\selfInductanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \foreach \x in {-2.4,-2.0,...,2.4}{\draw[Ink,thick] (\x,0) ellipse (0.22 and 1.45);}
+  \draw[DeepBlue,->,very thick] (-3.0,0)--(3.0,0) node[right] {$\vect B$};
+  \draw[Ink,very thick,->] ({2.4+.22*cos(310)},{1.45*sin(310)}) arc(310:380:.22 and 1.45);
+  \node[right] at (2.7,-.6) {$I$};
+  \draw[guide,dashed] (-2.6,-1.75) rectangle (2.6,1.75);
+  \node[align=left,anchor=west] at (4.0,0.25)
+    {$\displaystyle\Lambda=N\Phi=LI$\\[5pt]
+     $\displaystyle\mathcal E_L=-\frac{\dd(LI)}{\dd t}$\\[5pt]
+     $\displaystyle W_L=\frac12LI^2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\rlInductorContext}{%
+\begin{center}
+\resizebox{0.96\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,line cap=round,line join=round]
+  \node[inner sep=0] at (-3.75,0)
+    {\includegraphics[width=5.4cm]{rl-inductor-built-in-v1.png}};
+  \begin{scope}[shift={(0.1,0)}]
+    \draw[Ink,thick] (0,1.55)--(1.35,1.55);
+    \draw[Ink,thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.5pt}]
+      (1.35,1.55)--(3.15,1.55);
+    \draw[Ink,thick] (3.15,1.55)--(5.1,1.55)--(5.1,0.72);
+    \foreach \yy in {0.54,0.18,-0.18,-0.54}{
+      \draw[Ink,thick] (5.1,{\yy+0.18}) arc[start angle=90,end angle=-90,x radius=0.25,y radius=0.18];
+    }
+    \draw[Ink,thick] (5.1,-0.72)--(5.1,-1.55)--(3.20,-1.55);
+    \fill[white,draw=Ink,thick] (3.20,-1.55) circle (2.2pt);
+    \fill[white,draw=Ink,thick] (2.25,-1.55) circle (2.2pt);
+    \draw[Ink,thick] (2.25,-1.55)--(3.03,-1.10);
+    \draw[Ink,thick] (2.25,-1.55)--(0,-1.55)--(0,-0.30);
+    \draw[Ink,thick] (0,0.30)--(0,1.55);
+    \draw[Ink,very thick] (-0.38,0.30)--(0.38,0.30);
+    \draw[Ink,very thick] (-0.23,-0.30)--(0.23,-0.30);
+    \node[left] at (-0.42,0.30) {$+$};
+    \node[left] at (-0.30,-0.30) {$-$};
+    \node[left] at (-0.48,0) {$\mathcal E$};
+    \node[above] at (2.25,1.72) {$R$};
+    \node[right] at (5.38,0) {$L$};
+    \node[above left=3pt] at (5.12,0.72) {$a$};
+    \node[below left=3pt] at (5.12,-0.72) {$b$};
+    \node[below] at (2.67,-1.78) {$S$};
+    \draw[->,DeepBlue,very thick] (0.55,1.90)--(1.35,1.90) node[midway,above] {$I$};
+  \end{scope}
+\end{tikzpicture}}%
+\figcap{左为环形电感实物结构；右为串联 $RL$ 回路。闭合 $S$ 后，电流沿箭头方向逐渐建立。}\label{ch24:fig:s40-9-9}
+\end{center}}
+
+\newcommand{\mutualInductanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (-2.0,-0.25) ellipse (2.3 and 1.1);
+  \draw[curve] (2.0,0.45) ellipse (2.0 and 0.95);
+  \draw[->,DeepBlue,very thick] (-0.1,0.15) arc[start angle=10,end angle=70,x radius=2.3,y radius=1.1];
+  \draw[->,DeepBlue,very thick] (3.75,0.7) arc[start angle=15,end angle=70,x radius=2.0,y radius=0.95];
+  \node at (-2.0,-0.25) {$1$}; \node at (2.0,0.45) {$2$};
+  \node[DeepBlue] at (-0.1,1.25) {$I_1$}; \node[DeepBlue] at (3.75,1.4) {$I_2$};
+  \foreach \x in {-0.7,0.1,0.9}{\draw[component] (\x,-1.5) to[bend left=18] (\x+0.9,1.8);}
+  \node[align=left,anchor=west] at (5.0,0.45)
+   {$\Phi_2=M_{12}I_1,\quad\Phi_1=M_{21}I_2$\\[5pt]
+    $\boxed{M_{12}=M_{21}}$\\[5pt]
+    $W=\tfrac12L_1I_1^2+MI_1I_2+\tfrac12L_2I_2^2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\concentricLoopsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (0,0) circle (2.0); \draw[DeepBlue,very thick] (0,0) circle (1.1);
+  \draw[->,Ink,thick] (1.85,0.75) arc[start angle=22,end angle=-45,radius=2.0];
+  \draw[->,DeepBlue,thick] (0.95,0.55) arc[start angle=30,end angle=120,radius=1.1];
+  \node[Ink,anchor=west] at (2.65,0.4) {原电流}; \node[DeepBlue] at (0,1.55) {感应电流};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\magnetThreeLoopsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[DeepBlue,dashed,very thick] (0,1.25) arc(90:270:.33 and 1.25);
+  \draw[fill=SoftGray] (-1.8,-0.65) rectangle (1.8,0.65);
+  \node at (-1.25,0) {$S$}; \node at (1.25,0) {$N$};
+  \foreach \x in {-3.4,3.4}{\draw[DeepBlue,very thick] (\x,0) ellipse (0.33 and 1.25);}
+  \draw[DeepBlue,very thick] (0,-1.25) arc(270:450:.33 and 1.25);
+  \draw[vector] (-1.7,1.1)--(-2.7,1.1) node[midway,above=4pt] {$\vect v_M$};
+  \draw[vector] (-3.4,-1.55)--(-4.45,-1.55) node[midway,below] {$\vect a_1$};
+  \node[anchor=north] at (0,-1.43) {$t=0:\ \vect a_2=0$};
+  \draw[vector,dashed] (0,-2.23)--(-1.15,-2.23)
+    node[midway,below] {左移后 $\vect a_2$};
+  \draw[vector] (3.4,-1.55)--(2.35,-1.55) node[midway,below] {$\vect a_3$};
+  \node[TextGray,align=center] at (-3.4,2.1) {极外近轴\\收缩};
+  \node[TextGray,align=center] at (0,3.5) {初始无趋势\\近中部左移后收缩};
+  \node[TextGray,align=center] at (3.4,2.1) {极外近轴\\扩张};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodResistorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.45) decorate[decoration={zigzag,segment length=4pt,amplitude=2pt}] {-- (-2.7,0.45)}--(-2.7,1.4);
+  \node[left=8pt] at (-2.7,0) {$R$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55); \node[above] at (0.8,1.55) {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v$};
+  \draw[<->] (-3.7,-1.4)--node[left] {$L$}(-3.7,1.4);
+  \foreach \x in {-1.7,-0.7,0.3,1.4,2.3}{\foreach \y in {-0.75,0.75}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node[align=left,anchor=west] at (3.7,0.2)
+    {$\displaystyle I=\frac{BLv}{R}$\\[4pt]
+     $\displaystyle m\dot v=-\frac{B^2L^2}{R}v$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\twoRodDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[DeepBlue,very thick] (-1.5,-1.55)--(-1.5,1.55); \draw[DeepBlue,very thick] (1.5,-1.55)--(1.5,1.55);
+  \node[above] at (-1.5,1.62) {$m,R$}; \node[above] at (1.5,1.62) {$m,R$};
+  \draw[vector] (1.7,0)--(2.9,0) node[right] {$v_0$};
+  \foreach \x in {-2.4,-0.5,0.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \draw[<->] (-3.25,-1.4)--node[left] {$L$}(-3.25,1.4);
+  \node[align=left,anchor=west] at (3.7,0.1)
+   {$v_{\rm cm}=v_0/2$\\[4pt]$u=v_2-v_1=v_0\e^{-t/\tau}$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\unequalRodDiagram}{%
+\begin{center}\begin{tikzpicture}[x=0.85cm,y=0.85cm,>=Latex]
+  \draw[Ink,very thick] (-5,1.0)--(-1,1.0); \draw[Ink,very thick] (-5,-1.0)--(-1,-1.0);
+  \draw[DeepBlue,very thick] (-4.0,-1.15)--(-4.0,1.15) node[above] {$m_1$};
+  \draw[Ink,dotted,very thick] (-1,0)--(1,0);
+  \draw[Ink,very thick] (1,1.8)--(5,1.8); \draw[Ink,very thick] (1,-1.8)--(5,-1.8);
+  \draw[DeepBlue,very thick] (4.0,-1.95)--(4.0,1.95) node[above] {$m_2$};
+  \draw[vector] (4.2,0)--(5.5,0) node[right] {$v_0$};
+  \node at (-2.2,0) {$B_1,L_1$}; \node at (2.2,0) {$B_2,L_2$};
+  \foreach \x in {-4.7,-3.2,-1.7,1.5,3.0,4.6}{\node[TextGray] at (\x,0.55) {$\times$};}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodCapacitorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.25); \draw[Ink,very thick] (-3.05,-0.25)--(-2.35,-0.25);
+  \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,very thick] (-2.7,0.25)--(-2.7,1.4);
+  \node[left] at (-2.7,0) {$C$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node[align=left,anchor=west] at (3.5,0.2)
+    {$q_\infty=CBLv_\infty$\\[4pt]$m(v-v_0)=-BLq$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodInductorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.6);
+  \draw[Ink,thick] (-2.7,-0.6) decorate[decoration={coil,aspect=0.65,segment length=5pt,amplitude=5pt}] {-- (-2.7,0.6)};
+  \draw[Ink,very thick] (-2.7,0.6)--(-2.7,1.4); \node[left] at (-2.9,0) {$\mathcal L$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node[align=left,anchor=west] at (3.5,0.2)
+    {$\mathcal L\dot I=B\ell v$\\[4pt]$m\dot v=-B\ell I$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rodSourceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.55);
+  \draw[Ink,thick] (-2.7,-0.55) decorate[decoration={zigzag,segment length=4pt,amplitude=2pt}] {-- (-2.7,0.1)};
+  \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,thick] (-2.9,0.55)--(-2.5,0.55);
+  \draw[Ink,very thick] (-2.7,0.55)--(-2.7,1.4); \node[left] at (-2.85,-0.25) {$R$}; \node[left] at (-2.9,0.5) {$\mathcal E$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\equivalentCircuitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,very thick] (-4,0)--(-2.7,0);
+  \draw[Ink,thick] (-2.7,0) decorate[decoration={zigzag,segment length=5pt,amplitude=2.5pt}] {-- (-0.9,0)};
+  \node[above] at (-1.8,0.25) {$R$};
+  \draw[Ink,very thick] (-0.9,0)--(0.0,0);
+  \draw[Ink,very thick] (0,-0.75)--(0,0.75); \draw[Ink,very thick] (0.45,-0.75)--(0.45,0.75);
+  \node[above] at (0.22,0.9) {$C_m=m/(B^2L^2)$};
+  \draw[Ink,very thick] (0.45,0)--(2.0,0);
+  \node[align=left,anchor=west] at (3.0,0.2)
+   {$U=RI+U_m$\\[4pt]$I=C_m\dot U_m$\\[4pt]$\tfrac12mv^2=\tfrac12C_mU_m^2$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chargedRingDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,very thick] (0,0) circle (2.4);
+  \fill[DeepBlue] (2.4,0) circle (3pt);
+  \node[anchor=south west] at (2.5,0.12) {$m,+q$};
+  \draw[->,DeepBlue,very thick] (2.0,1.15) arc[start angle=30,end angle=105,radius=2.4];
+  \node[DeepBlue] at (2.8,1.5) {$\dot\theta$};
+  \foreach \x in {-1.1,0,1.1}{\foreach \y in {-1.1,0,1.1}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \node at (0,0) {$B(t)$};
+  \draw[vector] (2.32,-0.32)--(1.05,-0.32)
+    node[midway,below] {$a_r=-R\dot\theta^2$};
+  \draw[axis] (2.48,0.32)--(3.75,0.32)
+    node[right,align=left] {径向正向\\$N_r,\ qR\dot\theta B$ 均取代数值};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chordParticleDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.5);
+  \draw[Ink,very thick] ({-sqrt(2.5*2.5-1.25*1.25)},-1.25)--({sqrt(2.5*2.5-1.25*1.25)},-1.25);
+  \fill[DeepBlue] (0,-1.25) circle (3pt) node[below] {$m,+q$};
+  \draw[<->] (0,0)--node[right] {$h$}(0,-1.25);
+  \draw[axis] (-2.2,-1.75)--(2.4,-1.75) node[right] {$x$};
+  \node[TextGray] at (-1.4,1.0) {$\times$}; \node[TextGray] at (0,1.0) {$\times$}; \node[TextGray] at (1.4,1.0) {$\times$};
+  \node at (0,1.65) {$B_0\sin\omega t$};
+  \node[align=left,anchor=west] at (3.5,0)
+    {$\displaystyle m\ddot x=\frac{qh}{2}\dot B$\\[5pt]
+     $\displaystyle x=\frac{qhB_0}{2m\omega}(1-\cos\omega t)$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chordEmfDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.5);
+  \draw[Ink,very thick] (-3.2,-1.2)--(4.3,-1.2);
+  \coordinate (A) at ({-sqrt(2.5*2.5-1.2*1.2)},-1.2); \coordinate (C) at ({sqrt(2.5*2.5-1.2*1.2)},-1.2); \coordinate (D) at (4.1,-1.2);
+  \fill[DeepBlue] (A) circle (2.5pt) node[below] {$A$}; \fill[DeepBlue] (C) circle (2.5pt) node[below] {$C$}; \fill[Ink] (D) circle (2.5pt) node[below] {$D$};
+  \draw[<->] ({sqrt(2.5*2.5-1.2*1.2)},-2)--(4.1,-2) node[midway,below] {$\ell$};
+  \draw[<->] (0,0)--node[right] {$h$}(0,-1.2);
+  \foreach \r in {0.8,1.6,3.2}{\draw[DeepBlue,thick,->] (\r,0) arc[start angle=0,end angle=105,radius=\r];}
+  \node[TextGray] at (-1.1,.2) {$\dot B=k$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\circularVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.76,>=Latex]
+  \draw[Ink,very thick] (0,0) circle (2.4);
+  \coordinate (A) at (150:2.4); \coordinate (C) at (30:2.4);
+  \fill[DeepBlue] (A) circle (2.5pt) node[left] {$A$}; \fill[DeepBlue] (C) circle (2.5pt) node[right] {$C$};
+  \draw[Ink,thick] (A) to[out=115,in=65,looseness=1.05]
+    node[midway,circle,draw,fill=white,inner sep=2pt] {$V_1$} (C);
+  \draw[Ink,thick] (A) .. controls (-3.2,-2.8) and (3.2,-2.8) ..
+    node[pos=0.5,circle,draw,fill=white,inner sep=2pt] {$V_2$} (C);
+  \draw[Ink,thick] (A)--(-0.35,0.2);
+  \draw[Ink,thick] (0.35,0.2)--(C);
+  \node[circle,draw,fill=white,inner sep=2pt] at (0,0.2) {$V_3$};
+  \foreach \x in {-1,0,1}{\node[TextGray] at (\x,-0.65) {$\times$};}
+  \node at (0,-1.15) {$\dot B=k$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\squareVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.76,>=Latex]
+  \draw[Ink,very thick] (-2,-2) rectangle (2,2);
+  \draw[Ink,thick] (-2,2.55)--(2,2.55); \node[circle,draw,fill=white,inner sep=2pt] at (0,2.55) {$V_1$};
+  \draw[Ink,thick] (2.55,-2)--(2.55,2); \node[circle,draw,fill=white,inner sep=2pt] at (2.55,0) {$V_2$};
+  \draw[Ink,thick] (-2,-2.55)--(2,-2.55); \node[circle,draw,fill=white,inner sep=2pt] at (0,-2.55) {$V_3$};
+  \draw[Ink,thick] (-2.55,-2)--(-2.55,2); \node[circle,draw,fill=white,inner sep=2pt] at (-2.55,0) {$V_4$};
+  \node[left] at (-2,0.75) {$R_1$}; \node[right] at (2,0.75) {$R_2$};
+  \node[TextGray] at (0,0) {$\times\ B(t)$}; \draw[<->] (-2,-2.85)--node[below] {$a$}(2,-2.85);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\gridCurrentDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[Ink,very thick] (-2,-2) grid[step=2] (2,2);
+  \draw[->,DeepBlue,very thick] (-2,2)--(0,2);
+  \draw[->,DeepBlue,very thick] (0,2)--(2,2);
+  \draw[->,DeepBlue,very thick] (2,2)--(2,0);
+  \draw[->,DeepBlue,very thick] (2,0)--(2,-2);
+  \draw[->,DeepBlue,very thick] (2,-2)--(0,-2);
+  \draw[->,DeepBlue,very thick] (0,-2)--(-2,-2);
+  \draw[->,DeepBlue,very thick] (-2,-2)--(-2,0);
+  \draw[->,DeepBlue,very thick] (-2,0)--(-2,2);
+  \node[DeepBlue] at (2.6,0) {$I_0$};
+  \node[TextGray] at (0,0.35) {内部支路}; \node[TextGray] at (0,-0.35) {$I=0$};
+  \draw[<->] (-2,-2.5)--node[below] {$2a$}(2,-2.5);
+\end{tikzpicture}\end{center}}
+
+\newcommand{\solenoidSplitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \foreach \x in {-4.0,-3.6,...,4.0}{\draw[Ink,thick] (\x,0) ellipse (0.2 and 1.15);}
+  \draw[guide,dashed] (0,-1.55)--(0,1.55);
+  \draw[<->] (-4.2,-1.65)--node[below] {$l_1$}(0,-1.65);
+  \draw[<->] (0,-1.65)--node[below] {$l_2$}(4.2,-1.65);
+  \draw[vector] (-3.7,0)--(3.7,0) node[right] {$B=\mu_0nI$};
+  \node[align=left,anchor=west] at (5.0,0.15)
+    {$L=\mu_0n^2A(l_1+l_2)$\\[4pt]$=L_1+L_2$ （理想长螺线管）};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\mutualLoopsProofDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[curve] (-2.6,0) ellipse (1.35 and 0.9); \draw[curve] (2.6,0.4) ellipse (1.25 and 0.8);
+  \draw[vector] (-1.5,0.35)--(1.9,0.7) node[midway,above] {$\vect r_{12}$};
+  \draw[vector] (-3.2,-0.65)--(-2.2,-0.85) node[below] {$\dd\vect\ell_1$};
+  \draw[vector] (2.0,-0.15)--(3.0,-0.25) node[below] {$\dd\vect\ell_2$};
+  \node[align=left,anchor=west] at (4.6,0.25)
+   {$\displaystyle M_{12}=\frac{\mu_0}{4\pi}\oint_{C_1}\!\oint_{C_2}
+   \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{r_{12}}$\\[6pt]
+    交换 $1,2$ 后积分核不变};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\rlcDiagram}[1]{%
+\begin{center}\begin{tikzpicture}[scale=0.70,>=Latex]
+  \draw[Ink,very thick] (-4,0.9)--(-3.2,0.9);
+  \draw[Ink,very thick] (-3.2,0.3)--(-3.2,1.5); \draw[Ink,very thick] (-2.75,0.5)--(-2.75,1.3);
+  \node[above] at (-3.0,1.5) {$C,\ U$};
+  \draw[Ink,very thick] (-2.75,0.9)--(-1.7,0.9);
+  \draw[Ink,thick] (-1.7,0.9) decorate[decoration={coil,aspect=0.65,segment length=5pt,amplitude=5pt}] {-- (0.3,0.9)};
+  \node[above] at (-0.7,1.45) {$L$};
+  \draw[Ink,thick] (0.3,0.9) decorate[decoration={zigzag,segment length=5pt,amplitude=2.5pt}] {-- (2.2,0.9)};
+  \node[above] at (1.25,1.25) {$R$};
+  \draw[Ink,very thick] (2.2,0.9)--(3.0,0.9)--(3.0,-0.9);
+  \ifnum#1=1
+    \draw[Ink,very thick] (3.0,-0.9)--(0.25,-0.9);
+    \draw[Ink,very thick] (-0.2,-0.9)--(-4,-0.9)--(-4,0.9);
+    \draw[Ink,very thick] (-0.2,-1.4)--(-0.2,-0.4); \draw[Ink,very thick] (0.25,-1.2)--(0.25,-0.6);
+    \node[below] at (0,-1.35) {$\mathcal E$};
+  \else
+    \draw[Ink,very thick] (3.0,-0.9)--(-4,-0.9)--(-4,0.9);
+  \fi
+  \draw[->,DeepBlue,very thick] (-1.6,0.38)--(0.8,0.38) node[midway,above] {$I(t)$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\travelingFieldTrainDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=0.72,>=Latex]
+  \draw[Ink,very thick] (-4,1.25)--(4,1.25); \draw[Ink,very thick] (-4,-1.25)--(4,-1.25);
+  \draw[DeepBlue,very thick,fill=PaleBlue] (-1.4,-1.25) rectangle (1.4,1.25);
+  \node at (0,0) {$m$}; \draw[<->] (-1.4,-1.62)--node[below] {$a$}(1.4,-1.62);
+  \draw[<->] (-3.4,-1.25)--node[left] {$L$}(-3.4,1.25);
+  \draw[vector] (1.55,0.45)--(3.0,0.45) node[right] {$v$};
+  \foreach \x in {-3.2,-2.4,-0.8,0,0.8,2.4,3.2}{\node[TextGray] at (\x,0.75) {$\times$};}
+  \draw[->,TextGray,thick] (-3.5,-0.65)--(3.5,-0.65)
+    node[right] {$v_\phi$};
+  \node[align=left,anchor=west] at (4.6,0.2)
+    {$B=B_0\cos(kx-\omega t)$\\[4pt]$v_\phi=\omega/k$};
+\end{tikzpicture}\end{center}}
+
+% Faithful independent redraw of the generator diagram from Lesson 9.
+\newcommand{\generatorFigureFaithful}{%
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[x=0.90cm,y=0.90cm,>=Latex,line cap=round,line join=round]
+  % left panel: rotating rectangular coil between pole pieces, slip rings and lamp
+  \begin{scope}[shift={(-4.4,0)}]
+    \draw[fill=SoftGray,draw=Ink,thick] (-3.8,0.45)--(-1.65,1.55)--(-0.85,1.05)--(-2.95,-0.05)--cycle;
+    \draw[fill=SoftGray,draw=Ink,thick] (0.85,1.05)--(3.05,2.15)--(3.80,1.62)--(1.63,0.52)--cycle;
+    \node[font=\bfseries] at (-2.45,0.73) {$N$}; \node[font=\bfseries] at (2.35,1.35) {$S$};
+    \draw[DeepBlue,line width=1.6pt] (-1.28,-0.72)--(-0.78,1.22)--(1.30,0.70)--(0.80,-1.24)--cycle;
+    \draw[Ink,thick] (-0.25,-2.12)--(-0.25,1.00);
+    \draw[Ink,thick] (-0.82,-1.75) ellipse (0.58 and 0.22);
+    \draw[Ink,thick] (0.28,-1.92) ellipse (0.58 and 0.22);
+    \draw[DeepBlue,thick,->] (-1.70,-1.95) arc[start angle=190,end angle=350,x radius=1.45,y radius=0.55];
+    \node[below] at (-0.25,-2.43) {$\omega$};
+    \draw[Ink,thick] (-1.36,-1.68)--(-2.30,-2.60)--(-2.30,-3.05);
+    \draw[Ink,thick] (0.85,-1.85)--(2.25,-2.60)--(2.25,-3.05);
+    \draw[Ink,thick] (-2.30,-3.05)--(-1.05,-3.05) (1.05,-3.05)--(2.25,-3.05);
+    \draw[Ink,thick] (-1.05,-3.05) .. controls (-0.95,-2.15) and (0.95,-2.15) .. (1.05,-3.05);
+    \draw[Ink,thick] (-0.72,-2.86) arc[start angle=200,end angle=-20,x radius=0.72,y radius=0.45];
+    \node[font=\scriptsize] at (0,-3.55) {滑环、电刷与负载};
+  \end{scope}
+  % right panel: coil normal in uniform field
+  \begin{scope}[shift={(5.0,0.25)}]
+    \foreach \y in {-2.0,-1.45,...,2.0}{\draw[TextGray,thick,->] (-3.45,\y)--(3.35,\y);}
+    \node[above,font=\bfseries] at (0,2.18) {$\vect B$};
+    \begin{scope}[rotate=37]
+      \foreach \s in {-0.18,-0.09,0,0.09,0.18}{\draw[Ink,thick] (-1.55+\s,-1.05)--(1.55+\s,-1.05)--(1.55+\s,1.05)--(-1.55+\s,1.05)--cycle;}
+    \end{scope}
+    \draw[->,DeepBlue,very thick] (0,0)--(2.05,1.58) node[right] {法线 $\vect n$};
+    \draw[TextGray,dashed] (0,0)--(2.65,0);
+    \draw[DeepBlue,thick,->] (1.05,0) arc[start angle=0,end angle=37,radius=1.05];
+    \node[DeepBlue] at (1.25,0.48) {$\theta$};
+    \draw[DeepBlue,thick,->] (-1.58,-1.25) arc[start angle=220,end angle=305,x radius=0.88,y radius=0.50];
+    \node[below,font=\scriptsize] at (0,-2.48) {$\Phi_B=NAB\cos\theta$};
+  \end{scope}
+\end{tikzpicture}}%
+\figcap{磁极间转动线圈、滑环与负载；右图给出磁场、线圈面积法向和夹角。}\label{ch24:fig:s40-9-4}
+\end{center}}
+
+% Explicit circuit topology and geometric references; no opaque label backgrounds.
+\renewcommand{\generatorFigureFaithful}{%
+\begin{center}\begin{tikzpicture}[scale=.83,>=Latex]
+ \begin{scope}[xshift=-3.6cm]
+  \draw[Ink,thick](-.18,1.2)--(-1,1.2)--(-1,3.1)--(1,3.1)--(1,1.2)--(.18,1.2);
+  \draw[Ink,thick](-.18,1.2)--(-.5,0);
+  \draw[Ink,thick](.18,1.2)--(.75,.9)--(.75,-.85)--(.5,-.85);
+  \draw[guide,dashed](0,-1.3)--(0,3.6)node[above]{转轴};
+  \foreach \y in {0,-.85}{\draw[DeepBlue,thick](0,\y)ellipse(.5 and .18);}
+  \draw[Ink,line width=2pt](-.75,0)--(-.5,0) (.5,-.85)--(.95,-.85);
+  \draw[Ink,thick](-.75,0)--(-1.5,0)--(-1.5,-2)--(-.5,-2);
+  \draw[Ink,thick](.95,-.85)--(1.5,-.85)--(1.5,-2)--(.5,-2);
+  \draw[Ink,thick](-.5,-2.18)rectangle(.5,-1.82);\node[below]at(0,-2.25){负载};
+  \node[left]at(-1.6,0){电刷1};\node[right]at(1.55,-.85){电刷2};
+  \node[right]at(.95,.35){滑环1};\node[anchor=north]at(0,-1.07){滑环2};
+  \node at(-1.8,2.3){N};\node at(1.8,2.3){S};
+  \draw[DeepBlue,->](-.7,3.55)arc(140:30:.9 and .3);
+  \node[align=center]at(0,-3.65){两个滑环同轴且彼此绝缘\\线框两端经电刷接入负载};
+ \end{scope}
+ \begin{scope}[xshift=3.9cm]
+  \draw[Ink,very thick](-1,2.7)--(1,.3);
+  \draw[vector](0,1.5)--(2.3,1.5)node[right]{$\vect B$};
+  \draw[vector](0,1.5)--(1.2,2.5)node[above]{$\vect n$};
+  \draw(.65,1.5)arc(0:39.806:.65);\node at(.91,1.79){$\theta$};
+  \node[align=center,anchor=north](generatorview)at(.4,-.4){沿转轴观察\\斜线为线框平面的侧影\\法线与侧影垂直};
+  \node[align=center,anchor=north]at([yshift=-5mm]generatorview.south){单匝：$\Phi_B=BS\cos\theta$\\总磁链：$\Lambda=N\Phi_B$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{转动线框、共轴滑环与外部回路；右侧用沿转轴的视图确定面积法向。}
+\end{center}}
+
+\renewcommand{\unequalRodDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-5,1)--(-1,1)--(1,1.8)--(5,1.8);
+ \draw[Ink,thick](-5,-1)--(-1,-1)--(1,-1.8)--(5,-1.8);
+ \draw[DeepBlue,very thick](-4,-1.15)--(-4,1.15)node[above]{$m_1$};
+ \draw[DeepBlue,very thick](4,-1.95)--(4,1.95)node[above]{$m_2$};
+ \draw[vector](4,-.5)--(4,.6)node[left]{$I$};\draw[vector](-4,.5)--(-4,-.5)node[left]{$I$};
+ \draw[vector](4.25,0)--(5.4,0)node[right]{$v_2$};
+ \draw[vector](-3.7,0)--(-2.7,0)node[above]{$v_1$};
+ \node at(-2,-.5){$B_1,L_1$};\node at(2,-.6){$B_2,L_2$};
+ \foreach \x in {-3,-2,2,3}{\node[TextGray]at(\x,.65){$\times$};}
+ \node[align=center]at(0,-2.6){上下两根固定过渡导线分别连接；图示电流以右棒向上为正。};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\rodSourceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](-3,1.5)--(3,1.5) (-3,-1.5)--(3,-1.5);
+ \draw[Ink,thick](-2.7,-1.5)--(-2.7,-.8);
+ \draw[Ink,thick](-2.9,-.8)rectangle(-2.5,-.15);
+ \draw[Ink,thick](-2.7,-.15)--(-2.7,.25);
+ \draw[Ink,thick](-2.95,.25)--(-2.45,.25) (-3.1,.65)--(-2.3,.65);
+ \draw[Ink,thick](-2.7,.65)--(-2.7,1.5);
+ \node[left]at(-3,-.5){$R$};\node[left]at(-3.15,.45){$\mathcal E$};
+ \node[right]at(-2.35,.25){$-$};\node[right]at(-2.25,.65){$+$};
+ \draw[DeepBlue,very thick](.8,-1.65)--(.8,1.65)node[above]{$m$};
+ \draw[vector](.8,.7)--(.8,-.6)node[right]{$I$};
+ \draw[vector](1.2,0)--(2.6,0)node[right]{$v$};
+ \foreach \x in {-1.6,-.6,1.8}{\foreach \y in {-.9,.9}{\node[TextGray]at(\x,\y){$\times$};}}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\squareVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-2,1.65)--(2,1.65)--(2,.45) (2,-.45)--(2,-1.65)--(-2,-1.65)--(-2,-.45) (-2,.45)--(-2,1.65);
+ \draw[Ink,thick](-2.15,-.45)rectangle(-1.85,.45) (1.85,-.45)rectangle(2.15,.45);
+ \node[right]at(-1.7,.0){$R_1$};\node[left]at(1.7,0){$R_2$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vone)at(0,2.35){$V_1$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vtwo)at(2.8,0){$V_2$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vthree)at(0,-2.35){$V_3$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vfour)at(-2.8,0){$V_4$};
+ \draw(-2,1.65)--(-2,2.35)--(Vone.west) (Vone.east)--(2,2.35)--(2,1.65);
+ \draw(2,1.65)--(2.8,1.65)--(Vtwo.north) (Vtwo.south)--(2.8,-1.65)--(2,-1.65);
+ \draw(-2,-1.65)--(-2,-2.35)--(Vthree.west) (Vthree.east)--(2,-2.35)--(2,-1.65);
+ \draw(-2,1.65)--(-2.8,1.65)--(Vfour.north) (Vfour.south)--(-2.8,-1.65)--(-2,-1.65);
+ \foreach \x in {-2,2}{\foreach \y in {-1.65,1.65}{\fill(\x,\y)circle(2pt);}}
+ \node[TextGray]at(0,0){$\otimes\ B(t)$};
+ \draw[<->](-2,-3)--(2,-3)node[midway,below]{$a$};
+ \node[align=left,anchor=west]at(4,.2){仪表、引线均与顶点相接\\为辨认路径放大引线间距\\计算取紧贴极限，附加面积趋零};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\circularVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](0,0)circle(2.4);
+ \coordinate(A)at(150:2.4);\coordinate(C)at(30:2.4);
+ \fill(A)circle(2pt)node[left]{$A$};\fill(C)circle(2pt)node[right]{$C$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vone)at(0,3.15){$V_1$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vtwo)at(0,-3.15){$V_2$};
+ \draw(A)--(150:3.15)arc(150:100:3.15)--(Vone.west);
+ \draw(Vone.east)--(80:3.15)arc(80:30:3.15)--(C);
+ \draw(A)--(150:3.15)arc(150:260:3.15)--(Vtwo.west);
+ \draw(Vtwo.east)--(280:3.15)arc(280:390:3.15)--(C);
+ \draw[Ink](0,0)circle(.38);\node at(0,0){$V_3$};
+ \draw(A)--(150:.38) (30:.38)--(C);
+ \draw[guide](30:.8)arc(30:150:.8);\node at(0,1.12){$2\pi/3$};
+ \node[TextGray]at(0,-1.2){$\otimes\quad \dot B=k$};
+ \node[align=left,anchor=west]at(3.8,.3){$V_3$ 的接线沿 $AO,CO$\\仪表视为点状，$O$ 为圆心\\$V_1,V_2$ 引线取紧贴弧线极限\\图中间距只为辨认路径};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\gridCurrentDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[Ink,thick](-2,-2)grid[step=2](2,2);
+ \draw[DeepBlue,->,very thick](2,2)--(0,2);\draw[DeepBlue,->,very thick](0,2)--(-2,2);
+ \draw[DeepBlue,->,very thick](-2,2)--(-2,0);\draw[DeepBlue,->,very thick](-2,0)--(-2,-2);
+ \draw[DeepBlue,->,very thick](-2,-2)--(0,-2);\draw[DeepBlue,->,very thick](0,-2)--(2,-2);
+ \draw[DeepBlue,->,very thick](2,-2)--(2,0);\draw[DeepBlue,->,very thick](2,0)--(2,2);
+ \node at(-1,1){$\otimes$};\node at(1,1){$\otimes$};\node at(-1,-1){$\otimes$};\node at(1,-1){$\otimes$};
+ \node[align=left,anchor=west]at(3,.4){$k>0$：外周逆时针\\每段电流 $i=ka^2/(2r)$\\内部四段电流为零};
+ \draw[<->](-2,-2.5)--(2,-2.5)node[midway,below]{$2a$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\rlcDiagram}[1]{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[Ink,thick](-4,1)--(-3.2,1) (-2.75,1)--(-1.8,1);
+ \draw[Ink,thick](-3.2,.5)--(-3.2,1.5) (-2.75,.5)--(-2.75,1.5);
+ \node[above]at(-3,1.75){$C,\ U$};
+ \ifnum#1=1\node[below]at(-3.25,.45){$+$};\node[below]at(-2.7,.45){$-$};
+ \else\node[below]at(-3.25,.45){$-$};\node[below]at(-2.7,.45){$+$};\fi
+ \foreach \xx in {-1.8,-1.3,-.8,-.3}{\draw[Ink,thick](\xx,1)arc(180:0:.25 and .3);}
+ \draw[Ink,thick](.2,1)--(.65,1);\draw[Ink,thick](.65,.8)rectangle(1.85,1.2);
+ \draw[Ink,thick](1.85,1)--(3,1)--(3,-1)--(1.2,-1);
+ \node[above]at(-.8,1.45){$L$};\node[above]at(1.25,1.4){$R$};
+ \fill(1.2,-1)circle(1.6pt);\fill(.3,-1)circle(1.6pt);
+ \draw[Ink,thick](.3,-1)--(1.2,-1);\node[below]at(.75,-1.15){$S$（已闭合）};
+ \ifnum#1=1
+  \draw[Ink,thick](.3,-1)--(-1,-1) (-1.4,-1)--(-4,-1)--(-4,1);
+  \draw[Ink,thick](-1.4,-1.5)--(-1.4,-.5) (-1,-1.3)--(-1,-.7);
+  \node[below]at(-1.2,-1.65){$\mathcal E$};\node[above]at(-1.55,-.5){$+$};
+ \else\draw[Ink,thick](.3,-1)--(-4,-1)--(-4,1);\fi
+ \draw[vector](-1.7,0)--(.15,0)node[midway,above]{$I(t)$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\chargedRingDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](0,0)circle(2.1);\fill(2.1,0)circle(2.4pt)node[above right]{$m,+q$};
+ \draw[guide,dashed](0,0)--(2.1,0);\node[above]at(.95,0){$R$};
+ \draw[DeepBlue,->](0:2.45)arc(0:-60:2.45);\node[right]at(2.5,-1.3){$\theta$ 正向};
+ \draw[vector](2.1,0)--(2.1,-1.2)node[left]{$\vect e_\theta$};
+ \draw[vector](2.1,0)--(3.5,0)node[right]{$\vect e_r$};
+ \node[TextGray]at(-.5,.9){$\otimes\ B(t)$};
+ \node[align=left,anchor=west]at(4.5,.4){$N_r>0$ 向外\\$N_r<0$ 向内\\图示 $\theta=0$ 的基矢};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\travelingFieldTrainDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](-4,1.4)--(4,1.4) (-4,-1.4)--(4,-1.4);
+ \draw[DeepBlue,very thick](-1.2,-1.15)rectangle(1.2,1.15);
+ \foreach \x in {-3.3,-2.5,2.5,3.3}{\node[TextGray]at(\x,.55){$\odot$};}
+ \foreach \x in {-.7,0,.7}{\node[TextGray]at(\x,.55){$\otimes$};}
+ \draw[guide,dashed](-1.9,-1.3)--(-1.9,1.3) (1.9,-1.3)--(1.9,1.3);
+ \node at(0,-.35){$m$};\draw[vector](1.45,0)--(3,0)node[right]{$v$};
+ \draw[vector](-1.8,2)--(1.8,2)node[right]{$v_\phi=\omega/k$};
+ \draw[<->](-1.2,-1.9)--(1.2,-1.9)node[midway,below]{$a$};
+ \draw[<->](-4.4,-1.15)--(-4.4,1.15)node[midway,left]{$L$};
+ \node[align=center]at(0,-2.9){某时刻的正负场区，虚线处 $B=0$；导轨只作绝缘机械支承。};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\solenoidSplitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.75,>=Latex]
+ \foreach \x in {-3.6,-3.2,...,3.6}{\draw[Ink](\x,0)ellipse(.18 and 1.0);}
+ \draw[guide,dashed](0,-1.4)--(0,1.5);\draw[vector](-3.4,0)--(3.4,0);
+ \draw[<->](-3.8,-1.5)--(0,-1.5)node[midway,below]{$l_1$};
+ \draw[<->](0,-1.5)--(3.8,-1.5)node[midway,below]{$l_2$};
+ \node[align=left,anchor=west]at(4.5,.2){保持位置、同向串联：\\$L=L_1+L_2+2M$\\两子段均很长，才可近似略去端部互感。};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\mutualLoopsProofDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-2.5,0)circle(1.2);\draw[Ink,thick](2.5,.4)circle(1);
+ \coordinate(A)at(-1.3,0);\coordinate(B)at(1.5,.4);
+ \fill(A)circle(2pt);\fill(B)circle(2pt);
+ \draw[vector](A)--(-1.3,1)node[right]{$\dd\vect\ell_1$};
+ \draw[vector](B)--(1.5,-.6)node[right]{$\dd\vect\ell_2$};
+ \draw[vector](A)--(B)node[midway,above]{$\vect r_{12}$};
+ \node at(-2.5,0){$C_1$};\node at(2.5,.4){$C_2$};
+ \node[align=left,anchor=west]at(4.2,.2){源点在各自回路上\\线元沿回路切线\\$r_{12}=|\vect r_2-\vect r_1|$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\mutualInductanceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \foreach \x/\lab in {-2/1,2/2}{
+  \draw[Ink,thick](\x,0)ellipse(.45 and 1.5);
+  \draw[DeepBlue,->]({\x+.45},0)arc(0:65:.45 and 1.5);
+  \node[below]at(\x,-1.7){回路\lab};}
+ \draw[vector](-3.2,0)--(3.2,0)node[right]{$\vect B_1$};
+ \node[align=left,anchor=west]at(4.4,.2){同轴同向时互感为正\\$\Phi_{2\leftarrow1}=MI_1$\\$\Phi_{1\leftarrow2}=MI_2$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\selfFieldLinesDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.66,>=Latex]
+ \foreach \xx in {-3.8,3.8}{\begin{scope}[xshift=\xx cm]
+  \foreach \sg in {-1,1}{\foreach \a/\b/\h in {.2/2.6/3.8,.6/1.85/2.8}{
+   \draw[DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .5 with {\arrow{Latex}}}]
+    ({\sg*\a},0)..controls({\sg*\a},\h)and({\sg*\b},\h)..({\sg*\b},0)
+    ..controls({\sg*\b},-\h)and({\sg*\a},-\h)..cycle;}}
+  \draw[vector](0,-.8)--(0,3.25)node[above]{$B$};
+  \ifdim\xx pt<0pt
+   \draw[Ink,thick](0,0)ellipse(1.45 and .38);
+   \draw[Ink,->](230:1.45 and .38)arc(230:310:1.45 and .38);
+   \node at(0,-3.65){单匝圆电流的自生磁场};
+  \else
+   \foreach \y in {-1.3,-.975,...,1.3}{\draw[Ink,thick](0,\y)ellipse(1.15 and .25);}
+   \node at(0,-3.65){有限长同向绕组的回流场};
+  \fi
+ \end{scope}}
+\end{tikzpicture}\end{center}}
+
+
+第23章研究了稳恒电流与磁场；本章放开“稳恒”限制：回路运动、磁场随时间变化，或两者
+同时发生时，磁通量的变化会在回路中产生感应电动势。法拉第电磁感应定律（Faraday's law）给出数值，楞次定律（Lenz's law）
+把能量守恒写进了方向。
+
+历史上，电流产生磁场以及磁场作用于电流先被发现。由此自然产生一个反向问题：既然运动电荷能产生
+磁效应，磁场是否也能在适当条件下产生电效应？法拉第经过长期实验确认，导体在磁场中运动可以使
+回路出现电流；随后又发现，即使导体固定，只要磁场大小或方向变化，同样可以产生电动势。前一类常称
+动生电动势，后一类常称感生电动势。两类机制的微观解释不同，却都由回路磁通量的变化统一描述。
+
+这一发现既有应用价值，也有理论意义。它使发电机成为可能，从而把水流、蒸汽轮机或其他动力装置的
+机械能转成电能；它还首次明确表明，变化磁场能在空间中产生一种不同于静电场的电场。经典电磁学中，
+电场既可由电荷产生，也可由变化磁场产生。麦克斯韦后来又补上“变化电场产生磁场”，两种场便能相互
+维持并以电磁波传播，电、磁与光由此进入同一理论框架。
+
+法拉第的实验装置可以用两个彼此绝缘、绕在同一铁环上的线圈来理解。一个线圈接电池，另一个线圈
+接检流计：接通电源的瞬间，检流计发生一次偏转；电流稳定后，偏转消失；断开电源时，检流计又向相反
+方向偏转。这说明感应效应不取决于“附近有没有电流”，而取决于磁场是否正在变化。把永久磁铁插入或
+拔出线圈，也能观察到相同规律：运动越快，磁通变化越快，感应电动势越大；磁铁停住后，即使线圈中仍
+有很强磁场，也不会维持感应电流。由这些现象抽象出来的核心量不是磁场本身，而是穿过回路的磁通量。
+
+\faradayHistoryContext
+
+
+\subsection{法拉第--楞次定律}
+
+
+对闭合回路 $C$ 选定正向，再用右手螺旋法则确定跨越面 $S$ 的正法向。磁通量与感应电动势为
+\begin{equation}
+  \Phi_B=\int_S\vect B\cdot\dd\vect S,
+  \qquad
+  \boxed{\mathcal E=-\frac{\dd\Phi_B}{\dd t}}.
+\end{equation}
+负号不是额外的计算规则，它表示感应电流所产生的磁效应总是阻碍原磁通的变化。若是 $N$ 匝
+线圈，各匝穿过的磁通都为 $\Phi_B$，则磁链 $\Lambda=N\Phi_B$，且 $\mathcal E=-\dd\Lambda/\dd t$。
+
+图~\ref{ch24:fig:s40-9-2} 把同一装置的三个时刻并列出来。上排磁铁靠近线圈，磁通变化率非零，检流计偏转；中排磁铁
+停住，虽然线圈中仍有磁场，但磁通不再变化，指针回到零位；下排磁铁远离，磁通变化方向反转，因而
+电流和指针偏转方向也随之反转。这里真正决定电动势的是运动造成的磁通变化率，不是磁铁与线圈的距离本身。
+
+\movingMagnetExperimentFigure
+
+对匀强磁场中的平面回路，磁通可写为
+\begin{equation}
+  \Phi_B=BS\cos\theta.
+\end{equation}
+因此其时间导数包含三类贡献：
+\begin{equation}
+ \frac{\dd\Phi_B}{\dd t}
+ =S\cos\theta\,\frac{\dd B}{\dd t}
+ +B\cos\theta\,\frac{\dd S}{\dd t}
+ -BS\sin\theta\,\frac{\dd\theta}{\dd t}.
+\end{equation}
+第一项对应磁场大小变化，第二项对应回路面积或形状变化，第三项对应线圈转动。一般非匀强场中不能
+把 $B$ 提到积分号外，但“求总磁通的完整时间变化率”这一原则不变。若多匝线圈各匝磁通不同，应逐匝
+相加形成磁链，而不能机械地用 $N$ 乘某一匝的磁通。
+
+对固定回路，电动势是沿回路一周非静电驱动力对单位正电荷的线积分；沿正向为正，反之为负。
+对运动导线，应使用 $\oint(\vect E+\vect v_{\rm wire}\times\vect B)\cdot\dd\vect\ell$，
+其中 $\vect v_{\rm wire}$ 是导线元速度，不是载流子的总速度。这是瞬时回路的驱动量；
+磁力对载流子实际运动的总功仍为零，输出能量来自维持导线运动的机械功。
+回路正向一旦选定，曲面正法向就由右手规则确定。由于磁场
+高斯定律给出任意闭合面净磁通为零，只要两个曲面具有同一个边界，它们的磁通量相同，因此无需再为
+同一回路指定唯一的“计算曲面”。这保证法拉第定律不会因跨越面的形状不同而含糊。
+
+电动势的单位是 volt，但它与两点间静电势差并非总是同一个概念。静电场中，单位电荷从一点移到另一点
+所受电场力做功只与端点有关，沿闭合回路一周总功为零；感生电场中，沿闭合回路一周的功可以非零，
+因此不能给整条回路上的每一点分配一个全局单值电势来替代环量。电压表在具体接线下仍会给出读数，但
+在时变磁场问题中，读数还可能依赖表笔引线所围成的路径，必须把测量回路本身纳入磁通分析。
+
+磁通量可以因三种因素改变：磁场大小变化、回路面积或形状变化、回路法向与磁场夹角变化。法拉第
+定律只问总磁通量怎样变化，并不预先区分是哪一种因素造成；真正需要区分的是驱动电荷的局部力来自
+$\vect v\times\vect B$，还是来自变化磁场产生的涡旋电场。
+
+图~\ref{ch24:fig:review-fluxorientationdiagram-1}中，环路正向和法向按右手规则绑定，负号相对于这套共同约定解释。
+\par\noindent\begin{minipage}{\linewidth}
+\fluxOrientationDiagram
+\figcap{回路正向与磁通法向}\label{ch24:fig:review-fluxorientationdiagram-1}
+\end{minipage}\par\medskip
+
+“阻碍变化”要与“阻碍原磁场”区分。原磁通增大时，感应磁场与它反向；原磁通减小时，感应磁场反而
+与它同向。因此对方向题，先判断原磁通的正负和增减，再确定感应磁场，最后用右手螺旋法则找电流。
+
+负号也可由能量守恒检验。若磁铁靠近线圈时，感应电流产生的磁场反而帮助磁铁继续靠近，磁铁就会在
+没有外界做功的情况下越动越快，同时线圈中还产生电能，这将造成能量无源增加。真实情况是靠近时受到
+排斥、远离时受到吸引，外力必须克服电磁阻力做功，所做功转化为电能和焦耳热。楞次定律不是一条
+与法拉第定律并列的独立大小公式，而是法拉第定律负号所表达的方向与能量约束。
+
+实际判向时可以固定四步：先选回路正向并由右手规则确定面积正法向；再写出 $\Phi_B$ 的正负；判断
+$\dd\Phi_B/\dd t$；最后由 $\mathcal E=-\dd\Phi_B/\dd t$ 判断正电动势方向。若只凭“增反减同”口诀
+而不先确定原磁场穿面的方向，在立体线圈、翻转线圈或多磁场叠加问题中很容易把方向判反。
+
+
+% EM teaching enrichment 20260927
+\paragraph{磁通为零的瞬间仍可有电动势}
+固定面积 $A$ 的单匝回路处于 $B(t)=B_0\sin\omega t$ 的垂直匀强磁场中，取场的正方向为面法向，则
+$\Phi=B_0A\sin\omega t$，$\mathcal E=-\omega B_0A\cos\omega t$。
+$t=0$ 时磁通为零而电动势大小最大；$t=\pi/(2\omega)$ 时磁通最大而电动势为零。决定感应的是变化率，不是磁通本身。
+若回路只含恒定电阻 $R$、自感可忽略，某段过程的有向通过电量为
+\[
+ \Delta q=\int I\dd t=-\frac{\Delta\Phi}{R}.
+\]
+它只取决于首末磁通；有显著自感时还要计入 $L\Delta I$，不能无条件沿用。
+
+
+\subsection{交流发电机}
+
+
+发电机是电磁感应的直接应用。最简单的交流发电机让 $N$ 匝、面积为 $A$ 的线圈在匀强磁场 $B$ 中以
+角速度 $\omega$ 转动。若 $t=0$ 时面积法向与磁场同向，磁链为
+\begin{equation}
+  \Lambda(t)=NAB\cos\omega t,
+\end{equation}
+于是
+\begin{equation}
+  \boxed{\mathcal E(t)=NAB\omega\sin\omega t
+  \equiv\mathcal E_0\sin\omega t}.
+\end{equation}
+若外电路近似纯电阻 $R$，电流 $I(t)=\mathcal E_0\sin\omega t/R$，方向每半周反转，因此称为交流。
+
+当线圈法向与 $\vect B$ 平行时，磁通量达到极值，但瞬时变化率为零，所以电动势为零；当线圈平面与
+$\vect B$ 平行、法向垂直于磁场时，磁通为零却变化最快，电动势达到峰值。这一“量为零而变化率最大”
+的关系是理解正弦、余弦相差四分之一周期的关键。若初始相位不同，只会把
+$\sin\omega t$ 改为带相位常数的正弦函数，峰值 $\mathcal E_0=NAB\omega$ 不变。
+
+若关心交流在电阻上的平均发热效果，可引入有效值
+\begin{equation}
+  \mathcal E_{\rm rms}=\frac{\mathcal E_0}{\sqrt2},
+  \qquad I_{\rm rms}=\frac{I_0}{\sqrt2}.
+\end{equation}
+于是周期平均功率仍写成 $\langle P\rangle=I_{\rm rms}^2R$。有效值不是瞬时电动势的算术平均；
+正弦电动势一周期平均为零，但平方平均不为零，仍能持续向电阻输送能量。
+
+\generatorFigureFaithful
+
+水力发电把水的重力势能经涡轮转为转轴机械能；火力与核电站先以热源产生蒸汽，再驱动涡轮。能量来源
+虽然不同，末级的电磁转换都依靠线圈与磁场的相对转动。负载接通后出现的电磁力矩总是反抗驱动转矩，
+因此发出的电功率最终来自原动机做功，而不是磁场无中生有地提供能量。
+
+交流发电机通常用两个彼此绝缘的滑环把转动线圈两端接到静止电刷，使外电路得到方向周期反转的电压。
+若改用分裂换向器，可以把线圈内部的交变电动势整流为外电路中方向不变、大小脉动的电动势。发电机与
+电动机的结构有很强的互逆性：外力驱动线圈转动时输出电能；给线圈输入电流时，安培力矩又能输出
+机械运动。负载越大，电流越大，反向电磁转矩也越大，原动机必须提供更大转矩才能维持同一角速度。
+
+若回路同时运动且存在感生电场，完整形式为
+\begin{equation}
+  \boxed{\mathcal E=\oint_{C(t)}(\vect E+\vect v\times\vect B)\cdot\dd\vect\ell
+  =-\frac{\dd}{\dd t}\int_{S(t)}\vect B\cdot\dd\vect S}.
+\end{equation}
+左边第一项是变化磁场产生的感生电场，第二项是回路运动产生的动生效应；右边则把它们统一为“跟着
+回路计算的磁通变化率”。
+
+这里的时间导数不是只在固定空间区域上对 $B$ 求偏导，而是对随回路一起运动、变形的曲面求总导数。
+因此即使 $\partial\vect B/\partial t=0$，曲面边界运动仍可使磁通变化并产生动生电动势；反之，即使
+回路完全固定，$\partial\vect B/\partial t\ne0$ 也会产生感生电动势。把这两个来源分开有助于解释
+局部受力，把它们合在同一磁通定律中则更适合计算整个回路。
+
+若导体静止而磁体移动，导线中的自由电荷初始并没有随导体切割磁感线，不能用“导体内电荷的
+$q\vect v\times\vect B$”作为唯一解释；法拉第定律仍预言回路中有电动势，说明运动或变化的磁场
+在导体所在位置建立了电场。换到随带电粒子运动的参考系，可以把低速情形下的磁力效果等价地写成
+\begin{equation}
+  \vect E'\simeq\vect v\times\vect B=-\vect v_B\times\vect B,
+\end{equation}
+其中 $\vect v_B$ 是磁场源相对粒子的速度。这种推理能给出低速方向和数量级，但电场、磁场在不同惯性系
+之间如何严格变换属于狭义相对论；因此它只能作为低速极限的物理说明，不能替代完整的洛伦兹变换。
+
+“磁铁动、线圈不动”与“线圈动、磁铁不动”在实验中都能产生电流，但经典局部解释看起来不同：前者
+强调变化磁场产生电场，后者强调运动电荷受到磁力。相对论统一了这种差别，因为电场和磁场不是彼此
+绝对独立的实体，而是同一电磁场在不同惯性系中的分量。中学范围不需要计算完整变换，却应保留一个
+重要结论：不同参考系中的电荷、电流、场和能量须按相应变换关联，能量数值不必相同；经变换后的物理预言必须相容，不能因选择“谁在运动”而得到互相矛盾
+的实验预言。
+
+图~\ref{ch24:fig:review-movingloopdiagram-1}中，图示各点速度相同，面积与法向不变，正负的局部动生贡献沿全回路相消。
+\par\noindent\begin{minipage}{\linewidth}
+\movingLoopDiagram
+\figcap{匀强场中闭合回路的刚性平移}\label{ch24:fig:review-movingloopdiagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{从磁通相位到输入功率}
+面积 $A$、匝数 $N$ 的线圈以角速度 $\omega$ 转动，若其法向与磁场夹角为 $\omega t$，则磁链为 $NBA\cos\omega t$，电动势为 $NBA\omega\sin\omega t$。
+接纯电阻总负载 $R$ 并忽略自感后，周期平均输出为
+\[
+ \overline P=\frac{(NBA\omega)^2}{2R}.
+\]
+理想无机械损耗时，外界平均驱动力矩为 $\overline P/\omega$。线圈转到磁通最大的位置，瞬时电动势反而为零；输出电压的峰值由磁通变化最快的位置决定。加入电感后，电流不再与电动势同相，平均功率须按下一章的相位关系计算。
+
+
+% EM structure and teaching revision 20260928
+\subsection{磁通变化的三种来源与符号流程}
+均匀磁场中的平面回路有 $\Phi=BS\cos\theta$。磁场大小、回路面积和取向都可能变化，因此
+\[
+ \mathcal E=-\frac{\dd\Phi}{\dd t}
+ =-S\cos\theta\,\dot B-B\cos\theta\,\dot S
+ +BS\sin\theta\,\dot\theta.
+\]
+这个展开要求回路仍可由一个统一面积和法向描述；一般变形回路应回到曲面积分。
+例如回路面积为 $S_0$，在恒定磁场中以 $\theta=\omega t$ 转动，则 $\mathcal E=BS_0\omega\sin\omega t$。磁通最大时电动势为零，磁通经过零值时电动势幅值最大，二者不能按“谁大谁强”判断。
+解题先任选回路绕行正向，再由右手关系确定面法向，接着写带符号磁通，最后用负导数得到沿所选绕行方向的电动势。结果为负表示实际方向与参考方向相反。楞次定律可作物理检查：感应电流的磁效应反抗磁通变化，不是无条件反抗外磁场本身。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【大小圆环】}\label{ch24:ex:s40-9-1}
+两个同心导电圆环放置在同一平面上，回路电阻大小均为 $r$。
+
+(1) 若大圆环中突然通入顺时针电流，求小圆环中感生电流的方向；
+
+(2) 若小圆环中突然通入顺时针电流，求大圆环中感生电流的方向。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+\begin{center}\begin{tikzpicture}[scale=.68,>=Latex]
+ \foreach \x/\case in {0/1,7/2}{\begin{scope}[shift={(\x,0)}]
+ \draw[thick](0,0)circle(2);\draw[DeepBlue,thick](0,0)circle(1.1);
+ \ifnum\case=1\draw[vector](2,0)arc[start angle=0,end angle=-65,radius=2];\node at(0,2.5){大环电流突然建立};
+ \else\draw[vector](1.1,0)arc[start angle=0,end angle=-65,radius=1.1];\node at(0,2.5){小环电流突然建立};\fi
+ \node[below]at(0,-2.3){两环电阻均为 $r$};\end{scope}}
+\end{tikzpicture}\end{center}
+\figcap{两种激励情形；箭头仅表示题设中主动建立的顺时针电流。}\label{ch24:fig:em24-question-1}
+\end{origexamplebox}
+
+\begin{xesolution}
+规定垂直纸面向外为磁通正方向。
+
+(1) 大环的顺时针电流使穿过小环的向里磁通从零增大。小环要用向外的磁场阻碍这个增量，故其感生电流
+为逆时针。
+
+(2) 互感系数具有互易性，$M_{12}=M_{21}$。小环的顺时针电流同样使大环中的向里磁通增大，所以大环
+中的感生电流也为逆时针。结果与谁是“大环”无关，只由磁通的变化方向决定。
+
+图~\ref{ch24:fig:review-concentricloopsdiagram-1}中，所激励环的顺时针电流增加时，另一环的感应电流为逆时针；交换激励环仍须重算所穿磁通。
+\par\noindent\begin{minipage}{\linewidth}
+\concentricLoopsDiagram
+\figcap{同心大小圆环的感应方向}\label{ch24:fig:review-concentricloopsdiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【奇怪的圆环】}\label{ch24:ex:s40-9-2}
+一个条形磁铁的周围有三个导体圆环，分别位于 $S$ 极左侧、磁铁中部和 $N$ 极右侧，三环与磁铁同轴。
+若磁铁突然向左运动，判断三个圆环的加速度方向，以及它们各自有扩张还是收缩的趋势。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[DeepBlue,dashed,very thick] (0,1.25) arc(90:270:.33 and 1.25);
+  \draw[fill=SoftGray] (-1.8,-0.65) rectangle (1.8,0.65);
+  \node at (-1.25,0) {$S$}; \node at (1.25,0) {$N$};
+  \foreach \x in {-3.4,3.4}{\draw[DeepBlue,very thick] (\x,0) ellipse (0.33 and 1.25);}
+  \draw[DeepBlue,very thick] (0,-1.25) arc(270:450:.33 and 1.25);
+  \draw[vector] (-1.7,1.1)--(-2.7,1.1) node[midway,above=4pt] {$\vect v_M$};
+  \end{tikzpicture}\end{center}
+\figcap{磁铁开始左移，三个导体圆环的运动与形变待求。}\label{ch24:fig:em24-question-2}
+\end{origexamplebox}
+
+\begin{xesolution}
+轴向力与径向张力必须分别判断，不能用环内总磁通的方向代替环线所在处的局部磁场方向。
+忽略自感、初始环静止时，设磁铁向左速率为 $V>0$，以磁铁中心为原点、向右为 $z$ 正向，
+记半径固定的环所穿正向磁通为 $\Phi(z)$、电阻为 $R_c$，则
+\[
+ I=-\frac{V}{R_c}\frac{\dd\Phi}{\dd z},\qquad
+ F_z=I\frac{\dd\Phi}{\dd z}=-\frac V{R_c}\left(\frac{\dd\Phi}{\dd z}\right)^2\le0.
+\]
+所以非对称位置的圆环初始均向左加速；若保留自感，电流需要建立，严格初始瞬间可仍为零。
+
+左环面对正在接近的 $S$ 极，穿过它的磁通增大。感应电流使圆环与接近的磁极相斥，因此左环向左加速；其感应磁矩
+与当地轴向外磁场反向。在环线处的场仍朝右的通常近轴极外位置，径向安培力向内，故收缩。
+
+右环面对正在远离的 $N$ 极，原磁通减小。它用同向磁矩维持磁通，与磁铁相吸，所以向左加速；
+在环线处轴向场朝右时，径向力向外，故扩张。若环很大，线处的轴向场可能反向，就不能沿用这个径向结论。
+
+中环在完全对称的初始位置上有 $\partial\Phi/\partial x=0$，所以理想化的瞬间感应电流和加速度都可为零。磁铁稍微左移后，
+通过中环的磁通减小，中环会向左追随磁铁。在磁铁外侧的近赤道区域，局部轴向场与磁矩相反，
+因此中环稍后通常是收缩，不是扩张。
+
+可用磁偶极模型检验这一点。设磁矩大小为 $\mu_M$、环半径为 $a$，则
+\[
+ \Phi(z)=\frac{\mu_0\mu_Ma^2}{2(a^2+z^2)^{3/2}},\quad
+ B_z(a,z)=\frac{\mu_0\mu_M(2z^2-a^2)}{4\pi(a^2+z^2)^{5/2}}.
+\]
+对 $z>0$ 有 $\Phi'<0$，感应电流为正；在 $0<z<a/\sqrt2$ 时局部 $B_z<0$，
+每段径向力 $\dd F_a=I B_z\dd\ell<0$，即收缩；更远处才变为扩张。
+这也说明没有环半径和位置等几何条件时，应给出条件分支，而不能把三个径向趋势当作普遍结论。
+
+图~\ref{ch24:fig:review-magnetthreeloopsdiagram-1}中，轴向箭头描述对相对运动的阻碍；径向标记只适用于图示近轴极外和近中部的局部场条件。
+\par\noindent\begin{minipage}{\linewidth}
+\magnetThreeLoopsDiagram
+\figcap{磁铁左移时的三个圆环}\label{ch24:fig:review-magnetthreeloopsdiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\section{动生电动势与机电耦合}
+
+\subsection{动生电动势与运动回路}
+
+
+导体以速度 $\vect v$ 在磁场中运动时，导体内电荷受到 $q\vect v\times\vect B$ 的磁力。对一段运动导线，
+动生电动势为
+\begin{equation}
+  \boxed{\mathcal E_{\rm m}=\int(\vect v\times\vect B)\cdot\dd\vect\ell}.
+\end{equation}
+长为 $\ell$ 的直棒以速率 $v$ 垂直切割匀强磁场时，$\mathcal E_{\rm m}=B\ell v$。它是棒两端的非静电力做功
+与单位电荷的比，不能简单说成“磁力对电荷做功”；能量来自维持导体运动的外力或导体的动能。
+
+对直导体棒，若 $\vect v,\vect B$ 与棒方向彼此垂直，正电荷受力方向由 $\vect v\times\vect B$ 决定，
+并在棒的一端积累；另一端留下异号电荷。开路时，电荷分离建立静电场，直到
+$q\vect E+q\vect v\times\vect B=\vect0$，此后不再有持续电流，但两端仍有电势差 $B\ell v$。
+闭合回路后，电荷能够沿外电路流动，棒相当于电源。若三者不完全垂直，只有
+$\vect v\times\vect B$ 沿棒方向的分量贡献电动势，所以一般式必须保留点积，不能总写成 $B\ell v$。
+
+以长度为 $\ell$ 的导体棒在匀强磁场中匀速滑动为例，若回路总电阻为 $R$，则
+\begin{equation}
+  I=\frac{B\ell v}{R},\qquad
+  F_B=BI\ell=\frac{B^2\ell^2}{R}v.
+\end{equation}
+安培力阻碍棒的运动。维持匀速所需外力功率
+\begin{equation}
+  P_{\rm ext}=F_Bv=\frac{B^2\ell^2v^2}{R}
+\end{equation}
+恰好等于电阻热功率
+\begin{equation}
+  P_R=I^2R=\frac{B^2\ell^2v^2}{R}.
+\end{equation}
+所以磁力负责改变载流子的运动方向和建立电荷分离，真正输入系统的能量来自外力。若撤去外力，棒的
+动能会在电磁阻尼作用下转化为焦耳热；这正是楞次定律在能量上的含义。
+
+还可以直接由磁通验证。棒在平行导轨上移动距离 $\dd x=v\dd t$，回路面积增加
+$\dd S=\ell v\dd t$，于是 $|\dd\Phi_B/\dd t|=B\ell v$。洛伦兹力积分与磁通变化率给出同一结果，
+但它们强调的层次不同：前者说明棒内电荷怎样受力，后者不必追踪载流子，直接从整个回路的几何变化
+求电动势。遇到多根棒同时运动或回路形状复杂时，用完整的运动回路积分通常更稳妥。
+
+图~\ref{ch24:fig:review-motionalroddiagram-1}中，棒向右、B向纸内，正电荷磁力沿棒向上，因此环流逆时针，棒受到向左的阻力。
+\par\noindent\begin{minipage}{\linewidth}
+\motionalRodDiagram
+\figcap{运动导体棒与闭合电阻回路}\label{ch24:fig:review-motionalroddiagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{导体棒的制动：电路与运动必须联立}
+长度 $l$、质量 $m$ 的棒沿水平导轨滑动，闭合回路总电阻 $R$ 恒定、磁场 $B$ 垂直导轨面，忽略自感和摩擦。棒速 $v$ 时
+$\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
+\[
+ m\dot v=-\frac{B^2l^2}{R}v,\qquad
+ v=v_0\exp\left(-\frac{B^2l^2}{mR}t\right).
+\]
+瞬时机械损失率 $-\dd(mv^2/2)/\dd t$ 恰等于 $I^2R$，总焦耳热为初动能。
+若要求恒速，就必须有外力补偿磁阻力；磁场只是使机械功与电能交换的耦合条件，不能被当作持续供能的能源。
+
+
+% EM structure and teaching revision 20260928
+\subsection{机电耦合：两条方程与一份能量账}
+导体棒长 $\ell$、质量 $m$，在匀强磁场中沿导轨运动。忽略回路自感、取总电阻 $R$，则感应电流大小为 $I=B\ell v/R$，磁力反向阻碍运动，故
+\[
+ m\dot v=F_{\mathrm{ext}}-\frac{B^2\ell^2}{R}v.
+\]
+恒定外力下，终端速度 $v_\infty=F_{\mathrm{ext}}R/(B^2\ell^2)$，趋近它的时间常数为 $\tau_m=mR/(B^2\ell^2)$。当回路电感 $L$ 不可忽略且近似不随棒的位置变化时（例如固定外接电感占主导），取电感电压关系 $u_L=L\dot I$，必须同时求解
+\[
+ L\dot I+RI=B\ell v,\qquad m\dot v=F_{\mathrm{ext}}-B\ell I.
+\]
+若 $L/R\ll\tau_m$，电流才可近似及时跟随速度，退回第一式。把两式分别乘以 $I$ 和 $v$ 后相加，得到
+\[
+ F_{\mathrm{ext}}v=\frac{\dd}{\dd t}\left(\frac12mv^2+\frac12LI^2\right)+I^2R.
+\]
+自感电压关系及其能量将在本章最后一节推导。若运动使 $L(x)$ 显著变化，还会产生相应的电动势和自感磁力，不能继续使用这里的常量 $L$ 模型。这条能量式能检验耦合项符号：机械能转出的 $B\ell Iv$ 必须恰好进入电路，不能在两边同时作为损耗。接入电容、电源或增加第二根可动棒时，仍按同样顺序增列各自的状态变量与约束。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【小棒加电阻】}\label{ch24:ex:s40-9-3}
+一根导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。棒的质量为 $m$，左侧电阻为 $R$，
+导轨和棒的电阻不计。初始时棒以速度 $v_0$ 向右运动。
+
+(1) 求任意时刻导体棒的速度；
+
+(2) 求从开始运动到 $t\to\infty$ 通过电阻的总电量。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.45) decorate[decoration={zigzag,segment length=4pt,amplitude=2pt}] {-- (-2.7,0.45)}--(-2.7,1.4);
+  \node[left=8pt] at (-2.7,0) {$R$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55); \node[above] at (0.8,1.55) {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \draw[<->] (-3.7,-1.4)--node[left] {$L$}(-3.7,1.4);
+  \foreach \x in {-1.7,-0.7,0.3,1.4,2.3}{\foreach \y in {-0.75,0.75}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \end{tikzpicture}\end{center}
+\figcap{棒与定值电阻组成的闭合导轨回路。}\label{ch24:fig:em24-question-3}
+\end{origexamplebox}
+
+\begin{xesolution}
+棒向右运动时回路面积增大，向里磁通增大。感应电流的安培力必然向左。当速度为 $v$ 时，
+\begin{equation}
+  \mathcal E=BLv,
+  \qquad I=\frac{BL}{R}v,
+  \qquad m\dot v=-BLI=-\frac{B^2L^2}{R}v.
+\end{equation}
+令
+\begin{equation}
+  \tau=\frac{mR}{B^2L^2},
+\end{equation}
+得
+\begin{equation}
+  \boxed{v(t)=v_0\e^{-t/\tau}}.
+\end{equation}
+总电量可以直接积分，也可用冲量消去时间：
+\begin{equation}
+  q_{\rm tot}=\int_0^\infty I\dd t
+  =\frac{BL}{R}v_0\tau
+  =\boxed{\frac{mv_0}{BL}}.
+\end{equation}
+结果与 $R$ 无关：电阻越大，瞬时电流越小，但衰减时间按同样比例变长。
+
+图~\ref{ch24:fig:review-rodresistordiagram-1}中，棒横跨上下导轨，左侧R闭合回路；速度减小导致电流和阻力同时减小。
+\par\noindent\begin{minipage}{\linewidth}
+\rodResistorDiagram
+\figcap{导体棒经电阻耗散动能}\label{ch24:fig:review-rodresistordiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【小棒加小棒】}\label{ch24:ex:s40-9-4}
+两根导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。两棒质量均为 $m$、电阻均为 $R$，
+导轨电阻不计。右棒初速为 $v_0$ 向右，左棒初始静止。
+
+(1) 求任意时刻左右两棒的速度；
+
+(2) 求两棒从开始运动到 $t\to\infty$ 的相对位移。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[DeepBlue,very thick] (-1.5,-1.55)--(-1.5,1.55); \draw[DeepBlue,very thick] (1.5,-1.55)--(1.5,1.55);
+  \node[above] at (-1.5,1.62) {$m,R$}; \node[above] at (1.5,1.62) {$m,R$};
+  \draw[vector] (1.7,0)--(2.9,0) node[right] {$v_0$};
+  \foreach \x in {-2.4,-0.5,0.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \draw[<->] (-3.25,-1.4)--node[left] {$L$}(-3.25,1.4);
+  \end{tikzpicture}\end{center}
+\figcap{两根相同导体棒，右棒具有初速度。}\label{ch24:fig:em24-question-4}
+\end{origexamplebox}
+
+\begin{xesolution}
+记左、右棒速度为 $v_1,v_2$，相对速度 $u=v_2-v_1$。回路电动势只与面积变化率有关：
+\begin{equation}
+  \mathcal E=BLu,
+  \qquad I=\frac{BL}{2R}u.
+\end{equation}
+左棒受力向右，右棒受力向左，故
+\begin{equation}
+  m\dot v_1=BLI,
+  \qquad m\dot v_2=-BLI.
+\end{equation}
+因而质心速度不变，$V_{\rm cm}=v_0/2$，而
+\begin{equation}
+  \dot u=-\frac{B^2L^2}{mR}u.
+\end{equation}
+令 $\tau=mR/(B^2L^2)$，得
+\begin{equation}
+  \boxed{v_1=\frac{v_0}{2}\left(1-\e^{-t/\tau}\right)},
+  \qquad
+  \boxed{v_2=\frac{v_0}{2}\left(1+\e^{-t/\tau}\right)}.
+\end{equation}
+两棒的相对位移为
+\begin{equation}
+  \boxed{\Delta x_{\rm rel}=\int_0^\infty u\dd t
+  =v_0\tau=\frac{mRv_0}{B^2L^2}}.
+\end{equation}
+
+图~\ref{ch24:fig:review-tworoddiagram-1}中，两个运动边界的电动势相减，驱动量取决于 $v_2-v_1$，不是任一棒的绝对速度。
+\par\noindent\begin{minipage}{\linewidth}
+\twoRodDiagram
+\figcap{同一导轨上的两根导体棒}\label{ch24:fig:review-tworoddiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【小棒再加小棒】}\label{ch24:ex:s40-9-5}
+两根导体棒分别横跨在左右两组导轨上，左侧导轨宽度为 $L_1$、磁场为 $B_1$，右侧导轨宽度为 $L_2$、磁场为 $B_2$，
+中间用很长的过渡导轨连接。两棒质量分别为 $m_1,m_2$，回路总电阻为 $R$。右棒初速为 $v_0$ 向右，左棒初始静止。
+
+(1) 求任意时刻两棒的速度；
+
+(2) 找出运动中的一个守恒量。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-5,1)--(-1,1)--(1,1.8)--(5,1.8);
+ \draw[Ink,thick](-5,-1)--(-1,-1)--(1,-1.8)--(5,-1.8);
+ \draw[DeepBlue,very thick](-4,-1.15)--(-4,1.15)node[above]{$m_1$};
+ \draw[DeepBlue,very thick](4,-1.95)--(4,1.95)node[above]{$m_2$};
+ \draw[vector](4.25,0)--(5.4,0)node[right]{$v_0$};
+ \node at(-2,-.5){$B_1,L_1$};\node at(2,-.6){$B_2,L_2$};
+ \foreach \x in {-3,-2,2,3}{\node[TextGray]at(\x,.65){$\times$};}
+ \end{tikzpicture}\end{center}
+\figcap{不同棒长与场强的两导轨段，由固定导线相连。}\label{ch24:fig:em24-question-5}
+\end{origexamplebox}
+
+\begin{xesolution}
+记 $k_1=B_1L_1$、$k_2=B_2L_2$。按图中回路方向取正，瞬时感应电动势为
+\begin{equation}
+  \mathcal E=k_2v_2-k_1v_1,
+  \qquad I=\frac{k_2v_2-k_1v_1}{R}.
+\end{equation}
+两棒的方程是
+\begin{equation}
+  m_1\dot v_1=k_1I,
+  \qquad m_2\dot v_2=-k_2I.
+\end{equation}
+于是
+\begin{equation}
+  \frac{\dd}{\dd t}\left(\frac{m_1v_1}{k_1}+\frac{m_2v_2}{k_2}\right)=0,
+\end{equation}
+所求守恒量可取为
+\begin{equation}
+  \boxed{\frac{m_1v_1}{B_1L_1}+\frac{m_2v_2}{B_2L_2}
+  =\frac{m_2v_0}{B_2L_2}}.
+\end{equation}
+再令 $y=k_2v_2-k_1v_1$，有
+\begin{equation}
+  \dot y=-\frac1R\left(\frac{k_1^2}{m_1}+\frac{k_2^2}{m_2}\right)y,
+  \qquad
+  y(0)=k_2v_0.
+\end{equation}
+定义
+\begin{equation}
+  D=k_1^2m_2+k_2^2m_1,
+  \qquad \tau=\frac{Rm_1m_2}{D},
+\end{equation}
+积分得
+\begin{align}
+  \boxed{v_1(t)}&=\boxed{\frac{k_1k_2m_2}{D}v_0\left(1-\e^{-t/\tau}\right)},\\
+  \boxed{v_2(t)}&=\boxed{\frac{k_1^2m_2+k_2^2m_1\e^{-t/\tau}}{D}v_0}.
+\end{align}
+当 $t\to\infty$ 时 $k_2v_2=k_1v_1$，也就是总动生电动势降为零。
+
+图~\ref{ch24:fig:review-unequalroddiagram-1}中，上下两根过渡导线分别连通；右棒正电流向上、左棒向下，故两棒的安培力方向相反。
+\par\noindent\begin{minipage}{\linewidth}
+\unequalRodDiagram
+\figcap{不等宽导轨之间的闭合连接}\label{ch24:fig:review-unequalroddiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【小棒加电容】}\label{ch24:ex:s40-9-6}
+一根质量为 $m$ 的导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路中串联电容 $C$，
+所有电阻均忽略。棒初速为 $v_0$ 向右，电容初始不带电。描述 $t=0$ 后导体棒的运动。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.25); \draw[Ink,very thick] (-3.05,-0.25)--(-2.35,-0.25);
+  \draw[Ink,very thick] (-3.05,0.25)--(-2.35,0.25); \draw[Ink,very thick] (-2.7,0.25)--(-2.7,1.4);
+  \node[left] at (-2.7,0) {$C$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \end{tikzpicture}\end{center}
+\figcap{导体棒与初始未充电电容器相连。}\label{ch24:fig:em24-question-6}
+\end{origexamplebox}
+
+\begin{xesolution}
+零电阻与“初始电容不带电、棒却有非零速度”不能在普通时间尺度上同时满足；闭合回路后会出现一个极短的充电暂态。
+设暂态后电容带电量为 $q$、棒速为 $v$，则回路方程和棒的冲量方程分别为
+\begin{equation}
+  \frac qC=BLv,
+  \qquad m(v-v_0)=-BLq.
+\end{equation}
+解得
+\begin{equation}
+  \boxed{v=\frac{m}{m+CB^2L^2}v_0},
+  \qquad
+  \boxed{q=\frac{mCBL}{m+CB^2L^2}v_0}.
+\end{equation}
+上述状态是忽略自感、先保留微小电阻 $R_s>0$ 并等待暂态结束后的终态，随后电流为零，棒匀速运动。
+为明确过程，令 $k_m=BL$，则
+\[
+ R_s\dot q+q/C=k_mv,\qquad mv+k_mq=mv_0.
+\]
+消去 $v$ 得 $R_s\dot q+(1/C+k_m^2/m)q=k_mv_0$。若 $q(0)=0$，则
+\[
+ q(t)=q_\infty(1-\e^{-t/\tau_s}),\quad
+ \tau_s=\frac{R_smC}{m+Ck_m^2},\quad
+ v(t)=v_0-\frac{k_m}{m}q(t).
+\]
+因此先令 $t\gg\tau_s$ 再取 $R_s\to0^+$，终态不变，暂态持续时间趋零。
+能量检验给出
+\[
+ Q=\frac12mv_0^2-\frac12mv_\infty^2-\frac{q_\infty^2}{2C}
+ =\frac{mCk_m^2v_0^2}{2(m+Ck_m^2)}>0.
+\]
+这个耗散不随上述顺序下的 $R_s\to0^+$ 而消失；直接令电阻、自感都严格为零会得到奇异初值问题。
+若保留电感却使电阻严格为零，系统一般振荡，不能说它必然进入同一恒速终态。
+
+图~\ref{ch24:fig:review-rodcapacitordiagram-1}中，电容最终电压等于棒的动生电动势；暂态需按文中微小电阻模型理解。
+\par\noindent\begin{minipage}{\linewidth}
+\rodCapacitorDiagram
+\figcap{机械等效电容与真实电容的电荷重分配}\label{ch24:fig:review-rodcapacitordiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【小棒加电感】}\label{ch24:ex:s40-9-7}
+一根质量为 $m$ 的导体棒横跨在宽度为 $\ell$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路中串联自感为 $\mathcal L$
+的理想电感，忽略回路其余部分的自感与电阻，$\mathcal L$ 不随棒的位置变化。棒初速为 $v_0$ 向右，电感初始无电流。描述 $t=0$ 后导体棒的运动。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.78,>=Latex]
+  \draw[Ink,very thick] (-3,1.4)--(3,1.4); \draw[Ink,very thick] (-3,-1.4)--(3,-1.4);
+  \draw[Ink,very thick] (-2.7,-1.4)--(-2.7,-0.6);
+  \draw[Ink,thick] (-2.7,-0.6) decorate[decoration={coil,aspect=0.65,segment length=5pt,amplitude=5pt}] {-- (-2.7,0.6)};
+  \draw[Ink,very thick] (-2.7,0.6)--(-2.7,1.4); \node[left] at (-2.9,0) {$\mathcal L$};
+  \draw[DeepBlue,very thick] (0.8,-1.55)--(0.8,1.55) node[above] {$m$};
+  \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
+  \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
+  \end{tikzpicture}\end{center}
+\figcap{导体棒与电感相连，电感初始电流为零。}\label{ch24:fig:em24-question-7}
+\end{origexamplebox}
+
+\begin{xesolution}
+取感应电流 $I$ 的正方向使它对棒产生向左的力。电路与力学方程为
+\begin{equation}
+  \mathcal L\dot I=B\ell v,
+  \qquad m\dot v=-B\ell I.
+\end{equation}
+对第二式再求导并代入第一式，得
+\begin{equation}
+  \ddot v+\Omega^2v=0,
+  \qquad
+  \Omega=\frac{B\ell}{\sqrt{m\mathcal L}}.
+\end{equation}
+用 $v(0)=v_0$、$I(0)=0$ 得
+\begin{equation}
+  \boxed{v(t)=v_0\cos\Omega t},
+  \qquad
+  \boxed{I(t)=v_0\sqrt{\frac m{\mathcal L}}\sin\Omega t},
+\end{equation}
+\begin{equation}
+  \boxed{x(t)-x(0)=\frac{v_0}{\Omega}\sin\Omega t}.
+\end{equation}
+棒的动能和电感磁能周期性交换：
+\begin{equation}
+  \frac12mv^2+\frac12\mathcal LI^2=\frac12mv_0^2.
+\end{equation}
+
+图~\ref{ch24:fig:review-rodinductordiagram-1}中，线圈接入回路后，电感电流和棒速度连续变化，动能与磁能相互转化。
+\par\noindent\begin{minipage}{\linewidth}
+\rodInductorDiagram
+\figcap{导体棒与电感的能量交换}\label{ch24:fig:review-rodinductordiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【小棒加电源】}\label{ch24:ex:s40-9-8}
+一根质量为 $m$ 的导体棒横跨在宽度为 $\ell$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。回路总电阻为 $R$，
+并接入恒定电源 $\mathcal E$，电源极性使静止棒受到向右的安培力。棒初速为 $v_0$ 向右。描述 $t=0$ 后导体棒的运动。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](-3,1.5)--(3,1.5) (-3,-1.5)--(3,-1.5);
+ \draw[Ink,thick](-2.7,-1.5)--(-2.7,-.8);
+ \draw[Ink,thick](-2.9,-.8)rectangle(-2.5,-.15);
+ \draw[Ink,thick](-2.7,-.15)--(-2.7,.25);
+ \draw[Ink,thick](-2.95,.25)--(-2.45,.25) (-3.1,.65)--(-2.3,.65);
+ \draw[Ink,thick](-2.7,.65)--(-2.7,1.5);
+ \node[left]at(-3,-.5){$R$};\node[left]at(-3.15,.45){$\mathcal E$};
+ \node[right]at(-2.35,.25){$-$};\node[right]at(-2.25,.65){$+$};
+ \draw[DeepBlue,very thick](.8,-1.65)--(.8,1.65)node[above]{$m$};
+ \draw[vector](1.2,0)--(2.6,0)node[right]{$v_0$};
+ \foreach \x in {-1.6,-.6,1.8}{\foreach \y in {-.9,.9}{\node[TextGray]at(\x,\y){$\times$};}}
+\end{tikzpicture}\end{center}
+\figcap{电源、定值电阻和运动导体棒的实际连接。}\label{ch24:fig:em24-question-8}
+\end{origexamplebox}
+
+\begin{xesolution}
+取棒中向下为电流正方向。按右手定则，正电流在向纸内的磁场中产生向右的安培力；
+实际电流的正负还取决于棒速，不能仅由电源极性判断。按此约定，电流和运动方程为
+\begin{equation}
+  I=\frac{\mathcal E-B\ell v}{R},
+  \qquad
+  m\dot v=B\ell I.
+\end{equation}
+运动电动势 $B\ell v$ 是电源的反电动势。定义
+\begin{equation}
+  v_\infty=\frac{\mathcal E}{B\ell},
+  \qquad \tau=\frac{mR}{B^2\ell^2},
+\end{equation}
+得
+\begin{equation}
+  \boxed{v(t)=v_\infty+(v_0-v_\infty)\e^{-t/\tau}}.
+\end{equation}
+若 $v_0<v_\infty$，电源使棒加速；若 $v_0>v_\infty$，反电动势大于电源，电流反向，棒减速；两种情况都趋向同一终端速度。
+
+图~\ref{ch24:fig:review-rodsourcediagram-1}中，按所标电源极性，正电流在棒中向下；当动生电动势大于电源时，电流可反向。
+\par\noindent\begin{minipage}{\linewidth}
+\rodSourceDiagram
+\figcap{电源驱动的导体棒}\label{ch24:fig:review-rodsourcediagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【小棒大结局】}\label{ch24:ex:s40-9-9}
+一根质量为 $m$、电阻为 $R$ 的导体棒横跨在宽度为 $L$ 的光滑导轨上，导轨间有垂直纸面向里的匀强磁场 $B$。
+
+(1) 若 $R=0$，推导棒两端电压 $U$ 与流过棒的电流 $I$ 的关系，辨认其等效元件与参数；
+
+(2) 若 $R\ne0$，再求 $U$--$I$ 关系与等效元件；
+
+(3) 用该结论重新理解前面的电阻、电容、电感和电源问题。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \draw[thick](-3,1.4)--(3,1.4) (-3,-1.4)--(3,-1.4);
+ \draw[DeepBlue,very thick](.8,-1.55)--(.8,1.55)node[above]{$m,R$};
+ \draw[vector](1.1,0)--(2.4,0)node[right]{$v$};
+ \draw[vector](-2.7,1.4)--(-1.7,1.4)node[above]{$I$};
+ \node[left]at(-3,1.4){$+$};\node[left]at(-3,-1.4){$-$};
+ \draw[<->](-3.7,-1.4)--(-3.7,1.4)node[midway,left]{$U$};
+ \draw[<->](3.4,-1.4)--(3.4,1.4)node[midway,right]{$L$};
+ \foreach \x in {-1.6,-.5,1.8}{\foreach \y in {-.8,.8}{\node at(\x,\y){$\otimes$};}}
+ \node at(-.7,0){$B$};
+\end{tikzpicture}\end{center}
+\figcap{可运动导体棒的电学端口；箭头和正负号定义关联参考方向。}\label{ch24:fig:em24-question-9}
+\end{origexamplebox}
+
+\begin{xesolution}
+把棒的动生电动势记为 $U_m=BLv$，取正电流的安培力使棒向右，则
+\begin{equation}
+  m\dot v=BLI.
+\end{equation}
+因而
+\begin{equation}
+  \dot U_m=BL\dot v=\frac{B^2L^2}{m}I,
+  \qquad
+  \boxed{I=C_m\dot U_m},
+  \qquad
+  \boxed{C_m=\frac{m}{B^2L^2}}.
+\end{equation}
+当 $R=0$ 时，$U=U_m$，所以这根可运动导体棒在电学端口上等效为电容 $C_m$。其“电场能”正好就是棒的动能：
+\begin{equation}
+  \frac12C_mU_m^2=\frac12\frac{m}{B^2L^2}(BLv)^2=\frac12mv^2.
+\end{equation}
+当棒有电阻 $R$ 时，端口方程为
+\begin{equation}
+  \boxed{U=RI+U_m},
+  \qquad I=C_m\dot U_m,
+\end{equation}
+因而等效为电阻 $R$ 与电容 $C_m$ 串联，电容初电压为 $U_m(0)=BLv_0$。
+
+前面诸问题因此统一为基本电路：例~\ref{ch24:ex:s40-9-3} 是 $RC_m$ 放电；例~\ref{ch24:ex:s40-9-6} 是机械等效电容与真实电容的瞬态电荷重分配；
+例~\ref{ch24:ex:s40-9-7} 是 $\mathcal LC_m$ 振荡；例~\ref{ch24:ex:s40-9-8} 是电源对 $RC_m$ 的充电。
+
+图~\ref{ch24:fig:review-equivalentcircuitdiagram-1}中，机械端口电压 $U_m=BLv$ 与电流关系相当于电容，图中R与该电容串联。
+\par\noindent\begin{minipage}{\linewidth}
+\equivalentCircuitDiagram
+\figcap{运动导体棒的电学端口等效}\label{ch24:fig:review-equivalentcircuitdiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\section{感生电场、加速与电压测量}
+
+\subsection{感生电场}
+
+
+导体固定而磁场随时间变化时，仍可有非零电动势。此时驱动电荷的是空间中的涡旋电场：
+\begin{equation}
+  \boxed{\oint_C\vect E\cdot\dd\vect\ell
+  =-\frac{\dd}{\dd t}\int_S\vect B\cdot\dd\vect S},
+  \qquad
+  \boxed{\nabla\times\vect E=-\frac{\partial\vect B}{\partial t}}.
+\end{equation}
+感生电场的环量不为零，因而它不能在全空间由单值电势表示。在半径 $R$ 的圆柱区域内有轴向匀强磁场
+$B(t)$ 时，由轴对称性得
+\begin{equation}
+  \boxed{E_\varphi(r)=-\frac r2\dot B\quad(r\le R)},
+  \qquad
+  \boxed{E_\varphi(r)=-\frac{R^2}{2r}\dot B\quad(r\ge R)}.
+\end{equation}
+一根径向导线上 $\vect E\perp\dd\vect\ell$，沿它没有感生电动势；但沿圆周或一般非径向路径则可能有非零线积分。
+
+静电场与感生电场的差别可以用场线图像概括。静电场线从正电荷出发、终止于负电荷，在无电荷区域的
+闭合环量为零；感生电场线则围绕变磁场区域闭合，没有能够给整个空间定义单值电势的起点和终点。
+若在空间中放入导体，导体内自由电荷会重新分布并叠加静电场，所以实际导体中的总电场可能与纯粹由
+法拉第定律算出的涡旋场不同；但沿闭合回路的静电场环量仍为零，不会改变总感应电动势。
+
+在轴对称系统中，若半径 $r$ 的圆周内磁场处处相同，则
+$2\pi rE_\varphi=-\pi r^2\dot B$，得到内区公式。外区圆周只包围半径 $R$ 的变磁场区域，磁通量为
+$\pi R^2B$，因此出现 $E_\varphi\propto1/r$ 的外区结果。电场线是闭合圆，环量非零；它不能像静电场
+那样写成全空间单值电势的负梯度。图中沿径向的导线电压为零，并不意味着空间中没有电场，而是该路径
+处处与涡旋电场垂直。
+
+外区虽没有磁场随时间变化，仍然可以存在感生电场，这是“局部场方程”与“磁通计算”需要共同理解的
+地方。圆周本身位于 $r>R$，但它包围的任一跨越面都穿过内区变磁场，故环量不为零。不能把法拉第
+定律误读成“只有 $\dot B\ne0$ 的点才有电场”；更准确地说，$\nabla\times\vect E$ 在变磁场区非零，
+这一涡旋结构决定了整个周围空间的电场分布。
+
+图~\ref{ch24:fig:review-vortexfielddiagram-1}中，磁场向纸内增强时，电场逆时针；半径R是内外电场公式的分界，不是电场消失的位置。
+\par\noindent\begin{minipage}{\linewidth}
+\vortexFieldDiagram
+\figcap{柱形变磁场内外的涡旋电场}\label{ch24:fig:review-vortexfielddiagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{有场区外也可以存在涡旋电场}
+轴向磁场只分布在半径 $a$ 的圆柱区域内，内部 $B(t)$ 均匀。取逆时针环路为正，$B$ 向纸外为正，由对称性
+\[
+ E_\varphi(r)=\begin{cases}
+ -\dfrac r2\dot B,&r<a,\\[3pt]
+ -\dfrac{a^2}{2r}\dot B,&r>a.
+ \end{cases}
+\]
+两式在 $a$ 处连续。外部观察点虽有 $B=0$，其环路仍包围变化磁通，所以 $E$ 不为零。
+此时把静止电荷放在圆柱外也会受到电场力；感生电场不要求那里先有导线。若加上一条闭合金属环，环内电流由环量与电路响应共同决定。
+
+
+\subsection{电子感应加速器}
+
+
+电子感应加速器（betatron）把涡旋电场用于加速电子。设电子沿半径 $r$ 的固定圆轨道运动，轨道以内
+磁场的面积平均值为 $\overline B(t)$。法拉第定律给出圆周切向电场
+\begin{equation}
+  2\pi rE_\varphi=-\pi r^2\frac{\dd\overline B}{\dd t},
+  \qquad
+  E_\varphi=-\frac r2\frac{\dd\overline B}{\dd t}.
+\end{equation}
+以电子加速的绕行方向为正，电子电荷为 $-e$。切向方程为
+$\dd p/\dd t=er\dot{\overline B}/2$。从注入时刻 $t_0$ 积分，先保留初值：
+\begin{equation}
+ p(t)-p(t_0)=\frac{er}{2}[\overline B(t)-\overline B(t_0)].
+\end{equation}
+若注入条件满足 $p(t_0)=er\overline B(t_0)/2$，才可简化为 $p=er\overline B/2$，
+在非相对论情形下就是
+\begin{equation}
+  v=\frac{er\overline B}{2m}.
+\end{equation}
+另一方面，轨道处的轴向局部磁场 $B_{\rm orb}$ 必须提供向心力，
+$mv^2/r=evB_{\rm orb}$，即 $v=erB_{\rm orb}/m$。比较两式可得保持圆轨道半径的条件
+\begin{equation}
+  \boxed{B_{\rm orb}=\frac12\overline B}.
+\end{equation}
+更一般地，固定半径要求 $\overline B-2B_{\rm orb}$ 为常量；常用的注入匹配使常量为零，
+于是轨道处的局部磁场始终等于轨道面积平均磁场的一半。这一“二比一条件”同时保证涡旋
+电场负责加速、局部磁场负责弯转。
+
+这里要区分三个量：轨道半径 $r$，轨道处的轴向局部磁场 $B_{\rm orb}$，以及整个轨道圆面积上的平均磁场
+$\overline B$。法拉第定律关心圆内总磁通，所以出现 $\overline B$；圆周运动的瞬时向心力只由电子
+所在位置的局部场决定，所以出现 $B_{\rm orb}$。这里下标orb指轨道，不是径向分量。若把两者混成同一个均匀场，就会得到
+$B=\overline B/2$ 的自相矛盾等式。实际 betatron 必须专门设计磁极形状，使空间分布满足平均场与轨道
+场的二比一关系，同时还要提供径向、竖直方向的聚焦稳定性。
+
+\historyfigure[0.72\linewidth]{betatron-built-in-v1.png}
+{电子感应加速器及其发明者克斯特。}\label{ch24:fig:s40-9-6}
+
+电子感应加速器曾可把电子加速到数百 MeV；能量继续提高时，同步辐射损耗快速增加，其他大型加速器
+更有优势。此类装置后来大量用于产生 X 射线和放射治疗。它展示了感生电场并非只在导线里“等效存在”，
+而是在真空轨道上也能直接对带电粒子做功。
+
+上面的 $mv^2/r=evB_{\rm orb}$ 是非相对论写法。电子能量升高后，应把机械动量写成 $p=\gamma mv$，轨道
+关系改为 $p=erB_{\rm orb}$；法拉第电场仍沿切向增加电子动量。随着速度接近 $c$，继续输入的能量主要增加
+$\gamma$ 而不是显著增加速度，同时圆周加速运动带来的辐射损耗迅速增强。这些效应限制了感应加速器
+可达到的能量，也说明“速度越来越大”不能在高能区继续使用牛顿形式外推。
+
+
+% EM teaching enrichment 20260927
+\paragraph{检验一个候选磁场分布}
+设设计轨道半径为 $r_0$，轨道内轴向磁场取
+$B_z(r,t)=B_c(t)[1-\alpha r^2/r_0^2]$。其面积平均值为
+\[
+ \overline B=\frac2{r_0^2}\int_0^{r_0}B_z(r,t)r\dd r
+ =B_c(1-\alpha/2),
+\]
+而轨道处 $B_{\rm orb}=B_c(1-\alpha)$。采用零积分常量的注入匹配，要求 $\overline B=2B_{\rm orb}$，得 $\alpha=2/3$。
+这个计算只核对固定半径的加速条件，未核对径向、轴向稳定性；满足二比一关系不能自动保证粒子束聚焦。
+
+
+% EM structure and teaching revision 20260928
+\subsection{非保守电场下的电压表读数}
+静电场中，两点电势差与路径无关；变化磁场产生的感生电场满足 $\oint\boldsymbol E\cdot\dd\boldsymbol l=-\dot\Phi_B$，其沿两条不同连接路径的线积分之差一般不为零。
+设路径 $\Gamma_1,\Gamma_2$ 都从 $A$ 到 $B$，按 $\Gamma_1$ 去、沿 $\Gamma_2$ 返回组成闭合回路，则
+\[
+ \int_{\Gamma_1}\boldsymbol E\cdot\dd\boldsymbol l-
+ \int_{\Gamma_2}\boldsymbol E\cdot\dd\boldsymbol l=-\frac{\dd\Phi_B}{\dd t}.
+\]
+因此读电压表时，除了接点 $A,B$，还要给出引线围成的路径以及是否穿过变化磁通区域。把引线绞合或贴近布置，是减小附加回路面积与感应误差的一种方式。
+计算可把各段电阻上的电压降和感应电动势按指定回路统一列入方程。应避免给整个空间强行指定一个能代表全部电场的单值静电势；只有感应贡献可忽略或已明确划入集中电动势元件时，普通节点电势法才可直接使用。
+测量模型还假定电压表内阻足够大、对原回路电流影响可忽略；若不满足此条件，表支路本身也须参与电路求解。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【小环的响应】}\label{ch24:ex:s40-9-10}
+半径为 $R$ 的固定绝缘大圆环与匀强磁场垂直，一个质量为 $m$、电荷为 $+q$ 的小环套在大环上，可无摩擦滑动。规定绕“垂直纸面
+向里”的轴按右手螺旋法则为角坐标 $\theta$ 正向，初始 $\theta=0$ 且静止。
+
+(1) $B(t)=\alpha t$；
+
+(2) $B(t)=B_0\sin\omega t$；
+
+(3) $B(t)=B_0\cos\omega t$。
+
+分别求小环的角速度、位置以及大环对小环的径向支持力。
+\par\noindent\begin{minipage}{\linewidth}
+\chargedRingDiagram
+\figcap{小环的角向和径向符号约定}\label{ch24:fig:review-chargedringdiagram-1}
+\end{minipage}\par\medskip
+\end{origexamplebox}
+
+\begin{xesolution}
+半径 $R$ 处的感生电场为
+\begin{equation}
+  E_\theta=-\frac R2\dot B.
+\end{equation}
+切向方程 $mR\ddot\theta=qE_\theta$ 给出一个对任意 $B(t)$ 都成立的通式：
+\begin{equation}
+  \boxed{\dot\theta(t)=-\frac q{2m}\,[B(t)-B(0)]},
+  \qquad
+  \boxed{\theta(t)=-\frac q{2m}\int_0^t[B(t')-B(0)]\dd t'}.
+\end{equation}
+取径向向外为正。磁力的径向分量为 $qR\dot\theta B$，径向加速度为 $-R\dot\theta^2$，故大环的有符号支持力为
+\begin{equation}
+  \boxed{N_r=-mR\dot\theta^2-qR\dot\theta B}.
+\end{equation}
+$N_r>0$ 表示支持力向外，$N_r<0$ 表示向内。
+
+三种情况依次为
+\begin{align}
+  B=\alpha t:\quad
+  &\boxed{\dot\theta=-\frac{q\alpha}{2m}t},
+  &\boxed{\theta=-\frac{q\alpha}{4m}t^2};\\
+  B=B_0\sin\omega t:\quad
+  &\boxed{\dot\theta=-\frac{qB_0}{2m}\sin\omega t},
+  &\boxed{\theta=\frac{qB_0}{2m\omega}(\cos\omega t-1)};\\
+  B=B_0\cos\omega t:\quad
+  &\boxed{\dot\theta=\frac{qB_0}{2m}(1-\cos\omega t)},
+  &\boxed{\theta=\frac{qB_0}{2m}\left(t-\frac{\sin\omega t}{\omega}\right)}.
+\end{align}
+对第 (1) 问，将 $\dot\theta=-q\alpha t/(2m)$ 代入，向心项为
+$-q^2R\alpha^2t^2/(4m)$，磁力移项为 $q^2R\alpha^2t^2/(2m)$，相加得
+\begin{equation}
+  \boxed{N_r=\frac{q^2R\alpha^2t^2}{4m}},
+\end{equation}
+方向向外：此时磁力向内且大于所需向心力，大环必须向外拉住小环。
+对第 (2) 问同理得
+\[
+ N_r=-\frac{q^2RB_0^2}{4m}\sin^2\omega t
+      +\frac{q^2RB_0^2}{2m}\sin^2\omega t
+ =\boxed{\frac{q^2RB_0^2}{4m}\sin^2\omega t}.
+\]
+它向外或为零。对第 (3) 问，令 $c=\cos\omega t$，得到
+\[
+ N_r=-\frac{q^2RB_0^2}{4m}[(1-c)^2+2c(1-c)]
+ =\boxed{-\frac{q^2RB_0^2}{4m}\sin^2\omega t}.
+\]
+它向内或为零。两者不同的原因是初始磁场分别为0与 $B_0$，角动量的积分常数不同，
+不能只凭某时刻 $B$ 的大小判断速度。三问均满足初始速度为零；$N_r$ 的量纲为力。
+
+图~\ref{ch24:fig:review-chargedringdiagram-1}中，顺时针为角坐标正向，径向向外为正；两个力的代数值按同一径向约定相加。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【貌似简谐振动】}\label{ch24:ex:s40-9-11}
+半径为 $R$ 的圆柱形区域内有垂直纸面向里的匀强磁场
+$B=B_0\sin\omega t$。在距离圆心 $h$ 的一条弦上有光滑直轨，带电质点 $m,+q$ 被约束在轨道中，初始位于弦中点且静止。
+
+(1) 求粒子的运动规律和任意时刻的位置；
+
+(2) 求保证粒子不离开磁场区域的参数条件。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.8,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.5);
+  \draw[Ink,very thick] ({-sqrt(2.5*2.5-1.25*1.25)},-1.25)--({sqrt(2.5*2.5-1.25*1.25)},-1.25);
+  \fill[DeepBlue] (0,-1.25) circle (3pt) node[below] {$m,+q$};
+  \draw[<->] (0,0)--node[right] {$h$}(0,-1.25);
+  \draw[axis] (-2.2,-1.75)--(2.4,-1.75) node[right] {$x$};
+  \node[TextGray] at (-1.4,1.0) {$\times$}; \node[TextGray] at (0,1.0) {$\times$}; \node[TextGray] at (1.4,1.0) {$\times$};
+  \node at (0,1.65) {$B_0\sin\omega t$};
+  \end{tikzpicture}\end{center}
+\figcap{正电荷位于弦中点，圆形区域内磁场按给定规律变化。}\label{ch24:fig:em24-question-11}
+\end{origexamplebox}
+
+\begin{xesolution}
+取轨道方向向右为 $x$ 轴，原点在弦中点。对于圆柱内的匀强时变磁场，感生电场可写为
+\begin{equation}
+  \vect E=-\frac12\dot B_z\,\uvec z\times\vect r.
+\end{equation}
+磁场指向纸内，在圆心下方距离 $h$ 的弦上，电场沿轨道的分量与 $x$ 无关：
+\begin{equation}
+  E_x=\frac h2\dot B=\frac{hB_0\omega}{2}\cos\omega t.
+\end{equation}
+磁力与轨道方向垂直，由轨道的支持力平衡，因而只有电场力改变 $x$ 向运动：
+\begin{equation}
+  m\ddot x=\frac{qhB_0\omega}{2}\cos\omega t.
+\end{equation}
+由 $x(0)=0,\dot x(0)=0$ 得
+\begin{equation}
+  \boxed{\dot x(t)=\frac{qhB_0}{2m}\sin\omega t},
+  \qquad
+  \boxed{x(t)=\frac{qhB_0}{2m\omega}(1-\cos\omega t)}.
+\end{equation}
+这是绕平衡位置 $x_c=qhB_0/(2m\omega)$ 的简谐形运动，但驱动来自时变磁场，并非恢复力。弦的半长为
+$s=\sqrt{R^2-h^2}$，而 $|x|$ 的最大值为 $|q|hB_0/(m\omega)$，故条件为
+\begin{equation}
+  \boxed{\frac{|q|hB_0}{m\omega}\le\sqrt{R^2-h^2}}.
+\end{equation}
+
+图~\ref{ch24:fig:review-chordparticlediagram-1}中，轨道在圆心下方h处，端点由同一个圆与直线的交点确定；粒子位移不能越过弦端。
+\par\noindent\begin{minipage}{\linewidth}
+\chordParticleDiagram
+\figcap{弦上粒子的约束与磁场边界}\label{ch24:fig:review-chordparticlediagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【感生电动势】}\label{ch24:ex:s40-9-12}
+半径为 $R$ 的圆柱区域内有垂直纸面向里的匀强磁场
+$B=B_0+kt$。距圆心 $h$ 处有一条直导线 $AD$，与圆的两个交点为 $A,C$，$D$ 位于 $C$ 右侧。记 $CD=\ell$，求沿 $A\to C$、$C\to D$ 两段的感生电动势，并讨论 $D$ 趋于无穷远的特例。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=0.82,>=Latex]
+  \draw[Ink,thick] (0,0) circle (2.5);
+  \draw[Ink,very thick] (-3.2,-1.2)--(4.3,-1.2);
+  \coordinate (A) at ({-sqrt(2.5*2.5-1.2*1.2)},-1.2); \coordinate (C) at ({sqrt(2.5*2.5-1.2*1.2)},-1.2); \coordinate (D) at (4.1,-1.2);
+  \fill[DeepBlue] (A) circle (2.5pt) node[below] {$A$}; \fill[DeepBlue] (C) circle (2.5pt) node[below] {$C$}; \fill[Ink] (D) circle (2.5pt) node[below] {$D$};
+  \draw[<->] ({sqrt(2.5*2.5-1.2*1.2)},-2)--(4.1,-2) node[midway,below] {$\ell$};
+  \draw[<->] (0,0)--node[right] {$h$}(0,-1.2);
+  \node[TextGray] at (-1.1,.2) {$\dot B=k$};
+\end{tikzpicture}\end{center}
+\figcap{弦、观察端点和外延直线；感生电场分布待求。}\label{ch24:fig:em24-question-12}
+\end{origexamplebox}
+
+\begin{xesolution}
+先取 $0<h<R$，令 $s=\sqrt{R^2-h^2}$，以垂足为坐标原点，导线向右为积分正向；则 $x_A=-s$、$x_C=s$、$x_D=s+\ell$。磁场向里增大时，感生电场从读者视角看为逆时针，因而在圆心下方的导线上其分量向右。
+
+圆内电场 $E_\varphi=kr/2$。在水平线 $y=-h$ 上，其 $x$ 分量为常量 $kh/2$，故
+\begin{equation}
+  \boxed{\mathcal E_{AC}=\int_{-s}^{s}\frac{kh}{2}\dd x
+  =kh\sqrt{R^2-h^2}}.
+\end{equation}
+圆外电场 $E_\varphi=kR^2/(2r)$，而水平分量为
+\begin{equation}
+  E_x=\frac{kR^2h}{2(x^2+h^2)}.
+\end{equation}
+因此对于有限端点 $D$，
+\begin{align}
+  \mathcal E_{CD}
+  &=\frac{kR^2h}{2}\int_s^{s+\ell}\frac{\dd x}{x^2+h^2}\\
+  &=\boxed{\frac{kR^2}{2}\left[\arctan\frac{s+\ell}{h}-\arctan\frac{s}{h}\right]}.
+\end{align}
+只有再令 $\ell\to\infty$，才得到
+\[
+ \boxed{\mathcal E_{C\infty}=\frac{kR^2}{2}\left(\frac\pi2-\arctan\frac{s}{h}\right)
+ =\frac{kR^2}{2}\arcsin\frac hR}.
+\]
+当 $\ell=0$ 时第二段电动势为零；当 $h=0$ 时两段上的电场沿线分量都为零，可由几何直接判断。
+若改变积分方向，电动势整体变号。
+后一段虽然完全位于无磁场区域，感生电场却并不为零；这正是涡旋电场与“局部磁力”图像的区别。
+
+图~\ref{ch24:fig:review-chordemfdiagram-1}中，A、C为圆与导线的交点，D为有限观察端点；圆外仍需积分涡旋电场。
+\par\noindent\begin{minipage}{\linewidth}
+\chordEmfDiagram
+\figcap{跨越磁场边界的直导线}\label{ch24:fig:review-chordemfdiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【这是测的啥】}\label{ch24:ex:s40-9-13}
+半径为 $R$ 的圆柱区域内有垂直纸面向里的匀强磁场 $B=B_0+kt$。边缘处放置一根不均匀的圆形电阻线，两端点为 $A,C$。
+劣弧 $AC$ 的圆心角为 $2\pi/3$、电阻为 $r_0/4$；优弧 $AC$ 的圆心角为 $4\pi/3$、电阻为 $r_0/3$。电压表 $V_1,V_2$ 分别紧贴劣弧和优弧连接 $A,C$；
+$V_3$ 的两根导线从 $A,C$ 沿径向通到圆心。求三表示数并解释它们测量的物理量。
+\par\noindent\begin{minipage}{\linewidth}
+\circularVoltmetersDiagram
+\figcap{圆形电阻线与三种测量路径}\label{ch24:fig:review-circularvoltmetersdiagram-1}
+\end{minipage}\par\medskip
+\end{origexamplebox}
+
+\begin{xesolution}
+总感应电动势的大小为
+\begin{equation}
+  \mathcal E_0=k\pi R^2.
+\end{equation}
+电阻线中的电流为
+\begin{equation}
+  I=\frac{\mathcal E_0}{r_0/4+r_0/3}
+  =\frac{12\mathcal E_0}{7r_0}.
+\end{equation}
+$V_1,V_2$ 的导线各自紧贴被测电阻弧，电压表与电阻弧围成的面积可趋于零，所以它们读出的是相应电阻上的欧姆压降：
+\begin{equation}
+  \boxed{V_1=I\frac{r_0}{4}=\frac37\mathcal E_0},
+  \qquad
+  \boxed{V_2=I\frac{r_0}{3}=\frac47\mathcal E_0}.
+\end{equation}
+$V_3$ 的两根引线都沿径向，引线上 $\vect E_{\rm ind}\cdot\dd\vect\ell=0$。劣弧和两根径向线围成的扇形面积为 $\pi R^2/3$，其感应电动势为 $\mathcal E_0/3$。因此
+\begin{equation}
+  \boxed{V_3=\left|I\frac{r_0}{4}-\frac{\mathcal E_0}{3}\right|
+  =\frac{2}{21}\mathcal E_0}.
+\end{equation}
+$V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意一段电阻压降。时变磁场中 $\oint\vect E\cdot\dd\vect\ell\ne0$，“两点间电压”会依赖电压表引线的路径。
+
+图~\ref{ch24:fig:review-circularvoltmetersdiagram-1}中，V1、V2的引线分别紧贴两段弧，V3沿两条半径；不同闭合路径对应不同包围面积。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【这也可以测】}\label{ch24:ex:s40-9-14}
+边长为 $a$ 的正方形导线框放在垂直纸面向里的匀强磁场 $B=B_0+kt$ 中。左、右两边电阻分别为 $R_1,R_2$，上、下两边电阻忽略。
+电压表 $V_1,V_2,V_3,V_4$ 分别紧贴上、右、下、左四边连接。求各表示数并解释其物理意义。
+\par\noindent\begin{minipage}{\linewidth}
+\squareVoltmetersDiagram
+\figcap{四只电压表的真实连接点}\label{ch24:fig:review-squarevoltmetersdiagram-1}
+\end{minipage}\par\medskip
+\end{origexamplebox}
+
+\begin{xesolution}
+线框的感应电动势大小为 $\mathcal E_0=ka^2$，电流大小为
+\begin{equation}
+  I=\frac{ka^2}{R_1+R_2}.
+\end{equation}
+紧贴某一边的电压表与该边围成的面积趋于零，因此其读数就是该边的欧姆压降。上下两边无电阻，故
+\begin{equation}
+  \boxed{V_1=0},
+  \qquad
+  \boxed{V_2=\frac{R_2}{R_1+R_2}ka^2},
+\end{equation}
+\begin{equation}
+  \boxed{V_3=0},
+  \qquad
+  \boxed{V_4=\frac{R_1}{R_1+R_2}ka^2}.
+\end{equation}
+虽然 $V_1$ 和 $V_3$ 都连在左右两侧导体之间，但它们的引线路径不同。在涡旋电场中，不能脱离测量路径把“两点电压”当成唯一的标量。
+
+图~\ref{ch24:fig:review-squarevoltmetersdiagram-1}中，所有引线都接到顶点，表与被测边的间距仅为辨认而放大，计算取其所围附加面积趋零。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【奇妙的田字格】}\label{ch24:ex:s40-9-15}
+一个外框边长为 $2a$ 的“田”字格电阻网络放在垂直纸面向里的匀强磁场 $B=B_0+kt$ 中。每根导线的单位长度电阻为 $r/a$，因而每段长为 $a$ 的小边电阻为 $r$。求各支路电流。
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[Ink,thick](-2,-2)grid[step=2](2,2);
+ \node at(-1,1){$\otimes$};\node at(1,1){$\otimes$};\node at(-1,-1){$\otimes$};\node at(1,-1){$\otimes$};
+ \draw[<->](-2,-2.5)--(2,-2.5)node[midway,below]{$2a$};\node[right]at(2.6,.2){$\dot B=k$};
+\end{tikzpicture}\end{center}
+\figcap{四个方格中的垂直磁场按相同变化率改变。}\label{ch24:fig:em24-question-15}
+\end{origexamplebox}
+
+\begin{xesolution}
+四个边长为 $a$ 的小方格所围面积相同，每个网孔的感应电动势都是
+\begin{equation}
+  \mathcal E_c=ka^2,
+\end{equation}
+且方向都为逆时针。由四重旋转对称性，四个网孔电流必然相等，记为 $i$。每一条内部十字支路都是两个相邻网孔的公用边，两个等大网孔电流在其上方向相反，故内部支路的实际电流为零。
+
+对任一小网孔写基尔霍夫方程，只有位于外边界的两段电阻产生压降：
+\begin{equation}
+  2ri=ka^2.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{i=\frac{ka^2}{2r}}.
+\end{equation}
+外周八段小边均通有大小 $ka^2/(2r)$ 的逆时针电流，中央十字的四段电流均为零。
+
+图~\ref{ch24:fig:review-gridcurrentdiagram-1}中，向纸内磁场增强时，外周逆时针电流产生向纸外的反抗磁场，内部支路电流为零。
+\par\noindent\begin{minipage}{\linewidth}
+\gridCurrentDiagram
+\figcap{田字格的外周环流}\label{ch24:fig:review-gridcurrentdiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【万能的基尔霍夫】}\label{ch24:ex:s40-9-16}
+证明：任意复杂的、仅含电阻和理想电源的线性网络放入匀强时变磁场 $B=B_0+kt$ 中，只要所有支路参数和各独立回路所围面积均已知，就能求出所有支路电流；并证明此时仍满足电源叠加定理。
+\end{origexamplebox}
+
+\begin{xesolution}
+为网络选取 $n$ 个独立网孔电流，组成列向量 $\vect i$。记 $\vect R$ 为由支路电阻组成的网孔电阻矩阵，$\vect e$ 为理想电源在各网孔中的代数和，
+$\vect S=(S_1,\ldots,S_n)^{\mathsf T}$ 为有符号面积列向量。法拉第--基尔霍夫方程可写成
+\begin{equation}
+  \boxed{\vect R\vect i=\vect e-k\vect S}.
+\end{equation}
+对于非平面网络，“网孔”应改用一般的独立回路，$S_j$ 为其有向面积在磁场方向的投影。
+设支路--回路矩阵为 $\vect A$，支路电阻矩阵为 $\vect D=\operatorname{diag}(R_e)$，
+则 $\vect R=\vect A^{\mathsf T}\vect D\vect A$，且
+$\vect i^{\mathsf T}\vect R\vect i=\sum_eR_eI_e^2\ge0$。
+这只能无条件保证半正定。若每个非零独立环流都经过正电阻，才有严格正定及可逆性。所以在此条件下
+\begin{equation}
+  \boxed{\vect i=\vect R^{-1}\vect e-k\vect R^{-1}\vect S}.
+\end{equation}
+再用网孔--支路关联矩阵即可恢复所有支路电流。上式的第一项是普通电源单独作用的响应，第二项是时变磁场等效电源单独作用的响应，两者线性相加，故叠加定理仍然成立。
+若存在纯理想电源或零电阻回路，必须先检查约束：回路电动势不相容时无有限稳态解，
+相容时也可能不能唯一确定电流。例如两只等电压理想电源并联，其分担电流不由理想模型唯一决定。
+因此题设的“任意”须理解为非退化、约束相容的线性网络；退化情况不能直接写 $\vect R^{-1}$。
+\end{xesolution}
+
+
+
+\section{自感、互感与动态回路}
+
+\subsection{自感、电感的暂态与磁场能量}
+
+
+给定线性回路中，由自身电流 $I$ 产生的磁链与电流成正比：
+\begin{equation}
+  \boxed{\Lambda=LI},
+  \qquad
+  \boxed{\mathcal E_L=-\frac{\dd(LI)}{\dd t}}.
+\end{equation}
+几何形状不变且介质线性时 $L$ 为常量，$\mathcal E_L=-L\dot I$。对长度 $l$、截面积 $A$、单位长度
+$n$ 匝的理想长螺线管，
+\begin{equation}
+  \boxed{L=\mu_0n^2Al}.
+\end{equation}
+电感不阻碍已有电流，而是阻碍电流的改变。串联 $RL$ 回路接上恒定电源 $\mathcal E_0$ 后，
+\begin{equation}
+  L\dot I+RI=\mathcal E_0,
+  \qquad
+  I(t)=\frac{\mathcal E_0}{R}\left(1-\e^{-t/\tau_L}\right),
+  \qquad \tau_L=\frac LR.
+\end{equation}
+下列螺线管公式采用真空或非磁性芯近似。电感储能与真空磁场能量密度分别为
+\begin{equation}
+  \boxed{W_L=\frac12LI^2},
+  \qquad
+  \boxed{u_B=\frac{B^2}{2\mu_0}}.
+\end{equation}
+若为无磁滞、可逆的线性介质，能量密度为 $u_B=\vect B\cdot\vect H/2$；
+在线性各向同性介质中等于 $B^2/(2\mu)$，不能无条件仍用 $\mu_0$。
+
+图~\ref{ch24:fig:review-selffieldlinesdiagram-1}中，单环和多匝线圈都有内部场与外部回流场，同向绕组的内场贡献相加。
+\par\noindent\begin{minipage}{\linewidth}
+\selfFieldLinesDiagram
+\figcap{单环与有限螺线管的自生场}\label{ch24:fig:review-selffieldlinesdiagram-1}
+\end{minipage}\par\medskip
+图中的单环电流按右手规则产生向上的轴场，场线从上侧绕回下侧；多匝同向绕组使内部磁场叠加，
+外部回流场仍存在。计算自感时，必须计算这些自生磁场穿过本回路各匝的磁链，而不是把外部场另行遗漏。
+
+自感系数的单位是 henry（H）。由 $\mathcal E_L=-L\dot I$ 可见，
+$1\,\mathrm H=1\,\mathrm{V\,s/A}$；由 $\Lambda=LI$ 又可写成
+$1\,\mathrm H=1\,\mathrm{Wb/A}$。同一回路中电流增加时，自感电动势方向与电流方向相反；电流减小时，
+自感电动势与原电流同向，试图维持它。所谓“电感阻碍电流”是不准确的：稳恒直流通过理想电感时
+$\dot I=0$，自感电动势为零；它阻碍的是电流的变化率。
+
+自感是所有闭合导体回路的普遍属性，大小由回路形状、匝数、尺寸和周围介质决定；在线性介质中与电流
+大小无关。若几何结构本身随时间变化，则 $L$ 也可能变化，必须使用完整形式
+$\mathcal E_L=-\dd(LI)/\dd t$，不能直接简写为 $-L\dot I$。
+
+对总匝数 $N=nl$ 的长螺线管，内部 $B=\mu_0NI/l$。每匝磁通为 $BA$，总磁链
+\begin{equation}
+  \Lambda=NBA=\frac{\mu_0N^2A}{l}I,
+\end{equation}
+所以
+\begin{equation}
+  L=\frac{\mu_0N^2A}{l}=\mu_0n^2Al.
+\end{equation}
+匝数加倍会使磁场贡献和磁链计数各增加一倍，因此自感按 $N^2$ 增长。
+
+接通 $RL$ 回路时，$I(0)=0$，电感两端最初承担几乎全部电源电压；随后电流按时间常量 $L/R$ 上升，
+最终趋于 $\mathcal E_0/R$，此时电流不再变化，理想电感压降趋零。断开含大电感的电路时，电感会试图
+维持原电流并产生很高反向电动势，这既可被利用，也可能造成开关打火或绝缘损坏。
+
+图~\ref{ch24:fig:s40-9-9} 右侧把电源、开关、电阻和电感的连接关系完整画出。开关闭合后，沿图示电流方向列回路方程为
+$\mathcal E_0=RI+L\dot I$；端点 $a,b$ 的电压为 $U_{ab}=L\dot I$。因此初始瞬间 $U_{ab}=\mathcal E_0$，
+稳态时 $U_{ab}\to0$，这两端极限也能直接检查解析解是否合理。
+
+\rlInductorContext
+
+若把已经达到稳恒电流 $I_0$ 的 $RL$ 支路从电源断开，但仍让电阻与电感构成闭合回路，方程变为
+\begin{equation}
+  L\dot I+RI=0,\qquad I(t)=I_0\e^{-tR/L}.
+\end{equation}
+上升和衰减具有同一时间常量 $\tau_L=L/R$。在一个时间常量后，衰减电流剩下 $1/\e$，上升电流达到
+终值的 $1-1/\e$。初始电流不能瞬间突变，否则 $\dot I$ 无穷大，需要无限自感电动势；实际电路中的
+寄生电容、击穿和开关过程会限制电压峰值。
+
+储能式可以直接由功率推出。给电感建立电流时，外电源克服自感电动势所提供的功率为
+$P=UI=LI\dot I$，从零电流积分到 $I$：
+\begin{equation}
+  W_L=\int_0^I LI'\,\dd I'=\frac12LI^2.
+\end{equation}
+当电流减小时，这部分能量会重新流回电路或在电阻中耗散。能量并不是“藏在线圈铜线里”，而是分布在
+线圈电流建立的磁场中；对全空间积分 $B^2/(2\mu_0)$ 应与 $LI^2/2$ 相等。反过来，若某个回路磁场
+容易计算，也可先算总磁场能量，再由 $W=LI^2/2$ 反求自感。
+
+以长螺线管作检验，内部体积为 $Al$，场强 $B=\mu_0nI$，所以
+\begin{equation}
+  \int u_B\,\dd V
+  =\frac{(\mu_0nI)^2}{2\mu_0}Al
+  =\frac12(\mu_0n^2Al)I^2
+  =\frac12LI^2.
+\end{equation}
+这既验证了能量密度，也说明理想长螺线管的能量主要储存在管内近似匀强磁场区域。有限线圈还会有外部
+漏场，对应的能量同样必须计入，实际自感也会因此偏离无限长近似。
+
+图~\ref{ch24:fig:review-selfinductancediagram-1}中，内部磁场穿过每一匝，磁链要将各匝通量相加，才得到 $\Lambda=LI$。
+\par\noindent\begin{minipage}{\linewidth}
+\selfInductanceDiagram
+\figcap{螺线管的自生磁链}\label{ch24:fig:review-selfinductancediagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{开关题先取连续量，再取最终状态}
+有限端电压下电感电流连续：$I_L(0^+)=I_L(0^-)$；有限支路电流下电容电压连续：$U_C(0^+)=U_C(0^-)$。它们是从构成方程积分得到的初值条件。
+例如初始电流 $I_0$ 的线圈只经电阻 $R$ 放电，热量
+\[
+ Q_R=\int_0^\infty RI_0^2e^{-2Rt/L}\dd t=\frac12LI_0^2,
+\]
+与初磁能相符。初始端电压大小为 $RI_0$，增加 $R$ 会加快衰减并提高电压，而不是使电流在开关瞬间消失。
+理想“直接开路”不给电流出路，有限电压的简单 $RL$ 模型便不闭合，应考虑实际寄生电容或放电通道。
+
+
+\subsection{互感与互易性}
+
+
+回路 1 中的电流会在回路 2 中建立磁链，反之亦然。选定两个回路的正向后，定义
+\begin{equation}
+  \Lambda_2=M_{12}I_1,
+  \qquad
+  \Lambda_1=M_{21}I_2.
+\end{equation}
+相应的感应电动势为
+\begin{equation}
+  \mathcal E_2=-M_{12}\frac{\dd I_1}{\dd t},
+  \qquad
+  \mathcal E_1=-M_{21}\frac{\dd I_2}{\dd t},
+\end{equation}
+其中假定几何位置不变、互感为常量。若两线圈相对移动，必须保留
+$-\dd(MI)/\dd t$ 的完整形式，运动本身也会改变磁链。
+对线性、静止的回路系统，互易定理给出
+\begin{equation}
+  \boxed{M_{12}=M_{21}\equiv M}.
+\end{equation}
+$M$ 的正负取决于两回路正向的选取，但对称性不变。两回路共同产生的磁场能量为
+\begin{equation}
+  \boxed{W=\frac12L_1I_1^2+MI_1I_2+\frac12L_2I_2^2}.
+\end{equation}
+由能量必须非负还可得耦合界 $M^2\le L_1L_2$。
+
+两个线圈不必有金属接触也能互相影响：回路1电流变化，使穿过回路2的磁通变化，从而在回路2中产生
+感应电动势。互感的绝对值由两回路形状、距离、相对朝向以及介质决定；正负只反映两个回路正方向怎样
+约定。若把其中一个线圈的正方向反过来，电流和磁通的符号定义随之改变，$M$ 也反号，但实际电磁现象
+没有改变。
+
+对两根细导线闭合回路，互感还可写成诺依曼形式
+\begin{equation}
+  M=\frac{\mu_0}{4\pi}\oint_{C_1}\!\oint_{C_2}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{|\vect r_1-\vect r_2|}.
+\end{equation}
+交换下标 $1,2$ 后，被积式和积分区域不变，因而直观看出 $M_{12}=M_{21}$。这个对称性不是说两个
+回路中产生的磁通一定相等，而是说“回路1单位电流在回路2建立的磁链”与反向过程的比例系数相等。
+若匝数不同，磁链已经包含各匝磁通的总和，互易性仍然成立。
+
+互易性 $M_{12}=M_{21}$ 是线性静止系统的普遍结论，不要求两个线圈相同。能量中的交叉项 $MI_1I_2$
+表示两组场在空间中的重叠：同向加强时可以为正，反向削弱时可以为负，但总磁场能量必须非负，这便
+要求 $|M|\le\sqrt{L_1L_2}$。定义耦合系数 $k=M/\sqrt{L_1L_2}$ 后，总有 $|k|\le1$；理想变压器
+希望 $|k|$ 尽可能接近1，而需要隔离的电路则会尽量减小互感。
+
+能量不等式可以把耦合强弱限制得更直观。把总能量看成关于 $I_2$ 的二次式，若
+$M^2>L_1L_2$，总能找到某个 $I_2/I_1$ 使二次式为负，这与磁场能量非负矛盾。所以
+$|k|\le1$ 不是经验规定，而是能量正定性的结果。$|k|=1$ 表示两个线圈的全部磁通完全耦合；真实线圈
+通常有漏磁，故 $|k|<1$。
+
+变压器正是互感的典型应用：原线圈中的交流使铁芯磁通变化，副线圈因共享磁链而产生电动势。理想紧耦合
+情况下，电压比近似等于匝数比；实际装置还要考虑漏磁、绕组电阻、铁芯损耗与有限励磁电流。本章只用
+互感说明“无金属接触也能传递电磁能量”的机制，具体交流电路分析还需结合阻抗和功率关系。
+
+判定互感电动势方向时仍应回到楞次定律：先判断原线圈电流变化使副线圈中的磁通怎样变化，再令副线圈
+电流产生的磁场阻碍这一变化。所谓同名端标记只是把这一判向结果固定在器件符号上，不能脱离线圈绕向
+和参考电流方向孤立使用。
+绕向或端点定义改变后，符号会改变，但实际端电压与电流响应必须保持一致。
+这也是互感计算的基本自检。
+
+图~\ref{ch24:fig:review-mutualinductancediagram-1}中，两个同向电流的正法向一致，回路1的场穿过回路2，反向激励时交换源和受体。
+\par\noindent\begin{minipage}{\linewidth}
+\mutualInductanceDiagram
+\figcap{两个同轴回路的互感}\label{ch24:fig:review-mutualinductancediagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{串联耦合线圈与正负号}
+两个线圈串联后流过同一电流 $I$。若所选回路正向使互感项为正，总磁能为
+$\frac12(L_1+L_2+2M)I^2$，所以等效电感为 $L_1+L_2+2M$。
+反接一个线圈，互感项反号，等效电感为 $L_1+L_2-2M$。由 $|M|\le\sqrt{L_1L_2}$ 可检验等效电感不为负。
+例如 $L_1=L_2=L$、$M=kL$ 且 $0\le k\le1$，两种接法分别给出 $2L(1+k)$、$2L(1-k)$。反接后只在理想完全耦合 $k=1$ 的极限才为零；真实漏磁使其仍保留正电感。
+
+
+
+% EM structure and teaching revision 20260928
+\subsection{开关初值、稳态与自然响应}
+理想电感满足 $u_L=L\dot I$，所以在无冲激电压时电流连续；理想电容满足 $I_C=C\dot U_C$，所以在无冲激电流时电压连续。开关刚动作后的初值应从动作前的储能状态继承，不能立即套直流稳态的“电感短路、电容开路”。
+串联RLC无源放电，取电容电荷 $Q$ 为状态量，电流方向与 $\dot Q$ 一致，则
+\[
+ L\ddot Q+R\dot Q+\frac QC=0,
+ \qquad s_{1,2}=-\frac R{2L}\pm\sqrt{\frac{R^2}{4L^2}-\frac1{LC}}.
+\]
+当 $R<2\sqrt{L/C}$ 时为衰减振荡；等号为临界阻尼；较大电阻时两个实负根分别控制快、慢衰减。二阶方程需要两个初值，例如 $Q(0)$ 与 $I(0)$。
+若外接恒定电源，先求长期特解，再叠加满足初值的自然响应。检查总能量
+$W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源电阻使振幅持续增长，应首先检查电流参考方向和感应电动势的符号。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【自感线圈】}\label{ch24:ex:s40-9-17}
+一个理想密绕长螺线管的长度为 $l$、半径为 $R$、单位长度匝数为 $n$。
+
+(1) 求其自感；
+
+(2) 若把它看成左右两部分，整体自感是否等于两部分自感之和？
+
+% Pure source-question geometry: no derived forces, currents or solution curves.
+%
+\begin{center}\begin{tikzpicture}[scale=.75,>=Latex]
+ \foreach \x in {-3.6,-3.2,...,3.6}{\draw[Ink](\x,0)ellipse(.18 and 1.0);}
+ \draw[guide,dashed](0,-1.4)--(0,1.5);
+ \draw[<->](-3.8,-1.5)--(0,-1.5)node[midway,below]{$l_1$};
+ \draw[<->](0,-1.5)--(3.8,-1.5)node[midway,below]{$l_2$};
+ \end{tikzpicture}\end{center}
+\figcap{沿同一长螺线管把绕组分为两段，位置保持不变。}\label{ch24:fig:em24-question-17}
+\end{origexamplebox}
+
+\begin{xesolution}
+螺线管内部磁场为 $B=\mu_0nI$，截面积 $A=\pi R^2$，总匝数 $N=nl$。磁链为
+\begin{equation}
+  \Lambda=N\Phi=(nl)(\mu_0nI)(\pi R^2).
+\end{equation}
+所以
+\begin{equation}
+  \boxed{L=\frac\Lambda I=\mu_0n^2\pi R^2l}.
+\end{equation}
+若左右两段长度为 $l_1,l_2$，且 $l_1+l_2=l$，先保持两段原有位置和绕向。
+同一电流 $I$ 依次通过两段，磁能为
+\[
+ W=\frac12L_1I^2+MI^2+\frac12L_2I^2
+   =\frac12(L_1+L_2+2M)I^2,
+\]
+所以一般关系是 $L=L_1+L_2+2M$，而不是无条件简单相加。
+若两个子段都满足 $l_1,l_2\gg R$，并在长管主阶近似中忽略分界附近的交链端场，则
+\begin{equation}
+  L_1+L_2\simeq\mu_0n^2\pi R^2(l_1+l_2)\simeq L.
+\end{equation}
+因此“等于”只指这一近似的主阶结果。整体长不代表任意切出的短段也长；如果一段长度与半径相当，
+不能对它继续使用长管公式。单纯把一根线圈在账面上分成两段不会改变其几何或磁场，互感项仍需计入；
+实际切开并移远则改变了互感，是另一个装置。
+
+图~\ref{ch24:fig:review-solenoidsplitdiagram-1}中，分界只是对同一线圈的划分；保持位置时总自感还包括两段互感的两倍。
+\par\noindent\begin{minipage}{\linewidth}
+\solenoidSplitDiagram
+\figcap{同向串联的两段线圈}\label{ch24:fig:review-solenoidsplitdiagram-1}
+\end{minipage}\par\medskip
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【互感线圈】}\label{ch24:ex:s40-9-18}
+两个单匝线圈放置在任意位置，分别通入电流 $I_1,I_2$。证明：1 号线圈产生的磁场穿过 2 号线圈的磁通量与 $I_1$ 之比，等于 2 号线圈产生的磁场穿过 1 号线圈的磁通量与 $I_2$ 之比，即 $M_{12}=M_{21}$。
+% Question contract: only the two loops and prescribed current reference directions.
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-2.5,0)circle(1.2);\draw[Ink,thick](2.5,.4)circle(1);
+ \draw[vector](-1.3,0)arc[start angle=0,end angle=65,radius=1.2];
+ \draw[vector](3.5,.4)arc[start angle=0,end angle=65,radius=1];
+ \node at(-2.5,0){线圈1};\node at(2.5,.4){线圈2};
+ \node[right]at(-1.35,.95){$I_1$};\node[right]at(3.45,1.2){$I_2$};
+\end{tikzpicture}\end{center}
+\figcap{两个单匝线圈及各自的电流参考方向。}\label{ch24:fig:em24-question-18}
+
+\end{origexamplebox}
+
+\begin{xesolution}
+\par\noindent\begin{minipage}{\linewidth}
+\mutualLoopsProofDiagram
+\figcap{互感双重积分的源点和场点}\label{ch24:fig:review-mutualloopsproofdiagram-1}
+\end{minipage}\par\medskip
+
+使用稳恒线电流的矢势
+\begin{equation}
+  \vect A_1(\vect r_2)=\frac{\mu_0I_1}{4\pi}
+  \oint_{C_1}\frac{\dd\vect\ell_1}{r_{12}}.
+\end{equation}
+由斯托克斯定理，1 号线圈在 2 号线圈中建立的磁通为
+\begin{align}
+  \Phi_{2\leftarrow1}
+  &=\oint_{C_2}\vect A_1\cdot\dd\vect\ell_2\\
+  &=\frac{\mu_0I_1}{4\pi}\oint_{C_2}\!\oint_{C_1}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{r_{12}}.
+\end{align}
+因此
+\begin{equation}
+  M_{12}=\frac{\Phi_{2\leftarrow1}}{I_1}
+  =\frac{\mu_0}{4\pi}\oint_{C_1}\!\oint_{C_2}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{r_{12}}.
+\end{equation}
+交换积分次序及下标 $1,2$，点积和距离 $r_{12}$ 均不变，所以
+\begin{equation}
+  \boxed{M_{12}=M_{21}}.
+\end{equation}
+两回路的形状、大小和相对位置可以任意；以上证明采用真空中的稳恒线电流近似。
+普通线性互易介质也有互易性，但不能把真空积分核无条件照搬到任意介质。
+
+图~\ref{ch24:fig:review-mutualloopsproofdiagram-1}中，两个线元落在各自回路上并取切向，交换下标不改变点积及两点距离。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【RLC 回路】}\label{ch24:ex:s40-9-19}
+电阻 $R$、电感 $L$、电容 $C$ 串联成回路。初始电流为零，电容初电压为 $U$。$t=0$ 闭合开关，求任意时刻的放电电流。
+\par\noindent\begin{minipage}{\linewidth}
+\rlcDiagram{0}
+\figcap{RLC回路及初始电压参考极性}\label{ch24:fig:review-rlcdiagram-1}
+\end{minipage}\par\medskip
+\end{origexamplebox}
+
+\begin{xesolution}
+记电容器带电量为 $q$，并把放电方向的电流取为 $I=-\dot q$。则
+\begin{equation}
+  L\ddot q+R\dot q+\frac qC=0,
+  \qquad q(0)=CU,
+  \qquad \dot q(0)=0.
+\end{equation}
+特征根为
+\begin{equation}
+  s_\pm=-\frac{R}{2L}\pm
+  \sqrt{\left(\frac{R}{2L}\right)^2-\frac1{LC}}.
+\end{equation}
+对 $s_+\ne s_-$，电流的统一表达式为
+\begin{equation}
+  \boxed{I(t)=\frac UL\,
+  \frac{\e^{s_+t}-\e^{s_-t}}{s_+-s_-}}.
+\end{equation}
+当 $R<2\sqrt{L/C}$ 时，记
+\begin{equation}
+  \alpha=\frac{R}{2L},
+  \qquad
+  \omega_d=\sqrt{\frac1{LC}-\alpha^2},
+\end{equation}
+则欠阻尼电流为
+\begin{equation}
+  \boxed{I(t)=\frac{U}{L\omega_d}\e^{-\alpha t}\sin\omega_dt}.
+\end{equation}
+临界阻尼 $R=2\sqrt{L/C}$ 时，
+\begin{equation}
+  \boxed{I(t)=\frac{U}{L}\,t\e^{-Rt/(2L)}}.
+\end{equation}
+过阻尼情形直接使用实根形式。电流的初值为零是电感电流不能突变的结果，而非“电容还没开始放电”。
+
+图~\ref{ch24:fig:review-rlcdiagram-1}中，图示开关已闭合，C为等长双极板，R、L使用独立元件符号；电流正向与初始电压极性共同决定方程。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【电源凑热闹】}\label{ch24:ex:s40-9-20}
+电阻 $R$、电感 $L$、电容 $C$ 与恒定电源 $\mathcal E$ 串联成回路。初始电流为零，电容初电压为 $U$。$t=0$ 闭合开关，求任意时刻的电流。
+\par\noindent\begin{minipage}{\linewidth}
+\rlcDiagram{1}
+\figcap{RLC回路及初始电压参考极性}\label{ch24:fig:review-rlcdiagram-2}
+\end{minipage}\par\medskip
+\end{origexamplebox}
+
+\begin{xesolution}
+取电源充电方向为电流正方向，令 $q$ 为电容正极板电量，$I=\dot q$。回路方程为
+\begin{equation}
+  L\ddot q+R\dot q+\frac qC=\mathcal E,
+  \qquad q(0)=CU,
+  \qquad \dot q(0)=0.
+\end{equation}
+把 $q=C\mathcal E+y$ 代入，$y$ 满足与上题完全相同的齐次方程，只是初值由 $CU$ 换成 $C(U-\mathcal E)$。因此
+\begin{equation}
+  \boxed{I(t)=\frac{\mathcal E-U}{L}\,
+  \frac{\e^{s_+t}-\e^{s_-t}}{s_+-s_-}},
+\end{equation}
+其中 $s_\pm$ 与上题相同。欠阻尼时
+\begin{equation}
+  \boxed{I(t)=\frac{\mathcal E-U}{L\omega_d}
+  \e^{-\alpha t}\sin\omega_dt}.
+\end{equation}
+若 $U=\mathcal E$，初始电容电压已与电源平衡，回路不产生电流；若 $U>\mathcal E$，上式给出负电流，即电容反向向电源一侧放电。
+其中 $U$ 按图中极性定义为有符号初电压。临界阻尼时两个根重合，不能直接代入上面的商式；
+利用 $\lim_{s_+\to s_-}(\e^{s_+t}-\e^{s_-t})/(s_+-s_-)=t\e^{s_-t}$，得到
+\begin{equation}
+ \boxed{I(t)=\frac{\mathcal E-U}{L}t\e^{-Rt/(2L)}},\qquad R=2\sqrt{L/C}.
+\end{equation}
+过阻尼时用两个不同实根的通式。各分支均满足 $I(0)=0$、$\dot I(0)=(\mathcal E-U)/L$。
+
+图~\ref{ch24:fig:review-rlcdiagram-2}中，图示开关已闭合，C为等长双极板，R、L使用独立元件符号；电流正向与初始电压极性共同决定方程。
+
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【磁悬浮列车】}\label{ch24:ex:s40-9-21}
+把列车等效为一个长为 $a$、宽为 $L$、总电阻为 $R_c$ 且自感可忽略的闭合导体框，质量为 $m$。导轨中存在行波磁场
+\begin{equation*}
+  B(x,t)=B_0\cos(kx-\omega t),
+\end{equation*}
+方向垂直导体框平面。
+
+(1) 若某时刻车体左边坐标为 $x$、向右速度为 $v$，求瞬时电磁动力；
+
+(2) 解释这种行波磁场为何能驱动列车。
+% Question contract: given frame, speed and field law; no phase-speed result or zero-field construction.
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](-4,1.4)--(4,1.4) (-4,-1.4)--(4,-1.4);
+ \draw[DeepBlue,very thick](-1.2,-1.15)rectangle(1.2,1.15);
+ \node at(0,.25){$m,\ R_c$};
+ \draw[vector](1.45,0)--(3,0)node[right]{$v$};
+ \draw[<->](-1.2,-1.9)--(1.2,-1.9)node[midway,below]{$a$};
+ \draw[<->](-4.4,-1.15)--(-4.4,1.15)node[midway,left]{$L$};
+ \node at(0,2.1){$B(x,t)=B_0\cos(kx-\omega t)$，垂直框面};
+\end{tikzpicture}\end{center}
+\figcap{闭合导体框与绝缘机械支承；框长、框宽及瞬时速度为已知量。}\label{ch24:fig:em24-question-21}
+
+\end{origexamplebox}
+
+\begin{xesolution}
+\par\noindent\begin{minipage}{\linewidth}
+\travelingFieldTrainDiagram
+\figcap{行波磁场与绝缘机械支承}\label{ch24:fig:review-travelingfieldtraindiagram-1}
+\end{minipage}\par\medskip
+
+令
+\begin{equation}
+  \xi=k\left(x+\frac a2\right)-\omega t,
+  \qquad
+  \delta=\frac{ka}{2},
+  \qquad
+  v_\phi=\frac\omega k.
+\end{equation}
+穿过导体框的磁通为
+\begin{align}
+  \Phi(x,t)
+  &=L\int_x^{x+a}B_0\cos(kx'-\omega t)\dd x'\\
+  &=\frac{2LB_0}{k}\sin\delta\cos\xi.
+\end{align}
+跟随车体求时间导数，得总感应电动势
+\begin{equation}
+  \mathcal E=-\frac{\dd\Phi}{\dd t}
+  =2LB_0\sin\delta\sin\xi\,(v-v_\phi).
+\end{equation}
+忽略自感时 $I=\mathcal E/R_c$。对回路做微小平移，磁场力可写为 $F_x=I\,\partial\Phi/\partial x$，而
+\begin{equation}
+  \frac{\partial\Phi}{\partial x}=-2LB_0\sin\delta\sin\xi.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{F_x=\frac{4L^2B_0^2}{R_c}\sin^2\!\delta\,\sin^2\!\xi\,(v_\phi-v)}.
+\end{equation}
+若速度在一次相位循环中变化很小，可将其近似看成常量。车体看到的相位变化率是
+$\dot\xi=kv-\omega$，应在滑差周期 $T_s=2\pi/|\omega-kv|$ 上取平均，而非固定位置的周期 $2\pi/\omega$。
+当 $v\ne v_\phi$ 时，在此前提下 $\langle\sin^2\xi\rangle=1/2$，故
+\begin{equation}
+  \boxed{\langle F_x\rangle=\frac{2L^2B_0^2}{R_c}
+  \sin^2\!\frac{ka}{2}\,(v_\phi-v)}.
+\end{equation}
+当列车慢于行波相速 $v_\phi$ 且耦合非零时，平均力向右；快于行波时平均力反向。
+若 $\sin(ka/2)=0$，框长恰跨整数个波长，总磁通恒为零，驱动力对任意速度均为零。
+同步时 $v=v_\phi$，磁通也不随车体改变，直接由瞬时式得到零电动势和零力，无须使用发散的滑差周期。
+
+若保留自感 $L_c$，令 $\Omega=\omega-kv$、$K=2LB_0\sin(ka/2)$，在恒速周期稳态下
+$L_c\dot I+R_cI=-K\Omega\sin\xi/k$，$F_x=-KI\sin\xi$。
+正弦激励的同相响应被因子 $R_c/(R_c^2+\Omega^2L_c^2)$ 缩减，因而
+\[
+ \langle F_x\rangle=
+ \frac{K^2R_c}{2(R_c^2+\Omega^2L_c^2)}(v_\phi-v).
+\]
+在非零耦合、$R_c>0$ 的稳态平均意义下，方向仍趋向同步，但不能把这个结论套用于任意瞬态。
+图中的导轨只作绝缘机械支承，不与闭合导体框构成额外电路；正负磁场区随相位向右移动。
+本模型解释电磁推进，不负责解释列车的竖直悬浮力。
+
+图~\ref{ch24:fig:review-travelingfieldtraindiagram-1}中，点、叉区表示某一时刻磁场的相反方向，虚线为零场位置，场图样以相速移动。
+
+\end{xesolution}
+}
+
+\endgroup

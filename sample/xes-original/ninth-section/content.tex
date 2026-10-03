@@ -1,0 +1,333 @@
+一辆行驶的汽车会不断消耗汽油，飞行中的飞机或火箭也有同样的特点：运动过程中，
+研究对象的质量不断变化。处理这类问题时，必须同时计入速度变化和质量变化带来的
+动量变化。变质量并不意味着动量定理失效；真正需要重新说明的是研究系统的边界——哪一
+部分物质在当前时刻属于研究对象，哪些物质正从边界流入或流出，以及它们穿过边界前后的
+速度分别是多少。
+
+先只对主体动量作代数展开，不把它等同于外力冲量：
+\begin{equation}
+ \Delta\vec p=\Delta(m\vec v)
+ =\Delta m\,\vec v+m\,\Delta\vec v+\Delta m\,\Delta\vec v.
+\end{equation}
+略去二阶小量并取连续极限，得到严格的微分关系
+\[
+ \dd\vec p=\vec v\,\dd m+m\,\dd\vec v.
+\]
+应用这一关系时还要注意：新进入系统或刚离开系统的物质，未必具有研究对象本身的速度。
+这些物质所带入或带走的动量，正是变质量问题中容易遗漏的一项。
+
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 3.24}
+在雨中用恒力 $F$ 推一个质量为 $M$、开口截面积为 $S$ 的容器。若一个静止在地面的
+同样容器中，单位时间内水位上升 $\Delta h$，不考虑雨水对容器前方的阻力，水的密度
+为 $\rho$，求在 $3$ 个单位时间后容器的速度。
+容器初始静止；一个单位时间记为时长 $\tau$，所求时刻就是 $t=3\tau$。
+\end{origexamplebox}
+
+\begin{xesolution}
+设水平方向为推力方向。由时长 $\tau$ 内落入的水体积 $S\Delta h$，求得质量流率
+\[
+ q=\frac{\rho S\Delta h}{\tau}.
+\]
+雨滴落入前没有水平速度，所以它们带入系统的水平动量为零。经过时间 $t$，容器及其中
+雨水的总质量为 $M+qt$；恒力的冲量为 $Ft$。由水平动量定理，
+\[
+ (M+qt)v=Ft,
+\]
+故
+\[
+ v(t)=\frac{Ft}{M+(\rho S\Delta h/\tau)t}.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentyFour}中，雨水只增加质量，不带入水平动量；外力使系统水平动量按 $Ft$ 增长。
+\soldiagThreeTwentyFour
+代入 $t=3\tau$，得到
+\[
+ \boxed{v=\frac{3F\tau}{M+3\rho S\Delta h}}.
+\]
+若初速度为 $v_i$，应保留初始动量，把分子改为 $Mv_i+Ft$。单位检验：$q$ 是质量/时间，
+$Ft$ 是冲量，故结果为速度。不能直接写 $F=(M+qt)a$，因为还需要将新进入的雨水加速；
+展开正确的动量式可得 $(M+qt)\dot v=F-qv$。当 $q\to0$ 时回到 $v=Ft/M$。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.25}
+一根质量为 $m$、长度为 $l$ 的柔软绳子放在水平桌面上。用手捏住绳的一端，以恒定速度
+$v$ 竖直向上提绳。当这一端离桌面的高度为 $x<l$ 时，求手的拉力大小。
+\end{origexamplebox}
+
+\begin{xesolution}
+绳的线密度为
+\[
+ \lambda=\frac{m}{l}.
+\]
+高度为 $x$ 时，竖直运动绳段的质量是 $\lambda x$，其速度保持为 $v$。在时间
+$\dd t$ 内，又有长度 $v\dd t$、质量 $\lambda v\dd t$ 的绳元由静止转为以速度 $v$
+向上运动，因此单位时间增加的向上动量为 $\lambda v^2$。
+
+对竖直运动部分列动量方程：
+\[
+ F-\lambda xg=\lambda v^2.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentyFive}中，提力既承担运动绳段的重量，也为新进入运动段的绳元提供动量。
+\soldiagThreeTwentyFive
+所以
+\[
+ \boxed{F=\lambda xg+\lambda v^2
+ =\frac{m}{l}\left(xg+v^2\right)}.
+\]
+第一项承担已提起绳段的重量，第二项用来连续加速刚离开桌面的绳元。该结论采用理想柔绳、
+转折区域很小且绳元离桌后立即获得速度 $v$ 的模型。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例 3.26}
+如图，一根质量为 $m$、长度为 $l$ 的均匀柔绳竖直悬挂，下端刚好与台秤秤盘接触。
+释放绳的上端，求从释放开始台秤示数随时间的变化，并求台秤的最大示数。
+图~\ref{ch07:fig:probdiagThreeTwentySix}中，柔绳上端释放后下落，绳元依次落到秤盘上并停止。
+\probdiagThreeTwentySix
+\end{origexamplebox}
+
+\begin{xesolution}
+设绳的线密度为 $\lambda=m/l$，释放后经过时间 $t$，绳的上端下落距离为 $x$。理想模型
+中尚未落到秤盘上的绳段作自由落体，因而
+\[
+ x=\frac12gt^2,\qquad v=gt,\qquad v^2=2gx.
+\]
+秤盘的受力来源有两部分：
+\[
+ \underbrace{\lambda xg}_{\text{已停在盘上的绳重}}
+ \quad\text{和}\quad
+ \underbrace{\lambda v^2}_{\text{使下落绳元停止的动量流}}.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentySix}中，秤盘既承受已落绳段的重量，也连续吸收下落绳元的动量。
+\soldiagThreeTwentySix
+所以在整根绳尚未全部落下时，
+\[
+ N=\lambda xg+\lambda v^2
+ =3\lambda gx
+ =\frac32\lambda g^2t^2.
+\]
+上端落到秤盘所需时间为
+\[
+ t_0=\sqrt{\frac{2l}{g}}.
+\]
+因此理想化的示数为
+\[
+ \boxed{
+ N(t)=
+ \begin{cases}
+ \dfrac{3m g^2}{2l}\,t^2,
+   &0\le t<\sqrt{\dfrac{2l}{g}},\\[6pt]
+ mg,&t>\sqrt{\dfrac{2l}{g}}.
+ \end{cases}}
+\]
+在全部落下前的一瞬间，
+\[
+ \boxed{N_{\max}=3mg}.
+\]
+随后动量流消失，稳定示数为 $mg$。理想模型在 $t=t_0$ 处给出突变；真实柔绳因弯曲、
+碰撞持续时间和秤的响应时间有限，峰值会被平滑。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.27}
+一个截面积为 $S$ 的物体在密度均匀、密度为 $\rho$ 的介质中竖直下落。物体会把前方
+遇到的介质全部吸收，忽略其他阻力。写出物体速度 $v$ 和质量 $m$ 随时间变化的方程，
+并定性说明其运动规律。
+\end{origexamplebox}
+
+\begin{xesolution}
+取竖直向下为正。时间 $\dd t$ 内物体扫过体积 $Sv\dd t$，吸收的静止介质质量为
+\[
+ \dd m=\rho Sv\,\dd t,
+ \qquad
+ \boxed{\dot m=\rho Sv}.
+\]
+被吸收介质在地面系中初始动量为零，因此“物体加上刚吸收的介质”的动量变化只由重力
+产生：
+\[
+ \frac{\dd(mv)}{\dd t}=mg.
+\]
+展开后得到
+\[
+ \boxed{m\dot v=mg-\rho Sv^2}.
+\]
+\Needspace{10\baselineskip}
+图~\ref{ch07:fig:soldiagThreeTwentySeven}中，静止介质被吸收后要加速到 $v$，故出现随 $v^2$ 增长的动量流项。
+\soldiagThreeTwentySeven
+右端第二项不是通常意义上的阻力，而是把静止介质加速到速度 $v$ 所需要的动量流。若
+初始时物体由静止释放，质量为 $m_0$，令 $k=\rho S$，消去时间：
+\[
+ \frac{\dd(v^2)}{\dd m}+\frac{2}{m}v^2=\frac{2g}{k}.
+\]
+用积分因子 $m^2$ 将左侧合为乘积的导数：
+\[
+ \frac{\dd}{\dd m}(m^2v^2)=\frac{2g}{k}m^2,
+ \qquad m^2v^2=\frac{2g}{3k}(m^3-m_0^3).
+\]
+除以 $m^2$，得
+\[
+ v^2=\frac{2g}{3k}
+ \left(m-\frac{m_0^3}{m^2}\right).
+\]
+因此 $m$、$v$ 均随时间增大，但加速度
+\[
+ \dot v=g-\frac{k}{m}v^2=\frac g3+\frac{2g}{3}\left(\frac{m_0}{m}\right)^3
+\]
+逐渐减小，并趋近于 $g/3$；速度并不趋于常量。
+若初速度不为零，质量式与速度式仍成立，但单调性须重新检查；初始条件
+$\rho S v_i^2>m_0g$ 会使物体先减速，不能把从静止出发的结论直接推广。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{例 3.28}
+一个球形小水滴在均匀的雾中下落。设雾的质量密度均匀，水滴会吸收所遇到的全部小水滴，
+忽略空气阻力，重力加速度 $g$ 为常量。写出大水滴的质量、速度和半径随时间变化的方程，
+并定性说明其运动规律。
+\end{origexamplebox}
+
+\begin{xesolution}
+设雾的质量密度为 $\rho_f$，水的密度为 $\rho_w$，大水滴半径为 $r$。则
+\[
+ m=\frac43\pi\rho_w r^3,
+ \qquad
+ \dot m=\rho_f\pi r^2v.
+\]
+由第一式求导并与第二式比较：
+\[
+ 4\pi\rho_w r^2\dot r=\rho_f\pi r^2v,
+ \qquad
+ \boxed{\dot r=\frac{\rho_f}{4\rho_w}v}.
+\]
+雾滴在被吸收前近似静止，故动量方程仍为
+\[
+ \frac{\dd(mv)}{\dd t}=mg,
+\]
+即
+\[
+ \boxed{\dot v
+ =g-\frac{\dot m}{m}v
+ =g-\frac{3\rho_f}{4\rho_w r}v^2}.
+\]
+\Needspace{10\baselineskip}
+图~\ref{ch07:fig:soldiagThreeTwentyEight}中，半径、迎风面积和质量共同增长，速度必须与它们联立求解。
+\soldiagThreeTwentyEight
+若水滴由静止开始、初始半径为 $r_0$，令
+$\alpha=\rho_f/(4\rho_w)$，令 $y=v^2$，由 $\dot r=\alpha v$ 消去时间，得
+\[
+ \frac{\dd y}{\dd r}+\frac{6}{r}y=\frac{2g}{\alpha}.
+\]
+乘以积分因子 $r^6$ 并积分：
+\[
+ \frac{\dd}{\dd r}(r^6y)=\frac{2g}{\alpha}r^6,
+ \qquad r^6y=\frac{2g}{7\alpha}(r^7-r_0^7).
+\]
+因此
+\[
+ v^2=\frac{2g}{7\alpha}
+ \left(r-\frac{r_0^7}{r^6}\right).
+\]
+代回原方程可得 $\dot v=g/7+6g(r_0/r)^7/7>0$。所以对这一静止初值，
+$r$、$m$ 和 $v$ 都不断增大；随着吸收过程进行，加速度由初始的 $g$ 逐渐减小，
+并趋近于 $g/7$。半径增大使迎风面积增大，吸收增强；质量增长又改变速度，三者必须联立
+考虑。
+若初始速度为 $v_i$，当 $3\alpha v_i^2/r_0>g$ 时会先减速。这里用 $\alpha$ 表示密度比，
+不与加速度符号 $a$ 混用；$gr/\alpha$ 的量纲为速度平方。
+\end{xesolution}
+
+火箭依靠从尾部喷出燃料燃烧产生的高温高压气体而获得巨大推力。实际升空过程十分复杂，
+为简化分析，下面只研究火箭沿直线飞行的理想模型。忽略重力和其他外力，设火箭喷出的
+燃气相对火箭向后速度大小为 $u$。在极短时间 $\Delta t$ 内，喷气前火箭的质量和速度为 $M,v$；
+喷气后为 $M+\Delta M,v+\Delta v$，其中 $\Delta M<0$。喷出燃气的质量为
+$-\Delta M$，在地面参考系中的速度为 $v-u$。
+图~\ref{ch07:fig:rocketMicroDiagram}中，在地面系中，喷出燃气的速度是 $v-u$；$\Delta M<0$。
+\rocketMicroDiagram
+由喷气前后的总动量守恒，
+\[
+ Mv=(M+\Delta M)(v+\Delta v)-\Delta M(v-u).
+\]
+展开并消去 $Mv$：
+\[
+ M\Delta v+u\Delta M+\Delta M\Delta v=0.
+\]
+略去二阶小量 $\Delta M\Delta v$，得到
+\begin{equation}
+ \label{eq:rocket-micro}
+ \Delta v=-u\frac{\Delta M}{M}.
+\end{equation}
+因为 $\Delta M<0$，所以 $\Delta v>0$：火箭向后喷出质量，自身向前加速。在连续极限下，
+式 \eqref{eq:rocket-micro} 可写成
+\[
+ \dd v=-u\frac{\dd M}{M}.
+\]
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例 3.29}
+一枚火箭在某时刻的质量为 $M$、速度为 $v$，燃气相对火箭的喷出速度大小为 $u$。
+忽略重力，请根据式 \eqref{eq:rocket-micro}，在下面坐标系中定性画出此后火箭速度与质量的关系。
+图~\ref{ch07:fig:probdiagThreeTwentyNine}中，曲线应从当前状态 $(M,v)$ 出发，并标明燃烧过程的方向。
+\probdiagThreeTwentyNine
+\end{origexamplebox}
+
+\begin{xesolution}
+设此后某时刻火箭的剩余质量为 $\mathcal M$、速度为 $V$。由
+\[
+ \dd V=-u\frac{\dd\mathcal M}{\mathcal M}
+\]
+从当前状态 $(M,v)$ 积分到 $(\mathcal M,V)$：
+\[
+ V-v=-u\int_M^{\mathcal M}\frac{\dd m}{m}
+ =u\ln\frac{M}{\mathcal M}.
+\]
+因此
+\[
+ \boxed{V(\mathcal M)=v+u\ln\frac{M}{\mathcal M}},
+ \qquad 0<\mathcal M\le M.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentyNine}中，横轴质量减小时，火箭沿对数曲线向左上方运动。
+\soldiagThreeTwentyNine
+曲线经过 $(M,v)$，并满足
+\[
+ \frac{\dd V}{\dd\mathcal M}=-\frac{u}{\mathcal M}<0,
+ \qquad
+ \frac{\dd^2V}{\dd\mathcal M^2}
+ =\frac{u}{\mathcal M^2}>0.
+\]
+所以按“横轴质量、纵轴速度”作图时，曲线单调下降，且斜率随质量增大逐渐变平（曲线
+开口向上）；实际燃烧过程的方向是沿曲线向左上方运动，即质量减小、速度增大。
+$\mathcal M\to0$ 时速度发散只是理想模型的数学
+外推，真实火箭不可能把结构质量全部喷掉。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{例 3.30}
+一枚单级火箭的初始质量为 $M_0$，燃料燃烧完毕后的质量为 $M$。燃气相对火箭的喷出速度
+大小恒为 $u$，火箭由静止开始运动，忽略重力和其他阻力。证明火箭的末速度为
+\[
+ v=u\ln\frac{M_0}{M}.
+\]
+\end{origexamplebox}
+
+\begin{xesolution}
+由式 \eqref{eq:rocket-micro} 的连续形式，
+\[
+ \dd v=-u\frac{\dd M}{M}.
+\]
+火箭由静止开始，质量由 $M_0$ 减少到 $M$。对整个燃烧过程积分：
+\[
+ \int_0^v\dd v
+ =-u\int_{M_0}^{M}\frac{\dd M}{M}.
+\]
+图~\ref{ch07:fig:soldiagThreeThirty}中，对 $\dd v=-u\,\dd M/M$ 积分，速度增量等于 $u/M$ 曲线下对应的面积。
+\soldiagThreeThirty
+于是
+\[
+ v=-u\left(\ln M-\ln M_0\right),
+\]
+即
+\[
+ \boxed{v=u\ln\frac{M_0}{M}}.
+\]
+这就是理想火箭方程。若定义质量比 $R=M_0/M$，则速度增量为
+$\Delta v=u\ln R$：提高喷气速度 $u$ 能线性提高速度增量，而增大质量比的收益只有
+对数增长。证明成立的条件是喷气相对速度恒定，并忽略重力、空气阻力等外力。
+\end{xesolution}

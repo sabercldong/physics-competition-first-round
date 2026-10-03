@@ -1,0 +1,577 @@
+{
+  "scope": "源页教学主题、逐题子问、逐组子图核对；不是逐字词或逐句OCR计数",
+  "source": {
+    "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2020寒】兴趣一阶-热学.pdf",
+    "sha256": "74fbc798a37434371504dd3b177bc9505692150ed9bd4642b6f2ed74e76389f0"
+  },
+  "pages": [
+    {
+      "id": "thermal:page:19",
+      "physical_page": 19,
+      "printed_page": 293,
+      "chapter": 15,
+      "teaching_topics": "第一定律导言、三种永动机设想、内能与总能量区别",
+      "target_heading": "内能",
+      "targets": [
+        "ch15:fig:s29-20-1"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:20",
+      "physical_page": 20,
+      "printed_page": 294,
+      "chapter": 15,
+      "teaching_topics": "单/双原子内能、状态量、热交换、传导、对流、恒星内部对流层及表面细节",
+      "target_heading": "热交换：传导、对流与辐射",
+      "targets": [
+        "ch15:fig:s29-20-2",
+        "ch15:fig:s29-20-3"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:21",
+      "physical_page": 21,
+      "printed_page": 295,
+      "chapter": 15,
+      "teaching_topics": "对流、辐射、黑体、辐射常数、边界功",
+      "target_heading": "机械功与准静态过程",
+      "targets": [
+        "ch15:fig:s29-20-4"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:22",
+      "physical_page": 22,
+      "printed_page": 296,
+      "chapter": 15,
+      "teaching_topics": "活塞位移与面积功、准静态条件、第一定律",
+      "target_heading": "热力学第一定律",
+      "targets": [
+        "ch15:fig:s29-20-5"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:23",
+      "physical_page": 23,
+      "printed_page": 297,
+      "chapter": 15,
+      "teaching_topics": "循环净功、热容温度依赖、等容与等压过程",
+      "target_heading": "理想气体的等容、等压与等温过程",
+      "targets": [
+        "ch15:fig:s29-20-6"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:24",
+      "physical_page": 24,
+      "printed_page": 298,
+      "chapter": 15,
+      "teaching_topics": "等压热容、等温积分、绝热微分式与泊松关系",
+      "target_heading": "绝热过程",
+      "targets": [
+        "ch15:eq:s29-20-5",
+        "ch15:eq:s29-20-6",
+        "ch15:eq:s29-20-7"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:25",
+      "physical_page": 25,
+      "printed_page": 299,
+      "chapter": 15,
+      "teaching_topics": "泊松关系变形、密度式、重力场对流起始条件",
+      "target_heading": "重力场中形成对流的条件",
+      "targets": [
+        "ch15:fig:s29-20-7",
+        "ch15:eq:s29-20-8",
+        "ch15:eq:s29-20-9",
+        "ch15:eq:s29-20-10",
+        "ch15:eq:s29-20-11"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:26",
+      "physical_page": 26,
+      "printed_page": 300,
+      "chapter": 15,
+      "teaching_topics": "大气定量温压分层、温室吸收、对流判据及例20.1",
+      "target_heading": "重力场中形成对流的条件",
+      "targets": [
+        "ch15:ex:s29-20-1",
+        "ch15:fig:s29-20-8"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:27",
+      "physical_page": 27,
+      "printed_page": 301,
+      "chapter": 15,
+      "teaching_topics": "例20.2三循环、20.3变热容、20.4恒热容、20.5等温大气题干",
+      "target_heading": null,
+      "targets": [
+        "ch15:ex:s29-20-2",
+        "ch15:ex:s29-20-3",
+        "ch15:ex:s29-20-4",
+        "ch15:ex:s29-20-5"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:28",
+      "physical_page": 28,
+      "printed_page": 302,
+      "chapter": 15,
+      "teaching_topics": "例20.5续、20.6毛细、20.7泡膜两问、20.8温标两问",
+      "target_heading": null,
+      "targets": [
+        "ch15:ex:s29-20-6",
+        "ch15:ex:s29-20-7",
+        "ch15:ex:s29-20-8"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:29",
+      "physical_page": 29,
+      "printed_page": 303,
+      "chapter": 15,
+      "teaching_topics": "例20.9四问及题图、20.10直线过程及题图",
+      "target_heading": null,
+      "targets": [
+        "ch15:ex:s29-20-9",
+        "ch15:ex:s29-20-10",
+        "ch15:fig:s29-20-9",
+        "ch15:fig:s29-20-10"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:30",
+      "physical_page": 30,
+      "printed_page": 304,
+      "chapter": 15,
+      "teaching_topics": "例20.11提升气缸及题图",
+      "target_heading": null,
+      "targets": [
+        "ch15:ex:s29-20-11",
+        "ch15:fig:s29-20-11"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:31",
+      "physical_page": 31,
+      "printed_page": 305,
+      "chapter": 16,
+      "teaching_topics": "第二定律导言、循环净功与效率定义",
+      "target_heading": "热力学循环的效率",
+      "targets": [
+        "ch16:fig:s30-21-1"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:32",
+      "physical_page": 32,
+      "printed_page": 306,
+      "chapter": 16,
+      "teaching_topics": "五动作阶段与pV图、真实发动机与空气标准奥托模型",
+      "target_heading": "热力学循环的效率",
+      "targets": [
+        "ch16:fig:s30-21-1"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:33",
+      "physical_page": 33,
+      "printed_page": 307,
+      "chapter": 16,
+      "teaching_topics": "奥托效率、卡诺四过程、卡诺曲线及效率推导",
+      "target_heading": "卡诺循环",
+      "targets": [
+        "ch16:fig:s30-21-2"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:34",
+      "physical_page": 34,
+      "printed_page": 308,
+      "chapter": 16,
+      "teaching_topics": "四类热机/制冷机、开尔文与克劳修斯表述、中英文引述",
+      "target_heading": "热力学第二定律的早期陈述形式",
+      "targets": [
+        "ch16:fig:s30-21-3"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:35",
+      "physical_page": 35,
+      "printed_page": 309,
+      "chapter": 16,
+      "teaching_topics": "三位人物、可逆与不可逆、熵及状态函数",
+      "target_heading": "熵与热力学第二定律",
+      "targets": [
+        "ch16:fig:s30-21-4"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:36",
+      "physical_page": 36,
+      "printed_page": 310,
+      "chapter": 16,
+      "teaching_topics": "不可逆过程熵差、定热容系统、理想气体熵、替代可逆路径",
+      "target_heading": "具有简单物态方程系统的熵",
+      "targets": [
+        "ch16:fig:s30-21-5"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:37",
+      "physical_page": 37,
+      "printed_page": 311,
+      "chapter": 16,
+      "teaching_topics": "玻尔兹曼纪念碑、熵与可能数、左右分布组合计数",
+      "target_heading": "熵的微观解释",
+      "targets": [
+        "ch16:fig:s30-21-6"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:38",
+      "physical_page": 38,
+      "printed_page": 312,
+      "chapter": 16,
+      "teaching_topics": "花生示例辨析、明确热库模型、例21.1与21.2",
+      "target_heading": null,
+      "targets": [
+        "ch16:ex:s30-21-1",
+        "ch16:ex:s30-21-2"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:39",
+      "physical_page": 39,
+      "printed_page": 313,
+      "chapter": 16,
+      "teaching_topics": "例21.3五子问、例21.4三物体最高温度",
+      "target_heading": null,
+      "targets": [
+        "ch16:ex:s30-21-3",
+        "ch16:ex:s30-21-4"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:40",
+      "physical_page": 40,
+      "printed_page": 314,
+      "chapter": 16,
+      "teaching_topics": "例21.5表面能热机",
+      "target_heading": null,
+      "targets": [
+        "ch16:ex:s30-21-5"
+      ],
+      "status": "mapped"
+    }
+  ],
+  "source_questions": [
+    {
+      "id": "thermal:p26:example:20.1",
+      "physical_page": 26,
+      "source_number": "20.1",
+      "target": "ch15:ex:s29-20-1",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p27:example:20.2",
+      "physical_page": 27,
+      "source_number": "20.2",
+      "target": "ch15:ex:s29-20-2",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p27:example:20.3",
+      "physical_page": 27,
+      "source_number": "20.3",
+      "target": "ch15:ex:s29-20-3",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p27:example:20.4",
+      "physical_page": 27,
+      "source_number": "20.4",
+      "target": "ch15:ex:s29-20-4",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p27:example:20.5",
+      "physical_page": 27,
+      "source_number": "20.5",
+      "target": "ch15:ex:s29-20-5",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p28:example:20.6",
+      "physical_page": 28,
+      "source_number": "20.6",
+      "target": "ch15:ex:s29-20-6",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p28:example:20.7",
+      "physical_page": 28,
+      "source_number": "20.7",
+      "target": "ch15:ex:s29-20-7",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p28:example:20.8",
+      "physical_page": 28,
+      "source_number": "20.8",
+      "target": "ch15:ex:s29-20-8",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p29:example:20.9",
+      "physical_page": 29,
+      "source_number": "20.9",
+      "target": "ch15:ex:s29-20-9",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p29:example:20.10",
+      "physical_page": 29,
+      "source_number": "20.10",
+      "target": "ch15:ex:s29-20-10",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p30:example:20.11",
+      "physical_page": 30,
+      "source_number": "20.11",
+      "target": "ch15:ex:s29-20-11",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p38:example:21.1",
+      "physical_page": 38,
+      "source_number": "21.1",
+      "target": "ch16:ex:s30-21-1",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p38:example:21.2",
+      "physical_page": 38,
+      "source_number": "21.2",
+      "target": "ch16:ex:s30-21-2",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p39:example:21.3",
+      "physical_page": 39,
+      "source_number": "21.3",
+      "target": "ch16:ex:s30-21-3",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p39:example:21.4",
+      "physical_page": 39,
+      "source_number": "21.4",
+      "target": "ch16:ex:s30-21-4",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p40:example:21.5",
+      "physical_page": 40,
+      "source_number": "21.5",
+      "target": "ch16:ex:s30-21-5",
+      "status": "mapped"
+    }
+  ],
+  "source_figures": [
+    {
+      "id": "thermal:p19:figure:20.1",
+      "physical_page": 19,
+      "source_number": "20.1",
+      "target": "ch15:fig:s29-20-1",
+      "physical_role": "三类永动机所有构件；共同坐标保证杆球连接",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p20:figure:20.2",
+      "physical_page": 20,
+      "source_number": "20.2",
+      "target": "ch15:fig:s29-20-2",
+      "physical_role": "手掌热对流羽流",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p20:figure:20.3",
+      "physical_page": 20,
+      "source_number": "20.3",
+      "target": "ch15:fig:s29-20-3",
+      "physical_role": "太阳和红巨星内部对流区域、辐射区、核心；保留表面细节扩展",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p21:figure:20.4",
+      "physical_page": 21,
+      "source_number": "20.4",
+      "target": "ch15:fig:s29-20-4",
+      "physical_role": "手部辐射强弱示意",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p22:figure:20.5",
+      "physical_page": 22,
+      "source_number": "20.5",
+      "target": "ch15:fig:s29-20-5",
+      "physical_role": "两个活塞密封状态、同长杆、位移与同一条P(V)曲线下面积",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p23:figure:20.6",
+      "physical_page": 23,
+      "source_number": "20.6",
+      "target": "ch15:fig:s29-20-6",
+      "physical_role": "三个热容平台、定量纵轴、诚实的对数横轴",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p25:figure:20.7",
+      "physical_page": 25,
+      "source_number": "20.7",
+      "target": "ch15:fig:s29-20-7",
+      "physical_role": "水平薄层厚度、重力与压强差",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p26:figure:20.8",
+      "physical_page": 26,
+      "source_number": "20.8",
+      "target": "ch15:fig:s29-20-8",
+      "physical_role": "高度/摄氏温度/压强数值、四层结构、地表与飞行器及极光情景",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p29:figure:20.9",
+      "physical_page": 29,
+      "source_number": "20.9",
+      "target": "ch15:fig:s29-20-9",
+      "physical_role": "abc三过程、同一等温双曲线、Pb=Pc=Pa/4",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p29:figure:20.10",
+      "physical_page": 29,
+      "source_number": "20.10",
+      "target": "ch15:fig:s29-20-10",
+      "physical_role": "A到B直线且PB=PA/2",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p30:figure:20.11",
+      "physical_page": 30,
+      "source_number": "20.11",
+      "target": "ch15:fig:s29-20-11",
+      "physical_role": "初态及开口前最后密封位置、活塞接触与缸底通大气",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p32:figure:21.1",
+      "physical_page": 32,
+      "source_number": "21.1",
+      "target": "ch16:fig:s30-21-1",
+      "physical_role": "五机械动作、气门、火花塞、同长连杆与曲柄；分开的奥托pV图",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p33:figure:21.2",
+      "physical_page": 33,
+      "source_number": "21.2",
+      "target": "ch16:fig:s30-21-2",
+      "physical_role": "四个状态及共同等温/绝热曲线",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p34:figure:21.3",
+      "physical_page": 34,
+      "source_number": "21.3",
+      "target": "ch16:fig:s30-21-3",
+      "physical_role": "四类热机/制冷机的热流、功和两个热库",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p35:figure:21.4",
+      "physical_page": 35,
+      "source_number": "21.4",
+      "target": "ch16:fig:s30-21-4",
+      "physical_role": "卡诺、开尔文、克劳修斯三位肖像",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p36:figure:21.5",
+      "physical_page": 36,
+      "source_number": "21.5",
+      "target": "ch16:fig:s30-21-5",
+      "physical_role": "ABC等容/等温替代可逆路径",
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:p37:figure:21.6",
+      "physical_page": 37,
+      "source_number": "21.6",
+      "target": "ch16:fig:s30-21-6",
+      "physical_role": "玻尔兹曼碑、半身像与熵公式",
+      "status": "mapped"
+    }
+  ],
+  "exclusions": [
+    {
+      "physical_page": 18,
+      "reason": "空白页，位于本次教学范围之前"
+    },
+    {
+      "physical_page": 41,
+      "reason": "已进入第22讲相变，属于下一章；仅排除在本次两章修订范围之外，并非非教学页"
+    }
+  ],
+  "source_absent_figures": [
+    {
+      "physical_page": 26,
+      "source_number": "20.1",
+      "note": "源题提及图，但留白处无图；保留并修正补充三循环图"
+    },
+    {
+      "physical_page": 27,
+      "source_number": "20.2",
+      "note": "源题提及图，但无实际附图；补充方程生成的标准循环图"
+    }
+  ],
+  "source_unnumbered_independent_teaching_figures_found": 0,
+  "corrections_not_literal_reproduction": {
+    "thermal:p25": "源件将绝热常数与焓关联不准确，给出与熵的关系；原密度与强度量讨论保留",
+    "thermal:p26": "代表性大气数据按标准模型重建；平均温度递减率不直接证明不稳定；极光机制纠正",
+    "thermal:p38": "保留花生例作为模型辨析，不能由化学能求人体熵；另给明确热库模型",
+    "thermal:p39": "保留五问并在题面明确辨析假命题及理想气体/稳定性条件；不证明错误命题"
+  },
+  "generated_sha256": {
+    "ch15": "647289144f86ffef70e73e8f00d8b223c1757bee8e4debf4ff3a7d3f68c5558b",
+    "ch16": "d5a388a6b8a0996f2552d7a0e9139fc29cdae583622ad0d38458195cc756fb21"
+  }
+}

@@ -1,0 +1,335 @@
+在上一讲中，我们讨论了静电平衡导体的性质：导体内部电场为零，导体本身是等势体，表面是等势面，
+多余电荷只能分布在表面。对于一个已经达到静电平衡的导体，电势和净电荷是描述其状态的两个重要物理量。
+若附近还有别的导体，一个导体所带电荷改变时，不仅自身电势会改变，还会通过静电感应改变其他导体表面的
+电荷分布和电势。因此，导体组的静电问题本质上是在研究各导体的电荷、电势与几何结构之间的关系。
+
+本讲先用电容描述这种关系，再讨论电容器的连接与储能，随后把结论推广到任意导体组，最后研究电介质在
+电场中的极化。以下定义都默认导体的形状、相对位置及周围介质已经固定；只有在这些条件不变时，电荷与
+电势之间的线性关系才可以由一个固定的电容或一组电容系数表示。
+
+\subsection*{孤立导体的电容}
+
+设空间中有若干导体，除其中一个以外，其余导体都接地，电势保持为零。使唯一未接地的导体带上净电荷
+$Q$，静电平衡后它的电势为 $\varphi$。由静电场的线性叠加和唯一性定理可知：如果把 $Q$ 同时放大
+$k$ 倍，空间中全部电场和电势也放大 $k$ 倍，因而 $Q/\varphi$ 不随电荷量改变。定义该导体在当前
+几何环境中的单极电容为
+\begin{equation}
+  \boxed{C=\frac{Q}{\varphi}},\qquad Q=C\varphi.
+\end{equation}
+这里的“孤立”不是说宇宙中只有这一个导体，而是说只把它作为非零电势的导体，其余导体接地。电容取决于
+导体的大小、形状、位置及周围介质，却与它在给定线性范围内带了多少电荷无关。国际单位制中电容的单位是
+法拉（F），名称来自 Faraday；实际导体的电容通常远小于一法拉，常用 $\si{\micro F}$、$\si{nF}$、
+$\si{pF}$。
+
+半径为 $R$ 的孤立导体球是最容易计算的例子。球外电势与位于球心的点电荷相同，取无穷远电势为零，
+\begin{equation}
+  \varphi(R)=\frac{Q}{4\pi\varepsilon_0R},
+  \qquad
+  \boxed{C_{\rm sphere}=4\pi\varepsilon_0R}.
+\end{equation}
+结果与球所带电量无关，并且正比于球半径。球越大，在升高到同一电势时能够容纳的电荷越多。
+
+给一个原来不带电的孤立导体逐渐充电。当它已经带有电荷 $q$ 时，再搬入微小电荷 $\dd q$ 所做的功是
+$\varphi(q)\dd q=(q/C)\dd q$。从零充到 $Q$，系统的静电能为
+\begin{equation}
+  W=\int_0^Q\frac{q}{C}\dd q
+  =\boxed{\frac{Q^2}{2C}=\frac12Q\varphi=\frac12C\varphi^2}.
+\end{equation}
+这些能量并不是“藏在电荷里”，而是以电场能的形式分布在空间中。真空静电场的能量密度为
+$u_E=\varepsilon_0E^2/2\geq0$，所以静电系统的场能不会为负。
+
+\subsection*{双极电容器与典型几何}
+
+实际储存电荷时更常用两块彼此绝缘的导体。令两导体分别带 $+Q$ 与 $-Q$，电势为
+$\varphi_+$、$\varphi_-$，两极电势差
+$U=\varphi_+-\varphi_-$。只要几何与介质不变，$Q$ 与 $U$ 成正比，双极电容器的电容定义为
+\begin{equation}
+  \boxed{C=\frac{Q}{U}},\qquad Q=CU.
+\end{equation}
+孤立导体的 $Q/\varphi$ 与双极电容器的 $Q/U$ 形式相同，但物理边界条件不同，使用时不能混淆。
+
+\arbitraryCapacitorDiagram
+
+电容器不要求极板平行，也不要求形状规则。它的电容由两极的大小、形状、相对位置及介质共同决定。
+当导体形状具有足够高的对称性时，可以先用 Gauss 定律求电场，再积分求电势差，最后取 $C=Q/U$。
+
+对于面积为 $S$、间距为 $d$ 的平行板电容器，若极板线度远大于 $d$，中部电场近似均匀：
+\begin{equation}
+  E=\frac{Q}{\varepsilon_0S},\qquad
+  U=Ed=\frac{Qd}{\varepsilon_0S},
+  \qquad
+  \boxed{C=\frac{\varepsilon_0S}{d}}.
+\end{equation}
+真实极板边缘的电场会弯曲，称为边缘效应。极板越大、间距越小，均匀场区域在全部场区中所占比例越大，
+理想公式越准确。边缘场使实际电容通常略大于忽略边缘效应得到的数值。
+
+同心球形电容器的内、外半径为 $R_1<R_2$。在两球面之间
+\begin{equation}
+  E(r)=\frac{Q}{4\pi\varepsilon_0r^2},
+  \qquad
+  U=\int_{R_1}^{R_2}E(r)\dd r,
+\end{equation}
+因此
+\begin{equation}
+  \boxed{C_{\rm sph}=4\pi\varepsilon_0\frac{R_1R_2}{R_2-R_1}}.
+\end{equation}
+令 $R_2\to\infty$，便退化为半径 $R_1$ 的孤立导体球。
+
+同轴圆柱电容器内、外半径为 $a<b$，有效长度为 $l$，并且 $l$ 足够大，可忽略两端效应。若内柱带
+$+Q$，两极之间距轴线 $r$ 处的场强为
+\begin{equation}
+  E(r)=\frac{Q}{2\pi\varepsilon_0lr}.
+\end{equation}
+由
+\begin{equation}
+  U=\int_a^bE(r)\dd r
+   =\frac{Q}{2\pi\varepsilon_0l}\ln\frac ba
+\end{equation}
+得到
+\begin{equation}
+  \boxed{C_{\rm cyl}=\frac{2\pi\varepsilon_0l}{\ln(b/a)}}.
+\end{equation}
+圆柱电容正比于长度。外半径固定而内半径减小时，靠近细内导体处的场会迅速增强，这也说明“无限细带电线”
+只是理论极限，真实导线半径会影响电势差和电容。
+
+\capacitorGeometryDiagram
+
+\subsection*{电容器的连接}
+
+多个电容器接入电路后，可以用一个等效电容描述从外部端口看到的储荷效果。并联电容器的两端分别连接到
+同一对节点，故各电容器的电势差都等于 $U$。第 $i$ 个电容器带电 $Q_i=C_iU$，电源搬运的总电荷为
+\begin{equation}
+  Q=\sum_iQ_i=\left(\sum_iC_i\right)U,
+\end{equation}
+所以
+\begin{equation}
+  \boxed{C_{\parallel}=\sum_iC_i}.
+\end{equation}
+
+串联电容器的中间连接导体与外界绝缘。若它初始不带净电荷，充电过程中电荷只能在这个导体内部重新分布，
+净电荷始终为零，因而各串联电容器所带电荷量的绝对值相同。总电势差为
+\begin{equation}
+  U=\sum_iU_i=Q\sum_i\frac1{C_i},
+\end{equation}
+于是
+\begin{equation}
+  \boxed{\frac1{C_{\rm series}}=\sum_i\frac1{C_i}}.
+\end{equation}
+并联使等效电容增大，串联使等效电容减小。电容的串并联规律与电阻恰好相反，却与理想弹簧的等效关系在
+形式上相似；真正的判断依据是各元件“电压相同”还是“电荷相同”。
+
+\seriesParallelDiagram
+
+\subsection*{电容储能与能量密度}
+
+容量为 $C$ 的电容器最初不带电。当两极已经带有 $\pm q$ 时，电势差为 $u=q/C$，再把 $\dd q$ 从
+负极搬到正极需要外力做功
+\begin{equation}
+  \dd W=u\dd q=\frac qC\dd q.
+\end{equation}
+从零充到 $Q$ 后，电容器储存的电场能为
+\begin{equation}
+  \boxed{W=\frac{Q^2}{2C}=\frac12QU=\frac12CU^2}.
+\end{equation}
+这个推导不依赖极板形状。对于平行板电容器，把上式除以板间体积 $Sd$，可得真空中的能量密度
+\begin{equation}
+  \boxed{u_E=\frac12\varepsilon_0E^2}.
+\end{equation}
+在线性、各向同性介质中，能量密度推广为 $u_E=\vect E\cdot\vect D/2=\varepsilon E^2/2$。
+
+\subsection*{任意导体组与 Green 倒易定理}
+
+孤立导体和双极电容器都只是导体组的特殊情况。设同一组固定导体有两个静电平衡状态：第一状态中第 $i$
+个导体的电荷与电势为 $Q_i,\varphi_i$，第二状态为 $Q_i',\varphi_i'$。由 Green 第二恒等式可得
+\begin{equation}
+  \boxed{\sum_iQ_i\varphi_i'=\sum_iQ_i'\varphi_i}.
+\end{equation}
+它说明：把第一状态各导体的电荷乘以第二状态相应导体的电势后求和，与交换两个状态所得结果相同。
+具有这种“交换激励与响应而结果不变”结构的结论称为倒易定理。它与静电场方程的线性、边界条件的唯一性
+以及场能的二次型结构密切相关。
+
+\reciprocitySphereDiagram
+
+例如，取一个导体球和球外距球心为 $r$ 的点 $P$。状态 I 中球带单位电荷，$P$ 点无点电荷；球面电荷
+均匀分布，它在 $P$ 点产生电势 $1/(4\pi\varepsilon_0r)$。状态 II 中球原来不带电，在 $P$ 点放置
+电荷 $q$，静电感应使球面电荷重新分布，球仍为等势体，设其电势为 $\varphi$。对这两个状态应用倒易定理，
+可立即得到
+\begin{equation}
+  \boxed{\varphi=\frac{q}{4\pi\varepsilon_0r}}.
+\end{equation}
+虽然状态 II 的球面电荷分布并不均匀，但球的电势无需逐点积分就能确定。
+
+\reciprocityConductorsDiagram
+
+再考虑两个任意形状导体。两种状态分别记为
+$(Q_1,Q_2;\varphi_1,\varphi_2)$ 与
+$(Q_1',Q_2';\varphi_1',\varphi_2')$，则
+\begin{equation}
+  Q_1\varphi_1'+Q_2\varphi_2'
+  =Q_1'\varphi_1+Q_2'\varphi_2.
+\end{equation}
+由此可以导出多种有用结论。例如，在两种实验中轮流令一个导体带相同电荷、另一个保持中性，则一个导体
+在另一个导体处产生的电势具有交换对称性；轮流令一个导体接地、另一个处于相同电势，接地导体上的总感应
+电荷也具有交换对称性。把电荷写成各导体电势的线性函数
+\begin{equation}
+  Q_i=\sum_jC_{ij}\varphi_j,
+\end{equation}
+倒易定理给出
+\begin{equation}
+  \boxed{C_{ij}=C_{ji}}.
+\end{equation}
+因此，多导体静电感应并不是每一对导体各有一套互不相关的经验参数，而可以用一个对称电容系数矩阵统一描述。
+
+\subsection*{电介质与相对介电常数}
+
+真空电容器的两极之间没有物质。实际电容器往往在电极间填入橡胶、玻璃、纸、石英等绝缘材料，这类物质
+称为电介质。实验表明：用某种均匀电介质完全填满电容器后，电容总会增大；更重要的是，对同一种介质，
+无论原电容器形状如何，在适用的线性范围内，电容都近似按同一倍数增大。这个倍数称为相对介电常数
+$\varepsilon_r$：
+\begin{equation}
+  \boxed{C=\varepsilon_rC_0},
+\end{equation}
+其中 $C_0$ 是相同几何结构在真空中的电容。常见被动介质的 $\varepsilon_r>1$。
+
+\dielectricExperimentDiagram
+
+\begin{center}
+\small
+\begin{tabular}{lcc lcc}
+\toprule
+材料 & 相对介电常数 $\varepsilon_r$ & 击穿场强/$(\si{V.m^{-1}})$ &
+材料 & 相对介电常数 $\varepsilon_r$ & 击穿场强/$(\si{V.m^{-1}})$\\
+\midrule
+干燥空气 & $1.00059$ & $3\times10^6$ & 水 & $80$ & --\\
+石英 & $3.78$ & $24\times10^6$ & 橡胶 & $6.7$ & $12\times10^6$\\
+纸 & $3.7$ & $16\times10^6$ & 尼龙 & $3.4$ & $14\times10^6$\\
+玻璃 & $5.6$ & $14\times10^6$ & 聚苯乙烯 & $2.56$ & $24\times10^6$\\
+\bottomrule
+\end{tabular}
+
+{\small\color{TextGray}表 32.1\quad 室温下典型介质的相对介电常数和击穿电场（典型值）}
+\end{center}
+
+表中的击穿场强表示介质仍能保持绝缘的典型上限。超过这一数量级后，束缚电荷可能被大量释放，介质发生
+电击穿，不能再用线性绝缘体模型处理。材料的介电常数与击穿场强还会受到温度、频率、纯度和制备状态影响，
+表中数值只适合作数量级估计。
+
+若保持电容器自由电荷 $Q$ 不变，完全插入介质后 $C$ 增大为 $\varepsilon_rC_0$，电势差
+$U=Q/C$ 降低到原来的 $1/\varepsilon_r$，场强也相应减小。这说明介质内部出现了一个通常与外场反向的
+附加电场。它来源于介质中束缚正、负电荷在外场下的微小相对位移。
+
+\subsection*{介质极化与电位移}
+
+经典图像中，绝缘体由大量整体中性的原子或分子组成，电子不能像金属自由电子那样在整个物体内迁移。
+外电场作用时，原子中正、负电荷中心发生微小分离，形成诱导电偶极子；本来具有永久偶极矩的分子也会在
+外场下出现取向偏好。两种机制都使大量微观偶极矩在统计平均后产生宏观极化。
+
+单位体积内的总电偶极矩定义为极化强度
+\begin{equation}
+  \boxed{\vect P=\frac{\dd\vect p}{\dd V}}.
+\end{equation}
+若每个分子的平均偶极矩为 $\vect p$、数密度为 $N$，均匀极化时 $\vect P=N\vect p$。介质内部相邻偶极子
+的正负电荷大体抵消，但在边界上会留下束缚面电荷；非均匀极化还会产生束缚体电荷：
+\begin{equation}
+  \boxed{\sigma_b=\vect P\cdot\uvec n},
+  \qquad
+  \boxed{\rho_b=-\nabla\cdot\vect P}.
+\end{equation}
+
+\polarizationDiagram
+
+自由电荷与束缚电荷都产生真实电场。为了在介质问题中把由电极等带来的自由电荷单独列出，定义电位移矢量
+\begin{equation}
+  \boxed{\vect D=\varepsilon_0\vect E+\vect P}.
+\end{equation}
+于是 Gauss 定律可写为
+\begin{equation}
+  \boxed{\oint_S\vect D\cdot\dd\vect S=Q_{\rm free}},
+  \qquad
+  \nabla\cdot\vect D=\rho_{\rm free}.
+\end{equation}
+右侧只计自由电荷，极化形成的束缚电荷已经包含在 $\vect P$ 中。$\vect D$ 是重新组织电荷贡献后引入的
+辅助场量，并不是另一种独立于电场的力。
+
+“电位移”这个名称保留了电磁学发展早期的历史痕迹。十九世纪的机械以太模型曾把电场类比为某种连续介质
+受力后的形变，把真空响应与普通物质的极化相加。以太图像后来被放弃，但由线性场方程整理出的
+$\vect D=\varepsilon_0\vect E+\vect P$ 仍然是处理介质问题的有效定义。学习这一历史背景的意义在于区分：
+公式可以保留，而最初解释公式的机械模型未必正确。
+
+当场强不太大、介质各向同性且响应近似即时，极化强度可近似与电场成正比：
+\begin{equation}
+  \vect P=\varepsilon_0\chi_e\vect E.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{\vect D=\varepsilon\vect E
+  =\varepsilon_r\varepsilon_0\vect E},
+  \qquad \varepsilon_r=1+\chi_e.
+\end{equation}
+从微观角度，若单个原子的诱导偶极矩满足 $\vect p=\alpha\vect E_{\rm loc}$，$\alpha$ 称为原子极化率。
+宏观介电常数与 $N\alpha$ 有关；在最简单的各向同性模型中还要考虑邻近偶极子对局域场的修正，因此不能
+总把 $\vect E_{\rm loc}$ 直接等同于宏观平均场 $\vect E$。测量介电常数曾是由宏观实验反推原子结构的重要途径。
+
+\subsection*{介质边界、部分填充与受力}
+
+在两种介质的交界面上作极薄柱形 Gauss 面和极窄矩形回路，可得静电边界条件
+\begin{equation}
+  \boxed{D_{2n}-D_{1n}=\sigma_f},
+  \qquad
+  \boxed{E_{2t}=E_{1t}}.
+\end{equation}
+只有自由面电荷使 $\vect D$ 的法向分量发生跳变；静电场的切向分量连续。界面没有自由电荷时
+$D_{1n}=D_{2n}$，但若两侧介电常数不同，$E_n$ 一般不连续，电场线通过界面时会改变方向。
+
+介质沿电场方向分层时，各层自由电荷面密度相同，$D_n$ 相同，而总电压等于各层电压之和，等效为电容串联：
+\begin{equation}
+  \frac1C=\frac{d_1}{\varepsilon_1S}+\frac{d_2}{\varepsilon_2S}+\cdots.
+\end{equation}
+介质若横向分割极板面积，各部分电势差相同、总电荷相加，等效为并联：
+\begin{equation}
+  C=\frac{\varepsilon_1S_1}{d}+\frac{\varepsilon_2S_2}{d}+\cdots.
+\end{equation}
+判断串联或并联不能只看图形，而要看各部分是电荷相同还是电压相同。
+
+介质板插入电容器通常受到向内部的力，因为插入会使电容增大。电容器孤立、自由电荷固定时
+\begin{equation}
+  W_Q=\frac{Q^2}{2C},
+  \qquad
+  F_x=-\left(\frac{\partial W_Q}{\partial x}\right)_Q
+  =\frac{Q^2}{2C^2}\frac{\partial C}{\partial x}.
+\end{equation}
+若电容器接恒压电源，必须把电源做功一起计入。电容器与电源合成系统的有效势能变化为
+$\dd(W_C-W_s)=-U^2\dd C/2$，所以
+\begin{equation}
+  \boxed{F_x=\frac12U^2\frac{\partial C}{\partial x}}.
+\end{equation}
+两种边界条件给出的力方向一致，但推导中保持不变的量不同。
+
+\subsection*{充电过程中的能量去向}
+
+把未充电电容 $C$ 通过电阻 $R$ 接到理想电压源 $U_0$，最终电源搬运电荷 $Q=CU_0$，做功
+$W_s=U_0Q=CU_0^2$。电容最终储能只有 $CU_0^2/2$，另一半在电阻中转化为热：
+\begin{equation}
+  Q_R=\int_0^\infty I^2R\dd t=\frac12CU_0^2.
+\end{equation}
+这一半能量与 $R$ 的具体数值无关，$R$ 只改变充电快慢。理想化地令 $R\to0$ 时，集总模型出现无限大
+初始电流；真实电路中的寄生电感、电磁辐射和有限传播速度会参与能量转移，不能据此断言能量损耗消失。
+串联电阻充电时
+\begin{equation}
+  U_C(t)=U_0\left(1-\e^{-t/(RC)}\right),
+  \qquad
+  I(t)=\frac{U_0}{R}\e^{-t/(RC)}.
+\end{equation}
+$RC$ 是时间常数。经过一个时间常数，电容电压达到终值的 $1-\e^{-1}$，电流降为初值的 $\e^{-1}$。
+
+\input{source-detail-restoration.tex}
+
+\subsection*{重点知识}
+
+\begin{enumerate}[label=\textbf{32.\arabic*},leftmargin=4.2em]
+  \item 双极电容器的电容为两极电荷量的绝对值与电势差之比，$C=Q/U$。
+  \item 孤立导体的电容为导体电荷量与相对无穷远电势之比，可视为它与无穷远之间的电容。
+  \item 电容器储能 $W=Q^2/(2C)=QU/2=CU^2/2$，能量以电场形式存在。
+  \item 绝缘体称为电介质。电介质会极化，但一般不会像导体那样形成静电屏蔽和内部等势状态。
+  \item 电位移满足 $\vect D=\varepsilon_0\vect E+\vect P$；其 Gauss 定律只以自由电荷为源。
+\end{enumerate}

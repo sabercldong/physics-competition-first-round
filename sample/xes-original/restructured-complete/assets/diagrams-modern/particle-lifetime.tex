@@ -1,0 +1,21 @@
+% Contract: two simultaneous spatial snapshots, not two world-line diagrams.
+% Same events A (creation) and B (decay); lengths refer to ground markers P,Q.
+% Transparent labels, 12cm print width; no decorative backgrounds.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[->] (0,0)--(5.1,0) node[right]{$x$};
+ \fill (0,0) circle(2pt) (4.4,0) circle(2pt);
+ \node[below=5pt] at (0,0){P};\node[below=5pt] at (4.4,0){Q};
+ \draw[DeepBlue,thick,->] (.3,.65)--(1.8,.65) node[midway,above=3pt]{$v$};
+ \node[above=5pt] at (3.2,.65){粒子运动};
+ \draw[<->] (0,-.65)--(4.4,-.65) node[midway,below=3pt]{$\ell=v\tau$};
+ \node at (2.2,1.45){实验室系：P、Q静止};
+ \begin{scope}[yshift=-3.1cm]
+  \draw[->] (0,0)--(5.1,0) node[right]{$x'$};
+  \fill (0,0) circle(2pt) (2.4,0) circle(2pt);
+  \node[below=5pt] at (0,0){P};\node[below=5pt] at (2.4,0){Q};
+  \draw[DeepBlue,thick,->] (2.4,.7)--(1.1,.7) node[midway,above=3pt]{$-v$};
+  \node[above=4pt] at (4,.5){地面标记左移};
+  \draw[<->] (0,-.65)--(2.4,-.65) node[midway,below=3pt]{$\ell'=\ell/\gamma=v\tau_0$};
+  \node at (2.2,1.45){粒子系：粒子留在 $x'=0$};
+ \end{scope}
+\end{tikzpicture}

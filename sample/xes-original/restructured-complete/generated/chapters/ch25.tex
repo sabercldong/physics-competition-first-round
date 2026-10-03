@@ -1,0 +1,799 @@
+\begingroup
+\tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
+\RenewDocumentEnvironment{xesolution}{+b}{%
+  \par\nobreak\smallskip\nobreak\begingroup\small
+  \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+\chapter{交流电、相量与RLC电路}
+
+\section{周期信号与有效值}
+
+\subsection{拟稳交流电路的适用范围}
+
+
+把交流电路当作集中参数电路，隐含了“电磁作用传播得足够快”的条件。若电路的最大线度为 $\ell$，电磁扰动在导线中的传播速度为 $v_p$，则传播时间
+\begin{equation}
+ \tau_p=\frac{\ell}{v_p}
+\end{equation}
+应远小于交流周期 $T=2\pi/\omega$，即
+\begin{equation}
+ \omega\tau_p\ll1.
+\end{equation}
+各元件自身的尺寸也应满足相同条件。此时同一支路各处的电流可视为同时变化，基尔霍夫定律可以逐时刻使用，称为拟稳电路。若 $\ell$ 已能和波长 $\lambda=v_p/f$ 相比，就必须考虑传播时延和分布参数，不能再把一段长导线等同于一个无长度的理想元件。
+还须忽略连接导线的分布电阻、电感与对地电容，或把它们明确计入模型；否则即使传播时延很小，导线两端也可能有不可忽略的电压差。以下只研究线性元件的周期稳态，接通电源后的暂态另行处理。
+
+
+% EM teaching enrichment 20260927
+\paragraph{用相位延迟作数量级判断}
+传播时间造成的相位差约为 $\Delta\phi=\omega\ell/v_p$。例如取 $\ell=1\,\mathrm m$、$v_p=2.0\times10^8\,\mathrm{m/s}$，在 $f=50\,\mathrm{Hz}$ 时相位差约 $1.6\times10^{-6}$ 弧度；在 $f=100\,\mathrm{MHz}$ 时则约为 $\pi$，已经不能说整段导线“同时”处于同一交流状态。
+这一判断不依赖电压大小。短而高频的线路和长而低频的线路，都应比较 $\omega\ell/v_p$，不能只根据“交流”两个字决定是否使用相量电路模型。
+此外，相量只描述某一频率的稳态。开关闭合后的自然响应由初值决定，可能在若干时间常数内不可忽略。
+
+
+\subsection{正弦交流电与有效值}
+
+
+正弦电压写作
+\begin{equation}
+ u(t)=U_m\cos(\omega t+\varphi_u).
+\end{equation}
+交流表通常给出有效值（均方根值）
+\begin{equation}
+ U=\sqrt{\frac1T\int_0^T u^2(t)\dd t}=\frac{U_m}{\sqrt2},
+ \qquad I=\frac{I_m}{\sqrt2}.
+\end{equation}
+只有纯正弦波才可直接使用峰值除以 $\sqrt2$；任意周期波形应回到均方根定义。
+
+
+% EM teaching enrichment 20260927
+\paragraph{有效值来自相同热效应}
+电阻 $R$ 中一周期发热为 $\int_0^T i^2R\dd t$。定义一个直流 $I$ 在同一时间产生相同热量，即
+$I^2RT=\int_0^Ti^2R\dd t$，便得到均方根定义；它既不是瞬时值的平均，也不是绝对值的平均。
+例如在每周期中通电比例为 $D$ 的矩形脉冲，通电时电流 $I_0$、其余为零，则
+\[
+ I_{\rm avg}=DI_0,\qquad I_{\rm rms}=I_0\sqrt D.
+\]
+取 $D=1/4$，平均值为 $I_0/4$，有效值却为 $I_0/2$。
+\subsection{非正弦波形的有效值}
+
+
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.9cm,>=Latex]
+  \draw[axis] (-.2,0)--(8.2,0) node[right]{$t$};
+  \draw[axis] (0,-1.7)--(0,1.8) node[above]{$u$};
+  \draw[DeepBlue,very thick] (0,1)--(2,1)--(2,-1)--(4,-1)--(4,1)--(6,1)--(6,-1)--(8,-1);
+  \draw[guide] (0,1)--(8,1);
+  \draw[guide] (0,-1)--(8,-1);
+  \node[clearlabel,left] at (0,1) {$U_0$};
+  \node[clearlabel,left] at (0,-1) {$-U_0$};
+  \node[clearlabel,below] at (4,-1.12) {$T$};
+\end{tikzpicture}
+\figcap{双极性方波。有效值由平方平均定义，不能根据波形“正负抵消”判断。}\label{ch25:fig:square-wave}
+\end{center}
+图~\ref{ch25:fig:square-wave} 中正、负平台对平均值相消，却对 $u^2$ 作相同的正贡献。
+
+\begin{origexamplebox}{方波与三角波的有效值}
+周期电压在一个周期内先以 $+U_0$ 保持半周期，再以 $-U_0$ 保持半周期。（1）求平均值与有效值；
+（2）若改为在 $-U_0$ 与 $+U_0$ 之间匀速往返的对称三角波，求有效值。
+\end{origexamplebox}
+\begin{xesolution}
+方波的正负面积相消，平均值为零；但
+\[
+ U_{\rm rms}^2=\frac1T\int_0^T u^2\dd t=U_0^2,
+ \qquad \boxed{U_{\rm rms}=U_0}.
+\]
+三角波在半周期内可写为 $u=-U_0+4U_0t/T$，由对称性
+\begin{align*}
+ U_{\rm rms}^2
+ &=\frac{2U_0^2}{T}\int_0^{T/2}\left(1-\frac{8t}{T}+\frac{16t^2}{T^2}\right)\dd t\\
+ &=\frac{2U_0^2}{T}\left[t-\frac{4t^2}{T}+\frac{16t^3}{3T^2}\right]_0^{T/2}
+ =\frac{2U_0^2}{T}\left(\frac T2-T+\frac{2T}{3}\right)=\frac{U_0^2}{3}.
+\end{align*}
+故 $\boxed{U_{\rm rms}=U_0/\sqrt3}$。两种结果都具有电压单位；把峰值一律除以 $\sqrt2$ 只对正弦波成立。
+\end{xesolution}
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{用同峰值比较检验结果}
+峰值相同时，方波几乎始终停在最大幅值，故有效值最大；三角波有较多时间位于较小幅值，
+有效值比正弦波更低。三者依次为 $U_0,U_0/\sqrt2,U_0/\sqrt3$。
+若波形叠加直流偏置 $U_d$，先写 $u=U_d+u_{\rm ac}$ 且 $\langle u_{\rm ac}\rangle=0$，展开平方可得
+$U_{\rm rms}^2=U_d^2+U_{{\rm ac,rms}}^2$；有效值不能直接相加。
+
+
+% EM structure and teaching revision 20260928
+\subsection{混合频率信号的有效值与适用范围}
+设周期信号含直流和不同整数倍频率的谐波：
+\[
+ u(t)=U_d+\sum_{n=1}^{N}U_{mn}\cos(n\omega t+\phi_n).
+\]
+在共同周期内，直流与各正弦项的乘积平均为零，不同频率项之间的乘积平均也为零，因此
+\[
+ U_{\mathrm{rms}}^2=U_d^2+\frac12\sum_{n=1}^{N}U_{mn}^2.
+\]
+同频项却不能按平方直接相加，必须先考虑相位。两项幅值同为 $A$ 的同频电压，相位相同会合成峰值 $2A$，反相则完全抵消。
+例如 $u=3+4\cos\omega t+2\sin2\omega t$（单位为伏），平均值为 $3\,\mathrm V$，有效值为 $\sqrt{19}\,\mathrm V$。若接在线性电阻 $R$ 上，平均发热功率为 $19/R$；若接在频率相关网络上，则须分别求各谐波支路响应后再合成实际波形。
+相量法一次只处理一个频率。把多频信号压缩成一个“总相量”，会丢掉各频率面对的不同感抗、容抗及传播条件。
+
+
+
+\section{相量、阻抗与串并联网络}
+
+\subsection{电阻、电感与电容的相量关系}
+
+
+本章统一使用\textbf{有效值相量}，而不是峰值相量。设电流
+$i(t)=\sqrt2 I\cos(\omega t+\varphi_i)$，定义
+\begin{equation}
+ \widetilde U=Ue^{\ii\varphi_u},\qquad
+ \widetilde I=Ie^{\ii\varphi_i},\qquad
+ u(t)=\sqrt2\Re(\widetilde Ue^{\ii\omega t}),\quad
+ i(t)=\sqrt2\Re(\widetilde Ie^{\ii\omega t}).
+\end{equation}
+$\ii^2=-1$ 是虚数单位，不能与瞬时电流 $i(t)$ 混淆。相量的模是有效值；公用的时间因子不再写入相量。
+采用关联参考方向，即电流从元件电压的正端流入。电阻满足 $u=Ri$，故 $\widetilde U=R\widetilde I$；
+电感满足 $u=L\dd i/\dd t$，对 $e^{\ii\omega t}$ 求导等于乘 $\ii\omega$，故 $\widetilde U=\ii\omega L\widetilde I$；
+电容满足 $i=C\dd u/\dd t$，故 $\widetilde I=\ii\omega C\widetilde U$。因此三种理想元件的阻抗为
+\begin{equation}
+ Z_R=R,\qquad Z_L=\ii\omega L,\qquad Z_C=\frac1{\ii\omega C}=-\frac{\ii}{\omega C}.
+\end{equation}
+一般阻抗可写为 $Z=\widetilde U/\widetilde I=R+\ii X=|Z|e^{\ii\varphi}$，其中
+$|Z|=\sqrt{R^2+X^2}$，$X$ 是电抗，$\varphi=\varphi_u-\varphi_i=\arg Z$。
+$X>0$ 称感性，$X<0$ 称容性；容抗的大小是 $1/(\omega C)$，不是 $\omega C$。
+因此电阻中电压电流同相；电感电压超前电流 $\pi/2$；电容电压滞后电流 $\pi/2$。
+这些相位关系必须和所选时间因子约定一致。若改用 $e^{-\ii\omega t}$，阻抗虚部符号会同时改变，物理结果不变。
+
+\begin{center}
+\begin{minipage}{0.78\linewidth}
+\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[axis] (-.3,0)--(5,0) node[right]{$\Re$};
+  \draw[axis] (0,-2.1)--(0,2.3) node[above]{$\Im$};
+  \draw[vector] (0,0)--(4.1,0) node[below]{$\widetilde U_R$};
+  \draw[vector] (0,0)--(0,1.8) node[left]{$\widetilde U_L$};
+  \draw[component] (0,0)--(0,-1.05) node[left]{$\widetilde U_C$};
+  \draw[vector] (0,0)--(4.1,.75) node[above right]{$\widetilde U$};
+  \draw[guide] (4.1,0)--(4.1,.75);
+\end{tikzpicture}
+\figcap{以电流相量为实轴的串联RLC电压相量。}\label{ch25:fig:series-phasors}
+\end{minipage}
+\end{center}
+图~\ref{ch25:fig:series-phasors} 中纵向净分量为 $U_L-U_C$，横向分量为 $U_R$；总电压是相量和，不能把三个电压有效值直接代数相加。图中箭头表示复平面上的相量，不是空间中的电场方向。
+
+
+% EM teaching enrichment 20260927
+\paragraph{从相量答案还原真实波形}
+若某支路 $Z=3+4\ii\,\Omega$，端电压为 $u=10\sqrt2\cos\omega t\,\mathrm V$，取电压相量为实数 $10\,\mathrm V$，则
+\[
+ \widetilde I=\frac{10}{3+4\ii}=1.2-1.6\ii\,\mathrm A
+ =2e^{-\ii\arctan(4/3)}\,\mathrm A.
+\]
+因而 $i(t)=2\sqrt2\cos[\omega t-\arctan(4/3)]\,\mathrm A$。负相角表示电流滞后电压，并不表示电流有效值为负。
+计算时先统一频率、有效值和参考相位，再在复平面解网络，最后取实部还原。不能把相量的虚部当成“另一股实际电流”，也不能把不同频率的相量放在同一张图上直接相加。
+
+
+\subsection{导纳与并联支路}
+
+
+并联电路用导纳更直接。定义
+\begin{equation}
+ Y=\frac1Z=G+\ii B,
+ \qquad \widetilde I=Y\widetilde U,
+\end{equation}
+其中 $G$ 为电导，$B$ 为电纳。并联各支路电压相同，总导纳等于支路导纳之和。对理想电阻、电感和电容，
+\begin{equation}
+ Y_R=\frac1R,
+ \qquad Y_L=-\frac{\ii}{\omega L},
+ \qquad Y_C=\ii\omega C.
+\end{equation}
+导纳也可写成 $Y=|Y|e^{-\ii\varphi}$。若 $Z=R+\ii X$，乘以分母的共轭得到
+$G=R/(R^2+X^2)$、$B=-X/(R^2+X^2)$，所以导纳的相角与阻抗相角相反；$G,B$ 的单位均为西门子。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[axis] (-.3,0)--(4.5,0) node[right]{$\Re$};
+  \draw[axis] (0,-2.2)--(0,2.4) node[above]{$\Im$};
+  \draw[vector] (0,0)--(3.4,0) node[below]{$\widetilde I_R$};
+  \draw[vector] (0,0)--(0,1.9) node[left]{$\widetilde I_C$};
+  \draw[vector] (0,0)--(0,-1.25) node[left]{$\widetilde I_L$};
+  \draw[vector] (0,0)--(3.4,.65) node[above right]{$\widetilde I$};
+  \draw[guide] (3.4,0)--(3.4,.65);
+\end{tikzpicture}
+\figcap{以电压相量为实轴的并联RLC电流相量。}\label{ch25:fig:parallel-phasors}
+\end{center}
+图~\ref{ch25:fig:parallel-phasors} 中总电流的虚部为 $I_C-I_L$；相量的竖直分量相消时，电源电流只剩与电压同相的 $I_R$。
+
+
+% EM teaching enrichment 20260927
+\paragraph{支路电流很大，总电流仍可很小}
+在某一频率，电阻支路 $R=10\,\Omega$、理想感抗 $X_L=5\,\Omega$、理想容抗大小 $X_C=5\,\Omega$ 并联，端电压有效值 $10\,\mathrm V$。以电压为参考，三支路电流相量分别为
+$1$、$-2\ii$、$+2\ii\,\mathrm A$，总电流只有 $1\,\mathrm A$。
+电源提供有功功率 $10\,\mathrm W$；电感与电容支路仍交换能量，并非没有电流。若把并联各支路电流有效值直接相加成 $5\,\mathrm A$，就忽略了相位。
+这个算例也解释了并联谐振时电源电流最小与内部环流较大为何可以同时发生。
+
+
+\subsection{复阻抗网络}
+
+
+
+
+\begin{origexamplebox}{两支路并联的等效阻抗}
+图~\ref{ch25:fig:impedance-network} 中，上支路为 $R_1$ 与 $L$ 串联，下支路为 $R_2$ 与 $C$ 串联。写出端口等效阻抗，并给出端口呈纯电阻的条件。
+\begin{center}
+\begin{tikzpicture}[scale=.92,>=Latex]
+  \draw[ground] (0,0)--(.7,0)--(.7,1.25)--(1.4,1.25);
+  \draw[ground] (.7,0)--(.7,-1.25)--(1.4,-1.25);
+  \foreach \y/\name in {1.25/R_1,-1.25/R_2}{
+    \draw[thick] (1.4,\y-.18) rectangle (2.8,\y+.18);
+    \node[above] at (2.1,\y+.23) {$\name$};
+    \draw[ground] (2.8,\y)--(3.5,\y);
+  }
+  \draw[thick] (3.5,1.25)
+    .. controls (3.5,1.7) and (4,1.7) .. (4,1.25)
+    .. controls (4,1.7) and (4.5,1.7) .. (4.5,1.25)
+    .. controls (4.5,1.7) and (5,1.7) .. (5,1.25)
+    .. controls (5,1.7) and (5.5,1.7) .. (5.5,1.25);
+  \node[above] at (4.5,1.75) {$L$};
+  \draw[ground] (3.5,-1.25)--(4.25,-1.25);
+  \draw[thick] (4.25,-1.65)--(4.25,-.85) (4.55,-1.65)--(4.55,-.85);
+  \node[below] at (4.4,-1.7) {$C$};
+  \draw[ground] (4.55,-1.25)--(6.2,-1.25)--(6.2,1.25)--(5.5,1.25);
+  \draw[ground] (6.2,0)--(7,0);
+  \fill (0,0) circle (2pt) node[left] {$A$};
+  \fill (7,0) circle (2pt) node[right] {$B$};
+  \foreach \x in {.7,6.2}{\fill (\x,0) circle (1.5pt);}
+\end{tikzpicture}
+\figcap{两条串联支路连接于同一端口 $A,B$。}\label{ch25:fig:impedance-network}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+两支路阻抗为
+\[
+ Z_1=R_1+\ii\omega L,
+ \qquad Z_2=R_2-\frac{\ii}{\omega C}.
+\]
+并联应相加导纳：
+\[
+ \boxed{Z_{AB}=\left(\frac1{Z_1}+\frac1{Z_2}\right)^{-1}}
+ =\frac{Z_1Z_2}{Z_1+Z_2}.
+\]
+端口电流与电压同相要求总导纳虚部为零。由
+\[
+ \Im\!\left(\frac1{Z_1}+\frac1{Z_2}\right)
+ =-\frac{\omega L}{R_1^2+(\omega L)^2}
+ +\frac{1/(\omega C)}{R_2^2+[1/(\omega C)]^2}
+\]
+得到纯电阻条件
+\[
+ \boxed{\frac{\omega L}{R_1^2+(\omega L)^2}
+ =\frac{1/(\omega C)}{R_2^2+[1/(\omega C)]^2}}.
+\]
+当 $R_1,R_2\ge0$ 且 $L,C>0$ 时，交叉相乘并约去非零的 $\omega$，还可将频率条件写成
+\[
+ L-CR_1^2=\omega^2LC(L-CR_2^2).
+\]
+若 $L-CR_2^2\ne0$，得到
+\[
+ \boxed{\omega^2=\frac{L-CR_1^2}{LC(L-CR_2^2)}}.
+\]
+右端必须严格为正才有非零实频率。若分母为零而分子不为零，无解；若两者都为零，
+即 $R_1=R_2=\sqrt{L/C}$，则在任意非零频率都有 $Z_{AB}=\sqrt{L/C}$，不再只有一个特殊频率。
+若至少一条支路有正电阻，则总电导为正，上式确实对应有限的纯电阻端口。
+若 $R_1=R_2=0$，上式仍给出 $\omega^2LC=1$，但此时总导纳连实部也为零，即 $Y=0$、端口阻抗趋于无穷大，不能称为有限的纯电阻。
+这时非零的电容、电感支路电流相消，电源电流为零。各导纳项单位都是西门子。
+\end{xesolution}
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{把复数结果还原成可测量量}
+算出 $Z_{AB}=R_{\rm eq}+\ii X_{\rm eq}$ 后，电流有效值为 $I=U/|Z_{AB}|$，电压相对于电流的相角为
+$\arg Z_{AB}$，平均功率为 $I^2R_{\rm eq}$。这里的等效实部一般随频率变化，不能视为一只固定物理电阻。
+也可分别算 $\widetilde I_1=\widetilde U/Z_1$、$\widetilde I_2=\widetilde U/Z_2$，检查相量和是否等于端口电流，
+并核对 $I_1^2R_1+I_2^2R_2$ 是否等于总有功功率。这给出了独立于复杂代数化简的验算方法。
+
+
+% EM structure and teaching revision 20260928
+\subsection{并联RC网络的相位与频率极限}
+例如电阻 $R$ 与电容 $C$ 并联，端电压相量为 $\widetilde U$，有
+\[
+ \widetilde I=\left(\frac1R+\ii\omega C\right)\widetilde U,
+ \quad |I|=U\sqrt{R^{-2}+\omega^2C^2},
+ \quad \arg\widetilde I-\arg\widetilde U=\arctan(\omega CR).
+\]
+电流超前电压；低频时电容支路趋于开路，结果退回 $I=U/R$；频率升高后无功支路电流增大，但电阻平均消耗仍为 $U^2/R$。
+若取 $R=1.0\,\mathrm{k}\Omega$、$C=1.0\,\mu\mathrm F$，两支路电流幅值相等发生在 $\omega RC=1$，即 $f\simeq159\,\mathrm{Hz}$，此时总电流超前电压 $45^\circ$，总电流幅值是单个支路的 $\sqrt2$ 倍，而非两倍。
+所有理想元件的低频、高频极限都是检查网络答案的有效工具，但极限下还要注意是否出现理想电源短路或无阻尼共振等使模型失去有限稳态的情形。
+
+
+
+\section{谐振、品质因数与频率响应}
+
+\subsection{串联RLC电路与共振}
+
+
+串联电路总阻抗
+\begin{equation}
+ Z=R+\ii\left(\omega L-\frac1{\omega C}\right),
+\end{equation}
+设 $R,L,C>0$，电源有效值 $U$ 不随频率改变。电流有效值和电压超前电流的相位差为
+\begin{equation}
+ I=\frac{U}{\sqrt{R^2+(\omega L-1/\omega C)^2}},
+ \qquad
+ \tan\varphi=\frac{\omega L-1/(\omega C)}R.
+\end{equation}
+当
+\begin{equation}
+ \omega_0=\frac1{\sqrt{LC}}
+\end{equation}
+时发生串联谐振，总阻抗最小为 $R$，电流最大并与电源电压同相。此时 $U_L$ 与 $U_C$ 大小相等、相位相反，
+各自可以远大于电源电压，这称为电压谐振，并不违反能量守恒：电感磁能与电容电能在周期内往返交换。
+
+对上述恒参数串联模型，品质因数和半功率带宽满足精确关系
+\begin{equation}
+ Q=\frac{\omega_0L}{R}=\frac1{\omega_0CR},
+\qquad \Delta\omega=\frac{R}{L},\qquad Q=\frac{\omega_0}{\Delta\omega}.
+\end{equation}
+这里 $Q=U_L/U_R$ 是谐振时的电压放大倍数。只有把两个半功率频率近似写成
+$\omega_0\pm\Delta\omega/2$ 时，才额外要求 $Q\gg1$。后面的带宽例题给出不作弱损耗近似的证明。
+
+
+% EM teaching enrichment 20260927
+\paragraph{品质因数的能量含义}
+谐振时电流有效值为 $I$，电感最大磁能为 $LI^2$；电容最大电能相同，总储能在两者间交换。
+电阻每周期损失能量 $I^2R(2\pi/\omega_0)$，所以
+\[
+ 2\pi\frac{\text{储能}}{\text{每周期耗能}}
+ =\frac{\omega_0L}{R}=Q.
+\]
+高 $Q$ 表示每周期损失比例小，因而稳态可建立较强内部储能，但建立与衰减也较慢。电流峰值、相位过零与电容电压的峰值不必在所有模型中出现在同一频率；使用“共振频率”时应先说明最大化哪个响应量。
+
+\begin{origexamplebox}{串联RLC的谐振参数}
+$R=20\,\Omega$、$L=0.20\,\mathrm H$、$C=50\,\mu\mathrm F$ 串联接正弦电源，有效值 $U=10\,\mathrm V$。求谐振角频率、谐振电流和谐振时电感电压。
+\end{origexamplebox}
+\begin{xesolution}
+\[
+ \omega_0=\frac1{\sqrt{LC}}
+ =\frac1{\sqrt{0.20\times50\times10^{-6}}}
+ \approx316\,\mathrm{rad/s}.
+\]
+谐振时总阻抗为 $R$，故
+\[
+ I_0=\frac UR=0.50\,\mathrm A.
+\]
+电感电抗 $X_L=\omega_0L\approx63.2\,\Omega$，所以
+\[
+ \boxed{U_L=I_0X_L\approx31.6\,\mathrm V}.
+\]
+它大于电源电压，但电容电压同样为 $31.6\,\mathrm V$ 且相位相反，二者相量相消。
+\end{xesolution}
+
+
+\subsection{并联RLC电路与共振}
+
+
+对电阻、电感和电容三个理想支路并联的电路，总导纳为
+\begin{equation}
+ Y=\frac1R+\ii\left(\omega C-\frac1{\omega L}\right).
+\end{equation}
+当 $\omega=\omega_0=1/\sqrt{LC}$ 时，总导纳的虚部为零，电源电流与电压同相，且大小取最小值 $I_0=U/R$。此时
+\begin{equation}
+ I_C=\omega_0CU,
+ \qquad I_L=\frac{U}{\omega_0L},
+ \qquad I_C=I_L,
+\end{equation}
+两条无功支路之间可以有很大的循环电流，这称为电流谐振；电源只需补偿电阻损耗。
+
+真实线圈含串联电阻，电容也有损耗。此时“总电流与电压同相”的相位谐振频率，与总电流极小或端口阻抗极大的振幅谐振频率一般不严格相同。只有损耗足够小时，两者才都近似为 $1/\sqrt{LC}$；因此不能不加条件地把所有并联谐振公式照搬到实际电路。
+
+\begin{center}
+\begin{tikzpicture}[scale=.78,>=Latex]
+ \begin{scope}
+  \draw[thick] (0,.4)--(0,2)--(1,2) (2,2)--(3,2)--(3,1.35);
+  \draw[thick] (1,1.8) rectangle (2,2.2);\node[above] at (1.5,2.25) {$R$};
+  \draw[thick] (2.65,1.35)--(3.35,1.35) (2.65,1.1)--(3.35,1.1);
+  \node[right] at (3.4,1.22) {$C$};
+  \draw[thick] (3,1.1)--(3,.7)
+    .. controls (3.6,.7) and (3.6,.2) .. (3,.2)
+    .. controls (3.6,.2) and (3.6,-.3) .. (3,-.3)
+    .. controls (3.6,-.3) and (3.6,-.8) .. (3,-.8)
+    --(3,-1.5)--(0,-1.5)--(0,-.4);
+  \node[right] at (3.55,-.1) {$L$};
+  \draw (0,0) circle (.4);\node at (0,0) {$\sim$};\node[left] at (-.45,0) {$U$};
+  \node at (1.5,-2.1) {串联：$|Z|$ 在谐振时最小};
+ \end{scope}
+ \begin{scope}[shift={(7,0)}]
+  \draw[thick] (0,.4)--(0,2)--(4.8,2)--(4.8,1.5);
+  \draw[thick] (0,-.4)--(0,-1.5)--(4.8,-1.5)--(4.8,-.8);
+  \draw[thick] (2.4,2)--(2.4,1.5);
+  \foreach \x/\name in {2.4/R_C,4.8/R_L}{
+   \draw[thick] (\x-.18,.5) rectangle (\x+.18,1.5);
+   \node[right] at (\x+.25,1) {$\name$};
+  }
+  \draw[thick] (2.4,.5)--(2.4,0);
+  \draw[thick] (2.05,0)--(2.75,0) (2.05,-.25)--(2.75,-.25);
+  \draw[thick] (2.4,-.25)--(2.4,-1.5);\node[right] at (2.85,-.15) {$C$};
+  \draw[thick] (4.8,.5)--(4.8,.4)
+   .. controls (5.35,.4) and (5.35,0) .. (4.8,0)
+   .. controls (5.35,0) and (5.35,-.4) .. (4.8,-.4)
+   .. controls (5.35,-.4) and (5.35,-.8) .. (4.8,-.8);
+  \node[right] at (5.3,-.3) {$L$};
+  \draw (0,0) circle (.4);\node at (0,0) {$\sim$};\node[left] at (-.45,0) {$U$};
+  \foreach \y in {-1.5,2}{\fill (2.4,\y) circle (1.5pt);}
+  \node at (2.4,-2.1) {有损并联：相位与振幅谐振须区分};
+ \end{scope}
+\end{tikzpicture}
+\figcap{串联与有损并联谐振电路的对照。}\label{ch25:fig:resonance-circuits}
+\end{center}
+图~\ref{ch25:fig:resonance-circuits} 右图中 $R_C$ 与 $R_L$ 分别表示电容、电感支路的串联损耗，其总导纳为
+\[
+ Y=\frac1{R_C-\ii/(\omega C)}+\frac1{R_L+\ii\omega L}.
+\]
+先令 $\Im Y=0$ 求相位谐振，再根据需要对 $|Y|$ 求极小值；不能直接把左图的 $R$ 搬到右图。
+
+
+% EM teaching enrichment 20260927
+\paragraph{同一器件换连接方式，控制量也变了}
+在理想并联模型中，电源固定端电压，电感与电容的电流虚部相消，谐振时总阻抗为并联电阻 $R$，电源电流最小。串联模型固定的是共同电流关系，各电抗电压相消，谐振时总阻抗为串联电阻 $R$，电源电流最大。
+对有损并联支路，电导本身也可能随频率变化。因此 $\Im Y=0$ 只保证电源电流与电压同相；最小 $|Y|$ 还要求
+$\dd(G^2+B^2)/\dd\omega=0$。若 $B=0$ 处 $G\,\dd G/\dd\omega\ne0$，它就不是电流最小点。后面的实际线圈例题应沿这两个问题分别计算。
+
+
+\subsection{谐振曲线与半功率带宽}
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.74\linewidth,height=5.3cm,axis lines=left,
+  xlabel={$\omega/\omega_0$},ylabel={$\overline P/P_{\max}$},
+  xmin=0,xmax=2.2,ymin=0,ymax=1.15,
+  xtick={1},ytick={.5,1},every axis label/.style={fill=none}]
+  \addplot[DeepBlue,very thick,domain=.05:2.2,samples=320]{1/(1+16*(x-1/x)^2)};
+  \addplot[TextGray,dashed] coordinates{(.05,.5)(2.2,.5)};
+  \draw[TextGray,dotted] (axis cs:.8827822185,0)--(axis cs:.8827822185,.5);
+  \draw[TextGray,dotted] (axis cs:1.1327822185,0)--(axis cs:1.1327822185,.5);
+  \draw[<->,TextGray] (axis cs:.8827822185,.25)--(axis cs:1.1327822185,.25);
+  \node[anchor=west] at (axis cs:1.32,.86) {$Q=4$};
+  \node[anchor=west] at (axis cs:1.32,.72) {$\Delta\omega/\omega_0=1/4$};
+\end{axis}
+\end{tikzpicture}
+\figcap{串联RLC的归一化平均功率曲线。半功率两频率之差定义带宽。}\label{ch25:fig:bandwidth}
+\end{center}
+图~\ref{ch25:fig:bandwidth} 中水平虚线与曲线的两个交点定义 $\omega_1,\omega_2$。
+
+\begin{origexamplebox}{半功率频率的精确关系}
+串联RLC接恒定有效值正弦电压。证明两个半功率角频率 $\omega_1<\omega_2$ 满足
+$\omega_2-\omega_1=R/L$ 和 $\omega_1\omega_2=1/(LC)$。
+\end{origexamplebox}
+\begin{xesolution}
+平均功率
+\[
+ \overline P=\frac{U^2R}{R^2+(\omega L-1/\omega C)^2},
+ \qquad P_{\max}=\frac{U^2}{R}.
+\]
+半功率条件给出
+\[
+ \left|\omega L-\frac1{\omega C}\right|=R.
+\]
+低频侧取负号、高频侧取正号：
+\[
+ L\omega_1^2+R\omega_1-\frac1C=0,
+ \qquad
+ L\omega_2^2-R\omega_2-\frac1C=0.
+\]
+分别取两个二次方程的正根，令 $D=\sqrt{R^2+4L/C}$，得到
+\[
+ \omega_1=\frac{D-R}{2L},\qquad \omega_2=\frac{D+R}{2L}.
+\]
+相减时 $D$ 消去，得到 $(2R)/(2L)=R/L$；相乘时利用平方差，得到
+$(D^2-R^2)/(4L^2)=(4L/C)/(4L^2)=1/(LC)$。因此
+\[
+ \boxed{\omega_2-\omega_1=\frac RL},
+ \qquad \boxed{\omega_1\omega_2=\omega_0^2=\frac1{LC}}.
+\]
+第一式量纲为 $\Omega/\mathrm H=\mathrm{s^{-1}}$。弱损耗时两频率近似关于 $\omega_0$ 对称，精确地则是几何平均为 $\omega_0$。
+\end{xesolution}
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{读图时区分半功率与半振幅}
+电阻固定时 $P\propto I^2$，所以半功率点的电流是峰值的 $1/\sqrt2$，并非一半。
+由 $\omega_1\omega_2=\omega_0^2$ 可知两个频率以几何平均意义围绕 $\omega_0$，在线性频率轴上并不严格对称。
+例如 $Q=4$ 时 $\Delta\omega/\omega_0=1/4$，两端约为 $0.883\omega_0$ 与 $1.133\omega_0$，与图中交点相符。
+只有 $Q\gg1$ 的窄带极限，才可用 $\omega_{1,2}\approx\omega_0\mp\Delta\omega/2$。
+
+
+\subsection{实际线圈与并联谐振}
+
+
+
+
+\begin{origexamplebox}{实际线圈并联电容的相位谐振}
+图~\ref{ch25:fig:real-coil} 中线圈等效为 $r$ 与 $L$ 串联，再与理想电容 $C$ 并联。求端口总导纳虚部为零的角频率，并给出存在实谐振频率的条件。
+\begin{center}
+\begin{tikzpicture}[scale=.95]
+  \draw[ground] (0,0)--(0,2.8)--(1,2.8);
+  \draw[ground] (0,0)--(1,0);
+  \draw[ground] (6,0)--(7,0)--(7,2.8)--(6,2.8);
+  \draw[thick] (1,2.8)
+   .. controls (1,3.25) and (1.5,3.25) .. (1.5,2.8)
+   .. controls (1.5,3.25) and (2,3.25) .. (2,2.8)
+   .. controls (2,3.25) and (2.5,3.25) .. (2.5,2.8)
+   .. controls (2.5,3.25) and (3,3.25) .. (3,2.8);
+  \node[clearlabel,above] at (2,3.3) {$L$};
+  \draw[thick] (3,2.6) rectangle (4.5,3.0); \node[clearlabel] at (3.75,2.8) {$r$};
+  \draw[ground] (4.5,2.8)--(6,2.8);
+  \draw[ground] (1,0)--(3.2,0);
+  \draw[thick] (3.2,-.45)--(3.2,.45); \draw[thick] (3.55,-.45)--(3.55,.45);
+  \node[clearlabel,below] at (3.38,-.45) {$C$};
+  \draw[ground] (3.55,0)--(6,0);
+  \node[point,label={[clearlabel]left:$A$}] at (0,1.4) {};
+  \node[point,label={[clearlabel]right:$B$}] at (7,1.4) {};
+\end{tikzpicture}
+\figcap{含串联损耗电阻 $r$ 的实际线圈与理想电容并联。}\label{ch25:fig:real-coil}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+线圈支路导纳
+\[
+ Y_L=\frac1{r+\ii\omega L}
+ =\frac{r-\ii\omega L}{r^2+\omega^2L^2},
+\]
+总导纳
+\[
+ Y=Y_L+\ii\omega C.
+\]
+令虚部为零：
+\[
+ \omega C-\frac{\omega L}{r^2+\omega^2L^2}=0.
+\]
+排除直流 $\omega=0$ 后，
+\[
+ \boxed{\omega_r^2=\frac1{LC}-\frac{r^2}{L^2}}.
+\]
+存在非零实频率要求 $\boxed{r^2<L/C}$。当 $r\to0$ 时回到 $1/\sqrt{LC}$；损耗增大使相位谐振频率下降。
+当 $r^2\ge L/C$ 时不存在非零的相位谐振频率，这不等于证明阻抗幅值的峰也消失；峰值位置应另对 $|Z(\omega)|$ 求极值。
+在 $r>0$ 的相位谐振点，总电导为 $rC/L$，故端口阻抗 $L/(rC)$ 为正实数。
+\end{xesolution}
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{解出频率后仍要判断是否存在}
+相位谐振必须有正实角频率。若求出的 $\omega^2$ 为负，说明给定损耗下容性支路无法在任何正频率处
+恰好抵消线圈支路的电纳；不能把负数取绝对值后继续求根。
+反过来，当线圈损耗趋于零，结果应回到理想并联条件 $\omega^2LC=1$。
+判断相位谐振是否存在、求谐振频率、求电源电流最小点是三个不同步骤，题目要求哪个就完成哪个，不能相互替代。
+
+
+% EM structure and teaching revision 20260928
+\subsection{相位谐振、幅值峰值与参数依赖}
+串联理想RLC接恒幅电压源时，$|I|=U/\sqrt{R^2+(\omega L-1/(\omega C))^2}$，电抗相消使电流最大且输入电压、电流同相。此处阻尼只来自与频率无关的串联电阻，所以两种谐振判据重合。
+含有损耗线圈的并联电路则未必如此。线圈为 $r+\ii\omega L$，与电容并联时
+\[
+ Y=\frac{r}{r^2+\omega^2L^2}
+ +\ii\left(\omega C-\frac{\omega L}{r^2+\omega^2L^2}\right).
+\]
+令虚部为零可求相位谐振频率，但实部本身也随频率变化，因此 $|Y|$ 的极小值不必出现在同一点。若问电源电流最小，应直接极小化 $|Y|$；若问电压电流同相，才使用 $\Im Y=0$。
+比较谐振曲线还必须固定激励方式。恒压源下看电流响应，恒流源下看电压响应，峰谷可能互换。品质因数很高时一些频率差别很小，可以作近似，但应先给出近似参数，例如 $r\ll\omega L$，再说明忽略的是哪一阶修正。
+
+
+
+\section{交流功率、互感与变压器}
+
+\subsection{交流功率}
+
+
+令时间原点使电流初相为零，则 $i=\sqrt2 I\cos\omega t$、
+$u=\sqrt2 U\cos(\omega t+\varphi)$。用积化和差公式，瞬时功率为
+\begin{equation}
+ p(t)=u(t)i(t)=UI[\cos\varphi+\cos(2\omega t+\varphi)].
+\end{equation}
+第二项在整数个周期内的平均值为零，所以周期平均功率为
+\begin{equation}
+ \overline P=UI\cos\varphi.
+\end{equation}
+$\cos\varphi$ 称功率因数。理想电感和电容的平均功率为零，但瞬时功率并非始终为零：它们在部分周期吸收能量，
+另一些时段把能量送回电源。电阻消耗的平均功率为 $I^2R$。
+
+复功率可记为 $\widetilde S=\widetilde U\widetilde I^*=P+\ii Q_r$，其中 $P$ 为有功功率，$Q_r$ 为无功功率；
+采用有效值相量时这里没有 $1/2$ 因子。展开相角可得
+\begin{equation}
+ P=UI\cos\varphi=I^2R,\qquad Q_r=UI\sin\varphi=I^2X,
+ \qquad |\widetilde S|=UI=I^2|Z|=\sqrt{P^2+Q_r^2}.
+\end{equation}
+$|\widetilde S|$ 称视在功率。三者具有相同物理量纲，但为区分用途，有功功率用瓦特（W），无功功率用乏（var），视在功率用伏安（VA）。
+感性负载 $Q_r>0$，容性负载 $Q_r<0$；无功功率不表示每周期永久消耗的能量。
+也可只讨论其大小 $|Q_r|=P\tan|\varphi|$。对被动元件定义损耗角
+$\epsilon=\pi/2-|\varphi|$，则 $\tan\epsilon=R/|X|=P/|Q_r|$；理想电抗元件 $\epsilon=0$，纯电阻对应其 $\epsilon\to\pi/2$ 极限。
+
+
+% EM teaching enrichment 20260927
+\paragraph{用同相与正交分量理解补偿}
+对感性负载，以电压为参考，把电流分成同相的 $I_P=P/U$ 与滞后正交分量的大小 $I_Q=Q_r/U>0$，即 $\widetilde I=I_P-\ii I_Q$。理想并联电容提供相反的正交电流，可降低电源电流，却不改变原负载在相同电压下消耗的有功功率。
+若 $P=800\,\mathrm W$、$U=200\,\mathrm V$、原功率因数为 $0.8$，则电流为 $5\,\mathrm A$，其中同相分量 $4\,\mathrm A$、正交分量 $3\,\mathrm A$。完全补偿后电源电流降至 $4\,\mathrm A$。
+同一线路电阻上的损耗由 $25R$ 降到 $16R$；减少的是上游输电损耗，不能说负载所需的 $800\,\mathrm W$ 被电容“节省”了。
+
+
+\subsection{变压器与输电}
+
+
+理想变压器由同一交变磁通穿过两组线圈，法拉第定律（Faraday's law）给出
+\begin{equation}
+ \frac{U_1}{U_2}=\frac{N_1}{N_2},
+ \qquad U_1I_1=U_2I_2.
+\end{equation}
+升高输电电压可在传输相同功率时降低电流，从而把线路损耗 $I^2R$ 降低。真实变压器还存在绕组电阻、漏磁、
+涡流和磁滞损耗；直流稳态不能在副边维持感应电压。
+
+
+% EM teaching enrichment 20260927
+\paragraph{把负载折算到原边}
+令匝数比 $a=N_1/N_2$，副边接负载 $Z_L$。理想变压器的电压幅值比为 $a$，电流幅值比为 $1/a$，按一致端口参考方向，原边所见阻抗为
+\[
+ Z_{\rm in}=a^2 Z_L.
+\]
+匝数比平方源于一次电压变换与一次电流变换，不能只把阻抗乘 $a$。
+若传输有功功率 $P$、功率因数为 $\cos\varphi$，输电电流 $I=P/(U\cos\varphi)$，线路总电阻 $R_{\rm line}$ 上损耗为
+$P^2R_{\rm line}/(U^2\cos^2\varphi)$。提高电压或改善功率因数都可降低电流，但工程装置的绝缘、损耗与额定值仍限定实际工作范围。
+
+\begin{origexamplebox}{功率因数校正}
+一线性感性负载在角频率 $\omega$、有效值 $U$ 的正弦电源上消耗有功功率 $P>0$，原功率因数为 $\cos\varphi$，其中 $0<\varphi<\pi/2$。在负载两端并联理想电容，使总电流与电压同相。求所需电容。
+\end{origexamplebox}
+\begin{xesolution}
+以电压相量为实轴，负载电流为 $\widetilde I_{\rm load}=I\cos\varphi-\ii I\sin\varphi$。
+由于 $P=UI\cos\varphi$，同相分量为 $I_P=P/U$，滞后无功分量的大小为
+\[
+ I_Q=I_P\tan\varphi=\frac PU\tan\varphi.
+\]
+电容电流超前电压 $\pi/2$，大小 $I_C=\omega CU$。校正到同相要求 $I_C=I_Q$，所以
+\[
+ \boxed{C=\frac{P\tan\varphi}{\omega U^2}}.
+\]
+这与图~\ref{ch25:fig:parallel-phasors} 中用向上的容性分量抵消向下的感性分量相同。
+并联电容不改变负载端电压和有功功率；电源电流由 $P/(U\cos\varphi)$ 降至 $P/U$。
+$\varphi\to0$ 时 $C\to0$；$P/(\omega U^2)$ 的单位为 $\mathrm{A\,s/V=F}$。
+\end{xesolution}
+
+
+\subsection{互感}
+
+
+
+
+
+\begin{origexamplebox}{互感线圈中的感应电压}
+两线圈互感大小为 $M>0$，端点和绕向如图~\ref{ch25:fig:mutual-inductance}。电流
+$i_1=I_0\cos\omega t$ 从线圈1同名端流入，线圈2开路。求 $u_2=V_a-V_b$，并作量纲检查。
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \foreach \x/\name in {0/N_1,4/N_2}{
+    \draw[thick] (\x,1.75)--(\x,1)
+      .. controls (\x+.65,1) and (\x+.65,.5) .. (\x,.5)
+      .. controls (\x+.65,.5) and (\x+.65,0) .. (\x,0)
+      .. controls (\x+.65,0) and (\x+.65,-.5) .. (\x,-.5)
+      .. controls (\x+.65,-.5) and (\x+.65,-1) .. (\x,-1)
+      --(\x,-1.75);
+    \fill (\x,1.75) circle (2pt);
+    \fill (\x,-1.75) circle (2pt);
+    \fill[DeepBlue] (\x-.2,.9) circle (2.3pt);
+    \node[anchor=east] at (\x-.55,0) {$\name$};
+  }
+  \draw[very thick,TextGray] (2,-1.2)--(2,1.2) (2.2,-1.2)--(2.2,1.2);
+  \node at (2.1,1.7) {$M>0$};
+  \draw[->,DeepBlue,thick] (0,1.55)--(0,1.12);
+  \node[anchor=east] at (-.15,1.5) {$i_1$};
+  \node[right] at (4,1.75) {$a$（同名端）};
+  \node[right] at (4,-1.75) {$b$};
+  \draw[<->,TextGray] (6.3,-1.5)--(6.3,1.5);
+  \node[right] at (6.3,0) {$u_2=V_a-V_b$};
+\end{tikzpicture}
+\figcap{开路互感线圈。圆点为同名端，$i_1$ 从线圈1的同名端流入；线圈2端口不接负载。}\label{ch25:fig:mutual-inductance}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+图~\ref{ch25:fig:mutual-inductance} 的点号规定两绕组的相对绕向：流入线圈1同名端的电流增大时，线圈2同名端 $a$ 的电势高于 $b$。两根中间线表示共同磁芯，不是导线连接。
+
+按同名端与关联参考方向，线圈2的互感磁链为 $\Lambda_{21}=Mi_1$，端口电压为
+\[
+ u_2=\frac{\dd\Lambda_{21}}{\dd t}
+ =M\frac{\dd i_1}{\dd t}
+ =\boxed{-\omega MI_0\sin\omega t}.
+\]
+法拉第定律中的感应电动势为 $-\dd\Lambda_{21}/\dd t$；沿线圈从 $a$ 走向 $b$ 的内部感应电动势，与端口电压降 $V_a-V_b$ 的参考方向相反。
+因此不能把感应电动势的负号不加区分地搬到关联方向的端电压公式中。
+
+例如 $0<t<\pi/\omega$ 时 $i_1$ 正在减小，$\dd i_1/\dd t<0$，故 $a$ 端比 $b$ 端电势低；
+$t=0$ 时电流虽最大，但变化率为零，$u_2=0$。交换 $a,b$ 或交换一组绕组的同名端，结果整体反号。
+幅值 $\omega MI_0$ 的单位为 $\mathrm{s^{-1}\,H\,A=V}$。
+次级开路 $i_2=0$，所以输出功率 $u_2i_2=0$；有感应电压不等于已向负载输送能量。
+\end{xesolution}
+
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{用初始变化方向核对符号}
+取正电流从线圈1同名端流入，按图中端口定义，开路线圈2有 $u_2=M\,\dd i_1/\dd t$。
+在 $t=0$ 处 $i_1$ 达正峰值而变化率为零，故感应电压为零；在 $0<t<\pi/(2\omega)$ 内电流下降，$u_2<0$。
+若交换电压表两根引线，电压符号反转而幅值不变；若只把互感大小 $M$ 改成负数而不改变参考方向，反而会重复处理极性。
+
+
+\subsection{变压器带负载}
+
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[very thick,TextGray] (3.1,-1.3)--(3.1,1.3) (3.3,-1.3)--(3.3,1.3);
+  \foreach \x/\sgn in {2.4/1,4/-1}{
+    \draw[thick] (\x,1)
+      .. controls (\x+\sgn*.6,1) and (\x+\sgn*.6,.5) .. (\x,.5)
+      .. controls (\x+\sgn*.6,.5) and (\x+\sgn*.6,0) .. (\x,0)
+      .. controls (\x+\sgn*.6,0) and (\x+\sgn*.6,-.5) .. (\x,-.5)
+      .. controls (\x+\sgn*.6,-.5) and (\x+\sgn*.6,-1) .. (\x,-1);
+    \fill[DeepBlue] (\x-\sgn*.2,.9) circle (2.2pt);
+  }
+  \draw[ground] (2.4,1)--(2.4,1.6)--(.2,1.6)--(.2,.4);
+  \draw[ground] (2.4,-1)--(2.4,-1.6)--(.2,-1.6)--(.2,-.4);
+  \draw[thick] (.2,0) circle (.4);
+  \node at (.2,0) {$\sim$};
+  \node[left] at (-.25,0) {$U_1$};
+  \draw[ground] (4,1)--(4,1.6)--(6.2,1.6)--(6.2,.55);
+  \draw[ground] (4,-1)--(4,-1.6)--(6.2,-1.6)--(6.2,-.55);
+  \draw[thick] (6,-.55) rectangle (6.4,.55);
+  \node[right] at (6.5,0) {$R_L$};
+  \draw[->,DeepBlue] (1,1.6)--(1.8,1.6) node[midway,above] {$I_1$};
+  \draw[->,DeepBlue] (4.5,1.6)--(5.3,1.6) node[midway,above] {$I_2$};
+  \node[left] at (2.05,0) {$N_1$};
+  \node[right] at (4.3,0) {$N_2$};
+  \node at (5.1,-.55) {$U_2$};
+\end{tikzpicture}
+\figcap{理想变压器带电阻负载。负载阻抗折算到原边时乘匝数比的平方。}\label{ch25:fig:transformer-load}
+\end{center}
+图~\ref{ch25:fig:transformer-load} 中绕组共享同一主磁通，电压均以上方同名端为正。$I_1$ 流入原边同名端，$I_2$ 从副边同名端流出并送往负载；忽略励磁电流时 $N_1I_1=N_2I_2$。因此电压比等于匝数比，电流大小比为其倒数。
+
+\begin{origexamplebox}{负载阻抗的原边折算}
+理想变压器匝数比 $N_1:N_2=n:1$，副边接纯电阻 $R_L$。求原边输入阻抗；若原边电压有效值为 $U_1$，求负载功率。
+\end{origexamplebox}
+\begin{xesolution}
+理想变压器满足
+\[
+ \frac{U_1}{U_2}=n,
+ \qquad \frac{I_1}{I_2}=\frac1n.
+\]
+因此原边看到的阻抗
+\[
+ Z_{\rm in}=\frac{U_1}{I_1}
+ =\frac{nU_2}{I_2/n}=\boxed{n^2R_L}.
+\]
+副边电压 $U_2=U_1/n$，负载功率
+\[
+ \boxed{P_L=\frac{U_2^2}{R_L}=\frac{U_1^2}{n^2R_L}}.
+\]
+它也等于原边输入功率 $U_1^2/Z_{\rm in}$，验证能量守恒。$n$ 无量纲，故折算阻抗仍以欧姆计。
+\end{xesolution}
+
+% EM teaching enrichment 20260927 supplementary
+
+\paragraph{通过两侧功率核对折算}
+当原边端电压保持不变且匝数比固定时，副边电压由匝比确定，电流随负载阻抗变化。
+纯电阻负载增大时，两侧电流都减小；理想空载极限两侧负载电流均趋于零。
+可用 $U_1^2/R_{\rm in}=U_2^2/R_L$ 直接检查折算电阻中的匝比是否平方。
+真实变压器空载仍需励磁电流，这不在理想变压器的负载折算模型内，不能用空载电流不为零来否定上述理想关系。
+
+
+% EM structure and teaching revision 20260928
+\subsection{复功率守恒与无功补偿}
+对线性稳态网络，逐支路的复功率相加可同时检验有功与无功的端口平衡。以下沿用前文的 $Q_r$ 表示无功功率，避免与电荷量混淆。
+在感性负载两端并接电容，保持电压有效值不变时，电容提供 $Q_{r,C}=-\omega CU^2$。若负载从功率因数角 $\varphi_1$ 改善到 $\varphi_2$，所需
+\[
+ C=\frac{P(\tan\varphi_1-\tan\varphi_2)}{\omega U^2}.
+\]
+补偿减少电源与线路中的无功电流，不会把负载原来需要的有功功率消除。过度补偿会使输入变成容性，也不能用“电流越小越好”取代具体设计条件。
+理想变压器保持有功和无功的复功率关系，负载折算必须乘匝数比的平方；电压按匝数比变化，而电流反比变化。若结果让无损变压器无端产生实功率，应检查电流参考方向或折算比是否倒置。
+
+
+
+\endgroup

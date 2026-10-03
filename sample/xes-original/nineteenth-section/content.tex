@@ -1,0 +1,569 @@
+静电场既可以用电场强度描述，也可以用能量描述。对于电荷量为 $q$ 的试探电荷，电场力
+$\vect F=q\vect E$ 是保守力，因此可以定义电势能 $U$。把电势能中与试探电荷成正比的部分
+分离出来，定义电势
+\begin{equation}
+  \boxed{\varphi=\frac{U}{q}},
+  \qquad U=q\varphi.
+\end{equation}
+电势是电场自身的标量属性；电势能则属于“电荷与电场组成的系统”，会随试探电荷的大小和
+正负改变。
+
+\subsection*{电势与电场}
+
+保守力等于势能梯度的负值。由 $\vect F=-\nabla U$、$U=q\varphi$ 和
+$\vect F=q\vect E$ 可得
+\begin{equation}
+  \boxed{\vect E=-\nabla\varphi}.
+\end{equation}
+在直角坐标中即
+\begin{equation}
+  E_x=-\frac{\partial\varphi}{\partial x},
+  \qquad
+  E_y=-\frac{\partial\varphi}{\partial y},
+  \qquad
+  E_z=-\frac{\partial\varphi}{\partial z}.
+\end{equation}
+反过来，试探电荷从 $A$ 运动到 $B$ 时，电场力做功为
+\begin{equation}
+  W_{A\to B}=q\int_A^B\vect E\cdot\dd\vect l
+  =q(\varphi_A-\varphi_B),
+\end{equation}
+所以
+\begin{equation}
+  \boxed{\varphi_B-\varphi_A
+  =-\int_A^B\vect E\cdot\dd\vect l}.
+\end{equation}
+静电场中该积分与路径无关。电场始终指向电势降低最快的方向。
+
+\potentialGradientDiagram
+
+电势零点可以任意选择。对空间中局域的有限电荷分布，通常取无穷远处电势为零；但无限长
+直线或无限大平面的电势在无穷远处发散，只能选一个有限参考点，计算电势差而不能机械地令
+$\varphi(\infty)=0$。
+
+\subsection*{常见电荷分布的电势}
+
+取无穷远为零电势，点电荷 $Q$ 在距它 $r$ 处产生的电势为
+\begin{equation}
+  \boxed{\varphi=\frac{1}{4\pi\varepsilon_0}\frac{Q}{r}}.
+\end{equation}
+电势是标量，满足代数叠加：
+\begin{equation}
+  \varphi=\frac{1}{4\pi\varepsilon_0}\sum_i\frac{Q_i}{r_i},
+  \qquad
+  \varphi=\frac{1}{4\pi\varepsilon_0}\int\frac{\dd q}{r}.
+\end{equation}
+复杂电荷分布常可先叠加电势，再利用 $\vect E=-\nabla\varphi$ 求电场，从而避免直接进行
+矢量积分。
+
+电偶极子的电偶极矩定义为 $\vect p=q\vect l$，方向由负电荷指向正电荷。若场点到偶极子
+中心的距离 $r\gg l$，则
+\begin{equation}
+  \boxed{\varphi(\vect r)=
+  \frac{1}{4\pi\varepsilon_0}\frac{\vect p\cdot\vect r}{r^3}
+  =\frac{1}{4\pi\varepsilon_0}\frac{p\cos\theta}{r^2}}.
+\end{equation}
+
+半径为 $R$、总电荷为 $Q$ 的均匀带电薄球壳，其电势为
+\begin{equation}
+  \boxed{\varphi(r)=
+  \begin{cases}
+    \dfrac{Q}{4\pi\varepsilon_0r}, & r\ge R,\\[6pt]
+    \dfrac{Q}{4\pi\varepsilon_0R}, & r<R.
+  \end{cases}}
+\end{equation}
+球壳外等效于球心处的点电荷；球壳内电势为常量，因此电场为零。
+
+\subsection*{等势面}
+
+空间中电势相等的点组成等势面。它具有三个直接性质：
+\begin{enumerate}[label=\arabic*.,leftmargin=2em]
+  \item 电场线处处垂直于等势面；
+  \item 不同电势的等势面不能相交；
+  \item 当相邻等势面所代表的电势差相同时，等势面越密集，电场越强。
+\end{enumerate}
+电荷沿等势面移动时，电场力不做功。对于给定电势函数，等势面方程就是
+$\varphi(x,y,z)=\varphi_0$。
+
+\dipoleEquipotentialDiagram
+
+\subsection*{电子伏特与微观能标}
+
+一个带一个元电荷的粒子通过 $\SI{1}{V}$ 电势差所改变的能量定义为
+\begin{equation}
+  \boxed{\SI{1}{eV}=1.602176634\times10^{-19}\ \si{J}}.
+\end{equation}
+电子伏特是能量单位，不是电势单位。原子电离能通常为数电子伏特到数十电子伏特；核反应
+常以 \si{MeV} 为单位；高能粒子物理常使用 \si{GeV}、\si{TeV}。热运动的典型能量约为
+$k_BT$，令 $k_BT=\SI{1}{eV}$，可得
+\begin{equation}
+  T\approx1.16\times10^4\ \si{K}.
+\end{equation}
+
+\ionizationEnergyDiagram
+
+带电粒子每经过一段加速电势差，能量便增加 $q\Delta\varphi$。大型粒子加速器用多级电场
+不断提高粒子能量，因此常用 \si{GeV}、\si{TeV} 描述其能标。
+
+\historyfigure[0.72\linewidth]{particle-accelerator-redraw.png}{大型粒子对撞机的环形隧道与加速装置}
+
+图中的环形真空管道用于让粒子束反复循环；真正增加粒子能量的是沿轨道布置的加速电场，
+磁场主要负责弯转和聚焦。粒子每通过一次有效加速电势差 $\Delta\varphi$，能量增加
+$q\Delta\varphi$，经过许多次加速后累积到 \si{GeV} 或 \si{TeV} 能标。这说明电子伏特的定义
+可以直接连接电势差与加速器中的粒子能量。
+
+气体放电可作数量级估算：若原子典型电离能约为 \SI{10}{eV}，电子平均自由程为 $l$，则
+电场应大致满足 $eEl\gtrsim\SI{10}{eV}$。常温常压气体中 $l$ 为亚微米到微米量级，所以
+击穿场强通常处于 $10^6$ 至 $10^7\ \si{V.m^{-1}}$ 的数量级，实际值还取决于气体种类、
+压强和电极形状。
+
+\begin{center}
+\begin{minipage}{0.92\linewidth}
+  \begin{minipage}[c]{0.27\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{lightning-discharge-redraw.png}\par\smallskip
+    {\small\color{TextGray}闪电形成的气体放电通道}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.68\linewidth}
+    图中明亮而分叉的部分是空气击穿后形成的导电通道，并不是电场线。击穿之前，自由电子在
+    平均自由程 $l$ 内由电场获得的能量约为 $eEl$；当它足以引起碰撞电离时，电子数迅速倍增，
+    放电通道才会发光并向前发展。因此图中的闪电通道与数量级条件
+    $eEl\gtrsim\SI{10}{eV}$ 相对应。
+  \end{minipage}
+\end{minipage}
+\end{center}
+
+\subsection*{电荷系统的静电势能}
+
+由 $N$ 个点电荷组成的系统，其总静电势能等于所有不同电荷对相互作用能之和：
+\begin{equation}
+  \boxed{U=\frac{1}{4\pi\varepsilon_0}
+  \sum_{i<j}\frac{Q_iQ_j}{r_{ij}}}.
+\end{equation}
+也可写成
+\begin{equation}
+  \boxed{U=\frac12\sum_iQ_i\varphi_i^{(\mathrm{others})}},
+\end{equation}
+其中 $\varphi_i^{(\mathrm{others})}$ 不含 $Q_i$ 自身产生的电势。因子 $1/2$ 用来消除每一对
+电荷被重复计算的问题。
+
+对连续电荷分布，在自能有限且积分有意义时，推广为
+\begin{equation}
+  U=\frac12\int\rho\varphi\,\dd V.
+\end{equation}
+真空静电场的能量密度为
+\begin{equation}
+  \boxed{u_E=\frac12\varepsilon_0E^2},
+\end{equation}
+因而整个电场的能量为
+\begin{equation}
+  \boxed{U=\frac{\varepsilon_0}{2}
+  \int_{\mathbb R^3}E^2\,\dd V}.
+\end{equation}
+对于点电荷，靠近点电荷处的积分发散；这反映了经典点电荷模型具有无穷自能。对于有限尺寸
+的带电体，上式通常给出有限结果。
+
+\input{expanded-theory.tex}
+\input{source-restoration.tex}
+\input{full-source-restoration.tex}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 30.1【电势算电场】}
+利用“先求电势，再求电场”的方法，重新计算上一讲中的典型带电系统：点电荷系、有限带电体
+和无限长或无限大的电荷分布。分析哪些情况下不能取无穷远为零电势，并给出处理方法。
+\end{origexamplebox}
+
+\begin{xesolution}
+方法的核心是
+\[
+  \varphi(\vect r)=k\int\frac{\dd q}{|\vect r-\vect r'|},
+  \qquad
+  \vect E=-\nabla\varphi,
+  \qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+
+\textbf{点电荷系。}直接标量叠加
+\[
+  \varphi=k\sum_i\frac{Q_i}{r_i},
+\]
+然后求梯度即得
+\[
+  \vect E=k\sum_i\frac{Q_i}{r_i^3}\vect r_i.
+\]
+这种方法对偶极子、多极子尤其方便，因为远场展开先在标量电势上进行，再求导即可。
+
+\textbf{均匀带电圆盘。}半径 $R$、面密度 $\sigma$ 的圆盘，在轴线上距圆心 $z>0$ 处的电势为
+\[
+  \varphi(z)=k\int_0^R\frac{2\pi\sigma s\dd s}{\sqrt{z^2+s^2}}
+  =\frac{\sigma}{2\varepsilon_0}
+  \bigl(\sqrt{z^2+R^2}-z\bigr).
+\]
+因此
+\[
+  \boxed{E_z=-\frac{\dd\varphi}{\dd z}
+  =\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{z}{\sqrt{z^2+R^2}}\right)}.
+\]
+
+\textbf{无限长直线。}若线电荷密度为 $\lambda$，$E_r=\lambda/(2\pi\varepsilon_0r)$。
+从有限参考半径 $r_0$ 积分得
+\[
+  \boxed{\varphi(r)-\varphi(r_0)
+  =-\frac{\lambda}{2\pi\varepsilon_0}\ln\frac r{r_0}}.
+\]
+因为 $r\to\infty$ 时对数发散，所以不能令无穷远处电势为零。
+
+\textbf{无限大平面。}若面电荷密度为 $\sigma$，取平面为 $z=0$，则
+\[
+  E_z=\frac{\sigma}{2\varepsilon_0}\operatorname{sgn}(z),
+\]
+取 $\varphi(0)=0$ 后
+\[
+  \boxed{\varphi(z)=-\frac{\sigma}{2\varepsilon_0}|z|}.
+\]
+它同样不能用无穷远作为零电势。对非局域电荷分布，正确做法是选定有限参考点，始终只计算
+电势差；若多个无限分布组合后总场在远处衰减足够快，也可先把组合视为整体再选零点。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{例题 30.2【均匀带电球】}
+半径为 $R$、总电荷为 $Q$ 的金属薄球壳均匀带电。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 全空间的总电场能量；
+  \item 保持球壳不被静电斥力胀开所需的压强；
+  \item 若改为半径 $R$、总电荷 $Q$、均匀带电的绝缘实心球，前两问如何变化；
+  \item 为什么静电平衡时常见的是均匀带电金属球壳，而均匀体电荷只适用于绝缘体？
+\end{enumerate}
+\sphereEnergyDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1) 球壳的电场能量。}球内 $E=0$，球外
+\[
+  E(r)=\frac{Q}{4\pi\varepsilon_0r^2}.
+\]
+于是
+\begin{align*}
+  U&=\int_R^\infty\frac12\varepsilon_0E^2\,4\pi r^2\dd r\\
+   &=\boxed{\frac{Q^2}{8\pi\varepsilon_0R}}.
+\end{align*}
+这也等于 $\tfrac12Q\varphi(R)$。
+
+\textbf{(2) 静电压强。}球面外侧的电场为
+$E_{\rm out}=Q/(4\pi\varepsilon_0R^2)$，内侧为零。表面电荷受到的平均场应排除电荷元自身的
+奇异场，等于 $(E_{\rm out}+E_{\rm in})/2$。故向外静电压强
+\[
+  \boxed{p=\frac12\varepsilon_0E_{\rm out}^2
+  =\frac{Q^2}{32\pi^2\varepsilon_0R^4}}.
+\]
+外界必须提供同样大小的向内机械压强。
+
+\textbf{(3) 均匀带电绝缘实心球。}体电荷密度
+$\rho=3Q/(4\pi R^3)$。高斯定律给出
+\[
+  E(r)=
+  \begin{cases}
+    \dfrac{Qr}{4\pi\varepsilon_0R^3},&r<R,\\[5pt]
+    \dfrac{Q}{4\pi\varepsilon_0r^2},&r\ge R.
+  \end{cases}
+\]
+把球内与球外电场能量分别积分：
+\[
+  U_{\rm in}=\frac{Q^2}{40\pi\varepsilon_0R},
+  \qquad
+  U_{\rm out}=\frac{Q^2}{8\pi\varepsilon_0R},
+\]
+所以
+\[
+  \boxed{U_{\rm solid}=\frac{3Q^2}{20\pi\varepsilon_0R}}.
+\]
+绝缘体内各体积元都受电力，不能用单一“表面压强”完整描述其机械平衡；需要体内随半径变化的
+应力分布。其表面处电场仍与球壳相同，但这不足以决定整个实心球的内部应力。
+
+\textbf{(4)} 导体内有自由电荷。静电平衡时导体内部电场必须为零，净电荷只能分布在表面；
+球形对称下表面分布均匀。绝缘体中的电荷可以被束缚在体内，才可能维持均匀体电荷分布。
+\end{xesolution}
+
+\Needspace{0.3\textheight}
+\begin{origexamplebox}{例题 30.3【相互作用能】}
+一个系统含有 $10$ 个点电荷，第 $i$ 个电荷为 $Q_i$，任意两电荷间距为 $r_{ij}$。
+把这些电荷从无穷远逐个搬到给定位置，外力至少需要做多少功？
+\end{origexamplebox}
+
+\begin{xesolution}
+准静态组装，且忽略辐射和其他耗散时，外力做功等于系统静电势能的增量。初态各电荷相距
+无穷远，取 $U_i=0$，因此
+\[
+  \boxed{W_{\rm ext}=U_f
+  =\frac{1}{4\pi\varepsilon_0}
+  \sum_{1\le i<j\le10}\frac{Q_iQ_j}{r_{ij}}}.
+\]
+也可写成
+\[
+  \boxed{W_{\rm ext}=\frac12\sum_{i=1}^{10}
+  Q_i\varphi_i^{(\mathrm{others})}}.
+\]
+若结果为正，组装时外力净输入能量；若为负，电场对外界净做功，外力必须吸收能量。答案与
+搬运次序无关，因为静电力是保守力。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 30.4【零等势面】}
+两个点电荷 $+Q$、$-q$ 分别置于 $(a,0,0)$ 和原点，求以无穷远为零电势时的零等势面方程。
+\zeroPotentialSphereDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+任一点 $P(x,y,z)$ 到 $+Q$ 和 $-q$ 的距离分别为
+\[
+  r_+=\sqrt{(x-a)^2+y^2+z^2},
+  \qquad
+  r_-=\sqrt{x^2+y^2+z^2}.
+\]
+零电势条件为
+\[
+  k\left(\frac Q{r_+}-\frac q{r_-}\right)=0,
+  \qquad
+  \frac{r_+}{r_-}=\frac Qq.
+\]
+若 $Q\ne q$，平方并配方，得到球面
+\[
+  \boxed{\left(x+\frac{aq^2}{Q^2-q^2}\right)^2+y^2+z^2
+  =\left(\frac{aQq}{|Q^2-q^2|}\right)^2}.
+\]
+当 $Q>q$ 时，它包围原点处的较小负电荷；当 $Q<q$ 时，它包围正电荷。若 $Q=q$，上式的
+球半径趋于无穷，零等势面退化为两电荷连线的中垂面 $x=a/2$。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{例题 30.5【无限长导线】}
+两根与 $z$ 轴平行的无限长直导线，线电荷密度分别为 $+\lambda$ 和 $-\lambda$，它们与
+$xOy$ 平面的交点分别为 $(a,0)$ 和 $(-a,0)$。求横截面内任意等势线与电场线的方程。
+\twoLineDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+设场点到 $+\lambda$、$-\lambda$ 导线的距离分别为
+\[
+  r_+=\sqrt{(x-a)^2+y^2},
+  \qquad
+  r_-=\sqrt{(x+a)^2+y^2}.
+\]
+单根无限长直线的绝对电势不能以无穷远为零，但异号组合的发散常量抵消。可取
+\[
+  \boxed{\varphi(x,y)=\frac{\lambda}{2\pi\varepsilon_0}
+  \ln\frac{r_-}{r_+}}.
+\]
+令 $K=\exp(2\pi\varepsilon_0\varphi_0/\lambda)$，等势线满足
+\[
+  \boxed{\frac{r_-}{r_+}=K}.
+\]
+$K\ne1$ 时展开为圆
+\[
+  \boxed{\left(x-a\frac{K^2+1}{K^2-1}\right)^2+y^2
+  =\left(\frac{2aK}{|K^2-1|}\right)^2};
+\]
+$K=1$ 时为 $y$ 轴。
+
+电场线与等势线正交。利用二维复势的共轭函数，或直接积分微分方程，可得电场线族
+\[
+  \boxed{\arg(x-a+\mathrm i y)-\arg(x+a+\mathrm i y)=\psi_0}.
+\]
+把它写成实方程：令 $C=\cot\psi_0$，则
+\[
+  \boxed{x^2+y^2-a^2=2aCy}.
+\]
+这同样是一族圆，圆心位于 $y$ 轴，并且与所有等势圆正交。绕各导线平移到三维后，得到相应
+的等势柱面和电场线所在的柱面。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{例题 30.6【有限长导线】}
+一根均匀带电的有限长直导线沿 $x$ 轴放置，从 $(-a,0,0)$ 延伸到 $(a,0,0)$，线电荷密度为
+$\lambda$。系统绕 $x$ 轴旋转对称。求等势面方程及子午面内的电场线方程。
+\finiteLineDiagramThirty
+\end{origexamplebox}
+
+\begin{xesolution}
+用柱坐标 $(x,\rho)$ 描述场点，$\rho=\sqrt{y^2+z^2}$。到两端点 $(a,0)$、$(-a,0)$ 的距离
+分别记为
+\[
+  r_+=\sqrt{(x-a)^2+\rho^2},
+  \qquad
+  r_-=\sqrt{(x+a)^2+\rho^2}.
+\]
+电势积分为
+\begin{align*}
+  \varphi(x,\rho)
+  &=k\lambda\int_{-a}^a
+  \frac{\dd x'}{\sqrt{(x-x')^2+\rho^2}}\\
+  &=\boxed{k\lambda\ln
+  \frac{r_++r_-+2a}{r_++r_--2a}}.
+\end{align*}
+因此等势面满足
+\[
+  \boxed{r_++r_-=2a\cosh\mu_0},
+\]
+其中 $\mu_0>0$ 由所选电势决定。这是以导线两端为焦点的旋转椭球面。
+
+引入长旋转椭球坐标
+\[
+  x=a\cosh\mu\cos\nu,
+  \qquad
+  \rho=a\sinh\mu\sin\nu.
+\]
+上式电势只依赖 $\mu$，故电场沿 $\mu$ 方向；与 $\mu=\text{常量}$ 正交的坐标线
+$\nu=\nu_0$ 就是子午面中的电场线。因此
+\[
+  \boxed{r_--r_+=2a\cos\nu_0},
+\]
+它们是以两端点为焦点的双曲线，绕 $x$ 轴旋转后形成相应的双曲面。电场线从正线电荷出发，
+在远处逐渐呈径向分布。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{例题 30.7【同性相斥】}
+质量为 $m$、电荷量为 $+q$ 的小球 $A$ 由一根不可伸长轻绳悬挂。手持同样带电的小球 $B$
+缓慢排斥 $A$，最终 $B$ 位于 $A$ 原来的最低位置，而 $A$ 上升高度 $h$。求此过程中手对
+$B$ 做的功以及电场能量的增量。
+\repulsionDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+设绳长为 $l$、终态绳与竖直方向夹角为 $\theta$。由几何关系
+\[
+  h=l(1-\cos\theta),
+\]
+而终态两球距离
+\[
+  r=2l\sin\frac\theta2.
+\]
+终态 $A$ 静止，受重力 $mg$、绳张力 $T$ 和沿 $BA$ 方向的库仑斥力 $F_e$。弦 $BA$ 与
+水平方向的夹角为 $\theta/2$。沿水平、竖直方向列平衡方程：
+\begin{align*}
+  T\sin\theta&=F_e\cos\frac\theta2,\\
+  T\cos\theta+F_e\sin\frac\theta2&=mg.
+\end{align*}
+消去 $T$，得到
+\[
+  \boxed{F_e=2mg\sin\frac\theta2}.
+\]
+另一方面，几何关系可以写成
+\[
+  h=2l\sin^2\frac\theta2,
+  \qquad
+  r=2l\sin\frac\theta2,
+\]
+所以
+\[
+  \frac hr=\sin\frac\theta2.
+\]
+初态两球相距无穷远，静电相互作用能为零；终态相互作用能为
+\[
+  \Delta U_e=\frac{kq^2}{r}=F_er
+  =2mg\sin\frac\theta2\,r.
+\]
+利用 $r\sin(\theta/2)=h$，立刻得到
+\[
+  \boxed{\Delta U_e=2mgh}.
+\]
+
+过程足够缓慢，始末动能均为零，绳张力不做功。因此手对 $B$ 做功等于系统重力势能与静电
+相互作用能的增量：
+\[
+  \boxed{W_{\rm hand}=mgh+\Delta U_e=3mgh}.
+\]
+若只问“电场能量的增量”，即为 $2mgh$。电荷量 $q$ 决定实现给定高度 $h$ 时所需的绳长与
+偏角，但在几何和平衡条件共同约束下，最终能量结果与 $q$ 消去。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 30.8【Bohr 氢原子】}
+在经典 Bohr 模型中，电子以光速的 $1/137$ 绕质子作圆周运动。求氢原子的总机械能，并分析
+为什么它是负值。
+\bohrDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+库仑力提供向心力：
+\[
+  \frac{mv^2}{r}=\frac{ke^2}{r^2}
+  \quad\Longrightarrow\quad
+  r=\frac{ke^2}{mv^2}.
+\]
+动能与电势能分别为
+\[
+  K=\frac12mv^2,
+  \qquad
+  U=-\frac{ke^2}{r}=-mv^2.
+\]
+因此总能量
+\[
+  \boxed{E=K+U=-\frac12mv^2}.
+\]
+取 $v=c/137$、$m=m_e$，得到
+\[
+  E=-\frac12m_ec^2\frac1{137^2}
+  \approx\boxed{-\SI{13.6}{eV}}.
+\]
+负号来自能量零点的选择：电子与质子相距无穷远且静止时取 $E=0$。束缚态电子要逃到无穷远，
+外界至少要输入 $\SI{13.6}{eV}$，所以束缚态总能量低于零。经典圆轨道不能解释原子的稳定性，
+这里的结果属于 Bohr 半经典模型；完整描述需要量子力学。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 30.9【$\alpha$ 粒子散射】}
+电荷量为 $+2e$、初动能为 $K$ 的 $\alpha$ 粒子射向电荷量为 $+Ze$ 的原子核。把原子核视为
+固定，回答：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 轨迹如何随初始状态变化？
+  \item 入射粒子束的微分散射截面是多少？
+  \item 历史上谁首先完成了这一实验，实验揭示了什么？
+\end{enumerate}
+\rutherfordDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+记库仑斥力常量
+\[
+  \kappa=k(2e)(Ze)=2kZe^2,
+  \qquad K=\frac12mv_\infty^2.
+\]
+
+\textbf{(1) 轨迹。}这是正能量平方反比斥力问题，轨迹为双曲线。正碰时瞄准参数 $b=0$，
+粒子沿原路返回，最近距离由能量守恒给出
+\[
+  \boxed{r_{\min}=\frac{\kappa}{K}}.
+\]
+一般 $b>0$ 时，角动量 $L=mv_\infty b$ 守恒。散射角 $\theta$ 与瞄准参数的关系为
+\[
+  \boxed{b=\frac{\kappa}{2K}\cot\frac\theta2}.
+\]
+瞄准参数越小，散射角越大；$b\to0$ 时 $\theta\to\pi$，$b\to\infty$ 时
+$\theta\to0$。双曲线偏心率为
+\[
+  \epsilon=\sqrt{1+\frac{4K^2b^2}{\kappa^2}}>1.
+\]
+
+\textbf{(2) Rutherford 微分截面。}轴对称散射中，入射环带面积
+$\dd\sigma=2\pi b|\dd b|$，对应出射立体角
+$\dd\Omega=2\pi\sin\theta\,\dd\theta$。因此
+\[
+  \frac{\dd\sigma}{\dd\Omega}
+  =\frac{b}{\sin\theta}\left|\frac{\dd b}{\dd\theta}\right|.
+\]
+代入 $b=(\kappa/2K)\cot(\theta/2)$，得到
+\[
+  \boxed{\frac{\dd\sigma}{\dd\Omega}
+  =\left(\frac{\kappa}{4K}\right)^2
+  \frac1{\sin^4(\theta/2)}}
+  =\boxed{\left(\frac{kZe^2}{2K}\right)^2
+  \frac1{\sin^4(\theta/2)}}.
+\]
+截面在小角度处很大，在大角度处迅速减小；少量大角散射事件正是原子核式结构的关键信号。
+
+\textbf{(3) 历史背景。}1909 年，Hans Geiger 和 Ernest Marsden 在 Ernest Rutherford 指导下
+完成金箔散射实验；Rutherford 于 1911 年提出核式原子模型并给出散射理论。实验发现少数
+$\alpha$ 粒子发生大角度甚至近乎反向散射，表明原子的正电荷和绝大部分质量集中在尺度很小的
+原子核中，而原子的绝大部分空间是空的。
+\end{xesolution}

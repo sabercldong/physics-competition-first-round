@@ -1,0 +1,768 @@
+\hypersetup{bookmarksdepth=3}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\chapter{统计物理基础}
+
+\section{概率、随机变量与涨落}
+
+一次随机试验的全部互斥且完备的结果组成样本空间（sample space）。事件是样本空间的子集；互斥事件满足概率加法，
+独立事件 $A,B$ 满足
+\begin{equation}
+ P(A\cap B)=P(A)P(B).
+\end{equation}
+离散随机变量 $X$ 的期望、方差分别为
+\begin{equation}
+ \langle X\rangle=\sum_i p_iX_i,
+ \qquad
+ \operatorname{Var}(X)=\left\langle(X-\langle X\rangle)^2\right\rangle.
+\end{equation}
+连续变量只需把求和改成对归一化概率密度的积分。若 $X_1,\ldots,X_N$ 相互独立且同分布，则
+\[
+ \operatorname{Var}\!\left(\sum_{i=1}^NX_i\right)=N\operatorname{Var}(X_1),
+\]
+而总量的平均值正比于 $N$，所以相对涨落通常按 $N^{-1/2}$ 衰减。这是宏观量看起来稳定、微观量却始终涨落的数学原因。
+
+随机变量变换时不能只把 $x$ 换成 $y(x)$。若一个 $y$ 对应若干个根 $x_j$，概率密度应写成
+\begin{equation}
+ p_Y(y)=\sum_jp_X(x_j)\left|\frac{\dd x_j}{\dd y}\right|.
+\end{equation}
+绝对值是变量变换的雅可比因子；求速率分布时出现的 $4\pi v^2$，正是三维速度空间球壳的几何雅可比。
+\subsection{从事件到条件概率}
+
+基本事件是一次试验不可再细分的结果；不同基本事件互斥，所有基本事件的并集是样本空间。
+概率满足 $P(A)\ge0$、$P(\Omega)=1$。若 $A,B$ 互斥，$P(A\cup B)=P(A)+P(B)$；
+一般情形则须扣除重复计算的交集：$P(A\cup B)=P(A)+P(B)-P(A\cap B)$。
+有限个基本事件等可能时，概率等于有利结果数除以总结果数，这叫古典概率模型。
+例如公平骰子掷出偶数的概率是 $3/6=1/2$。连续区域内均匀取点时，概率等于长度、面积或体积之比，
+这是几何概率模型；必须先说明对哪一种几何测度均匀。
+连续样本空间的事件须可测。例如在 $[0,1]$ 上均匀取点，“取到有理数”是可测事件，概率为零，
+因为有理数可数且每个点的概率为零；概率为零不等于集合为空。某些不可测集合则不能在该测度下直接赋予概率。
+多次试验的联合结果是一个数组 $(\omega_1,\ldots,\omega_n)$，联合样本空间是各空间的直积；
+只有另加独立性假设，联合概率才是各分量概率的乘积。
+
+已经知道事件 $A$ 发生，相当于把样本空间缩小到 $A$，并重新归一化。只要 $P(A)>0$，
+\begin{equation}
+ P(B\mid A)=\frac{P(A\cap B)}{P(A)},\qquad
+ P(A\cap B)=P(A)P(B\mid A).
+\end{equation}
+已知骰子点数为偶数，再问点数是否为6，概率变为 $(1/6)/(1/2)=1/3$，不是原先的 $1/6$。
+独立的含义是知道 $A$ 不改变 $B$ 的概率，即 $P(B\mid A)=P(B)$，从而得到乘法公式。
+“互斥”与“独立”不同：两个正概率的互斥事件不可能独立，因为一个发生时另一个的条件概率是零。
+独立性对双方是对称的，也传给补事件。例如
+$P(A\cap B^c)=P(A)-P(A\cap B)=P(A)[1-P(B)]$，
+同理 $P(A^c\cap B)=P(A^c)P(B)$、$P(A^c\cap B^c)=P(A^c)P(B^c)$。
+随机变量是样本空间上的实值函数 $X(\omega)$；同一个数值可对应多个基本事件，其概率须将这些事件合并计算。
+
+对于连续变量，$f_X(x)\dd x$ 是落在微小区间内的概率，而 $f_X(x)$ 本身不是概率；它的单位是 $X$ 的单位的倒数。
+\[P(a<X<b)=\int_a^bf_X(x)\dd x,\qquad
+f_X(x)\ge0,\qquad\int f_X(x)\dd x=1.\]
+密度可以大于1，但任一区间的概率不能大于1。两个变量的联合密度 $f_{XY}$ 与边缘密度的关系为
+\[f_X(x)=\int f_{XY}(x,y)\dd y,\qquad
+f_Y(y)=\int f_{XY}(x,y)\dd x.\]
+独立时联合密度才可分解为 $f_X(x)f_Y(y)$。离散情形对应 $p_i=\sum_jp_{ij}$、$q_j=\sum_ip_{ij}$。
+
+\subsection{变量变换为什么要累加不同原像}
+
+设无量纲速度分量 $u$ 服从标准高斯密度
+$f_u(u)=(2\pi)^{-1/2}\exp(-u^2/2)$，令无量纲动能 $e=u^2/2$。
+任意 $e>0$ 都有两个原像 $u_+=\sqrt{2e}$、$u_-=-\sqrt{2e}$。
+两个速度区间都贡献同一能量区间的概率，因此
+\begin{align*}
+ f_e(e)&=f_u(u_+)\left|\frac{\dd u_+}{\dd e}\right|
+       +f_u(u_-)\left|\frac{\dd u_-}{\dd e}\right|\\
+ &=2\frac{e^{-e}}{\sqrt{2\pi}}\frac1{\sqrt{2e}}
+ =\frac{e^{-e}}{\sqrt{\pi e}},\qquad e>0.
+\end{align*}
+代换 $e=s^2$ 检验归一化：
+\[\int_0^\infty f_e(e)\dd e
+=\frac2{\sqrt\pi}\int_0^\infty e^{-s^2}\dd s=1.\]
+密度在零点附近发散但可积，并不表示零能量具有有限点概率。若只取正根，积分会错成 $1/2$。
+一般变换公式在各单调分支上使用，导数为零的端点通过极限处理。
+
+\subsection{样本平均与宏观稳定性}
+
+设独立同分布变量的均值为 $\mu$、有限方差为 $\sigma^2$，样本平均为 $\bar X=N^{-1}\sum_iX_i$。
+线性性给出 $\langle\bar X\rangle=\mu$；独立性使交叉协方差为零，于是
+\[\operatorname{Var}(\bar X)=\frac1{N^2}\sum_i\operatorname{Var}(X_i)
+=\frac{\sigma^2}{N}.\]
+对于任何固定容许误差 $\delta>0$，切比雪夫不等式给出
+\[P(|\bar X-\mu|\ge\delta)\le\frac{\sigma^2}{N\delta^2}\longrightarrow0.\]
+这证明了有限方差情形的弱大数定律：样本平均依概率趋向总体平均，而不是每一次有限试验必然完全相等。
+期望或方差不存在时不能直接套用本推导。例如柯西密度 $1/[\pi(1+x^2)]$ 的通常期望积分不收敛，
+不能因图形关于零对称就把其期望当作零。若变量相关，方差中还须保留 $2\sum_{i<j}\operatorname{Cov}(X_i,X_j)$。
+
+
+\subsection{由等分容器过渡到任意体积分区}
+“左、右各一半”只是几何概率的一种特殊情形。粒子处在某区域的概率，先由允许位置的测度决定；再用独立试验规则计算粒子数的分布。固定总数并不表示各区域粒子数固定。
+
+\Needspace{180pt}
+\begin{origexamplebox}{体积比为四比一的两区域粒子数}\label{ch18:ex:teaching-asymmetric-binomial}
+均匀平衡的稀薄理想气体含 $N$ 个粒子。把容器在几何上分成体积为 $4V/5$ 和 $V/5$ 的两区域，并无阻止粒子穿过的实体隔板。忽略粒子位置间的关联，求较小区域粒子数 $n$ 的分布、平均值和标准差，并解释宏观密度为何仍近似稳定。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+每个粒子在小区域的概率为 $q=1/5$。选定哪 $n$ 个粒子进入小区域有 $\binom Nn$ 种组合，每种组合的概率为 $q^n(1-q)^{N-n}$，所以
+\[
+ P(n)=\binom Nn(1/5)^n(4/5)^{N-n},\qquad 0\le n\le N.
+\]
+二项式定理保证全部概率之和为1。令 $X_i$ 表示第 $i$ 个粒子是否在小区域，$X_i=1$ 的概率为 $q$。由于 $X_i^2=X_i$，有 $\langle X_i\rangle=q$、$\operatorname{Var}(X_i)=q(1-q)$。独立性消去协方差，故
+\[
+ \langle n\rangle=N/5,\qquad \operatorname{Var}(n)=4N/25,
+ \qquad \sigma_n=2\sqrt N/5,\qquad
+ \frac{\sigma_n}{\langle n\rangle}=\frac2{\sqrt N}.
+\]
+粒子数的绝对起伏随 $N$ 增大，却比平均数增长得慢，所以相对密度起伏变小。大区域粒子数为 $N-n$，与小区域完全反相关；不能把两区域总粒子数的方差写成两个方差直接相加，否则会误判固定的 $N$ 也在涨落。这里的临时粒子编号只用于稀薄经典模型的位置计数，不是为全同粒子添加新的可观测身份。
+\end{xesolution}
+
+\section{微观状态、宏观状态与熵}
+
+热力学只用 $p,V,T,N$ 等少数宏观量描述系统；统计物理则把宏观规律解释为大量微观自由度的概率规律。
+一个宏观状态通常对应极多微观状态。若孤立系统在给定能量壳内的可及微观状态等概率，某宏观状态出现的概率
+正比于它包含的微观状态数 $\Omega$。玻尔兹曼熵（Boltzmann entropy）定义为
+\begin{equation}
+ S=k_B\ln\Omega.
+\end{equation}
+两个系统各自的能量等宏观约束已分别给定、允许状态可独立组合时，微观状态数相乘，$\Omega_{12}=\Omega_1\Omega_2$，所以熵相加；对数正是把乘法计数变成
+可加宏观量的函数。
+仅知道总能量时，还须对能量在两系统间的分配求和，不能不加条件地直接相乘。
+
+当各微观状态的概率并不相等时，更一般的吉布斯熵（Gibbs entropy）为
+\begin{equation}
+ S_G=-k_B\sum_i p_i\ln p_i.
+\end{equation}
+若能量壳内的 $\Omega$ 个状态等概率，$p_i=1/\Omega$，上式立即退化为 $S=k_B\ln\Omega$。
+因此“状态数熵”和“概率分布的信息熵”并非两套无关定义，而是同一结构在等概率分布下的特例。
+\subsection{信息量、条件熵与相关性}
+
+一个事件越罕见，观察到它所获得的信息越多。要求独立事件的信息可加、确定事件的信息为零，
+即 $I(pq)=I(p)+I(q)$、$I(1)=0$；再要求连续及随概率递减，得到 $I(p)=-c\ln p$，其中 $c>0$。
+例如令 $p=e^{-x}$，则 $J(x)=I(e^{-x})$ 满足连续加法方程 $J(x+y)=J(x)+J(y)$，故 $J(x)=cx$。
+取 $c=1$，平均信息量是
+\[H(X)=\sum_i p_i I(p_i)=-\sum_i p_i\ln p_i.\]
+自然对数给出的信息单位为奈特；若采用以2为底的对数，单位为比特。
+公平骰子的熵是 $\ln6$；已知为偶数后的熵是 $\ln3$，所获得的信息是 $\ln2$。
+
+把一个结果进一步细分为 $(i,j)$，写 $p_{ij}=p_i p(j\mid i)$，代入定义：
+\begin{align*}
+ H(X,Y)&=-\sum_{ij}p_{ij}\ln[p_i p(j\mid i)]\\
+ &= -\sum_i p_i\ln p_i
+    -\sum_i p_i\sum_jp(j\mid i)\ln p(j\mid i)\\
+ &=H(X)+H(Y\mid X).
+\end{align*}
+这里 $H(Y\mid X)$ 是先知道 $X$ 后剩余不确定性的加权平均。独立时 $p(j\mid i)=q_j$，
+因而 $H(X,Y)=H(X)+H(Y)$。
+
+一般情况下不能直接相加。令 $q_{ij}=p_iq_j$，利用 $-\ln x\ge1-x$，有
+\[\sum_{p_{ij}>0}p_{ij}\ln\frac{p_{ij}}{q_{ij}}
+\ge\sum_{p_{ij}>0}(p_{ij}-q_{ij})
+=1-\sum_{p_{ij}>0}q_{ij}\ge0.\]
+零概率项以连续极限解释；若 $p_{ij}=0$ 的位置上 $q_{ij}>0$，上述不等式仍成立。
+左边等于 $H(X)+H(Y)-H(X,Y)$，即互信息。所以联合熵不大于两边之和，等号当且仅当独立。
+相关性会减少额外信息，但协方差为零并不足以证明独立；不能把两者混淆。
+例如用独立、等方差的零均值高斯变量 $X,Y$ 模拟随机光场的两个正交分振幅，
+与 $x$ 轴夹角 $\theta$ 方向的分振幅为 $Z=X\cos\theta+Y\sin\theta$。
+它与 $X$ 的相关系数为 $\cos\theta$：$\theta=\pi/2$ 时独立；锐角时有关联。
+对于这个高斯模型，$I(X{:}Z)=-\tfrac12\ln(1-\cos^2\theta)$，可由二维高斯熵与两个边缘熵相减得到。
+同方向的连续、无测量噪声变量完全相同，互信息发散；若按有限分辨率离散读数，同方向的互信息才等于该离散变量的熵。
+这说明讨论光场相关性时应交代分布模型和测量分辨率，不能把连续与离散结论直接混用。
+
+\subsection{连续分布与最大熵的条件}
+
+连续变量可形式地写微分熵 $h=-\int f\ln f\,\dd x$，但量纲与坐标选择必须明确。
+可以先选定参考尺度把变量无量纲化，或用参考测度写相对熵；不能对带单位的密度直接取对数后比较不同单位下的数值。
+对固定的无量纲坐标，给定均值 $\mu$ 和方差 $\sigma^2>0$，令
+\[g(x)=\frac1{\sqrt{2\pi}\sigma}\exp\!\left[-\frac{(x-\mu)^2}{2\sigma^2}\right].\]
+任意具有相同均值、方差的密度 $f$ 满足 $D(f\Vert g)=\int f\ln(f/g)\dd x\ge0$。
+因 $\ln g$ 只含常数和 $(x-\mu)^2$，由约束可算出
+\[D(f\Vert g)=-h(f)+\frac12\ln(2\pi\sigma^2)+\frac12\ge0.\]
+所以 $h(f)\le\tfrac12\ln(2\pi e\sigma^2)$，且仅在 $f=g$ 时取等号。
+高斯分布是这些约束下的最大熵分布，不是任何约束下都必然出现的分布。
+
+均匀角分布也须考虑测度：球面上均匀取方向时，面积元为
+$\dd A=r^2\sin\theta\,\dd\theta\dd\phi$，故极角密度为 $f_\theta(\theta)=\tfrac12\sin\theta$，
+不是在 $0\le\theta\le\pi$ 上均匀。常数由 $\int_0^\pi\sin\theta\dd\theta=2$ 确定。
+这是几何概率、变量变换和统计物理中速度空间球壳因子的共同思想。
+
+
+\Needspace{22\baselineskip}
+\begin{origexamplebox}{二项分布与最概然宏观态}
+$N$ 个彼此独立、可区分的粒子，每个粒子以相同概率处在容器左半或右半。左侧有 $n$ 个粒子的微观状态数是多少？哪个 $n$ 最可能？
+\end{origexamplebox}
+\begin{xesolution}
+选择哪 $n$ 个粒子位于左侧，有
+\[
+ \Omega(n)=\binom Nn,
+ \qquad P(n)=2^{-N}\binom Nn.
+\]
+相邻两项比值
+\[
+ \frac{P(n+1)}{P(n)}=\frac{N-n}{n+1}
+\]
+在 $n<(N-1)/2$ 时大于1，大于该界限时小于1，等于时比值为1。
+因此偶数 $N$ 只有峰值 $n=N/2$；奇数 $N$ 有两个等高峰 $n=(N-1)/2,(N+1)/2$。
+令每个粒子处于左侧的指示变量为 $X_i=0$ 或1，则 $n=\sum_iX_i$，
+$\langle X_i\rangle=1/2$、$\operatorname{Var}(X_i)=1/4$。独立性给出
+\[\langle n\rangle=N/2,\qquad \operatorname{Var}(n)=N/4,\qquad \sigma_n=\sqrt N/2.\]
+这是任意 $N$ 的精确结果。以总粒子数为分母时 $\sigma_n/N=1/(2\sqrt N)$；
+以左侧平均数为分母时 $\sigma_n/\langle n\rangle=1/\sqrt N$。两者都随粒子数增大而消失。
+\end{xesolution}
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=.74\linewidth,height=4.7cm,ybar,bar width=5.5pt,
+  axis lines=left,xlabel={$n$},ylabel={$P(n)$},xmin=-.5,xmax=20.5,ymin=0,ymax=.19,
+  xtick={0,5,10,15,20},ytick={0,.05,.10,.15},
+  every axis label/.style={fill=none},xlabel style={yshift=-5pt}]
+  \addplot[fill=DeepBlue!35,draw=DeepBlue] coordinates{
+   (0,.000001)(1,.000019)(2,.000181)(3,.001087)(4,.004621)(5,.014786)
+   (6,.036964)(7,.073929)(8,.120134)(9,.160179)(10,.176197)
+   (11,.160179)(12,.120134)(13,.073929)(14,.036964)(15,.014786)
+   (16,.004621)(17,.001087)(18,.000181)(19,.000019)(20,.000001)};
+\end{axis}
+\end{tikzpicture}
+\figcap{$N=20$ 时二项分布集中在 $n=N/2$ 附近；粒子数增大后绝对宽度增长，而相对宽度缩小。}\label{ch18:fig:binomial}
+\end{minipage}\end{center}
+图~\ref{ch18:fig:binomial} 把例题中的最概然值和 $\sqrt N$ 量级涨落直接画了出来。
+
+\begingroup\tcbset{breakable/.default=true}\begin{starread}{相空间、系综与刘维尔定理}
+具有 $f$ 个经典自由度的微观状态可表示为相空间（phase space）中的一点
+\[
+ \Gamma=(q_1,\ldots,q_f;p_1,\ldots,p_f).
+\]
+系综（ensemble）不是许多粒子，而是许多份具有相同宏观条件、微观状态各异的系统副本；其状态由相空间概率密度
+$\rho_\Gamma(\Gamma,t)$ 描述。哈密顿运动保持相空间体积；若 $H$ 为哈密顿量（Hamiltonian），概率密度满足刘维尔方程（Liouville equation）
+\[
+ \frac{\partial\rho_\Gamma}{\partial t}+\{\rho_\Gamma,H\}=0,
+\]
+其中哈密顿量 $H(q,p)$ 是用正则坐标和动量表示的系统能量，花括号表示泊松括号（\mbox{Poisson bracket}）：
+\[\{A,H\}=\sum_{j=1}^{f}\left(\frac{\partial A}{\partial q_j}\frac{\partial H}{\partial p_j}
+-\frac{\partial A}{\partial p_j}\frac{\partial H}{\partial q_j}\right).\]
+由哈密顿方程 $\dot q_j=\partial H/\partial p_j$、$\dot p_j=-\partial H/\partial q_j$，
+相空间流速的散度为 $\sum_j(H_{p_jq_j}-H_{q_jp_j})=0$；将其代入概率连续性方程即得上式。
+这里要求哈密顿量足够光滑。体积守恒并不自动证明遍历性，也不自动导出粗粒化熵增。
+孤立平衡系统在给定能量壳上的等概率原理，是微正则系综的起点。它说的是相空间体积元等概率，而不是每个位置坐标等概率；
+例如单摆在转折点附近停留更久，位置分布并不均匀，但相轨道上的正则相空间测度仍与哈密顿演化相容。
+
+若联合分布为 $p_{ij}$、边缘分布为 $p_i,q_j$，互信息（mutual information）
+\[
+ I(X{:}Y)=\sum_{ij}p_{ij}\ln\frac{p_{ij}}{p_iq_j}\ge0
+\]
+衡量知道一个变量后对另一个变量减少了多少不确定性。独立时 $p_{ij}=p_iq_j$，互信息为零，联合信息熵等于两边之和。
+\end{starread}\endgroup
+
+\section{正则分布与玻尔兹曼因子}
+
+把小系统与温度为 $T$ 的巨大热库接触，总能量固定。小系统处在能量 $E_i$ 的微观状态时，热库剩余能量为
+$E_{\rm tot}-E_i$。利用 $\partial S_R/\partial E_R=1/T$ 展开热库状态数，
+\[
+ \ln\Omega_R(E_{\rm tot}-E_i)
+ \simeq\ln\Omega_R(E_{\rm tot})-\frac{E_i}{k_BT},
+\]
+便得到概率
+\begin{equation}
+ P_i=\frac{e^{-\beta E_i}}{Z},\qquad
+ \beta=\frac1{k_BT},\qquad
+ Z=\sum_i e^{-\beta E_i}.
+\end{equation}
+$Z$ 是配分函数（partition function）。任意物理量的平均值为 $\langle A\rangle=\sum_iP_iA_i$，平均能量可写成
+\begin{equation}
+ \langle E\rangle=-\frac{\partial\ln Z}{\partial\beta}.
+\end{equation}
+玻尔兹曼因子比较的是能量差：
+\begin{equation}
+ \frac{P_2}{P_1}=e^{-(E_2-E_1)/(k_BT)}.
+\end{equation}
+温度升高时高能态相对概率增加，但并不意味着所有微观状态概率完全相等；只有 $k_BT$ 远大于相关能级差时才近似如此。
+
+\subsection{从归一化到平均能量}
+
+玻尔兹曼因子 $e^{-\beta E_i}$ 只给出相对权重。若所有权重都乘同一常数，物理概率不应改变；
+除以权重之和 $Z$ 才使 $\sum_iP_i=1$。这里下标 $i$ 表示\emph{一个微观状态}。
+若能量为 $E_j$ 的能级对应 $g_j$ 个不同状态，落在整个能级上的概率应为
+\[
+ P(E_j)=\frac{g_je^{-\beta E_j}}{\sum_kg_ke^{-\beta E_k}}.
+\]
+例如基态只有1个状态、能量高出 $\varepsilon$ 的激发能级有3个状态，
+两能级的总布居比为 $3e^{-\beta\varepsilon}$，不是 $e^{-\beta\varepsilon}$。
+高温极限下每个微观状态近似等概率，但两个能级的总布居比趋于3，说明“能级等概率”与“状态等概率”不同。
+
+在体积等外参量固定、各 $E_i$ 不随 $\beta$ 变化时，把配分函数逐项求导：
+\[
+ \frac{\partial Z}{\partial\beta}=-\sum_iE_ie^{-\beta E_i},\qquad
+ -\frac1Z\frac{\partial Z}{\partial\beta}
+ =\sum_iE_i\frac{e^{-\beta E_i}}Z=\langle E\rangle.
+\]
+这就解释了为什么对 $\ln Z$ 求导可以得到平均能量。再求一次导数有
+\[
+ \frac{\partial^2\ln Z}{\partial\beta^2}
+ =\frac{\sum_iE_i^2e^{-\beta E_i}}Z
+ -\left(\frac{\sum_iE_ie^{-\beta E_i}}Z\right)^2
+ =\langle E^2\rangle-\langle E\rangle^2.
+\]
+利用 $\dd\beta/\dd T=-1/(k_BT^2)$，便得到
+\[
+ C_V=\left(\frac{\partial\langle E\rangle}{\partial T}\right)_V
+ =\frac{\operatorname{Var}(E)}{k_BT^2}\ge0.
+\]
+因此热容与能量涨落的联系来自同一个归一化分布，而不是另加的经验公式。
+这里的非负性针对这些条件下的正则平衡系统，不能不加条件推广到所有长程相互作用的孤立系统。
+
+\begin{origexamplebox}{二能级系统的平均能量与热容}
+$N$ 个独立、可区分或局域化的粒子各有能量 $0$ 和 $\varepsilon>0$ 两个非简并能级，与温度 $T>0$ 的热库平衡。求平均总能量和热容，并判断低温和高温极限。
+\end{origexamplebox}
+\begin{xesolution}
+单粒子配分函数 $z=1+e^{-\beta\varepsilon}$，处于激发态的概率为
+\[
+ p_e=\frac{e^{-\beta\varepsilon}}{1+e^{-\beta\varepsilon}}
+ =\frac1{e^{\beta\varepsilon}+1}.
+\]
+所以
+\[
+ \boxed{U=\frac{N\varepsilon}{e^{\varepsilon/(k_BT)}+1}}.
+\]
+$T\to0$ 时 $U\to0$；$T\to\infty$ 时两个能级等概率，$U\to N\varepsilon/2$。
+令 $x=\varepsilon/(k_BT)$，则 $\dd x/\dd T=-x/T$，固定 $N,\varepsilon$ 时
+\[ C=\frac{\dd U}{\dd T}
+=-\frac{N\varepsilon e^x}{(e^x+1)^2}\left(-\frac{x}{T}\right).\]
+利用 $\varepsilon x/T=k_Bx^2$，热容为
+\[
+ C=Nk_B\left(\frac{\varepsilon}{k_BT}\right)^2
+ \frac{e^{\varepsilon/(k_BT)}}{[1+e^{\varepsilon/(k_BT)}]^2}
+\]
+在高低温两端都趋于零，中间出现峰值。高温能量饱和说明有限能级系统不能无限吸热。
+\end{xesolution}
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1.25cm,y=1.2cm]
+  \draw[axis] (-.25,0)--(4.7,0) node[right]{$E$};
+  \foreach \x in {0,1,2,3,4}{
+    \pgfmathsetmacro{\h}{2.5*(1-.6)*pow(.6,\x)}
+    \draw[DeepBlue,very thick] (\x,0)--(\x,\h);
+    \fill[DeepBlue] (\x,\h) circle (1.2pt);
+  }
+  \node[clearlabel,above] at (0,1) {$P_0=0.4$};
+  \node[clearlabel,below=5pt] at (2,0) {$E_i=i\varepsilon$};
+  \node[clearlabel] at (2.7,1.05) {$q=e^{-\beta\varepsilon}=0.6$};
+  \node at (4.5,.25) {$\cdots$};
+\end{tikzpicture}
+\figcap{等间隔能级的归一化概率 $P_n=(1-q)q^n$，图取 $q=0.6$，省略号表示后续能级。}\label{ch18:fig:boltzmann-population}
+\end{minipage}\end{center}
+图~\ref{ch18:fig:boltzmann-population} 的每根竖线对应一个离散能级，图中画的是归一化概率
+$P_n=q^n/Z=(1-q)q^n$，所有高度之和为1。下面求配分函数时，求和的则是未归一化权重 $q^n$，
+不能把图中的概率再相加当成 $Z$。
+
+\begin{origexamplebox}{等间隔能级的配分函数}
+一个粒子具有能级 $E_n=n\varepsilon$（$n=0,1,2,\ldots$），各能级非简并。求单粒子配分函数和平均能量，并检验高、低温极限。
+\end{origexamplebox}
+\begin{xesolution}
+令 $q=e^{-\beta\varepsilon}$。因 $T>0,\varepsilon>0$，有 $0<q<1$。配分函数是收敛的等比级数：
+\[
+ Z=\sum_{n=0}^\infty q^n=\frac1{1-q}.
+\]
+有限和为 $(1-q^{M+1})/(1-q)$，取 $M\to\infty$ 即得上式。
+又因 $\partial q/\partial\beta=-\varepsilon q$，有
+$\partial\ln Z/\partial\beta=-\varepsilon q/(1-q)$。
+于是
+\[
+ U=-\frac{\partial\ln Z}{\partial\beta}
+ =\frac{\varepsilon}{e^{\beta\varepsilon}-1}.
+\]
+即
+\[
+ \boxed{U=\frac{\varepsilon}{e^{\varepsilon/(k_BT)}-1}}.
+\]
+低温 $k_BT\ll\varepsilon$ 时 $U\sim\varepsilon e^{-\varepsilon/(k_BT)}\to0$；高温时用
+$e^x-1\sim x$ 得 $U/(k_BT)\to1$，即 $U\sim k_BT$，与一维经典谐振子两个二次项的均分结果一致。
+更精细地，$U=k_BT-\varepsilon/2+O(\varepsilon^2/(k_BT))$，故不能把渐近等价理解为两者差值趋于零。
+$Z$ 无量纲，$U$ 的量纲由 $\varepsilon$ 给出。
+\end{xesolution}
+
+\Needspace{180pt}
+\begin{origexamplebox}{简并度能否抵消较高能量的不利因素}\label{ch18:ex:teaching-degeneracy}
+一个系统只有两组能级：能量为0的基能级有1个微观状态，能量为 $\varepsilon>0$ 的激发能级有3个微观状态。系统与正温度热库平衡。求激发能级的总概率、两组总布居相等的温度及平均能量，并讨论高、低温极限。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+每个激发微观状态的权重是 $e^{-\beta\varepsilon}$，三个不同状态的权重须相加：
+\[
+ Z=1+3e^{-\beta\varepsilon},\qquad
+ P_e=\frac{3e^{-\beta\varepsilon}}{1+3e^{-\beta\varepsilon}},\qquad
+ P_g=\frac1{1+3e^{-\beta\varepsilon}}.
+\]
+两组等布居要求 $3e^{-\varepsilon/(k_BT)}=1$，因此 $T_*=\varepsilon/(k_B\ln3)$。平均能量不是两个能级的算术平均，而是
+\[
+ U=0\cdot P_g+\varepsilon P_e=\varepsilon P_e.
+\]
+当 $T\to0^+$ 时，$P_e\to0$、$U\to0$；当 $T\to\infty$ 时，四个微观状态等概率，$P_e\to3/4$、$U\to3\varepsilon/4$，并非 $\varepsilon/2$。即使激发组总概率超过基组，任一单独激发态的概率仍低于唯一基态；这不是逐态布居反转，而是简并状态数带来的总数优势。
+\end{xesolution}
+
+\section{能量均分定理}
+
+经典正则分布中，哈密顿量里的每个独立二次项平均贡献 $k_BT/2$。例如
+$p_x^2/(2m)$ 是一个二次项，三维单原子理想气体每个分子平均平动能为
+\begin{equation}
+ \left\langle\frac{p_x^2+p_y^2+p_z^2}{2m}\right\rangle=\frac32k_BT,
+\end{equation}
+从而 $U=3Nk_BT/2$、$C_V=3Nk_B/2$。一个经典一维简谐振子含动能和势能两个二次项，平均能量为 $k_BT$。
+
+均分定理要求经典连续近似有效并达到热平衡。若量子能级间隔远大于 $k_BT$，相应自由度会冻结；这正是双原子气体
+振动热容在常温下小于经典预测的原因。
+
+更一般地，对正则分布中满足边界项消失的相空间变量 $x$，分部积分给出
+\begin{equation}
+ \left\langle x\frac{\partial H}{\partial x}\right\rangle=k_BT.
+\end{equation}
+若 $H$ 中含一个二次项 $ax^2$，左边来自该项的贡献就是 $2\langle ax^2\rangle$，故
+$\langle ax^2\rangle=k_BT/2$。这也说明均分结论依赖“二次型”和“经典连续积分”两个条件。
+
+可先用一个二次项看清积分过程。取 $E_x=ax^2$、$a>0$，$x$ 可遍历整个实轴。
+其归一化积分和平均能量分别为
+\[
+ I(\beta)=\int_{-\infty}^{\infty}e^{-\beta ax^2}\dd x
+ =\sqrt{\frac{\pi}{\beta a}},\qquad
+ \langle E_x\rangle=-\frac{\partial\ln I}{\partial\beta}
+ =\frac1{2\beta}=\frac12k_BT.
+\]
+对一维谐振子，$E=p^2/(2m)+kx^2/2$，两个积分可以分离，故动能和势能各贡献一份
+$k_BT/2$。不能只数“振动方向”就漏掉其中一项；也不能把任意一个角坐标都当成可在整个实轴上
+独立积分的二次变量。分部积分的完整条件和非二次项的反例，在本章后面的连续相空间计算中继续展开。
+
+\section{麦克斯韦速率分布}
+
+平衡理想气体的速度三个分量相互独立，每个分量服从高斯分布（Gaussian distribution）。
+令 $a=m/(2k_BT)$。一维动能为 $mv_x^2/2$，故玻尔兹曼因子给出
+\[f_x(v_x)=\sqrt{a/\pi}\,e^{-av_x^2},\qquad
+F(\boldsymbol v)=(a/\pi)^{3/2}e^{-a(v_x^2+v_y^2+v_z^2)}.\]
+高斯积分 $\int_{-\infty}^{\infty}e^{-av_x^2}\dd v_x=\sqrt{\pi/a}$ 确定了归一化系数。
+速率在 $v$ 到 $v+\dd v$ 内的速度向量组成半径 $v$、厚度 $\dd v$ 的球壳，体积为 $4\pi v^2\dd v$，
+所以须将三维密度乘以球壳体积，而不是令 $v_x=v$ 就结束。
+麦克斯韦速率分布（Maxwell speed distribution）为
+\begin{equation}
+ f(v)=4\pi\left(\frac{m}{2\pi k_BT}\right)^{3/2}
+ v^2e^{-mv^2/(2k_BT)},\qquad v\ge0,
+\end{equation}
+并满足 $\int_0^\infty f(v)\dd v=1$。最概然速率、平均速率和方均根速率分别为
+\begin{equation}
+ v_{\rm mp}=\sqrt{\frac{2k_BT}{m}},\qquad
+ \bar v=\sqrt{\frac{8k_BT}{\pi m}},\qquad
+ v_{\rm rms}=\sqrt{\frac{3k_BT}{m}}.
+\end{equation}
+对 $v>0$，$\dd\ln f/\dd v=2/v-2av$，令其为零得 $v_{\rm mp}=1/\sqrt a$。
+计算平均值时，代换 $u=av^2$ 给出 $\int_0^\infty v^3e^{-av^2}\dd v=1/(2a^2)$；
+而高斯积分对 $a$ 求导可得 $\int_0^\infty v^4e^{-av^2}\dd v=3\sqrt\pi/(8a^{5/2})$。
+分别乘归一化系数，得到 $\bar v=2/\sqrt{\pi a}$ 和 $\langle v^2\rangle=3/(2a)$。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=.74\linewidth,height=4.8cm,axis lines=left,xlabel={$u=v/\sqrt{2k_BT_1/m}$},ylabel={$f_u(u)$},
+  xmin=0,xmax=4,ymin=0,ymax=1.05,ticks=none,every axis label/.style={fill=none}]
+  \addplot[DeepBlue,very thick,domain=0:4,samples=150]{4/sqrt(pi)*x^2*exp(-x^2)};
+  \addplot[TextGray,dashed,domain=0:4,samples=150]{4/sqrt(pi)*pow(.5,1.5)*x^2*exp(-.5*x^2)};
+  \node at (axis cs:1.0,.96) {$T_1$};
+  \node at (axis cs:2.8,.8) {$T_2=2T_1$};
+  \draw[->,TextGray] (axis cs:2.8,.71)--(axis cs:2.45,.24);
+\end{axis}
+\end{tikzpicture}
+\figcap{以同一速率单位比较两个温度；两条概率密度在完整区间 $0\le u<\infty$ 上的积分均为1。}\label{ch18:fig:speed}
+\end{minipage}\end{center}
+图~\ref{ch18:fig:speed} 中高温曲线的峰向右移且降低，横轴使用共同单位，不能分别重标横轴后比较峰的位置。
+
+\begin{origexamplebox}{氮分子的方均根速率}
+把氮气视为理想气体，摩尔质量 $M=28.0\,\mathrm{g/mol}$。求 $T=300\,\mathrm K$ 时的方均根速率。
+\end{origexamplebox}
+\begin{xesolution}
+用单分子质量公式也可计算，但摩尔形式更直接：
+\[
+ v_{\rm rms}=\sqrt{\frac{3RT}{M}}
+ =\sqrt{\frac{3\times8.314\times300}{28.0\times10^{-3}}}
+ \approx5.17\times10^2\,\mathrm{m/s}.
+\]
+所以 $\boxed{v_{\rm rms}\approx517\,\mathrm{m/s}}$。必须把摩尔质量换成 $\mathrm{kg/mol}$；否则数值会错约 $\sqrt{1000}$ 倍。
+\end{xesolution}
+
+\begin{origexamplebox}{麦克斯韦分布中的越阈概率}
+质量为 $m$ 的理想气体分子处于温度 $T$。写出速率大于给定阈值 $v_0$ 的概率积分，并在
+$v_0\gg\sqrt{k_BT/m}$ 时判断其主要数量级。
+\end{origexamplebox}
+\begin{xesolution}
+由归一化速率分布，所求概率为
+\[
+ P(v>v_0)=4\pi\left(\frac{m}{2\pi k_BT}\right)^{3/2}
+ \int_{v_0}^{\infty}v^2e^{-mv^2/(2k_BT)}\dd v.
+\]
+令 $a=m/(2k_BT)$，分部积分一次：
+\[
+ \int_{v_0}^{\infty}v^2e^{-av^2}\dd v
+ =\frac{v_0e^{-av_0^2}}{2a}
+ +\frac1{2a}\int_{v_0}^{\infty}e^{-av^2}\dd v.
+\]
+令 $x_0=\sqrt a\,v_0$，定义余误差函数
+\[\operatorname{erfc}(x_0)=\frac2{\sqrt\pi}\int_{x_0}^{\infty}e^{-x^2}\dd x.\]
+将归一化系数乘回上式，得到
+\[
+ \boxed{P(v>v_0)=\operatorname{erfc}(x_0)+\frac{2x_0}{\sqrt\pi}e^{-x_0^2}}.
+\]
+再次分部积分可得 $\operatorname{erfc}(x_0)\sim e^{-x_0^2}/(\sqrt\pi x_0)$，因此
+\[P(v>v_0)=\frac{2x_0}{\sqrt\pi}e^{-x_0^2}
+\left[1+\frac1{2x_0^2}+O(x_0^{-4})\right]\quad(x_0\gg1).\]
+各项无量纲。$v_0=0$ 时精确式为1，$v_0\to\infty$ 时趋于0；大阈值近似不能用于 $v_0=0$。
+\end{xesolution}
+
+\section{熵增的统计含义}
+
+孤立宏观系统从低概率宏观态走向高概率宏观态，是因为后者包含压倒性更多的微观状态。熵增不是微观力学定律失去时间反演性，
+而是典型初态与粗粒化描述下的概率结论。对有限系统，短时熵减涨落并非逻辑上不可能，但概率随粒子数呈指数压低。
+
+\subsection{理想气体混合熵}
+
+两种可区分理想气体在相同温度、压强下分别占有体积 $V_1,V_2$，撤去隔板后各自自由膨胀到
+$V=V_1+V_2$。因为理想气体内能只依赖温度，等温混合的熵变为
+\begin{equation}
+ \Delta S_{\rm mix}
+ =n_1R\ln\frac{V}{V_1}+n_2R\ln\frac{V}{V_2}
+ =-R\sum_i n_i\ln x_i,
+\end{equation}
+其中 $x_i=n_i/(n_1+n_2)$ 是摩尔分数。若两侧其实是完全相同的气体，交换粒子不产生新的可分辨微观状态，
+不能沿用“可区分组分”的计数；此时去掉隔板的熵变为零。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+  \draw[ground] (0,0) rectangle (6,2.7);
+  \draw[very thick] (3,0)--(3,2.7);
+  \foreach \p in {(0.5,.5),(.9,1.2),(1.6,.7),(.55,2.1),(1.45,1.8)}
+    \fill[DeepBlue] \p circle (2pt);
+  \foreach \p in {(3.4,.55),(3.6,1.1),(4.7,.65),(5.4,1.7),(4.4,2.25)}
+    \draw[TextGray,thick] \p circle (2pt);
+  \node[clearlabel,above,align=center,font=\footnotesize] at (1.5,2.7) {组分1\\实心点};
+  \node[clearlabel,above,align=center,font=\footnotesize] at (4.5,2.7) {组分2\\空心点};
+  \draw[vector] (6.45,1.35)--(7.6,1.35);
+  \begin{scope}[xshift=8.2cm]
+    \draw[ground] (0,0) rectangle (6,2.7);
+    \foreach \p in {(0.5,.5),(.9,1.9),(2.6,2.1),(3.5,.55),(5.5,.8)}
+      \fill[DeepBlue] \p circle (2pt);
+    \foreach \p in {(.55,1.3),(2.1,1.45),(3.1,.95),(4.9,.5),(5.3,2.05)}
+      \draw[TextGray,thick] \p circle (2pt);
+  \end{scope}
+\end{tikzpicture}
+\figcap{可区分理想气体混合。隔板撤去后每种组分可占据的体积增大，因而产生混合熵。}\label{ch18:fig:mixing}
+\end{minipage}\end{center}
+图~\ref{ch18:fig:mixing} 用两种点型区分组分；若点完全不可区分，不能再把左右来源当成新的微观标记。
+
+\begin{origexamplebox}{两种等量理想气体的混合熵}
+各有 $1.00\,\mathrm{mol}$ 的两种不同理想气体，在同温同压下由隔板分开，各占体积 $V$。撤去隔板并等温混合，求熵变；若两侧是同一种气体，结果怎样？
+\end{origexamplebox}
+\begin{xesolution}
+两种气体各自从 $V$ 自由扩展到 $2V$，所以
+\[
+ \Delta S=R\ln2+R\ln2=\boxed{2R\ln2\approx11.5\,\mathrm{J/K}}.
+\]
+熵变为正，单位是 $\mathrm{J/K}$。若两侧是温度、压强和成分完全相同的同一种气体，撤板前后宏观状态相同；同种粒子的置换不构成新的可分辨状态，故
+\[
+ \boxed{\Delta S=0}.
+\]
+把同种气体也人为贴上“左、右来源标签”会造成虚假的吉布斯佯谬。
+\end{xesolution}
+
+\subsection{能量涨落与热容}
+
+固定 $N,V$ 且能级 $E_i$ 不显含温度时，$Z'= -\sum_iE_ie^{-\beta E_i}$、
+$Z''=\sum_iE_i^2e^{-\beta E_i}$，所以
+\[\frac{\partial^2\ln Z}{\partial\beta^2}
+=\frac{Z''}Z-\left(\frac{Z'}Z\right)^2=\langle E^2\rangle-\langle E\rangle^2.\]
+又因 $U=-\partial\ln Z/\partial\beta$、$\partial\beta/\partial T=-1/(k_BT^2)$，
+\[ C_V=\frac{\partial U}{\partial T}
+=\frac{\operatorname{Var}(E)}{k_BT^2}.\]
+整理得到
+\begin{equation}
+ \operatorname{Var}(E)=\langle E^2\rangle-\langle E\rangle^2
+ =k_BT^2C_V.
+\end{equation}
+对普通宏观系统，$E\propto N$、$C_V\propto N$，所以 $\sigma_E/E\propto N^{-1/2}$。
+热容非负对应正则平衡态能量方差非负；若某些长程相互作用孤立系统出现负热容，不能直接把这条正则系综结论照搬过去。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=.72\linewidth,height=4.5cm,axis lines=left,
+  xlabel={$x=(E-U)/\sigma_E$},ylabel={$f_x(x)$},xmin=-4,xmax=4,ymin=0,ymax=.55,ticks=none,
+  every axis label/.style={fill=none}]
+  \addplot[DeepBlue,very thick,domain=-4:4,samples=180]{exp(-x^2/2)/sqrt(2*pi)};
+  \draw[guide] (axis cs:0,0)--(axis cs:0,.399);
+  \node[clearlabel] at (axis cs:0,.49) {$E=U$};
+  \draw[guide] (axis cs:-1,.02)--(axis cs:-1,.30) (axis cs:1,.02)--(axis cs:1,.30);
+  \draw[<->,TextGray] (axis cs:-1,.08)--(axis cs:1,.08);
+  \node[clearlabel] at (axis cs:2.5,.16) {$\Delta E=2\sigma_E$};
+  \draw[TextGray,->] (axis cs:2,.13)--(axis cs:1,.08);
+\end{axis}
+\end{tikzpicture}
+\figcap{平均能量附近的高斯近似，横轴以 $\sigma_E$ 为单位；$\sigma_E^2=k_BT^2C_V$。}\label{ch18:fig:energy-fluctuation}
+\end{minipage}\end{center}
+图~\ref{ch18:fig:energy-fluctuation} 标出的 $2\sigma_E$ 是典型宽度，下面的例题将其与平均能量比较。
+
+\Needspace{15\baselineskip}
+\begin{origexamplebox}{能量相对涨落的粒子数标度}
+经典单原子理想气体含 $N$ 个粒子，处于温度 $T$ 的正则系综。求能量标准差与平均能量之比。
+\end{origexamplebox}
+\begin{xesolution}
+理想气体
+\[
+ U=\frac32Nk_BT,
+ \qquad C_V=\frac32Nk_B.
+\]
+由涨落公式
+\[
+ \sigma_E=\sqrt{k_BT^2C_V}=k_BT\sqrt{\frac{3N}{2}}.
+\]
+因此
+\[
+ \boxed{\frac{\sigma_E}{U}=\sqrt{\frac{2}{3N}}}.
+\]
+该比值无量纲并随 $N^{-1/2}$ 消失；$N\to\infty$ 时热力学能量成为相对稳定的宏观量。对少粒子系统，涨落不可忽略。
+\end{xesolution}
+
+\section{分子通量、压强与统计假设}
+
+\subsection{穿过小孔的分子并不是无偏样本}
+
+设数密度为 $n_N=N/V$，取孔面法线为 $z$ 轴。速度 $v_z>0$ 的分子在时间 $\dd t$ 内，
+只有位于厚度 $v_z\dd t$ 内的部分能够到达面积 $\dd A$。因此单位面积、单位时间的穿越数为
+\[J=n_N\int_{v_z>0}v_z F(\boldsymbol v)\,\dd^3v
+=n_N\sqrt{\frac{k_BT}{2\pi m}}=\frac14 n_N\bar v.\]
+第一步中的 $v_z$ 权重说明较快且较接近法向运动的分子更容易穿孔；不能直接用容器内的速率密度代表逸出束的速率密度。
+几何上，对于各向同性分布，前半球上的平均通量因子是
+\[\frac1{4\pi}\int_0^{2\pi}\dd\phi\int_0^{\pi/2}\cos\theta\sin\theta\dd\theta=\frac14.\]
+小孔逸出公式适用于孔尺度小于平均自由程、孔外回流可忽略的分子流模型。
+
+分子在壁面弹性反射时，每次传递法向动量 $2mv_z$。将其乘碰撞通量并积分，得到
+\[p=2mn_N\int_{v_z>0}v_z^2F\,\dd^3v
+=mn_N\langle v_z^2\rangle
+=\frac13mn_N\langle v^2\rangle=\frac23n_N\langle\varepsilon_k\rangle.\]
+结合 $\langle\varepsilon_k\rangle=3k_BT/2$，就恢复 $p=n_Nk_BT$。
+对各向同性光子气，速率固定为 $c$、单光子动量大小为 $\varepsilon/c$，同样的角积分给出
+数通量 $J_\gamma=n_\gamma c/4$、能量通量 $j_E=uc/4$ 和压强 $p=u/3$，其中 $u$ 为能量密度。
+平行光束不满足各向同性条件，不能直接套用 $p=u/3$。
+
+\subsection{把穿孔权重用于能量计算}
+分子从小孔逸出是一个条件抽样过程：容器内随机选取一个分子，与随机选取一个实际穿孔事件，不具有同样的速度分布。前面的通量积分中 $v_z$ 权重既影响穿孔数，也影响每个逸出分子平均带走的能量。
+
+\Needspace{180pt}
+\begin{origexamplebox}{小孔逸出为何使绝热容器中的气体冷却}\label{ch18:ex:teaching-effusion}
+刚性绝热容器中有稀薄单原子理想气体，粒子数和温度初值为 $N_0,T_0$。通过足够小的孔缓慢向真空逸出；逸出之间气体有足够时间恢复麦克斯韦分布。忽略孔边作用和回流。求一个逸出分子的平均动能，以及容器内剩余气体的温度随 $N$ 的关系。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+取孔面外法线为 $z$ 轴。麦克斯韦分布三个速度分量独立；穿孔权重只含 $v_z>0$，故两个切向分量仍各贡献 $k_BT/2$。令 $a=m/(2k_BT)$，法向分量的加权二阶矩为
+\[
+ \langle v_z^2\rangle_{\rm hit}
+ =\frac{\int_0^\infty v_z^3e^{-av_z^2}\dd v_z}
+        {\int_0^\infty v_ze^{-av_z^2}\dd v_z}
+ =\frac{1/(2a^2)}{1/(2a)}=\frac1a.
+\]
+两积分用 $u=av_z^2$ 即可得到。法向平均动能为 $m/(2a)=k_BT$，因此每个逸出分子平均携带
+\[
+ \overline E_{\rm out}=\frac12k_BT+\frac12k_BT+k_BT=2k_BT,
+\]
+大于容器内分子的 $3k_BT/2$。快分子更易逸出，剩余分子因而冷却。
+容器边界固定且不传热，但有物质携能离开，不能写成 $\dd U=0$。在 $\dd N<0$ 的一步中，流出的粒子数为 $-\dd N$，能量变化为 $\dd U=2k_BT\dd N$。而
+\[
+ \dd U=\frac32k_B(N\dd T+T\dd N).
+\]
+两式相等得到 $3N\dd T=T\dd N$，积分为
+\[
+ \ln\frac{T}{T_0}=\frac13\ln\frac{N}{N_0},\qquad
+ T=T_0\left(\frac{N}{N_0}\right)^{1/3}.
+\]
+$N$ 减小时 $T$ 减小，初值和符号均相符。这不是封闭气体的可逆绝热膨胀，不能套 $TV^{\gamma-1}=\mathrm{const}$；本题体积没有变化，变的是粒子数。若漏气过快、孔尺度超过平均自由程或来不及再平衡，穿孔抽样及此冷却律都须重新判断。
+\end{xesolution}
+
+\subsection{动力学与概率描述之间的条件}
+
+单个微观态按确定性方程运动，不等于我们知道其初始条件。统计描述来自微观初态的不完全信息以及宏观分辨率的限制，
+也可包括外界随机作用。系综是系统副本的概率集合；时间平均与系综平均是否相等，还需要动力学条件，不能由定义保证。
+对于存在混沌的多自由度系统，初态和外界扰动的微小误差可能迅速放大；但不是所有多自由度运动都必然混沌。
+理想的时间反演会让经典轨迹倒走，实际实验中反转误差和环境扰动使这一过程极难实现。
+量子衰变则提供不同的随机模型：在恒定衰变率 $\lambda$ 近似下，生存概率满足
+$\dd P/\dd t=-\lambda P$，所以 $P(t)=e^{-\lambda t}$。
+若初始有 $N_0$ 个独立粒子，未衰变数均值为 $N_0P(t)$、方差为 $N_0P(t)[1-P(t)]$。
+平均规律是指数衰减，不表示每个样本在每一时刻的粒子数都正好等于均值。
+孤立系统细粒化吉布斯熵在哈密顿演化下保持不变；宏观熵增涉及粗粒化和特殊初始条件。
+
+在稀薄气体的玻尔兹曼方程中，分子混沌假设把碰撞前两粒子分布近似为单粒子分布的乘积。
+记一次碰撞前后乘积分别为 $b=f_1f_2$、$a=f'_1f'_2$。微观碰撞的正反对称性允许把
+$H=\int f\ln f\,\dd^3r\dd^3v$ 的碰撞贡献整理成
+\[\frac{\dd H}{\dd t}=-\frac14\int B\,(a-b)\ln\frac ab\,\dd\Lambda\le0.\]
+这里 $B\ge0$ 是碰撞权重，$\dd\Lambda$ 表示对位置、两入射速度及散射方向积分；边界不向外输运熵。
+因对数单调，$(a-b)(\ln a-\ln b)\ge0$，所以符号确定。该结果称为H定理，不能脱离稀薄气体和碰撞前无关联近似来理解。
+平衡时所有允许碰撞满足 $f_1f_2=f'_1f'_2$，即 $\ln f_1+\ln f_2$ 在碰撞中守恒。
+对普通弹性气体，它由粒子数、动量和能量这些碰撞不变量组成；在气体静止参考系中得到 $f\propto e^{-mv^2/(2k_BT)}$。
+
+\section{从配分函数连接功、热与熵}
+
+\subsection{连续相空间平均与非二次能量项}
+
+若系统近似独立，$H=\sum_ih_i$，经典正则权重可分解。
+这里的近独立可来自忽略相互作用，也可来自用平均场代替其他粒子的作用；后一种做法还要满足平均场的自洽条件，不能保证强关联系统适用。
+单个自由度在连续情形的平均为
+\[\langle A\rangle=
+\frac{\int A(q,p)e^{-\beta h(q,p)}\,\dd q\dd p}
+{\int e^{-\beta h(q,p)}\,\dd q\dd p}.\]
+相空间测度的共同常数在平均值比式中抵消；计算绝对熵时则须保留它，例如以普朗克常数规定相空间单元。
+能量均分的分部积分具体为
+\[\int x\frac{\partial H}{\partial x}e^{-\beta H}\dd x
+=-\frac1\beta\int x\,\partial_x(e^{-\beta H})\dd x
+=\frac1\beta\int e^{-\beta H}\dd x,\]
+最后一步要求边界项 $xe^{-\beta H}$ 消失。其他坐标积分后除以配分函数，即得前面的均分恒等式。
+
+二次项之外不能机械分配 $k_BT/2$。例如在 $z\ge0$ 的均匀重力场中，势能为 $mgz$，
+\[Z_z=\int_0^\infty e^{-\beta mgz}\dd z=\frac1{\beta mg},
+\qquad \langle mgz\rangle=-\partial_\beta\ln Z_z=k_BT.\]
+离散的两能级系统应使用求和；谐振子的经典势能和动能各为二次项，才各贡献 $k_BT/2$。
+对于大小固定为 $d$ 的经典偶极子，在场强 $\mathcal E$ 中势能为 $-d\mathcal E\cos\theta$。
+令 $x=\beta d\mathcal E$，其取向配分积分为
+\[Z_{\rm rot}=2\pi\int_0^\pi e^{x\cos\theta}\sin\theta\dd\theta
+=4\pi\frac{\sinh x}{x}.\]
+对 $x$ 求对数导数得到 $\langle\cos\theta\rangle=\coth x-1/x$，从而
+$\langle U_{\rm rot}\rangle=-d\mathcal E(\coth x-1/x)$。弱场时 $\coth x-1/x\simeq x/3$，
+强场时趋于1，分别对应小偏向和接近完全取向。这里没有理由直接使用一个二次项的均分值。
+
+\subsection{能级变化与布居变化}
+
+系统平均能量为 $U=\sum_iP_iE_i$，所以
+\begin{equation}
+ \dd U=\sum_iP_i\dd E_i+\sum_iE_i\dd P_i.
+\end{equation}
+第一项是在概率不变时外参量改变能级的贡献，第二项是在能级给定时布居改变的贡献。
+在弱耦合、准静态、仅有相应外参量功的热力学描述中，取外界对系统做功为正，
+\[\delta W_{\rm on}=\sum_iP_i\dd E_i,\qquad
+\delta Q=\sum_iE_i\dd P_i,\qquad \dd U=\delta W_{\rm on}+\delta Q.\]
+若外参量为体积，$p=-\sum_iP_i\partial E_i/\partial V$，便得到 $\delta W_{\rm on}=-p\dd V$。
+对于连续相空间，只需在固定的相空间测度下将上述求和换成积分。
+
+正则概率满足 $\ln P_i=-\beta E_i-\ln Z$，因此
+\[S=-k_B\sum_iP_i\ln P_i=k_B\ln Z+\frac UT.\]
+又因 $\sum_i\dd P_i=0$，沿平衡态序列
+\[\dd S=-k_B\sum_i(\ln P_i+1)\dd P_i
+=k_B\beta\sum_iE_i\dd P_i=\frac{\delta Q_{\rm rev}}T.\]
+从而 $F=U-TS=-k_BT\ln Z$，并与 $\dd F=-S\dd T-p\dd V$ 相容（固定粒子数）。
+不可逆实际过程一般满足熵不等式，不能把任意传热都写成 $T\dd S$。
+“绝热”仅表示不传热；快速改变外参量仍可能改变微观布居。只有满足相应绝热演化条件时才可进一步谈布居保持。
+
+
+\Needspace{12\baselineskip}
+\begingroup\tcbset{breakable/.default=true}\begin{starread}{玻色--爱因斯坦统计与费米--狄拉克统计}
+不可分辨量子粒子需按交换对称性分类。平均占据数分别为
+\[
+ \bar n_B(\varepsilon)=\frac1{e^{(\varepsilon-\mu)/(k_BT)}-1},\qquad
+ \bar n_F(\varepsilon)=\frac1{e^{(\varepsilon-\mu)/(k_BT)}+1}.
+\]
+式中负号对应玻色--爱因斯坦（Bose--Einstein）统计，正号对应费米--狄拉克（Fermi--Dirac）统计；
+化学势 $\mu=(\partial F/\partial N)_{T,V}$ 描述固定温度、体积下增加粒子所需的自由能变化，其量纲与 $\varepsilon$ 相同。
+后者服从泡利不相容原理（Pauli exclusion principle）。二者的经典极限均为麦克斯韦--玻尔兹曼分布；
+平衡光子气有 $\mu=0$，低温电子气出现费米简并。
+\end{starread}\endgroup
+
+\endgroup
+
+\hypersetup{bookmarksdepth=2}

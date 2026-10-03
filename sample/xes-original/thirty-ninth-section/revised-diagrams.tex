@@ -1,0 +1,244 @@
+% Geometry- and sign-checked replacements, September 2026.
+\newcommand{\straightConductorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[Ink,very thick](-2,0)--(2,0);
+ \fill(-2,0)circle(2pt)node[left]{$a$};\fill(2,0)circle(2pt)node[right]{$b$};
+ \draw[vector](-1.4,0)--(-.4,0)node[midway,below]{$I$};
+ \draw[vector](0,0)--(0,1.6)node[above]{$\vect F$};
+ \foreach \x in {-1.5,-.7,.7,1.5}{\node[DeepBlue]at(\x,.85){$\otimes$};}
+ \node[DeepBlue]at(2.25,.85){$\vect B$};
+ \draw[<->](-2,-.8)--(2,-.8)node[midway,below]{$L$};
+ \node[anchor=west]at(3.2,.2){$\vect F=I\vect L_{ab}\times\vect B$，$F=IBL$};
+\end{tikzpicture}\end{center}}
+\newcommand{\finiteCoilFieldDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.7,>=Latex]
+ \foreach \sg in {-1,1}{\foreach \a/\b/\h in {.2/2.6/3.8,.6/1.85/2.8}{
+  \draw[DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .5 with {\arrow{Latex}}}]
+   ({\sg*\a},0)..controls({\sg*\a},\h)and({\sg*\b},\h)..({\sg*\b},0)
+   ..controls({\sg*\b},-\h)and({\sg*\a},-\h)..cycle;}}
+ \foreach \y in {-1.3,-.975,...,1.3}{\draw[Ink](0,\y)ellipse(1.15 and .25);}
+ \draw[vector](0,-.8)--(0,3.25)node[above]{$\vect B$};
+ \draw[Ink,very thick,->]({1.15*cos(230)},{-1.3+.25*sin(230)})arc(230:310:1.15 and .25);
+ \node[below]at(0,-1.65){$I$};
+ \node[align=left,anchor=west]at(3.4,.2){内场与外部回流场相接\\箭头表明场线方向\\中部匀强只是一种近似};
+\end{tikzpicture}\end{center}}
+\renewcommand{\loopTorqueDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \begin{scope}[xshift=-3.8cm]
+  \coordinate (A) at (1,-1.2);\coordinate (C) at (-1,1.2);
+  \draw[Ink,thick] (1.65,-.875)--(-.35,1.525)--(-1.65,.875)--(.35,-1.525)--cycle;
+  \draw[guide,dashed] (-1.3,-.65)--(1.3,.65) node[right]{转轴};
+  \draw[vector] (.35,-1.525)--(1.3,-1.05);
+  \node[below left] at (.6,-1.5){$I$};
+  \draw[vector] (A)--++(0,-1.2) node[right]{$\vect F_A$};
+  \draw[vector] (C)--++(0,1.2) node[left]{$\vect F_C$};
+  \node[right] at (1.65,-1.3){A};\node[above left=3pt] at (C){C};
+  \draw[vector] (0,0)--(1.5,1.25) node[above]{$\vect\mu$};
+  \draw[vector] (-2.0,3.0)--(1.7,3.0) node[right]{$\vect B$};
+  \node at (0,-3.35){沿轴两边的力构成力偶};
+ \end{scope}
+ \begin{scope}[xshift=3.8cm]
+  \draw[Ink,very thick] (1,-1.2)--(-1,1.2);
+  \node[right] at (1,-1.2){A};\node[left] at (-1,1.2){C};
+  \draw[vector] (1,-1.2)--(1,-2.5) node[right]{$IbB$};
+  \draw[vector] (-1,1.2)--(-1,2.5) node[left]{$IbB$};
+  \draw[guide,dashed] (-1,-1.3)--(-1,-2.0);
+  \draw[<->] (-1,-1.85)--(1,-1.85) node[midway,above]{$a\sin\theta$};
+  \draw[vector] (0,0)--(1.8,0) node[right]{$\vect B$};
+  \draw[vector] (0,0)--(1.2,1.0) node[above]{$\vect n$};
+  \draw (.65,0) arc(0:39.806:.65);\node at (.88,.27){$\theta$};
+  \node at (0,-3.35){沿转轴观察的侧视图};
+ \end{scope}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\wireSolenoidDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \begin{scope}[xshift=-4.4cm]
+  \foreach \r in {.65,1.25,1.85}{
+   \draw[DeepBlue,dashed] (\r,0) arc(0:180:{\r} and {.36*\r});
+   \draw[DeepBlue,thick] (-\r,0) arc(180:360:{\r} and {.36*\r});
+   \draw[DeepBlue,->] (270:{\r} and {.36*\r}) arc(270:310:{\r} and {.36*\r});}
+  \draw[Ink,thick] (0,-1.9)--(0,2.0);\draw[vector] (0,.65)--(0,1.65) node[right]{$I$};
+  \draw[<->] (0,-2.15)--(1.85,-2.15) node[midway,below]{$r$};
+  \node at (0,-2.95){$B=\mu_0I/(2\pi r)$};
+ \end{scope}
+ \begin{scope}[xshift=.0cm]
+  \foreach \x in {0,.45,...,5.4}{\draw[Ink] (\x,0) ellipse(.18 and 1.0);}
+  \foreach \y in {-.5,0,.5}{\draw[DeepBlue,->,thick] (-.3,\y)--(5.75,\y);}
+  \draw[guide,dashed] (.7,.2) rectangle(4.7,1.85);
+  \node[above] at (2.7,1.9){外部段：$B=0$};
+  \draw[<->] (.7,-1.45)--(4.7,-1.45) node[midway,below]{$\ell$};
+  \node at (2.7,-2.95){内部段：$B=\mu_0nI$};
+  \node[above] at (2.7,2.6){无限长模型（仅画一段）};
+ \end{scope}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\biotSavartDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[Ink,thick,domain=-2:2,samples=50] plot(\x,{.18*\x*\x});
+ \coordinate(Q)at(0,0);\coordinate(P)at(3.5,1.6);
+ \fill(Q)circle(2pt)node[below left=3pt]{$Q$};\fill(P)circle(2pt)node[right]{$P$};
+ \draw[vector](Q)--(1.1,0)node[below right=3pt]{$I\dd\vect\ell$};
+ \draw[vector](Q)--(P)node[midway,above]{$\vect r$};
+ \node[DeepBlue]at(3.5,2.35){$\odot\ \dd\vect B$};
+ \node[align=left,anchor=west]at(5.0,.8){$Q$ 在导线上\\$\dd\vect\ell$ 沿切线\\$\dd\vect\ell\times\vect r$ 指向纸外};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\loopAxisDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.86,>=Latex]
+ \draw[axis](-1,0)--(6,0)node[right]{$z$};
+ \draw[DeepBlue,thick](0,0)ellipse(.6 and 1.6);
+ \coordinate(Q)at(0,1.6);\coordinate(Qp)at(0,-1.6);\coordinate(P)at(4,0);
+ \fill(Q)circle(2pt)node[above right]{$Q$};\fill(Qp)circle(2pt)node[below right]{$Q'$};
+ \fill(P)circle(2pt)node[below left=4pt]{$P$};\node[below left]at(0,0){$O$};
+ \draw[vector](Q)--(-.8,1.6)node[above]{$I\dd\vect\ell$};
+ \draw[vector](Qp)--(.8,-1.6);
+ \draw[guide](Q)--(P)node[midway,above]{$\boldsymbol\rho$};\draw[guide](Qp)--(P);
+ \draw[vector](P)--(4.64,1.6)node[above]{$\dd\vect B_Q$};
+ \draw[vector](P)--(4.64,-1.6)node[below]{$\dd\vect B_{Q'}$};
+ \draw[guide,dashed](4.64,-1.6)--(4.64,1.6);
+ \draw[<->](-1.25,0)--(-1.25,1.6)node[midway,left]{$R$};
+ \draw[<->](0,-2.2)--(4,-2.2)node[midway,below]{$z$};
+ \node[align=left,anchor=west]at(6.5,.1){对径元横向分量相消\\轴向分量相加\\$\rho=\sqrt{R^2+z^2}$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\helmholtzDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \begin{scope}[xshift=-3.8cm]
+  \draw[axis](-2.6,0)--(2.7,0)node[right]{$x$};
+  \foreach \x in {-1,1}{\draw[Ink,thick](\x,0)ellipse(.32 and 1.9);
+   \draw[DeepBlue,->]({\x+.32},0)arc(0:70:.32 and 1.9);}
+  \draw[<->](-1,2.3)--(1,2.3)node[midway,above]{$2D$};
+  \draw[<->](-1.6,0)--(-1.6,1.9)node[midway,left]{$R$};
+  \node at(0,-2.4){两个线圈同向通电};
+ \end{scope}
+ \begin{scope}[xshift=3.8cm,x=2.4cm,y=2.2cm]
+  \draw[axis](-1,0)--(1.15,0)node[right]{$x/R$};
+  \draw[axis](0,0)--(0,1.9)node[above]{$BR/(\mu_0NI)$};
+  \foreach \d/\col/\sty in {.4/DeepBlue/solid,.5/Ink/solid,.6/TextGray/dashed}{
+   \draw[\col,\sty,thick,domain=-.95:.95,samples=90]plot(\x,{.5*((1+(\x-\d)^2)^(-1.5)+(1+(\x+\d)^2)^(-1.5))});}
+  \node[anchor=west,font=\small,DeepBlue]at(.28,1.62){$D=0.4R$};
+  \node[anchor=west,font=\small]at(.28,1.38){$D=0.5R$};
+  \node[anchor=west,font=\small,TextGray]at(.28,1.14){$D=0.6R$};
+ \end{scope}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\currentElementsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \coordinate(A)at(0,0);\coordinate(B)at(4,2);
+ \fill(A)circle(2pt)node[below]{$1$};\fill(B)circle(2pt)node[below right=4pt]{$2$};
+ \draw[vector](A)--(0,1.5)node[above]{$I_1\dd\vect\ell_1$};
+ \draw[vector](B)--(5.5,2)node[right]{$I_2\dd\vect\ell_2$};
+ \draw[vector](B)--(A)node[midway,below right=4pt]{$\vect r=\vect r_1-\vect r_2$};
+ \draw[vector](A)--(-1.6,0)node[above]{$\dd\vect F_{1\leftarrow2}$};
+ \draw[vector](B)--(4,5.2)node[above]{$\dd\vect F_{2\leftarrow1}$};
+ \node[align=left,anchor=west]at(6.6,.2){两力各垂直本地电流元\\一般不等大反向\\本图两元均在纸面内};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\magneticLensDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[axis](-4.6,0)--(4.8,0)node[right]{$z$};
+ \draw[Ink](-4,-.9)--(-4,2.0)node[above]{物面};\draw[Ink](4,-.9)--(4,2.0)node[above]{像面};
+ \draw[DeepBlue,thick](-4,0)--(0,1.1)--(4,0);
+ \draw[DeepBlue,dashed,thick](-4,0)--(0,-1.1)--(4,0);
+ \draw[Ink,thick](0,0)ellipse(.25 and 1.7);
+ \draw[<->](-4,-2)--(0,-2)node[midway,below]{$u$};
+ \draw[<->](0,-2)--(4,-2)node[midway,below]{$v$};
+ \node[align=left,anchor=west]at(5.3,.25){$\Delta\xi'=-\xi/f$\\[4pt]
+ $\displaystyle\phi_L=-\frac{q}{2mv_0}\int B_z\dd z$};
+ \node[above]at(0,2.1){拉莫尔随动平面内的射线};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\spinPrecessionDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \begin{scope}[xshift=-3.5cm]
+  \draw[axis](0,-.5)--(0,3.1)node[above]{$\vect B_0$};
+  \draw[DeepBlue,dashed](0,1.5)ellipse(1.7 and .48);
+  \draw[vector](0,0)--({1.7*cos(35)},{1.5+.48*sin(35)})node[right]{$\vect s$};
+  \draw[vector](-2.2,1.8)--(-2.2,.6)node[midway,left]{$\vect\omega_0$};
+  \node[align=center]at(0,-1.25){实验室系\\$\vect\omega_0=-\gamma\vect B_0$};
+ \end{scope}
+ \begin{scope}[xshift=3.5cm]
+  \draw[axis](-.5,0)--(2.8,0)node[right]{$y$};
+  \draw[axis](0,-2)--(0,2.7)node[above]{$z$};
+  \node[DeepBlue,anchor=east]at(-.3,-.55){$\odot\ B_1$};
+  \draw[vector](0,0)--(0,1.7)node[left]{初始 $\vect s$};
+  \draw[vector](0,0)--(1.7,0)node[above right]{$\pi/2$ 脉冲后};
+  \draw[vector](0,0)--(0,-1.7)node[left]{$\pi$ 脉冲后};
+  \draw[DeepBlue,->,thick](0,1.7)arc(90:-90:1.7);
+  \node[align=center]at(.2,-2.7){随动系，沿 $-\vect B_1$ 观察\\转动平面为 $yz$ 面，$s_x=0$};
+ \end{scope}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\magneticGaussDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](0,0)rectangle(.8,2.4);\node at(.4,1.95){N};\node at(.4,.45){S};
+ \foreach \sg in {-1,1}{\foreach \a/\b/\h in {.08/2.1/3.8,.2/1.4/3.4,.32/.9/3.0}{
+  \draw[DeepBlue,postaction={decorate},decoration={markings,mark=at position .5 with {\arrow{Latex}}}]
+   ({.4+\sg*\a},2.4)..controls({.4+\sg*\a},\h)and({.4+\sg*\b},\h)..({.4+\sg*\b},1.2)
+   ..controls({.4+\sg*\b},{2.4-\h})and({.4+\sg*\a},{2.4-\h})..({.4+\sg*\a},0);}}
+ \draw[DeepBlue,->](.4,.8)--(.4,1.6);
+ \draw[guide,dashed](-.4,.75)rectangle(1.2,2.7);
+ \node[align=left,anchor=west]at(3.7,1.1){闭合面 $S$\\穿出与穿入磁通相消\\磁体内部由S极指向N极};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\handSolenoidContext}{%
+ \historyfigure[.84\linewidth]{right-hand-solenoid.png}{左为右手握持规则的手势，右为空心密绕螺线管的实物结构。}}
+
+\newcommand{\fluxPatchDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \draw[Ink,thick]plot[smooth cycle]coordinates{(-2,-1)(-2.3,.6)(-.8,1.1)(1.3,.7)(2.2,-.5)(.3,-1.2)};
+ \fill[Gold!35](-.35,-.15)--(.2,-.3)--(.65,.15)--(.1,.3)--cycle;
+ \draw[vector](.1,0)--(.1,1.8)node[above]{$\dd\vect S$};
+ \draw[vector](.1,0)--(1.75,1.4)node[right]{$\vect B$};
+ \draw(.1,.6)arc(90:40:.6);\node at(.35,.58){$\theta$};
+ \node[below]at(.1,-.45){$\dd S$};
+ \node[align=left,anchor=west]at(3.2,.3){$\dd\Phi_B=B\dd S\cos\theta$\\法向与曲面局部切平面垂直};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\motorStagesDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.67,>=Latex]
+ \foreach \ang/\xx/\lab in {25/0/1,75/4.2/2,115/8.4/3,165/12.6/4}{
+  \begin{scope}[xshift=\xx cm]
+   \draw[guide,->](-1.6,1.8)--(1.6,1.8)node[midway,above]{$B$};
+   \coordinate(A)at({1.25*cos(\ang)},{1.25*sin(\ang)});
+   \coordinate(C)at({-1.25*cos(\ang)},{-1.25*sin(\ang)});
+   \draw[Ink,thick](A)--(C);\draw[Ink](0,0)circle(.27);
+   \draw[Ink,very thick](-.5,0)--(-.27,0) (.27,0)--(.5,0);
+   \ifnum\ang<90
+    \node at(A){$\odot$};\node at(C){$\otimes$};
+    \draw[vector](A)--++(0,.9);\draw[vector](C)--++(0,-.9);
+   \else
+    \node at(A){$\otimes$};\node at(C){$\odot$};
+    \draw[vector](A)--++(0,-.9);\draw[vector](C)--++(0,.9);
+   \fi
+   \draw[DeepBlue,->](.9,0)arc(0:55:.9);
+   \node at(0,-2.35){阶段\lab};
+  \end{scope}}
+\end{tikzpicture}\end{center}}
+
+\newcommand{\chargeMonopoleComparison}{%
+\begin{center}\begin{tikzpicture}[scale=.65,>=Latex]
+ \foreach \yy/\f/\signa/\signb in {2.6/E/+/-, -2.6/B/N/S}{
+  \foreach \xx/\sg/\dr in {0/\signa/1,4.5/\signb/-1}{
+   \begin{scope}[shift={(\xx,\yy)}]
+    \draw[Ink](0,0)circle(.32);\node at(0,0){$\sg$};
+    \foreach \a in {0,45,...,315}{\ifnum\dr=1
+     \draw[DeepBlue,->](\a:.42)--(\a:1.45);
+     \else\draw[DeepBlue,->](\a:1.45)--(\a:.42);\fi}
+    \node[above]at(0,1.65){$\vect\f$};
+   \end{scope}}
+  \begin{scope}[shift={(9.6,\yy)}]
+   \draw[vector](-1.6,0)--(1.9,0)node[right]{$\vect v$};
+   \node[above]at(0,1.55){\ifdim\yy pt>0pt 正电荷\else 假想正磁荷\fi};
+   \foreach \x in {-.9,0,.9}{
+    \draw[DeepBlue,dashed] (\x,1.35)arc(90:270:.23 and 1.35);
+    \ifdim\yy pt>0pt
+     \draw[DeepBlue,->](\x,1.35)arc(90:-90:.23 and 1.35);
+    \else
+     \draw[DeepBlue,->](\x,-1.35)arc(270:450:.23 and 1.35);
+    \fi}
+   \node[below]at(0,-1.6){\ifdim\yy pt>0pt 环绕的磁场 $\vect B$\else 假想环绕电场 $\vect E$\fi};
+  \end{scope}}
+ \node[align=center]at(4.8,-5.8){下排仅是假设磁荷存在的类比；普通磁铁的N、S极不是孤立磁荷。};
+\end{tikzpicture}\end{center}}

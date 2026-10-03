@@ -1,0 +1,503 @@
+\section{弹性体、物质坐标与小形变}
+
+弹性（elasticity）指撤去使物体形变的作用后，物体能够恢复原有构形的性质；
+“完全弹性”不等于“任意大形变都服从线性胡克定律”。固体可以储存剪切弹性能，
+流体则主要以黏性应力抵抗形变速率。黏弹性材料的应力还与加载历史有关；
+塑性形变可以留下不可恢复的部分。非牛顿流体、黏弹性与塑性属于流变学
+（rheology）研究的范围，不能把三者简单等同。本章先研究小形变、可逆、线性弹性体。
+
+用参考构形中某材料点的位置 $\vect R=(X,Y,Z)$ 给它作永久标记。
+该点在时刻 $t$ 的实际位置为 $\vect r(\vect R,t)$，位移为
+\begin{equation}
+ \vect u(\vect R,t)=\vect r(\vect R,t)-\vect R.
+ \label{ch12:eq:displacement}
+\end{equation}
+$\vect R$ 是“哪一个材料点”，$\vect r$ 是“它现在在哪里”；不能把位移场误认为速度场。
+若相邻点的原间隔为 $\dd\vect R$，泰勒展开到一阶给出
+\begin{equation}
+ \dd u_i=\sum_{j=1}^{3}\frac{\partial u_i}{\partial X_j}\dd X_j,\qquad
+ \dd\vect r=(\mathsf I+\mathsf H)\dd\vect R,\quad H_{ij}=\frac{\partial u_i}{\partial X_j}.
+ \label{ch12:eq:gradient}
+\end{equation}
+这里 $X_1=X,X_2=Y,X_3=Z$，$\mathsf H$ 是九个分量组成的线性映射；
+本章采用“行是位移分量、列是求导坐标”的矩阵约定。整体平移改变 $\vect u$，
+却不改变相邻点的间隔，因而不能算作形变。
+
+任何矩阵都有唯一分解
+\[
+ \mathsf H=\frac{\mathsf H+\mathsf H^{\mathsf T}}2+
+            \frac{\mathsf H-\mathsf H^{\mathsf T}}2
+          \equiv\boldsymbol\varepsilon+\mathsf W.
+\]
+上标 $\mathsf T$ 表示转置。$\boldsymbol\varepsilon$ 对称，$\mathsf W$ 反对称。
+例如刚体发生小转角 $\delta\vect\phi$ 时，
+$\dd\vect u=\delta\vect\phi\times\dd\vect R$，相应矩阵为
+\[
+ \mathsf W=
+ \begin{pmatrix}
+ 0&-\delta\phi_z&\delta\phi_y\\
+ \delta\phi_z&0&-\delta\phi_x\\
+ -\delta\phi_y&\delta\phi_x&0
+ \end{pmatrix}.
+\]
+它只转动微元，不改变微元各边长度和夹角。反过来，由
+\[
+ |\dd\vect r|^2-|\dd\vect R|^2
+ =2\dd\vect R\cdot\boldsymbol\varepsilon\,\dd\vect R+O(H^2)
+\]
+可见，一阶长度变化只取决于对称部分。因此定义小应变张量（strain tensor）
+\begin{equation}
+ \varepsilon_{ij}=\frac12\left(\frac{\partial u_i}{\partial X_j}
+                           +\frac{\partial u_j}{\partial X_i}\right),\qquad
+ \boldsymbol\varepsilon=
+ \begin{pmatrix}
+ \varepsilon_{xx}&\gamma_{xy}/2&\gamma_{xz}/2\\
+ \gamma_{xy}/2&\varepsilon_{yy}&\gamma_{yz}/2\\
+ \gamma_{xz}/2&\gamma_{yz}/2&\varepsilon_{zz}
+ \end{pmatrix}.
+ \label{ch12:eq:strain}
+\end{equation}
+这一分解适用于小位移梯度；大角度刚体转动不能直接用截断的一阶应变判断。
+
+\subsection{正应变与剪应变的几何意义}
+
+沿 $X$ 方向原长为 $L$ 的小线段，伸长为 $\Delta L$，正应变为
+$\varepsilon_{xx}=\Delta L/L=\partial u_x/\partial X$。
+正号表示伸长，负号表示缩短。两个原来正交的单位线段，变形后方向分别近似为
+$\uvec x+\partial_X\vect u$ 和 $\uvec y+\partial_Y\vect u$。
+它们点积到一阶为 $\partial_Yu_x+\partial_Xu_y$。
+若夹角从 $\pi/2$ 变成 $\pi/2-\alpha$，因
+$\cos(\pi/2-\alpha)=\sin\alpha\simeq\alpha$，故
+\begin{equation}
+ \gamma_{xy}=2\varepsilon_{xy}
+ =\frac{\partial u_x}{\partial Y}+\frac{\partial u_y}{\partial X}
+ \simeq\alpha.
+ \label{ch12:eq:shear-angle}
+\end{equation}
+$\gamma_{xy}$ 是工程剪应变，不能把它与张量分量 $\varepsilon_{xy}$ 混用。
+例如 $u_x=\gamma Y,u_y=0$ 时，上边相对下边横移 $\gamma H$，
+$\tan\alpha=\gamma\simeq\alpha$。正应变、剪应变均无量纲。
+图\ref{ch12:fig:strain}还说明：同一受拉材料内，微元取向不同，看到的正应变、剪应变分量也不同。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.87]
+ \draw[guide] (0,0) rectangle(4,1.25);
+ \draw[thick] (-.35,.12) rectangle(4.35,1.13);
+ \draw[vector] (-.35,.63)--(-1.3,.63);
+ \draw[vector] (4.35,.63)--(5.3,.63);
+ \draw[thick,DeepBlue] (.5,.4) rectangle(1.3,.85);
+ \draw[thick,DeepBlue] (2.5,.25)--(3.15,.63)--(2.5,1)--(1.85,.63)--cycle;
+ \node at (2,-.55) {同一受拉杆内的不同取向微元};
+ \begin{scope}[shift={(7.1,0)}]
+  \draw[guide] (0,0) rectangle(1.3,1.25);
+  \draw[thick,DeepBlue] (0,0) rectangle(1.8,1.05);
+  \draw[<->] (0,-.4)--(1.3,-.4) node[midway,below] {$L$};
+  \node at (.9,1.75) {正应变};
+ \end{scope}
+ \begin{scope}[shift={(10.5,0)}]
+  \draw[guide] (0,0) rectangle(1.3,1.25);
+  \draw[thick,DeepBlue] (0,0)--(1.3,0)--(1.8,1.25)--(.5,1.25)--cycle;
+  \draw[<->] (0,1.65)--(.5,1.65);
+  \node[above] at (.25,1.65) {$\gamma H$};
+  \draw (0,.65) arc(90:68.20:.65);
+  \node[left] at (-.12,.55) {$\alpha$};
+  \node at (.9,-.8) {剪应变};
+ \end{scope}
+\end{tikzpicture}
+\figcap{受拉材料中的正应变与剪应变。虚线为参考构形；右侧将微元平移、转动对齐后比较长度和直角的变化。}
+\label{ch12:fig:strain}
+\end{center}
+
+\section{有向截面、应力与弹性定律}
+
+\subsection{为什么内部受力需要应力张量}
+
+只指定物体内部一点，尚不能指定“谁对谁施力”。需在该点切出法向为 $\vect n$ 的小面，
+取 $\vect n$ 指向所研究部分的外侧，以外部对内部的面力除以面积，定义面力密度
+$\vect t(\vect n)=\dd\vect F/\dd S$，单位为 $\mathrm{N/m^2}$，即帕斯卡。
+同一点不同方向的截面通常有不同的面力；所以内部应力（stress）不是一个矢量。
+
+面力与有向面积是线性关系，可以用小四面体证明：斜面的面积为 $\dd S$，
+其三个坐标面投影面积分别为 $n_j\dd S$。体积力及惯性力是微元边长的三次量，
+面力是二次量；微元趋于零时，主阶平衡给出
+$\vect t(\vect n)=\sum_j n_j\vect t(\uvec e_j)$。
+负的 $n_j$ 由反向截面的作用反作用关系 $\vect t(-\vect n)=-\vect t(\vect n)$ 处理。
+因此定义
+\begin{equation}
+ t_i(\vect n)=\sum_j\sigma_{ij}n_j,\qquad
+ \dd\vect F=\boldsymbol\sigma\,\vect n\,\dd S.
+ \label{ch12:eq:traction}
+\end{equation}
+$\sigma_{ij}$ 表示法向沿第 $j$ 轴的面上，第 $i$ 方向的面力分量。
+$\sigma_{nn}=\vect n\cdot\boldsymbol\sigma\vect n$ 为正应力，余下的面内分量为剪应力，
+如图\ref{ch12:fig:stress}所示。拉伸正应力取正；流体压强 $p>0$ 对应 $\boldsymbol\sigma=-p\mathsf I$。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.93]
+ \begin{scope}
+  \draw[thick] (0,0)--(2.5,0)--(3.25,.8)--(.75,.8)--cycle;
+  \coordinate(P) at(1.6,.4);
+  \draw[vector] (P)--++(0,1.5) node[above] {$\vect t=\sigma_{nn}\vect n$};
+  \draw[->,TextGray] (.55,.32)--(.55,1.15) node[left] {$\vect n$};
+  \node at (1.6,-.6) {正应力：垂直截面};
+ \end{scope}
+ \begin{scope}[shift={(6,0)}]
+  \draw[thick] (0,0)--(2.5,0)--(3.25,.8)--(.75,.8)--cycle;
+  \coordinate(Q) at(1.35,.35);
+  \draw[vector] (Q)--++(1.9,0) node[right] {$\vect t_\parallel$};
+  \draw[->,TextGray] (Q)--++(0,1.2) node[above] {$\vect n$};
+  \node at (1.6,-.6) {剪应力：平行截面};
+ \end{scope}
+\end{tikzpicture}
+\figcap{正应力与剪应力是同一有向截面面力的垂直、平行分量。箭头起于截面内部，面力单位为力除以面积。}
+\label{ch12:fig:stress}
+\end{center}
+
+在没有微观偶力矩的普通连续介质中，应力还满足 $\sigma_{ij}=\sigma_{ji}$。
+例如考察尺寸 $\dd x,\dd y,\dd z$ 的小长方体绕 $z$ 轴的力矩：
+$x$ 法向两面上的 $y$ 向剪力合力矩为 $\sigma_{yx}\dd x\dd y\dd z$，
+$y$ 法向两面上的 $x$ 向剪力合力矩为 $-\sigma_{xy}\dd x\dd y\dd z$。
+正应力不贡献这一主阶力矩。微元转动惯量比体积多两个长度幂次，
+故角动量方程的最低阶要求 $\sigma_{yx}-\sigma_{xy}=0$，其余两对同理。
+
+\subsection{胡克定律、各向同性与独立弹性常数}
+
+在指定坐标系中，应力映射也可显式写成
+\[
+ \begin{pmatrix}\dd F_x\\\dd F_y\\\dd F_z\end{pmatrix}
+ =
+ \begin{pmatrix}
+ \sigma_{xx}&\sigma_{xy}&\sigma_{xz}\\
+ \sigma_{yx}&\sigma_{yy}&\sigma_{yz}\\
+ \sigma_{zx}&\sigma_{zy}&\sigma_{zz}
+ \end{pmatrix}
+ \begin{pmatrix}n_x\\n_y\\n_z\end{pmatrix}\dd S.
+\]
+对法向沿 $+y$ 的截面，法向分量为 $\sigma_{yy}\dd S$，
+切向分量为 $\sigma_{xy}\dd S$、$\sigma_{zy}\dd S$，不能漏掉三维中的第二个切向方向。
+小形变范围内的一般线性本构关系写成
+$\sigma_{ij}=\sum_{k,l}C_{ijkl}\varepsilon_{kl}$。
+四个指标各有三个取值，形式上有 $3^4=81$ 项。
+应力和应变分别对称，使独立分量由 $9\times9$ 降为 $6\times6=36$。
+若形变完全可逆、存在弹性能密度 $w(\boldsymbol\varepsilon)$，则
+$\sigma_{ij}=\partial w/\partial\varepsilon_{ij}$（非对角独立分量要一致计数），
+混合二阶导数相等给出 $C_{ijkl}=C_{klij}$，因此最多有 $6\times7/2=21$ 个独立常数。
+这是弹性对称性和能量条件共同给出的结论，并非所有材料一开始只有两个常数。
+
+各向同性意味着旋转坐标后本构关系不变。各向同性四阶张量只能由克罗内克符号
+$\delta_{ij}$ 的三种两两配对组成；再用前述对称性，便只剩两个常数：
+\begin{equation}
+ \sigma_{ij}=\lambda_e\,\varepsilon_{kk}\delta_{ij}+2G\varepsilon_{ij},
+ \qquad \varepsilon_{kk}=\varepsilon_{xx}+\varepsilon_{yy}+\varepsilon_{zz}.
+ \label{ch12:eq:lame}
+\end{equation}
+这里重复指标 $k$ 表示对三个方向求和；$\delta_{ij}$ 在 $i=j$ 时为1，其余为0。
+$\lambda_e,G$ 称为拉梅常数（Lamé constants）；用 $\lambda_e$ 的下标区别后文波长 $\lambda$。
+在线性范围，$\varepsilon_{kk}=\Delta V/V$，因为
+$(1+\varepsilon_{xx})(1+\varepsilon_{yy})(1+\varepsilon_{zz})-1$
+的一阶项正是三者之和。
+
+图\ref{ch12:fig:moduli}给出三种实验操作。纯剪切中
+$\sigma_{xy}=2G\varepsilon_{xy}=G\gamma_{xy}$，故 $G$ 就是剪切模量。
+静水压缩时 $\sigma_{xx}=\sigma_{yy}=\sigma_{zz}=-p$，取式\eqref{ch12:eq:lame}的迹得到
+\begin{equation}
+ -3p=(3\lambda_e+2G)\frac{\Delta V}{V},\qquad
+ K=-V\frac{\dd p}{\dd V}=\lambda_e+\frac{2G}{3}.
+ \label{ch12:eq:bulk}
+\end{equation}
+压强增加时体积减小，负号使稳定材料的体积模量 $K$ 为正。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.87]
+ \draw[guide] (0,0) rectangle(2,1.5);
+ \draw[thick,DeepBlue] (0,0)--(2,0)--(2.5,1.5)--(.5,1.5)--cycle;
+ \draw[vector] (.7,1.9)--(2,1.9) node[right] {$\tau$};
+ \draw[vector] (1.4,-.4)--(.1,-.4);
+ \node at (1.2,-1) {剪切：$\tau=G\gamma$};
+ \begin{scope}[shift={(5,0)}]
+  \draw[guide] (0,0) rectangle(2,1.5);
+  \draw[thick,DeepBlue] (.2,.15) rectangle(1.8,1.35);
+  \draw[vector] (1,2.1)--(1,1.4);
+  \draw[vector] (1,-.6)--(1,.1);
+  \draw[vector] (-.7,.75)--(.15,.75);
+  \draw[vector] (2.7,.75)--(1.85,.75);
+  \node at (1,-1) {体压缩：$K$};
+ \end{scope}
+ \begin{scope}[shift={(10,0)}]
+  \draw[guide] (0,0) rectangle(2,1.5);
+  \draw[thick,DeepBlue] (-.3,.2) rectangle(2.3,1.3);
+  \draw[vector] (-.3,.75)--(-1,.75);
+  \draw[vector] (2.3,.75)--(3,.75);
+  \node at (1,1.9) {横向收缩};
+  \node at (1,-1) {单轴拉伸：$Y,\nu$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{剪切、均匀压缩、单轴拉伸。虚线是未变形轮廓；中图箭头都朝内，右图轴向伸长并伴随横向收缩。}
+\label{ch12:fig:moduli}
+\end{center}
+
+通常实验的参考构形已经处于大气压下；在其上增加小载荷时，
+可先扣除共同的大气压及原有压缩，研究增量应力与增量应变。
+弹性模量的数值依材料而异，一些常见固体可达 $10^{10}\,\mathrm{Pa}$ 或更高量级。
+单轴拉伸时侧面自由，因此 $\sigma_{yy}=\sigma_{zz}=0$。
+记 $\varepsilon_{xx}=\varepsilon_\parallel$，
+$\varepsilon_{yy}=\varepsilon_{zz}=\varepsilon_\perp$。横向本构式给出
+\[
+ 0=\lambda_e(\varepsilon_\parallel+2\varepsilon_\perp)+2G\varepsilon_\perp,
+ \qquad
+ \nu=-\frac{\varepsilon_\perp}{\varepsilon_\parallel}
+     =\frac{\lambda_e}{2(\lambda_e+G)}.
+\]
+$\nu$ 为泊松比（Poisson's ratio）。正泊松比材料受拉后横向收缩；也存在负泊松比材料。
+再将 $\varepsilon_\perp=-\nu\varepsilon_\parallel$ 代回轴向应力，
+\begin{equation}
+ \sigma_{xx}=Y\varepsilon_\parallel,\qquad
+ Y=\frac{G(3\lambda_e+2G)}{\lambda_e+G}
+  =2G(1+\nu)=3K(1-2\nu).
+ \label{ch12:eq:young}
+\end{equation}
+$Y$ 是杨氏模量（Young's modulus），$Y,G,K,\lambda_e$ 的量纲均为压强。
+稳定各向同性材料要求剪切与体压缩能量均为正，即 $G>0,K>0$，从而 $-1<\nu<1/2$。
+对于原长 $L$、截面积 $A$ 的均匀细杆，
+$F/A=Y\Delta L/L$，故整体等效劲度系数 $k=YA/L$；
+材料的刚硬程度与整个物体的劲度不是同一个物理量。
+
+\begin{origexamplebox}{自重引起的伸长}
+\label{ch12:ex:01}
+长为 $L$、截面积为 $A$、密度为 $\rho$、杨氏模量为 $Y$ 的均匀细杆竖直悬挂，
+求自重引起的总伸长。取小形变，$L,A,\rho$ 均指参考构形的量。
+\end{origexamplebox}
+\begin{xesolution}
+从杆的自由下端向上量原构形坐标 $x$。图\ref{ch12:fig:selfweight}右侧取出截面以下的部分：
+它长 $x$、质量 $\rho Ax$，上方截面的拉力平衡其全部重量，因此
+\[
+ F(x)=\rho Agx,\qquad \varepsilon(x)=\frac{F(x)}{YA}=\frac{\rho gx}{Y}.
+\]
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.85]
+ \draw[thick] (-.9,3.5)--(.9,3.5);
+ \draw[thick] (-.25,0) rectangle(.25,3.5);
+ \draw[guide] (-.6,1.7)--(.7,1.7);
+ \draw[<->] (-.7,0)--(-.7,1.7) node[midway,left] {$x$};
+ \draw[<->] (.8,0)--(.8,3.5) node[midway,right] {$L$};
+ \node[below] at (0,0) {自由端};
+ \begin{scope}[shift={(4,0)}]
+  \draw[thick] (-.25,0) rectangle(.25,1.7);
+  \draw[vector] (0,1.7)--(0,2.7) node[above] {$F(x)$};
+  \draw[vector] (0,.85)--(0,-.5) node[below] {$\rho Axg$};
+  \node[right] at (.5,1) {截面以下的杆};
+ \end{scope}
+\end{tikzpicture}
+\figcap{自重拉伸的坐标与受力。右图的向上拉力作用于截面，向下重力作用于所取部分。}
+\label{ch12:fig:selfweight}
+\end{center}
+微段原长 $\dd x$，伸长为 $\varepsilon(x)\dd x$，所以
+\[
+ \boxed{\Delta L=\int_0^L\frac{\rho gx}{Y}\dd x=\frac{\rho gL^2}{2Y}}.
+\]
+$F$ 从下端的零增至上端的 $\rho AgL$，故平均应变恰为最大值的一半。
+截面积消去，是因为增大截面同时增大承重和抗拉能力。$\rho gL/Y$ 无量纲，
+$\Delta L$ 是长度；小形变还要求 $\rho gL/Y\ll1$。非均匀杆须重算每一截面以下的重量。
+\end{xesolution}
+
+\section{细杆纵波与弹性能}
+
+设侧面自由的均匀细杆截面积为 $A$，纵向位移为 $u(x,t)$。
+$x$ 标记原构形位置；图\ref{ch12:fig:rod-element}中的两端实际位置分别为
+$x+u(x,t)$、$x+\dd x+u(x+\dd x,t)$，因此
+\[
+ \dd L-\dd x=u(x+\dd x,t)-u(x,t)=u_x\dd x,\qquad\varepsilon=u_x.
+\]
+用下标 $x,t$ 表示偏导数。微元右端受力向右为 $A\sigma(x+\dd x)$，
+左端受力向左为 $A\sigma(x)$，其差为 $A\sigma_x\dd x$，而质量为 $\rho A\dd x$。
+于是
+\begin{equation}
+ \rho A\dd x\,u_{tt}=A\sigma_x\dd x,\qquad
+ u_{tt}=\frac{Y}{\rho}u_{xx},\qquad c_{\rm rod}=\sqrt{\frac{Y}{\rho}}.
+ \label{ch12:eq:rod-wave}
+\end{equation}
+这里已用 $\sigma=Yu_x$。该一维杆波近似还要求波长远大于横向尺寸，
+横向惯性可以忽略，侧面能够随泊松效应自由伸缩。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.88]
+ \draw[thick] (-.5,0)--(8,0);
+ \draw[thick] (1,-.2)--(1,.2) (4,-.2)--(4,.2);
+ \node[above] at (1,.2) {$x$}; \node[above] at (4,.2) {$x+\dd x$};
+ \draw[<->] (1,-.5)--(4,-.5) node[midway,below] {$\dd x$};
+ \draw[thick,DeepBlue] (-.5,-2)--(8,-2);
+ \draw[thick,DeepBlue] (1.5,-2.2)--(1.5,-1.8) (5,-2.2)--(5,-1.8);
+ \draw[->,TextGray] (1,-1.3)--(1.5,-1.3) node[midway,above] {$u(x)$};
+ \draw[->,TextGray] (4,-1.3)--(5,-1.3) node[midway,above] {$u(x+\dd x)$};
+ \node[below] at (3.25,-2.2) {$\dd L=\dd x+u_x\dd x$};
+ \draw[thick] (1.5,-4.3) rectangle(5,-3.6);
+ \draw[vector] (1.5,-3.95)--(-.3,-3.95) node[above] {$A\sigma(x)$};
+ \draw[vector] (5,-3.95)--(7.2,-3.95) node[above] {$A\sigma(x+\dd x)$};
+ \node[below] at (3.25,-4.4) {$\dd m=\rho A\dd x$};
+\end{tikzpicture}
+\figcap{细杆微元的三层图：原位置、变形后位置、取出微元后的两端受力。位移差决定应变，应力差决定加速度。}
+\label{ch12:fig:rod-element}
+\end{center}
+
+单位参考体积的动能密度为 $\rho u_t^2/2$。准静态地把应变从零增加到 $\varepsilon$，
+外力每单位体积所做的功为
+$\int_0^\varepsilon \sigma(\eta)\dd\eta=\int_0^\varepsilon Y\eta\dd\eta=Y\varepsilon^2/2$。
+因此总能量密度为
+\begin{equation}
+ w=\frac12\rho u_t^2+\frac12Yu_x^2.
+ \label{ch12:eq:rod-energy}
+\end{equation}
+$\sigma\,\dd\varepsilon$ 量纲是 $\mathrm{J/m^3}$；不能把它当作整根杆的能量。
+
+\section{弦的横波、两个偏振与能流}
+
+张力为 $T$、线密度为 $\mu$ 的柔弦沿 $x$ 轴伸展，两个横向位移分别为
+$\xi(x,t),\eta(x,t)$，空间位置为 $(x,\xi,\eta)$。
+相邻点的切向线元与单位切向量为
+\[
+ \dd\vect r=(1,\xi_x,\eta_x)\dd x,\qquad
+ \vect t=\frac{(1,\xi_x,\eta_x)}{\sqrt{1+\xi_x^2+\eta_x^2}}
+ \simeq(1,\xi_x,\eta_x).
+\]
+小斜率 $|\xi_x|,|\eta_x|\ll1$ 时，张力大小到一阶视为恒定。
+图\ref{ch12:fig:string-element}中微元受力为右端 $T\vect t(x+\dd x)$ 与左端 $-T\vect t(x)$；
+两者的横向差给出
+\begin{equation}
+ \mu\,\xi_{tt}=T\xi_{xx},\qquad
+ \mu\,\eta_{tt}=T\eta_{xx},\qquad c_{\rm string}=\sqrt{\frac T\mu}.
+ \label{ch12:eq:string-wave}
+\end{equation}
+这里 $T$ 是力，单位 $\mathrm N$；$\mu$ 是质量除以长度，故 $T/\mu$ 的量纲为速度平方。
+两个横向自由度具有相同波速，不表示弦元沿传播方向随波前进。
+
+\begin{center}
+\begin{tikzpicture}[x={(1cm,0cm)},y={(-.5cm,-.42cm)},z={(0cm,1cm)},>=Latex]
+ \draw[axis] (0,0,0)--(6.4,0,0) node[right] {$x$};
+ \draw[axis] (0,0,0)--(0,2.2,0) node[below left] {$y\ (\xi)$};
+ \draw[axis] (0,0,0)--(0,0,1.9) node[above] {$z\ (\eta)$};
+ \draw[curve,domain=.25:5.8,samples=90,variable=\q]
+  plot ({\q},{.65*sin(50*\q)},{.5*cos(50*\q)});
+ \coordinate(P) at(3,{.65*sin(150)},{.5*cos(150)});
+ \coordinate(Q) at(3.7,{.65*sin(185)},{.5*cos(185)});
+ \fill (P) circle(1.7pt); \fill(Q) circle(1.7pt);
+ \draw[vector] (P)--++(-1.1,{-.65*.872665*cos(150)*1.1},{.5*.872665*sin(150)*1.1});
+ \draw[vector] (Q)--++(1.1,{.65*.872665*cos(185)*1.1},{-.5*.872665*sin(185)*1.1});
+ \node[above] at (2.25,0,.35) {$-T\vect t(x)$};
+ \node[below] at (5,0,-1.1) {$T\vect t(x+\dd x)$};
+ \draw[guide] (P)--(3,0,0); \draw[guide] (Q)--(3.7,0,0);
+ \draw[<->] (3,0,1.1)--(3.7,0,1.1) node[midway,above] {$\dd x$};
+\end{tikzpicture}
+\figcap{右手坐标系中的弦微元。实线由同一空间曲线生成，两个力箭头沿其端点切线、背离所取微元。}
+\label{ch12:fig:string-element}
+\end{center}
+
+弦元长度
+$\dd s=\sqrt{1+\xi_x^2+\eta_x^2}\dd x
+\simeq[1+(\xi_x^2+\eta_x^2)/2]\dd x$。
+在恒定预张力近似下，多出的势能为 $T(\dd s-\dd x)$，所以单位长度的能量为
+\begin{equation}
+ \mathcal E=\frac12\mu(\xi_t^2+\eta_t^2)+\frac12T(\xi_x^2+\eta_x^2).
+ \label{ch12:eq:string-energy}
+\end{equation}
+以一个偏振 $y$ 为例，截面左侧通过张力对右侧做功的功率为
+$P=-Ty_xy_t$。右行波 $y=A\cos(kx-\omega t)$ 满足
+$y_x=-kA\sin(kx-\omega t)$、$y_t=\omega A\sin(kx-\omega t)$，
+因此 $P=Tk\omega A^2\sin^2(kx-\omega t)>0$。周期平均得到
+\begin{equation}
+ \overline P=\frac12Tk\omega A^2
+ =\frac12\mu c_{\rm string}\omega^2A^2,\qquad
+ Z=\frac T{c_{\rm string}}=\mu c_{\rm string}=\sqrt{\mu T}.
+ \label{ch12:eq:string-power}
+\end{equation}
+$Z$ 为弦的特征阻抗，单位为 $\mathrm{kg/s}$。线性、无色散近似下，
+波速由介质与预应力决定，不由振幅和频率决定；固定频率下能流与振幅平方成正比。
+
+\section{一维波动方程、行波与驻波}
+
+对 $u_{tt}=c^2u_{xx}$，令特征坐标 $\zeta=x-ct,\ \chi=x+ct$。
+链式法则给出
+$\partial_x=\partial_\zeta+\partial_\chi$、
+$\partial_t=-c\partial_\zeta+c\partial_\chi$，因此
+\[
+ u_{tt}-c^2u_{xx}=-4c^2u_{\zeta\chi}=0.
+\]
+先对 $\chi$ 积分，$u_\zeta$ 只依赖 $\zeta$；再对 $\zeta$ 积分，得到
+\begin{equation}
+ u(x,t)=f(x-ct)+g(x+ct).
+ \label{ch12:eq:dalembert}
+\end{equation}
+第一项保持形状向右平移，第二项向左平移。若给定
+$u(x,0)=F(x)$、$u_t(x,0)=V(x)$，则
+$f+g=F$、$-cf'+cg'=V$，解这两式并积分可得
+\[
+ u(x,t)=\frac{F(x-ct)+F(x+ct)}2+
+ \frac1{2c}\int_{x-ct}^{x+ct}V(s)\dd s.
+\]
+这说明求波的运动还需初始位移与初始速度，只有波动方程本身不足以唯一确定波形。
+
+简谐右行波为 $u=A\cos(kx-\omega t+\varphi)$，
+$\omega=ck,\ k=2\pi/\lambda,\ f=\omega/(2\pi),\ T_{\rm per}=1/f$。
+$kx-\omega t+\varphi$ 为相位。同一相位点满足 $k\dd x-\omega\dd t=0$，
+故速度为 $c=\omega/k$。图\ref{ch12:fig:travel-standing}左侧的瞬时零位移点会移动，
+不能叫作驻波的“波节”。
+
+两列等幅、同频、反向行波可组成
+$u=2A\sin kx\cos\omega t$。其空间振幅为 $|2A\sin kx|$，
+$x=n\pi/k$ 始终不动，是波节；两节之间振幅最大的地方是波腹。
+固定端要求 $u=0$，反射位移反相；自由端要求横向力 $Tu_x=0$，反射位移同相。
+两端固定、间距 $L$ 时 $\sin kL=0$，因此
+\begin{equation}
+ k_n=\frac{n\pi}{L},\quad \lambda_n=\frac{2L}{n},\quad
+ f_n=\frac{nc}{2L},\qquad n=1,2,\ldots.
+ \label{ch12:eq:fixed-modes}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,x=.85cm,y=.75cm]
+ \draw[axis] (-.3,0)--(6.6,0) node[right] {$x$};
+ \draw[curve,domain=0:6,samples=100] plot(\x,{sin(60*\x)});
+ \draw[guide,domain=0:6,samples=100] plot(\x,{sin(60*(\x-.65))});
+ \draw[vector] (2.6,1.5)--(4,1.5) node[midway,above] {$c$};
+ \node[above] at (1.5,1.05) {波峰};
+ \node[below] at (4.5,-1.05) {波谷};
+ \draw[<->] (1.5,-1.8)--(4.5,-1.8) node[midway,below] {$\lambda/2$};
+ \node at (3,-2.8) {行波：实、虚线为不同时刻};
+ \begin{scope}[shift={(9,0)}]
+  \draw[axis] (-.3,0)--(6.6,0) node[right] {$x$};
+  \draw[curve,domain=0:6,samples=100] plot(\x,{sin(60*\x)});
+  \draw[guide,domain=0:6,samples=100] plot(\x,{-.5*sin(60*\x)});
+  \foreach \p in {0,3,6}{\fill(\p,0)circle(2pt);}
+  \node[above] at (1.5,1.05) {波腹};
+  \draw[thin,TextGray] (3,-.15)--(3,-1.4);
+  \node[below] at (3,-1.55) {波节};
+  \node at (3,-2.8) {驻波：波节位置不随时间改变};
+ \end{scope}
+\end{tikzpicture}
+\figcap{行波与驻波的区别。左侧虚线是平移后的波形；右侧虚线仅改变各点的振幅比例，波节保持不动。}
+\label{ch12:fig:travel-standing}
+\end{center}
+
+\begin{origexamplebox}{弦的基频与张力}
+\label{ch12:ex:02}
+长 $L$、线密度 $\mu$ 的弦两端固定，基频为 $f_1$。
+若长度、线密度不变而基频提高为 $2f_1$，张力应变为原来的多少倍？
+\end{origexamplebox}
+\begin{xesolution}
+基频对应两端各一个波节、中间一个波腹，由式\eqref{ch12:eq:fixed-modes}，
+$f_1=c/(2L)=\sqrt{T/\mu}/(2L)$。两次状态相除，
+\[
+ \frac{2f_1}{f_1}=\frac{\sqrt{T'/\mu}}{\sqrt{T/\mu}}
+ =\sqrt{\frac{T'}T},\qquad \boxed{T'=4T}.
+\]
+频率加倍先要求波速加倍，而张力与波速平方成正比，所以不是两倍。
+若张力变化使弦的长度、线密度明显改变，就必须同时计入这些变化。
+\end{xesolution}
+
+两个横向分量可以有不同相位。令
+$\xi=A\cos(kx-\omega t)$、
+$\eta=B\cos(kx-\omega t+\delta)$。
+在固定材料点处，$\delta=0,\pi$ 时运动轨迹为直线，称线偏振；
+$A=B,\delta=\pm\pi/2$ 时轨迹为圆，称圆偏振；一般情形为椭圆偏振。
+这是介质点在垂直传播方向平面内的运动轨迹，不是波的传播轨迹。
+\input{ch12-initial-wave-teaching.tex}
+\input{ch12-continuum.tex}

@@ -1,0 +1,378 @@
+\unitheading{K5\quad 圆周运动}{unit-k05}
+\addcontentsline{toc}{chapter}{K5 圆周运动}
+
+质点沿圆的运动称为圆周运动。最简单的是速率不变的匀速圆周运动；它的速度大小虽然不变，方向却时刻变化，因而加速度不为零。圆周运动普遍存在于机械、游乐设施和天体运动的近似模型中。
+
+圆周运动的特殊性在于轨迹已经由圆心和半径确定，质点的位置只剩沿圆周的一个自由度。因而，与其反复给出平面直角坐标，不如用圆心到质点的半径相对某条固定射线的转角表示位置。历史上人们也常用圆周运动近似描述天体；即使真实轨道未必是圆，角位置、周期和切向—法向分解仍然是重要工具。
+
+\subsection{角位置、角速度与周期}
+
+\CirclePositionDiagram
+
+以圆心 $O$、固定方向 $ON$ 为基准，半径 $OP$ 与 $ON$ 的有向夹角 $\theta$ 称为角位置。规定逆时针为正。角位置相差 $2\pi$ 的整数倍对应同一空间位置，这一点不同于直线坐标。
+
+角位置的数值可以连续累积而不必每转一周就归零，例如 $\theta=0,2\pi,4\pi$ 虽对应同一几何点，却记录了不同的转动圈数。若只关心空间位置，可把角度按 $2\pi$ 取模；若关心总转角和经过时间，则必须保留完整的累积值。顺时针运动使 $\theta$ 减小，角速度因此为负，负号表示转向而不是“转得较慢”。
+
+在时间 $\Delta t$ 内转过 $\Delta\theta$，平均角速度为
+\begin{equation}
+ \bar\omega=\frac{\Delta\theta}{\Delta t}.
+\end{equation}
+匀速圆周运动中 $\omega$ 为常量，故
+\begin{equation}
+ \theta(t)=\theta_0+\omega t.
+\end{equation}
+
+\AngularSignDiagram
+
+匀速圆周运动中的“匀速”只指线速率和角速度大小不变，并不表示速度矢量恒定。经过相同时间转过相同角度，角位置随时间呈线性关系；但由于半径方向持续转动，切线方向也持续转动，速度矢量每一瞬间都在变化。
+
+转一周所需时间为周期 $T$，单位时间内的转数为频率 $f$：
+\begin{equation}
+ |\omega|T=2\pi,\qquad T=\frac{2\pi}{|\omega|},\qquad
+ f=\frac1T=\frac{|\omega|}{2\pi}.
+\end{equation}
+半径为 $R$ 的圆周上，有向弧坐标的变化为 $R\Delta\theta$；在这一小段不反向的运动中，实际路程是 $R|\Delta\theta|$。
+若区间内转向，应逐段累计路程，不能只取总转角的绝对值。所以线速度大小为
+\begin{equation}
+ v=R|\omega|,
+\end{equation}
+方向沿轨迹切线，并与半径垂直。
+
+频率的单位是赫兹，表示每秒完成的圈数，不要求取整数。周期和频率只描述转动的快慢；线速度还与半径有关。因此，在同一刚体上角速度相同的两点，离转轴越远，线速度越大。公式 $v=R|\omega|$ 中使用弧度制，若角速度以每秒多少度给出，必须先换算为弧度每秒。
+
+角位置公式也能直接处理追及和相遇。两个质点在同一圆周上相遇，要求它们的角位置之差为 $2\pi$ 的整数倍；若只要求两点与圆心共线，则角位置之差为 $\pi$ 的整数倍。写方程时应给顺、逆时针角速度带上符号，而不是一律先取正数再口头判断。相对角速度为零时，相对角位置保持不变，可能始终重合、始终共线或永不满足条件，必须单独讨论。
+
+对不同半径的同心圆，角速度和线速度不能混为一谈。已知线速度时要先除以各自半径得到角速度，再比较角位置；已知周期或频率时则可以直接转成角速度。涉及“第几次相遇”时，正整数既记录追上了多少圈，也排除了初始时刻可能已经相遇的情形。
+
+从圆周外一点观察内圆上的质点时，视线方向并不等于质点的极角。视角达到极值的临界位置可由几何切线判断：从观察点引向内圆的视线与半径垂直。图2.52把 $B$ 到 $A$ 的线画成内圆切线，因而最大视角只由 $R_1/R_2$ 决定；但左右两个极值在相对圆周上的弧间隔通常不同，所以相继出现的时间不一定相等。若只报告一个“周期”，必须说明是同一侧极值再次出现，还是左右极值交替出现。
+
+圆周与抛体相遇的题目要同时满足空间和时间条件。例2.51中抛体落到圆所在水平面只决定一个时刻，水平位移等于 $R$ 才保证它落到圆周；圆周质点还必须在同一时刻回到该碰撞点。这三项条件缺一不可。图中初速度方向、圆心正上方高度以及圆周转向若有任何改变，整数周条件也应相应修改。
+
+\begin{origexamplebox}{例2.46\quad 转速、角速度与线速度}
+质点沿半径 $r=10\,\mathrm{cm}$ 的圆周匀速运动，每分钟转 $30$ 圈。求角速度、线速度和周期。
+\end{origexamplebox}
+\begin{xesolution}
+频率 $f=30/60=0.5\,\mathrm{Hz}$，所以
+\[
+ \boxed{|\omega|=2\pi f=\pi\,\mathrm{rad/s}},\qquad
+ \boxed{v=|\omega|r=0.1\pi\,\mathrm{m/s}},\qquad
+ \boxed{T=1/f=2\,\mathrm s}.
+\]
+题目没有指定转动方向，所以只能确定角速度大小；若按逆时针为正，顺时针时应取负号。
+弧度本身无量纲，但写出 $\mathrm{rad/s}$ 能明确这是角速度。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.47\quad 径向匀速质点与圆周质点相撞}
+质点 $A$ 在半径 $R$ 的圆周上以角速度 $\omega$ 匀速运动。当 $A$ 到达给定点 $P$ 时，质点 $B$ 从圆心 $O$ 出发，沿 $OP$ 方向以速率 $v$ 匀速运动。若两质点能相撞，求 $v$ 的所有可能值。
+\par 题图见图~\ref{question-figure-2-47}。
+\KQuestionBV
+\end{origexamplebox}
+\begin{xesolution}
+$B$ 只经过圆周上的 $P$ 点，到达时间为 $R/v$。$A$ 从 $P$ 出发后第 $n$ 次回到 $P$ 的时间为 $2\pi n/|\omega|$，其中 $n=1,2,\ldots$。令两者相等：
+\RadialUniformCollisionDiagram
+\[
+ \boxed{v_n=\frac{|\omega|R}{2\pi n}},\qquad n=1,2,\ldots
+\]
+不能取 $n=0$，因为初始时 $B$ 位于圆心而非 $P$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.48\quad 径向匀加速质点与圆周质点相撞}
+条件同例2.47，但 $B$ 从圆心由静止沿 $OP$ 做加速度为 $a$ 的匀加速运动。若能相撞，求 $a$ 的所有可能值。
+\par 题图见图~\ref{question-figure-2-48}。
+\KQuestionBW
+\end{origexamplebox}
+\begin{xesolution}
+$B$ 到达 $P$ 时 $R=at^2/2$。相撞时间仍须为 $t_n=2\pi n/|\omega|$，所以
+\[
+ \boxed{a_n=\frac{2R}{t_n^2}=\frac{R\omega^2}{2\pi^2n^2}},
+ \qquad n=1,2,\ldots
+\]
+\RadialAcceleratedCollisionDiagram
+
+单位为 $\mathrm{m/s^2}$，且式中 $\omega^2$ 消除了转向符号。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.49\quad 同一圆周上的追及}
+两个质点在半径 $R$ 的同一圆周上同向匀速运动，角速度分别为 $\omega_1,\omega_2$，且 $\omega_2>\omega_1$。$t=0$ 时两者在圆心正上方的 $P$ 点相遇，均逆时针运动。求再次相遇的时间以及相遇位置与 $OP$ 的夹角 $\theta$。
+\par 题图见图~\ref{question-figure-2-49}。
+\KQuestionBX
+\end{origexamplebox}
+\begin{xesolution}
+快者相对慢者多转一周时再次相遇：
+\[
+ (\omega_2-\omega_1)t=2\pi,
+ \qquad
+ \boxed{t=\frac{2\pi}{\omega_2-\omega_1}}.
+\]
+\SameCirclePursuitDiagram
+
+相遇位置从 $OP$ 逆时针转过
+\[
+ \boxed{\theta\equiv\omega_1t
+ =\frac{2\pi\omega_1}{\omega_2-\omega_1}\pmod{2\pi}}.
+\]
+若题目只要 $0\le\theta<2\pi$，应把右式减去适当的 $2\pi$ 整数倍。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.50\quad 同心圆上两点共线}
+质点 $A,B$ 分别在半径 $R_1,R_2$ 的同心圆上匀速运动，线速度为 $v_A,v_B$。$t=0$ 时 $A,B$ 位于圆心同侧且其连线通过圆心。求以后两点连线通过圆心的所有时刻。
+\par 题图见图~\ref{question-figure-2-50}。
+\KQuestionBY
+\end{origexamplebox}
+\begin{xesolution}
+两点和圆心共线等价于角位置之差为 $k\pi$。令
+\[
+\omega_A=\frac{v_A}{R_1},\qquad \omega_B=\frac{v_B}{R_2}
+\]
+\ConcentricCollinearityDiagram
+
+（若方向相反，应给其中一个角速度带负号），则
+\[
+ \boxed{t_k=\frac{k\pi}{|\omega_A-\omega_B|}},\qquad k=0,1,2,\ldots
+\]
+当 $k$ 为偶数时两点在圆心同侧，为奇数时在异侧。若 $\omega_A=\omega_B$，两点在所有时刻都共线。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.51\quad 平抛质点与水平圆周质点相撞}
+半径为 $R$ 的圆水平放置，质点 $A$ 在圆周上以角速度 $\omega$ 匀速运动。在圆心正上方高度 $H$ 的 $S$ 点水平抛出质点 $B$，初速方向正对 $A$ 的初始位置，初速率为 $v_0$。若 $B$ 与 $A$ 相撞，$v_0$ 和 $H$ 应满足什么条件？
+\par 题图见图~\ref{question-figure-2-51}。
+\KQuestionBZ
+\end{origexamplebox}
+\begin{xesolution}
+$B$ 下落到圆所在水平面的时间为 $t=\sqrt{2H/g}$。它要到达圆周，须有
+\[
+ v_0t=R.
+\]
+\ProjectileCircleCollisionDiagram
+
+同时，碰撞点是 $A$ 的初始位置，故 $A$ 必须整周返回：$|\omega|t=2\pi n$，$n=1,2,\ldots$。因此条件可写成
+\[
+ \boxed{H=\frac{2\pi^2n^2g}{\omega^2}},\qquad
+ \boxed{v_0=\frac{|\omega|R}{2\pi n}},\qquad n=1,2,\ldots
+\]
+等价地，$v_0=R\sqrt{g/(2H)}$ 且 $|\omega|\sqrt{2H/g}$ 必须是 $2\pi$ 的正整数倍。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.52\quad 外圈观察者看到的角摆动}
+$A,B$ 分别在半径 $R_1,R_2$ 的同心圆轨道上同向运动，$R_1<R_2$，角速度 $\omega_1>\omega_2$。从外圈的 $B$ 看，$A$ 在圆心 $O$ 左右摆动。求 $\angle ABO$ 的最大值，以及 $A$ 相继出现于最大夹角位置的时间间隔。
+\par 题图见图~\ref{question-figure-2-52}。
+\KQuestionCA
+\end{origexamplebox}
+\begin{xesolution}
+夹角最大时，从 $B$ 引向内圆的视线 $BA$ 与内圆相切，所以 $OA\perp BA$。在直角三角形 $OAB$ 中
+\ConcentricSightDiagram
+\[
+ \boxed{\theta_{\max}=\arcsin\frac{R_1}{R_2}}.
+\]
+设 $\delta=\angle AOB$，切点满足 $\cos\delta=R_1/R_2$。相对角速度为 $\Omega=\omega_1-\omega_2$。若把左右两个极值位置都算作“最大夹角”，相邻出现的时间间隔交替为
+\[
+ \boxed{\Delta t_1=\frac{2\delta}{\Omega},\qquad
+ \Delta t_2=\frac{2\pi-2\delta}{\Omega}},
+ \quad \delta=\arccos\frac{R_1}{R_2}.
+\]
+同一侧最大位置再次出现的周期为 $\boxed{2\pi/\Omega}$。这样写可避免把左右极值误当成等时间间隔。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.53\quad 经典自转电子模型的矛盾}
+20世纪早期，实验表明电子具有一种类似“绕自身轴转动”的内禀性质。当时有人尝试用经典小球的自转来理解这一现象：把电子看成半径 $r_e\simeq3\times10^{-15}\,\mathrm m$ 的小球，并要求自转满足 $\omega R^2\simeq10^{-5}\,\mathrm{m^2/s}$。指出这个经典模型的致命缺陷。
+\end{origexamplebox}
+\begin{xesolution}
+模型中电子表面线速度为
+\[
+ v=\omega R=\frac{\omega R^2}{R}
+ \simeq\frac{10^{-5}}{3\times10^{-15}}
+ \simeq3.3\times10^9\,\mathrm{m/s}.
+\]
+这约为光速的 $11$ 倍，违反相对论的速度上限。因此电子不能被当作具有该经典半径、作刚性自转的小球；“自旋”不是经典物体绕自身轴转动。
+\end{xesolution}
+
+\subsection{向心加速度}
+
+\CentripetalDerivationDiagram
+
+相隔 $\Delta t$ 的两速度大小均为 $v=|\omega|R$，方向转过 $\Delta\theta=|\omega|\Delta t$。速度三角形在 $\Delta t\to0$ 时给出
+\[
+ |\Delta\vect v|\simeq v\Delta\theta=v|\omega|\Delta t.
+\]
+因此匀速圆周运动的加速度指向圆心，大小
+\begin{equation}
+ \boxed{a_r=\omega^2R=\frac{v^2}{R}}.
+\end{equation}
+
+图2.15的推导还说明了方向。把 $A,B$ 两点的速度平移到同一首端，二者等长，夹角等于半径转过的角 $\Delta\theta$；连接两个终端得到 $\Delta\vect v$。当 $\Delta t$ 趋于零，速度三角形的顶角趋于零，底边方向趋于半径内侧，所以加速度与瞬时速度垂直并指向圆心。底边长度的一阶近似为 $v\Delta\theta$，除以 $\Delta t$ 得 $v|\omega|=\omega^2R$。这里的“向心”只说明加速度方向，并不意味着质点正在向圆心移动。
+
+公式可以用两个极限作检查。在相同线速度下，半径越大，轨迹越平缓，$a_r=v^2/R$ 越小；在相同角速度下，半径越大，线速度也按 $R$ 增大，因而 $a_r=\omega^2R$ 反而越大。两个看似相反的结论来自所保持不变的量不同。量纲方面，$\omega^2R$ 为 $\mathrm{s^{-2}}\cdot\mathrm m=\mathrm{m/s^2}$，与加速度一致。
+
+若周期已知，$a_r=4\pi^2R/T^2$；若频率已知，$a_r=4\pi^2f^2R$。这些写法在比较天体、转盘或同轴转动物体时很方便，但仍只适用于瞬时轨迹半径为 $R$ 的圆周运动，不能把普通曲线的坐标到某个任意点的距离代作 $R$。
+
+向心加速度不是一种额外的“运动类型”，而是圆周运动总加速度沿半径方向的分量。研究受力时，不能把“向心力”再作为某个独立物体施加的新力；应先列出真实相互作用力，再把它们指向圆心的合力与 $ma_r$ 对应。本节只讨论运动学，但明确这一点可以防止后续动力学中重复计算力。
+
+在用经典电子自转模型作估算时，表面速度 $v=\omega R$ 超过光速，说明模型本身失效，而不是说明电子真的能超光速。数量级与极限检查是圆周运动中很重要的审查手段：给定极小半径却要求固定的 $\omega R^2$，会使 $\omega R$ 反比于半径急剧增大，立刻暴露经典刚性小球图像的矛盾。
+
+圆周问题中的几个几何关系可以互相联系：速度沿切线，向心加速度沿半径指向圆心；
+径向运动质点只在其射线与圆周的交点处可能发生碰撞；圆外观察者的最大视角对应视线与圆相切。
+先从这些几何约束确定可能的位置，再用时间方程检验是否同时到达，能减少无意义的代数根。
+
+\begin{origexamplebox}{例2.54\quad 向心加速度的两个反算}
+（1）质点以 $v=10\,\mathrm{m/s}$ 在半径 $R=10\,\mathrm m$ 的圆轨道上匀速运动，求加速度大小。\par
+（2）半径 $R=10\,\mathrm m$，向心加速度 $a_r=10\,\mathrm{m/s^2}$，求频率。
+\end{origexamplebox}
+\begin{xesolution}
+（1）
+\[
+\boxed{a_r=\frac{v^2}{R}=10\,\mathrm{m/s^2}}.
+\]
+（2）由 $a_r=\omega^2R$ 得 $\omega=1\,\mathrm{rad/s}$，故
+\[
+ \boxed{f=\frac{\omega}{2\pi}=\frac1{2\pi}\,\mathrm{Hz}\approx0.159\,\mathrm{Hz}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例2.55\quad 开普勒型周期律对应的加速度}
+若多个质点绕共同圆心匀速运动，并满足 $T^2/R^3=C$，其中 $C$ 为常量，求向心加速度与半径的关系。
+\end{origexamplebox}
+\begin{xesolution}
+\[
+a_r=\frac{4\pi^2R}{T^2}
+=\boxed{\frac{4\pi^2}{CR^2}}.
+\]
+因此 $a_r\propto R^{-2}$，即随半径平方反比衰减。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.56\quad 周期相同的同心转动}
+若多个质点绕共同圆心匀速运动，周期 $T$ 与各自轨道半径 $R$ 无关，求向心加速度与半径的关系。
+\end{origexamplebox}
+\begin{xesolution}
+周期相同意味着角速度的大小相同，即 $|\omega|=2\pi/T$；转动方向可以不同。故
+\[
+ \boxed{a_r=\frac{4\pi^2}{T^2}R\propto R}.
+\]
+这与刚体绕固定轴转动时各点具有相同角速度的情况一致。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.57\quad 赛车走弯道内侧还是外侧}
+赛车在圆弧赛道上允许的最大向心加速度为 $a$，直线加、减速的最大加速度也为 $a$。
+弯道为半圆，内外半径分别为 $R_1<R_2$，直道最高速率为 $v_0>\sqrt{aR_1}$。
+按“直道完成加减速、半圆内匀速”的模型，比较两条路线的过弯时间；
+再把入弯制动和出弯加速纳入比较。两端取相同横断面，直道总长为 $S$ 且足够完成加减速，起终速率均为 $v_0$。
+\par 题图见图~\ref{question-figure-2-57}。
+\KQuestionCF
+\end{origexamplebox}
+\begin{xesolution}
+先看半圆弧。由 $v^2/R\le a$，加上不能超过最高速率的限制，弯道所用速率为
+\[
+ u(R)=\min\{v_0,\sqrt{aR}\}.
+\]
+内道一定需要制动，但外道是否需要制动，取决于 $v_0$ 是否大于 $\sqrt{aR_2}$。
+\RacetrackDiagram
+图中的内、外圆弧长分别为 $\pi R_1,\pi R_2$。对一般半径 $R$，
+\[
+ t_{\rm arc}(R)=\frac{\pi R}{u(R)}
+ =\begin{cases}\pi\sqrt{R/a},&R<v_0^2/a,\\
+ \pi R/v_0,&R\ge v_0^2/a.\end{cases}
+\]
+两段都随 $R$ 增大，分界处连续，所以只计圆弧时内道更快。
+
+再计加减速。若弯道速率为 $u<v_0$，以最大加速度制动和加速，每段分别需要
+\[
+ t_b=\frac{v_0-u}{a},\qquad s_b=\frac{v_0^2-u^2}{2a}.
+\]
+直道余下的 $S-2s_b$ 以 $v_0$ 行驶。先扣除两段距离，避免重复计算直道时间：
+\begin{align*}
+ T(R)&=\frac{S-2s_b}{v_0}+2t_b+\frac{\pi R}{u}\\
+ &=\frac S{v_0}+\frac{\pi R}{u}+\frac{(v_0-u)^2}{av_0}.
+\end{align*}
+无需制动时取 $u=v_0$，最后一项自然为零。代入两种可能的弯道速率：
+\[
+ T(R)-\frac S{v_0}
+ =\begin{cases}
+ \displaystyle\frac{v_0}{a}+(\pi-2)\sqrt{\frac Ra}+\frac R{v_0},
+ &R<v_0^2/a,\\[2mm]
+ \displaystyle\frac{\pi R}{v_0},&R\ge v_0^2/a.
+ \end{cases}
+\]
+第一段中含 $R$ 的两项都递增，第二段也递增，分界处同为 $\pi v_0/a$。因此
+\[
+ \boxed{T(R_1)<T(R_2)}.
+\]
+内道较快，但理由不能只说“路程短”：内道还承担更大的制动、加速时间损失，必须一并比较。
+各项量纲都是时间；当 $u\to v_0$ 时附加损失趋于零。
+本模型不含弯内变速、横向变道或切弯；允许这些操作时需另建加速度和路线约束。
+\end{xesolution}
+
+\subsection{变速圆周运动}
+
+一般圆周运动的瞬时角速度和角加速度定义为
+\begin{equation}
+ \omega(t)=\lim_{\Delta t\to0}\frac{\Delta\theta}{\Delta t},
+ \qquad
+ \beta(t)=\lim_{\Delta t\to0}\frac{\Delta\omega}{\Delta t}.
+\end{equation}
+任一时刻仍有
+\begin{equation}
+ v=R|\omega|,\qquad a_r=\omega^2R=\frac{v^2}{R},
+ \qquad a_\theta=R\beta.
+\end{equation}
+$a_\theta$ 是沿角度增加方向的有符号切向分量，$a_r$ 是指向圆心的法向分量大小，二者互相垂直。
+若改用沿实际速度方向的自然切向，则在 $\omega\ne0$ 时
+\[
+ a_t=\frac{\dd v}{\dd t}=R\,\operatorname{sgn}(\omega)\beta.
+\]
+逆时针转动时 $a_t=a_\theta$，顺时针转动时 $a_t=-a_\theta$；减速或加速应看 $a_t$ 的符号。
+若 $\beta$ 为常量，
+\begin{equation}
+ \omega(t)=\omega_0+\beta t,\qquad
+ \theta(t)=\theta_0+\omega_0t+\frac12\beta t^2.
+\end{equation}
+
+变速圆周运动中，每一瞬间仍可把运动看成“沿切线改变速率”和“向圆心改变方向”的合成。即便 $\omega$ 随时间改变，法向分量仍为当时的 $v^2/R$，不能把它漏掉；切向分量则由角速度变化产生。总加速度大小为 $\sqrt{a_t^2+a_r^2}$，方向由两分量共同决定。只有 $\beta=0$ 时切向分量消失，运动才退化为匀速圆周运动。
+
+角加速度的定义与直线运动的加速度完全类比：在有限时间间隔中先定义平均角加速度 $\Delta\omega/\Delta t$，再令间隔趋于零得到瞬时值。若 $\beta$ 恒定，角速度图是直线，图下有向面积给角位移；若 $\beta$ 随时间变化，则 $\omega(t)=\omega_0+\int\beta\,\dd t$，$\theta(t)=\theta_0+\int\omega\,\dd t$。这些积分关系与直线运动中的 $a$-$t$、$v$-$t$ 图完全平行。
+
+注意 $a_\theta=R\beta$ 带有方向符号，而 $a_r=\omega^2R$ 的大小总为非负。
+角速度过零时，向心加速度瞬间为零，但 $a_\theta$ 仍可非零，质点随后反向转动。
+在瞬时静止处速度方向未定，不能直接定义“沿速度的单位切向”；仍可使用预先规定的角度正向处理。
+
+\begin{origexamplebox}{例2.58\quad 圆周边缘达到声速}
+质点在半径 $R=11\,\mathrm m$ 的圆周上运动，$t=0$ 时 $\omega_0=0$，角加速度 $\beta=1\,\mathrm{rad/s^2}$。求边缘速度达到声速 $340\,\mathrm{m/s}$ 所需时间。
+\end{origexamplebox}
+\begin{xesolution}
+\[
+v=R\omega=R\beta t,
+\]
+所以
+\[
+ \boxed{t=\frac{340}{11\times1}\,\mathrm s\approx30.9\,\mathrm s}.
+\]
+这里不能把 $\beta$ 直接当作线加速度；切向加速度为 $R\beta=11\,\mathrm{m/s^2}$。
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{14\baselineskip}\fi
+\begin{origexamplebox}{例2.59\quad 加速度与速度夹角恒定}
+质点沿半径为 $R$ 的圆轨道运动，初速率为 $v_0$，其加速度方向与速度方向的夹角 $\theta$ 恒定。求速度大小随时间的关系。
+\par 题图见图~\ref{question-figure-2-59}。
+\KQuestionCH
+\end{origexamplebox}
+\begin{xesolution}
+把加速度沿切向和指向圆心的法向分解。若图示加速度的法向分量指向圆心，则
+\[
+a_t=a\cos\theta=\frac{\dd v}{\dd t},
+\qquad
+a_r=a\sin\theta=\frac{v^2}{R}.
+\]
+\AccelerationVelocityAngleDiagram
+
+消去 $a$：
+\[
+\frac{\dd v}{\dd t}=\frac{v^2}{R}\cot\theta.
+\]
+由 $v(0)=v_0$ 积分得
+\[
+ -\frac1v+\frac1{v_0}=\frac{\cot\theta}{R}t,
+\]
+即
+\[
+ \boxed{v(t)=\frac{v_0}{1-(v_0t/R)\cot\theta}}.
+\]
+$\theta=90^\circ$ 时 $v=v_0$；$\theta<90^\circ$ 时加速，$\theta>90^\circ$ 时减速。分母为零前模型才有效。
+\end{xesolution}

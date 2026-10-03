@@ -1,0 +1,18 @@
+% 核心结论：时间轴为运动原点世界线，空间轴为同时线。
+% 纯几何，约11x6cm，字号10pt；ct↑，x→，双向光线；P投影到直角轴。
+% beta=0.4；事件P=(4,3)远离斜轴；所有标签透明。
+\begin{tikzpicture}[font=\small,scale=.93,>=Latex]
+ \draw[axis] (-3.5,0)--(5.6,0) node[right] {$x$};
+ \draw[axis] (0,-.4)--(0,4.9) node[above] {$ct$};
+ \draw[DeepBlue,dashdotted] (0,0)--(3.8,3.8);
+ \draw[DeepBlue,dashdotted] (0,0)--(-3.2,3.2);
+ \node[above left] at (-3.2,3.2) {$x=-ct$};
+ \node[above right] at (3.8,3.8) {$x=ct$};
+ \draw[Blue,thick] (0,0)--(1.8,4.5) node[above=4pt] {$ct'$};
+ \draw[Blue,thick] (0,0)--(5.1,2.04) node[right=4pt] {$x'$};
+ \coordinate (P) at (4,3);
+ \draw[guide] (0,3)--(P)--(4,0);
+ \fill (P) circle (1.6pt);\node[right=5pt] at (P) {P};
+ \node[left=4pt] at (0,3) {$ct_P$};\node[below=4pt] at (4,0) {$x_P$};
+ \node[below left] at (0,0) {O};
+\end{tikzpicture}

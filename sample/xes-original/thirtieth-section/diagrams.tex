@@ -1,0 +1,292 @@
+% Original vector redraws for Lesson 21.  Text labels deliberately have no
+% rectangular background; spacing is achieved by placement, not masking.
+
+\tikzset{
+  thermobody/.style={draw=Ink,thick},
+  thermoarrow/.style={-{Latex[length=2.2mm]},draw=DeepBlue,very thick},
+  thermoguide/.style={draw=TextGray,densely dashed},
+  thermolabel/.style={font=\scriptsize,text=Ink,fill=none,inner sep=0pt,outer sep=.8pt}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-0.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{0.3em}
+}
+
+\newcommand{\pistonstage}[4]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[thermobody] (-0.62,-1.20)--(-0.62,1.15) (0.62,-1.20)--(0.62,1.15);
+    \draw[thermobody] (-0.62,1.15)--(0.62,1.15);
+    \draw[fill=SoftGray,draw=Ink,thick] (-0.54,#2) rectangle (0.54,{#2+0.18});
+    \coordinate (Pin) at (0,#2);
+    \coordinate (Cen) at (0,-1.78);
+    \coordinate (Crank) at ($(Cen)+(#3:0.52)$);
+    \draw[Ink,thick] (Pin)--(Crank);
+    \draw[Ink,thick] (Cen) circle (0.52);
+    \draw[Ink,thick] (Cen)--(Crank);
+    \fill[Ink] (Cen) circle (1.1pt) (Crank) circle (1.1pt);
+    \node[thermolabel,anchor=north] at (0,-2.42) {#4};
+  \end{scope}
+}
+
+\newcommand{\ottoCycleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.92cm,y=.92cm]
+  \pistonstage{-6.8}{0.05}{220}{进气}
+  \pistonstage{-5.05}{0.52}{300}{压缩}
+  \pistonstage{-3.30}{0.72}{80}{点火}
+  \pistonstage{-1.55}{-0.10}{155}{做功}
+  \pistonstage{0.20}{0.18}{235}{排气}
+  \draw[thermoarrow] (-7.85,0.85)--(-7.10,0.85);
+  \node[thermolabel,above] at (-7.48,0.85) {进气};
+  \draw[thermoarrow] (0.53,0.85)--(1.25,0.85);
+  \node[thermolabel,above] at (0.88,0.85) {排气};
+  \draw[thermoarrow] (-6.8,1.85)--(-6.8,1.25);
+  \node[thermolabel,above right] at (-6.8,1.85) {火花塞};
+  \draw[DeepBlue,thick] (-3.53,1.22)--(-3.30,1.57)--(-3.10,1.22)
+    (-3.45,1.35)--(-3.28,1.80)--(-3.18,1.37);
+
+  \begin{scope}[shift={(2.35,-2.15)},x=.9cm,y=.75cm]
+    \draw[axis] (0,0)--(5.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.9) node[above] {$P$};
+    \coordinate (O) at (.55,.85);
+    \coordinate (A) at (4.55,.85);
+    \coordinate (B) at (.90,2.35);
+    \coordinate (C) at (.90,4.15);
+    \coordinate (D) at (4.55,1.75);
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,
+      mark=at position .35 with {\arrow{Latex}},mark=at position .78 with {\arrow{Latex}}}]
+      (O)--(A)--(B)--(C) .. controls (1.85,3.55) and (3.20,2.35) .. (D)--(A)--(O);
+    \foreach \p/\lab/\pos in {O/O/below left,A/A/below right,B/B/left,C/C/above left,D/D/above right}{
+      \fill[Ink] (\p) circle (1.7pt) node[thermolabel,\pos] {$\lab$};
+    }
+    \draw[thermoguide] (.90,0)--(.90,4.15) (4.55,0)--(4.55,1.75);
+    \node[thermolabel,below] at (.90,0) {$V_2$};
+    \node[thermolabel,below] at (4.55,0) {$V_1$};
+    \draw[thermoarrow] (1.25,2.75)--(1.25,3.65);
+    \node[thermolabel,right] at (1.25,3.20) {$Q_h$};
+    \draw[thermoarrow] (4.85,1.70)--(5.30,1.35);
+    \node[thermolabel,right] at (5.18,1.48) {$Q_c$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\carnotCycleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1.08cm,y=.95cm]
+  \draw[axis] (0,0)--(7.4,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,5.0) node[above] {$P$};
+  \draw[TextGray,thick,domain=.8:6.7,samples=100] plot (\x,{4.55/(\x^.43)});
+  \draw[TextGray,thick,domain=.8:6.7,samples=100] plot (\x,{2.30/(\x^.43)});
+  \coordinate (P1) at (1.35,4.00);
+  \coordinate (P2) at (4.35,2.48);
+  \coordinate (P3) at (5.55,1.10);
+  \coordinate (P4) at (2.05,1.70);
+  \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,
+    mark=at position .12 with {\arrow{Latex}},mark=at position .38 with {\arrow{Latex}},
+    mark=at position .63 with {\arrow{Latex}},mark=at position .88 with {\arrow{Latex}}}]
+    (P1) .. controls (2.25,3.38) and (3.35,2.76) .. (P2)
+    .. controls (4.75,1.83) and (5.10,1.38) .. (P3)
+    .. controls (4.35,1.20) and (3.00,1.45) .. (P4)
+    .. controls (1.90,2.62) and (1.62,3.36) .. cycle;
+  \foreach \p/\lab/\pos in {P1/1/above left,P2/2/above right,P3/3/below right,P4/4/below left}{
+    \fill[Ink] (\p) circle (1.8pt) node[thermolabel,\pos] {$\lab$};
+  }
+  \node[thermolabel,anchor=west] at (5.55,3.15) {$T_1$ 等温线};
+  \node[thermolabel,anchor=west] at (4.85,.55) {$T_2$ 等温线};
+  \node[thermolabel] at (3.0,3.18) {$Q_1$};
+  \node[thermolabel] at (3.75,1.15) {$Q_2$};
+  \node[thermolabel,DeepBlue] at (4.05,4.35) {$T_1>T_2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\heatdevicepanel}[5]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[thermobody,fill=SoftGray] (-1.40,2.15) rectangle (1.40,2.62);
+    \draw[thermobody,fill=SoftGray] (-1.40,-2.62) rectangle (1.40,-2.15);
+    \node[thermolabel] at (0,2.38) {高温热库 $T_h$};
+    \node[thermolabel] at (0,-2.38) {低温热库 $T_c$};
+    \draw[thermobody,fill=PaleBlue] (0,0) circle (.64);
+    \node[thermolabel] at (0,0) {#2};
+    #3 #4 #5
+  \end{scope}
+}
+
+\newcommand{\heatDevicesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.82cm]
+  \heatdevicepanel{-5.7}{热机}{\draw[thermoarrow] (0,2.12)--(0,.70) node[midway,right,thermolabel] {$Q_h$};}{\draw[thermoarrow] (0,-.70)--(0,-2.12) node[midway,right,thermolabel] {$Q_c$};}{\draw[thermoarrow] (.68,0)--(1.55,0) node[midway,above,thermolabel] {$W$};}
+  \heatdevicepanel{-1.9}{“完美”热机}{\draw[thermoarrow] (0,2.12)--(0,.70) node[midway,right,thermolabel] {$Q_h$};}{}{\draw[thermoarrow] (.68,0)--(1.55,0);\node[thermolabel] at (1.15,-1.05) {$W=Q_h$};}
+  \heatdevicepanel{1.9}{制冷机}{\draw[thermoarrow] (0,.70)--(0,2.12) node[midway,right,thermolabel] {$Q_h$};}{\draw[thermoarrow] (0,-2.12)--(0,-.70) node[midway,right,thermolabel] {$Q_c$};}{\draw[thermoarrow] (1.55,0)--(.68,0) node[midway,above,thermolabel] {$W$};}
+  \heatdevicepanel{5.7}{“完美”制冷机}{\draw[thermoarrow] (0,.70)--(0,2.12);}{\draw[thermoarrow] (0,-2.12)--(0,-.70);}{}
+  \node[thermolabel] at (-5.7,-3.05) {(a) 真实热机};
+  \node[thermolabel] at (-1.9,-3.05) {(b) 第二类永动机};
+  \node[thermolabel] at (1.9,-3.05) {(c) 真实制冷机};
+  \node[thermolabel] at (5.7,-3.05) {(d) 无功制冷机};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\portraitOne}[5]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[fill=Ink,draw=Ink,rounded corners=1pt] (-1.62,-2.15) rectangle (1.62,2.25);
+    \fill[#2] (-1.18,-2.10) .. controls (-1.02,-1.00) and (-.75,-.63) .. (-.48,-.50)
+      --(.48,-.50) .. controls (.82,-.72) and (1.07,-1.15) .. (1.18,-2.10)--cycle;
+    \fill[SoftGray] (0,.35) ellipse (.68 and 1.02);
+    #3
+    \draw[Ink,thick] (-.30,.47)--(-.08,.50) (.10,.50)--(.32,.47);
+    \fill[Ink] (-.18,.49) circle (.04) (.18,.49) circle (.04);
+    \draw[Ink,thin] (0,.37)--(-.05,.05)--(.06,.00);
+    \draw[Ink,thin] (-.24,-.17) .. controls (0,-.28) and (.18,-.22) .. (.28,-.14);
+    #4
+    \node[font=\small\bfseries,anchor=north] at (0,-2.38) {#5};
+  \end{scope}
+}
+
+\newcommand{\foundersPortraitFigure}{%
+\begin{center}
+\begin{tikzpicture}
+  \portraitOne{-4.6}{TextGray}{\fill[Ink] (-.70,.82) .. controls (-.48,1.58) and (.55,1.58) .. (.72,.74) .. controls (.28,1.10) and (-.25,1.15) .. cycle;}{\draw[SoftGray,very thick] (-.40,-.62)--(-.15,-.88)--(0,-.70)--(.18,-.88)--(.42,-.62);}{Sadi Carnot}
+  \portraitOne{0}{RuleGray}{\fill[SoftGray] (-.60,.92) arc[start angle=180,end angle=0,x radius=.60,y radius=.50];}{\fill[SoftGray] (-.52,-.18) .. controls (-.62,-.95) and (-.35,-1.28) .. (0,-1.48) .. controls (.36,-1.25) and (.62,-.92) .. (.50,-.18) .. controls (.18,-.42) and (-.18,-.42) .. cycle;}{Lord Kelvin}
+  \portraitOne{4.6}{TextGray}{\fill[Ink] (-.66,.88) .. controls (-.38,1.42) and (.48,1.34) .. (.68,.70) .. controls (.30,1.02) and (-.15,1.02) .. cycle;}{\draw[Ink,very thick] (-.34,-.12) .. controls (0,-.02) and (.18,-.04) .. (.36,-.12);}{Rudolf Clausius}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\entropyPathFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.9cm]
+  \begin{scope}[shift={(-3.8,-1.4)}]
+    \draw[axis] (0,0)--(5.0,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.3) node[above] {$P$};
+    \coordinate (A) at (1.0,1.0);
+    \coordinate (B) at (1.0,3.55);
+    \coordinate (C) at (4.25,.85);
+    \draw[DeepBlue,very thick,->] (A)--(B);
+    \draw[DeepBlue,very thick,->] (B) .. controls (2.0,2.95) and (3.0,1.70) .. (C);
+    \fill[Ink] (A) circle (1.7pt) node[thermolabel,left] {$(V_0,T_0)$};
+    \fill[Ink] (B) circle (1.7pt) node[thermolabel,above left] {$(V_0,T)$};
+    \fill[Ink] (C) circle (1.7pt) node[thermolabel,right] {$(V,T)$};
+    \node[thermolabel,anchor=west] at (1.15,2.25) {等容升温};
+    \node[thermolabel,rotate=-28] at (2.90,2.05) {等温膨胀};
+  \end{scope}
+  \node[draw=DeepBlue,rounded corners=2pt,thick,align=left,inner sep=7pt] at (4.0,.2)
+    {$\displaystyle \Delta S=n c_v\ln\frac{T}{T_0}+nR\ln\frac{V}{V_0}$\\[5pt]
+     熵是状态量：可任选一条可逆路径计算。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\boltzmannMemorialFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[TextGray!28] (-4.6,-2.5) rectangle (4.6,1.65);
+  \fill[TextGray!28] (-4.6,1.60) arc[start angle=180,end angle=0,x radius=4.6,y radius=2.0]--cycle;
+  \draw[Ink,thick] (-4.6,-2.5)--(-4.6,1.6) arc[start angle=180,end angle=0,x radius=4.6,y radius=2.0]--(4.6,-2.5)--cycle;
+  \node[font=\large\bfseries] at (0,2.25) {$S=k_B\ln\Omega$};
+  \fill[Ink] (-1.35,-2.48) .. controls (-1.05,-1.35) and (-.78,-.78) .. (-.48,-.55)
+    --(.48,-.55) .. controls (.82,-.86) and (1.12,-1.45) .. (1.35,-2.48)--cycle;
+  \fill[SoftGray] (0,.10) ellipse (.80 and 1.12);
+  \fill[Ink] (-.75,.54) .. controls (-.42,1.36) and (.52,1.36) .. (.78,.48)
+    .. controls (.36,.84) and (-.20,.88) .. cycle;
+  \draw[Ink,thick] (-.40,.25)--(-.12,.28) (.12,.28)--(.40,.25);
+  \fill[Ink] (-.22,.26) circle (.045) (.22,.26) circle (.045);
+  \draw[Ink,thin] (0,.15)--(-.05,-.18)--(.06,-.15);
+  \fill[SoftGray] (-.55,-.20) .. controls (-.62,-1.02) and (-.30,-1.35) .. (0,-1.52)
+    .. controls (.33,-1.35) and (.64,-1.00) .. (.55,-.20) .. controls (.16,-.45) and (-.16,-.45) .. cycle;
+  \draw[thermoguide] (-3.8,-1.95)--(-2.6,-.25)--(-3.3,.70);
+  \draw[thermoguide] (3.8,-1.95)--(2.6,-.25)--(3.3,.70);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\carnotProofDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[draw=Ink,fill=SoftGray,minimum width=3.0cm,minimum height=.65cm] (H) at (0,2.0) {高温热库 $T_h$};
+  \node[draw=DeepBlue,fill=PaleBlue,minimum width=2.2cm,minimum height=.8cm] (E) at (0,0) {可逆热机};
+  \node[draw=Ink,fill=SoftGray,minimum width=3.0cm,minimum height=.65cm] (C) at (0,-2.0) {低温热库 $T_c$};
+  \draw[thermoarrow] (H)--node[right,thermolabel] {$Q_h$}(E);
+  \draw[thermoarrow] (E)--node[right,thermolabel] {$Q_c$}(C);
+  \draw[thermoarrow] (E)--(2.25,0) node[right,thermolabel] {$W=Q_h-Q_c$};
+  \node[draw=DeepBlue,rounded corners=2pt,align=left,inner sep=6pt] at (5.4,0)
+    {$\Delta S_{\rm cyc}=0$\\[2pt]
+     $\displaystyle \frac{Q_h}{T_h}-\frac{Q_c}{T_c}=0$\\[4pt]
+     $\displaystyle \eta=1-\frac{T_c}{T_h}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\secondLawEntropyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[draw=RuleGray,rounded corners=2pt,minimum width=5.4cm,minimum height=2.25cm,align=center] at (-3.5,0)
+    {单一热库取热并全部变成功\\[4pt]$\Delta S_{\rm tot}=-Q/T<0$\\[2pt]\color{DeepBlue}不可能};
+  \node[draw=RuleGray,rounded corners=2pt,minimum width=5.4cm,minimum height=2.25cm,align=center] at (3.5,0)
+    {无补偿地把热从 $T_c$ 送往 $T_h$\\[4pt]
+     $\displaystyle\Delta S_{\rm tot}=\frac{Q}{T_h}-\frac{Q}{T_c}<0$\\[2pt]\color{DeepBlue}不可能};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\irreversibleProcessesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-4.3,0)}]
+    \draw[thermobody] (-2,-1.2) rectangle (2,1.2);
+    \draw[thermobody] (0,-1.2)--(0,1.2);
+    \fill[PaleBlue] (-2,-1.2) rectangle (0,1.2);
+    \node at (-1,0) {气体};
+    \draw[thermoarrow] (-.25,0)--(1.35,0);
+    \node[thermolabel] at (0,-1.55) {快速自由膨胀：$\Delta S=nR\ln(V_f/V_i)>0$};
+  \end{scope}
+  \begin{scope}[shift={(4.3,0)}]
+    \draw[thermobody,fill=SoftGray] (-2,-1.1) rectangle (-.35,1.1);
+    \draw[thermobody,fill=PaleBlue] (.35,-1.1) rectangle (2,1.1);
+    \node at (-1.18,0) {$T_h$};
+    \node at (1.18,0) {$T_c$};
+    \draw[thermoarrow] (-.2,0)--(.2,0);
+    \node[thermolabel] at (0,-1.55) {$\Delta S=Q(1/T_c-1/T_h)>0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\threeBodiesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \x/\t/\lab in {-4/300/{物体1},0/300/{物体2},4/100/{物体3}}{
+    \draw[thermobody,fill=SoftGray] (\x-1.05,-.55) rectangle (\x+1.05,.55);
+    \node at (\x,.15) {\lab};
+    \node[thermolabel] at (\x,-.25) {$\t\,\mathrm K$};
+  }
+  \draw[thermoarrow,<->] (-2.85,0)--(-1.15,0);
+  \draw[thermoarrow,<->] (1.15,0)--(2.85,0);
+  \node[thermolabel,above] at (-2.0,0) {可逆热机};
+  \node[thermolabel,above] at (2.0,0) {可逆热机};
+  \node[draw=DeepBlue,rounded corners=2pt,align=center,inner sep=6pt] at (0,-2.05)
+    {$T_{\max}+2T=700\,\mathrm K$\\[2pt]$T_{\max}T^2=300^2\!\times100\,\mathrm K^3$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\surfaceEngineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.4,0)}]
+    \draw[axis] (0,0)--(5.0,0) node[right] {$A$};
+    \draw[axis] (0,0)--(0,4.0) node[above] {$\sigma$};
+    \coordinate (A) at (1.0,1.45);
+    \coordinate (B) at (4.1,1.45);
+    \coordinate (C) at (4.1,3.05);
+    \coordinate (D) at (1.0,3.05);
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,
+      mark=at position .12 with {\arrow{Latex}},mark=at position .37 with {\arrow{Latex}},
+      mark=at position .62 with {\arrow{Latex}},mark=at position .87 with {\arrow{Latex}}}]
+      (A)--(B)--(C)--(D)--cycle;
+    \node[thermolabel,left] at (0,1.45) {$\sigma_h$};
+    \node[thermolabel,left] at (0,3.05) {$\sigma_c$};
+    \node[thermolabel,below] at (1.0,0) {$A_1$};
+    \node[thermolabel,below] at (4.1,0) {$A_2$};
+    \node[thermolabel] at (2.55,2.22) {$W_{\rm out}$};
+  \end{scope}
+  \node[draw=DeepBlue,rounded corners=2pt,align=left,inner sep=6pt] at (4.4,.3)
+    {$S=-A\,\mathrm d\sigma/\mathrm dT$\\[3pt]
+     $Q_h=T_h\Delta S$\\[3pt]
+     $Q_c=T_c\Delta S$\\[3pt]
+     $\eta=1-T_c/T_h$};
+\end{tikzpicture}
+\end{center}}

@@ -1,0 +1,389 @@
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 5.1【惯性维持的电流】}
+1917 年，Tolman 和 Stewart 的实验直接证明了电子在金属中参与导电。他们让一个铜环以很高的恒定
+角速度绕主轴转动，此时环中没有相对晶格的电流；再让铜环突然停止，发现环内出现短暂电流。求从铜环
+停止开始流过任一横截面的总电量。结果用环半径 $r$、初始角速度 $\omega$、电子电量绝对值 $e$、
+电子质量 $m$ 和铜的电导率 $\sigma$ 表示。记导线横截面积为 $S$。
+\end{origexamplebox}
+
+\tolmanRingFigure
+\diagramcaption{解图：铜环晶格骤停后，电子因惯性保持原切向速度；常规电流方向与电子运动方向相反。}
+
+\begin{xesolution}
+停止前，自由电子随晶格共同转动，其切向速度为 $r\omega$；相对于晶格没有漂移，所以没有电流。晶格
+突然停止时，电子速度不能突变，刚停止后的相对漂移速度仍为 $r\omega$。用 Drude 弛豫模型描述碰撞：
+\[
+  m\frac{\mathrm dv}{\mathrm dt}=-\frac m\tau v,
+  \qquad v(0)=r\omega,
+\]
+故
+\[
+  v(t)=r\omega e^{-t/\tau}.
+\]
+电子数密度为 $n$，于是常规电流大小
+\[
+  |I(t)|=neS\,r\omega e^{-t/\tau}.
+\]
+从 $t=0$ 积分到电流完全衰减：
+\[
+  |Q|=\int_0^\infty |I(t)|\,\mathrm dt=neSr\omega\tau.
+\]
+再利用 Drude 关系 $\sigma=ne^2\tau/m$ 消去 $n$ 与 $\tau$，得到
+\[
+  \boxed{|Q|=\frac{m\sigma S r\omega}{e}}.
+\]
+若把转动方向规定为正，由于电子带负电，常规电流以及带符号的 $Q$ 均沿反方向。
+总电量与横截面积 $S$ 成正比；单位横截面积通过的电量为
+$|Q|/S=m\sigma r\omega/e$。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 5.2【暂态电流】}
+在一个阻值为 $R$ 的圆柱形电阻两端突然加上恒定电压 $U$。考虑载流子的惯性，求通过电阻的电流
+随时间的变化关系 $I(t)$。
+\end{origexamplebox}
+
+\begin{xesolution}
+设电子漂移速度的大小为 $v_d$，取常规电流方向为正。Drude 模型的平均运动方程可写成
+\[
+  m\frac{\mathrm dv_d}{\mathrm dt}+\frac m\tau v_d=eE.
+\]
+圆柱导体内 $E=U/l$，而 $I=neSv_d$。把方程乘以 $neS$，并利用稳态时
+$U/R=neS(eE\tau/m)$，可得电流满足
+\[
+  \tau\frac{\mathrm dI}{\mathrm dt}+I=\frac UR.
+\]
+突然加压前 $I(0)=0$，解这个一阶方程：
+\[
+  \boxed{I(t)=\frac UR\left(1-e^{-t/\tau}\right),\qquad t\ge0}.
+\]
+
+\transientCurrentFigure
+\diagramcaption{解图：电流以时间常数 $\tau$ 从零趋近稳态值 $U/R$；普通电路中 $\tau$ 极短。}
+
+Ohm 定律 $I=U/R$ 是 $t\gg\tau$ 后的稳态结果。若理想化地令 $\tau\to0$，才会得到“加压瞬间电流
+立刻跳到 $U/R$”的集中参数模型。
+\end{xesolution}
+
+\Needspace{9\baselineskip}
+\begin{origexamplebox}{例题 5.3【转动的带电环】}
+一个半径为 $R$、总电荷为 $Q$ 的刚性均匀带电圆环，绕其对称轴以角速度 $\omega$ 匀速转动。
+这一过程可以等效为圆形导线中的稳恒电流，求等效电流 $I$。
+\emRotatingRingQuestion
+\figcap{刚性带电圆环及给定转动方向，等效电流待求。}\label{fig:em-source-thirty-sixth-section-3}
+\end{origexamplebox}
+
+\rotatingChargedRingFigure
+\diagramcaption{图 5.12：第 3 题，图示取 $Q>0$。圆环每转一周，总电荷 $Q$ 就完整通过任一固定截面一次。}
+
+\begin{xesolution}
+圆环转动周期为
+\[
+  T=\frac{2\pi}{\omega}.
+\]
+在一个周期内，环上全部电荷恰好通过任意固定的径向截面一次。由电流定义
+\[
+  \boxed{I=\frac QT=\frac{Q\omega}{2\pi}}.
+\]
+若 $Q>0$，电流方向与转动方向相同；若 $Q<0$，常规电流方向相反。半径 $R$ 不出现在结果中，因为
+半径增大虽然使线速度增大，却同时使一周路程同比增大，周期仍只由 $\omega$ 决定。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 5.4【真空二极管】}
+真空二极管由相对放置的阴极和阳极平板构成，两极板面积均为 $S$，距离为 $L$。稳定工作时有电流
+$I$ 通过。阴极发射充分，工作于零初速的空间电荷限制状态，忽略边缘效应。取阴极处 $x=0$ 且电势为零，阳极处 $x=L$、电势为 $U>0$。依次回答：
+
+(1) 写出两极间电势分布 $\varphi(x)$ 满足的方程；
+
+(2) 假设电子从阴极由静止出发，求电势为 $\varphi(x)$ 处的电子速度；
+
+(3) 利用稳恒电流与位置无关，写出电子数密度 $n(x)$；
+
+(4) 消去 $n(x),v(x)$，得到关于 $\varphi(x)$ 的微分方程及边界条件；
+
+(5) 积分证明 Child--Langmuir 定律 $I=KU^{3/2}$，并求 $K$。
+\vacuumDiodeFigure
+\diagramcaption{图 5.13：第 4 题。电子由阴极射向阳极，图中 $I$ 表示相反方向的常规电流大小。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+电子云带负电，会改变板间电势，这正是空间电荷限制电流的来源。下面把 $I$ 作为电流大小。
+
+\textbf{(1) Poisson 方程。} 电子电荷密度 $\rho_q=-en(x)$，一维 Poisson 方程为
+\[
+  \frac{\mathrm d^2\varphi}{\mathrm dx^2}
+  =-\frac{\rho_q}{\varepsilon_0}=\frac{en(x)}{\varepsilon_0}.
+\]
+
+\textbf{(2) 能量关系。} 电子从阴极静止出发，电势能减少量转化为动能：
+\[
+  \frac12mv^2=e\varphi,
+  \qquad v(x)=\sqrt{\frac{2e\varphi(x)}m}.
+\]
+
+\textbf{(3) 稳恒电流。} 任意截面上单位时间通过的电荷量相同，故
+\[
+  I=en(x)v(x)S,
+  \qquad n(x)=\frac{I}{eSv(x)}.
+\]
+
+\textbf{(4) 消元与边界条件。} 代回 Poisson 方程：
+\[
+  \frac{\mathrm d^2\varphi}{\mathrm dx^2}
+  =A\varphi^{-1/2},
+  \qquad
+  A=\frac{I}{\varepsilon_0S}\sqrt{\frac m{2e}}.
+\]
+两板电势给出 $\varphi(0)=0,\ \varphi(L)=U$。空间电荷限制的极限状态下，阴极表面电场刚好为零，
+所以还应取 $\varphi'(0)=0$。注意 $E_x=-\varphi'$，电子受力 $F_x=-eE_x=e\varphi'$：
+若 $E_x(0)>0$，零初速电子受到朝阴极的力，不能向阳极出发；若 $E_x(0)<0$，电子可被拉向阳极，
+但在发射不足时电流尚未达到空间电荷限制值。发射充分时，负空间电荷削弱阴极附近的加速场，
+极限恰为 $E_x(0)=0$。因此这里的零场边界来自题设工作状态，不是任意稳恒电流的通用条件。
+
+\textbf{(5) 积分。} 方程两边乘 $\varphi'$：
+\[
+  \varphi''\varphi'=A\varphi^{-1/2}\varphi'.
+\]
+从阴极积分并用 $\varphi(0)=\varphi'(0)=0$，得到
+\[
+  \frac12(\varphi')^2=2A\sqrt\varphi,
+  \qquad \varphi'=2\sqrt A\,\varphi^{1/4}.
+\]
+再积分一次：
+\[
+  \frac43\varphi^{3/4}=2\sqrt A\,x,
+  \qquad
+  \varphi(x)=\left(\frac32\sqrt A\,x\right)^{4/3}.
+\]
+用 $\varphi(L)=U$ 消去 $A$，得到
+\[
+  \boxed{\varphi(x)=U\left(\frac xL\right)^{4/3}}.
+\]
+
+\childLangmuirFigure
+\diagramcaption{解图：空间电荷限制状态下的电势曲线。阴极处切线水平，随后按 $x^{4/3}$ 增长。}
+
+最后将 $A=(4/9)U^{3/2}/L^2$ 与其定义比较：
+\[
+  \boxed{I=\frac49\varepsilon_0S\sqrt{\frac{2e}{m}}
+  \frac{U^{3/2}}{L^2}=KU^{3/2}},
+  \qquad
+  \boxed{K=\frac49\frac{\varepsilon_0S}{L^2}\sqrt{\frac{2e}{m}}}.
+\]
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 5.5【导电厚球壳】}
+两个同心金属球壳的内、外半径分别为 $a,b$，其间充满一种特殊导电材料。该材料在各点的电导率
+与当地电场大小成正比，即 $\sigma=KE$。若两球壳之间的电势差为 $U$，求两壳之间的电流。
+\emConductingShellQuestion
+\figcap{导电厚球壳的内外半径；两球面之间加给定电压。}\label{fig:em-source-thirty-sixth-section-5}
+\end{origexamplebox}
+
+\conductingShellFigure
+\diagramcaption{图 5.14：第 5 题。球对称性保证电流密度和电场均沿径向，且通过任一同心球面的电流相同。}
+
+\begin{xesolution}
+稳恒状态下，任意半径 $r$ 的同心球面都通过同一电流 $I$。因此
+\[
+  j(r)=\frac{I}{4\pi r^2}.
+\]
+材料的局部伏安关系不是线性的，而是
+\[
+  j=\sigma E=KE^2.
+\]
+两式联立：
+\[
+  E(r)=\sqrt{\frac{I}{4\pi K}}\frac1r.
+\]
+内外球壳的电势差为电场沿径向的积分：
+\[
+  U=\int_a^bE(r)\,\mathrm dr
+  =\sqrt{\frac{I}{4\pi K}}\ln\frac ba.
+\]
+于是
+\[
+  \boxed{I=\frac{4\pi K}{[\ln(b/a)]^2}U^2}.
+\]
+这里 $I\propto U^2$，明确说明该材料不满足线性 Ohm 定律。若交换两球壳电势高低，电流方向反向；
+上式给出其大小。
+\end{xesolution}
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{例题 5.6【电离计数器】}
+最简单的电离室由一对面积为 $S$、间距为 $D$ 的平行板电极构成，置于充有混合气体的气密容器中。
+阴极电势为 $-U_0$，阳极通过负载电阻 $R$ 接地。带电粒子平行极板入射，在距阳极 $x_0$ 处沿径迹
+产生 $N$ 对电子--正离子；产生一对粒子所需平均能量 $W$ 由气体决定。假设全部电荷均被收集，不发生
+次级电离和电子俘获，电子、正离子漂移速率分别为 $v^-,v^+$。求：
+
+(1) 两极间电场强度；(2) 电离室电容 $C$；(3) $R$ 很大时信号电压 $\Delta U(t)$；
+(4) 当 $v^-\gg v^+$ 时信号的特征；(5) $R$ 的作用不可忽略时的 $\Delta U(t)$。
+\emIonChamberQuestion
+\figcap{平行板电离室的装置、入射径迹与外接电路；竖直侧壁表示绝缘容器边界。}\label{fig:em-source-thirty-sixth-section-6}
+\end{origexamplebox}
+
+\ionChamberFigure
+\diagramcaption{题图：平行板电离室。$x$ 从阳极指向阴极；电子向阳极、正离子向阴极漂移并共同形成感应信号。}
+
+\begin{xesolution}
+若入射粒子在气体中沉积能量 $E_{\rm dep}$，则理想情况下 $N=E_{\rm dep}/W$；本题已直接给出 $N$。
+以下取阳极对地电压变化为 $\Delta U$，并采用小信号条件 $Ne/C\ll U_0$，使收集过程中的场强和漂移速率
+可近似不变。信号大小记为 $u=-\Delta U\ge0$，避免把实际负脉冲误画成正电压。
+
+\textbf{(1) 电场。} 忽略边缘效应，板间电场均匀，大小
+\[
+  \boxed{E=\frac{U_0}{D}},
+\]
+方向由阳极指向阴极。电子受力方向与电场相反，故移向阳极；正离子移向阴极。
+
+\textbf{(2) 电容。} 两平行板构成电容器：
+\[
+  \boxed{C=\frac{\varepsilon_0S}{D}}.
+\]
+
+\textbf{(3) $R$ 很大。} 先把两板电势保持不变。位于 $x$ 的电荷 $q$ 在阳极上感应的总电荷为
+$Q_A=-q(1-x/D)$。可由叠加与静电互易关系得到：令阳极为单位电势、阴极为零，板间权重电势为
+$\psi_A(x)=1-x/D$，于是 $Q_A+q\psi_A(x)=0$。也可将很薄的均匀面电荷放在两板间，
+联立两侧场强跳变和总电压不变条件，得到同一关系。
+电子向 $-x$ 移动、正离子向 $+x$ 移动时，保持阳极接地所需的感应正电荷都增加，增量为
+$e|\Delta x|/D$。若阳极近似隔离，这部分正电荷不能由地补入，阳极电压因而降低。
+在时刻 $t$，电子已经移动
+$\min(v^-t,x_0)$，正离子已经移动 $\min(v^+t,D-x_0)$，所以总感应电荷大小
+\[
+  Q_{\rm sig}(t)=\frac{Ne}{D}
+  \left[\min(v^-t,x_0)+\min(v^+t,D-x_0)\right].
+\]
+$R$ 极大时可忽略泄放，信号电压大小为
+\[
+  \boxed{|\Delta U(t)|=\frac{Ne}{CD}
+  \left[\min(v^-t,x_0)+\min(v^+t,D-x_0)\right]}.
+\]
+最终两类电荷都到达电极，括号内等于 $D$，故 $|\Delta U(\infty)|=Ne/C$，与产生位置 $x_0$ 无关。
+
+\textbf{(4) 快、慢两段。} 定义电子收集时间和离子收集时间
+\[
+  t_e=\frac{x_0}{v^-},\qquad t_i=\frac{D-x_0}{v^+}.
+\]
+在常见的 $t_e<t_i$ 情形，信号大小先以较大斜率快速上升；电子收集完成后，只剩离子造成的缓慢上升，
+在 $t_i$ 达到平台。精确条件是 $x_0<Dv^-/(v^-+v^+)$；仅有 $v^-\gg v^+$ 不能排除极靠近阴极的
+$t_i<t_e$ 情形。后一情形先失去离子分量，剩下电子分量直至 $t_e$。两种情况都由上式的两个最小值统一描述，
+实际电压为 $\Delta U=-u$，最终平台为 $-Ne/C$。
+
+\ionSignalFigure
+\diagramcaption{解图：忽略泄放时的信号大小。图中把常见的 $t_e<t_i$ 情形画成快速前沿加缓慢离子尾。}
+
+\textbf{(5) 有限负载电阻。} 读出节点相当于电容 $C$ 与电阻 $R$ 并联，信号满足
+\[
+  C\frac{\mathrm d u}{\mathrm dt}+\frac{u}{R}=i_s(t),\qquad \Delta U=-u.
+\]
+这里 $i_s$ 表示使阳极电势降低的信号电流大小，是两个矩形脉冲之和（$t\ge0$）：
+\[
+  i_s(t)=\frac{Ne}{D}\left[v^-H(t_e-t)+v^+H(t_i-t)\right],
+\]
+其中 $H$ 为阶跃函数。令 $\tau_R=RC$。对于某个持续时间为 $T_k$、幅值为
+$I_k=Ne v_k/D$ 的分量，零初值解为
+\[
+  u_k(t)=
+  \begin{cases}
+    RI_k\left(1-e^{-t/\tau_R}\right),&0\le t\le T_k,\\[2mm]
+    RI_k\left(1-e^{-T_k/\tau_R}\right)e^{-(t-T_k)/\tau_R},&t>T_k.
+  \end{cases}
+\]
+分别取 $(v_k,T_k)=(v^-,t_e)$ 与 $(v^+,t_i)$，得到 $\Delta U(t)=-u_e(t)-u_i(t)$。当
+$RC\gg\max(t_e,t_i)$ 时，在收集时间内展开指数，退化为前面近似无泄放的折线；当 $RC$ 较小时，信号在收集过程中
+已明显经电阻衰减，收集结束后则按 $e^{-t/(RC)}$ 回到零。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 5.7【圆环电阻】}
+一段总电阻为 $R$ 的均匀电阻丝弯成圆环。在环上固定一点 $a$，另一接点 $b$ 可沿电阻丝移动。
+先在 $a,b$ 间接恒定电压 $U$，问 $b$ 在何处时整条电阻丝的发热功率最小，最小值是多少？若改接
+电流为 $I$ 的恒流源，结论又如何？
+\emRingResistorQuestion
+\figcap{均匀电阻圆环及接点；两段弧的电阻记为 $R_1,R_2$。}\label{fig:em-source-thirty-sixth-section-7}
+\end{origexamplebox}
+
+\ringResistorFigure
+\diagramcaption{题图：接点 $a,b$ 把圆环分成电阻为 $R_1,R_2$ 的两段，两段端点相同，故彼此并联。}
+
+\begin{xesolution}
+两段弧的电阻之和固定：$R_1+R_2=R$。它们并联后的等效电阻为
+\[
+  R_{\rm eq}=\frac{R_1R_2}{R_1+R_2}=\frac{R_1R_2}{R}.
+\]
+
+\textbf{恒压源。} 总功率
+\[
+  P_U=\frac{U^2}{R_{\rm eq}}=\frac{U^2R}{R_1R_2}.
+\]
+在和固定时，乘积满足 $R_1R_2\le(R/2)^2$；要使功率最小，应使乘积最大，故
+\[
+  R_1=R_2=\frac R2.
+\]
+均匀电阻丝上这意味着 $b$ 位于 $a$ 的直径对面，且
+\[
+  \boxed{P_{U,\min}=\frac{4U^2}{R}}.
+\]
+
+\textbf{恒流源。} 此时
+\[
+  P_I=I^2R_{\rm eq}=I^2\frac{R_1R_2}{R}.
+\]
+要使功率最小，应使 $R_1R_2$ 尽可能小，即让 $b$ 趋近 $a$，一段电阻趋近零，因而
+\[
+  \boxed{P_{I,\min}=0}
+\]
+（若规定 $a,b$ 必须是不同点，则 $0$ 是下确界，只能无限接近而不能取到）。相反，$b$ 位于直径对面
+时 $R_{\rm eq}$ 最大，恒流情况下反而得到最大功率 $I^2R/4$。这两种结论相反，根源是恒压时
+$P=U^2/R_{\rm eq}$，恒流时 $P=I^2R_{\rm eq}$。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 5.8【双电源供电】}
+两个电动势和内阻分别为 $(\varepsilon_1,r_1)$、$(\varepsilon_2,r_2)$ 的实际电源同极性并联，
+共同连接负载电阻 $R$。
+
+(1) 利用 Kirchhoff 方程求通过 $R$ 的电流；
+
+(2) 对结果变形，说明它怎样给出关于电源叠加和戴维南等效的启发。
+\dualSourceFigure
+\diagramcaption{图 5.15：第 8 题。每个实际电源均由理想电动势与内阻串联构成，三条支路跨接同一对节点。}
+\end{origexamplebox}
+
+
+
+\begin{xesolution}
+记左、右公共节点电势差为 $V=V_L-V_R$，并把三条支路电流都暂按从左向右取正。负载支路电流为
+$V/R$；对第 $k$ 个电源支路，按图示极性有 $V=\varepsilon_k+i_kr_k$，所以
+$i_k=(V-\varepsilon_k)/r_k$。在左节点写 KCL：
+\[
+  \frac VR+\frac{V-\varepsilon_1}{r_1}
+  +\frac{V-\varepsilon_2}{r_2}=0.
+\]
+解出 $V$ 并除以 $R$，负载电流为
+\[
+  \boxed{I=\frac VR
+  =\frac{\varepsilon_1r_2+\varepsilon_2r_1}
+  {r_1r_2+R(r_1+r_2)}}.
+\]
+
+把两个电源及其内阻看成一个二端网络。定义
+\[
+  \varepsilon_{\rm eq}
+  =\frac{\varepsilon_1/r_1+\varepsilon_2/r_2}{1/r_1+1/r_2}
+  =\frac{\varepsilon_1r_2+\varepsilon_2r_1}{r_1+r_2},
+  \qquad
+  r_{\rm eq}=\frac{r_1r_2}{r_1+r_2}.
+\]
+原结果立即化成
+\[
+  \boxed{I=\frac{\varepsilon_{\rm eq}}{R+r_{\rm eq}}}.
+\]
+这说明并联电源网络从负载端看，等效为一个电动势 $\varepsilon_{\rm eq}$ 与内阻 $r_{\rm eq}$ 串联的
+实际电源，正是戴维南等效的形式。同时，$V$ 对 $\varepsilon_1,\varepsilon_2$ 是线性的，每个电源的
+贡献可以分别计算再相加，体现了线性网络的叠加思想。若两电源极性相反，只需把其中一个
+$\varepsilon_k$ 按符号取负；公式仍然成立。
+\end{xesolution}

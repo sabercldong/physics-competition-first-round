@@ -1,0 +1,35 @@
+% Source spring-II p202 lecture11 problem3; analytic pursuit with equal speeds.
+% Parameter q=tan(theta/2), xD=p(q^2-1)/4-p ln(q)/2, yD=-p q.
+% Tangent points at R_e. Radio ray points at later R_r, not instantaneous R_e.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \pgfmathsetmacro{\pp}{3}\pgfmathsetmacro{\uu}{.45}
+ \pgfmathsetmacro{\ct}{(1-\uu*\uu)/(1+\uu*\uu)}
+ \pgfmathsetmacro{\st}{2*\uu/(1+\uu*\uu)}
+ \pgfmathsetmacro{\ell}{\pp*(1+\uu*\uu)/2}
+ \pgfmathsetmacro{\xd}{\pp*(\uu*\uu-1)/4-\pp*ln(\uu)/2}
+ \pgfmathsetmacro{\xr}{\xd+\ell*\ct}
+ \pgfmathsetmacro{\aa}{sqrt(1-.4*.4*\st*\st)-.4*\ct}
+ \coordinate (D) at (\xd,{-\pp*\uu});
+ \coordinate (R) at (\xr,0);
+ \coordinate (H) at ({\xr+.4*\ell/\aa},0);
+ \draw[->,thick] (-.2,0)--(4.5,0);
+ \draw[DeepBlue,thick,domain=1:.05,samples=130,smooth,variable=\q]
+  plot ({\pp*(\q*\q-1)/4-\pp*ln(\q)/2},{-\pp*\q});
+ \draw[dashed] (0,0)--(0,-3);
+ \draw[<->] (-.48,0)--(-.48,-3) node[midway,left]{$p$};
+ \draw[dashed] (D)--(R);
+ \draw[->,thick,DeepBlue] (D)--++({.8*\ct},{.8*\st}) node[left=6pt]{$\vect v_D$};
+ \draw[->,TextGray] (D)--(H);
+ \node[anchor=west] at (4,-1.35){光信号};
+ \draw[TextGray] (3.95,-1.35)--($(D)!.5!(H)$);
+ \draw[->,thick] (.25,.23)--(.9,.23) node[midway,above]{$v$};
+ \draw[->,thick] (0,-3)--(0,-2.3);
+ \foreach \name in {D,R,H}{\fill (\name) circle(2pt);}
+ \fill (0,0) circle(2pt) (0,-3) circle(2pt);
+ \node[above left] at (0,0){$R_0$};\node[below] at (0,-3){$D_0$};
+ \node[left=6pt] at (D){$D_e$};
+ \node[above=5pt] at (R){$R_e$};\node[above=5pt] at (H){$R_r$};
+ \draw ($(R)+(-.55,0)$) arc[start angle=180,end angle={180+2*atan(\uu)},radius=.55];
+ \node at ($(R)+(-.78,-.22)$){$\theta$};
+ \node[align=left,anchor=west] at (2.1,-2.35){$e$：发射时刻\\$r$：接收时刻};
+\end{tikzpicture}

@@ -1,0 +1,1165 @@
+\section{连续体}
+
+\subsection{分析力学的变分表述}
+
+有限维函数的极值由导数为零刻画；当未知对象本身是函数时，研究对象就变成泛函。设区域
+$D\subset\mathbb R^n$ 上有若干函数 $f_\mu(\vect x)$，局域且只含一阶导数的密度泛函写成
+\[
+ \mathcal L=\mathcal L(f_\mu,\partial_i f_\mu,x_i),
+ \qquad
+ S[f_\mu]=\int_D\mathcal L\,\dd^n x .
+\]
+
+\begin{advdefinition}{泛函导数}\label{advA1:def:functional-derivative}
+若对满足指定边界条件的任意测试函数 $g_\mu$，
+\[
+ \left.\frac{\dd}{\dd\epsilon}S[f_\mu+\epsilon g_\mu]\right|_{\epsilon=0}
+ =\int_D\sum_\mu\frac{\delta S}{\delta f_\mu}g_\mu\,\dd^n x ,
+\]
+则称 $\delta S/\delta f_\mu$ 为泛函在 $f_\mu$ 处的泛函导数。
+\end{advdefinition}
+
+\begin{advtheorem}{欧拉--拉格朗日方程}\label{advA1:thm:field-el}
+当边界值 $f_\mu|_{\partial D}$ 固定时，$S$ 的一阶变分为零等价于
+\begin{equation}\label{advA1:eq:field-el}
+ \frac{\delta S}{\delta f_\mu}
+ =\frac{\partial\mathcal L}{\partial f_\mu}
+ -\sum_i\partial_i\left(
+ \frac{\partial\mathcal L}{\partial(\partial_i f_\mu)}\right)=0 .
+\end{equation}
+\end{advtheorem}
+证明：令 $\delta f_\mu=\epsilon g_\mu$，展开到一阶：
+\[
+ \delta S=\int_D\sum_\mu\left[
+ \frac{\partial\mathcal L}{\partial f_\mu}g_\mu+
+ \sum_i\frac{\partial\mathcal L}{\partial(\partial_i f_\mu)}
+ \partial_i g_\mu\right]\dd^n x .
+\]
+对第二项分部积分。边界上 $g_\mu=0$，边界项消失；区域内 $g_\mu$ 任意，故其系数必须处处为零，即得式\eqref{advA1:eq:field-el}。
+
+这个推导同时给出三个常用变式。若边界值自由，分部积分留下自然边界条件
+\[
+ \left.\vect n\cdot
+ \frac{\partial\mathcal L}{\partial(\nabla f_\mu)}\right|_{\partial D}=0.
+\]
+若密度含到 $n$ 阶导数，则反复分部积分得到欧拉--泊松方程
+\[
+ \sum_{k=0}^{n}(-1)^k\partial_{i_1}\cdots\partial_{i_k}
+ \left[\frac{\partial\mathcal L}
+ {\partial(\partial_{i_1}\cdots\partial_{i_k}f_\mu)}\right]=0.
+\]
+若还带有积分约束 $C_a[f]=0$，则对
+$\mathcal L-\sum_a\lambda_a\mathcal C_a$ 使用同一方程，并与全部约束联立求 $\lambda_a$。
+
+\begin{advexamplebox}{固定均值与能量时的最大熵分布}\label{advA1:ex:max-entropy}
+求一维速度分布 $f(v)$，使
+\[
+ -\int_{\mathbb R}f\ln f\,\dd v
+\]
+在
+\[
+ \int f\,\dd v=1,\qquad \int vf\,\dd v=0,\qquad
+ \int\frac12mv^2f\,\dd v=\frac12kT
+\]
+条件下最大。
+\end{advexamplebox}
+\begin{advsolution}
+引入三个拉格朗日乘数，令
+\[
+ \mathcal F[f]=-\int f\ln f\,\dd v-\lambda_0\!\left(\int f\,\dd v-1\right)
+ -\lambda_1\int vf\,\dd v
+ -\lambda_2\!\left(\int\frac12mv^2f\,\dd v-\frac12kT\right).
+\]
+泛函导数为
+\[
+ \frac{\delta\mathcal F}{\delta f}
+ =-(\ln f+1)-\lambda_0-\lambda_1v-\frac12\lambda_2mv^2=0.
+\]
+因此 $f=Ae^{-av^2-bv}$。零均值给出 $b=0$，归一化与能量约束给出
+\[
+ \boxed{f(v)=\sqrt{\frac{m}{2\pi kT}}
+ \exp\!\left(-\frac{mv^2}{2kT}\right)}.
+\]
+二阶变分
+$\delta^2(-\int f\ln f)=-\int(\delta f)^2/f\,\dd v<0$，故驻点确为最大值。其微分熵为
+\[
+ S_{\max}=\frac12\left[1+\ln\!\left(\frac{2\pi kT}{m}\right)\right].
+\]
+\end{advsolution}
+
+\newcommand{\AOneElasticSecond}{%
+\subsubsection{应力、各向同性本构关系与弹性波}
+
+过一点取有向面元 $\dd\vect S=\vect n\,\dd S$。相邻两侧材料通过该面元传递的力在局域极限下与面元线性：
+\[
+ \dd\vect F=\bm\sigma\,\dd\vect S,
+\]
+其中 $\bm\sigma$ 是应力张量。对角元是正应力，非对角元是剪应力。
+
+\begin{advtheorem}{经典连续体的应力张量对称}\label{advA1:thm:stress-symmetric}
+若质元内部不存在独立的偶应力，局域角动量守恒要求
+\[
+ \boxed{\sigma_{ij}=\sigma_{ji}}.
+\]
+\end{advtheorem}
+证明：取边长为 $\ell$ 的微小立方体。相对两个面上的应力合力对质心的力矩中，体力矩是
+$\order{\ell^4}$，而剪应力对产生的力偶是 $\order{\ell^3}$。例如绕 $z$ 轴的领先项为
+$(\sigma_{21}-\sigma_{12})\ell^3$。令 $\ell\to0$ 时角动量平衡必须逐阶成立，故
+$\sigma_{12}=\sigma_{21}$；循环指标即得其余分量。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ \draw[very thick] (0,0) rectangle (2.2,1.6);
+ \draw[vector] (0,1.25)--(0,.45) node[midway,left]{$\sigma_{21}$};
+ \draw[vector] (2.2,.35)--(2.2,1.15) node[midway,right]{$\sigma_{21}$};
+ \draw[vector] (1.25,0)--(.45,0) node[midway,below]{$\sigma_{12}$};
+ \draw[vector] (.95,1.6)--(1.75,1.6) node[midway,above]{$\sigma_{12}$};
+ \node at (1.1,.8) {微小质元};
+\end{tikzpicture}
+\bookcaption{剪应力不成对相等时会留下随体积缩放的净力矩}\label{advA1:fig:stress-symmetry}
+\end{minipage}\end{center}
+图\ref{advA1:fig:stress-symmetry}中的箭头作用在不同面上；相等的是互易剪应力，而不是把同一面上的两个方向混为一谈。
+
+\begin{advtheorem}{圣维南--基尔霍夫各向同性线弹性关系}\label{advA1:thm:svk}
+各向同性、线性小应变材料的弹性能密度和应力为
+\begin{equation}\label{advA1:eq:svk}
+ W=\frac{\lambda}{2}(\operatorname{tr}\bm\varepsilon)^2
+ +\mu\,\operatorname{tr}(\bm\varepsilon^2),
+ \qquad
+ \bm\sigma=\lambda(\operatorname{tr}\bm\varepsilon)\mathsf1
+ +2\mu\bm\varepsilon ,
+\end{equation}
+其中 $\lambda,\mu$ 是拉梅参数。
+\end{advtheorem}
+证明：二阶对称张量在 $SO(3)$ 下分为迹和对称无迹两个互不混合的不可约部分。各向同性二次型只能分别给这两个部分赋予一个标量系数，不能出现依赖方向的交叉项，故
+$W=a(\operatorname{tr}\bm\varepsilon)^2+b\,\operatorname{tr}(\bm\varepsilon^2)$。把常数重命名为
+$a=\lambda/2,b=\mu$，再用
+$\sigma_{ij}=\partial W/\partial\varepsilon_{ij}$ 即得式\eqref{advA1:eq:svk}。
+
+线弹性场的拉格朗日密度是
+\[
+ \mathcal L=\frac12\rho_m\dot{\vect\xi}^{\,2}-W,
+\]
+其中 $\rho_m$ 是质量密度。场方程为纳维--柯西方程
+\begin{equation}\label{advA1:eq:navier-cauchy}
+ \rho_m\ddot{\vect\xi}
+ =(\lambda+\mu)\nabla(\nabla\cdot\vect\xi)
+ +\mu\nabla^2\vect\xi+\vect f .
+\end{equation}
+
+\begin{advexamplebox}{由应力散度推出纳维--柯西方程}\label{advA1:ex:stress-divergence}
+从应力张量的局域动量平衡
+$\rho_m\ddot{\vect\xi}=\nabla\cdot\bm\sigma+\vect f$
+出发，推导式\eqref{advA1:eq:navier-cauchy}。
+\end{advexamplebox}
+\begin{advsolution}
+由式\eqref{advA1:eq:svk}及
+$2\bm\varepsilon=\nabla\vect\xi+(\nabla\vect\xi)^{\mathsf T}$，
+\[
+ \bm\sigma=\lambda(\nabla\cdot\vect\xi)\mathsf1
+ +\mu[\nabla\vect\xi+(\nabla\vect\xi)^{\mathsf T}].
+\]
+逐分量取散度：
+\[
+ (\nabla\cdot\bm\sigma)_i
+ =\lambda\partial_i\partial_j\xi_j
+ +\mu\partial_j\partial_j\xi_i
+ +\mu\partial_j\partial_i\xi_j.
+\]
+交换光滑场的偏导次序，得
+\[
+ \nabla\cdot\bm\sigma
+ =(\lambda+\mu)\nabla(\nabla\cdot\vect\xi)
+ +\mu\nabla^2\vect\xi,
+\]
+代回动量平衡即得所求。边界牵引条件是
+$\bm\sigma\cdot\vect n=\dd\vect F/\dd S$。
+\end{advsolution}
+
+令 $\vect\xi=\vect A e^{\ii(\vect k\cdot\vect r-\omega t)}$，把振幅分解为纵向
+$\vect A_\parallel$ 与横向 $\vect A_\perp$。式\eqref{advA1:eq:navier-cauchy}给出
+\[
+ c_{\rm L}=\sqrt{\frac{\lambda+2\mu}{\rho_m}},
+ \qquad
+ c_{\rm T}=\sqrt{\frac{\mu}{\rho_m}}.
+\]
+纵波只有一个偏振，横波有两个彼此正交的偏振；因此固体中的首波（P 波）比次波（S 波）快。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \begin{scope}
+  \draw[axis] (-.2,0)--(4.3,0) node[right]{$\vect k$};
+  \foreach \x in {0,.46,1.02,1.72,2.48,3.12,3.60}{\fill (\x,0) circle(2pt);}
+  \draw[<->,DeepBlue,thick] (1.2,-.38)--(1.75,-.38);
+  \node[DeepBlue,left] at (1.0,-.38) {$\vect A_\parallel$};
+  \node at (2,-.9) {纵波};
+ \end{scope}
+ \begin{scope}[shift={(6.0,0)}]
+  \draw[axis] (-.2,0)--(4.3,0) node[right]{$\vect k$};
+  \foreach \x in {0,.6,...,3.6}{\fill (\x,{.45*sin(120*\x)}) circle(2pt);}
+  \draw[<->,DeepBlue,thick] (1.2,-.35)--(1.2,.45) node[right]{$\vect A_\perp$};
+  \node at (2,-.9) {横波};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{弹性体纵波的位移平行于波矢，横波的位移垂直于波矢}\label{advA1:fig:elastic-waves}
+\end{minipage}\end{center}
+图\ref{advA1:fig:elastic-waves}把传播方向与位移方向同时标出，二者不能仅凭波形外观判断。
+
+单轴拉伸定义杨氏模量 $E_Y$ 与泊松比 $\nu$。它们和拉梅参数的关系为
+\[
+ \nu=\frac{\lambda}{2(\lambda+\mu)},\qquad
+ E_Y=\frac{\mu(3\lambda+2\mu)}{\lambda+\mu},
+\]
+\[
+ \lambda=\frac{\nu E_Y}{(1+\nu)(1-2\nu)},\qquad
+ \mu=\frac{E_Y}{2(1+\nu)}.
+\]
+体积模量与剪切模量为
+\[
+ K=\lambda+\frac{2\mu}{3},\qquad G=\mu.
+\]
+其中
+$\operatorname{tr}\bm\sigma=3K\operatorname{tr}\bm\varepsilon$，而偏应力与偏应变满足
+$\bm\Sigma=2G\bm E$。
+
+\begin{advexamplebox}{梁的均匀弯曲}\label{advA1:ex:beam-bending}
+长为 $L$、宽为 $b$、厚为 $h$ 的均匀矩形梁弯成总转角 $\Theta$ 的圆弧。质量密度为
+$\rho_m$。求应变分布、弹性能和维持弯曲所需端力矩，并用拉梅参数表示结果。
+\end{advexamplebox}
+\begin{advsolution}
+欧拉--伯努利假设下，中性面到距离 $y$ 处的纵向应变为
+\[
+ \varepsilon_{xx}=-\kappa y,\qquad \kappa=\frac{\Theta}{L}.
+\]
+侧面自由时应力是单轴的，
+$\sigma_{xx}=E_Y\varepsilon_{xx}$。截面二次矩
+$I_b=bh^3/12$，所以
+\[
+ M=\int_A(-y)\sigma_{xx}\dd A
+ =E_YI_b\kappa
+ =\boxed{\frac{E_Ybh^3}{12L}\Theta}.
+\]
+弹性能
+\[
+ U=\frac12\int_0^L E_YI_b\kappa^2\dd x
+ =\boxed{\frac{E_Ybh^3}{24L}\Theta^2}.
+\]
+若用质量 $m=\rho_mbhL$ 消去 $b$，
+\[
+ U=\frac{E_Ymh^2}{24\rho_mL^2}\Theta^2,
+ \qquad
+ E_Y=\frac{\mu(3\lambda+2\mu)}{\lambda+\mu}.
+\]
+厚度以三次方进入弯曲刚度，这是最容易在尺度估算中遗漏的关系。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \coordinate (C) at (0,0);
+ \fill[DeepBlue!8] (35:2.7) arc(35:145:2.7)--(145:3.3) arc(145:35:3.3)--cycle;
+ \draw[very thick] (35:2.7) arc(35:145:2.7)--(145:3.3) arc(145:35:3.3)--cycle;
+ \draw[guide] (35:3) arc(35:145:3);
+ \draw[guide] (C)--(35:3.6) (C)--(145:3.6);
+ \draw[DeepBlue,->] (35:.85) arc(35:145:.85);
+ \node at (0,1.08){$\Theta$};\fill(C) circle(1.5pt) node[below]{$C$};
+ \draw[<->] (C)--(90:3) node[midway,right]{$R$};
+ \draw[<->] (35:2.7)--(35:3.3) node[midway,right=5pt]{$h$};
+ \node at (0,3.75){同心弯梁截面};
+\end{tikzpicture}
+\bookcaption{梁弯曲时中性层不伸长，上下表面的纵向应变符号相反}\label{advA1:fig:beam}
+\end{minipage}\end{center}
+\end{advsolution}
+
+\begin{advexamplebox}{圆柱的扭转}\label{advA1:ex:cylinder-torsion}
+半径 $R$、长度 $L$ 的均匀实心圆柱，底面固定，顶面刚性转过小角 $\Theta$。求位移场、剪应力、维持转动所需力矩和弹性能。
+\end{advexamplebox}
+\begin{advsolution}
+取柱坐标，满足两端边界的位移为
+\[
+ \xi_\varphi(r,z)=\frac{\Theta z}{L}r,\qquad
+ \xi_r=\xi_z=0.
+\]
+工程剪应变与剪应力为
+\[
+ \gamma_{z\varphi}=\frac{\partial\xi_\varphi}{\partial z}
+ =\frac{\Theta r}{L},\qquad
+ \tau_{z\varphi}=\mu\frac{\Theta r}{L}.
+\]
+顶面力矩
+\[
+ M=\int_A\tau_{z\varphi}r\,\dd A
+ =\frac{\mu\Theta}{L}\int_0^Rr^2(2\pi r\dd r)
+ =\boxed{\frac{\pi\mu R^4}{2L}\Theta}.
+\]
+因此
+\[
+ \boxed{U=\frac12M\Theta
+ =\frac{\pi\mu R^4}{4L}\Theta^2}.
+\]
+空心圆柱只需把 $R^4$ 换为 $R_{\rm o}^4-R_{\rm i}^4$。力矩量纲
+$[\mu R^4/L]=FL$，检查正确。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.86]
+ \draw[very thick] (-1.2,-1.5)--(-1.2,1.35);
+ \draw[very thick] (1.2,-1.5)--(1.2,1.35);
+ \draw[very thick] (0,1.35) ellipse (1.2 and .35);
+ \draw[very thick] (0,-1.5) ellipse (1.2 and .35);
+ \draw[->,DeepBlue,thick] (.20,1.85) arc[start angle=105,end angle=-25,x radius=1.15,y radius=.42];
+ \node at (1.45,1.72) {$\Theta$};
+ \draw[<->,TextGray] (1.55,-1.5)--(1.55,1.35) node[midway,right]{$L$};
+ \draw[ground] (-1.55,-1.86)--(1.55,-1.86);
+\end{tikzpicture}
+\bookcaption{圆柱顶面相对底面的刚性扭转与轴向长度}\label{advA1:fig:torsion}
+\end{minipage}\end{center}
+\end{advsolution}
+
+}
+
+\newcommand{\AOneFluidSection}{%
+\subsection{流体}
+
+流体没有由静态形变直接决定的恢复应力，其应力取决于形变速率，并且常与热学自由度耦合。因此用欧拉描述：速度、密度、压强和温度是空间与时间的场
+$\vect v(\vect r,t),\rho(\vect r,t),p(\vect r,t),T(\vect r,t)$。质量守恒为
+\begin{equation}\label{advA1:eq:continuity}
+ \frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\vect v)=0.
+\end{equation}
+
+\begin{advdefinition}{随体全导数}\label{advA1:def:material-derivative}
+\[
+ \frac{D}{Dt}=\frac{\partial}{\partial t}+\vect v\cdot\nabla.
+\]
+它是在跟随同一流体质元运动时测得的变化率。
+\end{advdefinition}
+由式\eqref{advA1:eq:continuity}，
+\[
+ \frac{D\rho}{Dt}=-\rho\nabla\cdot\vect v.
+\]
+速度梯度分解为
+\[
+ \nabla\vect v=\bm U+\bm W,\qquad
+ \bm U=\frac12[\nabla\vect v+(\nabla\vect v)^{\mathsf T}],
+ \quad
+ \bm W=\frac12[\nabla\vect v-(\nabla\vect v)^{\mathsf T}],
+\]
+其中 $\bm U$ 是应变率张量，$\bm W$ 是涡张量；涡量矢量为
+$\vect\omega=\nabla\times\vect v$。再去掉 $\bm U$ 的迹得到偏应变率
+$\bm U'=\bm U-(\nabla\cdot\vect v)\mathsf1/3$。
+
+\begin{advdefinition}{线性本构前提}\label{advA1:def:linear-constitutive}
+本构方程中的材料参数视为与流体自由度无关的常数；应力对形变率只保留线性项。
+\end{advdefinition}
+
+\begin{advdefinition}{牛顿流体}\label{advA1:def:newtonian-fluid}
+采用“压应力为负”的张量符号时，
+\[
+ \bm\sigma=-p\mathsf1+2\eta\bm U'
+ +\zeta(\nabla\cdot\vect v)\mathsf1,
+\]
+其中 $\eta$ 是动力黏度，$\zeta$ 是体黏度（第二黏度）。
+\end{advdefinition}
+
+\begin{advdefinition}{正压流体}\label{advA1:def:barotropic}
+若物态方程可写为 $\rho=\rho(p)$，或在指定熵、温度条件下把密度视为压强的单值函数，则称为正压流体。此时
+$\nabla\rho\times\nabla p=0$。
+\end{advdefinition}
+
+\begin{advdefinition}{理想流体}\label{advA1:def:ideal-fluid}
+忽略全部黏滞偏应力，即
+\[
+ \bm\sigma=-p\mathsf1.
+\]
+\end{advdefinition}
+
+\begin{advdefinition}{不可压缩流体}\label{advA1:def:incompressible}
+沿质元 $\rho$ 为常数；对均匀密度情形，
+\[
+ \rho=\text{常量},\qquad \nabla\cdot\vect v=0.
+\]
+\end{advdefinition}
+
+\begin{advtheorem}{理想流体的欧拉方程}\label{advA1:thm:euler-fluid}
+无体力时，动量守恒的守恒形式和随体形式分别是
+\[
+ \frac{\partial(\rho\vect v)}{\partial t}
+ +\nabla\cdot(\rho\vect v\vect v+p\mathsf1)=0,
+\]
+\[
+ \boxed{\rho\frac{D\vect v}{Dt}=-\nabla p}.
+\]
+\end{advtheorem}
+证明：对任意固定控制体应用动量守恒。对流动量通量是
+$\rho\vect v\vect v$，表面压强力用散度定理化为 $-\nabla p$。再用质量连续性方程消去
+$\vect v[\partial_t\rho+\nabla\cdot(\rho\vect v)]$，便得到随体形式。二次通量使欧拉方程本质上是非线性的。
+
+\begin{advtheorem}{开尔文环流定理}\label{advA1:thm:kelvin}
+对无黏、正压且体力为保守力的流动，任意随体闭曲线 $C(t)$ 上的环流
+\[
+ \Gamma=\oint_{C(t)}\vect v\cdot\dd\vect l
+\]
+满足 $D\Gamma/Dt=0$。
+\end{advtheorem}
+证明：随体线元满足
+$D(\dd\vect l)/Dt=(\dd\vect l\cdot\nabla)\vect v$，故
+\[
+ \frac{D\Gamma}{Dt}=\oint\left[
+ \frac{D\vect v}{Dt}\cdot\dd\vect l+
+ \vect v\cdot(\dd\vect l\cdot\nabla)\vect v\right].
+\]
+第二项是 $\oint\dd(v^2/2)=0$。正压流体中
+$\nabla p/\rho=\nabla h(p)$，保守体力也是梯度，闭路积分均为零。
+
+\begin{advexamplebox}{涡度方程}\label{advA1:ex:vorticity}
+在无黏正压流体中证明
+\[
+ \frac{D\vect\omega}{Dt}
+ =(\vect\omega\cdot\nabla)\vect v
+ -(\nabla\cdot\vect v)\vect\omega .
+\]
+\end{advexamplebox}
+\begin{advsolution}
+对欧拉方程取旋度。正压条件使
+$\nabla\times(\nabla p/\rho)=
+\nabla(1/\rho)\times\nabla p=0$。利用
+\[
+ (\vect v\cdot\nabla)\vect v
+ =\nabla\frac{v^2}{2}-\vect v\times\vect\omega
+\]
+得
+\[
+ \partial_t\vect\omega=\nabla\times(\vect v\times\vect\omega).
+\]
+展开叉积旋度，并用 $\nabla\cdot\vect\omega=0$：
+\[
+ \partial_t\vect\omega
+ +(\vect v\cdot\nabla)\vect\omega
+ =(\vect\omega\cdot\nabla)\vect v
+ -(\nabla\cdot\vect v)\vect\omega.
+\]
+左边即随体导数。不可压缩流体中第二项消失；二维无伸展流动还会使涡量随质元保持不变。
+\end{advsolution}
+
+\begin{advexamplebox}{应变率张量的随体演化}\label{advA1:ex:strain-rate}
+设理想流体满足 $\rho=\rho(p)$。证明
+\[
+ \frac{D\bm U}{Dt}
+ =-\frac{\nabla\nabla p}{\rho}
+ +\frac{\dd\rho}{\dd p}\frac{\nabla p\otimes\nabla p}{\rho^2}
+ -\bm U^2-\bm W^2.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+记 $\mathsf A=\nabla\vect v=\bm U+\bm W$。对速度梯度取随体导数时，随体导数与空间梯度不对易：
+\[
+ \frac{D\mathsf A}{Dt}
+ =\nabla\left(\frac{D\vect v}{Dt}\right)-\mathsf A^2.
+\]
+欧拉方程给出
+\[
+ -\nabla\left(\frac{\nabla p}{\rho}\right)
+ =-\frac{\nabla\nabla p}{\rho}
+ +\frac{\dd\rho}{\dd p}\frac{\nabla p\otimes\nabla p}{\rho^2}.
+\]
+取矩阵的对称部分。因
+$\operatorname{sym}(\mathsf A^2)=\bm U^2+\bm W^2$，交叉项
+$\bm U\bm W+\bm W\bm U$ 是反对称的，故得到所证公式。
+\end{advsolution}
+
+若初始无旋且满足开尔文定理的条件，涡度方程没有产生涡量的源项，流动保持无旋，可写
+$\vect v=\nabla\Phi$。利用
+\[
+ (\vect v\cdot\nabla)\vect v
+ =\nabla(v^2/2)-\vect v\times(\nabla\times\vect v),
+\]
+正压流体的欧拉方程可积分为
+\[
+ \partial_t\Phi+\frac{v^2}{2}+\int^p\frac{\dd p'}{\rho(p')}=C(t).
+\]
+
+\begin{advexamplebox}{半圆柱形机库的升力}\label{advA1:ex:hangar-lift}
+半圆柱形机库截面是上半圆 $r=R$，沿 $z$ 方向无限长。外部不可压缩无旋空气的速度势为
+\[
+ \Phi=-v_0\left(r+\frac{R^2}{r}\right)\cos\theta.
+\]
+若机库内部压强为远处静压 $p_\infty$，求单位长度机库受到的竖直升力。
+\end{advexamplebox}
+\begin{advsolution}
+速度分量为
+\[
+ v_r=\partial_r\Phi=-v_0\left(1-\frac{R^2}{r^2}\right)\cos\theta,
+\]
+\[
+ v_\theta=\frac1r\partial_\theta\Phi
+ =v_0\left(1+\frac{R^2}{r^2}\right)\sin\theta.
+\]
+在表面 $r=R$，$v_r=0$、$v_\theta=2v_0\sin\theta$。伯努利方程给出外表面压强
+\[
+ p_{\rm out}=p_\infty+\frac12\rho
+ (v_0^2-4v_0^2\sin^2\theta).
+\]
+内外压强差沿外法线产生的竖直分力为
+\[
+ \frac{F_y}{H}
+ =R\int_0^\pi(p_\infty-p_{\rm out})\sin\theta\,\dd\theta
+ =\frac12\rho v_0^2R\left(
+ 4\int_0^\pi\sin^3\theta\,\dd\theta-\int_0^\pi\sin\theta\,\dd\theta\right).
+\]
+用 $\int_0^\pi\sin^3\theta\,\dd\theta=4/3$，得
+\[
+ \boxed{\frac{F_y}{H}=\frac53\rho v_0^2R}.
+\]
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ \draw[ground] (-2.2,0)--(2.2,0);
+ \draw[very thick] (-1.65,0) arc[start angle=180,end angle=0,radius=1.65];
+ \foreach \a in {20,50,90,130,160}{
+  \draw[vector]
+    ({1.65*cos(\a)-.28*sin(\a)},{1.65*sin(\a)+.28*cos(\a)})
+    --({1.65*cos(\a)+.28*sin(\a)},{1.65*sin(\a)-.28*cos(\a)});
+ }
+ \draw[vector] (-2.5,1.45)--(-1.6,1.45) node[midway,above]{$v_0$};
+ \draw[axis] (0,0)--(0,2.15) node[above]{$y$};
+ \node[fill=white] at (0,.55) {机库内部 $p_\infty$};
+\end{tikzpicture}
+\bookcaption{半圆柱表面速度增大导致外压降低，压力差的竖直分量形成升力}\label{advA1:fig:hangar}
+\end{minipage}\end{center}
+\end{advsolution}
+
+热力学基本关系对随体质元写成
+\[
+ \frac{Du_s}{Dt}=-p\frac{Dv_s}{Dt}+T\frac{Ds_s}{Dt},
+ \qquad v_s=1/\rho.
+\]
+准静态绝热、无耗散时 $Ds_s/Dt=0$，内能变化与速度散度耦合。
+
+\begin{advtheorem}{理想流体的能量方程}\label{advA1:thm:bernoulli-energy}
+令总能量密度
+\[
+ w=\rho u_s+\frac12\rho v^2.
+\]
+无体力、无黏且准静态绝热时，
+\[
+ \boxed{\frac{\partial w}{\partial t}
+ +\nabla\cdot[(w+p)\vect v]=0}.
+\]
+\end{advtheorem}
+证明：用欧拉方程点乘 $\vect v$ 得到宏观动能方程；用
+$Du_s/Dt=-(p/\rho)\nabla\cdot\vect v$ 与质量连续性方程得到内能方程。两式相加，压强功整理为
+$\nabla\cdot(p\vect v)$，即得守恒形式。
+
+\begin{advexamplebox}{伯努利原理的两种形式}\label{advA1:ex:bernoulli-principle}
+(1) 理想流体受单位质量势能 $\phi(\vect r)$，证明准静态绝热定常流中沿流线
+\[
+ u_s+\frac p\rho+\frac{v^2}{2}+\phi=C.
+\]
+(2) 对不可压缩理想流体，证明即使不使用准静态绝热条件，也有
+$p/\rho+v^2/2+\phi$ 沿流线不变；若流动无旋，则常数在整个连通流区相同。
+\end{advexamplebox}
+\begin{advsolution}
+(1) 把定常能量方程写成随体形式，并用热力学恒等式
+$\dd h=T\dd s+\dd p/\rho$，其中 $h=u_s+p/\rho$。沿绝热流线
+$\dd s=0$，故
+\[
+ \vect v\cdot\nabla\left(
+ h+\frac{v^2}{2}+\phi\right)=0.
+\]
+
+(2) 不可压缩欧拉方程是
+\[
+ (\vect v\cdot\nabla)\vect v
+ =-\nabla\left(\frac p\rho+\phi\right).
+\]
+与 $\vect v$ 点乘：
+\[
+ \vect v\cdot\nabla\left(
+ \frac{v^2}{2}+\frac p\rho+\phi\right)=0,
+\]
+所以沿流线守恒。若 $\nabla\times\vect v=0$，则
+$(\vect v\cdot\nabla)\vect v=\nabla(v^2/2)$，整个括号的梯度为零，故在连通流区全局为同一常数。
+\end{advsolution}
+
+\begin{advtheorem}{达朗贝尔佯谬}\label{advA1:thm:dalembert}
+在无环流、不可压缩、无黏、定常势流模型中，匀速来流对封闭物体的合阻力为零。
+\end{advtheorem}
+证明可用包围物体的远处控制面，不要求物体前后对称。
+对三维局域封闭物体，假定流体在无穷远趋于均匀来流且无源汇、无尾迹。
+势流的远场扰动从偶极项开始，故
+$\vect v=\vect U+\vect u$ 中 $\vect u=O(R^{-3})$。
+Bernoulli 关系给出 $p-p_\infty=-\rho\vect U\cdot\vect u+O(u^2)$。
+稳恒动量通量用 $p\mathsf1+\rho\vect v\vect v$ 表示；
+均匀部分在闭合控制面上积分为零，扰动部分至多为
+$O(R^2R^{-3})\to0$。物面不可穿透，因而总压强力也为零。
+二维无环流的局域势流可作相应远场论证；若有环流，仍需区分升力与阻力。
+前后几何对称只允许对特殊形状配对压强，不能作为一般证明。
+现实阻力来自黏性边界层、分离和尾迹，恰是此理想模型删除的机制。
+
+\subsubsection{不可压缩牛顿流体}
+
+简单平行剪切中
+\[
+ \tau=\eta\frac{\dd v}{\dd y}.
+\]
+动力黏度单位为 $\si{Pa.s}$，运动黏度 $\nu=\eta/\rho$ 的单位为
+$\si{m^2.s^{-1}}$。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \draw[ground] (-.2,0)--(4.8,0);
+ \draw[ground] (-.2,2.2)--(4.8,2.2);
+ \foreach \y/\len in {.4/.7,.8/1.25,1.2/1.8,1.6/2.35,2.0/2.9}{
+  \draw[vector] (.45,\y)--++(\len,0);
+ }
+ \draw[<->,TextGray] (4.2,.8)--(4.2,1.2) node[midway,right]{$\dd y$};
+ \draw[guide] (1.7,.8)--(4.3,.8) (2.25,1.2)--(4.3,1.2);
+\node at (2.2,2.52) {上板带动流体};
+\end{tikzpicture}
+\bookcaption{牛顿黏滞定律：相邻流层的速度差产生剪应力}\label{advA1:fig:newton-viscosity}
+\end{minipage}\end{center}
+图\ref{advA1:fig:newton-viscosity}中箭头长度表示速度，标签放在流层外侧，没有遮住速度线。
+
+不可压缩牛顿流体满足纳维--斯托克斯方程
+\[
+ \rho\left(\frac{\partial\vect v}{\partial t}
+ +\vect v\cdot\nabla\vect v\right)
+ =-\nabla p+\eta\nabla^2\vect v+\vect f.
+\]
+可压缩情形还会出现体黏度与 $\nabla(\nabla\cdot\vect v)$ 项。圆管泊肃叶定律
+$\Delta p=8\eta QL/(\pi R^4)$ 和低雷诺数球体斯托克斯阻力
+$F=6\pi\eta Rv$ 都是其经典特解或渐近结果。
+
+\begin{advexamplebox}{同轴圆柱间的旋转 Couette 流}\label{advA1:ex:cylindrical-couette}
+高为 $H$ 的同轴圆柱半径为 $R_1<R_2$，角速度分别为
+$\omega_1,\omega_2$。间隙内充满不可压缩牛顿流体，黏度为 $\eta$。求定常速度场及维持两圆柱转动所需外力矩。
+\end{advexamplebox}
+\begin{advsolution}
+轴对称定常解只有方位分量，纳维--斯托克斯方程化为
+\[
+ \frac{\dd^2v_\theta}{\dd r^2}
+ +\frac1r\frac{\dd v_\theta}{\dd r}
+ -\frac{v_\theta}{r^2}=0,
+\]
+故
+\[
+ v_\theta=Ar+\frac Br,
+\]
+\[
+ A=\frac{\omega_2R_2^2-\omega_1R_1^2}{R_2^2-R_1^2},
+ \qquad
+ B=\frac{R_1^2R_2^2(\omega_1-\omega_2)}
+ {R_2^2-R_1^2}.
+\]
+剪应力为
+\[
+ \tau_{r\theta}=\eta\left(
+ \frac{\dd v_\theta}{\dd r}-\frac{v_\theta}{r}\right)
+ =-\frac{2\eta B}{r^2}.
+\]
+任一圆柱面上传递的力矩大小与半径无关：
+\[
+ |\mathcal M|=2\pi rH\cdot r|\tau_{r\theta}|
+ =\boxed{4\pi\eta H|B|}.
+\]
+若 $\omega_1>\omega_2$，维持内筒需沿正方向施加
+$\mathcal M_1=4\pi\eta HB$，维持外筒需施加
+$\mathcal M_2=-4\pi\eta HB$；两者之和为零，功率差转化为黏滞热。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.88]
+ \draw[very thick] (0,0) circle(.85);
+ \draw[very thick] (0,0) circle(1.65);
+ \draw[->,DeepBlue,thick] (.85,0) arc[start angle=0,end angle=105,radius=.85];
+ \draw[->,TextGray,thick] (1.65,0) arc[start angle=0,end angle=55,radius=1.65];
+ \draw[<->,TextGray] (0,0)--(.85,0) node[midway,below]{$R_1$};
+ \draw[<->,TextGray] (0,0)--({1.65*cos(-35)},{1.65*sin(-35)}) node[midway,below]{$R_2$};
+ \node at (.30,.56) {$\omega_1$};
+ \node at (1.45,1.25) {$\omega_2$};
+\end{tikzpicture}
+\bookcaption{同轴圆柱之间的方位 Couette 流与两侧无滑移边界}\label{advA1:fig:couette}
+\end{minipage}\end{center}
+\end{advsolution}
+
+\begin{advexamplebox}{环隙中稳定下落圆柱测黏度}\label{advA1:ex:falling-cylinder-viscosity}
+半径 $R$ 的圆柱杯内盛密度 $\rho_0$、黏度未知的液体。半径 $r<R$、高 $a$、密度
+$\rho>\rho_0$ 的小圆柱与杯同轴，以稳定速度 $v$ 下落。圆柱完全浸没，杯底封闭，液体不可压缩；取远离杯底的长环隙、低雷诺数极限，忽略端部局部损失，但保留连续性所要求的压差与回流。求黏度。
+\end{advexamplebox}
+\begin{advsolution}
+取向下为 $z$ 正向，设圆柱完全浸没，液体不可压缩且杯底封闭。
+记 $H=\ln(R/r)$、$D=R^2-r^2$，把静水压梯度扣除后令
+$G=\dd p/\dd z-\rho_0g$。充分发展方程与无滑移边界为
+\[
+ \eta\frac1s\frac{\dd}{\dd s}\left(s\frac{\dd u}{\dd s}\right)=G,
+ \qquad u(r)=v,\quad u(R)=0.
+\]
+积分得到剪切驱动与压差驱动的叠加：
+\[
+ u(s)=v\frac{\ln(R/s)}H+
+ \frac G{4\eta}\left[s^2-R^2+\frac D H\ln\frac R s\right].
+\]
+圆柱每秒排开 $\pi r^2v$ 的液体，故环隙必须向上回流：
+\[
+ 2\pi\int_r^R u(s)s\,\dd s=-\pi r^2v.
+\]
+代入速度分布，令 $K=H(R^2+r^2)-D>0$，得
+\[
+ G=\frac{4\eta v}K.
+\]
+除侧面剪力外，端面还受到相对于静水压的压差，二者都是向上阻力：
+\[
+ F_{\rm drag}=-2\pi ra\eta u'(r)+G\pi r^2a
+ =\frac{2\pi\eta av(R^2+r^2)}K.
+\]
+把静水浮力另计，终端速度条件为
+$(\rho-\rho_0)\pi r^2ag=F_{\rm drag}$，从而
+\[
+ \boxed{\eta=\frac{(\rho-\rho_0)r^2g}{2v}
+ \left[\ln\frac Rr-\frac{R^2-r^2}{R^2+r^2}\right]}.
+\]
+方括号严格为正：令 $R/r=\e^H$，它就是 $H-\tanh H>0$。
+窄隙 $h=R-r\ll r$ 时约为 $h^3/(3r^3)$，于是
+$\eta\simeq(\rho-\rho_0)gh^3/(6rv)$。
+原来的纯对数速度剖面仅有剪切流，会给出向下净流量，不满足封底杯的连续性条件。
+本式保留压差但忽略入口、出口的局部损失，适用于长圆柱、低雷诺数和远离杯底的充分发展段；
+“忽略端部绕流细节”不等于可以删去端面压差。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.88]
+ \draw[very thick] (-2,-2)--(-2,2);
+ \draw[very thick] (2,-2)--(2,2);
+ \draw[ground] (-2,-2)--(2,-2);
+ \fill[DeepBlue!6] (-2,-1.95) rectangle (2,1.15);
+ \draw[very thick,fill=white] (-.75,-.65) rectangle (.75,1.05);
+ \draw[vector] (0,.25)--(0,-.60) node[midway,right]{$v$};
+ \draw[<->,TextGray] (-.75,1.38)--(.75,1.38) node[midway,above]{$2r$};
+ \draw[<->,TextGray] (-2,-1.55)--(2,-1.55) node[midway,below]{$2R$};
+ \draw[<->,TextGray] (1.05,-.65)--(1.05,1.05) node[midway,right]{$a$};
+\end{tikzpicture}
+\bookcaption{同轴下落圆柱与杯壁之间的轴向环隙层流}\label{advA1:fig:falling-cylinder}
+\end{minipage}\end{center}
+图\ref{advA1:fig:falling-cylinder}明确画出 $r<R$、共轴和侧面环隙；液体在环隙内向上净回流，端部局部损失按长环隙近似忽略。
+\end{advsolution}
+
+}
+
+\begin{advexamplebox}{等周不等式}\label{advA1:ex:isoperimetric}
+设光滑闭曲线长度为 $C$，证明其围成的有向面积满足
+\[
+ |A|=\left|\frac12\oint(x\,\dd y-y\,\dd x)\right|
+ \le\frac{C^2}{4\pi},
+\]
+并指出等号条件。
+\end{advexamplebox}
+\begin{advsolution}
+以弧长 $s\in[0,C]$ 参数化，并平移原点使
+$\int_0^C x\,\dd s=\int_0^C y\,\dd s=0$。周期函数的维廷格不等式给出
+\[
+ \int_0^C(x^2+y^2)\dd s\le
+ \left(\frac{C}{2\pi}\right)^2
+ \int_0^C(x'^2+y'^2)\dd s.
+\]
+弧长参数满足 $x'^2+y'^2=1$。再用柯西不等式：
+\[
+ 2|A|=\left|\int_0^C(xy'-yx')\dd s\right|
+ \le\sqrt{\int_0^C(x^2+y^2)\dd s}
+ \sqrt{\int_0^C(x'^2+y'^2)\dd s}
+ \le\frac{C^2}{2\pi}.
+\]
+因此 $|A|\le C^2/(4\pi)$。两次不等式同时取等号要求
+$x,y$ 只含第一傅里叶谐波且切矢量处处与位矢垂直，故曲线必须是圆。
+\end{advsolution}
+
+\begin{advexamplebox}{最速降线}\label{advA1:ex:brachistochrone}
+重力沿 $y$ 轴正向，质点从 $(0,0)$ 静止释放，沿光滑轨道到达 $(l,h)$。忽略摩擦，求使下降时间
+\[
+ \mathcal T[y]=\int_0^l\sqrt{\frac{1+y'^2}{2gy}}\,\dd x
+\]
+最小的曲线。
+\end{advexamplebox}
+\begin{advsolution}
+密度函数不显含 $x$，可用贝尔特拉米恒等式
+\[
+ \mathcal L-y'\frac{\partial\mathcal L}{\partial y'}
+ =\frac1{\sqrt{2gy(1+y'^2)}}=C_0 .
+\]
+令 $y=a(1-\cos\theta)$，则由上式得到
+\[
+ x=a(\theta-\sin\theta)+C_1.
+\]
+取起点为 $\theta=0$：
+\[
+ \boxed{x=a(\theta-\sin\theta),\qquad
+ y=a(1-\cos\theta)}.
+\]
+这是半径为 $a$ 的圆滚动时圆周上一点描出的旋轮线。参数 $a$ 与终点参数 $\theta_1$ 由
+$l=a(\theta_1-\sin\theta_1)$、$h=a(1-\cos\theta_1)$ 唯一确定适用分支。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1.05cm,y=.85cm]
+ \draw[axis] (0,0)--(4.2,0) node[right]{$x$};
+ \draw[axis] (0,0)--(0,-2.65) node[below]{$y$（向下）};
+ \draw[curve,domain=0.03:2.8,samples=120,smooth,variable=\t]
+   plot ({\t-sin(\t r)},{-(1-cos(\t r))});
+ \fill (0,0) circle(2pt) node[above left]{$O$};
+ \fill ({2.8-sin(2.8 r)},{-(1-cos(2.8 r))}) circle(2pt) node[right]{$P$};
+ \draw[guide] (0,{-(1-cos(2.8 r))})--({2.8-sin(2.8 r)},{-(1-cos(2.8 r))});
+\end{tikzpicture}
+\bookcaption{最速降线是旋轮线，而不是直线或圆弧}\label{advA1:fig:brachistochrone}
+\end{minipage}\end{center}
+图\ref{advA1:fig:brachistochrone}中轨道在起点具有竖直切线，使质点先迅速获得速度，再用较高速度完成横向运动。
+\end{advsolution}
+
+\begin{advexamplebox}{最小耗散原理}\label{advA1:ex:least-dissipation}
+区域 $D$ 内电导率为 $\sigma(\vect r)>0$，给定非静电力场 $\vect K$。在固定非静电力功率
+\[
+ -\int_D \vect K\cdot\sigma\nabla\phi\,\dd V=P
+\]
+的条件下，求使给定二次泛函
+$Q[\phi]=\int_D\sigma|\nabla\phi|^2\dd V$ 取极值的函数，并解释它与稳恒导电方程的形式关系，辨明何时可解释为物理耗散。
+\end{advexamplebox}
+\begin{advsolution}
+对
+\[
+ \mathcal F[\phi]=\int_D\sigma|\nabla\phi|^2\dd V
+ +\lambda\left(\int_D\vect K\cdot\sigma\nabla\phi\,\dd V+P\right)
+\]
+变分。若边界电势固定，则
+\[
+ \delta\mathcal F
+ =-\int_D\nabla\cdot\{\sigma(2\nabla\phi+\lambda\vect K)\}
+ \,\delta\phi\,\dd V .
+\]
+所以
+\[
+ \nabla\cdot\{\sigma(2\nabla\phi+\lambda\vect K)\}=0.
+\]
+把电势作常数重标度 $V=2\phi/(-\lambda)$，便得到
+\[
+ \nabla\cdot\vect j=0,\qquad
+ \vect j=\sigma(\vect K-\nabla V),
+\]
+即欧姆定律与稳恒电荷守恒的形式；重标度也改变边界电势，且只在 $\lambda\ne0$ 时有效。二阶变分
+$\delta^2Q=2\int_D\sigma|\nabla\delta\phi|^2\dd V>0$，所以在固定边界、线性约束的可行集合内这是最小值。$\lambda$ 仍须由给定的 $P$ 求定；一般没有 $Q_{\min}=P$。例如零边值的一维区间 $[0,1]$，取无量纲 $\sigma=1,K=x$，则约束为 $\int_0^1\phi\,\dd x=P$，极小解为 $\phi=6Px(1-x)$，且 $Q_{\min}=12P^2$。
+
+对于重标度后的物理电流，真正的焦耳功率是
+\[
+ Q_J=\int_D\frac{j^2}{\sigma}\dd V
+ =\int_D\sigma|\vect K-\nabla V|^2\dd V,
+\]
+并非原泛函 $Q[\phi]$。由连续性可得
+\[
+ Q_J=\int_D\vect K\cdot\vect j\,\dd V
+ -\oint_{\partial D}V\vect j\cdot\dd\vect S.
+\]
+只有边界电功率项为零时，非静电力的输入功率才等于焦耳热。
+\end{advsolution}
+
+\begin{advexamplebox}{中心力场中的最速降线}\label{advA1:ex:central-brachistochrone}
+质点从半径 $r_0$ 处静止释放。分别对
+(1) 平方反比引力场；(2) 均匀球形天体内部的线性引力场，写出最速降线的确定方程。
+\end{advexamplebox}
+\begin{advsolution}
+若速率只依赖 $r$，下降时间是光学型泛函
+\[
+ \mathcal T=\int n(r)\,\dd s,\qquad n(r)=\frac1{v(r)}.
+\]
+旋转对称性给出守恒量
+\[
+ b=n(r)r\sin\alpha,
+\]
+其中 $\alpha$ 是轨道切线与径向的夹角。因此所有中心力最速降线均由
+\begin{equation}\label{advA1:eq:central-brach-quad}
+ \frac{\dd\varphi}{\dd r}
+ =\frac{b}{r\sqrt{n^2(r)r^2-b^2}}
+\end{equation}
+以及端点条件确定。参数 $b$ 的物理意义与分层介质中的斯涅耳常量相同。
+
+(1) 对 $U=-GMm/r$，
+\[
+ v(r)=\sqrt{2GM\left(\frac1r-\frac1{r_0}\right)},\qquad
+ n(r)=\left[2GM\left(\frac1r-\frac1{r_0}\right)\right]^{-1/2}.
+\]
+代入式\eqref{advA1:eq:central-brach-quad}得到径向单调段；对终点 $r_1<r_0$ 且无径向转折的候选轨道，用角位移积分
+\[
+ \Delta\varphi=\int_{r_1}^{r_0}
+ \frac{b\,\dd r}{r\sqrt{r^2/[2GM(1/r-1/r_0)]-b^2}}
+\]
+求 $b$，再由 $\mathcal T=\int n\,\dd s$ 求时间。
+
+(2) 均匀球内 $g(r)=\Omega_g^2r$，$\Omega_g^2=GM/R^3$。从 $r_0$ 静止释放时
+\[
+ v(r)=\Omega_g\sqrt{r_0^2-r^2},\qquad
+ n(r)=\frac1{\Omega_g\sqrt{r_0^2-r^2}}.
+\]
+令 $q=\Omega_g b$，轨道满足
+\[
+ \frac{\dd\varphi}{\dd r}
+ =\frac{q\sqrt{r_0^2-r^2}}
+ {r\sqrt{(1+q^2)r^2-q^2r_0^2}}.
+\]
+上述导数的正负号须随径向运动方向选择。根号要求轨道不越过由
+$n(r)r=b$ 决定的最近心点 $r_*$。若先向内后向外，角位移须改为
+\[
+ |\Delta\varphi|=\int_{r_*}^{r_0}F(r;b)\,\dd r
+ +\int_{r_*}^{r_1}F(r;b)\,\dd r,
+ \quad F(r;b)=\frac{|b|}{r\sqrt{n^2(r)r^2-b^2}}.
+\]
+同半径异角端点取 $r_1=r_0$ 时，两段贡献相加而不相消。角条件可能给出多个驻时轨道，还须比较正的总时间并检查轨道是否位于所用引力模型的区域；不能把欧拉方程的一个积分分支直接宣称为唯一最速轨道。
+\end{advsolution}
+
+对力学轨道 $q_\alpha(t)$，作用量为
+\[
+ S[q]=\int_{t_1}^{t_2}L(q,\dot q,t)\dd t.
+\]
+
+\begin{advtheorem}{哈密顿原理}\label{advA1:thm:hamilton-principle}
+在固定起止时刻与端点的条件下，真实轨道使作用量的一阶变分为零：
+\[
+ \delta S=0.
+\]
+它给出的欧拉--拉格朗日方程正是分析力学的拉格朗日方程。
+\end{advtheorem}
+“一阶变分为零”比“全局最小”更准确，因为真实轨道也可能对应局部最大或鞍点。
+
+\begin{advexamplebox}{曲面上的测地线}\label{advA1:ex:geodesic}
+曲面 $\vect r=\vect r(u^1,u^2)$ 的线元为
+\[
+ \dd s^2=g_{ij}(u)\dd u^i\dd u^j.
+\]
+求参数曲线 $u^i=u^i(t)$ 为测地线的条件。
+\end{advexamplebox}
+\begin{advsolution}
+若 $t$ 是仿射参数，可对能量泛函
+\[
+ S=\frac12\int g_{ij}\dot u^i\dot u^j\dd t
+\]
+变分。欧拉--拉格朗日方程为
+\[
+ \frac{\dd}{\dd t}(g_{kj}\dot u^j)
+ -\frac12\partial_k g_{ij}\dot u^i\dot u^j=0.
+\]
+左乘逆度规 $g^{\ell k}$，得
+\[
+ \boxed{\ddot u^\ell+\Gamma^\ell{}_{ij}\dot u^i\dot u^j=0},
+\qquad
+ \Gamma^\ell{}_{ij}=\frac12g^{\ell k}
+ (\partial_i g_{kj}+\partial_j g_{ki}-\partial_k g_{ij}).
+\]
+若用任意参数直接变分弧长，则右边可出现
+$f(t)\dot u^\ell$；重新参数化为弧长或其他仿射参数后该项消失。
+\end{advsolution}
+
+\begin{advexamplebox}{极小曲面的条件}\label{advA1:ex:minimal-surface}
+曲面 $\vect r=\vect r(u^1,u^2)$ 是某空间区域的边界。求固定边界曲线时它使面积取驻值的条件，并写出图形曲面 $z=f(x,y)$ 的方程。
+\end{advexamplebox}
+\begin{advsolution}
+面积泛函为
+\[
+ A[\vect r]=\int\sqrt{\det g}\,\dd u^1\dd u^2.
+\]
+沿法向作变分 $\delta\vect r=\eta\vect n$，一阶面积变分为
+\[
+ \delta A=-2\int H\eta\,\dd A+\oint_{\partial S}(\cdots),
+\]
+固定边界使线积分消失。由于 $\eta$ 任意，极小曲面的必要条件为平均曲率
+\[
+ \boxed{H=0}.
+\]
+对 $z=f(x,y)$，
+\[
+ A[f]=\iint\sqrt{1+f_x^2+f_y^2}\,\dd x\dd y.
+\]
+代入欧拉--拉格朗日方程，得到
+\[
+ \boxed{(1+f_y^2)f_{xx}-2f_xf_yf_{xy}
+ +(1+f_x^2)f_{yy}=0}.
+\]
+平面显然满足该方程；悬链面等非平凡曲面也满足，但球面因 $H\ne0$ 不是无约束极小曲面。
+\end{advsolution}
+
+\subsection{弹性体与场论守恒律}
+
+先看一维弹性棒。位移场为 $\xi(x,t)$，质量线密度与等效弹性系数记为 $\rho,E$：
+\[
+ \mathcal L=\frac12\rho(\partial_t\xi)^2-\frac12E(\partial_x\xi)^2.
+\]
+场方程、波速与能量连续性方程分别为
+\[
+ \rho\,\partial_t^2\xi-E\,\partial_x^2\xi=0,\qquad
+ c=\sqrt{E/\rho},
+\]
+\[
+ w=\frac12\rho\xi_t^2+\frac12E\xi_x^2,\qquad
+ \Pi=-E\xi_t\xi_x,\qquad
+ \partial_t w+\partial_x\Pi=0.
+\]
+相应的机械动量密度与动量流为
+\[
+ g=\rho\xi_t,\qquad \mathcal T=-E\xi_x,\qquad
+ \partial_tg+\partial_x\mathcal T=0.
+\]
+
+\begin{advtheorem}{场论的诺特定理}\label{advA1:thm:field-noether}
+若标量场 $\phi_\nu$ 的连续变换
+$\bar\phi_\nu=\Lambda_\nu(\phi,\lambda)$ 在 $\lambda=0$ 的生成元为
+$\Psi_\nu=(\partial\Lambda_\nu/\partial\lambda)_0$，且拉格朗日密度的变化是散度
+\[
+ \left.\frac{\partial\bar{\mathcal L}}{\partial\lambda}\right|_0
+ =\partial_\mu B^\mu,
+\]
+则
+\[
+ j^\mu=B^\mu-\sum_\nu
+ \frac{\partial\mathcal L}{\partial(\partial_\mu\phi_\nu)}\Psi_\nu,
+ \qquad \partial_\mu j^\mu=0.
+\]
+\end{advtheorem}
+证明：把 $\partial_\lambda\mathcal L$ 用链式法则展开，对含
+$\partial_\mu\Psi_\nu$ 的项作乘积求导，再用场方程
+$\partial_\mu[\partial\mathcal L/\partial(\partial_\mu\phi_\nu)]
+=\partial\mathcal L/\partial\phi_\nu$，余项正好整理为 $\partial_\mu j^\mu=0$。
+
+若 $\mathcal L$ 不显含时空坐标，四个时空平移参数给出能量--动量张量
+\[
+ T^\mu{}_\nu=
+ \sum_a\frac{\partial\mathcal L}{\partial(\partial_\mu\phi_a)}
+ \partial_\nu\phi_a-\delta^\mu{}_\nu\mathcal L,
+ \qquad \partial_\mu T^\mu{}_\nu=0.
+\]
+其时间分量是能量密度与能流，空间分量是动量密度与动量流。
+
+\begin{advexamplebox}{弹性棒的平移对称性与机械动量}\label{advA1:ex:rod-noether}
+证明一维弹性棒的拉格朗日密度不显含 $\xi$ 所对应的连续对称性产生机械动量守恒。
+\end{advexamplebox}
+\begin{advsolution}
+变换 $\xi\mapsto\xi+\epsilon$ 不改变 $\xi_t,\xi_x$，故 $\delta\mathcal L=0$，生成元为 $\Psi=1$。
+诺特流可整体乘以 $-1$ 重新约定为
+\[
+ j^0=\frac{\partial\mathcal L}{\partial\xi_t}=\rho\xi_t,
+ \qquad
+ j^1=\frac{\partial\mathcal L}{\partial\xi_x}=-E\xi_x.
+\]
+连续性方程
+\[
+ \partial_t(\rho\xi_t)+\partial_x(-E\xi_x)=0
+\]
+正是波动方程，也就是机械动量密度 $g=\rho\xi_t$ 与动量流
+$\mathcal T=-E\xi_x$ 的守恒式。
+\end{advsolution}
+
+三维弹性体用拉格朗日描述
+$\vect R(\vect r,t)=\vect r+\vect\xi(\vect r,t)$。变形后的基矢
+$\vect\varepsilon_i=\partial\vect R/\partial x_i$ 构成度规
+$g_{ij}=\vect\varepsilon_i\cdot\vect\varepsilon_j$。
+
+\begin{advdefinition}{应变张量}\label{advA1:def:strain}
+\[
+ \varepsilon_{ij}=\frac12(g_{ij}-\delta_{ij}).
+\]
+在线性小形变下，对角元是正应变，非对角元是工程剪应变的一半。
+\end{advdefinition}
+
+\begin{advexamplebox}{纯剪切把单位圆变成椭圆}\label{advA1:ex:shear-circle}
+二维小应变张量为
+\[
+ \bm\varepsilon=\begin{pmatrix}0&\theta/2\\\theta/2&0\end{pmatrix}.
+\]
+求单位圆 $x^2+y^2=1$ 的变形后曲线，并对角化应变张量。
+\end{advexamplebox}
+\begin{advsolution}
+取不含刚性转动的代表变形梯度
+$\mathsf F=\mathsf1+\bm\varepsilon$：
+\[
+ x'=x+\frac\theta2y,\qquad
+ y'=y+\frac\theta2x.
+\]
+保留到 $\theta$ 一阶，逆变换为
+$x=x'-\theta y'/2,\ y=y'-\theta x'/2$，所以
+\[
+ \boxed{x'^2+y'^2-2\theta x'y'=1+\order{\theta^2}}.
+\]
+取旋转坐标
+$u=(x+y)/\sqrt2,\ v=(x-y)/\sqrt2$，有
+\[
+ \mathsf O\bm\varepsilon\mathsf O^{\mathsf T}
+ =\operatorname{Diag}(\theta/2,-\theta/2).
+\]
+故精确到线性阶，主轴方向的伸长率分别为 $1+\theta/2$ 与
+$1-\theta/2$：
+\[
+ \frac{u'^2}{(1+\theta/2)^2}
+ +\frac{v'^2}{(1-\theta/2)^2}=1.
+\]
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=1.0]
+ \draw[axis] (-2.0,0)--(2.0,0) node[right]{$x'$};
+ \draw[axis] (0,-1.55)--(0,1.55) node[above]{$y'$};
+ \draw[guide] (0,0) circle(1.0);
+ \begin{scope}[rotate=45]
+  \draw[curve] (0,0) ellipse (1.36 and .74);
+  \draw[guide] (-1.55,0)--(1.55,0) node[right]{$u$};
+  \draw[guide] (0,-1.05)--(0,1.05) node[above]{$v$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{纯剪应变的主轴沿 $x=\pm y$，单位圆变为转过 $45^\circ$ 的椭圆}\label{advA1:fig:shear-ellipse}
+\end{minipage}\end{center}
+图\ref{advA1:fig:shear-ellipse}中虚线圆仅作变形前参照，标签没有用白底遮挡曲线。
+\end{advsolution}
+
+\begin{advtheorem}{应变张量的位移场表示}\label{advA1:thm:strain-displacement}
+在线性小形变近似下，
+\[
+ \boxed{\bm\varepsilon=\frac12[
+ \nabla\vect\xi+(\nabla\vect\xi)^{\mathsf T}]}.
+\]
+\end{advtheorem}
+证明：$\mathsf F=\mathsf1+\nabla\vect\xi$，故
+\[
+ \mathsf g=\mathsf F^{\mathsf T}\mathsf F
+ =\mathsf1+\nabla\vect\xi+(\nabla\vect\xi)^{\mathsf T}
+ +(\nabla\vect\xi)^{\mathsf T}\nabla\vect\xi.
+\]
+忽略位移梯度的二阶项，再用
+$\bm\varepsilon=(\mathsf g-\mathsf1)/2$ 即得。反对称部分
+\[
+ \bm\varphi=\frac12[
+ \nabla\vect\xi-(\nabla\vect\xi)^{\mathsf T}]
+\]
+只描述质元的刚性小转动，不改变线元长度。
+
+\begin{advtheorem}{$SO(3)$ 张量积的不可约分解}\label{advA1:thm:so3-decomposition}
+三维旋转群的整数角动量不可约实表示维数为 $2\ell+1$。对
+$m=2\ell_1+1\ge n=2\ell_2+1$，
+\[
+ m\otimes n=(m+n-1)\oplus(m+n-3)\oplus\cdots\oplus(m-n+1).
+\]
+特别地，
+\[
+ 3\otimes3=5\oplus3\oplus1.
+\]
+\end{advtheorem}
+对二阶张量 $\mathsf P$，这三个部分分别是
+\[
+ \mathsf P_{\rm ST}
+ =\frac{\mathsf P+\mathsf P^{\mathsf T}}2
+ -\frac{\operatorname{tr}\mathsf P}{3}\mathsf1,\quad
+ \mathsf P_{\rm A}=\frac{\mathsf P-\mathsf P^{\mathsf T}}2,\quad
+ \mathsf P_{\rm tr}=\frac{\operatorname{tr}\mathsf P}{3}\mathsf1.
+\]
+它们的维数依次为 $5,3,1$。对称无迹应变描述定体积形变，迹
+$\operatorname{tr}\bm\varepsilon$ 是体积相对变化，反对称部分是刚性转动。
+
+\begin{advexamplebox}{三阶张量的不可约分解计数}\label{advA1:ex:rank3-decomp}
+证明维数分解
+\[
+ 3\otimes3\otimes3=7\oplus2\cdot5\oplus3\cdot3\oplus1.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+先耦合前两个矢量表示：
+\[
+ 3\otimes3=5\oplus3\oplus1
+ \quad(\ell=2,1,0).
+\]
+再分别与第三个 $\ell=1$ 的矢量耦合：
+\[
+ 5\otimes3=7\oplus5\oplus3,\qquad
+ 3\otimes3=5\oplus3\oplus1,\qquad
+ 1\otimes3=3.
+\]
+合并同类项即得
+$7\oplus2\cdot5\oplus3\cdot3\oplus1$。维数检查
+$7+10+9+1=27=3^3$，没有遗漏分量。
+\end{advsolution}
+
+\AOneElasticSecond
+\AOneFluidSection

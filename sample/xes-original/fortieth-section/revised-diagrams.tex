@@ -1,0 +1,205 @@
+% Explicit circuit topology and geometric references; no opaque label backgrounds.
+\renewcommand{\generatorFigureFaithful}{%
+\begin{center}\begin{tikzpicture}[scale=.83,>=Latex]
+ \begin{scope}[xshift=-3.6cm]
+  \draw[Ink,thick](-.18,1.2)--(-1,1.2)--(-1,3.1)--(1,3.1)--(1,1.2)--(.18,1.2);
+  \draw[Ink,thick](-.18,1.2)--(-.5,0);
+  \draw[Ink,thick](.18,1.2)--(.75,.9)--(.75,-.85)--(.5,-.85);
+  \draw[guide,dashed](0,-1.3)--(0,3.6)node[above]{转轴};
+  \foreach \y in {0,-.85}{\draw[DeepBlue,thick](0,\y)ellipse(.5 and .18);}
+  \draw[Ink,line width=2pt](-.75,0)--(-.5,0) (.5,-.85)--(.95,-.85);
+  \draw[Ink,thick](-.75,0)--(-1.5,0)--(-1.5,-2)--(-.5,-2);
+  \draw[Ink,thick](.95,-.85)--(1.5,-.85)--(1.5,-2)--(.5,-2);
+  \draw[Ink,thick](-.5,-2.18)rectangle(.5,-1.82);\node[below]at(0,-2.25){负载};
+  \node[left]at(-1.6,0){电刷1};\node[right]at(1.55,-.85){电刷2};
+  \node[right]at(.95,.35){滑环1};\node[anchor=north]at(0,-1.07){滑环2};
+  \node at(-1.8,2.3){N};\node at(1.8,2.3){S};
+  \draw[DeepBlue,->](-.7,3.55)arc(140:30:.9 and .3);
+  \node[align=center]at(0,-3.65){两个滑环同轴且彼此绝缘\\线框两端经电刷接入负载};
+ \end{scope}
+ \begin{scope}[xshift=3.9cm]
+  \draw[Ink,very thick](-1,2.7)--(1,.3);
+  \draw[vector](0,1.5)--(2.3,1.5)node[right]{$\vect B$};
+  \draw[vector](0,1.5)--(1.2,2.5)node[above]{$\vect n$};
+  \draw(.65,1.5)arc(0:39.806:.65);\node at(.91,1.79){$\theta$};
+  \node[align=center,anchor=north](generatorview)at(.4,-.4){沿转轴观察\\斜线为线框平面的侧影\\法线与侧影垂直};
+  \node[align=center,anchor=north]at([yshift=-5mm]generatorview.south){单匝：$\Phi_B=BS\cos\theta$\\总磁链：$\Lambda=N\Phi_B$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{转动线框、共轴滑环与外部回路；右侧用沿转轴的视图确定面积法向。}
+\end{center}}
+
+\renewcommand{\unequalRodDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-5,1)--(-1,1)--(1,1.8)--(5,1.8);
+ \draw[Ink,thick](-5,-1)--(-1,-1)--(1,-1.8)--(5,-1.8);
+ \draw[DeepBlue,very thick](-4,-1.15)--(-4,1.15)node[above]{$m_1$};
+ \draw[DeepBlue,very thick](4,-1.95)--(4,1.95)node[above]{$m_2$};
+ \draw[vector](4,-.5)--(4,.6)node[left]{$I$};\draw[vector](-4,.5)--(-4,-.5)node[left]{$I$};
+ \draw[vector](4.25,0)--(5.4,0)node[right]{$v_2$};
+ \draw[vector](-3.7,0)--(-2.7,0)node[above]{$v_1$};
+ \node at(-2,-.5){$B_1,L_1$};\node at(2,-.6){$B_2,L_2$};
+ \foreach \x in {-3,-2,2,3}{\node[TextGray]at(\x,.65){$\times$};}
+ \node[align=center]at(0,-2.6){上下两根固定过渡导线分别连接；图示电流以右棒向上为正。};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\rodSourceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](-3,1.5)--(3,1.5) (-3,-1.5)--(3,-1.5);
+ \draw[Ink,thick](-2.7,-1.5)--(-2.7,-.8);
+ \draw[Ink,thick](-2.9,-.8)rectangle(-2.5,-.15);
+ \draw[Ink,thick](-2.7,-.15)--(-2.7,.25);
+ \draw[Ink,thick](-2.95,.25)--(-2.45,.25) (-3.1,.65)--(-2.3,.65);
+ \draw[Ink,thick](-2.7,.65)--(-2.7,1.5);
+ \node[left]at(-3,-.5){$R$};\node[left]at(-3.15,.45){$\mathcal E$};
+ \node[right]at(-2.35,.25){$-$};\node[right]at(-2.25,.65){$+$};
+ \draw[DeepBlue,very thick](.8,-1.65)--(.8,1.65)node[above]{$m$};
+ \draw[vector](.8,.7)--(.8,-.6)node[right]{$I$};
+ \draw[vector](1.2,0)--(2.6,0)node[right]{$v$};
+ \foreach \x in {-1.6,-.6,1.8}{\foreach \y in {-.9,.9}{\node[TextGray]at(\x,\y){$\times$};}}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\squareVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-2,1.65)--(2,1.65)--(2,.45) (2,-.45)--(2,-1.65)--(-2,-1.65)--(-2,-.45) (-2,.45)--(-2,1.65);
+ \draw[Ink,thick](-2.15,-.45)rectangle(-1.85,.45) (1.85,-.45)rectangle(2.15,.45);
+ \node[right]at(-1.7,.0){$R_1$};\node[left]at(1.7,0){$R_2$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vone)at(0,2.35){$V_1$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vtwo)at(2.8,0){$V_2$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vthree)at(0,-2.35){$V_3$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vfour)at(-2.8,0){$V_4$};
+ \draw(-2,1.65)--(-2,2.35)--(Vone.west) (Vone.east)--(2,2.35)--(2,1.65);
+ \draw(2,1.65)--(2.8,1.65)--(Vtwo.north) (Vtwo.south)--(2.8,-1.65)--(2,-1.65);
+ \draw(-2,-1.65)--(-2,-2.35)--(Vthree.west) (Vthree.east)--(2,-2.35)--(2,-1.65);
+ \draw(-2,1.65)--(-2.8,1.65)--(Vfour.north) (Vfour.south)--(-2.8,-1.65)--(-2,-1.65);
+ \foreach \x in {-2,2}{\foreach \y in {-1.65,1.65}{\fill(\x,\y)circle(2pt);}}
+ \node[TextGray]at(0,0){$\otimes\ B(t)$};
+ \draw[<->](-2,-3)--(2,-3)node[midway,below]{$a$};
+ \node[align=left,anchor=west]at(4,.2){仪表、引线均与顶点相接\\为辨认路径放大引线间距\\计算取紧贴极限，附加面积趋零};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\circularVoltmetersDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](0,0)circle(2.4);
+ \coordinate(A)at(150:2.4);\coordinate(C)at(30:2.4);
+ \fill(A)circle(2pt)node[left]{$A$};\fill(C)circle(2pt)node[right]{$C$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vone)at(0,3.15){$V_1$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vtwo)at(0,-3.15){$V_2$};
+ \draw(A)--(150:3.15)arc(150:100:3.15)--(Vone.west);
+ \draw(Vone.east)--(80:3.15)arc(80:30:3.15)--(C);
+ \draw(A)--(150:3.15)arc(150:260:3.15)--(Vtwo.west);
+ \draw(Vtwo.east)--(280:3.15)arc(280:390:3.15)--(C);
+ \draw[Ink](0,0)circle(.38);\node at(0,0){$V_3$};
+ \draw(A)--(150:.38) (30:.38)--(C);
+ \draw[guide](30:.8)arc(30:150:.8);\node at(0,1.12){$2\pi/3$};
+ \node[TextGray]at(0,-1.2){$\otimes\quad \dot B=k$};
+ \node[align=left,anchor=west]at(3.8,.3){$V_3$ 的接线沿 $AO,CO$\\仪表视为点状，$O$ 为圆心\\$V_1,V_2$ 引线取紧贴弧线极限\\图中间距只为辨认路径};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\gridCurrentDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[Ink,thick](-2,-2)grid[step=2](2,2);
+ \draw[DeepBlue,->,very thick](2,2)--(0,2);\draw[DeepBlue,->,very thick](0,2)--(-2,2);
+ \draw[DeepBlue,->,very thick](-2,2)--(-2,0);\draw[DeepBlue,->,very thick](-2,0)--(-2,-2);
+ \draw[DeepBlue,->,very thick](-2,-2)--(0,-2);\draw[DeepBlue,->,very thick](0,-2)--(2,-2);
+ \draw[DeepBlue,->,very thick](2,-2)--(2,0);\draw[DeepBlue,->,very thick](2,0)--(2,2);
+ \node at(-1,1){$\otimes$};\node at(1,1){$\otimes$};\node at(-1,-1){$\otimes$};\node at(1,-1){$\otimes$};
+ \node[align=left,anchor=west]at(3,.4){$k>0$：外周逆时针\\每段电流 $i=ka^2/(2r)$\\内部四段电流为零};
+ \draw[<->](-2,-2.5)--(2,-2.5)node[midway,below]{$2a$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\rlcDiagram}[1]{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[Ink,thick](-4,1)--(-3.2,1) (-2.75,1)--(-1.8,1);
+ \draw[Ink,thick](-3.2,.5)--(-3.2,1.5) (-2.75,.5)--(-2.75,1.5);
+ \node[above]at(-3,1.75){$C,\ U$};
+ \ifnum#1=1\node[below]at(-3.25,.45){$+$};\node[below]at(-2.7,.45){$-$};
+ \else\node[below]at(-3.25,.45){$-$};\node[below]at(-2.7,.45){$+$};\fi
+ \foreach \xx in {-1.8,-1.3,-.8,-.3}{\draw[Ink,thick](\xx,1)arc(180:0:.25 and .3);}
+ \draw[Ink,thick](.2,1)--(.65,1);\draw[Ink,thick](.65,.8)rectangle(1.85,1.2);
+ \draw[Ink,thick](1.85,1)--(3,1)--(3,-1)--(1.2,-1);
+ \node[above]at(-.8,1.45){$L$};\node[above]at(1.25,1.4){$R$};
+ \fill(1.2,-1)circle(1.6pt);\fill(.3,-1)circle(1.6pt);
+ \draw[Ink,thick](.3,-1)--(1.2,-1);\node[below]at(.75,-1.15){$S$（已闭合）};
+ \ifnum#1=1
+  \draw[Ink,thick](.3,-1)--(-1,-1) (-1.4,-1)--(-4,-1)--(-4,1);
+  \draw[Ink,thick](-1.4,-1.5)--(-1.4,-.5) (-1,-1.3)--(-1,-.7);
+  \node[below]at(-1.2,-1.65){$\mathcal E$};\node[above]at(-1.55,-.5){$+$};
+ \else\draw[Ink,thick](.3,-1)--(-4,-1)--(-4,1);\fi
+ \draw[vector](-1.7,0)--(.15,0)node[midway,above]{$I(t)$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\chargedRingDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](0,0)circle(2.1);\fill(2.1,0)circle(2.4pt)node[above right]{$m,+q$};
+ \draw[guide,dashed](0,0)--(2.1,0);\node[above]at(.95,0){$R$};
+ \draw[DeepBlue,->](0:2.45)arc(0:-60:2.45);\node[right]at(2.5,-1.3){$\theta$ 正向};
+ \draw[vector](2.1,0)--(2.1,-1.2)node[left]{$\vect e_\theta$};
+ \draw[vector](2.1,0)--(3.5,0)node[right]{$\vect e_r$};
+ \node[TextGray]at(-.5,.9){$\otimes\ B(t)$};
+ \node[align=left,anchor=west]at(4.5,.4){$N_r>0$ 向外\\$N_r<0$ 向内\\图示 $\theta=0$ 的基矢};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\travelingFieldTrainDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](-4,1.4)--(4,1.4) (-4,-1.4)--(4,-1.4);
+ \draw[DeepBlue,very thick](-1.2,-1.15)rectangle(1.2,1.15);
+ \foreach \x in {-3.3,-2.5,2.5,3.3}{\node[TextGray]at(\x,.55){$\odot$};}
+ \foreach \x in {-.7,0,.7}{\node[TextGray]at(\x,.55){$\otimes$};}
+ \draw[guide,dashed](-1.9,-1.3)--(-1.9,1.3) (1.9,-1.3)--(1.9,1.3);
+ \node at(0,-.35){$m$};\draw[vector](1.45,0)--(3,0)node[right]{$v$};
+ \draw[vector](-1.8,2)--(1.8,2)node[right]{$v_\phi=\omega/k$};
+ \draw[<->](-1.2,-1.9)--(1.2,-1.9)node[midway,below]{$a$};
+ \draw[<->](-4.4,-1.15)--(-4.4,1.15)node[midway,left]{$L$};
+ \node[align=center]at(0,-2.9){某时刻的正负场区，虚线处 $B=0$；导轨只作绝缘机械支承。};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\solenoidSplitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.75,>=Latex]
+ \foreach \x in {-3.6,-3.2,...,3.6}{\draw[Ink](\x,0)ellipse(.18 and 1.0);}
+ \draw[guide,dashed](0,-1.4)--(0,1.5);\draw[vector](-3.4,0)--(3.4,0);
+ \draw[<->](-3.8,-1.5)--(0,-1.5)node[midway,below]{$l_1$};
+ \draw[<->](0,-1.5)--(3.8,-1.5)node[midway,below]{$l_2$};
+ \node[align=left,anchor=west]at(4.5,.2){保持位置、同向串联：\\$L=L_1+L_2+2M$\\两子段均很长，才可近似略去端部互感。};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\mutualLoopsProofDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-2.5,0)circle(1.2);\draw[Ink,thick](2.5,.4)circle(1);
+ \coordinate(A)at(-1.3,0);\coordinate(B)at(1.5,.4);
+ \fill(A)circle(2pt);\fill(B)circle(2pt);
+ \draw[vector](A)--(-1.3,1)node[right]{$\dd\vect\ell_1$};
+ \draw[vector](B)--(1.5,-.6)node[right]{$\dd\vect\ell_2$};
+ \draw[vector](A)--(B)node[midway,above]{$\vect r_{12}$};
+ \node at(-2.5,0){$C_1$};\node at(2.5,.4){$C_2$};
+ \node[align=left,anchor=west]at(4.2,.2){源点在各自回路上\\线元沿回路切线\\$r_{12}=|\vect r_2-\vect r_1|$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\mutualInductanceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \foreach \x/\lab in {-2/1,2/2}{
+  \draw[Ink,thick](\x,0)ellipse(.45 and 1.5);
+  \draw[DeepBlue,->]({\x+.45},0)arc(0:65:.45 and 1.5);
+  \node[below]at(\x,-1.7){回路\lab};}
+ \draw[vector](-3.2,0)--(3.2,0)node[right]{$\vect B_1$};
+ \node[align=left,anchor=west]at(4.4,.2){同轴同向时互感为正\\$\Phi_{2\leftarrow1}=MI_1$\\$\Phi_{1\leftarrow2}=MI_2$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\selfFieldLinesDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.66,>=Latex]
+ \foreach \xx in {-3.8,3.8}{\begin{scope}[xshift=\xx cm]
+  \foreach \sg in {-1,1}{\foreach \a/\b/\h in {.2/2.6/3.8,.6/1.85/2.8}{
+   \draw[DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .5 with {\arrow{Latex}}}]
+    ({\sg*\a},0)..controls({\sg*\a},\h)and({\sg*\b},\h)..({\sg*\b},0)
+    ..controls({\sg*\b},-\h)and({\sg*\a},-\h)..cycle;}}
+  \draw[vector](0,-.8)--(0,3.25)node[above]{$B$};
+  \ifdim\xx pt<0pt
+   \draw[Ink,thick](0,0)ellipse(1.45 and .38);
+   \draw[Ink,->](230:1.45 and .38)arc(230:310:1.45 and .38);
+   \node at(0,-3.65){单匝圆电流的自生磁场};
+  \else
+   \foreach \y in {-1.3,-.975,...,1.3}{\draw[Ink,thick](0,\y)ellipse(1.15 and .25);}
+   \node at(0,-3.65){有限长同向绕组的回流场};
+  \fi
+ \end{scope}}
+\end{tikzpicture}\end{center}}

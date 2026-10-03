@@ -1,0 +1,726 @@
+% ModernLayout
+\begingroup
+\hypersetup{bookmarksdepth=3}
+\tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
+\newcommand{\ModernAnswerLabel}{{\bfseries\color{DeepBlue}解答}}
+\RenewDocumentEnvironment{xesolution}{+b}{%
+  \par\nobreak\smallskip\nobreak\begingroup\small
+  \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
+  #1\par\endgroup\smallskip
+}{}
+\chapter{狭义相对论}
+
+\section{相对性原理与光速不变}
+
+狭义相对论首先用惯性参考系建立时空关系，也可在惯性坐标中描述加速粒子；它不把引力造成的时空弯曲包含在内。它建立在两条实验支持的原则上：物理定律在所有惯性系中形式相同；真空光速
+$c$ 与光源和惯性观察者的运动无关。它并不是在牛顿力学（Newtonian mechanics）上额外增加一个“高速修正力”，而是改变不同惯性系之间
+时空坐标的变换关系。
+
+十九世纪末的干涉实验试图比较相互垂直方向的往返光程。图~\ref{ch31:fig:mm-lab}展示实验操作的历史情景；
+分光镜把入射光分入两条近乎正交的臂，光在端镜反射后返回并合束。两臂的往返时间差会改变干涉相位；转动装置可比较不同方向的结果。
+精确光路见第29章“迈克耳孙干涉仪”一节，不能从情景图中量取几何数据。
+\historyfigure[0.82\linewidth]{assets/generated/michelson-morley-lab.png}{
+迈克耳孙—莫雷干涉实验的复原情景示意（非史料照片）。厚重平台用于隔振，转动支撑用于比较不同方位的光程。\label{ch31:fig:mm-lab}}
+
+设 $S'$ 相对 $S$ 沿 $x$ 轴以速度 $v$ 运动，且两原点在 $t=t'=0$ 重合。洛伦兹变换（Lorentz transformation）为
+\begin{equation}
+ x'=\gamma(x-vt),\qquad
+ t'=\gamma\left(t-\frac{vx}{c^2}\right),
+ \qquad y'=y,\quad z'=z,
+\end{equation}
+这里的 $t$ 不是某一处观察者“看到光到达眼睛”的时刻，而是 $S$ 系同步钟网在事件发生地点记录的坐标时间。
+各系可用光信号同步：从钟A发光、在钟B立即反射、再回到A，令B反射时的读数等于A发射与接收读数的平均值。
+两系采用同样的尺和钟，坐标轴平行，且 $|v|<c$。其中
+\begin{equation}
+ \gamma=\frac1{\sqrt{1-v^2/c^2}}.
+\end{equation}
+为什么时间变换含有位置 $x$？时空均匀性要求惯性坐标之间为线性变换。
+$S'$ 原点满足 $x=vt$，所以可先写 $x'=a(x-vt)$、$t'=bt+dx$。
+从共同原点分别向左右发光，光速不变要求
+\[
+ a(c-v)=c(b+dc),\qquad a(-c-v)=-c(b-dc).
+\]
+两式相加、相减，得到 $b=a$、$d=-av/c^2$，于是
+$t'=a(t-vx/c^2)$。由相对性原理和空间反向对称性，逆变换的同一系数仍为 $a$，但 $v$ 换成 $-v$：
+\[
+ x=a(x'+vt')=a^2(1-v^2/c^2)x.
+\]
+取与 $v=0$ 连续相接的正根，便有 $a=\gamma$。这也说明不能在保留光速不变的同时继续要求 $t'=t$。
+
+将变换式代入并展开，交叉项相消，有
+\[
+ c^2t'^2-x'^2=\gamma^2(1-v^2/c^2)(c^2t^2-x^2)=c^2t^2-x^2.
+\]
+因此它保持任意两个事件的时空间隔
+\begin{equation}
+ c^2\Delta t^2-\Delta x^2-\Delta y^2-\Delta z^2
+\end{equation}
+不变。间隔为正称类时、为零称类光、为负称类空。类时事件可由低于光速的物体连接；类光事件可由光信号连接；类空事件不能相互传递不超光速的因果信号。
+低速极限 $v/c\to0$ 时，$\gamma\to1$，恢复伽利略变换（Galilean transformation）。
+
+
+\subsection{先选事件，再选参考系}
+洛伦兹变换变换的是同一事件的坐标。解题时先为事件命名，再列出哪一系中哪个坐标差为零。常用的三个约束不能相互替代：匀速钟的两次读数在该钟的静止惯性系满足 $\Delta x'=0$；运动杆在实验室测长要求 $\Delta t=0$；杆的固有长度要求在杆系同时测两端。
+若 $\Delta x=600\,\mathrm m$、$\Delta t=1.00\,\mu\mathrm s$，取 $c\simeq3.00\times10^8\,\mathrm{m/s}$，则 $c\Delta t=300\,\mathrm m<\Delta x$，两事件类空。
+使两事件同时的换系速度由 $\Delta t'=0$ 得到
+\[
+ v=\frac{c^2\Delta t}{\Delta x}=0.50c.
+\]
+再改用 $v=0.80c$，有
+\[
+ \Delta t'=\frac53(1.00-1.60)\,\mu\mathrm s=-1.00\,\mu\mathrm s.
+\]
+事件先后可以反转，但两事件没有亚光速因果联系，因此不构成因果矛盾。反过来，若两事件类时，使它们同地的速度为 $v=\Delta x/\Delta t$，其绝对值小于 $c$；此时才存在连接两事件的钟的静止系。
+
+\subsection{光钟与时间延缓}
+
+一只光钟由相距 $L$ 的两面平行镜组成，光脉冲在镜间往返一次记一个周期。钟的静止系中半周期为
+$\Delta\tau/2=L/c$。这里固有周期 $\Delta\tau$ 对应下镜处发射A、返回C这两个事件，而不是空间分离的发射A、反射B之间的间隔。
+若钟沿平行镜面、垂直于静止系光路的方向以速度 $v$ 运动，实验室看到光走斜边。横向镜间距不变，往返两段对称，所以
+\begin{equation}
+ \left(c\frac{\Delta t}{2}\right)^2
+ =L^2+\left(v\frac{\Delta t}{2}\right)^2,
+\end{equation}
+从而 $\Delta t=\gamma\Delta\tau$。这不是光在实验室“走得更快”，而是光速仍为 $c$、路径变长。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+% 核心结论：同一发射反射事件在运动系形成光程直角三角形。
+% 原型：纯几何对比；保留现行蓝灰风格，宽约12cm，字号10pt。
+% 草图：静止 A↑B | 运动 A↗B；下方尺寸与标题分两行，L标在右侧。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \begin{scope}
+  \coordinate (A) at (1,0); \coordinate (B) at (1,2.4);
+  \draw[very thick] (.2,0)--(1.8,0) (.2,2.4)--(1.8,2.4);
+  \draw[vector] (A)--(B);
+  \node[left=8pt] at (1,1.2) {$L=c\Delta\tau/2$};
+  \node[below right=5pt] at (A) {A};\node[above right=5pt] at (B) {B};
+  \node at (1,-1.45) {钟的静止系};
+ \end{scope}
+ \begin{scope}[xshift=5.7cm]
+  \coordinate (A) at (0,0);\coordinate (B) at (1.8,2.4);\coordinate (D) at (1.8,0);
+  \draw[very thick] (-.65,0)--(.65,0) (1.15,2.4)--(2.45,2.4);
+  \draw[vector] (A)--(B);
+  \node[above left=5pt] at (.9,1.2) {$c\Delta t/2$};
+  \draw[guide] (B)--(D) (A)--(D);
+  \draw[TextGray,<->] (2.85,0)--(2.85,2.4) node[midway,right=4pt] {$L$};
+  \draw[TextGray,<->] (0,-.55)--(1.8,-.55) node[midway,below=3pt] {$v\Delta t/2$};
+  \node[below left=4pt] at (A) {A};\node[above right=4pt] at (B) {B};
+  \node at (1,-1.45) {实验室系};
+ \end{scope}
+\end{tikzpicture}
+
+\figcap{横向光钟的半个周期：A发射、B反射。右图两段粗镜面分别表示对应事件时刻的位置，不是同一时刻的完整钟。几何示意未按下题数值绘制。}\label{ch31:fig:light-clock}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:light-clock} 右侧斜边、竖边和横边组成直角三角形，直接给出时间延缓因子。
+
+\setcounter{bookexample}{0}
+\begin{origexamplebox}{光钟的实验室周期}
+光钟两镜间距 $L=0.50\,\mathrm m$，钟以 $0.80c$ 相对实验室横向运动。求钟的固有周期与实验室所见周期，并求半周期内光在实验室走过的路程。
+\end{origexamplebox}
+\begin{xesolution}
+\ModernAnswerLabel\quad 固有周期
+\[
+ \Delta\tau=\frac{2L}{c}=\frac{1.0\,\mathrm m}{c}\approx3.34\,\mathrm{ns}.
+\]
+$v=0.80c$ 时 $\gamma=1/\sqrt{1-0.8^2}=5/3$，故
+\[
+ \boxed{\Delta t=\gamma\Delta\tau\approx5.56\,\mathrm{ns}}.
+\]
+半周期内光程
+\[
+ \boxed{s=c\Delta t/2=\gamma L\approx0.833\,\mathrm m}.
+\]
+用直角三角形检查：横移 $v\Delta t/2\approx0.667\,\mathrm m$，与竖边 $0.50\,\mathrm m$ 合成的斜边确为 $0.833\,\mathrm m$。
+\end{xesolution}
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+% 核心结论：时间轴为运动原点世界线，空间轴为同时线。
+% 纯几何，约11x6cm，字号10pt；ct↑，x→，双向光线；P投影到直角轴。
+% beta=0.4；事件P=(4,3)远离斜轴；所有标签透明。
+\begin{tikzpicture}[font=\small,scale=.93,>=Latex]
+ \draw[axis] (-3.5,0)--(5.6,0) node[right] {$x$};
+ \draw[axis] (0,-.4)--(0,4.9) node[above] {$ct$};
+ \draw[DeepBlue,dashdotted] (0,0)--(3.8,3.8);
+ \draw[DeepBlue,dashdotted] (0,0)--(-3.2,3.2);
+ \node[above left] at (-3.2,3.2) {$x=-ct$};
+ \node[above right] at (3.8,3.8) {$x=ct$};
+ \draw[Blue,thick] (0,0)--(1.8,4.5) node[above=4pt] {$ct'$};
+ \draw[Blue,thick] (0,0)--(5.1,2.04) node[right=4pt] {$x'$};
+ \coordinate (P) at (4,3);
+ \draw[guide] (0,3)--(P)--(4,0);
+ \fill (P) circle (1.6pt);\node[right=5pt] at (P) {P};
+ \node[left=4pt] at (0,3) {$ct_P$};\node[below=4pt] at (4,0) {$x_P$};
+ \node[below left] at (0,0) {O};
+\end{tikzpicture}
+
+\figcap{两个惯性系的时空轴。虚线将事件P投影到地面系的x、ct轴；两条点划线为向左右传播的光信号。}\label{ch31:fig:spacetime-axes}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:spacetime-axes} 中，$ct'$ 轴是 $x'=0$ 的世界线，即 $x=vt$；$x'$ 轴是 $t'=0$ 的同时线，即 $ct=(v/c)x$。
+采用相同的 $x,ct$ 长度比例尺时，世界线的横向变化率为 $\dd x/\dd(ct)=v/c$；图上通常所说的纵横斜率则是 $\dd(ct)/\dd x=c/v$（$v\ne0$）。两条光线的斜率均为 $\pm1$。
+图上的欧氏距离却不是时空间隔，也不能用向斜轴作欧氏垂线的方法读取 $x',ct'$；斜坐标须按洛伦兹变换标定。
+
+\section{固有时、时间延缓与长度收缩}
+
+沿同一只钟世界线的两个读数事件，钟本身记录的时间称固有时 $\Delta\tau$。若该钟在 $S$ 中匀速运动，两事件满足
+$\Delta x=v\Delta t$，在钟的静止系中则 $\Delta x'=0$。由间隔不变，
+\[
+ c^2\Delta\tau^2=c^2\Delta t^2-v^2\Delta t^2,
+ \qquad \Delta\tau=\Delta t\sqrt{1-v^2/c^2},
+\]
+故
+\begin{equation}
+ \Delta t=\gamma\Delta\tau.
+\end{equation}
+运动钟在该惯性系坐标时间中的读数间隔更小。这里比较的是同一对事件，不能把不同位置的两只未同步时钟混入。
+
+物体在自身静止系 $S'$ 测得的长度为固有长度 $L_0$。在地面系 $S$ 同时记录两端位置，必须取 $\Delta t=0$，令其位置差为 $L$。
+对这两个测量事件，静止杆两端的坐标差仍为 $L_0$，因此
+\[
+ L_0=\Delta x'=\gamma(\Delta x-v\Delta t)=\gamma L,
+\]
+得到
+\begin{equation}
+ L=\frac{L_0}{\gamma}.
+\end{equation}
+长度收缩只发生在运动方向。它与同时性的相对性不可分：不同惯性系“同时测两端”对应不同的两件事件。
+
+\setcounter{bookexample}{1}
+\begin{origexamplebox}{高速不稳定粒子的寿命与飞行距离}
+某不稳定粒子在自身静止系平均寿命为 $\tau_0=2.2\,\mu\mathrm s$，在实验室以 $0.98c$ 运动。求实验室测得平均寿命和平均飞行距离。
+\end{origexamplebox}
+\begin{xesolution}
+\ModernAnswerLabel\quad \[
+ \gamma=\frac1{\sqrt{1-0.98^2}}\approx5.03.
+\]
+实验室寿命
+\[
+ \boxed{\tau=\gamma\tau_0\approx11.1\,\mu\mathrm s}.
+\]
+平均飞行距离
+\[
+ \boxed{\ell=v\gamma\tau_0
+ =\frac{0.98c\times2.2\,\mu\mathrm s}{\sqrt{1-0.98^2}}
+ \approx3.25\,\mathrm{km}}.
+\]
+在粒子静止系中也可得到相同相遇事件：实验室到探测位置的距离收缩为原来的 $1/\gamma$。
+具体地，把产生事件记为A、衰变事件记为B；平均寿命是大量粒子的统计平均，
+并非每个粒子都恰好在 $11.1\,\mu\mathrm s$ 后衰变。忽略减速时，每次飞行都有
+$\Delta x=v\Delta t$，取平均后仍有 $\langle\Delta x\rangle=v\langle\Delta t\rangle$。
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Contract: two simultaneous spatial snapshots, not two world-line diagrams.
+% Same events A (creation) and B (decay); lengths refer to ground markers P,Q.
+% Transparent labels, 12cm print width; no decorative backgrounds.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[->] (0,0)--(5.1,0) node[right]{$x$};
+ \fill (0,0) circle(2pt) (4.4,0) circle(2pt);
+ \node[below=5pt] at (0,0){P};\node[below=5pt] at (4.4,0){Q};
+ \draw[DeepBlue,thick,->] (.3,.65)--(1.8,.65) node[midway,above=3pt]{$v$};
+ \node[above=5pt] at (3.2,.65){粒子运动};
+ \draw[<->] (0,-.65)--(4.4,-.65) node[midway,below=3pt]{$\ell=v\tau$};
+ \node at (2.2,1.45){实验室系：P、Q静止};
+ \begin{scope}[yshift=-3.1cm]
+  \draw[->] (0,0)--(5.1,0) node[right]{$x'$};
+  \fill (0,0) circle(2pt) (2.4,0) circle(2pt);
+  \node[below=5pt] at (0,0){P};\node[below=5pt] at (2.4,0){Q};
+  \draw[DeepBlue,thick,->] (2.4,.7)--(1.1,.7) node[midway,above=3pt]{$-v$};
+  \node[above=4pt] at (4,.5){地面标记左移};
+  \draw[<->] (0,-.65)--(2.4,-.65) node[midway,below=3pt]{$\ell'=\ell/\gamma=v\tau_0$};
+  \node at (2.2,1.45){粒子系：粒子留在 $x'=0$};
+ \end{scope}
+\end{tikzpicture}
+
+\figcap{产生时刻两系中的地面标记。P是产生位置，Q取在平均飞行距离处；长度仅作示意。}\label{ch31:fig:particle-lifetime}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:particle-lifetime} 中，地面标记P、Q的固有间距为 $\ell$。
+粒子系中它们整体向左运动，同时测得间距
+$\ell'=\ell/\gamma\approx0.646\,\mathrm{km}$。
+Q到达静止粒子所需时间为
+\[
+ t'=\frac{\ell'}v=\frac{\ell}{\gamma v}=\tau_0=2.2\,\mu\mathrm s.
+\]
+这样两系对同一相遇事件给出一致结果：实验室使用延长的寿命，粒子系使用收缩的地面距离。
+\end{xesolution}
+
+
+\subsection{加速运动中的固有时累积}
+匀速公式用于整段旅程之前，要检查钟是否全程相对所选惯性系以同一速率运动，即 $\gamma$ 是否恒定。速度随时间变化时，每个足够短的时间段满足
+\[
+ \dd\tau=\sqrt{1-v(t)^2/c^2}\,\dd t,\qquad
+ \tau=\int_{t_A}^{t_B}\sqrt{1-v(t)^2/c^2}\,\dd t.
+\]
+这给出理想钟沿既定世界线的累计读数；不是把全程平均速度放入 $\gamma$。只要各段之间钟的读数连续，便可逐段相加。
+例如地面与飞船在A相遇，飞船以 $0.60c$ 匀速飞出3.00年（地面计时），在远端短时掉头，再以同速返回并在B重逢。忽略掉头所占时间，地面钟累计6.00年，飞船钟累计
+\[
+ \tau=2(3.00\,\mathrm{yr})\sqrt{1-0.60^2}=4.80\,\mathrm{yr}.
+\]
+A、B是同一对重逢事件，两只钟的累计读数可以直接比较。飞船去、回两段对应不同惯性系，不能把“运动钟慢”的互易说法在中途无条件拼接；差异应由各自世界线上的固有时积分计算。实际有限时长掉头还需把掉头段的积分加入。
+
+\section{同时性的相对性与速度变换}
+
+在 $S$ 中同时发生、相隔 $\Delta x$ 的两事件，在 $S'$ 中的时间差为
+\begin{equation}
+ \Delta t'=-\gamma\frac{v\Delta x}{c^2}.
+\end{equation}
+所以空间分离事件的同时性不是绝对的；但因果相关的类时或光速间隔事件次序不会因惯性系改变。
+
+若物体在 $S$ 中速度为 $u_x,u_y$，先对同一段轨迹作微分：
+\[
+ \dd x'=\gamma(\dd x-v\dd t),\quad
+ \dd y'=\dd y,\quad
+ \dd t'=\gamma\left(\dd t-\frac{v\dd x}{c^2}\right)
+ =\gamma(1-vu_x/c^2)\dd t.
+\]
+分别用位移微分除以同一个 $\dd t'$，得到
+\begin{equation}
+ u_x'=\frac{u_x-v}{1-u_xv/c^2},\qquad
+ u_y'=\frac{u_y}{\gamma(1-u_xv/c^2)}.
+\end{equation}
+当 $u_x=c$ 时仍有 $u_x'=c$；低速极限恢复 $u_x'=u_x-v$。
+
+\setcounter{bookexample}{2}
+\begin{origexamplebox}{车厢两端闪光的同时性}
+在地面系 $S$ 中，一列沿 $+x$ 方向以 $v$ 运动的车厢前、后端在同一地面时刻发出闪光，两事件相距车厢在地面系的长度 $L$。求车厢系 $S'$ 中两次发光的时间差，并判断哪一端先发光。
+\begin{center}\begin{minipage}{\linewidth}\centering
+% 核心结论：题图给地面同时发光、地面长度L和车速，不给同时线或光相遇点。
+% 纯几何，蓝灰，10pt，目标宽10cm；草图 A|------L------|B，v向右，t=0。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \draw[thick] (0,0) rectangle (6,1.1);
+ \fill[DeepBlue] (0,.55) circle(2pt);\fill[DeepBlue] (6,.55) circle(2pt);
+ \node[left=5pt,align=center] at (0,.55) {后端A\\发光};
+ \node[right=5pt,align=center] at (6,.55) {前端B\\发光};
+ \draw[vector] (2,1.65)--(4,1.65) node[midway,above] {$v$};
+ \draw[TextGray,<->] (0,-.55)--(6,-.55) node[midway,below] {$L$（地面同时测量）};
+ \node at (3,.55) {地面系 $t=0$};
+\end{tikzpicture}
+
+\figcap{地面同一时刻的车厢位置及两端发光事件；箭头只给车速方向。}\label{ch31:fig:train-question}
+\end{minipage}\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+\begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
+% 核心结论：地面同时的端点发光在车厢系不同时；光相遇点并非车中点。
+% 纯几何时空图，约10x6cm，10pt；L=4,beta=1/3,ctmax=4.2。
+% 后端x=ct/3，前端x=4+ct/3；光线A->P<-B，P=(2,2)。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \def\trainL{4}\def\trainBeta{.3333333333}\def\trainT{4.2}
+ \coordinate (A) at (0,0);\coordinate (B) at (\trainL,0);
+ \coordinate (P) at ({\trainL/2},{\trainL/2});
+ \draw[axis] (-.35,0)--(6.6,0) node[right] {$x$};
+ \draw[axis] (0,0)--(0,4.9) node[above] {$ct$};
+ \draw[TextGray,thick] (A)--({\trainBeta*\trainT},\trainT) node[above=6pt] {后端};
+ \draw[TextGray,thick] (B)--({\trainL+\trainBeta*\trainT},\trainT) node[above=6pt] {前端};
+ \draw[DeepBlue,very thick] (A)--(P)--(B);
+ \draw[vector] (.65,.65)--(1.3,1.3);
+ \draw[vector] (3.35,.65)--(2.7,1.3);
+ \draw[Blue,dashed] (A)--(5.8,{5.8*\trainBeta});
+ \node[right=5pt] at (5.8,{5.8*\trainBeta}) {$t'=0$};
+ \fill (P) circle (1.6pt);\node[above=5pt] at (P) {P};
+ \fill (A) circle (1.4pt);\fill (B) circle (1.4pt);
+ \node[below left=3pt] at (A) {A};\node[below right=3pt] at (B) {B};
+ \draw[TextGray,<->] (0,-.65)--(\trainL,-.65) node[midway,below=3pt] {$L$};
+\end{tikzpicture}
+
+\figcap{车厢两端在地面系同时发光。灰线为同向平行的车端世界线；蓝线在P相遇，但P不是运动中的车厢中点。}\label{ch31:fig:simultaneity}
+\end{minipage}\end{center}
+
+
+取前端事件减后端事件，则在地面系 $\Delta t=0$、$\Delta x=L>0$。洛伦兹变换给出
+\[
+ \Delta t'=\gamma\left(\Delta t-\frac{v\Delta x}{c^2}\right)
+ =\boxed{-\gamma\frac{vL}{c^2}}.
+\]
+负号表示前端事件在车厢系更早。图~\ref{ch31:fig:simultaneity} 取后端发光事件A为原点、前端事件B为 $(L,0)$。
+过A的车厢系同时线为 $ct=\beta x$，B在这条线下方，所以 $t'_B<t'_A=0$。
+地面系中两光线为 $x=ct$ 与 $x=L-ct$，故相遇点P满足 $ct=L/2,x=L/2$；该时刻车厢中点却位于 $x=L/2+vL/(2c)$。
+不能把光线相遇点、车厢中点及某一端的接收事件混作同一个事件。
+$v\to0$ 或 $L\to0$ 时差异消失；$vL/c^2$ 具有时间量纲。
+\end{xesolution}
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.95,>=Latex]
+  \draw[axis] (-.2,0)--(5.6,0) node[right]{$x$};
+  \draw[axis] (0,-.2)--(0,4.3) node[above]{$y$};
+  \draw[vector] (0,0)--(4.3,3.2) node[above right]{$\vect u$};
+  \draw[component] (0,0)--(4.3,0) node[midway,below]{$u_x$};
+  \draw[component] (4.3,0)--(4.3,3.2) node[midway,right]{$u_y$};
+  \draw[vector] (.5,-.65)--(2.5,-.65) node[midway,below]{$\vect v$（换系）};
+\end{tikzpicture}
+\figcap{二维速度变换的分量约定示意，不按下题数值绘制。纵向、横向分量的变换分母相同，但横向还含 $1/\gamma$。}\label{ch31:fig:velocity-components}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:velocity-components} 中换系速度只沿 $x$，所以 $u_x,u_y$ 必须分别代入不同的变换式。
+
+\setcounter{bookexample}{3}
+\begin{origexamplebox}{横向速度分量的变换}
+在实验室系中，粒子速度为 $u_x=0.60c$、$u_y=0.30c$。求相对实验室沿 $+x$ 方向以 $v=0.50c$ 运动的惯性系所测速度分量和速率。
+\end{origexamplebox}
+\begin{xesolution}
+\ModernAnswerLabel\quad $\gamma_v=1/\sqrt{1-0.5^2}=2/\sqrt3$，共同分母
+$1-u_xv/c^2=1-0.30=0.70$。故
+\[
+ u_x'=\frac{0.60c-0.50c}{0.70}=0.1429c,
+\]
+\[
+ u_y'=\frac{0.30c}{(2/\sqrt3)(0.70)}=0.3712c.
+\]
+所以
+\[
+ \boxed{u'=\sqrt{u_x'^2+u_y'^2}\approx0.398c}.
+\]
+结果小于 $c$。若用伽利略变换而错误地令 $u_y'=u_y$，会漏掉横向分量的时间与同时性变换因子。
+图~\ref{ch31:fig:velocity-components} 中的 $u_y$ 来自粒子相邻两位置的横向坐标差，
+虽然 $\dd y'=\dd y$，计时却变成
+\[
+ \dd t'=\frac2{\sqrt3}\,(0.70)\dd t\approx0.8083\dd t.
+\]
+同样的横向位移除以更短的坐标时间，就有 $u_y'>u_y$。
+这不是横向又施加了一个力，而是对同一段运动更换测量参考系。
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Contract: same scale 6cm per c, components (.6,.3) and (.142857,.371154).
+% Axes form mathematical 2D x/y orientation; dashed legs are components.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \shift/\dx/\dy/\name in {0/3.6/1.8/S,6/.857143/2.226922/{S'}}{
+  \begin{scope}[xshift=\shift cm]
+   \draw[->] (-.2,0)--(4,0);\draw[->] (0,-.2)--(0,2.65);
+   \draw[DeepBlue,very thick,->] (0,0)--(\dx,\dy);
+   \draw[dashed,gray] (\dx,\dy)--(\dx,0);
+   \node at (1.8,-.85){$\name$};
+  \end{scope}
+ }
+ \node[above right=4pt] at (3.6,1.8){$\vect u$};
+ \node[below=4pt] at (1.8,0){$0.60c$};
+ \node[right=5pt] at (3.6,.9){$0.30c$};
+ \node[above right=4pt] at (6.857143,2.226922){$\vect u'$};
+ \node[below=5pt] at (6.45,0){$0.1429c$};
+ \node[right=5pt] at (6.857143,1.15){$0.3712c$};
+\end{tikzpicture}
+
+\figcap{本题同一粒子在两系中的速度，左右使用同一比例尺。水平、竖直方向分别是各系的 $x,y$ 方向。}\label{ch31:fig:velocity-two-frames}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:velocity-two-frames} 显示 $u_x'$ 减小而 $u_y'$ 增大，
+同时总速率从 $\sqrt{0.60^2+0.30^2}c\approx0.671c$ 变为 $0.398c$。
+\end{xesolution}
+
+\setcounter{bookexample}{4}
+\begin{origexamplebox}{相向飞船看到的相对速度}
+两飞船在地面系中分别以 $0.80c$ 向右和 $0.60c$ 向左运动。求右行飞船测得左行飞船的速度。
+\end{origexamplebox}
+\begin{xesolution}
+\ModernAnswerLabel\quad 取右行为正。地面系中左行飞船 $u_x=-0.60c$，右行飞船参考系速度参数 $v=0.80c$。所以
+\[
+ u_x'=\frac{-0.60c-0.80c}{1-(-0.60)(0.80)}
+ =-\frac{1.40}{1.48}c\approx-0.946c.
+\]
+故相对速率为 $\boxed{0.946c}$，小于 $c$。直接相加得到 $1.40c$ 是伽利略速度变换在高速下的错误使用。
+\end{xesolution}
+
+\section{光行差与相对论多普勒效应}
+
+平面波相位
+\begin{equation}
+ \Phi=\omega t-\vect k\cdot\vect r
+\end{equation}
+必须在同一事件给出相同相位。将逆变换 $t=\gamma(t'+vx'/c^2)$、$x=\gamma(x'+vt')$ 代入，
+\[
+ \Phi=\gamma(\omega-vk_x)t'
+ -\gamma\left(k_x-\frac{v\omega}{c^2}\right)x'-k_yy'-k_zz'.
+\]
+与 $\Phi=\omega't'-\vect k'\cdot\vect r'$ 比较系数，便得到
+\begin{equation}
+ \omega'=\gamma(\omega-vk_x),\qquad
+ k_x'=\gamma\left(k_x-\frac{v\omega}{c^2}\right),\qquad
+ k_y'=k_y.
+\end{equation}
+对真空光波有 $|\vect k|=\omega/c$。若 $\theta$ 是 $S$ 中光线与 $+x$ 轴的夹角，则
+\begin{equation}
+ \cos\theta'=\frac{\cos\theta-\beta}{1-\beta\cos\theta},\qquad
+ \beta=\frac vc,
+\end{equation}
+其中 $\theta'$ 是 $S'$ 中光线与 $+x'$ 轴的夹角；此式来自 $\cos\theta'=ck'_x/\omega'$。
+频率同时满足 $f'=\gamma f(1-\beta\cos\theta)$，这两式必须使用同一套角度约定。
+将 $(\omega/c,\vect k)$ 合写称为波四矢量（wave four-vector），四矢量的一般定义见本章后面的选读。
+
+沿视线方向，令 $f_0$ 为光源静止系发射频率、$\beta>0$ 为源与观察者的相对速率。在光源系取光沿 $+x$ 传播。
+观察者沿 $+x$ 远离时，代入 $\cos\theta=1$ 有
+$f_{\rm rec}=\gamma f_0(1-\beta)$；观察者迎光运动则把换系速度改成 $-v$。利用
+$\gamma(1\mp\beta)=\sqrt{(1\mp\beta)/(1\pm\beta)}$，得到
+\begin{equation}
+ f_{\rm rec}=f_0\sqrt{\frac{1-\beta}{1+\beta}},
+ \qquad
+ f_{\rm app}=f_0\sqrt{\frac{1+\beta}{1-\beta}},
+\end{equation}
+下标分别表示远离和接近。例如相对速率为 $0.60c$，远离时接收频率为 $f_0/2$，接近时为 $2f_0$。
+$\beta\to0$ 时二者都回到 $f_0$。它同时含有经典传播距离效应和时间延缓，不能只用“波峰追赶”得到完整结果。
+
+
+
+
+\subsection{从谱线频移反求速度}
+已知光源静止系的谱线波长 $\lambda_0$，观察者测得沿视线远离的光源谱线为 $\lambda_{\rm obs}$。先取比值 $r=\lambda_{\rm obs}/\lambda_0=f_0/f_{\rm rec}$，再反解：
+\[
+ r^2=\frac{1+\beta}{1-\beta},\qquad
+ \beta=\frac{r^2-1}{r^2+1}.
+\]
+例如 $\lambda_{\rm obs}=1.50\lambda_0$ 时，$\beta=5/13\approx0.385$，而把红移 $z=r-1=0.50$ 直接当作 $v/c$ 会高估速度。$z\ll1$ 时才有 $\beta\simeq z$。
+这里把频移全部归因于狭义相对论中的相对运动；不含引力红移和宇宙膨胀的传播效应。
+
+\subsection{“横向”必须注明在哪个参考系}
+取 $S$ 为光源静止系，$S'$ 观察者沿 $+x$ 以 $v$ 运动。两系的光线角度分别记为 $\theta,\theta'$。若光源系中横向发射，即 $\theta=90^\circ$，则
+\[
+ f'=\gamma f_0,\qquad \cos\theta'=-\beta.
+\]
+若观察者系中光线横向，即 $\theta'=90^\circ$，光行差式却要求 $\cos\theta=\beta$，从而
+\[
+ f'=\gamma f_0(1-\beta^2)=\frac{f_0}{\gamma}.
+\]
+两种频移相反，是因为所选的光线方向不同。在 $\beta=0.60$ 时，前者为 $1.25f_0$、后者为 $0.80f_0$；代入同一套角度变换即可互相核对。沿视线的接近、远离公式不能直接用于这种斜向问题。
+
+\section{相对论动量与能量}
+
+为了使动量守恒在所有惯性系中保持相同形式，质量为 $m$ 的粒子具有
+\begin{equation}
+ \vect p=\gamma m\vect v,
+ \qquad E=\gamma mc^2.
+\end{equation}
+静止能量 $E_0=mc^2$，动能
+\begin{equation}
+ K=(\gamma-1)mc^2.
+\end{equation}
+能量动量关系为
+\begin{equation}
+ E^2=p^2c^2+m^2c^4.
+\end{equation}
+无静质量粒子满足 $E=pc$ 并以 $c$ 传播。低速展开
+$K\simeq mv^2/2+3mv^4/(8c^2)+\cdots$，首项回到经典动能。
+
+三维力仍定义为 $\vect F=\dd\vect p/\dd t$。对恒定静质量粒子的能量动量关系求导，
+\[
+ 2E\frac{\dd E}{\dd t}=2c^2\vect p\cdot\frac{\dd\vect p}{\dd t},
+ \qquad \frac{c^2\vect p}{E}=\vect v,
+\]
+两式相结合得到
+\begin{equation}
+ \frac{\dd E}{\dd t}=\vect F\cdot\vect v.
+\end{equation}
+因此功率关系保持熟悉的形式，但一般不能再写成 $\vect F=m\vect a$：平行和垂直于速度的加速度响应不同。守恒计算应优先使用四动量，而不是人为引入“随速度变化的质量”。
+具体地，由 $\gamma=(1-v^2/c^2)^{-1/2}$ 求导：
+\[
+ \frac{\dd\gamma}{\dd t}=\gamma^3\frac{\vect v\cdot\vect a}{c^2},
+ \quad \vect F=m\frac{\dd(\gamma\vect v)}{\dd t}
+ =m\gamma\vect a+m\gamma^3\frac{\vect v\cdot\vect a}{c^2}\vect v.
+\]
+垂直于速度的分量中第二项为零；平行分量中用 $1+\gamma^2v^2/c^2=\gamma^2$，得到
+\begin{equation}
+ F_{\parallel}=\gamma^3ma_{\parallel},
+ \qquad
+ F_{\perp}=\gamma ma_{\perp}.
+\end{equation}
+低速极限两式都回到 $F=ma$；高速时继续增加平行速度尤其困难，而垂直力主要改变动量方向。
+
+\setcounter{bookexample}{6}
+\begin{origexamplebox}{相对论动能反求速度}
+粒子的动能等于其静止能量，即 $K=mc^2$。求粒子速度。
+\end{origexamplebox}
+\begin{xesolution}
+\ModernAnswerLabel\quad 由 $K=(\gamma-1)mc^2$ 得 $\gamma-1=1$，所以 $\gamma=2$。于是
+\[
+ \frac1{\sqrt{1-v^2/c^2}}=2,
+ \qquad
+ \boxed{v=\frac{\sqrt3}{2}c\approx0.866c}.
+\]
+若误用经典动能 $mv^2/2=mc^2$ 会得到 $v=\sqrt2c$，直接暴露出经典公式已超出适用范围。
+\end{xesolution}
+
+
+\subsection{电场做功与磁场偏转的不同作用}
+对于电荷量为 $q$、静质量为 $m$ 的粒子，静电场中的能量增量为 $q(\varphi_i-\varphi_f)$。电子从静止经加速电压大小 $U$ 获得 $K=eU$，所以
+\[
+ \gamma=1+\frac{eU}{mc^2},\quad
+ v=c\sqrt{1-\left(1+\frac{eU}{mc^2}\right)^{-2}},\quad
+ pc=\sqrt{eU(eU+2mc^2)}.
+\]
+磁场力与速度垂直，故不改变总能量。若速度垂直于匀强磁场，动量方向以角速度 $v/r$ 转动，$|\dd\vect p/\dd t|=pv/r$；与 $|q|vB$ 比较得
+\[
+ r=\frac p{|q|B},\qquad \omega=\frac{|q|B}{\gamma m}.
+\]
+高速时仍可用“动量除以电荷磁场”求半径，但不能再把动量直接写成 $mv$，也不能把回旋频率当作与能量无关的常数。低能极限两式恢复经典结果。
+
+\section{系统不变质量、碰撞与反应阈值}
+\begingroup\tcbset{breakable/.default=true}\begin{starread}{四维矢量、快度与动量中心系}
+定义四维位置 $x^\mu=(ct,\vect x)$、四维动量 $p^\mu=(E/c,\vect p)$。采用度规符号
+$(+,-,-,-)$ 时
+\[
+ p^\mu p_\mu=\frac{E^2}{c^2}-p^2=m^2c^2.
+\]
+能量守恒和三维动量守恒可统一写成四动量守恒。四速度 $U^\mu=\dd x^\mu/\dd\tau$ 的模恒为 $c$；
+对于恒定静质量，四力 $K^\mu=\dd p^\mu/\dd\tau=m\,\dd U^\mu/\dd\tau$ 与四速度正交：对 $U^\mu U_\mu=c^2$ 求导，得到 $U_\mu\dd U^\mu/\dd\tau=0$。
+四维语言的价值在于把参考系变换协变地组织起来，并不意味着时间和空间在测量意义上完全相同。
+四加速度、本征力与加速杆的进一步讨论见高阶选读A6“常见四矢量与相对论动力学”。
+
+沿同一直线的速度可用快度（rapidity）$\eta$ 表示：$\beta=\tanh\eta$、$\gamma=\cosh\eta$、$\gamma\beta=\sinh\eta$。
+连续两次同向洛伦兹推促对应快度相加，所以自动给出相对论速度合成律。
+
+对一个封闭粒子系，令总四动量为
+\[
+ P^\mu=\left(\frac{E}{c},\vect P\right).
+\]
+若 $P^\mu$ 为类时矢量，总动量为零的参考系称动量中心系（center-of-momentum frame），其相对实验室的速度为
+\[
+ \vect V_{\rm cm}=\frac{c^2\vect P}{E}.
+\]
+系统的不变质量 $M$ 由
+\[
+ M^2c^4=E^2-P^2c^2
+\]
+定义。在动量中心系中 $E_{\rm cm}=Mc^2$。碰撞或粒子反应的阈值应由总四动量守恒和这个不变量求出；把各粒子的静质量简单相加，通常会漏掉系统内部的相对动能与结合能。
+
+同样的变换也适用于电荷与电流。设 $\rho$ 为体电荷密度、$\vect j$ 为电流密度，四电流定义为 $J^\mu=(c\rho,\vect j)$。沿x轴换系，
+\[
+ \rho'=\gamma\left(\rho-\frac{v j_x}{c^2}\right),\quad
+ j_x'=\gamma(j_x-v\rho),\quad j_y'=j_y,\quad j_z'=j_z.
+\]
+连续性方程 $\partial\rho/\partial t+\nabla\cdot\vect j=0$ 可写成 $\partial_\mu J^\mu=0$。
+因此一个参考系中电中性的载流系统，在另一个参考系中未必仍具有零局部电荷密度。
+电磁力密度 $\vect f=\rho\vect E+\vect j\times\vect B$ 与功率密度 $w=\vect j\cdot\vect E$ 组成四力密度 $f^\mu=(w/c,\vect f)$，所以
+\[
+ w'=\gamma(w-vf_x),\qquad
+ f_x'=\gamma\left(f_x-\frac{vw}{c^2}\right),\qquad
+ f_y'=f_y,\quad f_z'=f_z.
+\]
+此处 $\vect f$ 是单位体积的力，不是单个粒子的三维力 $\vect F$；不可混用两种变换式。
+\end{starread}\endgroup
+\setcounter{bookexample}{5}
+\begin{origexamplebox}{对称完全非弹性碰撞后的静质量}
+两个静质量均为 $m$ 的粒子在动量中心系中以相同速率 $v$ 相向运动，碰撞后结合成一个静止复合体，能量不向外辐射。求复合体静质量 $M$，并解释为何一般大于 $2m$。
+\begin{center}\begin{minipage}{\linewidth}\centering
+% 核心结论：已知两等质量粒子同速相向结合，待求末态静质量。
+% 纯几何两行，蓝灰10pt，目标宽9cm；m -> <- m / M=?，无结果或辅助四动量。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \node[draw,circle,minimum size=9mm] (a) at (-2.6,1) {$m$};
+ \node[draw,circle,minimum size=9mm] (b) at (2.6,1) {$m$};
+ \draw[vector] (a.east)--(-.5,1) node[midway,above] {$v$};
+ \draw[vector] (b.west)--(.5,1) node[midway,above] {$v$};
+ \node[left=8pt] at (a.west) {初态};
+ \node[draw,minimum width=2cm,minimum height=.8cm] (f) at (0,-.65) {$M\;?$};
+ \node[right=8pt] at (f.east) {结合后静止};
+ \node[left=8pt] at (-3.05,-.65) {末态};
+\end{tikzpicture}
+
+\figcap{两粒子的初态及未知末态质量；动量中心系中初态总动量为零。}\label{ch31:fig:collision-question}
+\end{minipage}\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+\begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
+% 核心结论：相向动量抵消，但初动能进入末态不变质量。
+% 纯对比，上排初态m -> <- m，下排末态M；约10x4cm，10pt。
+% 反应连接箭头与动量箭头分层，文字不骑线。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \node[draw,circle,minimum size=10mm,inner sep=3pt] (a) at (-2.7,1.2) {$m$};
+ \node[draw,circle,minimum size=10mm,inner sep=3pt] (b) at (2.7,1.2) {$m$};
+ \draw[vector] (a.east)--(-.8,1.2) node[midway,above=5pt] {$+p$};
+ \draw[vector] (b.west)--(.8,1.2) node[midway,above=5pt] {$-p$};
+ \node[left=8pt] at (a.west) {初态};
+ \node[draw,minimum width=3cm,minimum height=1cm,inner sep=6pt] (f) at (0,-1.2) {$M=2\gamma m$};
+ \node[left=8pt] at (-3.2,-1.2) {末态};
+ \draw[TextGray,->] (0,.65)--(f.north);
+ \node[right=8pt] at (0,.25) {结合且无能量逸出};
+ \node[below=6pt] at (f.south) {$\vect P=0$};
+\end{tikzpicture}
+
+\figcap{动量中心系中两个等质量粒子对撞并结合。总三动量为零，但系统静质量包含初始动能。}\label{ch31:fig:inelastic-collision}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:inelastic-collision} 中两支初动量相消，末态复合体静止，因此能量守恒可直接求其不变质量。
+
+
+初态总三动量为零，总能量为
+\[
+ E_i=2\gamma mc^2.
+\]
+末态复合体静止，能量为 $Mc^2$。能量守恒给出
+\[
+ \boxed{M=2\gamma m}.
+\]
+当 $v>0$ 时 $\gamma>1$，所以 $M>2m$；增加的静质量来自被困在复合体内部的初始动能（内能）。
+对应的能量等式为 $(M-2m)c^2=2(\gamma-1)mc^2$：左侧是静能增加，右侧是初始总动能。
+$v\to0$ 时 $M\to2m$。若碰撞中有光子或其他粒子带走能量，必须把其四动量计入，不能仍用此式。
+\end{xesolution}
+
+
+
+
+
+\setcounter{bookexample}{7}
+\begin{origexamplebox}{固定靶粒子反应的阈能}
+静质量为 $m_a>0$ 的入射粒子撞击实验室中静止、静质量为 $m_b>0$ 的靶粒子。反应末态至少有两个有质量粒子，其静质量之和为 $M_f>m_a+m_b$，即反应为吸能反应。
+忽略外力，只讨论由能量和动量守恒决定的运动学阈值，不考虑库仑势垒及反应概率。求最小入射动能，并说明放能反应为什么不能直接使用所得负值作为动能下限。
+\end{origexamplebox}
+\begin{xesolution}
+\ModernAnswerLabel\quad 先在动量中心系中寻找生成末态所需的最少能量。在这个系中，总三动量为零，而每个有质量粒子的能量满足
+\[
+ E_i^*=\sqrt{m_i^2c^4+p_i^{*2}c^2}\ge m_ic^2.
+\]
+相加得 $E_{\rm final}^*\ge\sum_i m_ic^2=M_fc^2$。
+只有所有 $p_i^*=0$ 时取等号，这就是阈值末态“没有相对动能”的由来。
+注意它们只在质心系共同静止：实验室初态总动量不为零，末态必须整体运动来承接这部分动量，不能在实验室把末态全画成静止。
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Contract: generic two-mass final state at threshold. All lab momenta forward;
+% CM final particles at rest. Directions only; lengths not magnitudes.
+\begin{tikzpicture}[>=Latex,font=\small,y=.75cm]
+ \node[anchor=east] at (0,.8){实验室初态};
+ \fill (.7,.8) circle(2.5pt) (3.7,.8) circle(2.5pt);
+ \node[below=5pt] at (.7,.8){$a$};\node[below=5pt] at (3.7,.8){$b$ 静止};
+ \draw[DeepBlue,thick,->] (.9,.8)--(2.5,.8) node[midway,above=4pt]{$p_a$};
+ \node[anchor=east] at (0,-.9){实验室阈值末态};
+ \foreach \x in {.7,3.7}{\fill (\x,-.9) circle(2.5pt);\draw[DeepBlue,thick,->] (\x,-.9)--++(.9,0);}
+ \node[above=5pt] at (.7,-.9){$1$};\node[above=5pt] at (3.7,-.9){$2$};
+ \node at (2.2,-1.6){同一速度 $V_c$，整体运动};
+ \node[anchor=east] at (0,-2.8){质心系阈值末态};
+ \fill (.7,-2.8) circle(2.5pt) (3.7,-2.8) circle(2.5pt);
+ \node[below=5pt] at (.7,-2.8){$p_1^*=0$};\node[below=5pt] at (3.7,-2.8){$p_2^*=0$};
+\end{tikzpicture}
+
+\figcap{以两个末态粒子为例的阈值几何，箭头只表示动量方向。}\label{ch31:fig:threshold-frames}
+\end{minipage}\end{center}
+图~\ref{ch31:fig:threshold-frames} 第二行各末态粒子具有同一实验室速度 $V_c$，
+但质量不同则动量不同；第三行才是所有动量均为零的质心系。
+因此阈值末态总四动量的不变质量为 $M_f$。设入射粒子的实验室总能量、动量为 $E_a,p_a$。初态总能量和总动量为
+\[
+ E_i=E_a+m_bc^2,
+ \qquad P_i=p_a.
+\]
+利用 $E_a^2-p_a^2c^2=m_a^2c^4$，初态不变量为
+\begin{align}
+ E_i^2-P_i^2c^2
+ &=m_a^2c^4+m_b^2c^4+2m_bc^2E_a.
+\end{align}
+在阈值处令它等于 $M_f^2c^4$，得到
+\[
+ E_{a,\rm th}=\frac{M_f^2-m_a^2-m_b^2}{2m_b}c^2.
+\]
+入射动能是总能量减静止能量，所以
+\begin{equation}
+ \boxed{K_{\rm th}=\frac{M_f^2-(m_a+m_b)^2}{2m_b}c^2}.
+\end{equation}
+若末态只是原粒子的弹性散射，$M_f=m_a+m_b$，阈能为零；若产生了新的静质量，阈能不仅要提供静能差，还要保证实验室系总动量守恒，因此通常大于简单的静能差。量纲上括号内是质量，乘 $c^2$ 后为能量。
+若改成具有连续末态相空间的放能反应，$M_f<m_a+m_b$，入射动能趋于零时初态就已有足够的不变能量，释放的静能差成为末态相对动能，不能再令末态相对动能为零。
+因此这类反应仅从运动学考虑的下限为0。把两种情形合写为
+\[
+ K_{\min}=\max\left\{0,\frac{M_f^2-(m_a+m_b)^2}{2m_b}c^2\right\}.
+\]
+例如 $m_a=m_b=m$、$M_f=1.5m$ 时，代数表达式为 $-0.875mc^2$，只说明反应放能，不表示可以有负入射动能。
+单一粒子末态属于另外的能量匹配问题，不能把上面的连续末态阈值讨论直接套用。
+\end{xesolution}
+
+\subsection{用光子系统检验不变质量}
+单个真空光子的静质量为零，并不意味着多个光子组成的系统不变质量也为零。两光子的能量分别为 $E_1,E_2$，传播方向夹角为 $\theta$，总动量模平方为
+\[
+ P^2c^2=E_1^2+E_2^2+2E_1E_2\cos\theta.
+\]
+由总能量 $E=E_1+E_2$，得到
+\[
+ M^2c^4=E^2-P^2c^2=2E_1E_2(1-\cos\theta).
+\]
+同向时 $M=0$，不存在总动量为零的惯性系；反向且等能 $E_1=E_2=\varepsilon$ 时，总动量为零，$M=2\varepsilon/c^2$。这里的质量属于系统，不是给每个光子分配了静质量。计算碰撞阈值时使用总四动量，正是为了保留这类内部相对运动的能量。
+
+
+\hypersetup{bookmarksdepth=2}
+\endgroup

@@ -1,0 +1,677 @@
+\section{量子力学初步}
+
+\subsection{Schrödinger 方程与定态问题}
+
+把经典 Hamilton 量中的
+$\vect p$ 换成算符 $-\ii\hbar\nabla$，得到
+\[
+ \ii\hbar\frac{\partial\psi}{\partial t}
+ =\widehat H(\vect r,-\ii\hbar\nabla)\psi.
+\]
+若势能不显含时间，可分离为
+$\psi(\vect r,t)=\Psi(\vect r)\e^{-\ii Et/\hbar}$，空间波函数满足
+\[
+ \boxed{\widehat H\Psi=E\Psi}.
+\]
+自由粒子
+$\widehat H=-\hbar^2\nabla^2/(2m)$
+的平面波满足 $E=\hbar\omega$、$\vect p=\hbar\vect k$、
+$E=p^2/(2m)$。
+
+\begin{advexamplebox}{球形禁闭、动能下界与氢原子稳定性}\label{advA6:ex:hydrogen-confinement}
+把电子波函数完全限制在半径为 $R$ 的球内并令边界上 $\psi=0$。
+
+\begin{enumerate}
+\item 证明动能存在下界，取下界的波函数满足
+$\widehat T\psi=T_{\min}\psi$；
+\item 求 $T_{\min}$ 与基态波函数；
+\item 说明 Coulomb 势下电子不能无限塌缩到原点；
+\item 用该球内基态作变分试探函数，估算氢原子基态能量。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+归一化约束下令
+\[
+ \mathcal F[\psi]=
+ \int_{r<R}\psi^*
+ \left(-\frac{\hbar^2}{2m}\nabla^2\right)\psi\,\dd V
+ -\lambda\left(\int|\psi|^2\dd V-1\right).
+\]
+对 $\psi^*$ 变分得
+$\widehat T\psi=\lambda\psi$。因此最小值由 Dirichlet Laplacian 的最低本征值给出。
+
+球对称基态令 $u=r\psi$，满足
+$u''+k^2u=0$、$u(0)=u(R)=0$。故
+\[
+ k=\frac\pi R,\qquad
+ \boxed{T_{\min}=\frac{\pi^2\hbar^2}{2mR^2}},
+\]
+\[
+ \boxed{\psi_R(r)=
+ \frac1{\sqrt{2\pi R}}\frac{\sin(\pi r/R)}r
+ \quad(0<r<R)}.
+\]
+尺度压缩 $R\to0$ 时动能按 $R^{-2}$ 发散，而 Coulomb 势能只按
+$-R^{-1}$ 发散，所以总能量必在有限尺度取最小值。
+
+记 $k_e=1/(4\pi\varepsilon_0)$。对上述试探态
+\[
+ \left\langle\frac1r\right\rangle
+ =\frac{C}{R},\qquad
+ C=2\int_0^\pi\frac{\sin^2u}{u}\,\dd u
+ =2.43765\ldots
+\]
+故
+\[
+ E(R)=\frac{\pi^2\hbar^2}{2mR^2}
+ -\frac{Ck_ee^2}{R}.
+\]
+极小点与能量为
+\[
+ R_*=\frac{\pi^2}{C}a_0=4.049\,a_0,
+\]
+\[
+ \boxed{E_{\rm var}=
+ -\frac{C^2}{\pi^2}\frac{mk_e^2e^4}{2\hbar^2}
+ =-8.19\,\mathrm{eV}}.
+\]
+它高于精确基态 $-13.6\,\mathrm{eV}$，符合变分上界原理；估算较粗是因硬球边界并非真实指数尾部。
+\end{advsolution}
+
+\subsection{三个一维模型}
+
+\begin{advexamplebox}{无限深方势阱}\label{advA6:ex:infinite-well}
+粒子被限制在 $0<x<a$，阱外势能无穷大。证明能级和归一化波函数为
+\[
+ E_n=\frac{n^2\pi^2\hbar^2}{2ma^2},\qquad
+ \Psi_n(x)=\sqrt{\frac2a}\sin\frac{n\pi x}{a}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+阱内定态方程为
+\[
+ -\frac{\hbar^2}{2m}\Psi''=E\Psi,
+\quad
+ \Psi=A\sin kx+B\cos kx.
+\]
+边界 $\Psi(0)=0$ 给 $B=0$，$\Psi(a)=0$ 给
+$ka=n\pi$，$n=1,2,\ldots$。由 $E=\hbar^2k^2/(2m)$ 得所求能级。
+归一化
+\[
+ 1=|A|^2\int_0^a\sin^2\frac{n\pi x}{a}\,\dd x
+ =|A|^2\frac a2
+\]
+给 $A=\sqrt{2/a}$。$n=0$ 只给零波函数，不是物理态；
+$E_n\propto a^{-2}$ 与禁闭动能尺度一致。
+\end{advsolution}
+
+\begin{advexamplebox}{有限方势垒的隧穿系数}\label{advA6:ex:square-barrier}
+势能
+\[
+ V(x)=\begin{cases}
+ V_0,&0<x<a,\\0,&\text{其他},
+ \end{cases}
+\qquad 0<E<V_0.
+\]
+证明透射系数为
+\[
+ T=\left[
+ 1+\frac{V_0^2\sinh^2(\kappa a)}
+ {4E(V_0-E)}\right]^{-1},
+\qquad
+ \kappa=\frac{\sqrt{2m(V_0-E)}}{\hbar}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+三区波函数取
+\[
+ \Psi_I=\e^{\ii kx}+r\e^{-\ii kx},\quad
+ \Psi_{II}=A\e^{\kappa x}+B\e^{-\kappa x},\quad
+ \Psi_{III}=t\e^{\ii kx},
+\]
+$k=\sqrt{2mE}/\hbar$。在 $x=0,a$ 连续匹配 $\Psi,\Psi'$。
+用传播矩阵消去 $A,B,r$ 后，
+\[
+ t=\frac{\e^{-\ii ka}}
+ {\cosh\kappa a+
+ \frac{\ii}{2}\left(\frac\kappa k-\frac k\kappa\right)
+ \sinh\kappa a}.
+\]
+左右介质相同，流密度比就是 $T=|t|^2$。利用
+\[
+ \frac14\left(\frac\kappa k+\frac k\kappa\right)^2
+ =\frac{V_0^2}{4E(V_0-E)}
+\]
+得到题中结果。高厚势垒 $\kappa a\gg1$ 时
+\[
+ T\simeq
+ \frac{16E(V_0-E)}{V_0^2}\e^{-2\kappa a},
+\]
+显示指数隧穿；$a\to0$ 时 $T\to1$。分母中的 $4$ 不可遗漏。
+\end{advsolution}
+
+\begin{advexamplebox}{一维量子谐振子}\label{advA6:ex:harmonic-oscillator}
+证明
+\[
+ E_n=\left(n+\frac12\right)\hbar\omega,
+\]
+\[
+ \Psi_n(x)=
+ \frac{1}{\sqrt{2^nn!}}
+ \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
+ H_n(\xi)\e^{-\xi^2/2},
+\qquad
+ \xi=\sqrt{\frac{m\omega}{\hbar}}x.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+定义
+\[
+ \widehat a=
+ \sqrt{\frac{m\omega}{2\hbar}}\widehat x
+ +\frac{\ii}{\sqrt{2m\hbar\omega}}\widehat p,\qquad
+ [\widehat a,\widehat a^\dagger]=1.
+\]
+Hamilton 量分解为
+\[
+ \widehat H=\hbar\omega
+ \left(\widehat a^\dagger\widehat a+\frac12\right).
+\]
+数算符 $\widehat N=\widehat a^\dagger\widehat a$ 半正定。
+若其最低本征值不是 $0$，连续施用 $\widehat a$ 会得到更低本征值，矛盾；
+故 $\widehat a|0\rangle=0$，$E_0=\hbar\omega/2$。
+再由
+\[
+ |n\rangle=\frac{(\widehat a^\dagger)^n}{\sqrt{n!}}|0\rangle
+\]
+得到 $E_n=(n+1/2)\hbar\omega$。
+
+位置表象中 $\widehat a\Psi_0=0$ 给
+$\Psi_0\propto\e^{-\xi^2/2}$；反复作用
+$\widehat a^\dagger$ 并用 Rodrigues 公式
+\[
+ H_n(\xi)=(-1)^n\e^{\xi^2}
+ \frac{\dd^n}{\dd\xi^n}\e^{-\xi^2}
+\]
+得到题中归一化波函数。$n$ 偶、奇时波函数宇称分别为偶、奇，
+与对称势能相符。
+\end{advsolution}
+
+\subsection{Hilbert 空间与 Dirac 符号}
+
+\begin{advdefinition}{Hilbert 空间}\label{advA6:def:hilbert}
+Hilbert 空间 $\mathcal H$ 是带正定 Hermitian 内积的完备复线性空间。
+内积对第二个变量线性、对第一个变量反线性：
+\[
+ \langle a|\lambda b+\mu c\rangle
+ =\lambda\langle a|b\rangle+\mu\langle a|c\rangle,
+\quad
+ \langle b|a\rangle=\langle a|b\rangle^*.
+\]
+范数与距离为
+\[
+ \|a\|=\sqrt{\langle a|a\rangle},\qquad
+ d(a,b)=\|a-b\|.
+\]
+完备性指每个 Cauchy 序列都收敛到空间内的元素。
+\end{advdefinition}
+
+\begin{advexamplebox}{Hilbert 空间中的 Cauchy--Schwarz 不等式}\label{advA6:ex:cauchy-schwarz}
+证明
+\[
+ |\langle a|b\rangle|^2
+ \le\langle a|a\rangle\langle b|b\rangle.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+若 $b=0$ 显然成立。若 $b\ne0$，对任意复数 $\lambda$，
+\[
+ 0\le\|a-\lambda b\|^2.
+\]
+取
+$\lambda=\langle b|a\rangle/\langle b|b\rangle$，展开得
+\[
+ 0\le\langle a|a\rangle
+ -\frac{|\langle a|b\rangle|^2}{\langle b|b\rangle}.
+\]
+移项即得。等号成立当且仅当
+$a=\lambda b$，即两向量线性相关。
+\end{advsolution}
+
+\begin{advexamplebox}{Hilbert 空间中的三角不等式}\label{advA6:ex:triangle}
+证明
+\[
+ d(a,b)\le d(a,c)+d(c,b).
+\]
+\end{advexamplebox}
+\begin{advsolution}
+令 $x=a-c$、$y=c-b$，则 $a-b=x+y$。利用上题，
+\[
+\begin{aligned}
+\|x+y\|^2
+&=\|x\|^2+\|y\|^2+2\operatorname{Re}\langle x|y\rangle\\
+&\le\|x\|^2+\|y\|^2+2\|x\|\|y\|
+=(\|x\|+\|y\|)^2.
+\end{aligned}
+\]
+两边取非负平方根即得
+$\|a-b\|\le\|a-c\|+\|c-b\|$。
+\end{advsolution}
+
+\begin{advdefinition}{共射线的归一化态矢}\label{advA6:def:same-ray}
+若两个归一化态矢仅差一个全局相位，
+\[
+ |\psi'\rangle=\e^{\ii\theta}|\psi\rangle,
+\]
+则称它们在同一射线上。任何转移概率和可观测量期望都不依赖该全局相位。
+\end{advdefinition}
+
+\begin{advdefinition}{态等价与量子态}\label{advA6:def:state-equivalence}
+任意非零共线态矢
+$|\psi'\rangle=\lambda\e^{\ii\theta}|\psi\rangle$（$\lambda>0$）
+代表同一物理态。量子态是非零 Hilbert 向量在此等价关系下的等价类；
+计算时通常选取范数为 $1$ 的代表元。
+\end{advdefinition}
+
+\begin{advdefinition}{左矢、右矢与对偶}\label{advA6:def:bra-ket}
+空间中的向量记为右矢 $|a\rangle$。由 Riesz 表示定理，它唯一对应连续线性泛函
+\[
+ \langle a|:\ |\psi\rangle\mapsto\langle a|\psi\rangle,
+\]
+称为左矢。映射 $|a\rangle\mapsto\langle a|$ 是反线性的：
+\[
+ (\lambda|a\rangle+\mu|b\rangle)^\dagger
+ =\lambda^*\langle a|+\mu^*\langle b|.
+\]
+\end{advdefinition}
+
+\begin{advdefinition}{线性算符与反线性算符}\label{advA6:def:operator}
+线性算符满足
+\[
+ A(\lambda|a\rangle+\mu|b\rangle)
+ =\lambda A|a\rangle+\mu A|b\rangle.
+\]
+反线性算符则把系数取复共轭。时间反演是典型反线性对称操作；
+一般可观测量由线性算符描述。
+\end{advdefinition}
+
+\begin{advexamplebox}{反线性算符诱导的对偶作用}\label{advA6:ex:antioperator}
+设 $\Theta$ 是反线性算符。证明
+\[
+ \langle\Theta a|\Theta b\rangle
+\]
+对 $|a\rangle$ 线性、对 $|b\rangle$ 反线性，并说明反幺正条件如何保持概率。
+\end{advexamplebox}
+\begin{advsolution}
+由反线性，
+$\Theta(\lambda a+\mu b)=\lambda^*\Theta a+\mu^*\Theta b$。
+因此
+\[
+ \langle\Theta(\lambda a+\mu b)|\Theta c\rangle
+ =\lambda\langle\Theta a|\Theta c\rangle
+ +\mu\langle\Theta b|\Theta c\rangle,
+\]
+而
+\[
+ \langle\Theta c|\Theta(\lambda a+\mu b)\rangle
+ =\lambda^*\langle\Theta c|\Theta a\rangle
+ +\mu^*\langle\Theta c|\Theta b\rangle.
+\]
+若
+\[
+ \langle\Theta a|\Theta b\rangle
+ =\langle a|b\rangle^*=\langle b|a\rangle,
+\]
+则 $\Theta$ 为反幺正，且
+\[
+ |\langle\Theta a|\Theta b\rangle|^2
+ =|\langle a|b\rangle|^2,
+\]
+所有转移概率保持不变。这里不能把反线性算符的“伴随”当作普通矩阵转置，
+必须同时追踪复共轭的作用位置。
+\end{advsolution}
+
+\begin{advdefinition}{伴随算符}\label{advA6:def:adjoint}
+稠密定义的线性算符 $A$ 的伴随 $A^\dagger$ 由
+\[
+ \langle\psi|A\phi\rangle
+ =\langle A^\dagger\psi|\phi\rangle
+\]
+定义，其中还必须指定两者的定义域。有限维中，
+$[A^\dagger]=[A]^{*\,\mathsf T}$。
+\end{advdefinition}
+
+\begin{advdefinition}{可观测量}\label{advA6:def:observable}
+可观测量由自伴算符表示。自伴不仅要求形式上
+$A^\dagger=A$，还要求定义域相同。
+其谱为实数，并由谱投影给出完备分解；有限维时即 Hermitian 矩阵。
+\end{advdefinition}
+
+\subsection{位置表象、动量表象和常用算符}
+
+位置与动量广义本征态满足
+\[
+ \langle x'|x\rangle=\delta(x-x'),\qquad
+ \langle p'|p\rangle=\delta(p-p'),
+\]
+\[
+ \langle x|p\rangle=
+ \frac1{\sqrt{2\pi\hbar}}\e^{\ii px/\hbar}.
+\]
+完备性为
+\[
+ \int|x\rangle\langle x|\,\dd x=I,\qquad
+ \int|p\rangle\langle p|\,\dd p=I.
+\]
+在位置表象中
+\[
+ \widehat x=x,\qquad
+ \widehat p=-\ii\hbar\frac{\dd}{\dd x},\qquad
+ [\widehat x,\widehat p]=\ii\hbar.
+\]
+平移算符
+\[
+ T(\varepsilon)=\exp\!\left(-\frac{\ii}{\hbar}
+ \varepsilon\widehat p\right)
+\]
+作用为
+$(T(\varepsilon)\psi)(x)=\psi(x-\varepsilon)$；
+正负号取决于是主动平移态还是被动平移坐标，必须保持约定一致。
+
+\begin{advexamplebox}{投影、位置、动量和平移算符的伴随性质}\label{advA6:ex:operator-adjoints}
+证明位置/动量谱投影、位置算符和动量算符为自伴对象，
+而非零平移算符一般不是 Hermitian，却是幺正算符，且
+$T(\varepsilon)^\dagger=T(-\varepsilon)$。
+\end{advexamplebox}
+\begin{advsolution}
+先用有限测量区间 $\Delta$ 写位置谱投影：
+\[
+ (P_x(\Delta)\psi)(x)=\mathbf1_\Delta(x)\psi(x),\qquad
+ P_x(\Delta)^\dagger=P_x(\Delta),\quad P_x(\Delta)^2=P_x(\Delta).
+\]
+动量谱投影在动量表象中有同样的乘法形式，或由 Fourier 酉变换从该形式得到。
+$|x\rangle\langle x|$ 是形式上的谱密度，不是单个正规的秩一投影。
+$\widehat x$ 在 $D(\widehat x)=\{\psi\in L^2:x\psi\in L^2\}$ 上是自伴乘法算符。对动量算符，
+\[
+ \langle\phi|\widehat p\psi\rangle
+ =-\ii\hbar\int\phi^*\psi'\,\dd x
+ =-\ii\hbar[\phi^*\psi]_{\rm bdry}
+ +\ii\hbar\int(\phi^*)'\psi\,\dd x.
+\]
+在波函数于无穷远消失或采用相容边界条件时，边界项为零，得到
+$\langle\phi|\widehat p\psi\rangle
+=\langle\widehat p\phi|\psi\rangle$；
+在整条实线上取 $D(\widehat p)=H^1(\mathbb R)$，可核验伴随定义域相同，因而自伴。有限区间时仅消掉边界项只能证明对称，还须另行指定自伴边界条件；例如两端都取Dirichlet条件的动量算符并不自动自伴。
+
+因为 $\widehat p$ 自伴，
+\[
+ T(\varepsilon)^\dagger
+ =\exp\!\left(+\frac{\ii\varepsilon\widehat p}{\hbar}\right)
+ =T(-\varepsilon)=T(\varepsilon)^{-1}.
+\]
+所以 $T$ 幺正。除 $\varepsilon=0$ 或特殊离散谱情形外，
+$T^\dagger\ne T$，本征值 $\e^{-\ii\varepsilon p/\hbar}$ 也不是实数，
+故它本身不是可观测量。
+\end{advsolution}
+
+\begin{advexamplebox}{位置、动量与平移的广义本征态}\label{advA6:ex:generalized-eigenstates}
+说明位置算符、动量算符和平移算符的本征态与完备性；
+解释连续谱密度、区间投影与位置算符三者的区别。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ \widehat x|x_0\rangle=x_0|x_0\rangle,\qquad
+ \widehat p|p_0\rangle=p_0|p_0\rangle.
+\]
+$|x_0\rangle$ 和 $|p_0\rangle$ 不是 Hilbert 空间中的可归一向量，
+而是 rigged Hilbert space 中的广义向量；其 $\delta$ 归一化与积分完备性如上。
+任意态均可展开
+\[
+ |\psi\rangle=\int\psi(x)|x\rangle\,\dd x
+ =\int\tilde\psi(p)|p\rangle\,\dd p.
+\]
+平移算符与动量算符具有同一组广义本征态：
+\[
+ T(\varepsilon)|p\rangle
+ =\e^{-\ii\varepsilon p/\hbar}|p\rangle.
+\]
+严格位置测量由投影值测度
+\[
+ P_x(\Delta)=\int_\Delta|x\rangle\langle x|\,\dd x
+\]
+描述。非平凡区间的投影有 $0,1$ 两个谱值，回答“是否在这个区间”；
+位置算符则是 $\widehat x=\int x\,\dd P_x(x)$，给出连续的位置值。
+在 $L^2(\mathbb R)$ 的通常位置表象中，单点集合测度为零，所以
+$P_x(\{x_0\})=0$。形式符号 $|x_0\rangle\langle x_0|$ 不能直接平方成自身，
+否则会遇到无意义的 $\delta(0)$；它不是具有 $0,1$ 两个谱值的普通秩一投影。
+\end{advsolution}
+
+\subsection{有限维态、矩阵与自旋}
+
+在二维自旋空间中取基
+$|1\rangle=|\uparrow\rangle$、
+$|2\rangle=|\downarrow\rangle$，
+态写为
+\[
+ |\psi\rangle=
+ \psi_1|\uparrow\rangle+\psi_2|\downarrow\rangle,
+\qquad
+ |\psi_1|^2+|\psi_2|^2=1.
+\]
+
+\begin{advexamplebox}{算符矩阵与伴随矩阵}\label{advA6:ex:matrix-adjoint}
+在正交归一基中证明
+\[
+ [A^\dagger]=[A]^{*\,\mathsf T}.
+\]
+并说明 Hermitian 矩阵的元素条件。
+\end{advexamplebox}
+\begin{advsolution}
+矩阵元 $A_{ij}=\langle i|A|j\rangle$。由伴随定义，
+\[
+ (A^\dagger)_{ij}
+ =\langle i|A^\dagger|j\rangle
+ =\langle j|A|i\rangle^*
+ =A_{ji}^*.
+\]
+所以 $[A^\dagger]=[A]^{*\,\mathsf T}$。
+若 $A=A^\dagger$，则
+$A_{ij}=A_{ji}^*$，对角元 $A_{ii}$ 必为实数；
+反之满足这些元素关系的矩阵就是 Hermitian 矩阵。
+投影和 Pauli 矩阵均满足该条件；升、降算符互为伴随。
+\end{advsolution}
+
+Hermitian 算符的本征值实、不同本征值的本征态正交。
+若 $A|a\rangle=a|a\rangle$，
+\[
+ a\langle a|a\rangle
+ =\langle a|A|a\rangle
+ =\langle a|A^\dagger|a\rangle
+ =a^*\langle a|a\rangle,
+\]
+故 $a=a^*$。对 $a\ne b$，
+$(a-b)\langle b|a\rangle=0$，故正交。
+离散谱的完备性写成
+$\sum_{i,j}|\psi_{ij}\rangle\langle\psi_{ij}|=I$；
+连续谱则以积分和 Dirac $\delta$ 取代求和与 Kronecker $\delta$。
+
+\begin{advtheorem}{投影测量规则}\label{advA6:thm:copenhagen}
+设可观测量具有谱分解
+\[
+ A=\sum_iA_iP_i,
+\]
+其中 $P_i$ 是本征值 $A_i$ 的简并本征空间投影。归一化态
+$|\psi\rangle$ 测得 $A_i$ 的概率为
+\[
+ \boxed{p_i=\langle\psi|P_i|\psi\rangle}.
+\]
+在理想选择性测量中，得到 $A_i$ 后的态为
+\[
+ \boxed{|\psi_i'\rangle=
+ \frac{P_i|\psi\rangle}{\sqrt{p_i}}}.
+\]
+连续谱用投影值测度替代离散求和。
+\end{advtheorem}
+
+\begin{advdefinition}{期望值与跃迁振幅}\label{advA6:def:expectation-transition}
+归一化态中算符 $A$ 的期望值为
+\[
+ \langle A\rangle_\psi=\langle\psi|A|\psi\rangle.
+\]
+从 $|\psi\rangle$ 到 $|\phi\rangle$、由相互作用算符 $A$ 引起的跃迁振幅为
+\[
+ \mathcal A_{\psi\to\phi}=\langle\phi|A|\psi\rangle.
+\]
+相应概率还需结合归一化、态密度和时间演化。
+\end{advdefinition}
+
+\begin{advdefinition}{对易子}\label{advA6:def:commutator}
+两个算符的对易子为
+\[
+ [A,B]=AB-BA.
+\]
+$[A,B]=0$ 时称两者对易或相容。对易关系需在共同稠密定义域上理解；
+仅有形式微分表达式相等还不够。
+\end{advdefinition}
+
+\begin{advtheorem}{对易自伴算符的共同本征分解}\label{advA6:thm:commuting-observables}
+有限维中，两个对易 Hermitian 算符可被同一幺正矩阵同时对角化，
+因而存在共同正交归一本征基。无限维中，强对易的自伴算符具有共同谱测度。
+\end{advtheorem}
+
+\noindent\textit{证明（有限维）。}
+取 $A$ 的某一本征空间 $V_a$。若 $|x\rangle\in V_a$，
+\[
+ A(B|x\rangle)=B(A|x\rangle)=aB|x\rangle,
+\]
+故 $B$ 把 $V_a$ 映入自身。在每个 $V_a$ 中限制的 $B$ 仍为 Hermitian，
+可选取其正交归一本征基。对所有 $A$ 的本征空间合并这些基，
+便得到 $A,B$ 的共同正交归一本征基。
+一组对易可观测量若共同量子数能唯一标记基态，称为对易可观测量完全集。
+
+\begin{advdefinition}{Pauli 矩阵}\label{advA6:def:pauli}
+\[
+ \sigma_x=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+ \sigma_y=\begin{pmatrix}0&-\ii\\\ii&0\end{pmatrix},\quad
+ \sigma_z=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+它们满足
+\[
+ \sigma_i\sigma_j=\delta_{ij}I+\ii\varepsilon_{ijk}\sigma_k,
+\qquad
+ [\sigma_i,\sigma_j]=2\ii\varepsilon_{ijk}\sigma_k.
+\]
+自旋算符为 $\vect S=(\hbar/2)\vect\sigma$。
+\end{advdefinition}
+
+\begin{advexamplebox}{Pauli 本征态、投影与升降算符}\label{advA6:ex:pauli-eigenstates}
+\begin{enumerate}
+\item 求 $P_\uparrow=|\uparrow\rangle\langle\uparrow|$、
+$P_\downarrow$ 的本征值和本征空间；
+\item 求 $\sigma_x,\sigma_y,\sigma_z$ 的本征态；
+\item 定义
+$\sigma_\pm=(\sigma_x\pm\ii\sigma_y)/2$，
+说明其作用并证明没有非零本征值。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ P_\uparrow=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
+ P_\downarrow=\begin{pmatrix}0&0\\0&1\end{pmatrix}.
+\]
+两者本征值均为 $0,1$，各自的完整本征基是
+$|\uparrow\rangle,|\downarrow\rangle$；
+投影本身可作为二值可观测量，但不是“位置或自旋分量”本身。
+
+三个 Pauli 矩阵的 $\pm1$ 本征态可取
+\[
+ |x\pm\rangle=\frac1{\sqrt2}
+ (|\uparrow\rangle\pm|\downarrow\rangle),
+\]
+\[
+ |y\pm\rangle=\frac1{\sqrt2}
+ (|\uparrow\rangle\pm\ii|\downarrow\rangle),
+\qquad
+ |z+\rangle=|\uparrow\rangle,\quad
+ |z-\rangle=|\downarrow\rangle.
+\]
+每组正交完备。
+
+\[
+ \sigma_+=
+ \begin{pmatrix}0&1\\0&0\end{pmatrix},\qquad
+ \sigma_-=
+ \begin{pmatrix}0&0\\1&0\end{pmatrix}
+\]
+（若把基矢次序反置，矩阵位置相应互换）。它们把一个 $z$ 本征态映到另一个，
+并把最高/最低态映为零。由于
+$\sigma_\pm^2=0$，任一本征值 $\lambda$ 必满足 $\lambda^2=0$，
+故只有 $\lambda=0$；核空间虽有非零向量，但不存在非零本征值。
+\end{advsolution}
+
+\begin{advexamplebox}{Pauli 矩阵指数与自旋旋转}\label{advA6:ex:pauli-exponential}
+对单位矢量 $\vect n$，求
+\[
+ U=\exp(\ii\theta\,\vect n\cdot\vect\sigma).
+\]
+\end{advexamplebox}
+\begin{advsolution}
+利用 Pauli 乘法，
+\[
+ (\vect n\cdot\vect\sigma)^2
+ =n_in_j(\delta_{ij}I+\ii\varepsilon_{ijk}\sigma_k)
+ =|\vect n|^2I=I.
+\]
+指数级数的偶次幂与奇次幂分别求和：
+\[
+\begin{aligned}
+ U&=\sum_{m=0}^\infty
+ \frac{(\ii\theta)^{2m}}{(2m)!}I
+ +\sum_{m=0}^\infty
+ \frac{(\ii\theta)^{2m+1}}{(2m+1)!}
+ \vect n\cdot\vect\sigma\\
+ &=\boxed{\cos\theta\,I+
+ \ii\sin\theta\,\vect n\cdot\vect\sigma}.
+\end{aligned}
+\]
+它满足 $U^\dagger U=I$、$\det U=1$。
+物理空间把自旋旋转角 $\varphi$ 时，旋转算符为
+\[
+ U_{\rm rot}(\varphi)=
+ \exp\!\left(-\frac{\ii\varphi}{2}
+ \vect n\cdot\vect\sigma\right).
+\]
+因半角出现，自旋子旋转 $2\pi$ 后变号，旋转 $4\pi$ 才回到原态矢；
+但全局负号不改变单次态的物理射线。
+\end{advsolution}
+
+\subsubsection*{Bloch 矢量上的旋转及可观测检验}
+任意纯自旋态的密度矩阵都可写成
+\[
+ \rho=|\psi\rangle\langle\psi|
+ =\frac12\bigl(I+\vect r\cdot\vect\sigma\bigr),
+ \qquad |\vect r|=1.
+\]
+混态仍具有同一形式，只是 $|\vect r|<1$。对空间转角 $\varphi$，令
+$U=\exp[-\ii\varphi\vect n\cdot\vect\sigma/2]$，则
+\[
+ \rho'=U\rho U^\dagger
+ =\frac12\bigl(I+\vect r'\cdot\vect\sigma\bigr),
+\]
+其中直接展开 Pauli 乘积可得 Rodrigues 公式
+\[
+ \boxed{\vect r'
+ =\vect r\cos\varphi
+ +(\vect n\times\vect r)\sin\varphi
+ +\vect n(\vect n\cdot\vect r)(1-\cos\varphi)}.
+\]
+这说明自旋态矢使用半角旋转，而所有可观测的 Bloch 矢量仍按真实空间角
+$\varphi$ 旋转。沿单位方向 $\vect a$ 测量自旋，得到正结果的概率为
+\[
+ P_{\vect a,+}
+ =\operatorname{tr}\!\left[
+ \rho\,\frac{I+\vect a\cdot\vect\sigma}{2}\right]
+ =\frac{1+\vect a\cdot\vect r}{2}.
+\]
+因此 $2\pi$ 旋转产生的整体负号在单一路径概率中消失；若把旋转过的态与
+未旋转的参考路径相干叠加，相对负号则可转化为干涉条纹的半周期移动。

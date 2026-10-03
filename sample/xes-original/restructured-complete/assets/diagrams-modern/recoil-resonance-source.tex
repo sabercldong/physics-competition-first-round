@@ -1,0 +1,17 @@
+% Source: spring-II physical p200, lecture11 problem1, two source panels.
+% Contract: +x right; photon right; emitter recoils left; absorber approaches left.
+% Crystal outlines are physical objects, not backgrounds masking other lines.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \x in {0,4.2}{\draw[TextGray] (\x,0) rectangle ++(3.4,2);}
+ \fill (.9,1) circle(4pt) (6.7,1) circle(4pt);
+ \node[below=7pt] at (.9,1){$N$};
+ \node[below=7pt] at (6.7,1){$N'$};
+ \draw[->,thick] (.72,1)--(.22,1) node[above=5pt,anchor=south west]{反冲};
+ \draw[->,thick,DeepBlue] (1.55,1)--(2.95,1) node[midway,above=6pt]{$\gamma$};
+ \draw[->,thick,DeepBlue] (4.65,1)--(5.95,1) node[midway,above=6pt]{$\gamma$};
+ \draw[->,thick] (6.52,1)--(6.07,1);
+ \draw[->,thick] (7.45,2.45)--(6.2,2.45) node[midway,above=3pt]{$v$：接近};
+ \node at (1.7,-.45){(a) 发射；跃迁能 $hc\sigma$};
+ \node at (5.9,-.45){(b) 吸收；跃迁能 $hc\sigma'$};
+ \draw[->] (3.05,2.5)--(3.85,2.5) node[right]{$x$};
+\end{tikzpicture}

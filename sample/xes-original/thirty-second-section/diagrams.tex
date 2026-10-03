@@ -1,0 +1,328 @@
+% All text annotations are transparent. No label uses a white backing rectangle.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=0.6pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=0.45pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=0.35pt},
+  xesline/.style={draw=Ink,line width=0.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1.0pt},
+  xesarrow/.style={-{Latex[length=2.15mm,width=1.35mm]},draw=DeepBlue,line width=0.9pt},
+  fieldline/.style={draw=DeepBlue,line width=0.82pt,postaction={decorate},
+    decoration={markings,mark=at position .64 with {\arrow{Latex[length=1.65mm,width=1.1mm]}}}},
+  negfield/.style={draw=DeepBlue,line width=0.82pt,postaction={decorate},
+    decoration={markings,mark=at position .36 with {\arrowreversed{Latex[length=1.65mm,width=1.1mm]}}}}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-0.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{0.3em}
+}
+
+\newcommand{\matterScaleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  
+  \node[xessmall,anchor=north west] at (.25,3.86) {尺度逐级放大};
+  % atom
+  \begin{scope}[shift={(1.55,1.85)}]
+    \draw[DeepBlue!70,line width=.7pt,rotate=18] (0,0) ellipse (1.08 and .38);
+    \draw[DeepBlue!70,line width=.7pt,rotate=-42] (0,0) ellipse (1.08 and .38);
+    \draw[DeepBlue!70,line width=.7pt,rotate=78] (0,0) ellipse (1.08 and .38);
+    \fill[Gold!80!Ink] (0,0) circle (2.8pt);
+    \foreach \p in {(1.01,.13),(-.77,.46),(-.24,-.87)}{\fill[DeepBlue] \p circle (1.8pt);}
+    \node[xeslabel] at (0,-1.45) {原子};
+    \node[xestiny] at (0,-1.83) {$\sim10^{-8}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[xesarrow] (2.75,1.86)--(3.55,1.86);
+  % nucleus
+  \begin{scope}[shift={(4.7,1.85)}]
+    \foreach \x/\y/\c in {-.32/.18/DeepBlue,.18/.32/Gold,-.12/-.3/Gold,.38/-.18/DeepBlue}{
+      \fill[\c!75] (\x,\y) circle (7pt);\draw[Ink!45,line width=.3pt] (\x,\y) circle (7pt);}
+    \node[xeslabel] at (0,-1.45) {原子核};
+    \node[xestiny] at (0,-1.83) {$10^{-13}$--$10^{-12}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[xesarrow] (5.85,1.86)--(6.65,1.86);
+  % nucleon
+  \begin{scope}[shift={(7.6,1.85)}]
+    \shade[ball color=DeepBlue!52] (0,0) circle (.63);
+    \node[xeslabel] at (0,-1.45) {质子或中子};
+    \node[xestiny] at (0,-1.83) {$\sim10^{-13}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[xesarrow] (8.65,1.86)--(9.35,1.86);
+  % quarks
+  \begin{scope}[shift={(10.2,1.85)}]
+    \fill[DeepBlue!78] (-.42,.24) circle (4pt);
+    \fill[Gold!88] (.42,.24) circle (4pt);
+    \fill[DeepBlue!78] (0,-.43) circle (4pt);
+    \draw[RuleGray,line width=.65pt,densely dashed] (-.42,.24)--(.42,.24)--(0,-.43)--cycle;
+    \node[xeslabel] at (0,-1.45) {夸克};
+    \node[xestiny] at (0,-1.83) {$<10^{-16}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[RuleGray,-{Latex[length=1.6mm]},line width=.55pt] (1.0,.32)--(.75,-.2);
+  \node[xestiny,anchor=north] at (.72,-.24) {电子尺度 $<10^{-16}\,\mathrm{cm}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\coulombHistoryFigure}{%
+\begin{center}
+\begin{minipage}{.21\linewidth}\centering
+\includegraphics[width=\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/coulomb.png}\par\small 库仑
+\end{minipage}\hfill
+\begin{minipage}{.76\linewidth}\centering
+\begin{tikzpicture}[scale=.83]
+ \draw[xesline] (-2,3.3)--(2,3.3);
+ \draw[xesline] (0,3.3)--(0,.65);
+ \draw[xesline] (-1.65,.65)--(1.65,.65);
+ \fill[Ink] (-1.65,.65) circle (3pt);\fill[DeepBlue] (1.65,.65) circle (4pt);
+ \fill[Gold] (2.3,.65) circle (4pt);\draw[xesline] (2.3,.65)--(2.3,-.5);
+ \node[xessmall,above] at (1.65,.82) {$A$};\node[xessmall,above] at (-1.65,.82) {$D$};
+ \node[xessmall,right] at (2.45,.65) {$B$};\node[xessmall,left] at (-.18,2.2) {悬丝};
+ \node[xessmall,below] at (0,-.7) {侧视：两球同高};
+ \begin{scope}[xshift=6.1cm]
+  \coordinate(O) at (0,1);\coordinate(A) at (1.8,1.55);\coordinate(D) at (-1.8,.45);\coordinate(B) at (1.9,.6);
+  \draw[RuleGray,dashed] (-2.1,1)--(2.1,1);
+  \draw[xesline] (D)--(A);\fill[Ink] (O) circle (2pt);
+  \fill[DeepBlue] (A) circle (4pt);\fill[Ink] (D) circle (3pt);\fill[Gold] (B) circle (4pt);
+  \draw[xesarrow] (A)--($(A)+(-.1,.95)$);
+  \draw[RuleGray,dotted] (B)--(A);
+  \draw[RuleGray] (.7,1) arc[start angle=0,end angle=17,radius=.7];
+  \node[xessmall] at (.96,1.13) {$\theta$};
+  \node[xessmall,below] at (O) {$O$};\node[xessmall,left] at (D) {$D$};
+  \node[xessmall,right] at ($(A)+(.1,.1)$) {$A$};\node[xessmall,right] at (B) {$B$};
+  \node[xessmall,above] at (1.7,2.55) {$\boldsymbol F_{BA}$};
+  \node[xessmall,below] at (0,-.7) {俯视：$O$ 为悬丝转轴};
+ \end{scope}
+\end{tikzpicture}\end{minipage}
+\end{center}}
+
+
+\newcommand{\fieldLineGallery}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/field-gallery.pdf}
+\end{center}}
+
+
+\newcommand{\gaussLawFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[inner sep=0pt] at (1.1,2.05) {\includegraphics[height=2.7cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/gauss.png}};
+  \node[xessmall] at (1.1,.38) {高斯};
+  % local surface element
+  \begin{scope}[shift={(4.25,2.05)}]
+    \fill[DeepBlue!8] (-1,-.42)--(.75,-.72)--(1.05,.38)--(-.7,.7)--cycle;
+    \draw[xesblue] (-1,-.42)--(.75,-.72)--(1.05,.38)--(-.7,.7)--cycle;
+    \coordinate (P) at (0,.0);
+    \fill[Ink] (P) circle (1.1pt);
+    \draw[xesarrow] (P)--(.25,1.2);
+    \draw[xesarrow] (P)--(.85,.83);
+    \node[xessmall,anchor=west] at (.29,1.12) {$\dd\boldsymbol A_i$};
+    \node[xessmall,anchor=west] at (.9,.77) {$\boldsymbol E_i$};
+    \draw[RuleGray,line width=.55pt] (.07,.36) arc[start angle=79,end angle=44,radius=.43];
+    \node[xestiny] at (.39,.74) {$\theta_i$};
+    \node[xessmall] at (0,-1.8) {(a) 面元与外法线};
+  \end{scope}
+  % enclosed charge
+  \begin{scope}[shift={(7.3,2.05)}]
+    \draw[Ink,line width=.75pt] (0,0) ellipse (1.1 and .8);
+    \foreach \a in {10,55,100,145,190,235,280,325}{
+      \draw[fieldline] (-.15,.06)--++(\a:1.55);}
+    \fill[DeepBlue] (-.15,.06) circle (5.0pt);\node[xestiny,text=white] at (-.15,.06) {$+$};
+    \node[xessmall] at (0,-1.8) {(b) 电荷在闭面内};
+  \end{scope}
+  % external charge
+  \begin{scope}[shift={(10.35,2.05)}]
+    \draw[Ink,line width=.75pt] (0,0) ellipse (1.0 and .8);
+    \fill[DeepBlue] (-1.65,.1) circle (5.0pt);\node[xestiny,text=white] at (-1.65,.1) {$+$};
+    \draw[fieldline] (-1.58,.114)--(1.25,.68);
+    \draw[fieldline] (-1.58,.1)--(1.3,.1);
+    \draw[fieldline] (-1.58,.086)--(1.25,-.48);
+    \node[xessmall] at (0,-1.8) {(c) 电荷在闭面外};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\differentialCubeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \coordinate(A) at (0,0);\coordinate(B) at (4,0);\coordinate(C) at (5.25,1.25);\coordinate(D) at (1.25,1.25);
+ \coordinate(E) at (0,3.1);\coordinate(F) at (4,3.1);\coordinate(G) at (5.25,4.35);\coordinate(H) at (1.25,4.35);
+ \fill[DeepBlue!5] (A)--(B)--(F)--(E)--cycle;
+ \fill[DeepBlue!8] (B)--(C)--(G)--(F)--cycle;
+ \fill[DeepBlue!11] (E)--(F)--(G)--(H)--cycle;
+ \draw[xesline] (A)--(B)--(C)--(G)--(H)--(E)--cycle (B)--(F)--(G) (E)--(F);
+ \draw[RuleGray,dashed] (A)--(D)--(C) (D)--(H);
+ \node[xessmall] at (1,-.32) {$\Delta x$};
+ \node[xessmall,rotate=45] at (4.9,.35) {$\Delta y$};
+ \node[xessmall] at (-.4,1.0) {$\Delta z$};
+ \draw[xesarrow,dashed] (.625,2.175)--(-1.35,2.175);
+ \node[xessmall,anchor=east,align=right] at (-1.45,2.175) {面1\\$E_x(x)$};
+ \draw[xesarrow] (4.625,2.175)--(6.15,2.175);
+ \node[xessmall,anchor=west,align=left] at (6.25,2.175) {面2\\$E_x(x+\Delta x)$};
+ \draw[xesarrow] (2,1.55)--(.8,.35);
+ \node[xessmall,anchor=east,align=right] at (-.25,.25) {面3：$E_y(y)$};
+ \draw[RuleGray] (-.1,.25)--(.67,.32);
+ \draw[xesarrow,dashed] (3.25,2.8)--(4.45,4.0);
+ \node[xessmall,anchor=west,align=left] at (5.45,4.2) {面4\\$E_y(y+\Delta y)$};
+ \draw[RuleGray] (4.5,4.03)--(5.3,4.2);
+ \draw[xesarrow,dashed] (2.625,.625)--(2.625,-.75);
+ \node[xessmall,anchor=north] at (2.625,-.82) {面5：$E_z(z)$};
+ \draw[xesarrow] (2.625,3.725)--(2.625,5.15);
+ \node[xessmall,anchor=south] at (2.625,5.22) {面6：$E_z(z+\Delta z)$};
+ \node[xessmall,anchor=east] at (-.35,-.62) {$(x,y,z)$};
+ \draw[RuleGray] (-.3,-.5)--(A);
+\end{tikzpicture}
+\end{center}}
+
+
+\newcommand{\extendedChargeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[Ink,line width=1.1pt] (0,-2.15)--(0,2.15);
+  \coordinate (P) at (4,0);\fill[Ink] (P) circle (1.3pt);\node[xessmall,anchor=west] at (4.12,0) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);
+  \draw[DeepBlue,line width=.8pt] (0,2.15)--(P)--(0,-2.15);
+  \draw[<->,RuleGray,line width=.6pt] (0,-2.6)--(4,-2.6);\node[xessmall,below] at (2,-2.6) {$a$};
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=151.7,radius=.75];
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=208.3,radius=.75];
+  \node[xessmall] at (3.08,.34) {$\theta_1$};\node[xessmall] at (3.08,-.34) {$\theta_2$};
+  \fill[DeepBlue] (0,1.05) circle (1.6pt);\node[xestiny,anchor=east] at (-.12,1.05) {$\dd q=\lambda\dd y$};
+  \draw[xesarrow] (P)--++(1.2,-.315);\node[xessmall,anchor=north] at (5.05,-.55) {$\dd\boldsymbol E$};
+  \node[xessmall,align=left,anchor=west] at (6.0,1.3) {同一几何关系用于有限直线、\\无限长条带和圆盘轴线积分；\\不同对象只改变微元的选取。};
+  \draw[RuleGray,-{Latex[length=1.5mm]},line width=.6pt] (5.85,1.22)--(3.5,.45);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\unequalChargesFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/unequal.pdf}
+\end{center}}
+
+
+\newcommand{\cavityFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \fill[DeepBlue!8] (0,0) circle (2.5);\draw[xesline] (0,0) circle (2.5);
+ \fill[white] (.9,.65) circle (1);\draw[xesblue] (.9,.65) circle (1);
+ \coordinate(O) at (0,0);\coordinate(C) at (.9,.65);\coordinate(P) at (1.5,.05);
+ \foreach \p in {O,C,P}{\fill[Ink] (\p) circle (1.5pt);}
+ \node[xessmall] at (-.23,-.22) {$O$};\node[xessmall] at (.88,.93) {$C$};\node[xessmall] at (1.72,-.12) {$P$};
+ \draw[xesarrow] (O)--(C);\draw[xesarrow] (O)--(P);\draw[xesarrow] (C)--(P);
+ \node[xessmall] at (.25,.58) {$\boldsymbol a$};\node[xessmall] at (.7,-.22) {$\boldsymbol r$};\node[xessmall] at (1.62,.56) {$\boldsymbol r'$};
+ \node[xessmall,align=left,anchor=west] at (4,1) {完整均匀球：$+\rho$\\叠加的负球：$-\rho$};
+ \node[xessmall,align=left,anchor=west] at (4,-.55) {空腔内 $\boldsymbol r-\boldsymbol r'=\boldsymbol a$，\\因而叠加场为匀强场。};
+\end{tikzpicture}
+\end{center}}
+
+
+\newcommand{\dipoleFarFigure}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dipole-far.pdf}
+\end{center}}
+
+
+\newcommand{\quadrupoleFarFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Ink] (-1.5,0) circle (4pt);\node[xessmall,below=4pt] at (-1.5,0) {$-q$};
+  \fill[DeepBlue] (0,0) circle (5pt);\node[xessmall,below=5pt] at (0,0) {$+2q$};
+  \fill[Ink] (1.5,0) circle (4pt);\node[xessmall,below=4pt] at (1.5,0) {$-q$};
+  \draw[<->,RuleGray,line width=.55pt] (-1.5,-.7)--(0,-.7);\node[xessmall,below] at (-.75,-.7) {$l$};
+  \draw[<->,RuleGray,line width=.55pt] (0,-.7)--(1.5,-.7);\node[xessmall,below] at (.75,-.7) {$l$};
+  \coordinate (P) at (4.6,2.2);\fill[Ink] (P) circle (1.4pt);\node[xessmall,anchor=west] at ($(P)+(.08,0)$) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);\node[xessmall,above left] at (2.25,1.1) {$r$};
+  \draw[DeepBlue,line width=.6pt] (1.0,0) arc[start angle=0,end angle=25.6,radius=1.0];\node[xessmall] at (1.24,.28) {$\theta$};
+  \node[inner sep=0pt] at (8.55,1.25) {\includegraphics[width=4.4cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/quadrupole.pdf}};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargedSlabFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}
+    \fill[DeepBlue!10] (-1.35,-2.0) rectangle (1.35,2.0);
+    \draw[DeepBlue,line width=.9pt] (-1.35,-2)--(-1.35,2) (1.35,-2)--(1.35,2);
+    \foreach \x in {-1,-.5,0,.5,1}\foreach \y in {-1.55,-.75,.05,.85,1.65}{\node[xestiny,text=DeepBlue] at (\x,\y) {$+$};}
+    \draw[xesline,-{Latex[length=2mm]}] (-3.25,0)--(3.25,0) node[xeslabel,below left] {$x$};
+    \node[xessmall,below=3pt,fill=white,inner sep=1pt] at (-1.35,0) {$-d$};\node[xessmall,below=3pt,fill=white,inner sep=1pt] at (1.35,0) {$d$};
+    \draw[xesarrow] (0,0)--(.8,0);\node[xessmall,above] at (.45,0) {$\boldsymbol v_0$};
+    \fill[Ink] (0,0) circle (3pt);\node[xessmall,above left=3pt] at (0,0) {$-q$};
+    \node[xessmall] at (0,-2.45) {(a) 带电无限厚板};
+  \end{scope}
+  \begin{scope}[shift={(7.3,0)},xscale=1.05,yscale=.85]
+    \draw[xesline,-{Latex[length=2mm]}] (-3.2,0)--(3.2,0) node[xeslabel,below left] {$x$};
+    \draw[xesline,-{Latex[length=2mm]}] (0,-2.35)--(0,2.35) node[xeslabel,below right] {$E_x$};
+    \draw[RuleGray,densely dashed] (-1.35,-2.0)--(-1.35,2.0) (1.35,-2.0)--(1.35,2.0);
+    \draw[xesblue] (-3,-1.5)--(-1.35,-1.5)--(1.35,1.5)--(3,1.5);
+    \node[xessmall,below=2pt] at (-1.35,0) {$-d$};\node[xessmall,below=2pt] at (1.35,0) {$d$};
+    \node[xessmall,anchor=west] at (1.55,1.94) {$\rho d/\varepsilon_0$};
+    \node[xessmall] at (0,-2.78) {(b) 电场的分段线性关系};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\electronLensFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[RuleGray,densely dashed] (-4,0)--(4,0);
+  \fill[DeepBlue!12] (0,0) circle (8pt);\node[xeslabel] at (0,0) {$+$};
+  \node[xessmall,below=9pt] at (0,0) {正线电荷 $\lambda$（垂直纸面）};
+  \draw[Ink,line width=.9pt,postaction={decorate},decoration={markings,mark=at position .62 with {\arrow{Latex[length=2mm,width=1.25mm]}}}] (-4,1.55)--(4,1.55);
+  \node[xessmall,anchor=east] at (-4.08,1.55) {电子};
+  \draw[<->,RuleGray,line width=.55pt] (-2.8,0)--(-2.8,1.55);\node[xessmall,anchor=east] at (-2.88,.78) {$b$};
+  \coordinate (A) at (-1.35,1.55);
+  \draw[xesarrow] (A)--++(0,-1.0);\node[xessmall,anchor=west] at ($(A)+(0,-.5)$) {$\boldsymbol F_\perp$};
+  \draw[xesarrow] (-3.15,1.55)--(-2.15,1.55);\node[xessmall,above] at (-2.65,1.55) {$\boldsymbol v$};
+  \draw[DeepBlue,line width=1pt] (4,1.55) .. controls (4.65,1.49) and (5.15,1.36) .. (5.8,1.08);
+  \draw[RuleGray,densely dashed] (4,1.55)--(5.85,1.55);
+  \draw[DeepBlue,line width=.6pt] (4.75,1.55) arc[start angle=0,end angle=-14,radius=.75];
+  \node[xessmall] at (5.02,1.37) {$\alpha$};
+  \node[xessmall,align=left,anchor=west] at (6.35,1.0) {弱偏转近似中，计算沿未偏转直线\\的横向冲量；结果与瞄准距离 $b$ 无关。};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emFiniteLineQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[Ink,line width=1.1pt] (0,-2.15)--(0,2.15);
+  \coordinate (P) at (4,0);\fill[Ink] (P) circle (1.3pt);\node[xessmall,anchor=west] at (4.12,0) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);
+  \draw[DeepBlue,line width=.8pt] (0,2.15)--(P)--(0,-2.15);
+  \draw[<->,RuleGray,line width=.6pt] (0,-2.6)--(4,-2.6);\node[xessmall,below] at (2,-2.6) {$a$};
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=151.7,radius=.75];
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=208.3,radius=.75];
+  \node[xessmall] at (3.08,.34) {$\theta_1$};\node[xessmall] at (3.08,-.34) {$\theta_2$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emQuadrupoleQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Ink] (-1.5,0) circle (4pt);\node[xessmall,below=4pt] at (-1.5,0) {$-q$};
+  \fill[DeepBlue] (0,0) circle (5pt);\node[xessmall,below=5pt] at (0,0) {$+2q$};
+  \fill[Ink] (1.5,0) circle (4pt);\node[xessmall,below=4pt] at (1.5,0) {$-q$};
+  \draw[<->,RuleGray,line width=.55pt] (-1.5,-.7)--(0,-.7);\node[xessmall,below] at (-.75,-.7) {$l$};
+  \draw[<->,RuleGray,line width=.55pt] (0,-.7)--(1.5,-.7);\node[xessmall,below] at (.75,-.7) {$l$};
+  \coordinate (P) at (4.6,2.2);\fill[Ink] (P) circle (1.4pt);\node[xessmall,anchor=west] at ($(P)+(.08,0)$) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);\node[xessmall,above left] at (2.25,1.1) {$r$};
+  \draw[DeepBlue,line width=.6pt] (1.0,0) arc[start angle=0,end angle=25.6,radius=1.0];\node[xessmall] at (1.24,.28) {$\theta$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emSlabQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}
+    \fill[DeepBlue!10] (-1.35,-2.0) rectangle (1.35,2.0);
+    \draw[DeepBlue,line width=.9pt] (-1.35,-2)--(-1.35,2) (1.35,-2)--(1.35,2);
+    \foreach \x in {-1,-.5,0,.5,1}\foreach \y in {-1.55,-.75,.05,.85,1.65}{\node[xestiny,text=DeepBlue] at (\x,\y) {$+$};}
+    \draw[xesline,-{Latex[length=2mm]}] (-3.25,0)--(3.25,0) node[xeslabel,below left] {$x$};
+    \node[xessmall,below=3pt,fill=white,inner sep=1pt] at (-1.35,0) {$-d$};\node[xessmall,below=3pt,fill=white,inner sep=1pt] at (1.35,0) {$d$};
+    \draw[xesarrow] (0,0)--(.8,0);\node[xessmall,above] at (.45,0) {$\boldsymbol v_0$};
+    \fill[Ink] (0,0) circle (3pt);\node[xessmall,above left=3pt] at (0,0) {$-q$};
+    \node[xessmall] at (0,-2.45) {(a) 带电无限厚板};
+  \end{scope}
+  \end{tikzpicture}
+\end{center}}

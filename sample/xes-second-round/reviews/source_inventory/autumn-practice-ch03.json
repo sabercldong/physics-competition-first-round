@@ -1,0 +1,463 @@
+{
+  "source_id": "autumn_practice_2020",
+  "source_sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba",
+  "independent_visual_inventory": true,
+  "review_scope": "2026-09-05重新查看原PDF物理22—35页高清整页；逐题、逐子问、源题图和关键公式重新登记。物理29、35页确认为空白尾页并单独排除。源题条件不足或原结论错误不被静默补造，均在相应题解和本清单记录；新增解图以扩展目标登记，不冒充原图。",
+  "pages": [
+    {
+      "physical_page": 22,
+      "printed_page": 22,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-022.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "第六讲静力学",
+          "target_id": "r2ch03:sec:constraint",
+          "source_number": "第六讲"
+        },
+        {
+          "id": "pr01",
+          "object_type": "exercise",
+          "source_locator": "上半第1题",
+          "description": "两等质量圆柱分别接触地面、墙面及彼此，求墙面静摩擦和半径条件",
+          "target_id": "r2ch03:pr:001",
+          "source_number": "6.1",
+          "notes": "半径与全部三处精确接触已由同一组几何参数重建"
+        },
+        {
+          "id": "fig01",
+          "object_type": "figure",
+          "source_locator": "第1题右侧",
+          "description": "大小圆柱、水平地面和竖直墙的三重接触",
+          "target_id": "r2ch03:fig:017",
+          "source_number": "6.1题图"
+        },
+        {
+          "id": "pr02",
+          "object_type": "exercise",
+          "source_locator": "下半第2题",
+          "description": "九节点平面无重桁架、8铰支、9水平滑支、P与P/2外载，求杆3—4内力",
+          "target_id": "r2ch03:pr:002",
+          "source_number": "6.2",
+          "notes": "结构计数显示超静定，源条件不足以唯一决定该杆内力"
+        },
+        {
+          "id": "fig02",
+          "object_type": "figure",
+          "source_locator": "第2题右侧",
+          "description": "九节点桁架全部杆件拓扑、两支座和两外载",
+          "target_id": "r2ch03:fig:018",
+          "source_number": "6.2题图"
+        }
+      ]
+    },
+    {
+      "physical_page": 23,
+      "printed_page": 23,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-023.jpg",
+      "objects": [
+        {
+          "id": "pr03",
+          "object_type": "exercise",
+          "source_locator": "上半第3题",
+          "description": "竖直圆环、空间直线AP垂直环面、杆在B接触，求最小摩擦",
+          "target_id": "r2ch03:pr:003",
+          "source_number": "6.3",
+          "notes": "源未给物体质量与质心，正文保留条件不足结论和参数化求法"
+        },
+        {
+          "id": "fig03",
+          "object_type": "figure",
+          "source_locator": "第3题右侧",
+          "description": "圆环、P、A、B、O以及AP垂直环面关系",
+          "target_id": "r2ch03:fig:019",
+          "source_number": "6.3题图"
+        },
+        {
+          "id": "pr04",
+          "object_type": "exercise",
+          "source_locator": "下半第4题",
+          "description": "正方箱内摆球和零原长弹性绳球，左上水平力逐增至倾覆",
+          "target_id": "r2ch03:pr:004",
+          "source_number": "6.4",
+          "notes": "明确自由平移地面与锁定地面的两个分支"
+        },
+        {
+          "id": "fig04",
+          "object_type": "figure",
+          "source_locator": "第4题右侧",
+          "description": "箱体、左上推力、摆球、弹性绳球及倾覆支点",
+          "target_id": "r2ch03:fig:020",
+          "source_number": "6.4题图"
+        }
+      ]
+    },
+    {
+      "physical_page": 24,
+      "printed_page": 24,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-024.jpg",
+      "objects": [
+        {
+          "id": "pr05",
+          "object_type": "exercise",
+          "source_locator": "上部第5题",
+          "description": "圆孔内尖端向下的均匀圆锥，讨论平衡位置和稳定性",
+          "target_id": "r2ch03:pr:005",
+          "source_number": "6.5",
+          "additional_targets": [
+            {
+              "target_id": "r2ch03:fig:021",
+              "target_object_type": "figure",
+              "notes": "源题无图；新增剖面解图标出孔径、半顶角、孔面和质心高度"
+            }
+          ]
+        },
+        {
+          "id": "pr06",
+          "object_type": "exercise",
+          "source_locator": "中下部第6题及a问",
+          "description": "平板车几何质量分布；车轮中心卡住而可自转，把手水平释放求碰前角速度",
+          "target_id": "r2ch03:pr:006",
+          "source_number": "6.6a"
+        },
+        {
+          "id": "fig06",
+          "object_type": "figure",
+          "source_locator": "右下",
+          "description": "平板、两薄环车轮、车轴、两根把手及长度和质量标注",
+          "target_id": "r2ch03:fig:022",
+          "source_number": "6.6图a"
+        }
+      ]
+    },
+    {
+      "physical_page": 25,
+      "printed_page": 25,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-025.jpg",
+      "objects": [
+        {
+          "id": "pr06b",
+          "object_type": "subquestion",
+          "source_locator": "页面上部",
+          "description": "碰前撤平移卡具、锁轮轴，碰后解锁；两处摩擦，求车轴滑停距离",
+          "target_id": "r2ch03:pr:006",
+          "source_number": "6.6b",
+          "notes": "完整分为碰撞、两处滑动、轮纯滚后三阶段，并保留接触分支条件"
+        }
+      ]
+    },
+    {
+      "physical_page": 26,
+      "printed_page": 26,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-026.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "第七讲动力学综合",
+          "target_id": "r2ch03:pr:007",
+          "source_number": "第七讲"
+        },
+        {
+          "id": "pr07",
+          "object_type": "exercise",
+          "source_locator": "上部第1题",
+          "description": "等距对称双螺旋螺丝在固定螺母中下落，求光滑及有摩擦时单位长度支持力",
+          "target_id": "r2ch03:pr:007",
+          "source_number": "7.1",
+          "additional_targets": [
+            {
+              "target_id": "r2ch03:fig:023",
+              "target_object_type": "figure",
+              "notes": "源无图；新增半径、单螺距和切线角几何图用于曲率与受力解释"
+            }
+          ]
+        },
+        {
+          "id": "pr08",
+          "object_type": "exercise",
+          "source_locator": "下部第2题",
+          "description": "薄壁筒、两对称外绕绳和小球；分打开与完全打开两阶段求速率及总时间",
+          "target_id": "r2ch03:pr:008",
+          "source_number": "7.2",
+          "notes": "补齐角动量、能量、符号约定和X=1数值积分"
+        },
+        {
+          "id": "fig08",
+          "object_type": "figure",
+          "source_locator": "右下",
+          "description": "薄壁筒、Q/Q'、两球和初始绳段位置",
+          "target_id": "r2ch03:fig:024",
+          "source_number": "7.2题图",
+          "notes": "重绘时两球置于筒外，绳段从切点向外伸出"
+        }
+      ]
+    },
+    {
+      "physical_page": 27,
+      "printed_page": 27,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-027.jpg",
+      "objects": [
+        {
+          "id": "pr09",
+          "object_type": "exercise",
+          "source_locator": "上部第3题",
+          "description": "灭火水龙带卷盘在重力场中无耗散展开，求固定端力与总时间",
+          "target_id": "r2ch03:pr:009",
+          "source_number": "7.3",
+          "notes": "补齐变质量动量、能量和显式积分结果"
+        },
+        {
+          "id": "fig09",
+          "object_type": "figure",
+          "source_locator": "第3题右侧",
+          "description": "水带卷盘、向右速度与左侧固定端力",
+          "target_id": "r2ch03:fig:025",
+          "source_number": "7.3题图"
+        },
+        {
+          "id": "pr10",
+          "object_type": "exercise",
+          "source_locator": "下部第4题",
+          "description": "等质量三体经典衰变与电子偶素三光子衰变的三元能量允许区",
+          "target_id": "r2ch03:pr:010",
+          "source_number": "7.4",
+          "notes": "光子允许区修正为中心倒三角形，不是六边形",
+          "additional_targets": [
+            {
+              "target_id": "r2ch03:fig:026",
+              "target_object_type": "figure",
+              "notes": "源题要求作三元图但未给成图；新增经典曲边三角与三光子倒三角的并列解图"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "physical_page": 28,
+      "printed_page": 28,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-028.jpg",
+      "objects": [
+        {
+          "id": "pr11",
+          "object_type": "exercise",
+          "source_locator": "上部第5题",
+          "description": "均质小圆柱在固定大圆柱外侧滚下并在theta1开始滑动，求角速度关系",
+          "target_id": "r2ch03:pr:011",
+          "source_number": "7.5"
+        },
+        {
+          "id": "fig11",
+          "object_type": "figure",
+          "source_locator": "右上",
+          "description": "小圆柱C、接触A、大圆柱O、半径和角度",
+          "target_id": "r2ch03:fig:027",
+          "source_number": "7.5题图"
+        },
+        {
+          "id": "pr12",
+          "object_type": "exercise",
+          "source_locator": "下部第6题",
+          "description": "三等质量球由两铰杆连接，A受垂直打击，求A与C最小距离",
+          "target_id": "r2ch03:pr:012",
+          "source_number": "7.6",
+          "additional_targets": [
+            {
+              "target_id": "r2ch03:fig:028",
+              "target_object_type": "figure",
+              "notes": "源无图；新增A、B、C铰接几何和初始冲量方向"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "physical_page": 29,
+      "printed_page": 29,
+      "classification": "excluded",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-029.jpg",
+      "exclusion_reason": "第七讲空白尾页，仅有页眉页脚，无教学正文、公式、题目或插图",
+      "objects": []
+    },
+    {
+      "physical_page": 30,
+      "printed_page": 30,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-030.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "第八讲分析力学基础",
+          "target_id": "r2ch03:pr:013",
+          "source_number": "第八讲"
+        },
+        {
+          "id": "pr13",
+          "object_type": "exercise",
+          "source_locator": "上部第1题",
+          "description": "三根匀质杆组成空间三脚架，给重力、顶载、投影Y形和杆间角，求地面作用力",
+          "target_id": "r2ch03:pr:013",
+          "source_number": "8.1",
+          "additional_targets": [
+            {
+              "target_id": "r2ch03:fig:029",
+              "target_object_type": "figure",
+              "notes": "源无图；新增右手空间坐标、顶点、三足和地面投影，供三维受力方程引用"
+            }
+          ]
+        },
+        {
+          "id": "pr14",
+          "object_type": "exercise",
+          "source_locator": "下部第2题及a—c",
+          "description": "大小薄壁圆筒之间纯滚，小筒由等高处释放，写Lagrange量、守恒量并求最低点角速度",
+          "target_id": "r2ch03:pr:014",
+          "source_number": "8.2"
+        },
+        {
+          "id": "fig14",
+          "object_type": "figure",
+          "source_locator": "右下",
+          "description": "小筒在大筒内侧两位置、连心角theta和大筒转角phi",
+          "target_id": "r2ch03:fig:030",
+          "source_number": "8.2题图"
+        }
+      ]
+    },
+    {
+      "physical_page": 31,
+      "printed_page": 31,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-031.jpg",
+      "objects": [
+        {
+          "id": "pr15",
+          "object_type": "exercise",
+          "source_locator": "页面中部第3题及a—c",
+          "description": "一维陡壁势和缓慢移动势阱；证明能量变化率、相空间面积及绝热不变量",
+          "target_id": "r2ch03:pr:015",
+          "source_number": "8.3",
+          "notes": "展开碰撞映射与作用量守恒条件"
+        },
+        {
+          "id": "fig15",
+          "object_type": "figure",
+          "source_locator": "右侧两图",
+          "description": "单陡壁势函数及一侧以u缓慢移动的双壁势阱",
+          "target_id": "r2ch03:fig:031",
+          "source_number": "8.3题图"
+        }
+      ]
+    },
+    {
+      "physical_page": 32,
+      "printed_page": 32,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-032.jpg",
+      "objects": [
+        {
+          "id": "pr16",
+          "object_type": "exercise",
+          "source_locator": "上部第4题及a—b",
+          "description": "均匀悬杆小角摆动，小虫从悬点以相对速度缓慢下爬，求频率和末幅",
+          "target_id": "r2ch03:pr:016",
+          "source_number": "8.4"
+        },
+        {
+          "id": "fig16",
+          "object_type": "figure",
+          "source_locator": "右上",
+          "description": "悬杆、摆角theta、小虫位置与下爬速度",
+          "target_id": "r2ch03:fig:032",
+          "source_number": "8.4题图"
+        }
+      ]
+    },
+    {
+      "physical_page": 33,
+      "printed_page": 33,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-033.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半页",
+          "description": "惰性气体原子极化、简谐振子模型和零点能",
+          "target_id": "r2ch03:pr:017",
+          "source_number": "8.5背景"
+        },
+        {
+          "id": "pr17",
+          "object_type": "exercise",
+          "source_locator": "页面主体",
+          "description": "两个可极化原子的四电荷耦合模型，求零点能差并判断范德瓦耳斯作用",
+          "target_id": "r2ch03:pr:017",
+          "source_number": "8.5"
+        },
+        {
+          "id": "fig17a",
+          "object_type": "figure",
+          "source_locator": "右上",
+          "description": "单原子正核与负电中心位移x的符号",
+          "target_id": "r2ch03:fig:033",
+          "source_number": "8.5图1"
+        },
+        {
+          "id": "fig17b",
+          "object_type": "figure",
+          "source_locator": "中部",
+          "description": "两核相距R、两负电中心位移x1和x2",
+          "target_id": "r2ch03:fig:033",
+          "source_number": "8.5图2"
+        }
+      ]
+    },
+    {
+      "physical_page": 34,
+      "printed_page": 34,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-034.jpg",
+      "objects": [
+        {
+          "id": "pr18",
+          "object_type": "exercise",
+          "source_locator": "页面主体a—d",
+          "description": "二维准粒子色散关系；Hamilton方程、群速度、磁场圆周运动和电场轨迹斜率",
+          "target_id": "r2ch03:pr:018",
+          "source_number": "8.6",
+          "notes": "四个子问均有逐步推导、速度范围和量纲核验"
+        },
+        {
+          "id": "f18",
+          "object_type": "formula",
+          "source_locator": "上部独立式",
+          "description": "K=p²/(2m)+cp及其Hamilton速度关系",
+          "target_id": "r2ch03:pr:018",
+          "source_number": "8.6色散关系"
+        }
+      ]
+    },
+    {
+      "physical_page": 35,
+      "printed_page": 35,
+      "classification": "excluded",
+      "inspected_render": "build/source-pages/autumn_practice_2020/page-035.jpg",
+      "exclusion_reason": "第八讲空白尾页，仅有页眉页脚，无教学正文、公式、题目或插图",
+      "objects": []
+    }
+  ]
+}
+

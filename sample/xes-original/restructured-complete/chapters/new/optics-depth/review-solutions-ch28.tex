@@ -1,0 +1,29 @@
+%<addition:ball-second-surface>
+第二次折射的代入过程可以展开为
+\[
+ \frac n{u_2}+\frac1{v_2}=\frac{1-n}{-R}=\frac{n-1}{R},
+ \qquad
+ u_2=R\frac{(n-2)x-2R}{(n-1)x-R}.
+\]
+于是
+\[
+ \frac1{v_2}=\frac{n-1}{R}
+ -\frac{n[(n-1)x-R]}{R[(n-2)x-2R]}
+ =-\frac{2(n-1)x+(n-2)R}{R[(n-2)x-2R]},
+\]
+取倒数即得上述 $v_2$。如果 $v_1>2R$，第一面折射后的光尚未会聚就遇到第二面，故第二面的物为虚物、$u_2<0$；不能把 $u_2$ 改成绝对值。
+%</addition>
+%<addition:ball-parallel-limit>
+还需检查一个容易漏掉的特殊情况：最优物距 $x_*=R/(n-1)$ 恰使 $v_1$ 表达式的分母为零。这不是物理过程失效，而是第一面出射光变为平行光，中间像在无穷远。直接令第一面公式中的 $n/v_1=0$；第二面也有 $n/u_2=0$，因而
+\[
+ \frac1{v_2}=\frac{n-1}{R},\qquad
+ v_2=x_*=\frac R{n-1}.
+\]
+所以 $L=x_*+2R+v_2=2nR/(n-1)$，正好补上中间代数除法没有覆盖的这一点。$n\to1^+$ 时最小距离趋于无穷大，符合玻璃球与空气折射率相同时不再具有聚光能力；整个结果仍限于近轴、有效孔径较小的成像模型。
+%</addition>
+%<addition:matrix-meaning>
+为什么检查右上元 $B$ 就够了？从轴上物点发出一条倾角为 $\theta_0$ 的光，其初始列向量为 $(0,\theta_0)^{\mathsf T}$。若总矩阵为 $\left(\begin{smallmatrix}A&B\\C&D\end{smallmatrix}\right)$，到候选像面时光线高度便是 $y=B\theta_0$。不同 $\theta_0$ 都必须给出 $y=0$，所以必须 $B=0$。例如将上面的两镜矩阵记为 $\left(\begin{smallmatrix}a&b\\c&a\end{smallmatrix}\right)$，左右各乘传播矩阵后，右上元就是 $b+2au+cu^2$；代入 $a=1-2L/f$、$b=2L$、$c=2(L-f)/f^2$，便得到刚才的二次式。这里的每一项都有长度量纲。
+%</addition>
+%<addition:cat-eye-reference>
+图~\ref{ch28:fig:s43-20-9} 右侧标出了同一门孔中的室外凹透镜与室内凸透镜。以下先以远处景物作近轴计算；正向光按“凹透镜—凸透镜”传播，反向则按“凸透镜—凹透镜”传播。每到一个元件都沿新的传播方向判定实物与虚物，不能只交换两个焦距而保留原来的物距符号。
+%</addition>

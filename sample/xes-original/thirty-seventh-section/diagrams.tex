@@ -1,0 +1,556 @@
+% Technical figures are redrawn as vectors.  Every text node is transparent;
+% rectangles are used only for actual circuit elements or explanatory regions.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.45pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.35pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.25pt},
+  circuit/.style={draw=Ink,line width=.82pt,line cap=round,line join=round},
+  activewire/.style={draw=DeepBlue,line width=1.05pt,line cap=round,line join=round},
+  hiddenwire/.style={draw=TextGray,densely dashed,line width=.72pt,line cap=round},
+  solutionwire/.style={draw=DeepBlue!78,line width=.9pt,line cap=round,line join=round},
+  currentarrow/.style={-{Latex[length=1.8mm,width=1.2mm]},draw=DeepBlue,line width=.75pt},
+  nodepoint/.style={circle,fill=Ink,draw=none,inner sep=1.45pt},
+  bluenode/.style={circle,fill=DeepBlue,draw=white,line width=.3pt,inner sep=1.7pt},
+  goldnode/.style={circle,fill=Gold!85!black,draw=white,line width=.3pt,inner sep=1.7pt},
+  port/.style={circle,fill=white,draw=Ink,line width=.75pt,inner sep=1.6pt},
+  sourcecircle/.style={circle,draw=Ink,line width=.75pt,minimum size=.54cm,inner sep=0pt},
+  networkblob/.style={draw=DeepBlue!75,fill=DeepBlue!4,line width=.8pt},
+  eqbox/.style={draw=none,fill=none,inner sep=2pt}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{.3em}
+}
+
+\newcommand{\zigres}[2]{%
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.25mm,amplitude=.72mm}] (#1)--(#2);}
+
+\newcommand{\drawvoltage}[2]{%
+  \draw[circuit] (#1)--++(0,.26);
+  \draw[circuit] ($(#1)+(-.16,.26)$)--($(#1)+(.16,.26)$);
+  \draw[circuit] ($(#1)+(-.27,.39)$)--($(#1)+(.27,.39)$);
+  \draw[circuit] ($(#1)+(0,.39)$)--(#2);}
+
+\newcommand{\superpositionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.25,0)}]
+    \coordinate (a) at (-1.7,1.05);\coordinate (b) at (.15,1.05);\coordinate (c) at (.15,-1.0);
+    \coordinate (d) at (-1.7,-1.0);\coordinate (r) at (1.6,0);
+    \draw[circuit] (a)--(-1.7,.32);
+    \draw[circuit] (-1.93,.18)--(-1.47,.18);
+    \draw[circuit] (-1.82,.02)--(-1.58,.02);
+    \draw[circuit] (-1.7,.02)--(d);
+    \zigres{a}{b}\zigres{b}{c}\draw[circuit] (c)--(d);
+    \draw[circuit] (b)--(1.55,1.05)--(1.55,.55);
+    \draw[circuit] (c)--(1.55,-1.0)--(1.55,-.50);
+    \node[nodepoint] at (a) {};\node[nodepoint] at (b) {};\node[nodepoint] at (c) {};
+    \node[xeslabel,above] at (a) {$a$};\node[xeslabel,above] at (b) {$b$};\node[xeslabel,below] at (c) {$c$};
+    \node[xestiny,above] at (-.77,1.28) {$R_1$};\node[xestiny,right] at (.40,.03) {$R_2$};
+    \node[xestiny,left] at (-1.98,-.02) {$E_0$};
+    \node[xessmall] at (0,-1.55) {只保留电压源：电流源断路};
+  \end{scope}
+  \begin{scope}[shift={(3.25,0)}]
+    \coordinate (a) at (-1.7,1.05);\coordinate (b) at (.15,1.05);\coordinate (c) at (.15,-1.0);
+    \draw[circuit] (a)--(-1.7,-1.0)--(c);
+    \zigres{a}{b}\zigres{b}{c}
+    \draw[circuit] (b)--(1.45,1.05)--(1.45,.36);
+    \draw[circuit] (c)--(1.45,-1.0)--(1.45,-.36);
+    \node[sourcecircle] at (1.45,0) {};
+    \draw[currentarrow] (1.45,-.22)--(1.45,.22);
+    \node[xestiny,right] at (1.73,0) {$I_0$};
+    \node[nodepoint] at (a) {};\node[nodepoint] at (b) {};\node[nodepoint] at (c) {};
+    \node[xeslabel,above] at (a) {$a$};\node[xeslabel,above] at (b) {$b$};\node[xeslabel,below] at (c) {$c$};
+    \node[xestiny,above] at (-.77,1.28) {$R_1$};\node[xestiny,right] at (.40,.03) {$R_2$};
+    \node[xessmall] at (0,-1.55) {只保留电流源：电压源短路};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\networkBlob}[1]{%
+  \draw[networkblob] plot[smooth cycle,tension=.7] coordinates
+    {(-1.05,.72) (-.55,1.05) (.10,.85) (.82,1.02) (1.08,.35) (.92,-.38) (.34,-.86) (-.40,-.78) (-1.04,-.25)};
+  \zigres{-0.65,0.42}{0.20,0.42}
+  \node[sourcecircle,minimum size=.42cm] at (-.45,-.35) {};
+  \draw[currentarrow] (-.45,-.50)--(-.45,-.20);
+  \draw[circuit] (.42,-.55)--(.42,-.18);\draw[circuit] (.24,-.18)--(.60,-.18);
+  \draw[circuit] (.15,-.05)--(.69,-.05);\draw[circuit] (.42,-.05)--(.42,.15);
+  \coordinate (#1u) at (1.72,.34);\coordinate (#1d) at (1.72,-.34);
+  \draw[circuit] (1.00,.34)--(#1u);\draw[circuit] (1.00,-.34)--(#1d);
+  \node[port] at (#1u) {};\node[port] at (#1d) {};
+}
+
+\newcommand{\theveninDerivationFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.82cm,y=.82cm]
+  \begin{scope}[shift={(-6.2,0)}]
+    \networkBlob{pA}
+    \draw[currentarrow] (2.72,.34)--(2.05,.34);
+    \node[xestiny,above] at (2.38,.43) {$i$};
+    \node[xestiny,right] at (1.92,.25) {$+$};\node[xestiny,right] at (1.92,-.43) {$-$};
+    \node[xestiny] at (2.28,-.12) {$v$};\node[xessmall] at (.25,-1.43) {(a) 原有源二端网络};
+  \end{scope}
+  \begin{scope}[shift={(-2.05,0)}]
+    \networkBlob{pB}
+    \node[sourcecircle] at (2.45,0) {};
+    \draw[currentarrow] (2.45,-.22)--(2.45,.22);
+    \draw[circuit] (pBu)--(2.45,.34)--(2.45,.27) (pBd)--(2.45,-.34)--(2.45,-.27);
+    \draw[currentarrow] (2.05,.70)--(1.42,.70);
+    \node[xestiny,above] at (1.74,.78) {$i_t$};
+    \node[xestiny,right] at (2.78,.02) {$i_t$};\node[xestiny,below] at (2.45,-.43) {$v_t$};
+    \node[xessmall] at (.45,-1.43) {(b) 接入测试电流源};
+  \end{scope}
+  \begin{scope}[shift={(2.45,0)}]
+    \draw[networkblob] plot[smooth cycle,tension=.7] coordinates
+      {(-1.05,.72) (-.4,1.0) (.28,.83) (.9,.98) (1.08,.30) (.88,-.55) (.14,-.85) (-.72,-.65) (-1.05,-.05)};
+    \zigres{-0.62,0.35}{0.28,0.35}
+    \draw[circuit] (-.55,-.35)--(.56,-.35);
+    \draw[circuit] (1.0,.34)--(1.72,.34) (1.0,-.34)--(1.72,-.34);
+    \node[port] at (1.72,.34) {};\node[port] at (1.72,-.34) {};
+    \node[sourcecircle] at (2.45,0) {};\draw[currentarrow] (2.45,-.22)--(2.45,.22);
+    \draw[circuit] (1.72,.34)--(2.45,.34)--(2.45,.27) (1.72,-.34)--(2.45,-.34)--(2.45,-.27);
+    \node[xestiny,right] at (2.82,.02) {$i_t$};\node[xestiny,below] at (2.45,-.43) {$v_a=i_tr$};
+    \node[xessmall] at (.55,-1.43) {(c) 内部独立源置零};
+  \end{scope}
+  \begin{scope}[shift={(6.6,0)}]
+    \networkBlob{pD}
+    \draw[circuit] (pDu)--++(.48,0);\draw[circuit] (pDd)--++(.48,0);
+    \node[xestiny,right] at (1.92,.25) {$+$};\node[xestiny,right] at (1.92,-.43) {$-$};
+    \node[xestiny,below] at (2.10,-.48) {$v_b$};\node[xestiny,above] at (2.25,.48) {$i_t=0$};
+    \node[xessmall] at (.35,-1.43) {(d) 端口开路};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\sourceEquivalenceFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-4.65,0)}]
+    \networkBlob{qA}
+    \node[xessmall] at (.30,-1.28) {线性有源网络};
+  \end{scope}
+  \node[xeslabel] at (-1.95,0) {$\Longleftrightarrow$};
+  \begin{scope}[shift={(0,0)}]
+    \coordinate (u) at (-1.1,.72);\coordinate (d) at (-1.1,-.72);
+    \node[sourcecircle] at (-1.1,0) {};
+    \node[xestiny] at (-1.1,.12) {$+$};\node[xestiny] at (-1.1,-.12) {$-$};
+    \draw[circuit] (u)--(-1.1,.27) (d)--(-1.1,-.27);
+    \draw[circuit] (u)--(-.42,.72);\zigres{-0.42,.72}{.70,.72}\draw[circuit] (.70,.72)--(1.30,.72);
+    \draw[circuit] (d)--(1.30,-.72);\node[port] at (1.30,.72) {};\node[port] at (1.30,-.72) {};
+    \node[xestiny,below] at (-1.10,-.34) {$V_{\rm Th}$};\node[xestiny,above] at (.14,.95) {$R_{\rm Th}$};
+    \node[xessmall] at (0,-1.28) {戴维南形式};
+  \end{scope}
+  \node[xeslabel] at (2.15,0) {$\Longleftrightarrow$};
+  \begin{scope}[shift={(4.35,0)}]
+    \draw[circuit] (-1.25,.72)--(1.25,.72) (-1.25,-.72)--(1.25,-.72);
+    \draw[circuit] (-.85,.72)--(-.85,.27) (-.85,-.72)--(-.85,-.27);
+    \node[sourcecircle] at (-.85,0) {};\draw[currentarrow] (-.85,-.22)--(-.85,.22);
+    \zigres{.25,.72}{.25,-.72}
+    \node[port] at (1.25,.72) {};\node[port] at (1.25,-.72) {};
+    \node[xestiny,left] at (-1.15,0) {$I_{\rm N}$};\node[xestiny,right] at (.52,0) {$R_{\rm N}$};
+    \node[xessmall] at (0,-1.28) {诺顿形式};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\bridgeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (L) at (-3,0);\coordinate (T) at (0,1.25);\coordinate (D) at (0,-1.25);\coordinate (R) at (3,0);
+  \zigres{L}{T}\zigres{T}{R}\zigres{L}{D}\zigres{D}{R}\zigres{T}{D}
+  \draw[circuit] (L)--(-3,-2.0)--(-.55,-2.0);
+  \draw[circuit] (.55,-2.0)--(3,-2.0)--(R);
+  \draw[circuit] (-.55,-2.0)--(-.18,-2.0);\draw[circuit] (.18,-2.0)--(.55,-2.0);
+  \draw[circuit] (-.18,-1.72)--(-.18,-2.28);\draw[circuit] (.18,-1.83)--(.18,-2.17);
+  \foreach \P in {L,T,D,R}{\node[nodepoint] at (\P) {};}
+  \node[xestiny,above left] at (-1.55,.70) {$R_1$};\node[xestiny,above right] at (1.55,.70) {$R_2$};
+  \node[xestiny,below left] at (-1.55,-.70) {$R_3$};\node[xestiny,below right] at (1.55,-.70) {$R_4$};
+  \node[xestiny,right] at (.25,0) {$R_5$};\node[xestiny,below] at (0,-2.28) {$\mathcal E$};
+  \draw[currentarrow] (.43,.54)--(.43,-.54);\node[xestiny,right] at (.54,.02) {$I_5=0$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\deltaStarFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.4,0)}]
+    \coordinate (A) at (0,1.75);\coordinate (B) at (-1.75,-1.25);\coordinate (C) at (1.75,-1.25);
+    \zigres{A}{B}\zigres{A}{C}\zigres{B}{C}
+    \foreach \P in {A,B,C}{\node[port] at (\P) {};}
+    \node[xeslabel,above] at (A) {$A$};\node[xeslabel,below left] at (B) {$B$};\node[xeslabel,below right] at (C) {$C$};
+    \node[xestiny,left] at (-1.05,.38) {$R_{AB}$};\node[xestiny,right] at (1.05,.38) {$R_{AC}$};
+    \node[xestiny,below] at (0,-1.48) {$R_{BC}$};\node[xessmall] at (0,-2.05) {$\Delta$ 连接};
+  \end{scope}
+  \node[xeslabel] at (0,0) {$\Longleftrightarrow$};
+  \begin{scope}[shift={(3.4,0)}]
+    \coordinate (A) at (0,1.75);\coordinate (B) at (-1.75,-1.25);\coordinate (C) at (1.75,-1.25);\coordinate (O) at (0,0);
+    \zigres{A}{O}\zigres{B}{O}\zigres{C}{O}
+    \foreach \P in {A,B,C}{\node[port] at (\P) {};}
+    \node[nodepoint] at (O) {};
+    \node[xeslabel,above] at (A) {$A$};\node[xeslabel,below left] at (B) {$B$};\node[xeslabel,below right] at (C) {$C$};
+    \node[xestiny,right] at (.28,.93) {$R_a$};\node[xestiny,above left] at (-.95,-.50) {$R_b$};
+    \node[xestiny,above right] at (.95,-.50) {$R_c$};\node[xestiny,above right] at (O) {$\varphi_0$};
+    \node[xessmall] at (0,-2.05) {$Y$ 连接};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\sourceTransformExampleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.2,0)}]
+    \node[sourcecircle] at (-1.55,0) {};
+    \node[xestiny] at (-1.55,.12) {$+$};\node[xestiny] at (-1.55,-.12) {$-$};
+    \draw[circuit] (-1.55,.27)--(-1.55,.90)--(-.85,.90);
+    \zigres{-0.85,.90}{.35,.90}\draw[circuit] (.35,.90)--(1.40,.90);
+    \draw[circuit] (-1.55,-.27)--(-1.55,-.90)--(1.40,-.90);
+    \node[port] at (1.40,.90) {};\node[port] at (1.40,-.90) {};
+    \draw[currentarrow] (.92,1.24)--(1.38,1.24);
+    \node[xestiny,above] at (1.15,1.28) {$I$};
+    \node[xestiny,left] at (-1.88,0) {$E$};\node[xestiny,above] at (-.25,1.12) {$r$};
+    \node[xestiny,right] at (1.60,.68) {$+$};\node[xestiny,right] at (1.60,-1.02) {$-$};
+    \node[xestiny] at (1.85,0) {$U$};\node[xessmall] at (0,-1.45) {电压源形式};
+  \end{scope}
+  \node[xeslabel] at (0,0) {$\Longleftrightarrow$};
+  \begin{scope}[shift={(3.2,0)}]
+    \draw[circuit] (-1.45,.90)--(1.40,.90) (-1.45,-.90)--(1.40,-.90);
+    \draw[circuit] (-.85,.90)--(-.85,.27) (-.85,-.90)--(-.85,-.27);
+    \node[sourcecircle] at (-.85,0) {};\draw[currentarrow] (-.85,-.22)--(-.85,.22);
+    \zigres{.20,.90}{.20,-.90}
+    \node[port] at (1.40,.90) {};\node[port] at (1.40,-.90) {};
+    \draw[currentarrow] (.92,1.24)--(1.38,1.24);
+    \node[xestiny,above] at (1.15,1.28) {$I$};
+    \node[xestiny,left] at (-1.17,0) {$E/r$};\node[xestiny,right] at (.47,0) {$r$};
+    \node[xestiny,right] at (1.60,.68) {$+$};\node[xestiny,right] at (1.60,-1.02) {$-$};
+    \node[xestiny] at (1.85,0) {$U$};\node[xessmall] at (0,-1.45) {电流源形式};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gridProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=1.05cm]
+  \foreach \i in {0,1,2}{\draw[circuit] (0,\i)--(2,\i);\draw[circuit] (\i,0)--(\i,2);}
+  \foreach \i in {0,1,2}{\foreach \j in {0,1,2}{\node[nodepoint] at (\i,\j) {};}}
+  \node[xeslabel,below left] at (0,0) {$A$};\node[xeslabel,below right] at (2,0) {$B$};
+  \node[xeslabel,above right] at (2,2) {$C$};
+  \draw[<->,DeepBlue!75,line width=.6pt] (0,-.55)--(1,-.55);
+  \node[xestiny,below] at (.5,-.60) {$R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\potentialNode}[3]{%
+  \node[circle,fill=#3,draw=white,line width=.3pt,inner sep=1.55pt] at (#1) {};
+  \node[xestiny,text=Ink,anchor=south west] at ($(#1)+(.08,.08)$) {$#2$};}
+
+\newcommand{\gridPotentialDiagonalFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1.2cm,y=1.2cm]
+  \foreach \i in {0,1,2}{\draw[circuit] (0,\i)--(2,\i);\draw[circuit] (\i,0)--(\i,2);}
+  \potentialNode{0,0}{1}{Gold!70}
+  \potentialNode{1,0}{\frac23}{DeepBlue!28}
+  \potentialNode{2,0}{\frac12}{RuleGray!55}
+  \potentialNode{0,1}{\frac23}{DeepBlue!28}
+  \potentialNode{1,1}{\frac12}{RuleGray!55}
+  \potentialNode{2,1}{\frac13}{DeepBlue!12}
+  \potentialNode{0,2}{\frac12}{RuleGray!55}
+  \potentialNode{1,2}{\frac13}{DeepBlue!12}
+  \potentialNode{2,2}{0}{Ink!20}
+  \node[xestiny,below left] at (0,0) {$A$};\node[xestiny,below right=3pt] at (2,2) {$C$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gridPotentialAdjacentFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1.2cm,y=1.2cm]
+  \foreach \i in {0,1,2}{\draw[circuit] (0,\i)--(2,\i);\draw[circuit] (\i,0)--(\i,2);}
+  \potentialNode{0,0}{1}{Gold!70}
+  \potentialNode{1,0}{\frac12}{RuleGray!55}
+  \potentialNode{2,0}{0}{Ink!20}
+  \potentialNode{0,1}{\frac7{10}}{DeepBlue!30}
+  \potentialNode{1,1}{\frac12}{RuleGray!55}
+  \potentialNode{2,1}{\frac3{10}}{DeepBlue!12}
+  \potentialNode{0,2}{\frac35}{DeepBlue!23}
+  \potentialNode{1,2}{\frac12}{RuleGray!55}
+  \potentialNode{2,2}{\frac25}{DeepBlue!16}
+  \node[xestiny,below left] at (0,0) {$A$};\node[xestiny,below right] at (2,0) {$B$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\tetrahedronProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (T) at (0,2.0);\coordinate (L) at (-2.0,.15);\coordinate (R) at (2.0,.15);\coordinate (B) at (0,-1.65);
+  \draw[circuit] (T)--(L)--(B)--(R)--(T) (L)--(R) (T)--(B);
+  \foreach \P in {T,L,R,B}{\node[bluenode] at (\P) {};}
+  \node[xestiny,above] at (T) {$A$};\node[xestiny,left] at (L) {$C$};
+  \node[xestiny,right] at (R) {$D$};\node[xestiny,below] at (B) {$B$};
+  \node[xessmall] at (0,-2.15) {交叉点只是投影重叠，不是电路节点};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\completeGraphProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \i in {0,...,4}{\coordinate (P\i) at ({90+72*\i}:1.75);}
+  \foreach \i in {0,...,4}{\foreach \j in {0,...,4}{\ifnum\i<\j\draw[circuit] (P\i)--(P\j);\fi}}
+  \foreach \i in {0,...,4}{\node[bluenode] at (P\i) {};}
+  \node[xestiny,above] at (P0) {$N=5$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\completeGraphReductionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (A) at (-3,0);\coordinate (B) at (3,0);
+  \node[goldnode] at (A) {};\node[goldnode] at (B) {};
+  \node[xeslabel,left] at (A) {$A:V$};\node[xeslabel,right] at (B) {$B:0$};
+  \draw[activewire] (A)--(B);
+  \foreach \y in {1.25,.42,-.42,-1.25}{
+    \coordinate (M) at (0,\y);\draw[solutionwire] (A)--(M)--(B);\node[bluenode] at (M) {};}
+  \draw[RuleGray,densely dashed,rounded corners=3pt] (-.45,1.60) rectangle (.45,-1.60);
+  \node[xessmall,anchor=west] at (.58,1.42) {$N-2$ 个等势点：$V/2$};
+  \node[xestiny] at (-1.5,1.55) {$R$};\node[xestiny] at (1.5,1.55) {$R$};
+  \node[xessmall] at (0,-1.95) {每条支路段均为 $R$；包括直接连接 $A,B$ 的一段};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\octagonProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \i in {0,...,7}{\coordinate (O\i) at ({22.5+45*\i}:2.0);}
+  \foreach \i in {0,...,7}{
+    \foreach \j in {0,...,7}{
+      \ifnum\i<\j
+        \pgfmathtruncatemacro{\d}{mod(\j-\i,8)}
+        \ifnum\d=4\else\draw[circuit,line width=.55pt] (O\i)--(O\j);\fi
+      \fi}}
+  \foreach \i in {0,...,7}{\node[bluenode] at (O\i) {};}
+  \node[xestiny,right] at (O0) {$A$};\node[xestiny,left] at (O4) {$B$};
+  \draw[DeepBlue!70,densely dashed,line width=.7pt] (O0)--(O4);
+  \node[xessmall,below] at (0,-2.38) {蓝色虚线直径不接电阻；其余任意顶点对均有 $R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\octagonReductionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (A) at (-3.2,0);\coordinate (B) at (3.2,0);
+  \node[goldnode] at (A) {};\node[goldnode] at (B) {};
+  \node[xeslabel,left] at (A) {$A$};\node[xeslabel,right] at (B) {$B$};
+  \foreach \y in {1.55,.95,.32,-.32,-.95,-1.55}{
+    \coordinate (M) at (0,\y);\draw[solutionwire] (A)--(M)--(B);\node[bluenode] at (M) {};}
+  \node[xestiny] at (-1.62,1.75) {$R$};\node[xestiny] at (1.62,1.75) {$R$};
+  \draw[RuleGray,densely dashed,rounded corners=3pt] (-.45,1.82) rectangle (.45,-1.82);
+  \node[xessmall] at (0,-2.12) {六个中间点等势};
+  \draw[DeepBlue!70,densely dashed] (A)--(B);
+  \node[xessmall] at (0,-2.62) {虚线只表示直径位置，$A,B$ 间无直接支路};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cubeCoordinates}{%
+  \coordinate (A) at (-1.35,-1.05);\coordinate (B) at (1.05,-1.05);
+  \coordinate (E) at (-1.35,1.10);\coordinate (F) at (1.05,1.10);
+  \coordinate (D) at (-.45,-.32);\coordinate (C) at (1.95,-.32);
+  \coordinate (H) at (-.45,1.83);\coordinate (G) at (1.95,1.83);}
+
+\newcommand{\cubeEdges}{%
+  \draw[circuit] (A)--(B)--(F)--(E)--cycle;
+  \draw[circuit] (B)--(C)--(G)--(F) (E)--(H)--(G);
+  \draw[hiddenwire] (A)--(D)--(C) (D)--(H);}
+
+\newcommand{\cubeProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \cubeCoordinates\cubeEdges
+  \foreach \P in {A,B,C,D,E,F,G,H}{\node[bluenode] at (\P) {};}
+  \node[xeslabel,below left] at (A) {$A$};\node[xeslabel,below right] at (B) {$B$};
+  \node[xeslabel,right] at (C) {$C$};\node[xeslabel,above right] at (G) {$C_1$};
+  \node[xessmall] at (.30,-1.62) {虚线棱在立方体后方，所有投影交叉处均不另设节点};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cubePotentialFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.69cm,y=.69cm]
+  \begin{scope}[shift={(-6.0,0)}]
+    \cubeCoordinates\cubeEdges
+    \potentialNode{A}{1}{Gold!72}\potentialNode{B}{0}{Ink!20}
+    \potentialNode{E}{\frac9{14}}{DeepBlue!28}\potentialNode{D}{\frac9{14}}{DeepBlue!28}
+    \potentialNode{H}{\frac47}{DeepBlue!23}\potentialNode{F}{\frac5{14}}{DeepBlue!14}
+    \potentialNode{C}{\frac5{14}}{DeepBlue!14}\potentialNode{G}{\frac37}{DeepBlue!18}
+    \node[xestiny] at (.30,-1.70) {(1) 邻点 $A\to B$};
+  \end{scope}
+  \begin{scope}[shift={(0,0)}]
+    \cubeCoordinates\cubeEdges
+    \potentialNode{A}{1}{Gold!72}\potentialNode{C}{0}{Ink!20}
+    \potentialNode{E}{\frac23}{DeepBlue!30}\potentialNode{D}{\frac12}{RuleGray!55}
+    \potentialNode{H}{\frac12}{RuleGray!55}\potentialNode{B}{\frac12}{RuleGray!55}
+    \potentialNode{F}{\frac12}{RuleGray!55}\potentialNode{G}{\frac13}{DeepBlue!13}
+    \node[xestiny] at (.30,-1.70) {(2) 面对角 $A\to C$};
+  \end{scope}
+  \begin{scope}[shift={(6.0,0)}]
+    \cubeCoordinates\cubeEdges
+    \potentialNode{A}{1}{Gold!72}\potentialNode{G}{0}{Ink!20}
+    \potentialNode{B}{\frac35}{DeepBlue!27}\potentialNode{D}{\frac35}{DeepBlue!27}
+    \potentialNode{E}{\frac35}{DeepBlue!27}\potentialNode{C}{\frac25}{DeepBlue!15}
+    \potentialNode{F}{\frac25}{DeepBlue!15}\potentialNode{H}{\frac25}{DeepBlue!15}
+    \node[xestiny] at (.30,-1.70) {(3) 体对角 $A\to G$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\infiniteLadderProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (a) at (-3.7,.75);\coordinate (b) at (-3.7,-.75);
+  \node[port] at (a) {};\node[port] at (b) {};
+  \node[xeslabel,left] at (a) {$a$};\node[xeslabel,left] at (b) {$b$};
+  \draw[circuit] (a)--(-3.45,.75) (b)--(-3.45,-.75);
+  \foreach \i in {0,1,2,3}{
+    \pgfmathsetmacro{\xa}{-3.45+1.65*\i}\pgfmathsetmacro{\xb}{-2.05+1.65*\i}
+    \zigres{\xa,.75}{\xb,.75}\zigres{\xa,-.75}{\xb,-.75}
+    \zigres{\xb,.75}{\xb,-.75}
+    \ifnum\i<3\draw[circuit] (\xb,.75)--({\xb+.25},.75) (\xb,-.75)--({\xb+.25},-.75);\fi}
+  \node[xestiny,above] at (-2.75,1.02) {$R$};
+  \draw[circuit,densely dotted] (2.90,.75)--(4.10,.75) (2.90,-.75)--(4.10,-.75);
+  \node[xeslabel,right] at (4.10,0) {$\cdots$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ladderRecursionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (a) at (-3.4,.85);\coordinate (b) at (-3.4,-.85);
+  \node[port] at (a) {};\node[port] at (b) {};\node[xeslabel,left] at (a) {$a$};\node[xeslabel,left] at (b) {$b$};
+  \draw[circuit] (a)--(-3.15,.85) (b)--(-3.15,-.85);
+  \zigres{-3.15,.85}{-1.65,.85}\zigres{-3.15,-.85}{-1.65,-.85}
+  \node[xestiny,above] at (-2.40,1.12) {$R$};\node[xestiny,below] at (-2.40,-1.12) {$R$};
+  \coordinate (u) at (-1.45,.85);\coordinate (d) at (-1.45,-.85);
+  \draw[circuit] (-1.65,.85)--(u) (-1.65,-.85)--(d);
+  \zigres{u}{d}\node[xestiny,left] at (-1.73,0) {$R$};
+  \draw[circuit] (u)--(-.65,.85) (d)--(-.65,-.85);
+  \draw[DeepBlue!70,dashed,rounded corners=3pt,line width=.8pt] (-.65,1.25) rectangle (2.65,-1.25);
+  \node[xeslabel] at (1.0,0) {无限尾部 $\equiv X$};
+  \draw[circuit] (2.65,.85)--(3.15,.85) (2.65,-.85)--(3.15,-.85);
+  \node[port] at (3.15,.85) {};\node[port] at (3.15,-.85) {};
+  \node[xessmall] at (0,-1.72) {$X=R+\bigl(R\parallel X\bigr)+R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\threeRailProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \r/\lab in {1.35/A,0/B,-1.35/C}{
+    \node[port] at (-4.05,\r) {};\node[xeslabel,left] at (-4.05,\r) {$\lab$};
+    \draw[circuit] (-4.05,\r)--(-3.82,\r);
+    \foreach \i in {0,1,2,3}{
+      \pgfmathsetmacro{\xa}{-3.82+1.65*\i}\pgfmathsetmacro{\xb}{-2.48+1.65*\i}
+      \zigres{\xa,\r}{\xb,\r}
+      \ifnum\i<3\draw[circuit] (\xb,\r)--({\xb+.31},\r);\fi}}
+  \foreach \i in {0,1,2,3}{
+    \pgfmathsetmacro{\x}{-2.48+1.65*\i}
+    \zigres{\x,1.35}{\x,0}\zigres{\x,0}{\x,-1.35}}
+  \draw[circuit,densely dotted] (2.47,1.35)--(3.55,1.35) (2.47,0)--(3.55,0) (2.47,-1.35)--(3.55,-1.35);
+  \node[xeslabel,right] at (3.55,0) {$\cdots$};
+  \node[xestiny,above] at (-3.15,1.65) {$R$};\node[xestiny,right] at (-2.20,.68) {$R$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\threeRailModesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.1,0)}]
+    \foreach \y in {1,0,-1}{\node[bluenode] at (0,\y) {};}
+    \draw[circuit] (0,1)--(0,0)--(0,-1);
+    \draw[currentarrow] (.35,0)--(.35,1.0);\draw[currentarrow] (.35,0)--(.35,-1.0);
+    \node[xeslabel,right] at (.58,1) {$+1$};\node[xeslabel,right] at (.58,0) {$0$};\node[xeslabel,right] at (.58,-1) {$-1$};
+    \node[xessmall] at (0,-1.52) {$\boldsymbol e_1=(1,0,-1)$，$\mu=1$};
+  \end{scope}
+  \begin{scope}[shift={(3.1,0)}]
+    \foreach \y in {1,0,-1}{\node[bluenode] at (0,\y) {};}
+    \draw[circuit] (0,1)--(0,0)--(0,-1);
+    \draw[currentarrow] (.35,0)--(.35,.78);\draw[currentarrow] (.35,.0)--(.35,-.78);
+    \draw[currentarrow] (-.35,.85)--(-.35,-.85);
+    \node[xeslabel,right] at (.58,1) {$+1$};\node[xeslabel,right] at (.58,0) {$-2$};\node[xeslabel,right] at (.58,-1) {$+1$};
+    \node[xessmall] at (0,-1.52) {$\boldsymbol e_3=(1,-2,1)$，$\mu=3$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\nestedTriangleProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (O) at (0,0);
+  \foreach \k in {0,...,6}{
+    \pgfmathsetmacro{\rad}{2.55/(2^\k)}
+    \pgfmathsetmacro{\ang}{90+180*mod(\k,2)}
+    \draw[circuit,line width=.72pt]
+      ($(O)+(\ang:\rad)$)--($(O)+({\ang+120}:\rad)$)--($(O)+({\ang+240}:\rad)$)--cycle;}
+  \node[xeslabel,below left] at ($(O)+(210:2.55)$) {$A$};
+  \node[xeslabel,below right] at ($(O)+(330:2.55)$) {$B$};
+  \node[xeslabel,above] at ($(O)+(90:2.55)$) {$C$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\nestedTriangleRecursionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (A) at (-2.55,-1.45);\coordinate (B) at (2.55,-1.45);\coordinate (C) at (0,2.97);
+  \coordinate (Mab) at (0,-1.45);\coordinate (Mbc) at (1.275,.76);\coordinate (Mca) at (-1.275,.76);
+  \draw[solutionwire] (A)--(Mab)--(B) (B)--(Mbc)--(C) (C)--(Mca)--(A);
+  \draw[activewire] (Mab)--(Mbc)--(Mca)--cycle;
+  \foreach \P in {A,B,C}{\node[goldnode] at (\P) {};}
+  \foreach \P in {Mab,Mbc,Mca}{\node[bluenode] at (\P) {};}
+  \node[xeslabel,below left] at (A) {$A$};\node[xeslabel,below right] at (B) {$B$};\node[xeslabel,above] at (C) {$C$};
+  \node[xestiny,below] at (-1.28,-1.55) {$r/2$};\node[xestiny,below] at (1.28,-1.55) {$r/2$};
+  \node[xestiny] at (0,.06) {内网等效支路 $kr/2$};
+  \node[xessmall] at (0,-2.05) {蓝色三角形不是新增金属丝，而是对全部后续嵌套网络的三端等效};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\sierpinskiProblemFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-5.2,0)}]
+    \fill[DeepBlue!48] (-1.45,-1.0)--(1.45,-1.0)--(0,1.51)--cycle;
+    \draw[circuit] (-1.45,-1.0)--(1.45,-1.0)--(0,1.51)--cycle;
+    \node[xessmall] at (0,-1.48) {初始};
+  \end{scope}
+  \begin{scope}[shift={(0,0)}]
+    \foreach \x/\y in {-0.725/-1.0,0.725/-1.0,0/.255}{
+      \fill[DeepBlue!48] (\x-.725,\y)--(\x+.725,\y)--(\x,{\y+1.255})--cycle;
+      \draw[circuit] (\x-.725,\y)--(\x+.725,\y)--(\x,{\y+1.255})--cycle;}
+    \node[xessmall] at (0,-1.48) {第一阶};
+  \end{scope}
+  \begin{scope}[shift={(5.2,0)}]
+    \foreach \X/\Y in {-1.0875/-1.0,-.3625/-1.0,.3625/-1.0,1.0875/-1.0,-.725/-.3725,.725/-.3725,-.3625/.255,.3625/.255,0/.8825}{
+      \fill[DeepBlue!48] (\X-.3625,\Y)--(\X+.3625,\Y)--(\X,{\Y+.6275})--cycle;
+      \draw[circuit,line width=.6pt] (\X-.3625,\Y)--(\X+.3625,\Y)--(\X,{\Y+.6275})--cycle;}
+    \node[xessmall] at (0,-1.48) {第二阶};
+  \end{scope}
+  \node[xestiny] at (-6.75,-1.10) {$A$};\node[xestiny] at (-3.65,-1.10) {$B$};\node[xestiny] at (-5.20,1.68) {$C$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\sierpinskiResistanceFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (A) at (-3.0,-1.25);\coordinate (B) at (3.0,-1.25);\coordinate (C) at (0,3.95);
+  \coordinate (Mab) at (0,-1.25);\coordinate (Mbc) at (1.50,1.35);\coordinate (Mca) at (-1.50,1.35);
+  \foreach \P/\Q/\R in {A/Mab/Mca,Mab/B/Mbc,Mca/Mbc/C}{
+    \draw[solutionwire,fill=DeepBlue!5] (\P)--(\Q)--(\R)--cycle;}
+  \foreach \P in {A,B,C,Mab,Mbc,Mca}{\node[bluenode] at (\P) {};}
+  \node[xeslabel,below left] at (A) {$A$};\node[xeslabel,below right] at (B) {$B$};\node[xeslabel,above] at (C) {$C$};
+  \node[xessmall] at (-1.5,-1.95) {缩小的同型三端网};
+  \draw[->,TextGray,line width=.6pt] (-1.5,-1.70)--(-1.5,-.55);
+  \node[eqbox,anchor=west] at (3.65,1.35) {$\displaystyle
+    R_{n+1}=\frac53R_n\quad(\text{单段电阻不缩放})$};
+  \node[eqbox,anchor=west] at (3.65,.20) {$\displaystyle
+    r_{n+1}=\frac12r_n\quad(\text{真实长度缩放})$};
+  \node[eqbox,anchor=west] at (3.65,-.95) {$\displaystyle
+    R_{n+1}^{\rm phys}=\frac56R_n^{\rm phys}$};
+\end{tikzpicture}
+\end{center}}

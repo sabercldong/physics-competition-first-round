@@ -1,0 +1,249 @@
+\unitheading{K11\quad 运动学综合}{unit-k11}
+\addcontentsline{toc}{chapter}{K11 运动学综合}
+
+前面各节广泛讨论了运动学的内容，建立了坐标、矢量、分运动、相对运动和刚体运动等描述方法。现实世界中物体的运动具有更大的复杂性，往往需要把多个观念结合在一起。下面针对几种对未来学习具有启发性、同时又很有趣的问题展开讨论：光传播延迟、天体视运动、观测周期、射程修正和瞄准轨迹。它们既是运动学方法的综合，也为后续相对论、天体力学和波动理论留下接口。
+
+\KinematicKeepSpace{9cm}
+\begin{origexamplebox}{例2.102\quad 不同位置看到的百米成绩}
+赛场不同位置的人看到短跑选手从出发到冲过终点所需的时间是否相同？光速为 $c$。
+\end{origexamplebox}
+\begin{xesolution}
+设运动员真实比赛时间为 $T$，观察者到起点、终点的距离分别为 $r_A,r_B$。起跑光信号在 $r_A/c$ 后到达，冲线光信号在 $T+r_B/c$ 后到达，所以观察者由视觉得到的时间间隔为
+\LightTimingDiagram
+\[
+\boxed{T_{\rm obs}=T+\frac{r_B-r_A}{c}}.
+\]
+因此一般不相同；只有两观察者的 $r_B-r_A$ 相同，或先把光传播延迟校正掉，才会得到同一成绩。设跑道长为 $L=100\,\mathrm m$，三角形的两边之差不大于第三边，所以 $|r_B-r_A|\le L$。这给出单个观察结果相对真实时长的偏差界：
+\[
+|T_{\rm obs}-T|\le\frac Lc\approx0.334\,\mu\mathrm s.
+\]
+而起点观察者得到 $T+L/c$，终点观察者得到 $T-L/c$；两位观察者之间的最大差异是
+\[
+\boxed{\Delta T_{\rm observers,max}=\frac{2L}{c}\approx0.667\,\mu\mathrm s}.
+\]
+这两个界限比较的对象不同。它们在日常计时中很小，但概念上不能混为一谈。
+\end{xesolution}
+
+\KinematicKeepSpace{12cm}
+\begin{origexamplebox}{例2.103\quad 发光天体的视横向速度}
+遥远发光天体距地球约为 $L$，以速率 $v$ 运动，速度方向与天体指向地球的连线夹角为 $\theta$。考虑光速 $c$ 有限，求地球观察者看到的横向运动速度。可用小量展开 $(1+ax+bx^2)^{1/2}\simeq1+ax/2$。
+这个展开式的意思是：当 $x\ll1$ 时，只保留常数项和 $x$ 的一次项，$x^2$ 及更高次项在数值上远小于前两项，可在一阶近似中忽略。
+\par 题图见图~\ref{question-figure-2-103}。
+\KQuestionDZ
+\end{origexamplebox}
+\begin{xesolution}
+取地球所在惯性系，两次发光的坐标时刻间隔为 $\Delta t$，它不是天体随身钟测得的固有时间。初次发光位置为 $P_1$、到地球距离 $L$；第二次发光位置为 $P_2$。图中沿初始视线方向的接近量为 $v\cos\theta\,\Delta t$，横向位移为 $v\sin\theta\,\Delta t$：
+\ApparentTransverseDiagram
+由直角三角形，第二段传播路程的精确值为
+\begin{align*}
+D_2&=\sqrt{(L-v\cos\theta\,\Delta t)^2+(v\sin\theta\,\Delta t)^2}\\
+&=L\sqrt{1-2\varepsilon\cos\theta+\varepsilon^2},
+\qquad \varepsilon=\frac{v\Delta t}{L}.
+\end{align*}
+当 $\varepsilon\ll1$，使用题给展开得 $D_2=L-v\cos\theta\,\Delta t+O(L\varepsilon^2)$。两信号的接收时刻分别为 $t_1+L/c$、$t_1+\Delta t+D_2/c$，所以
+\[
+\Delta t_{\rm obs}=\Delta t+\frac{D_2-L}{c}
+\simeq\Delta t\left(1-\frac vc\cos\theta\right).
+\]
+横向位移除以接收间隔，再取 $\Delta t\to0$ 的瞬时极限，故视横向速度
+\[
+\boxed{v_{\perp,\rm app}=\frac{v\sin\theta}{1-(v/c)\cos\theta}}.
+\]
+若 $\theta>90^\circ$，$\cos\theta<0$，天体有远离地球的分量，分母自然大于 $1$，不必另改角度定义。$v<c$ 保证分母始终为正；$v/c\to0$ 时退化为 $v\sin\theta$。当天体接近光速、又以小而非零的角度朝观察者运动时，该“视速度”可超过 $c$；这来自信号到达间隔缩短，并不表示物质或信息真的超光速。
+\end{xesolution}
+
+\KinematicKeepSpace{8cm}
+\begin{origexamplebox}{例2.104\quad 新轨道上的太阳日与一年}
+可以近似认为地球在一条圆轨道上绕日公转，取日心为参考系。地球公转一周的原恒星年为 $365.2564$ 个太阳日；地球上的人连续两次看见太阳在天空中同一位置的时间间隔称为一个太阳日，即 $24\,\mathrm h$。某种作用改变地球公转轨道半径，但不改变地球自转周期。若新的一年恰为 $360$ 个新太阳日，求（1）一个新太阳日是多少原小时；（2）新的一年是多少原小时。
+\end{origexamplebox}
+\begin{xesolution}
+设不变的恒星自转周期为 $T_r$，原太阳日 $D=24\,\mathrm h$，原恒星年 $Y=365.2564D$。地球公转、自转同向，一天内地面子午线必须比日地连线多转一整圈，太阳才回到同一方位。所以 $(2\pi/T_r-2\pi/Y)D=2\pi$，约去 $2\pi D$ 得
+\[
+\frac1D=\frac1{T_r}-\frac1Y.
+\]
+由此
+\[
+T_r=\left(\frac1{24\,\mathrm h}+\frac1{365.2564\times24\,\mathrm h}\right)^{-1}
+\approx23.934472\,\mathrm h.
+\]
+新年 $Y'=360D'$，且
+\[
+\frac1{D'}=\frac1{T_r}-\frac1{Y'}
+=\frac1{T_r}-\frac1{360D'}.
+\]
+整理得 $D'=(361/360)T_r$。因此
+\[
+\boxed{D'\approx24.000957\,\mathrm h},
+\qquad
+\boxed{Y'=360D'\approx8640.344\,\mathrm h}.
+\]
+结果中的“361”来自一年内地球自转圈数比太阳日数多一圈。
+\end{xesolution}
+
+\KinematicKeepSpace{20cm}
+\begin{origexamplebox}{例2.105\quad 火星的顺行与逆行时间}
+太阳系内行星的公转方向基本相同，地球观测者看到的行星位置是该行星在遥远背景星空中的投影。由于各行星公转速度和轨道位置不同，地球上看到的视运动方向并不总与地球公转方向相同。视运动方向与地球公转方向相同称为“顺行”，相反称为“逆行”；从顺行转为逆行或从逆行转为顺行的转折位置，行星看起来短暂停在星空中，称为“留”。地外行星、地球和太阳位于同一直线上，且太阳与地外行星分居地球两侧时，称为“冲日”。
+
+把地球和火星近似为在同一平面内绕太阳作同向圆周运动，火星轨道半径为地球的 $1.524$ 倍，不计地球自转。求相邻两次火星冲日之间，火星视运动逆行和顺行的时间。
+\par 题图见图~\ref{question-figure-2-105}。
+\KQuestionEB
+\end{origexamplebox}
+\begin{xesolution}
+记 $k=R_M/R_E=1.524$。下面使用绕同一中心天体的圆轨道关系 $T^2\propto R^3$，即开普勒第三定律；其动力学依据见后续万有引力部分。先看七个时刻的轨道与视方向：
+\MarsRetrogradeDiagram
+角速度与周期成反比，所以
+\[
+q=\frac{\omega_M}{\omega_E}=k^{-3/2}\approx0.53152.
+\]
+相邻两次冲日的会合周期
+\[
+T_{\rm syn}=\frac{2\pi}{\omega_E-\omega_M}
+=\frac{T_E}{1-q}\approx779.67\,\mathrm d.
+\]
+
+设火星与地球的日心方位差为 $\delta$。火星相对地球的位置为 $\vect r=\vect r_M-\vect r_E$。
+视线方向角 $\lambda$ 的导数为 $\dot\lambda=(\vect r\times\dot{\vect r})_z/r^2$，它的正负决定顺行或逆行。为算叉积，可在考察的那一瞬间把地球日心方位取为零，则
+\begin{align*}
+\vect r/R_E&=(k\cos\delta-1,k\sin\delta),\\
+\dot{\vect r}/R_E&=(-k\omega_M\sin\delta,k\omega_M\cos\delta-\omega_E).
+\end{align*}
+两分量交叉相乘并相减：
+\begin{align*}
+\frac{(\vect r\times\dot{\vect r})_z}{R_E^2}
+&=(k\cos\delta-1)(k\omega_M\cos\delta-\omega_E)
++k^2\omega_M\sin^2\delta\\
+&=k^2\omega_M+\omega_E-k(\omega_E+\omega_M)\cos\delta.
+\end{align*}
+也就是
+\[
+(\vect r\times\dot{\vect r})_z
+=R_E^2\bigl[k^2\omega_M+\omega_E-k(\omega_E+\omega_M)\cos\delta\bigr]
+\]
+其中 $r^2$ 为正，所以“留”满足上述分子为零：
+\[
+\cos\delta_0=\frac{k^2q+1}{k(1+q)}\approx0.95735,
+\quad \delta_0\approx16.793^\circ.
+\]
+冲日前后 $|\delta|<\delta_0$ 为逆行。因此
+\[
+\boxed{T_{\text{逆}}=T_{\rm syn}\frac{\delta_0}{\pi}\approx72.74\,\mathrm d},
+\qquad
+\boxed{T_{\text{顺}}=T_{\rm syn}-T_{\text{逆}}\approx706.93\,\mathrm d}.
+\]
+这里 $\delta_0$ 代入时间公式时用弧度。两次“留”之间日心相对角变化 $2\delta_0$，除以相对角速度 $\omega_E-\omega_M$ 就得到逆行时长。
+
+图中的七个时刻在日心轨道、背景视方向与 $\lambda(t)$ 曲线上逐一对应；第3、5点是两次“留”，第4点是冲日。比较背景位置时要比较视线方向，不能把有限距离处的直线当作无限远星空。严格同平面模型的视方向在黄道同一大圆上往返，逆行段不是二维闭合圈。带有轨道倾角的三维模型还会产生视纬度变化，因而可能形成通常所说的回环；下方单独展示这种情况，不把它当作同平面计算的结果。
+\MarsInclinedDiagram
+\end{xesolution}
+
+\KinematicKeepSpace{14cm}
+\begin{origexamplebox}{例2.106\quad 由木卫I观测周期估算光速}
+历史上曾有人比较地球位于公转轨道不同位置时测得的木星卫星周期，由此首次求得光的传播速度。已知木卫I真实周期 $T_0=42.5\,\mathrm h$；在地球轨道各处测得的所有周期中，最大值比 $T_0$ 多 $15\,\mathrm s$，最小值比 $T_0$ 少 $15\,\mathrm s$。近似认为地球、木星及木卫I都在同一平面内的圆轨道上运动：$R_E=1.5\times10^8\,\mathrm{km}$，$R_J=7.8\times10^8\,\mathrm{km}$，木卫I轨道半径 $R_I=4.2\times10^5\,\mathrm{km}$。（1）分析测得周期最大、最小时地球在公转轨道上的大致位置，以及地球、木星和木卫I的运动对测量周期的影响；（2）作合理近似，利用给定数据估算光速。
+\end{origexamplebox}
+\begin{xesolution}
+连续两个同相位事件之间，地球—木星距离若增加 $\Delta D$，后一信号多传播 $\Delta D/c$，观测周期就变长；距离减小时观测周期变短。极值出现在地球相对木星的径向速度最大附近，即地球—木星视线近似与地球轨道相切的位置，而不是合日或冲日。木星也在公转，但因 $R_J\gg R_E$ 且其公转较慢，视线方向上的修正较小；木卫I在一个真实周期后回到同一相位，其轨道位移一阶抵消。$R_I$ 给出的卫星速率约 $17.2\,\mathrm{km/s}$，主要影响周期内的瞬时位置，不主导周期极值。
+\RomerDiagram
+
+地球轨道速率
+\[
+v_E=\frac{2\pi R_E}{365.2564\times86400\,\mathrm s}
+\approx29.86\,\mathrm{km/s}.
+\]
+在上述极值位置取 $|\Delta D|\simeq v_ET_0$，而 $|\Delta T_{\rm obs}|=15\,\mathrm s$，于是
+\[
+c\simeq\frac{v_ET_0}{15\,\mathrm s}
+=\frac{29.86\times(42.5\times3600)}{15}\,\mathrm{km/s}
+\approx\boxed{3.05\times10^5\,\mathrm{km/s}}.
+\]
+这一层是忽略木星公转的数量级估算。进一步保留地球和木星的公转，令 $\delta$ 为地球相对木星的日心方位角，则
+\[
+D^2=R_J^2+R_E^2-2R_ER_J\cos\delta,\qquad
+\dot D=\frac{R_ER_J(\omega_E-\omega_J)\sin\delta}{D}.
+\]
+为求 $|\dot D|$ 最大值，可令 $c_\delta=\cos\delta$，对 $(1-c_\delta^2)/(R_J^2+R_E^2-2R_ER_Jc_\delta)$ 求导。约去正因子后，极值条件为
+\[
+R_ER_Jc_\delta^2-(R_J^2+R_E^2)c_\delta+R_ER_J=0.
+\]
+两根为 $R_E/R_J$ 和 $R_J/R_E$；后者大于 $1$，舍去。有效位置满足
+\[
+\cos\delta=\frac{R_E}{R_J},\qquad
+\delta\approx78.91^\circ\ \text{或}\ 281.09^\circ,
+\qquad |\dot D|_{\max}=R_E(\omega_E-\omega_J).
+\]
+图中上侧 $E_+$ 处 $\dot D>0$，观测周期最长；下侧 $E_-$ 处 $\dot D<0$，观测周期最短。这两处 $SE$ 与 $EJ$ 垂直，确实是切点。
+
+用开普勒第三定律估计 $\omega_J/\omega_E=(R_E/R_J)^{3/2}\approx0.0843$，同样由周期偏差 $15\,\mathrm s$ 得
+\[
+c\simeq\frac{R_E(\omega_E-\omega_J)T_0}{15\,\mathrm s}
+\approx2.79\times10^5\,\mathrm{km/s}.
+\]
+保留木星公转使前一估计降低约 $8.4\%$，不能只称为很小的尾数修正。题给周期差本身是近似数据，不能为了更贴近标准光速而选择近似层级。木卫I半径相对地木距离很小，且同一轨道相位事件间其相对木星的位置重复；因此估计中不应把卫星速率 $2\pi R_I/T_0$ 直接加到长期地木径向速度上。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.107\quad 用两次试射修正炮口角}
+第一次以 $30^\circ$ 发射，落点比目标远 $20\,\mathrm m$；第二次以 $29^\circ$ 发射，落点比目标近 $30\,\mathrm m$。确定再次发射的角度，使炮弹尽可能命中目标。
+\end{origexamplebox}
+\begin{xesolution}
+在 $1^\circ$ 小区间内把落点误差对角度作线性插值：从 $29^\circ$ 的 $-30\,\mathrm m$ 增加到 $30^\circ$ 的 $+20\,\mathrm m$，零点位于
+\[
+29^\circ+\frac{30}{30+20}\times1^\circ
+=\boxed{29.6^\circ}.
+\]
+若假设炮口速度不变、发射与落地点等高，射程 $S=K\sin2\theta$。由
+\[
+K\sin60^\circ=D+20,
+\qquad K\sin58^\circ=D-30
+\]
+先求 $K,D$，再令 $K\sin2\theta=D$，得到 $\theta\approx29.593^\circ$，与线性插值一致。因此实际设定 $29.6^\circ$ 已是合理最优值。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.108\quad 步枪准线与枪管的夹角}
+步枪的瞄准遵循“三点一线”原理：当缺口、准星和目标三点连成一线时击发。子弹速度虽然很大，通常约为 $800$--$1000\,\mathrm{m/s}$，但子弹在飞行中仍作抛体运动，因此必须在射击前校准步枪。校准的结果是使缺口与准星的连线并不与枪管平行，而是保留一个很小的夹角。忽略空气阻力，子弹初速率为 $v_0$，求为命中水平距离 $L$、与枪口等高的目标，瞄准线与枪管应有多大夹角 $\alpha$。
+\end{origexamplebox}
+\begin{xesolution}
+瞄准线指向目标，近似水平；枪管需略向上抬高 $\alpha$。同高斜抛射程条件
+\[
+L=\frac{v_0^2}{g}\sin2\alpha
+\]
+给出
+\[
+\boxed{\alpha=\frac12\arcsin\frac{gL}{v_0^2}}.
+\]
+步枪中 $gL/v_0^2\ll1$，故
+\[
+\boxed{\alpha\simeq\frac{gL}{2v_0^2}}.
+\]
+角度很小但不能取零；否则子弹到达目标时已因重力下落。
+\end{xesolution}
+
+\KinematicKeepSpace{10cm}
+\begin{origexamplebox}{例2.109\quad 击中墙上水平线的瞄准点轨迹}
+水平地面上有一面竖直墙，墙上离地 $h$ 处有一条水平直线。距墙 $L$ 的人以固定初速率 $v_0$ 投掷物体，要击中这条直线。求相应瞄准点在墙面上构成的轨迹。
+\end{origexamplebox}
+\begin{xesolution}
+设投掷点 $O$ 离地高度为 $z_0$，先保留这一参数，最后再给出 $z_0=0$ 的特例。在墙面内取水平方向坐标 $x$，$x=0$ 对应 $O$ 在墙上的法向投影；瞄准点 $Q$ 的离地高度为 $z$，实际命中点 $P$ 的离地高度为 $h$。定义相对高度 $Z=z-z_0$、$H=h-z_0$。
+\AimLocusDiagram
+墙面俯视的水平直角三角形给出 $OP$ 的水平投影长度
+\[
+r=\sqrt{L^2+x^2}.
+\]
+初速度方向沿 $OQ$，故 $Z=r\tan\theta$。水平位移 $r=v_0\cos\theta\,t$，所以 $t=r/(v_0\cos\theta)$。把它代入竖直位移 $H=v_0\sin\theta\,t-gt^2/2$：
+\[
+H=r\tan\theta-\frac{gr^2}{2v_0^2\cos^2\theta}
+=Z-\frac{g}{2v_0^2}(r^2+Z^2).
+\]
+其中使用 $1/\cos^2\theta=1+\tan^2\theta=1+Z^2/r^2$。代入 $r^2=L^2+x^2$ 得 $x^2+Z^2-2v_0^2Z/g+L^2+2v_0^2H/g=0$，配方：
+\[
+\boxed{x^2+\left(z-z_0-\frac{v_0^2}{g}\right)^2
+=\frac{v_0^4}{g^2}-L^2-\frac{2v_0^2(h-z_0)}{g}}.
+\]
+右端记作 $\mathcal D$，各项量纲均为长度平方。$\mathcal D>0$ 时，瞄准点轨迹是墙面上的圆，图中圆心 $K$ 的坐标为 $(0,z_0+v_0^2/g)$，半径为
+\[
+\boxed{R_{\rm aim}=\sqrt{\frac{v_0^4}{g^2}-L^2-\frac{2v_0^2(h-z_0)}{g}}}.
+\]
+$\mathcal D=0$ 时只有圆心这一个瞄准点；$\mathcal D<0$ 时给定速率不能到达墙上的命中线。若采用出手点在地面的理想模型，令 $z_0=0$，便得到特例
+\[
+x^2+(z-v_0^2/g)^2=v_0^4/g^2-L^2-2v_0^2h/g.
+\]
+图中实际命中点 $P$ 总在水平线 $z=h$ 上，瞄准点 $Q$ 则在圆上变化，二者不能混同。在不限制投掷方向、墙无限延伸的理想模型中，完整圆均对应可能方向；若只许向上抛，则需进一步取 $z>z_0$ 的圆弧，墙高、开口等限制也要另取交集。$h,z_0\ge0$ 时抛物线在两端点连线的上方，因而在到墙之前不会先穿入地面。
+\end{xesolution}

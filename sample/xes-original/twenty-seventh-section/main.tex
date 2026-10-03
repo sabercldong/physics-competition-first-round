@@ -1,0 +1,46 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../../common-style.tex}
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+\usetikzlibrary{decorations.pathmorphing,decorations.markings,intersections,patterns.meta,calc,arrows.meta,positioning}
+
+\newcommand{\historyfigure}[3][0.92\linewidth]{%
+  \begin{center}
+    \begin{minipage}{#1}
+      \centering
+      \includegraphics[width=\linewidth]{#2}\par\smallskip
+      {\small\color{TextGray}#3}
+    \end{minipage}
+  \end{center}
+}
+
+\newcommand{\Needspace}[1]{%
+  \par
+  \ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax
+    \newpage
+  \fi
+}
+
+\hypersetup{
+  pdftitle={高中物理竞赛一轮讲义：第27节 补充阅读——电磁场与超导体（含推导与解图）},
+  pdfsubject={依据学而思2019秋季兴趣一阶第38讲整理，并补全关键推导与物理图},
+  pdfauthor={原始资料：学而思；整理与解图：物理竞赛一轮资料编写组}
+}
+
+\fancyhead[R]{\small\color{TextGray}秋季兴趣一阶\quad 第 38 讲}
+\renewcommand{\theequation}{38.\arabic{equation}}
+
+\input{diagrams.tex}
+\input{faithful-redraws.tex}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{equation}{0}
+
+\section*{第 38 讲\quad 补充阅读：电磁场与超导体（选讲）}
+
+\input{content.tex}
+\end{document}

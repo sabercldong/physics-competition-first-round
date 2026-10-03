@@ -1,0 +1,129 @@
+\section{局域规范对称性与电磁场}
+
+电磁场可以从“带电物质场的局域相位对称性”出发统一引入。考虑复 Klein--Gordon 标量场 $\phi(\vect r,t)$，把 $\phi$ 与 $\bar\phi$ 在变分时视为独立变量，取
+\[
+ \mathcal L_m=\frac{\hbar^2}{m}
+ \left(\frac1{c^2}\dot{\bar\phi}\dot\phi-
+ \nabla\bar\phi\cdot\nabla\phi\right)-mc^2\bar\phi\phi.
+\]
+Euler--Lagrange 方程为
+\[
+ \frac1{c^2}\partial_t^2\phi-\nabla^2\phi
+ =-\frac{m^2c^2}{\hbar^2}\phi,
+\]
+以及其复共轭。这里取 $|\phi|^2$ 具有数密度量纲；将方程除以动能前因子 $\hbar^2/m$ 可直接核对质量项为 $m^2c^2/\hbar^2$。代入平面波
+$\phi=A\e^{-\ii\omega t+\ii\vect k\cdot\vect r}$，得到
+\[
+ (\hbar\omega)^2-(\hbar k)^2c^2=m^2c^4,
+ \]
+即 $E=\hbar\omega$、$\vect p=\hbar\vect k$ 与相对论能量--动量关系。
+
+\begin{advexamplebox}{Klein--Gordon 平面波的能量与动量密度}\label{advA4:ex:kg-energy-momentum}
+认为 $\bar\phi=\phi^*$。求平面波解的能量密度和动量密度，并检查它们与单粒子 $E,\vect p$ 的比例关系。
+\end{advexamplebox}
+\begin{advsolution}
+共轭正则动量为
+\[
+ \pi_\phi=\frac{\partial\mathcal L}{\partial\dot\phi}
+ =\frac{\hbar^2}{mc^2}\dot{\bar\phi},
+ \qquad
+ \pi_{\bar\phi}=\frac{\hbar^2}{mc^2}\dot\phi.
+\]
+因此 Hamilton 密度
+\[
+ \mathcal H=\pi_\phi\dot\phi+\pi_{\bar\phi}\dot{\bar\phi}-\mathcal L
+ =\frac{\hbar^2}{mc^2}|\dot\phi|^2
+ +\frac{\hbar^2}{m}|\nabla\phi|^2+mc^2|\phi|^2.
+\]
+对平面波，利用色散关系
+$\hbar^2\omega^2=\hbar^2c^2k^2+m^2c^4$，得到
+\[
+ \boxed{u=\mathcal H=\frac{2\hbar^2\omega^2}{mc^2}|A|^2}.
+\]
+平移对称性的 Noether 动量密度（取物理空间协变分量的负号）为
+\[
+ \vect g=-\pi_\phi\nabla\phi-\pi_{\bar\phi}\nabla\bar\phi
+ =\boxed{\frac{2\hbar^2\omega}{mc^2}\vect k\,|A|^2}.
+\]
+所以
+\[
+ \frac{\vect g}{u}=\frac{\vect k}{\omega}
+ =\frac{\vect p}{E}.
+\]
+这说明 $|A|^2$ 决定物质量的密度因子，而每份物质的能量、动量之比正确。静止极限 $k=0$ 给出零动量密度；超相对论极限 $\hbar kc\gg mc^2$ 给出 $|\vect g|/u\to1/c$。本节场归一化含 $1/m$，不把固定振幅时 $m=0$ 代入密度公式。
+\end{advsolution}
+
+\subsection{从全局相位到局域相位}
+
+物质拉格朗日量在全局变换
+\[
+ \phi\mapsto\phi\e^{\ii\lambda},\qquad
+ \bar\phi\mapsto\bar\phi\e^{-\ii\lambda}
+\]
+下不变。Noether 流可写为
+\[
+ \varrho=\frac{\ii\hbar}{mc^2}
+ (\bar\phi\dot\phi-\phi\dot{\bar\phi}),
+ \qquad
+ \vect j_N=-\frac{\ii\hbar}{m}
+ (\bar\phi\nabla\phi-\phi\nabla\bar\phi),
+\]
+并满足 $\partial_t\varrho+\nabla\cdot\vect j_N=0$。
+
+若相位参数变成时空函数，
+\[
+ \phi'=\phi\e^{\ii e\theta(x)},
+\]
+这里 $e$ 为带符号的电荷，$e\theta$ 无量纲。取 $x^\mu=(ct,\vect r)$、度规 $(-,+,+,+)$、$\partial_\mu=(c^{-1}\partial_t,\nabla)$，并取 $A_\mu=(-\varphi/c,\vect A)$。普通导数会多出相位导数；规定
+\[
+ A'_\mu=A_\mu+\hbar\partial_\mu\theta,
+\]
+并以协变导数
+\[
+ D_\mu\phi=\left(\partial_\mu-\frac{\ii e}{\hbar}A_\mu\right)\phi,
+ \qquad
+ D_\mu\bar\phi=\left(\partial_\mu+\frac{\ii e}{\hbar}A_\mu\right)\bar\phi
+\]
+替代普通导数，则 $D_\mu\phi$ 与 $\phi$ 具有相同的相位变换律。
+
+规范场强
+\[
+ F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
+\]
+在 $A_\mu\mapsto A_\mu+\hbar\partial_\mu\theta$ 下保持不变。最简单的 Lorentz 标量自能为
+\[
+ \mathcal L_e=-\frac1{4\mu_0}F_{\mu\nu}F^{\mu\nu}.
+\]
+上述时间分量含 $1/c$，因此 $F_{0i}=-E_i/c$，而空间分量给出磁场。定义
+\[
+ \boxed{\vect E=-\partial_t\vect A-\nabla\varphi},
+ \qquad
+ \boxed{\vect B=\nabla\times\vect A}.
+\]
+对于给定的守恒外源 $\rho,\vect j$，势与外源的作用量可写成
+\[
+ \mathcal L=\frac{\varepsilon_0}{2}E^2-\frac1{2\mu_0}B^2
+ -\rho\varphi+\vect j\cdot\vect A.
+\]
+由势的定义恒有
+\[
+ \nabla\cdot\vect B=0,
+ \qquad \nabla\times\vect E+\partial_t\vect B=0.
+\]
+对 $\varphi,\vect A$ 作场变分得到另两式
+\[
+ \nabla\cdot\vect E=\frac\rho{\varepsilon_0},
+ \qquad
+ \nabla\times\vect B-\frac1{c^2}\partial_t\vect E=\mu_0\vect j.
+\]
+这四式构成有源真空 Maxwell 方程。若源本身就是上述带电标量场，应改用完整的 $\mathcal L_m(D_\mu\phi)+\mathcal L_e$ 并由变分求出电流；协变导数平方中的 $A^2|\phi|^2$ 项也须保留，不能把删去它的弱场表达冒充精确规范不变理论。
+
+在三维记号下，$\vect A'=\vect A+\hbar\nabla\theta$、$\varphi'=\varphi-\hbar\partial_t\theta$。对点电荷的粒子拉格朗日量
+\[
+ L_p=-q\varphi(\vect r)+q\dot{\vect r}\cdot\vect A(\vect r)+T(\dot{\vect r})
+\]
+应用 Euler--Lagrange 方程，得到
+\[
+ \boxed{\dot{\vect p}=q(\vect E+\vect v\times\vect B)}.
+\]
+规范变换只让 $L_p$ 增加全时间导数 $q\hbar\dot\theta$，不改变运动方程；这同时说明局域相位对称性与电荷耦合的一致性。

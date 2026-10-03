@@ -1,0 +1,63 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../../common-style.tex}
+\usetikzlibrary{decorations.pathmorphing}
+
+\newif\ifwithsolutions
+\ifdefined\NOSOLUTIONS
+  \withsolutionsfalse
+\else
+  \withsolutionstrue
+\fi
+
+\ifwithsolutions
+  \hypersetup{
+    pdftitle={学而思物理竞赛一轮资料重排：第二章第二节 牛顿运动定律应用（含补写解答与解图）},
+    pdfsubject={学而思物理竞赛一轮资料重排；正文与例题据原资料整理，解答与解图为后补},
+    pdfauthor={原资料：学而思；重排与补写解答：物理竞赛一轮资料编写组}
+  }
+\else
+  \hypersetup{
+    pdftitle={学而思物理竞赛一轮资料重排：第二章第二节 牛顿运动定律应用},
+    pdfsubject={学而思物理竞赛一轮资料原版重排；无解答版},
+    pdfauthor={原资料：学而思；重排：物理竞赛一轮资料编写组}
+  }
+\fi
+
+\fancyhead[R]{\small\color{TextGray}第二章\quad 牛顿运动定律及应用}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+\newtcolorbox{origexamplebox}[1]{
+  enhanced,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue}
+}
+
+\NewDocumentEnvironment{xesolution}{+b}{%
+  \ifwithsolutions
+    \par\smallskip
+    \begingroup\small
+    \noindent{\bfseries\color{DeepBlue}解答}\quad #1
+    \par\endgroup\medskip
+  \fi
+}{}
+
+\input{diagrams.tex}
+
+\begin{document}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{chapter}{2}
+\setcounter{section}{1}
+
+\section{牛顿运动定律应用}
+\setcounter{equation}{0}
+
+\input{content.tex}
+
+\end{document}

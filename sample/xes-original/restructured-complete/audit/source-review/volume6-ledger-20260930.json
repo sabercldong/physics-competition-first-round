@@ -1,0 +1,90 @@
+{
+  "scope": "第6卷近代物理31—32章",
+  "retained_examples": 20,
+  "new_numbered_examples": 0,
+  "new_teaching_subsections": 12,
+  "source_identity": "新增基础/桥梁教学题；非原扫描20编号题转写",
+  "integrity": [
+    {
+      "chapter": 31,
+      "examples": 8,
+      "display_order": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        6,
+        8
+      ],
+      "sections": [
+        "相对性原理与光速不变",
+        "固有时、时间延缓与长度收缩",
+        "同时性的相对性与速度变换",
+        "光行差与相对论多普勒效应",
+        "相对论动量与能量",
+        "系统不变质量、碰撞与反应阈值"
+      ],
+      "old_labels_retained": 9,
+      "tikz_before": 8,
+      "tikz_after": 10
+    },
+    {
+      "chapter": 32,
+      "examples": 12,
+      "display_order": [
+        5,
+        1,
+        6,
+        7,
+        2,
+        8,
+        3,
+        9,
+        10,
+        11,
+        4,
+        12
+      ],
+      "sections": [
+        "热辐射与能量量子",
+        "光子、光电效应与康普顿散射",
+        "物质波与量子态",
+        "原子光谱与玻尔模型",
+        "原子核、结合能与核反应",
+        "放射性衰变与粒子守恒"
+      ],
+      "old_labels_retained": 10,
+      "tikz_before": 10,
+      "tikz_after": 10
+    }
+  ],
+  "report": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/audit/第6卷近代物理精修_20260930.md",
+  "publication": {
+    "published_at": "2026-09-30T11:01:14.107040+08:00",
+    "files": {
+      "高中物理竞赛一轮讲义_第31章_狭义相对论.pdf": {
+        "sha256": "9871837fe0f5fa35ef2aa34caeeba9f729b78a24d30207367c15ec5a8fc95eba",
+        "pages": 15,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-volume6-20260930/final-build/ch31/ch31.pdf"
+      },
+      "高中物理竞赛一轮讲义_第32章_量子现象、原子与原子核物理.pdf": {
+        "sha256": "f5f5f5a0221faaee8274192081e3d48344ac0ddd4397ae985a878237a7b26fed",
+        "pages": 15,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-volume6-20260930/final-build/ch32/ch32.pdf"
+      },
+      "高中物理竞赛一轮讲义_第6卷_近代物理.pdf": {
+        "sha256": "cdee7536922b76887cfe64c8ae7461f5e5116dc50bd58c7e3ed4e5d53c7f1c89",
+        "pages": 30,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-volume6-20260930/final-build/volume6/volume6.pdf"
+      },
+      "高中物理竞赛一轮讲义.pdf": {
+        "sha256": "abb876afa9260d3cda0729fe02b947efa787214c98f76c9550e38c2c48fabaca",
+        "pages": 1082,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-volume6-20260930/final-build/main/main.pdf"
+      }
+    },
+    "backup": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-volume6-20260930/baseline"
+  }
+}

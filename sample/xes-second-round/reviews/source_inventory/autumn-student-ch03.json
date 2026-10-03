@@ -1,0 +1,906 @@
+{
+  "source_id": "autumn_student_2020",
+  "source_sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+  "independent_visual_inventory": true,
+  "review_scope": "2026-09-05重新查看原PDF物理47—72页高清整页及逐页文本；按主题段、定义/公式组和原编号图独立登记。逐项对照现有正文，补回滑轮对角化、共轭变量、力系等效类和速度相关广义势能；纠正原件Dirac积分分支和超静定必可平衡等错误。此清单只证明来源对象有落点，不替代题解、图形和页面终验。",
+  "pages": [
+    {
+      "physical_page": 47,
+      "printed_page": 45,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-047.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "第三章静力学及从自由度、能量和约束统一展开的导言",
+          "target_id": "r2ch03:chapter",
+          "source_number": "第三章"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "导言前三条项目",
+          "description": "能量函数、自由度、约束数量与少自由度能量法的三条线索",
+          "target_id": "r2ch03:sec:constraint"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "导言末两段",
+          "description": "由直角坐标推广到广义坐标并统一力的矢量效果与功",
+          "target_id": "r2ch03:sec:constraint"
+        },
+        {
+          "id": "h02",
+          "object_type": "heading",
+          "source_locator": "页下部",
+          "description": "3.1约束与3.1.1约束分类",
+          "target_id": "r2ch03:sec:constraint",
+          "source_number": "3.1"
+        }
+      ]
+    },
+    {
+      "physical_page": 48,
+      "printed_page": 46,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-048.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半页",
+          "description": "单边不等式、约束激活与解除、双边约束的分段替代",
+          "target_id": "r2ch03:eq:001"
+        },
+        {
+          "id": "fig01",
+          "object_type": "figure",
+          "source_locator": "页首图",
+          "description": "绳端球、水面鱼和地面物体三种单边约束",
+          "target_id": "r2ch03:fig:001",
+          "source_number": "图3.1"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中下部",
+          "description": "完整/非完整约束、几何约束和微分约束分类",
+          "target_id": "r2ch03:eq:002"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "下部方向余弦与平面条件",
+          "description": "圆盘方向余弦归一化及落到平面后的约束",
+          "target_id": "r2ch03:eq:002"
+        }
+      ]
+    },
+    {
+      "physical_page": 49,
+      "printed_page": 47,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-049.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部B例",
+          "description": "直线纯滚约束可积分为有限几何关系",
+          "target_id": "r2ch03:eq:003"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部C例",
+          "description": "独轮车广义坐标和两个局部无侧滑微分约束",
+          "target_id": "r2ch03:eq:003"
+        },
+        {
+          "id": "fig02",
+          "object_type": "figure",
+          "source_locator": "右侧",
+          "description": "独轮车朝向、自转和局部允许速度",
+          "target_id": "r2ch03:fig:002",
+          "source_number": "图3.2"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下半页",
+          "description": "用闭合路径说明独轮车约束不可积",
+          "target_id": "r2ch03:eq:003"
+        }
+      ]
+    },
+    {
+      "physical_page": 50,
+      "printed_page": 48,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-050.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "非完整约束局部成立而全局位形可独立的辨析",
+          "target_id": "r2ch03:eq:003"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "稳定约束与显含时间的非稳定约束",
+          "target_id": "r2ch03:sec:constraint"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "下部",
+          "description": "3.1.2广义坐标与自由度",
+          "target_id": "r2ch03:eq:004",
+          "source_number": "3.1.2"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "下部",
+          "description": "质点、线状刚体、非线状刚体组成体系的原始与剩余自由度",
+          "target_id": "r2ch03:eq:004"
+        }
+      ]
+    },
+    {
+      "physical_page": 51,
+      "printed_page": 49,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-051.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "线状刚体五自由度与一般刚体六自由度的区别",
+          "target_id": "r2ch03:eq:004"
+        },
+        {
+          "id": "fig03",
+          "object_type": "figure",
+          "source_locator": "右上",
+          "description": "刚体自转、进动与章动三种转动自由度",
+          "target_id": "r2ch03:fig:003",
+          "source_number": "图3.3"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中下部Case1—2",
+          "description": "面约束、线约束及绝对粗糙约束的独立方程数",
+          "target_id": "r2ch03:eq:004"
+        },
+        {
+          "id": "fig04",
+          "object_type": "figure",
+          "source_locator": "下部",
+          "description": "曲面一个约束与空间曲线两个约束",
+          "target_id": "r2ch03:fig:004",
+          "source_number": "图3.4"
+        }
+      ]
+    },
+    {
+      "physical_page": 52,
+      "printed_page": 50,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-052.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半Case3—7",
+          "description": "轻绳/杆、分段绳和多物体共铰的约束计数",
+          "target_id": "r2ch03:eq:004"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "页首",
+          "description": "同一根绳两段距离之和为定长的单约束方程",
+          "target_id": "r2ch03:eq:004"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "完整与非完整约束并存时广义坐标和速度约束的处理",
+          "target_id": "r2ch03:eq:005"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "完整约束下位置和速度在广义坐标中的表达",
+          "target_id": "r2ch03:eq:005"
+        }
+      ]
+    },
+    {
+      "physical_page": 53,
+      "printed_page": 51,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-053.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "约束力作为维持约束所必需的被动力及其数量",
+          "target_id": "r2ch03:eq:006"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "粗糙曲线附加摩擦与一根闭合绳共享张力的区别",
+          "target_id": "r2ch03:eq:006"
+        },
+        {
+          "id": "fig05",
+          "object_type": "figure",
+          "source_locator": "右侧",
+          "description": "三质点由同一闭合绳形成一个约束",
+          "target_id": "r2ch03:fig:005",
+          "source_number": "图3.5"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "虚功定义广义力、广义力可为力矩且量纲随坐标变化",
+          "target_id": "r2ch03:eq:007"
+        }
+      ]
+    },
+    {
+      "physical_page": 54,
+      "printed_page": 52,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-054.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "固定轴转动中力矩分量是转角的广义力",
+          "target_id": "r2ch03:eq:007"
+        },
+        {
+          "id": "fig06",
+          "object_type": "figure",
+          "source_locator": "左上",
+          "description": "力作用点转动位移及力矩广义力",
+          "target_id": "r2ch03:fig:006",
+          "source_number": "图3.6"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中下部",
+          "description": "复合滑轮组两个自由度的位移、广义力、动能与对角化",
+          "target_id": "r2ch03:eq:008"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "中下部公式组",
+          "description": "滑轮组三物体位移、广义力、动能、坐标变换及加速度",
+          "target_id": "r2ch03:eq:009"
+        },
+        {
+          "id": "fig07",
+          "object_type": "figure",
+          "source_locator": "左下",
+          "description": "两个自由度的复合滑轮组",
+          "target_id": "r2ch03:fig:007",
+          "source_number": "图3.7"
+        }
+      ]
+    },
+    {
+      "physical_page": 55,
+      "printed_page": 53,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-055.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "页首",
+          "description": "广义力—广义位移结构在压强、电势和介质中的推广",
+          "target_id": "r2ch03:eq:007"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "中部",
+          "description": "3.2力系化简与静力学公理体系",
+          "target_id": "r2ch03:sec:force-system",
+          "source_number": "3.2"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中下部",
+          "description": "分布、共点与一般空间力系的统一描述",
+          "target_id": "r2ch03:eq:010"
+        },
+        {
+          "id": "fig08",
+          "object_type": "figure",
+          "source_locator": "下部",
+          "description": "分布、共点和空间离散力系",
+          "target_id": "r2ch03:fig:008",
+          "source_number": "图3.8"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "下部",
+          "description": "Dirac delta统一离散力与分布力；原件积分分支印反已按定义修正",
+          "target_id": "r2ch03:eq:010"
+        }
+      ]
+    },
+    {
+      "physical_page": 56,
+      "printed_page": 54,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-056.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "力系逐点加法、数乘和零力系",
+          "target_id": "r2ch03:eq:011"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "力系等效关系的反身、对称、传递与同余",
+          "target_id": "r2ch03:eq:011"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "平衡核、等效类及两力系之差属于平衡核的判据",
+          "target_id": "r2ch03:eq:011"
+        }
+      ]
+    },
+    {
+      "physical_page": 57,
+      "printed_page": 55,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-057.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "等效类结构、平衡核及最基本二力平衡生成元",
+          "target_id": "r2ch03:eq:011"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "中部",
+          "description": "二力平衡等大、反向且共线的第三公理",
+          "target_id": "r2ch03:fig:009"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "作用反作用、含未知约束力的系统平衡及刚化原理",
+          "target_id": "r2ch03:fig:009"
+        },
+        {
+          "id": "fig09",
+          "object_type": "figure",
+          "source_locator": "右下",
+          "description": "二力平衡和作用反作用的共线条件",
+          "target_id": "r2ch03:fig:009",
+          "source_number": "图3.9"
+        }
+      ]
+    },
+    {
+      "physical_page": 58,
+      "printed_page": 56,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-058.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "力沿作用线滑移及非平行力求合力",
+          "target_id": "r2ch03:fig:010"
+        },
+        {
+          "id": "fig10",
+          "object_type": "figure",
+          "source_locator": "上部",
+          "description": "滑移矢量和共点合力",
+          "target_id": "r2ch03:fig:010",
+          "source_number": "图3.10"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "力偶、力偶矩和力偶系",
+          "target_id": "r2ch03:eq:012"
+        },
+        {
+          "id": "fig11",
+          "object_type": "figure",
+          "source_locator": "中部",
+          "description": "两个等大反向不共线力构成力偶",
+          "target_id": "r2ch03:fig:011",
+          "source_number": "图3.11"
+        },
+        {
+          "id": "fig12",
+          "object_type": "figure",
+          "source_locator": "下部",
+          "description": "加速车厢中桌子的等效力偶分解",
+          "target_id": "r2ch03:fig:012",
+          "source_number": "图3.12"
+        }
+      ]
+    },
+    {
+      "physical_page": 59,
+      "printed_page": 57,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-059.jpg",
+      "objects": [
+        {
+          "id": "fig13",
+          "object_type": "figure",
+          "source_locator": "页首",
+          "description": "力偶自由搬移与矢量求和",
+          "target_id": "r2ch03:fig:013",
+          "source_number": "图3.13"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "共点力系和力偶系的合矢量平衡条件",
+          "target_id": "r2ch03:eq:012"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "力的平移定理及补偿力偶",
+          "target_id": "r2ch03:eq:013"
+        },
+        {
+          "id": "fig14",
+          "object_type": "figure",
+          "source_locator": "中部",
+          "description": "力平移到另一作用点并附加力偶",
+          "target_id": "r2ch03:fig:014",
+          "source_number": "图3.14"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "三力汇交与闭合力三角形",
+          "target_id": "r2ch03:fig:015"
+        },
+        {
+          "id": "fig15",
+          "object_type": "figure",
+          "source_locator": "下部",
+          "description": "三力作用线与力三角形",
+          "target_id": "r2ch03:fig:015",
+          "source_number": "图3.15"
+        }
+      ]
+    },
+    {
+      "physical_page": 60,
+      "printed_page": 58,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-060.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半",
+          "description": "一般力系向简化中心平移并分解为主矢和主矩",
+          "target_id": "r2ch03:eq:014"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "中部",
+          "description": "主矢、主矩及换简化中心公式",
+          "target_id": "r2ch03:eq:015"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "下半",
+          "description": "平面力系三类结果与空间力螺旋的分类",
+          "target_id": "r2ch03:eq:015"
+        }
+      ]
+    },
+    {
+      "physical_page": 61,
+      "printed_page": 59,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-061.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "3.3平衡问题：矢量力学",
+          "target_id": "r2ch03:sec:vector-statics",
+          "source_number": "3.3"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半",
+          "description": "体系结构、约束力、主动力与位形变量四类要素",
+          "target_id": "r2ch03:sec:vector-statics"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "下半",
+          "description": "约束方程、主动力结构方程和平衡条件的完整方程组",
+          "target_id": "r2ch03:eq:016"
+        }
+      ]
+    },
+    {
+      "physical_page": 62,
+      "printed_page": 60,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-062.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "投影力平衡、任意矩心和任意方向的力矩平衡",
+          "target_id": "r2ch03:eq:017"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "整体法、隔离法、矩心和投影方向的选取",
+          "target_id": "r2ch03:eq:018"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下半",
+          "description": "平面质点、刚体多种等价平衡判据及独立性条件",
+          "target_id": "r2ch03:eq:018"
+        }
+      ]
+    },
+    {
+      "physical_page": 63,
+      "printed_page": 61,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-063.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "空间质点、线状刚体和一般刚体的独立平衡方程",
+          "target_id": "r2ch03:eq:019"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "平衡方程数与无约束自由度数的对应",
+          "target_id": "r2ch03:eq:019"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "下部",
+          "description": "亚静定、静定与超静定分类引入",
+          "target_id": "r2ch03:sec:virtual-work"
+        }
+      ]
+    },
+    {
+      "physical_page": 64,
+      "printed_page": 62,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-064.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半",
+          "description": "亚静定、静定、超静定的问题结构；原件超静定必可平衡的过强表述已修正",
+          "target_id": "r2ch03:sec:virtual-work"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "中部",
+          "description": "3.4平衡问题：虚功原理",
+          "target_id": "r2ch03:sec:virtual-work",
+          "source_number": "3.4"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中下部",
+          "description": "同一时刻邻近允许位形定义虚位移并区别实位移",
+          "target_id": "r2ch03:eq:020"
+        },
+        {
+          "id": "fig16",
+          "object_type": "figure",
+          "source_locator": "下部",
+          "description": "实路径与同一时刻邻近允许路径",
+          "target_id": "r2ch03:fig:016",
+          "source_number": "图3.16"
+        }
+      ]
+    },
+    {
+      "physical_page": 65,
+      "printed_page": 63,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-065.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "理想约束的梯度形式和约束反力总虚功为零的等价定义",
+          "target_id": "r2ch03:eq:021"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "虚功原理消去约束力并给出各广义力为零",
+          "target_id": "r2ch03:eq:022"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "解除约束并将反力视作主动力以求静定反力",
+          "target_id": "r2ch03:eq:022"
+        }
+      ]
+    },
+    {
+      "physical_page": 66,
+      "printed_page": 64,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-066.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "3.5分析力学初步（带星）",
+          "target_id": "r2ch03:sec:lagrange",
+          "source_number": "3.5"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半",
+          "description": "理想非稳定完整约束中的位置、实位移和虚位移",
+          "target_id": "r2ch03:eq:023"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "下半",
+          "description": "从牛顿第二定律乘虚位移到广义坐标动力学的准备",
+          "target_id": "r2ch03:eq:027"
+        }
+      ]
+    },
+    {
+      "physical_page": 67,
+      "printed_page": 65,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-067.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "页首",
+          "description": "3.5.1用广义坐标表示能量",
+          "target_id": "r2ch03:eq:024",
+          "source_number": "3.5.1"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上半",
+          "description": "刚体质点化后的总动能及广义坐标速度代入",
+          "target_id": "r2ch03:eq:024"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "中下部",
+          "description": "动能按广义速度二次、一次和零次项分解及各系数",
+          "target_id": "r2ch03:eq:024"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "稳定约束使一次项和零次项消失",
+          "target_id": "r2ch03:eq:024"
+        }
+      ]
+    },
+    {
+      "physical_page": 68,
+      "printed_page": 66,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-068.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "广义动量、动能勒让德变换及U=T2-T0",
+          "target_id": "r2ch03:eq:025"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "动能全微分与广义动量微分",
+          "target_id": "r2ch03:eq:025"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下半",
+          "description": "保守主动力、势能和显含时间势能的功关系",
+          "target_id": "r2ch03:eq:026"
+        }
+      ]
+    },
+    {
+      "physical_page": 69,
+      "printed_page": 67,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-069.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "显含时间势能下实功与虚功的区别",
+          "target_id": "r2ch03:eq:026"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "中部",
+          "description": "3.5.2拉格朗日方程",
+          "target_id": "r2ch03:eq:027",
+          "source_number": "3.5.2"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中下部",
+          "description": "由牛顿方程、理想约束虚功和偏导恒等式推导拉格朗日方程",
+          "target_id": "r2ch03:eq:027"
+        }
+      ]
+    },
+    {
+      "physical_page": 70,
+      "printed_page": 68,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-070.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "拉格朗日方程原型及广义动量变化中的几何项",
+          "target_id": "r2ch03:eq:027"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "平面极坐标例子还原径向方程与角动量定理",
+          "target_id": "r2ch03:eq:027"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "拉格朗日量和保守体系欧拉—拉格朗日方程",
+          "target_id": "r2ch03:eq:028"
+        }
+      ]
+    },
+    {
+      "physical_page": 71,
+      "printed_page": 69,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-071.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "上部",
+          "description": "速度相关广义势能、电磁标势矢势及洛伦兹力",
+          "target_id": "r2ch03:eq:028"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "中部",
+          "description": "循环坐标、共轭动量守恒及哈密顿量",
+          "target_id": "r2ch03:eq:029"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "下部",
+          "description": "拉格朗日方程在冲击时间内积分为广义冲量关系",
+          "target_id": "r2ch03:eq:030"
+        }
+      ]
+    },
+    {
+      "physical_page": 72,
+      "printed_page": 70,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-072.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "页首续文",
+          "description": "冲击问题中有界项积分消失、理想约束冲量自动消去及碰撞本构仍需另给",
+          "target_id": "r2ch03:eq:030"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../../common-style.tex}
+\usepackage{graphicx}
+\graphicspath{{assets/}}
+\usetikzlibrary{decorations.pathmorphing,intersections,patterns.meta}
+
+\newcommand{\historyfigure}[3][0.82\linewidth]{%
+  \begin{center}
+    \begin{minipage}{#1}
+      \centering
+      \includegraphics[width=\linewidth]{#2}\par\smallskip
+      {\small\color{TextGray}#3}
+    \end{minipage}
+  \end{center}
+}
+
+\newcommand{\Needspace}[1]{%
+  \par
+  \ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax
+    \newpage
+  \fi
+}
+
+\newif\ifwithsolutions
+\ifdefined\NOSOLUTIONS
+  \withsolutionsfalse
+\else
+  \withsolutionstrue
+\fi
+
+\ifwithsolutions
+  \hypersetup{
+    pdftitle={学而思物理竞赛一轮资料重排：第14讲 角动量（含补写解答与解图）},
+    pdfsubject={学而思2019暑期兴趣一阶B原资料重排；解答与解图为后补},
+    pdfauthor={原资料：学而思；重排与补写解答：物理竞赛一轮资料编写组}
+  }
+\else
+  \hypersetup{
+    pdftitle={学而思物理竞赛一轮资料重排：第14讲 角动量},
+    pdfsubject={学而思2019暑期兴趣一阶B原资料重排；无解答版},
+    pdfauthor={原资料：学而思；重排：物理竞赛一轮资料编写组}
+  }
+\fi
+
+\fancyhead[R]{\small\color{TextGray}暑期兴趣一阶 B\quad 第 14 讲}
+\renewcommand{\theequation}{14.\arabic{equation}}
+
+\newtcolorbox{origexamplebox}[1]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue}
+}
+
+\NewDocumentEnvironment{xesolution}{+b}{%
+  \ifwithsolutions
+    \par\smallskip
+    \begingroup\small
+    \noindent{\bfseries\color{DeepBlue}解答}\quad #1
+    \par\endgroup\medskip
+  \fi
+}{}
+
+\NewDocumentEnvironment{solutioncontinuation}{+b}{%
+  \ifwithsolutions #1\fi
+}{}
+
+\input{diagrams-revised.tex}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{equation}{0}
+
+\section*{第 14 讲\quad 角动量}
+
+\input{content.tex}
+\end{document}

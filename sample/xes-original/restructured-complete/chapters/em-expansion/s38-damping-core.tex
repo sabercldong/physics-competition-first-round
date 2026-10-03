@@ -1,0 +1,21 @@
+取匀强磁场 $\boldsymbol B=B\boldsymbol e_z$，并在横向运动中加入线性阻力 $-m\nu\boldsymbol v$。这里 $\nu>0$ 的单位为时间的倒数。令 $w=v_x+\mathrm i v_y$、$\Omega=qB/m$，运动方程化为
+\[
+ \dot w+(\nu+\mathrm i\Omega)w=\frac q m(E_x+\mathrm iE_y).
+\]
+无电场时 $w(t)=w_0e^{-\nu t}e^{-\mathrm i\Omega t}$：速度方向仍以带符号回旋频率旋转，而速率指数衰减，动能按 $e^{-2\nu t}$ 衰减。此时瞬时曲率半径随速率变小；轨迹并非围绕一个固定圆心的同心圆，位置应再对速度积分。
+
+恒定横向电场下，先求稳定速度
+\[
+ w_\infty=\frac{q(E_x+\mathrm iE_y)}{m(\nu+\mathrm i\Omega)},\qquad
+ w(t)=w_\infty+(w_0-w_\infty)e^{-(\nu+\mathrm i\Omega)t}.
+\]
+取 $E_y=0$，稳定速度包含沿电场的耗散分量和横向分量：
+\[
+ v_{x,\infty}=\frac{qE_x\nu}{m(\nu^2+\Omega^2)},\qquad
+ v_{y,\infty}=-\frac{qE_x\Omega}{m(\nu^2+\Omega^2)}.
+\]
+令 $\nu\to0$，稳定特解退回 $v_x=0,v_y=-E_x/B$；但无阻尼时初值引起的回旋不会衰减，所以这不表示所有粒子都自动趋向匀速漂移。令 $B\to0$，则回到电场与阻力平衡的漂移速度。
+
+若外场随位置缓慢变化，小扰动法要围绕指定参考轨道展开，把 $\boldsymbol r=\boldsymbol r_0+\delta\boldsymbol r$、$\boldsymbol v=\boldsymbol v_0+\delta\boldsymbol v$ 代入，减去参考轨道方程，只保留扰动的一次项。常数项没有消去通常意味着参考轨道本身不满足原方程；丢弃二次项之前也应说明扰动位移相对场变化尺度足够小。稳定性由线性解是否增长判断，不能只凭某个瞬时力的方向下结论。
+
+例题若把阻力系数记为 $\gamma$、写成 $-\gamma\boldsymbol v$，则本小节的衰减率应取 $\nu=\gamma/m$；这两种系数的单位不同。

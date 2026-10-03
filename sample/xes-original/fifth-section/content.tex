@@ -1,0 +1,570 @@
+将牛顿三定律与受力对象的性质和特点有机地结合在一起，可以解决几乎所有物体在受力作用下的
+运动问题。但是，随着相互作用物体的增加、系统本身复杂性的提升，预测运动将变得越来越复杂。
+物体在受力作用下的运动问题将贯穿整个物理学。我们将从简单问题开始，掌握受力分析、运动学关系
+与约束条件相结合的一般技术；随着学习不断推进，将能够解决越来越多、越来越复杂的问题。
+
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 2.11}
+地球的半径约为 $6.4\times10^3\,\mathrm{km}$，地表附近重力加速度为
+$9.8\,\mathrm{m/s^2}$；通过天文观测发现月球的公转轨道平均半径约为
+$3.8\times10^5\,\mathrm{km}$，公转周期约为 $27.3$ 天。传说牛顿在被苹果砸到以后开始
+考虑导致地球表面物体下落和月球公转的是同一种力。你能否通过上面的数据给出月球公转
+加速度与地球表面重力加速度的关系？
+\end{origexamplebox}
+
+\begin{xesolution}
+把月球公转近似为半径为 $r$ 的匀速圆周运动，解图给出了向心加速度的方向：
+\soldiagTwoEleven
+取
+\[
+ r=3.8\times10^8\,\mathrm m,
+ \qquad
+ T=27.3\times86400\,\mathrm s,
+\]
+则
+\[
+ a_{\rm M}=\frac{4\pi^2r}{T^2}
+ \approx2.70\times10^{-3}\,\mathrm{m/s^2}.
+\]
+因此
+\[
+ \boxed{\frac{a_{\rm M}}{g}\approx2.75\times10^{-4}
+ \approx\frac1{3.63\times10^3}}.
+\]
+另一方面，$r/R_{\rm E}\approx59.4$，故
+\[
+ \left(\frac{R_{\rm E}}r\right)^2\approx2.84\times10^{-4},
+\]
+与上面的观测结果十分接近。这正是“引力强度随距离平方反比衰减”的重要线索。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.12}
+质量分别为 $m_1$ 和 $m_2$ 的两个小物块用轻绳连接，绳跨过位于倾角
+$\alpha=30^\circ$ 的光滑斜面顶端的轻滑轮，滑轮与转轴之间的摩擦不计，斜面固定在水平
+桌面上，如图所示。第一次，$m_1$ 悬空，$m_2$ 放在斜面上，用 $t$ 表示 $m_2$ 自斜面
+底端由静止开始运动至斜面顶端所需的时间。第二次，将 $m_1$ 和 $m_2$ 位置互换，使
+$m_2$ 悬空，$m_1$ 放在斜面上，发现 $m_1$ 自斜面底端由静止开始运动至斜面顶端所需
+的时间为 $t/3$。求 $m_1$ 与 $m_2$ 之比。
+\probdiagTwoTwelve
+\end{origexamplebox}
+
+\begin{xesolution}
+设斜面长度为 $s$。两次都是从静止出发并通过同一段距离，所以
+\[
+ s=\frac12a_1t^2
+   =\frac12a_2\left(\frac t3\right)^2,
+ \qquad\Rightarrow\qquad a_2=9a_1.
+\]
+沿绳方向列牛顿第二定律，受力关系如解图所示：
+\soldiagTwoTwelve
+第一次 $m_1$ 下落、$m_2$ 沿斜面上滑，
+分别取两者的运动方向为正，绳张力记为 $T$，有
+\[
+ m_1g-T=m_1a_1,\qquad T-m_2g\sin\alpha=m_2a_1.
+\]
+两式相加，张力消去，得到
+\[
+ a_1=g\frac{m_1-m_2\sin\alpha}{m_1+m_2}.
+\]
+第二次 $m_2$ 下落、$m_1$ 沿斜面上滑，
+张力改记为 $T'$，两物体分别满足
+\[
+ m_2g-T'=m_2a_2,\qquad T'-m_1g\sin\alpha=m_1a_2.
+\]
+相加可得
+\[
+ a_2=g\frac{m_2-m_1\sin\alpha}{m_1+m_2}.
+\]
+令 $x=m_1/m_2$，并代入 $\sin30^\circ=1/2$、$a_2=9a_1$：
+\[
+ \frac{1-x/2}{x+1}=9\frac{x-1/2}{x+1}.
+\]
+解得
+\[
+ \boxed{\frac{m_1}{m_2}=\frac{11}{19}}.
+\]
+该结果同时满足两次运动方向所要求的 $m_1>m_2/2$ 和 $m_2>m_1/2$。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.13}
+一个质点自倾角为 $\alpha$ 的斜面上方定点 $A$，沿光滑斜槽从静止开始滑下。为了使质点
+在最短时间到达斜面，求斜槽与竖直方向的夹角 $\beta$ 应等于多少。
+\probdiagTwoThirteen
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $0<\alpha<\pi/2$，研究位于图示竖直平面内、向右下方倾斜的直槽。
+设 $H$ 是 $A$ 正下方的斜面点，$AH=h$；槽端为 $B$，槽长 $AB=\ell$，
+槽与竖直方向的夹角为 $0\le\beta<\pi/2$。图中 $BK$ 水平、$AK$ 竖直：
+\Needspace{13\baselineskip}
+\soldiagTwoThirteen
+沿槽加速度为 $g\cos\beta$。由三角形 $AKB$，$BK=\ell\sin\beta$、$AK=\ell\cos\beta$；
+又由斜面倾角，$KH=BK\tan\alpha$。利用 $AH=AK+KH$，有
+\[
+ \ell\cos\beta=h-\ell\sin\beta\tan\alpha,
+ \qquad \ell(\cos\beta\cos\alpha+\sin\beta\sin\alpha)=h\cos\alpha.
+\]
+这说明竖直下降高度 $AK$ 随槽的方向改变，不能把它误当成固定的 $h$。槽长为
+\[
+ \ell=\frac{h\cos\alpha}{\cos(\beta-\alpha)}.
+\]
+又因 $\ell=\tfrac12g\cos\beta\,t^2$，所以
+\[
+ t^2=\frac{2h\cos\alpha}
+ {g\cos\beta\cos(\beta-\alpha)}.
+\]
+令分母
+$D=\cos\beta\cos(\beta-\alpha)$ 最大。利用积化和差，
+\[
+ D=\frac12\bigl[\cos\alpha+\cos(2\beta-\alpha)\bigr],
+\]
+显然在 $2\beta-\alpha=0$ 时取得最大值。因此
+\[
+  \boxed{\beta=\frac\alpha2}.
+\]
+它落在允许区间内。此时
+\[
+ t_{\min}^2=\frac{4h\cos\alpha}{g(1+\cos\alpha)}.
+\]
+当 $\alpha\to0$ 时，最优槽趋于竖直，$t_{\min}\to\sqrt{2h/g}$，与自由落下高度 $h$ 一致。
+\end{xesolution}
+
+在系统中包含摩擦力时要格外小心。两固体表面之间的滑动摩擦力正比于相互之间的压力，
+比例系数称为摩擦系数；如果两物体保持相对静止但存在相对运动趋势，则由静摩擦力维持，
+其大小介于零与最大静摩擦力之间。分析含摩擦的运动问题时，通常需要先判断相互接触的
+物体间究竟有无相对运动；当速度或外力发生改变时，两种状态之间还可能发生转化。
+
+\begin{origexamplebox}{例 2.14}
+一质量为 $M$ 的平顶小车，以速度 $v_0$ 沿水平的光滑轨道作匀速直线运动。现将一质量为
+$m$、相对地面初速度为零的小物块放置在车顶前缘。已知物块和车顶之间的滑动摩擦系数为 $\mu$，
+物块按质点处理，忽略放置时的竖直冲击和车轮转动惯量。
+若要求物块不会从车顶后缘掉下，则该车顶长度至少要多少？
+\probdiagTwoFourteen
+\end{origexamplebox}
+
+\begin{xesolution}
+物块相对地面初速度为零，小车初速度为 $v_0$。滑动阶段的受力如解图所示：
+\soldiagTwoFourteen
+物块受摩擦向右，$a_m=\mu g$；小车受摩擦向左，$a_M=-\mu mg/M$。在随小车平动的相对
+坐标中，物块相对小车的初速度和加速度分别为
+\[
+ v_{\rm rel,0}=-v_0,
+ \qquad
+ a_{\rm rel}=a_m-a_M=\mu g\left(1+\frac mM\right).
+\]
+相对速度减为零前，物块相对车向后滑过的距离为
+\[
+ L_{\min}=\frac{v_0^2}{2a_{\rm rel}}
+ =\boxed{\frac{Mv_0^2}{2\mu g(M+m)}}.
+\]
+到相对速度为零时两者取得共同速度；之后不再需要滑动摩擦，物块恰不会从后缘掉下。
+达到共同速度所需时间为
+\[
+ t_* =\frac{Mv_0}{\mu g(M+m)},\qquad
+ v_*=\mu g t_* =\frac{Mv_0}{M+m}.
+\]
+于是 $(M+m)v_*=Mv_0$，与系统水平动量不变相符。$M\gg m$ 时车速几乎不变，
+$L_{\min}\to v_0^2/(2\mu g)$，也符合物块在匀速车面上减小相对速度的极限。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.15}
+质量 $m=1.5\,\mathrm{kg}$ 的物块在水平恒力 $F$ 作用下从水平面上 $A$ 点由静止开始运动，
+运动一段距离之后撤去该力，物块继续滑行 $t=2.0\,\mathrm s$ 后停在 $B$ 点。已知
+$A,B$ 两点的距离 $x=5.0\,\mathrm m$，物块与水平面之间的动摩擦系数 $\mu=0.20$，
+求恒力 $F$ 的大小。简单起见取 $g=10\,\mathrm{m/s^2}$。
+\end{origexamplebox}
+
+\begin{xesolution}
+按“先处理撤力后的运动，再倒推受力阶段”的顺序分析，运动分段如解图所示：
+\soldiagTwoFifteen
+撤力后减速度大小为
+\[
+ a_2=\mu g=2.0\,\mathrm{m/s^2}.
+\]
+物块在 $2.0\,\mathrm s$ 后停止，故撤力瞬间速度
+\[
+ v=a_2t=4.0\,\mathrm{m/s},
+\]
+撤力后位移
+\[
+ x_2=\frac{v+0}{2}t=4.0\,\mathrm m.
+\]
+于是受力阶段位移 $x_1=5.0-4.0=1.0\,\mathrm m$。由 $v^2=2a_1x_1$ 得
+\[
+ a_1=8.0\,\mathrm{m/s^2}.
+\]
+受力阶段列牛顿第二定律：
+\[
+ F-\mu mg=ma_1,
+\]
+所以
+\[
+ \boxed{F=m(a_1+\mu g)=15\,\mathrm N}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.16}
+如图所示，质量分别为 $m_A$ 和 $m_B$ 的两木块 $A,B$ 静止放在粗糙水平面上，两者与地面之间
+的动摩擦因数均为 $\mu$；本题同时取最大静摩擦因数为 $\mu$。两木块的接触面是倾角为
+$\theta$ 的光滑斜面。现对 $A$ 施加水平推力 $F$，要使两块由静止开始向右加速，
+且 $A,B$ 间不发生相对滑动、均保持与地面接触，$\mu$ 和 $F$ 各应满足什么条件？
+\probdiagTwoSixteen
+\end{origexamplebox}
+
+\begin{xesolution}
+设共同向右加速度为 $a$。分离 $B$，接触面法向力 $N$ 垂直于斜面并指向右下方，受力如
+解图所示：
+\soldiagTwoSixteen
+竖直方向没有加速度，故地面对 $B$ 的支持力
+\[
+ N_{gB}=m_Bg+N\cos\theta.
+\]
+水平方向列式：
+\[
+ N\sin\theta-\mu N_{gB}=m_Ba.
+\]
+要使 $N>0$ 成为可能，必须先有
+\[
+ \boxed{\mu<\tan\theta}.
+\]
+对 $A+B$ 整体，地面总压力为 $(m_A+m_B)g$，所以
+\[
+ a=\frac{F-\mu(m_A+m_B)g}{m_A+m_B}.
+\]
+另一方面，由 $B$ 的方程解得
+\[
+ N=\frac{m_B(a+\mu g)}{\sin\theta-\mu\cos\theta}.
+\]
+对 $A$ 的竖直方向，地面支持力
+\[
+ N_{gA}=m_Ag-N\cos\theta\ge0.
+\]
+代入上式和整体加速度，得到不翘起的上限
+\[
+ \boxed{F\le
+ \frac{m_A(m_A+m_B)g}{m_B}\bigl(\tan\theta-\mu\bigr)}.
+\]
+启动前，整体的水平静摩擦力至多为 $\mu(N_{gA}+N_{gB})=\mu(m_A+m_B)g$。
+因此要排除静止平衡，并在滑动后获得向右的加速度，必须有
+\[
+ \boxed{F>\mu(m_A+m_B)g}.
+\]
+要使上面的 $F$ 区间非空，$\mu$ 还必须满足更强的条件
+\[
+ \boxed{\mu<\frac{m_A}{m_A+m_B}\tan\theta}.
+\]
+因此最终条件是这一 $\mu$ 限制与上述 $F$ 的上下界同时成立。上界等号对应 $N_{gA}=0$，
+即 $A$ 刚好不离地的临界状态；若要求地面对 $A$ 有正压力，应将上界改为严格不等号。
+若最大静摩擦因数另有给定，启动条件须另行检验，不能直接用动摩擦因数代替。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.17}
+如图所示，质量分别为 $m_1,m_2$ 的两个木块重叠后放在光滑的水平面上。两者之间的动
+摩擦因数和最大静摩擦因数均为 $\mu$，现给 $m_1$ 施加随时间增大的力 $F=kt$，式中 $k$
+是正常数。两块初始相对静止；只研究两者仍保持接触的阶段。试求
+$m_1$ 和 $m_2$ 的加速度 $a_1,a_2$ 与时间的关系并画出此关系的图像。
+\probdiagTwoSeventeen
+\end{origexamplebox}
+
+\begin{xesolution}
+尚未滑动时两块共同加速：
+\[
+ a_1=a_2=\frac{kt}{m_1+m_2}.
+\]
+带动下块所需静摩擦力
+\[
+ f=m_2a_2=\frac{m_2kt}{m_1+m_2}.
+\]
+令 $f=\mu m_1g$，得到临界时刻
+\[
+ \boxed{t_0=\frac{\mu m_1g(m_1+m_2)}{km_2}}.
+\]
+当 $t>t_0$ 时两块相对滑动，摩擦力大小为 $\mu m_1g$，于是
+\[
+ \boxed{
+ a_1(t)=\frac{kt-\mu m_1g}{m_1},
+ \qquad
+ a_2(t)=\frac{\mu m_1g}{m_2}}
+ \qquad(t>t_0).
+\]
+完整的分段图像如解图：
+\soldiagTwoSeventeen
+在 $t=t_0$ 处，由于题设取最大静摩擦因数和动摩擦因数相同，两条加速度曲线连续；若两者
+不相等，开始滑动时加速度会发生跳变。
+\end{xesolution}
+
+根据第一定律，不受力的质点将做匀速直线运动；其直接推论是，做曲线运动的质点必然
+受到外力。在运动学中，加速度沿速度方向的分量衡量速率的变化率，垂直于速度的分量则
+决定轨迹的曲率半径。若 $\theta$ 是加速度与速度方向的夹角，则
+\begin{align}
+ a\cos\theta&=\frac{\dd v}{\dd t}, \tag{2.10}\\
+ \rho&=\frac{v^2}{a\sin\theta}. \tag{2.11}
+\end{align}
+牛顿第二定律给出了加速度与合力的正比例关系，因此这些运动学结论可以直接用于动力学。
+
+\begin{origexamplebox}{例 2.18}
+质量为 $m$ 的质点 $A$ 固定在长为 $L$、不可变形且质量可以忽略不计的轻刚杆一端，杆的
+另一端由 $O$ 处的驱动装置约束。驱动装置强制杆以匀角速度 $\omega$ 在竖直平面内转动，
+并可通过刚杆向质点传递沿杆和垂直于杆的约束力。求 $A$ 对杆作用力的大小和方向。
+\probdiagTwoEighteen
+\end{origexamplebox}
+
+\begin{xesolution}
+设杆与竖直向上的夹角为 $\theta$，从竖直向上沿顺时针方向计角。
+在图示右半圆，$\hat{\boldsymbol e}_r=(\sin\theta,\cos\theta)$ 沿杆向外，
+$\hat{\boldsymbol e}_t=(\cos\theta,-\sin\theta)$ 沿 $\theta$ 增大的方向。
+质点作匀速圆周运动，所需合力为指向 $O$ 的
+$m\omega^2L$。设杆对质点的力为 $\vec R$，则
+\[
+ \vec R+m\vec g=-m\omega^2L\,\hat{\boldsymbol e}_r,
+\]
+其中 $\hat{\boldsymbol e}_r$ 从 $O$ 指向 $A$。力的矢量关系如解图：
+\soldiagTwoEighteen
+故
+\[
+ \vec R=-m\omega^2L\,\hat{\boldsymbol e}_r-m\vec g.
+\]
+重力的径向分量为 $-mg\cos\theta$、切向分量为 $mg\sin\theta$。
+匀速圆周运动的切向加速度为零，所以
+\[
+ R_r-mg\cos\theta=-m\omega^2L,\qquad R_t+mg\sin\theta=0.
+\]
+因此
+\[
+ R_r=m(g\cos\theta-\omega^2L),
+ \qquad
+ R_t=-mg\sin\theta.
+\]
+因此杆对质点的力大小为
+\[
+ R=m\sqrt{\omega^4L^2+g^2-2\omega^2Lg\cos\theta}.
+\]
+由牛顿第三定律，质点 $A$ 对杆的作用力为 $-\vec R$，大小相同、方向相反：
+\[
+ \boxed{F_{A\to\text{杆}}
+ =m\sqrt{\omega^4L^2+g^2-2\omega^2Lg\cos\theta}}.
+\]
+其沿杆向外分量为 $m(\omega^2L-g\cos\theta)$，切向分量为 $mg\sin\theta$。
+例如最高点 $\theta=0$ 时力的大小为 $m|\omega^2L-g|$，最低点 $\theta=\pi$ 时为
+$m(\omega^2L+g)$。驱动装置通过杆补偿重力的切向作用，才能使角速度保持不变。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.19}
+水平的粗糙圆盘以恒定角速度绕竖直中心轴转动。盘上放有一个质量为 $m$ 的物体，它与圆盘之间的最大静摩擦因数为 $\mu$，与圆心的
+距离为 $r$。求该物体能够与圆盘保持相对静止时，圆盘绕中心转动的最大角速度
+$\omega_0$。
+\end{origexamplebox}
+
+\begin{xesolution}
+物体随圆盘作圆周运动，水平方向只有静摩擦力能够提供向心力，方向如解图：
+\soldiagTwoNineteen
+所需向心力为 $m\omega^2r$，而
+\[
+ f_s\le f_{s,\max}=\mu mg.
+\]
+故
+\[
+ m\omega^2r\le\mu mg,
+ \qquad
+ \boxed{\omega_0=\sqrt{\frac{\mu g}{r}}}.
+\]
+质量 $m$ 消去，说明在该理想模型中临界角速度与物体质量无关。
+\end{xesolution}
+
+当一个动力学系统包含多个物体时，各物体的加速度大小和方向都可能不同，约束对确定它们
+之间的加速度关系至关重要。在运动学中可以用几何、代数或微元法求速度约束；在动力学中，
+限制物体运动的连接或表面还会施加约束力。求解这类系统时必须同时写出运动约束与牛顿定律。
+
+\begin{origexamplebox}{例 2.20}
+一个质量和摩擦均不计的定滑轮两端通过不可伸长的绳连接，绳子的一端系有质量为 $m_1$
+的重物，另一端有一名质量为 $m_2$ 的同学。现该同学用力拉绳子，使他相对于绳子以加速度
+$a$ 向上运动；规定向上为 $a$ 的正方向。先在绳保持绷紧的阶段求重物的加速度和绳中张力，
+再求绳刚好失去张力的极限状态所对应的 $a$，并说明其物理含义。
+\end{origexamplebox}
+
+\begin{xesolution}
+统一取竖直向上为正。设重物和同学相对地面的加速度分别为 $a_1,a_2$。重物一侧绳端的
+加速度为 $a_1$，因此同学一侧绳的加速度为 $-a_1$；同学相对绳向上加速度为 $a$，因而
+\[
+ \boxed{a_2=a-a_1}.
+\]
+约束和受力如解图所示：
+\soldiagTwoTwenty
+对重物和同学分别列式：
+\[
+ T-m_1g=m_1a_1,
+ \qquad
+ T-m_2g=m_2a_2.
+\]
+代入 $a_2=a-a_1$，解得
+\[
+ \boxed{a_1=\frac{(m_2-m_1)g+m_2a}{m_1+m_2}},
+ \qquad
+ \boxed{T=\frac{m_1m_2(2g+a)}{m_1+m_2}}.
+\]
+这里的正负号是相对于“向上为正”的约定，且绳保持绷紧要求 $T\ge0$。
+
+若要求 $T=0$，上式给出 $a=-2g$。这里 $a$ 以“相对绳向上”为正，因此实际含义是同学
+相对绳以 $2g$ 的加速度向下运动；此时同学和重物都作自由落体，绳处于松弛临界。更直接
+地说，同学应放开绳子并自由下落，而不是继续通过绷紧的绳主动上爬。
+
+当 $T=0$ 时绳约束已经退化，不能再把“相对绳的加速度”当作由绷紧绳
+唯一确定的运动量；因此最后一问应按自由落体的物理图景理解。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.21}
+如图所示，一个质量为 $M_1$ 的物体挂在质量和摩擦均不计的定滑轮 $A$ 的一侧，另一侧
+挂有一个质量为 $M_2$ 的动滑轮组件；它的两侧分别挂有质量为 $m_1,m_2$ 的两个物体。
+两根绕轮绳轻且不可伸长，动滑轮轮缘光滑，绳可无摩擦地滑过轮缘，不计轮体转动的影响。
+图中 $T$ 表示定滑轮上方悬挂线的张力，$T_1$ 表示下部绕轮绳的张力；上部绕轮绳的张力另记为 $H$。
+求 $m_1,m_2$ 的加速度及 $T,T_1$，并给出 $H$。
+\probdiagTwoTwentyOne
+\end{origexamplebox}
+
+\begin{xesolution}
+统一取竖直向下为正，设动滑轮 $M_2$ 的加速度为 $a_p$，两个小物体的加速度为
+$a_1,a_2$。两根轻绳分别给出
+\[
+ a_{M_1}=-a_p,
+ \qquad
+ a_1+a_2=2a_p,
+\]
+如解图所示：
+\soldiagTwoTwentyOne
+四个动力学方程为
+\begin{align*}
+ M_1g-H&=-M_1a_p,\\
+ m_1g-T_1&=m_1a_1,\\
+ m_2g-T_1&=m_2a_2,\\
+ M_2g+2T_1-H&=M_2a_p.
+\end{align*}
+定滑轮本身质量可忽略、加速度为零，受到两段竖直绳向下各拉 $H$，所以
+\[
+ \boxed{T=2H}.
+\]
+不能将支承处的 $T$ 与绕轮绳的 $H$ 视为同一个力。下面逐步解出各量。
+两个小物体的方程给出
+\[
+ a_1=g-\frac{T_1}{m_1},\qquad a_2=g-\frac{T_1}{m_2}.
+\]
+代入 $a_1+a_2=2a_p$，得
+\[
+ T_1=\frac{2m_1m_2}{m_1+m_2}(g-a_p).
+\]
+再用 $H=M_1(g+a_p)$ 代入动滑轮方程，整理为
+\[
+ \left(M_1+M_2+\frac{4m_1m_2}{m_1+m_2}\right)a_p
+ =\left(M_2-M_1+\frac{4m_1m_2}{m_1+m_2}\right)g.
+\]
+记
+\[
+ D=(M_1+M_2)(m_1+m_2)+4m_1m_2.
+\]
+因此 $a_p=g[(M_2-M_1)(m_1+m_2)+4m_1m_2]/D$。回代到两个小物体的方程，得
+\[
+ \boxed{a_1=
+ \frac{g\,[M_1m_1-3M_1m_2+M_2(m_1+m_2)+4m_1m_2]}{D}},
+\]
+\[
+ \boxed{a_2=
+ \frac{g\,[-3M_1m_1+M_1m_2+M_2(m_1+m_2)+4m_1m_2]}{D}},
+\]
+以及
+\[
+ \boxed{H=\frac{2M_1g\,[M_2(m_1+m_2)+4m_1m_2]}{D}},
+\]
+\[
+ \boxed{T=\frac{4M_1g\,[M_2(m_1+m_2)+4m_1m_2]}{D}},\qquad
+ \boxed{T_1=\frac{4M_1m_1m_2g}{D}}.
+\]
+加速度若为负，表示实际方向与预设的“向下”相反。
+各张力均为质量乘重力加速度的量纲。若 $m_1=m_2=m$ 且 $M_1=M_2+2m$，
+代回得 $a_p=a_1=a_2=0$，此时 $T_1=mg$、$H=M_1g$、$T=2M_1g$，
+与整个装置的静力平衡相符。这里若改成有转动惯量且绳不打滑的轮，须分别设置下绳两侧张力并增加转动方程。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.22}
+一质量为 $m$ 的物体放在质量为 $M$、倾角为 $\theta$ 的斜面上，两者一起放置于水平面
+上。忽略一切摩擦，求两者的加速度。
+\probdiagTwoTwentyTwo
+\end{origexamplebox}
+
+\begin{xesolution}
+设斜面向右位移为 $X$，物块沿斜面向下位移为 $s$。在地面惯性系中
+\[
+ x_m=X-s\cos\theta,
+ \qquad
+ y_m=-s\sin\theta.
+\]
+因此小物块加速度及受力关系如解图：
+\soldiagTwoTwentyTwo
+沿斜面向下的单位矢量为 $\hat{\boldsymbol e}_s=(-\cos\theta,-\sin\theta)$，水平方向记为 $\hat{\boldsymbol e}_x=(1,0)$。
+由坐标式求两次导数，物块对地加速度为
+\[
+ \vec a_m=(\ddot X-\ddot s\cos\theta,\,-\ddot s\sin\theta).
+\]
+它在 $\hat{\boldsymbol e}_s$ 上的投影是
+\[
+ \vec a_m\cdot\hat{\boldsymbol e}_s
+ =-\ddot X\cos\theta+\ddot s(\cos^2\theta+\sin^2\theta)
+ =\ddot s-\ddot X\cos\theta.
+\]
+支持力垂直斜面，投影为零；重力沿斜面的分量为 $mg\sin\theta$。所以
+\[
+ \ddot s-\ddot X\cos\theta=g\sin\theta.
+\]
+系统水平方向无外力，故
+\[
+ (M+m)\ddot X-m\ddot s\cos\theta=0.
+\]
+联立得到斜面向右的水平加速度
+\[
+ \boxed{a_M=\ddot X
+ =\frac{mg\sin\theta\cos\theta}
+ {M+m\sin^2\theta}}
+\]
+物块相对斜面沿斜面向下的加速度为
+\[
+ \boxed{a_{m/M}=\ddot s
+ =\frac{(M+m)g\sin\theta}
+ {M+m\sin^2\theta}}.
+\]
+若需要物块对地加速度，可写为
+\[
+\boxed{a_{mx}=-\frac{Mg\sin\theta\cos\theta}{M+m\sin^2\theta},
+ \qquad
+ a_{my}=-\frac{(M+m)g\sin^2\theta}{M+m\sin^2\theta}}.
+\]
+图中虚线表示相对加速度和斜面加速度，蓝色箭头表示两者相加后的对地加速度；图示取 $M=m$。
+对任意有限的正质量，$|a_{my}/a_{mx}|=(1+m/M)\tan\theta$，因此对地加速度比斜面向下方向更陡。
+当 $M\to\infty$ 时，$a_M\to0$、$\ddot s\to g\sin\theta$，还原为固定斜面。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.23}
+一根质量为 $m$ 的杆被限制在竖直方向运动，它与一个倾角为 $\theta$、质量为 $M$ 的
+斜面接触，接触点的摩擦可忽略不计；不考虑斜面与水平面的摩擦。求使斜面以加速度 $a$
+向右运动所需要的水平外力 $F$ 的大小。
+\probdiagTwoTwentyThree
+\end{origexamplebox}
+
+\begin{xesolution}
+几何约束决定：斜面向右移动 $x$ 时，固定在水平位置的杆接触高度增加 $x\tan\theta$，
+所以杆的竖直加速度为
+\[
+ a_y=a\tan\theta.
+\]
+杆与斜面的受力如解图所示。设接触面法向力大小为 $N$，分别对杆沿竖直方向、对斜面沿
+水平方向列式：
+\soldiagTwoTwentyThree
+\begin{align*}
+ N\cos\theta-mg&=ma\tan\theta,\\
+ F-N\sin\theta&=Ma.
+\end{align*}
+由第一式得 $N\cos\theta=m(g+a\tan\theta)$，代入第二式，得到
+\[
+ \boxed{F=Ma+mg\tan\theta+ma\tan^2\theta}.
+\]
+图中导轨对杆的横向反力 $R_h=N\sin\theta$ 向左，使杆的水平加速度为零；它没有竖直分量，
+所以不进入杆的竖直方程。导轨须光滑且固定于地面，不能把该反力漏掉后误认为杆会水平加速。
+\end{xesolution}

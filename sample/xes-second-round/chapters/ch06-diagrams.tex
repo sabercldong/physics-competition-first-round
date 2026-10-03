@@ -1,0 +1,226 @@
+% 第6章技术图：所有标签透明；三维关系采用分层和引线表达，避免压住轮廓。
+\newcommand{\figRigidMap}{%
+\begin{center}
+\begin{tikzpicture}[scale=.83]
+ \begin{scope}[xshift=-4.1cm]
+  \draw[very thick,draw=TextGray,fill=SoftGray]
+   plot[smooth cycle,tension=.75] coordinates{(-2.2,-.7)(-1.5,-1.55)(-.2,-1.35)(.95,-.75)(1.25,.45)(.35,1.45)(-.85,1.25)(-1.75,.55)};
+  \coordinate (E0) at (-.25,.55);
+  \draw[DeepBlue] (E0) ellipse (.24 and .16);
+  \fill[DeepBlue] (E0) circle(1.6pt);
+  \node[labelclean,above right=3pt] at (E0){$\dd^3R_0$};
+  \node[labelclean] at (-.55,-2.05){参考构形 $\Omega_0$};
+ \end{scope}
+ \begin{scope}[xshift=4.1cm]
+  \draw[very thick,draw=DeepBlue,fill=Blue!10]
+   plot[smooth cycle,tension=.75] coordinates{(-2.0,-.9)(-1.0,-1.5)(.35,-1.3)(1.6,-.55)(1.45,.75)(.25,1.5)(-.95,1.25)(-1.7,.35)};
+  \coordinate (E) at (.35,.25);
+  \draw[DeepBlue] (E) ellipse (.24 and .16);
+  \fill[DeepBlue] (E) circle(1.6pt);
+  \node[labelclean,above right=3pt] at (E){$\dd^3r$};
+  \node[labelclean] at (-.25,-2.05){当前构形 $\Omega(t)$};
+ \end{scope}
+ \coordinate (O) at (0,-2.7);
+ \fill (O) circle(2pt);\node[labelclean,below=4pt] at (O){固定原点 $O$};
+ \draw[vector] (O)--(-4.35,.55) node[midway,left=2pt]{$\vect R_0$};
+ \draw[vector] (O)--(4.45,.25) node[midway,right=2pt]{$\vect r$};
+ \draw[-{Latex[length=3mm]},very thick,DeepBlue] (-1.55,2.05)--(1.55,2.05)
+  node[midway,above=4pt,labelclean]{$\vect r=\vect f(\vect R_0,t)$};
+\end{tikzpicture}
+\bookcaption{同一质量元从参考构形运动到当前构形；刚体运动保持质元距离和体积。}
+\label{r2ch06:fig:001}
+\end{center}}
+
+\newcommand{\figBasePoint}{%
+\begin{center}
+\begin{tikzpicture}[scale=.92]
+ \draw[axis] (-4.8,-2.1)--(-4.8,2.45) node[above]{$y$};
+ \draw[axis] (-4.8,-2.1)--(4.9,-2.1) node[right]{$x$};
+ \coordinate (O) at (-4.8,-2.1);
+ \coordinate (B) at (-.9,-.35);
+ \coordinate (P) at (2.15,1.05);
+ \draw[very thick,draw=DeepBlue,fill=Blue!9]
+  plot[smooth cycle,tension=.75] coordinates{(-2.35,-.55)(-1.85,-1.45)(-.35,-1.35)(1.15,-.85)(2.45,.15)(2.15,1.35)(.75,1.75)(-.55,1.35)(-1.75,.65)};
+ \fill (B) circle(2pt);\node[labelclean,below=5pt] at (B){基点 $B$};
+ \fill (P) circle(2pt);\node[labelclean,right=7pt] at (P){质点 $P$};
+ \draw[vector] (O)--(B) node[midway,below=3pt]{$\vect r_B$};
+ \draw[vector] (B)--(P) node[midway,above=3pt]{$\vect R$};
+ \draw[component] (O)--(P) node[pos=.64,left=3pt]{$\vect r_P$};
+ \draw[->,DeepBlue,thick] (-.15,.05) arc[start angle=210,end angle=510,radius=.62];
+ \node[labelclean] at (.7,.05){$\vect\omega$};
+ \draw[vector] (B)--++(-.55,1.15) node[left=3pt]{$\vect v_B$};
+ \draw[vector] (P)--++(-1.05,.65) node[pos=.78,above=5pt]{$\vect v_P$};
+\end{tikzpicture}
+\bookcaption{基点法的几何：$\vect r_P=\vect r_B+\vect R$，$\vect R$ 固连于刚体。}
+\label{r2ch06:fig:002}
+\end{center}}
+
+\newcommand{\rTwoChSixEarthMoon}{%
+\begin{center}
+\begin{tikzpicture}[scale=.88]
+ \coordinate (E) at (0,0);\coordinate (M) at (4.9,0);
+ \draw[guide] (E) circle(4.9);
+ \fill[DeepBlue!75] (E) circle(.58);\node[labelclean,below=13pt] at (E){地球 $M_e$};
+ \fill[TextGray] (M) circle(.24);\node[labelclean,right=5pt] at (M){月球 $M_m$};
+ \draw[<->,TextGray] (.7,0)--(4.58,0) node[midway,above=4pt]{$r$};
+ \draw[->,DeepBlue,very thick] (-.1,.95) arc[start angle=100,end angle=430,radius=.82];
+ \node[labelclean,left=5pt] at (-.85,.75){$\omega_e$};
+ \draw[vector] (M)--++(0,1.05) node[right=4pt]{$r\omega_m$};
+ \draw[->,TextGray,thick] (2.1,2.1)--(3.25,2.1) node[midway,above=4pt,labelclean]{潮汐传递角动量};
+ \draw[component] (1.65,1.85)--(.55,1.18);
+ \draw[component] (3.7,1.85)--(4.65,.45);
+\end{tikzpicture}
+\bookcaption{潮汐内力矩使地球自转角动量与月球轨道角动量相互交换。}
+\label{r2ch06:fig:003}
+\end{center}}
+
+\newcommand{\figInstantPole}{%
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \draw[very thick,draw=DeepBlue,fill=Blue!9]
+  plot[smooth cycle,tension=.75] coordinates{(-2.5,.05)(-1.65,-1.05)(-.25,-1.15)(1.25,-.65)(2.35,.2)(1.85,1.35)(.25,1.55)(-1.35,1.2)};
+ \coordinate (Q) at (-1.25,-1.0);\coordinate (C) at (.15,.25);\coordinate (P) at (1.65,.65);
+ \fill (Q) circle(2.2pt);\node[labelclean] at (-.72,-1.86){瞬心 $Q$};
+ \fill[DeepBlue] (C) circle(2.2pt);\node[labelclean,right=7pt] at (C){质心 $C$};
+ \fill (P) circle(2pt);\node[labelclean,above=4pt] at (P){$P$};
+ \draw[component] (Q)--(C) node[pos=.48,above=8pt,sloped]{$\vect\rho_C$};
+ \draw[component] (Q)--(P) node[pos=.67,below=8pt,sloped]{$\vect\rho_P$};
+ \draw[vector] (C)--++(-.65,1.25) node[above=3pt]{$\vect v_C$};
+ \draw[vector] (P)--++(-.55,1.55) node[above=3pt]{$\vect v_P$};
+ \draw[->,DeepBlue,thick] (-1.32,.62) arc[start angle=35,end angle=325,radius=.36];
+ \node[labelclean,left=3pt] at (-1.7,.6){$\omega$};
+ \draw[guide] (-3.1,-1.45) .. controls (-1.95,-1.7) and (-.35,-1.55) .. (1.2,-1.35)
+  node[right,labelclean]{本体极迹};
+ \draw[vector,TextGray] (Q)--++(-1.35,-.28) node[above left=4pt]{$\vect v_Q^{\rm track}$};
+\end{tikzpicture}
+\bookcaption{瞬心处的刚体速度为零，但瞬心在本体极迹上的几何移动速度一般不为零。}
+\label{r2ch06:fig:004}
+\end{center}}
+
+\newcommand{\figSteadyTop}{%
+\begin{center}
+\begin{tikzpicture}[scale=.92]
+ \coordinate (O) at (-1.9,.55);\coordinate (C) at (1.2,-.35);
+ \draw[ground] (-2.55,-2.3)--(-1.25,-2.3);
+ \draw[ground] (-2.55,2.7)--(-1.25,2.7);
+ \draw[very thick] (-1.9,-2.3)--(-1.9,2.7);
+ \node[labelclean,left=4pt] at (-1.9,2.4){$A$};\node[labelclean,left=4pt] at (-1.9,-2.0){$B$};
+ \fill (O) circle(2.4pt);\node[labelclean,left=5pt] at (O){$O$};
+ \draw[very thick,DeepBlue] (O)--(C);
+ \draw[rotate around={-16:(C)},draw=DeepBlue,fill=Blue!12,very thick] (C) ellipse (1.35 and .43);
+ \fill[DeepBlue] (C) circle(2pt);\node[labelclean,below=5pt] at (C){$C$};
+ \draw[<->,TextGray] ($(O)+(.15,-.15)$)--($(C)+(-.05,-.15)$) node[midway,below=4pt]{$r$};
+ \draw[guide] (O)--++(0,-2.0);
+ \draw[->,TextGray] ($(O)+(0,-.82)$) arc[start angle=-90,end angle=-17,radius=.82];
+ \node[labelclean] at (-1.25,-.25){$\theta$};
+ \draw[->,DeepBlue,very thick] (-2.55,1.75) arc[start angle=140,end angle=440,radius=.62];
+ \node[labelclean,left=3pt] at (-3.15,1.45){$\Omega$};
+ \draw[vector] (C)--++(0,-1.35) node[right=4pt]{$m\vect g$};
+ \draw[axis] (C)--++(.25,1.25) node[above]{$z$};
+ \draw[axis] (C)--++(1.55,-.43) node[right]{$y\parallel OC$};
+ \draw[axis] (C)--++(-1.0,-.62) node[left=4pt]{$x$（切向）};
+\end{tikzpicture}
+\bookcaption{棒槌刚体绕竖直轴作稳定圆锥转动；主轴 $y$ 沿 $OC$，$x$ 为环绕切向。}
+\label{r2ch06:fig:005}
+\end{center}}
+
+\newcommand{\figRollingCoin}{%
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-4.2cm]
+  \draw[ground] (-2.3,-1.45)--(2.4,-1.45);
+  \draw[guide] (0,-1.45)--(0,2.25);
+  \draw[curve,line width=3pt] (-.60,-1.45)--(.60,1.85);
+  \coordinate (C) at (0,.20);\fill[DeepBlue] (C) circle(2.2pt);
+  \draw[component] (C)--(-.60,-1.45) node[midway,left=3pt]{$r$};
+  \draw[->,TextGray] (0,1.05) arc[start angle=90,end angle=70,radius=.85];
+  \node[labelclean] at (.48,1.08){$\varphi$};
+  \draw[vector] (C)--++(-1.1,0) node[left=3pt]{向圆心};
+  \node[labelclean] at (0,-2.0){(a) 横截面：顶部向内倾};
+ \end{scope}
+ \begin{scope}[xshift=4.1cm]
+  \coordinate (K) at (0,0);
+  \draw[guide] (K) circle(2.25);
+  \fill (K) circle(2pt);\node[labelclean,below=4pt] at (K){轨道圆心};
+  \coordinate (C2) at (0,2.25);\fill[DeepBlue] (C2) circle(2.2pt);
+  \draw[<->,TextGray] (K)--(C2) node[midway,right=4pt]{$R$};
+  \draw[rotate=0,very thick,DeepBlue] (-.45,2.25) ellipse (.45 and .12);
+  \draw[vector] (C2)--++(-1.35,0) node[above=4pt]{$\vect v$};
+  \draw[->,TextGray,thick] (-1.05,1.9) arc[start angle=115,end angle=205,radius=.55];
+  \node[labelclean] at (0,-2.0){(b) 俯视：中心沿圆周运动};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{硬币稳态转弯的两个正交视图；$r$ 是硬币半径，$R$ 是质心轨道半径。}
+\label{r2ch06:fig:006}
+\end{center}}
+
+\newcommand{\figBilliardSlip}{%
+\begin{center}
+\begin{tikzpicture}[scale=.88]
+ \begin{scope}[xshift=-4.0cm]
+  \draw[ground] (-2.6,-1.35)--(2.6,-1.35);
+  \draw[very thick,DeepBlue,fill=Blue!9] (0,0) circle(1.35);
+  \coordinate (C) at (0,0);\coordinate (P) at (0,-1.35);
+  \fill[DeepBlue] (C) circle(2.2pt);\node[labelclean,left=4pt] at (C){$C$};
+  \fill (P) circle(2pt);\node[labelclean,below=5pt] at (P){接触点};
+  \draw[component] (C)--(P) node[midway,left=3pt]{$a$};
+  \draw[vector] (C)--++(1.75,0) node[above=4pt]{$\vect v$};
+  \draw[vector,TextGray] (P)--++(-1.55,0) node[below=4pt]{$\vect f$};
+  \draw[->,DeepBlue,thick] (-.2,.75) arc[start angle=110,end angle=410,radius=.58];
+  \node[labelclean] at (-.85,.75){$\vect\omega_h$};
+ \end{scope}
+ \begin{scope}[xshift=4.0cm]
+  \draw[axis] (-2.6,-1.7)--(2.7,-1.7) node[right]{$x$};
+  \draw[axis] (-2.6,-1.7)--(-2.6,2.15) node[above]{$y$};
+  \coordinate (O) at (-1.8,-.9);
+  \draw[vector] (O)--++(3.15,.5) node[right=3pt]{$\vect v$};
+  \draw[component] (O)--++(.55,2.25) node[above=3pt]{$-a\vect\omega\times\uvec k$};
+  \draw[guide] ($(O)+(3.15,.5)$)--++(.55,2.25);
+  \draw[guide] ($(O)+(.55,2.25)$)--++(3.15,.5);
+  \draw[vector] (O)--++(3.70,2.75) node[above right=3pt]{$\vect u$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{台球接触点的滑动速度 $\vect u=\vect v-a\vect\omega\times\uvec k$ 决定摩擦方向。}
+\label{r2ch06:fig:007}
+\end{center}}
+
+\newcommand{\figEllipseRoll}{%
+\begin{center}
+\begin{tikzpicture}[scale=.78]
+ \begin{scope}[xshift=-5.4cm]
+  \draw[curve] (0,0) ellipse (1.65 and 2.45);
+  \coordinate (F) at (0,1.80);\coordinate (P) at (1.18,-.85);
+  \fill[DeepBlue] (F) circle(2.2pt);\node[labelclean,above left=5pt] at (F){焦点 $F$};
+  \fill (P) circle(2pt);\node[labelclean,right=4pt] at (P){$P$};
+  \draw[vector] (F)--(P) node[midway,right=3pt]{$R(\varphi)$};
+  \draw[guide] (F)--++(0,-1.7);
+  \draw[->,TextGray] ($(F)+(0,-.72)$) arc[start angle=-90,end angle=-66,radius=.72];
+  \node[labelclean] at (.38,1.08){$\varphi$};
+  \node[labelclean,align=center] at (0,-3.05){(a) 焦点极坐标与\\角向面密度};
+ \end{scope}
+ \begin{scope}[xshift=-1.7cm]
+  \draw[ground] (-1.25,-2.25)--(1.25,-2.25);
+  \draw[curve,fill=Blue!8] (0,-.25) ellipse (.78 and 2.0);
+  \fill[DeepBlue] (0,.98) circle(2.2pt);\node[labelclean,right=3pt] at (0,.98){$F$};
+  \node[labelclean] at (0,-2.72){倒立};
+ \end{scope}
+ \begin{scope}[xshift=2.1cm]
+  \draw[ground] (-2.0,-1.05)--(2.0,-1.05);
+  \draw[curve,fill=Blue!8] (0,-.25) ellipse (1.75 and .80);
+  \fill[DeepBlue] (1.28,-.25) circle(2.2pt);\node[labelclean,above=3pt] at (1.28,-.25){$F$};
+  \draw[vector] (1.28,-.25)--++(.95,0) node[right=3pt]{$\vect v_F$};
+  \node[labelclean] at (0,-1.52){长轴水平};
+ \end{scope}
+ \begin{scope}[xshift=5.9cm]
+  \draw[ground] (-1.25,-2.25)--(1.25,-2.25);
+  \draw[curve,fill=Blue!8] (0,-.25) ellipse (.78 and 2.0);
+  \fill[DeepBlue] (0,-1.48) circle(2.2pt);\node[labelclean,right=3pt] at (0,-1.48){$F$};
+  \draw[vector] (0,-1.48)--++(0,.85) node[right=3pt]{$\vect a_F$};
+  \node[labelclean] at (0,-2.72){正立};
+ \end{scope}
+ \draw[-{Latex[length=2.5mm]},TextGray,thick] (-.25,1.75)--(.55,1.2);
+ \draw[-{Latex[length=2.5mm]},TextGray,thick] (4.15,1.2)--(4.8,1.75);
+\end{tikzpicture}
+\bookcaption{非均匀椭圆板：(a) 密度构造的焦点极坐标；(b) 纯滚动中的倒立、水平和正立构形。}
+\label{r2ch06:fig:008}
+\end{center}}

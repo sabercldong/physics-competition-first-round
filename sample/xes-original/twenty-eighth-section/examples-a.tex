@@ -1,0 +1,207 @@
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{例题 19.1【人体膨胀】}
+已知人体的线膨胀系数为 $\alpha$。那么冬天时小明在室内（$25\,{}^\circ\mathrm C$）比室外
+（$0\,{}^\circ\mathrm C$）体积大多少？小明的密度膨胀系数为多少？
+\end{origexamplebox}
+
+\begin{xesolution}
+先明确模型：环境温度从 $0\,{}^\circ\mathrm C$ 变到 $25\,{}^\circ\mathrm C$，
+并不意味着真实人体各部分也改变同样的温度；人体有体温调节，不能据此算出实际体积变化。
+若按题意作理想化计算，须另外假定物体整体温度确实改变 $25\,\mathrm K$、质量不变、
+膨胀系数恒定且各向同性。以下求的是这一模型的结果。设 $0\,{}^\circ\mathrm C$ 时三个方向的特征长度分别为
+$a_0,b_0,c_0$，升高温度 $\Delta T$ 后，三个方向都按同一个线膨胀系数变化：
+\begin{equation}
+  a=a_0(1+\alpha\Delta T),\quad
+  b=b_0(1+\alpha\Delta T),\quad
+  c=c_0(1+\alpha\Delta T).
+\end{equation}
+于是
+\begin{equation}
+  \frac{V}{V_0}=(1+\alpha\Delta T)^3
+  \simeq 1+3\alpha\Delta T,
+\end{equation}
+其中略去了 $\alpha^2$ 及更高阶小量。取 $\Delta T=25\,\mathrm K$，得到
+\begin{equation}
+  \boxed{\frac{V_{25}-V_0}{V_0}\simeq(75\,\mathrm K)\alpha},
+  \qquad
+  \boxed{V_{25}-V_0\simeq(75\,\mathrm K)\alpha V_0}.
+\end{equation}
+
+若人体质量近似不随温度改变，$\rho=m/V$。因此
+\begin{equation}
+  \frac{\rho}{\rho_0}=\frac{1}{1+3\alpha\Delta T}
+  \simeq1-3\alpha\Delta T.
+\end{equation}
+若把体积膨胀系数定义为 $\beta_V=(1/V)(\mathrm dV/\mathrm dT)$，则
+$\boxed{\beta_V\simeq3\alpha}$；若题目所说的“密度膨胀系数”是
+$\beta_\rho=(1/\rho)(\mathrm d\rho/\mathrm dT)$，则
+$\boxed{\beta_\rho\simeq-3\alpha}$。负号表示升温时密度减小。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 19.2【“真实”感受】}
+小明为了研究“物体的冷热程度”做了以下实验。试通过以下实验说明，小明感受到的冷热程度究竟是什么。
+
+（1）一只手放在冷水里，另一只手放在热水里，然后同时拿出后立刻放在温水里。
+
+（2）小明发现南方的冬天很冷，即便大多数日子天气预报报道的气温是比北方高的。
+
+（3）小明给妈妈打热水泡脚，妈妈把脚伸进水盆后打了个喷嚏。
+
+（4）小明发现有的叔叔需要进入到 $60\,{}^\circ\mathrm C$ 以上的环境工作，进去之前要先吃点辣椒，
+再穿上棉被。
+\end{origexamplebox}
+
+\begin{xesolution}
+皮肤并不是直接读取环境的温度数值。冷、热感受首先取决于皮肤与外界之间的热流大小和方向，同时还
+受到感受器适应、血管舒缩、出汗、蒸发以及神经反射的影响。因此，相同温度的物体可以带来不同感觉，
+不同温度的环境也可能带来相似感觉。
+
+图\ref{ch14:fig:heat-feeling}把四类观察分开列出；前三者不能推出第四种做法安全。
+\heatFeelingDiagram
+
+（1）放过冷水的手温度较低，进入温水后热量由水流入手，感觉“热”；放过热水的手温度较高，进入
+同一盆温水后热量由手流向水，感觉“冷”。温水的客观温度只有一个，感觉不同来自皮肤初态以及热流
+方向不同。这也说明手感不能代替温度计。
+
+（2）体感温度不只由气温决定。空气湿度、风速、日照、衣物含水程度、室内取暖条件以及人体活动量
+都会改变对流、蒸发和辐射换热。南方冬季在高湿、衣物或墙体容易潮湿且室内缺少持续供暖的情形下，
+皮肤失热状况可能比气温数值显示的更明显；“南方一定比北方冷”并不是普遍物理定律，必须结合具体
+湿度、风速和生活环境判断。
+
+（3）泡脚与喷嚏先后发生，只说明时间上相邻，不能由一次观察确定因果。
+是否存在温度刺激之外的因素，题目没有提供足够证据。这个事例不能用一个热学公式解释喷嚏机制，
+也不能把喷嚏当成温度计读数；可以确定的是，单次生理反应不足以判断水温或人体净吸热量。
+
+（4）当环境温度高于体表温度时，热量可能从环境流向人体。棉被在这里不是“生热”，而是用低导热、
+低对流的空气层短时减小某些外来热流；但厚重衣物也会阻碍散热和汗液蒸发。
+因此不能单凭隔热一项就判断净热量减少，更不能把吃辣椒当成可靠的防热措施。
+进入高温作业环境需要专门的风险评估、工程控制、合适防护和休息制度；题述做法不能作为安全操作方法，
+不应模仿。这个例子在物理上要说明的是：隔热同时影响热量进入与排出，必须比较全部热流。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 19.3【学习化学的小明】}
+小明开始学习化学了。
+
+（1）老师教小明用量筒时说，视线要与凹液面相平，读数才能准确。可是有一次小明在称量液体时，
+竟然发现没有凹液面，反而是凸液面。请说出可能的原因，这样是否会造成测量不准确？
+
+（2）使用滴定管时，小明发现液滴半天也不滴下去，请说出可能的原因。
+
+（3）老师说在烧杯中倒水时，需要“引流”。这是什么意思？
+\end{origexamplebox}
+
+\begin{xesolution}
+这三个现象都与液体的表面张力以及液体对固体表面的润湿性有关。
+
+图\ref{ch14:fig:surface-phenomena}左图的最高点与视线同高；中图液滴颈部仍接触管口；
+右图液流沿玻璃棒的一侧进入接收容器。这三种接触关系正对应三个子问。
+\surfacePhenomenaDiagram
+
+（1）水能润湿洁净玻璃，玻璃壁附近液面被拉高，形成凹液面；水银等不能润湿玻璃的液体，接触角
+大于 $90^\circ$，玻璃壁附近液面反而降低，形成凸液面。量筒刻度仍然可以使用，但读数基准要改为凸
+液面的最高点，并保持视线水平，避免视差。若仍机械地按凹液面的最低点读数，当然会产生系统误差；
+此外，量筒若不是按这种液体校准，附着残留和弯月面形状也会带来额外误差。
+
+（2）滴定管尖端的液滴受到向下的重力，同时液滴颈部周围的表面张力提供向上的合力。液滴很小时，
+$mg$ 尚不足以克服表面张力，便会悬在管口。继续流入液体使液滴变大，或轻触接收容器内壁改变接触线，
+液滴才可能落下。因此“暂时不滴”不一定意味着管口堵塞；只有在旋塞已打开、液柱压差充分而仍无液体
+流出时，才需要检查气泡、旋塞和尖嘴堵塞。
+
+（3）所谓引流，是让玻璃棒一端靠在烧杯嘴，另一端贴近接收容器内壁，使水沿玻璃棒连续流下。水对
+洁净玻璃的附着与润湿使液流贴着玻璃棒运动，从而减小飞溅并便于控制落点。玻璃棒只起导流作用，不能
+把它当作搅动液流的杠杆去敲碰容器。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 19.4【简易温度计】}
+细玻璃管连接着两个相同玻璃球，管壁光滑，管内有一个质量为 $m$ 的活塞，组成一个实验装置。
+当装置水平放置时，活塞恰在管中点。问竖直放置时活塞的位移 $h$ 满足什么条件？可否根据这一原理
+制作简易气温计？
+\end{origexamplebox}
+
+\begin{xesolution}
+设细管横截面积为 $S$。装置水平、活塞居中时，两边封闭气体的压强相同；玻璃球相同，若两边温度
+也相同，则两边气体的物质的量相同，记为 $\nu$，各自体积记为 $V_0$。
+
+图\ref{ch14:fig:bulb-thermometer}标出活塞中点基准及下移量 $h$。
+设两球之间可供活塞移动的直管有效长度为 $\ell_{\text{管}}$，还必须检查活塞是否留在直管内。
+\bulbThermometerDiagram
+
+竖直放置后，活塞在重力作用下向下移动 $h$。下腔体积减为 $V_0-Sh$，上腔体积增为 $V_0+Sh$。
+设共同温度为 $T$，两侧气体压强分别为
+\begin{equation}
+  p_{\text{下}}=\frac{\nu RT}{V_0-Sh},\qquad
+  p_{\text{上}}=\frac{\nu RT}{V_0+Sh}.
+\end{equation}
+活塞静止时，向上的压强差作用力与重力平衡：
+\begin{equation}
+  (p_{\text{下}}-p_{\text{上}})S=mg.
+\end{equation}
+代入物态方程，得到位移必须满足
+\begin{equation}
+  \boxed{\frac{2\nu RTS^2h}{V_0^2-S^2h^2}=mg},
+  \qquad 0<h<\min\left(\frac{V_0}{S},\frac{\ell_{\text{管}}}2\right).
+\end{equation}
+反解温度可得
+\begin{equation}
+  \boxed{T(h)=\frac{mg\bigl(V_0^2-S^2h^2\bigr)}{2\nu RS^2h}}.
+\end{equation}
+因此，只要先用两个已知温度标定 $h$ 与 $T$ 的对应关系，原理上可以做成气体温度计。不过它并不是
+等刻度温度计；实际灵敏度还会受到活塞摩擦、漏气、管径不均匀、玻璃热膨胀、两球温度不完全相同等
+因素影响。题设的“管壁光滑”正是为了排除最显著的静摩擦误差。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 19.5【托里拆利实验】}
+有一水银气压计，因水银柱上的玻璃管内有微量空气，致使读数不准确。当大气压力为
+$76\,\mathrm{cmHg}$ 时，此气压计读数为 $74\,\mathrm{cm}$，此时其上空气柱长为
+$8.0\,\mathrm{cm}$。若气压计读数为 $72.0\,\mathrm{cm}$ 时，则正确的大气压力为多少？
+（不考虑温度变化）
+\end{origexamplebox}
+
+\begin{xesolution}
+先写带量纲的关系 $p_{\rm atm}=\rho_{\rm Hg}gH+p_g$。
+若引入汞柱压强水头 $b_{\rm atm}=p_{\rm atm}/(\rho_{\rm Hg}g)$、$b_g=p_g/(\rho_{\rm Hg}g)$，
+各个 $b$ 都是与压强等效的汞柱高度，单位为长度。管顶若是真空，$b_g=0$，于是
+$b_{\rm atm}=H$；现在残余气体对汞柱上表面施压，压力平衡可等价写成
+\begin{equation}
+  b_{\rm atm}=H+b_g.
+\end{equation}
+例如，压强为 $76\,\mathrm{cmHg}$，就对应 $b_{\rm atm}=76\,\mathrm{cm}$；
+不能直接把以帕为单位的压强与以米为单位的高度相加。
+
+图\ref{ch14:fig:torricelli}采用足够大的汞槽，使两状态的槽液面高度近似不变。
+\torricelliDiagram
+
+第一状态中
+\begin{equation}
+  b_{g1}=b_{\rm atm,1}-H_1=(76-74)\,\mathrm{cm}=2\,\mathrm{cm},
+  \qquad \ell_1=8.0\,\mathrm{cm}.
+\end{equation}
+第二次读数由 $74\,\mathrm{cm}$ 降到 $72\,\mathrm{cm}$，在管顶固定、管径均匀的条件下，水银柱
+上端下降 $2.0\,\mathrm{cm}$，故残余空气柱长度变为
+\begin{equation}
+  \ell_2=8.0+2.0=10.0\,\mathrm{cm}.
+\end{equation}
+温度不变，且残余气体量不变，由波义耳定律（Boyle's law）
+\begin{equation}
+  \begin{gathered}
+  p_{g1}\ell_1=p_{g2}\ell_2
+  \quad\Longrightarrow\quad b_{g1}\ell_1=b_{g2}\ell_2,
+  \\
+  b_{g2}=2\,\mathrm{cm}\times\frac{8}{10}=1.6\,\mathrm{cm}.
+  \end{gathered}
+\end{equation}
+所以第二状态的真实大气压为
+\begin{equation}
+  \begin{gathered}
+  b_{\rm atm,2}=H_2+b_{g2}=(72.0+1.6)\,\mathrm{cm}=73.6\,\mathrm{cm},
+  \\
+  \boxed{p_{\rm atm,2}=73.6\,\mathrm{cmHg}}.
+  \end{gathered}
+\end{equation}
+图中的 $H$ 是水银柱高度，$\ell$ 是管顶残余气柱长度；二者此消彼长，不能把气柱长度仍误取为
+$8.0\,\mathrm{cm}$。
+\end{xesolution}

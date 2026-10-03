@@ -1,0 +1,63 @@
+\subsection{从平行光到近物：七种入射光束的像}
+式 $1/u+1/v=1/f$ 不只给数值，也控制出射光束是会聚、平行还是发散。图~\ref{ch28:fig:lens-states-real}、图~\ref{ch28:fig:lens-states-virtual} 将同一会聚薄透镜的七种状态逐一画出。光沿左向右传播，$F,F'$ 分别是物方、像方焦点；图中物点和像点都在轴上。蓝色实线是实际光线，灰色虚线仅是出射光的反向延长线，不能把虚线看成有光沿它反向传播。
+
+% Figure contract: seven axial bundles, deterministic paraxial lens, f=1.2.
+% Purpose: distinguish real/virtual/infinite images, restore seven source states.
+% Print width 14cm; small text (9-10pt), no opaque label backgrounds.
+% Shared coordinates: lens x=0, incident slope y/u, outgoing slope y/u-y/f.
+% Layout: four real-image rows, then three parallel/divergent rows, 2.35cm pitch.
+% Diagram x=-4.8..4.8; annotations x=5.0; ticks and labels below beam region.
+% Rays are straight inside each medium; only the lens changes direction.
+% ASCII: object * --> | lens | --> * image ; row title right, focal ticks below.
+% For u=0 sentinel use parallel incidence; u=f is calculated without 1/(u-f).
+% Quality: common f and aperture; seven cases are not decorative variants.
+\newcommand{\LensStateRow}[5]{%
+\begin{scope}[yshift=#1cm]
+ \draw[gray,thin](-4.8,0)--(4.7,0);
+ \draw[thick,<->](0,-.55)--(0,.55);
+ \foreach \x/\lab in {-2.4/2F,-1.2/F,1.2/F',2.4/2F'}{
+  \draw[gray] (\x,-.04)--(\x,.04);
+  \draw[gray,thin] (\x,-.6)--(\x,-.73);
+  \node[below,font=\scriptsize]at(\x,-.73){$\lab$};
+ }
+ \foreach \rawheight in {-.32,-.16,.16,.32}{
+  \pgfmathsetmacro{\h}{ifthenelse(and(#2>0,#2<.6),.6875*\rawheight,\rawheight)}
+  \pgfmathsetmacro{\slopein}{ifthenelse(#2==0,0,\h/max(#2,.001))}
+  \pgfmathsetmacro{\slopeout}{\slopein-\h/1.2}
+  \pgfmathsetmacro{\leftx}{ifthenelse(#2==0,-4.6,-#2)}
+  \draw[DeepBlue,thin,->](\leftx,{\h+\slopein*\leftx})--(0,\h);
+  \draw[DeepBlue,thin,->](0,\h)--(#3,{\h+\slopeout*#3});
+  \ifnum#4=1
+   \pgfmathsetmacro{\virtualx}{-\h/\slopeout}
+   \draw[gray,dashed,thin](\virtualx,0)--(0,\h);
+  \fi
+ }
+ \node[right,align=left,text width=3.6cm]at(5,.03){#5};
+\end{scope}}
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[>=Latex,every node/.style={fill=none,inner sep=2pt,font=\small},scale=.9]
+ \LensStateRow{0}{0}{2.1}{0}{(a) $u\to\infty$\\平行入射，$v=f$}
+ \LensStateRow{-2.35}{3.6}{3.2}{0}{(b) $u>2f$\\$f<v<2f$}
+ \LensStateRow{-4.7}{2.4}{3.6}{0}{(c) $u=2f$\\$v=2f$}
+ \LensStateRow{-7.05}{1.8}{4.6}{0}{(d) $f<u<2f$\\$v>2f$}
+\end{tikzpicture}
+\figcap{四种形成实像的轴上光束。所有会聚点都由 $v=fu/(u-f)$ 决定，而不是凭图形外观选取。\label{ch28:fig:lens-states-real}}
+\end{minipage}\end{center}
+
+图~\ref{ch28:fig:lens-states-real}(b)—(d) 中，物点靠近焦点时，像点向右远离透镜。代入 $u=3f,2f,3f/2$，分别得 $v=3f/2,2f,3f$。当 $u\to f^+$，$v\to+\infty$；因此不能在有限屏幕上继续寻找一个焦点附近的像。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[>=Latex,every node/.style={fill=none,inner sep=2pt,font=\small},scale=.9]
+ \LensStateRow{0}{1.2}{4.6}{0}{(e) $u=f$\\出射平行\\像在无穷远}
+ \LensStateRow{-2.35}{.9}{2.5}{1}{(f) $f/2<u<f$\\$v<0,\ |v|>f$}
+ \LensStateRow{-4.7}{.55}{1.8}{1}{(g) $0<u<f/2$\\$v<0,\ |v|<f$}
+\end{tikzpicture}
+\figcap{从焦点移向透镜，出射光由平行变为发散；后两图的虚像由反向延长线相交确定。\label{ch28:fig:lens-states-virtual}}
+\end{minipage}\end{center}
+
+图~\ref{ch28:fig:lens-states-virtual}(f)、(g) 分开了虚像在物方焦点之外和之内的两种情况。由
+\[
+ |v|=\frac{fu}{f-u},\qquad
+ |v|>f\ \Longleftrightarrow\ u>\frac f2
+\]
+可见分界不是第二种透镜，而是同一透镜的物距 $u=f/2$；这时虚像恰在 $F$。例如 $u=3f/4$ 时 $v=-3f$，$u=f/3$ 时 $v=-f/2$。虚像仍位于物点的左侧，但光并未真的会聚在那里。实际有限高度物体的正倒与大小，需再用横向放大率 $m=-v/u$ 判断：(b)—(d) 的实像为倒立，(f)、(g) 的虚像为正立放大。

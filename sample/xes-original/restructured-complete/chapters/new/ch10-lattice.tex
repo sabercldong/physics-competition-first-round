@@ -1,0 +1,94 @@
+\section{格波、声学支与光学支（选读）}\label{ch10:sec:lattice}
+\subsection{由原子小振动理解固体中的波}
+晶体中的原子实携带主要质量，在平衡格点附近通过相互作用共同运动。把相互作用在平衡附近线性化，就得到很多耦合振子；一个位置的扰动可以传到相邻位置。相位有组织的长波运动体现为宏观声波，多种模式按热统计规律被占据则体现为热运动。并非每个原子都是一个独立振子，真正独立的是简正模。
+
+声速与热导率都受晶格影响，但二者不能简单互相推出：声速与弹性和密度有关，热导率还取决于热容、散射和平均自由程，金属中电子常有重要贡献。例如金刚石兼有较高声速和热导率，而晶体方向、温度、纯度及缺陷会改变数值和排序。讨论典型量级时，固体声速约$10^3$—$10^4\,\mathrm{m/s}$；热导率则跨越很宽范围，不能据“声速更大”断言“一定更导热”。
+
+量子化的晶格简正模称声子（phonon）。爱因斯坦固体模型先用同频量子振子解释经典热容失效，德拜模型进一步考虑低频声学模及其频率分布。下文先用经典力学求出这些模式；量子占据和统计平均在热学及近代物理中继续使用。
+
+\subsection{单原子链：运动方程、色散与截止}
+图\ref{ch10:fig:mono-chain}中，相邻平衡位置相距$a$，各质量为$m$，相邻弹簧劲度为$k$。$u_j$表示第$j$个原子从自身平衡位置沿链向右的位移，不是它的绝对位置。右、左弹簧的伸长分别为$u_{j+1}-u_j$、$u_j-u_{j-1}$，所以
+\begin{equation}\label{ch10:eq:mono-motion}
+ m\ddot u_j=k(u_{j+1}+u_{j-1}-2u_j).
+\end{equation}
+\chTenMonoChainFigure
+平移一个格距后方程不变，故设相邻原子的复振幅相差相位$qa$：
+\[
+ u_j=\Re\{A\mathrm e^{\ii(qja-\omega t)}\}.
+\]
+$q$是一维波矢，单位为$\mathrm{m^{-1}}$；这里取$-\omega t$约定，所以$q>0$的长波沿右方传播。代入方程，约去公共指数：
+\[
+ -m\omega^2=k(\mathrm e^{\ii qa}+\mathrm e^{-\ii qa}-2)
+ =-4k\sin^2(qa/2),
+\]
+从而色散关系为
+\begin{equation}\label{ch10:eq:mono-dispersion}
+ \omega(q)=2\sqrt{k/m}\,|\sin(qa/2)|.
+\end{equation}
+因为$j$是整数，$q$与$q+2\pi/a$给完全相同的格点位移。只需取一个不重复区间，例如$-\pi/a<q\leq\pi/a$，称第一布里渊区（Brillouin zone）。图\ref{ch10:fig:mono-dispersion}标出区中心和两端；两端代表相同的格点相位关系，不应算成两种独立状态。
+\chTenMonoDispersionFigure
+最大频率$\omega_c=2\sqrt{k/m}$称截止频率。为了说明“截止”不是凭图猜测，可改设振幅比为$\lambda$，$u_j\propto\lambda^j\mathrm e^{-\ii\omega t}$，则
+\[
+ \lambda+\lambda^{-1}=2-\frac{m\omega^2}{k}.
+\]
+在允许频带内可取$|\lambda|=1$，即传播型相位因子。当$\omega>\omega_c$，两根为负实数且互为倒数，其中一根绝对值小于1。半无限链受边界策动时，可选向内部衰减的根，产生交替符号的倏逝响应；不能在整个无限链中接受另一侧无界增长的解作为有限能量体波。恰在截止点$\lambda=-1$，相邻原子反相、群速度为零，仍是允许的边界模，不是“根本不存在振动”。
+
+\subsection{长波、短波与传播速度}
+在$q>0$的第一布里渊区内，相速度和群速度分别为
+\[
+ v_p=\frac\omega q=\frac{2\sqrt{k/m}\sin(qa/2)}q,
+ \qquad v_g=\frac{\dd\omega}{\dd q}=a\sqrt{k/m}\cos(qa/2).
+\]
+相速度描述相位面的运动，群速度描述窄带波包包络的传播，在此无耗散链模型中也与能量传播有关。长波$|qa|\ll1$时，$\sin(qa/2)\simeq qa/2$，故$\omega\simeq a\sqrt{k/m}|q|$，二者大小都趋于$c=a\sqrt{k/m}$。连续近似中，单位长度质量$\rho_1=m/a$、轴向刚度$C_1=ka$，恰有$c=\sqrt{C_1/\rho_1}$，与连续弹性波一致。
+
+短波极限$|q|a=\pi$对应最短独立波长$2a$，相邻粒子反相，$v_g=0$。若在扩展区间继续增加$q$，色散曲线斜率可以反号；此时波包传播方向应看$\dd\omega/\dd q$，不能只看$q$符号。区边界并非通常晶体学中称为$\Gamma$的点；$\Gamma$通常表示区中心$q=0$。
+
+\subsection{双原子链：一个晶胞内有两个坐标}
+图\ref{ch10:fig:diatomic-chain}中质量$M,m$交替排列，假设$M\geq m$。每条最近邻弹簧劲度为$k$，\emph{晶胞长度}定义为$a$，相邻原子间距则为$a/2$。设第$j$胞中重、轻原子的位移分别为$u_j,v_j$，则
+\begin{align}
+ M\ddot u_j&=k(v_j+v_{j-1}-2u_j),\label{ch10:eq:diatomic-M}\\
+ m\ddot v_j&=k(u_j+u_{j+1}-2v_j).\label{ch10:eq:diatomic-m}
+\end{align}
+\chTenDiatomicChainFigure
+取$u_j=A\mathrm e^{\ii(qja-\omega t)}$、$v_j=B\mathrm e^{\ii(qja-\omega t)}$的实部；晶胞内部的位置相位并入复振幅$B$，不能再重复加一次。代入得
+\[
+ \begin{pmatrix}
+ 2k-M\omega^2&-k(1+\mathrm e^{-\ii qa})\\
+ -k(1+\mathrm e^{\ii qa})&2k-m\omega^2
+ \end{pmatrix}\begin{pmatrix}A\\B\end{pmatrix}=0.
+\]
+行列式为零，使用$(1+\mathrm e^{\ii qa})(1+\mathrm e^{-\ii qa})=4\cos^2(qa/2)$，得
+\[
+ Mm\omega^4-2k(M+m)\omega^2+4k^2\sin^2(qa/2)=0.
+\]
+这是关于$\omega^2$的二次方程，两根为
+\begin{equation}\label{ch10:eq:diatomic-dispersion}
+ \omega_\pm^2=k\left(\frac1M+\frac1m\right)
+ \pm k\sqrt{\left(\frac1M+\frac1m\right)^2-
+ \frac4{Mm}\sin^2\frac{qa}{2}}.
+\end{equation}
+负号支为声学支，正号支为光学支。式中根号项与前项同为$\mathrm{s^{-2}}$，最外层结果是频率平方，不能漏掉最后开方。
+
+\subsection{两支的端点、带隙及轻质量极限}
+在$q=0$，下支$\omega_-=0$且$A=B$，整个晶体平移；上支
+$\omega_+^2=2k(1/M+1/m)$，第一行给$MA+mB=0$，两原子反向且胞内质心不动。在区边界$qa=\pi$，耦合矩阵非对角元为零，故下支$\omega_-^2=2k/M$时只有重原子运动，上支$\omega_+^2=2k/m$时只有轻原子运动。图\ref{ch10:fig:diatomic-dispersion}把这些端点与带隙一并标出。
+\chTenDiatomicDispersionFigure
+当$M>m$，$\sqrt{2k/M}<\omega<\sqrt{2k/m}$之间没有无限周期链的传播型体模，称频率禁带；边界受迫问题仍可有倏逝响应。当$M=m$时禁带闭合，两条支在缩小的布里渊区边界相接，实质上是单原子链色散折叠后的表示，并非多出新的物理自由度。
+
+令$\beta=m/M\ll1$。低频支中轻原子的惯性可忽略，它近似始终位于两侧重原子位移的平均位置，相当于两根$k$弹簧串联成$k/2$，故
+\[
+ \omega_-\simeq\sqrt{2k/M}\,|\sin(qa/2)|.
+\]
+高频支主要由轻原子振动，展开精确根式到$\beta$一阶，得
+\[
+ \omega_+^2\simeq\frac{2k}{m}\left[1+\beta\cos^2(qa/2)\right],
+ \qquad\omega_+\simeq\sqrt{2k/m}\sqrt{1+\beta\cos^2(qa/2)}.
+\]
+低频的长波波速更一般地为$c=a\sqrt{k/[2(M+m)]}$；$m\ll M$时恢复刚才的串联模型。高频$q=0$时相邻晶胞同相但胞内两原子反向，因此“晶胞之间没有相位差”并不等于“没有内部振动”。在两种原子带相反有效电荷的晶体中，该运动可与光场耦合，这说明“光学支”的名称；并非所有晶体的每一光学模都有相同红外活性。
+
+声学支的低频模和日常声音相连，光学支则是多原子晶胞内部振动的延续。每个允许$q$对应两个独立模；$N$个晶胞在周期边界条件下总计$2N$个自由度，恰与$2N$个原子的一维坐标数相等。
+
+\subsection{声子频带与电子能带的联系和区别}
+色散的“带”首先是经典周期结构允许的模式频率集合。把每个格波量子化后，一个模每增加一个声子，能量增加$\hbar\omega(q)$；在热平衡中各模的占据不同，其总能量和温度依赖决定晶格热容等性质。热传导还需考虑这些激发被缺陷、边界和其他激发散射的过程，单靠无耗散谐链并不能给出真实材料的有限热导率。
+
+周期势中的电子也有由波矢标记的允许能量带和禁带，但它来自电子波动方程，不能把格波的$\omega(q)$直接当成电子能量。电子服从费米统计，声子作为集体激发服从玻色统计且数目通常不守恒。电子在振动晶格中运动，二者的耦合既影响输运和能量交换，也构成进一步讨论电子—声子相互作用的基础。共同点是周期性组织了本征模式；粒子性质、动力学方程和占据规律仍须分别处理。

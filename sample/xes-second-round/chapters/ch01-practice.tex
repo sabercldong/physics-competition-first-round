@@ -1,0 +1,666 @@
+\clearpage
+\section{配套习题：运动的描述与计算}
+\label{r2ch01:sec:practice-motion}
+
+\begin{practicebox}{极坐标下的斜抛运动}
+从原点以初速度 $v_0$、仰角 $\alpha$ 抛出质点。写出极坐标运动方程和轨迹方程，并判断在什么条件下质点从发射到落地始终远离原点。
+\label{r2ch01:pr:001}
+\begin{solution}
+取水平、竖直坐标分别为 $x,z$，则
+\[
+  x=v_0\cos\alpha\,t,\qquad
+  z=v_0\sin\alpha\,t-\frac12gt^2.
+\]
+因此极坐标运动方程可写成
+\[
+  r(t)=t\sqrt{v_0^2-v_0g\sin\alpha\,t+\frac14g^2t^2},\qquad
+  \tan\theta(t)=\tan\alpha-\frac{gt}{2v_0\cos\alpha}.
+\]
+消去 $t$ 得
+\[
+  \boxed{r=\frac{2v_0^2\cos\alpha\,\sin(\alpha-\theta)}{g\cos^2\theta}}.
+\]
+“始终远离”要求 $\dot r\geq0$。直接对 $r^2$ 求导最稳妥：
+\[
+  \frac{\dd r^2}{\dd t}
+  =t\left(2v_0^2-3v_0g\sin\alpha\,t+g^2t^2\right).
+\]
+飞行时间区间为 $0\leq t\leq2v_0\sin\alpha/g$。括号内二次式的最小值在
+$t=3v_0\sin\alpha/(2g)$ 取得，故
+\[
+  2v_0^2-\frac94v_0^2\sin^2\alpha\geq0.
+\]
+于是
+\[
+  \boxed{\sin\alpha\leq\frac{2\sqrt2}{3}}.
+\]
+等号情形有一个瞬间 $\dot r=0$，但 $r$ 不减；若把“远离”严格理解为 $\dot r>0$，则应取严格小于号。判据无量纲，且与 $v_0,g$ 无关，符合相似性。
+以上极坐标表达取水平向右为极轴，适用于 $0<\alpha<\pi/2$ 的斜抛。
+$\theta$ 必须按 $(x,z)$ 所在象限连续选取，不能只由正切值猜象限。
+若 $\alpha=\pi/2$，质点沿竖直线先升后降：上升时 $r=z$ 增大，到最高点后 $r$ 减小，
+故不满足始终远离。若不以落地为终点而继续延伸理想抛物轨迹，二次式的最小值仍在上述时刻取得，判据不变。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{斜坡上的炮击控制面积}
+在倾角为 $\alpha$ 的足够宽广斜坡上建有高为 $h$ 的竖直塔台，塔顶火炮可沿任意方向发射初速度大小为 $v_0$ 的炮弹。忽略空气阻力，求炮弹在斜坡上能够到达区域的面积。
+\label{r2ch01:pr:002}
+\begin{solution}
+如图~\ref{r2ch01:fig:011}，取 $x$ 轴沿水平下坡方向、$y$ 轴沿等高线、$z$ 轴竖直向上，坡面方程为 $z=-x\tan\alpha$，炮口为 $(0,0,h)$。
+
+\figSlopeRange
+
+图中的 $G$ 是炮口，$L$ 是一条发射轨迹与坡面的首次交点，初速度箭头与该轨迹在 $G$ 处相切。
+设落点的水平投影半径平方为 $R_h^2=x^2+y^2$，相对炮口的高度差为
+$\Delta z=-h-x\tan\alpha$。令飞行时间为 $t>0$，由三个方向的运动方程反求初速度分量：
+\[
+ v_{0x}=\frac{x}{t},\qquad v_{0y}=\frac{y}{t},\qquad
+ v_{0z}=\frac{\Delta z}{t}+\frac{gt}{2}.
+\]
+代入 $v_{0x}^2+v_{0y}^2+v_{0z}^2=v_0^2$，令 $w=t^2$，得到
+\[
+ \frac{g^2}{4}w^2+(g\Delta z-v_0^2)w+(R_h^2+\Delta z^2)=0.
+\]
+这个二次方程的判别式非负，等价于
+\[
+ v_0^4-2gv_0^2\Delta z-g^2R_h^2\geq0.
+\]
+此时 $v_0^2-g\Delta z>0$，两根的和为正、积非负，除发射点本身的退化情形外存在正根 $w$。
+因此固定初速的可达条件为
+\[
+  R_h^2\leq \frac{v_0^4}{g^2}-\frac{2v_0^2\Delta z}{g}.
+\]
+代入坡面方程并配方：
+\[
+  \left(x-\frac{v_0^2\tan\alpha}{g}\right)^2+y^2
+  \leq \frac{v_0^4}{g^2\cos^2\alpha}+\frac{2v_0^2h}{g}.
+\]
+故可控区域在水平面上的投影是半径
+\[
+  R_*^2=\frac{v_0^4}{g^2\cos^2\alpha}+\frac{2v_0^2h}{g}
+\]
+的圆。坡面面积比水平投影面积大 $1/\cos\alpha$，所以
+\[
+  \boxed{S=\frac{\pi}{\cos\alpha}
+  \left(\frac{v_0^4}{g^2\cos^2\alpha}+\frac{2v_0^2h}{g}\right)}.
+\]
+当 $\alpha=0$ 时退化为水平地面结果；括号中每一项均为面积量纲。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{线性阻力火箭与平方阻力着陆}
+（1）某固体燃料火箭竖直运动，满足
+\[
+  \dot v=k\e^{-\lambda t}-\frac{v}{\tau}-g.
+\]
+求 $v(t),y(t)$。初始速度和高度分别记为 $v_i,y_i$；由地面静止发射时取 $v_i=y_i=0$。
+
+（2）飞机着陆后以降落伞制动，初速度为 $v_0$，取滑行方向为 $x$ 正向、$x(0)=0$，满足 $\dot v=-\beta v^2$，其中 $\beta>0$。求 $v(x)$ 和 $v(t)$。
+\label{r2ch01:pr:003}
+\begin{solution}
+（1）先求由地面静止发射的情形。取竖直向上为正，$-v/\tau$ 是线性阻力产生的加速度，
+$-g$ 是重力加速度。方程是一阶线性方程，乘积分因子 $\e^{t/\tau}$ 后，左边恰好成为一个乘积的导数：
+\[
+ \frac{\dd}{\dd t}(v\e^{t/\tau})
+ =k\e^{(1/\tau-\lambda)t}-g\e^{t/\tau}.
+\]
+从 $0$ 到 $t$ 积分，在 $\lambda\ne1/\tau$ 时有
+\[
+ v\e^{t/\tau}
+ =\frac{k}{1/\tau-\lambda}\bigl[\e^{(1/\tau-\lambda)t}-1\bigr]
+ -g\tau(\e^{t/\tau}-1).
+\]
+再乘 $\e^{-t/\tau}$，得到
+\[
+  \boxed{v(t)=\frac{k\bigl(\e^{-\lambda t}-\e^{-t/\tau}\bigr)}{1/\tau-\lambda}
+  -g\tau\bigl(1-\e^{-t/\tau}\bigr)}.
+\]
+再从 $0$ 到 $t$ 积分：
+\[
+  \boxed{y(t)=\frac{k}{1/\tau-\lambda}
+  \left[\frac{1-\e^{-\lambda t}}{\lambda}-\tau(1-\e^{-t/\tau})\right]
+  -g\tau\left[t-\tau(1-\e^{-t/\tau})\right]}.
+\]
+若 $\lambda=1/\tau$，取连续极限可得
+\[
+  v=kt\e^{-t/\tau}-g\tau(1-\e^{-t/\tau}),
+\]
+\[
+  y=k\tau^2\!\left[1-\left(1+\frac t\tau\right)\e^{-t/\tau}\right]
+  -g\tau\left[t-\tau(1-\e^{-t/\tau})\right].
+\]
+把 $t=0$ 代回，两式均满足静止发射的初始条件；$k$ 的量纲为加速度，$\lambda$ 的量纲为时间的倒数。
+若初始数据为一般的 $v_i,y_i$，只需在上述 $v(t)$ 上增加齐次解 $v_i\e^{-t/\tau}$，
+在 $y(t)$ 上增加 $y_i+v_i\tau(1-\e^{-t/\tau})$。
+若推力不衰减，即 $\lambda=0$，把 $(1-\e^{-\lambda t})/\lambda$ 按连续极限取为 $t$ 即可。
+
+（2）利用 $\dot v=v\,\dd v/\dd x$：
+\[
+  v\frac{\dd v}{\dd x}=-\beta v^2
+  \quad\Longrightarrow\quad
+  \boxed{v(x)=v_0\e^{-\beta x}}.
+\]
+直接对时间积分则有
+\[
+  \boxed{v(t)=\frac{v_0}{1+\beta v_0t}},\qquad
+  x(t)=\frac1\beta\ln(1+\beta v_0t).
+\]
+速度按 $1/t$ 衰减而不在有限时间严格变为零，这是平方阻力理想模型的极限性质；$\beta$ 的量纲为 $L^{-1}$。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{椭圆上四种运动规律}
+椭圆参数方程为 $x=a\cos u, y=b\sin u$，$a>b>0$，焦点为 $F(c,0)$，$c^2=a^2-b^2$。分别求质点的速度和加速度：（a）绕焦点面积速度恒定；（b）绕中心面积速度恒定；（c）绕焦点角速度恒定；（d）绕中心角速度恒定。
+\label{r2ch01:pr:004}
+\begin{solution}
+记
+\[
+  \vect r(u)=(a\cos u,b\sin u),\quad
+  \vect r_u=(-a\sin u,b\cos u),\quad
+  \vect r_{uu}=(-a\cos u,-b\sin u),
+\]
+则四种情形都可统一写成
+\[
+  \boxed{\vect v=\vect r_u\dot u,\qquad
+  \vect a=\vect r_{uu}\dot u^2+\vect r_u\ddot u}.
+\]
+因此只需确定 $\dot u,\ddot u$。令 $R=a-c\cos u$ 为质点到右焦点的距离，$q=a^2\cos^2u+b^2\sin^2u$ 为到中心距离的平方。
+焦距关系可以直接验证：
+\[
+ (x-c)^2+y^2=(a\cos u-c)^2+b^2\sin^2u=(a-c\cos u)^2.
+\]
+因为 $a>c$，故取正根便得 $R$。对任意固定参考点 $F$，有向面积速度为
+$\tfrac12[(\vect r-\vect r_F)\times\vect v]_z$；若绕它的极角为 $\theta_F$，又等于
+$\tfrac12R^2\dot\theta_F$。本题不同规律的差别就在于保持这两个量中的哪一个恒定。
+每一分支求出 $\dot u=F(u)$ 后，链式法则给出 $\ddot u=F'(u)F(u)$；下文都使用此规则。
+
+（a）若绕焦点的二倍面积速度为常量 $H_F$，由于
+$(\vect r-\vect r_F)\times\vect r_u=bR\uvec e_z$，有
+\[
+  \dot u=\frac{H_F}{bR},\qquad
+  \ddot u=-\frac{H_F^2c\sin u}{b^2R^3}.
+\]
+这里 $R'=c\sin u$，所以对 $H_F/(bR)$ 求导得到负号。代入统一式，
+\[
+ \vect v=\frac{H_F}{bR}(-a\sin u,b\cos u),\qquad
+ \vect a=-\frac{aH_F^2}{b^2R^3}(a\cos u-c,b\sin u).
+\]
+加速度指向焦点 $F$，其大小为 $aH_F^2/(b^2R^2)$；这不是预设平方反比力，而是本题面积规律与椭圆形状共同导出的结果。
+
+（b）若绕中心的二倍面积速度为常量 $H_C$，由
+$\vect r\times\vect r_u=ab\uvec e_z$，有
+\[
+  \dot u=\frac{H_C}{ab},\qquad \ddot u=0.
+\]
+因此
+\[
+ \vect v=\frac{H_C}{ab}(-a\sin u,b\cos u),\qquad
+ \vect a=-\left(\frac{H_C}{ab}\right)^2(a\cos u,b\sin u).
+\]
+这次加速度指向中心而不是焦点。
+
+（c）若绕焦点的角速度为常量 $\Omega_F$，因
+$\Omega_F=[(\vect r-\vect r_F)\times\vect v]_z/R^2=b\dot u/R$，有
+\[
+  \dot u=\frac{\Omega_FR}{b},\qquad
+  \ddot u=\frac{\Omega_F^2cR\sin u}{b^2}.
+\]
+注意这一分支的面积速度一般不恒定，不再沿用(a)中的常量 $H_F$。速度和加速度为
+\[
+ \vect v=\frac{\Omega_FR}{b}(-a\sin u,b\cos u),
+\]
+\[
+ \vect a=\frac{\Omega_F^2}{b^2}
+ \left[R^2(-a\cos u,-b\sin u)+cR\sin u(-a\sin u,b\cos u)\right].
+\]
+
+（d）若绕中心的角速度为常量 $\Omega_C$，因
+$\Omega_C=ab\dot u/q$，有
+\[
+  \dot u=\frac{\Omega_Cq}{ab},\qquad
+  \ddot u=-\frac{2\Omega_C^2c^2q\sin u\cos u}{a^2b^2}.
+\]
+此处 $q'=2(b^2-a^2)\sin u\cos u=-2c^2\sin u\cos u$，因而
+\[
+ \vect v=\frac{\Omega_Cq}{ab}(-a\sin u,b\cos u),
+\]
+\[
+ \vect a=\frac{\Omega_C^2}{a^2b^2}
+ \left[q^2(-a\cos u,-b\sin u)-2c^2q\sin u\cos u(-a\sin u,b\cos u)\right].
+\]
+这些均为沿椭圆位置参数 $u$ 表示的速度和加速度；若还需确定其时刻，以所选分支的
+$\dot u=F(u)$ 和一个初始相位积分 $t-t_0=\int_{u_0}^{u}\dd\xi/F(\xi)$ 即可。
+常量 $H_F,H_C$ 的量纲为 $L^2/T$，$\Omega_F,\Omega_C$ 为 $T^{-1}$，上述各式分别满足速度、加速度量纲。
+圆极限 $a=b$ 时 $c=0$，四种运动都退化为匀速圆周运动，这是对结果的直接检验。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{心脏线的最大曲率半径}
+极坐标曲线 $r=A(1-\cos\theta)$ 称为心脏线。画出曲线并求曲率半径的最大值。
+\label{r2ch01:pr:005}
+\begin{solution}
+曲线见图~\ref{r2ch01:fig:012}。由极坐标曲率公式
+\[
+  \rho=\frac{(r^2+r'^2)^{3/2}}{|r^2+2r'^2-r r''|}
+\]
+以及 $r'=A\sin\theta, r''=A\cos\theta$，得到
+\[
+  r^2+r'^2=2A^2(1-\cos\theta),\qquad
+  r^2+2r'^2-r r''=3A^2(1-\cos\theta).
+\]
+故
+\[
+  \rho=\frac{4A}{3}\left|\sin\frac\theta2\right|.
+\]
+最大值在 $\theta=\pi$ 取得，即图中离尖点 $O$ 最远的点 $P$，此时 $OP=2A$：
+\[
+  \boxed{\rho_{\max}=\frac{4A}{3}}.
+\]
+尖点 $\theta=0$ 处应取极限，曲率半径趋于零。
+
+\figCardioid
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{三个等时位置确定加速度}
+物体作匀加速曲线运动，在 $t=1\ \mathrm s,2\ \mathrm s,3\ \mathrm s$ 时依次经过 $A,B,C$。已知 $AB=8\ \mathrm m$，$BC=6\ \mathrm m$，且 $AB\perp BC$。求质点的加速度，并说明方向。
+\label{r2ch01:pr:006}
+\begin{solution}
+“匀加速曲线运动”表示加速度矢量恒定，而不是只保持加速度大小恒定。
+以经过 $B$ 的时刻为基准，分别向前、向后推一个 $\Delta t=1\ \mathrm s$：
+\[
+ \vect r_C=\vect r_B+\vect v_B\Delta t+\tfrac12\vect a\Delta t^2,
+ \qquad
+ \vect r_A=\vect r_B-\vect v_B\Delta t+\tfrac12\vect a\Delta t^2.
+\]
+两式相加后初速度项消去，匀加速运动的二阶差分就是
+\[
+  \vect a\,\Delta t^2=\vect r_C-2\vect r_B+\vect r_A
+  =\overrightarrow{BC}-\overrightarrow{AB}.
+\]
+两矢量互相垂直，故
+\[
+  a=\frac{\sqrt{AB^2+BC^2}}{(1\ \mathrm s)^2}
+  =\boxed{10\ \mathrm{m\,s^{-2}}}.
+\]
+加速度方向沿 $\overrightarrow{BC}-\overrightarrow{AB}$，不是沿 $AC$。单位由“位移除以时间平方”得到。
+例如取 $+x$ 沿 $AB$、$+y$ 沿 $BC$，便有 $\vect a=(-8,6)\ \mathrm{m\,s^{-2}}$，
+即与 $-x$ 轴成 $\arctan(6/8)\approx36.9^\circ$、偏向 $+y$ 的方向。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{匀速目标的纯追踪曲线}
+目标从地面以恒定速度 $u$ 竖直上升；与起点水平相距 $L$ 处同时发射速率恒为 $v$ 的导弹，且 $v>u$。导弹速度始终指向目标。求导弹轨迹及其总弧长。
+\label{r2ch01:pr:007}
+\begin{solution}
+设从导弹指向目标的视线与竖直方向夹角为 $\theta$，两者距离为 $r$。初始时 $\theta=\pi/2,r=L$，命中时 $\theta\to0,r\to0$。相对速度在视线方向和垂直视线方向的投影给出
+\[
+  \dot r=u\cos\theta-v,\qquad
+  r\dot\theta=-u\sin\theta.
+\]
+消去时间并积分：
+\[
+  \frac{\dd r}{r}=\left(\frac vu\csc\theta-\cot\theta\right)\dd\theta,
+\]
+\[
+  \boxed{r(\theta)=\frac{L}{\sin\theta}
+  \left(\tan\frac\theta2\right)^{v/u}}.
+\]
+令 $q=v/u>1$、$w=\tan(\theta/2)$。若以目标起点为原点，$x$ 水平指向导弹发射点，$y$ 竖直向上，则导弹位置可参数化为
+\begin{align*}
+  x(w)&=Lw^q,\\
+  t(w)&=\frac{L}{2u}\left[
+  \frac{1-w^{q-1}}{q-1}+\frac{1-w^{q+1}}{q+1}\right],\\
+  y(w)&=ut(w)-\frac L2w^{q-1}(1-w^2),\qquad 1\geq w\geq0.
+\end{align*}
+其中时间函数的积分过程为：由 $\dot\theta=-u\sin\theta/r$，代入
+$\sin\theta=2w/(1+w^2)$、$\dd\theta=2\dd w/(1+w^2)$，得到
+\[
+ \frac{\dd t}{\dd w}=-\frac{L}{2u}(w^{q-2}+w^q).
+\]
+从初值 $w=1,t=0$ 积分到任意 $w$，便得到上面的 $t(w)$。
+再由目标高度 $ut$ 减去视线的竖直分量 $r\cos\theta$，得到 $y(w)$。
+因此三个参数式确实描述同一次运动，而不是三条独立关系。命中时间为
+\[
+  T=\frac Lu\int_0^{\pi/2}
+  \frac{\tan^q(\theta/2)}{\sin^2\theta}\,\dd\theta
+  =\frac{Lv}{v^2-u^2}.
+\]
+由于导弹速率恒为 $v$，总弧长为
+\[
+  \boxed{s=vT=\frac{Lv^2}{v^2-u^2}}.
+\]
+当 $u\to0$ 时 $s\to L$；当 $v\downarrow u$ 时命中时间和路程发散，均符合物理直觉。
+\end{solution}
+\end{practicebox}
+
+\section{配套习题：转动系、接触系、纯滚系与牵连系}
+\label{r2ch01:sec:practice-frames}
+
+\begin{practicebox}{轮上定点滚锥的复合加速度}
+半径为 $r$ 的轮I由曲柄 $OA$ 带动，绕同半径的固定轮II作外纯滚，曲柄角速度大小恒为 $\omega_0$。母线长为 $r$、顶角为 $90^\circ$ 的圆锥以顶点 $A$ 为定点，在轮I表面纯滚；相对轮I，圆锥底面中心 $D$ 的速率为 $\omega_0r$。求图示 $O,A,C$ 共线瞬间点 $B$ 的绝对加速度。
+\label{r2ch01:pr:008}
+\begin{solution}
+图~\ref{r2ch01:fig:013} 明确采用右手系：$\uvec y$ 沿 $AC$ 向外，$\uvec z$ 竖直向上，$\uvec x\times\uvec y=\uvec z$。取曲柄角速度为 $\omega_0\uvec z$。轮I与固定轮II外滚且两轮半径相等，所以
+\[
+  \vect v_A=-2r\omega_0\uvec x,\qquad
+  \vect a_A=-2r\omega_0^2\uvec y,\qquad
+  \vect\Omega_I=2\omega_0\uvec z.
+\]
+
+\figConeRolling
+
+圆锥的瞬时相对转轴是接触母线 $AC$。令
+\[
+  \vect v_{D/I}=\sigma\omega_0r\uvec x,\qquad \sigma=\pm1.
+\]
+由 $\overrightarrow{AD}=\tfrac r2(\uvec y+\uvec z)$ 可知
+\[
+  \vect\Omega_{K/I}=2\sigma\omega_0\uvec y,\qquad
+  \vect\Omega_K=2\omega_0(\uvec z+\sigma\uvec y).
+\]
+设接触母线相对轮面的方位角为 $\psi$。在轮I坐标系中，$\uvec z$ 不变，
+$\dot{\uvec y}=\dot\psi\,\uvec z\times\uvec y=-\dot\psi\,\uvec x$。
+对 $\overrightarrow{AD}=\tfrac r2(\uvec y+\uvec z)$ 求相对导数，并与题设速度比较，得到
+\[
+ -\frac r2\dot\psi\,\uvec x=\sigma\omega_0r\uvec x,
+ \qquad \dot\psi=-2\sigma\omega_0.
+\]
+故接触母线的绝对方位转率为 $2(1-\sigma)\omega_0$。
+轮I的角速度恒定，所以对 $\vect\Omega_K=2\omega_0(\uvec z+\sigma\uvec y)$ 求绝对导数，有
+\[
+  \vect\beta_K=-4\sigma(1-\sigma)\omega_0^2\uvec x.
+\]
+点 $B$ 满足 $\overrightarrow{AB}=r\uvec z$。代入刚体加速度公式：
+\[
+  \vect a_B=\vect a_A+\vect\beta_K\times(r\uvec z)
+  +\vect\Omega_K\times[\vect\Omega_K\times(r\uvec z)],
+\]
+两个叉积分别为
+\[
+ \vect\beta_K\times(r\uvec z)=4\sigma(1-\sigma)r\omega_0^2\uvec y,
+ \qquad
+ \vect\Omega_K\times[\vect\Omega_K\times(r\uvec z)]
+   =4r\omega_0^2(\sigma\uvec y-\uvec z).
+\]
+加上 $\vect a_A$，再使用 $\sigma^2=1$，得到
+\[
+  \boxed{\vect a_B=r\omega_0^2
+  \left[(-6+8\sigma)\uvec y-4\uvec z\right]}.
+\]
+图示若 $D$ 相对轮I沿 $+\uvec x$ 运动，$\sigma=+1$，则
+\[
+  \boxed{\vect a_B=2r\omega_0^2\uvec y-4r\omega_0^2\uvec z}.
+\]
+若滚动方向反向，则 $\sigma=-1$，$\vect a_B=-14r\omega_0^2\uvec y-4r\omega_0^2\uvec z$。两种结果的量纲均为 $L/T^2$；方向分支来自题图中必须指定的滚动方向，而不是计算中的任意符号。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{空间刚体的螺旋轴}
+某刚体在给定时刻有
+\[
+ A(0,0,0),\quad B(1,1,0),\quad C(1,1,1),
+\]
+\[
+ \vect v_A=(2,1,-3),\quad \vect v_B=(0,3,-1),\quad
+ \vect v_C=(-1,2,-1).
+\]
+判断是否存在一条直线，使该直线上各点的速度均平行于该直线；若存在，求螺旋轴、刚体角速度和轴向速度。
+\label{r2ch01:pr:009}
+\begin{solution}
+刚体速度场满足
+$\vect v_B-\vect v_A=\vect\omega\times\overrightarrow{AB}$、
+$\vect v_C-\vect v_B=\vect\omega\times\overrightarrow{BC}$。设 $\vect\omega=(p,q,s)$，代入
+\[
+  (-2,2,2)=\vect\omega\times(1,1,0),\qquad
+  (-1,-1,0)=\vect\omega\times(0,0,1),
+\]
+得到
+\[
+  \boxed{\vect\omega=(1,-1,2)},\qquad |\vect\omega|=\sqrt6.
+\]
+具体地，第二个叉积的分量为 $(q,-p,0)$，故 $q=-1,p=1$；
+第一个为 $(-s,s,p-q)$，继而给出 $s=2$，第三分量 $p-q=2$ 也与数据相符。
+轴上速度必须等于 $h\vect\omega$。点乘 $\vect\omega$ 可知
+\[
+  h=\frac{\vect\omega\cdot\vect v_A}{\omega^2}=-\frac56.
+\]
+轴上一点不是任意猜出的。取 $\vect r_0\perp\vect\omega$，对
+$\vect v_A+\vect\omega\times\vect r_0=h\vect\omega$ 两边左叉乘 $\vect\omega$，
+利用 $\vect\omega\times(\vect\omega\times\vect r_0)=-\omega^2\vect r_0$，得到
+\[
+ \vect r_0=\frac{\vect\omega\times\vect v_A}{\omega^2}
+ =\frac16(1,7,3).
+\]
+即
+\[
+  \vect r_0=\left(\frac16,\frac76,\frac12\right),
+\]
+直接计算有
+$\vect v_A+\vect\omega\times\vect r_0=-\tfrac56\vect\omega$。故螺旋轴为
+\[
+  \boxed{\vect r=\left(\frac16,\frac76,\frac12\right)
+  +s(1,-1,2)},\qquad s\in\mathbb R.
+\]
+轴上各点的共同轴向速度矢量及其沿 $+\vect\omega$ 的标量分量为
+\[
+  \boxed{\vect v_\parallel=-\frac56\vect\omega},\qquad
+  \boxed{v_\parallel=-\frac5{\sqrt6}}.
+\]
+把轴上任意点代回速度场，横向分量均为零，完成核验。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{刚体瞬心与空间瞬心}
+平面刚体上固定点 $A$ 的速度为 $\vect u(t)$，角速度为 $\vect\omega=\omega(t)\uvec k$。求刚体速度瞬心 $C$ 和空间速度瞬心 $C'$ 的速度，并证明
+$\vect a_C=\vect v_{C'}\times\vect\omega$。
+\label{r2ch01:pr:010}
+\begin{solution}
+刚体速度场为
+\[
+  \vect v(P)=\vect u+\omega\uvec k\times(\vect r_P-\vect r_A).
+\]
+当 $\omega\ne0$ 时，令 $\vect v(C)=0$，得到瞬心位置
+\[
+  \boxed{\vect r_C=\vect r_A+\frac{\uvec k\times\vect u}{\omega}}.
+\]
+“刚体瞬心 $C$”是此刻恰好落在该位置的物质点，所以
+\[
+  \boxed{\vect v_C=0}.
+\]
+“空间瞬心 $C'$”是瞬心位置在定空间中扫出的几何点，其速度是上式右端的全导数：
+\[
+  \boxed{\vect v_{C'}=\vect u
+  +\frac{\uvec k\times\dot{\vect u}}{\omega}
+  -\frac{\dot\omega}{\omega^2}\uvec k\times\vect u}.
+\]
+在 $t+\dd t$ 时，新瞬心移动了 $\vect v_{C'}\dd t$，原来位于瞬心的物质点一阶位移为零。相对于新瞬心，它的位置差为
+$-\vect v_{C'}\dd t$，故其新速度为
+\[
+  \dd\vect v_C=\vect\omega\times(-\vect v_{C'}\dd t).
+\]
+于是
+\[
+  \boxed{\vect a_C=-\vect\omega\times\vect v_{C'}
+  =\vect v_{C'}\times\vect\omega}.
+\]
+这也说明“瞬心速度为零”只是一阶瞬时结论，并不意味着其加速度为零。
+若 $\omega=0$ 而 $\vect u\ne0$，刚体此刻为非零速度的纯平动，不存在有限位置的速度瞬心。
+若两者同时为零，所有材料点此刻都静止，瞬心不唯一；上面的含 $1/\omega$ 公式不适用。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{圆柱与斜杆同时纯滚}
+半径为 $r$ 的圆柱在水平面上向右纯滚，柱心速度恒为 $v_0$。一长杆斜靠圆柱并与圆柱表面纯滚，杆端 $A$ 在地面上滑动但不离地。求杆与地面夹角为 $\phi$ 时的角速度和角加速度。
+\label{r2ch01:pr:011}
+\begin{solution}
+先按图~\ref{r2ch01:fig:014} 所示杆从左侧地面端点向右上方倾斜的分支讨论，$0<\phi<\pi/2$。
+由切线几何，柱心到端点的水平距离为
+\[
+  x_O-x_A=r\cot\frac\phi2,\qquad
+  x_A=x_O-r\cot\frac\phi2.
+\]
+
+\figRodCylinder
+
+故
+\[
+  \dot x_A=v_0+\frac r2\csc^2\frac\phi2\,\dot\phi.
+\]
+接触点 $P$ 到 $A$ 沿杆的距离也为 $r\cot(\phi/2)$。圆柱对地纯滚，角速度为 $-v_0/r$；其 $P$ 点沿杆方向的速度分量为 $v_0(1+\cos\phi)$。杆的转动速度在 $P$ 处垂直于杆，所以杆沿自身方向的速度分量为 $\dot x_A\cos\phi$。无滑动条件给出
+\[
+  \dot x_A\cos\phi=v_0(1+\cos\phi).
+\]
+联立并化简：
+\[
+  \boxed{\dot\phi=\frac{v_0}{r}(\sec\phi-1)}.
+\]
+再对时间求导，由 $v_0$ 恒定得
+\[
+  \boxed{\ddot\phi=\frac{v_0^2}{r^2}\sec\phi\tan\phi(\sec\phi-1)}.
+\]
+这里正号定义为 $\phi$ 增大的方向。两式分别具有 $T^{-1}$、$T^{-2}$ 的量纲；$\phi\to0$ 时二者均趋于零。
+当 $\phi=\pi/2$ 时不能再除以 $\cos\phi$：无滑动等式的左端为零，右端却为 $v_0$。
+因此在 $v_0>0$ 且端点速度有限的条件下，图示分支不能保持两处纯滚而连续通过竖直姿态，
+公式的发散反映的是约束退化，不是物体实际能够达到无限速度。杆从另一侧倾斜时，应重新规定
+有向杆角及接触分支，不能只把同一锐角代入图示分支的式子。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{转盘推动切杆}
+半径 $R=4\sqrt3\ \mathrm{cm}$ 的圆盘以恒定角速度 $\omega=1.5\ \mathrm{rad\,s^{-1}}$ 绕圆周上的固定点 $O$ 逆时针转动。扭转弹簧使杆始终紧压在圆盘上，杆与圆盘相切并绕固定点 $O_1$ 转动。图示瞬间杆与水平线夹角 $\phi=30^\circ$，且 $O_1D=4\ \mathrm{cm}$。求 $D$ 点的速度和加速度。
+\label{r2ch01:pr:012}
+\begin{solution}
+图~\ref{r2ch01:fig:015} 中 $C,O,O_1$ 此刻共线。切线几何给出
+\[
+  d=O_1C=\frac R{\sin\phi}=8\sqrt3\ \mathrm{cm}.
+\]
+
+\figTangentRod
+
+设从 $O_1$ 指向切点 $B$ 的杆方向角为 $\theta=\pi-\phi$，其单位切向为
+$\uvec t=(-\cos\phi,\sin\phi)$。取 $\vect q=\overrightarrow{O_1C}$，指向圆心一侧的单位法向为
+$\uvec n=(-\sin\phi,-\cos\phi)$，相切条件是 $\uvec n\cdot\vect q=R$。
+在图示瞬间，$\vect q=(-d,0)$、$\dot{\vect q}=(0,\omega R)$、
+$\ddot{\vect q}=(-\omega^2R,0)$。由 $\dot{\uvec n}=-\dot\theta\uvec t$，一次求导得
+\[
+ -\dot\theta\,\uvec t\cdot\vect q+\uvec n\cdot\dot{\vect q}=0,
+ \qquad -d\cos\phi\,\dot\theta-\omega R\cos\phi=0.
+\]
+所以
+\[
+  \dot\theta=-\frac{\omega R}{d}=-\omega\sin\phi=-\frac34\ \mathrm{rad\,s^{-1}}.
+\]
+再对相切条件求导，注意 $\dot{\uvec t}=\dot\theta\uvec n$，得到
+\[
+ -\ddot\theta\,\uvec t\cdot\vect q-\dot\theta^2R
+ -2\dot\theta\uvec t\cdot\dot{\vect q}
+ +\uvec n\cdot\ddot{\vect q}=0.
+\]
+将上述点积展开：
+\[
+ d\cos\phi\,\ddot\theta
+ =\omega^2R\sin\phi-2\dot\theta\omega R\sin\phi-\dot\theta^2R.
+\]
+代入 $d=R/\sin\phi$ 和 $\dot\theta=-\omega\sin\phi$，便得
+\[
+  \ddot\theta=\omega^2\frac{\sin^2\phi(1+\sin\phi)}{\cos\phi}
+  =\frac{9\sqrt3}{16}\ \mathrm{rad\,s^{-2}}.
+\]
+取 $x$ 轴向右、$y$ 轴向上。$\overrightarrow{O_1D}=(2\sqrt3,-2)\ \mathrm{cm}$，于是
+\[
+  \vect v_D=\dot\theta\uvec k\times\overrightarrow{O_1D}
+  =\boxed{\left(-\frac32,-\frac{3\sqrt3}{2}\right)\ \mathrm{cm\,s^{-1}}},
+\]
+其速率为 $\boxed{3.00\ \mathrm{cm\,s^{-1}}}$。加速度为
+\[
+  \vect a_D=\ddot\theta\uvec k\times\overrightarrow{O_1D}
+  -\dot\theta^2\overrightarrow{O_1D}
+  =\boxed{(0,4.50)\ \mathrm{cm\,s^{-2}}}.
+\]
+切向、法向加速度大小分别约为 $3.90$ 和 $2.25\ \mathrm{cm\,s^{-2}}$，平方和开方确为 $4.50\ \mathrm{cm\,s^{-2}}$。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{从卵形柱面展开的绳}
+质点由不可伸长轻绳缠绕在光滑卵形柱面上。给质点初速度后，绳逐渐从柱面展开，质点动能保持为 $T$。说明动能为何守恒；当已展开的直绳段长为 $l$ 时，求绳中拉力。
+\label{r2ch01:pr:013}
+\begin{solution}
+如图~\ref{r2ch01:fig:016}，设切点为 $Q$、质点为 $P$，以免切点记号与动能 $T$ 混淆。
+题设的守恒情形对应固定柱体、绳始终绷紧且没有其他做功的外力；例如运动在水平面内且重力由支持力平衡。
+不可伸长条件使 $P$ 的瞬时速度垂直于直绳段 $QP$，而拉力沿 $PQ$，所以
+\[
+  \vect F_T\cdot\vect v_P=0.
+\]
+拉力不做功；光滑固定柱面对质点也不做功，因此质点动能守恒。
+
+\figInvolute
+
+绳端轨迹是柱面截线的渐开线。这个结论可从绳长约束推出：令 $s$ 为切点沿截线增加的弧长，
+$\uvec t$ 为截线切向，则放出的直绳段满足 $l+s=\text{常量}$，$\dd l/\dd s=-1$。
+质点位置为 $\vect r_P=\vect r_Q+l\uvec t$，求导得
+\[
+ \frac{\dd\vect r_P}{\dd s}
+ =\uvec t-\uvec t+l\kappa\uvec n=l\kappa\uvec n.
+\]
+所以质点速度平行于截线法向，垂直绳段；图示的展开方向有 $\dd s/\dd t<0$，
+速度沿 $-\uvec n$，与逐渐收绳时相反。质点走过的弧长微元为
+$\dd s_P=l\kappa\,|\dd s|$，切向的转角大小为 $\dd\psi=\kappa|\dd s|$，于是
+$\rho=\dd s_P/\dd\psi=l=PQ$，其曲率中心就是瞬时切点 $Q$。由
+\[
+  T=\frac12mv^2,\qquad F_T=m\frac{v^2}{\rho},
+\]
+得到
+\[
+  \boxed{F_T=\frac{2T}{l}}.
+\]
+单位为能量除以长度，即力；当 $l$ 增大时，同样速率所需的法向力减小。
+若重力或其他外力沿实际轨迹做功，动能不再保持题设常量 $T$；
+此时必须将该外力的功和法向分量分别计入能量式与向心力式，不能直接套用 $F_T=2T/l$。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{曲柄—套筒—摇杆机构}
+曲柄 $OA$ 长为 $r$，与套筒 $AC$ 铰接，$AC=a$。套筒沿摇杆 $O_1CB$ 滑动并带动摇杆转动。图示瞬间摇杆竖直，$O_1C=b$；曲柄与竖直方向夹角为 $\phi_0$，此时顺时针角速度大小为 $\omega$。求此瞬间摇杆的角速度和角加速度。若曲柄角速度随时间变化，将其顺时针角加速度记为 $\varepsilon=\dot\omega$；同时给出匀速转动的特例。
+\label{r2ch01:pr:014}
+\begin{solution}
+如图~\ref{r2ch01:fig:017}，取 $\uvec e$ 竖直向上、$\uvec n$ 水平向右、$\uvec k$ 垂直纸面向外；摇杆逆时针角速度记为 $\Omega\uvec k$。曲柄给出的 $A$ 点速度为
+\[
+  \vect v_A=\omega r\cos\phi_0\,\uvec n
+  +\omega r\sin\phi_0\,\uvec e.
+\]
+
+\figRocker
+
+另一方面，$\overrightarrow{O_1A}=b\uvec e+a\uvec n$，其中 $b$ 随套筒滑动而变化，所以
+\[
+  \vect v_A=-b\Omega\uvec n+(\dot b+a\Omega)\uvec e.
+\]
+逐分量比较：
+\[
+  \boxed{\Omega=-\frac{\omega r\cos\phi_0}{b}},\qquad
+  \dot b=\omega r\sin\phi_0+\frac{a\omega r\cos\phi_0}{b}.
+\]
+负号说明摇杆此刻顺时针转动。
+
+已知某一瞬间的角速度，并不等于已知角加速度为零。保留 $\varepsilon$，曲柄给出
+\[
+  \vect a_A=r(\varepsilon\cos\phi_0+\omega^2\sin\phi_0)\uvec n
+  +r(\varepsilon\sin\phi_0-\omega^2\cos\phi_0)\uvec e.
+\]
+对机构表达式再求导，其 $\uvec n$ 分量为
+\[
+  a_{A,n}=-2\dot b\Omega-b\dot\Omega-a\Omega^2.
+\]
+故摇杆角加速度为
+\[
+  \boxed{\dot\Omega=-\frac{r\varepsilon\cos\phi_0+\omega^2r\sin\phi_0+2\dot b\Omega+a\Omega^2}{b}},
+\]
+其中 $\Omega,\dot b$ 取前两式。科里奥利型项 $2\dot b\Omega$ 来自套筒相对摇杆滑动，不能遗漏。各项均为 $T^{-2}$ 量纲。
+若曲柄匀速转动，令 $\varepsilon=0$，得到
+\[
+ \dot\Omega=-\frac{\omega^2r\sin\phi_0+2\dot b\Omega+a\Omega^2}{b}.
+\]
+若只给瞬时角速度 $\omega$，摇杆角速度仍由前式唯一确定，摇杆角加速度则由包含 $\varepsilon$ 的参数式确定。
+\end{solution}
+\end{practicebox}

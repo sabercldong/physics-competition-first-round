@@ -1,0 +1,413 @@
+% Original vector redraws replacing all figures cropped from the source PDF.
+% The physical relationships are retained, while composition, line work,
+% colour, labels and visual hierarchy are newly designed for this handout.
+
+\newcommand{\diagramcaption}[1]{%
+  \par\smallskip
+  \begin{center}
+    \begin{minipage}{0.86\linewidth}
+      \centering\small\color{TextGray}#1
+    \end{minipage}
+  \end{center}
+}
+
+\newcommand{\perpetualMotionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \cx/\title in {-5.1/{偏心重锤轮},0/{循环配重带},5.1/{单向摆锤轮}}{
+    \draw[fill=SoftGray,draw=RuleGray,rounded corners=2pt] (\cx-2.15,-2.35) rectangle (\cx+2.15,2.65);
+    \node[font=\small\bfseries] at (\cx,2.25) {\title};
+  }
+  % Deliberately new overbalanced-wheel construction.
+  \begin{scope}[shift={(-5.1,0)}]
+    \draw[Ink,very thick] (-1.55,-1.85)--(1.55,-1.85) (0,-1.85)--(0,-1.15);
+    \draw[Ink,very thick] (0,0.15) circle (1.3);
+    \foreach \a in {0,45,...,315}{
+      \draw[TextGray,thick] (0,0.15)--(\a:1.05);
+      \pgfmathsetmacro{\rr}{ifthenelse(cos(\a)>0,1.3,0.78)}
+      \fill[DeepBlue] (\a:\rr) ++(0,0.15) circle (2.5pt);
+    }
+    \draw[->,DeepBlue,very thick] (1.55,0.75) arc[start angle=25,end angle=-70,radius=1.05];
+    \node[font=\scriptsize,align=center] at (0,-2.08) {设想：右侧力矩始终较大};
+  \end{scope}
+  % New closed-loop chain construction.
+  \begin{scope}[shift={(0,0)}]
+    \draw[Ink,very thick,rounded corners=12pt] (-1.15,-1.45) rectangle (1.15,1.35);
+    \foreach \y in {-1.05,-0.45,0.15,0.75}{
+      \draw[fill=DeepBlue!16,draw=DeepBlue,thick] (-1.35,\y-0.17) rectangle (-0.93,\y+0.17);
+      \draw[fill=DeepBlue!35,draw=DeepBlue,thick] (0.86,\y-0.27) rectangle (1.44,\y+0.27);
+    }
+    \draw[->,DeepBlue,very thick] (1.72,0.55)--(1.72,-0.5);
+    \draw[->,TextGray,thick] (-1.72,-0.5)--(-1.72,0.55);
+    \node[font=\scriptsize,align=center] at (0,-2.08) {设想：重块一侧持续下落};
+  \end{scope}
+  % New one-way pendulum construction.
+  \begin{scope}[shift={(5.1,0)}]
+    \draw[Ink,very thick] (-1.55,-1.85)--(1.55,-1.85) (0,-1.85)--(0,-1.05);
+    \draw[Ink,very thick] (0,0.18) circle (1.18);
+    \foreach \a in {10,50,...,330}{
+      \draw[TextGray,thick] (0,0.18)--(\a:1.05);
+      \draw[Ink,thick] (\a:1.05) ++(0,0.18)--++(0,-0.34);
+      \fill[DeepBlue] (\a:1.05) ++(0,-0.16) circle (2.7pt);
+    }
+    \draw[->,DeepBlue,very thick] (-1.48,0.85) arc[start angle=155,end angle=245,radius=1.08];
+    \node[font=\scriptsize,align=center] at (0,-2.08) {设想：摆锤只在一侧做功};
+  \end{scope}
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,font=\small,align=center]
+    at (0,-3.05) {共同漏洞：装置回到原状态时，若无外界能量输入，就不可能留下正的净功};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\thermalPlumeRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \shade[bottom color=DeepBlue!8,top color=white] (-4.9,-2.35) rectangle (5.0,2.75);
+  % Newly drawn stylised hand and forearm.
+  \path[fill=orange!28,draw=Ink,thick]
+    (-4.65,-2.1) .. controls (-3.6,-1.55) and (-2.65,-1.05) .. (-1.65,-0.8)
+    .. controls (-1.1,-0.65) and (-0.62,-0.62) .. (-0.18,-0.38)
+    .. controls (0.18,-0.18) and (0.08,0.13) .. (-0.22,0.18)
+    .. controls (-0.7,0.22) and (-1.12,0.08) .. (-1.58,0.04)
+    .. controls (-1.05,0.28) and (-0.62,0.48) .. (-0.23,0.75)
+    .. controls (0.13,1.0) and (-0.05,1.28) .. (-0.38,1.24)
+    .. controls (-1.02,1.15) and (-1.56,0.76) .. (-2.08,0.55)
+    .. controls (-2.7,0.30) and (-3.05,0.05) .. (-3.55,-0.35)
+    .. controls (-4.05,-0.78) and (-4.35,-1.35) .. (-4.65,-2.1) -- cycle;
+  \foreach \x/\h/\bend in {-2.8/2.0/0.35,-2.15/2.55/-0.25,-1.45/2.15/0.30,-0.78/1.7/-0.2}{
+    \draw[orange!85!red,very thick,->]
+      (\x,0.35) .. controls (\x+\bend,0.9) and (\x-\bend,1.45) .. (\x+0.15,\h);
+  }
+  \foreach \x/\y in {-3.2/0.25,-2.65/1.0,-2.05/1.55,-1.4/1.0,-0.9/1.55,0.05/0.95}{
+    \fill[orange!80!red] (\x,\y) circle (1.5pt);
+  }
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,align=left,anchor=west] at (1.0,1.25)
+    {手掌加热邻近空气\\热空气密度减小并上升};
+  \draw[->,DeepBlue,thick] (1.15,0.85) .. controls (0.35,0.65) and (-0.15,1.1) .. (-0.55,1.45);
+  \node[font=\small,TextGray,anchor=west] at (1.0,-0.15) {上升暖流携带热量：对流};
+  \draw[very thick,orange!85!red] (1.0,-0.75)--(2.0,-0.75) node[right,font=\small,Ink] {温度较高};
+  \draw[very thick,DeepBlue!55] (1.0,-1.22)--(2.0,-1.22) node[right,font=\small,Ink] {环境空气};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\stellarConvectionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \begin{scope}[shift={(-3.9,0)}]
+    \shade[ball color=orange!55] (0,0) circle (1.75);
+    \clip (0,0) circle (1.75);
+    \foreach \x/\y/\r in {-1.0/0.8/0.45,-0.25/1.05/0.40,0.65/0.8/0.48,1.15/0.1/0.42,0.6/-0.65/0.5,-0.35/-0.75/0.48,-1.15/-0.25/0.42,-0.25/0.1/0.55}{
+      \draw[orange!85!black,opacity=.7,thick] (\x,\y) circle (\r);
+      \fill[yellow!75!white,opacity=.65] (\x,\y) circle (0.11);
+    }
+  \end{scope}
+  \draw[Ink,thick] (-3.9,0) circle (1.75);
+  \node[font=\small\bfseries] at (-3.9,-2.2) {太阳表面：较细的对流颗粒};
+  \begin{scope}[shift={(3.35,0)}]
+    \shade[ball color=red!65!orange] (0,0) circle (2.45);
+    \clip (0,0) circle (2.45);
+    \foreach \x/\y/\r in {-1.3/1.2/0.62,-0.15/1.4/0.68,1.25/1.0/0.72,1.55/-0.25/0.72,0.75/-1.2/0.78,-0.55/-1.35/0.72,-1.55/-0.5/0.65,-0.35/0.15/0.92,0.95/0.2/0.72}{
+      \draw[red!70!black,opacity=.72,very thick] (\x,\y) circle (\r);
+      \fill[orange!80!yellow,opacity=.65] (\x,\y) circle (0.16);
+    }
+  \end{scope}
+  \draw[Ink,thick] (3.35,0) circle (2.45);
+  \node[font=\small\bfseries] at (3.35,-2.85) {红巨星表面：尺度更大的对流胞};
+  \foreach \cx/\cy in {-4.5/-0.5,-3.4/0.35,2.4/-0.5,3.6/0.55,4.2/-0.85}{
+    \draw[->,DeepBlue,thick] (\cx,\cy-0.25)--(\cx,\cy+0.35);
+  }
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small] at (0,-3.55)
+    {亮区：热物质上升\qquad 暗边界：冷物质下沉};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\thermalRadiationRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,thick,rounded corners=3pt,fill=SoftGray] (-5.4,-1.45) rectangle (5.4,1.45);
+  \shade[left color=red!85!black,middle color=orange!85,right color=DeepBlue!35]
+    (-4.85,-0.6) rectangle (4.85,0.6);
+  \draw[Ink,very thick] (-4.85,-0.6) rectangle (4.85,0.6);
+  \node[white,font=\bfseries] at (-3.65,0) {高温区};
+  \node[Ink,font=\bfseries] at (3.65,0) {低温区};
+  \foreach \x/\s in {-4.4/1.0,-3.55/.85,-2.7/.7}{
+    \draw[orange!90!red,very thick,decorate,decoration={snake,amplitude=1.3mm,segment length=4mm}]
+      (\x,0.78)--(\x,0.78+\s);
+  }
+  \foreach \x/\s in {2.9/.42,3.75/.32,4.45/.25}{
+    \draw[DeepBlue!70,thick,decorate,decoration={snake,amplitude=.8mm,segment length=4mm}]
+      (\x,0.78)--(\x,0.78+\s);
+  }
+  \node[font=\small,anchor=east] at (-2.2,-1.95) {$j_{\rm rad}=\sigma T^4$：温度升高，辐射急剧增强};
+  \draw[->,DeepBlue,thick] (0,-2.0)--(3.8,-2.0) node[right,font=\small] {温度降低};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\heatCapacityRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (0,0)--(11.2,0) node[right] {$T/\mathrm K$（对数刻度）};
+  \draw[axis] (0,0)--(0,5.6) node[above] {$c_v$};
+  \foreach \x/\lab in {0.8/{10},2.8/{50},4.3/{100},5.9/{500},7.4/{10^3},9.2/{5\!\times\!10^3},10.7/{10^4}}{
+    \draw[TextGray] (\x,0.08)--(\x,-0.08) node[below,font=\scriptsize] {$\lab$};
+  }
+  \foreach \y/\lab in {1.35/{\frac32R},3.15/{\frac52R},4.95/{\frac72R}}{
+    \draw[guide] (0,\y)--(10.75,\y);
+    \node[left,font=\small] at (0,\y) {$\lab$};
+  }
+  \draw[DeepBlue,very thick]
+    (0.7,1.35)--(2.0,1.35)
+    .. controls (3.0,1.35) and (3.15,3.15) .. (4.65,3.15)
+    --(6.45,3.15)
+    .. controls (7.5,3.15) and (7.7,4.95) .. (9.35,4.95)
+    --(10.65,4.95);
+  \draw[<->,Ink,thick] (1.3,0.18)--(1.3,1.28) node[midway,right,font=\small] {平动};
+  \draw[<->,Ink,thick] (5.25,1.43)--(5.25,3.07) node[midway,right,font=\small] {转动};
+  \draw[<->,Ink,thick] (9.9,3.23)--(9.9,4.87) node[midway,right,font=\small] {振动};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small,align=left] at (5.55,5.15)
+    {温度升高后，更高能级对应的自由度才逐步参与能量均分};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\pressureLayerRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \shade[bottom color=DeepBlue!16,top color=DeepBlue!4] (-4.2,-1.55) rectangle (1.2,2.15);
+  \draw[Ink,very thick] (-4.2,-1.55)--(1.2,-1.55);
+  \draw[fill=DeepBlue!20,draw=DeepBlue,thick] (-3.7,0.2) rectangle (0.7,0.72);
+  \draw[<->,Ink,thick] (-3.1,-1.48)--node[left] {$h$}(-3.1,0.18);
+  \draw[<->,DeepBlue,thick] (1.65,0.2)--node[right] {$\dd h$}(1.65,0.72);
+  \node[font=\small] at (-1.5,-0.55) {$T,\ P,\ \rho$};
+  \node[font=\small] at (-1.5,1.15) {$T+\dd T,\ P+\dd P$};
+  \draw[->,DeepBlue,very thick] (-0.2,0.45)--(-0.2,-0.7) node[midway,right] {$\rho gA\,\dd h$};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,align=left,anchor=west] at (3.05,0.3)
+    {薄层静力平衡：\\[3pt]$A\,\dd P=-\rho gA\,\dd h$\\[3pt]$\boxed{\dd P=-\rho g\,\dd h}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\atmosphereProfileRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.82cm,>=Latex]
+  \fill[DeepBlue!10] (-5.2,-2.25) rectangle (5.6,-1.55);
+  \fill[DeepBlue!6]  (-5.2,-1.55) rectangle (5.6,-0.25);
+  \fill[orange!9]    (-5.2,-0.25) rectangle (5.6,2.0);
+  \fill[DeepBlue!5]  (-5.2,2.0) rectangle (5.6,3.45);
+  \fill[violet!7]    (-5.2,3.45) rectangle (5.6,5.15);
+  \foreach \y/\h in {-2.25/0,-1.55/10,-0.25/20,2.0/50,3.45/80,5.15/100}{
+    \draw[TextGray!65] (-5.2,\y)--(5.6,\y);
+    \node[left,font=\scriptsize] at (-5.25,\y) {$\h$};
+  }
+  \draw[axis] (-5.2,-2.25)--(-5.2,5.55) node[above] {$h/\mathrm{km}$};
+  \draw[axis] (-4.65,-2.25)--(0.8,-2.25) node[right] {$T$};
+  \draw[DeepBlue,very thick]
+    (-2.0,-2.25)--(-3.3,-1.55)--(-2.45,-0.25)--(-3.15,2.0)--(-1.65,3.45)--(-0.55,5.15);
+  \foreach \x/\y in {-2.0/-2.25,-3.3/-1.55,-2.45/-0.25,-3.15/2.0,-1.65/3.45,-0.55/5.15}{\fill[DeepBlue] (\x,\y) circle (1.5pt);}
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,-1.88) {对流层};
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,-0.72) {平流层};
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,0.85) {中间层};
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,3.72) {热层};
+  % Ground, mountains and clouds.
+  \fill[Ink!70] (2.6,-2.25)--(3.45,-1.63)--(3.9,-1.98)--(4.45,-1.5)--(5.05,-2.25)--cycle;
+  \foreach \x/\y in {1.15/-1.86,2.05/-1.78}{
+    \fill[white,draw=TextGray] (\x,\y) circle (.18) (\x+.22,\y+.05) circle (.23) (\x+.45,\y) circle (.18);
+  }
+  % Airliner near the tropopause.
+  \draw[Ink,very thick] (1.45,-1.02)--(2.65,-0.9);
+  \draw[Ink,thick] (1.95,-.97)--(2.25,-.65) (1.95,-.97)--(2.28,-1.18);
+  \node[font=\scriptsize,anchor=west] at (2.8,-0.9) {民航巡航};
+  % Newly composed aurora ribbons.
+  \draw[green!55!DeepBlue,very thick,decorate,decoration={snake,amplitude=1.1mm,segment length=5mm}]
+    (1.25,4.48)--(4.15,4.68);
+  \draw[violet!55!DeepBlue,thick,decorate,decoration={snake,amplitude=.9mm,segment length=5mm}]
+    (1.45,4.05)--(3.9,4.22);
+  \node[font=\scriptsize,anchor=west] at (4.25,4.72) {极光};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cycleQuestionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=.82cm,>=Latex]
+  \draw[axis] (0,0)--(5.7,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.8) node[above] {$P$};
+  \draw[guide] (0,3.9)--(1.2,3.9);
+  \draw[guide] (0,1.0)--(5.0,1.0);
+  \node[left,font=\small] at (0,3.9) {$P_1$};
+  \node[left,font=\small] at (0,1.0) {$P_1/4$};
+  \draw[DeepBlue,very thick,->] (1.2,3.9)--(1.2,1.0);
+  \draw[DeepBlue,very thick,->] (1.2,1.0)--(4.8,1.0);
+  \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .52 with {\arrow{Latex}}}]
+    (4.8,1.0) .. controls (3.25,1.22) and (1.75,2.25) .. (1.2,3.9);
+  \fill[Ink] (1.2,3.9) circle (2pt) node[above right] {$a$};
+  \fill[Ink] (1.2,1.0) circle (2pt) node[below left] {$b$};
+  \fill[Ink] (4.8,1.0) circle (2pt) node[below right] {$c$};
+  \draw[guide] (1.2,0)--(1.2,3.9);
+  \node[below,font=\small] at (1.2,0) {$V_1$};
+  \node[font=\small,DeepBlue] at (3.25,2.2) {$c\to a$ 等温};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\straightQuestionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (0,0)--(5.8,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.7) node[above] {$P$};
+  \draw[DeepBlue,very thick,->] (1.35,3.7)--(4.55,1.55);
+  \fill[Ink] (1.35,3.7) circle (2pt) node[above left] {$A$};
+  \fill[Ink] (4.55,1.55) circle (2pt) node[below right] {$B$};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small,anchor=west] at (6.45,2.65)
+    {$P_B/P_A=1/2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\liftingPistonQuestionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,very thick] (-2.15,-1.9)--(-2.15,3.1) (2.15,-1.9)--(2.15,3.1) (-2.15,-1.9)--(2.15,-1.9);
+  \draw[fill=SoftGray,draw=Ink,thick] (-2.0,0.15) rectangle (2.0,0.48);
+  \fill[DeepBlue!10] (-2.0,-1.75) rectangle (2.0,0.15);
+  \draw[->,DeepBlue,very thick] (0,0.55)--(0,1.8) node[right] {缓慢上提};
+  \draw[Ink,very thick] (-2.45,-1.9)--(2.45,-1.9);
+  \foreach \x in {-2.3,-1.7,...,2.3}{\draw[TextGray] (\x,-1.9)--++(-.25,-.25);}
+  \node at (0,-0.7) {$p_0,T_0$};
+  \node[font=\small,anchor=west] at (2.45,1.45) {绝热气缸质量 $M$};
+  \node[font=\small,anchor=west] at (2.45,0.3) {无质量、无摩擦活塞};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small,align=left,anchor=west] at (5.4,-0.7)
+    {截面积 $A$\\外界压强 $p_0$\\刚离地时求 $T_f$};
+\end{tikzpicture}
+\end{center}}
+
+% High-fidelity second pass: these drawings keep the source figure's object
+% inventory and physical layout while using newly authored geometry.
+\newcommand{\perpetualMotionFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \cx/\lab in {-5.0/{装置 A},0/{装置 B},5.0/{装置 C}}{
+    \draw[fill=SoftGray,draw=RuleGray,rounded corners=2pt] (\cx-2.1,-2.5) rectangle (\cx+2.1,2.75);
+    \node[font=\small\bfseries] at (\cx,2.36) {\lab};
+  }
+  % A: rotor on a two-post stand, with curved ball channels.
+  \begin{scope}[shift={(-5.0,0)}]
+    \draw[Ink,very thick] (-1.55,-2.0)--(1.55,-2.0);
+    \draw[Ink,very thick] (-0.72,-2.0)--(-0.38,-1.1) (0.72,-2.0)--(0.38,-1.1);
+    \draw[fill=SoftGray,draw=Ink,very thick] (0,0.25) circle (1.35);
+    \begin{scope}[shift={(0,.25)}]
+    \foreach \a in {0,60,...,300}{
+      \draw[DeepBlue,thick,rounded corners=5pt]
+        (\a:0.30) .. controls (\a+18:0.72) and (\a+12:1.03) .. (\a:1.17);
+      \fill[Ink] (\a:1.12) circle (2.2pt);
+    }
+    \end{scope}
+    \fill[Ink] (0,0.25) circle (3pt);
+    \draw[->,DeepBlue,very thick] (1.55,0.75) arc[start angle=20,end angle=-70,radius=1.05];
+    \node[font=\scriptsize,align=center] at (0,-2.25) {带弯曲滚道的偏心转轮};
+  \end{scope}
+  % B: capsule-shaped endless carrier with blocks and a side guide.
+  \begin{scope}[shift={(0,0)}]
+    \draw[Ink,very thick,rounded corners=17pt] (-1.02,-1.62) rectangle (1.02,1.62);
+    \fill[Ink] (0,1.05) circle (2.5pt) (0,-1.05) circle (2.5pt);
+    \foreach \y in {-1.15,-.55,.05,.65,1.25}{
+      \draw[fill=DeepBlue!10,draw=Ink,thick] (-1.28,\y-.17) rectangle (-.86,\y+.17);
+      \draw[fill=DeepBlue!18,draw=Ink,thick] (.86,\y-.17) rectangle (1.28,\y+.17);
+    }
+    \draw[fill=TextGray!18,draw=Ink,thick]
+      (1.45,-1.72)--(1.95,-1.72)--(1.95,1.35)--(1.68,1.58)--(1.43,1.23)--cycle;
+    \draw[->,DeepBlue,very thick] (1.55,.65)--(1.55,-.35);
+    \node[font=\scriptsize,align=center] at (0,-2.25) {沿封闭轨道循环的配重块};
+  \end{scope}
+  % C: perforated hub, radial rods and hanging end masses.
+  \begin{scope}[shift={(5.0,0)}]
+    \draw[Ink,very thick] (-1.55,-2.0)--(1.55,-2.0) (0,-2.0)--(0,-1.15);
+    \draw[fill=SoftGray,draw=Ink,very thick] (0,0.2) circle (1.05);
+    \foreach \a in {0,72,...,288}{
+      \fill[white,draw=TextGray,thick] (\a:0.57) ++(0,0.2) circle (.22);
+    }
+    \begin{scope}[shift={(0,.2)}]
+    \foreach \a in {-80,-50,...,250}{
+      \draw[Ink,thick] (\a:0.95)--(\a:1.58);
+      \fill[DeepBlue] (\a:1.58) circle (2.8pt);
+    }
+    \end{scope}
+    \fill[Ink] (0,0.2) circle (3pt);
+    \draw[->,DeepBlue,very thick] (-1.35,0.85) arc[start angle=155,end angle=245,radius=1.0];
+    \node[font=\scriptsize,align=center] at (0,-2.25) {带径向摆锤的开孔转轮};
+  \end{scope}
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,font=\small,align=center]
+    at (0,-3.08) {若装置完成一个循环并回到原状态，内部各部分的势能变化也必须一并结算};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\pistonWorkFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \sx/\top/\gas/\name in {-6.0/.15/{V}/{初态},-2.9/.65/{V+\dd V}/{末态}}{
+    \begin{scope}[shift={(\sx,0)}]
+      \draw[Ink,very thick] (-1.05,-1.7)--(-1.05,2.05) (1.05,-1.7)--(1.05,2.05) (-1.05,-1.7)--(1.05,-1.7);
+      \fill[DeepBlue!9] (-.95,-1.58) rectangle (.95,\top-.16);
+      \draw[fill=SoftGray,draw=Ink,thick] (-.92,\top-.16) rectangle (.92,\top+.16);
+      \draw[Ink,very thick] (0,\top+.16)--(0,2.45);
+      \node at (0,-.7) {$\gas$};
+      \node[font=\scriptsize] at (0,-2.05) {\name};
+    \end{scope}
+  }
+  \draw[<->,DeepBlue,thick] (-1.45,.15)--node[right,font=\small] {$\dd y$}(-1.45,.65);
+  \draw[->,DeepBlue,very thick] (-2.9,2.5)--(-2.9,3.08);
+  \node[font=\small] at (-4.45,-2.55) {$\dd V=A\,\dd y$};
+  \begin{scope}[shift={(1.0,-1.6)},x=1.05cm,y=.92cm]
+    \draw[axis] (0,0)--(5.5,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.85) node[above] {$P$};
+    \fill[PaleBlue] (1.0,3.9) .. controls (2.0,2.55) and (3.6,1.35) .. (4.75,.9)--(4.75,0)--(1.0,0)--cycle;
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}]
+      (.7,4.35) .. controls (1.85,2.45) and (3.45,1.25) .. (5.0,.82);
+    \fill[Ink] (1.0,3.9) circle (2pt) node[above right] {$i$};
+    \fill[Ink] (4.75,.9) circle (2pt) node[above right] {$f$};
+    \draw[guide] (1.0,0)--(1.0,3.9) (4.75,0)--(4.75,.9);
+    \node[font=\small,DeepBlue] at (2.8,.62) {$W^{\rm out}=\displaystyle\int_{V_i}^{V_f}P\,\dd V$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\atmosphereProfileFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.86cm,>=Latex]
+  \fill[DeepBlue!9] (-5.8,0) rectangle (5.65,.62);
+  \fill[DeepBlue!5] (-5.8,.62) rectangle (5.65,1.25);
+  \fill[orange!8] (-5.8,1.25) rectangle (5.65,3.1);
+  \fill[DeepBlue!5] (-5.8,3.1) rectangle (5.65,4.95);
+  \fill[violet!8] (-5.8,4.95) rectangle (5.65,6.2);
+  \foreach \y in {0,.62,1.25,3.1,4.95,6.2}{\draw[TextGray!55] (-5.8,\y)--(5.65,\y);}
+  % Pressure scale retained from the source information.
+  \node[rotate=90,font=\scriptsize\bfseries] at (-6.95,3.1) {压强（相对海平面）};
+  \foreach \y/\p in {0/{1},.62/{10^{-1}},1.85/{10^{-2}},3.1/{10^{-3}},4.05/{10^{-4}},4.95/{10^{-5}},5.58/{10^{-6}},6.2/{10^{-7}}}{
+    \node[left,font=\scriptsize] at (-5.92,\y) {$\p$};
+  }
+  % Central altitude scale, as in the historical infographic.
+  \draw[axis] (.65,0)--(.65,6.55) node[above] {$h/\mathrm{km}$};
+  \foreach \y/\h in {0/0,.62/10,1.25/20,3.1/50,4.95/80,5.58/90,6.2/100}{
+    \draw[TextGray] (.57,\y)--(.73,\y);
+    \node[right,font=\scriptsize] at (.78,\y) {$\h$};
+  }
+  % Newly plotted, source-faithful zig-zag temperature profile.
+  \draw[DeepBlue,very thick]
+    (-1.35,0)--(-3.25,.62)--(-3.05,1.25)--(-1.65,3.1)--(-3.75,4.95)--(-2.55,5.58)--(-1.75,6.2);
+  \foreach \x/\y in {-1.35/0,-3.25/.62,-3.05/1.25,-1.65/3.1,-3.75/4.95,-2.55/5.58,-1.75/6.2}{\fill[DeepBlue] (\x,\y) circle (1.5pt);}
+  \draw[axis] (-4.9,0)--(-.55,0) node[right] {$T$};
+  \node[font=\scriptsize] at (-4.15,-.3) {低温};
+  \node[font=\scriptsize] at (-1.15,-.3) {高温};
+  % Numbered layers and concise heating explanations.
+  \foreach \x/\y/\n in {-4.65/.32/4,-4.65/2.15/3,-4.65/3.95/2,-4.65/5.55/1}{
+    \draw[Ink,thick,fill=white] (\x,\y) circle (.18);
+    \node[font=\tiny] at (\x,\y) {\n};
+  }
+  \node[font=\scriptsize,align=left,anchor=west] at (1.65,2.5)
+    {低层大气主要吸收\\温暖地表发出的辐射};
+  \node[font=\scriptsize,align=left,anchor=west] at (1.65,5.2)
+    {高层稀薄气体直接\\吸收太阳高能辐射};
+  % Clouds, mountains, low aircraft and upper-space vehicle.
+  \fill[Ink!65] (2.8,0)--(3.55,.5)--(4.0,.15)--(4.65,.72)--(5.3,0)--cycle;
+  \foreach \x in {1.55,2.25}{\fill[white,draw=TextGray] (\x,.4) circle (.12) (\x+.16,.44) circle (.17) (\x+.32,.4) circle (.12);}
+  \draw[Ink,thick] (3.0,.78)--(4.05,.88) (3.45,.82)--(3.72,1.08) (3.45,.82)--(3.78,.6);
+  \draw[Ink,thick] (3.75,5.9)--(4.75,6.02) (4.15,5.95)--(4.42,6.22) (4.15,5.95)--(4.45,5.72);
+  \draw[green!55!DeepBlue,very thick,decorate,decoration={snake,amplitude=1mm,segment length=5mm}]
+    (1.65,5.72)--(3.45,5.9);
+  \node[font=\scriptsize,anchor=west] at (1.65,5.98) {极光};
+\end{tikzpicture}
+\end{center}}

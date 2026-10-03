@@ -1,0 +1,57 @@
+\subsection{从温差到热流率：串联热阻}
+热量 $Q$ 的单位是焦耳，热流率 $\dot Q$ 的单位是瓦。对于温度只沿 $x$ 方向变化的均匀平板，傅里叶定律为
+\[
+ \dot Q=-\lambda A\frac{\dd T}{\dd x},
+\]
+其中 $\lambda$ 是热导率，单位为 $\mathrm{W/(m\,K)}$，$A$ 是垂直热流方向的面积。负号表示能量自发流向温度降低的方向。无内部热源的稳态中，各截面的 $\dot Q$ 相同；若 $\lambda$ 为常数，对厚度 $L$ 积分得
+\[
+ T_h-T_c=\dot Q\frac{L}{\lambda A}=\dot Q\,\mathcal R_{\rm th}.
+\]
+定义的热阻 $\mathcal R_{\rm th}=L/(\lambda A)$ 以 $\mathrm{K/W}$ 为单位。串联层的温差相加、热流率相同，因此热阻相加；并联通道则温差相同、热流率相加。这里借用的是相同的线性关系，不是说热流就是电流。图\ref{ch15:fig:heat-transfer-map}中传导路径若有多种介质，就要沿该路径逐段计算。
+
+\begin{origexamplebox}{复合平板中的界面温度}\label{ch15:ex:teaching-conduction}
+面积为 $A$ 的两块平板紧贴串联，厚度为 $L_1,L_2$，热导率为 $\lambda_1,\lambda_2$。第一块外侧恒为 $T_h$，第二块外侧恒为 $T_c<T_h$。忽略接触热阻、侧面散热和内部热源，求稳态热流率及两板接触面的温度 $T_i$。
+\end{origexamplebox}
+\begin{xesolution}
+取由热端指向冷端为正，两块板满足
+\[
+ \dot Q=\frac{T_h-T_i}{\mathcal R_1}
+       =\frac{T_i-T_c}{\mathcal R_2},\qquad
+ \mathcal R_j=\frac{L_j}{\lambda_jA}.
+\]
+两段温降之和为总温降，所以
+\[
+ \dot Q=\frac{T_h-T_c}{\mathcal R_1+\mathcal R_2},\qquad
+ T_i=\frac{\mathcal R_2T_h+\mathcal R_1T_c}{\mathcal R_1+\mathcal R_2}.
+\]
+较大热阻承担较大温降。例如 $\mathcal R_1\gg\mathcal R_2$ 时，第一层几乎承担全部温差，$T_i$ 接近冷端而不是热端。两段热流率相等保证界面没有能量积累；若初始温度还在变化，就不能仅凭这一稳态公式求整个升温过程。热量本身还要乘经过的时间：稳态持续 $\Delta t$ 时，$Q=\dot Q\Delta t$。
+\end{xesolution}
+
+\subsection{辐射发出功率与净散热功率}
+物体在发射的同时也吸收环境辐射。若灰体完全被温度均匀的巨大环境包围，相关温区内发射率与吸收率可用同一常数 $\epsilon$ 近似，且忽略其他换热，则净辐射散热率为
+\[
+ P_{\rm net}=\epsilon\sigma A(T^4-T_0^4).
+\]
+不是 $\epsilon\sigma AT^4$。当 $T=T_0$ 时，发射并未停止，只是发出与吸收相等。
+这与图\ref{ch15:fig:s29-20-4}中各部位仍持续发射辐射的情景相容。若视场内有多个温度不同的物体，就不能把它们任意替换为一个算术平均温度。
+
+\begin{origexamplebox}{电加热物体的辐射平衡与回稳时间}\label{ch15:ex:teaching-radiation}
+热容量为常数 $C$ 的物体内部温度均匀、表面积为 $A$，被温度 $T_0$ 的巨大环境包围。恒定电功率 $P$ 全部转化为物体内能，只通过上述灰体辐射模型交换热量。求平衡温度，并求偏离平衡很小时温差的衰减时间常数。
+\end{origexamplebox}
+\begin{xesolution}
+以物体为系统，功率形式的第一定律为
+\[
+ C\frac{\dd T}{\dd t}=P-\epsilon\sigma A(T^4-T_0^4).
+\]
+平衡时左右能流相等，故
+\[
+ T_e=\left(T_0^4+\frac{P}{\epsilon\sigma A}\right)^{1/4}.
+\]
+令 $T=T_e+\vartheta$、$|\vartheta|\ll T_e$，展开 $T^4=T_e^4+4T_e^3\vartheta+O(\vartheta^2)$，平衡项抵消，得到
+\[
+ \frac{\dd\vartheta}{\dd t}=-\frac{\vartheta}{\tau},\qquad
+ \vartheta(t)=\vartheta(0)e^{-t/\tau},\qquad
+ \tau=\frac{C}{4\epsilon\sigma AT_e^3}.
+\]
+温度偏高时散热大于供热，偏低时反之，所以平衡稳定。分母是热流率对温度的变化率，单位为 $\mathrm{W/K}$，故 $\tau$ 的单位是秒。该指数衰减只适用于小偏离；很大温差时须保留四次方的非线性项。
+\end{xesolution}

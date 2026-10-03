@@ -1,0 +1,13 @@
+% Contract: schematic binding trend, arrows separate from approximate data.
+\begin{tikzpicture}
+\begin{axis}[width=.83\linewidth,height=5.8cm,axis lines=left,
+ xlabel={$A$},ylabel={$B/A\;(\mathrm{MeV})$},xmin=0,xmax=250,ymin=0,ymax=11,
+ xtick={56,120,235},ytick={0,4,8},every axis label/.style={fill=none}]
+ \addplot[DeepBlue,very thick] coordinates{(1,0)(2,1.1)(4,7.1)(12,7.7)(20,8.0)(40,8.5)(56,8.8)(90,8.7)(120,8.5)(160,8.2)(200,7.9)(235,7.6)};
+ \node[above=6pt] at (axis cs:56,8.8) {铁、镍附近};
+ \draw[vector] (axis cs:220,5.7)--(axis cs:130,6.7);
+ \node[below=6pt] at (axis cs:175,5.7) {重核裂变};
+ \draw[vector] (axis cs:15,4.0)--(axis cs:50,6.1);
+ \node[right=5pt] at (axis cs:42,4.5) {轻核聚变};
+\end{axis}
+\end{tikzpicture}

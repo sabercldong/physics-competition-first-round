@@ -1,0 +1,370 @@
+\unitheading{K3\quad 运动的合成与分解}{unit-k03}
+\addcontentsline{toc}{chapter}{K3 运动的合成与分解}
+
+一维运动只需一个坐标。质点在平面或空间中运动时，位置、位移、速度和加速度都需要同时包含多个方向的信息。多数常见运动先可限制在一个平面内讨论；掌握二维情况后，只需增加第三个分量即可推广到三维。
+
+这里的困难并不只是“多写一个坐标”。在直线上，正、负两个方向已经由数轴规定；到了平面内，同样大小的位移可以指向无穷多个方向，速度的大小不变时方向也可能不断改变。因此，描述平面运动必须把“大小”和“方向”同时纳入运算。抛体、车辆转弯和行星绕中心运动都属于这一类问题，它们虽然轨迹不同，却可以用同一套坐标、矢量和分量方法处理。
+
+\subsection{位置的确定：坐标系}
+
+平面直角坐标系由原点 $O$ 和两条互相垂直、带正方向的坐标轴组成，点 $P$ 由 $(x,y)$ 唯一确定。平面极坐标系由极点 $O$、参考方向 $ON$ 和坐标 $(r,\theta)$ 组成，其中 $r\ge0$；角度相差 $2\pi$ 的整数倍表示同一点，且 $r=0$ 时角度没有实际意义。
+
+日常语言里也常用这两种定位思路。例如“从某地向西若干千米、再向北若干千米”对应直角坐标分量；“位于某地北偏西某角度、距离若干千米”对应极坐标。直角坐标中的 $x<0$ 只说明点在 $y$ 轴左侧，$y<0$ 只说明点在 $x$ 轴下方；极坐标中的 $r$ 是距离，通常取非负值，而 $\theta$ 的零方向和正向必须事先约定。
+
+\CoordinateSystemsDiagram
+
+坐标系必须在列方程前说明。直角坐标适合方向固定或边界平直的问题；极坐标适合具有明显中心的运动，如行星公转和圆周运动。坐标系不同不会改变实际运动，但会改变分量表达式的复杂程度。
+
+完整的坐标系约定至少包括原点位置、各轴正方向和单位；极坐标还必须说明参考射线及角度正向。只有这些信息给全，$(x,y)$ 或 $(r,\theta)$ 才能被还原为唯一的空间位置。选择坐标系具有任意性，却不是随意性：同一问题可以有许多合法选法，其中与边界、运动方向或对称中心一致的选法往往使后续方程最简单。
+
+两种坐标表示可以互相转换。在约定 $x$ 轴正向为极角零方向、逆时针为正时，
+\begin{equation}
+ x=r\cos\theta,\qquad y=r\sin\theta,\qquad
+ r=\sqrt{x^2+y^2}.
+\end{equation}
+由 $x,y$ 求 $\theta$ 时要根据象限确定，而不能只使用 $\arctan(y/x)$ 的主值。极点处 $r=0$，所有角度都给出同一点，所以此处的 $\theta$ 不可由位置唯一确定。这种坐标奇点是表示方法的特点，不是实际空间出现了异常。
+
+直角坐标适合分量方向固定的问题，极坐标适合“离中心多远、绕中心转了多少”的问题。例如同一圆周在直角坐标中需写 $x^2+y^2=R^2$，在极坐标中只需写 $r=R$；但匀速直线运动若不通过极点，用极坐标表示反而可能更复杂。选系的标准是让约束和运动规律尽量简单，而不是固定偏爱某一种。
+
+\begin{origexamplebox}{例2.22\quad 在直角坐标系中标点}
+在平面直角坐标系中标出
+\[
+A(3,4),\ B(5,0),\ C(-3,2),\ D(2,-5),\ E(-3,-2),\ F(0,3),\ G(-1,0),\ H(0,-3).
+\]
+\par 题图见图~\ref{question-figure-2-22}。
+\KQuestionAW
+\end{origexamplebox}
+\begin{xesolution}
+横坐标决定左右，纵坐标决定上下；坐标为零表示点在相应坐标轴上。图中 $A,C,E,D$ 分别位于第一、第二、第三、第四象限，$B,G$ 在 $x$ 轴上，$F,H$ 在 $y$ 轴上。
+\begin{center}\begin{tikzpicture}[scale=.52]
+\draw[kaxis] (-5.8,0)--(5.8,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,-5.8)--(0,5.8) node[above,clearlabel]{$y$};
+\draw[step=1,RuleGray!65,thin] (-5,-5) grid (5,5);
+\foreach \name/\x/\y/\pos in {A/3/4/above,B/5/0/above,C/-3/2/above,D/2/-5/below,E/-3/-2/below,F/0/3/right,G/-1/0/below,H/0/-3/right}{\node[point,label={[clearlabel]\pos:$\name$}] at (\x,\y) {};}
+\end{tikzpicture}\end{center}
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{18\baselineskip}\fi
+\begin{origexamplebox}{例2.23\quad 在极坐标系中标点}
+在平面极坐标系中标出
+\[
+A(5,\pi/3),\ B(2,\pi/3),\ C(5,\pi/2),\ D(4,\pi),\ E(4,3\pi/2),\ F(3,0).
+\]
+\par 题图见图~\ref{question-figure-2-23}。
+\KQuestionAX
+\end{origexamplebox}
+\begin{xesolution}
+先约定从正 $x$ 轴逆时针量角，再按角度画射线，沿射线量取半径。
+$A,B$ 都在 $60^\circ$ 射线上，距原点分别为 $5,2$。
+$C$ 的极角为 $\pi/2=90^\circ$，在正 $y$ 轴；$E$ 的极角为 $3\pi/2=270^\circ$，在负 $y$ 轴。
+$D$ 在负 $x$ 轴，$F$ 在正 $x$ 轴。也可用 $y_C=5\sin(\pi/2)=5$ 检查 $C$ 的上下位置。
+\begin{center}\begin{tikzpicture}[scale=.55]
+\draw[kaxis] (-5.8,0)--(5.8,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,-5.8)--(0,5.8) node[above,clearlabel]{$y$};
+\foreach \r in {1,...,5}{\draw[RuleGray] (0,0) circle (\r);}
+\foreach \name/\r/\a/\pos in {A/5/60/above,B/2/60/above,C/5/90/right,D/4/180/above,E/4/270/left,F/3/0/above}{\node[point,label={[clearlabel]\pos:$\name$}] at (\a:\r) {};}
+\end{tikzpicture}\end{center}
+\end{xesolution}
+
+\subsection{位移、矢量及其分量}
+
+质点从起点到终点的\textbf{位移}是由起点指向终点的有向线段。位移只依赖始末位置，路程则依赖实际轨迹。沿曲线前进一小段时，位移大小与路程之差是高阶小量；经过较长路程后，两者可能相差很大。
+
+因此，给定初位置和一段过程的位移就能唯一确定末位置，却不能由此还原质点实际经过的道路。反过来，即使两次运动的轨迹完全不同，只要起点和终点相同，它们的位移就相同。把初、末坐标写成 $(x_1,y_1)$ 与 $(x_2,y_2)$，坐标增量 $\Delta x=x_2-x_1$、$\Delta y=y_2-y_1$ 正好给出位移在两轴上的分量。
+
+\PathChoicesDiagram
+
+图2.6中的五条路径具有相同的起点 $A$ 和终点 $B$，却给出不同路程；图2.7中的每根箭头都从同一初始点 $A$ 指向一个时刻的位置 $B_i$，直接表示该时刻相对初态的位移。后一图中连接各 $B_i$ 的粗曲线是实际路径，直箭头并不表示沿这条路径走过的路程。
+
+\DisplacementFanDiagram
+
+既有大小又有方向的量称为矢量，只需大小的量称为标量。两个矢量相等，必须大小相等且方向相同。标量 $c$ 与矢量 $\vect A$ 相乘得到 $c\vect A$；$c<0$ 时方向反转。矢量加法遵循首尾相接法和平行四边形法：
+\begin{equation}
+\vect C=\vect A+\vect B,
+\qquad
+\vect A-\vect B=\vect A+(-\vect B).
+\end{equation}
+内积是标量：
+\begin{equation}
+  \vect A\cdot\vect B=AB\cos\theta.
+\end{equation}
+
+\VectorOperationsDiagram
+
+图2.8中，加法的首尾相接次序可以交换，最后的合矢量不变；减法则等于加上反矢量。内积只留下两个矢量彼此平行方向上的信息：夹角为锐角时为正，直角时为零，钝角时为负。矢量运算不能只对大小套用普通代数，例如 $|\vect A+\vect B|$ 一般既不等于 $A+B$，也不等于 $|A-B|$，还必须知道夹角。
+
+在直角坐标系中，$\vect A=(A_x,A_y)$。标量乘法、加减法和内积可逐分量计算：
+\begin{align}
+(c\vect A)_x&=cA_x,&(c\vect A)_y&=cA_y,\\
+(\vect A\pm\vect B)_x&=A_x\pm B_x,&
+(\vect A\pm\vect B)_y&=A_y\pm B_y,\\
+\vect A\cdot\vect B&=A_xB_x+A_yB_y.
+\end{align}
+
+\VectorComponentsDiagram
+
+分量表示与箭头表示的是同一个矢量，而不是两套不同的物理量。把矢量平移到原点不会改变它，因为自由矢量只关心大小和方向；终点坐标便给出 $(A_x,A_y)$。反过来，已知两个分量，可以沿坐标轴画出直角三角形，合矢量大小和方向为
+\begin{equation}
+ A=\sqrt{A_x^2+A_y^2},\qquad
+ \tan\phi=\frac{A_y}{A_x},
+\end{equation}
+其中象限不能只由反正切的数值判断，还必须结合 $A_x,A_y$ 的符号。分量可以为负，而矢量大小始终非负。
+
+逐分量运算的优势在于方向信息已经编码在代数符号中。两矢量相加时，分别把所有 $x$ 分量相加、所有 $y$ 分量相加；内积则把对应分量乘积相加。若更换坐标轴，分量数值会改变，但合矢量的大小、两矢量夹角和内积等几何量不变。计算后可用这种不变性作交叉检查。
+
+若初、末位置分别为 $\vect r_1=(x_1,y_1)$、$\vect r_2=(x_2,y_2)$，则
+\begin{equation}
+\Delta\vect r=\vect r_2-\vect r_1=(x_2-x_1,\,y_2-y_1).
+\end{equation}
+
+位置矢量从坐标原点指向质点，位移矢量从初位置指向末位置。前者会随坐标原点改变，后者在只平移原点时不变。书写 $\Delta\vect r=\vect r_2-\vect r_1$ 时，减法次序决定箭头方向；交换始末点会得到大小相同、方向相反的位移。分段运动中每一段位移按时间顺序首尾相接，矢量和等于全过程位移，这个结论与各段轨迹是否直线无关。
+
+\begin{origexamplebox}{例2.24\quad 三个时刻的位移关系}
+质点在 $t_1,t_2,t_3$ 时刻依次位于 $A,B,C$。画出 $t_1\to t_2$、$t_2\to t_3$ 和 $t_1\to t_3$ 的位移，并说明结论。
+\end{origexamplebox}
+\begin{xesolution}
+三个位移分别为 $\overrightarrow{AB}$、$\overrightarrow{BC}$、$\overrightarrow{AC}$。按矢量首尾相接法，
+\[
+  \boxed{\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}}.
+\]
+这说明分段位移的矢量和等于全过程位移，与中间经过何种轨迹无关。
+\begin{center}\begin{tikzpicture}[scale=.8]
+\coordinate (A) at (-2.4,-.7);\coordinate (B) at (.2,1.2);\coordinate (C) at (2.8,.2);
+\node[point,label={[clearlabel]left:$A$}] at (A) {};\node[point,label={[clearlabel]above:$B$}] at (B) {};\node[point,label={[clearlabel]right:$C$}] at (C) {};
+\draw[vector] (A)--(B);\draw[vector] (B)--(C);\draw[Blue,very thick,->] (A)--(C);
+\end{tikzpicture}\end{center}
+\end{xesolution}
+
+\begin{origexamplebox}{例2.25\quad 由两个累计位移求分段位移}
+已知质点在 $t_1\to t_2$ 的位移为 $\vect D_1$，在 $t_1\to t_3$ 的位移为 $\vect D_2$，求 $t_2\to t_3$ 的位移。
+\end{origexamplebox}
+\begin{xesolution}
+由全过程等于分段之和，$\vect D_2=\vect D_1+\vect D_{23}$，故
+\[
+  \boxed{\vect D_{23}=\vect D_2-\vect D_1}.
+\]
+矢量相减必须同时处理方向，不能只把两个大小相减。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.26\quad 坐标与位移相加}
+质点初始坐标为 $(2,3)\,\mathrm m$，随后位移为 $(4,5)\,\mathrm m$，求最终位置。
+\end{origexamplebox}
+\begin{xesolution}
+\[
+\vect r_2=\vect r_1+\Delta\vect r=(2,3)+(4,5)=(6,8)\,\mathrm m.
+\]
+故最终位置为 $\boxed{(6,8)\,\mathrm m}$。
+\end{xesolution}
+
+\subsection{速度}
+
+平面运动的平均速度和瞬时速度为
+\begin{equation}
+\bar{\vect v}=\frac{\Delta\vect r}{\Delta t},\qquad
+\vect v=\lim_{\Delta t\to0}\frac{\Delta\vect r}{\Delta t}=\frac{\dd\vect r}{\dd t}.
+\end{equation}
+瞬时速度方向沿轨迹切线，大小等于瞬时速率。已知某时刻位置和速度，在极短时间内有 $\vect r(t+\Delta t)\simeq\vect r(t)+\vect v(t)\Delta t$。若速度的大小和方向始终不变，运动是匀速直线运动，且
+\begin{equation}
+  \vect r(t)=\vect r_0+\vect vt.
+\end{equation}
+
+平均速度只由总位移除以总时间得到。一个质点沿闭合曲线回到起点时，平均速度为零，但平均速率显然不为零；这与一维运动中往返的区别完全一致。瞬时速度的两个分量分别为 $v_x=\dd x/\dd t$、$v_y=\dd y/\dd t$，速率为 $\sqrt{v_x^2+v_y^2}$。只要任一分量随时间改变，速度矢量就可能改变；即使速率恒定，分量仍可因方向转动而不断变化。
+
+匀速直线运动要求速度的大小和方向同时保持不变。若只知道速率恒定，轨迹仍可能弯曲；圆周运动就是典型反例。矢量方程 $\vect r=\vect r_0+\vect vt$ 表明位置矢量的终点沿固定方向均匀推进，所以轨迹必为直线，并且相等时间内的位移矢量完全相同。
+
+\CurveVelocityDiagram
+
+平均速度的方向由这段时间的总位移决定，不一定与轨迹中任一点的切线重合。让时间间隔逐渐缩小，末点沿轨迹逼近初点，位移弦方向才趋向切线方向。式 $\vect r(t+\Delta t)\simeq\vect r(t)+\vect v(t)\Delta t$ 是局部直线近似：它只在足够短的时间内成立，时间拉长后，速度方向或大小的变化会累积成不可忽略的偏差。
+
+\begin{origexamplebox}{例2.27\quad 飞机紧急改航}
+飞机以 $800\,\mathrm{km/h}$ 沿北偏东 $53^\circ$ 飞行 $1\,\mathrm h$ 后，需在 $0.5\,\mathrm h$ 内到达出发机场正东 $1000\,\mathrm{km}$ 的机场 $B$。求改航后的速度大小和方向。取 $\sin53^\circ=4/5$。
+\end{origexamplebox}
+\begin{xesolution}
+取东为 $x$ 正向、北为 $y$ 正向。“北偏东 $53^\circ$”的分量为
+\[
+\vect v_1=(800\sin53^\circ,800\cos53^\circ)=(640,480)\,\mathrm{km/h}.
+\]
+飞行 $1\,\mathrm h$ 后位置为 $(640,480)\,\mathrm{km}$，目标为 $(1000,0)\,\mathrm{km}$，余下位移 $(360,-480)\,\mathrm{km}$。除以 $0.5\,\mathrm h$：
+\[
+\vect v_2=(720,-960)\,\mathrm{km/h},\qquad
+\boxed{|\vect v_2|=1200\,\mathrm{km/h}}.
+\]
+方向为东偏南 $\arctan(960/720)\approx53.1^\circ$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.28\quad 潜艇发射鱼雷}
+潜艇在距敌船航线 $MN$ 的垂直距离 $L$ 处。敌船沿 $MN$ 以速率 $v$ 匀速航行，鱼雷以速率 $u$ 沿直线航行。若鱼雷要垂直击中船体，应在视线与航线垂线夹角为 $\theta$ 时发射。求 $\theta$。
+\par 题图见图~\ref{question-figure-2-28}。
+\KQuestionBC
+\end{origexamplebox}
+\begin{xesolution}
+如图，$A$ 为潜艇，$B$ 为发射时敌船的位置，$H$ 为 $A$ 到航线的垂足。
+鱼雷沿 $AH$ 走距离 $L$，飞行时间 $t=L/u$。这段时间敌船沿 $BH$ 前进
+$vt=vL/u$，所以发射时必须有 $BH=vL/u$。由直角三角形 $ABH$，
+\[
+  \tan\theta=\frac{vL/u}{L}=\frac vu,\qquad
+  \boxed{\theta=\arctan\frac vu}.
+\]
+图中 $u$ 与 $v$ 必须分别对应鱼雷和船的地面速度；交换二者会得到互为倒数的错误结果。
+\begin{center}\begin{tikzpicture}[scale=.92,>=Latex]
+\coordinate (A) at (0,-1.5);\coordinate (B) at (-2,1.8);\coordinate (H) at (0,1.8);
+\draw[very thick] (-3,1.8)--(2.3,1.8) node[right,clearlabel]{$MN$};
+\draw[thick] (A)--(H);
+\draw[kguide] (A)--(B);
+\node[point,label={[clearlabel]below:$A$}] at (A) {};
+\node[point,label={[clearlabel]below left:$B$}] at (B) {};
+\node[point,label={[clearlabel]above right:$H$}] at (H) {};
+\draw[TextGray] (-.19,1.8)--(-.19,1.61)--(0,1.61);
+\draw[vector] (-2,2.35)--(-.8,2.35) node[midway,above]{$v$};
+\draw[vector] (.42,-1.0)--(.42,.2) node[midway,right]{$u$};
+\draw[<->,TextGray] (1.55,-1.5)--(1.55,1.8) node[midway,right]{$L=AH$};
+\draw[<->,TextGray] (-2,3.0)--(0,3.0) node[midway,above]{$BH=vt$};
+\draw[->,TextGray] (0,-.63) arc[start angle=90,end angle=121.22,radius=.87];
+\node[clearlabel] (th) at (-1.45,-.95){$\theta$};
+\draw[TextGray,thin] (th.east)--(-.23,-.66);
+\end{tikzpicture}\end{center}
+\end{xesolution}
+
+\begin{origexamplebox}{例2.29\quad 足球抢断条件}
+球从 $A$ 沿射线 $AX$ 以速率 $v$ 匀速滚动。守方队员初始在 $B$，$AB=d$，$\angle BAX=\theta<90^\circ$，队员以速率 $v_p$ 沿直线奔跑。忽略边界，求队员能抢到球的必要条件。
+\par 题图见图~\ref{question-figure-2-29}。
+\KQuestionBD
+\end{origexamplebox}
+\begin{xesolution}
+若在距 $A$ 为 $r\ge0$ 的点相遇，球用时 $r/v$；队员路程由余弦定理为
+\[
+\ell_p=\sqrt{d^2+r^2-2dr\cos\theta}.
+\]
+\FootballInterceptionDiagram
+
+必须存在 $r>0$ 使 $\ell_p/v_p\le r/v$。令 $y=d/r>0$，平方后所需速度比满足
+\[
+\frac{v_p^2}{v^2}\ge y^2-2y\cos\theta+1
+=(y-\cos\theta)^2+\sin^2\theta.
+\]
+因 $\theta<90^\circ$，可取 $y=\cos\theta$，即在图示射线上 $r=d/\cos\theta$ 的点 $C$ 相遇，从而右端最小值为 $\sin^2\theta$。因此必要且充分条件为
+\[
+  \boxed{v_p\ge v\sin\theta}.
+\]
+等号成立时，$BC\perp AB$，并非垂直于球的路线 $AX$。这是“用时相同条件下所需速率最小”，不等于“奔跑距离最短”。
+具体地，取 $A=(0,0)$、$B=(d\cos\theta,d\sin\theta)$，最优相遇点为 $C=(d/\cos\theta,0)$，则
+\[
+ \overrightarrow{AB}\cdot\overrightarrow{BC}
+ =d\cos\theta\left(\frac d{\cos\theta}-d\cos\theta\right)
+   -d^2\sin^2\theta=0.
+\]
+所以图中的直角应画在 $B$ 点。此时 $AC=d/\cos\theta$、
+$BC=d\tan\theta$，两段距离之比为 $\sin\theta$，再次得到 $v_p/v=\sin\theta$。
+速度比无量纲，且当 $\theta\to90^\circ$ 时所需速率趋于球速；当 $\theta\to0^+$ 时，队员接近球的路线，所需速率趋于零。
+这里取 $d>0$、$0<\theta<90^\circ$；$\theta=0$ 时队员已在球前方路线上，等待即可截球。
+若 $v_p<v\sin\theta$，任何候选相遇点都来不及到达。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.30\quad 两匀速质点的最短距离}
+质点 $A,B$ 同时从相距 $l$ 的 $P,Q$ 出发。$A$ 以速度 $v_1$ 沿 $PQ$ 方向运动，$B$ 以速度 $v_2$ 沿 $QR$ 运动，$QR$ 与 $QP$ 的夹角为 $\alpha$。求以后两质点的最短距离。
+\par 题图见图~\ref{question-figure-2-30}。
+\KQuestionBE
+\end{origexamplebox}
+\begin{xesolution}
+取 $P\to Q$ 为 $x$ 正向。初始相对位置 $\vect r_0=(l,0)$，相对速度
+\[
+\vect u=\vect v_B-\vect v_A=(-v_2\cos\alpha-v_1,\ v_2\sin\alpha).
+\]
+\TwoParticlesMinimumDistanceDiagram
+
+记两质点间距离为 $d(t)$。经过同一时间 $t$ 后，相对位置为 $\vect r_0+\vect ut$，因而
+\[
+ d^2(t)=[l-(v_1+v_2\cos\alpha)t]^2+(v_2\sin\alpha\,t)^2
+ =l^2-2l(v_1+v_2\cos\alpha)t+Dt^2,
+\]
+其中 $D=v_1^2+v_2^2+2v_1v_2\cos\alpha=|\vect u|^2$。
+若 $D=0$，两质点速度完全相同，相对位置不变，最短距离就是 $l$。
+以下取 $D>0$。距离与距离平方在非负区间同时取最小值，所以可以对二次式配方：
+\[
+ d^2(t)=D(t-t_*)^2+l^2-\frac{l^2(v_1+v_2\cos\alpha)^2}{D}.
+\]
+若 $v_1+v_2\cos\alpha>0$，顶点时刻在允许范围 $t\ge0$ 内，最近时刻为
+\[
+t_*=-\frac{\vect r_0\cdot\vect u}{|\vect u|^2}
+=\frac{l(v_1+v_2\cos\alpha)}{D},
+\]
+代回并使用
+$D-(v_1+v_2\cos\alpha)^2=v_2^2\sin^2\alpha$，得到
+\[
+\boxed{d_{\min}=\frac{lv_2|\sin\alpha|}{\sqrt D}}.
+\]
+若 $v_1+v_2\cos\alpha\le0$，则 $t_*\le0$，二次式在 $t\ge0$ 上不减，最短距离为初始值 $\boxed l$。
+几何上，内部极小值满足 $(\vect r_0+\vect ut_*)\cdot\vect u=0$：
+最近时刻的相对连线垂直于相对速度。时间式量纲为秒，距离式为米。
+当两者沿初始连线相向而行时 $\alpha=0$，结果退化为碰撞距离零。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.31\quad 奔跑与游泳的最短时间路径}
+岸上点 $A$ 到直岸的垂直距离为 $d_1$，水中落水点 $B$ 到岸的垂直距离为 $d_2$，两垂足沿岸相距 $L$。救援者奔跑速率 $v_1$、游泳速率 $v_2$。求最短时间路径。
+\par 题图见图~\ref{question-figure-2-31}。
+\KQuestionBF
+\end{origexamplebox}
+\begin{xesolution}
+设入水点 $C$ 到 $A$ 的垂足沿岸距离为 $x$。总时间
+\RescueRouteDiagram
+\[
+T(x)=\frac{\sqrt{d_1^2+x^2}}{v_1}
++\frac{\sqrt{d_2^2+(L-x)^2}}{v_2}.
+\]
+令 $\dd T/\dd x=0$：
+\[
+\frac{x}{v_1\sqrt{d_1^2+x^2}}
+=\frac{L-x}{v_2\sqrt{d_2^2+(L-x)^2}}.
+\]
+图中的 $\theta_1,\theta_2$ 分别从 $C$ 处的岸线法线量起。
+跑步段长为 $\sqrt{d_1^2+x^2}$，其中沿岸边为 $x$，所以
+$\sin\theta_1=x/\sqrt{d_1^2+x^2}$；同理，
+$\sin\theta_2=(L-x)/\sqrt{d_2^2+(L-x)^2}$。代入导数方程即得
+\[
+  \boxed{\frac{\sin\theta_1}{v_1}=\frac{\sin\theta_2}{v_2}}.
+\]
+这就把求极值转化为确定入水点 $C$。还需证明该驻点确实给出最短时间。
+取 $d_1,d_2,L,v_1,v_2>0$。若 $x<0$ 或 $x>L$，把入水点向两垂足之间移近可同时缩短两段路程，因此只需考虑 $0\le x\le L$。
+进一步，
+\[
+ T''(x)=\frac{d_1^2}{v_1(d_1^2+x^2)^{3/2}}
+       +\frac{d_2^2}{v_2[d_2^2+(L-x)^2]^{3/2}}>0.
+\]
+而 $T'(0)<0$、$T'(L)>0$，故区间内恰有一个驻点，并且它是全局极小点。
+通常 $v_1>v_2$，于是 $\sin\theta_1>\sin\theta_2$，在两角均为锐角时有 $\theta_1>\theta_2$：
+应让较慢的水中路段更接近法线。若 $v_1=v_2$，则两角相等，最优路线恢复为连接 $A,B$ 的直线。
+两边 $\sin\theta_i/v_i$ 的量纲均为时间除以长度。
+\end{xesolution}
+
+\subsection{速度的变化：加速度}
+
+二维加速度同样是矢量：
+\begin{equation}
+\bar{\vect a}=\frac{\Delta\vect v}{\Delta t},\qquad
+\vect a=\lim_{\Delta t\to0}\frac{\Delta\vect v}{\Delta t}=\frac{\dd\vect v}{\dd t}.
+\end{equation}
+速度的大小改变或方向改变都会产生非零加速度。短时间内
+\begin{equation}
+\vect v(t+\Delta t)\simeq\vect v(t)+\vect a(t)\Delta t.
+\end{equation}
+加速度方向是速度矢量终点移动的方向，不一定与质点位置变化方向相同。
+
+在固定直角坐标系中，$\vect a=(\ddot x,\ddot y)=(\dot v_x,\dot v_y)$。若加速度为常矢量，各分量都是一维匀变速运动；若加速度方向随时间变化，则即使大小不变，也不能直接套用常加速度的位移公式。判断质点是“加速”还是“减速”要看 $\vect a$ 在 $\vect v$ 方向上的投影：$\vect a\cdot\vect v>0$ 时速率增加，$<0$ 时速率减小，等于零时加速度只改变方向。
+
+速度空间的图形有助于避免把加速度画错。把不同时刻的速度箭头都从同一点画出，箭头终点会形成一条“速度轨迹”；加速度方向就是这个终点运动的切线方向。它与质点在真实空间中的轨迹是两种不同的图，不能因为真实轨迹向右弯，就未经计算断定加速度一定向右。
+
+平面匀加速运动可以直接积分。若 $\vect a$ 为常矢量，
+\begin{equation}
+ \vect v=\vect v_0+\vect at,
+ \qquad
+ \vect r=\vect r_0+\vect v_0t+\frac12\vect at^2.
+\end{equation}
+它们与一维公式形式相同，但每个量都是矢量。沿任何固定坐标轴投影后，都得到相应分量的一维匀变速方程。重力场中的抛体正是取 $\vect a=\vect g$ 的特例，下一节将用这一统一形式处理。
+
+多阶段路线问题中，应先为每一段写出位移矢量，再按时间顺序相加；若求最短时间，还需把转折点作为变量建立总时间函数。
+例2.31的结果形式与光的折射定律相似：两者都来自不同区域传播速率不同时的时间驻值条件。
+一般有边界的优化问题仍需检查端点；本题则已由 $T''>0$ 和端点导数异号证明最优点位于两垂足之间。
+
+所有矢量公式都应带着适用的参考系理解。同一位移、速度在旋转或平动的另一组坐标轴中分量可能不同，但由同一坐标系算出的分量必须成套使用。不能把一个矢量的 $x$ 分量取自地面系、$y$ 分量取自运动系再拼成所谓“合速度”。在后续相对运动中，先统一下标和参考系，再作矢量加减，是保证方向正确的第一步。
+
+比较两个时刻的速度时，应先把两矢量的起点平移到同一点，再由旧速度的终点指向新速度的终点画出 $\Delta\vect v$。加速度沿 $\Delta\vect v$ 在极限中的方向，而不是简单指向轨迹的内侧或运动方向。速度大小改变、方向不变会产生切向加速度；速度大小不变、方向改变同样会产生加速度；二者也可以同时发生。
+
+\AccelerationVectorDiagram

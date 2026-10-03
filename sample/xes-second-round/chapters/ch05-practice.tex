@@ -1,0 +1,203 @@
+\clearpage
+\section{配套习题：天体运动}
+\label{r2ch05:sec:practice}
+
+\begin{practicebox}{哈雷彗星的轨道状态}
+哈雷彗星绕太阳沿椭圆轨道逆时针运行，周期 $T=\SI{76.1}{yr}$。1986年经过近日点 $P_0$ 时，日彗距离 $r_p=0.590\,\mathrm{AU}$；$1\,\mathrm{AU}=1.5\times10^{11}\,\mathrm m$。彗星到达 $P$ 点时，$\angle P_0SP=72^\circ$。求此时日彗距离、速度大小以及速度与射线 $SP$ 的夹角。
+\label{r2ch05:pr:001}
+\begin{solution}
+在以 AU、年为单位的太阳系中，开普勒第三定律给 $T^2=a^3$。图~\ref{r2ch05:fig:003} 以近日点方向为极轴，因此题给角就是轨道真近点角 $\theta$。轨道参数为
+\begin{equation}
+ a=T^{2/3}=17.958\,\mathrm{AU},\qquad
+ e=1-\frac{r_p}{a}=0.96715,\qquad
+ p=a(1-e^2)=1.1606\,\mathrm{AU}.
+ \label{r2ch05:eq:015}
+\end{equation}
+于是
+\[
+ \boxed{r=\frac{p}{1+e\cos72^\circ}=0.8936\,\mathrm{AU}
+ =1.34\times10^{11}\,\mathrm m}.
+\]
+
+令 $\mathcal G=4\pi^2\,\mathrm{AU^3/yr^2}$。对开普勒轨道直接对式~\eqref{r2ch05:eq:012} 求导，并用 $r^2\dot\theta=h=\sqrt{\mathcal Gp}$，得到
+\begin{equation}
+ v_r=\sqrt{\frac{\mathcal G}{p}}e\sin\theta,\qquad
+ v_\theta=\sqrt{\frac{\mathcal G}{p}}(1+e\cos\theta).
+ \label{r2ch05:eq:016}
+\end{equation}
+代入 $\theta=72^\circ$，
+\[
+ v_r=5.365\,\mathrm{AU/yr},\qquad
+ v_\theta=7.575\,\mathrm{AU/yr}.
+\]
+所以
+\[
+ \boxed{v=9.282\,\mathrm{AU/yr}=\SI{44.0}{km/s}},\qquad
+ \boxed{\alpha=\arctan\frac{v_\theta}{v_r}=54.7^\circ}.
+\]
+$P$ 位于离开近日点的一侧，故 $v_r>0$；速度由射线 $SP$ 朝逆时针切向转过 $54.7^\circ$。若只用活力公式求 $v$，会丢失这一方向信息。
+\figHalleyOrbit
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{超新星爆炸后的双星束缚条件}
+双星质量分别为 $M,m$（$M>m$），相距 $r$，在引力作用下绕共同质心作圆周运动。质量较大的星发生球对称超新星爆炸，瞬时损失质量 $\Delta M$；碎片不再影响另一颗星。求余下双星不分离的条件。
+\label{r2ch05:pr:002}
+\begin{solution}
+爆炸前相对坐标满足圆周运动条件
+\[
+ v_{\rm rel}^2=\frac{G(M+m)}r.
+\]
+图~\ref{r2ch05:fig:004} 中爆炸球对称，故剩余星核在自身瞬时静止系中不获净反冲；爆炸瞬间两颗余留星的位置、速度连续，因而相对速度仍为上式的值。爆炸后单位约化质量的轨道能为
+\begin{equation}
+ \varepsilon'=\frac{v_{\rm rel}^2}{2}-\frac{G(M-\Delta M+m)}r
+ =\frac{G}{2r}\,[\,2\Delta M-(M+m)\,].
+ \label{r2ch05:eq:017}
+\end{equation}
+余下两星保持束缚必须 $\varepsilon'<0$，所以
+\[
+ \boxed{\Delta M<\frac{M+m}{2}}.
+\]
+等号对应抛物线临界逃逸；超过该值则是双曲线分离。结论的前提是爆炸瞬时、球对称且碎片不向余留星体传递额外冲量。若爆炸具有“踢速度”，必须把该速度矢量加入 $v_{\rm rel}$ 后重新判断。
+\figBinaryMassLoss
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{拉普拉斯—龙格—楞次矢量}
+质点 $m$ 在中心质量 $M$ 的平方反比引力下运动，动量 $\vect p=m\vect v$，角动量 $\vect L=\vect r\times\vect p$。证明
+\[
+ \vect e=\frac{\vect p\times\vect L}{GMm^2}-\frac{\vect r}{r}
+\]
+守恒，并由此证明轨道满足 $r=p_0/(1+e\cos\theta)$。
+\label{r2ch05:pr:003}
+\begin{solution}
+记 $\uvec e_r=\vect r/r$。角动量守恒，且
+\[
+ \dot{\vect p}=-\frac{GMm}{r^2}\uvec e_r,\qquad
+ \dot{\uvec e}_r=\dot\theta\uvec e_\theta,\qquad
+ L=mr^2\dot\theta.
+\]
+利用 $\uvec e_r\times\vect L=mr^2\dot\theta\uvec e_\theta=L\uvec e_\theta$，有
+\begin{equation}
+ \frac{\dd}{\dd t}\left(\frac{\vect p\times\vect L}{GMm^2}\right)
+ =-\frac{\uvec e_r\times\vect L}{mr^2}
+ =\dot\theta\uvec e_\theta
+ =\dot{\uvec e}_r,\qquad \boxed{\dot{\vect e}=0}.
+ \label{r2ch05:eq:018}
+\end{equation}
+图~\ref{r2ch05:fig:005} 中 $\vect e$ 固定在轨道面内并指向近日点。取 $\theta$ 为 $\vect e$ 与 $\vect r$ 的夹角，对 $\vect e$ 点乘 $\uvec e_r$：
+\[
+ e\cos\theta
+ =\frac{(\vect p\times\vect L)\cdot\uvec e_r}{GMm^2}-1.
+\]
+用循环置换与 $\uvec e_r\times\vect p=\vect L/r$，第一项化为 $L^2/(GMm^2r)$，故
+\begin{equation}
+ 1+e\cos\theta=\frac{L^2}{GMm^2r},\qquad
+ \boxed{r=\frac{p_0}{1+e\cos\theta}},\qquad
+ p_0=\frac{L^2}{GMm^2}.
+ \label{r2ch05:eq:019}
+\end{equation}
+$p_0$ 的量纲为长度。这个证明同时给出圆锥曲线形状、近日点方向和离心率的矢量含义。
+\figLRLGeometry
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{星际尘埃造成的两类阻力}
+在飞船参考系中，质量密度为 $\rho$ 的星际尘埃从无穷远以速度 $v$ 迎面而来。瞄准距离在 $b$ 到 $b+\dd b$ 的尘埃流经面积元 $\dd S=2\pi b\,\dd b$，被飞船质量 $M$ 的引力散射到 $\chi$ 至 $\chi+\dd\chi$ 的立体角 $\dd\Omega=2\pi\sin\chi\,\dd\chi$。\par
+(a) 求微分散射截面 $\dd\sigma/\dd\Omega$；\par
+(b) 飞船特征半径为 $r_s$，尘埃分布有效外尺度为 $R$，且各次散射均为小角度。求直接撞击阻力与引力散射阻力。
+\label{r2ch05:pr:004}
+\begin{solution}
+对引力双曲线，轨道离心率及散射几何给出
+\[
+ b=\frac{GM}{v^2}\cot\frac\chi2.
+\]
+由轴对称面积元关系 $\dd\sigma=2\pi b|\dd b|$、$\dd\Omega=2\pi\sin\chi|\dd\chi|$，得到卢瑟福型结果
+\begin{equation}
+ \boxed{\frac{\dd\sigma}{\dd\Omega}
+ =\frac{b}{\sin\chi}\left|\frac{\dd b}{\dd\chi}\right|
+ =\left(\frac{GM}{2v^2}\right)^2\csc^4\frac\chi2}
+ =\left(\frac{GMm_d}{4E_d}\right)^2\csc^4\frac\chi2.
+ \label{r2ch05:eq:020}
+\end{equation}
+其中单个尘粒质量为 $m_d$、$E_d=m_dv^2/2$；最终截面与 $m_d$ 无关，符合等效原理。
+
+图~\ref{r2ch05:fig:006} 中，若迎面撞上几何截面 $\pi r_s^2$ 的尘埃在飞船参考系内被完全停止，则单位时间截获质量为 $\rho v\pi r_s^2$，直接撞击阻力为 $F_{\rm hit}=\pi r_s^2\rho v^2$。
+
+小角散射满足 $\chi\simeq2GM/(bv^2)$。瞄准距离环带中的质量流率为 $\dd\dot m=2\pi\rho vb\,\dd b$，每单位质量沿来流方向损失的动量为 $v(1-\cos\chi)\simeq v\chi^2/2$。于是
+\begin{equation}
+ \boxed{F_{\rm hit}=\pi r_s^2\rho v^2},\qquad
+ \boxed{F_{\rm grav}=\frac{4\pi G^2M^2\rho}{v^2}
+ \ln\frac{R}{r_s}}.
+ \label{r2ch05:eq:021}
+\end{equation}
+$\ln(R/r_s)$ 是经典的库仑对数。实际下限还可能由引力捕获半径或软化尺度决定，上限则由尘埃分布有限尺度决定；本题按给定的 $r_s,R$ 截断。两式量纲均为力。
+\figGravityScattering
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{附加线性径向力造成的水星近日点进动}
+除太阳质量 $M$ 产生的平方反比引力外，其他行星对水星在其近圆轨道附近等效为微弱的径向外力 $F_1=kmr$，其中 $k>0$ 很小，水星质量为 $m$，轨道半径为 $R$。求近日点的进动角速度。
+\label{r2ch05:pr:005}
+\begin{solution}
+单位质量势能为
+\[
+ \Phi(r)=-\frac{GM}{r}-\frac12kr^2,\qquad
+ -\Phi'(r)=-\frac{GM}{r^2}+kr.
+\]
+圆轨道角频率由 $R\Omega^2=GM/R^2-kR$ 得
+\[
+ \Omega^2=\frac{GM}{R^3}-k.
+\]
+令 $r=R+x$，在保持角动量的径向有效势能附近展开，径向小振动频率为
+\[
+ \kappa_r^2=\Phi''(R)+3\Omega^2
+ =\frac{GM}{R^3}-4k.
+\]
+图~\ref{r2ch05:fig:007} 中一个径向周期后角向相位多走 $2\pi(\Omega/\kappa_r-1)$，故近日点进动角速度为 $\Omega-\kappa_r$。取 $k\ll GM/R^3$ 的一阶展开：
+\begin{equation}
+ \boxed{\dot\varpi=\Omega-\kappa_r
+ \simeq\frac{3k}{2}\sqrt{\frac{R^3}{GM}}}.
+ \label{r2ch05:eq:022}
+\end{equation}
+$k>0$ 时 $\kappa_r<\Omega$，故为顺行进动。$k$ 的量纲是 $\mathrm{s}^{-2}$，右式量纲为角速度。
+\figApsidalAdvance
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{弱线性阻力下椭圆轨道的长期演化}
+质点 $m$ 在平方反比引力下沿椭圆运动，又受到很小的线性阻力 $\vect f=-\gamma\vect v$。在一段远长于轨道周期、但轨道参量改变量仍很小的时间 $\Delta t$ 内，求能量 $E$ 与角动量 $L$ 的变化，并证明轨道只缩小而离心率不变。
+\label{r2ch05:pr:006}
+\begin{solution}
+阻力对角动量的瞬时变化无需平均：
+\[
+ \dot{\vect L}=\vect r\times(-\gamma\vect v)
+ =-\frac\gamma m\vect L.
+\]
+能量变化率为 $\dot E=-\gamma v^2$。开普勒椭圆在一个周期上的位力定理给 $\langle T\rangle=-E$，即 $\langle v^2\rangle=-2E/m$。因此
+\begin{equation}
+ \boxed{\Delta E=\frac{2\gamma E}{m}\Delta t},\qquad
+ \boxed{\Delta L=-\frac{\gamma L}{m}\Delta t},\qquad(E<0).
+ \label{r2ch05:eq:023}
+\end{equation}
+第一式为负，说明机械能继续降低。利用
+\[
+ e^2=1+\frac{2EL^2}{G^2M^2m^3},
+\]
+可见
+\[
+ \frac{\Delta(EL^2)}{EL^2}
+ =\frac{\Delta E}{E}+2\frac{\Delta L}{L}=0,
+\]
+故 $\boxed{\Delta e=0}$ 到一阶平均近似成立。又因 $a=-GMm/(2E)$，$E$ 变得更负，所以 $a$ 缩小。图~\ref{r2ch05:fig:008} 表示轨道保持相似椭圆而缓慢内缩；这是周期平均结论，单个周期内仍存在微小的瞬时形状扰动。
+
+在同一慢变近似下还可把平均微分方程直接积分：
+\[
+ E(t)=E_0\exp\!\left(\frac{2\gamma t}{m}\right),\qquad
+ L(t)=L_0\exp\!\left(-\frac{\gamma t}{m}\right),\qquad
+ a(t)=a_0\exp\!\left(-\frac{2\gamma t}{m}\right).
+\]
+因为 $E_0<0$，第一式表示 $|E|$ 指数增大而不是能量上升；三个式子同时保证 $E(t)L^2(t)$ 为常量。适用条件是一个周期内的相对改变量 $\gamma T/m\ll1$，否则不能把瞬时椭圆视为缓慢变化的开普勒轨道。
+\figDampedOrbit
+\end{solution}
+\end{practicebox}

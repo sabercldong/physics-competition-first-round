@@ -1,0 +1,43 @@
+% Source: spring-II p220 lecture14 problem5. Plan view plus tilt cross-section.
+% OA=OB=AC=BC=l. OA makes 2theta to OB; OC makes theta. Rotation about OB.
+% All joints come from the same rhombus coordinates. Crystal lines bisect rays.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate (O) at (0,0);\coordinate (B) at (3.25,0);
+ \coordinate (A) at ({3.25*cos(50)},{3.25*sin(50)});
+ \coordinate (C) at ({3.25*(1+cos(50))},{3.25*sin(50)});
+ \draw[->,thick,DeepBlue] (-1.2,0)--(O);
+ \draw[->,thick,DeepBlue] (O)--(B);
+ \draw[->,thick,DeepBlue] (O)--(A);
+ \draw[->,thick,DeepBlue] (A)--(C);
+ \draw[->,thick,DeepBlue] (B)--(C);
+ \draw[->,thick,DeepBlue] (C)--++(1.2,0) node[right]{1};
+ \draw[->,thick,DeepBlue] (C)--++({.9*cos(50)},{.9*sin(50)}) node[above]{2};
+ \draw[dashed,TextGray] (O)--(C);
+ \foreach \name in {O,A,B,C}{
+  \draw[very thick,TextGray] ($ (\name)+({-.42*cos(25)},{-.42*sin(25)}) $)
+     --($ (\name)+({.42*cos(25)},{.42*sin(25)}) $);
+ }
+ \node[below=7pt] at (O){$O$};\node[below=7pt] at (B){$B$};
+ \node[above=8pt] at (A){$A$};\node[below right=6pt] at (C){$C$};
+ \node[below=6pt] at (1.63,0){$l$};
+ \node[above=6pt] at ({3.25*cos(50)+1.63},{3.25*sin(50)}){$l$};
+ \node[left=6pt] at ({1.63*cos(50)},{1.63*sin(50)}){$l$};
+ \node[right=6pt] at ({3.25+1.63*cos(50)},{1.63*sin(50)}){$l$};
+ \draw (.9,0) arc[start angle=0,end angle=25,radius=.9];
+ \node at (1.15,.23){$\theta$};
+ \draw (1.45,0) arc[start angle=0,end angle=50,radius=1.45];
+ \node at (1.5,1.35){$2\theta$};
+ \node[anchor=west] at (-1.1,3.2){(a) 装置平面内的光路};
+ \begin{scope}[shift={(0,-2.1)}]
+  \draw[->,TextGray] (0,0)--(4,0) node[right]{水平};
+  \draw[thick] (0,0)--(3.2,1.16);
+  \draw[dashed] (3.2,0)--(3.2,1.16);
+  \draw[<->] (3.65,0)--(3.65,1.16) node[midway,right=5pt]{$h=l\sin2\theta\sin\varphi$};
+  \fill (0,0) circle(2pt);
+  \node[below=5pt] at (0,0){转轴 $OB$};
+  \draw (.9,0) arc[start angle=0,end angle=19.9256,radius=.9];
+  \node at (1.17,.17){$\varphi$};
+  \node[above,rotate=19.9256] at (1.95,.71){$l\sin2\theta$};
+  \node[anchor=west] at (-1.1,-.75){(b) 垂直转轴的截面};
+ \end{scope}
+\end{tikzpicture}

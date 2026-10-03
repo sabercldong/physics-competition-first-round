@@ -1,0 +1,15 @@
+% EM structure and teaching revision 20260928
+\subsection{连续带电体积分的建模步骤}
+求场时先说明源点与观察点，不要把电荷元的位置直接当成场矢量的方向。若观察点为 $\boldsymbol r$，源点为 $\boldsymbol r'$，则
+\[
+ \dd\boldsymbol E=\frac{1}{4\pi\varepsilon_0}
+ \frac{\boldsymbol r-\boldsymbol r'}{|\boldsymbol r-\boldsymbol r'|^3}\dd q.
+\]
+线、面、体分布分别选 $\dd q=\lambda\dd l$、$\sigma\dd S$、$\rho\dd V$。先用对称性消去积分后必为零的分量，再计算剩下的分量；只有对同一观察点求得的矢量才可以叠加。
+以半径 $R$、总电荷 $Q$ 的均匀圆环为例，轴上距中心 $z$ 处各电荷元的横向分量抵消，轴向分量都含投影因子 $z/\sqrt{R^2+z^2}$，于是
+\[
+ E_z=\frac{Qz}{4\pi\varepsilon_0(R^2+z^2)^{3/2}}.
+\]
+当 $|z|\gg R$ 时退回点电荷场；在中心附近 $E_z\simeq Qz/(4\pi\varepsilon_0R^3)$。若 $Q>0$，正试探电荷沿轴偏离中心后受力继续向外，负试探电荷则沿轴受到回复力。这个结论只判断轴向稳定性，不能据此认定三维空间中的稳定平衡。
+检查积分时还应核对量纲、远场主项和特殊对称点。对有限带电体，远场通常先由总电荷决定；总电荷为零时才需要进一步保留偶极或更高阶贡献。
+

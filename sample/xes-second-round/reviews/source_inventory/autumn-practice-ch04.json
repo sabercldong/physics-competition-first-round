@@ -1,0 +1,27 @@
+{
+  "source_id": "autumn_practice_2020",
+  "source_sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba",
+  "independent_visual_inventory": true,
+  "review_scope": "2026-09-05重新查看习题原PDF物理36—39页高清整页；逐题、逐子问和题图独立登记。六题均保留；第5、6题源页无图，现稿图4.20、4.21作为新增解图登记，不冒充原图。",
+  "pages": [
+    {"physical_page":36,"printed_page":36,"classification":"teaching","inspected_render":"build/source-pages/autumn_practice_2020/page-036.jpg","objects":[
+      {"id":"h01","object_type":"heading","source_locator":"页首","description":"第九讲简谐振动","target_id":"r2ch04:sec:practice","source_number":"第九讲"},
+      {"id":"pr01","object_type":"exercise","source_locator":"上半第1题","description":"粗糙水平面上弹性绳连接两物块，求首次相碰相对速度和时间","target_id":"r2ch04:pr:001","source_number":"9.1"},
+      {"id":"fig01","object_type":"figure","source_locator":"第1题右侧","description":"两物块、初始间距和弹性绳","target_id":"r2ch04:fig:016","source_number":"9.1题图"},
+      {"id":"pr02","object_type":"exercise","source_locator":"下半第2题","description":"飞球调速器的平衡间距、恒转速小振动和自由轴小振动三问","target_id":"r2ch04:pr:002","source_number":"9.2"},
+      {"id":"fig02","object_type":"figure","source_locator":"第2题右侧","description":"上下套筒、四铰臂、两飞球与竖直转轴","target_id":"r2ch04:fig:017","source_number":"9.2题图"}
+    ]},
+    {"physical_page":37,"printed_page":37,"classification":"teaching","inspected_render":"build/source-pages/autumn_practice_2020/page-037.jpg","objects":[
+      {"id":"pr03","object_type":"exercise","source_locator":"上半第3题","description":"零原长弹簧悬挂软链的平衡、小振动频率和非弹性衰减三问","target_id":"r2ch04:pr:003","source_number":"9.3"},
+      {"id":"fig03","object_type":"figure","source_locator":"第3题右侧","description":"天花板、竖直弹簧、悬垂链和地面链段","target_id":"r2ch04:fig:018","source_number":"9.3题图"},
+      {"id":"pr04","object_type":"exercise","source_locator":"下半第4题","description":"可分离双斜劈上两质点与弹性轻杆，按支持力极值求杆长","target_id":"r2ch04:pr:004","source_number":"9.4"},
+      {"id":"fig04","object_type":"figure","source_locator":"第4题右侧","description":"两个45度斜劈、顶端质点和水平弹性杆","target_id":"r2ch04:fig:019","source_number":"9.4题图"}
+    ]},
+    {"physical_page":38,"printed_page":38,"classification":"teaching","inspected_render":"build/source-pages/autumn_practice_2020/page-038.jpg","objects":[
+      {"id":"pr05","object_type":"exercise","source_locator":"全页第5题","description":"球面上三个等电荷的稳定构型、转动与振动自由度及小振动频率三问","target_id":"r2ch04:pr:005","source_number":"9.5","additional_targets":[{"target_id":"r2ch04:fig:020","target_object_type":"figure","notes":"源题无题图；新增球面正三角形与切向振动坐标解图"}]}
+    ]},
+    {"physical_page":39,"printed_page":39,"classification":"teaching","inspected_render":"build/source-pages/autumn_practice_2020/page-039.jpg","objects":[
+      {"id":"pr06","object_type":"exercise","source_locator":"全页第6题","description":"重力场中弹簧摆势能三阶展开、系数和内共振条件","target_id":"r2ch04:pr:006","source_number":"9.6","additional_targets":[{"target_id":"r2ch04:fig:021","target_object_type":"figure","notes":"源题无题图；新增平衡长度、横向和竖向坐标解图"}]}
+    ]}
+  ]
+}

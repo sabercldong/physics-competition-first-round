@@ -1,0 +1,37 @@
+。 概率模型:经典概型(classic models) 中原子事件构成的集合是有限的,一般为等概率分布.也可以想象
+不是等概率的样本空间.事件是部分原子事件构成的子集. 一般写作:
+ren, N= {w}
+P(A) = P( LY wi) = Pw)
+wea      eA
+。 概率模型:几何概型(geometric models) 中的样本空间是与 R” 具有类似的结构的连续空间, 一般认
+为参数化. 比如原子事件抽象为区间 [a,b] 内的一个数,或是二维球面 S = {(b,p)l € (0,7), €
+(0, 2r)} U {6 = 0, 9 = 7} 上的一个点.而概率则是一个归一化的概率分布函数(prabability distribu-
+tion function):
+’       »
+[ dp =/ p(x)dx = 1
+farm fi m0, p)ds =1
+。 独立事件(indepedent events): 对于经典概型,事件 A 与事件 B 独立:
+P(ANB) = P(A)P(B)
+如果把事件的交写作直接的乘积 AN B= 4有,事件的补 Q\4 写作 4,上式等价于以下四式:
+P(AB) = P(A)P(B) ; P(AB) = P(A)P(B)
+P(AB) = P(A)P(B) ; P(AB) = P(A)P(B)
+在样本空间定义一个函数变量 X : wi 一 zi = X(wi),那么可以根据不同的函数结果对样本空间进行
+分类,每一个结果就是一个事件,概率为 P(zi). 此时变量 X 与变量 了 独立即定义为:
+Vey): P(aiy)) = P(wi)P(y;)
+对于定义在 (z, y) < 有2 上的几何概型,概率分布关于两个坐标独立的条件为可以找到两个坐标各自
+的概率分布函数:
+Vay: p(x, y) = Pr(x)py(y)
+。 两种概型下变量 X 64112 (expectation) E = (X) 与方差(variancejo2 = ((X — E)?) 的定义:
+E=  P(w)X (wi) = | X(x)d,
+x   oi) X (ws    人  (zjdp
+o? = > Plwi)(X(w)) — BP = 人 (X(z) - Bap
+Per)                    In
+。 FRA! Fit |i (statistic entrophy) B{S S/#i(information entropy) 的定义:
+S= - D> Plo) Pw) = — /mnPlz)d
+x  (wi) In P(w,   fm (x)dp
+。 在及上的分布若要求 o? 取固定值,那么正态分布(normal distribution) TUK:
+ple) = NUu 02) = ae
+如果还要求期望为零,那么上式 / = 0. 注意这等价于说, 如果一个一维粒子的平均动量为 0 而平均动
+能为 (mu212) = kT /2, AWA AA:
+flv) =  [sane  ; S=ln  |e -}
+72                                     高二物理竞赛

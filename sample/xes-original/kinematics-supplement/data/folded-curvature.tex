@@ -1,0 +1,45 @@
+% Figure contract: source example 2.69, physical p59; simple geometry, mode C.
+% Reading order: broad valley P1 -> ascending P2 -> sharp turn P3 -> P4 left-below P3.
+% Preserve the folded topology, not a single-valued y(x) hill. No artistic smoothing of labels.
+% Layout: full curve spans x=-2.8..4.75, y=0..2.8, 10cm final width; labels >=9pt.
+% Question: only curve and P1..P4. Answer: circles derived from same C2 spline.
+% Blue physical curve, thin grey circle arcs, white paper, all labels transparent.
+% Expected collision: tiny circle P3 / label; label offset above-right; P4 left.
+% No decorative panels. Circle arcs may intersect remote curve segments legitimately.
+% Sketch:  \___P1__/P2__/P3
+%                            /P4\___
+
+\newcommand{\FoldedCurvePath}{(-2.80000000,1.40000000)
+ ..controls (-1.73540121,0.68166038) and (-0.67080242,-0.03667924)..(0.00000000,0.00000000)
+ ..controls (0.67080242,0.03667924) and (0.94780848,0.82837734)..(1.45000000,1.55000000)
+ ..controls (1.80153407,2.05513586) and (2.26340901,2.52593477)..(2.65000000,2.65000000)
+ ..controls (2.81568185,2.70317081) and (2.96753604,2.69265585)..(3.00000000,2.65000000)
+ ..controls (3.04328528,2.59312553) and (2.87432126,2.47911170)..(2.75000000,2.30000000)
+ ..controls (2.56351810,2.03133245) and (2.47748239,1.61619468)..(2.52000000,1.30000000)
+ ..controls (2.59086268,0.77300887) and (3.01881791,0.52085968)..(3.45000000,0.40000000)
+ ..controls (3.88118209,0.27914032) and (4.31559105,0.28957016)..(4.75000000,0.30000000)}
+
+\newcommand{\FoldedCurvePoints}{%
+\node[point,label={[label distance=3pt]below left:{$P_1$}}] at (0.00000000,0.00000000) {};
+\node[point,label={[label distance=3pt]above left:{$P_2$}}] at (1.45000000,1.55000000) {};
+\node[point,label={[label distance=3pt]above right:{$P_3$}}] at (3.00000000,2.65000000) {};
+\node[point,label={[label distance=3pt]left:{$P_4$}}] at (2.52000000,1.30000000) {};
+}
+
+\newcommand{\FoldedCurveCircles}{%
+\begin{scope}
+\clip (-3.0,-1.1) rectangle (5,3.9);
+\draw[TextGray,thin] (-0.04766861,0.87177976) circle (0.87308204);
+\draw[TextGray,thin] (5.68213522,-1.39522683) circle (5.15609635);
+\draw[TextGray,thin] (2.97003756,2.62719657) circle (0.03765295);
+\draw[TextGray,thin] (3.59629028,1.44472504) circle (1.08597703);
+\end{scope}
+}
+
+\newcommand{\FoldedCurveTipZoom}{%
+\begin{scope}[scale=10]
+\clip (2.88,2.54) rectangle (3.08,2.78);
+\draw[kcurve] \FoldedCurvePath;
+\draw[TextGray,thin] (2.97003756,2.62719657) circle (0.03765295);
+\end{scope}
+}

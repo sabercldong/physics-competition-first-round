@@ -1,0 +1,469 @@
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 1.1【统统算出来】}
+小明认为电场的 Gauss 定理有点神奇，不是很相信 Gauss 定理的结果，于是希望利用微积分的方式求解一些
+对称系统的电场。另外，利用微积分也可以计算一些不是无穷的系统的电场。请帮助小明计算下列均匀带电
+系统产生的电场：
+\begin{enumerate}[label=\arabic*.]
+  \item 无限长直导线外、距导线 $a$ 的一点；
+  \item 有限长直导线中点附近、距导线 $a$ 的一点，点到两端的连线与垂线所成角分别为
+  $\theta_1,\theta_2$，如图；
+  \item 无限大均匀带电平面外、距平面 $a$ 的一点；
+  \item 只有一个方向无限延伸的均匀带电平面（无限长条带）外、距平面 $a$ 的一点，两侧边缘对应的角为
+  $\theta_1,\theta_2$；
+  \item 均匀带电圆盘中轴线上、距圆盘中心 $a$ 的一点，圆盘边缘对轴线上该点的半张角为 $\theta$。
+\end{enumerate}
+直线电荷的线密度记为 $\lambda$，平面和圆盘的面密度记为 $\sigma$。
+\emFiniteLineQuestion
+\figcap{有限直线的端点与观察点；长条带的截面使用同样的端点角约定。}\label{fig:em-question-1}
+\end{origexamplebox}
+
+\begin{xesolution}
+五个对象都可以拆成“已经知道电场的微元”，再利用对称性消去不需要的分量。图中把有限直线画成竖直，
+$P$ 到直线的垂距为 $a$；对长条带和圆盘，仍可沿用相同的截面角度关系。
+
+\extendedChargeFigure
+\diagramcaption{图 1.6：有限长直线的积分几何。$\theta_1,\theta_2$ 分别对应垂足上方和下方的端点。}
+
+\textbf{1. 无限长直导线。} 先直接积分。取导线沿 $y$ 轴，$P=(a,0)$，电荷元
+$\dd q=\lambda\dd y$。电场的横向分量为
+\[
+  \dd E_x=\frac{1}{4\pi\varepsilon_0}
+  \frac{\lambda a\,\dd y}{(a^2+y^2)^{3/2}}.
+\]
+上下两个电荷元的纵向分量互相抵消，所以
+\[
+  E=\frac{\lambda}{4\pi\varepsilon_0}
+  \int_{-\infty}^{\infty}\frac{a\,\dd y}{(a^2+y^2)^{3/2}}
+  =\boxed{\frac{\lambda}{2\pi\varepsilon_0a}}.
+\]
+$\lambda>0$ 时方向垂直导线向外，$\lambda<0$ 时方向向内。也可用半径 $a$、长度 $L$ 的同轴圆柱
+Gauss 面立即得到 $E(2\pi aL)=\lambda L/\varepsilon_0$。
+
+\textbf{2. 有限长直导线。} 规定从垂线向上、向下量得的端点角分别为 $\theta_1,\theta_2$。
+对应端点为 $y_1=a\tan\theta_1$、$y_2=-a\tan\theta_2$。沿用图1.6的坐标，
+\[
+ \dd E_x=k\lambda\frac{a\,\dd y}{(a^2+y^2)^{3/2}},\qquad
+ \dd E_y=-k\lambda\frac{y\,\dd y}{(a^2+y^2)^{3/2}},\quad k=\frac1{4\pi\varepsilon_0}.
+\]
+负号来自电荷元指向 $P$ 的纵向位移为 $-y$。令 $y=a\tan u$，则 $\dd y=a\sec^2u\dd u$，有
+\[
+ E_x=\frac{k\lambda}{a}\int_{-\theta_2}^{\theta_1}\cos u\,\dd u,
+ \qquad E_y=-\frac{k\lambda}{a}\int_{-\theta_2}^{\theta_1}\sin u\,\dd u.
+\]
+上下限代入后，垂直导线方向和平行导线方向的分量分别为
+\[
+  \boxed{E_\perp=\frac{\lambda}{4\pi\varepsilon_0a}
+  (\sin\theta_1+\sin\theta_2)},
+  \qquad
+  \boxed{E_\parallel=\frac{\lambda}{4\pi\varepsilon_0a}
+  (\cos\theta_1-\cos\theta_2)}.
+\]
+这里 $E_\parallel$ 的正方向取向上；若换用向下为正，第二式整体变号。导线关于垂足对称时
+$\theta_1=\theta_2=\theta$，平行分量为零，
+\[
+  \boxed{E=\frac{\lambda}{2\pi\varepsilon_0a}\sin\theta}.
+\]
+让两端趋向无穷远，$\theta\to\pi/2$，就回到第1问。
+
+\textbf{3. 无限大平面。} 为直接积分，以 $P$ 在平面上的垂足为圆心，将平面分成半径 $s$、宽度 $\dd s$ 的圆环。
+环电荷 $\dd q=2\pi\sigma s\dd s$，到 $P$ 的距离为 $\sqrt{a^2+s^2}$。环内横向场相消，法向分量相加：
+\[
+ E_\perp=\frac{\sigma a}{2\varepsilon_0}\int_0^\infty
+ \frac{s\,\dd s}{(a^2+s^2)^{3/2}}
+ =\frac{\sigma a}{2\varepsilon_0}
+ \left[-\frac1{\sqrt{a^2+s^2}}\right]_0^\infty
+ =\frac{\sigma}{2\varepsilon_0}\quad(a>0).
+\]
+这个结果由库仑积分独立得到，接着用高斯定律校验。取横跨平面的薄圆柱 Gauss 面。两个端面上的场大小相等、方向分别向两侧，
+侧面通量为零。设端面面积为 $A$，则
+\[
+  2EA=\frac{\sigma A}{\varepsilon_0},
+  \qquad
+  \boxed{E=\frac{\sigma}{2\varepsilon_0}}.
+\]
+电场与距离 $a$ 无关。正电面两侧的场都背离平面，负电面两侧的场都指向平面。
+
+\textbf{4. 无限长条带。} 令条带位于 $z=0$ 平面，沿 $y$ 方向无限长；横向坐标范围为
+$-b_1\le x\le b_2$，观察点为 $(0,0,a)$。把宽度为 $\dd x$ 的窄条看成线电荷
+$\dd\lambda=\sigma\dd x$。由第1问，窄条在 $P$ 处产生
+\[
+  \dd E=\frac{\sigma\dd x}{2\pi\varepsilon_0\sqrt{a^2+x^2}}.
+\]
+令 $\theta_1=\arctan(b_1/a)$、$\theta_2=\arctan(b_2/a)$，电荷元到 $P$ 的方向正比于 $(-x,0,a)$，故
+\[
+ E_z=\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}\frac{a\,\dd x}{a^2+x^2}
+ =\frac{\sigma}{2\pi\varepsilon_0}\left[\arctan\frac xa\right]_{-b_1}^{b_2},
+\]
+\[
+ E_x=-\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}\frac{x\,\dd x}{a^2+x^2}
+ =-\frac{\sigma}{4\pi\varepsilon_0}\ln\frac{a^2+b_2^2}{a^2+b_1^2}.
+\]
+再用 $\cos\theta_i=a/\sqrt{a^2+b_i^2}$，得到
+\[
+  \boxed{E_z=\frac{\sigma}{2\pi\varepsilon_0}(\theta_1+\theta_2)},
+  \qquad
+  \boxed{E_x=\frac{\sigma}{2\pi\varepsilon_0}
+  \ln\frac{\cos\theta_2}{\cos\theta_1}}.
+\]
+对称条带有 $\theta_1=\theta_2=\theta$，横向分量消失，
+$E_z=\sigma\theta/(\pi\varepsilon_0)$。宽度趋于无穷时 $\theta\to\pi/2$，又回到无限大平面的
+$\sigma/(2\varepsilon_0)$。
+
+\textbf{5. 均匀带电圆盘。} 把半径为 $R$ 的圆盘分割成半径 $r$、宽度 $\dd r$ 的同心圆环。
+环上横向分量互相抵消，轴向分量为
+\[
+  \dd E_z=\frac{1}{4\pi\varepsilon_0}
+  \frac{a\,(\sigma 2\pi r\dd r)}{(a^2+r^2)^{3/2}}.
+\]
+从 $0$ 积分到 $R$：
+\[
+  E_z=\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{a}{\sqrt{a^2+R^2}}\right).
+\]
+因 $\cos\theta=a/\sqrt{a^2+R^2}$，所以
+\[
+  \boxed{E_z=\frac{\sigma}{2\varepsilon_0}(1-\cos\theta)}.
+\]
+当 $R\to\infty$ 时 $\theta\to\pi/2$，结果连续过渡到无限大平面；当 $a\gg R$ 时，展开后得到
+$E\approx(1/4\pi\varepsilon_0)(\sigma\pi R^2/a^2)$，即远处只看见总电荷。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 1.2【奇妙的电场线】}
+小明发现两个点电荷的电场线很有趣，想通过作图描绘电场线的形状；可是小明希望画得准确一些。已知
+$+Q$、$-q$ 分别位于 $(-a_0,0)$、$(a_0,0)$ 处，且 $Q>q>0$。系统绕二者连线旋转对称，因此只需先画
+包含连线的平面内的电场线。回答下列问题：
+\begin{enumerate}[label=\arabic*.]
+  \item 是否有从 $+Q$ 出发的电场线延伸到无穷远？是否有从无穷远出发、终止于 $-q$ 的电场线？
+  \item 零场点在哪里？该点附近的电场线有什么特征？
+  \item 远离两个电荷处的电场具有什么特征？
+  \item 写出包含 $x$ 轴的平面内的电场线方程。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+总电荷为 $Q-q>0$。因此 $+Q$ 发出的场线中，数量与 $q$ 对应的那一部分终止于 $-q$，其余部分必须
+延伸到无穷远；$+Q$ 足以提供全部终止于 $-q$ 的场线，所以不需要从无穷远引入场线。图中实线为场线，
+场线由下文的第一积分计算。通向无穷远与终止于 $-q$ 的场线之间存在分界结构，它趋近零场点；零场点处方向未定义，不能把它当普通连接点。
+
+\unequalChargesFigure
+
+零场点只能在两个电荷连线的外侧。由于 $Q>q$，它位于较小电荷 $-q$ 的右侧。设零场点坐标为
+$x_0>a_0$，两场反向且大小相等：
+\[
+  \frac{Q}{(x_0+a_0)^2}=\frac{q}{(x_0-a_0)^2}.
+\]
+取正平方根并整理：
+\[
+  \sqrt Q(x_0-a_0)=\sqrt q(x_0+a_0),
+  \qquad
+  \boxed{x_0=a_0\frac{\sqrt Q+\sqrt q}{\sqrt Q-\sqrt q}}.
+\]
+在零场点附近，沿 $x$ 轴从左向右穿过该点，电场由向左变为向右；垂直于 $x$ 轴的小位移则受到指向
+轴线的电场。局部展开可写成
+\[
+  \boldsymbol E\approx\kappa\left[(x-x_0)\boldsymbol e_x
+  -\frac{y}{2}\boldsymbol e_y-\frac{z}{2}\boldsymbol e_z\right],\qquad\kappa>0.
+\]
+所以它是一个鞍点，不是场线可以平滑穿过的普通点；轴线和分界面构成局部的分离结构。
+
+当 $r\gg a_0$ 时，最低阶电场只取决于总电荷：
+\[
+  \boxed{\boldsymbol E\approx\frac{1}{4\pi\varepsilon_0}
+  \frac{Q-q}{r^2}\hat{\boldsymbol r}}.
+\]
+因此远处场线近似从一个总电荷为 $Q-q$ 的正点电荷径向向外；再下一阶才看出偶极修正。
+
+最后求电场线方程。取包含 $x$ 轴的平面，令点的坐标为 $(x,y)$，到两电荷的距离分别为
+\[
+  r_1=\sqrt{(x+a_0)^2+y^2},\qquad r_2=\sqrt{(x-a_0)^2+y^2}.
+\]
+轴对称点电荷场的流函数可以取为电荷量乘以相应极角的余弦。叠加后，电场线是下式的等值线：
+\[
+  \boxed{Q\frac{x+a_0}{r_1}-q\frac{x-a_0}{r_2}=C}.
+\]
+这一第一积分可以直接核验。令 $F=Q(x+a_0)/r_1-q(x-a_0)/r_2$，
+逐项求导得到 $F_x=yE_y/k$、$F_y=-yE_x/k$。沿电场线的切向位移满足
+$(\dd x,\dd y)\parallel(E_x,E_y)$，所以
+\[
+ \dd F=F_x\dd x+F_y\dd y=\frac yk(E_y\dd x-E_x\dd y)=0.
+\]
+故 $F=C$ 确为场线方程，而不是单凭外观猜出的曲线。改变常数 $C$ 就得到图中的不同场线；绕 $x$ 轴旋转这些曲线，可得到完整的三维场线曲面。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 1.3【球壳空洞】}
+一个绝缘球体内有一个球形空洞，不空的地方均匀带有固定的体电荷密度 $\rho$。另比较：若它换成达到静电平衡的金属且空洞内无电荷，会有什么不同？
+\begin{enumerate}[label=\arabic*.]
+  \item 小明想起来似乎万有引力那一章中也计算过类似模型。您还记得答案吗？
+  \item 这两个模型有什么区别？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+设完整大球球心为 $O$，空洞球心为 $C$，从 $O$ 指向 $C$ 的位移为 $\boldsymbol a$。空洞内任一点
+$P$ 相对 $O,C$ 的位置矢量分别为 $\boldsymbol r,\boldsymbol r'$，于是
+$\boldsymbol r=\boldsymbol a+\boldsymbol r'$。
+
+\cavityFigure
+
+把“带空洞的均匀带电体”叠加成：一个体电荷密度为 $+\rho$ 的完整大球，再在空洞位置放一个体电荷密度
+为 $-\rho$ 的小球。均匀带电实心球内部的电场由 Gauss 定律得到
+\[
+  \boldsymbol E_{\rm sphere}=\frac{\rho}{3\varepsilon_0}\boldsymbol r.
+\]
+因此空洞内
+\[
+  \boldsymbol E
+  =\frac{\rho}{3\varepsilon_0}\boldsymbol r
+  -\frac{\rho}{3\varepsilon_0}\boldsymbol r'
+  =\boxed{\frac{\rho}{3\varepsilon_0}\boldsymbol a}.
+\]
+结果与 $P$ 在空洞中的位置无关，空洞内是匀强电场；$\rho>0$ 时方向从大球球心指向空洞球心。
+
+引力模型的叠加步骤完全相同，但引力永远吸引。若质量密度为 $\rho_m$，空洞内引力场为
+\[
+  \boxed{\boldsymbol g=-\frac{4\pi G\rho_m}{3}\boldsymbol a}.
+\]
+负号说明方向与电荷密度为正时的电场相反。
+
+“均匀体电荷”与“处于静电平衡的金属”不能混为一谈。若物体是真正的导体，且达到静电平衡，自由电荷
+会迁移到表面，金属内部有 $\boldsymbol E=0$，不能维持非零、均匀的体电荷密度。若空洞中没有另放电荷，
+空洞内也有 $\boldsymbol E=0$。所以第一问的叠加结果适用于绝缘体中固定的均匀体电荷；金属静电平衡模型则由等势边界条件决定，不能沿用均匀体电荷假设。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 1.4【电偶极子】}
+相距 $l$ 的两个点电荷 $-q$、$+q$ 构成电偶极子。定义电偶极矩
+$\boldsymbol p=q\boldsymbol l$，方向由负电荷指向正电荷。求远处 $r\gg l$ 的电场，并研究其电场线。
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.8]
+
+ \fill ( -1,0) circle(3pt) node[below]{$-q$};\fill[DeepBlue](1,0)circle(3pt)node[below]{$+q$};
+ \draw[<->](-1,-.65)--(1,-.65)node[midway,below]{$l$};
+ \draw[->,DeepBlue](0,0)--(2.1,0)node[right]{$\boldsymbol p$};
+ \fill(0,0)circle(1pt)node[below]{$O$};\draw[dashed](0,0)--(4.0,2.2)node[midway,above left]{$r$};
+ \fill(4.0,2.2)circle(1.5pt)node[right]{$P$};
+ \draw(.9,0)arc[start angle=0,end angle=28.81,radius=.9];\node at(1.18,.3){$\theta$};
+
+\end{tikzpicture}\end{center}
+\figcap{电偶极子的电荷间距与远处观察方向，电场待求。}\label{fig:em-source-thirty-second-section-4}
+\end{origexamplebox}
+
+\begin{xesolution}
+把坐标原点取在两电荷中点，极轴沿 $\boldsymbol p$。观察点的位置矢量为 $\boldsymbol r$，它与
+$\boldsymbol p$ 的夹角为 $\theta$。在 $l/r$ 的一阶精度下，电势为
+\[
+  \varphi(\boldsymbol r)
+  =\frac{1}{4\pi\varepsilon_0}\frac{\boldsymbol p\cdot\hat{\boldsymbol r}}{r^2}
+  =\frac{1}{4\pi\varepsilon_0}\frac{p\cos\theta}{r^2}.
+\]
+由 $\boldsymbol E=-\boldsymbol\nabla\varphi$ 得到球坐标分量
+\[
+  E_r=-\frac{\partial\varphi}{\partial r}
+  =\frac{1}{4\pi\varepsilon_0}\frac{2p\cos\theta}{r^3},
+  \qquad
+  E_\theta=-\frac1r\frac{\partial\varphi}{\partial\theta}
+  =\frac{1}{4\pi\varepsilon_0}\frac{p\sin\theta}{r^3}.
+\]
+所以矢量形式为
+\[
+  \boxed{\boldsymbol E
+  =\frac{1}{4\pi\varepsilon_0r^3}
+  \left[3(\boldsymbol p\cdot\hat{\boldsymbol r})\hat{\boldsymbol r}-\boldsymbol p\right]}.
+\]
+场强大小和相对径向的偏角 $\beta$ 分别满足
+\[
+  \boxed{E=\frac{p}{4\pi\varepsilon_0r^3}\sqrt{1+3\cos^2\theta}},
+  \qquad
+  \tan\beta=\frac{E_\theta}{E_r}=\frac12\tan\theta.
+\]
+
+图 1.7 左侧把场分解为径向和极角方向，右侧以同一偶极矩方向展示远场线族。
+
+\dipoleFarFigure
+\diagramcaption{图 1.7：电偶极子的远场分量与典型场线。$\boldsymbol p$ 的方向由负电荷指向正电荷。}
+
+场线的切线与电场平行，故在极坐标中
+\[
+  \frac{\dd r}{r\dd\theta}=\frac{E_r}{E_\theta}=2\cot\theta.
+\]
+积分得到
+\[
+  \ln r=2\ln\sin\theta+\text{常量},
+  \qquad
+  \boxed{r=C\sin^2\theta}.
+\]
+图右侧按这个方程画出理想点偶极子的场线，偶极矩集中于原点；对左侧有限间距的真实电荷，这个近似只用于 $r\gg l$，不延伸至两电荷附近。远场按 $r^{-3}$ 衰减，比有净电荷的
+$r^{-2}$ 更快。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 1.5【直线电四极子】}
+如图，三个电荷依次为 $-q,+2q,-q$，相邻两电荷相距 $l$（两端相距 $2l$）。求距离该电四极子 $r\gg l$ 处的电场强度大小
+和方向，并求在这一近似下的电场线方程。
+\emQuadrupoleQuestion
+\figcap{三个点电荷、相邻间距及远处观察方向。}\label{fig:em-question-5}
+\end{origexamplebox}
+
+\begin{xesolution}
+总电荷为零，偶极矩也为零，所以远场的最低非零项是电四极项。取极轴沿电荷排列方向，观察方向与极轴
+夹角为 $\theta$。把两端电荷的距离倒数按 $l/r$ 展开到二阶：
+\[
+  \frac1{|\boldsymbol r\mp l\boldsymbol e_x|}
+  =\frac1r\left[1\pm\frac lr\cos\theta
+  +\frac{l^2}{2r^2}(3\cos^2\theta-1)+\cdots\right].
+\]
+与中心 $+2q$ 的电势相加后，零阶和一阶项都抵消，得到
+\[
+  \boxed{\varphi(r,\theta)=\frac{1}{4\pi\varepsilon_0}
+  \frac{ql^2}{r^3}(1-3\cos^2\theta)}.
+\]
+于是
+\[
+  \boxed{E_r=\frac{3ql^2}{4\pi\varepsilon_0r^4}(1-3\cos^2\theta)},
+  \qquad
+  \boxed{E_\theta=-\frac{6ql^2}{4\pi\varepsilon_0r^4}\sin\theta\cos\theta}.
+\]
+场强大小为
+\[
+  \boxed{E=\frac{3ql^2}{4\pi\varepsilon_0r^4}
+  \sqrt{1-2\cos^2\theta+5\cos^4\theta}}.
+\]
+
+图 1.8 左侧的三个电荷共线，相邻间距为 $l$；观察角 $\theta$ 从这条轴量起，右侧场线由三个电荷共同产生。
+
+\quadrupoleFarFigure
+\diagramcaption{图 1.8：直线电四极子的电荷位置、远场观察方向与场线四瓣结构。}
+
+场线方程满足
+\[
+  \frac{\dd r}{r\dd\theta}
+  =\frac{E_r}{E_\theta}
+  =-\frac{1-3\cos^2\theta}{2\sin\theta\cos\theta}.
+\]
+令 $u=\cos\theta$，积分得
+\[
+  \ln r=\frac12\ln|\cos\theta|+\ln|\sin\theta|+\text{常量},
+\]
+所以每一瓣中的场线可写为
+\[
+  \boxed{r=C|\sin\theta|\sqrt{|\cos\theta|}}.
+\]
+它具有关于轴线和中垂面的对称性。四极场按 $r^{-4}$ 衰减，比偶极场的 $r^{-3}$ 又快一阶。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 1.6【无穷大厚板】}
+如图，一片区域在两个方向上无限大，另一个方向只有 $-d$ 到 $+d$ 内有均匀正电荷分布，体电荷密度为
+$\rho>0$。初始时，质量为 $m$、电荷为 $-q$ 的点电荷从原点以初速度 $v_0$ 向右运动，求运动周期。
+\emSlabQuestion
+\figcap{厚板边界及负电荷的初始位置和速度。}\label{fig:em-question-6}
+\end{origexamplebox}
+
+\begin{xesolution}
+先用关于中面镜面对称的柱形 Gauss 面求场。厚板内、外电场分别为
+\[
+  \boxed{E_x=\frac{\rho x}{\varepsilon_0}\quad(|x|\le d)},
+  \qquad
+  \boxed{E_x=\frac{\rho d}{\varepsilon_0}\operatorname{sgn}x\quad(|x|>d)}.
+\]
+图(b)中斜线必须穿过原点，并在 $x=\pm d$ 与两侧水平线连续；这三个位置关系正是后面分段运动的依据。
+
+\chargedSlabFigure
+
+在板内，负电荷受到指向中面的回复力
+\[
+  F_x=-qE_x=-\frac{q\rho}{\varepsilon_0}x=-m\omega^2x,
+  \qquad
+  \boxed{\omega=\sqrt{\frac{q\rho}{m\varepsilon_0}}}.
+\]
+若简谐振幅 $A=v_0/\omega$ 不超过 $d$，粒子始终留在板内，周期直接为
+\[
+  \boxed{T=\frac{2\pi}{\omega}}
+  \qquad (v_0\le\omega d).
+\]
+
+若 $v_0>\omega d$，粒子会穿出厚板。在 $0\le x\le d$ 内由
+$x=(v_0/\omega)\sin\omega t$ 得到从中面运动到边界的时间
+\[
+  t_1=\frac1\omega\arcsin\frac{\omega d}{v_0},
+\]
+到达边界的速度为
+\[
+  v_d=\sqrt{v_0^2-\omega^2d^2}.
+\]
+板外回复加速度大小恒为
+\[
+  a_{\rm out}=\frac{q\rho d}{m\varepsilon_0}=\omega^2d,
+\]
+故从边界到右侧转折点的时间为
+\[
+  t_2=\frac{v_d}{\omega^2d}.
+\]
+从中面向右到右侧转折点是整个周期的四分之一，所以
+\[
+  \boxed{T=4\left[
+  \frac1\omega\arcsin\frac{\omega d}{v_0}
+  +\frac{\sqrt{v_0^2-\omega^2d^2}}{\omega^2d}
+  \right]}
+  \qquad(v_0>\omega d).
+\]
+在临界速度 $v_0=\omega d$ 处，第二项为零、反正弦为 $\pi/2$，两段答案连续接成
+$2\pi/\omega$。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 1.7【电子透镜】}
+在电子显微镜中，一束原先通过电势差 $U_0$ 加速、具有一定能量的电子，经过一根与电子束原来方向垂直的
+绷紧带电细金属线。该线带正电，电荷线密度为 $\lambda$；金属线产生的电场相对较弱，因此电子轨道只稍受
+影响。入射电子的瞄准参数为 $b$，求电子通过带电金属线以后运动方向的偏转角。
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $b>0$ 为瞄准距离的大小，并采用非相对论、细线及弱偏转近似。电子的电荷为 $-e$，进入相互作用区前，加速电势差把电势能转化为动能：
+\[
+  \frac12mv^2=eU_0.
+\]
+正线电荷的场沿径向向外，电子受力指向线电荷。弱偏转近似中，可以沿原来的水平直线计算横向冲量。
+令电子在 $x$ 方向运动，线电荷在原点垂直纸面，未偏转轨迹为 $y=b$，则 $x=vt$。
+
+\electronLensFigure
+
+线电荷场强为
+\[
+  E(r)=\frac{\lambda}{2\pi\varepsilon_0r},
+  \qquad r=\sqrt{x^2+b^2}.
+\]
+横向力的大小为
+\[
+  |F_y|=eE\frac{b}{r}
+  =\frac{e\lambda}{2\pi\varepsilon_0}
+  \frac{b}{x^2+b^2}.
+\]
+于是横向动量改变量
+\[
+  |\Delta p_y|
+  =\int_{-\infty}^{\infty}|F_y|\dd t
+  =\frac{e\lambda}{2\pi\varepsilon_0v}
+  \int_{-\infty}^{\infty}\frac{b\,\dd x}{x^2+b^2}
+  =\frac{e\lambda}{2\varepsilon_0v}.
+\]
+偏转角很小时 $\alpha\approx|\Delta p_y|/(mv)$，代入 $mv^2=2eU_0$：
+\[
+  \boxed{\alpha=\frac{e\lambda}{2\varepsilon_0mv^2}
+  =\frac{\lambda}{4\varepsilon_0U_0}}.
+\]
+在这一近似下，偏转角与电子质量、电荷量以及瞄准距离 $b$ 都无关，只由线电荷密度和加速电压决定。
+$b$ 的消失来自两个效应的抵消：靠得更近时横向力更大，但强作用区域的通过时间更短。
+
+这里把积分限延至无穷，是对有限装置中横向冲量的近似，不是说无限线电荷的对数电势在无穷远有有限值。
+若实际主要相互作用区为 $-X\le x\le X$，$X\gg b$，同一恒速近似给出
+\[
+ |\Delta p_y|=\frac{e\lambda}{\pi\varepsilon_0v}\arctan\frac Xb,
+ \qquad \alpha_X=\frac{\lambda}{2\pi\varepsilon_0U_0}\arctan\frac Xb.
+\]
+令 $X/b$ 很大才回到上面的结果。同时须满足
+$[\lambda/(2\pi\varepsilon_0U_0)]\ln(X/b)\ll1$，使纵向动能变化也远小于初始动能；
+细线半径须远小于 $b$，线长须足以近似为无限线。
+若这些条件不满足，应给定实际场区和入射条件再求轨迹，不能将该常数偏转角公式直接外推。
+\end{xesolution}

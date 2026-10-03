@@ -1,0 +1,422 @@
+% !TEX program = xelatex
+\ifdefined\MASTERBOOK\else
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../common-style.tex}
+
+\hypersetup{
+  pdftitle={高中物理竞赛一轮讲义样章：曲线微元、路径时间与变分思想}
+}
+
+\begin{document}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{chapter}{0}
+\chapter{数学与物理工具}
+\setcounter{section}{4}
+\fi
+\ifdefined\MASTERBOOK\clearpage\fi
+\section{曲线微元、路径时间与变分思想}
+
+前面讨论的积分大多沿时间轴或某一坐标轴进行，被积函数确定以后，积分的任务是把许多
+微小贡献累加起来。路径问题多了一层结构：被积函数可能依赖位置，而积分所沿的曲线
+本身也会影响结果。两条曲线即使连接同一对端点，其长度、运动时间和力所做的功也可能
+完全不同。
+
+本节从曲线弧长的微元公式出发，建立质点沿给定轨道运动所需时间的积分表达式。最后再
+进一步讨论：如果轨道本身也可以选择，怎样比较相邻曲线，并由“时间取极值”推导最速
+降线。这里未知对象不再是一个数，而是一整条函数曲线，这正是变分思想与普通微积分的
+区别。
+
+\begin{sourcebox}
+本节例题 1.5.1、1.5.2 改编自学而思
+《19春假兴趣2—微积分在物理学中的应用》例 1.28、1.29（原 PDF 第 20 页）。
+原资料只给出题目与示意图，第 21 页为空白，未附解答。本节保留原题条件，重画 TikZ
+示意图并补写完整推导；最速降线与欧拉—拉格朗日方程属于在原题基础上的拓展内容。
+\end{sourcebox}
+
+\subsection{从折线长度到曲线微元}
+
+设平面曲线由 $y=y(x)$ 给出。在曲线上取相邻两点
+\[
+  P(x,y),
+  \qquad
+  Q(x+\Delta x,y+\Delta y).
+\]
+两点之间的弦长为
+\begin{equation}
+  \Delta s=\sqrt{(\Delta x)^2+(\Delta y)^2}
+  =\sqrt{1+\left(\frac{\Delta y}{\Delta x}\right)^2}\,|\Delta x|.
+  \label{eq:chord-length}
+\end{equation}
+把曲线分割得越来越细时，弦长和曲线小段之差是更高阶小量，并且
+$\Delta y/\Delta x\to y'(x)$。若沿 $x$ 增大的方向积分，曲线长度微元为
+\begin{equation}
+  \dd s=\sqrt{1+[y'(x)]^2}\,\dd x.
+  \label{eq:arc-length-element}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=1.0cm]
+  \draw[axis] (-0.2,0)--(6.4,0) node[right] {$x$};
+  \draw[axis] (0,-0.2)--(0,3.8) node[above] {$y$};
+  \draw[curve,domain=0.55:5.9,samples=100]
+    plot (\x,{0.55+0.085*(\x-3.1)^2+0.34*sin(1.3*\x r)});
+  \coordinate (P) at (2.15,{0.55+0.085*(2.15-3.1)^2+0.34*sin(1.3*2.15 r)});
+  \coordinate (Q) at (4.55,{0.55+0.085*(4.55-3.1)^2+0.34*sin(1.3*4.55 r)});
+  \fill[DeepBlue] (P) circle (2pt) node[above left] {$P$};
+  \fill[DeepBlue] (Q) circle (2pt) node[above right] {$Q$};
+  \draw[secant] (P)--(Q) node[midway,below] {$\Delta s$};
+  \draw[guide] (P)--(P|-0,0) node[below,fill=white] {$x$};
+  \draw[guide] (Q)--(Q|-0,0) node[below,fill=white] {$x+\Delta x$};
+  \draw[<->,draw=TextGray] (P|-0,0.2)--(Q|-0,0.2)
+    node[midway,above,fill=white,inner sep=1pt] {$\Delta x$};
+\end{tikzpicture}
+\end{center}
+
+式 \eqref{eq:arc-length-element} 中的根号因子是几何修正：若曲线水平，$y'=0$，
+则 $\dd s=\dd x$；曲线越陡，同样的水平位移对应的实际路程越长。
+
+\begin{examplebox}{任意光滑曲线的长度}
+\examplesource{学而思《19春假兴趣2—微积分在物理学中的应用》例 1.28，第 20 页；原题未附解答。}
+用定积分表示光滑曲线 $y(x)$ 在 $x_1$ 到 $x_2$ 之间的弧长 $L_{12}$。
+
+\tcblower
+把区间 $[x_1,x_2]$ 分为 $N$ 小段，第 $i$ 段宽为 $\Delta x_i$。在分割足够细时，
+该段曲线长度可用弦长近似：
+\[
+  \Delta s_i
+  \approx\sqrt{1+\left(\frac{\Delta y_i}{\Delta x_i}\right)^2}\,\Delta x_i.
+\]
+各段相加并令最大分段宽度趋于零：
+\begin{align*}
+  L_{12}
+  &=\lim_{\max\Delta x_i\to0}
+    \sum_{i=1}^{N}\sqrt{1+\left(\frac{\Delta y_i}{\Delta x_i}\right)^2}\,\Delta x_i\\
+  &=\int_{x_1}^{x_2}\sqrt{1+[y'(x)]^2}\,\dd x.
+\end{align*}
+因此
+\begin{equation}
+  \boxed{L_{12}=\int_{x_1}^{x_2}\sqrt{1+[y'(x)]^2}\,\dd x}.
+  \label{eq:graph-arc-length}
+\end{equation}
+
+若 $y=kx+b$，则 $y'=k$，上式给出
+\[
+  L_{12}=\sqrt{1+k^2}\,(x_2-x_1),
+\]
+这正是两端点横、纵坐标差的勾股关系。根号内各项都是纯数，所以积分结果具有长度量纲。
+\end{examplebox}
+
+若曲线不便写成单值函数 $y(x)$，可用参数 $u$ 表示：
+\[
+  \vect r(u)=x(u)\uvec e_x+y(u)\uvec e_y+z(u)\uvec e_z.
+\]
+此时
+\begin{equation}
+  \dd s=\left|\frac{\dd\vect r}{\dd u}\right|\,|\dd u|
+  =\sqrt{\left(\frac{\dd x}{\dd u}\right)^2
+  +\left(\frac{\dd y}{\dd u}\right)^2
+  +\left(\frac{\dd z}{\dd u}\right)^2}\,|\dd u|.
+  \label{eq:parametric-arc-length}
+\end{equation}
+参数 $u$ 只是给曲线上的点编号；只要沿同一方向单调改变，换一种参数不会改变实际弧长。
+
+\subsection{沿给定路径的累积量}
+
+一旦得到 $\dd s$，许多路径累积量都可以写成曲线积分。若细线的线密度沿路径变化，
+总质量为
+\[
+  M=\int_C\lambda(\vect r)\,\dd s.
+\]
+若质点所受力为 $\vect F$，从 $A$ 到 $B$ 的功为
+\[
+  W_{A\to B}=\int_C\vect F\cdot\dd\vect r.
+\]
+功不仅与路程有关，还与力和位移微元的夹角有关。只有当力为保守力时，积分结果才只由
+端点决定；一般情况下，改变路径会改变总功。
+
+若质点在位置 $\vect r$ 的速率为 $v(\vect r)>0$，由 $v=\dd s/\dd t$ 得
+\begin{equation}
+  \dd t=\frac{\dd s}{v(\vect r)},
+  \qquad
+  T=\int_C\frac{\dd s}{v(\vect r)}.
+  \label{eq:path-time-general}
+\end{equation}
+对平面轨道 $y(x)$，式 \eqref{eq:path-time-general} 化为
+\begin{equation}
+  T[y]=\int_{x_A}^{x_B}
+  \frac{\sqrt{1+[y'(x)]^2}}{v(x,y)}\,\dd x.
+  \label{eq:path-time-functional}
+\end{equation}
+方括号 $T[y]$ 提醒我们：运动时间依赖整条函数曲线，而不只依赖某个函数值。
+
+\subsection{重力场中的轨道下落时间}
+
+\begin{examplebox}{光滑轨道上的无摩擦下落}
+\examplesource{学而思《19春假兴趣2—微积分在物理学中的应用》例 1.29，第 20 页；原题未附解答。}
+在竖直平面内有 $A(0,H)$、$B(L,0)$ 两点，一条光滑轨道 $y(x)$ 连接两点。
+质点从 $A$ 点由静止释放，忽略摩擦，求沿给定轨道到达 $B$ 所需时间。
+
+\tcblower
+取 $y$ 轴竖直向上，重力势能为 $mgy$。机械能守恒给出
+\[
+  \frac12mv^2+mgy=mgH.
+\]
+因此质点到达高度 $y$ 时的速率为
+\begin{equation}
+  v(y)=\sqrt{2g(H-y)}.
+  \label{eq:track-speed}
+\end{equation}
+这一步只利用高度差，与轨道具体形状无关；轨道形状通过路程微元
+\[
+  \dd s=\sqrt{1+[y'(x)]^2}\,\dd x
+\]
+进入运动时间。于是
+\begin{align*}
+  T[y]
+  &=\int_0^L\frac{\dd s}{v(y)}\\
+  &=\int_0^L
+  \frac{\sqrt{1+[y'(x)]^2}}{\sqrt{2g(H-y(x))}}\,\dd x.
+\end{align*}
+所以原题所求为
+\begin{equation}
+  \boxed{T[y]=\frac1{\sqrt{2g}}
+  \int_0^L\sqrt{\frac{1+[y'(x)]^2}{H-y(x)}}\,\dd x}.
+  \label{eq:gravity-track-time}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[x=1.15cm,y=1.0cm]
+  \draw[axis] (-0.15,0)--(6.5,0) node[right] {$x$};
+  \draw[axis] (0,-0.15)--(0,4.4) node[above] {$y$};
+  \draw[curve,domain=0:5.8,samples=100]
+    plot (\x,{3.8*(1-\x/5.8)^1.55});
+  \fill[DeepBlue] (0,3.8) circle (2.4pt) node[left] {$A(0,H)$};
+  \fill[DeepBlue] (5.8,0) circle (2.4pt) node[below] {$B(L,0)$};
+  \coordinate (P) at (2.55,{3.8*(1-2.55/5.8)^1.55});
+  \fill[Ink] (P) circle (2pt);
+  \draw[vector] (P)--++(0.95,-0.68) node[right] {$\vect v$};
+  \draw[guide] (P)--(P|-0,0) node[below,fill=white] {$x$};
+  \draw[<->,draw=TextGray] (6.15,0)--(6.15,3.8)
+    node[midway,right] {$H$};
+\end{tikzpicture}
+\end{center}
+
+作为检验，若轨道是连接 $A,B$ 的直线
+\[
+  y(x)=H\left(1-\frac{x}{L}\right),
+  \qquad y'=-\frac HL,
+\]
+则
+\begin{align}
+  T_{\mathrm{line}}
+  &=\frac1{\sqrt{2g}}\sqrt{1+\frac{H^2}{L^2}}
+  \int_0^L\frac{\dd x}{\sqrt{Hx/L}}\notag\\
+  &=\sqrt{\frac{2(L^2+H^2)}{gH}}.
+  \label{eq:straight-track-time}
+\end{align}
+也可把直线轨道视为斜面：路程为 $\sqrt{L^2+H^2}$，沿斜面的加速度为
+$gH/\sqrt{L^2+H^2}$，用匀加速公式得到同一结果。
+\end{examplebox}
+
+\begin{warningbox}{起点速率为零时要检查积分是否收敛}
+式 \eqref{eq:gravity-track-time} 在 $A$ 点的分母为零，但这不自动意味着时间无限。
+必须结合轨道在起点附近的形状判断被积函数的发散是否可积。若轨道在最高点以水平切线
+出发，切向重力为零，理想质点可能无法自行启动；最速降线反而以竖直切线离开起点。
+\end{warningbox}
+
+\subsection{二轮拓展：当未知量是一整条曲线}
+
+{\small\color{TextGray}\noindent
+以下两小节作为二轮选读，需要读者已经熟悉偏导数和分部积分。一轮学习只需掌握前面
+“建立曲线微元—写出路径时间积分”的主线，不要求使用变分法求最优曲线。\par}
+
+普通函数把一个数映射为另一个数，例如 $y=f(x)$；泛函则把一整条函数映射为一个数，
+例如式 \eqref{eq:gravity-track-time} 把轨道 $y(x)$ 映射为运动时间 $T[y]$。一般写成
+\begin{equation}
+  J[y]=\int_a^b F\bigl(x,y(x),y'(x)\bigr)\,\dd x.
+  \label{eq:functional-general}
+\end{equation}
+若要在所有满足固定端点 $y(a)=y_a,y(b)=y_b$ 的曲线中寻找使 $J$ 取极值的曲线，
+就要比较 $y(x)$ 与它附近的曲线。令
+\begin{equation}
+  y_\varepsilon(x)=y(x)+\varepsilon\eta(x),
+  \qquad
+  \eta(a)=\eta(b)=0,
+  \label{eq:varied-curve}
+\end{equation}
+其中 $\eta(x)$ 描述任意微小形变，$\varepsilon$ 控制形变大小。极值曲线必须满足
+\[
+  \left.\frac{\dd}{\dd\varepsilon}J[y_\varepsilon]\right|_{\varepsilon=0}=0.
+\]
+把式 \eqref{eq:functional-general} 对 $\varepsilon$ 求导：
+\begin{align*}
+  \delta J
+  &=\int_a^b\left(
+    \frac{\partial F}{\partial y}\eta
+    +\frac{\partial F}{\partial y'}\eta'
+  \right)\dd x\\
+  &=\int_a^b\frac{\partial F}{\partial y}\eta\,\dd x
+  +\left[\frac{\partial F}{\partial y'}\eta\right]_a^b
+  -\int_a^b\frac{\dd}{\dd x}
+    \left(\frac{\partial F}{\partial y'}\right)\eta\,\dd x.
+\end{align*}
+端点固定使边界项为零，于是
+\begin{equation}
+  \delta J=\int_a^b\left[
+  \frac{\partial F}{\partial y}
+  -\frac{\dd}{\dd x}\left(\frac{\partial F}{\partial y'}\right)
+  \right]\eta(x)\,\dd x.
+  \label{eq:first-variation}
+\end{equation}
+因为 $\eta(x)$ 在区间内部可以任意选取，要使 $\delta J=0$，方括号必须处处为零：
+\begin{equation}
+  \boxed{
+  \frac{\partial F}{\partial y}
+  -\frac{\dd}{\dd x}\left(\frac{\partial F}{\partial y'}\right)=0
+  }.
+  \label{eq:euler-lagrange}
+\end{equation}
+这就是欧拉—拉格朗日方程。它把“在无穷多条相邻曲线中取极值”的问题，转化为一个微分方程。
+
+当 $F$ 不显含 $x$ 时，欧拉—拉格朗日方程还有一个便于计算的首次积分。直接求导：
+\begin{align*}
+  \frac{\dd}{\dd x}\left(F-y'\frac{\partial F}{\partial y'}\right)
+  &=\frac{\partial F}{\partial x}
+  +y'\left[
+    \frac{\partial F}{\partial y}
+    -\frac{\dd}{\dd x}\left(\frac{\partial F}{\partial y'}\right)
+  \right].
+\end{align*}
+若 $\partial F/\partial x=0$，再利用欧拉—拉格朗日方程，便得到
+\begin{equation}
+  F-y'\frac{\partial F}{\partial y'}=\text{常量}.
+  \label{eq:beltrami-identity}
+\end{equation}
+
+\subsection{二轮拓展：最速降线为何是摆线}
+
+原题例 1.29 只要求给定轨道的运动时间。现在进一步允许轨道形状自由改变，要求在连接
+$A,B$ 的所有轨道中使式 \eqref{eq:gravity-track-time} 最小。为简化符号，令
+\begin{equation}
+  z(x)=H-y(x),
+  \label{eq:downward-coordinate}
+\end{equation}
+即 $z$ 表示相对起点向下的高度，满足 $z(0)=0,z(L)=H$。时间泛函为
+\begin{equation}
+  T[z]=\frac1{\sqrt{2g}}\int_0^L
+  \sqrt{\frac{1+[z'(x)]^2}{z(x)}}\,\dd x.
+  \label{eq:brachistochrone-functional}
+\end{equation}
+常数因子不影响取极值，记
+\[
+  F(z,z')=\sqrt{\frac{1+z'^2}{z}}.
+\]
+$F$ 不显含 $x$，代入式 \eqref{eq:beltrami-identity}：
+\begin{align*}
+  F-z'\frac{\partial F}{\partial z'}
+  &=\frac{\sqrt{1+z'^2}}{\sqrt z}
+  -\frac{z'^2}{\sqrt z\sqrt{1+z'^2}}\\
+  &=\frac1{\sqrt z\sqrt{1+z'^2}}
+  =\text{常量}.
+\end{align*}
+把常量写成 $1/\sqrt{2R}$，可得
+\begin{equation}
+  z(1+z'^2)=2R.
+  \label{eq:brachistochrone-first-integral}
+\end{equation}
+引入参数 $\theta$：
+\begin{equation}
+  x=R(\theta-\sin\theta),
+  \qquad
+  z=R(1-\cos\theta).
+  \label{eq:cycloid-parametric}
+\end{equation}
+由
+\[
+  \frac{\dd z}{\dd x}
+  =\frac{R\sin\theta}{R(1-\cos\theta)}
+  =\cot\frac\theta2
+\]
+可验证
+\[
+  z(1+z'^2)
+  =2R\sin^2\frac\theta2\csc^2\frac\theta2
+  =2R,
+\]
+所以式 \eqref{eq:cycloid-parametric} 确实满足极值条件。这条曲线就是圆周上一点随圆滚动
+形成的摆线。
+
+欧拉—拉格朗日方程给出的是驻值曲线必须满足的必要条件。经典变分分析还能进一步证明：在不含
+折返和停滞的可容许轨道中，满足端点条件的这段摆线给出最小时间，而不是极大时间；
+相应的二阶变分证明不在本节展开。
+
+\begin{center}
+\begin{tikzpicture}[x=1.25cm,y=1.15cm]
+  \draw[axis] (-0.15,0)--(5.2,0) node[right] {$x$};
+  \draw[axis] (0,0.25)--(0,-3.55) node[below] {$z$};
+  \draw[curve,domain=0.02:3.55,samples=120,variable=\t]
+    plot ({1.08*(\t-sin(\t r))},{-1.08*(1-cos(\t r))});
+  \coordinate (A) at (0,0);
+  \coordinate (B) at ({1.08*(3.55-sin(3.55 r))},{-1.08*(1-cos(3.55 r))});
+  \draw[guide] (A)--(B) node[midway,above right] {直线};
+  \fill[DeepBlue] (A) circle (2.4pt) node[above left] {$A$};
+  \fill[DeepBlue] (B) circle (2.4pt) node[below right] {$B$};
+  \node[DeepBlue,below left] at (2.35,-1.55) {摆线};
+\end{tikzpicture}
+\end{center}
+
+终点对应参数 $\theta_B$，常数 $R$ 和 $\theta_B$ 由
+\begin{equation}
+  L=R(\theta_B-\sin\theta_B),
+  \qquad
+  H=R(1-\cos\theta_B)
+  \label{eq:cycloid-endpoint-conditions}
+\end{equation}
+确定。沿摆线有
+\[
+  \dd s=2R\sin\frac\theta2\,\dd\theta,
+  \qquad
+  v=\sqrt{2gz}=2\sqrt{gR}\sin\frac\theta2,
+\]
+因而每增加相同的 $\theta$，所需时间相同：
+\begin{equation}
+  \dd t=\sqrt{\frac Rg}\,\dd\theta,
+  \qquad
+  T_{\min}=\theta_B\sqrt{\frac Rg}.
+  \label{eq:brachistochrone-minimum-time}
+\end{equation}
+摆线在起点先迅速下降，以较早获得较大速度；随后虽然路径比直线长，却能在大部分路段
+保持更高速度。最短时间因此不是最短路程，这也是路径极值问题不能只靠几何直觉判断的
+典型例子。
+
+处理这类问题时，应先区分“沿给定路径求积分”和“在所有路径中求极值”：前者只需要
+建立 $\dd s$、速度与被积量的关系；后者还必须对整条曲线作微小变分，并利用端点条件
+求解欧拉—拉格朗日方程。两步的物理问题不同，不能在尚未写出时间泛函时直接猜测最优曲线。
+
+\subsection*{分层训练}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.4em]
+  \item \textbf{基础} 曲线 $y=ax^2$ 从 $x=0$ 延伸到 $x=L$。写出弧长积分，并检查
+  $a\to0$ 时的极限。
+  \item \textbf{基础} 对连接 $A(0,H)$、$B(L,0)$ 的直线轨道，分别用时间泛函和斜面
+  匀加速运动求下落时间，验证两种方法一致。
+  \item \textbf{方法} 轨道用参数 $u$ 表示为 $\vect r(u)$，速率为 $v(u)>0$。
+  写出运动时间的参数积分，并说明若把参数反向，为什么时间不应改变符号。
+  \item \textbf{二轮拓展} 对固定端点的泛函
+  $J[y]=\int_a^b[1+y'(x)^2]\,\dd x$，写出欧拉—拉格朗日方程并求驻值曲线。
+  结合被积函数关于 $y'$ 的凸性判断它给出极大还是极小。
+\end{enumerate}
+{\small\color{TextGray}\noindent
+参考结果：$L_C=\int_0^L\sqrt{1+4a^2x^2}\,\dd x$；
+$T_{\rm line}=\sqrt{2(L^2+H^2)/(gH)}$；
+$T=\int |\vect r'(u)|\,|\dd u|/v(u)$；欧拉—拉格朗日方程给出 $y''=0$，
+驻值曲线为连接两端点的直线，该驻值为全局极小。\par}
+
+\ifdefined\MASTERBOOK
+  \let\sectionfinish\relax
+\else
+  \def\sectionfinish{\end{document}}
+\fi
+\sectionfinish

@@ -1,0 +1,507 @@
+\unitheading{K7\quad 相对运动与参考系}{unit-k07}
+\addcontentsline{toc}{chapter}{K7 相对运动与参考系}
+
+地球自转并绕太阳公转，太阳也在银河系中运动。不存在可供一切运动绝对参照的静止物体，因此观察者可以选择合适的物体作为参考系。在参考系中取原点和一组方向建立坐标系；同一运动在不同参考系中的坐标、速度乃至加速度表达可以不同，但它们之间有确定的变换关系。
+
+参考系与坐标系相关却并不等同。选择地面、车厢或船舱作为“静止的物体集合”，是在选择参考系；随后在其中指定原点、坐标轴和单位，才建立了坐标系。不同观察者都可以把自己所在的参考物体看作静止，并据此描述其他物体。运动学不要求寻找一个无法实现的“绝对静止”背景，而是要求把参考对象说清，并能在不同描述之间进行转换。
+
+这种相对性与日常经验完全一致：站在站台上看列车前进，坐在列车里看站台后退；两种叙述的速度数值不同，却对应同一组相遇事件。只要两个参考系之间的相对位置随时间已知，它们对任意第三个物体的坐标、速度和加速度描述就能互相换算，变换关系本身与第三个物体怎样运动无关。
+
+\subsection*{平动参考系的坐标变换}
+
+\ReferenceFramesDiagram
+
+若两个一维坐标系轴向相同、原点相距 $x_0$，则
+\begin{equation}
+x'=x-x_0.
+\end{equation}
+若 $S'$ 的原点相对 $S$ 沿正方向以常速 $u$ 运动，且 $t=0$ 两原点重合，则经典力学中取共同时间 $t$，有
+\begin{equation}
+x'=x-ut,\qquad v'=v-u,\qquad a'=a.
+\end{equation}
+共同时间只适用于远低于光速的经典极限；接近光速时应使用相对论的时空变换。
+
+图2.19中两条横轴上下错开是为了分别标出读数；比较的是同一点 $P$ 在平行轴上的投影坐标，不是斜线 $OP$、$O'P$ 的长度。图中两个投影落点在同一竖直线上，横向有向距离满足 $x=x_{O'}+x'$，即 $x'=x-x_{O'}$。当两个原点相对静止时，$x_{O'}=x_0$ 为常数，对时间求导后速度、加速度相同；当 $x_{O'}=ut$ 时，速度相差 $u$，而因 $u$ 恒定，加速度仍相同。
+
+经典力学把不同参考系的时钟视为同步，认为同一事件在各系中的时间坐标相同。这在普通车辆、飞机和抛体的速度范围内精度足够高，并构成伽利略变换的基础。接近光速时，这一共同时间假设不再成立；此处指出适用范围，是为了避免把经典公式错误外推到相对论情形。
+
+\begin{origexamplebox}{例2.73\quad 横渡流动河水往返}
+河宽为 $L$，两岸正对位置分别为 $A,B$。船在静水中的速率为 $v$，河水沿河岸以速率 $u$ 匀速流动，且 $v>u$。船从 $A$ 出发驶向 $B$，再沿同一直线由 $B$ 返回 $A$。求往返时间。若要使河中往返时间等于船以速率 $v$ 在静水中按同一路线往返的时间，河中船对水速率应提高到多少？
+\par 题图见图~\ref{question-figure-2-73}。
+\KQuestionCV
+\end{origexamplebox}
+\begin{xesolution}
+要使船对岸速度沿 $AB$，船头在两个航程中都必须偏向上游，使船对水速度的沿河分量恰好抵消水流：
+\CrossRiverRoundTripDiagram
+\[
+v_{\parallel}=u.
+\]
+船对水速度大小为 $v$，所以横河分量，也就是船对岸沿 $AB$ 的速率，为
+\[
+v_{\perp}=\sqrt{v^2-u^2}.
+\]
+往、返两程的横河速率相同，故
+\[
+\boxed{T=\frac{2L}{\sqrt{v^2-u^2}}}.
+\]
+设提高后的对水速率为 $V$。要求
+\[
+\frac{2L}{\sqrt{V^2-u^2}}=\frac{2L}{v},
+\]
+因此
+\[
+\boxed{V=\sqrt{v^2+u^2}}.
+\]
+当 $u\to0$ 时，$T\to2L/v$、$V\to v$，退化为静水结果；同时 $v>u$ 保证横渡可以完成。
+\end{xesolution}
+
+\KinematicKeepSpace{8cm}
+\begin{origexamplebox}{例2.74\quad 选择迎面等速的参考系}
+在地面系 $S$ 中，质点 $A$ 以速率 $v$ 撞向静止质点 $B$。参考系 $S'$ 沿 $A$ 的运动方向以速率 $u$ 匀速运动。$u$ 取何值时，$S'$ 看见两质点以相同速率迎面碰撞？
+\par 题图见图~\ref{question-figure-2-74}。
+\KQuestionCW
+\end{origexamplebox}
+\begin{xesolution}
+地面系中的位置和速度方向如图。变换到向右运动的 $S'$ 后，$A$ 的速度为 $v-u$，$B$ 的速度为 $-u$：
+\EqualSpeedFrameDiagram
+迎面且等速要求 $v-u=u$，所以
+\[
+\boxed{u=\frac v2}.
+\]
+这正是两质点速度的算术平均值。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.75\quad 匀速平动系中的两质点速度}
+在地面系 $S$ 中，$A$ 以速率 $v$ 沿正方向撞向静止的 $B$。求相对 $S$ 沿正方向以速率 $u$ 匀速运动的参考系中两质点的速度。
+\end{origexamplebox}
+\begin{xesolution}
+直接用伽利略速度变换：
+\[
+\boxed{v_A'=v-u},\qquad \boxed{v_B'=-u}.
+\]
+若 $u>v$，两者在 $S'$ 中都沿负方向运动，但 $B$ 的负向速度更大，二者仍相互接近。
+\end{xesolution}
+
+一般平动参考系的原点坐标为 $x_0(t)$ 时，
+\begin{equation}
+x'=x-x_0(t),\qquad v'=v-v_0(t),\qquad a'=a-a_0(t).
+\end{equation}
+这些式子要求两坐标系的轴始终平行；若参考系转动，还会出现额外项。选自由落体系时，所有同受重力加速度的抛体相对它都作匀速直线运动。
+
+一般变换可从位置关系连续求导得到：原点速度 $v_0=\dot x_0$ 从物体在 $S$ 中的速度中扣除，原点加速度 $a_0=\ddot x_0$ 同样从物体加速度中扣除。若坐标轴还在转动，仅减去原点平动已不够，因为同一个空间方向在两系中的分量也随时间改变。本节公式因此只用于轴始终平行的平动参考系。
+
+选择参考系的价值不只是换一组数值，而是可能把复杂运动变简单。两个物体具有相同加速度时，选其中一个为平动参考系，另一物体的相对加速度为零，原本的两段匀加速运动就转化为匀速相对运动。自由落体系正是这一思想：所有忽略空气阻力的抛体都含共同的 $\vect g$，相减后重力项消失。相遇、追及和碰撞题常可用这种方法直接得到相对距离何时关闭。
+
+不过，参考系变换不会改变事件是否相遇。若两个物体在某时刻同处一点，任何合法坐标系都应给出相同的相遇时刻和相遇事件；若不同解法给出互相矛盾的结论，通常是速度下标、正方向或初始位置转换出了问题。位置、速度的数值可以变，物理事件之间的对应关系不能变。
+
+\KinematicKeepSpace{8\baselineskip}
+\begin{origexamplebox}{例2.76\quad 加速火车上的人}
+火车启动时相对地面以加速度 $a_1$ 匀加速；车上的人沿列车前进方向，以相对列车初速度 $v_2$、加速度 $a_2$ 匀加速跑动。证明人相对地面也作匀加速运动，并求加速度。
+\end{origexamplebox}
+\begin{xesolution}
+人的地面位置为 $x=x_{\text{车}}+x_{\text{人/车}}$。两次求导：
+\[
+v=v_{\text{车}}+v_{\text{人/车}},\qquad
+a=a_1+a_2.
+\]
+因此
+\[
+\boxed{a_{\text{人/地}}=a_1+a_2},
+\]
+为常量，故确为匀加速运动。若人反向跑，$a_2$ 应按选定正方向带符号。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.77\quad 各向抛出小球形成的球面}
+$t=0$ 时从同一点以相同速率 $v_0$ 向各个方向抛出小球。证明任意时刻这些小球位于一个球面上，球心以自由落体加速度下落，并求球半径。
+\end{origexamplebox}
+\begin{xesolution}
+任一小球的位移为
+\[
+\vect r=\vect v_0t+\frac12\vect g t^2,
+\qquad |\vect v_0|=v_0.
+\]
+取球心位置 $\vect r_C=\frac12\vect g t^2$，则
+\[
+|\vect r-\vect r_C|=|\vect v_0|t=v_0t.
+\]
+所以球心由静止以加速度 $\vect g$ 下落，球面半径为
+\[
+\boxed{R(t)=v_0t}.
+\]
+在随球心自由下落的参考系中，各小球只是沿初始方向匀速远离原点。
+这里使用匀强重力、忽略空气阻力的自由飞行模型；球面结论只适用于各球尚未碰到地面或其他障碍物的阶段。
+\end{xesolution}
+
+\subsection*{质心及其运动}
+
+由质量 $m_i$、位置 $\vect r_i$ 的质点组成的系统，总质量 $M=\sum_i m_i$，质心为
+\begin{equation}
+\vect r_C=\frac1M\sum_i m_i\vect r_i.
+\end{equation}
+把 $\vect r_i=(x_i,y_i,z_i)$ 按三个坐标方向展开，就是
+\begin{equation}
+x_C=\frac{\sum_i m_ix_i}{M},\qquad
+y_C=\frac{\sum_i m_iy_i}{M},\qquad
+z_C=\frac{\sum_i m_iz_i}{M}.
+\end{equation}
+例如两质点沿 $x$ 轴分布时，$x_C=(m_1x_1+m_2x_2)/(m_1+m_2)$；它不是两位置的简单平均，除非两质量相等。
+连续物体可分割为许多微元并取极限。质心位置随各部分运动而改变，是连接运动学与后续动力学的重要量。
+
+质心不是必须由真实物质占据的点，而是质量分布的加权平均位置。质量越大的部分对质心位置影响越大；两个质点的质心位于连线上，并更靠近质量较大的一个。对连续物体，可把它划分为许多足够小的质量元，对各质量元使用同一加权平均，最后取分割无限细的极限。由于质量在刚体内部的位置不变，刚体质心相对刚体也保持固定。
+
+对质心定义分别求一次和二次时间导数，就得到质心速度和加速度分别是各质点速度、加速度的质量加权平均。这些纯运动学关系不要求各质点速度相同，也不要求系统是刚体；只要各部分质量在考察过程中不发生交换，就可以使用。
+具体地，因 $m_i$ 和 $M$ 不随时间改变，求导可移入求和号：
+\begin{align}
+\vect v_C&=\frac{\dd}{\dd t}\left(\frac{\sum_i m_i\vect r_i}{M}\right)
+=\frac1M\sum_i m_i\frac{\dd\vect r_i}{\dd t}
+=\frac1M\sum_i m_i\vect v_i,\\
+\vect a_C&=\frac{\dd\vect v_C}{\dd t}
+=\frac1M\sum_i m_i\frac{\dd\vect v_i}{\dd t}
+=\frac1M\sum_i m_i\vect a_i.
+\end{align}
+若质量随时间交换，就不能直接把质量当常数移出求导；那属于变质量系统问题。
+
+以质心为原点的参考系称为质心系。在该系中，各质点质量加权的位置和速度之和都为零：
+\begin{equation}
+ \sum_i m_i\vect r_i'=0,\qquad
+ \sum_i m_i\vect v_i'=0.
+\end{equation}
+对两质点系统，这意味着它们在质心系中的速度方向相反，大小与对方质量成反比。质心系并不保证每个质点静止，只保证整个系统的质量加权平均运动被扣除；它在以后处理碰撞和系统动力学时尤其重要。
+
+\begin{origexamplebox}{例2.78\quad 匀速质点系的质心速度}
+证明：若质点系中每个质点都作匀速运动，质心也作匀速运动。若各质点都沿 $x$ 轴，速度为 $v_i$，写出质心速度。
+\end{origexamplebox}
+\begin{xesolution}
+对质心坐标求导：
+\[
+\boxed{v_C=\frac{\sum_i m_iv_i}{\sum_i m_i}}.
+\]
+各 $v_i$ 和质量均为常量，所以 $v_C$ 也是常量，质心作匀速直线运动。矢量形式为 $\vect v_C=M^{-1}\sum_i m_i\vect v_i$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.79\quad 两质点在质心系中的速度}
+质量为 $m_1,m_2$ 的两质点在一条直线上相对地面以速度 $v_1,v_2$ 匀速运动。求在质心参考系中的速度。
+\end{origexamplebox}
+\begin{xesolution}
+质心速度 $V_C=(m_1v_1+m_2v_2)/(m_1+m_2)$。在随质心平移的坐标系中，要从每个地面速度扣除同一个 $V_C$，而不是分别扣除两速率的绝对值。例如
+\[
+v_1'=v_1-V_C
+=\frac{(m_1+m_2)v_1-m_1v_1-m_2v_2}{m_1+m_2}.
+\]
+同理计算 $v_2'=v_2-V_C$，得到
+\[
+\boxed{v_1'=\frac{m_2}{m_1+m_2}(v_1-v_2)},\qquad
+\boxed{v_2'=-\frac{m_1}{m_1+m_2}(v_1-v_2)}.
+\]
+并有 $m_1v_1'+m_2v_2'=0$，这是质心系定义的直接检验。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.80\quad 质心加速度}
+质量为 $m_1,m_2$ 的两质点沿直线以加速度 $a_1,a_2$ 匀加速运动，求质心加速度。若质心作匀速直线运动，已知 $a_1$，求 $a_2$。
+\end{origexamplebox}
+\begin{xesolution}
+从 $x_C=(m_1x_1+m_2x_2)/(m_1+m_2)$ 连续求导两次，先得到 $v_C=(m_1v_1+m_2v_2)/(m_1+m_2)$，再得到
+\[
+\boxed{a_C=\frac{m_1a_1+m_2a_2}{m_1+m_2}}.
+\]
+质心匀速意味着 $a_C=0$，故
+\[
+\boxed{a_2=-\frac{m_1}{m_2}a_1}.
+\]
+负号表示两质点加速度方向相反。
+\end{xesolution}
+
+\subsection*{相对运动的矢量运算}
+
+若 $A$ 相对 $O$ 的位置、速度、加速度分别为 $\vect r_{A/O},\vect v_{A/O},\vect a_{A/O}$，而 $B$ 相对 $A$ 的相应量已知，则
+\begin{align}
+\vect r_{B/O}&=\vect r_{B/A}+\vect r_{A/O},\\
+\vect v_{B/O}&=\vect v_{B/A}+\vect v_{A/O},\\
+\vect a_{B/O}&=\vect a_{B/A}+\vect a_{A/O}.
+\end{align}
+
+\VelocityTriangleDiagram
+
+下标应按“前者相对后者”阅读。例如 $\vect v_{B/O}$ 表示 $B$ 相对 $O$ 的速度。式子对应一条首尾相接的矢量链：先从 $O$ 到 $A$，再从 $A$ 到 $B$，总效果就是从 $O$ 到 $B$。位置关系对时间求导，便得到同样形式的速度和加速度关系。船—水—岸、飞机—空气—地面等问题都应先写清这条链，再画速度三角形，避免仅凭“顺流相加、逆流相减”的口号误判二维方向。
+
+相对速度还有两个常用几何解释。其一，$\vect v_{B/A}=\vect v_B-\vect v_A$ 是在速度平面中由 $\vect v_A$ 终点指向 $\vect v_B$ 终点的矢量；其二，在短时间 $\Delta t$ 内，它给出 $B$ 相对 $A$ 的位置变化 $\Delta\vect r_{B/A}\simeq\vect v_{B/A}\Delta t$。因此两匀速质点的最短距离可以转化为初始相对位置到相对运动直线的垂距，拦截问题则转化为相对位置能否沿相对速度方向缩短到零。
+
+二维风、河流问题中，速度三角形必须保持同一矢量链。例如“船对岸”$=$“船对水”$+$“水对岸”；若改求“船对水”，应移项得到“船对岸”减“水对岸”。下标顺序一旦颠倒，矢量方向也会反向。画图时让相加矢量首尾相接，并把题目给定的速率标在对应边上，是最稳妥的方向检查。
+
+三维平动参考系的关系与一维完全相同，只需把标量坐标改成矢量：
+\begin{equation}
+ \vect r'=\vect r-\vect r_0(t),\qquad
+ \vect v'=\vect v-\vect v_0(t),\qquad
+ \vect a'=\vect a-\vect a_0(t).
+\end{equation}
+各分量都使用同一个时间，坐标轴保持平行。所谓“迎面”“横风”“垂直击中”等文字条件，最终都应翻译为相对速度在特定方向上的分量条件。
+
+追踪问题与普通直线拦截不同：若追踪者速度方向始终指向目标，它的方向会随视线转动，轨迹通常是曲线。速率恒定只意味着切向加速度为零，视线角速度仍会产生法向加速度。例2.88发射瞬间，导弹速度竖直而飞机横向运动，视线立刻转动，所以导弹从一开始就有水平法向加速度，不能把它当成先直飞一段再转弯。
+
+相对运动答案应做极限检查：河水或风速趋于零时，应退化为静止介质中的结果；追踪者速率趋近目标速率时，捕获时间应显著增大；两个参考系相对速度为零时，坐标差只剩常量平移。这些极限能快速暴露加减号或速度下标写反的问题。
+
+\begin{origexamplebox}{例2.81\quad 飞机与风的速度合成}
+机载罗盘指出飞机机头向正东，空气相对地面向正北运动。画出飞机相对地面的速度。飞行员应怎样驾驶，才能使地面航迹为正东？本题的风方向指空气速度的去向，不指气象术语中的来向。
+\end{origexamplebox}
+\begin{xesolution}
+飞机对地速度为飞机对空气速度与风对地速度的矢量和。机头正东、风向正北时，合速度指向东北。若要地面航迹正东，机头必须向东偏南，使其向南的空气速度分量恰好抵消风的北向分量。设空速为 $V$、风速为 $u$，偏南角为 $\theta$，则
+\AircraftWindDiagram
+左图中蓝色合速度为 $(V,u)$，与正东的夹角为 $\arctan(u/V)$。右图把机头改为东偏南 $\theta$，于是合速度的北向分量为 $-V\sin\theta+u$；令它等于零，得到
+\[
+\boxed{V\sin\theta=u},\qquad u<V.
+\]
+地面向东速率为 $V\cos\theta=\sqrt{V^2-u^2}$。必须严格要求 $u<V$：$u=V$ 时机头只能正南，地速为零，并没有向东飞行；$u>V$ 时更不可能抵消北向漂移。
+\end{xesolution}
+
+\KinematicKeepSpace{11cm}
+\begin{origexamplebox}{例2.82\quad 渡河的最短时间和最小位移}
+河宽 $d$，水流对岸速率为 $v_2$。小船相对水保持速率 $v_1$，船头方向可选。求最短渡河时间和最小位移。求最优航向时先取航向恒定；随后说明改变航向能否进一步改善结果。
+\par 题图见图~\ref{question-figure-2-82}。
+\KQuestionDE
+\end{origexamplebox}
+\begin{xesolution}
+渡河时间由对岸速度的横河分量决定。船头垂直河岸时该分量最大为 $v_1$，所以
+\RiverCrossingDiagram
+\[
+\boxed{t_{\min}=d/v_1}.
+\]
+取沿河向下游为 $x$、横河为 $y$。船对水速度与 $+x$ 夹角为 $\eta$ 时，$v_x=v_2+v_1\cos\eta$、$v_y=v_1\sin\eta>0$，到岸时间 $t=d/v_y$，横向漂移 $\Delta x=dv_x/v_y$，位移大小为 $s=\sqrt{d^2+\Delta x^2}$。
+
+（1）若 $v_1>v_2$，可取 $v_1\cos\eta=-v_2$，把船头偏向上游，使沿河分量抵消水流，位移就是河宽：
+\[
+\boxed{s_{\min}=d},\qquad
+t=\frac{d}{\sqrt{v_1^2-v_2^2}}.
+\]
+（2）若 $v_1=v_2$，令 $v_x=0$ 就会同时令 $v_y=0$，不能完成横渡。任意有限时间的横渡都有 $s>d$；取 $\eta=\pi-\varepsilon$，则
+\[
+\frac{\Delta x}{d}=\frac{1-\cos\varepsilon}{\sin\varepsilon}
+=\tan\frac\varepsilon2\longrightarrow0,
+\qquad t=\frac{d}{v_1\sin\varepsilon}\longrightarrow\infty.
+\]
+因此 $d$ 是位移的下确界，而不是能取得的最小值。
+
+（3）若 $v_1<v_2$，速度圆圆心 $W=(v_2,0)$、半径 $v_1$，圆外原点 $O$ 发出的切线 $OT$ 给出合速度最大的偏转角 $\psi$。在直角三角形 $OWT$ 中，$WT=v_1$、$OW=v_2$，所以
+\[
+\sin\psi_{\max}=\frac{v_1}{v_2},\qquad
+\boxed{s_{\min}=\frac{d}{\sin\psi_{\max}}=\frac{dv_2}{v_1}}.
+\]
+此时 $v_y=v_1\sqrt{v_2^2-v_1^2}/v_2$，有限渡河时间为 $dv_2/[v_1\sqrt{v_2^2-v_1^2}]$。图中的 $OT$ 是速度，不是河中的位置线；二者仅方向相同。
+
+若中途改变航向，平均对水速度仍位于同一速度圆的内部或边界。这个圆盘给出的合速度方向范围不比圆周更大，横河平均分量也不超过 $v_1$，所以以上最优结果不会被改进。特别在 $v_1=v_2$ 时，每一瞬间 $v_x\ge0$；总漂移为零要求始终逆流，仍无法横渡。
+\end{xesolution}
+
+\KinematicKeepSpace{9cm}
+\begin{origexamplebox}{例2.83\quad 空速、风速与地速}
+飞机在静止空气中的速率为 $60\,\mathrm{m/s}$，风速为 $30\,\mathrm{m/s}$，飞机仍能以 $60\,\mathrm{m/s}$ 的地速正北飞行。求风向和机头指向。
+\end{origexamplebox}
+\begin{xesolution}
+设空速矢量与正北夹角为 $\theta$。空速与地速大小同为 $60$，两矢量之差是大小 $30$ 的风速，因此等腰三角形给出
+\[
+30=2(60)\sin\frac\theta2,
+\quad
+\boxed{\theta=2\arcsin\frac14\approx28.96^\circ}.
+\]
+\AircraftEqualSpeedDiagram
+图中 $OG=OA=60$、$AG=30$；作风速边 $AG$ 的中点 $F$，等腰三角形的 $OF$ 平分顶角且垂直 $AG$，所以 $\sin(\theta/2)=AF/OA=15/60$。这说明半角公式来自哪一个直角三角形。
+
+取东为 $x$ 正向、北为 $y$ 正向。机头北偏东 $28.96^\circ$ 时，空速分量约为 $(29.05,52.5)\,\mathrm{m/s}$，风速必须为 $(0,60)-(29.05,52.5)=(-29.05,7.5)\,\mathrm{m/s}$，即空气向西偏北 $14.48^\circ$ 运动。镜像方案为机头北偏西 $28.96^\circ$、空气向东偏北 $14.48^\circ$ 运动。两种风的速度都朝向北侧；若换用气象学的风来向，要再反向 $180^\circ$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.84\quad 由烟迹判断风速}
+轮船先以速率 $v_1$ 向南航行，船上人看到烟囱冒出的烟向东；船速增至 $v_2$ 后，看到烟向东北。假设烟一离开烟囱就立即随空气以风速运动，忽略上升与喷出过程，且两次风速不变。求风速。
+\end{origexamplebox}
+\begin{xesolution}
+取东为 $x$ 正向、北为 $y$ 正向，风对地速度为 $(w_x,w_y)$。烟立即随风运动，故烟对船速度等于风速减去船速。图中两次船速分别为 $(0,-v_1)$、$(0,-v_2)$：
+\SmokeWindDiagram
+第一次烟对船速度 $(w_x,w_y+v_1)$ 正东，纵分量必须为零、横分量为正，故 $w_y=-v_1$、$w_x>0$。第二次烟对船速度 $(w_x,w_y+v_2)$ 指东北，两个正分量相等，故 $w_x=w_y+v_2=v_2-v_1$。于是
+\[
+\boxed{\vect w=(v_2-v_1,-v_1)},\qquad
+\boxed{|\vect w|=\sqrt{(v_2-v_1)^2+v_1^2}}.
+\]
+风向为东偏南 $\arctan[v_1/(v_2-v_1)]$，并要求 $v_2>v_1$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.85\quad 鱼雷拦截匀速敌船}
+潜艇静止于 $A$，敌船在 $B$，$AB=L$。敌船以速率 $v_1$ 匀速直线航行，其方向与 $BA$ 的夹角为 $\alpha$。鱼雷速率为 $v_2$ 且发射后沿直线运动。求能击中敌船的发射方向。
+\par 题图见图~\ref{question-figure-2-85}。
+\KQuestionDH
+\end{origexamplebox}
+\begin{xesolution}
+取潜艇 $A$ 为原点，敌船速度沿 $+x$，并把初始船位放在上半平面；另一侧是镜像。$0\le\alpha\le\pi$，初始 $B=(-L\cos\alpha,L\sin\alpha)$。若在时刻 $t>0$ 相撞，则交点
+\[
+C=(-L\cos\alpha+v_1t,L\sin\alpha).
+\]
+鱼雷恰好走过 $AC=v_2t$，因此
+\[
+(-L\cos\alpha+v_1t)^2+L^2\sin^2\alpha=v_2^2t^2,
+\]
+展开整理为
+\[
+\boxed{(v_2^2-v_1^2)t^2+2Lv_1\cos\alpha\,t-L^2=0}.
+\]
+求出这个方程的\emph{全部正根}，才能列全发射方向。图中 $C_1,C_2$ 展示较慢的鱼雷也可能有两次截击机会：
+\InterceptTriangleDiagram
+若 $v_2\ne v_1$，两个候选时间为
+\[
+t_{\pm}=\frac{L[-v_1\cos\alpha\pm\sqrt{v_2^2-v_1^2\sin^2\alpha}]}{v_2^2-v_1^2}.
+\]
+逐一保留实数且严格为正的根。每个有效根 $t_i$ 给出唯一的单位发射方向
+\[
+\boxed{\widehat{\vect n}_i=
+\left(\frac{-L\cos\alpha+v_1t_i}{v_2t_i},
+\frac{L\sin\alpha}{v_2t_i}\right)}.
+\]
+两分量的平方和为 $1$，是对速率条件的检验。发射线与 $AB$ 的夹角 $\beta_i\in[0,\pi]$ 可由点积确定：
+\[
+\cos\beta_i=\frac{L-v_1t_i\cos\alpha}{v_2t_i}.
+\]
+对非退化三角形，正弦定理也给出 $\sin\beta_i=(v_1/v_2)\sin\alpha$，但它不能区分锐角与钝角，不能只取反正弦主值。
+
+可以把存在性分成三种情况（两速率均为正）：
+\begin{itemize}
+\item $v_2>v_1$：二次项系数为正，常数项为负，两根异号，恰有一次正时间截击。
+\item $v_2=v_1$：方程降为一次式。仅当 $\cos\alpha>0$ 时有 $t=L/(2v_1\cos\alpha)$；否则不能截击。
+\item $v_2<v_1$：必须同时满足 $\cos\alpha>0$ 与 $v_2\ge v_1\sin\alpha$。严格大于时有两个正根，等于时两根重合，几何上是相切；其余情况无解。
+\end{itemize}
+例如 $L=100\,\mathrm m$、$v_1=20\,\mathrm{m/s}$、$v_2=10\,\mathrm{m/s}$、$\alpha=20^\circ$，得到 $t_1=3.8331\,\mathrm s$、$t_2=8.6961\,\mathrm s$，对应 $\beta_1=43.160^\circ$、$\beta_2=136.840^\circ$。两次均在敌船未来的位置相遇，不应舍弃后一个钝角解。若 $\alpha=0$，三点共线，直接使用坐标方程仍有效，而不必使用退化三角形的正弦定理。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.86\quad 炸弹与炮弹的相遇}
+轰炸机以速率 $v_1$ 在高度 $H$ 水平飞行。（1）投弹时距地面目标多远？（2）距目标水平距离 $D$ 处的大炮同时发射炮弹，使其击中飞行中的炸弹，炮弹初速率 $v_2$ 至少多大？（3）取最小值时发射角多大？所有物体只受重力。
+\end{origexamplebox}
+\begin{xesolution}
+炸弹落地时间
+\[
+T=\sqrt{\frac{2H}{g}},
+\]
+故投弹点在目标前方水平距离
+\[
+\boxed{L=v_1T=v_1\sqrt{\frac{2H}{g}}}.
+\]
+
+题面未指定大炮在目标哪一侧，故分别考虑两侧。取目标为 $x=0$，轰炸机沿 $+x$ 飞行，投弹点为 $(-L,H)$；大炮坐标记为 $(s,0)$，其中 $s=+D$ 或 $-D$。图中的 $Q$ 是任一可能的空中相遇点。
+\BombInterceptDiagram
+炮弹和炸弹具有相同重力加速度，因此相减时重力项消失。具体写出相遇条件：
+\[
+s+u_xt=-L+v_1t,\qquad
+u_yt-\tfrac12gt^2=H-\tfrac12gt^2.
+\]
+严格要求击中“飞行中的炸弹”时 $0<t<T$，炮弹初速度必须为
+\[
+u_x(t)=v_1-\frac{L+s}{t},\qquad u_y(t)=\frac Ht,
+\]
+所以
+\[
+v_2^2(t)=\left(v_1-\frac{A}{t}\right)^2+\left(\frac Ht\right)^2,
+\qquad A=L+s.
+\]
+若 $A>0$，无约束极小点为
+\[
+t_0=\frac{A^2+H^2}{v_1A}.
+\]
+这是由
+\[
+\frac{\dd v_2^2}{\dd t}
+=\frac{2[v_1At-(A^2+H^2)]}{t^3}
+\]
+求零点得到的：$t<t_0$ 时函数递减，$t>t_0$ 时递增。
+
+当 $A>0$ 且 $t_0<T$ 时，最小值在空中取得，取 $t_*=t_0$，有
+\[
+\boxed{v_{2,\min}=\sqrt{\left(v_1-\frac{A}{t_*}\right)^2+\left(\frac H{t_*}\right)^2}},
+\]
+其值还可化为 $v_{2,\min}=v_1H/\sqrt{A^2+H^2}$。若 $A\le0$，导数始终为负；若 $A>0$ 但 $t_0\ge T$，函数在空中相遇的允许区间仍递减。因此这两类情形\emph{没有可取得的最小速率}，只有
+\[
+\boxed{\inf v_2=\sqrt{\left(v_1-\frac A T\right)^2+\left(\frac H T\right)^2}}.
+\]
+它只能在 $t\to T^-$ 时无限接近；若另允许落地瞬间相撞，才可令 $t_*=T$ 并称该值为最小值。这两种题意要分开。
+
+发射角 $\alpha$ 从 $+x$ 轴逆时针量起，$0<\alpha<\pi$。对任一允许的相遇时刻，令 $u_x=v_1-A/t$、$u_y=H/t>0$，则
+\[
+\cos\alpha=\frac{u_x}{\sqrt{u_x^2+u_y^2}},\qquad
+\sin\alpha=\frac{u_y}{\sqrt{u_x^2+u_y^2}}.
+\]
+$u_x>0$ 时向右上方发射，$u_x=0$ 时竖直发射，$u_x<0$ 时向左上方发射；按这三个象限条件取角不会误用反正切主值。若最小值只为下确界，发射角同样只能谈 $t\to T^-$ 的极限角。代入 $s=\pm D$ 即可逐侧判断。各速度分量均为长度除以时间，量纲一致。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.87\quad 三船中点连线的角速度}
+船 $A$ 以速率 $u$ 正东航行；船 $B$ 以 $2u$ 正北航行；船 $C$ 以 $2\sqrt2u$ 沿东偏北 $45^\circ$ 航行。$t=0$ 时 $B,C$ 同在 $A$ 航线前方，距 $A$ 分别为 $a,2a$。设 $M$ 为 $BC$ 中点，求连线 $MA$ 绕 $M$ 的角速度。
+\par 题图见图~\ref{question-figure-2-87}。
+\KQuestionDJ
+\end{origexamplebox}
+\begin{xesolution}
+图中同时给出了三船的初始相对位置和速度方向。取 $t=0$ 时 $A=(0,0)$，$B=(a,0)$，$C=(2a,0)$：
+\ThreeBoatsDiagram
+速度分别为
+\[
+\vect v_A=(u,0),\quad\vect v_B=(0,2u),\quad\vect v_C=(2u,2u).
+\]
+故 $M(0)=(3a/2,0)$，$\vect v_M=(u,2u)$。从 $M$ 指向 $A$ 的相对位置和相对速度为
+\[
+\vect r_{A/M}=\left(-\frac{3a}{2},-2ut\right),\qquad
+\vect v_{A/M}=(0,-2u).
+\]
+图中右侧的 $M(t)$ 与 $A(t)$ 的横坐标差始终为 $-3a/2$，纵坐标差为 $-2ut$。若 $\vect r=(x,y)=r(\cos\phi,\sin\phi)$，分别求导后相减得
+\[
+x\dot y-y\dot x
+=r^2(\cos^2\phi+\sin^2\phi)\dot\phi=r^2\dot\phi.
+\]
+因此方向角变化率为 $(x\dot y-y\dot x)/(x^2+y^2)$。代入 $x=-3a/2$、$y=-2ut$、$\dot x=0$、$\dot y=-2u$：
+\[
+\Omega=\frac{(-3a/2)(-2u)-(-2ut)0}{9a^2/4+4u^2t^2},
+\]
+于是
+\[
+\boxed{\Omega(t)=\frac{12au}{9a^2+16u^2t^2}}.
+\]
+正号表示按所取坐标方向逆时针转动。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.88\quad 导弹追踪匀速飞机}
+敌机以水平速率 $v_0$ 在高度 $H$ 飞行。当它位于地面 $A$ 点正上方时，从 $A$ 发射速率恒为 $v_1>v_0$ 的导弹；导弹速度方向始终指向飞机。求发射瞬间的加速度和击中所需总时间。
+\end{origexamplebox}
+\begin{xesolution}
+初始视线竖直，飞机的横向速度使视线角速度大小为 $v_0/H$。导弹速率恒定，故初始加速度纯属法向，水平指向飞机运动方向：
+\PursuitDiagram
+\[
+\boxed{a_0=v_1\frac{v_0}{H}}.
+\]
+
+设 $r$ 为导弹到飞机的距离，$\theta$ 为视线与飞机速度方向的夹角。相对运动满足
+\[
+\dot r=v_0\cos\theta-v_1,
+\qquad r\dot\theta=-v_0\sin\theta,
+\qquad r(\pi/2)=H.
+\]
+第一式是飞机与导弹在视线上的相对速度；第二式是飞机垂直视线的分量，负号表示 $\theta$ 随追踪减小。令 $q=v_1/v_0>1$，两式相除消去时间：
+\[
+\frac{\dd r}{\dd\theta}
+=r\frac{q-\cos\theta}{\sin\theta},\qquad
+\frac{\dd r}{r}=q\frac{\dd\theta}{\sin\theta}
+-\frac{\cos\theta}{\sin\theta}\dd\theta.
+\]
+利用 $\int\dd\theta/\sin\theta=\ln\tan(\theta/2)$ 与 $\int\cot\theta\,\dd\theta=\ln\sin\theta$，得
+\[
+\ln r=q\ln\tan(\theta/2)-\ln\sin\theta+C.
+\]
+初始 $r=H$、$\theta=\pi/2$，两三角函数都为 $1$，故 $C=\ln H$，于是
+\[
+r=H\frac{\tan^q(\theta/2)}{\sin\theta}.
+\]
+命中时 $r\to0$，对应 $\theta\to0$。由 $\dd t=-r\,\dd\theta/(v_0\sin\theta)$，把反向上下限交换：
+\[
+T=\frac H{v_0}\int_0^{\pi/2}
+\frac{\tan^q(\theta/2)}{\sin^2\theta}\,\dd\theta.
+\]
+令 $u=\tan(\theta/2)$，则 $\sin\theta=2u/(1+u^2)$、$\dd\theta=2\dd u/(1+u^2)$，上下限变为 $0,1$。因此
+\[
+T=\frac H{2v_0}\int_0^1(u^{q-2}+u^q)\dd u
+=\frac H{2v_0}\left(\frac1{q-1}+\frac1{q+1}\right).
+\]
+第一项在 $u=0$ 收敛要求 $q>1$，恰好是题设“导弹比飞机快”。合并分式，得到
+\[
+T=\frac{H}{v_0}\frac{q}{q^2-1}
+=\boxed{\frac{Hv_1}{v_1^2-v_0^2}}.
+\]
+$v_1\downarrow v_0$ 时捕获时间趋于无穷，符合极限判断。
+\end{xesolution}

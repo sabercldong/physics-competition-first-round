@@ -1,0 +1,508 @@
+电与磁最初分别由静电学、稳恒电流和电磁感应来描述。Maxwell 的关键工作，是看出这些规律必须组成
+一个彼此相容的整体；而 Onnes 在低温实验中发现的超导现象，则把电磁场与物质的相互作用推到了一个
+极端而清晰的情形：电阻可以消失，磁通却不能只按“零电阻导体”来理解。
+
+电磁感应定律揭示了变化的磁场能够产生电场。由此自然会追问：变化的电场能否产生磁场？若原有的
+Ampere 定律只能处理稳恒电流，它在含有随时间变化的电荷与电场时是否仍然完备？Maxwell 在尚无直接
+实验依据的情况下，从理论自洽性出发补上位移电流项，使电场和磁场能够彼此激发。由此得到的电磁波
+传播速度与当时测得的光速一致，他进一步提出光的电磁理论，经典电磁学的基本框架遂告建立。
+
+这一过程值得特别注意：Maxwell 并不是把彼此无关的四条实验定律简单抄在一起，而是要求它们同时
+满足电荷守恒、空间对称性和有限传播速度。静电场的 Gauss 定律告诉我们电荷能够成为电场的源，磁场
+Gauss 定律则表明磁感线没有已经被发现的起点和终点；Faraday 定律说明变化磁场会在周围激起涡旋电场。
+唯独旧的 Ampere 定律只容纳稳恒传导电流，在时间变化问题中显得不对称。位移电流修正消除了这种
+不对称，并使方程组能够在没有电荷、没有导线的真空中仍然具有随时间传播的非零解。电磁波并非额外
+塞进理论的假设，而是完备方程组自身推出来的结果。
+
+从学习方法上说，本讲的难点不在记住更多公式，而在分清三种层次。第一层是实验事实，例如电荷产生
+电场、电流产生磁场以及电磁感应；第二层是把事实压缩为局部方程，并检查这些方程能否同时成立；第三层
+才是从方程推出波速、能流和辐射。只记“变化电场产生磁场”会漏掉为什么必须有这一项；只记四条方程
+又会看不出电磁波从何而来。后文的每一步都围绕“源—场—传播—能量”这条线索展开。
+
+\maxwellOnnesContext
+
+\historyfigure[0.27\linewidth]{maxwell-redraw.png}%
+{图 38.1：James Clerk Maxwell（1831--1879），新绘历史人物肖像。}
+
+\subsection*{位移电流：补上安培定律的缺口}
+
+稳恒电流产生磁场时，安培环路定律为
+\begin{equation}
+  \oint_C\vect B\cdot\dd\vect l=\mu_0 I_{\rm c},
+\end{equation}
+其中 $I_{\rm c}=\int_S\vect j\cdot\dd\vect S$ 是穿过跨越面 $S$ 的传导电流。若电流处处稳恒，选择
+同一边界 $C$ 的不同跨越面，所得 $I_{\rm c}$ 相同，公式没有歧义。
+
+先看第一个矛盾。设一块均匀、弱导电的球形介质中心原有电荷，电荷随时间沿径向向外泄漏。
+电流密度具有严格的球对称性。若在球内任取一条闭合环路，按原来的 Ampere 环路定律，只要跨越面上
+有净电流穿过，环路周围似乎就应当出现环向磁场。然而球对称系统中不存在一个在每一点都非零、又能
+选出固定切向的矢量场；任何非零环向磁场都会破坏球对称性。因此，单独用传导电流作磁场源会导出
+相互冲突的结论。矛盾的根源是：电荷流出时，球内电荷量和由 Gauss 定律决定的电场也同时在变化。
+
+把这个论证写得更定量一些。若半径 $r$ 的球面内电荷为 $Q_r(t)$，球对称性给出
+\begin{equation}
+  4\pi r^2D_r=Q_r(t).
+\end{equation}
+设向外传导电流为 $I_r$，电荷守恒要求 $I_r=-\dd Q_r/\dd t$；另一方面，穿过同一球面的位移电流为
+\begin{equation}
+  I_{\rm d}=\frac{\dd}{\dd t}(4\pi r^2D_r)=\frac{\dd Q_r}{\dd t}=-I_r.
+\end{equation}
+所以包围该区域的任一闭合面上，传导电流和位移电流的总和为零。旧定律只看见 $I_r$，新定律同时看见
+$I_r+I_{\rm d}$，球对称性与电荷守恒便得到一致的磁场结论。
+
+给电容器充电时，问题暴露出来：取 $S_1$ 穿过导线，有 $I_{\rm c}=I$；取 $S_2$ 从两极板之间鼓出，
+它不切断任何导线，因而 $I_{\rm c}=0$。两个面有同一边界，却会给出两个不同的磁场环量。
+
+这里真正参与定律的是“同一闭合回路的任意跨越面”。环路 $C$ 可以想成一根铁丝围成的圈，$S_1$ 与
+$S_2$ 则像两张边缘都粘在铁丝上的橡皮膜。一张膜穿过导线，另一张膜向电容器间隙鼓起；二者形状不同，
+边界却完全相同。若右端只计算传导电流，左端同一个 $\oint_C\vect B\cdot\dd\vect l$ 就会得到两个值，
+这不是近似误差，而是定律内部失去定义。位移电流项的任务正是让右端也只依赖边界，而不依赖所选曲面。
+
+\displacementCurrentDiagram
+
+极板间虽然没有自由电荷穿越，电位移通量却在改变。Maxwell 定义位移电流
+\begin{equation}
+  I_{\rm d}=\frac{\dd}{\dd t}\int_S\vect D\cdot\dd\vect S,
+\end{equation}
+并把安培定律推广为
+\begin{equation}
+  \boxed{\oint_C\vect B\cdot\dd\vect l
+  =\mu_0\left(\int_S\vect j\cdot\dd\vect S
+  +\frac{\dd}{\dd t}\int_S\vect D\cdot\dd\vect S\right)}.
+\end{equation}
+真空中 $\vect D=\varepsilon_0\vect E$。平行板电容器忽略边缘效应时，板间
+$E=Q/(\varepsilon_0 A)$，于是
+\begin{equation}
+  I_{\rm d}=\varepsilon_0\frac{\dd(EA)}{\dd t}
+  =\frac{\dd Q}{\dd t}=I.
+\end{equation}
+因此 $S_1$ 上的传导电流与 $S_2$ 上的位移电流恰好相等，磁场环量不再依赖跨越面的选取。
+
+若在极板之间取半径为 $r$、与极板同轴的圆形环路，并假设 $r$ 小于极板半径，则该环路所围面积中的
+位移电流为 $I_{{\rm d},r}=I\pi r^2/A$。由圆柱对称性，环路上的磁感应强度大小处处相同且沿切向，故
+\begin{equation}
+  B(2\pi r)=\mu_0I\frac{\pi r^2}{A},
+  \qquad B=\frac{\mu_0Ir}{2A}.
+\end{equation}
+在极板投影之外，所包围的总位移电流已等于 $I$，于是 $B=\mu_0I/(2\pi r)$。这表明充电间隙中的
+磁场并非抽象的“修补量”：它同样可由环路定律给出具体空间分布，并与导线周围磁场连续衔接。
+
+回看弱导电球的例子，穿过闭合面的向外传导电流使内部电荷减少，与此同时电通量也减少。传导电流与
+位移电流的代数和满足连续性，因而不会再凭空选出一个破坏球对称性的磁场方向。两个表面上看不同的
+矛盾，其共同点正是都遗漏了变化电场的磁效应。
+
+这个修正并非只为解决电容器的特殊矛盾。局部电荷守恒要求
+\begin{equation}
+  \nabla\cdot\vect j=-\frac{\partial\rho}{\partial t}.
+\end{equation}
+若仍用 $\nabla\times\vect B=\mu_0\vect j$，两边取散度便得到
+$0=\mu_0\nabla\cdot\vect j$，它只允许电荷密度不随时间变化。加入位移电流后，利用
+$\nabla\cdot\vect D=\rho$，有
+\begin{equation}
+  0=\mu_0\left(\nabla\cdot\vect j+
+  \frac{\partial}{\partial t}\nabla\cdot\vect D\right)
+  =\mu_0\left(\nabla\cdot\vect j+\frac{\partial\rho}{\partial t}\right),
+\end{equation}
+恰好还原连续性方程。
+
+\continuityDiagram
+
+这里的“位移电流”不是极板间真的有电荷横渡真空；它是变化电场对磁场的贡献，单位与电流相同。
+这个名称带有明显的历史色彩。Maxwell 所处的时代仍常把电磁场设想为某种介质的状态，认为外场会使
+假想的真空介质或真实电介质发生极化，极化状态的变化仿佛形成一种电流。今天已经不再需要这种“以太”
+图景，但“位移电流”这一名称以及电位移矢量 $\vect D$ 被保留下来。现代观点强调的不是机械介质真的
+流动，而是 $\partial\vect D/\partial t$ 与传导电流一样，是涡旋磁场的源。
+
+位移电流与传导电流还应在物理机制上区分。金属导线中的传导电流伴随自由载流子的定向运动，可以在
+截面两侧统计净通过的电荷；真空电容间隙中的位移电流则没有这样的电荷输运。二者之所以能写在同一个
+括号中，是因为它们对磁场环量产生同样的源效应，并共同保证总电流连续。不能据此断言“真空中也有
+电子从一块极板跳到另一块极板”，也不能把位移电流当作某种额外漏电。
+
+\subsection*{Maxwell 方程组}
+
+在真空的宏观描述中，电磁场的四条基本方程可写成
+\begin{align}
+  \nabla\cdot\vect E&=\frac{\rho}{\varepsilon_0},
+  &\oint_{\partial V}\vect E\cdot\dd\vect A&=\frac{Q_V}{\varepsilon_0},
+  \\
+  \nabla\cdot\vect B&=0,
+  &\oint_{\partial V}\vect B\cdot\dd\vect A&=0,
+  \\
+  \nabla\times\vect E&=-\frac{\partial\vect B}{\partial t},
+  &\oint_C\vect E\cdot\dd\vect l&=-\frac{\dd}{\dd t}\int_S\vect B\cdot\dd\vect S,
+  \\
+  \nabla\times\vect B&=\mu_0\vect j+\mu_0\varepsilon_0
+  \frac{\partial\vect E}{\partial t},
+  &\oint_C\vect B\cdot\dd\vect l&=\mu_0 I_{\rm c}+\mu_0\varepsilon_0
+  \frac{\dd}{\dd t}\int_S\vect E\cdot\dd\vect S.
+\end{align}
+左列是微分形式，描述一个点附近的场；右列是积分形式，直接联系闭合曲面或闭合回路上的整体量。
+四条方程分别表达：电荷是电场的源；没有观测到孤立磁荷；变化的磁场产生涡旋电场；传导电流与
+变化的电场共同产生涡旋磁场。
+
+积分形式适合直接分析具有对称性的有限区域，微分形式则把定律落实到空间中的每一点。例如
+$\nabla\cdot\vect E=\rho/\varepsilon_0$ 在直角坐标系中就是
+\begin{equation}
+  \frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}
+  +\frac{\partial E_z}{\partial z}=\frac{\rho}{\varepsilon_0},
+\end{equation}
+而 Faraday 定律包含三个按 $x\to y\to z\to x$ 循环轮换得到的分量式，例如
+\begin{equation}
+  \frac{\partial E_z}{\partial y}-\frac{\partial E_y}{\partial z}
+  =-\frac{\partial B_x}{\partial t}.
+\end{equation}
+安培--Maxwell 定律同样给出三个分量关系，例如
+\begin{equation}
+  \frac{\partial B_z}{\partial y}-\frac{\partial B_y}{\partial z}
+  =\mu_0j_x+\mu_0\varepsilon_0\frac{\partial E_x}{\partial t}.
+\end{equation}
+这些式子可由积分定律分别作用在无限小的 Gauss 盒或矩形回路上得到。中学竞赛很少要求逐分量求解
+完整方程组，但看清分量间的循环结构，有助于理解后面的平面波推导不是另立的新规律。
+
+完整写出两个旋度方程的分量结构，可以看到这种循环关系：
+\begin{align}
+ \frac{\partial E_z}{\partial y}-\frac{\partial E_y}{\partial z}
+   &=-\frac{\partial B_x}{\partial t},\\
+ \frac{\partial E_x}{\partial z}-\frac{\partial E_z}{\partial x}
+   &=-\frac{\partial B_y}{\partial t},\\
+ \frac{\partial E_y}{\partial x}-\frac{\partial E_x}{\partial y}
+   &=-\frac{\partial B_z}{\partial t},\\
+ \frac{\partial B_z}{\partial y}-\frac{\partial B_y}{\partial z}
+   &=\mu_0j_x+\mu_0\varepsilon_0\frac{\partial E_x}{\partial t},\\
+ \frac{\partial B_x}{\partial z}-\frac{\partial B_z}{\partial x}
+   &=\mu_0j_y+\mu_0\varepsilon_0\frac{\partial E_y}{\partial t},\\
+ \frac{\partial B_y}{\partial x}-\frac{\partial B_x}{\partial y}
+   &=\mu_0j_z+\mu_0\varepsilon_0\frac{\partial E_z}{\partial t}.
+\end{align}
+每一个旋度分量都描述“垂直于某一小面的环流密度”。这也解释了为什么平面波中只需选择一对互相
+垂直的电、磁分量，另外几条分量式就自动化为 $0=0$。
+
+方程组还需要 Lorentz 力定律
+\begin{equation}
+  \boxed{\vect F=q(\vect E+\vect v\times\vect B)}
+\end{equation}
+才能说明场如何作用于带电粒子。Maxwell 方程决定“场怎样产生和传播”，Lorentz 力决定“场怎样推动
+物质”，二者分工不同。
+
+还应避免把“场的方程”和“粒子的运动方程”混为一谈。给定 $\rho,\vect j$ 与边界条件，Maxwell 方程
+求出 $\vect E,\vect B$；再把所得场代入 Lorentz 力，结合 Newton 定律，才能求粒子的轨迹。反过来，
+粒子运动又会改变电荷、电流分布并重新产生场。完整的电磁动力学是这种相互耦合，而不是先验地把场
+当成不会受带电粒子影响的固定背景。
+
+\subsection*{真空中的电磁波}
+
+在没有电荷和传导电流的真空区域，$\rho=0,\vect j=0$。设一列平面波沿 $+x$ 方向传播，场具有共同相位
+\begin{equation}
+  \vect E=\vect E_0\cos(kx-\omega t),
+  \qquad
+  \vect B=\vect B_0\cos(kx-\omega t).
+\end{equation}
+由 $\nabla\cdot\vect E=0$ 得 $-kE_{0x}\sin(kx-\omega t)=0$，故 $E_{0x}=0$；同理由
+$\nabla\cdot\vect B=0$ 得 $B_{0x}=0$。因此源自由空间中的平面电磁波是横波。
+
+不妨选 $\vect E=E_0\cos(kx-\omega t)\uvec y$，并设
+$\vect B=B_0\cos(kx-\omega t)\uvec z$。Faraday 定律的 $z$ 分量给出
+\begin{equation}
+  \frac{\partial E_y}{\partial x}=-\frac{\partial B_z}{\partial t}
+  \quad\Longrightarrow\quad
+  kE_0=\omega B_0.
+\end{equation}
+安培--Maxwell 定律的 $y$ 分量为
+\begin{equation}
+  -\frac{\partial B_z}{\partial x}
+  =\mu_0\varepsilon_0\frac{\partial E_y}{\partial t}
+  \quad\Longrightarrow\quad
+  kB_0=\mu_0\varepsilon_0\omega E_0.
+\end{equation}
+消去振幅便得到
+\begin{equation}
+  \boxed{\frac{\omega}{k}=\frac{1}{\sqrt{\mu_0\varepsilon_0}}\equiv c},
+  \qquad
+  \boxed{E_0=cB_0}.
+\end{equation}
+这个由电磁常量预言的速度等于真空光速，是“光就是电磁波”的核心证据。更一般地，三者满足
+\begin{equation}
+  \boxed{\vect B=\frac{1}{\omega}\vect k\times\vect E},
+  \qquad
+  \vect E\perp\vect B,\quad \vect E\perp\vect k,
+  \quad \vect B\perp\vect k.
+\end{equation}
+
+推导中场的振幅 $E_0,B_0$ 在方程两边被约去，这并不意味着振幅为零，而是说明真空常量只决定传播
+速度及两种场的振幅比，实际振幅由波源强弱决定。频率同样由波源的振荡频率决定；一旦频率 $f$ 给定，
+真空中的波长便不能任意选择，而必须满足
+\begin{equation}
+  \lambda=\frac{c}{f},\qquad k=\frac{2\pi}{\lambda},\qquad \omega=2\pi f.
+\end{equation}
+传播方向的垂直平面有两个彼此独立的偏振方向。任意线偏振可以分解成这两个方向的叠加；若两分量有
+相位差，则可形成椭圆偏振或圆偏振。对这里的真空平面波，$\vect E$ 与 $\vect B$ 同相，三者按
+$\vect E,\vect B,\vect k$ 的次序构成右手系。
+
+也可以不先猜传播速度，而直接从 Maxwell 方程消去磁场。对 Faraday 定律取旋度，使用恒等式
+$\nabla\times(\nabla\times\vect E)=\nabla(\nabla\cdot\vect E)-\nabla^2\vect E$；在真空无源区
+$\nabla\cdot\vect E=0$，再代入安培--Maxwell 定律，得到
+\begin{equation}
+  \nabla^2\vect E-\mu_0\varepsilon_0\frac{\partial^2\vect E}{\partial t^2}=0.
+\end{equation}
+磁场同理满足完全相同的波动方程。与标准形式
+$\nabla^2\psi-(1/v^2)\partial^2\psi/\partial t^2=0$ 对照，立即读出
+$v=1/\sqrt{\mu_0\varepsilon_0}$。这一推导说明速度结论并不依赖于选取沿 $x$ 传播、沿 $y$ 偏振的
+特殊坐标；特殊坐标只是把矢量方程变成容易计算的分量式。
+
+把平面简谐波代回波动方程可得 $\omega^2=c^2k^2$。正频率支对应沿 $+\vect k$ 方向传播，改变相位
+符号则得到反向传播的波。波动方程是线性的：若两列波分别是解，它们的和仍是解，因此干涉、驻波和
+偏振叠加都自然成立。所谓“振幅任意”只是在给定线性真空方程时，方程本身不替波源规定振幅；实际
+系统中的天线功率、边界条件和能量守恒仍会决定可实现的场强。类似地，频率可由波源选择，但波速固定，
+于是不同频率对应不同波长。可见光只是电磁波谱的一小段，改变频率并不改变其电磁波本性。
+
+\planeWaveThreeDDiagram
+
+图中蓝色曲线位于 $x$--$y$ 平面，灰色曲线位于 $x$--$z$ 平面；同一 $x$ 处的两根场矢量同相。
+右手从 $\vect E$ 旋向 $\vect B$，拇指所指就是传播方向。图上的斜向 $z$ 轴只是纸面投影，不表示
+磁场真的“倾斜”到传播方向。若 $\vect E$ 始终沿固定横向振动，这列波为线偏振波；若两个横向分量
+存在相位差，电场矢量端点可描出椭圆或圆。
+
+\subsection*{场的能量与 Poynting 矢量}
+
+真空中电场与磁场的能量密度分别为
+\begin{equation}
+  u_E=\frac12\varepsilon_0E^2,
+  \qquad
+  u_B=\frac{B^2}{2\mu_0},
+  \qquad u=u_E+u_B.
+\end{equation}
+为了找出能量怎样流动，将 $\vect E$ 点乘安培--Maxwell 方程、将 $\vect B/\mu_0$ 点乘 Faraday 方程，
+再利用恒等式
+\begin{equation}
+  \nabla\cdot(\vect E\times\vect B)
+  =\vect B\cdot(\nabla\times\vect E)-
+  \vect E\cdot(\nabla\times\vect B),
+\end{equation}
+可得
+\begin{equation}
+  \boxed{\frac{\partial u}{\partial t}+\nabla\cdot\vect S=-\vect j\cdot\vect E},
+  \qquad
+  \boxed{\vect S=\frac{1}{\mu_0}\vect E\times\vect B}.
+\end{equation}
+这就是电磁场的局部能量守恒式。$\vect S$ 称为 Poynting 矢量，它的方向是能量传播方向，大小表示
+单位时间穿过单位垂直面积的能量。
+
+静电场和稳恒磁场可以把能量储存在空间中；当电场与磁场共同组成传播的电磁波时，能量还能够从一处
+流向另一处。太阳并不需要把物质一路输送到地球，太阳辐射携带的能量正是由电磁场穿过空间传来的。
+因此 Poynting 矢量不是只为配合波动图形而引入的方向箭头，它给出了能量运输的定量描述。对于平面波，
+$\vect E\times\vect B$ 指向传播方向，这也反过来帮助判断两场矢量的相对取向。
+
+对有限体积 $V$ 积分，局部守恒式还可以写成
+\begin{equation}
+  \frac{\dd}{\dd t}\int_Vu\,\dd V
+  =-\oint_{\partial V}\vect S\cdot\dd\vect A-
+  \int_V\vect j\cdot\vect E\,\dd V.
+\end{equation}
+左端是体内电磁场能量的增加率；第一个负号项表示由边界流出的电磁能；第二项是场对带电物质做功的
+功率。若 $\vect j\cdot\vect E>0$，场把能量交给物质，例如电阻发热；若它为负，外力驱动电荷并向场
+输送能量，例如发射天线。$\vect S$ 的单位为 $\si{W/m^2}$，与“单位面积上的功率”这一物理解释一致。
+
+\poyntingBalanceDiagram
+
+对上面的真空平面波，$E=cB$ 且 $c^2=1/(\mu_0\varepsilon_0)$，所以
+\begin{equation}
+  u_E=\frac12\varepsilon_0E^2
+  =\frac{B^2}{2\mu_0}=u_B.
+\end{equation}
+电、磁两部分能量在每一时刻都相等。瞬时能流密度为 $S=\varepsilon_0cE^2$，一个周期内的平均光强为
+\begin{equation}
+  \boxed{\langle S\rangle=\frac12\varepsilon_0cE_0^2
+  =\frac{cB_0^2}{2\mu_0}}.
+\end{equation}
+
+\subsection*{加速电荷的辐射}
+
+静止电荷产生静电场，匀速电荷的场形随它一起平移；只有速度发生改变时，场的变化才会以有限速度向外
+传递。在非相对论条件 $v\ll c$ 下，距离电荷很远处的辐射电场大小为
+\begin{equation}
+  \boxed{E_{\rm rad}(r,t)=\frac{1}{4\pi\varepsilon_0}
+  \frac{q\,a(t-r/c)\sin\theta}{c^2r}}.
+\end{equation}
+其中 $t-r/c$ 是推迟时刻，$\theta$ 是观察方向与加速度方向的夹角。这里用 $E_{\rm rad}$ 而不用
+$E_r$：辐射场实际上垂直于传播方向，不是沿半径方向的场分量。
+
+辐射场随 $1/r$ 衰减，而 Coulomb 近场随 $1/r^2$ 衰减；所以在足够远处，辐射项反而占主导。远区有
+$B_{\rm rad}=E_{\rm rad}/c$，于是单位立体角内的辐射功率为
+\begin{equation}
+  \frac{\dd P}{\dd\Omega}=r^2S
+  =\frac{q^2a^2\sin^2\theta}{16\pi^2\varepsilon_0c^3}.
+\end{equation}
+
+\radiationPatternDiagram
+
+沿加速度方向 $\theta=0,\pi$ 时不辐射，垂直于加速度时最强。对全空间积分，利用
+\begin{equation}
+  \int\sin^2\theta\,\dd\Omega
+  =2\pi\int_0^\pi\sin^3\theta\,\dd\theta=\frac{8\pi}{3},
+\end{equation}
+得到 Larmor 公式
+\begin{equation}
+  \boxed{P=\frac{q^2a^2}{6\pi\varepsilon_0c^3}}.
+\end{equation}
+它说明辐射功率正比于加速度平方；这里的公式只适用于非相对论点电荷，不能直接套用于
+$v$ 接近 $c$ 的情形。
+
+辐射图样常画成绕加速度轴的“甜甜圈”。图中的径向长度表示该方向的相对辐射强弱，并不是电荷真的
+喷出一圈物质。把 $E_{\rm rad}$ 代入 $S=\varepsilon_0cE_{\rm rad}^2$，其中 $E_{\rm rad}^2\propto1/r^2$；
+再乘球面面积元 $r^2\dd\Omega$，距离因子正好消去。因此无论在多大的球面上统计，只要球面包围波源，
+穿出的总辐射功率都相同。这是能量从波源持续向外传播而不是在空间中凭空损失的表现。
+
+推迟时刻 $t-r/c$ 是有限传播速度的直接结果：观察者接收到的不是电荷“此刻”的运动信息，而是场从
+电荷传播到观察点之前的状态，正如地球上看到的太阳是约八分钟以前的太阳。Larmor 公式曾是经典
+电磁学的重大成功，却也暴露出经典原子模型的根本困难：若电子像行星一样绕原子核转动，它始终有
+向心加速度，便应不断辐射并损失机械能，轨道逐渐缩小直至落入原子核。真实原子却稳定存在，这个冲突
+不能靠经典电磁学自身解决，后来成为量子理论产生的重要背景之一。
+
+还要分清近场与辐射场。靠近电荷时，$1/r^2$ 的 Coulomb 型项以及与速度有关的感应项可能占主导，
+它们储存的能量可在波源附近往返交换；远离波源后，按 $1/r$ 衰减的辐射项成为主导，并携带净能量
+离开系统。因此“有时变电场”不等于“观察点处一定只有辐射场”，判断远区辐射必须同时看距离依赖和
+能流方向。Larmor 公式计算的是已经离开波源、穿过远处闭合面的总功率。
+
+\subsection*{Thomson 散射截面}
+
+考虑沿 $+x$ 传播、沿 $z$ 偏振的低频电磁波
+\begin{equation}
+  E_z=E_0\cos(kx-\omega t).
+\end{equation}
+若电子在一个周期内的位移远小于波长，可把它所在位置的电场看成均匀。忽略磁力相对于电力的
+$v/c$ 阶小量，电子加速度为
+\begin{equation}
+  a_z=-\frac{eE_0}{m}\cos\omega t.
+\end{equation}
+把它代入 Larmor 公式并对周期取平均，因 $\langle\cos^2\omega t\rangle=1/2$，有
+\begin{equation}
+  \langle P_e\rangle=\frac{e^4E_0^2}{12\pi\varepsilon_0m^2c^3}.
+\end{equation}
+入射波的平均能流密度是 $\langle S_{\rm in}\rangle=\varepsilon_0cE_0^2/2$。散射截面定义为
+“总散射功率除以入射能流密度”，于是
+\begin{align}
+  \sigma_T
+  &=\frac{\langle P_e\rangle}{\langle S_{\rm in}\rangle}
+  =\frac{e^4}{6\pi\varepsilon_0^2m^2c^4}
+  \\
+  &=\boxed{\frac{8\pi}{3}\left(\frac{1}{4\pi\varepsilon_0}
+  \frac{e^2}{mc^2}\right)^2}
+  =\frac{8\pi}{3}r_e^2
+  \approx\SI{6.65e-29}{m^2},
+\end{align}
+其中 $r_e=e^2/(4\pi\varepsilon_0mc^2)$ 称为经典电子半径。截面具有面积量纲，但它不意味着电子是
+半径 $\sqrt{\sigma_T/\pi}$ 的实心小球；它衡量的是电子从入射波中截获并再辐射能量的能力。
+
+在这一低频、非相对论经典近似中，$E_0^2$ 在散射功率与入射能流之比中消去，结果也不显含频率，
+所以 Thomson 截面与入射波强度、频率均无关。这个结论有明确的适用边界：频率高到必须考虑电子
+反冲和量子效应时，需要使用更一般的散射理论，不能仍把自由电子当成被均匀电场驱动的经典点电荷。
+
+散射截面的定义可以想成：若入射能流密度为 $S_{\rm in}$，把总散射功率写成
+$P_{\rm sc}=S_{\rm in}\sigma$，那么 $\sigma$ 就是一个等效受光面积。它允许我们不追踪每一束散射波，
+而用一个具有面积量纲的量比较相互作用强弱。对一个自由电子，偶极辐射在电子加速度方向上最弱、在
+垂直方向上最强；把各方向功率全部积分才得到上面的 $\sigma_T$。经典电子半径 $r_e$ 也不是测得的
+电子几何边界，而是由 $e,m,c,\varepsilon_0$ 组合出来的电磁作用长度尺度。
+
+\thomsonScatteringDiagram
+
+\subsection*{超导：零电阻还不够}
+
+金属电阻率一般随温度降低而下降，因为晶格热振动减弱，传导电子受到的散射减少。随着低温技术发展，
+人们自然追问电阻会趋向一个非零常数，还是能够真正消失。1908 年，荷兰物理学家 Kamerlingh Onnes
+成功液化氦，获得约 $\SI{4.2}{K}$ 的低温条件；1911 年他研究汞的电阻时，发现温度降到这一范围后，
+电阻突然跌至实验分辨率以下，超导态由此被发现。
+
+\historyfigure[0.23\linewidth]{onnes-redraw.png}%
+{图 38.8：Kamerlingh Onnes，低温物理和超导现象的先驱；新绘历史人物肖像。}
+
+后来人们在多种元素、合金和铜氧化物中发现超导转变。材料进入超导态的温度称为临界温度 $T_c$；
+实际超导还受临界磁场和临界电流密度限制，不能只凭 $T_c$ 判断应用性能。从 1911 年的汞到 1973 年前后，
+传统材料的 $T_c$ 提升十分缓慢；1986 年 Bednorz 与 M\"uller 发现铜氧化物高温超导体，随后材料的
+临界温度迅速越过液氮沸点 $\SI{77}{K}$。下图以历史曲线展示不同年代、不同材料的纪录变化，反映了
+超导材料探索中长期缓慢推进与关键发现后快速跃升并存的过程。
+
+\superconductivityTimeline
+
+\superconductivityChartFaithful
+
+零电阻最直接的后果，是闭合超导环中的电流可以长期存在而不发生 Joule 耗散。但若只把超导体看作
+电阻率严格为零的普通导体，仍解释不了它最重要的磁学性质。
+
+“电阻测不到”与“电阻严格为零”在实验上并不完全等价，因为任何电压表都有分辨率。超导持续电流
+实验提供了另一种证据：在闭合超导环中建立电流后，若电阻哪怕很小，磁能也应按一定时间尺度衰减；
+实际观测到电流可以在极长时间内保持，由衰减上限反推的电阻率远低于普通良导体。零电阻意味着
+$P_J=I^2R$ 不再产生 Joule 热，却不意味着超导装置可以承受任意电流和磁场。温度、外磁场或电流密度
+超过相应临界条件时，材料会回到有耗散的正常态。
+
+超导临界温度的发展也说明实验条件与材料体系同样重要。早期研究依赖液氦低温，能探索的材料范围和
+温区都很有限；传统金属与合金的转变温度长期只缓慢提高。铜氧化物高温超导出现后，液氮温区的实验
+和应用成为可能，材料的晶体结构、载流子浓度及制备工艺也成为研究重点。图 38.9 中不同符号对应不同
+材料族和实验条件，横轴强调发现年代，纵轴强调转变温度。读图时应比较同一时代的数量级与跃迁趋势，
+而不宜只盯住某一个最高点；图中高压条件下的数据也不能与常压工程材料直接等同。
+
+\subsection*{理想导体与迈斯纳效应}
+
+在理想导体内部，$\vect E=0$。Faraday 定律给出
+\begin{equation}
+  \frac{\dd\Phi_B}{\dd t}=-\oint_C\vect E\cdot\dd\vect l=0.
+\end{equation}
+因此理想导体只保证磁通不再改变：降温前内部若已有磁场，进入零电阻状态后可以把这部分磁通“冻结”
+下来。超导体却表现出更强的性质——在低于临界场的条件下穿越 $T_c$ 时，体内磁场被主动排斥到表面
+附近，这就是迈斯纳效应。
+
+两种操作顺序最能看出差别。若先把无磁场中的样品降至零电阻态、再施加外场，理想导体中的感应电流
+会抵消磁通变化，体内可以保持 $B=0$；这个结果尚不能区分理想导体和超导体。若先在正常态样品中
+施加磁场，再降温穿过 $T_c$，理想导体模型预言原有磁通应被冻结在体内。1933 年 Meissner 与 Ochsenfeld
+测量锡等样品的磁场分布，却发现无论先加磁场还是先降温，只要样品进入超导态且外场低于临界条件，
+体内磁场都会被排斥。因而迈斯纳效应是一种平衡态磁学性质，不只是“电阻为零导致磁通不变”。
+
+从磁场边界条件看，体内近似 $B=0$ 必须由表面附近的屏蔽电流来维持。这个电流不是普通电阻回路中
+由持续电场推动的电流，而是超导凝聚态对外磁场的无耗散响应。宏观图常把磁感线画成在几何表面突然
+转弯，真实情况则是在 London 穿透深度的尺度上连续衰减。样品尺寸远大于穿透深度时，把体内看成
+$B=0$ 是很好的竞赛近似；研究薄膜或表面效应时，就必须保留这段有限厚度。
+
+\meissnerComparisonDiagram
+
+图中左侧的磁力线穿过材料，表示理想导体保留初始磁通；右侧磁力线绕开超导体，表示迈斯纳排磁。
+真实超导体的磁场并非在数学意义上于表面瞬间降为零，而是在称为 London 穿透深度的薄层内衰减；
+在本讲的宏观近似中，可写成超导体体内 $B\approx0$。
+
+因此，“完美导电性”和“完全抗磁性”回答的是两个不同问题。前者回答电场能否在体内维持以及电流是否
+耗散；后者回答给定温度和外磁场后，平衡态磁通怎样分布。理想导体的最终磁场依赖进入零电阻状态前的
+历史，超导体的迈斯纳态则在相同外部条件下趋向同一排磁结果。正是这种与路径无关的排磁性，使超导体
+不能被简单等同为电导率无限大的普通金属。
+
+把磁体放在超导体上方时，表面屏蔽电流改变空间磁场分布，可产生向上的磁力。若磁力与重力平衡，
+磁体能够悬浮；实验中常见的稳定悬浮还与第二类超导体的磁通钉扎有关。
+
+\levitationDiagram
+
+\historyfigure[0.32\linewidth]{levitation-redraw.png}%
+{超导磁悬浮实验的新绘实景图：磁场与屏蔽电流共同产生向上的电磁力。}
+
+\subsection*{超导环中的磁通保持}
+
+设超导环的自感为 $L$，外界穿过环的磁通为 $\Phi_{\rm ext}$，环中持续电流 $I$ 自身贡献磁链 $LI$。
+环路电阻为零时，感应电动势满足
+\begin{equation}
+  L\frac{\dd I}{\dd t}=-\frac{\dd\Phi_{\rm ext}}{\dd t},
+\end{equation}
+所以
+\begin{equation}
+  \boxed{\frac{\dd}{\dd t}\bigl(\Phi_{\rm ext}+LI\bigr)=0}.
+\end{equation}
+先在外磁场中把圆环冷却到超导态，再撤去外场，$\Phi_{\rm ext}$ 减小；环中便出现持续电流，使 $LI$
+增加，从而补偿总磁通的变化。
+
+若圆环进入超导态的瞬间总磁通为 $\Phi_0$，以后无论外磁场怎样缓慢变化，都有
+\begin{equation}
+  I=\frac{\Phi_0-\Phi_{\rm ext}}{L}.
+\end{equation}
+外磁通减小时电流按 Lenz 定律方向增大，外磁通增大时电流反向调整。这里保持的是“外磁通加自感磁通”
+的总和，不是说外磁场本身被冻结不变。对于尺度足够大的经典问题，这一磁通守恒关系直接来自零电阻
+环路的 Faraday 定律；在微观超导理论中还会出现磁通量子化，那是比本讲宏观模型更进一步的内容。
+
+\superconductingRingDiagram
+
+这个宏观推导抓住了“零电阻环路中总磁链保持”的力学图像。更深入的量子理论还表明，超导环中的
+磁通量按磁通量子离散取值；那需要引入超导波函数的相位单值性，已超出本讲的经典电磁学范围。

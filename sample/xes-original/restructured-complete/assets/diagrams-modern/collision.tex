@@ -1,0 +1,15 @@
+% 核心结论：相向动量抵消，但初动能进入末态不变质量。
+% 纯对比，上排初态m -> <- m，下排末态M；约10x4cm，10pt。
+% 反应连接箭头与动量箭头分层，文字不骑线。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \node[draw,circle,minimum size=10mm,inner sep=3pt] (a) at (-2.7,1.2) {$m$};
+ \node[draw,circle,minimum size=10mm,inner sep=3pt] (b) at (2.7,1.2) {$m$};
+ \draw[vector] (a.east)--(-.8,1.2) node[midway,above=5pt] {$+p$};
+ \draw[vector] (b.west)--(.8,1.2) node[midway,above=5pt] {$-p$};
+ \node[left=8pt] at (a.west) {初态};
+ \node[draw,minimum width=3cm,minimum height=1cm,inner sep=6pt] (f) at (0,-1.2) {$M=2\gamma m$};
+ \node[left=8pt] at (-3.2,-1.2) {末态};
+ \draw[TextGray,->] (0,.65)--(f.north);
+ \node[right=8pt] at (0,.25) {结合且无能量逸出};
+ \node[below=6pt] at (f.south) {$\vect P=0$};
+\end{tikzpicture}

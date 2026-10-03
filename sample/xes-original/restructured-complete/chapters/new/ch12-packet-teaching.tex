@@ -1,0 +1,39 @@
+\subsection{从两个相近波数推导包络速度}
+相速度跟踪一个确定相位，例如某一波峰。对 $kx-\omega t=\text{常量}$ 求时间导数，$k\dd x/\dd t-\omega=0$，所以 $v_p=\omega/k$。这并未回答一组有限长度波动的整体轮廓怎样移动。
+
+先把问题简化为两个等振幅、同向的近频率行波：
+\[
+ y=A\cos(k_1x-\omega_1t)+A\cos(k_2x-\omega_2t).
+\]
+定义 $\bar k=(k_1+k_2)/2$、$\bar\omega=(\omega_1+\omega_2)/2$、$\Delta k=k_1-k_2$、$\Delta\omega=\omega_1-\omega_2$。和差化积给出
+\[
+ y=2A\cos\frac{\Delta kx-\Delta\omega t}{2}
+       \cos(\bar kx-\bar\omega t).
+\]
+第二项快速振荡，第一项缓慢调节振幅。追踪一个包络极大，就要保持 $\Delta kx-\Delta\omega t$ 不变，于是
+\[
+ v_{\rm env}=\frac{\Delta\omega}{\Delta k}.
+\]
+当两波数都趋近中心波数 $k_0$，差商趋于色散曲线的斜率，才得到 $v_g=\omega'(k_0)$。因此相速度对应从原点到色散曲线上一点的割线斜率，群速度对应该点的切线斜率；只有线性无截距的 $\omega=ck$ 才在所有波数上都相同。
+
+两个单色波的包络在整个空间周期重复，还不是真正局域的波包。若叠加一段窄波数范围，在 $k_0$ 附近展开
+\[
+ \omega(k)=\omega_0+v_g(k-k_0)+\tfrac12\omega''(k_0)(k-k_0)^2+\cdots,
+\]
+只保留常数项和一次项时，各分量的慢相位共同依赖 $x-v_gt$，局域包络近似刚性平移。二次项使不同波数获得不同额外相位，波包会展宽或变形；忽略它要求 $|\omega''(k_0)|(\Delta k)^2t\ll1$。图~\ref{ch12:fig:wave-packet} 中虚线轮廓对应这种窄带包络，内部细密波峰对应载波，不能把两个箭头解释为同一个质元的两种速度。
+
+\begin{origexamplebox}{带截止频率的波包}\label{ch12:ex:teaching-cutoff}
+某无耗一维线性系统的色散关系为 $\omega^2=\omega_c^2+c_0^2k^2$，其中 $\omega_c>0$、$c_0>0$ 均为常量。取沿 $+x$ 传播的窄带波包，中心频率为 $2\omega_c$。求相速度、群速度及二者之积，并讨论接近截止频率时的变化。
+\end{origexamplebox}
+\begin{xesolution}
+取 $k>0$、$\omega>0$，在中心频率处有 $k_0=\sqrt3\omega_c/c_0$。先由相位定义计算
+\[
+ v_p=\frac{2\omega_c}{\sqrt3\omega_c/c_0}=\frac{2c_0}{\sqrt3}.
+\]
+对色散关系求导，$2\omega\,\dd\omega/\dd k=2c_0^2k$，因而
+\[
+ v_g=\frac{c_0^2k_0}{\omega_0}=\frac{\sqrt3c_0}{2},
+ \qquad v_pv_g=c_0^2.
+\]
+中心频率从上方趋于 $\omega_c$ 时，$k_0\to0$，$v_p\to\infty$ 而 $v_g\to0$。发散的是等相位点的形式速度，不能据此断言信息以无限速度传递。对越来越靠近截止的波包，还须使带宽足够窄，才能继续使用单一群速度近似。
+\end{xesolution}

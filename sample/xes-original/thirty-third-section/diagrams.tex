@@ -1,0 +1,226 @@
+% Text annotations are transparent; no label carries an opaque backing box.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.6pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.45pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.35pt},
+  xesline/.style={draw=Ink,line width=.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1pt},
+  xesarrow/.style={-{Latex[length=2.15mm,width=1.35mm]},draw=DeepBlue,line width=.9pt},
+  fieldline/.style={draw=DeepBlue,line width=.82pt,postaction={decorate},
+    decoration={markings,mark=at position .62 with {\arrow{Latex[length=1.65mm,width=1.1mm]}}}},
+  eqline/.style={draw=RuleGray,line width=.66pt,densely dashed}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{.3em}
+}
+
+\newcommand{\equipotentialGallery}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/equipotentials.pdf}
+\end{center}}
+
+
+\newcommand{\dipolePotentialGeometry}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (C) at (0,0);\coordinate (P) at (5.3,2.35);
+  \coordinate (A) at (0,1.0);\coordinate (B) at (0,-1.0);
+  \fill[DeepBlue] (A) circle (5pt);\node[xeslabel,anchor=east] at (-.16,1) {$+q$};
+  \fill[Ink] (B) circle (5pt);\node[xeslabel,anchor=east] at (-.16,-1) {$-q$};
+  \fill[Ink] (C) circle (1.3pt);\node[xessmall,anchor=east] at (-.12,0) {$C$};
+  \fill[Ink] (P) circle (1.5pt);\node[xeslabel,anchor=west] at (5.42,2.35) {$P$};
+  \draw[DeepBlue,line width=.75pt] (A)--(P) node[xessmall,pos=.53,above] {$r_+$};
+  \draw[DeepBlue,line width=.75pt] (B)--(P) node[xessmall,pos=.53,below] {$r_-$};
+  \draw[RuleGray,densely dashed] (C)--(P) node[xessmall,pos=.52,below] {$r$};
+  \draw[<->,RuleGray,line width=.55pt] (.35,0)--(.35,1);\node[xessmall,anchor=west] at (.42,.5) {$a$};
+  \draw[<->,RuleGray,line width=.55pt] (.35,-1)--(.35,0);\node[xessmall,anchor=west] at (.42,-.5) {$a$};
+  \draw[DeepBlue,line width=.6pt] (0,1.15) arc[start angle=90,end angle=23.9,radius=1.15];
+  \node[xessmall] at (.72,.75) {$\theta$};
+  \node[xessmall,align=left,anchor=west] at (7.1,.6) {$r\gg a$ 时\\$r_- -r_+\approx2a\cos\theta$};
+  \draw[RuleGray,-{Latex[length=1.5mm]},line width=.55pt] (7.0,.55)--(4.35,1.92);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\zeroEquipotentialFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/zero-potential.pdf}
+\end{center}}
+
+
+\newcommand{\ionizationEnergyFigure}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/ionization.pdf}
+\end{center}}
+
+
+\newcommand{\alphaDecayFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(1.8,0)},scale=.9]
+    \foreach \x/\y/\c in {-1/.1/DeepBlue,-.65/.65/Gold,-.25/.2/Gold,.15/.72/DeepBlue,.55/.18/Gold,.9/.62/DeepBlue,-.8/-.55/Gold,-.3/-.55/DeepBlue,.2/-.35/Gold,.7/-.48/DeepBlue,0/0/DeepBlue}{\shade[ball color=\c!65] (\x,\y) circle (.28);}
+  \end{scope}
+  \draw[DeepBlue,line width=.65pt,dashed] (3.0,.28)--(5.35,1.15);
+  \draw[DeepBlue,line width=.65pt,dashed] (3.0,-.02)--(5.35,.82);
+  \begin{scope}[shift={(5.75,1.0)}]
+    \shade[ball color=Gold!70] (-.2,.18) circle (.27);\shade[ball color=DeepBlue!70] (.2,.18) circle (.27);
+    \shade[ball color=DeepBlue!70] (-.2,-.18) circle (.27);\shade[ball color=Gold!70] (.2,-.18) circle (.27);
+  \end{scope}
+  \draw[xesarrow] (5.1,.98)--(6.7,1.58);
+  \node[xessmall,anchor=west] at (6.85,1.62) {$\alpha$ 粒子（$^4\mathrm{He}$ 核）};
+  \node[xessmall,align=left,anchor=west] at (6.85,.35) {母核质量数减 4，\\核电荷数减 2。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\acceleratorTunnelFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/accelerator.png}
+\end{center}}
+
+
+\newcommand{\lightningFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/lightning.png}
+\end{center}}
+
+
+\newcommand{\potentialMethodFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(3.3,0) node[xessmall,below left] {$s$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.6) node[xessmall,below right] {$\varphi$};
+    \draw[xesblue] (.35,2.35)..controls(.8,1.65)and(1.65,.75)..(3.05,.25);
+    \node[xestiny] at (1.8,-.42) {有限带电体：可取 $\varphi(\infty)=0$};
+  \end{scope}
+  \begin{scope}[shift={(4.4,0)}]
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(3.3,0) node[xessmall,below left] {$s$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.6) node[xessmall,below right] {$\varphi$};
+    \draw[xesblue] (.28,2.35)..controls(.85,1.65)and(1.7,1.02)..(3.1,.48);
+    \draw[RuleGray,densely dashed] (.55,0)--(.55,2.1) (2.55,0)--(2.55,.62);
+    \node[xestiny] at (1.8,-.42) {无限直线：只定义电势差};
+  \end{scope}
+  \begin{scope}[shift={(8.8,0)}]
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(3.3,0) node[xessmall,below left] {$z$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.6) node[xessmall,below right] {$\varphi$};
+    \draw[xesblue] (0,2.25)--(3.05,.25);
+    \node[xestiny] at (1.8,-.42) {无限平面：$\varphi$ 随距离线性变化};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargedSphereEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(1.5,1.45)}]
+    \draw[Ink,line width=1pt] (0,0) circle (1.05);
+    \foreach \a in {0,30,...,330}{\node[xestiny,text=DeepBlue] at (\a:.93) {$+$};}
+    \node[xessmall] at (0,-1.48) {导体球壳：电荷在表面};
+  \end{scope}
+  \begin{scope}[shift={(5.0,1.45)}]
+    \fill[DeepBlue!7] (0,0) circle (1.05);\draw[Ink,line width=1pt] (0,0) circle (1.05);
+    \foreach \x/\y in {-0.6/0,-.3/.5,0/.15,.42/.55,.65/.05,-.5/-.48,.05/-.55,.5/-.4}{\node[xestiny,text=DeepBlue] at (\x,\y) {$+$};}
+    \node[xessmall] at (0,-1.48) {绝缘实心球：电荷在体内};
+  \end{scope}
+  \begin{scope}[shift={(7.5,.05)},xscale=.9,yscale=.8]
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(4.2,0) node[xessmall,below left] {$r$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,3.55) node[xessmall,below right] {$E$};
+    \draw[RuleGray,densely dashed] (1.55,0)--(1.55,3.15);\node[xessmall,below] at (1.55,0) {$R$};
+    \draw[DeepBlue,line width=1pt] (0,0)--(1.55,2.75);
+    \draw[DeepBlue,line width=1pt] (1.55,2.75)..controls(2.15,1.5)and(3.05,.65)..(4,.35);
+    \draw[Ink,line width=.85pt] (0,0)--(1.55,0);
+    \draw[Ink,line width=.85pt] (1.55,2.75)..controls(2.15,1.5)and(3.05,.65)..(4,.35);
+    \node[xestiny,anchor=west] at (2.5,2.45) {蓝：实心球};
+    \node[xestiny,anchor=west] at (2.5,2.08) {黑：球壳};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargeAssemblyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \x/\y/\i in {0/0/1,1.7/.5/2,3.2/-.25/3,4.5/1.0/4,5.8/-.1/5,.7/2.0/6,2.4/2.2/7,4.0/2.7/8,5.7/2.1/9,7.1/1.0/10}{
+    \fill[DeepBlue!75] (\x,\y) circle (4pt);\node[xestiny,above=4pt] at (\x,\y) {$Q_{\i}$};}
+  \draw[RuleGray,densely dashed] (0,0)--(3.2,-.25) node[xessmall,pos=.52,below] {$r_{13}$};
+  \draw[RuleGray,densely dashed] (1.7,.5)--(5.7,2.1) node[xessmall,pos=.55,above] {$r_{29}$};
+  \draw[xesarrow] (8.3,1.2)--(7.25,1.05);\node[xessmall,anchor=west,align=left] at (8.45,1.2) {最后移入的电荷只与\\已经就位的电荷计一次相互作用};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\apolloniusSphereFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/apollonius-example.pdf}
+\end{center}}
+
+
+\newcommand{\twoLinesFamiliesFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-lines.pdf}
+\end{center}}
+
+
+\newcommand{\finiteRodFamiliesFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/finite-rod.pdf}
+\end{center}}
+
+
+\newcommand{\repellingSpheresFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (S) at (0,3.5);\coordinate (B) at (0,0);\coordinate (A) at ({-3.5*sin(40)},{3.5*(1-cos(40))});
+  \draw[Ink,line width=.9pt] (-.7,3.5)--(.7,3.5);\foreach \x in {-.6,-.3,0,.3,.6}{\draw[RuleGray,line width=.5pt] (\x,3.5)--++(.18,.2);}
+  \draw[Ink,line width=1pt] (S)--(A);
+  \fill[DeepBlue] (A) circle (5pt);\node[xeslabel,anchor=east] at ($(A)+(-.14,0)$) {$A$};
+  \fill[DeepBlue] (B) circle (5pt);\node[xeslabel,anchor=west] at ($(B)+(.14,0)$) {$B$};
+  \draw[RuleGray,densely dashed] (S)--(B);
+  \draw[RuleGray] (0,2.7) arc[start angle=270,end angle=230,radius=.8];
+  \node[xessmall] at (-.4,2.47) {$\theta$};
+  \node[xessmall,anchor=south east] at (-1.35,2.1) {$L$};
+  \draw[<->,RuleGray,line width=.55pt] (.65,0)--(.65,{3.5*(1-cos(40))});\node[xessmall,anchor=west] at (.73,.4) {$h$};
+  \draw[RuleGray,densely dashed] (A)--(B) node[xessmall,pos=.54,above] {$r$};
+  \draw[xesarrow] (A)--++(0,-1.15);\node[xessmall,anchor=north] at ($(A)+(0,-1.18)$) {$m\boldsymbol g$};
+  \draw[xesarrow] (A)--($(A)!.38!(S)$);\node[xessmall,anchor=south east] at (-1.5,1.75) {$\boldsymbol T$};
+  \draw[xesarrow] (A)--($(A)!-.48!(B)$);\node[xessmall,anchor=south east] at (-3.15,1.15) {$\boldsymbol F_e$};
+  \node[xessmall,align=left,anchor=west] at (2.1,1.7) {$r=2L\sin(\theta/2)$\\$h=2L\sin^2(\theta/2)$\\因此 $h=r\sin(\theta/2)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\bohrAtomFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Gold!80!Ink] (0,0) circle (7pt);\node[xestiny,text=white] at (0,0) {$+$};
+  \draw[DeepBlue,line width=1pt] (0,0) circle (2.1);
+  \fill[Ink] (2.1,0) circle (5pt);\node[xeslabel,anchor=west] at (2.27,0) {$e^-$};
+  \draw[xesarrow] (2.1,0)--(2.1,1.15);\node[xessmall,anchor=west] at (2.25,.75) {$\boldsymbol v$};
+  \draw[xesarrow] (2.0,0)--(.85,0);\node[xessmall,above] at (1.4,0) {$\boldsymbol F_C$};
+  \draw[<->,RuleGray,line width=.55pt] (0,-.42)--(2.1,-.42);\node[xessmall,below] at (1.05,-.42) {$r$};
+  \node[xessmall,align=left,anchor=west] at (4.45,.65) {圆周运动条件：$mv^2/r=ke^2/r^2$\\总能量：$E=\frac12mv^2-ke^2/r$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\rutherfordFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/rutherford.pdf}
+\end{center}}
+
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emRepellingQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (S) at (0,3.5);\coordinate (B) at (0,0);\coordinate (A) at ({-3.5*sin(40)},{3.5*(1-cos(40))});
+  \draw[Ink,line width=.9pt] (-.7,3.5)--(.7,3.5);\foreach \x in {-.6,-.3,0,.3,.6}{\draw[RuleGray,line width=.5pt] (\x,3.5)--++(.18,.2);}
+  \draw[Ink,line width=1pt] (S)--(A);
+  \fill[DeepBlue] (A) circle (5pt);\node[xeslabel,anchor=east] at ($(A)+(-.14,0)$) {$A$};
+  \fill[DeepBlue] (B) circle (5pt);\node[xeslabel,anchor=west] at ($(B)+(.14,0)$) {$B$};
+  \draw[RuleGray,densely dashed] (S)--(B);
+  \draw[RuleGray] (0,2.7) arc[start angle=270,end angle=230,radius=.8];
+  \node[xessmall] at (-.4,2.47) {$\theta$};
+  \node[xessmall,anchor=south east] at (-1.35,2.1) {$L$};
+  \draw[<->,RuleGray,line width=.55pt] (.65,0)--(.65,{3.5*(1-cos(40))});\node[xessmall,anchor=west] at (.73,.4) {$h$};
+  \draw[RuleGray,densely dashed] (A)--(B) node[xessmall,pos=.54,above] {$r$};
+\end{tikzpicture}
+\end{center}}

@@ -1,0 +1,465 @@
+不同的力，做功的性质可能很不相同。一类是重力、理想弹簧弹力等力：它们所做的功只与
+物体的初、末位置有关，与物体在力作用下经过的轨迹无关。另一类是滑动摩擦力等各种阻力：
+它们所做的功与实际经过的路程有关。阻力会消耗机械能，工程设计中常设法减小它，但在真实
+环境中又难以完全避免。当物体在无阻力的空间中运动，或者阻力小到可以忽略时，运动会表现
+出一个十分清楚的共同性质。但“没有阻力”还不够：只有保守力作功、其他力不作功时，才有本节讨论的机械能守恒。
+
+\subsection{重力作用下物体的运动}
+
+如图~\ref{ch08:fig:gravityPathsDiagram}，地球表面附近有高度差为 $h$ 的两点 $A,B$。在两点之间设置若干形状
+不同、固定不动的光滑轨道，让物体从 $A$ 点沿轨道运动。以下比较以物体确能到达 $B$、途中保持约束为前提；
+若路径先升高，初动能还须足够越过最高处。轨道对物体的压力始终垂直于轨道切线，
+因而不做功；重力功只取决于初、末位置的高度差：
+\gravityPathsDiagram
+\begin{equation}
+ W_G=mgh .
+\end{equation}
+设所有物体在 $A$ 点的初速率均为 $v_A$，由动能定理
+\begin{equation}
+ mgh=\frac12mv_B^2-\frac12mv_A^2.
+\end{equation}
+移项得到
+\begin{equation}
+ \frac12mv_B^2=\frac12mv_A^2+mgh.\label{ch08:eq:gravity-kinetic}
+\end{equation}
+虽然物体在 $B$ 点的速度方向受到各自轨道的限制，但它们的速率和动能相同，与所走路径
+无关。也就是说，到达 $B$ 点时的动能等于 $A$ 点的动能与从 $A$ 到 $B$ 的重力功之和；
+轨道只改变速度方向，并不改变这个能量关系。
+
+建立竖直向上的 $y$ 轴，设 $A,B$ 两点纵坐标为 $y_A,y_B$，则
+\begin{equation}
+ h=y_A-y_B.
+\end{equation}
+代入式~\eqref{ch08:eq:gravity-kinetic}：
+\begin{equation}
+ \frac12mv_B^2=\frac12mv_A^2+mg(y_A-y_B).
+\end{equation}
+进一步整理为
+\begin{equation}
+ \frac12mv_B^2+mgy_B
+ =\frac12mv_A^2+mgy_A.
+\end{equation}
+定义物体在重力场中的重力势能为
+\begin{equation}
+ E_p(y)=mgy.\label{ch08:eq:gravity-potential}
+\end{equation}
+上述推理并不依赖 $A,B$ 两点处在某两个特殊高度，因此对运动中任意选取的两个位置都成立。
+于是，当物体只受重力以及不做功的约束力时，动能与重力势能之和保持不变。定义机械能
+\begin{equation}
+ E=E_k+E_p=\frac12mv^2+mgy,
+\end{equation}
+则整个运动过程中 $E$ 为常量。势能零点可以任意选择；改变零点只会给所有势能同时加上
+一个常数，不影响势能差和运动规律。
+
+\begin{origexamplebox}{例 4.10}
+质量均为 $m$ 的质点，初速率均为 $v$。轨道固定、无摩擦，不计空气阻力。
+高度从初始位置算起，圆周运动均由最低点开始。求以下各情况下首次上升所能达到的最大高度：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 沿一条高度单调上升且无限高的弯曲光滑槽运动，槽保证质点不脱离；
+ \item 以与水平面夹角为 $\theta$ 的方向斜向抛出，$0\le\theta\le\pi/2$；
+ \item 套在半径为 $R$ 的光滑圆环上运动；
+ \item 在半径为 $R$ 的光滑圆柱体内部运动。
+\end{enumerate}
+\probdiagFourTen
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourTen} 的第三种是套住细圆环的珠子，第四种是内壁单侧接触，不能把二者当作同一约束。
+以下高度均从初始位置所在的水平面算起。
+
+\textbf{(1) 无限高的光滑轨道}\quad 物体受到的支持力不做功。到达最高点时速率为零，
+\[
+ \frac12mv^2=mgH_1,
+ \qquad
+ \boxed{H_1=\frac{v^2}{2g}}.
+\]
+
+\textbf{(2) 斜抛}\quad 重力没有水平分量，所以 $v_x=v\cos\theta$ 保持不变。
+最高点只有竖直分速度为零，并非总速度为零。将最高点仍有的水平动能扣除：
+\[
+ mgH_2=\frac12mv^2-\frac12m(v\cos\theta)^2=\frac12m(v\sin\theta)^2.
+\]
+因此
+\[
+ \frac12m(v\sin\theta)^2=mgH_2,
+ \qquad
+ \boxed{H_2=\frac{v^2\sin^2\theta}{2g}}.
+\]
+
+\textbf{(3) 套在圆环上}\quad 圆环可同时提供指向圆心或背离圆心的约束力，质点不会
+脱离圆环。这是不同状态下可出现的两种方向，并非同时存在两个支持力。
+若初始动能不足以到达环顶，它在中途反向；若能到达环顶，几何上的最大高度
+就是 $2R$：
+\[
+ \boxed{H_3=\min\left(\frac{v^2}{2g},\,2R\right)}.
+\]
+
+临界情况 $v^2=4gR$ 下，理想质点无限接近环顶，到达时间趋于无穷；此时 $2R$ 严格说是高度上确界。
+
+\textbf{(4) 在圆柱体内部}\quad 这一情形的约束力只能指向圆心，物体可能脱离内壁。
+令质点沿内壁从最低点上升的圆心角为 $\varphi$，并记
+\[
+ q=\frac{v^2}{gR}.
+\]
+在接触阶段，能量守恒和径向方程分别为
+\[
+ u^2=v^2-2gR(1-\cos\varphi),
+ \qquad
+ N=m\left(\frac{u^2}{R}+g\cos\varphi\right).
+\]
+代入可得 $N=mg(q-2+3\cos\varphi)$。若 $q\le2$，速度先在下半圆降为零；
+若 $q\ge5$，环顶仍有 $N=mg(q-5)\ge0$，能保持接触。
+所以仅当 $2<q<5$ 时，物体在上半圆由 $N=0$ 脱离。令
+\[
+ c=\cos\varphi_{\rm d}=\frac{2-q}{3},
+\]
+则脱离速度满足 $u_{\rm d}^2=-gRc$。图~\ref{ch08:fig:soldiagFourTen} 的右图中，$D$ 为脱离点，
+速度沿切线，竖直分量为 $u_{{\rm d},y}=u_{\rm d}\sin\varphi_{\rm d}$。之后作斜抛，
+向上速度降为零前增加的高度为 $u_{{\rm d},y}^2/(2g)$。与脱离点高度相加，
+得到
+\[
+ H_4
+ =R(1-c)+\frac{u_{\rm d}^2(1-c^2)}{2g}
+ =R\left(1-\frac32c+\frac12c^3\right).
+\]
+\soldiagFourTen
+综上，
+\[
+ \boxed{
+ H_4=
+ \begin{cases}
+ \dfrac{v^2}{2g},&0\le q\le2,\\[6pt]
+ R\left(1-\dfrac32c+\dfrac12c^3\right),
+   &2<q<5,\quad c=\dfrac{2-q}{3},\\[6pt]
+ 2R,&q\ge5.
+ \end{cases}}
+\]
+第一段中质点在到达圆环侧面以前已经反向；中间一段先脱离再作抛体；最后一段始终接触
+内壁并越过最高点。在 $q=2,5$ 处相邻表达式分别都给出 $R,2R$，结果连续，每项均为长度。
+这里问首次上升；如果再碰到内壁，后续还与碰撞模型有关。只用能量写 $H=v^2/(2g)$ 会漏掉约束失效后的运动。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例 4.11}
+一个质量为 $m$ 的质点从固定在水平面上、半径为 $R$ 的半圆柱形光滑表面的顶端由静止
+开始下滑。求质点脱离圆柱体时，质点与圆心连线和竖直方向的夹角 $\theta$；并求落地点
+与圆心的距离。理想的正顶点静止状态是非稳定平衡；“开始下滑”按微小扰动趋于零的极限理解。
+\probdiagFourEleven
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourEleven} 中半圆的圆心在地面，顶点距圆心确为 $R$。
+设质点在圆柱面上运动到圆心角 $\theta$ 时速率为 $u$。从顶端由静止下滑，机械能守恒：
+\[
+ \frac12mu^2=mgR(1-\cos\theta),
+ \qquad
+ u^2=2gR(1-\cos\theta).
+\]
+取指向圆心为径向正方向。质点在圆柱外表面运动时
+\[
+ mg\cos\theta-N=\frac{mu^2}{R}.
+\]
+脱离瞬间 $N=0$，所以
+\[
+ g\cos\theta=\frac{u^2}{R}.
+\]
+与能量式联立：
+\[
+ \cos\theta=2(1-\cos\theta),
+ \qquad
+ \boxed{\cos\theta=\frac23},
+\]
+即
+\[
+ \boxed{\theta=\arccos\frac23}.
+\]
+此时
+\[
+ \sin\theta=\frac{\sqrt5}{3},
+ \qquad
+ u=\sqrt{\frac{2gR}{3}}.
+\]
+\soldiagFourEleven
+图~\ref{ch08:fig:soldiagFourEleven} 以圆心为原点、水平向右为 $x$ 轴、竖直向上为 $y$ 轴。
+半径方向为 $(\sin\theta,\cos\theta)$，向右下方的单位切向量为 $(\cos\theta,-\sin\theta)$，二者点积为零。
+所以脱离点坐标和速度分量为
+\[
+ x_0=\frac{\sqrt5}{3}R,\quad
+ y_0=\frac23R,\quad
+ u_x=\frac23\sqrt{\frac{2gR}{3}},\quad
+ u_y=-\frac{\sqrt5}{3}\sqrt{\frac{2gR}{3}}.
+\]
+脱离后水平速度不变、竖直加速度为 $-g$。落地时 $y=0$，故
+\[
+ \frac12gt^2-u_yt-y_0=0,\qquad t=\frac{u_y+\sqrt{u_y^2+2gy_0}}{g}.
+\]
+另一根为负，不能表示脱离后的时刻。代入 $u_y$ 和 $y_0$，得到
+\[
+ t=\sqrt{\frac{R}{g}}\,
+ \frac{\sqrt{46}-\sqrt{10}}{3\sqrt3}.
+\]
+因此落地点到圆心的水平距离为
+\[
+ \boxed{
+ x=x_0+u_xt
+ =\frac{5\sqrt5+4\sqrt{23}}{27}\,R}.
+\]
+结果约为 $1.12458R$，大于半圆右端的横坐标 $R$，量纲也是长度。
+脱离后支持力消失，必须改用抛体运动，不能把圆周运动方程继续使用到落地。
+\end{xesolution}
+
+\Needspace{0.33\textheight}
+\begin{origexamplebox}{例 4.12}
+如图，光滑水平面上质量为 $m$ 的物体以初速度 $v$ 运动，冲向一个半径为 $R$ 的光滑
+圆形表面。图~\ref{ch08:fig:probdiagFourTwelve} 的圆弧为固定的右半圆内壁，与水平面在最低点相切。
+求使物体脱离圆弧后能够击中圆心 $O$ 的初速度 $v$。
+\probdiagFourTwelve
+\end{origexamplebox}
+
+\begin{xesolution}
+以圆心 $O$ 为原点，令物体从圆弧最低点开始运动，半径由竖直向下转过角
+$\varphi$。接触点坐标为
+\[
+ x=R\sin\varphi,\qquad y=-R\cos\varphi.
+\]
+设脱离时速率为 $u$。物体在圆弧内侧运动，能量守恒和脱离条件为
+\[
+ u^2=v^2-2gR(1-\cos\varphi),
+\qquad
+ N=m\left(\frac{u^2}{R}+g\cos\varphi\right)=0.
+\]
+因此
+\begin{equation}
+ u^2=-gR\cos\varphi,\qquad v^2=gR(2-3\cos\varphi).
+ \label{ch08:eq:circle-entry}
+\end{equation}
+脱离点在右上象限，故 $\cos\varphi<0$。切向速度分量为
+\[
+ u_x=u\cos\varphi,\qquad u_y=u\sin\varphi.
+\]
+若抛体经过圆心，则存在 $t>0$ 使
+\[
+ 0=R\sin\varphi+u\cos\varphi\,t,
+\]
+\[
+ 0=-R\cos\varphi+u\sin\varphi\,t-\frac12gt^2.
+\]
+\soldiagFourTwelve
+图~\ref{ch08:fig:soldiagFourTwelve} 中 $D$ 在右上方、速度指向左上方，抛出后水平分速度保持为负。
+令 $c=\cos\varphi<0$、$s=\sin\varphi>0$。由横坐标方程得
+\[
+ t=-\frac{Rs}{uc}>0.
+\]
+代入纵坐标方程，除以 $R$，再用 $u^2=-gRc$：
+\[
+ 0=-c-\frac{s^2}{c}-\frac{gRs^2}{2u^2c^2}
+   =-c-\frac{s^2}{c}+\frac{s^2}{2c^3}.
+\]
+乘以 $2c^3$ 并代入 $s^2=1-c^2$，逐项整理：
+\[
+ 0=-2c^4-2s^2c^2+s^2
+ =-2c^4-2(1-c^2)c^2+1-c^2=1-3c^2.
+\]
+因此
+\[
+ 1-3\cos^2\varphi=0.
+\]
+结合 $\cos\varphi<0$：
+\[
+ \cos\varphi=-\frac1{\sqrt3}.
+\]
+代入式~\eqref{ch08:eq:circle-entry}，得到
+\[
+ \boxed{v=\sqrt{(2+\sqrt3)\,gR}}.
+\]
+结果中 $v^2/(gR)=2+\sqrt3$ 在 $2$ 与 $5$ 之间，符合在上半圆脱离的条件；$\sqrt{gR}$ 的量纲为速度。
+这里“击中圆心”发生在脱离后的抛体阶段；若不先判定脱离条件，不能确定正确的初速度。
+\end{xesolution}
+
+\subsection{保守力、势能}
+
+重力做功只与始末高度有关。具有同样性质的力称为保守力。保守力的关键性质可整理为：
+\begin{enumerate}[leftmargin=2.2em]
+ \item 保守力的大小和方向只由位置决定，不显含时间或速度。近地面重力、固定端理想弹簧
+ 弹力，以及以后学习的万有引力、静电场中的电场力，都是典型例子。
+ \item 保守力做功只与初、末位置有关，与实际路径无关。重力功只取决于高度差，弹簧弹力
+ 的功只取决于始、末形变量。
+ \item 由路径无关性立即得到：物体沿任意闭合路径运动一周，保守力的总功必为零。
+ \item 对保守力可以定义只依赖位置的势能。势能不依赖物体的速度、运动时间或到达该位置
+ 的路径，并且
+ \[
+ W_{A\to B}=E_p(A)-E_p(B)=-\Delta E_p.
+ \]
+ 势能的形式由相应的保守力决定，势能零点可以自由选取；真正影响运动的是势能差。
+ \item 已知保守力随位置的关系并选定势能零点，可以求出各位置的势能；反过来，已知势能
+ 也可以求出力的大小和方向。空间中势能相等的点构成等势面，保守力与等势面垂直，并指向
+ 势能下降最快的方向。
+ \item 若物体只受保守力和不做功的约束力作用，便可把机械能定义为动能与各项势能之和，
+ 且运动过程中机械能保持不变；这个常量可由运动中任意一个位置的动能和势能确定。
+\end{enumerate}
+重力势能已由式~\eqref{ch08:eq:gravity-potential} 给出。劲度系数为 $k$ 的理想弹簧，形变量为 $x$ 时，弹性势能为
+\begin{equation}
+ E_p(x)=\frac12kx^2.
+\end{equation}
+对于万有引力，若把无穷远处选作势能零点，两质量 $M,m$ 相距 $r$ 时的势能为
+\begin{equation}
+ E_p(r)=-\frac{GMm}{r}.
+\end{equation}
+势能的绝对值取决于零点选择，真正决定运动的是势能差。一维微小位移满足
+$F_x\dd x=-\dd E_p$，故 $F_x=-\dd E_p/\dd x$：曲线斜率为正时力向负方向，斜率为负时力向正方向。
+三维情况下，势能一般是 $E_p(x,y,z)$，全微分为
+\[
+ \dd E_p=\frac{\partial E_p}{\partial x}\dd x+
+ \frac{\partial E_p}{\partial y}\dd y+\frac{\partial E_p}{\partial z}\dd z.
+\]
+例如 $\partial E_p/\partial x$ 表示保持 $y,z$ 不变时，势能随 $x$ 的变化率。
+与 $\vec F\cdot\dd\vec r=-\dd E_p$ 逐项比较，三个分量分别是对应偏导数的负值。
+把三个偏导数组成矢量，称为势能的梯度，记为
+\[
+ \nabla E_p=\left(\frac{\partial E_p}{\partial x},\frac{\partial E_p}{\partial y},\frac{\partial E_p}{\partial z}\right),
+ \qquad \vec F=-\nabla E_p.
+\]
+在梯度非零的地方，梯度指向势能增加最快的方向；因此保守力与等势面垂直，指向势能降低最快的方向。
+若物体只受保守力作用，则动能和相应势能之和守恒，即
+\[
+ E=E_k+E_p=\text{常量}.
+\]
+
+\Needspace{22\baselineskip}
+\begin{origexamplebox}{例 4.13}
+判断下列各力是否为保守力；若是，分析其势能函数的性质。各小题独立，系数取正值；
+$a$ 在第(1)问是力随时间增加的系数，不是加速度，各题 $\alpha$ 的单位由所在公式决定。
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 正比于时间的拉力 $f=a t$；
+ \item 正比于速度、方向与速度相反的阻力 $f=-\alpha v$；
+ \item 正比于坐标三次方的力 $f=-kx^3$；
+ \item 随距离变化的吸引力
+ \[
+ f(r)=-k\frac{e^{-\alpha r}}{r^2}.
+ \]
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} $f=at$ 显含时间。同一位置在不同时刻受到的力不同，不能由单值的位置势能
+确定，因而不是通常意义下的保守力。
+
+\textbf{(2)} $f=-\alpha v$ 依赖速度。其瞬时功率为
+\[
+ P=fv=-\alpha v^2\le0,
+\]
+机械能随运动永久耗散，故不是保守力。
+
+\textbf{(3)} $f=-kx^3$ 只依赖位置，在一维中为保守力。由
+\[
+ -\frac{\dd E_p}{\dd x}=-kx^3
+\]
+得到
+\[
+ \boxed{E_p(x)=\frac{k}{4}x^4+C}.
+\]
+若取 $E_p(0)=0$，则 $C=0$。势能在 $x=0$ 取得稳定极小值，关于原点对称。
+但最低点的二阶导数为零，小振动不能直接当作具有非零固有频率的简谐振动。
+
+\textbf{(4)} 这是只依赖距离的中心力，在 $r>0$ 的区域内为保守力。取
+$E_p(\infty)=0$，可写成
+\[
+ \boxed{
+ E_p(r)=-\int_r^\infty
+ k\frac{e^{-\alpha s}}{s^2}\,\dd s}.
+\]
+上述定积分已经完整定义了势能，不必依赖特殊函数。若进一步引入指数积分函数
+\[
+ \operatorname{Ei}(-z)=-\int_z^\infty\frac{e^{-t}}{t}\,\dd t,\qquad z>0,
+\]
+注意 $\dd(e^{-\alpha s}/s)/\dd s=-\alpha e^{-\alpha s}/s-e^{-\alpha s}/s^2$，因此分部积分可得
+\[
+ \int_r^\infty\frac{e^{-\alpha s}}{s^2}\dd s
+ =\frac{e^{-\alpha r}}r-\alpha\int_r^\infty\frac{e^{-\alpha s}}s\dd s
+ =\frac{e^{-\alpha r}}r+\alpha\operatorname{Ei}(-\alpha r).
+\]
+于是也可表示为
+\[
+ E_p(r)
+ =-k\left[
+ \frac{e^{-\alpha r}}{r}
+ +\alpha\,\operatorname{Ei}(-\alpha r)
+ \right].
+\]
+\soldiagFourThirteen
+图~\ref{ch08:fig:soldiagFourThirteen} 的右图用这个定积分作图，而不是 $-ke^{-\alpha r}/r$；后者求负导数会多出一项，不能代表题给的力。
+由微积分基本定理，$E_p'(r)=ke^{-\alpha r}/r^2>0$，负导数恰为题给的引力。
+它随 $r$ 单调增加：$r\to\infty$ 时趋于 $0$，$r\to0^+$ 时趋于 $-\infty$，对应始终
+指向内侧的吸引力。前三项中，只有第 (3) 项具有普通的位置势能；第 (4) 项虽形式复杂，
+但是否保守只取决于它是位置的单值中心力，而不取决于积分能否用初等函数表示。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{例 4.14}
+劲度系数为 $k$、自然长度为 $l_0$ 的弹簧一端固定在给定点 $A$，另一端连接质量为
+$m$ 的物体。前两问限定物体沿弹簧轴线作一维运动，弹簧可拉伸也可压缩，忽略碰壁等几何限制。
+求以下各情况下弹簧的最大伸长量：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 物体在与 $A$ 同一水平面的光滑平面上运动。初始时弹簧为原长，物体初速度为
+ $v_1$；
+ \item 仍在上述光滑水平面内运动。初始时弹簧压缩量为 $\delta l$，初速度为 $v_2$，
+ 方向指向平衡位置。若初速度方向背离平衡位置，结果如何？
+ \item 物体在通过 $A$ 的竖直线上运动。初始时位于原长位置以下 $h$ 处，速度 $v_3$
+ 竖直向上。若初速度改为竖直向下，结果如何？
+\end{enumerate}
+\probdiagFourFourteen
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:probdiagFourFourteen} 将水平轴线和竖直轴线分开表示，固定点都记为 $A$。
+以下用 $x$ 表示弹簧相对原长的形变量，规定伸长为正；“最大伸长量”就是运动中最大的
+$x$。
+
+\textbf{(1)} 水平面上没有重力势能变化。初态 $x=0$，在最大伸长处速度为零：
+\[
+\frac12mv_1^2=\frac12kx_{\max}^2,
+\qquad
+\boxed{x_{\max}=v_1\sqrt{\frac{m}{k}}}.
+\]
+
+\textbf{(2)} 初态为 $x=-\delta l$。在正向最大伸长处速度为零，故
+\[
+\frac12mv_2^2+\frac12k(\delta l)^2
+=\frac12kx_{\max}^2,
+\qquad
+\boxed{
+ x_{\max}=\sqrt{(\delta l)^2+\frac{m}{k}v_2^2}}.
+\]
+初速度若背离平衡位置，物体先到压缩侧的转折点，再向另一侧运动；由于总机械能不变，
+最终的最大伸长量仍相同，只有到达各转折点的先后次序改变。
+
+\textbf{(3)} 取竖直向下为 $x$ 正方向，忽略与原长 $l_0$ 有关的势能常数：
+\[
+E_p(x)=\frac12kx^2-mgx
+=\frac12k\left(x-\frac{mg}{k}\right)^2+\text{常量}.
+\]
+竖直运动的平衡形变量和相对该位置的振幅分别为
+\[
+x_{\rm e}=\frac{mg}{k},
+\qquad
+\mathcal A=\sqrt{\left(h-\frac{mg}{k}\right)^2+\frac{m}{k}v_3^2}.
+\]
+\soldiagFourFourteen
+这里 $\mathcal A$ 表示振幅，区别于固定点 $A$。它来自初态与转折点的能量比较：
+\[
+ \frac12mv_3^2+\frac12k(h-x_{\rm e})^2=\frac12k\mathcal A^2.
+\]
+图~\ref{ch08:fig:soldiagFourFourteen} 中势阱关于 $x_{\rm e}$ 对称，两个转折点为 $x_{\rm e}\pm\mathcal A$。
+最大伸长位置为 $x_{\rm e}+\mathcal A$，所以
+\[
+\boxed{
+ x_{\max}=\frac{mg}{k}
+ +\sqrt{\left(h-\frac{mg}{k}\right)^2+\frac{m}{k}v_3^2}}.
+\]
+把初速度由向上改为向下，只改变速度符号，不改变机械能和振幅，故最大伸长量仍不变。
+取 $v_3=0,h=x_{\rm e}$ 时振幅为零，物体保持平衡，结果给出 $x_{\max}=x_{\rm e}$。
+若前两问不限制为沿轴线运动，非径向初速度会产生角动量；最大伸长处径向速度虽为零，切向速度却不一定为零。
+此时需另用角动量守恒和包含切向动能的能量式，不能直接使用本题的一维答案。
+\end{xesolution}
+
+\input{source-restoration.tex}

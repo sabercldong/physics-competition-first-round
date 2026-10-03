@@ -1,0 +1,57 @@
+\subsection*{表面张力、附加压强与润湿}
+
+\subsubsection*{先数界面，再列受力}
+
+把液体表面面积记为 $A$。在温度和组成给定时，缓慢增加面积所需的可逆功为
+$\delta W_{\rm on}=\sigma\dd A$，$\sigma$ 的单位既可写成 $\mathrm{J/m^2}$，
+也可写成 $\mathrm{N/m}$。面积功与表面内能并不总是同一件事：若 $\sigma$ 随温度改变，
+拉伸时还可能吸、放热，相关熵项已在第二定律的表面工质题中讨论。
+
+考虑半径 $R$ 的球形液滴，或忽略膜厚的球形肥皂泡。沿赤道切开，取上半部作为受力对象。
+表面张力在赤道边缘沿球面切线作用，其竖直分量向下。图\ref{s31:fig:laplace-cut}
+用竖直剖面标明切口；三个向上的箭头表示压差在水平投影面上的合力方向，
+并不表示压强只作用在三个点上。
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\small]
+ \draw[Ink,thick] (-1.5,0) arc[start angle=180,end angle=0,radius=1.5];
+ \draw[TextGray,dashed] (-1.5,0)--(1.5,0);
+ \fill[Ink] (0,0) circle (1pt);
+ \draw[<->,TextGray] (0,-.25)--(1.5,-.25);
+ \node[below] at (.75,-.25) {$R$};
+ \foreach \x in {-.75,0,.75}{\draw[->,DeepBlue,thick] (\x,.10)--(\x,.82);}
+ \draw[->,DeepBlue,thick] (-1.5,0)--(-1.5,-.72);
+ \draw[->,DeepBlue,thick] (1.5,0)--(1.5,-.72);
+ \node[anchor=east] at (-1.72,-.35) {边缘张力};
+ \node[anchor=west] at (1.75,.75) {$\Delta p\,\pi R^2$ 向上};
+ \node[anchor=west] at (1.75,-.35) {$k\sigma\,2\pi R$ 向下};
+ \node at (0,1.85) {上半球受力的竖直剖面};
+\end{tikzpicture}
+\diagramcaption{球面沿赤道截开。$k$ 是界面数；每个界面在赤道各处都贡献向下的切向拉力。}\label{s31:fig:laplace-cut}
+\end{center}
+
+压差的合力等于 $\Delta p\,\pi R^2$，不是压差乘以半球曲面面积。
+若有 $k$ 个具有相同张力系数、半径近似相同的界面，边缘张力合力为 $k\sigma\,2\pi R$。
+平衡条件给出
+\begin{equation}
+ \Delta p\,\pi R^2=k\sigma\,2\pi R
+ \quad\Longrightarrow\quad
+ \Delta p=\frac{2k\sigma}{R}.
+\end{equation}
+液滴只有一个液气界面，$k=1$；薄肥皂泡有内外两个液气界面，$k=2$，故分别得到
+$2\sigma/R$ 和 $4\sigma/R$。液体内部单个气泡通常也只有一个气液界面，不能因名称中有“泡”
+便取 $k=2$。这些公式忽略重力造成的明显形变；$R$ 增大时附加压强减小，平面极限趋于零。
+
+\subsubsection*{接触角如何决定液面升降}
+
+接触角 $\theta$ 在液体一侧量取，是固体壁面与液气界面切平面之间的夹角。
+圆管内半径为 $r$，液体密度为 $\rho$，两侧上方气压相同。管壁一周的表面张力合力
+竖直分量为 $2\pi r\sigma\cos\theta$。当管径足够小、液面弯曲部分的体积可相对
+$\pi r^2h$ 忽略时，与高出外液面的液柱重力平衡：
+\[
+ 2\pi r\sigma\cos\theta=\rho g\pi r^2h,
+ \qquad h=\frac{2\sigma\cos\theta}{\rho gr}.
+\]
+$h$ 是有符号的液面高度差。润湿时 $\theta<90^\circ$，$h>0$，液面升高；
+不润湿时 $\theta>90^\circ$，$h<0$，液面降低。若先假定表面张力必向上，再把负号丢掉，
+就会把凸液面画成错误的上升液柱。接触角、凹凸形状与液面升降必须同时核对。

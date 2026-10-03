@@ -1,0 +1,288 @@
+% Diagrams for Lesson 20: the first law of thermodynamics.
+
+\newcommand{\heatTransferMapDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (sys) at (0,0) {热力学系统};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (cond) at (-5.1,1.8) {直接接触（传导）};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (conv) at (-5.1,-1.8) {流体整体运动（对流）};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (rad) at (5.1,1.8) {电磁波（辐射）};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (work) at (5.1,-1.8) {边界位移（功）};
+  \draw[<->,DeepBlue,very thick] (cond)--node[above,sloped,font=\small] {$Q$，需要介质}(sys);
+  \draw[<->,DeepBlue,very thick] (conv)--node[below,sloped,font=\small] {$Q$，需要介质}(sys);
+  \draw[<->,DeepBlue,very thick] (rad)--node[above,sloped,font=\small] {$Q$，可穿过真空}(sys);
+  \draw[<->,DeepBlue,very thick] (work)--node[below,sloped,font=\small] {$W$}(sys);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\pistonWorkDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \begin{scope}[shift={(-4.8,0)}]
+    \draw[Ink,very thick] (-1.35,-1.6)--(-1.35,1.7) (1.35,-1.6)--(1.35,1.7) (-1.35,-1.6)--(1.35,-1.6);
+    \draw[fill=SoftGray,draw=Ink,thick] (-1.2,0.25) rectangle (1.2,0.55);
+    \draw[Ink,very thick] (0,0.55)--(0,2.15);
+    \draw[->,DeepBlue,very thick] (0,2.2)--(0,2.95) node[right] {$\dd y$};
+    \draw[->,DeepBlue,very thick] (-0.8,0.1)--(-0.8,0.95) node[left] {$F=PA$};
+    \node at (0,-0.55) {$P,V$};
+    \node[font=\small] at (0,-2.1) {$\dd V=A\,\dd y$};
+  \end{scope}
+  \begin{scope}[shift={(2.2,-1.55)},x=1.15cm,y=0.95cm]
+    \draw[axis] (0,0)--(5.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.7) node[above] {$P$};
+    \draw[fill=PaleBlue,draw=none] (1,3.8) .. controls (2.0,2.3) and (3.4,1.35) .. (4.6,1.0)--(4.6,0)--(1,0)--cycle;
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}]
+      (0.65,4.25) .. controls (1.7,2.25) and (3.4,1.25) .. (5.0,0.9);
+    \fill[Ink] (1,3.8) circle (2pt) node[above right] {$i$};
+    \fill[Ink] (4.6,1.0) circle (2pt) node[above right] {$f$};
+    \draw[guide] (1,0)--(1,3.8) (4.6,0)--(4.6,1.0);
+    \node[DeepBlue,font=\small] at (2.65,0.65) {$W^{\rm out}=\displaystyle\int_{V_i}^{V_f}P\,\dd V$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\processComparisonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \x/\title/\line/\note in {
+    -5.25/{等容}/{V=\mathrm{const}}/{W=0},
+    -1.75/{等压}/{P=\mathrm{const}}/{Q=n c_p\Delta T},
+    1.75/{等温}/{T=\mathrm{const}}/{\Delta U=0},
+    5.25/{绝热}/{Q=0}/{PV^\gamma=\mathrm{const}}
+  }{
+    \draw[fill=SoftGray,draw=RuleGray,rounded corners=1pt] (\x-1.45,-1.05) rectangle (\x+1.45,1.05);
+    \node[font=\bfseries] at (\x,0.55) {\title};
+    \node[font=\small] at (\x,0.0) {$\line$};
+    \node[font=\small,DeepBlue] at (\x,-0.55) {$\note$};
+  }
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\adiabaticCurvesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.25cm,y=1.0cm,>=Latex]
+  \draw[axis] (0,0)--(6.2,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,5.0) node[above] {$P$};
+  \draw[DeepBlue,very thick,domain=1:5.7,samples=120,smooth] plot (\x,{4.5/\x});
+  \draw[Ink,very thick,domain=1:5.7,samples=120,smooth] plot (\x,{4.5/(\x^1.4)});
+  \fill[Ink] (1,4.5) circle (2pt) node[above right] {同一初态};
+  \node[DeepBlue,anchor=west] at (4.2,1.15) {等温 $PV=\mathrm{const}$};
+  \node[Ink,anchor=west] at (3.8,0.42) {绝热 $PV^\gamma=\mathrm{const}$};
+  \draw[->,TextGray,thick] (2.0,2.2)--(3.3,1.1) node[midway,above right,font=\small] {膨胀降温};
+  \node[align=left,anchor=west,font=\small] at (7.0,2.6)
+    {$TV^{\gamma-1}=\mathrm{const}$\\[3pt]
+     $\displaystyle\frac{T^\gamma}{P^{\gamma-1}}=\mathrm{const}$\\[3pt]
+     $P=\mathrm{const}\cdot\rho^\gamma$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\convectionCriterionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (-5.3,-2.0)--(-5.3,2.7) node[above] {$h$};
+  \fill[PaleBlue] (-5.1,-1.75) rectangle (-1.25,2.25);
+  \draw[DeepBlue,very thick,->] (-3.15,-1.1)--(-3.15,1.25) node[midway,right] {气团上升};
+  \node at (-3.15,-1.45) {$T$};
+  \node at (-3.15,1.65) {$T+\dd T_1$};
+  \draw[<->,TextGray] (-1.7,-1.1)--node[right] {$\dd h$}(-1.7,1.25);
+  \node[align=left,anchor=west] at (0.1,1.4)
+    {上升气团：$\displaystyle \dd T_1=-\frac{\mu g}{c_p}\,\dd h$};
+  \node[align=left,anchor=west] at (0.1,0.35)
+    {环境气体：$\displaystyle \dd T_2=\frac{\dd T}{\dd h}\,\dd h$};
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,align=center] at (4.0,-1.15)
+    {$T+\dd T_1>T+\dd T_2$\\[3pt]$\displaystyle\frac{\dd T}{\dd h}<-\frac{\mu g}{c_p}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\threeCyclesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \sx/\title/\kind in {-5/{矩形循环}/0,0/{上三角循环}/1,5/{下三角循环}/2}{
+    \begin{scope}[shift={(\sx,-1.55)},x=1.05cm,y=0.95cm]
+      \draw[axis] (0,0)--(3.8,0) node[right] {$V$};
+      \draw[axis] (0,0)--(0,3.8) node[above] {$P$};
+      \draw[guide] (0,0.8)--(3.25,0.8) (0,3.05)--(3.25,3.05) (0.8,0)--(0.8,3.45) (3.1,0)--(3.1,3.45);
+      \ifnum\kind=0
+        \draw[DeepBlue,very thick,
+          postaction={decorate},decoration={markings,
+            mark=at position .14 with {\arrow{Latex}},
+            mark=at position .39 with {\arrow{Latex}},
+            mark=at position .64 with {\arrow{Latex}},
+            mark=at position .89 with {\arrow{Latex}}}]
+          (0.8,0.8)--(0.8,3.05)--(3.1,3.05)--(3.1,0.8)--cycle;
+      \else\ifnum\kind=1
+        \draw[DeepBlue,very thick,
+          postaction={decorate},decoration={markings,
+            mark=at position .17 with {\arrow{Latex}},
+            mark=at position .48 with {\arrow{Latex}},
+            mark=at position .82 with {\arrow{Latex}}}]
+          (0.8,0.8)--(0.8,3.05)--(3.1,3.05)--cycle;
+      \else
+        \draw[DeepBlue,very thick,
+          postaction={decorate},decoration={markings,
+            mark=at position .18 with {\arrow{Latex}},
+            mark=at position .51 with {\arrow{Latex}},
+            mark=at position .83 with {\arrow{Latex}}}]
+          (0.8,0.8)--(3.1,3.05)--(3.1,0.8)--cycle;
+      \fi\fi
+      \node[font=\scriptsize,left] at (0,0.8) {$P_1$};
+      \node[font=\scriptsize,left] at (0,3.05) {$P_2$};
+      \node[font=\scriptsize,below] at (0.8,0) {$V_1$};
+      \node[font=\scriptsize,below] at (3.1,0) {$V_2$};
+    \end{scope}
+    \node[font=\bfseries] at (\sx,2.55) {\title};
+  }
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\standardHeatCyclesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \sx/\title/\leftlab/\rightlab in {-5/{Carnot}/{T_h}/{T_c},0/{Otto}/{V_1}/{V_2},5/{Brayton}/{P_1}/{P_2}}{
+    \begin{scope}[shift={(\sx,-1.4)},x=1cm,y=0.85cm]
+      \draw[axis] (0,0)--(3.7,0) node[right] {$V$};
+      \draw[axis] (0,0)--(0,4.0) node[above] {$P$};
+      \ifdim\sx pt=-5pt
+        \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .2 with {\arrow{Latex}},mark=at position .7 with {\arrow{Latex}}}]
+          (0.8,3.2) .. controls (1.5,2.7) and (2.2,2.35) .. (3.0,2.2)
+          .. controls (2.75,1.4) and (2.45,1.0) .. (2.1,0.8)
+          .. controls (1.55,0.95) and (1.1,1.15) .. (0.75,1.45)
+          .. controls (0.7,2.05) and (0.72,2.65) .. cycle;
+        \node[font=\scriptsize] at (2.0,3.0) {$T_h$}; \node[font=\scriptsize] at (1.55,0.45) {$T_c$};
+      \else\ifdim\sx pt=0pt
+        \draw[DeepBlue,very thick,->] (0.85,0.8)--(0.85,3.2);
+        \draw[DeepBlue,very thick] (0.85,3.2) .. controls (1.45,2.35) and (2.25,1.65) .. (3.0,1.35);
+        \draw[DeepBlue,very thick,->] (3.0,1.35)--(3.0,0.55);
+        \draw[DeepBlue,very thick,->] (3.0,0.55) .. controls (2.2,0.75) and (1.45,1.0) .. (0.85,0.8);
+        \node[font=\scriptsize,below] at (0.85,0) {$V_{\min}$}; \node[font=\scriptsize,below] at (3.0,0) {$V_{\max}$};
+      \else
+        \draw[DeepBlue,very thick,->] (0.75,3.05)--(2.7,2.35);
+        \draw[DeepBlue,very thick,->] (2.7,2.35) .. controls (3.05,1.5) and (2.8,1.0) .. (2.3,0.75);
+        \draw[DeepBlue,very thick,->] (2.3,0.75)--(0.7,1.2);
+        \draw[DeepBlue,very thick,->] (0.7,1.2) .. controls (0.4,2.0) and (0.45,2.6) .. (0.75,3.05);
+        \node[font=\scriptsize] at (1.7,2.95) {$P_h$}; \node[font=\scriptsize] at (1.55,0.55) {$P_l$};
+      \fi\fi
+    \end{scope}
+    \node[font=\bfseries] at (\sx,2.45) {\title};
+  }
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\variableHeatCapacityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=1.0cm,>=Latex]
+  \draw[axis] (0,0)--(6.2,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.8) node[above] {$P$};
+  \draw[DeepBlue,very thick] (0.8,3.9)--(5.2,0.75);
+  \draw[guide] (3.0,0)--(3.0,2.33);
+  \node[below,font=\small] at (3.0,0) {$V_0/2$};
+  \node[DeepBlue,above right] at (1.15,3.5) {$\displaystyle\frac{P}{P_0}+\frac{V}{V_0}=1$};
+  \node[align=left,anchor=west,font=\small] at (6.7,2.7)
+    {$\displaystyle T(V)=\frac{P_0}{R}\!\left(V-\frac{V^2}{V_0}\right)$\\[5pt]
+     $V=V_0/2$ 处 $\dd T/\dd V=0$，\\过程热容出现发散。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\isothermalAtmosphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \shade[bottom color=DeepBlue!22,top color=white] (-5.7,-2.0) rectangle (-1.8,2.7);
+  \draw[axis] (-6.0,-2.0)--(-6.0,3.0) node[above] {$h$};
+  \foreach \y/\lab in {-1.5/{P_0,n_0},0/{P_0\e^{-h/H}},1.6/{P_0\e^{-2h/H}}}{
+    \draw[TextGray] (-6.0,\y)--(-5.7,\y); \node[font=\small,anchor=west] at (-5.3,\y) {$\lab$};
+  }
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,align=center] at (3.0,0.4)
+    {$\displaystyle P(h)=P_0\e^{-h/H}$\\[5pt]
+     $\displaystyle n(h)=n_0\e^{-h/H}$\\[5pt]
+     $\displaystyle H=\frac{RT}{\mu g}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\capillaryBubbleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \begin{scope}[shift={(-4.3,0)}]
+    \fill[DeepBlue!12] (-2.2,-1.8) rectangle (2.2,-0.5);
+    \draw[DeepBlue,very thick] (-2.2,-0.5)--(2.2,-0.5);
+    \draw[Ink,very thick] (-0.45,-1.8)--(-0.45,2.6) (0.45,-1.8)--(0.45,2.6);
+    \fill[DeepBlue!18] (-0.42,-1.8) rectangle (0.42,1.35);
+    \draw[DeepBlue,very thick] (-0.42,1.35) arc[start angle=180,end angle=0,x radius=0.42,y radius=0.24];
+    \draw[<->,TextGray] (0.9,-0.5)--node[right] {$h$}(0.9,1.35);
+    \node[font=\small] at (0,-2.2) {$h=2\sigma/(\rho gR)$};
+  \end{scope}
+  \begin{scope}[shift={(3.7,0)}]
+    \shade[ball color=DeepBlue!18,opacity=0.55] (0,0.2) circle (1.65);
+    \draw[DeepBlue,very thick] (0,0.2) circle (1.65);
+    \draw[DeepBlue,thick] (0,0.2) circle (1.53);
+    \draw[->,Ink,thick] (0,0.2)--(1.17,1.37) node[midway,above left] {$R$};
+    \node at (0,0.2) {$p_{\rm in}$};
+    \node[font=\small] at (0,-2.2) {$p_{\rm in}-p_0=4\sigma/R$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cycleExampleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.2cm,y=0.9cm,>=Latex]
+  \draw[axis] (0,0)--(6.2,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,5.2) node[above] {$P$};
+  \draw[guide] (0,4.2)--(1.25,4.2);
+  \draw[guide] (0,1.05)--(5.1,1.05);
+  \draw[guide] (1.25,0)--(1.25,4.2);
+  \node[left,font=\small] at (0,4.2) {$P_1$};
+  \node[left,font=\small] at (0,1.05) {$P_1/4$};
+  \node[below,font=\small] at (1.25,0) {$V_1$};
+  \draw[DeepBlue,very thick,->] (1.25,4.2)--(1.25,1.05);
+  \draw[DeepBlue,very thick,->] (1.25,1.05)--(5.0,1.05);
+  \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .52 with {\arrow{Latex}}}]
+    (5.0,1.05) .. controls (3.4,1.3) and (1.8,2.35) .. (1.25,4.2);
+  \fill[Ink] (1.25,4.2) circle (2pt) node[above right] {$a$};
+  \fill[Ink] (1.25,1.05) circle (2pt) node[above right] {$b$};
+  \fill[Ink] (5.0,1.05) circle (2pt) node[below right] {$c$};
+  \node[font=\small,DeepBlue] at (3.45,2.4) {$PV=P_1V_1$};
+  \node[align=left,anchor=west,font=\small] at (7.0,2.6)
+    {$V_c=4V_1$\\[3pt]
+     $a\to b$：等容降温\\
+     $b\to c$：等压吸热\\
+     $c\to a$：等温压缩};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\straightProcessDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.2cm,y=1.0cm,>=Latex]
+  \draw[axis] (0,0)--(5.8,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.8) node[above] {$P$};
+  \draw[guide] (0,3.8)--(1.2,3.8);
+  \draw[guide] (0,1.9)--(4.6,1.9);
+  \node[left,font=\small] at (0,3.8) {$P_A$};
+  \node[left,font=\small] at (0,1.9) {$P_A/2$};
+  \draw[DeepBlue,very thick,->] (1.2,3.8)--(4.6,1.9);
+  \fill[Ink] (1.2,3.8) circle (2pt) node[above right] {$A$};
+  \fill[Ink] (4.6,1.9) circle (2pt) node[below right] {$B$};
+  \draw[guide] (1.2,0)--(1.2,3.8);
+  \draw[guide] (4.6,0)--(4.6,1.9);
+  \node[below,font=\small] at (1.2,0) {$V_A$};
+  \node[below,font=\small] at (4.6,0) {$V_B$};
+  \node[align=left,anchor=west,font=\small] at (6.7,2.7)
+    {$\displaystyle W^{\rm out}=\frac{P_A+P_B}{2}(V_B-V_A)$\\[5pt]
+     $\displaystyle \Delta U=\frac32(P_BV_B-P_AV_A)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\liftingPistonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,very thick] (-4.7,-2.0)--(-4.7,3.2) (-1.7,-2.0)--(-1.7,3.2) (-4.7,-2.0)--(-1.7,-2.0);
+  \draw[fill=SoftGray,draw=Ink,thick] (-4.55,0.15) rectangle (-1.85,0.48);
+  \draw[->,DeepBlue,very thick] (-3.2,0.5)--(-3.2,1.65) node[right] {缓慢上提};
+  \node at (-3.2,-0.7) {$p,T$};
+  \draw[->,Ink,thick] (-3.2,-1.95)--(-3.2,-2.8) node[right] {$Mg$};
+  \draw[->,TextGray,thick] (-4.0,-2.0)--(-4.0,-1.15) node[midway,left] {$p_0A$};
+  \draw[->,TextGray,thick] (-2.5,-1.15)--(-2.5,-2.0) node[midway,right] {$pA$};
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,align=left,anchor=west] at (0.2,0.2)
+    {刚离地：$(p_0-p)A=Mg$\\[4pt]
+     绝热膨胀：$\displaystyle\frac{T^\gamma}{p^{\gamma-1}}=\mathrm{const}$\\[4pt]
+     $\displaystyle T_f=T_0\left(1-\frac{Mg}{p_0A}\right)^{(\gamma-1)/\gamma}$};
+\end{tikzpicture}
+\end{center}}

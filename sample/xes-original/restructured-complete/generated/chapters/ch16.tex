@@ -1,0 +1,1183 @@
+\hypersetup{bookmarksdepth=3}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\tcbset{breakable/.default=false}
+\chapter{热力学第二定律}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirtieth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirtieth-section/assets/}}
+
+% Original vector redraws for Lesson 21.  Text labels deliberately have no
+% rectangular background; spacing is achieved by placement, not masking.
+
+\tikzset{
+  thermobody/.style={draw=Ink,thick},
+  thermoarrow/.style={-{Latex[length=2.2mm]},draw=DeepBlue,very thick},
+  thermoguide/.style={draw=TextGray,densely dashed},
+  thermolabel/.style={font=\scriptsize,text=Ink,fill=none,inner sep=0pt,outer sep=.8pt}
+}
+
+
+\newcommand{\pistonstage}[4]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[thermobody] (-0.62,-1.20)--(-0.62,1.15) (0.62,-1.20)--(0.62,1.15);
+    \draw[thermobody] (-0.62,1.15)--(0.62,1.15);
+    \draw[fill=SoftGray,draw=Ink,thick] (-0.54,#2) rectangle (0.54,{#2+0.18});
+    \coordinate (Pin) at (0,#2);
+    \coordinate (Cen) at (0,-1.78);
+    \coordinate (Crank) at ($(Cen)+(#3:0.52)$);
+    \draw[Ink,thick] (Pin)--(Crank);
+    \draw[Ink,thick] (Cen) circle (0.52);
+    \draw[Ink,thick] (Cen)--(Crank);
+    \fill[Ink] (Cen) circle (1.1pt) (Crank) circle (1.1pt);
+    \node[thermolabel,anchor=north] at (0,-2.42) {#4};
+  \end{scope}
+}
+
+\newcommand{\ottoCycleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.92cm,y=.92cm]
+  \pistonstage{-6.8}{0.05}{220}{进气}
+  \pistonstage{-5.05}{0.52}{300}{压缩}
+  \pistonstage{-3.30}{0.72}{80}{点火}
+  \pistonstage{-1.55}{-0.10}{155}{做功}
+  \pistonstage{0.20}{0.18}{235}{排气}
+  \draw[thermoarrow] (-7.85,0.85)--(-7.10,0.85);
+  \node[thermolabel,above] at (-7.48,0.85) {进气};
+  \draw[thermoarrow] (0.53,0.85)--(1.25,0.85);
+  \node[thermolabel,above] at (0.88,0.85) {排气};
+  \draw[thermoarrow] (-6.8,1.85)--(-6.8,1.25);
+  \node[thermolabel,above right] at (-6.8,1.85) {火花塞};
+  \draw[DeepBlue,thick] (-3.53,1.22)--(-3.30,1.57)--(-3.10,1.22)
+    (-3.45,1.35)--(-3.28,1.80)--(-3.18,1.37);
+
+  \begin{scope}[shift={(2.35,-2.15)},x=.9cm,y=.75cm]
+    \draw[axis] (0,0)--(5.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.9) node[above] {$P$};
+    \coordinate (O) at (.55,.85);
+    \coordinate (A) at (4.55,.85);
+    \coordinate (B) at (.90,2.35);
+    \coordinate (C) at (.90,4.15);
+    \coordinate (D) at (4.55,1.75);
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,
+      mark=at position .35 with {\arrow{Latex}},mark=at position .78 with {\arrow{Latex}}}]
+      (O)--(A)--(B)--(C) .. controls (1.85,3.55) and (3.20,2.35) .. (D)--(A)--(O);
+    \foreach \p/\lab/\pos in {O/O/below left,A/A/below right,B/B/left,C/C/above left,D/D/above right}{
+      \fill[Ink] (\p) circle (1.7pt) node[thermolabel,\pos] {$\lab$};
+    }
+    \draw[thermoguide] (.90,0)--(.90,4.15) (4.55,0)--(4.55,1.75);
+    \node[thermolabel,below] at (.90,0) {$V_2$};
+    \node[thermolabel,below] at (4.55,0) {$V_1$};
+    \draw[thermoarrow] (1.25,2.75)--(1.25,3.65);
+    \node[thermolabel,right] at (1.25,3.20) {$Q_h$};
+    \draw[thermoarrow] (4.85,1.70)--(5.30,1.35);
+    \node[thermolabel,right] at (5.18,1.48) {$Q_c$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\carnotCycleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1.08cm,y=.95cm]
+  \draw[axis] (0,0)--(7.4,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,5.0) node[above] {$P$};
+  \draw[TextGray,thick,domain=.8:6.7,samples=100] plot (\x,{4.55/(\x^.43)});
+  \draw[TextGray,thick,domain=.8:6.7,samples=100] plot (\x,{2.30/(\x^.43)});
+  \coordinate (P1) at (1.35,4.00);
+  \coordinate (P2) at (4.35,2.48);
+  \coordinate (P3) at (5.55,1.10);
+  \coordinate (P4) at (2.05,1.70);
+  \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,
+    mark=at position .12 with {\arrow{Latex}},mark=at position .38 with {\arrow{Latex}},
+    mark=at position .63 with {\arrow{Latex}},mark=at position .88 with {\arrow{Latex}}}]
+    (P1) .. controls (2.25,3.38) and (3.35,2.76) .. (P2)
+    .. controls (4.75,1.83) and (5.10,1.38) .. (P3)
+    .. controls (4.35,1.20) and (3.00,1.45) .. (P4)
+    .. controls (1.90,2.62) and (1.62,3.36) .. cycle;
+  \foreach \p/\lab/\pos in {P1/1/above left,P2/2/above right,P3/3/below right,P4/4/below left}{
+    \fill[Ink] (\p) circle (1.8pt) node[thermolabel,\pos] {$\lab$};
+  }
+  \node[thermolabel,anchor=west] at (5.55,3.15) {$T_1$ 等温线};
+  \node[thermolabel,anchor=west] at (4.85,.55) {$T_2$ 等温线};
+  \node[thermolabel] at (3.0,3.18) {$Q_1$};
+  \node[thermolabel] at (3.75,1.15) {$Q_2$};
+  \node[thermolabel,DeepBlue] at (4.05,4.35) {$T_1>T_2$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\heatdevicepanel}[5]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[thermobody,fill=SoftGray] (-1.40,2.15) rectangle (1.40,2.62);
+    \draw[thermobody,fill=SoftGray] (-1.40,-2.62) rectangle (1.40,-2.15);
+    \node[thermolabel] at (0,2.38) {高温热库 $T_h$};
+    \node[thermolabel] at (0,-2.38) {低温热库 $T_c$};
+    \draw[thermobody,fill=PaleBlue] (0,0) circle (.64);
+    \node[thermolabel] at (0,0) {#2};
+    #3 #4 #5
+  \end{scope}
+}
+
+\newcommand{\heatDevicesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.82cm]
+  \heatdevicepanel{-5.7}{热机}{\draw[thermoarrow] (0,2.12)--(0,.70) node[midway,right,thermolabel] {$Q_h$};}{\draw[thermoarrow] (0,-.70)--(0,-2.12) node[midway,right,thermolabel] {$Q_c$};}{\draw[thermoarrow] (.68,0)--(1.55,0) node[midway,above,thermolabel] {$W$};}
+  \heatdevicepanel{-1.9}{“完美”热机}{\draw[thermoarrow] (0,2.12)--(0,.70) node[midway,right,thermolabel] {$Q_h$};}{}{\draw[thermoarrow] (.68,0)--(1.55,0);\node[thermolabel] at (1.15,-1.05) {$W=Q_h$};}
+  \heatdevicepanel{1.9}{制冷机}{\draw[thermoarrow] (0,.70)--(0,2.12) node[midway,right,thermolabel] {$Q_h$};}{\draw[thermoarrow] (0,-2.12)--(0,-.70) node[midway,right,thermolabel] {$Q_c$};}{\draw[thermoarrow] (1.55,0)--(.68,0) node[midway,above,thermolabel] {$W$};}
+  \heatdevicepanel{5.7}{“完美”制冷机}{\draw[thermoarrow] (0,.70)--(0,2.12);}{\draw[thermoarrow] (0,-2.12)--(0,-.70);}{}
+  \node[thermolabel] at (-5.7,-3.05) {(a) 真实热机};
+  \node[thermolabel] at (-1.9,-3.05) {(b) 第二类永动机};
+  \node[thermolabel] at (1.9,-3.05) {(c) 真实制冷机};
+  \node[thermolabel] at (5.7,-3.05) {(d) 无功制冷机};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\portraitOne}[5]{%
+  \begin{scope}[shift={(#1,0)}]
+    \draw[fill=Ink,draw=Ink,rounded corners=1pt] (-1.62,-2.15) rectangle (1.62,2.25);
+    \fill[#2] (-1.18,-2.10) .. controls (-1.02,-1.00) and (-.75,-.63) .. (-.48,-.50)
+      --(.48,-.50) .. controls (.82,-.72) and (1.07,-1.15) .. (1.18,-2.10)--cycle;
+    \fill[SoftGray] (0,.35) ellipse (.68 and 1.02);
+    #3
+    \draw[Ink,thick] (-.30,.47)--(-.08,.50) (.10,.50)--(.32,.47);
+    \fill[Ink] (-.18,.49) circle (.04) (.18,.49) circle (.04);
+    \draw[Ink,thin] (0,.37)--(-.05,.05)--(.06,.00);
+    \draw[Ink,thin] (-.24,-.17) .. controls (0,-.28) and (.18,-.22) .. (.28,-.14);
+    #4
+    \node[font=\small\bfseries,anchor=north] at (0,-2.38) {#5};
+  \end{scope}
+}
+
+\newcommand{\foundersPortraitFigure}{%
+\begin{center}
+\begin{tikzpicture}
+  \portraitOne{-4.6}{TextGray}{\fill[Ink] (-.70,.82) .. controls (-.48,1.58) and (.55,1.58) .. (.72,.74) .. controls (.28,1.10) and (-.25,1.15) .. cycle;}{\draw[SoftGray,very thick] (-.40,-.62)--(-.15,-.88)--(0,-.70)--(.18,-.88)--(.42,-.62);}{萨迪·卡诺}
+  \portraitOne{0}{RuleGray}{\fill[SoftGray] (-.60,.92) arc[start angle=180,end angle=0,x radius=.60,y radius=.50];}{\fill[SoftGray] (-.52,-.18) .. controls (-.62,-.95) and (-.35,-1.28) .. (0,-1.48) .. controls (.36,-1.25) and (.62,-.92) .. (.50,-.18) .. controls (.18,-.42) and (-.18,-.42) .. cycle;}{开尔文勋爵}
+  \portraitOne{4.6}{TextGray}{\fill[Ink] (-.66,.88) .. controls (-.38,1.42) and (.48,1.34) .. (.68,.70) .. controls (.30,1.02) and (-.15,1.02) .. cycle;}{\draw[Ink,very thick] (-.34,-.12) .. controls (0,-.02) and (.18,-.04) .. (.36,-.12);}{鲁道夫·克劳修斯}
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\entropyPathFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.9cm]
+  \begin{scope}[shift={(-3.8,-1.4)}]
+    \draw[axis] (0,0)--(5.0,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.3) node[above] {$P$};
+    \coordinate (A) at (1.0,1.0);
+    \coordinate (B) at (1.0,3.55);
+    \coordinate (C) at (4.25,.85);
+    \draw[DeepBlue,very thick,->] (A)--(B);
+    \draw[DeepBlue,very thick,->] (B) .. controls (2.0,2.95) and (3.0,1.70) .. (C);
+    \fill[Ink] (A) circle (1.7pt) node[thermolabel,left] {$(V_0,T_0)$};
+    \fill[Ink] (B) circle (1.7pt) node[thermolabel,above left] {$(V_0,T)$};
+    \fill[Ink] (C) circle (1.7pt) node[thermolabel,right] {$(V,T)$};
+    \node[thermolabel,anchor=west] at (1.15,2.25) {等容升温};
+    \node[thermolabel,rotate=-28] at (2.90,2.05) {等温膨胀};
+  \end{scope}
+  \node[draw=DeepBlue,rounded corners=2pt,thick,align=left,inner sep=7pt] at (4.0,.2)
+    {$\displaystyle \Delta S=n c_v\ln\frac{T}{T_0}+nR\ln\frac{V}{V_0}$\\[5pt]
+     熵是状态量：可任选一条可逆路径计算。};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\boltzmannMemorialFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[TextGray!28] (-4.6,-2.5) rectangle (4.6,1.65);
+  \fill[TextGray!28] (-4.6,1.60) arc[start angle=180,end angle=0,x radius=4.6,y radius=2.0]--cycle;
+  \draw[Ink,thick] (-4.6,-2.5)--(-4.6,1.6) arc[start angle=180,end angle=0,x radius=4.6,y radius=2.0]--(4.6,-2.5)--cycle;
+  \node[font=\large\bfseries] at (0,2.25) {$S=k_B\ln\Omega$};
+  \fill[Ink] (-1.35,-2.48) .. controls (-1.05,-1.35) and (-.78,-.78) .. (-.48,-.55)
+    --(.48,-.55) .. controls (.82,-.86) and (1.12,-1.45) .. (1.35,-2.48)--cycle;
+  \fill[SoftGray] (0,.10) ellipse (.80 and 1.12);
+  \fill[Ink] (-.75,.54) .. controls (-.42,1.36) and (.52,1.36) .. (.78,.48)
+    .. controls (.36,.84) and (-.20,.88) .. cycle;
+  \draw[Ink,thick] (-.40,.25)--(-.12,.28) (.12,.28)--(.40,.25);
+  \fill[Ink] (-.22,.26) circle (.045) (.22,.26) circle (.045);
+  \draw[Ink,thin] (0,.15)--(-.05,-.18)--(.06,-.15);
+  \fill[SoftGray] (-.55,-.20) .. controls (-.62,-1.02) and (-.30,-1.35) .. (0,-1.52)
+    .. controls (.33,-1.35) and (.64,-1.00) .. (.55,-.20) .. controls (.16,-.45) and (-.16,-.45) .. cycle;
+  \draw[thermoguide] (-3.8,-1.95)--(-2.6,-.25)--(-3.3,.70);
+  \draw[thermoguide] (3.8,-1.95)--(2.6,-.25)--(3.3,.70);
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\carnotProofDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[draw=Ink,fill=SoftGray,minimum width=3.0cm,minimum height=.65cm] (H) at (0,2.0) {高温热库 $T_h$};
+  \node[draw=DeepBlue,fill=PaleBlue,minimum width=2.2cm,minimum height=.8cm] (E) at (0,0) {可逆热机};
+  \node[draw=Ink,fill=SoftGray,minimum width=3.0cm,minimum height=.65cm] (C) at (0,-2.0) {低温热库 $T_c$};
+  \draw[thermoarrow] (H)--node[right,thermolabel] {$Q_h$}(E);
+  \draw[thermoarrow] (E)--node[right,thermolabel] {$Q_c$}(C);
+  \draw[thermoarrow] (E)--(2.25,0) node[right,thermolabel] {$W=Q_h-Q_c$};
+  \node[draw=DeepBlue,rounded corners=2pt,align=left,inner sep=6pt] at (5.4,0)
+    {$\Delta S_{\rm cyc}=0$\\[2pt]
+     $\displaystyle \frac{Q_h}{T_h}-\frac{Q_c}{T_c}=0$\\[4pt]
+     $\displaystyle \eta=1-\frac{T_c}{T_h}$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\secondLawEntropyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[draw=RuleGray,rounded corners=2pt,minimum width=5.4cm,minimum height=2.25cm,align=center] at (-3.5,0)
+    {单一热库取热并全部变成功\\[4pt]$\Delta S_{\rm tot}=-Q/T<0$\\[2pt]\color{DeepBlue}不可能};
+  \node[draw=RuleGray,rounded corners=2pt,minimum width=5.4cm,minimum height=2.25cm,align=center] at (3.5,0)
+    {无补偿地把热从 $T_c$ 送往 $T_h$\\[4pt]
+     $\displaystyle\Delta S_{\rm tot}=\frac{Q}{T_h}-\frac{Q}{T_c}<0$\\[2pt]\color{DeepBlue}不可能};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\irreversibleProcessesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-4.3,0)}]
+    \draw[thermobody] (-2,-1.2) rectangle (2,1.2);
+    \draw[thermobody] (0,-1.2)--(0,1.2);
+    \fill[PaleBlue] (-2,-1.2) rectangle (0,1.2);
+    \node at (-1,0) {气体};
+    \draw[thermoarrow] (-.25,0)--(1.35,0);
+    \node[thermolabel] at (0,-1.55) {快速自由膨胀：$\Delta S=nR\ln(V_f/V_i)>0$};
+  \end{scope}
+  \begin{scope}[shift={(4.3,0)}]
+    \draw[thermobody,fill=SoftGray] (-2,-1.1) rectangle (-.35,1.1);
+    \draw[thermobody,fill=PaleBlue] (.35,-1.1) rectangle (2,1.1);
+    \node at (-1.18,0) {$T_h$};
+    \node at (1.18,0) {$T_c$};
+    \draw[thermoarrow] (-.2,0)--(.2,0);
+    \node[thermolabel] at (0,-1.55) {$\Delta S=Q(1/T_c-1/T_h)>0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\threeBodiesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \x/\t/\lab in {-4/300/{物体1},0/300/{物体2},4/100/{物体3}}{
+    \draw[thermobody,fill=SoftGray] (\x-1.05,-.55) rectangle (\x+1.05,.55);
+    \node at (\x,.15) {\lab};
+    \node[thermolabel] at (\x,-.25) {$\t\,\mathrm K$};
+  }
+  \draw[thermoarrow,<->] (-2.85,0)--(-1.15,0);
+  \draw[thermoarrow,<->] (1.15,0)--(2.85,0);
+  \node[thermolabel,above] at (-2.0,0) {可逆热机};
+  \node[thermolabel,above] at (2.0,0) {可逆热机};
+  \node[draw=DeepBlue,rounded corners=2pt,align=center,inner sep=6pt] at (0,-2.05)
+    {$T_{\max}+2T=700\,\mathrm K$\\[2pt]$T_{\max}T^2=300^2\!\times100\,\mathrm K^3$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\surfaceEngineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.4,0)}]
+    \draw[axis] (0,0)--(5.0,0) node[right] {$A$};
+    \draw[axis] (0,0)--(0,4.0) node[above] {$\sigma$};
+    \coordinate (A) at (1.0,1.45);
+    \coordinate (B) at (4.1,1.45);
+    \coordinate (C) at (4.1,3.05);
+    \coordinate (D) at (1.0,3.05);
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,
+      mark=at position .12 with {\arrow{Latex}},mark=at position .37 with {\arrow{Latex}},
+      mark=at position .62 with {\arrow{Latex}},mark=at position .87 with {\arrow{Latex}}}]
+      (A)--(B)--(C)--(D)--cycle;
+    \node[thermolabel,left] at (0,1.45) {$\sigma_h$};
+    \node[thermolabel,left] at (0,3.05) {$\sigma_c$};
+    \node[thermolabel,below] at (1.0,0) {$A_1$};
+    \node[thermolabel,below] at (4.1,0) {$A_2$};
+    \node[thermolabel] at (2.55,2.22) {$W_{\rm out}$};
+  \end{scope}
+  \node[draw=DeepBlue,rounded corners=2pt,align=left,inner sep=6pt] at (4.4,.3)
+    {$S=-A\,\mathrm d\sigma/\mathrm dT$\\[3pt]
+     $Q_h=T_h\Delta S$\\[3pt]
+     $Q_c=T_c\Delta S$\\[3pt]
+     $\eta=1-T_c/T_h$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+% Shared coordinates for mechanical contact and thermodynamic paths.
+\tikzset{revcycle/.style={DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}}}
+\newcommand{\pistonStageRevision}[4]{\begin{scope}[shift={(#1,0)}]
+\pgfmathsetmacro{\pinY}{-2+.4*cos(#2)+sqrt(1.5*1.5-.4*.4*sin(#2)*sin(#2))}
+\coordinate(pin)at(0,\pinY);\coordinate(crank)at({.4*sin(#2)},{-2+.4*cos(#2)});
+\fill[DeepBlue!7](-.62,\pinY+.12)rectangle(.62,.75);
+\draw[thick](-.62,-1.2)--(-.62,.75) (.62,-1.2)--(.62,.75) (-.25,.75)--(.25,.75);
+\ifnum#4=1 \draw[thick](-.62,.55)--(-.25,.4);\else\draw[thick](-.62,.75)--(-.25,.75);\fi
+\ifnum#4=5 \draw[thick](.25,.4)--(.62,.55);\else\draw[thick](.25,.75)--(.62,.75);\fi
+\draw[thick,fill=SoftGray](-.62,\pinY-.06)rectangle(.62,\pinY+.12);
+\draw[thick](pin)--(crank)--(0,-2);\draw[thick](0,-2)circle(.4);\fill(pin)circle(1.2pt)(crank)circle(1.2pt)(0,-2)circle(1.2pt);
+\draw[thick](0,1.03)--(0,.59);\draw[thick](-.09,.64)--(.09,.64);
+\ifnum#4=3 \draw[orange!85!black,thick](-.14,.52)--(.05,.38)--(-.06,.24)--(.13,.12);\fi
+\ifnum#4=1 \draw[->,DeepBlue,thick](-1.05,.95)--(-.45,.95)--(-.45,.62);\fi
+\ifnum#4=5 \draw[->,DeepBlue,thick](.45,.62)--(.45,.95)--(1.05,.95);\fi
+\ifnum#4=3\else
+\ifnum#4=2 \draw[->](.87,-.8)--(.87,-.1);\else
+\ifnum#4=5 \draw[->](.87,-.8)--(.87,-.1);\else\draw[->](.87,-.1)--(.87,-.8);\fi\fi\fi
+\node[font=\small]at(0,-2.8){#3};\end{scope}}
+\renewcommand{\ottoCycleFigure}{\begin{center}\begin{tikzpicture}[font=\small]
+\pistonStageRevision{0}{90}{进气（口开）}{1}
+\pistonStageRevision{2.65}{270}{压缩}{2}
+\pistonStageRevision{5.3}{0}{点火}{3}
+\pistonStageRevision{7.95}{90}{做功}{4}
+\pistonStageRevision{10.6}{270}{排气（口开）}{5}
+\node[anchor=west]at(6.5,1.45){火花塞};\draw[TextGray](6.35,1.42)--(5.3,1.03);
+\node[font=\scriptsize]at(5.3,-3.35){相同缸径、曲柄半径与连杆长度；同一位置可属于不同冲程}
+;\end{tikzpicture}
+\par\medskip\begin{tikzpicture}[x=1.6cm,y=.9cm,font=\small]
+\pgfmathsetmacro{\pa}{1.8*pow(1.2/3,1.4)}\pgfmathsetmacro{\pd}{4*pow(1.2/3,1.4)}
+\draw[axis](0,0)--(4,0)node[right]{$V$};\draw[axis](0,0)--(0,4.8)node[above]{$P$};
+\draw[revcycle,domain=3:1.2,samples=90]plot(\x,{1.8*pow(1.2/\x,1.4)});
+\draw[revcycle](1.2,1.8)--(1.2,4);
+\draw[revcycle,domain=1.2:3,samples=90]plot(\x,{4*pow(1.2/\x,1.4)});
+\draw[revcycle](3,\pd)--(3,\pa);
+\draw[guide](1.2,0)--(1.2,1.65) (3,0)--(3,\pa);
+\draw[TextGray,dashed,->](1.2,\pa)--(2.5,\pa);\draw[TextGray,->](2.4,\pa-.12)--(1.6,\pa-.12);
+\foreach \x/\y/\n/\a in {3/\pa/A/below right,1.2/1.8/B/left,1.2/4/C/above,3/\pd/D/above right,1.2/\pa/O/left}{\fill(\x,\y)circle(1.2pt)node[\a]{$\n$};}
+\node[below]at(1.2,0){$V_2$};\node[below]at(3,0){$V_1$};
+\node[anchor=west,align=left]at(4.6,3.2){蓝线：封闭空气标准循环\\[6pt]$A\to B$、$C\to D$：绝热\\[6pt]$B\to C$：等容吸热 $Q_h$\\[6pt]$D\to A$：等容放热 $Q_c$};
+\node[anchor=west,align=left,font=\scriptsize]at(4.6,.65){灰色往返线仅提示真实进、排气\\不是蓝色闭式循环的一部分};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\carnotCycleFigure}{\begin{center}\begin{tikzpicture}[x=1.45cm,y=1cm,font=\small]
+\pgfmathsetmacro{\cold}{4/pow(1.5,2/3)}
+\draw[axis](0,0)--(4.4,0)node[right]{$V$};\draw[axis](0,0)--(0,4.9)node[above]{$P$};
+\draw[TextGray,domain=.9:4.15,samples=100]plot(\x,{4/\x});
+\draw[TextGray,domain=.9:4.15,samples=100]plot(\x,{\cold/\x});
+\draw[revcycle,domain=1:2.4,samples=85]plot(\x,{4/\x});
+\draw[revcycle,domain=2.4:3.6,samples=85]plot(\x,{4*pow(2.4,2/3)/pow(\x,5/3)});
+\draw[revcycle,domain=3.6:1.5,samples=85]plot(\x,{\cold/\x});
+\draw[revcycle,domain=1.5:1,samples=85]plot(\x,{4/pow(\x,5/3)});
+\foreach \x/\y/\n/\a in {1/4/1/above left,2.4/{4/2.4}/2/above right,3.6/{\cold/3.6}/3/below,1.5/{\cold/1.5}/4/below left}{\fill(\x,\y)circle(1.4pt)node[\a]{$\n$};}
+\node[anchor=west,align=left]at(5,3.4){高温等温：$PV=nRT_1$\\[5pt]$1\to2$ 吸热 $Q_1$};
+\node[anchor=west,align=left]at(5,1.6){低温等温：$PV=nRT_2$\\[5pt]$3\to4$ 放热 $Q_2$};
+\draw[TextGray](4.1,{4/4.1})--(4.55,3.4)--(4.8,3.4);
+\draw[TextGray](4.1,{\cold/4.1})--(4.65,1.6)--(4.8,1.6);
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\heatdevicepanel}[5]{\begin{scope}[shift={(#1,0)}]
+\draw[thermobody,fill=SoftGray](-1.4,2.15)rectangle(1.4,2.62);\draw[thermobody,fill=SoftGray](-1.4,-2.62)rectangle(1.4,-2.15);
+\node[thermolabel]at(0,2.38){高温热库 $T_h$};\node[thermolabel]at(0,-2.38){低温热库 $T_c$};
+\draw[thermobody](-.66,-.65)rectangle(.66,.65);\node[thermolabel,align=center,text width=1.1cm]at(0,0){#2};#3 #4 #5\end{scope}}
+\renewcommand{\foundersPortraitFigure}{\begin{center}\includegraphics[width=.96\linewidth]{thermodynamics-founders.png}\par\smallskip
+\makebox[.31\linewidth]{萨迪·卡诺}\makebox[.31\linewidth]{开尔文}\makebox[.31\linewidth]{鲁道夫·克劳修斯}\end{center}\nopagebreak[2]}
+\renewcommand{\boltzmannMemorialFigure}{\begin{center}\begin{tikzpicture}
+\node[inner sep=0]at(0,0){\includegraphics[width=6.2cm]{boltzmann-memorial.png}};
+\node[font=\large]at(0,2.32){$S=k_B\ln\Omega$};\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\entropyPathFigure}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[axis](0,0)--(5,0)node[right]{$V$};\draw[axis](0,0)--(0,4.8)node[above]{$P$};
+\draw[revcycle](1,1.6)--(1,4);\draw[revcycle,domain=1:4,samples=90]plot(\x,{4/\x});
+\foreach \x/\y/\n/\a in {1/1.6/A/left,1/4/B/above,4/1/C/right}{\fill(\x,\y)circle(1.5pt)node[\a]{$\n$};}
+\node[anchor=west,align=left]at(6,3.45){$A:(V_0,T_0)$\\[5pt]$B:(V_0,T)$\\[5pt]$C:(V,T)$};
+\node[anchor=west,align=left]at(6,1.25){$A\to B$：等容\\[5pt]$B\to C$：等温，$PV=nRT$};
+\end{tikzpicture}\par\smallskip
+$\displaystyle\Delta S=n c_v\ln\frac{T}{T_0}+nR\ln\frac{V}{V_0}$
+\end{center}\nopagebreak[2]}
+
+\renewcommand{\carnotProofDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node[draw,minimum width=3cm,minimum height=.6cm](H)at(0,2){高温热库 $T_1$};
+\node[draw,minimum width=2.2cm,minimum height=.8cm](E)at(0,0){可逆热机};
+\node[draw,minimum width=3cm,minimum height=.6cm](C)at(0,-2){低温热库 $T_2$};
+\draw[thermoarrow](H)--node[right]{$Q_1$}(E);\draw[thermoarrow](E)--node[right]{$Q_2$}(C);
+\draw[thermoarrow](E.east)--(3.1,0);\node[above]at(2.2,.15){$W$};
+\node[anchor=west,align=left]at(4,0){$W=Q_1-Q_2$\\[8pt]$Q_1/T_1=Q_2/T_2$\\[8pt]$\eta=1-T_2/T_1$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\irreversibleProcessesDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\foreach \sx/\phase in {0/0,5/1}{\begin{scope}[shift={(\sx,0)}]
+\ifnum\phase=0 \fill[PaleBlue](-1.6,-1)rectangle(0,1);\draw[thick](0,-1)--(0,1);\node at(-.8,0){气体};\node at(.8,0){真空};
+\else\fill[PaleBlue](-1.6,-1)rectangle(1.6,1);\draw[guide](0,-1)--(0,1);\node at(.8,0){气体};\fi
+\draw[thick](-1.6,-1)rectangle(1.6,1);\end{scope}}
+\draw[->,DeepBlue,thick](1.85,0)--(3.15,0)node[midway,above]{撤去隔板};
+\node at(2.5,-1.55){绝热自由膨胀：$Q=W=0$，$\Delta S=nR\ln(V_f/V_i)>0$};
+\draw[thick](9,-1)rectangle(10.5,1);\draw[thick](11.3,-1)rectangle(12.8,1);
+\node at(9.75,0){$T_h$};\node at(12.05,0){$T_c$};\draw[thermoarrow](10.6,0)--(11.2,0);
+\node[align=center]at(10.9,-1.6){两恒温热库间传热\\$\Delta S=Q(1/T_c-1/T_h)>0$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\threeBodiesDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node[draw,minimum width=2.7cm,minimum height=.7cm](Y)at(0,2.2){供热体 $Y$};
+\node[draw,minimum width=2.7cm,minimum height=.7cm](X)at(6,2.2){目标体 $X$};
+\node[draw,minimum width=2.7cm,minimum height=.7cm](E)at(0,0){可逆热机};
+\node[draw,minimum width=2.7cm,minimum height=.7cm](P)at(6,0){可逆热泵};
+\node[draw,minimum width=3cm,minimum height=.7cm](Z)at(3,-2.4){低温体 $Z$};
+\draw[thermoarrow](Y)--node[left]{$-c\dd Y$}(E);\draw[thermoarrow](P)--node[right]{$c\dd X$}(X);
+\draw[thermoarrow](E.east)--node[above]{$\delta W$}(P.west);
+\draw[thermoarrow](E.south)--(0,-2.4)--(Z.west);
+\draw[thermoarrow](Z.east)--(6,-2.4)--(P.south);
+\node[left,align=right]at(-.1,-1.3){热机向 $Z$ 放热};\node[right,align=left]at(6.1,-1.3){热泵从 $Z$ 吸热};
+\node at(3,-3.4){初态 $(X,Y,Z)=(300,300,100)\,\mathrm K$；极限末态 $(400,150,150)\,\mathrm K$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\surfaceEngineDiagram}{\begin{center}\begin{tikzpicture}[x=1.5cm,y=.9cm,font=\small]
+\draw[axis](0,0)--(3.35,0)node[right]{$A$};\draw[axis](0,0)--(0,4.9)node[above]{$\sigma$};
+\fill[PaleBlue](.8,1)--(1.4,1)--plot[domain=1.4:2.8,samples=70](\x,{5-pow(2.8/\x,2)})--(1.6,4)--plot[domain=1.6:.8,samples=70](\x,{5-pow(1.6/\x,2)})--cycle;
+\draw[revcycle](.8,1)--(1.4,1);\draw[revcycle,domain=1.4:2.8,samples=70]plot(\x,{5-pow(2.8/\x,2)});
+\draw[revcycle](2.8,4)--(1.6,4);\draw[revcycle,domain=1.6:.8,samples=70]plot(\x,{5-pow(1.6/\x,2)});
+\foreach \x/\y/\n/\a in {.8/1/1/left,1.4/1/2/below right,2.8/4/3/right,1.6/4/4/above left}{\fill(\x,\y)circle(1.4pt)node[\a]{$\n$};}
+\node[left]at(0,1){$\sigma_h$};\node[left]at(0,4){$\sigma_c$};
+\node[anchor=west,align=left]at(4.2,3.4){$\sigma(T)=\sigma_*-aT^2$\\[6pt]等熵线：$AT=\text{常量}$\\[6pt]$1\to2$：高温扩面\\[6pt]$3\to4$：低温缩面};
+\node[anchor=west]at(4.2,1){$W_{\rm out}=-\oint\sigma\dd A>0$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+
+从某种意义上讲，热力学的发展与人们制造和改进热机的努力是分不开的。最初，人们设想制造一种
+不需要能量输入却能够持续工作的热机，但热力学第一定律告诉我们，这样的努力没有任何希望。退而求
+其次，人们又希望得到效率为百分之百的热机，即把吸收的热量全部转化为机械功。从能量守恒的角度看，
+这种设想并不直接违背热力学第一定律：能量输入与输出可以相等，但这还没有回答过程是否能够发生。
+第二定律额外指出，循环装置不能以“只从单一热库取热并把它全部变成功”为唯一效果。
+常见气体热机确有膨胀做功、压缩复原和向外放热的过程，但这只能帮助理解具体模型，不能证明一般定律。
+例如液体表面缩小时也能对外做功，后面将研究这种不同的工质。
+
+人们在追求尽可能高效的热机时，逐渐发现这一事实背后隐藏着一条普遍的热力学原理，这就是今天的
+热力学第二定律。热机、可逆性以及熵，将是本讲讨论的主题。
+
+\section{热力学循环的效率}
+
+热机在工作时循环运行：工质从某个状态出发，经历一系列过程后再次回到初始状态，完成一个热力学循环。
+对在两个热库之间工作的普通热机，工质从高温热库吸热，还向低温热库放热。把整个循环
+从外界吸收的总热量记为 $Q^{\rm in}$，把向外排出的总热量记为 $Q^{\rm out}$。由于循环结束后工质回到
+初态，内能改变量为零。这里 $Q^{\rm in},Q^{\rm out}$ 分别是累计吸热、累计放热的正量，
+也记为 $Q_h,Q_c$；净输入热量为二者之差，不沿用上一章单段过程中带符号的 $Q^{\rm in}=Q$。
+热力学第一定律给出循环的净功
+\begin{equation}
+  \boxed{W^{\rm out}=Q^{\rm in}-Q^{\rm out}}.
+\end{equation}
+若工质仅以体积功与外界交换机械能，且过程可逆，则净功为 $\oint P\dd V$，等于 $P$--$V$ 图上
+围成的有向面积，顺时针为正。对于电功、表面功等形式，须使用相应的功表达式，不能一概用 $P$--$V$ 面积。
+只要排出的热量不为零，热机就没有把吸收的全部热量变成功。定义热机
+效率为对外净功与吸热量的比值：
+\begin{equation}
+  \boxed{\eta=\frac{W^{\rm out}}{Q^{\rm in}}
+  =1-\frac{Q^{\rm out}}{Q^{\rm in}}}.
+\end{equation}
+
+最常见的内燃机可用奥托热机近似描述。图~\ref{ch16:fig:s30-21-1}把活塞的工作过程与相应的 $P$--$V$ 循环放在一起。
+从活塞运动看，一个循环可分为进气、压缩、点火、做功和排气几个环节。首先关闭排气口、打开进气口，
+空气和汽油的混合气体被吸入气缸；自然吸气发动机的进气压强接近一个大气压，涡轮增压发动机则更高。
+活塞到达最下端后进气口关闭，活塞因惯性向上运动并压缩混合气体。压缩过程通常很快，虽然气体温度
+升高，但与气缸的热量交换可以忽略，因而可近似为绝热压缩。气体被完全压缩后，火花塞点燃高压油气
+混合物，燃烧很快，活塞来不及移动，气体体积近似不变而温度、压强急剧升高。随后高温高压气体推动
+活塞向下运动，进入做功冲程；这一快速膨胀过程也可近似为绝热膨胀。活塞到达最下端后排气口打开，
+废气被排出，装置完成一个循环。
+
+\par\noindent\begin{minipage}{\linewidth}
+\ottoCycleFigure
+\diagramcaption{上方是四冲程发动机的五个动作阶段，下方是空气标准奥托循环。点火单列显示，不是额外增加一个活塞冲程。}\label{ch16:fig:s30-21-1}
+\end{minipage}\par\medskip
+
+最小、最大气缸体积分别为 $V_2,V_1$。先看真实进排气：$O\to A$ 提示吸气，压强近似不变，
+但缸内气体量不断增加，并非定量气体等压膨胀；$A\to O$ 提示排气，气体不断离开气缸。
+在真实做功冲程后打开排气门时，废气也会先因内外压差排出。这些开放过程伴随物质携能，
+不能套用一份封闭气体的 $nc_v\Delta T$ 来计算排出能量。
+
+为了求一个便于比较的理论效率，现在换用\textbf{空气标准模型}：用同一份定量、定组成的理想气体
+代替不断更新的混合气；用可逆等容吸热代替燃烧，用可逆等容放热代替排气散热的效果。
+蓝色闭式循环只有四段：$A\to B$ 绝热压缩，$B\to C$ 等容吸热，$C\to D$ 绝热膨胀，
+$D\to A$ 等容放热。灰色 $O\leftrightarrow A$ 不是这份封闭工质实际走过的两段。
+
+在这一理想化循环中，只有 $B\to C$ 的等容过程吸热。设气缸内气体可视为总物质的量为 $n$、定容
+摩尔热容 $c_v$ 在整个温区内近似恒定的理想气体，并忽略摩擦、漏热和燃烧成分变化，则
+\[
+  Q_h=n c_v(T_C-T_B).
+\]
+类似地，只有 $D\to A$ 的等容过程向外排热，排热量为
+\[
+  Q_c=n c_v(T_D-T_A).
+\]
+所以
+\[
+  \eta=1-\frac{Q_c}{Q_h}
+  =1-\frac{T_D-T_A}{T_C-T_B}.
+\]
+再利用两段绝热过程
+\[
+  T_A V_1^{\gamma-1}=T_B V_2^{\gamma-1},
+  \qquad
+  T_D V_1^{\gamma-1}=T_C V_2^{\gamma-1},
+\]
+令压缩比 $r=V_1/V_2>1$，两式分别给出 $T_B=r^{\gamma-1}T_A$、
+$T_C=r^{\gamma-1}T_D$。相减而不是直接约去温度，可得
+\[
+ T_C-T_B=r^{\gamma-1}(T_D-T_A),\qquad
+ \frac{Q_c}{Q_h}=\frac{T_D-T_A}{T_C-T_B}=r^{1-\gamma}.
+\]
+于是得到奥托循环效率与发动机几何参数的关系
+\begin{equation}
+  \boxed{\eta=1-\left(\frac{V_2}{V_1}\right)^{\gamma-1}}.
+\end{equation}
+这说明在理想模型中，压缩比 $V_1/V_2$ 越大，循环效率越高；真实发动机还会受到爆震、传热、摩擦和
+材料强度等条件限制。
+
+\section{卡诺循环}
+
+在所有热力学循环中，对理论发展最重要的是卡诺设计的卡诺热机。它来自人们寻找最高可能效率
+热机的努力；当理论上确定这种热机的效率以后，人们才认识到其背后隐藏着一条基本的热力学定律。
+以下示范理想气体循环的计算时，仍取定量气体、恒定 $c_v,c_p$；卡诺定理本身并不限于这一模型。
+
+\par\noindent\begin{minipage}{\linewidth}
+\carnotCycleFigure
+\diagramcaption{卡诺循环的 $P$--$V$ 图。$1\to2$、$3\to4$ 为等温过程，$2\to3$、$4\to1$ 为绝热过程。}\label{ch16:fig:s30-21-2}
+\end{minipage}\par\medskip
+
+如图~\ref{ch16:fig:s30-21-2}所示，卡诺循环由两段绝热过程和两段等温过程组成，两条等温线的温度分别为 $T_1>T_2$。
+正是两个热库之间存在温差，才有可能把一部分热能转化为机械功。循环从状态1出发：工质与温度为 $T_1$
+的高温热库接触，持续吸热并作等温膨胀，工质对外做功；到达状态2后与热库脱离，继续绝热膨胀，直到
+温度降到 $T_2$，来到状态3；然后工质与低温热库接触，受到外界做功而作等温压缩，同时向低温热库
+排出热量 $Q_2$；到达状态4后再与热库脱离，作绝热压缩，最后恰好回到初态1。
+
+卡诺可以证明，无论采用何种工作物质，可逆卡诺循环都具有相同效率。先以理想气体为例。设热机
+内有 $n$ 摩尔理想气体，高温等温膨胀吸入的热量与低温等温压缩排出的热量分别为
+\[
+  Q_1=nRT_1\ln\frac{V_2}{V_1},
+  \qquad
+  Q_2=nRT_2\ln\frac{V_3}{V_4}.
+\]
+两段绝热过程满足
+\[
+  T_1V_2^{\gamma-1}=T_2V_3^{\gamma-1},
+  \qquad
+  T_1V_1^{\gamma-1}=T_2V_4^{\gamma-1}.
+\]
+两式相除得到 $V_2/V_1=V_3/V_4$。于是效率表达式中所有体积因子恰好抵消，最终得到
+\begin{equation}
+  \boxed{\eta_{\rm Carnot}=1-\frac{T_2}{T_1}}.
+\end{equation}
+令人惊讶的是，卡诺热机的效率只与两个热库的热力学温度有关，与热机的几何结构无关；这与奥托
+热机效率依赖压缩比形成鲜明对比。
+
+\section{热力学第二定律的早期陈述形式}
+
+卡诺关于热机效率的研究使人们逐渐意识到，有一条基本规律阻止人们制造效率为 $100\%$ 的热机。
+这种机器并不直接违反热力学第一定律，却从未能够实现。图~\ref{ch16:fig:s30-21-3}(a)表示真实热机：它从高温热库吸收
+$Q_h$，对外做功 $W=Q_h-Q_c$，并向低温热库排出 $Q_c$。图~\ref{ch16:fig:s30-21-3}(b)所示的“完美”热机则只从单一
+热库取热并把它全部变成功。开尔文勋爵彻底断绝了这种幻想，他指出：
+
+\begin{quote}\small
+不存在这样的装置：当它完成一个循环时，能从一个物体取出热量并把它转换为功，而不发生其他变化
+（至少要在其他物体中发生变化）。
+\end{quote}
+
+历史上这种机器被称为第二类永动机，因此热力学第二定律的开尔文表述也可理解为：第二类永动机不可能
+制成。
+
+\par\noindent\begin{minipage}{\linewidth}
+\heatDevicesFigure
+\diagramcaption{热机和制冷机能量流。由左至右为普通热机、第二类永动机、普通制冷机和无功制冷机；两种“完美”设想不允许实现。}\label{ch16:fig:s30-21-3}
+\end{minipage}\par\medskip
+
+生活经验还指出，热量会自发地从高温物体传向低温物体。冰箱、空调试图把热量从低温部分搬运到高温
+环境，必须依赖外部能量供应。在力学中，物体可以凭惯性短时间沿受力的反方向运动，例如竖直上抛物体
+仍继续上升，或弹簧振子在回复力作用下仍远离平衡位置；不能据此类比出一种可持续的无补偿逆向传热。
+在这里讨论的通常宏观传热中，若不付出其他代价，热量只能自发地从高温传向低温。克劳修斯把这一事实表述为：
+
+\begin{quote}\small
+不存在这样的装置：当它完成一个循环时，能使热量从较低温度的热库传到较高温度的热库，而没有补偿
+变化。
+\end{quote}
+
+从高温向低温的传热过程可以自然发生，而它的逆过程不能独立发生，因此克劳修斯表述也意味着：有限
+温差下的热传导是一种不可逆过程。开尔文与克劳修斯的经典英文表述分别为：
+\begin{quote}\footnotesize
+It is impossible, by means of inanimate material agency, to derive mechanical effect from any portion of
+matter by cooling it below the temperature of the coldest of the surrounding objects.
+
+Heat can never pass from a colder to a warmer body without some other change, connected therewith,
+occurring at the same time.
+\end{quote}
+
+\par\noindent\begin{minipage}{\linewidth}
+\foundersPortraitFigure
+\diagramcaption{三位热力学奠基人：卡诺研究热机的理想效率，开尔文和克劳修斯提出第二定律的重要表述。}\label{ch16:fig:s30-21-4}
+\end{minipage}\par\medskip
+图~\ref{ch16:fig:s30-21-4}按卡诺、开尔文、克劳修斯的顺序排列，分别对应前述热机研究及两种早期陈述。
+
+\section{熵与热力学第二定律}
+
+在得到热力学第二定律的早期陈述以后，人们逐渐认识到：对于任意热力学系统，除压强、密度、温度、
+内能等状态变量外，还存在另一个状态变量——熵（entropy），记为 $S$。熵从出现之初就带有神秘色彩，
+尤其是由熵增出发对宇宙结局的推测；正因为如此，更应准确理解熵的定义和适用条件，避免在不正确的
+条件下滥用相关定律。
+
+熵首先是状态变量。与内能一样，它完全由热力学系统的状态决定，而与系统以什么过程到达该状态无关。
+状态变量必然同组成系统的微观粒子的性质有关：压强是粒子碰撞容器表面的宏观效果；在经典图像中，
+温度由粒子的平均能量决定；内能可理解为全部微观粒子的能量总和。熵也由微观状态决定，玻尔兹曼后来
+揭示了这一联系。
+
+当热力学系统经历某个过程时，熵可能改变。对于可逆过程中的任意状态，都可以定义系统温度。若系统在
+温度为 $T$ 的平衡态吸收一小份热量 $\delta Q_{\rm rev}$，且热量足够小，使温度在这一微元过程中可视
+为不变，则熵的改变为
+\begin{equation}
+  \boxed{\dd S=\frac{\delta Q_{\rm rev}}{T}}.
+\end{equation}
+可逆吸热时熵增加，可逆放热时熵减小；相同热量在较低温度下传递，引起的熵变更大。可逆绝热过程没有
+热量交换，因而也是等熵过程。与内能相似，经典热力学首先给出的是熵在过程中的改变，而不是任意系统
+熵的绝对数值。
+
+不可逆过程同样会导致熵变。由于熵是状态变量，虽然不能把不可逆路径上的每一中间状态都当作平衡态，
+仍可另选一条连接同一初、末态的可逆路径来计算 $\Delta S$。对孤立系统，任意自发过程只可能使熵增加；
+在理想可逆极限中熵保持不变，孤立系统中的过程不能使总熵减小。这就是熵增原理。其直接推论是：孤立
+系统的热平衡态是熵最大的状态。
+
+在熵概念提出的早期，克劳修斯曾把这一结论直接应用于整个宇宙，设想宇宙最终达到处处均匀、温度相同
+的热平衡状态，所有细节全部消失。今天我们知道，不能把一个简单孤立热力学系统的结论不加条件地套用
+到演化的宇宙；宇宙中丰富结构的形成还受到引力、膨胀和非平衡过程等因素控制。
+
+\subsection{准静态为什么还不够}
+
+准静态只表示变化足够缓慢，使系统能用一串近似平衡态描述；可逆还要求系统和环境都能在不留下
+其他变化的条件下复原。例如，缓慢拖动有摩擦的活塞可以近似准静态，但摩擦仍把机械能转为内能，
+单纯反向拖动不能把这些内能全部恢复为原来的机械能。有限温差传热也有同样的问题。
+因此，可逆传热须令两侧温差趋于零，可逆体积功须令内外压强差趋于零，并排除摩擦等耗散。
+这是一种极限模型，不是要求实际装置在有限时间内严格达到它。
+
+\subsection{熵流与熵产生}
+
+对不交换物质的系统，热量可以从不同温度的环境输入。设第 $j$ 个恒温热库温度为 $T_j$，
+在全过程向系统传入的带符号热量为 $Q_j$。热库自身的熵变为 $-Q_j/T_j$。
+把系统和这些热库一起考察，第二定律要求总熵变非负，因而
+\begin{equation}
+ \Delta S_{\rm sys}-\sum_j\frac{Q_j}{T_j}=S_{\rm gen}\ge0.
+\end{equation}
+这里 $S_{\rm gen}$ 是系统连同有关传热边界的总熵产生；它不是新的能量。
+等号对应整个过程可逆。如果环境温度变化，应把 $Q_j/T_j$ 换成相应的积分，不能随意选一个平均温度。
+对循环，$\Delta S_{\rm sys}=0$，于是
+\begin{equation}
+ \sum_j\frac{Q_j}{T_j}\le0.
+\end{equation}
+这就是以恒温热库分段表示的克劳修斯不等式。循环可以把吸热和放热的熵交换相互抵消，
+却不能用负的熵产生去抵消耗散。
+
+例如，两热库间直接传递热量 $Q>0$，高温为 $T_h$、低温为 $T_c<T_h$。
+高温热库熵变 $-Q/T_h$，低温热库熵变 $Q/T_c$，故
+\[
+ S_{\rm gen}=Q\left(\frac1{T_c}-\frac1{T_h}\right)>0.
+\]
+总能量没有损失，但可以利用的温差减小了。若 $T_h\to T_c$，单位热量引起的熵产生趋于零，
+这正是可逆传热必须取无穷小温差的原因。
+
+\subsection{由熵不等式判断热机与制冷机}
+
+在 $T_h>T_c>0$ 的两个热库之间，热机每循环从高温热库取热 $Q_h>0$，向低温热库排热 $Q_c>0$。
+工质循环复原，环境总熵变为
+\[
+ -\frac{Q_h}{T_h}+\frac{Q_c}{T_c}\ge0
+ \quad\Longrightarrow\quad
+ \frac{Q_c}{Q_h}\ge\frac{T_c}{T_h}.
+\]
+结合 $W=Q_h-Q_c$，得到
+\begin{equation}
+ \eta=1-\frac{Q_c}{Q_h}\le1-\frac{T_c}{T_h}.
+\end{equation}
+这次推导没有使用气体物态方程，所以卡诺效率是任意工质的上限，而不只是理想气体计算的巧合。
+若装置的某一部分不可逆，通常有严格小于号。
+
+制冷机的有用效果是从低温热库取出 $Q_c$，外界输入功 $W>0$，向高温热库排出
+$Q_h=Q_c+W$。此时热库熵变满足
+\[
+ \frac{Q_h}{T_h}-\frac{Q_c}{T_c}\ge0
+ \quad\Longrightarrow\quad
+ W\ge Q_c\frac{T_h-T_c}{T_c}.
+\]
+制冷系数和供热系数分别为
+\begin{equation}
+ \varepsilon_{\rm ref}=\frac{Q_c}{W}\le\frac{T_c}{T_h-T_c},\qquad
+ \varepsilon_{\rm hp}=\frac{Q_h}{W}=1+\varepsilon_{\rm ref}
+ \le\frac{T_h}{T_h-T_c}.
+\end{equation}
+二者可以大于1，因为它们比较的是搬运热量与输入功，而不是把输入热量转为功的比例。
+例如 $T_h=300\,\mathrm K,T_c=270\,\mathrm K$ 时，可逆制冷系数为9；搬走
+$900\,\mathrm J$ 的热量至少需要 $100\,\mathrm J$ 的功，向高温环境排热为
+$1000\,\mathrm J$。由 $1000/300=900/270$ 可同时核验熵平衡。
+
+
+\section{具有简单物态方程系统的熵}
+
+在绝大多数情形下，热力学系统的熵不容易直接求出；但对物态较简单的系统，某些过程中的熵变可以精确
+或近似计算。最简单的系统之一是热库。它有极大的热容量，无论吸收还是放出所研究的有限热量，其温度
+都可以近似认为不变。因此，温度为 $T$ 的热库吸收热量 $Q$ 时熵变就是 $Q/T$。
+
+另一类系统以固体和液体为代表。通常吸、放热会引起温度变化，虽然物质体积也随温度改变，但固体、液体
+的体积变化往往很小。若忽略体积变化，就同时忽略了系统与环境通过体积功发生的能量交换。设系统比热
+为 $c$，并在所研究温区内近似为常数。质量为 $m$ 的物质在温度为 $T$ 时可逆吸收
+$\dd Q=mc\,\dd T$，因而
+\[
+  \dd S=\frac{\dd Q}{T}=mc\frac{\dd T}{T}.
+\]
+从参考温度 $T_0$ 积分到任意温度 $T$，得到
+\begin{equation}
+  \boxed{S(T)-S(T_0)=mc\ln\frac{T}{T_0}}.
+\end{equation}
+
+理想气体的熵不仅依赖温度，还依赖体积。设有 $n$ 摩尔理想气体，参考状态为 $(V_0,T_0)$，要计算任意
+状态 $(V,T)$ 相对参考状态的熵变，先假设 $c_v$ 在温区内为常数。由于熵是状态量，可以任意设计一条连接两状态的可逆路径。图~\ref{ch16:fig:s30-21-5}
+选择两步路径：先作等容过程 $(V_0,T_0)\to(V_0,T)$，再作等温过程 $(V_0,T)\to(V,T)$。第一步熵变为
+\[
+  S(V_0,T)-S(V_0,T_0)=n c_v\ln\frac{T}{T_0};
+\]
+第二步中理想气体的吸热量等于对外功，故
+\[
+  S(V,T)-S(V_0,T)=nR\ln\frac{V}{V_0}.
+\]
+两式相加即得
+\begin{equation}
+  \boxed{S(V,T)-S(V_0,T_0)
+  =n c_v\ln\frac{T}{T_0}+nR\ln\frac{V}{V_0}}.
+\end{equation}
+
+\par\noindent\begin{minipage}{\linewidth}
+\entropyPathFigure
+\diagramcaption{理想气体任意两状态间的熵差。图中用等容升温加等温膨胀的可逆路径代替任意真实路径。}\label{ch16:fig:s30-21-5}
+\end{minipage}\par\medskip
+图~\ref{ch16:fig:s30-21-5}的 $A\to B$ 改变温度而不改体积，$B\to C$ 改变体积而不改温度；因此两个对数项各有清楚的来源。
+若实际过程是降温或压缩，相应积分上限小于下限，对数自动给出负号，并不要求实际过程也按图运行。
+若 $c_v$ 随温度变化，应保留积分
+\[
+ \Delta S=n\int_{T_0}^{T}\frac{c_v(T')}{T'}\,\dd T'+nR\ln\frac{V}{V_0}.
+\]
+
+\subsection{熵变用初末态计算，熵产生还要看实际环境}
+选一条可逆辅助路径，是为了计算状态函数的差，不是把真实过程宣称为可逆。图\ref{ch16:fig:s30-21-5}中的 $A\to B\to C$ 正是这种计算工具。系统熵变、热库熵变和二者的总熵变须分开；系统自己可以减熵，只要包括有关环境后的总熵不减。
+
+\Needspace{180pt}
+\begin{origexamplebox}{同末态的两种膨胀，熵产生为何不同}\label{ch16:ex:teaching-two-paths}
+$n$ 摩尔理想气体初态为 $(T_0,V_0)$。过程甲是在 $T_0$ 热库作用下可逆等温膨胀至 $2V_0$；过程乙是在隔热刚性容器中向真空自由膨胀至 $2V_0$。求气体、有关环境的熵变和总熵产生。忽略容器热容量、整体动能及势能的变化。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+乙过程既不传热也不向外做功，内能不变，理想气体末温仍为 $T_0$。所以甲、乙的气体初末态完全相同，均有
+\[
+ \Delta S_{\rm gas}=nc_v\ln\frac{T_0}{T_0}+nR\ln2=nR\ln2.
+\]
+甲从热库吸热 $Q=nRT_0\ln2$，热库熵变 $-Q/T_0=-nR\ln2$。接收功的理想机械装置不增加熵，故甲的总熵产生为零。
+乙没有向环境传热，环境熵变为零，因此
+\[
+ S_{{\rm gen},\text{甲}}=0,\qquad
+ S_{{\rm gen},\text{乙}}=nR\ln2>0.
+\]
+乙中 $Q=0$ 却有 $\Delta S_{\rm gas}>0$，并不违反熵定义，因为 $\Delta S=\int\delta Q_{\rm rev}/T$ 中的热量属于辅助可逆路径，而非真实自由膨胀的热量。若末体积趋于初体积，两者熵变都趋零；$nR$ 的单位为 $\mathrm{J/K}$，对数中的体积比无量纲。
+\end{xesolution}
+
+\subsection{有限热源不能始终当作恒温热库}
+实际物体一边供热一边降温，热机每一小步可达到的效率也在改变。因此不能选一个平均温度代入卡诺效率再乘总热量。解决有限热源问题的顺序是：先明确装置是否循环复原，再写总能量和总熵条件，最后判断上界能否由可逆过程逼近。
+
+\Needspace{180pt}
+\begin{origexamplebox}{两物体之间能够取出的最大功}\label{ch16:ex:teaching-finite-work}
+两个物体的恒定热容量为 $C_1,C_2$，初温为 $T_h>T_c>0$。在它们之间运行热机，直到两者达到共同终温，热机最后恢复原态。整体与外界不交换热量，但可以输出机械功；忽略体积变化和其他能量改变。求最多能输出多少功，并与两物体直接接触比较。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+若共同终温为 $T_f$，热机不储存净能量，输出功为
+\[
+ W=C_1T_h+C_2T_c-(C_1+C_2)T_f.
+\]
+能量零点抵消，只涉及温度差。总熵不能减少：
+\[
+ C_1\ln\frac{T_f}{T_h}+C_2\ln\frac{T_f}{T_c}\ge0.
+\]
+把第一项的对数拆成 $\ln(T_f/T_c)-\ln(T_h/T_c)$，得到
+\[
+ (C_1+C_2)\ln\frac{T_f}{T_c}\ge C_1\ln\frac{T_h}{T_c},\qquad
+ T_f\ge T_*=T_c\left(\frac{T_h}{T_c}\right)^{C_1/(C_1+C_2)}.
+\]
+所有对数和幂函数的自变量均无量纲。由于 $W$ 随 $T_f$ 增加而减小，最大功为
+\[
+ W_{\max}=C_1(T_h-T_*)+C_2(T_c-T_*).
+\]
+可在两物体的瞬时温度之间运行无穷小可逆循环，使总熵保持不变，直到温差趋零，所以该上界可以在可逆极限下逼近。图\ref{ch16:fig:s30-21-3}中的普通热机能流方向仍适用，但两端温度在不断变化。
+直接接触时不输出功，终温是加权算术平均 $T_d=(C_1T_h+C_2T_c)/(C_1+C_2)\ge T_*$。若 $C_1=C_2=C$，则
+\[
+ T_*=\sqrt{T_hT_c},\qquad W_{\max}=C(\sqrt{T_h}-\sqrt{T_c})^2.
+\]
+两初温相等时最大功为零。直接传热没有损失总能量，却损失了温差所能提供的做功能力；不能把“能量守恒”误读为“有用功不变”。
+\end{xesolution}
+
+\Needspace{180pt}
+\begin{origexamplebox}{将有限物体冷却到环境温度以下所需的最少功}\label{ch16:ex:teaching-cooling-work}
+热容量为常数 $C$ 的物体初温与环境热库同为 $T_0$。用循环复原的制冷机将物体冷却到 $T_1<T_0$，环境保持 $T_0$。求最少输入功。忽略体积变化及漏热，假定此温区无相变。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+在物体瞬时温度 $T$ 下再降低 $\dd T<0$，须取出热量 $\delta Q_c=-C\dd T>0$。可逆制冷系数为 $T/(T_0-T)$，所以最小元功为
+\[
+ \delta W_{\min}=(-C\dd T)\frac{T_0-T}{T}.
+\]
+系数随温度改变，必须积分：
+\[
+ W_{\min}=C\int_{T_1}^{T_0}\left(\frac{T_0}{T}-1\right)\dd T
+ =C\left[T_0\ln\frac{T_0}{T_1}-(T_0-T_1)\right].
+\]
+物体总计放出 $Q_c=C(T_0-T_1)$，环境得到 $Q_h=Q_c+W_{\min}=CT_0\ln(T_0/T_1)$。因此物体熵变 $C\ln(T_1/T_0)$ 恰被环境的 $Q_h/T_0$ 抵消，验证了可逆极限。
+令 $x=(T_0-T_1)/T_0$，小温差时 $W_{\min}\simeq CT_0x^2/2>0$，而不是与温差一次方成正比。真实有限速率制冷还会产生熵，所需功更大；本模型不能跨越热容变化或相变而直接外推至绝对零度。
+\end{xesolution}
+
+\section{熵的微观解释}
+
+宏观量内能可以解释为微观粒子动能与势能的总和。熵也最初来自宏观热过程的研究，但随着分子运动理论
+的发展，人们逐渐认识到它的微观含义。玻尔兹曼最早系统提出基于分子运动理论的熵解释。虽然这一理论
+起初饱受争议，但后来被广泛接受；在主流学界尚未普遍接受玻尔兹曼理论时，普朗克和爱因斯坦已经
+基于其统计思想建立早期量子理论。
+
+\par\noindent\begin{minipage}{\linewidth}
+\boltzmannMemorialFigure
+\diagramcaption{玻尔兹曼纪念碑上的熵公式，把宏观熵与微观状态的可能数目联系起来。}\label{ch16:fig:s30-21-6}
+\end{minipage}\par\medskip
+图~\ref{ch16:fig:s30-21-6}中纪念碑上方的公式，是接下来计数解释的核心。
+
+今天通常把玻尔兹曼公式写成
+\begin{equation}
+  \boxed{S=k_B\ln\Omega},
+\end{equation}
+其中 $k_B$ 是玻尔兹曼常数，$\Omega$ 是给定宏观状态所对应的微观状态数。一个宏观状态允许的微观
+排布可能性越多，熵就越大；这与把熵理解为系统“无序程度”的传统图像接近，但微观状态数的说法更准确。
+
+先看气体分布这一例子。把容器分为等大的左、右两半，暂只记录每个粒子位于哪一半，而不记录具体位置和速度。
+给 $N$ 个粒子临时编号，是为了计数各粒子的左右选择，不是把编号当作新的物理自由度。
+若左侧有 $N_1$ 个，右侧有 $N-N_1$ 个，则先从全部粒子中挑出左侧粒子的有序序列，有
+$N(N-1)\cdots(N-N_1+1)$ 种；同一组左侧粒子的内部排列被重复计了 $N_1!$ 次，故应除去：
+\[
+ \Omega_{\rm LR}(N_1)=\frac{N(N-1)\cdots(N-N_1+1)}{N_1!}
+ =\frac{N!}{N_1!(N-N_1)!}.
+\]
+例如 $N=4$ 时，全在左侧仅1种，两边各2个有6种。一般有
+$\Omega_{\rm LR}(N_1+1)/\Omega_{\rm LR}(N_1)=(N-N_1)/(N_1+1)$，
+所以计数先增后减，在左右数目最接近时最大。每个粒子左右等可能且彼此独立时，
+概率为 $\Omega_{\rm LR}/2^N$。这解释了为什么宏观气体倾向于分散到整个容器。
+$\Omega_{\rm LR}$ 只计算这一粗粒化的分布因素，并不是包含全部位置、动量的完整微观状态数。
+
+同一组合计数也可用于顺磁性物质。某些原子具有非零磁矩，其性质有点像指南针；在外磁场作用下，简化模型中每个磁矩
+只有沿磁场或逆磁场两个方向。设系统含 $N$ 个原子，其中 $N_1$ 个磁矩向上，剩下
+$N_2=N-N_1$ 个向下。宏观测量只能确认上下数目的差，不能确定究竟哪一些原子向上。于是，在 $N$ 个
+原子中选出 $N_1$ 个向上的微观排布数为
+\begin{equation}
+  \boxed{\Omega=\frac{N!}{N_1!(N-N_1)!}}.
+\end{equation}
+在没有外场时，$N_1=N/2$ 附近的微观状态数最大，这正是通常情况下顺磁性物质不显示宏观磁性的统计
+原因。
+
+中学阶段通常不会进行复杂的微观熵运算，但必须注意微观世界与宏观世界之间巨大的数目差异。设一个人
+吃下一份标称化学能为 $\SI{40}{J}$ 的食物，体温为 $\SI{310}{K}$，能否把人体熵增算成 $40/310$？
+不能：进食是物质流入和化学反应，不等于向恒温封闭系统传入40焦耳的热量；还要考虑物质携熵、散热和代谢。
+为比较数目大小，改考察一个明确的理想模型：温度恒为 $\SI{310}{K}$ 的热库净吸收
+$\SI{40}{J}$ 热量。这个热库的熵变才是
+\[
+  \Delta S=\frac{Q}{T}
+  =\frac{\SI{40}{J}}{\SI{310}{K}}
+  \approx\SI{0.13}{J.K^{-1}}.
+\]
+另一方面，玻尔兹曼公式给出
+\[
+  \Delta S=k_B\ln\frac{\Omega_f}{\Omega_i}.
+\]
+联立两式，取 $k_B=\SI{1.380649e-23}{J.K^{-1}}$，得到
+\begin{equation}
+  \boxed{\ln\frac{\Omega_f}{\Omega_i}
+  =\frac{40/310}{1.380649\times10^{-23}}
+  \approx9.35\times10^{21}}.
+\end{equation}
+这里先报告对数，避免把数量级粗略相近的巨大指数误写成状态数之比的数值近似。按这一统计描述，
+该比值可写为 $\exp(9.35\times10^{21})$ 的量级说明；宏观上很小的热量也可对应极大的微观可能数目变化。
+
+
+\Needspace{12\baselineskip}\section{综合例题}
+\begin{origexamplebox}{【卡诺热机】}\label{ch16:ex:s30-21-1}
+利用熵增原理证明卡诺定理：任意工作物质作卡诺循环的效率都只与高、低温热库的温度有关，
+与工质的数量、物态方程均无关，效率均为
+\[
+  \eta=1-\frac{T_2}{T_1},
+\]
+其中 $T_1,T_2$ 分别为高、低温热库的温度。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+设热机在一个可逆循环中从温度为 $T_1$ 的高温热库吸收热量 $Q_1$，向温度为 $T_2$ 的低温热库放出
+热量 $Q_2$。工质经历完整循环后回到初态，作为状态函数的熵没有净改变。
+
+高温热库失去热量，熵变为 $-Q_1/T_1$；低温热库得到热量，熵变为 $Q_2/T_2$。卡诺循环是可逆
+循环，把工质、两热库和只储存机械能的理想功库一并作为孤立整体；功库熵不变，所以总熵变为零，因此
+\[
+  -\frac{Q_1}{T_1}+\frac{Q_2}{T_2}=0,
+  \qquad
+  \frac{Q_2}{Q_1}=\frac{T_2}{T_1}.
+\]
+
+\par\noindent\begin{minipage}{\linewidth}
+\carnotProofDiagram
+\figcap{卡诺热机的能量流与熵平衡。$Q_1,Q_2,W$ 均表示图中箭头方向上的正量。}\label{ch16:fig:carnot-proof}
+\end{minipage}\par\medskip
+图\ref{ch16:fig:carnot-proof}中热量的大小不同，但可逆情况下从高温热库取走的熵等于送给低温热库的熵。
+
+热机一个循环的对外净功为 $W=Q_1-Q_2$，故
+\[
+  \boxed{\eta=\frac{W}{Q_1}
+  =1-\frac{Q_2}{Q_1}
+  =1-\frac{T_2}{T_1}}.
+\]
+推导中没有使用工质的物态方程、热容量或物质的量，只使用了“循环后工质熵不变”和“整个过程可逆”。
+所以任意工质作卡诺循环都具有同一效率。若过程不可逆，总熵会增加，向低温热库排出的热量更多，
+实际效率必低于卡诺效率。
+\end{xesolution}
+
+
+\Needspace{12\baselineskip}\begin{origexamplebox}{【熵增原理】}\label{ch16:ex:s30-21-2}
+利用熵增原理，重新对热力学第二定律的开尔文和克劳修斯陈述给出定量说明。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+\textbf{开尔文表述。} 假设一台循环装置从温度为 $T$ 的单一热库吸收热量 $Q$，并把它全部变为功。
+装置完成循环后熵变为零；热库失去热量，熵变为
+\[
+  \Delta S_{\rm reservoir}=-\frac{Q}{T}<0.
+\]
+还需把接收机械功的理想功库纳入整体，例如无摩擦地被提高的重物；它只增加机械能，熵不变。
+于是孤立的“装置、热库加功库”总熵减少，违背熵增原理。因此不可能在没有其他变化的条件下，从单一热库
+吸热并把热量全部转化为功。
+
+\textbf{克劳修斯表述。} 假设一台循环装置不消耗功，却把热量 $Q$ 从温度 $T_c$ 的低温热库搬到温度
+$T_h$ 的高温热库，其中 $T_h>T_c$。两热库的总熵变为
+\[
+  \Delta S_{\rm tot}
+  =\frac{Q}{T_h}-\frac{Q}{T_c}<0.
+\]
+这同样违背熵增原理。因此把热量从低温处送往高温处，必须伴随外界做功或其他补偿变化。
+
+\par\noindent\begin{minipage}{\linewidth}
+\secondLawEntropyDiagram
+\figcap{两种被禁止的唯一效果及其负熵变。比较时都须把装置和所有环境变化计入。}\label{ch16:fig:second-law-comparison}
+\end{minipage}\par\medskip
+图\ref{ch16:fig:second-law-comparison}左侧的热机必须已完成循环；单次等温膨胀并不属于这个禁止条件。
+
+两个陈述表面上分别谈“热变功”和“逆向传热”，本质上都排除了使孤立系统总熵减少的循环装置。
+\end{xesolution}
+
+
+\Needspace{12\baselineskip}\begin{origexamplebox}{【统统证出来】}\label{ch16:ex:s30-21-3}
+请利用热力学第二定律辨析下列说法，指出所需条件，并给出正确结论：
+\begin{enumerate}[label=\alph*.]
+  \item 理想气体的等温膨胀过程是不可能自然发生的；
+  \item 对本讲的定量理想气体，可逆绝热线与等温线不能相交两次；
+  \item 对固定组成、稳定单相的简单可压缩系统，两条不同可逆绝热线不能相交；
+  \item 有限温差热传递过程不可逆；
+  \item 快速膨胀过程不可逆。
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+这组判断的共同方法是：若假定某过程可以在没有其他影响的情况下逆转，就尝试拼出第二类永动机，或
+直接算出总熵减少。
+
+\textbf{a. 等温膨胀。} 这一说法本身不成立，不能给“自然发生”附加原本没有的限制来证明它。
+理想气体在恒温环境中推动活塞缓慢膨胀可以发生，单个过程并不违反第二定律。此时 $\Delta U=0$，对外功
+\[
+  W=nRT\ln\frac{V_2}{V_1}>0
+\]
+必须完全来自热库供热。工质的体积已经改变，这不是“装置循环复原后只留下热变功”这一被禁止的效果。
+它不能在既绝热又输出功的条件下仍维持等温，这首先可由第一定律判断。另一个更直接的反例是撤去
+隔板，让理想气体向真空自由膨胀，则 $Q=W=\Delta U=0$，温度确实不变，而且过程会自发发生；这正是
+不可逆等温自由膨胀，不能与可逆等温膨胀混为一谈。
+
+\par\noindent\begin{minipage}{\linewidth}
+\irreversibleProcessesDiagram
+\figcap{左侧分别画出撤去隔板前、后的气体状态；右侧为两恒温热库间的有限温差传热。}\label{ch16:fig:irreversibility}
+\end{minipage}\par\medskip
+图\ref{ch16:fig:irreversibility}中左图初态有真空区，末态虚线只标隔板原位置，不再是阻挡气体的实体壁；
+右图的传热将在第d问中计算总熵变。
+
+\textbf{b. 绝热线与等温线的交点。} 对本讲的理想气体，固定温度下
+$S(T,V)=\text{常量}+nR\ln V$ 随 $V$ 严格增加，而同一可逆绝热线有固定熵，故只能选出一个 $V$。
+也可代入 $P=nRT/V$ 与 $PV^\gamma=K$，得 $nRTV^{\gamma-1}=K$，在 $\gamma>1,V>0$ 时解唯一。
+若强行假设两次相交并能围成非零功的循环，就可用一段等温线与一段绝热线构造单热库循环，违反第二定律。
+对于一般稳定单相系统，还需可逆绝热线上的温度随体积单调，例如通常热膨胀系数为正的介质。
+仅有正热容不能保证这个单调性；存在反常热膨胀时，不能把“两次相交不可能”无条件推广。
+
+\textbf{c. 两条绝热线不能相交。} 可逆绝热线就是等熵线。若两条绝热线在某平衡状态相交，它们在该点
+具有相同的熵；对于给定组成、单相稳定且物态方程光滑的简单系统，$c_v>0$ 使
+$(\partial S/\partial T)_V=nc_v/T>0$，故固定熵和体积可唯一确定温度。通过该点的可逆绝热路径由微分方程唯一确定，因此
+两条曲线实际是同一条绝热线，而不是两条不同曲线。若把它们看作不同曲线，还可以在两曲线间补上一小段
+等温线，构造出上一问所排除的单热库循环。
+
+\textbf{d. 有限温差传热不可逆。} 先设两个恒温热库，热量 $Q$ 从 $T_h$ 传到 $T_c$，$T_h>T_c$。总熵变
+\[
+  \Delta S_{\rm tot}
+  =-\frac{Q}{T_h}+\frac{Q}{T_c}
+  =Q\left(\frac1{T_c}-\frac1{T_h}\right)>0.
+\]
+若要完全逆转，就必须使孤立系统熵减少，故不能自发实现。只有在传热温差趋于零的可逆极限中，熵产生
+才趋于零。
+若两个有限物体的温度会变化，则应对微小传热量积分：
+$\Delta S_{\rm tot}=\int(1/T_c-1/T_h)\,\delta Q>0$；不能把初始温度直接代入有限热量公式。
+
+\textbf{e. 快速膨胀。} “快”本身不是可直接代入熵公式的物理条件。通常快速膨胀来不及维持平衡，
+伴随有限压差、黏滞、冲击或最终弛豫时，会产生熵，因而不可逆；若只给一个短时间而没有机制，证明并不充分。
+以绝热容器中撤去隔板、气体向真空自由膨胀为明确模型：气体由 $V_i$ 扩展到 $V_f$，温度不变，但
+\[
+  \Delta S=nR\ln\frac{V_f}{V_i}>0.
+\]
+若想让气体与环境都无变化地回到初态，就必须使总熵减少，所以过程不可逆。
+
+\end{xesolution}
+
+
+\Needspace{12\baselineskip}\begin{origexamplebox}{【热传递】}\label{ch16:ex:s30-21-4}
+三个热容量均为 $c$ 的物体，已知 $T_1=T_2=\SI{300}{K}$，$T_3=\SI{100}{K}$。若外界不做功也不供热，
+利用热机工作于三物体之间，使三物中某一物体温度升高，求它所能达到的最高温度；此时另外两物体的
+温度各为多少？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+先证明任何允许过程的温度上界，再证明这个上界可由可逆装置趋近，不能只用两条等式猜测最优状态。
+取最终最高温度为 $X$，另外两体温度为 $Y,Z$，均以开尔文计。热机完成循环，不储存净能量，
+则第一定律和熵增原理分别给出
+\[
+ X+Y+Z=700,\qquad
+ \Delta S=c\ln\frac{XYZ}{300^2\times100}\ge0.
+\]
+所以 $XYZ\ge9.0\times10^6$。又由 $(Y-Z)^2\ge0$，
+\[
+ YZ\le\left(\frac{Y+Z}{2}\right)^2=\left(\frac{700-X}{2}\right)^2,
+ \quad X(700-X)^2\ge36.0\times10^6.
+\]
+因为 $X$ 是最高温度，$X\ge700/3$。函数 $f(X)=X(700-X)^2$ 在该区间内有
+$f'(X)=(700-X)(700-3X)\le0$；而 $f(400)=36.0\times10^6$，故必有 $X\le400$。
+等号同时要求总熵不变及 $Y=Z$。这才说明可逆性和另外两体等温是上界成立的必要条件。
+
+设目标物体的最高温度为 $T_{\max}$。三个物体的热容量均为常量 $c$，系统与外界既不交换热量也不交换
+功，因此总能量守恒：
+\[
+  c(T_{\max}+2T)=c(300+300+100),
+  \qquad T_{\max}+2T=700.
+\]
+可逆极限下总熵不变：
+\[
+  c\ln\frac{T_{\max}}{300}
+  +c\ln\frac{T}{300}
+  +c\ln\frac{T}{100}=0.
+\]
+于是
+\[
+  T_{\max}T^2=300\times300\times100.
+\]
+
+\par\noindent\begin{minipage}{\linewidth}
+\threeBodiesDiagram
+\figcap{两台可逆装置在三物体之间协同工作：热机的功全部驱动热泵，不从外界取得净功。}\label{ch16:fig:three-body-engine}
+\end{minipage}\par\medskip
+
+联立 $T_{\max}=700-2T$，得到
+\[
+  (700-2T)T^2=9.0\times10^6.
+\]
+物理解为 $T=\SI{150}{K}$，从而
+\[
+  \boxed{T_{\max}=\SI{400}{K}},
+  \qquad
+  \boxed{T_{\rm other}=\SI{150}{K},\ \SI{150}{K}}.
+\]
+方程还有 $T=\SI{300}{K},T_{\max}=\SI{100}{K}$ 这一根，它只是把初态中三物体的编号重新排列，并非
+所求的最高温度状态。
+最后验证可实现性。图\ref{ch16:fig:three-body-engine}中，令供热体 $Y$ 与低温体 $Z$ 之间的可逆热机输出功，
+恰好驱动从 $Z$ 向目标体 $X$ 输热的可逆热泵。每小步都令两机完成循环，故没有外界净功输入。
+热机从 $Y$ 取出 $-c\dd Y>0$，输出功
+$\delta W=(-c\dd Y)(1-Z/Y)$；热泵向 $X$ 送入 $c\dd X$，需要功
+$\delta W=c\dd X(1-Z/X)$。二者相等，等价于
+\[
+ \frac{\dd X}{X}+\frac{\dd Y}{Y}+\frac{\dd Z}{Z}=0,
+ \qquad \dd X+\dd Y+\dd Z=0.
+\]
+沿这一可逆路径，$XYZ=9.0\times10^6$ 且 $X+Y+Z=700$ 始终成立。对 $300\le X<400$，
+另外两个正根是
+\[
+ Y,Z=\frac{700-X\pm\sqrt{(700-X)^2-36.0\times10^6/X}}{2},
+\]
+并满足 $X\ge Y>Z$，热机与热泵均可按图运行。随着 $X\to400$，$Y,Z\to150$，
+两者的温差趋于零，达到可逆极限；实际有限速率装置只能逼近这一最高温度。
+所有对数都作用于温度比，温度积的两边单位都是 $\mathrm K^3$。
+\end{xesolution}
+
+
+\Needspace{12\baselineskip}\begin{origexamplebox}{【液体表面能】}\label{ch16:ex:s30-21-5}
+小明学习了卡诺热机后，想把液体表面作为工作物质。液体表面能够对外界物体施加表面张力，因此
+表面具有能量，并且可以得到
+\[
+  U=\left(\sigma-T\frac{\dd\sigma}{\dd T}\right)A,
+\]
+其中 $\sigma$ 为液体的表面张力系数，$A$ 为液体表面积。请研究利用液体表面作为工作物质的热机，并
+求出其效率。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+先约定 $A$ 是所有被计入的气液界面的总面积；若是肥皂膜，须把两面都计入，不能再额外乘2。
+本题 $U$ 指随界面增加而产生的表面过剩内能，不包括整块液体的体相内能。
+可逆扩展表面时外界对表面做元功 $\delta W^{\rm in}=\sigma\dd A$，因而
+\[
+ \dd U=T\dd S+\sigma\dd A,\qquad
+ \delta W^{\rm out}=-\sigma\dd A.
+\]
+定义亥姆霍兹（Helmholtz）自由能 $F=U-TS$，有 $\dd F=-S\dd T+\sigma\dd A$。
+在忽略曲率效应、$\sigma$ 仅随温度变化时，表面过剩自由能为
+\[
+  F=\sigma(T)A.
+\]
+又因为 $F=U-TS$，把题给的 $U$ 代入可得表面熵
+\[
+  S=\frac{U-F}{T}
+  =-A\frac{\dd\sigma}{\dd T}.
+\]
+普通液体的表面张力通常随温度升高而减小，故 $\dd\sigma/\dd T<0$；在给定温度下扩大表面会增加熵，
+并需要从热库吸热。
+
+让液体表面工作在温度分别为 $T_h,T_c$ 的两个热库之间，组成两段等温过程和两段等熵过程。在高温
+$T_h$ 下，表面积从 $A_1$ 可逆增加到 $A_2$，表面吸热
+\[
+  Q_h=T_h\Delta S,
+  \qquad
+  \Delta S=-\left.\frac{\dd\sigma}{\dd T}\right|_{T_h}(A_2-A_1)>0.
+\]
+然后沿等熵过程降到 $T_c$，在低温下使表面积减小并向低温热库放热。由于两条等温段的熵变量大小相等，
+放出的热量为
+\[
+  Q_c=T_c\Delta S.
+\]
+所以一个循环的净功与效率为
+\[
+  W_{\rm out}=Q_h-Q_c=(T_h-T_c)\Delta S,
+  \qquad
+  \boxed{\eta=1-\frac{T_c}{T_h}}.
+\]
+
+\par\noindent\begin{minipage}{\linewidth}
+\surfaceEngineDiagram
+\figcap{表面工质的可逆循环。上下为等温段，两条弯曲边为等熵段；面积与温度都随等熵过程改变。}\label{ch16:fig:surface-cycle}
+\end{minipage}\par\medskip
+
+还需确定等熵线，不能直接把它画成等面积直线。对 $S=-A\sigma'(T)$ 微分得
+\[
+ \dd S=-\sigma'(T)\dd A-A\sigma''(T)\dd T=0,
+ \qquad A\sigma'(T)=\text{常量}.
+\]
+一般等熵过程既改变面积也改变温度。图\ref{ch16:fig:surface-cycle}采用一个明确的非退化模型
+$\sigma=\sigma_*-aT^2$，其中 $a>0$，温区内 $\sigma>0$。这时
+$S=2aAT$、$U=(\sigma_*+aT^2)A$、$C_A=2aAT>0$，等熵线为 $AT=\text{常量}$。
+高温等温段 $1\to2$ 的面积为 $A_1\to A_2$；冷却到低温的状态3满足
+$A_3=A_2T_h/T_c$；低温压缩到状态4时 $A_4=A_1T_h/T_c$，再沿等熵线回到状态1。
+由此 $Q_h=2aT_h^2(A_2-A_1)$、$Q_c=2aT_hT_c(A_2-A_1)$，再次给出相同效率。
+
+如果只在很窄温区用线性表面张力近似，形式上 $\sigma'$ 为常量，等熵线会变成 $A=\text{常量}$，
+循环呈矩形，形式功为
+\[
+  W_{\rm out}=(\sigma_c-\sigma_h)(A_2-A_1).
+\]
+但仅含表面项时这还导致 $C_A=-TA\sigma''=0$，是退化近似，不能据此描述真实液膜如何绝热升降温。
+若计入体相自由能 $F_0(T)$，总熵变成 $S_0(T)-A\sigma'(T)$，等熵线必须重新求，通常不再竖直。
+无论哪一可靠模型，只要可逆且工作在两个热库之间，效率仍为 $1-T_c/T_h$。
+在 $\sigma$--$A$ 图中，本题是逆时针循环，因 $W_{\rm out}=-\oint\sigma\dd A$，其净功为正；
+这与气体的 $W_{\rm out}=\oint P\dd V$ 符号相反，不能只凭“循环方向”判断正负。
+\end{xesolution}
+}
+
+\endgroup
+
+\hypersetup{bookmarksdepth=2}

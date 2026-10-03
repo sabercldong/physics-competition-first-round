@@ -1,0 +1,173 @@
+\section{流体的运动学与受力描述}
+\label{r2ch08:sec:description}
+
+流体不能像理想弹性体那样保存一个固定的无应力构形；发生剪切以后，即使剪应力很小，流体也会持续流动。因此描述流体时，既可以追踪某个质元，也可以固定在空间位置上观察速度场。前一种称为拉格朗日描述（Lagrangian description），后一种称为欧拉描述（Eulerian description）：
+\begin{equation}
+ \vect r=\vect f(\vect R,t),\qquad
+ \vect v(\vect r,t)=
+ \left.\frac{\partial\vect f}{\partial t}\right|_{\vect R:\,\vect f(\vect R,t)=\vect r}.
+ \label{r2ch08:eq:001}
+\end{equation}
+固定材料标号 $\vect R=\vect R_0$，随时间得到的空间曲线是该质元的迹线（pathline）。固定某一时刻 $t_0$，处处以当时速度为切向量的曲线称为流线（streamline）：
+\begin{equation}
+ \frac{\dd x}{v_x(\vect r,t_0)}=
+ \frac{\dd y}{v_y(\vect r,t_0)}=
+ \frac{\dd z}{v_z(\vect r,t_0)}.
+ \label{r2ch08:eq:002}
+\end{equation}
+一束流线围成流管。图~\ref{r2ch08:fig:001} 同时画出了流线、流管和一条迹线：非定常流动中，质元到达新位置时速度场已经改变，因而迹线一般不与某一时刻的流线重合；定常流动中二者重合。
+\figFlowKinematics
+
+\subsection{质量守恒、不可压缩与定常流动}
+\label{r2ch08:subsec:continuity}
+
+设质量流密度为 $\vect j=\rho\vect v$。任意固定体积内质量的变化等于穿出边界的净质量流量的负值，由高斯定理得到连续性方程
+\begin{equation}
+ \boxed{\frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\vect v)=0},
+ \qquad
+ \frac{D\rho}{Dt}+\rho\nabla\cdot\vect v=0,
+ \qquad
+ \frac D{Dt}=\frac\partial{\partial t}+\vect v\cdot\nabla.
+ \label{r2ch08:eq:003}
+\end{equation}
+$D/Dt$ 称为随体导数（material derivative）：第一项记录固定空间点处的局部变化，第二项记录质元运动到空间上不同位置所经历的变化。对任意标量场 $a(\vect r,t)$，跟随质元观察到的变化率就是
+\begin{equation}
+ \frac{Da}{Dt}=\frac{\partial a}{\partial t}+v_x\frac{\partial a}{\partial x}
+ +v_y\frac{\partial a}{\partial y}+v_z\frac{\partial a}{\partial z}.
+ \label{r2ch08:eq:004}
+\end{equation}
+若每个质元在运动中密度不变，即 $D\rho/Dt=0$，则 $\nabla\cdot\vect v=0$；这就是不可压缩流动的局部条件。均匀液体通常可作此近似，但温差引起的密度变化若正是对流的动力来源，就不能把密度变化全部删去。气体的压缩、膨胀往往还与温度和内能变化耦合。
+
+若 $\partial\vect v/\partial t=0$，流动称为定常流动（steady flow）；这里的“定常”只指固定空间点的场量不随时间改变，并不意味着流体质元没有加速度。例如弯曲流线上的定常流仍有法向加速度。
+
+\subsection{速度梯度与应变率}
+\label{r2ch08:subsec:deformation}
+
+在某点附近对速度场作一阶展开，并把速度梯度分解为对称、反对称两部分：
+\begin{equation}
+ \vect v(\vect r+\dd\vect r)=\vect v(\vect r)+(\nabla\vect v)\cdot\dd\vect r,
+ \quad \nabla\vect v=\boldsymbol D+\boldsymbol W,
+ \quad \boldsymbol D=\frac{\nabla\vect v+(\nabla\vect v)^{\mathsf T}}2,
+ \quad \boldsymbol W=\frac{\nabla\vect v-(\nabla\vect v)^{\mathsf T}}2.
+ \label{r2ch08:eq:005}
+\end{equation}
+整体平移由 $\vect v(\vect r)$ 描述，$\boldsymbol W$ 描述质元邻域的刚体转动，只有对称张量 $\boldsymbol D$ 改变相邻质元的距离和夹角，故称应变率张量（rate-of-strain tensor）：
+\begin{equation}
+ D_{ij}=\frac12\left(\frac{\partial v_i}{\partial x_j}+\frac{\partial v_j}{\partial x_i}\right),
+ \qquad \operatorname{tr}\boldsymbol D=\nabla\cdot\vect v.
+ \label{r2ch08:eq:006}
+\end{equation}
+它的量纲是 $\mathrm{s^{-1}}$。不可压缩流动中迹为零，但仍可有非零剪切应变率；因此“体积不变”不等于“没有黏性耗散”。
+
+\subsection{压强、静力平衡与浮力}
+\label{r2ch08:subsec:hydrostatic}
+
+静止流体不能承受静态剪应力，否则会继续流动。任意方向切面上的正应力又必须相同，否则旋转切面后会出现剪应力。因此在“拉应力为正”的符号约定下，静止流体的应力张量是
+\begin{equation}
+ \boldsymbol\sigma=-p\boldsymbol 1,
+ \qquad
+ \frac{\dd\vect F_{\rm surf}}{\dd V}=\nabla\cdot\boldsymbol\sigma=-\nabla p.
+ \label{r2ch08:eq:007}
+\end{equation}
+若体积力密度为 $\vect f$，静力平衡要求 $-\nabla p+\vect f=0$。重力场中 $\vect f=\rho\vect g$，于是
+\begin{equation}
+ \nabla p=\rho\vect g,
+ \qquad p(z_2)-p(z_1)=\rho g(z_1-z_2),
+ \qquad \vect F_b=-\int_V\rho\vect g\,\dd V.
+ \label{r2ch08:eq:008}
+\end{equation}
+图~\ref{r2ch08:fig:002} 中，物体表面每个压力箭头都沿局部法线指向物体，水平分量相互抵消，而底部压力较大，剩余合力向上。若周围液体密度均匀，最后一式就是阿基米德原理。一般外力场只有在 $\vect f$ 可写成某个标量势的梯度时，才可能存在全局静力平衡。
+\figHydrostatic
+
+运动流体的总应力可写为
+\begin{equation}
+ \boldsymbol\sigma=-p\boldsymbol 1+\boldsymbol\tau,
+ \qquad \operatorname{tr}\boldsymbol\tau=0,
+ \label{r2ch08:eq:009}
+\end{equation}
+其中 $p$ 吸收平均正应力，$\boldsymbol\tau$ 是黏滞应力或偏应力。忽略 $\boldsymbol\tau$ 的模型称为无黏流体（inviscid fluid），也常称理想流体；保留它则得到黏性流体模型。
+
+\section{无黏流体的动力学}
+\label{r2ch08:sec:euler}
+
+质元的加速度必须用随体导数。对无黏流体应用牛顿第二定律，得到欧拉方程
+\begin{equation}
+ \boxed{\rho\frac{D\vect v}{Dt}
+ =\rho\left(\frac{\partial\vect v}{\partial t}+(\vect v\cdot\nabla)\vect v\right)
+ =-\nabla p+\vect f}.
+ \label{r2ch08:eq:010}
+\end{equation}
+其中 $(\vect v\cdot\nabla)\vect v$ 是对流加速度，它使欧拉方程即使在定常条件下仍然是非线性的。令 $\vect v=0$，式~\eqref{r2ch08:eq:010} 立即退化为上一节的静力平衡式。
+
+\subsection{流管、流量与伯努利关系}
+\label{r2ch08:subsec:bernoulli}
+
+在图~\ref{r2ch08:fig:003} 的同一流管上取两个截面。定常时流管侧面没有质量穿过，故质量流率保持不变：
+\begin{equation}
+ \dot m=\rho_1v_1A_1=\rho_2v_2A_2=\text{常量};
+ \qquad \rho=\text{常量时，}\ Q=vA=\text{常量}.
+ \label{r2ch08:eq:011}
+\end{equation}
+若体积力可写成单位质量势 $\phi$ 的形式 $\vect f=-\rho\nabla\phi$，把定常欧拉方程沿流线的弧长 $s$ 投影，利用 $\uvec t\cdot(\vect v\cdot\nabla)\vect v=v\dd v/\dd s$，可得
+\begin{equation}
+ v\dd v+\frac{\dd p}{\rho}+\dd\phi=0.
+ \label{r2ch08:eq:012}
+\end{equation}
+所以对定常、无黏、沿同一流线的流动，若密度是压强的单值函数，积分给出可压缩形式
+\begin{equation}
+ \boxed{\frac{v^2}{2}+\int^p\frac{\dd p'}{\rho(p')}+\phi=\text{常量}}.
+ \label{r2ch08:eq:013}
+\end{equation}
+等价地，在绝热且无耗散的条件下可写成 $h+v^2/2+\phi=\text{常量}$，$h=u+p/\rho$ 为单位质量焓。不可压缩流体的 $\rho$ 为常量，于是
+\begin{equation}
+ \boxed{p+\frac12\rho v^2+\rho\phi=\text{常量}},
+ \qquad \phi=gz\ \Longrightarrow\ p+\frac12\rho v^2+\rho gz=\text{常量}.
+ \label{r2ch08:eq:014}
+\end{equation}
+图~\ref{r2ch08:fig:003} 中截面变窄时，连续性方程使速度增大；若高度不变，伯努利关系便要求静压减小。式~\eqref{r2ch08:eq:014} 不能跨过泵、涡轮、激波或显著黏性耗散区直接套用，也不能把不同流线上的常数默认成同一个值。
+\figBernoulliTube
+
+\section{黏性流体的动力学}
+\label{r2ch08:sec:viscous}
+
+图~\ref{r2ch08:fig:004} 表示两平板间的简单剪切。流层速度沿 $x$ 方向、只随 $y$ 改变，牛顿黏性定律为
+\begin{equation}
+ \tau_{xy}=\eta\frac{\partial v_x}{\partial y},
+ \qquad [\eta]=\mathrm{Pa\,s},
+ \qquad \nu=\frac\eta\rho,\quad [\nu]=\mathrm{m^2s^{-1}}.
+ \label{r2ch08:eq:015}
+\end{equation}
+$\eta$ 是动力黏度，$\nu$ 是运动黏度。相邻流层彼此施加大小相等、方向相反的切应力；刚体整体转动虽然有速度梯度，却不应产生黏性应力。因此一般化时必须取对称的速度梯度：
+\begin{equation}
+ \tau_{ij}=2\eta D_{ij}\quad(i\ne j),
+ \qquad
+ \tau_{xy}=\eta\left(\frac{\partial v_x}{\partial y}+\frac{\partial v_y}{\partial x}\right).
+ \label{r2ch08:eq:016}
+\end{equation}
+图中的两组应力箭头分别作用在互相垂直的切面上，保证微元力矩平衡。黏性力总是阻碍相邻流层的相对运动；它与干摩擦不同，不需要预设一个静摩擦阈值。
+\figNewtonViscosity
+
+牛顿黏性模型可推出两个重要低雷诺数结果。半径 $R$ 的圆管内充分发展层流，长为 $l$ 的管段上压降与体积流量满足哈根--泊肃叶定律；半径 $a$ 的小球以速度 $v$ 在无限黏性流体中缓慢运动时，阻力满足斯托克斯定律：
+\begin{equation}
+ \Delta p=\frac{8\eta Ql}{\pi R^4},
+ \qquad F_D=6\pi\eta av.
+ \label{r2ch08:eq:017}
+\end{equation}
+两式都只在线性黏性占主导、流动保持层流且入口或边界效应可忽略时成立。
+
+\subsection{本构关系与纳维--斯托克斯方程}
+\label{r2ch08:subsec:navier}
+
+各向同性牛顿流体中，应力与应变率之间最一般的线性关系可写为
+\begin{equation}
+ \boldsymbol\tau=2\eta\boldsymbol D+\lambda(\nabla\cdot\vect v)\boldsymbol 1.
+ \label{r2ch08:eq:018}
+\end{equation}
+若采用斯托克斯假设并把平均正应力全部归入 $p$，则 $\lambda=-2\eta/3$。对不可压缩流动，$\nabla\cdot\vect v=0$，体黏度项本来就消失。把 $\nabla\cdot\boldsymbol\sigma$ 代入动量守恒，$\eta$ 为常数时得到
+\begin{equation}
+ \boxed{\rho\left(\frac{\partial\vect v}{\partial t}+(\vect v\cdot\nabla)\vect v\right)
+ =-\nabla p+\eta\nabla^2\vect v+(\lambda+\eta)\nabla(\nabla\cdot\vect v)+\vect f}.
+ \label{r2ch08:eq:019}
+\end{equation}
+这就是纳维--斯托克斯方程。不可压缩且黏度恒定时，它化为
+$\rho D\vect v/Dt=-\nabla p+\eta\nabla^2\vect v+\vect f$。对流项决定了方程的非线性；尺度估计中惯性项与黏性项之比为雷诺数 $\mathrm{Re}=\rho UL/\eta=UL/\nu$，它也是判断能否忽略黏性、是否可能转捩为湍流的重要参数。

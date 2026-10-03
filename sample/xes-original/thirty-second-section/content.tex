@@ -1,0 +1,206 @@
+电磁相互作用是自然界的基本相互作用之一。我们日常接触到的摩擦力、支持力、弹力以及绝大多数化学作用，
+从微观上说都与带电粒子之间的电磁作用有关。法拉第把“场”引入物理学：电荷并不是隔着空间瞬时作用于
+另一个电荷，而是在周围空间建立电场，另一个电荷再与所在位置的电场发生作用。麦克斯韦把电与磁统一起来，
+并预言电磁波；量子力学建立以后，量子电动力学又给出了电磁相互作用的量子描述。电磁学因此既是经典
+物理的重要组成部分，也是相对论和量子理论发展的出发点之一。
+
+\subsection*{物质结构和电荷}
+
+通常物质由分子组成，分子由原子组成。原子的典型尺度约为 $10^{-10}\,\mathrm m$，内部包含尺度约为
+$1$--$10\,\mathrm{fm}$（$10^{-15}$--$10^{-14}\,\mathrm m$，随核的质量数而变）的原子核和核外电子。原子核由质子与中子构成，质子和中子统称核子；核子内部还有
+夸克和胶子等更基本的自由度。图1.1把这些层级关系放在同一条尺度链上，图中的相对大小只是
+示意，尺度数字才是定量信息。
+
+\matterScaleFigure
+\diagramcaption{图 1.1：从原子、原子核到核子和夸克的结构层级。箭头表示继续放大观察，并不表示实物相互分离。}
+
+电荷具有三条基本性质。
+
+第一，\textbf{可加性}。一个系统的总电荷等于各部分电荷的代数和。第二，\textbf{守恒性}。在孤立系统中，
+电荷既不会凭空产生，也不会凭空消失；成对产生或湮灭的正、负电荷总量相等。第三，\textbf{量子化}。
+自然界可单独观测到的物体所带电荷通常是元电荷 $e$ 的整数倍。电子带电 $-e$，质子带电 $+e$，其中
+\begin{equation}
+  \boxed{e=1.602\,176\,634\times10^{-19}\,\mathrm C}.
+\end{equation}
+夸克及反夸克的电荷可为 $\pm e/3$ 或 $\pm2e/3$，但夸克在通常条件下不会以自由粒子的形式单独出现。
+
+
+% EM teaching enrichment 20260927
+\paragraph{从电荷守恒到可测量的电子数}
+摩擦起电通常是电子转移，并非把中性物质中的电荷“创造”出来。若两个原先中性的绝缘物体只彼此交换电子，最后必有 $Q_A+Q_B=0$；若还与地面相通，就应把大地计入系统。
+例如物体带电 $-3.20\,\mathrm{nC}$，多出的电子数约为
+\[
+ N=\frac{|Q|}{e}=\frac{3.20\times10^{-9}}{1.60\times10^{-19}}=2.00\times10^{10}.
+\]
+电子数很大，所以宏观电荷密度可以连续处理；这不取消微观电荷量子化。解题先选封闭的电荷交换系统，再列守恒式，最后判断是否需要离散电子数。
+
+\subsection*{Coulomb 定律}
+
+同号电荷相斥，异号电荷相吸。真空中两个静止点电荷 $Q_1,Q_2$ 相距 $r$ 时，相互作用力的大小为
+\begin{equation}
+  \boxed{F=\frac{1}{4\pi\varepsilon_0}\frac{|Q_1Q_2|}{r^2}}.
+\end{equation}
+若保留 $Q_1Q_2$ 的正负号，则还必须同时规定径向单位矢量的方向；只写“大小”时应取绝对值。真空介电
+常量为 $\varepsilon_0$，常用的静电力常量为
+\begin{equation}
+  \boxed{\frac{1}{4\pi\varepsilon_0}
+  \approx8.99\times10^9
+  \,\mathrm{N\,m^2\,C^{-2}}}.
+\end{equation}
+
+Coulomb 定律的直接形式要求：电荷可视为点电荷，电荷相对静止或速度远小于光速，并且周围介质可视为
+真空。若带电体的线度远小于彼此间距，就可以把其电荷集中在一点；若带电体形状、大小不可忽略，就要把
+它分割成电荷元后作矢量积分。图1.2左侧是库仑肖像，中间显示悬丝与横杆，右侧是与横杆同高的水平俯视图。固定带电球 $B$ 与活动带电球 $A$ 处在同一水平面；$O$ 是悬丝转轴，$D$ 是平衡物。$A$ 受到沿 $BA$ 的斥力，只有该力相对 $O$ 的力矩使悬丝扭转。扭丝转过的角度反映
+静电力矩，从而可以检验力随距离的平方反比关系。
+
+\coulombHistoryFigure
+\diagramcaption{图 1.2：库仑与扭秤。活动球 $A$、固定球 $B$ 与横杆同高；俯视图的虚线为横杆零位。}
+
+静电力与万有引力都服从平方反比律，因此两体问题的轨道都可以是圆锥曲线。引力永远相吸；静电力既可
+相吸也可相斥。同号电荷散射时出现的是双曲线的另一支，这正是作用方向不同带来的几何差别。
+
+把相距无穷远处的相互作用势能取为零，两个点电荷的静电势能为
+\begin{equation}
+  \boxed{E_p=\frac{1}{4\pi\varepsilon_0}\frac{Q_1Q_2}{r}}.
+\end{equation}
+同号电荷的势能为正，异号电荷的势能为负。以两个质子为例，库仑斥力与万有引力之比为
+\begin{equation}
+  \frac{F_C}{F_G}
+  =\frac{e^2}{4\pi\varepsilon_0Gm_p^2}
+  \approx1.24\times10^{36}.
+\end{equation}
+可见在原子和分子尺度，重力通常完全可以忽略。原子核中的质子却能结合在一起，是因为短程强相互作用
+在核尺度上压倒了库仑斥力。
+
+
+% EM teaching enrichment 20260927
+\paragraph{带符号矢量式与对称位置的稳定性}
+令源电荷位于 $\boldsymbol r_i$，试探电荷位于 $\boldsymbol r$，统一写成
+\[
+ \boldsymbol F_i=kqQ_i\frac{\boldsymbol r-\boldsymbol r_i}{|\boldsymbol r-\boldsymbol r_i|^3},
+ \qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+这样位移矢量始终从源指向观察点，吸引或排斥由 $qQ_i$ 的符号给出。取两个固定正电荷 $Q$ 位于 $x=\pm a$，小正电荷 $q$ 在原点受力为零。沿轴小移 $x$ 后
+\[
+ F_x=kQq\left[\frac1{(a+x)^2}-\frac1{(a-x)^2}\right]
+ \simeq-\frac{4kQq}{a^3}x.
+\]
+轴向有回复力；但垂直轴小移 $y$ 后 $F_y\simeq2kQq y/a^3$，反而远离原点。因此“合力为零”不等于三维稳定平衡，也不能只检验一个方向。
+
+\subsection*{电场}
+
+若空间中已经存在电场，把电荷量为 $q$ 的小试探电荷放在某点，它受到的电场力定义为
+\begin{equation}
+  \boxed{\boldsymbol F=q\boldsymbol E}.
+\end{equation}
+所以 $\boldsymbol E=\boldsymbol F/q$。电场是空间本身的属性，并不依赖我们是否真的放入试探电荷；试探
+电荷必须足够小，才不会显著改变原有电荷分布。一般情况下电场是位置和时间的函数
+$\boldsymbol E(x,y,z,t)$。
+
+电场线是一组有方向的曲线，曲线上每一点的切线方向与该点电场方向相同；线越密的地方通常表示场越强。
+场线只是描述矢量场的几何工具，不是带电粒子的实际轨迹，也不是空间中真实存在的“细线”。\footnote{电场线
+与流体力学中的流线相似：都用曲线的切向表示一个矢量场，但流线也不一定等同于流体质点的完整轨迹。}
+图1.3前两幅是静电场，第三幅表示电荷振荡时场的变化不能瞬时传到远处，远处场线会出现弯折并形成向外
+传播的电磁扰动。
+
+\fieldLineGallery
+\diagramcaption{图 1.3：三种电场线结构。(a) 异号电荷；(b) 四极电荷分布；(c) 振荡电荷的瞬时场线。箭头均表示电场方向。}
+
+点电荷 $Q$ 在位置矢量 $\boldsymbol r$ 处产生的电场为
+\begin{equation}
+  \boxed{\boldsymbol E(\boldsymbol r)
+  =\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^3}\boldsymbol r
+  =\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\hat{\boldsymbol r}}.
+\end{equation}
+$Q>0$ 时场沿径向向外，$Q<0$ 时场沿径向向内。多个电荷产生的总场等于各电荷产生电场的矢量和，这就是
+电场的叠加原理。
+
+
+% EM teaching enrichment 20260927
+\paragraph{连续分布：先定电荷元，再消去分量}
+线、面、体分布分别用 $\dd q=\lambda\dd l$、$\sigma\dd S$、$\rho\dd V$，并积分
+$\dd\boldsymbol E=k\,\dd q\,\boldsymbol R/R^3$。这里 $\boldsymbol R$ 从电荷元指向观察点，不能与电荷元的位置矢量混淆。
+以半径 $a$、总电荷 $Q$ 的均匀细圆环为例，轴线上距圆心 $z$ 处的横向场两两抵消，而每个元的轴向投影含因子 $z/\sqrt{a^2+z^2}$，故
+\[
+ E_z=\int\frac{kz\,\dd q}{(a^2+z^2)^{3/2}}
+ =\frac{kQz}{(a^2+z^2)^{3/2}}.
+\]
+$z=0$ 时对称性给出零场，$z\gg a$ 时恢复点电荷场。先写“哪些分量为何相消”，可避免把矢量大小直接相加。
+
+\subsection*{电场 Gauss 定律——积分形式}
+
+对于面积为 $A$ 的平面，若匀强电场 $\boldsymbol E$ 与面积外法线的夹角为 $\theta$，穿过该面的电通量为
+\begin{equation}
+  \boxed{\Phi_E=EA\cos\theta\equiv\boldsymbol E\cdot\boldsymbol A}.
+\end{equation}
+其中面积矢量 $\boldsymbol A=A\boldsymbol n$ 的方向规定为法线方向。对于任意曲面，把它划分成足够小的面元，
+每个面元上电场近似不变，总通量为
+\[
+  \Phi_E=\int_S\boldsymbol E\cdot\dd\boldsymbol A.
+\]
+若 $S$ 是闭合曲面，面元方向统一取向外，Gauss 定律给出
+\begin{equation}
+  \boxed{\oint_S\boldsymbol E\cdot\dd\boldsymbol A
+  =\frac{Q_{\mathrm{in}}}{\varepsilon_0}}.
+\end{equation}
+闭面外的电荷虽然会改变闭面上各点的电场，却不会改变穿入、穿出闭面的净通量：每一束从外部进入的场线
+还会从另一处离开。闭面内正电荷是场线的源，负电荷是场线的汇；在无电荷区域，场线不能凭空开始或终止。
+
+\gaussLawFigure
+\diagramcaption{图 1.4：Gauss 定律的几何意义。(a) 面元的法向面积矢量；(b) 内部电荷产生非零净通量；(c) 外部电荷的穿入与穿出相抵。}
+
+图1.4可以帮助理解通量，却不是 Gauss 定律的独立证明，因为若先用点电荷的 Coulomb 场画出这些场线，
+推理本身已经使用了 Coulomb 定律。更根本地说，Gauss 定律是电磁场的基本规律之一；即使电荷正在运动，
+对任意时刻的电场仍有同样的积分关系。只靠“数场线”不能代替定量证明：场线条数是人为选取的，
+真正不依赖画法的量是曲面积分 $\oint\boldsymbol E\cdot\dd\boldsymbol A$。
+
+
+% EM teaching enrichment 20260927
+\paragraph{何时能由通量直接求场强}
+高斯定律总成立，但只有对称性使选定面上的场强可提出积分号时，才成为简便的求场方法。球对称选同心球面；无限长轴对称选同轴圆柱；无限均匀平面选跨面的柱形盒。
+例如半径 $a$、均匀体电荷密度 $\rho$ 的绝缘实心球，半径 $r<a$ 的高斯面只包围 $4\pi\rho r^3/3$，于是
+\[
+ E_r=\frac{\rho r}{3\varepsilon_0}\quad(r<a),\qquad
+ E_r=\frac{\rho a^3}{3\varepsilon_0r^2}\quad(r>a).
+\]
+两式在表面连续，球心为零；球内不能把总电荷全部代入 $kQ/r^2$。若给球外再放一个点电荷，闭面的总通量仍只取决于内部电荷，但面上总场已不再均匀，不能再用 $E\,4\pi r^2$ 表示通量。
+
+\subsection*{电场 Gauss 定律——微分形式}
+
+把一个有限区域分成许多很小的长方体。相邻体积元的公共面上，一个体积元的外法线恰好是另一个体积元
+外法线的反方向，所以内部公共面的通量两两抵消，只剩整个区域外边界的净通量。反过来考察图1.5中的一个
+小长方体，就能从积分形式得到局域的微分形式。
+
+\differentialCubeFigure
+\diagramcaption{图 1.5：位于 $(x,y,z)$ 附近的微小长方体。每一对相对表面的外法线方向相反，图中箭头画的是相应通量项的方向。}
+
+以垂直于 $x$ 轴的两面为例，右面流出的通量减去左面流入的通量为
+\[
+  \bigl[E_x(x+\Delta x)-E_x(x)\bigr]\Delta y\Delta z
+  \approx\frac{\partial E_x}{\partial x}\Delta x\Delta y\Delta z.
+\]
+$y,z$ 两个方向完全类似。体积元内电荷为
+$\rho\Delta x\Delta y\Delta z$。代入 Gauss 定律并约去体积，得到
+\begin{equation}
+  \boxed{\frac{\partial E_x}{\partial x}
+  +\frac{\partial E_y}{\partial y}
+  +\frac{\partial E_z}{\partial z}
+  =\frac{\rho}{\varepsilon_0}}
+  \qquad\text{即}\qquad
+  \boxed{\boldsymbol\nabla\cdot\boldsymbol E=\frac{\rho}{\varepsilon_0}}.
+\end{equation}
+这说明电荷密度决定电场在该点的“发散程度”。积分形式联系一个闭面与其包围的总电荷，微分形式则把
+规律落实到每一个空间点；二者是同一条物理定律的两种表述。
+
+本讲随后反复使用六个核心概念：元电荷、电荷可视为点电荷的条件、Coulomb 平方反比律、电场强度
+$\boldsymbol E=\boldsymbol F/q$、电场线以及 Gauss 定律
+$\oint\boldsymbol E\cdot\dd\boldsymbol S=\sum Q/\varepsilon_0$。下面的例题将这些概念放入连续带电体、
+多极场、带空腔物体和带电粒子运动中。
+
+% EM teaching enrichment 20260927
+\paragraph{散度给局部电荷，边界给整体场}
+若某一区域 $\boldsymbol E=\alpha x\boldsymbol e_x+\beta y\boldsymbol e_y$，则
+$\rho=\varepsilon_0(\alpha+\beta)$。其中 $\alpha,\beta$ 的单位为 $\mathrm{V/m^2}$。
+当 $\beta=-\alpha$ 时，区域无电荷而场仍可非零。这正说明“没有场源”不等于“没有场”，外部电荷和边界仍能建立电场。
+静电问题还要满足 $\nabla\times\boldsymbol E=0$，再给定边界条件。只给散度不足以重建矢量场；后面导体问题中的唯一性定理就是把这些信息合在一起。
+

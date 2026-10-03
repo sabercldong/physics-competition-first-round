@@ -1,0 +1,28 @@
+\subsection{分压按分子数分配，不按质量分配}
+各组分处在同一温度、同一可用体积时，由 $p_iV=n_iRT$ 和 $pV=(\sum_i n_i)RT$ 相除，得到
+\[
+ x_i=\frac{n_i}{n},\qquad \frac{p_i}{p}=x_i,\qquad
+ \overline\mu=\frac{\sum_i n_i\mu_i}{\sum_i n_i}=\sum_i x_i\mu_i.
+\]
+这里 $x_i$ 是摩尔分数，$\overline\mu$ 是混合气体的平均摩尔质量。若已知的是质量分数 $w_i=m_i/\sum_jm_j$，先用 $n_i=m_i/\mu_i$ 换算，才有
+\[
+ \frac1{\overline\mu}=\sum_i\frac{w_i}{\mu_i}.
+\]
+因此，质量相等的轻、重气体并不贡献相等分压。用密度反推成分之前，必须先说明给出的是哪一种比例。
+
+\begin{origexamplebox}{等质量氦、氮混合物的分压与密度}\label{ch14:ex:teaching-mixture}
+质量各为 $m$ 的氦气和氮气装在同一容器中，达到温度 $T$、总压强 $p$ 的平衡态，均按理想气体处理。取摩尔质量分别为 $4$ 和 $28\,\mathrm{g/mol}$。求两者分压、混合气体平均摩尔质量及密度。
+\end{origexamplebox}
+\begin{xesolution}
+相同质量下，物质的量之比为
+\[
+ n_{\rm He}:n_{\rm N_2}=(m/4):(m/28)=7:1.
+\]
+所以氦、氮的摩尔分数分别为 $7/8,1/8$，分压分别为 $7p/8,p/8$，并非各为 $p/2$。平均摩尔质量既可按摩尔分数加权，也可用总质量除以总物质的量：
+\[
+ \overline\mu=\frac78\times4+\frac18\times28
+ =7\,\mathrm{g/mol},\qquad
+ \rho=\frac{p\overline\mu}{RT}.
+\]
+最后一式使用SI单位时须代入 $\overline\mu=7\times10^{-3}\,\mathrm{kg/mol}$。平均值位于两种摩尔质量之间且更靠近氦，是因为氦的分子数更多，而不是因为两种质量不相等。总压由两分压相加恢复为 $p$，总密度也等于各组分密度之和。
+\end{xesolution}

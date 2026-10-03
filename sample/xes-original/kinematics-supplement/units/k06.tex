@@ -1,0 +1,412 @@
+\unitheading{K6\quad 平面内的曲线运动}{unit-k06}
+\addcontentsline{toc}{chapter}{K6 平面内的曲线运动}
+
+抛体和圆周运动提供了分析一般曲线运动的基本工具。对平面运动常用两种方法：一是在固定的直角或极坐标系中研究各坐标分量；二是跟随质点，在瞬时速度方向和与之垂直的方向上分解运动学量。前者便于写运动方程，后者能直接揭示速率与轨迹弯曲的变化。
+
+前面两类曲线运动都有特殊结构：抛体具有恒定加速度，圆周运动具有固定曲率。一般二维轨迹未必满足这些条件，但描述它所需的语言已经齐备。固定坐标系把复杂运动拆成若干一维分运动，适合从已知函数计算；自然坐标系随着质点一起转动，把加速度直接分成改变速率和改变方向的两部分，适合解释轨迹为什么在某处弯得更急。
+
+\subsection{固定坐标系}
+
+\FixedCoordinatesDiagram
+
+在平面直角坐标系 $Oxy$ 中，任意运动可由
+\begin{equation}
+ x=x(t),\qquad y=y(t)
+\end{equation}
+描述。两个分量分别看似一维运动，合在一起唯一确定质点的位置。联立二式并消去 $t$，有时可以得到轨迹方程；但并非所有参数曲线都能方便地写成显式函数 $y(x)$。
+
+坐标轴的取向没有统一规定，应服从问题的几何结构。研究抛体时常取水平、竖直方向；研究地面导航时可取东西、南北方向。给定 $t$，先由两个运动方程分别求得 $x(t),y(t)$，图2.16中的交点就是质点此刻的位置。随着 $t$ 连续改变，这些位置连成轨迹。消去参数 $t$ 得到的轨迹方程只保留空间几何形状，通常会丢失运动方向、快慢以及同一点被经过的时刻，因此不能代替完整的运动方程。
+
+\ifdefined\Needspace\Needspace{15\baselineskip}\fi
+\begin{origexamplebox}{例2.60\quad 圆的参数方程}
+已知 $x(t)=A\cos\omega t$，$y(t)=A\sin\omega t$。求轨迹方程并画出示意图。
+\par 题图见图~\ref{question-figure-2-60}。
+\KQuestionCI
+\end{origexamplebox}
+\begin{xesolution}
+平方相加消去 $t$：
+\[
+ \boxed{x^2+y^2=A^2}.
+\]
+轨迹是以原点为圆心、半径 $A$ 的圆。$t=0$ 时在 $(A,0)$；若 $\omega>0$，随后 $y$ 增大，故逆时针运动。
+\begin{center}\begin{tikzpicture}[scale=.65]
+\draw[kaxis] (-2.5,0)--(2.5,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,-2.5)--(0,2.5) node[above,clearlabel]{$y$};
+\draw[kcurve] (0,0) circle (2);
+\draw[vector] (10:2) arc[start angle=10,end angle=40,radius=2];
+\node[point,label={[clearlabel]below right:$t=0$}] at (2,0) {};
+\end{tikzpicture}\end{center}
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{15\baselineskip}\fi
+\begin{origexamplebox}{例2.61\quad 椭圆的参数方程}
+已知 $x(t)=a\cos\omega t$，$y(t)=b\sin\omega t$。求轨迹方程并画出示意图。
+\par 题图见图~\ref{question-figure-2-61}。
+\KQuestionCJ
+\end{origexamplebox}
+\begin{xesolution}
+\[
+ \left(\frac xa\right)^2+\left(\frac yb\right)^2
+ =\cos^2\omega t+\sin^2\omega t=1,
+\]
+\ParametricEllipseDiagram
+
+故
+\[
+ \boxed{\frac{x^2}{a^2}+\frac{y^2}{b^2}=1}.
+\]
+若 $a>b$，长轴沿 $x$ 轴；若 $b>a$，长轴沿 $y$ 轴。运动周期为 $2\pi/|\omega|$，但沿椭圆的速率一般不恒定。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.62\quad 滚动圆周点的坐标}
+半径为 $R$ 的圆在平面上无滑动地向右匀速滚动，圆心速度为 $v$。圆周固定点 $P$ 在 $t=0$ 时位于接地点。求 $P$ 在图示坐标系中的 $x,y$ 坐标。
+\par 题图见图~\ref{question-figure-2-62}。
+\KQuestionCK
+\end{origexamplebox}
+\begin{xesolution}
+无滑动条件给出圆转过的角度 $\phi=vt/R$。圆心坐标为 $(vt,R)$；从圆心指向 $P$ 的半径由竖直向下顺时针转过 $\phi$，分量为 $(-R\sin\phi,-R\cos\phi)$。相加得
+\CycloidDiagram
+\[
+ \boxed{x(t)=vt-R\sin\frac{vt}{R}},\qquad
+ \boxed{y(t)=R\left(1-\cos\frac{vt}{R}\right)}.
+\]
+这条轨迹称为摆线。$t=0$ 时两式均为零，与题图原点一致。
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{18\baselineskip}\fi
+\begin{origexamplebox}{例2.63\quad 空间螺旋线}
+质点在直角坐标系 $Oxyz$ 中满足
+\[
+x(t)=R\cos\omega t,\qquad y(t)=R\sin\omega t,
+\qquad z(t)=vt,
+\]
+其中各参数均为正。画出轨迹示意图。
+\par 题图见图~\ref{question-figure-2-63}。
+\KQuestionCL
+\end{origexamplebox}
+\begin{xesolution}
+$x^2+y^2=R^2$，说明质点始终在半径 $R$ 的圆柱面上；同时 $z$ 随时间匀速增加。每当 $\omega t$ 增加 $2\pi$，质点转一周而高度增加
+\HelixDiagram
+\[
+ \boxed{p=v\frac{2\pi}{\omega}}.
+\]
+因此轨迹是绕 $z$ 轴上升的圆柱螺旋线，$p$ 为螺距。
+\end{xesolution}
+
+曲线运动的速度和加速度均可逐分量求导：
+\begin{equation}
+ \vect v=(\dot x,\dot y),\qquad
+ \vect a=(\ddot x,\ddot y).
+\end{equation}
+反过来，给定矢量也可投影到各坐标轴。运动的合成与分解对速度、加速度同样成立。
+
+上述等式来自固定基矢不随时间改变。若 $\vect r=x\vect e_x+y\vect e_y$，则 $\vect v=\dot x\vect e_x+\dot y\vect e_y$，再求导得到加速度。各分量可以分别使用一维运动的方法，但最后必须在同一时刻按矢量合成。三维情形只需再加入 $z(t)$ 及其一、二阶导数，方法没有本质变化；例2.63正是这种推广。
+
+极坐标中的分量要更谨慎，因为径向和横向单位矢量本身会随 $\theta$ 转动。短时间内，半径长度改变 $\dot r\Delta t$ 产生径向速度，半径方向转过 $\dot\theta\Delta t$ 产生长度约为 $r\dot\theta\Delta t$ 的横向位移。因此
+\begin{equation}
+ \vect v=\dot r\,\vect e_r+r\dot\theta\,\vect e_\theta.
+\end{equation}
+例2.66中 $\dot r=v$、$r\dot\theta=vt\omega$，随时间增长横向分量越来越大；例2.67中两分量相等，才得到速度与半径恒成 $45^\circ$。不能把 $\dot\theta$ 本身当作线速度，因为它的量纲是角速度，还必须乘当地半径。
+
+固定坐标法的计算流程通常是：先写位置分量，再求导得到速度分量与速率，继续求导得到加速度分量，最后根据需要消去时间或投影到特定方向。若只给轨迹方程而没有参数随时间的规律，通常只能知道几何形状，不能唯一确定速度和加速度；同一条轨迹可以被不同速率、不同方向甚至往返地经过。
+
+\ifdefined\Needspace\Needspace{14\baselineskip}\fi
+\begin{origexamplebox}{例2.64\quad 圆周运动的分量速度和加速度}
+质点 $P$ 在半径 $R$ 的圆上以角速度 $\omega$ 逆时针匀速运动，$t=0$ 时位于 $x$ 轴正向。已知 $x=R\cos\omega t$、$y=R\sin\omega t$，求两坐标投影的速度和加速度。
+\par 题图见图~\ref{question-figure-2-64}。
+\KQuestionCM
+\end{origexamplebox}
+\begin{xesolution}
+逐次求导：
+\begin{align*}
+v_x&=-R\omega\sin\omega t,&v_y&=R\omega\cos\omega t,\\
+a_x&=-R\omega^2\cos\omega t,&a_y&=-R\omega^2\sin\omega t.
+\end{align*}
+因此
+\[
+\vect a=-\omega^2(x,y),
+\]
+\CircleComponentsDiagram
+
+始终指向圆心，大小 $R\omega^2$；速度大小为 $R\omega$，且与半径垂直。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.65\quad 滚动圆的接地点瞬时速度}
+证明：半径为 $R$ 的圆以圆心速度 $v$ 无滑动滚动时，圆周固定点 $P$ 恰与地面接触的瞬时速度为零。
+\par 题图见图~\ref{question-figure-2-65}。
+\KQuestionCN
+\end{origexamplebox}
+\begin{xesolution}
+质点速度等于圆心平动速度与绕圆心转动速度的矢量和。圆向右滚动时角速度大小 $\omega=v/R$、方向为顺时针。接地点的转动速度水平向左，大小
+\[
+\omega R=v,
+\]
+\RollingContactDiagram
+
+恰与圆心向右的平动速度抵消。因此
+\[
+ \boxed{\vect v_P=\vect v_O+\vect v_{P/O}=\vect0}.
+\]
+“瞬时速度为零”不表示该点有一段时间静止；接触前后它仍沿摆线运动。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.66\quad 阿基米德螺线}
+平面极坐标中质点满足 $r=vt$、$\theta=\omega t$，所有参数为正。定性画出轨迹。
+\par 题图见图~\ref{question-figure-2-66}。
+\KQuestionCO
+\end{origexamplebox}
+\begin{xesolution}
+消去 $t$：
+\[
+ \boxed{r=\frac v\omega\theta}.
+\]
+半径随转角线性增加，质点从极点出发逆时针向外盘旋，相邻两圈的径向间距为
+\[
+\Delta r=\frac v\omega(2\pi)=\frac{2\pi v}{\omega}.
+\]
+这是一条阿基米德螺线。
+\ArchimedeanSpiralDiagram
+\end{xesolution}
+
+\begin{origexamplebox}{例2.67\quad 对数螺线的等角性质}
+平面极坐标中质点满足 $r=r_0e^\theta$、$\theta=\omega t$，其中 $r_0>0,\omega>0$。
+证明速度与从极点指向质点的径向射线夹角恒定，并求该角。可用 $e^{x+\Delta x}\simeq e^x(1+\Delta x)$。
+\end{origexamplebox}
+\begin{xesolution}
+极坐标速度的径向、横向分量分别是
+\[
+v_r=\dot r=\frac{\dd r}{\dd\theta}\dot\theta=r\omega,
+\qquad
+v_\theta=r\dot\theta=r\omega.
+\]
+两分量大小相等且互相垂直，所以速度与径向夹角 $\alpha$ 满足
+\[
+ \tan\alpha=\frac{v_\theta}{v_r}=1,
+ \qquad \boxed{\alpha=45^\circ}.
+\]
+由于 $\omega>0$，径向和横向分量都为正，速度位于两正向基矢之间，故取锐角 $45^\circ$，不能仅凭 $\tan\alpha=1$ 忽略象限。
+如果反向运动，轨迹仍相同，但速度方向反转，与向外径向射线的夹角变为 $135^\circ$；
+若只说与无向直线的锐夹角，则仍为 $45^\circ$。
+这就是对数螺线的等角性质。
+\end{xesolution}
+
+\subsection{自然坐标系与密切圆}
+
+\NaturalCoordinatesDiagram
+
+把瞬时速度方向称为切向，把与其垂直且指向轨迹弯曲一侧的方向称为法向。速度只有切向分量；加速度一般可写成
+\[
+\vect a=a_t\vect e_t+a_n\vect e_n.
+\]
+自然坐标系的方向随质点运动而改变，因此其物理意义直观，但计算时要注意基矢本身也在转动。
+
+切向单位矢量 $\vect e_t$ 沿轨迹前进方向，法向单位矢量 $\vect e_n$ 指向曲线当前的凹侧。它们不像固定坐标轴那样处处平行：质点从一点运动到另一点，$\vect e_t$ 和 $\vect e_n$ 都会随轨迹转动。这正是为什么即使速率恒定，$\vect v=v\vect e_t$ 的导数仍可能非零。
+
+在短时间 $\Delta t$ 内，速度由 $\vect v(t)$ 变为 $\vect v(t)+\vect a\Delta t$。设加速度与速度夹角为 $\alpha$。由速度三角形并保留 $\Delta t$ 的一阶项，速率变化为
+\begin{equation}
+ \Delta v=a\cos\alpha\,\Delta t,
+ \qquad \boxed{a_t=\frac{\dd v}{\dd t}}.
+\end{equation}
+所以切向分量同向时速率增加，反向时减小，垂直时速率不变。速度方向转角 $\Delta\theta$ 则满足
+\begin{equation}
+ \Delta\theta\simeq\frac{a\sin\alpha}{v}\Delta t.
+\end{equation}
+若以半径 $\rho$ 的圆周运动模拟这一瞬时弯曲，$\Delta\theta/\Delta t=v/\rho$，故
+\begin{equation}
+ \boxed{a_n=\frac{v^2}{\rho}}.
+\end{equation}
+
+\VelocityIncrementNaturalDiagram
+
+这一结论可由图2.17逐步看出。速度三角形的一条边为 $\vect v(t)$，第二条边为 $\vect a\Delta t$，合成后得到 $\vect v(t+\Delta t)$。把 $\vect a\Delta t$ 投影到旧速度方向，得到速率的一阶改变量 $a\cos\alpha\,\Delta t$；投影到垂直方向，得到速度方向的小转角 $\Delta\theta\simeq a\sin\alpha\,\Delta t/v$。这里舍去的是 $\Delta t^2$ 及更高阶项，所以不能把有限时间的整段曲线直接当成同一个圆。
+
+\OsculatingCircleDiagram
+
+$\rho$ 称为曲率半径，对应圆称为密切圆。直线由两个无限接近的点决定切线；类似地，曲线上一个给定点及其两侧无限接近的点决定密切圆。$\rho$ 越小，轨迹弯曲越强。
+
+密切圆只在所考察点附近与原曲线具有相同的切线和二阶弯曲趋势，它不要求与整条曲线重合。圆心必在该点法线上并位于凹侧。曲线接近拐点时曲率趋于零，曲率半径趋于无穷，局部运动接近直线；尖锐转弯处曲率大，密切圆半径小。用 $a_n=v^2/\rho$ 判断时，必须同时使用当地速率和当地曲率，不能只凭图上“看起来弯”来决定法向加速度大小。
+
+下面推导曲率公式，而不把它当成记忆规则。设切线与 $x$ 轴的夹角为 $\varphi$，
+取沿曲线的弧长为 $s$。在足够短的一段上，密切圆的弧长关系是
+$|\dd\varphi|=\dd s/\rho$，故曲率 $1/\rho=|\dd\varphi/\dd s|$。
+对显式曲线 $y=y(x)$，有 $\tan\varphi=y'$。两边对 $x$ 求导，得到
+\[
+ \frac{\dd\varphi}{\dd x}=\frac{y''}{1+(y')^2},
+ \qquad \dd s=\sqrt{1+(y')^2}\,|\dd x|.
+\]
+把转角变化除以弧长变化，再取绝对值，就有
+\[
+ \frac1\rho=\frac{|y''|}{[1+(y')^2]^{3/2}}.
+\]
+所以曲率半径为
+\begin{equation}
+ \rho=\frac{[1+(y')^2]^{3/2}}{|y''|};
+\end{equation}
+对参数曲线 $x=x(t),y=y(t)$，在 $\dot x\ne0$ 的局部，
+链式法则给出
+\[
+ y'=\frac{\dot y}{\dot x},\qquad
+ y''=\frac1{\dot x}\frac{\dd}{\dd t}\frac{\dot y}{\dot x}
+ =\frac{\dot x\ddot y-\dot y\ddot x}{\dot x^3}.
+\]
+代回上式，分子、分母中的 $|\dot x|^3$ 抵消，得到
+\begin{equation}
+ \rho=\frac{(\dot x^2+\dot y^2)^{3/2}}
+ {|\dot x\ddot y-\dot y\ddot x|}.
+\end{equation}
+这个结果关于 $x,y$ 对称；在 $\dot x=0,\dot y\ne0$ 的位置，可以交换两坐标重复推导，公式仍成立。
+它要求曲线二次可微，并且 $\dot x^2+\dot y^2>0$，即此处参数化是正则的。
+在这一前提下，分母为零对应曲率为零，可将曲率半径理解为趋于无穷；它不一定是拐点，还需看凹向是否改变。
+若速度也为零，可能出现 $0/0$，不能据此断定曲率为零。例如摆线尖点处就需要从相邻点取极限另行分析。
+绝对值保证半径为正，曲线凹向由法线方向判断。
+分母越大不单独保证曲率越大，因为分子也随参数化改变；整个比值表达的几何曲率与正则参数选择无关。
+
+自然坐标表达把一般平面加速度统一写为
+\begin{equation}
+ \boxed{\vect a=\frac{\dd v}{\dd t}\vect e_t+\frac{v^2}{\rho}\vect e_n}.
+\end{equation}
+第一项决定速度大小，第二项决定速度方向。直线运动是 $\rho\to\infty$ 的极限，法向项消失；匀速圆周运动是 $\dd v/\dd t=0$ 且 $\rho=R$ 的特例。这样，前面两类运动都成为一般曲线运动公式的自然极限。
+
+图2.18中，切线 $S$ 经过接触点 $P$，半径 $PO$ 与它垂直。圆与曲线在 $P$ 处有相同的二阶弯曲，
+但远离 $P$ 后可以分开。因此密切描述的是局部关系，不是用一个圆代替整条轨迹。
+
+四点曲率比较时，先确定切线与凹向，再比较局部切线方向改变的快慢。
+接近拐点时，单位弧长引起的转角很小，密切圆半径很大；转弯急处则相反。
+仅仅过点、相切还不够，密切圆还必须具有相同的曲率，才能用于 $a_n=v^2/\rho$。
+
+阻力型直线运动的两个例题也可放进自然坐标框架：轨迹为直线，$a_n=0$，加速度全在切向。$a=-kv$ 给出指数衰减，速度在任何有限时刻都不严格为零但总路程有限；$a=-\beta v^2$ 给出反比例衰减，速度同样渐近于零，却因 $v\sim1/t$ 使无限时间总路程呈对数发散。不同阻力规律会产生不同的长时间行为，不能仅凭“最终越来越慢”认为结果相同。
+
+\begin{origexamplebox}{例2.68\quad 抛体的速率变化与抛物线曲率}
+填空：抛体上升时加速度和速度夹角为（锐、钝）角，速率（增加、减小）；下降时夹角为（锐、钝）角，速率（增加、减小）。并求抛物线 $y=ax^2$ 在 $x=0$ 处的曲率半径。
+\par 题图见图~\ref{question-figure-2-68}。
+\KQuestionCQ
+\end{origexamplebox}
+\begin{xesolution}
+重力加速度竖直向下。上升时速度有向上分量，故 $\vect a\cdot\vect v<0$，夹角为钝角，速率减小；下降时 $\vect a\cdot\vect v>0$，夹角为锐角，速率增加。
+
+
+\ProjectileCurvatureDiagram
+平面曲线 $y(x)$ 的曲率半径为
+\[
+\rho=\frac{[1+(y')^2]^{3/2}}{|y''|}.
+\]
+对 $y=ax^2$，在 $x=0$ 有 $y'=0$、$y''=2a$，所以
+\[
+ \boxed{\rho(0)=\frac1{2|a|}}.
+\]
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{18\baselineskip}\fi
+\begin{origexamplebox}{例2.69\quad 比较曲线上四点的弯曲程度}
+评估题图曲线上 $P_1,P_2,P_3,P_4$ 四点的弯曲情况，并尽可能画出这些点的密切圆。
+\par 题图见图~\ref{question-figure-2-69}。
+\KQuestionCR
+\end{origexamplebox}
+\begin{xesolution}
+先沿题图从左向右上读到 $P_3$，再沿曲线向左下回折至 $P_4$：
+$P_4$ 位于 $P_3$ 左下方，不能把这段回折曲线当成单值函数 $y(x)$ 的下降支。
+作密切圆时先在各点画切线，圆心必须在该点法线上，并处在曲线局部凹向的一侧。
+$P_1$ 位于宽缓谷底，圆心在上方；$P_2$ 附近弯曲较弱，密切圆半径较大；
+$P_3$ 位于急剧转弯处，半径很小；$P_4$ 附近切线近乎竖直，曲线向右弯，圆心在右侧。
+这些判断给出各圆的位置和相对大小的定性图示，不能从没有精确函数或比例尺的示意图中读出精确半径，
+也不应据此强行断言所有四点的严格曲率排序。
+
+
+\FourCurvaturesDiagram
+若已知参数曲线 $(x(u),y(u))$，记 $\vect r'=(x',y')$、$\vect r''=(x'',y'')$，
+则在 $x'y''-y'x''\ne0$ 的点，半径和圆心分别为
+\[
+ \rho=\frac{(x'^2+y'^2)^{3/2}}{|x'y''-y'x''|},\qquad
+ \vect C=\vect r+\frac{x'^2+y'^2}{x'y''-y'x''}(-y',x').
+\]
+第二式中的 $(-y',x')$ 与切线 $(x',y')$ 点积为零，保证半径垂直切线；
+分母的符号决定圆心在哪一侧。解图中的圆按同一条参数曲线的导数确定，
+各圆经过对应点、与其共切线并有相同曲率。密切圆是局部近似，不要求它与远处曲线不相交；
+若某点恰为曲率为零的拐点，则有限密切圆退化为半径趋于无穷的极限。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.70\quad 椭圆轴端点的曲率半径}
+求半长轴、半短轴分别为 $a,b$（$a>b$）的椭圆在长轴端点和短轴端点处的曲率半径。
+\par 题图见图~\ref{question-figure-2-70}。
+\KQuestionCS
+\end{origexamplebox}
+\begin{xesolution}
+取参数方程 $x=a\cos t$、$y=b\sin t$。参数曲线的曲率半径为
+\[
+\rho=\frac{(\dot x^2+\dot y^2)^{3/2}}{|\dot x\ddot y-\dot y\ddot x|}
+=\frac{(a^2\sin^2t+b^2\cos^2t)^{3/2}}{ab}.
+\]
+\EllipseCurvatureDiagram
+
+长轴端点对应 $t=0,\pi$，短轴端点对应 $t=\pi/2,3\pi/2$，所以
+\[
+ \boxed{\rho_{\text{长轴端}}=\frac{b^2}{a}},\qquad
+ \boxed{\rho_{\text{短轴端}}=\frac{a^2}{b}}.
+\]
+这里 $a,b$ 指半轴长度；若给的是全轴长，须先各除以二。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.71\quad 加速度与速度成正比的减速}
+质点沿直线运动，取初速度方向为正向，$t=0$ 时速度为 $v_0>0$，此后加速度满足 $a=-kv$，$k>0$。求完全停止所需时间和总路程。
+\end{origexamplebox}
+\begin{xesolution}
+负号表示加速度与正向运动的速度相反，速率不断减小，而不是说质点已反向运动。
+由加速度定义，
+\[
+ \frac{\dd v}{\dd t}=-kv,\qquad \frac{\dd v}{v}=-k\,\dd t.
+\]
+在速度仍为正的阶段，从初态 $(0,v_0)$ 积分到 $(t,v)$：
+\[
+ \int_{v_0}^{v}\frac{\dd u}{u}=-k\int_0^t\dd\tau,
+ \qquad \ln\frac{v}{v_0}=-kt.
+\]
+两边取指数，得到
+\[
+ \boxed{v(t)=v_0e^{-kt}}.
+\]
+任意有限 $t$ 时 $v>0$，所以数学模型中完全停止所需时间为
+\[
+ \boxed{t_{\rm stop}=\infty}.
+\]
+该解在任意有限时刻均为正，说明推导中使用正速度自洽。
+取初始位置为零，先求有限时间内的路程：
+\[
+ s(t)=\int_0^t v_0e^{-k\tau}\dd\tau
+ =\left[-\frac{v_0}{k}e^{-k\tau}\right]_0^t
+ =\frac{v_0}{k}(1-e^{-kt}).
+\]
+再令 $t\to\infty$，得到总路程收敛：
+\[
+ \boxed{s_\infty=\int_0^\infty v_0e^{-kt}\,\dd t=\frac{v_0}{k}}.
+\]
+这正是“速度永不严格为零，但总路程有限”的极限现象。
+$[k]=\mathrm{s^{-1}}$，所以 $kt$ 无量纲，$v_0/k$ 是长度；当 $kt\ll1$，
+$e^{-kt}\simeq1-kt$，有 $s(t)\simeq v_0t$，恢复短时间内近似匀速的结果。
+若用一个小阈值 $v_{\rm tol}$ 表示实际可视为停止，则所需时间为
+$t_{\rm tol}=k^{-1}\ln(v_0/v_{\rm tol})$，是有限的。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.72\quad 加速度与速度平方成正比的减速}
+质点沿直线运动，取初速度方向为正向，$t=0$ 时速度为 $v_0>0$，此后加速度满足 $a=-\beta v^2$，$\beta>0$。求速度随时间的关系。
+\end{origexamplebox}
+\begin{xesolution}
+分离变量：
+\[
+\frac{\dd v}{v^2}=-\beta\,\dd t.
+\]
+按初始条件取积分上下限，
+\[
+ \int_{v_0}^{v}\frac{\dd u}{u^2}=-\beta\int_0^t\dd\tau.
+\]
+由于 $\int u^{-2}\dd u=-u^{-1}$，得到
+\[
+-\frac1v+\frac1{v_0}=-\beta t,
+\]
+故
+\[
+ \boxed{v(t)=\frac{v_0}{1+\beta v_0t}}.
+\]
+代回可检验 $v(0)=v_0$ 及 $\dot v=-\beta v^2$，且始终 $v>0$，没有发生反向。
+$[\beta]=\mathrm{m^{-1}}$，故 $\beta v_0t$ 无量纲。
+速度同样只在 $t\to\infty$ 时趋于零；与指数衰减不同，大时间行为为 $v\sim1/(\beta t)$。
+积分给出 $s(t)=\beta^{-1}\ln(1+\beta v_0t)$，其极限发散，说明“速度趋于零”并不保证总路程有限。
+\end{xesolution}

@@ -1,0 +1,18 @@
+% Source: spring-II physical page193, lecture10 problem1.
+% Contract: simple closed curve, O=start/end at phi=270deg; CCW tangent p at phi=345deg.
+% Curve and tangent use x=1.7cos(t)+.45cos(2t),y=1.7sin(t); no hand-guessed arrow.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick,samples=161,domain=0:360,smooth,variable=\t]
+  plot ({1.7*cos(\t)+.45*cos(2*\t)},{1.7*sin(\t)});
+ \coordinate (O) at (-.45,-1.7);
+ \coordinate (M) at ({1.7*cos(345)+.45*cos(690)},{1.7*sin(345)});
+ \fill (O) circle(2pt) (M) circle(2pt);
+ \node[below left=5pt] at (O){$O:\ s=0,S$};
+ \node[below right=4pt] at (M){$m$};
+ \draw[DeepBlue,very thick,->] (M)--++({.65*(-1.7*sin(345)-.9*sin(690))},{.65*1.7*cos(345)})
+  node[above right=4pt]{$\vect p(s)$};
+ \draw[DeepBlue,thick,->,samples=31,domain=283:317,smooth,variable=\t]
+  plot ({1.7*cos(\t)+.45*cos(2*\t)},{1.7*sin(\t)});
+ \node at (1,-1.95){$s$ 增大};
+ \node at (0,.2){面积 $A$};
+\end{tikzpicture}

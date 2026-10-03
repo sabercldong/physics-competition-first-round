@@ -1,0 +1,96 @@
+{
+  "source_id": "autumn_student_2020",
+  "source_sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+  "independent_visual_inventory": true,
+  "review_scope": "2026-09-05独立查看原件物理7—10页（印刷5—8页）及全文工作文本，再逐项定位。仅确认这一段来源对象与内容落点，不代替整章题解、图形、分页和最终验收。",
+  "pages": [
+    {
+      "physical_page": 7, "printed_page": 5, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-007.jpg",
+      "objects": [
+        {"id":"h01","object_type":"heading","source_number":"第一章","source_locator":"页首：第一章 运动学","description":"章标题","target_id":"r2ch01:chapter"},
+        {"id":"h02","object_type":"heading","source_number":"1.1","source_locator":"上部：1.1 时空与物质","description":"知识模块标题","target_id":"r2ch01:sec:spacetime"},
+        {"id":"p01","object_type":"paragraph","source_locator":"首段：伽利略时期至额外维度，时空与物质分立","description":"理论发展、时空与物质、3+1维与度量、物质为时空点上的结构","target_id":"r2ch01:sec:spacetime","notes":"保留额外维度讨论和spacetime/matter/metric术语；明确当前采用3+1维，不把高维设想当作已证实结论"},
+        {"id":"fn01","object_type":"footnote","source_number":"脚注1","source_locator":"页脚：连续光滑四维对象、伪黎曼流形","description":"伪黎曼流形的数学背景","target_id":"r2ch01:sec:spacetime","notes":"补回伪黎曼术语并修正条件：相对论时空须有相应非退化号差度量；四维和光滑本身不足以推出伪黎曼结构"},
+        {"id":"h03","object_type":"heading","source_number":"1.1.1","source_locator":"中上：时空观，坐标系","description":"空间与时间子模块标题","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"p02","object_type":"paragraph","source_locator":"牛顿动力学理论体系基于伽利略时空观","description":"绝对时空、平直三维空间、人体三方向与尺、坐标的建立","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"f01","object_type":"formula","source_locator":"中部第一行独立公式：A(x,y,z)∈R³；x,y,z∈R","description":"三维坐标的实数集合表示","target_id":"r2ch01:sec:space-time-coordinates","notes":"写成坐标数组属于R³，区分物理空间点和其坐标值"},
+        {"id":"f02","object_type":"formula","source_locator":"中部第二行独立公式：l²=AB²=(x1−x2)²+…","description":"两个空间点间欧氏距离","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"p03","object_type":"paragraph","source_locator":"因为空间不同于时间…加上量纲；(0,0,0)和(1,1,1)","description":"量纲、单位与长度数值，√3m例释","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"d01","object_type":"definition","source_locator":"1m是光在1/299792458s内…","description":"米的光速定义","target_id":"r2ch01:sec:space-time-coordinates","notes":"用固定c及先定义秒的实现链表述，未保留源件2018年的现行日期"},
+        {"id":"p04","object_type":"paragraph","source_locator":"这就是我们的三维平直空间…坐标原点任意、朝向任意","description":"点与坐标的区分，坐标变换不改变实际距离","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"f03","object_type":"formula","source_locator":"中下部：dl²=dx²+dy²+dz²","description":"直角坐标微元距离","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"d02","object_type":"definition","source_locator":"末段：笛卡尔坐标系，即空间直角坐标系","description":"笛卡尔坐标定义与英文术语","target_id":"r2ch01:sec:spacetime"},
+        {"id":"d03","object_type":"definition","source_locator":"末段：柱坐标、球坐标；x轴幅轴、z轴极轴、幅角φ和极角θ","description":"三种坐标、轴、距离与两个角的几何定义；天文应用","target_id":"r2ch01:eq:001","notes":"公式与相邻定义共同承接；方位角统一记varphi、柱半径rho、球半径r"},
+        {"id":"fn02","object_type":"footnote","source_number":"脚注2","source_locator":"页脚：先定义1s，再定义1m；相对论背景","description":"长度实现对秒与光速的依赖","target_id":"r2ch01:sec:space-time-coordinates"}
+      ]
+    },
+    {
+      "physical_page": 8, "printed_page": 6, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-008.jpg",
+      "objects": [
+        {"id":"p01","object_type":"paragraph","source_locator":"页首续上页：矢径r与极角幅角；柱坐标rho为到z轴距离","description":"球、柱坐标定义续段","target_id":"r2ch01:eq:001"},
+        {"id":"fig01","object_type":"figure","source_number":"图1.1","source_locator":"左上：三种坐标空间图","description":"xyz轴、球半径r、投影rho、theta、phi、投影辅助线和xy平面","target_id":"r2ch01:fig:001","notes":"分成三幅同一右手投影；同一P/H确定坐标、线段和角弧；学生相邻正文引用各符号"},
+        {"id":"p02","object_type":"paragraph","source_locator":"图右上：theta∈[0,π]、极点多值、phi∈R且相差2nπ","description":"角坐标取值与运动连续性，绕一周不应突然截断角度","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"d01","object_type":"definition","source_locator":"图右下至图下：球对称/柱对称/各向同性","description":"对称性依赖哪个坐标的判别","target_id":"r2ch01:sec:space-time-coordinates","notes":"纠正源术语错误：仅与phi无关是轴对称，仅与z无关是沿轴平移对称；与两角均无关才是球对称，反演对称更弱"},
+        {"id":"f01","object_type":"formula","source_locator":"中部独立式：f(x,y,z)=f(−x,−y,−z)","description":"中心反演对称","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"p03","object_type":"paragraph","source_locator":"绝对时空观中的时间…不同的时刻画在一根时间轴上","description":"独立绝对时间和一维时间坐标","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"f02","object_type":"formula","source_locator":"A(t)∈R；t∈R","description":"时刻由实数标记","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"p04","object_type":"paragraph","source_locator":"时空又是两个独立概念…任一时刻都有三维空间切片","description":"3+1维结构和空间切片","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"f03","object_type":"formula","source_locator":"A(x,y,z,t)∈R⁴；x,y,z,t∈R","description":"四维事件坐标的实数组表示","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"f04","object_type":"formula","source_locator":"两个事件的绝对时间差：tau=|t2−t1|","description":"任意事件间绝对时间差","target_id":"r2ch01:eq:002","notes":"相邻绝对时空段保留|t2−t1|，与伽利略变换的时间不变性联系"},
+        {"id":"f05","object_type":"formula","source_locator":"t1=t2：l=√[(x1−x2)²+…]","description":"空间距离须在同时切片上定义","target_id":"r2ch01:eq:002","notes":"已修复旧稿把任意事件坐标差当不变量的问题，正文举车厢标记反例"},
+        {"id":"p05","object_type":"paragraph","source_locator":"不同时刻空间被线性组织…牛顿—嘉当几何","description":"经典时间切片与几何结构","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"fn03","object_type":"footnote","source_number":"脚注3","source_locator":"页脚：四维流形M、钟cν、sμν及sμνcν=0","description":"牛顿—嘉当时空的时间一形式、退化空间逆度规及兼容公式","target_id":"r2ch01:sec:space-time-coordinates","notes":"已补回公式和显式分量例，区分cν与光速c；说明完整理论还需联络"},
+        {"id":"d02","object_type":"definition","source_locator":"下部：1s是铯133…9192631770倍周期","description":"秒的原子频率定义","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"p06","object_type":"paragraph","source_locator":"末段跨页：牛顿—嘉当几何与协变性，空间旋转下标量矢量","description":"转动下的量的变换及与一般伽利略变换的区别","target_id":"r2ch01:sec:space-time-coordinates","notes":"源称没有协变性不准确；改为经典几何也可协变表述，保留旋转与推动的区别"}
+      ]
+    },
+    {
+      "physical_page": 9, "printed_page": 7, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-009.jpg",
+      "objects": [
+        {"id":"p01","object_type":"paragraph","source_locator":"页首续段：标量矢量在旋转下与伽利略变换下的区别","description":"匀速相对参考系变换不能照搬空间旋转规则","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"p02","object_type":"paragraph","source_locator":"不同于绝对时空观…相对论时空和光速不变","description":"绝对同时性取消，时空合为整体与同尺测量","target_id":"r2ch01:eq:003"},
+        {"id":"f01","object_type":"formula","source_locator":"上部独立式c=299792458m/s","description":"真空光速精确值","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"f02","object_type":"formula","source_locator":"ds²=c²dt²−dx²−dy²−dz²","description":"相对论时空间隔","target_id":"r2ch01:eq:003","notes":"主式使用相反号差(−,+,+,+)，相邻段完整给出源件(+,-,-,-)约定及等价性"},
+        {"id":"p03","object_type":"paragraph","source_locator":"这赋予时空截然不同结构…有限速度因果律","description":"事件先后与因果限制、后续相对论章节","target_id":"r2ch01:sec:space-time-coordinates"},
+        {"id":"h01","object_type":"heading","source_number":"1.1.2","source_locator":"中部：物质","description":"物质模块标题","target_id":"r2ch01:sec:matter"},
+        {"id":"d01","object_type":"definition","source_locator":"时空是舞台…事件的坐标与内禀属性","description":"事件、坐标(r,t)、模型属性与标量矢量张量描述","target_id":"r2ch01:sec:matter"},
+        {"id":"p04","object_type":"paragraph","source_locator":"举例，电磁场…量子力学…矢势标势…光子","description":"经典电磁场、量子力学势描述与量子化电磁场的层次","target_id":"r2ch01:sec:matter","notes":"补回标势矢势与电磁场关系，说明规范自由；不把给势说成增加了独立可观测自由度"},
+        {"id":"p05","object_type":"paragraph","source_locator":"又比如电子…质量动量能量电荷、自旋、QED和四分量旋量","description":"电子模型与属性随理论层次的区别","target_id":"r2ch01:sec:matter","notes":"纠正动量能量是内禀参数、自旋等于磁矩、单粒子狄拉克理论等于完整QED等简化，保留全部讨论对象"},
+        {"id":"fn04","object_type":"footnote","source_number":"脚注4","source_locator":"页脚：气泡上升为体系带来的动量方向","description":"气泡思考题，检验模型和动量定义","target_id":"r2ch01:sec:matter","notes":"补回气泡讨论；分别说明气体系统、气液总系统及有效密度亏空变量，给出积分式，不擅自假设液体速度场"},
+        {"id":"h02","object_type":"heading","source_locator":"经典物理学中涉及到的物质主要有","description":"经典物质模型列表的引导","target_id":"r2ch01:sec:matter"},
+        {"id":"fn05","object_type":"footnote","source_number":"脚注5","source_locator":"页脚：牛顿、分析、经典电磁、经典统计、狭义相对论","description":"经典物理一词的范围","target_id":"r2ch01:sec:matter","notes":"补回完整范围，明确经典不等同于低速"},
+        {"id":"d02","object_type":"definition","source_number":"1.质点","source_locator":"下部：质点(point mass,particle)、世界线、每时刻一个事件","description":"质点与世界线定义","target_id":"r2ch01:sec:matter"},
+        {"id":"f03","object_type":"formula","source_locator":"r=r(t)=(x(t),y(t),z(t))","description":"质点运动方程的矢量与分量形式","target_id":"r2ch01:sec:matter"},
+        {"id":"d03","object_type":"definition","source_locator":"而质量是质点必要的内禀属性…同样作用下改变难易程度","description":"质量的模型作用与惯性意义","target_id":"r2ch01:sec:matter"},
+        {"id":"d04","object_type":"definition","source_locator":"1kg是保存在法国…47立方厘米铂铱合金小圆柱的质量","description":"国际千克原器的历史定义、实体与复制体","target_id":"r2ch01:sec:matter","notes":"补回实体与约47cm³尺寸；修正为1889至2019年的历史定义，复制体传递单位而非各自定义单位"},
+        {"id":"p06","object_type":"paragraph","source_locator":"页尾：自1889年以来、2018年末有望修改","description":"质量单位从原器到常数的演变","target_id":"r2ch01:sec:matter","notes":"用已经实施的2019年5月20日变更日期，不保留源件未来时态"},
+        {"id":"fn06","object_type":"footnote","source_number":"脚注6","source_locator":"页脚：相对论量子力学背景、先定义秒和米再定义千克","description":"千克实现依赖链","target_id":"r2ch01:sec:matter"}
+      ]
+    },
+    {
+      "physical_page": 10, "printed_page": 8, "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-010.jpg",
+      "objects": [
+        {"id":"f01","object_type":"formula","source_locator":"页首：普朗克常数固定6.62607015×10⁻³⁴，kg·m²·s⁻¹","description":"普朗克常数精确值与现行千克定义","target_id":"r2ch01:sec:matter","notes":"补充作用量量纲说明，h的值与单位全部保留"},
+        {"id":"p01","object_type":"paragraph","source_locator":"长度时间质量三大量纲…加减同量纲、乘除和特殊函数","description":"量纲与单位、数值、量纲运算法则、无量纲自变量","target_id":"r2ch01:eq:005"},
+        {"id":"d01","object_type":"definition","source_number":"2.质点系","source_locator":"上部：质点系(particle system)及内外力推广","description":"质点系、系统边界和推广规律","target_id":"r2ch01:sec:matter"},
+        {"id":"p02","object_type":"paragraph","source_locator":"质点系段后半：经典统计、长时间平均、概率系综平均","description":"多粒子体系与统计描述","target_id":"r2ch01:sec:matter"},
+        {"id":"d02","object_type":"definition","source_number":"3.连续介质","source_locator":"中部：连续介质(continuous media)、场论图像","description":"连续介质近似与从微观到宏观的场描述","target_id":"r2ch01:sec:matter"},
+        {"id":"p03","object_type":"paragraph","source_locator":"连续介质段：量子场论与不确定原理、世界线近似","description":"经典轨迹的近似性质与更一般的场论观点","target_id":"r2ch01:sec:matter","notes":"保留不确定关系和适用尺度，避免把宏观连续介质与量子场论直接等同"},
+        {"id":"f02","object_type":"formula","source_locator":"中部独立式rho=rho(r,t)；v=v(r,t)","description":"密度标量场与速度矢量场","target_id":"r2ch01:sec:matter"},
+        {"id":"p04","object_type":"paragraph","source_locator":"而动力学方程…弹性、流体、黏弹性塑性、近平衡统计","description":"相互作用、本构关系与近平衡方法","target_id":"r2ch01:sec:matter"},
+        {"id":"d03","object_type":"definition","source_number":"4.场","source_locator":"下半：场(field)","description":"场作为物质形式及场论研究范围","target_id":"r2ch01:sec:matter"},
+        {"id":"p05","object_type":"paragraph","source_locator":"图右上：场理解的两阶段、数学工具、超距作用","description":"场概念史的第一阶段","target_id":"r2ch01:sec:matter"},
+        {"id":"p06","object_type":"paragraph","source_locator":"图右中：相互作用传播有限、场独立存在、电子库仑场","description":"局域相互作用与场的独立能量动量","target_id":"r2ch01:sec:matter"},
+        {"id":"p07","object_type":"paragraph","source_locator":"图右下：场论研究哪些场、场量、粒子—场和场—场作用","description":"场的类型与动力学研究对象","target_id":"r2ch01:sec:matter"},
+        {"id":"p08","object_type":"paragraph","source_locator":"页尾：定域动量、波矢、能量频率、色散关系、傅里叶分解","description":"自由场平面波模式及复杂场的分解","target_id":"r2ch01:sec:matter","notes":"保留波矢频率与色散关系；避免断言所有场没有质量或非线性相互作用仍可按独立模式演化"},
+        {"id":"fig02","object_type":"figure","source_number":"图1.2","source_locator":"左下复合图：矢量圆偏振、张量组合、引力波和两行质点环","description":"电磁波与引力波的偏振结构，含原图全部三个子主题","target_id":"r2ch01:fig:002","notes":"编号图整体映射；子图另列以防只保留场线而丢偏振构造"},
+        {"id":"fig02a","object_type":"figure_component","source_number":"图1.2/上部","source_locator":"EM vector waves λ=±1，EM tensor waves λ=±2,0，GW λ=±2","description":"圆偏振矢量及其张量积构造","target_id":"r2ch01:fig:002","notes":"新版(b)保留所有同号和异号组合、±1/±2/0；正文说明是形式关系并非两束光组成引力波"},
+        {"id":"fig02b","object_type":"figure_component","source_number":"图1.2/下部","source_locator":"0、T/4、T/2、3T/4、T五相位，两行质点环","description":"加号及叉号偏振导致的质点环形变","target_id":"r2ch01:fig:002","notes":"新版(c)两行五相位全部重建，虚线圆和实际点位置参与正文解释"}
+      ]
+    }
+  ]
+}

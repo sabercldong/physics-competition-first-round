@@ -1,0 +1,245 @@
+% All annotations have transparent backgrounds so labels never mask curves.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.55pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.4pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.3pt},
+  xesline/.style={draw=Ink,line width=.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1pt},
+  xesarrow/.style={-{Latex[length=2.1mm,width=1.3mm]},draw=DeepBlue,line width=.9pt},
+  fieldline/.style={draw=DeepBlue,line width=.82pt,postaction={decorate},
+    decoration={markings,mark=at position .58 with {\arrow{Latex[length=1.65mm,width=1.05mm]}}}},
+  eqline/.style={draw=RuleGray,line width=.66pt,densely dashed}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{.3em}
+}
+
+\newcommand{\conductorFieldFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/conductor-pair.pdf}
+\end{center}}
+
+
+\newcommand{\inductionSequenceFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \x/\tag in {0/(a),2.7/(b),5.4/(c),8.1/(d),10.8/(e)}{
+    \begin{scope}[shift={(\x,0)}]
+      \fill[DeepBlue!6] (0,0) circle (.67);\draw[xesblue] (0,0) circle (.67);
+      \node[xestiny] at (0,-1.0) {\tag};
+    \end{scope}}
+  % (a) neutral
+  \foreach \a in {0,60,...,300}{\node[xestiny,text=DeepBlue] at (\a:.48) {$+$};\node[xestiny,text=Ink] at (\a+30:.35) {$-$};}
+  % negative rod and polarized spheres in b--d
+  \foreach \x in {2.7,5.4,8.1}{
+    \fill[Ink!15,rounded corners=2pt] (\x-1.35,-.18) rectangle (\x-.82,.18);
+    \draw[Ink,line width=.65pt,rounded corners=2pt] (\x-1.35,-.18) rectangle (\x-.82,.18);
+    \foreach \dx in {-1.24,-1.08,-.92}{\node[xestiny,text=Ink] at (\x+\dx,0) {$-$};}
+    \foreach \a in {125,155,185,215}{\node[xestiny,text=DeepBlue] at ($(\x,0)+(\a:.52)$) {$+$};}}
+  \foreach \a in {-55,-20,20,55}{\node[xestiny,text=Ink] at ($(2.7,0)+(\a:.52)$) {$-$};}
+  % ground lead in c
+  \draw[xesline] (5.92,-.32)--(6.35,-.32)--(6.35,-.62);
+  \draw[xesline] (6.08,-.62)--(6.62,-.62) (6.17,-.73)--(6.53,-.73) (6.27,-.84)--(6.43,-.84);
+  % (e) retained positive charge redistributes
+  \foreach \a in {0,45,...,315}{\node[xestiny,text=DeepBlue] at ($(10.8,0)+(\a:.51)$) {$+$};}
+  \node[xessmall,align=center] at (5.4,-1.42) {靠近负电体 $\rightarrow$ 接地 $\rightarrow$ 先断地线 $\rightarrow$ 移走负电体};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\faradayCageFigure}{%
+\begin{center}
+  \includegraphics[width=.78\linewidth]{faraday-cage-built-in-v2.png}
+
+  \vspace{.25em}
+  {\footnotesize\color{TextGray}
+    紫白色放电只接触金属网笼外表面；笼内人员所在区域没有放电通道。}
+\end{center}}
+
+\newcommand{\discretePotentialFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.95cm,y=1cm]
+  \draw[xesline,-{Latex[length=1.8mm]}] (-.4,0)--(11.8,0) node[xeslabel,below left] {$x$};
+  \fill[DeepBlue!24] (0,-.16) rectangle (10.5,.16);
+  \foreach \i in {0,...,10}{\fill[DeepBlue] (\i*1.05,0) circle (2.1pt);}
+  \node[xeslabel,below=6pt] at (0,0) {$A$};\node[xeslabel,below=6pt] at (10.5,0) {$B$};
+  \foreach \i/\lab in {0/0,1/1,2/2,4/{n-1},5/n,6/{n+1},8/{N-2},9/{N-1},10/N}{
+    \node[xestiny,above=5pt] at (\i*1.05,0) {$\varphi_{\lab}$};}
+  \draw[<->,Gold!85,line width=.7pt] (5.25,-.45)--(6.3,-.45);
+  \node[xestiny,text=Gold!80!black] at (5.78,-.68) {$a$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\groundedSphereImageFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/grounded-sphere.pdf}
+\end{center}}
+
+
+\newcommand{\ionosphereFigure}{%
+\begin{center}
+  \includegraphics[width=.82\linewidth]{ionosphere-communication-built-in-v2.png}
+
+  \vspace{.25em}
+  \begin{tikzpicture}[baseline=-.55ex]
+    \draw[orange!88!black,line width=1.25pt,-{Latex[length=1.8mm]}] (0,0)--(1.25,0);
+    \node[xessmall,anchor=west] at (1.4,0) {$\omega<\omega_p$：在电离层返回地面};
+    \draw[cyan!70!DeepBlue,line width=1.25pt,-{Latex[length=1.8mm]}] (6.0,0)--(7.25,0);
+    \node[xessmall,anchor=west] at (7.4,0) {$\omega>\omega_p$：穿透电离层到达卫星};
+  \end{tikzpicture}
+\end{center}}
+
+\newcommand{\plasmaSlabFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!8] (0,0) rectangle (9.2,3.5);\draw[xesblue] (0,0) rectangle (9.2,3.5);
+  \fill[DeepBlue!30] (0,0) rectangle (.65,3.5);
+  \fill[Gold!25] (8.55,0) rectangle (9.2,3.5);
+  \foreach \x in {1.0,1.7,...,8.2}{\foreach \y in {.55,1.25,1.95,2.65}{\node[xestiny,text=RuleGray] at (\x,\y) {$+$};}}
+  \node[xessmall,text=Ink] at (.33,1.75) {$-\sigma$};
+  \node[xessmall,text=Ink] at (8.88,1.75) {$+\sigma$};
+  \foreach \y in {.65,1.35,2.05,2.75}{\draw[xesarrow] (8.3,\y)--(.9,\y);}
+  \node[xeslabel] at (4.6,-.55) {$\boldsymbol E'=-\dfrac{nq}{\varepsilon_0}x\,\hat{\boldsymbol x}$};
+  \draw[<->,Gold!80,line width=.65pt] (8.55,3.83)--(9.2,3.83);\node[xestiny,text=Gold!80!black] at (8.88,4.05) {$x$};
+  \node[xessmall,anchor=west] at (9.55,2.55) {载流子整体右移};
+  \node[xessmall,anchor=west] at (9.55,1.78) {$\boldsymbol E'$ 指向左};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\twoConductorPatchFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!7] (-2,0) circle (1.1);\draw[xesblue] (-2,0) circle (1.1);
+  \fill[DeepBlue!7] (2,0) circle (.85);\draw[xesblue] (2,0) circle (.85);
+  \foreach \a in {110,145,180,215,250}{\node[xestiny,text=DeepBlue] at ($(-2,0)+(\a:.92)$) {$+$};}
+  \foreach \a in {-55,-20,20,55}{\node[xestiny,text=DeepBlue] at ($(-2,0)+(\a:.92)$) {$+$};}
+  \foreach \a in {135,165,195,225}{\node[xestiny,text=Ink] at ($(2,0)+(\a:.68)$) {$-$};}
+  \foreach \a in {-48,-16,16,48}{\node[xestiny,text=DeepBlue] at ($(2,0)+(\a:.68)$) {$+$};}
+  \draw[RuleGray,-{Latex[length=1.55mm]},line width=.6pt] (.82,.35)--(.25,.35);
+  \node[xessmall,anchor=south] at (.53,.42) {感应增强};
+  \node[xessmall] at (-2,-1.48) {$A:+Q$，表面电荷保持同号};
+  \node[xessmall] at (2,-1.48) {$B:-q$，远侧可能出现正斑块};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargedIsolatedSphereImageFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!7] (0,0) circle (1.45);\draw[xesblue] (0,0) circle (1.45);
+  \fill[Ink] (4.0,0) circle (5pt);\node[xeslabel,above=5pt] at (4,0) {$+q$};
+  \fill[Ink] ({1.45*1.45/4},0) circle (4.5pt);
+  \fill[DeepBlue] (0,0) circle (4.5pt);
+  \node[xessmall,anchor=east] at (-1.72,-.68) {$q_0=q+qR/a$};
+  \draw[RuleGray,-{Latex[length=1.45mm]},line width=.5pt] (-1.62,-.62)--(-.12,-.08);
+  \node[xessmall,anchor=west,align=left] at (1.45,.76) {$q'=-qR/a$\\$b=R^2/a$};
+  \draw[RuleGray,-{Latex[length=1.45mm]},line width=.5pt] (1.35,.68)--(.64,.1);
+  \draw[<->,Gold!80,line width=.65pt] (0,-1.78)--(4,-1.78);\node[xestiny,text=Gold!80!black] at (2,-2.03) {$a$};
+  \draw[-{Latex[length=1.7mm]},DeepBlue,line width=.8pt] (3.85,.4)--(3.1,.4);\node[xessmall,above] at (3.48,.43) {吸引};
+  \draw[-{Latex[length=1.7mm]},Gold!80!black,line width=.8pt] (4.15,-.4)--(4.85,-.4);\node[xessmall,below] at (4.5,-.43) {斥力};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cavityImageFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.15pt] (0,0) circle (1.75);
+  \fill[Ink] (-.78,0) circle (5pt);\node[xeslabel,below=5pt] at (-.78,0) {$-q$};
+  \fill[DeepBlue] ({-1.75*1.75/.78},0) circle (5pt);\node[xeslabel,below=5pt] at ({-1.75*1.75/.78},0) {$+qR/d$};
+  \fill[Ink] (0,0) circle (1.6pt);\node[xessmall,below=4pt] at (0,0) {$O$};
+  \draw[<->,Gold!80,line width=.65pt] (-.78,.45)--(0,.45);\node[xestiny,text=Gold!80!black] at (-.39,.67) {$d$};
+  \draw[<->,Gold!80,line width=.65pt] ({-1.75*1.75/.78},-.55)--(0,-.55);\node[xestiny,text=Gold!80!black] at (-1.97,-.78) {$R^2/d$};
+  \draw[xesline] (1.75,0)--(2.35,0)--(2.35,-.55);
+  \draw[xesline] (2.08,-.55)--(2.62,-.55) (2.17,-.68)--(2.53,-.68) (2.27,-.81)--(2.43,-.81);
+  \node[xessmall,align=left,anchor=west] at (3.25,.48) {像电荷在球外，\\只用于球腔内部};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\cornerImagesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!5] (0,0) rectangle (4.8,4.0);
+  \draw[xesblue,line width=1.2pt] (-4.8,0)--(4.8,0) (0,-4.0)--(0,4.0);
+  \fill[DeepBlue] (2.3,1.65) circle (5pt);\node[xeslabel,above right] at (2.3,1.65) {$+q$};
+  \fill[Ink] (-2.3,1.65) circle (5pt);\node[xeslabel,above left] at (-2.3,1.65) {$-q$};
+  \fill[Ink] (2.3,-1.65) circle (5pt);\node[xeslabel,below right] at (2.3,-1.65) {$-q$};
+  \fill[DeepBlue] (-2.3,-1.65) circle (5pt);\node[xeslabel,below left] at (-2.3,-1.65) {$+q$};
+  \draw[RuleGray,densely dashed] (2.3,1.65)--(-2.3,1.65) (2.3,1.65)--(2.3,-1.65);
+  \draw[<->,Gold!80,line width=.6pt] (0,2.55)--(2.3,2.55);\node[xestiny,text=Gold!80!black] at (1.15,2.78) {$a$};
+  \draw[<->,Gold!80,line width=.6pt] (3.15,0)--(3.15,1.65);\node[xestiny,text=Gold!80!black] at (3.38,.83) {$b$};
+  \node[xessmall,anchor=west] at (5.35,2.25) {第一象限为真实区域};
+  \node[xessmall,anchor=west] at (5.35,1.48) {每跨过一块接地板，像电荷变号};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\hemisphereImagesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.1pt] (-5,0)--(-1.45,0) (1.45,0)--(5,0);
+  \draw[xesblue,line width=1.1pt] (-1.45,0) arc[start angle=180,end angle=0,radius=1.45];
+  \fill[DeepBlue] (0,3.25) circle (5pt);\node[xeslabel,above=4pt] at (0,3.25) {$+q$};
+  \fill[Ink] (0,-3.25) circle (4.5pt);\node[xeslabel,below=4pt] at (0,-3.25) {$-q$};
+  \fill[Ink] (0,{1.45*1.45/3.25}) circle (4.5pt);\node[xeslabel,right=5pt] at (0,{1.45*1.45/3.25}) {$-qR/a$};
+  \fill[DeepBlue] (0,{-1.45*1.45/3.25}) circle (4.5pt);\node[xeslabel,right=5pt] at (0,{-1.45*1.45/3.25}) {$+qR/a$};
+  \draw[<->,Gold!80,line width=.6pt] (-.42,0)--(-.42,3.25);\node[xestiny,text=Gold!80!black] at (-.68,1.63) {$a$};
+  \node[xessmall,anchor=west] at (5.55,1.35) {四电荷同时使平面与半球面电势为零};
+  \node[xessmall,anchor=west] at (5.55,.55) {三个像电荷均位于真实区域之外};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\planeEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.2,0)}]
+    \draw[xesblue,line width=1.05pt] (-2.15,0)--(2.15,0);
+    \foreach \x in {-2.0,-1.5,...,2.0}{\draw[RuleGray,line width=.4pt] (\x,0)--(\x-.18,-.22);}
+    \draw[xesarrow] (0,1.05)--(0,2.18);
+    \draw[DeepBlue,line width=.65pt,densely dashed,-{Latex[length=1.55mm]}] (0,-1.05)--(0,-2.18);
+    \draw[DeepBlue,line width=.7pt] (0,1.0) circle (4.2pt);\node[xestiny,anchor=west] at (.15,1.0) {$a$};
+    \fill[DeepBlue] (0,2.3) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,2.3) {$+q$};
+    \draw[Ink,line width=.7pt] (0,-1.0) circle (4.2pt);\node[xestiny,anchor=west] at (.15,-1.0) {$-a$};
+    \fill[Ink] (0,-2.3) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,-2.3) {$-q$（像）};
+    \node[xessmall,align=center] at (0,3.0) {缓慢移动\\真实电荷与感应分布同步调整};
+  \end{scope}
+  \begin{scope}[shift={(3.55,0)}]
+    \draw[xesblue,line width=1.05pt] (-2.15,0)--(2.15,0);
+    \foreach \x in {-2.0,-1.5,...,2.0}{\draw[RuleGray,line width=.4pt] (\x,0)--(\x-.18,-.22);}
+    \draw[xesarrow] (0,1.05)--(0,2.18);
+    \draw[DeepBlue,line width=.7pt] (0,1.0) circle (4.2pt);\node[xestiny,anchor=west] at (.15,1.0) {$a$};
+    \fill[DeepBlue] (0,2.3) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,2.3) {$+q$};
+    \fill[Ink] (0,-1.0) circle (4.5pt);\node[xeslabel,anchor=west] at (.15,-1.0) {$-q$（初始像）};
+    \node[xessmall,align=center] at (0,3.0) {瞬时移动\\初始感应分布暂时不变};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\uniformFieldSphereFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/uniform-sphere.pdf}
+\end{center}}
+
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emCornerQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!5] (0,0) rectangle (4.8,4.0);
+  \draw[xesblue,line width=1.2pt] (0,0)--(4.8,0) (0,0)--(0,4.0);
+  \fill[DeepBlue] (2.3,1.65) circle (5pt);\node[xeslabel,above right] at (2.3,1.65) {$+q$};
+  \draw[<->,Gold!80,line width=.6pt] (0,2.55)--(2.3,2.55);\node[xestiny,text=Gold!80!black] at (1.15,2.78) {$a$};
+  \draw[<->,Gold!80,line width=.6pt] (3.15,0)--(3.15,1.65);\node[xestiny,text=Gold!80!black] at (3.38,.83) {$b$};
+\end{tikzpicture}
+\end{center}}
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emHemisphereQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.1pt] (-5,0)--(-1.45,0) (1.45,0)--(5,0);
+  \draw[xesblue,line width=1.1pt] (-1.45,0) arc[start angle=180,end angle=0,radius=1.45];
+  \draw[xesline] (0,0)--(35:1.45) node[midway,below right]{$R$};
+  \fill[DeepBlue] (0,3.25) circle (5pt);\node[xeslabel,above=4pt] at (0,3.25) {$+q$};
+  \draw[<->,Gold!80,line width=.6pt] (-.42,0)--(-.42,3.25);\node[xestiny,text=Gold!80!black] at (-.68,1.63) {$a$};
+\end{tikzpicture}
+\end{center}}

@@ -1,0 +1,101 @@
+% Source figure 4.11, physical page 93: twenty groups, thirty panels.
+% Arrows are qualitative normal-pattern directions, not computed amplitudes.
+\newcommand{\chTenMolecule}[4]{%
+\begin{tikzpicture}[scale=.55,>=Latex]
+\foreach \j in {0,...,5}{\draw[TextGray]({60*\j}:1)--({60*(\j+1)}:1);\draw[TextGray]({60*\j}:1)--({60*\j}:1.7);}
+\foreach \j in {0,...,5}{\draw[DeepBlue,thick]({60*\j}:1)circle(.10);\draw[TextGray]({60*\j}:1.7)circle(.075);}
+\ifnum#1=0
+ \foreach \v[count=\j from 0] in {#2}{\ifnum\v=0\else
+ \node[font=\tiny,inner sep=0,fill=none]at({60*\j}:1){\ifnum\v>0$\cdot$\else$\times$\fi};\fi}
+ \foreach \v[count=\j from 0] in {#3}{\ifnum\v=0\else
+ \node[font=\tiny,inner sep=0,fill=none]at({60*\j}:1.7){\ifnum\v>0$\cdot$\else$\times$\fi};\fi}
+\else
+ \foreach \ang/\mag[count=\j from 0] in {#2}{\ifdim\mag pt=0pt\else\draw[DeepBlue,-{Latex[length=.8mm]},line width=.45pt]({60*\j}:1)++(\ang:.12)--++(\ang:{.45*max(.6,\mag)});\fi}
+ \foreach \ang/\mag[count=\j from 0] in {#3}{\ifdim\mag pt=0pt\else\draw[DeepBlue,-{Latex[length=.8mm]},line width=.45pt]({60*\j}:1.7)++(\ang:.09)--++(\ang:{.42*max(.6,\mag)});\fi}
+\fi
+\path[use as bounding box](-2.5,-2.4)rectangle(2.5,2.4);
+\end{tikzpicture}%
+}
+\newcommand{\chTenModeGroup}[2]{\begin{minipage}[t]{.47\linewidth}\centering #2\par\smallskip{\small #1}\end{minipage}}
+\newcommand{\chTenZeroVectors}{0/0,0/0,0/0,0/0,0/0,0/0}
+\begin{chTenFigure}
+\chTenModeGroup{$395\,\mathrm{cm^{-1}}\ (E_{2u})$}{
+\chTenMolecule{0}{-1,1,1,-1,1,1}{-1,1,1,-1,1,1}{}
+\chTenMolecule{0}{1,1,-1,1,1,-1}{1,1,-1,1,1,-1}{}}
+\hfill
+\chTenModeGroup{$599\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/1,240/.6,300/.6,180/1,60/.6,120/.6}{0/1,240/.6,300/.6,180/1,60/.6,120/.6}{}
+\chTenMolecule{1}{0/0,60/1,300/1,0/0,240/1,120/1}{0/0,90/1,270/1,0/0,270/1,90/1}{}}
+\par\medskip
+\chTenModeGroup{$677\,\mathrm{cm^{-1}}\ (A_{2u})$}{
+\chTenMolecule{0}{1,1,1,1,1,1}{-1,-1,-1,-1,-1,-1}{}}
+\hfill
+\chTenModeGroup{$700\,\mathrm{cm^{-1}}\ (B_{2g})$}{
+\chTenMolecule{0}{1,-1,1,-1,1,-1}{1,-1,1,-1,1,-1}{}}
+\par\medskip
+\chTenModeGroup{$838\,\mathrm{cm^{-1}}\ (E_{1g})$}{
+\chTenMolecule{0}{-1,-1,-1,1,1,1}{1,1,1,-1,-1,-1}{}
+\chTenMolecule{0}{1,1,-1,-1,-1,1}{-1,-1,1,1,1,-1}{}}
+\figcap{苯分子振型（一）：五组、八个独立模式。离面模式用圆内点、叉标示；未标箭头的方向不表示该原子永远静止。}\label{ch10:fig:benzene-modes-a}
+\end{chTenFigure}
+
+\begin{chTenFigure}
+\chTenModeGroup{$954\,\mathrm{cm^{-1}}\ (E_{2u})$}{
+\chTenMolecule{0}{-1,1,-1,-1,1,-1}{1,-1,1,1,-1,1}{}
+\chTenMolecule{0}{-1,1,1,-1,1,1}{1,-1,-1,1,-1,-1}{}}
+\hfill
+\chTenModeGroup{$981\,\mathrm{cm^{-1}}\ (B_{2g})$}{
+\chTenMolecule{0}{1,-1,1,-1,1,-1}{-1,1,-1,1,-1,1}{}}
+\par\medskip
+\chTenModeGroup{$994\,\mathrm{cm^{-1}}\ (B_{2u})$}{
+\chTenMolecule{1}{0/1,240/1,120/1,0/1,240/1,120/1}{0/1,240/1,120/1,0/1,240/1,120/1}{}}
+\hfill
+\chTenModeGroup{$1014\,\mathrm{cm^{-1}}\ (A_{1g})$}{
+\chTenMolecule{1}{180/1,240/1,300/1,0/1,60/1,120/1}{180/.6,240/.6,300/.6,0/.6,60/.6,120/.6}{}}
+\par\medskip
+\chTenModeGroup{$1048\,\mathrm{cm^{-1}}\ (E_{1u})$}{
+\chTenMolecule{1}{0/.7,0/0,0/0,0/.7,0/0,0/0}{180/1,315/1,45/1,180/1,315/1,45/1}{}
+\chTenMolecule{1}{0/0,240/.6,300/.6,0/0,240/.6,300/.6}{90/1,180/1,0/1,90/1,180/1,0/1}{}}
+\hfill
+\chTenModeGroup{$1137\,\mathrm{cm^{-1}}\ (B_{1u})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{90/1,330/1,210/1,90/1,330/1,210/1}{}}
+\figcap{苯分子振型（二）：六组、八个独立模式。不同基频的同名对称类型仍是不同模。}\label{ch10:fig:benzene-modes-b}
+\end{chTenFigure}
+
+\begin{chTenFigure}
+\chTenModeGroup{$1162\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/0,330/1,210/1,0/0,150/1,30/1}{}
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{270/1,150/1,150/1,90/1,330/1,330/1}{}}
+\hfill
+\chTenModeGroup{$1332\,\mathrm{cm^{-1}}\ (A_{2g})$}{
+\chTenMolecule{1}{270/.12,330/.12,30/.12,90/.12,150/.12,210/.12}{90/1,150/1,210/1,270/1,330/1,30/1}{}}
+\par\medskip
+\chTenModeGroup{$1376\,\mathrm{cm^{-1}}\ (B_{1u})$}{
+\chTenMolecule{1}{90/1,330/1,210/1,90/1,330/1,210/1}{0/0,0/0,0/0,0/0,0/0,0/0}{}}
+\hfill
+\chTenModeGroup{$1477\,\mathrm{cm^{-1}}\ (E_{1u})$}{
+\chTenMolecule{1}{180/.4,180/1,0/1,180/.4,180/1,0/1}{180/1,315/1,45/1,180/1,315/1,45/1}{}
+\chTenMolecule{1}{270/1,0/0,0/0,270/1,0/0,0/0}{90/1,0/0,0/0,90/1,0/0,0/0}{}}
+\par\medskip
+\chTenModeGroup{$1612\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/1,240/1,300/1,180/1,60/1,120/1}{270/1,0/0,180/1,90/1,0/0,0/1}{}
+\chTenMolecule{1}{0/0,180/1,0/1,0/0,0/1,180/1}{0/0,150/1,30/1,0/0,330/1,210/1}{}}
+\figcap{苯分子振型（三）：五组、八个独立模式。此组以平面内弯曲和环骨架形变为主。}\label{ch10:fig:benzene-modes-c}
+\end{chTenFigure}
+
+\begin{chTenFigure}
+\chTenModeGroup{$3080\,\mathrm{cm^{-1}}\ (B_{2u})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,240/1,120/1,0/1,240/1,120/1}{}}
+\hfill
+\chTenModeGroup{$3092\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/0,240/1,120/1,0/0,60/1,300/1}{}
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,240/.6,300/.6,180/1,60/.6,120/.6}{}}
+\par\medskip
+\chTenModeGroup{$3110\,\mathrm{cm^{-1}}\ (E_{1u})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/0,240/1,300/1,0/0,240/1,300/1}{}
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,0/0,0/0,0/1,0/0,0/0}{}}
+\hfill
+\chTenModeGroup{$3121\,\mathrm{cm^{-1}}\ (A_{1g})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,60/1,120/1,180/1,240/1,300/1}{}}
+\figcap{苯分子振型（四）：四组、六个独立模式，以碳氢键伸缩为主。四张图合计20组、30个模式；未画出的很小位移不可据此当成精确零。}\label{ch10:fig:benzene-modes-d}
+\end{chTenFigure}

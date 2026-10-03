@@ -1,0 +1,243 @@
+\usepackage[a4paper,top=20mm,bottom=22mm,left=19mm,right=19mm,headheight=25pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{siunitx}
+\usepackage{booktabs,tabularx,array,multicol,longtable}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,angles,quotes,patterns,patterns.meta,
+  decorations.pathmorphing,decorations.markings,intersections,shapes.geometric,
+  backgrounds,3d,fit,spy}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{xparse}
+
+\definecolor{Ink}{HTML}{202326}
+\definecolor{DeepBlue}{HTML}{294E69}
+\definecolor{Blue}{HTML}{47687D}
+\definecolor{PaleBlue}{HTML}{F3F5F6}
+\definecolor{Gold}{HTML}{6E777D}
+\definecolor{PaleGold}{HTML}{F6F6F5}
+\definecolor{RuleGray}{HTML}{D3D7DA}
+\definecolor{TextGray}{HTML}{61686D}
+\definecolor{SoftGray}{HTML}{F6F6F6}
+\color{Ink}
+
+\sisetup{per-mode=symbol,inter-unit-product=\ensuremath{{}\cdot{}},exponent-product=\times}
+\hypersetup{
+  colorlinks=true,linkcolor=DeepBlue,urlcolor=Blue,
+  bookmarksdepth=2,
+  pdftitle={高中物理竞赛一轮讲义},
+  pdfsubject={数学工具、力学、热学、电磁学、光学与近代物理的一轮竞赛讲义},
+  pdfauthor={物理竞赛一轮资料编写组}
+}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.18em}
+\setlist{nosep,leftmargin=2em}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{1}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+
+\ctexset{
+  chapter={format=\raggedright\LARGE\bfseries\color{Ink},beforeskip=0pt,afterskip=18pt},
+  section={format=\Large\bfseries\color{DeepBlue},beforeskip=1.8ex,afterskip=1.0ex},
+  subsection={format=\large\bfseries\color{Ink},beforeskip=1.5ex,afterskip=0.8ex},
+  subsubsection={format=\normalsize\bfseries\color{Ink}}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{TextGray}高中物理竞赛一轮讲义}
+\fancyhead[R]{\small\color{TextGray}\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\color{TextGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{RuleGray}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\dd}{\mathop{}\!\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\uvec}[1]{\hat{\vect{#1}}}
+\newcommand{\dimens}[1]{\operatorname{dim}\!\left(#1\right)}
+\newcommand{\order}[1]{\mathcal O\!\left(#1\right)}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\sinc}{sinc}
+
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\makeatletter
+\@addtoreset{equation}{chapter}
+\@addtoreset{figure}{chapter}
+\@addtoreset{table}{chapter}
+\makeatother
+
+\newcounter{bookexample}[chapter]
+\renewcommand{\thebookexample}{\thechapter.\arabic{bookexample}}
+\NewDocumentEnvironment{origexamplebox}{m}{%
+  \refstepcounter{bookexample}%
+  \begin{tcolorbox}[
+    enhanced,breakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={例~\thebookexample\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.4pt}{0pt}{DeepBlue}]
+}{\end{tcolorbox}}
+
+\NewDocumentEnvironment{xesolution}{+b}{%
+  \par\smallskip\begingroup\small\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+
+\NewDocumentEnvironment{thinkanswer}{+b}{%
+  \par\smallskip\begingroup\small\noindent
+  {\bfseries\color{DeepBlue}思考辨析}\quad #1\par\endgroup\smallskip
+}{}
+
+% Used when a long worked solution is split by a page or a figure.  The
+% continuation deliberately carries no second heading, so that it remains one
+% answer both typographically and semantically.
+\NewDocumentEnvironment{solutioncontinuation}{+b}{%
+  \par\begingroup\small #1\par\endgroup\smallskip
+}{}
+
+% Numbering and restrained boxes for the independent advanced-reading volume.
+% Advanced units deliberately do not consume the 32-chapter counter: their
+% public identifiers are A1.1, A2.1, ... and remain stable whether a unit is
+% compiled by itself or appended to the complete book.
+\newcounter{advunit}
+\newcounter{advexample}[advunit]
+\newcounter{advdefinition}[advunit]
+\newcounter{advtheorem}[advunit]
+\renewcommand{\theadvexample}{A\arabic{advunit}.\arabic{advexample}}
+\renewcommand{\theadvdefinition}{A\arabic{advunit}.\arabic{advdefinition}}
+\renewcommand{\theadvtheorem}{A\arabic{advunit}.\arabic{advtheorem}}
+
+\NewDocumentCommand{\AdvancedUnit}{m m}{%
+  \clearpage
+  \setcounter{advunit}{#1}%
+  \setcounter{advexample}{0}%
+  \setcounter{advdefinition}{0}%
+  \setcounter{advtheorem}{0}%
+  \setcounter{equation}{0}%
+  \setcounter{figure}{0}%
+  \setcounter{table}{0}%
+  \setcounter{section}{0}%
+  \setcounter{subsection}{0}%
+  \renewcommand{\thesection}{A\arabic{advunit}.\arabic{section}}%
+  \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}%
+  \renewcommand{\theequation}{A\arabic{advunit}.\arabic{equation}}%
+  \renewcommand{\thefigure}{A\arabic{advunit}.\arabic{figure}}%
+  \renewcommand{\thetable}{A\arabic{advunit}.\arabic{table}}%
+  % Hyperref destinations must remain unique after the appendix and after
+  % each advanced unit resets its visible section/figure counters.
+  \renewcommand{\theHsection}{advA#1.section.\arabic{section}}%
+  \renewcommand{\theHsubsection}{advA#1.section.\arabic{section}.\arabic{subsection}}%
+  \renewcommand{\theHequation}{advA#1.equation.\arabic{equation}}%
+  \renewcommand{\theHfigure}{advA#1.figure.\arabic{figure}}%
+  \renewcommand{\theHtable}{advA#1.table.\arabic{table}}%
+  \chapter*{\texorpdfstring{A#1\quad #2}{A#1 #2}}%
+  \markboth{A#1\quad #2}{A#1\quad #2}%
+  \addcontentsline{toc}{chapter}{\texorpdfstring{A#1\quad #2}{A#1 #2}}%
+}
+
+\NewDocumentEnvironment{advexamplebox}{m}{%
+  \refstepcounter{advexample}%
+  \begin{tcolorbox}[
+    enhanced,breakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={例~\theadvexample\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.4pt}{0pt}{DeepBlue}]
+}{\end{tcolorbox}}
+
+\NewDocumentEnvironment{advsolution}{+b}{%
+  \par\smallskip\begingroup\small\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+
+\NewDocumentEnvironment{advdefinition}{m +b}{%
+  \refstepcounter{advdefinition}%
+  \begin{tcolorbox}[
+    enhanced,breakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={定义~\theadvdefinition\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleGold,borderline west={1.2pt}{0pt}{Gold}]
+  #2
+  \end{tcolorbox}
+}{}
+
+\NewDocumentEnvironment{advtheorem}{m +b}{%
+  \refstepcounter{advtheorem}%
+  \begin{tcolorbox}[
+    enhanced,breakable,colback=white,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+    title={定理~\theadvtheorem\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.2pt}{0pt}{DeepBlue}]
+  #2
+  \end{tcolorbox}
+}{}
+
+\newtcolorbox{starread}[1]{
+  enhanced,breakable,colback=PaleGold,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+  title={选读：#1},fonttitle=\bfseries,coltitle=Ink,colbacktitle=PaleGold,
+  borderline west={1.2pt}{0pt}{Gold}}
+
+\newtcolorbox{methodbox}[1]{
+  enhanced,breakable,colback=PaleBlue,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+  title={方法：#1},fonttitle=\bfseries,coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.2pt}{0pt}{DeepBlue}}
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,colback=SoftGray,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+  title={易错提醒：#1},fonttitle=\bfseries,coltitle=Ink,colbacktitle=SoftGray,
+  borderline west={1.2pt}{0pt}{TextGray}}
+\newtcolorbox{extensionbox}[1]{
+  enhanced,breakable,colback=PaleGold,colframe=RuleGray,boxrule=0.5pt,arc=0mm,
+  title={拓展：#1},fonttitle=\bfseries,coltitle=Ink,colbacktitle=PaleGold,
+  borderline west={1.2pt}{0pt}{Gold}}
+
+\newcommand{\Needspace}[1]{%
+  \par\ifdim\dimexpr\pagegoal-\pagetotal\relax<#1\relax\newpage\fi}
+
+\newcommand{\bookcaption}[1]{%
+  \refstepcounter{figure}%
+  \par\nopagebreak[4]\smallskip
+  {\centering\small\color{TextGray}图~\thefigure：#1\par}\smallskip}
+\newcommand{\booktablecaption}[1]{%
+  \refstepcounter{table}%
+  \par\nopagebreak[4]\smallskip
+  {\centering\small\color{TextGray}表~\thetable：#1\par}\smallskip}
+\newcommand{\diagramcaption}[1]{\bookcaption{#1}}
+\newcommand{\figcap}[1]{\bookcaption{#1}}
+\newcommand{\origcaption}[1]{\bookcaption{#1}}
+\newcommand{\historyfigure}[3][0.9\linewidth]{%
+  \begin{center}\begin{minipage}{#1}\centering
+  \includegraphics[width=\linewidth]{#2}\par\smallskip
+  \bookcaption{#3}
+  \end{minipage}\end{center}}
+\newcommand{\sourceimage}[3][0.9\linewidth]{\historyfigure[#1]{#2}{#3}}
+\newcommand{\redrawimage}[2][0.72\linewidth]{%
+  \begin{center}\includegraphics[width=#1]{#2}\end{center}}
+\newcommand{\unitheading}[2]{}
+\newcommand{\examplesource}[1]{}
+
+\tikzset{
+  every node/.append style={fill=none,inner sep=1.2pt},
+  clearlabel/.style={fill=none,inner sep=1pt,text=Ink},
+  point/.style={circle,fill=Ink,draw=none,inner sep=1.7pt},
+  vector/.style={-{Latex[length=2.5mm]},very thick,draw=DeepBlue},
+  component/.style={-{Latex[length=2.2mm]},thick,draw=TextGray},
+  axis/.style={-{Latex[length=2mm]},thin,draw=TextGray},
+  guide/.style={densely dashed,draw=TextGray},
+  curve/.style={very thick,draw=DeepBlue},
+  ground/.style={very thick,draw=Ink},
+  spring/.style={decorate,decoration={zigzag,segment length=4pt,amplitude=2pt},thick,draw=DeepBlue},
+  tangent/.style={thick,draw=TextGray},
+  secant/.style={thick,draw=DeepBlue},
+  kaxis/.style={-{Latex[length=2mm]},thin,draw=TextGray},
+  kcurve/.style={very thick,draw=DeepBlue},
+  kguide/.style={densely dashed,draw=TextGray}
+}

@@ -1,0 +1,729 @@
+上一讲从单个带电粒子的 Lorentz 力出发研究轨道；本讲把许多载流子的受力合并起来，得到通电
+导线的 Ampere 力，再反过来研究稳恒电流怎样产生磁场。两条主线分别回答“磁场怎样作用于电流”
+和“电流怎样产生磁场”，最终由磁矩、Ampere 环路定律与 Biot--Savart 定律连接起来。
+
+需要特别提醒，这个讲授顺序并不是历史发现顺序。实验上，人们先看到的是通电导线在磁场中受力，
+以及电流会在周围产生磁场；Lorentz 力则是在后来用带电粒子的微观运动解释电流与磁场现象时逐渐形成
+的。现在先学过单个粒子的受力，再把大量载流子的力相加，能够直接看见 Ampere 力的来源，也能避免把
+“电流元受力公式”当成毫无来由的新定律。电动机依靠的正是这种分布在整段载流导线上的力及其力矩，
+它把电能持续转化为机械能，对现代工业的意义也来自这里。
+
+磁场与静电场还有一个根本差别：迄今没有发现可以像点电荷那样单独存在的磁单极子。经典磁场的来源是
+运动电荷形成的电流以及微观粒子的磁矩；磁感线不从某个“磁荷”出发再终止于另一个磁荷，而是闭合的。
+本讲先研究普通电流的磁场，后面再借助相同的磁偶极图像理解物质磁性与粒子自旋的磁效应。
+
+从结构上看，本讲有两组容易混淆但方向相反的问题。已知外磁场，求载流导线受力，要使用
+$\dd\vect F=I\dd\vect\ell\times\vect B$；已知电流分布，求它在空间中产生的磁场，则使用 Ampere
+环路定律或 Biot--Savart 定律。前者的结果是力或力矩，后者的结果是磁感应强度。实际问题常把二者
+串联起来：先由一个回路的电流求磁场，再由该磁场求另一个回路的受力。每一步都应写清哪一部分是
+“场源”，哪一部分是“受力对象”，否则极易把同一根导线产生的自场直接代回自身受力公式而产生歧义。
+
+\subsection*{Ampere 力与载流回路的合力}
+
+设导线的载流子数密度为 $n$、电量为 $q$、平均漂移速度为 $\vect v_d$，导线截面积为 $A$。
+电流满足 $I=nqAv_d$。长度为 $\dd\ell$ 的一小段导线中有 $nA\dd\ell$ 个载流子，把它们所受的
+Lorentz 力相加，得到电流元所受 Ampere 力
+\begin{equation}
+  \boxed{\dd\vect F=I\,\dd\vect\ell\times\vect B}.
+\end{equation}
+这里 $\dd\vect\ell$ 沿约定的正电流方向。即使金属中的真实载流子是负电子，这个写法仍然成立：
+电子电量和漂移方向同时反号，乘积给出的仍是常规电流方向。
+
+这个推导还解释了为什么公式中出现的是电流 $I$ 而不是单个载流子的速度。长度元内载流子数与
+$\dd\ell$ 成正比，单个载流子的磁力与 $v_d$ 成正比；二者相乘得到 $nqAv_d\dd\ell=I\dd\ell$。
+若导线与磁场夹角为 $\alpha$，受力大小为
+\begin{equation}
+  \dd F=IB\dd\ell\sin\alpha.
+\end{equation}
+方向由 $\dd\vect\ell$ 叉乘 $\vect B$ 决定。公式给出的是磁场对整段导线中载流子及其约束作用的
+宏观合力；金属晶格通过电磁约束承受载流子传来的横向力，所以实验中移动的是整根导线，而不是只有
+电子在导线内部横向堆积。
+
+\ampereForceDiagram
+
+若长度为 $L$ 的直导线垂直于匀强磁场，合力大小为 $F=IBL$。更一般地，匀强磁场中从 $a$ 到
+$b$ 的任意弯曲导线满足
+\begin{equation}
+  \vect F=I\int_a^b\dd\vect\ell\times\vect B
+  =I\vect L_{ab}\times\vect B,
+  \qquad \vect L_{ab}=\vect r_b-\vect r_a.
+\end{equation}
+因此，导线的弯曲细节不影响合力；完全置于匀强磁场中的闭合回路因为
+$\oint\dd\vect\ell=\vect 0$，合力为零。不过力分布并不为零，回路仍可能受到拉伸、压缩和力矩。
+
+上式之所以能把曲线积分化成端点位移，关键是 $\vect B$ 在积分范围内处处相同：
+\begin{equation}
+ I\int_a^b\dd\vect\ell\times\vect B
+ =I\left(\int_a^b\dd\vect\ell\right)\times\vect B
+ =I(\vect r_b-\vect r_a)\times\vect B.
+\end{equation}
+若磁场随位置改变，$\vect B(\vect r)$ 不能提出积分号，弯曲路径上各段受力的加权不同，合力便不再只由
+端点决定。对于闭合线框，也只有在整条回路都处于同一匀强磁场时才能直接令端点位移为零；若只有一部分
+伸入磁场，应该把“有场区内那一段”的起点和终点代入，不能因线框本身闭合就误判总力为零。
+
+“合力为零”只对完全处于匀强磁场中的闭合回路成立。Ampere 力密集地作用在各段导线上，各段力可以
+彼此抵消合力，却仍可能使柔软线圈扩张、压缩或改变形状。若磁场不均匀，闭合回路一般还会受到平移合力。
+把电流方向按右手螺旋法则对应到面积法向后，磁矩与局部磁场同向的回路趋向磁场较强处，反向的回路则
+趋向磁场较弱处。这一性质是理解顺磁、抗磁以及不均匀磁场中磁性物质受力的起点。
+
+对尺度很小、可视为点磁偶极子的线圈，不均匀场中的势能仍近似为
+$U=-\vect\mu\cdot\vect B(\vect r)$，于是平移力可写成
+\begin{equation}
+  \vect F=-\nabla U=\nabla(\vect\mu\cdot\vect B).
+\end{equation}
+若 $\vect\mu$ 已被约束为与局部磁场同向，线圈趋向 $B$ 较大的区域；若反向，则趋向较小区域。
+这里既有使磁矩转向的力矩，也有由场梯度造成的平移力。匀强场中梯度为零，所以闭合小线圈只有力矩、
+没有净平移力；非匀强场中两种效应可以同时存在。
+
+\bentWireResultDiagram
+
+\subsection*{力矩、磁矩与能量}
+
+面积为 $S$ 的平面电流环置于匀强磁场中。若 $\vect S$ 按右手螺旋法则定向，则两侧 Ampere 力
+构成力偶，力矩为
+\begin{equation}
+  \vect\tau=I\vect S\times\vect B.
+\end{equation}
+定义回路的磁偶极矩
+\begin{equation}
+  \boxed{\vect\mu=I\vect S},
+\end{equation}
+便有
+\begin{equation}
+  \boxed{\vect\tau=\vect\mu\times\vect B},
+  \qquad
+  \boxed{U=-\vect\mu\cdot\vect B}.
+\end{equation}
+$\vect\mu$ 与 $\vect B$ 同向时势能最低。普通线圈只会转到平衡位置；直流电动机利用电刷和换向器
+在每半周改变线圈中的电流方向，使电磁力矩持续沿同一转动方向做功。
+
+以矩形线框为例，与转轴平行的两边所受力大小相等、方向相反且共线，其力矩相互抵消；另外两边的力
+虽等大反向，却不共线，构成力偶。若面积法向与磁场夹角为 $\theta$，力矩大小为
+$\tau=IAB\sin\theta$。推广到任意平面回路，只要用回路包围的有向面积 $\vect S$ 代替矩形面积，
+结果不变。线框若自由转动，会使 $\vect\mu$ 转向 $\vect B$ 并停在势能最低位置。电动机要实现连续转动，
+必须在越过平衡位置后及时反转线圈电流；换向器所做的正是这一步，而电刷负责把外部直流电源持续接入
+转动的线圈。
+
+势能公式可以从力矩做功得到。设外界缓慢地把线框法向从 $\theta$ 转到
+$\theta+\dd\theta$，磁力矩对线框所做的元功为 $\dd W_B=\tau\,\dd\theta$，势能变化满足
+\begin{equation}
+  \dd U=-\dd W_B=IBS\sin\theta\,\dd\theta.
+\end{equation}
+积分得 $U=-IBS\cos\theta+C$。把 $\theta=\pi/2$ 选作零势能即有
+$U=-\vect\mu\cdot\vect B$。在 $\theta=0$ 附近，微小偏转会产生使其返回的力矩，是稳定平衡；
+$\theta=\pi$ 虽然力矩也为零，却处于势能最高点，是不稳定平衡。因而“力矩为零”本身不足以判定稳定性，
+还必须比较势能或考察微小偏转后的力矩方向。
+
+把完整回路作为基本对象还有一个理由：稳恒电流不可能在一小段导线的两端无端产生和消失，孤立电流元
+并不存在。磁矩 $\vect\mu=I\vect S$ 把回路电流与几何面积结合为一个整体量，国际单位为
+$\mathrm{A\,m^2}$。在远离回路、看不清其形状细节时，不同小回路的磁场都由这一磁矩主导，正如远处
+不同小电荷分布可由低阶多极矩描述。
+
+经典图像中，物质内部的原子电流与电子自旋都可以贡献微观磁矩。大量微观磁矩若方向杂乱，宏观磁性
+可能相互抵消；在外场或内部相互作用下出现一定程度的定向排列，材料便表现出可测的磁化。这里不讨论
+具体材料理论，但电流环的力矩、势能和远场已经提供了理解微观磁矩响应外场的基本语言。
+
+若线圈有 $N$ 匝且各匝面积、方向相同，总磁矩为 $\vect\mu=NI\vect S$，力矩和势能也同时乘以 $N$。
+对于不完全平面的闭合回路，仍可定义矢量面积
+\begin{equation}
+  \vect S=\frac12\oint\limits_C\vect r\times\dd\vect\ell,
+\end{equation}
+在匀强磁场中仍有 $\vect\tau=I\vect S\times\vect B$。这说明磁矩不是只对矩形或圆形线框才有意义；
+它把任意小闭合回路对外磁场的最低阶响应统一成同一个矢量。
+
+\loopTorqueDiagram
+
+\subsection*{Ampere 环路定律}
+
+对任意闭合曲线 $C$ 规定绕行正向，再用右手螺旋法则确定其所围表面的正法向。稳恒电流产生的
+磁场满足
+\begin{equation}
+  \boxed{\oint_C\vect B\cdot\dd\vect\ell=\mu_0 I_{\rm enc}},
+  \qquad
+  \mu_0=4\pi\times10^{-7}\,\mathrm{H/m}.
+\end{equation}
+$I_{\rm enc}$ 是穿过该表面的电流代数和：由负面穿向正面取正，反向取负。环路外的电流虽然会
+改变曲线上各点的 $\vect B$，却不改变整个环量。
+
+环路 $C$ 不一定是真实导线，它是为了积分而选取的数学闭合曲线；它所围的曲面也可有许多种形状。
+对稳恒电流而言，电流处处连续，同一边界的不同跨越面所截获的净电流相同，因此右端定义明确。选环路
+的原则不是“让它围住尽量多的电流”，而是利用对称性使 $\vect B\cdot\dd\vect\ell$ 在各段容易积分。
+若对称性不足，环路定律仍给出正确的总环量，却不能单独决定曲线上每一点的 $B$；这时必须改用
+Biot--Savart 积分或结合其他条件。
+
+闭合曲线的正向可以任意选定，但一旦选定，所跨曲面的正法向必须用右手规则与之绑定：右手四指沿环路
+正向弯曲，拇指即为正法向。从曲面负面穿向正面的电流记正，反向记负。磁场环量
+$\oint\vect B\cdot\dd\vect\ell$ 可与力沿闭合路径所做的功类比理解：它把每一点磁场在切线方向的
+分量累加起来。环路外电流对局部磁场并非没有贡献，只是对整个闭合线积分的净贡献为零；这与闭合
+Gauss 面外的电荷会改变面上电场、却不改变总电通量的结构相似。
+
+也要看清环量定律与通量定律的差别。电场 Gauss 定律在闭合曲面上积分法向分量，反映电荷造成的源汇；
+稳恒磁场的 Ampere 定律在闭合曲线上积分切向分量，反映电流造成的环流。一个是“穿出多少”，一个是
+“绕行多少”。因此不能把 $\oint\vect B\cdot\dd\vect\ell$ 误写成磁通，也不能用包围电流除以面积
+直接得到 $B$。只有当所选环路上的磁场方向和大小由对称性确定后，环量才可化成 $B$ 乘有效长度。
+
+\ampereLawDiagram
+
+环路定律最适合高对称电流分布。无限长直导线周围的磁场沿同心圆切向，故
+\begin{equation}
+  B(2\pi r)=\mu_0I,
+  \qquad
+  \boxed{B=\frac{\mu_0I}{2\pi r}}.
+\end{equation}
+对单位长度有 $n$ 匝的理想无限长密绕螺线管，取一段长为 $\ell$ 的矩形环路，得到
+\begin{equation}
+  B\ell=\mu_0(n\ell)I,
+  \qquad
+  \boxed{B_{\rm in}=\mu_0nI},
+  \qquad B_{\rm out}=0.
+\end{equation}
+有限螺线管外部并非严格无场，端部磁感线会弯回；长度远大于半径时，中部才可用上述理想结果。
+
+无限长直电流的圆柱对称性保证：同一半径圆周上 $B$ 大小相同且处处沿切线，因而环路积分才可化为
+$B(2\pi r)$。如果没有这种对称性，环路定律仍然成立，却不能仅靠它求出局部磁场。
+
+方向也可由对称性与右手规则共同确定。把右手拇指指向正电流方向，弯曲的四指给出磁场环绕方向；在
+垂直导线的平面内，磁感线是同心圆。场强随 $1/r$ 衰减而不是 $1/r^2$，原因在于无限长线源的场分布
+在圆柱面上展开：长度为 $\ell$ 的圆柱侧面积正比于 $r\ell$。这一距离规律和无限长线电荷的电场相似，
+但电场沿径向，磁场沿方位方向，二者的几何结构不同。
+
+密绕螺线管的磁感线分布与一根均匀磁化的条形磁铁十分相似：内部磁感线近似平行而密集，外部从一端
+绕回另一端。管越长、线圈越密，中部越接近匀强磁场。理想无限长模型用矩形环路跨过线圈侧面，外部
+一段的场取零，内部一段给出 $B\ell$；跨越面穿过 $n\ell$ 匝、每匝电流为 $I$，于是得到
+$B=\mu_0nI$。有限线圈端部的漏场不是“误差画出来”，而是磁感线闭合所必需的部分。
+
+螺线管外场取零是无限长极限的结论。严格说来，单独由 Ampere 环路定律首先得到的是内外场之差
+\begin{equation}
+  B_{\rm in}-B_{\rm out}=\mu_0nI.
+\end{equation}
+再利用无限长模型的对称性以及远离电流面时不能凭空保留额外的匀强场，才得到 $B_{\rm out}=0$。
+在有限螺线管中，外部磁感线从一端绕到另一端，内部场也随轴向位置变化；只有离端部足够远的中心区域，
+才能近似使用 $\mu_0nI$。把有限模型直接当作处处匀强，会在端部受力和磁通计算中造成明显错误。
+
+\wireSolenoidDiagram
+
+\subsection*{Biot--Savart 定律与圆电流}
+
+Ampere 环路定律给出磁场的环量，却不总能直接算出每一点的场。对任意稳恒闭合电流，
+Biot--Savart 定律给出电流元在场点 $P$ 产生的磁场
+\begin{equation}
+  \boxed{\dd\vect B=\frac{\mu_0}{4\pi}
+  \frac{I\,\dd\vect\ell\times\vect r}{r^3}},
+\end{equation}
+其中 $\vect r$ 从电流元指向场点。必须沿整个闭合回路积分：孤立的稳恒电流元并不存在。
+
+Biot 与 Savart 在1820年前后从实验中总结出这一关系。它在形式上类似 Coulomb 定律：源的贡献随距离
+平方反比衰减，并可叠加；但方向结构不同，$\dd\vect B$ 同时垂直于电流元和由电流元指向场点的矢量。
+分母写作 $r^3$ 是为了同分子的矢量 $\vect r$ 配合，大小仍为
+$\dd B=(\mu_0/4\pi)I\dd\ell\sin\theta/r^2$。使用时必须先统一 $\dd\vect\ell$、$\vect r$ 的方向，
+再沿完整回路积分，不能把一个虚构的孤立电流元当成可以单独存在的磁场源。
+
+Biot--Savart 定律适用于给定稳恒电流分布。它具有叠加性：若空间中有多个回路，总磁场等于各回路
+积分结果的矢量和。计算时可以按四步进行：先写电流元 $I\dd\vect\ell$ 的方向；再写从源点到场点的
+$\vect r$；用叉积确定 $\dd\vect B$；最后只把不被对称性抵消的分量积分。常见错误是把 $\vect r$
+反向写成从场点指向源点，这会使整个磁场方向反号；或只积分 $\dd B$ 的大小而忘记不同电流元的矢量
+方向并不相同。
+
+\biotSavartDiagram
+
+半径为 $R$ 的圆电流在轴线上距圆心 $z$ 处，横向分量成对抵消，只留下轴向分量：
+\begin{equation}
+  \boxed{B_z(z)=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}}.
+\end{equation}
+远场 $|z|\gg R$ 时，令 $\mu=I\pi R^2$，有
+\begin{equation}
+  B_z\simeq\frac{\mu_0}{4\pi}\frac{2\mu}{|z|^3},
+\end{equation}
+这与磁偶极子的轴向远场一致。
+
+轴线上每个电流元到场点距离相同。把单个 $\dd\vect B$ 分解后，垂直轴线的分量总能在圆环对径位置找到
+大小相等、方向相反的伙伴，只有轴向分量叠加。圆心处退化为 $B=\mu_0I/(2R)$；远处则按 $1/|z|^3$
+衰减，比点电荷的 $1/r^2$ 更快，这正反映了磁场没有单极子项，最先出现的是磁偶极项。
+
+轴上结果还可做三项检验。第一，量纲上 $\mu_0I/R$ 才具有磁感应强度量纲；第二，$z=0$ 时所有
+电流元贡献方向完全一致，应得到圆心场 $\mu_0I/(2R)$；第三，$z\to\infty$ 时场趋于零且关于 $z$
+是偶函数。若推导结果在轴线两侧变号，或远场仍按 $1/z^2$ 衰减，就说明轴向投影或对径抵消处理有误。
+远场只保留 $\mu=I\pi R^2$，意味着观察距离足够大时无法辨认回路半径和电流各自是多少，只能辨认
+它们组成的磁矩。
+
+\loopAxisDiagram
+
+两个半径均为 $R$、每个有 $N$ 匝的同轴线圈，圆心位于 $x=\pm D$，通以同向电流 $I$。轴线上
+的合场为
+\begin{equation}
+  B(x)=\frac{\mu_0NIR^2}{2}
+  \left\{
+  \frac{1}{[(x-D)^2+R^2]^{3/2}}
+  +\frac{1}{[(x+D)^2+R^2]^{3/2}}
+  \right\}.
+\end{equation}
+对称性自动给出 $B'(0)=0$；再令 $B''(0)=0$，得到 $D=R/2$，即两线圈间距 $2D=R$。
+这就是 Helmholtz 线圈能在中心产生高均匀度磁场的原因。
+
+这里两线圈的中心分别在 $x=\pm D$，所以实际间距是 $2D$。对称性使中心的一阶梯度自动为零；进一步
+令二阶导数也为零，得到间距等于线圈半径。这样中心附近场强的首个非零空间变化被推到更高阶，在一个
+有限区域内都比单线圈均匀。实验室常用 Helmholtz 线圈校准磁传感器、补偿地磁场或为带电粒子实验提供
+近似匀强磁场；均匀性来自成对线圈的几何消差，而不是把线圈简单做大。
+
+在中心附近作 Taylor 展开更能看清“均匀”的含义。由于 $B(x)=B(-x)$，所有奇次项自动为零；一般
+线圈间距下首个变化项是 $x^2$。当 $2D=R$ 时二次项也消失，展开从 $x^4$ 项开始，因而小范围内的
+相对变化远小于单线圈。中心磁场为
+\begin{equation}
+  B(0)=\left(\frac45\right)^{3/2}\frac{\mu_0NI}{R}.
+\end{equation}
+若两线圈电流不等、半径不等或安装轴线偏斜，原本由对称性消去的一阶梯度会重新出现，所以真实装置
+的均匀度还依赖绕组一致性和几何校准。
+
+\helmholtzDiagram
+
+\motorHelmholtzContext
+
+\subsection*{磁通量与磁场 Gauss 定律}
+
+穿过曲面 $S$ 的磁通量为
+\begin{equation}
+  \Phi_B=\int_S\vect B\cdot\dd\vect S.
+\end{equation}
+迄今没有发现孤立磁单极子；普通电流和微观磁矩产生的磁感线都闭合。因此任意闭合曲面满足
+\begin{equation}
+  \boxed{\oint_S\vect B\cdot\dd\vect S=0}.
+\end{equation}
+这条定律并不说闭合面上处处没有磁场，而是说所有穿出通量与穿入通量严格抵消。
+
+磁通量的单位是 weber（Wb），$1\,\mathrm{Wb}=1\,\mathrm{T\,m^2}$。对平面匀强磁场，若面积法向与
+磁场夹角为 $\theta$，有 $\Phi_B=BS\cos\theta$；对弯曲面或非匀强场则必须逐点使用
+$\dd\Phi_B=\vect B\cdot\dd\vect S$。开曲面的磁通一般不为零，也会随曲面形状变化；只有对闭合曲面，
+磁场 Gauss 定律才保证净通量恒为零。即使闭合面包住一块条形磁铁，北极附近穿出的磁通也必在南极
+附近等量穿入，因为磁感线在磁体内部继续闭合。
+
+一根磁感线若穿入闭合面，最终还必须从别处穿出，所以净磁通为零。这个结论允许闭合面上有很强、很不
+均匀的磁场，也允许面内存在电流和磁性物质；它排除的是“磁感线在面内凭空起始或终止”。因此磁场
+Gauss 定律与 Ampere 环路定律描述的是两个不同的几何方面：前者约束磁场的源汇结构，后者把磁场的
+环流与穿面电流联系起来。
+
+如果将来发现真正的磁单极子，磁场 Gauss 定律的右端就需要像电场 Gauss 定律那样出现磁荷项；但在
+目前经典电磁学与实验事实的范围内，右端取零。这里的“未发现”是物理事实陈述，而不是单靠数学逻辑
+证明磁单极子永远不可能存在。竞赛计算采用现行 Maxwell 理论，因此应把
+$\nabla\cdot\vect B=0$ 或闭合面总磁通为零作为基本约束。
+
+这条约束不仅适用于稳恒电流，也适用于随时间变化的电磁场。电流如何变化会改变磁场的大小和分布，
+却不会使磁感线突然出现孤立起点或终点；因此任何时刻对任意闭合面的磁通积分仍然为零。
+
+\magneticGaussDiagram
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.1【长直电流线】}
+一根有限长直导线中通有电流 $I$。场点 $P$ 到导线的垂直距离为 $r$，从 $P$ 看向导线两端与
+垂线的夹角分别为 $\theta_1,\theta_2$。利用 Biot--Savart 定律求 $P$ 点的磁感应强度；再令
+导线无限长，并与 Ampere 环路定律比较。
+\end{origexamplebox}
+
+\begin{xesolution}
+取导线沿 $y$ 轴，垂足为 $y=0$。长度元 $\dd y$ 到 $P$ 的距离为
+$\rho=\sqrt{r^2+y^2}$，且 $\dd\vect\ell\times\vect\rho$ 的大小为 $r\,\dd y$。于是
+\[
+  \dd B=\frac{\mu_0I}{4\pi}\frac{r\,\dd y}{(r^2+y^2)^{3/2}}.
+\]
+由 $y=r\tan\theta$，或直接积分，得到
+\begin{equation}
+  \boxed{B=\frac{\mu_0I}{4\pi r}
+  (\sin\theta_1+\sin\theta_2)}.
+\end{equation}
+方向由右手螺旋法则决定；图示电流向上且 $P$ 在导线右侧时，$\vect B$ 指向纸内。
+
+当导线两端都趋于无穷远，$\theta_1=\theta_2=\pi/2$，故
+\[
+  \boxed{B=\frac{\mu_0I}{2\pi r}},
+\]
+与以导线为中心、半径为 $r$ 的圆形 Ampere 环路所得结果完全一致。
+
+\finiteWireDiagram
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.2【半无限大电流面】}
+一个方向无限长、横向宽度有限的导体面内通有均匀面电流，单位横向长度所分配的电流为 $j$。
+场点 $A$ 到导体面的距离为 $a$，从 $A$ 看向左右边缘与垂线的夹角为 $\theta_1,\theta_2$。
+求 $A$ 点的磁感应强度；再令导体面横向也无限宽，并与 Ampere 环路定律比较。
+\end{origexamplebox}
+
+\begin{xesolution}
+把导体面切成宽为 $\dd x$ 的无限长直导线，每条电流为 $\dd I=j\,\dd x$。取导体面沿 $x$ 轴，
+$A=(0,a)$，电流指向纸内。由无限长直导线的磁场可写成
+\[
+  \dd\vect B=\frac{\mu_0j}{2\pi}
+  \frac{a\,\vect e_x+x\,\vect e_y}{a^2+x^2}\,\dd x.
+\]
+若左、右宽度分别为 $a\tan\theta_1,a\tan\theta_2$，积分得到
+\begin{align}
+  B_x&=\frac{\mu_0j}{2\pi}(\theta_1+\theta_2),\\
+  B_y&=\frac{\mu_0j}{2\pi}
+  \ln\!\left(\frac{\cos\theta_1}{\cos\theta_2}\right).
+\end{align}
+非对称有限面会留下法向分量；若场点在有限面的中垂面上，$\theta_1=\theta_2$，则 $B_y=0$。
+横向无限宽时 $\theta_1=\theta_2=\pi/2$，故
+\begin{equation}
+  \boxed{\vect B=\frac{\mu_0j}{2}\vect e_x}.
+\end{equation}
+取一条跨过电流面的矩形 Ampere 环路，上、下两边各贡献 $B\ell$，包围电流为 $j\ell$，于是
+$2B\ell=\mu_0j\ell$，与积分结果相同。
+
+\currentSheetDiagram
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.3【电流环】}
+半径为 $R$ 的圆形电流环中通有电流 $I$。利用 Biot--Savart 定律求轴线上距圆心 $z$ 处的
+磁感应强度。
+\end{origexamplebox}
+
+\begin{xesolution}
+轴上场点到每个电流元的距离都为 $\rho=\sqrt{R^2+z^2}$。由于
+$\dd\vect\ell\perp\vect\rho$，每个电流元产生的场大小为
+\[
+  \dd B=\frac{\mu_0I}{4\pi}\frac{\dd\ell}{R^2+z^2}.
+\]
+把 $\dd\vect B$ 分解为轴向与横向分量。横向分量与圆环对径位置的贡献抵消；轴向投影因子为
+$R/\rho$，故
+\[
+  B_z=\frac{\mu_0I}{4\pi}
+  \frac{R}{(R^2+z^2)^{3/2}}\oint\dd\ell.
+\]
+代入 $\oint\dd\ell=2\pi R$，得到
+\begin{equation}
+  \boxed{B_z(z)=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}}}.
+\end{equation}
+圆心处 $B(0)=\mu_0I/(2R)$；方向由电流的右手螺旋法则决定。
+
+\loopAxisDiagram
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.4【密绕螺线管】}
+“密绕”螺线管可理想化为一系列相互平行的圆电流环连续堆叠到无穷远。设半径为 $R$，单位长度
+有 $n$ 匝，每匝电流为 $I$。
+
+(1) 求轴线上的磁感应强度；
+
+(2) 求任意位置的磁感应强度；
+
+(3) 定性比较“只旋不进”的理想密绕螺线管与真实“既旋又进”的螺旋导线。
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1) 轴线积分。} 位于 $z'$ 到 $z'+\dd z'$ 内的线圈数为 $n\dd z'$，它在轴上 $z$ 处
+产生
+\[
+  \dd B_z=\frac{\mu_0nIR^2}{2[R^2+(z-z')^2]^{3/2}}\,\dd z'.
+\]
+令 $u=z-z'$，对 $z'\in(-\infty,\infty)$ 积分：
+\[
+  B_z=\frac{\mu_0nIR^2}{2}
+  \int_{-\infty}^{\infty}\frac{\dd u}{(R^2+u^2)^{3/2}}
+  =\boxed{\mu_0nI}.
+\]
+
+\textbf{(2) 全空间。} 无限长、连续密绕模型具有平移和轴对称性。取跨过圆柱面的矩形 Ampere
+环路，结合远处磁场趋零可得
+\begin{equation}
+  \boxed{\vect B=
+  \begin{cases}
+    \mu_0nI\,\vect e_z,&r<R,\\
+    \vect0,&r>R.
+  \end{cases}}
+\end{equation}
+理想电流面上磁场发生跃变；若取对称平均值，表面场为 $\mu_0nI/2$。
+
+\textbf{(3) 真实螺旋的附加场。} “只旋不进”的模型只有方位面电流
+$K_\varphi=nI$。真实单根螺旋还把电流沿轴向输运，连续化以后另有
+\[
+  K_z=\frac{I}{2\pi R},
+\]
+它会像轴向直电流那样产生方位磁场；外接回线和有限端部还会带来漏磁场。密绕条件
+$nR\gg1$ 下，附加场与主轴向场之比约为 $1/(2\pi nR)$，理想模型才足够准确。
+
+\idealHelixDiagram
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.5【电路安培力】}
+一个“田”字形电阻网络置于匀强磁场中。网络每一小段的电阻均为 $R$；电流 $I$ 从左下端流入，
+从右上端流出。磁场位于网络法向与某一条边张成的平面内，并与法向成 $45^\circ$。求网络受到的
+总 Ampere 力。
+\end{origexamplebox}
+
+\begin{xesolution}
+不需要先求每条支路的电流。对每条有向边 $e$，记电流和位移为 $I_e,\vect\ell_e$，则
+\[
+  \vect F=\left(\sum_e I_e\vect\ell_e\right)\times\vect B.
+\]
+把 $\vect\ell_e=\vect r_{e,+}-\vect r_{e,-}$ 展开；任一内部结点前面的系数等于“流出电流减流入
+电流”，由 KCL 为零，只剩入口、出口两端。因此
+\begin{equation}
+  \boxed{\vect F=I(\vect r_{\rm out}-\vect r_{\rm in})\times\vect B
+  =I\vect L\times\vect B}.
+\end{equation}
+结果与内部电阻及分流细节无关。
+
+若每个小正方形边长为 $a$，取 $\vect e_1,\vect e_2$ 沿两组边、
+$\vect n=\vect e_1\times\vect e_2$，并令磁场在网络面内的投影沿 $\vect e_1$，则
+\[
+  \vect L=2a(\vect e_1+\vect e_2),
+  \qquad
+  \vect B=\frac{B}{\sqrt2}(\vect n+\vect e_1).
+\]
+从而
+\begin{equation}
+  \boxed{\vect F=\sqrt2IaB(\vect e_1-\vect e_2-\vect n)},
+  \qquad
+  \boxed{F=\sqrt6\,IaB}.
+\end{equation}
+若磁场投影沿另一组边，只需交换 $\vect e_1,\vect e_2$；力的大小不变。
+
+\resistorGridForceDiagram
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.6【和牛顿第三定律】}
+在力学中，两个质点间的相互作用力通常被写成大小相等、方向相反且共线的作用力与反作用力。电磁相互
+作用通过空间中的场传播，若只截取两段电流元而忽略维持电流的完整回路与场的动量，结论未必仍具有
+相同的简单形式。下面先比较孤立写出的两个电流元，再回到两个完整闭合回路。
+
+(1) 考虑两个电流元 $I_1\dd\vect\ell_1$ 和 $I_2\dd\vect\ell_2$，写出二者之间的受力并判断
+是否等大反向；
+
+(2) 再考虑两个闭合电流回路，证明两个回路受到的总相互作用力大小相等、方向相反。注意这并未
+证明两力作用线重合。
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1) 电流元。} 令 $\vect r=\vect r_1-\vect r_2$ 从电流元 2 指向电流元 1，并记
+$C=\mu_0I_1I_2/(4\pi r^3)$。由 Biot--Savart 定律和 Ampere 力公式，
+\begin{align}
+  \dd\vect F_{1\leftarrow2}
+  &=C\,\dd\vect\ell_1\times(\dd\vect\ell_2\times\vect r)\\
+  &=C\left[\dd\vect\ell_2(\dd\vect\ell_1\cdot\vect r)
+  -\vect r(\dd\vect\ell_1\cdot\dd\vect\ell_2)\right],\\
+  \dd\vect F_{2\leftarrow1}
+  &=-C\,\dd\vect\ell_2\times(\dd\vect\ell_1\times\vect r)\\
+  &=C\left[-\dd\vect\ell_1(\dd\vect\ell_2\cdot\vect r)
+  +\vect r(\dd\vect\ell_1\cdot\dd\vect\ell_2)\right].
+\end{align}
+两式一般并不互为相反数。这里没有违背力学定律，因为孤立稳恒电流元本来就不是可独立存在的
+封闭物体；维持电流的导线、载流子约束和电磁场动量都不能删去。
+
+\currentElementsDiagram
+
+\textbf{(2) 闭合回路。} 两回路的互感能量可写成
+\begin{equation}
+  U_{12}=\frac{\mu_0I_1I_2}{4\pi}
+  \oint_{C_1}\!\oint_{C_2}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{|\vect r_1-\vect r_2|}.
+\end{equation}
+它只依赖两回路的相对位置。若分别把两回路整体平移 $\vect a_1,\vect a_2$，共同平移不改变
+$U_{12}$，所以
+\[
+  \nabla_{\!a_1}U_{12}+\nabla_{\!a_2}U_{12}=0.
+\]
+固定电流条件下机械力由同一个互能对位移求导，因此
+\begin{equation}
+  \boxed{\vect F_{1\leftarrow2}+\vect F_{2\leftarrow1}=\vect0}.
+\end{equation}
+这只证明总力等大反向；要讨论力的作用线与总力矩，还必须同时使用角动量守恒。
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.7【电流环力矩】}
+一个闭合电流环置于匀强磁场 $\vect B$ 中。
+
+由于回路所受合力为零，关于不同参考点计算的总力矩应当相同。题目要求从各电流元的力矩积分出发，
+验证这一结论，并把结果化为磁矩与磁场的叉积；不能只引用正文公式作为证明。
+
+(1) 任取参考点 $O$，写出各电流元对 $O$ 的力矩积分；
+
+(2) 用积分形式表示 $\vect\tau=I\vect S\times\vect B$；
+
+(3) 证明两种表达式对任意形状的闭合电流环都相等。
+\end{origexamplebox}
+
+\begin{xesolution}
+以 $O$ 为原点，电流元位置为 $\vect r$。直接由受力定义，
+\begin{equation}
+  \vect\tau_O=I\oint_C\vect r\times
+  (\dd\vect\ell\times\vect B).
+\end{equation}
+任意闭合空间曲线的矢量面积定义为
+\begin{equation}
+  \vect S=\frac12\oint_C\vect r\times\dd\vect\ell.
+\end{equation}
+它对平面回路就是“面积乘法向”，故待证的第二种形式为
+\[
+  \vect\tau=I\vect S\times\vect B.
+\]
+
+利用三重积展开：
+\[
+  \vect r\times(\dd\vect\ell\times\vect B)
+  =\dd\vect\ell(\vect r\cdot\vect B)
+  -\vect B(\vect r\cdot\dd\vect\ell).
+\]
+第二项沿闭合回路的积分为
+$\vect B\oint\dd(r^2/2)=0$。另一方面，矢量面积定义的分量展开给出恒等式
+\[
+  \oint_C\dd\vect\ell(\vect r\cdot\vect B)=\vect S\times\vect B.
+\]
+因此
+\begin{equation}
+  \boxed{\vect\tau_O=I\vect S\times\vect B}.
+\end{equation}
+又因匀强磁场中闭合回路的合力
+$I\oint\dd\vect\ell\times\vect B=0$，换参考点时增加的
+$-\vect a\times\vect F$ 为零，故力矩确实与参考点无关。
+
+\loopTorqueDiagram
+\end{xesolution}
+
+\Needspace{0.18\textheight}
+\begin{origexamplebox}{例题 36.8【电子显微镜】}
+半径为 $R$ 的平面圆电流环中通有电流 $I$。质量为 $m$、电量为 $+q$ 的粒子从轴上距线圈
+$u\gg R$ 的物点近轴入射，最终重新会聚于轴上距线圈 $v$ 的像点。
+
+采用“脉冲近似”：圆环磁场随轴向距离快速衰减，粒子在远处几乎不受磁场作用；粒子的轴向速度较大，
+通过线圈附近强场区的时间很短，相互作用期间可忽略横向位置的改变，只累计横向速度的微小变化。
+在近轴条件下，不同初始小角度的粒子都应在同一像点附近会聚。
+
+(1) 在薄透镜（脉冲）近似下证明
+\[
+  \frac1u+\frac1v=\frac1f,
+\]
+并求焦距；
+
+(2) 求像绕轴线产生的角度偏转。
+\end{origexamplebox}
+
+\begin{xesolution}
+焦距必须依赖粒子的轴向动量。记近轴速率为 $v_0$、动量 $p=mv_0$；原题未单列这个量，以下把它
+作为粒子束的已知参数。轴对称磁场在轴附近满足
+\begin{equation}
+  B_r=-\frac r2\frac{\dd B_z}{\dd z}+O(r^3).
+\end{equation}
+令横向复坐标 $w=x+\mathrm i y$，以 $z$ 为自变量。Lorentz 方程在线性近轴阶化为
+\begin{equation}
+  w''+2\mathrm i\kappa w'+\mathrm i\kappa'w=0,
+  \qquad
+  \kappa(z)=\frac{qB_z(z)}{2mv_0}.
+\end{equation}
+作 Larmor 旋转
+\[
+  w(z)=\xi(z)\exp\!\left[-\mathrm i\int^z\kappa(s)\dd s\right],
+\]
+方程化成
+\begin{equation}
+  \xi''+\kappa^2(z)\xi=0.
+\end{equation}
+薄透镜区内横向位置几乎不变，斜率突变量为
+\[
+  \Delta\xi'=-\xi\int_{-\infty}^{\infty}\kappa^2(z)\dd z
+  \equiv-\frac{\xi}{f}.
+\]
+透镜前后都是直线传播，几何关系立即给出
+\begin{equation}
+  \boxed{\frac1u+\frac1v=\frac1f},
+  \qquad
+  \boxed{\frac1f=\frac{q^2}{4m^2v_0^2}
+  \int_{-\infty}^{\infty}B_z^2(z)\dd z}.
+\end{equation}
+
+单圆环轴场为
+\[
+  B_z(z)=\frac{\mu_0IR^2}{2(R^2+z^2)^{3/2}},
+\]
+且
+\[
+  \int_{-\infty}^{\infty}\frac{\dd z}{(R^2+z^2)^3}
+  =\frac{3\pi}{8R^5}.
+\]
+所以
+\begin{equation}
+  \boxed{\frac1f=\frac{3\pi q^2\mu_0^2I^2}{128m^2v_0^2R}},
+  \qquad
+  \boxed{f=\frac{128m^2v_0^2R}{3\pi q^2\mu_0^2I^2}}.
+\end{equation}
+
+Larmor 变换本身还使整个像绕轴转过有符号角
+\begin{equation}
+  \phi_L=-\frac{q}{2mv_0}\int_{-\infty}^{\infty}B_z(z)\dd z.
+\end{equation}
+对单圆环 $\int B_z\dd z=\mu_0I$，故
+\begin{equation}
+  \boxed{\phi_L=-\frac{q\mu_0I}{2mv_0}}.
+\end{equation}
+符号由电荷和电流方向决定；若比较带方向标记的实物与实像，还要另计普通实像的倒转 $\pi$。
+
+\magneticLensDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 36.9【自旋进动】}
+把质子的自旋角动量记作 $\vect s$，其磁矩写成
+\[
+  \vect\mu=\frac{ge}{m_p}\vect s,
+  \qquad g=2.79.
+\]
+其中 $g=2.79$ 是由质子内部结构决定的无量纲因子。自旋是粒子的内禀量子属性，本题不讨论其量子起源，
+只把 $\vect s$ 与 $\vect\mu$ 当作方向可能随外场变化、大小保持不变的经典矢量，研究磁力矩造成的
+进动以及共振横向磁场造成的翻转。
+
+(1) 证明质子在匀强磁场中发生进动，并求进动角速度；
+
+(2) 当 $B_0=\SI{1}{T}$、$m_p=1.67\times10^{-27}\,\mathrm{kg}$、
+$e=1.60\times10^{-19}\,\mathrm C$ 时，求进动频率；
+
+(3) 求同频电磁波的真空波长并判断所属波段；
+
+(4) 再施加一个垂直于 $\vect B_0$、并以同频率旋转的弱磁场，定性描述自旋的变化。
+\end{origexamplebox}
+
+\begin{xesolution}
+令回磁比
+\[
+  \gamma=\frac{ge}{m_p}.
+\]
+磁场对磁矩的力矩等于自旋角动量变化率：
+\begin{equation}
+  \frac{\dd\vect s}{\dd t}=\vect\mu\times\vect B_0
+  =\gamma\vect s\times\vect B_0.
+\end{equation}
+右端同时垂直于 $\vect s$ 和 $\vect B_0$，故 $s$ 及其在磁场方向的投影都不变，只有方位角连续
+变化。写成 $\dd\vect s/\dd t=\vect\omega_0\times\vect s$，得到
+\begin{equation}
+  \boxed{\vect\omega_0=-\gamma\vect B_0},
+  \qquad
+  \boxed{\omega_0=\frac{geB_0}{m_p}}.
+\end{equation}
+负号表示对正质子，进动角速度矢量与外磁场反向；频率大小与自旋倾角无关。
+
+代入数值：
+\begin{align}
+  \omega_0&=2.79\times\frac{1.60\times10^{-19}}{1.67\times10^{-27}}
+  =2.67\times10^8\ \mathrm{rad/s},\\
+  f_0&=\frac{\omega_0}{2\pi}=\boxed{4.25\times10^7\ \mathrm{Hz}}
+  =\boxed{42.5\ \mathrm{MHz}}.
+\end{align}
+同频电磁波在真空中的波长为
+\begin{equation}
+  \boxed{\lambda=\frac{c}{f_0}\simeq7.05\ \mathrm m},
+\end{equation}
+属于射电波（甚高频波段），不是微波、红外线或可见光。
+
+横向旋转场的作用，用随动系中的图像最直观：
+
+\spinPrecessionDiagram
+
+最后加横向旋转场 $\vect B_1$，并令其旋转角频率等于 $\omega_0$。在随 $\omega_0$ 转动的参考系
+中，$\vect B_1$ 变为静止，而 $\vect B_0$ 的进动被参考系转动抵消；于是自旋以
+$\boxed{\Omega_R=\gamma B_1}$ 绕横向 $\vect B_1$ 作较慢的 Rabi 转动。若初始
+$\vect s\parallel\vect B_0$，持续时间
+$\pi/(2\Omega_R)$ 的脉冲把自旋转到横向，持续 $\pi/\Omega_R$ 则把它翻到与 $\vect B_0$ 反向。
+
+\end{xesolution}

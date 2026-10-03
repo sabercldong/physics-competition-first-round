@@ -1,0 +1,84 @@
+\newcommand{\FluidBernoulliDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[->,TextGray] (-2,-2.6)--(-2,3.4) node[above]{$z$};
+ \draw[TextGray,dashed] (-2,-2.3)--(7.8,-2.3);
+ \begin{scope}[rotate=16]
+  \draw[thick] (0,.85)--(6,.5) (0,-.85)--(6,-.5);
+  \draw[TextGray,dashed] (0,0)--(6,0);
+  \draw[DeepBlue,thick] (0,0) ellipse[x radius=.20,y radius=.85];
+  \draw[DeepBlue,thick] (6,0) ellipse[x radius=.117647,y radius=.5];
+  \draw[TextGray,dashed] (.35,0) ellipse[x radius=.195294,y radius=.830];
+  \draw[TextGray,dashed] (7.0115,0) ellipse[x radius=.117647,y radius=.5];
+  \draw[->,DeepBlue,thick] (-1.1,0)--(0,0);
+  \draw[->,DeepBlue,thick] (7.4,0)--(6,0);
+  \node[above] at (-.9,.15) {$p_1A_1$};\node[above right] at (7.0,.6) {$p_2A_2$};
+  \draw[TextGray,thin] (0,-.87)--(0,-1.28) (.35,-.87)--(.35,-1.28);
+  \draw[->,TextGray] (-.55,-1.15)--(0,-1.15);
+  \draw[->,TextGray] (.90,-1.15)--(.35,-1.15);
+  \node[below] at (.175,-1.3) {$\dd s_1$};
+  \draw[<->,TextGray] (6,-.85)--(7.0115,-.85);
+  \node[below] at (6.5,-1.0) {$\dd s_2$};
+  \node[above] at (0,1.02) {$A_1,\,v_1$};\node[above] at (5.9,.72) {$A_2,\,v_2$};
+  \coordinate (FluidA) at (0,0);\coordinate (FluidB) at (6,0);
+ \end{scope}
+ \draw[<->,TextGray] (2,-2.3)--(2,0) node[midway,right]{$z_1$};
+ \draw[TextGray,dotted] (FluidA)--(2,0);
+ \draw[<->,TextGray] (5,-2.3)--(5,{6*sin(16)}) node[midway,left]{$z_2$};
+ \draw[TextGray,dotted] (FluidB)--(5,{6*sin(16)});
+\end{tikzpicture}\figcap{流管两端压力做功。相同时间内移入、移出的质量相等；高度从同一水平基准面量起。}\label{ch13:fig:bernoulli}
+\end{center}}
+
+\newcommand{\FluidShearDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \foreach \yy in {0,1.8}{\draw[Ink,thick] (0,\yy)--(4.2,\yy)--(5.15,\yy+.55)--(.95,\yy+.55)--cycle;}
+ \foreach \yy in {.15,.60,1.05,1.50}{\draw[->,DeepBlue] (1,\yy)--({1.65+.65*\yy},\yy);}
+ \draw[->,DeepBlue,very thick] (2,2.08)--(4.25,2.08);
+ \node[right] at (5.5,2.08) {$v_x+\dd v_x$};
+ \draw[->,DeepBlue,very thick] (2,.27)--(3.4,.27) node[right=4pt]{$v_x$};
+ \draw[<->,TextGray] (-.45,0)--(-.45,1.8) node[midway,left]{$\dd y$};
+ \draw[->,Ink] (-1.3,0)--(-1.3,2.7) node[above]{$y$};
+ \draw[->,Ink] (0,-.8)--(2,-.8) node[right]{$x$};
+ \node[above] at (1.6,2.5) {上层对下层：向右拉};
+ \node[below] at (3.1,-1.05) {$\tau_{xy}=\dd F_x/\dd S=\eta\,\dd v_x/\dd y$};
+\end{tikzpicture}\figcap{相距 $\dd y$ 的流层与切向速度梯度。上层流得较快，黏性作用减小两层速度差；反作用力方向相反。}\label{ch13:fig:shear}
+\end{center}}
+
+\newcommand{\FluidOutletDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \fill[Blue!12] (0,0) rectangle (4,3);
+ \draw[thick] (0,3.6)--(0,0)--(4,0)--(4,.7) (4,1.05)--(4,3.6);
+ \draw[Blue,thick] (0,3)--(4,3);
+ \draw[Blue,thick] (4,.7)--(5.5,.5) (4,1.05)--(5.5,.85);
+ \fill (1,3) circle(1.6pt) node[above]{$A$};
+ \fill (4,.875) circle(1.6pt);
+ \draw[TextGray,thin] (4,.875)--(3.4,1.3);
+ \node[above left] at (3.4,1.3) {$B$};
+ \draw[->,DeepBlue,thick] (4.7,.67)--(5.6,.67) node[right]{$v$};
+ \draw[<->,TextGray] (-.6,.875)--(-.6,3) node[midway,left]{$h$};
+ \draw[dotted,TextGray] (-.6,.875)--(3.7,.875);
+ \node[above] at (2,4.0) {$p_A=p_B=p_0$};
+\end{tikzpicture}\figcap{取自由液面 $A$ 与小孔出口 $B$ 比较压强、速度和高度。}\label{ch13:fig:outlet}\end{center}}
+
+\newcommand{\FluidPlateDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[Ink,very thick] (4,-2)--(4,2);
+ \draw[Blue,thick] (0,-.25)--(3.5,-.25)..controls(3.8,-.25)and(3.8,-1)..(3.8,-1.65);
+ \draw[Blue,thick] (0,.25)--(3.5,.25)..controls(3.8,.25)and(3.8,1)..(3.8,1.65);
+ \draw[->,DeepBlue,thick] (.5,0)--(2,0) node[midway,above=8pt]{$v$};
+ \draw[->,DeepBlue,thick] (3.65,.7)--(3.65,1.65);
+ \draw[->,DeepBlue,thick] (3.65,-.7)--(3.65,-1.65);
+ \draw[dashed,TextGray] (2.3,-1.75) rectangle (4.3,1.75);
+ \draw[->,Ink,thick] (4.7,0)--(6,0) node[right]{$F_{\text{水对板}}$};
+ \node[left] at (0,0) {$A$};\node[above] at (3.3,2.2) {虚线为控制体};
+ \draw[->,TextGray] (0,-1.6)--(1.4,-1.6) node[right]{$x$};
+\end{tikzpicture}\figcap{来流有正向 $x$ 动量，流出水沿板面，法向动量为零。}\label{ch13:fig:jet-plate}\end{center}}
+
+\newcommand{\FluidSettlingDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[thick] (0,0) circle(.62);
+ \draw[->,Ink,thick] (0,-.62)--(0,-2) node[right]{$mg$};
+ \draw[->,DeepBlue,thick] (-.26,{sqrt(.62*.62-.26*.26)})--(-.26,1.6) node[above left]{$F_{\!B}$};
+ \draw[->,DeepBlue,thick] (.26,{sqrt(.62*.62-.26*.26)})--(.26,2.2) node[above right]{$6\pi\eta Rv_t$};
+ \draw[->,TextGray,thick] (1.8,.6)--(1.8,-.7) node[right]{$v_t$};
+ \node[right] at (2.2,1.6) {$F_{\!B}=\frac43\pi R^3\rho_f g$};
+\end{tikzpicture}\figcap{下沉小球的受力。终端状态速度向下，浮力和黏性阻力均向上。}\label{ch13:fig:settling}\end{center}}

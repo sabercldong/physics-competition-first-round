@@ -1,0 +1,47 @@
+\subsubsection*{变质量系统的边界与动量通量}
+
+火箭、落链和接雨小车的研究对象会随时间增减质量，不能直接把 $\vec F=m\vec a$ 中的
+$m$ 换成 $m(t)$。动量定理适用于同一批物质；若研究对象在两个时刻包含的物质不同，
+就要把跨越边界所带的动量单独记入。
+
+设主体质量为 $m$、速度为 $\vec v$，时间 $\dd t$ 内吸收质量 $\dd m_{\rm in}>0$，
+排出质量 $\dd m_{\rm out}>0$。流入、流出物质在同一个惯性系中的速度分别为
+$\vec u_{\rm in},\vec u_{\rm out}$，主体质量改变
+$\dd m=\dd m_{\rm in}-\dd m_{\rm out}$。把主体及这次交换的物质选为同一批物质：
+\[
+ m\vec v+\vec u_{\rm in}\dd m_{\rm in}+\vec F_{\rm ext}\dd t
+ =(m+\dd m)(\vec v+\dd\vec v)+\vec u_{\rm out}\dd m_{\rm out}.
+\]
+这里 $\vec F_{\rm ext}$ 是连续极限下作用于主体的外力；微小交换质量所受有限外力的冲量
+为二阶小量。展开、略去二阶项并除以 $\dd t$，得到
+\begin{equation}\label{eq:mass-flux-balance}
+ \frac{\dd(m\vec v)}{\dd t}
+ =\vec F_{\rm ext}+\dot m_{\rm in}\vec u_{\rm in}
+ -\dot m_{\rm out}\vec u_{\rm out}.
+\end{equation}
+左侧是主体动量增加率，右侧依次为外力、流入动量率、流出动量率。展开左侧乘积，得
+\begin{equation}\label{eq:mass-acceleration}
+ m\frac{\dd\vec v}{\dd t}
+ =\vec F_{\rm ext}+\dot m_{\rm in}(\vec u_{\rm in}-\vec v)
+ -\dot m_{\rm out}(\vec u_{\rm out}-\vec v).
+\end{equation}
+只有一股交换流时，也可用有符号的 $\dot m$（流入为正、流出为负）和相对主体速度
+$\vec u_{\rm rel}=\vec u-\vec v$ 写成 $m\dot{\vec v}=\vec F_{\rm ext}+\vec u_{\rm rel}\dot m$。
+不能把这个相对速度与前一式的惯性系绝对速度混用。动量通量的量纲为
+$\mathrm{kg/s}\times\mathrm{m/s}=\mathrm N$，与外力一致。
+
+理想火箭在无外力的一维运动中，以相对火箭大小为 $u$ 的速度向后喷气，满足
+\begin{equation}
+ m\,\dd v=-u\,\dd m,
+ \qquad
+ v-v_0=u\ln\frac{m_0}{m}.
+\end{equation}
+速度增量取决于质量比而不是燃料质量的简单差值。若有重力或阻力，还要把它们在燃烧时间内的
+冲量计入；若喷气速度相对地面给出，必须先换成相对火箭速度。
+火箭自身不是固定物质系统，即使无外力，其自身动量也不必守恒；守恒的是火箭加燃气的总动量。
+
+链条落到秤盘、雨水落入车厢等问题还包含“捕获并加速新质量”的作用。流入物质在进入系统前
+已有速度，主体必须提供冲量把它变为共同速度，于是支持力或阻力中出现 $\dot m\Delta v$ 项。
+柔链问题还应区分移动段、静止段和弯折区，弯折区虽很短，却承担改变动量方向的有限合力。
+检验答案时可看两个极限：质量流率趋于零时应回到定质量问题；相对流速趋于零时，动量通量项
+也应消失。最后一种情形只说明无需额外改变主体速度，主体总动量仍可随它包含的质量改变。

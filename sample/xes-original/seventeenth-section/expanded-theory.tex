@@ -1,0 +1,106 @@
+\subsection*{刚体状态的六个自由度}
+
+自由刚体在三维空间中有六个自由度：三个描述质心位置，三个描述姿态。三个 Euler 角只是姿态
+的一种参数化方式；它们的时间导数通常不等于角速度在三条坐标轴上的分量。原因是三次转动所
+绕的轴并不都固定在同一坐标系中。求实际角速度时，应把三次瞬时转动矢量投影到同一组轴上再
+相加。竞赛中若只研究定轴转动或平面平行运动，姿态只需一个转角，才有
+\begin{equation}
+ \omega=\dot\varphi,
+ \qquad
+ \beta=\ddot\varphi.
+\end{equation}
+
+刚体速度公式
+\begin{equation}
+ \vect v_B-\vect v_A=\vect\omega\times\overrightarrow{AB}
+\end{equation}
+给出了同一刚体上任意两点的速度关系。两边与 $\overrightarrow{AB}$ 点乘立刻得到
+\begin{equation}
+ (\vect v_B-\vect v_A)\cdot\overrightarrow{AB}=0,
+\end{equation}
+即两点相对速度在连线方向上的分量为零。这正是“距离保持不变”的微分形式，也是解决杆、轮、
+刚架瞬时速度问题最直接的约束条件。
+
+平面运动中的瞬时中心只是速度场的几何工具，不代表那里一定存在固定转轴或实际铰链。接触点
+无滑动时它的瞬时速度为零，可以作为瞬时中心；下一时刻接触的是轮缘上另一个质点，瞬时中心也
+随之改变。因此用 $v=\omega r$ 求各点瞬时速度是正确的，但把整个滚动过程当成绕同一个接触点
+的定轴转动来求角加速度或力矩，往往会出错。
+
+\subsection*{平动方程和转动方程必须同时满足}
+
+合外力决定质心加速度，合外力矩决定角动量改变。对于平面刚体，最常用的三条标量方程是
+\begin{equation}
+ \sum F_x=ma_{Cx},
+ \qquad
+ \sum F_y=ma_{Cy},
+ \qquad
+ \sum M_C=I_C\beta.
+\end{equation}
+若再有纯滚动、绳不伸长或铰链等几何约束，必须另列运动学方程。摩擦力、支持力之类约束力通常
+应由这组联立方程求出，而不能在列方程前凭直觉指定其大小和方向。
+
+力矩方程也可对其他点书写，但要注意参考点是否为惯性系中的固定点。若 $A$ 是惯性系中固定点，
+可直接写
+\begin{equation}
+ \sum M_A=\frac{\dd L_A}{\dd t}.
+\end{equation}
+若 $A$ 随刚体加速运动，简单写成 $\sum M_A=I_A\beta$ 一般不成立，还会出现与参考点加速度有关
+的项。实际解题时，对质心列转动方程最稳妥；对固定铰点列方程则常能消去铰链反力。
+
+一般三维刚体的角动量与角速度关系为
+\begin{equation}
+ \vect L_C=\mathbf I_C\vect\omega,
+\end{equation}
+其中 $\mathbf I_C$ 是惯量张量。只有沿主惯量轴转动，或物体具有足够高的对称性时，$\vect L_C$
+才与 $\vect\omega$ 平行，并能用单个标量转动惯量描述。若二者不平行，即使外力矩为零，刚体轴
+也可能相对于固定角动量方向摆动；这类自由转动不能直接套用 $L=I\omega$ 的标量式。
+
+\subsection*{滚动中摩擦力的方向与功能}
+
+纯滚动约束只说明接触点相对接触面瞬时静止，并不预先决定静摩擦力方向。判断方向应先假设一个
+方向列方程，再由解的正负号校验。例如圆柱沿斜面下滚时，重力经过质心不能直接产生绕质心的
+力矩，需要静摩擦提供使角速度增大的力矩，因此摩擦通常沿斜面向上；若刚体同时受外加转矩，
+摩擦方向完全可能反转。
+
+在固定粗糙面上纯滚动时，接触点瞬时速度为零，理想静摩擦的瞬时功率为
+\begin{equation}
+ P_f=\vect f\cdot\vect v_{\rm contact}=0.
+\end{equation}
+这不意味着摩擦对平动和转动“都没有作用”。相对于质心看，摩擦既改变质心动能，又改变转动
+动能，只是两部分功率相加为零，实现平动能和转动能之间的分配。若接触面本身运动，接触点对
+地速度不再为零，静摩擦可以对刚体做非零功，例如传送带带动圆柱加速滚动。
+
+纯滚动判据必须在求出所需静摩擦后再检查：
+\begin{equation}
+ |f_{\rm required}|\leq \mu_sN.
+\end{equation}
+若不满足，实际运动是边滚边滑，此时摩擦大小改为 $\mu_kN$，运动学关系 $a=\beta R$ 也应删除，
+重新求解平动和转动方程。
+
+\subsection*{能量、功率与冲击}
+
+对平面刚体，外力总功率还可以逐力相加：
+\begin{equation}
+ P=\sum_i\vect F_i\cdot\vect v_i
+ =\vect F_{\rm ext}\cdot\vect v_C+\vect M_C\cdot\vect\omega.
+\end{equation}
+第二个等号把每个作用点速度写成
+$\vect v_i=\vect v_C+\vect\omega\times\vect r_i'$ 后得到。它说明同一个外力可同时改变平动和转动，
+作用点的位置不能在功率计算中随意忽略。
+
+若刚体绕惯性系中的固定轴转动，$\dd W=M\,\dd\varphi$，因此
+\begin{equation}
+ W_{1\to2}=\int_{\varphi_1}^{\varphi_2}M(\varphi)\,\dd\varphi
+ =\frac12I\omega_2^2-\frac12I\omega_1^2.
+\end{equation}
+恒力矩对应角加速度恒定，可使用与匀变速直线运动完全平行的一组公式；力矩随角度变化时则应
+直接积分，不能再套恒力矩结论。
+
+刚体碰撞持续时间很短时，应同时考虑线冲量和冲量矩：
+\begin{equation}
+ \Delta\vect P=\int\vect F_{\rm ext}\,\dd t,
+ \qquad
+ \Delta\vect L_A=\int\vect M_A^{\rm ext}\,\dd t.
+\end{equation}
+选取碰撞点或固定支点为矩心，常可消去未知冲量。碰撞过程一般伴随形变、声和热，故动量或角动量
+可以守恒，机械能却未必守恒；只有题目明确完全弹性，才能再列碰撞前后动能相等。

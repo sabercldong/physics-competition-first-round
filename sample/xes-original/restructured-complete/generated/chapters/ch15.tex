@@ -1,0 +1,2055 @@
+\hypersetup{bookmarksdepth=3}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\tcbset{breakable/.default=false}
+\chapter{热力学第一定律}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-ninth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-ninth-section/assets/}}
+
+% Diagrams for Lesson 20: the first law of thermodynamics.
+
+\newcommand{\heatTransferMapDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (sys) at (0,0) {热力学系统};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (cond) at (-5.1,1.8) {直接接触（传导）};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (conv) at (-5.1,-1.8) {流体整体运动（对流）};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (rad) at (5.1,1.8) {电磁波（辐射）};
+  \node[draw=RuleGray,fill=SoftGray,thick,rounded corners=2pt,minimum width=2.6cm,minimum height=1.0cm] (work) at (5.1,-1.8) {边界位移（功）};
+  \draw[<->,DeepBlue,very thick] (cond)--node[above,sloped,font=\small] {$Q$，需要介质}(sys);
+  \draw[<->,DeepBlue,very thick] (conv)--node[below,sloped,font=\small] {$Q$，需要介质}(sys);
+  \draw[<->,DeepBlue,very thick] (rad)--node[above,sloped,font=\small] {$Q$，可穿过真空}(sys);
+  \draw[<->,DeepBlue,very thick] (work)--node[below,sloped,font=\small] {$W$}(sys);
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\pistonWorkDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \begin{scope}[shift={(-4.8,0)}]
+    \draw[Ink,very thick] (-1.35,-1.6)--(-1.35,1.7) (1.35,-1.6)--(1.35,1.7) (-1.35,-1.6)--(1.35,-1.6);
+    \draw[fill=SoftGray,draw=Ink,thick] (-1.2,0.25) rectangle (1.2,0.55);
+    \draw[Ink,very thick] (0,0.55)--(0,2.15);
+    \draw[->,DeepBlue,very thick] (0,2.2)--(0,2.95) node[right] {$\dd y$};
+    \draw[->,DeepBlue,very thick] (-0.8,0.1)--(-0.8,0.95) node[left] {$F=PA$};
+    \node at (0,-0.55) {$P,V$};
+    \node[font=\small] at (0,-2.1) {$\dd V=A\,\dd y$};
+  \end{scope}
+  \begin{scope}[shift={(2.2,-1.55)},x=1.15cm,y=0.95cm]
+    \draw[axis] (0,0)--(5.4,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.7) node[above] {$P$};
+    \draw[fill=PaleBlue,draw=none] (1,3.8) .. controls (2.0,2.3) and (3.4,1.35) .. (4.6,1.0)--(4.6,0)--(1,0)--cycle;
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}]
+      (0.65,4.25) .. controls (1.7,2.25) and (3.4,1.25) .. (5.0,0.9);
+    \fill[Ink] (1,3.8) circle (2pt) node[above right] {$i$};
+    \fill[Ink] (4.6,1.0) circle (2pt) node[above right] {$f$};
+    \draw[guide] (1,0)--(1,3.8) (4.6,0)--(4.6,1.0);
+    \node[DeepBlue,font=\small] at (2.65,0.65) {$W^{\rm out}=\displaystyle\int_{V_i}^{V_f}P\,\dd V$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\processComparisonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \x/\title/\line/\note in {
+    -5.25/{等容}/{V=\mathrm{const}}/{W=0},
+    -1.75/{等压}/{P=\mathrm{const}}/{Q=n c_p\Delta T},
+    1.75/{等温}/{T=\mathrm{const}}/{\Delta U=0},
+    5.25/{绝热}/{Q=0}/{PV^\gamma=\mathrm{const}}
+  }{
+    \draw[fill=SoftGray,draw=RuleGray,rounded corners=1pt] (\x-1.45,-1.05) rectangle (\x+1.45,1.05);
+    \node[font=\bfseries] at (\x,0.55) {\title};
+    \node[font=\small] at (\x,0.0) {$\line$};
+    \node[font=\small,DeepBlue] at (\x,-0.55) {$\note$};
+  }
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\adiabaticCurvesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.25cm,y=1.0cm,>=Latex]
+  \draw[axis] (0,0)--(6.2,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,5.0) node[above] {$P$};
+  \draw[DeepBlue,very thick,domain=1:5.7,samples=120,smooth] plot (\x,{4.5/\x});
+  \draw[Ink,very thick,domain=1:5.7,samples=120,smooth] plot (\x,{4.5/(\x^1.4)});
+  \fill[Ink] (1,4.5) circle (2pt) node[above right] {同一初态};
+  \node[DeepBlue,anchor=west] at (4.2,1.15) {等温 $PV=\mathrm{const}$};
+  \node[Ink,anchor=west] at (3.8,0.42) {绝热 $PV^\gamma=\mathrm{const}$};
+  \draw[->,TextGray,thick] (2.0,2.2)--(3.3,1.1) node[midway,above right,font=\small] {膨胀降温};
+  \node[align=left,anchor=west,font=\small] at (7.0,2.6)
+    {$TV^{\gamma-1}=\mathrm{const}$\\[3pt]
+     $\displaystyle\frac{T^\gamma}{P^{\gamma-1}}=\mathrm{const}$\\[3pt]
+     $P=\mathrm{const}\cdot\rho^\gamma$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\convectionCriterionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (-5.3,-2.0)--(-5.3,2.7) node[above] {$h$};
+  \fill[PaleBlue] (-5.1,-1.75) rectangle (-1.25,2.25);
+  \draw[DeepBlue,very thick,->] (-3.15,-1.1)--(-3.15,1.25) node[midway,right] {气团上升};
+  \node at (-3.15,-1.45) {$T$};
+  \node at (-3.15,1.65) {$T+\dd T_1$};
+  \draw[<->,TextGray] (-1.7,-1.1)--node[right] {$\dd h$}(-1.7,1.25);
+  \node[align=left,anchor=west] at (0.1,1.4)
+    {上升气团：$\displaystyle \dd T_1=-\frac{\mu g}{c_p}\,\dd h$};
+  \node[align=left,anchor=west] at (0.1,0.35)
+    {环境气体：$\displaystyle \dd T_2=\frac{\dd T}{\dd h}\,\dd h$};
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,align=center] at (4.0,-1.15)
+    {$T+\dd T_1>T+\dd T_2$\\[3pt]$\displaystyle\frac{\dd T}{\dd h}<-\frac{\mu g}{c_p}$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\threeCyclesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \sx/\title/\kind in {-5/{矩形循环}/0,0/{上三角循环}/1,5/{下三角循环}/2}{
+    \begin{scope}[shift={(\sx,-1.55)},x=1.05cm,y=0.95cm]
+      \draw[axis] (0,0)--(3.8,0) node[right] {$V$};
+      \draw[axis] (0,0)--(0,3.8) node[above] {$P$};
+      \draw[guide] (0,0.8)--(3.25,0.8) (0,3.05)--(3.25,3.05) (0.8,0)--(0.8,3.45) (3.1,0)--(3.1,3.45);
+      \ifnum\kind=0
+        \draw[DeepBlue,very thick,
+          postaction={decorate},decoration={markings,
+            mark=at position .14 with {\arrow{Latex}},
+            mark=at position .39 with {\arrow{Latex}},
+            mark=at position .64 with {\arrow{Latex}},
+            mark=at position .89 with {\arrow{Latex}}}]
+          (0.8,0.8)--(0.8,3.05)--(3.1,3.05)--(3.1,0.8)--cycle;
+      \else\ifnum\kind=1
+        \draw[DeepBlue,very thick,
+          postaction={decorate},decoration={markings,
+            mark=at position .17 with {\arrow{Latex}},
+            mark=at position .48 with {\arrow{Latex}},
+            mark=at position .82 with {\arrow{Latex}}}]
+          (0.8,0.8)--(0.8,3.05)--(3.1,3.05)--cycle;
+      \else
+        \draw[DeepBlue,very thick,
+          postaction={decorate},decoration={markings,
+            mark=at position .18 with {\arrow{Latex}},
+            mark=at position .51 with {\arrow{Latex}},
+            mark=at position .83 with {\arrow{Latex}}}]
+          (0.8,0.8)--(3.1,3.05)--(3.1,0.8)--cycle;
+      \fi\fi
+      \node[font=\scriptsize,left] at (0,0.8) {$P_1$};
+      \node[font=\scriptsize,left] at (0,3.05) {$P_2$};
+      \node[font=\scriptsize,below] at (0.8,0) {$V_1$};
+      \node[font=\scriptsize,below] at (3.1,0) {$V_2$};
+    \end{scope}
+    \node[font=\bfseries] at (\sx,2.55) {\title};
+  }
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\standardHeatCyclesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \sx/\title/\leftlab/\rightlab in {-5/{卡诺}/{T_h}/{T_c},0/{奥托}/{V_1}/{V_2},5/{布雷顿}/{P_1}/{P_2}}{
+    \begin{scope}[shift={(\sx,-1.4)},x=1cm,y=0.85cm]
+      \draw[axis] (0,0)--(3.7,0) node[right] {$V$};
+      \draw[axis] (0,0)--(0,4.0) node[above] {$P$};
+      \ifdim\sx pt=-5pt
+        \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .2 with {\arrow{Latex}},mark=at position .7 with {\arrow{Latex}}}]
+          (0.8,3.2) .. controls (1.5,2.7) and (2.2,2.35) .. (3.0,2.2)
+          .. controls (2.75,1.4) and (2.45,1.0) .. (2.1,0.8)
+          .. controls (1.55,0.95) and (1.1,1.15) .. (0.75,1.45)
+          .. controls (0.7,2.05) and (0.72,2.65) .. cycle;
+        \node[font=\scriptsize] at (2.0,3.0) {$T_h$}; \node[font=\scriptsize] at (1.55,0.45) {$T_c$};
+      \else\ifdim\sx pt=0pt
+        \draw[DeepBlue,very thick,->] (0.85,0.8)--(0.85,3.2);
+        \draw[DeepBlue,very thick] (0.85,3.2) .. controls (1.45,2.35) and (2.25,1.65) .. (3.0,1.35);
+        \draw[DeepBlue,very thick,->] (3.0,1.35)--(3.0,0.55);
+        \draw[DeepBlue,very thick,->] (3.0,0.55) .. controls (2.2,0.75) and (1.45,1.0) .. (0.85,0.8);
+        \node[font=\scriptsize,below] at (0.85,0) {$V_{\min}$}; \node[font=\scriptsize,below] at (3.0,0) {$V_{\max}$};
+      \else
+        \draw[DeepBlue,very thick,->] (0.75,3.05)--(2.7,2.35);
+        \draw[DeepBlue,very thick,->] (2.7,2.35) .. controls (3.05,1.5) and (2.8,1.0) .. (2.3,0.75);
+        \draw[DeepBlue,very thick,->] (2.3,0.75)--(0.7,1.2);
+        \draw[DeepBlue,very thick,->] (0.7,1.2) .. controls (0.4,2.0) and (0.45,2.6) .. (0.75,3.05);
+        \node[font=\scriptsize] at (1.7,2.95) {$P_h$}; \node[font=\scriptsize] at (1.55,0.55) {$P_l$};
+      \fi\fi
+    \end{scope}
+    \node[font=\bfseries] at (\sx,2.45) {\title};
+  }
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\variableHeatCapacityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=1.0cm,>=Latex]
+  \draw[axis] (0,0)--(6.2,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.8) node[above] {$P$};
+  \draw[DeepBlue,very thick] (0.8,3.9)--(5.2,0.75);
+  \draw[guide] (3.0,0)--(3.0,2.33);
+  \node[below,font=\small] at (3.0,0) {$V_0/2$};
+  \node[DeepBlue,above right] at (1.15,3.5) {$\displaystyle\frac{P}{P_0}+\frac{V}{V_0}=1$};
+  \node[align=left,anchor=west,font=\small] at (6.7,2.7)
+    {$\displaystyle T(V)=\frac{P_0}{R}\!\left(V-\frac{V^2}{V_0}\right)$\\[5pt]
+     $V=V_0/2$ 处 $\dd T/\dd V=0$，\\过程热容出现发散。};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\isothermalAtmosphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \shade[bottom color=DeepBlue!22,top color=white] (-5.7,-2.0) rectangle (-1.8,2.7);
+  \draw[axis] (-6.0,-2.0)--(-6.0,3.0) node[above] {$h$};
+  \foreach \y/\lab in {-1.5/{P_0,n_0},0/{P_0\e^{-h/H}},1.6/{P_0\e^{-2h/H}}}{
+    \draw[TextGray] (-6.0,\y)--(-5.7,\y); \node[font=\small,anchor=west] at (-5.3,\y) {$\lab$};
+  }
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,align=center] at (3.0,0.4)
+    {$\displaystyle P(h)=P_0\e^{-h/H}$\\[5pt]
+     $\displaystyle n(h)=n_0\e^{-h/H}$\\[5pt]
+     $\displaystyle H=\frac{RT}{\mu g}$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\capillaryBubbleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \begin{scope}[shift={(-4.3,0)}]
+    \fill[DeepBlue!12] (-2.2,-1.8) rectangle (2.2,-0.5);
+    \draw[DeepBlue,very thick] (-2.2,-0.5)--(2.2,-0.5);
+    \draw[Ink,very thick] (-0.45,-1.8)--(-0.45,2.6) (0.45,-1.8)--(0.45,2.6);
+    \fill[DeepBlue!18] (-0.42,-1.8) rectangle (0.42,1.35);
+    \draw[DeepBlue,very thick] (-0.42,1.35) arc[start angle=180,end angle=0,x radius=0.42,y radius=0.24];
+    \draw[<->,TextGray] (0.9,-0.5)--node[right] {$h$}(0.9,1.35);
+    \node[font=\small] at (0,-2.2) {$h=2\sigma/(\rho gR)$};
+  \end{scope}
+  \begin{scope}[shift={(3.7,0)}]
+    \shade[ball color=DeepBlue!18,opacity=0.55] (0,0.2) circle (1.65);
+    \draw[DeepBlue,very thick] (0,0.2) circle (1.65);
+    \draw[DeepBlue,thick] (0,0.2) circle (1.53);
+    \draw[->,Ink,thick] (0,0.2)--(1.17,1.37) node[midway,above left] {$R$};
+    \node at (0,0.2) {$p_{\rm in}$};
+    \node[font=\small] at (0,-2.2) {$p_{\rm in}-p_0=4\sigma/R$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\cycleExampleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.2cm,y=0.9cm,>=Latex]
+  \draw[axis] (0,0)--(6.2,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,5.2) node[above] {$P$};
+  \draw[guide] (0,4.2)--(1.25,4.2);
+  \draw[guide] (0,1.05)--(5.1,1.05);
+  \draw[guide] (1.25,0)--(1.25,4.2);
+  \node[left,font=\small] at (0,4.2) {$P_1$};
+  \node[left,font=\small] at (0,1.05) {$P_1/4$};
+  \node[below,font=\small] at (1.25,0) {$V_1$};
+  \draw[DeepBlue,very thick,->] (1.25,4.2)--(1.25,1.05);
+  \draw[DeepBlue,very thick,->] (1.25,1.05)--(5.0,1.05);
+  \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .52 with {\arrow{Latex}}}]
+    (5.0,1.05) .. controls (3.4,1.3) and (1.8,2.35) .. (1.25,4.2);
+  \fill[Ink] (1.25,4.2) circle (2pt) node[above right] {$a$};
+  \fill[Ink] (1.25,1.05) circle (2pt) node[above right] {$b$};
+  \fill[Ink] (5.0,1.05) circle (2pt) node[below right] {$c$};
+  \node[font=\small,DeepBlue] at (3.45,2.4) {$PV=P_1V_1$};
+  \node[align=left,anchor=west,font=\small] at (7.0,2.6)
+    {$V_c=4V_1$\\[3pt]
+     $a\to b$：等容降温\\
+     $b\to c$：等压吸热\\
+     $c\to a$：等温压缩};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\straightProcessDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.2cm,y=1.0cm,>=Latex]
+  \draw[axis] (0,0)--(5.8,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.8) node[above] {$P$};
+  \draw[guide] (0,3.8)--(1.2,3.8);
+  \draw[guide] (0,1.9)--(4.6,1.9);
+  \node[left,font=\small] at (0,3.8) {$P_A$};
+  \node[left,font=\small] at (0,1.9) {$P_A/2$};
+  \draw[DeepBlue,very thick,->] (1.2,3.8)--(4.6,1.9);
+  \fill[Ink] (1.2,3.8) circle (2pt) node[above right] {$A$};
+  \fill[Ink] (4.6,1.9) circle (2pt) node[below right] {$B$};
+  \draw[guide] (1.2,0)--(1.2,3.8);
+  \draw[guide] (4.6,0)--(4.6,1.9);
+  \node[below,font=\small] at (1.2,0) {$V_A$};
+  \node[below,font=\small] at (4.6,0) {$V_B$};
+  \node[align=left,anchor=west,font=\small] at (6.7,2.7)
+    {$\displaystyle W^{\rm out}=\frac{P_A+P_B}{2}(V_B-V_A)$\\[5pt]
+     $\displaystyle \Delta U=\frac32(P_BV_B-P_AV_A)$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\liftingPistonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,very thick] (-4.7,-2.0)--(-4.7,3.2) (-1.7,-2.0)--(-1.7,3.2) (-4.7,-2.0)--(-1.7,-2.0);
+  \draw[fill=SoftGray,draw=Ink,thick] (-4.55,0.15) rectangle (-1.85,0.48);
+  \draw[->,DeepBlue,very thick] (-3.2,0.5)--(-3.2,1.65) node[right] {缓慢上提};
+  \node at (-3.2,-0.7) {$p,T$};
+  \draw[->,Ink,thick] (-3.2,-1.95)--(-3.2,-2.8) node[right] {$Mg$};
+  \draw[->,TextGray,thick] (-4.0,-2.0)--(-4.0,-1.15) node[midway,left] {$p_0A$};
+  \draw[->,TextGray,thick] (-2.5,-1.15)--(-2.5,-2.0) node[midway,right] {$pA$};
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,align=left,anchor=west] at (0.2,0.2)
+    {刚离地：$(p_0-p)A=Mg$\\[4pt]
+     绝热膨胀：$\displaystyle\frac{T^\gamma}{p^{\gamma-1}}=\mathrm{const}$\\[4pt]
+     $\displaystyle T_f=T_0\left(1-\frac{Mg}{p_0A}\right)^{(\gamma-1)/\gamma}$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+% Original vector redraws replacing all figures cropped from the source PDF.
+% The physical relationships are retained, while composition, line work,
+% colour, labels and visual hierarchy are newly designed for this handout.
+
+
+\newcommand{\perpetualMotionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \cx/\title in {-5.1/{偏心重锤轮},0/{循环配重带},5.1/{单向摆锤轮}}{
+    \draw[fill=SoftGray,draw=RuleGray,rounded corners=2pt] (\cx-2.15,-2.35) rectangle (\cx+2.15,2.65);
+    \node[font=\small\bfseries] at (\cx,2.25) {\title};
+  }
+  % Deliberately new overbalanced-wheel construction.
+  \begin{scope}[shift={(-5.1,0)}]
+    \draw[Ink,very thick] (-1.55,-1.85)--(1.55,-1.85) (0,-1.85)--(0,-1.15);
+    \draw[Ink,very thick] (0,0.15) circle (1.3);
+    \foreach \a in {0,45,...,315}{
+      \draw[TextGray,thick] (0,0.15)--(\a:1.05);
+      \pgfmathsetmacro{\rr}{ifthenelse(cos(\a)>0,1.3,0.78)}
+      \fill[DeepBlue] (\a:\rr) ++(0,0.15) circle (2.5pt);
+    }
+    \draw[->,DeepBlue,very thick] (1.55,0.75) arc[start angle=25,end angle=-70,radius=1.05];
+    \node[font=\scriptsize,align=center] at (0,-2.08) {设想：右侧力矩始终较大};
+  \end{scope}
+  % New closed-loop chain construction.
+  \begin{scope}[shift={(0,0)}]
+    \draw[Ink,very thick,rounded corners=12pt] (-1.15,-1.45) rectangle (1.15,1.35);
+    \foreach \y in {-1.05,-0.45,0.15,0.75}{
+      \draw[fill=DeepBlue!16,draw=DeepBlue,thick] (-1.35,\y-0.17) rectangle (-0.93,\y+0.17);
+      \draw[fill=DeepBlue!35,draw=DeepBlue,thick] (0.86,\y-0.27) rectangle (1.44,\y+0.27);
+    }
+    \draw[->,DeepBlue,very thick] (1.72,0.55)--(1.72,-0.5);
+    \draw[->,TextGray,thick] (-1.72,-0.5)--(-1.72,0.55);
+    \node[font=\scriptsize,align=center] at (0,-2.08) {设想：重块一侧持续下落};
+  \end{scope}
+  % New one-way pendulum construction.
+  \begin{scope}[shift={(5.1,0)}]
+    \draw[Ink,very thick] (-1.55,-1.85)--(1.55,-1.85) (0,-1.85)--(0,-1.05);
+    \draw[Ink,very thick] (0,0.18) circle (1.18);
+    \foreach \a in {10,50,...,330}{
+      \draw[TextGray,thick] (0,0.18)--(\a:1.05);
+      \draw[Ink,thick] (\a:1.05) ++(0,0.18)--++(0,-0.34);
+      \fill[DeepBlue] (\a:1.05) ++(0,-0.16) circle (2.7pt);
+    }
+    \draw[->,DeepBlue,very thick] (-1.48,0.85) arc[start angle=155,end angle=245,radius=1.08];
+    \node[font=\scriptsize,align=center] at (0,-2.08) {设想：摆锤只在一侧做功};
+  \end{scope}
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,font=\small,align=center]
+    at (0,-3.05) {共同漏洞：装置回到原状态时，若无外界能量输入，就不可能留下正的净功};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\thermalPlumeRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \shade[bottom color=DeepBlue!8,top color=white] (-4.9,-2.35) rectangle (5.0,2.75);
+  % Newly drawn stylised hand and forearm.
+  \path[fill=orange!28,draw=Ink,thick]
+    (-4.65,-2.1) .. controls (-3.6,-1.55) and (-2.65,-1.05) .. (-1.65,-0.8)
+    .. controls (-1.1,-0.65) and (-0.62,-0.62) .. (-0.18,-0.38)
+    .. controls (0.18,-0.18) and (0.08,0.13) .. (-0.22,0.18)
+    .. controls (-0.7,0.22) and (-1.12,0.08) .. (-1.58,0.04)
+    .. controls (-1.05,0.28) and (-0.62,0.48) .. (-0.23,0.75)
+    .. controls (0.13,1.0) and (-0.05,1.28) .. (-0.38,1.24)
+    .. controls (-1.02,1.15) and (-1.56,0.76) .. (-2.08,0.55)
+    .. controls (-2.7,0.30) and (-3.05,0.05) .. (-3.55,-0.35)
+    .. controls (-4.05,-0.78) and (-4.35,-1.35) .. (-4.65,-2.1) -- cycle;
+  \foreach \x/\h/\bend in {-2.8/2.0/0.35,-2.15/2.55/-0.25,-1.45/2.15/0.30,-0.78/1.7/-0.2}{
+    \draw[orange!85!red,very thick,->]
+      (\x,0.35) .. controls (\x+\bend,0.9) and (\x-\bend,1.45) .. (\x+0.15,\h);
+  }
+  \foreach \x/\y in {-3.2/0.25,-2.65/1.0,-2.05/1.55,-1.4/1.0,-0.9/1.55,0.05/0.95}{
+    \fill[orange!80!red] (\x,\y) circle (1.5pt);
+  }
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,align=left,anchor=west] at (1.0,1.25)
+    {手掌加热邻近空气\\热空气密度减小并上升};
+  \draw[->,DeepBlue,thick] (1.15,0.85) .. controls (0.35,0.65) and (-0.15,1.1) .. (-0.55,1.45);
+  \node[font=\small,TextGray,anchor=west] at (1.0,-0.15) {上升暖流携带热量：对流};
+  \draw[very thick,orange!85!red] (1.0,-0.75)--(2.0,-0.75) node[right,font=\small,Ink] {温度较高};
+  \draw[very thick,DeepBlue!55] (1.0,-1.22)--(2.0,-1.22) node[right,font=\small,Ink] {环境空气};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\stellarConvectionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \begin{scope}[shift={(-3.9,0)}]
+    \shade[ball color=orange!55] (0,0) circle (1.75);
+    \clip (0,0) circle (1.75);
+    \foreach \x/\y/\r in {-1.0/0.8/0.45,-0.25/1.05/0.40,0.65/0.8/0.48,1.15/0.1/0.42,0.6/-0.65/0.5,-0.35/-0.75/0.48,-1.15/-0.25/0.42,-0.25/0.1/0.55}{
+      \draw[orange!85!black,opacity=.7,thick] (\x,\y) circle (\r);
+      \fill[yellow!75!white,opacity=.65] (\x,\y) circle (0.11);
+    }
+  \end{scope}
+  \draw[Ink,thick] (-3.9,0) circle (1.75);
+  \node[font=\small\bfseries] at (-3.9,-2.2) {太阳表面：较细的对流颗粒};
+  \begin{scope}[shift={(3.35,0)}]
+    \shade[ball color=red!65!orange] (0,0) circle (2.45);
+    \clip (0,0) circle (2.45);
+    \foreach \x/\y/\r in {-1.3/1.2/0.62,-0.15/1.4/0.68,1.25/1.0/0.72,1.55/-0.25/0.72,0.75/-1.2/0.78,-0.55/-1.35/0.72,-1.55/-0.5/0.65,-0.35/0.15/0.92,0.95/0.2/0.72}{
+      \draw[red!70!black,opacity=.72,very thick] (\x,\y) circle (\r);
+      \fill[orange!80!yellow,opacity=.65] (\x,\y) circle (0.16);
+    }
+  \end{scope}
+  \draw[Ink,thick] (3.35,0) circle (2.45);
+  \node[font=\small\bfseries] at (3.35,-2.85) {红巨星表面：尺度更大的对流胞};
+  \foreach \cx/\cy in {-4.5/-0.5,-3.4/0.35,2.4/-0.5,3.6/0.55,4.2/-0.85}{
+    \draw[->,DeepBlue,thick] (\cx,\cy-0.25)--(\cx,\cy+0.35);
+  }
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small] at (0,-3.55)
+    {亮区：热物质上升\qquad 暗边界：冷物质下沉};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\thermalRadiationRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,thick,rounded corners=3pt,fill=SoftGray] (-5.4,-1.45) rectangle (5.4,1.45);
+  \shade[left color=red!85!black,middle color=orange!85,right color=DeepBlue!35]
+    (-4.85,-0.6) rectangle (4.85,0.6);
+  \draw[Ink,very thick] (-4.85,-0.6) rectangle (4.85,0.6);
+  \node[white,font=\bfseries] at (-3.65,0) {高温区};
+  \node[Ink,font=\bfseries] at (3.65,0) {低温区};
+  \foreach \x/\s in {-4.4/1.0,-3.55/.85,-2.7/.7}{
+    \draw[orange!90!red,very thick,decorate,decoration={snake,amplitude=1.3mm,segment length=4mm}]
+      (\x,0.78)--(\x,0.78+\s);
+  }
+  \foreach \x/\s in {2.9/.42,3.75/.32,4.45/.25}{
+    \draw[DeepBlue!70,thick,decorate,decoration={snake,amplitude=.8mm,segment length=4mm}]
+      (\x,0.78)--(\x,0.78+\s);
+  }
+  \node[font=\small,anchor=east] at (-2.2,-1.95) {$j_{\rm rad}=\sigma T^4$：温度升高，辐射急剧增强};
+  \draw[->,DeepBlue,thick] (0,-2.0)--(3.8,-2.0) node[right,font=\small] {温度降低};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\heatCapacityRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (0,0)--(11.2,0) node[right] {$T/\mathrm K$（对数刻度）};
+  \draw[axis] (0,0)--(0,5.6) node[above] {$c_v$};
+  \foreach \x/\lab in {0.8/{10},2.8/{50},4.3/{100},5.9/{500},7.4/{10^3},9.2/{5\!\times\!10^3},10.7/{10^4}}{
+    \draw[TextGray] (\x,0.08)--(\x,-0.08) node[below,font=\scriptsize] {$\lab$};
+  }
+  \foreach \y/\lab in {1.35/{\frac32R},3.15/{\frac52R},4.95/{\frac72R}}{
+    \draw[guide] (0,\y)--(10.75,\y);
+    \node[left,font=\small] at (0,\y) {$\lab$};
+  }
+  \draw[DeepBlue,very thick]
+    (0.7,1.35)--(2.0,1.35)
+    .. controls (3.0,1.35) and (3.15,3.15) .. (4.65,3.15)
+    --(6.45,3.15)
+    .. controls (7.5,3.15) and (7.7,4.95) .. (9.35,4.95)
+    --(10.65,4.95);
+  \draw[<->,Ink,thick] (1.3,0.18)--(1.3,1.28) node[midway,right,font=\small] {平动};
+  \draw[<->,Ink,thick] (5.25,1.43)--(5.25,3.07) node[midway,right,font=\small] {转动};
+  \draw[<->,Ink,thick] (9.9,3.23)--(9.9,4.87) node[midway,right,font=\small] {振动};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small,align=left] at (5.55,5.15)
+    {温度升高后，更高能级对应的自由度才逐步参与能量均分};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\pressureLayerRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \shade[bottom color=DeepBlue!16,top color=DeepBlue!4] (-4.2,-1.55) rectangle (1.2,2.15);
+  \draw[Ink,very thick] (-4.2,-1.55)--(1.2,-1.55);
+  \draw[fill=DeepBlue!20,draw=DeepBlue,thick] (-3.7,0.2) rectangle (0.7,0.72);
+  \draw[<->,Ink,thick] (-3.1,-1.48)--node[left] {$h$}(-3.1,0.18);
+  \draw[<->,DeepBlue,thick] (1.65,0.2)--node[right] {$\dd h$}(1.65,0.72);
+  \node[font=\small] at (-1.5,-0.55) {$T,\ P,\ \rho$};
+  \node[font=\small] at (-1.5,1.15) {$T+\dd T,\ P+\dd P$};
+  \draw[->,DeepBlue,very thick] (-0.2,0.45)--(-0.2,-0.7) node[midway,right] {$\rho gA\,\dd h$};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,align=left,anchor=west] at (3.05,0.3)
+    {薄层静力平衡：\\[3pt]$A\,\dd P=-\rho gA\,\dd h$\\[3pt]$\boxed{\dd P=-\rho g\,\dd h}$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\atmosphereProfileRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.82cm,>=Latex]
+  \fill[DeepBlue!10] (-5.2,-2.25) rectangle (5.6,-1.55);
+  \fill[DeepBlue!6]  (-5.2,-1.55) rectangle (5.6,-0.25);
+  \fill[orange!9]    (-5.2,-0.25) rectangle (5.6,2.0);
+  \fill[DeepBlue!5]  (-5.2,2.0) rectangle (5.6,3.45);
+  \fill[violet!7]    (-5.2,3.45) rectangle (5.6,5.15);
+  \foreach \y/\h in {-2.25/0,-1.55/10,-0.25/20,2.0/50,3.45/80,5.15/100}{
+    \draw[TextGray!65] (-5.2,\y)--(5.6,\y);
+    \node[left,font=\scriptsize] at (-5.25,\y) {$\h$};
+  }
+  \draw[axis] (-5.2,-2.25)--(-5.2,5.55) node[above] {$h/\mathrm{km}$};
+  \draw[axis] (-4.65,-2.25)--(0.8,-2.25) node[right] {$T$};
+  \draw[DeepBlue,very thick]
+    (-2.0,-2.25)--(-3.3,-1.55)--(-2.45,-0.25)--(-3.15,2.0)--(-1.65,3.45)--(-0.55,5.15);
+  \foreach \x/\y in {-2.0/-2.25,-3.3/-1.55,-2.45/-0.25,-3.15/2.0,-1.65/3.45,-0.55/5.15}{\fill[DeepBlue] (\x,\y) circle (1.5pt);}
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,-1.88) {对流层};
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,-0.72) {平流层};
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,0.85) {中间层};
+  \node[font=\scriptsize\bfseries,anchor=east] at (5.35,3.72) {热层};
+  % Ground, mountains and clouds.
+  \fill[Ink!70] (2.6,-2.25)--(3.45,-1.63)--(3.9,-1.98)--(4.45,-1.5)--(5.05,-2.25)--cycle;
+  \foreach \x/\y in {1.15/-1.86,2.05/-1.78}{
+    \fill[white,draw=TextGray] (\x,\y) circle (.18) (\x+.22,\y+.05) circle (.23) (\x+.45,\y) circle (.18);
+  }
+  % Airliner near the tropopause.
+  \draw[Ink,very thick] (1.45,-1.02)--(2.65,-0.9);
+  \draw[Ink,thick] (1.95,-.97)--(2.25,-.65) (1.95,-.97)--(2.28,-1.18);
+  \node[font=\scriptsize,anchor=west] at (2.8,-0.9) {民航巡航};
+  % Newly composed aurora ribbons.
+  \draw[green!55!DeepBlue,very thick,decorate,decoration={snake,amplitude=1.1mm,segment length=5mm}]
+    (1.25,4.48)--(4.15,4.68);
+  \draw[violet!55!DeepBlue,thick,decorate,decoration={snake,amplitude=.9mm,segment length=5mm}]
+    (1.45,4.05)--(3.9,4.22);
+  \node[font=\scriptsize,anchor=west] at (4.25,4.72) {极光};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\cycleQuestionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1.05cm,y=.82cm,>=Latex]
+  \draw[axis] (0,0)--(5.7,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.8) node[above] {$P$};
+  \draw[guide] (0,3.9)--(1.2,3.9);
+  \draw[guide] (0,1.0)--(5.0,1.0);
+  \node[left,font=\small] at (0,3.9) {$P_1$};
+  \node[left,font=\small] at (0,1.0) {$P_1/4$};
+  \draw[DeepBlue,very thick,->] (1.2,3.9)--(1.2,1.0);
+  \draw[DeepBlue,very thick,->] (1.2,1.0)--(4.8,1.0);
+  \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .52 with {\arrow{Latex}}}]
+    (4.8,1.0) .. controls (3.25,1.22) and (1.75,2.25) .. (1.2,3.9);
+  \fill[Ink] (1.2,3.9) circle (2pt) node[above right] {$a$};
+  \fill[Ink] (1.2,1.0) circle (2pt) node[below left] {$b$};
+  \fill[Ink] (4.8,1.0) circle (2pt) node[below right] {$c$};
+  \draw[guide] (1.2,0)--(1.2,3.9);
+  \node[below,font=\small] at (1.2,0) {$V_1$};
+  \node[font=\small,DeepBlue] at (3.25,2.2) {$c\to a$ 等温};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\straightQuestionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[axis] (0,0)--(5.8,0) node[right] {$V$};
+  \draw[axis] (0,0)--(0,4.7) node[above] {$P$};
+  \draw[DeepBlue,very thick,->] (1.35,3.7)--(4.55,1.55);
+  \fill[Ink] (1.35,3.7) circle (2pt) node[above left] {$A$};
+  \fill[Ink] (4.55,1.55) circle (2pt) node[below right] {$B$};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small,anchor=west] at (6.45,2.65)
+    {$P_B/P_A=1/2$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\liftingPistonQuestionRedraw}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[Ink,very thick] (-2.15,-1.9)--(-2.15,3.1) (2.15,-1.9)--(2.15,3.1) (-2.15,-1.9)--(2.15,-1.9);
+  \draw[fill=SoftGray,draw=Ink,thick] (-2.0,0.15) rectangle (2.0,0.48);
+  \fill[DeepBlue!10] (-2.0,-1.75) rectangle (2.0,0.15);
+  \draw[->,DeepBlue,very thick] (0,0.55)--(0,1.8) node[right] {缓慢上提};
+  \draw[Ink,very thick] (-2.45,-1.9)--(2.45,-1.9);
+  \foreach \x in {-2.3,-1.7,...,2.3}{\draw[TextGray] (\x,-1.9)--++(-.25,-.25);}
+  \node at (0,-0.7) {$p_0,T_0$};
+  \node[font=\small,anchor=west] at (2.45,1.45) {绝热气缸质量 $M$};
+  \node[font=\small,anchor=west] at (2.45,0.3) {无质量、无摩擦活塞};
+  \node[draw=DeepBlue,fill=PaleBlue,rounded corners=2pt,font=\small,align=left,anchor=west] at (5.4,-0.7)
+    {截面积 $A$\\外界压强 $p_0$\\刚离地时求 $T_f$};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+% High-fidelity second pass: these drawings keep the source figure's object
+% inventory and physical layout while using newly authored geometry.
+\newcommand{\perpetualMotionFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \cx/\lab in {-5.0/{装置 A},0/{装置 B},5.0/{装置 C}}{
+    \draw[fill=SoftGray,draw=RuleGray,rounded corners=2pt] (\cx-2.1,-2.5) rectangle (\cx+2.1,2.75);
+    \node[font=\small\bfseries] at (\cx,2.36) {\lab};
+  }
+  % A: rotor on a two-post stand, with curved ball channels.
+  \begin{scope}[shift={(-5.0,0)}]
+    \draw[Ink,very thick] (-1.55,-2.0)--(1.55,-2.0);
+    \draw[Ink,very thick] (-0.72,-2.0)--(-0.38,-1.1) (0.72,-2.0)--(0.38,-1.1);
+    \draw[fill=SoftGray,draw=Ink,very thick] (0,0.25) circle (1.35);
+    \begin{scope}[shift={(0,.25)}]
+    \foreach \a in {0,60,...,300}{
+      \draw[DeepBlue,thick,rounded corners=5pt]
+        (\a:0.30) .. controls (\a+18:0.72) and (\a+12:1.03) .. (\a:1.17);
+      \fill[Ink] (\a:1.12) circle (2.2pt);
+    }
+    \end{scope}
+    \fill[Ink] (0,0.25) circle (3pt);
+    \draw[->,DeepBlue,very thick] (1.55,0.75) arc[start angle=20,end angle=-70,radius=1.05];
+    \node[font=\scriptsize,align=center] at (0,-2.25) {带弯曲滚道的偏心转轮};
+  \end{scope}
+  % B: capsule-shaped endless carrier with blocks and a side guide.
+  \begin{scope}[shift={(0,0)}]
+    \draw[Ink,very thick,rounded corners=17pt] (-1.02,-1.62) rectangle (1.02,1.62);
+    \fill[Ink] (0,1.05) circle (2.5pt) (0,-1.05) circle (2.5pt);
+    \foreach \y in {-1.15,-.55,.05,.65,1.25}{
+      \draw[fill=DeepBlue!10,draw=Ink,thick] (-1.28,\y-.17) rectangle (-.86,\y+.17);
+      \draw[fill=DeepBlue!18,draw=Ink,thick] (.86,\y-.17) rectangle (1.28,\y+.17);
+    }
+    \draw[fill=TextGray!18,draw=Ink,thick]
+      (1.45,-1.72)--(1.95,-1.72)--(1.95,1.35)--(1.68,1.58)--(1.43,1.23)--cycle;
+    \draw[->,DeepBlue,very thick] (1.55,.65)--(1.55,-.35);
+    \node[font=\scriptsize,align=center] at (0,-2.25) {沿封闭轨道循环的配重块};
+  \end{scope}
+  % C: perforated hub, radial rods and hanging end masses.
+  \begin{scope}[shift={(5.0,0)}]
+    \draw[Ink,very thick] (-1.55,-2.0)--(1.55,-2.0) (0,-2.0)--(0,-1.15);
+    \draw[fill=SoftGray,draw=Ink,very thick] (0,0.2) circle (1.05);
+    \foreach \a in {0,72,...,288}{
+      \fill[white,draw=TextGray,thick] (\a:0.57) ++(0,0.2) circle (.22);
+    }
+    \begin{scope}[shift={(0,.2)}]
+    \foreach \a in {-80,-50,...,250}{
+      \draw[Ink,thick] (\a:0.95)--(\a:1.58);
+      \fill[DeepBlue] (\a:1.58) circle (2.8pt);
+    }
+    \end{scope}
+    \fill[Ink] (0,0.2) circle (3pt);
+    \draw[->,DeepBlue,very thick] (-1.35,0.85) arc[start angle=155,end angle=245,radius=1.0];
+    \node[font=\scriptsize,align=center] at (0,-2.25) {带径向摆锤的开孔转轮};
+  \end{scope}
+  \node[draw=DeepBlue,fill=PaleBlue,thick,rounded corners=2pt,font=\small,align=center]
+    at (0,-3.08) {若装置完成一个循环并回到原状态，内部各部分的势能变化也必须一并结算};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\pistonWorkFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \foreach \sx/\top/\gas/\name in {-6.0/.15/{V}/{初态},-2.9/.65/{V+\dd V}/{末态}}{
+    \begin{scope}[shift={(\sx,0)}]
+      \draw[Ink,very thick] (-1.05,-1.7)--(-1.05,2.05) (1.05,-1.7)--(1.05,2.05) (-1.05,-1.7)--(1.05,-1.7);
+      \fill[DeepBlue!9] (-.95,-1.58) rectangle (.95,\top-.16);
+      \draw[fill=SoftGray,draw=Ink,thick] (-.92,\top-.16) rectangle (.92,\top+.16);
+      \draw[Ink,very thick] (0,\top+.16)--(0,2.45);
+      \node at (0,-.7) {$\gas$};
+      \node[font=\scriptsize] at (0,-2.05) {\name};
+    \end{scope}
+  }
+  \draw[<->,DeepBlue,thick] (-1.45,.15)--node[right,font=\small] {$\dd y$}(-1.45,.65);
+  \draw[->,DeepBlue,very thick] (-2.9,2.5)--(-2.9,3.08);
+  \node[font=\small] at (-4.45,-2.55) {$\dd V=A\,\dd y$};
+  \begin{scope}[shift={(1.0,-1.6)},x=1.05cm,y=.92cm]
+    \draw[axis] (0,0)--(5.5,0) node[right] {$V$};
+    \draw[axis] (0,0)--(0,4.85) node[above] {$P$};
+    \fill[PaleBlue] (1.0,3.9) .. controls (2.0,2.55) and (3.6,1.35) .. (4.75,.9)--(4.75,0)--(1.0,0)--cycle;
+    \draw[DeepBlue,very thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}]
+      (.7,4.35) .. controls (1.85,2.45) and (3.45,1.25) .. (5.0,.82);
+    \fill[Ink] (1.0,3.9) circle (2pt) node[above right] {$i$};
+    \fill[Ink] (4.75,.9) circle (2pt) node[above right] {$f$};
+    \draw[guide] (1.0,0)--(1.0,3.9) (4.75,0)--(4.75,.9);
+    \node[font=\small,DeepBlue] at (2.8,.62) {$W^{\rm out}=\displaystyle\int_{V_i}^{V_f}P\,\dd V$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+\newcommand{\atmosphereProfileFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=.86cm,>=Latex]
+  \fill[DeepBlue!9] (-5.8,0) rectangle (5.65,.62);
+  \fill[DeepBlue!5] (-5.8,.62) rectangle (5.65,1.25);
+  \fill[orange!8] (-5.8,1.25) rectangle (5.65,3.1);
+  \fill[DeepBlue!5] (-5.8,3.1) rectangle (5.65,4.95);
+  \fill[violet!8] (-5.8,4.95) rectangle (5.65,6.2);
+  \foreach \y in {0,.62,1.25,3.1,4.95,6.2}{\draw[TextGray!55] (-5.8,\y)--(5.65,\y);}
+  % Pressure scale retained from the source information.
+  \node[rotate=90,font=\scriptsize\bfseries] at (-6.95,3.1) {压强（相对海平面）};
+  \foreach \y/\p in {0/{1},.62/{10^{-1}},1.85/{10^{-2}},3.1/{10^{-3}},4.05/{10^{-4}},4.95/{10^{-5}},5.58/{10^{-6}},6.2/{10^{-7}}}{
+    \node[left,font=\scriptsize] at (-5.92,\y) {$\p$};
+  }
+  % Central altitude scale, as in the historical infographic.
+  \draw[axis] (.65,0)--(.65,6.55) node[above] {$h/\mathrm{km}$};
+  \foreach \y/\h in {0/0,.62/10,1.25/20,3.1/50,4.95/80,5.58/90,6.2/100}{
+    \draw[TextGray] (.57,\y)--(.73,\y);
+    \node[right,font=\scriptsize] at (.78,\y) {$\h$};
+  }
+  % Newly plotted, source-faithful zig-zag temperature profile.
+  \draw[DeepBlue,very thick]
+    (-1.35,0)--(-3.25,.62)--(-3.05,1.25)--(-1.65,3.1)--(-3.75,4.95)--(-2.55,5.58)--(-1.75,6.2);
+  \foreach \x/\y in {-1.35/0,-3.25/.62,-3.05/1.25,-1.65/3.1,-3.75/4.95,-2.55/5.58,-1.75/6.2}{\fill[DeepBlue] (\x,\y) circle (1.5pt);}
+  \draw[axis] (-4.9,0)--(-.55,0) node[right] {$T$};
+  \node[font=\scriptsize] at (-4.15,-.3) {低温};
+  \node[font=\scriptsize] at (-1.15,-.3) {高温};
+  % Numbered layers and concise heating explanations.
+  \foreach \x/\y/\n in {-4.65/.32/4,-4.65/2.15/3,-4.65/3.95/2,-4.65/5.55/1}{
+    \draw[Ink,thick,fill=white] (\x,\y) circle (.18);
+    \node[font=\tiny] at (\x,\y) {\n};
+  }
+  \node[font=\scriptsize,align=left,anchor=west] at (1.65,2.5)
+    {低层大气主要吸收\\温暖地表发出的辐射};
+  \node[font=\scriptsize,align=left,anchor=west] at (1.65,5.2)
+    {高层稀薄气体直接\\吸收太阳高能辐射};
+  % Clouds, mountains, low aircraft and upper-space vehicle.
+  \fill[Ink!65] (2.8,0)--(3.55,.5)--(4.0,.15)--(4.65,.72)--(5.3,0)--cycle;
+  \foreach \x in {1.55,2.25}{\fill[white,draw=TextGray] (\x,.4) circle (.12) (\x+.16,.44) circle (.17) (\x+.32,.4) circle (.12);}
+  \draw[Ink,thick] (3.0,.78)--(4.05,.88) (3.45,.82)--(3.72,1.08) (3.45,.82)--(3.78,.6);
+  \draw[Ink,thick] (3.75,5.9)--(4.75,6.02) (4.15,5.95)--(4.42,6.22) (4.15,5.95)--(4.45,5.72);
+  \draw[green!55!DeepBlue,very thick,decorate,decoration={snake,amplitude=1mm,segment length=5mm}]
+    (1.65,5.72)--(3.45,5.9);
+  \node[font=\scriptsize,anchor=west] at (1.65,5.98) {极光};
+\end{tikzpicture}
+\end{center}\nopagebreak[2]}
+
+% Parameter-based technical figures, revised 2026-09-15.
+\newcommand{\stellarInteriorRevision}{\begin{center}\begin{tikzpicture}[font=\scriptsize]
+\foreach \sx/\outer/\inner/\core/\title in {0/1.7/1.19/.43/太阳,7/2.1/.68/.23/红巨星}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[orange!18](0,0)circle(\outer);\fill[yellow!18](0,0)circle(\inner);\fill[orange!70](0,0)circle(\core);
+\draw[Ink](0,0)circle(\outer);\draw[TextGray](0,0)circle(\inner);
+\pgfmathsetmacro{\midradius}{(\outer+\inner)/2}
+\pgfmathsetmacro{\cellradius}{(\outer-\inner)*.38}
+\foreach \angle in {35,95,155,215,275,335}{
+\draw[DeepBlue,thick,->] (\angle:\midradius)++(0:\cellradius)arc(0:305:\cellradius);}
+\node at(0,2.6){\title};
+\draw[TextGray](0,0)--(.25,-2.6);\node[below]at(.25,-2.6){核心};
+\draw[TextGray](20:{(\core+\inner)/2})--(2.45,-1.2);\node[anchor=west]at(2.45,-1.2){辐射区};
+\draw[TextGray](40:\midradius)--(2.45,1.25);\node[anchor=west]at(2.45,1.25){对流包层};
+\end{scope}}\end{tikzpicture}
+\par\smallskip\includegraphics[width=.63\linewidth]{figure20-3-redraw-v2.png}
+\par\small 表面对流细节：太阳的细小颗粒与红巨星的较大对流胞
+\end{center}\nopagebreak[2]}
+
+\renewcommand{\atmosphereProfileFaithful}{\begin{center}\begin{tikzpicture}[x=1cm,y=.065cm,font=\scriptsize]
+\foreach \lo/\hi/\col in {0/11/DeepBlue!8,11/50/orange!8,50/86/DeepBlue!5,86/100/violet!8}{\fill[\col](0,\lo)rectangle(11,\hi);}
+\draw[axis](0,0)--(0,108)node[above]{$h/\mathrm{km}$};
+\foreach \h in {0,20,40,60,80,100}{\draw(-.08,\h)--(.08,\h);\node[left]at(0,\h){$\h$};}
+\foreach \h in {11,50,86}{\draw[guide](0,\h)--(11,\h);}
+% Celsius axis: x=(t+100)/30. Altitudes and temperatures are representative.
+\draw[axis](0,0)--(7.1,0)node[right]{$t/{}^\circ\mathrm C$};
+\foreach \t in {-100,-50,0,50,100}{\draw({(\t+100)/30},1)--({(\t+100)/30},-1)node[below]{$\t$};}
+\draw[DeepBlue,thick]plot coordinates {(3.833,0)(1.45,11)(1.45,20)(1.85,32)(3.25,47)(3.25,51)(1.383,71)(.46,86)(.46,91)(.731,100)};
+\node[anchor=west]at(7.3,5.5){对流层};\node[anchor=west]at(7.3,31){平流层};
+\node[anchor=west]at(7.3,68){中间层};\node[anchor=west]at(7.3,95){热层下部};
+\node[anchor=west]at(11.4,109){$p/p_0$（约值）};
+\foreach \h/\p in {0/1,20/{5.4\!\times\!10^{-2}},50/{7.9\!\times\!10^{-4}},80/{1.05\!\times\!10^{-5}},100/{3.2\!\times\!10^{-7}}}{\node[anchor=west]at(11.4,\h){$\p$};}
+\end{tikzpicture}
+\par\medskip\includegraphics[width=.94\linewidth]{atmosphere-scenes.png}
+\par\small 云与山地\hfill 民航巡航\hfill 高空飞行器\hfill 极光
+\par\smallskip\small 下方情景不按高度比例；上方折线为代表性分层模型，实际温度随地点、季节和太阳活动改变。
+\end{center}\nopagebreak[2]}
+\tikzset{cyclepath/.style={DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}},revlabel/.style={font=\small,fill=none,inner sep=2pt}}
+\renewcommand{\standardHeatCyclesDiagram}{%
+\begin{center}\begin{tikzpicture}[x=1cm,y=.86cm,font=\small]
+\foreach \s/\name in {0/卡诺循环,5/奥托循环,10/布雷顿循环}{
+\begin{scope}[shift={(\s,0)}]
+\draw[axis](0,0)--(4.1,0) node[right]{$V$};\draw[axis](0,0)--(0,4.65) node[above]{$P$};
+\node at (1.8,5.1){\name};
+\ifnum\s=0
+% gamma=5/3, Th/Tc=(3/2)^(2/3), V1=.8,V2=2,V3=3,V4=1.2.
+\pgfmathsetmacro{\cold}{3.2/pow(1.5,2/3)}
+\draw[cyclepath,domain=.8:2,samples=65]plot(\x,{3.2/\x});
+\draw[cyclepath,domain=2:3,samples=65]plot(\x,{3.2*pow(2,2/3)/pow(\x,5/3)});
+\draw[cyclepath,domain=3:1.2,samples=65]plot(\x,{\cold/\x});
+\draw[cyclepath,domain=1.2:.8,samples=65]plot(\x,{3.2*pow(.8,2/3)/pow(\x,5/3)});
+\foreach \x/\y/\n/\a in {.8/4/1/left,2/1.6/2/above right,3/{\cold/3}/3/right,1.2/{\cold/1.2}/4/below left}{\fill({\x},{\y})circle(1.4pt)node[\a]{$\n$};}
+\node at (2.65,3.15){$T_h$};\draw[thin,TextGray](2.4,2.95)--(1.45,{3.2/1.45});
+\node at (2,-.65){$1\to2\to3\to4\to1$};
+\else\ifnum\s=5
+% Vmin=1,Vmax=3, gamma=1.4; lower adiabat K=1.8, upper K=4.
+\draw[cyclepath,domain=3:1,samples=65]plot(\x,{1.8/pow(\x,1.4)});
+\draw[cyclepath](1,1.8)--(1,4);
+\draw[cyclepath,domain=1:3,samples=65]plot(\x,{4/pow(\x,1.4)});
+\draw[cyclepath](3,{4/pow(3,1.4)})--(3,{1.8/pow(3,1.4)});
+\foreach \x/\y/\n/\a in {3/{1.8/pow(3,1.4)}/1/below right,1/1.8/2/left,1/4/3/above,3/{4/pow(3,1.4)}/4/above right}{\fill({\x},{\y})circle(1.4pt)node[\a]{$\n$};}
+\draw[guide](1,0)--(1,1.6);\node[below]at(1,0){$V_{\min}$};\node[below,yshift=-12pt]at(3,0){$V_{\max}$};
+\else
+% Pl=1,Ph=3,V2=.7,V3=1.5, gamma=1.4.
+\pgfmathsetmacro{\ratio}{pow(3,1/1.4)}
+\draw[cyclepath,domain={.7*\ratio}:.7,samples=65]plot(\x,{3*pow(.7/\x,1.4)});
+\draw[cyclepath](.7,3)--(1.5,3);
+\draw[cyclepath,domain=1.5:{1.5*\ratio},samples=65]plot(\x,{3*pow(1.5/\x,1.4)});
+\draw[cyclepath]({1.5*\ratio},1)--({.7*\ratio},1);
+\foreach \x/\y/\n/\a in {{.7*\ratio}/1/1/below left,.7/3/2/above left,1.5/3/3/above right,{1.5*\ratio}/1/4/right}{\fill({\x},{\y})circle(1.4pt)node[\a]{$\n$};}
+\draw[guide](0,3)--(.55,3);\node[left]at(0,3){$P_h$};\draw[guide](0,1)--(1.4,1);\node[left]at(0,1){$P_l$};
+\fi\fi\end{scope}}
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\adiabaticCurvesDiagram}{\begin{center}\begin{tikzpicture}[x=1cm,y=.85cm,font=\small]
+\draw[axis](0,0)--(6,0)node[right]{$V$};\draw[axis](0,0)--(0,5.1)node[above]{$P$};
+\draw[cyclepath,domain=1:5.6,samples=90]plot(\x,{4.5/\x});
+\draw[Ink,thick,domain=1:5.6,samples=90]plot(\x,{4.5/pow(\x,1.4)});
+\fill(1,4.5)circle(1.5pt)node[above right]{共同初态};
+\node[anchor=west]at(6.6,3.4){等温：$PV=\text{常量}$};
+\node[anchor=west]at(6.6,2.2){绝热：$PV^\gamma=\text{常量}$};
+\draw[TextGray](5.3,{4.5/5.3})--(6.3,3.4);
+\draw[TextGray](5.3,{4.5/pow(5.3,1.4)})--(6.1,.35)--(6.3,2.2);
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\convectionCriterionDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[axis](0,0)--(0,4)node[above]{$h$};
+\draw[DeepBlue,thick](2,.65)ellipse(.7 and .3);\draw[DeepBlue,thick](2,3.1)ellipse(.9 and .38);
+\draw[->,DeepBlue,thick](2,1.15)--(2,2.55);\node[left]at(1.75,1.9){气团上升};
+\node at(2,.65){$T$};\node at(2,3.1){$T+\dd T_1$};
+\draw[<->](3.3,.65)--node[right]{$\dd h$}(3.3,3.1);
+\node[anchor=west,align=left]at(5,2.85){气团：$\dd T_1=-\mu g\,\dd h/c_p$\\[6pt]环境：$\dd T_2=T'(h)\,\dd h$};
+\node[anchor=west]at(5,1){继续上升须有 $\dd T_1>\dd T_2$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\variableHeatCapacityDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\begin{scope}[x=4cm,y=3cm]
+\draw[axis](0,0)--(1.2,0)node[right]{$V$};\draw[axis](0,0)--(0,1.2)node[above]{$P$};
+\draw[DeepBlue,thick](0,1)--(1,0);\draw[guide](.5,0)--(.5,.5)--(0,.5);
+\node[left]at(0,1){$P_0$};\node[below]at(1,0){$V_0$};\node[below]at(.5,0){$V_0/2$};
+\node at(.65,.8){$P=P_0(1-V/V_0)$};\end{scope}
+\begin{scope}[shift={(7,0)},x=4cm,y=3cm]
+\draw[axis](0,0)--(1.2,0)node[right]{$V$};\draw[axis](0,0)--(0,1.2)node[above]{$T$};
+\draw[DeepBlue,thick,domain=0:1,samples=70]plot(\x,{4*\x*(1-\x)});
+\draw[guide](.5,0)--(.5,1);\fill(.5,1)circle(.4pt);
+\node[above]at(.5,1){$T_{\max}=P_0V_0/(4R)$};\node[below]at(.5,0){$V_0/2$};\node[below]at(1,0){$V_0$};
+\end{scope}\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\newcommand{\capillaryRevisionDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\fill[DeepBlue!10](-2,-.7)rectangle(2,-1.8);
+\fill[DeepBlue!10](-.5,-1.8)--(-.5,1.6)arc(180:360:.5)--(.5,-1.8)--cycle;
+\draw[DeepBlue,thick](-2,-.7)--(-.5,-.7) (.5,-.7)--(2,-.7);
+\draw[Ink,thick](-.5,-1.8)--(-.5,2.5) (.5,-1.8)--(.5,2.5);
+\draw[DeepBlue,thick](-.5,1.6)arc(180:360:.5);
+\draw[->,DeepBlue,thick](-.5,1.6)--(-.5,2.3);\draw[->,DeepBlue,thick](.5,1.6)--(.5,2.3);
+\node[anchor=east]at(-.8,2.3){沿接触线向上};
+\draw[<->](1,-.7)--node[right]{$h$}(1,1.1);\draw[guide](.15,1.1)--(1.2,1.1);
+\draw[<->](0,-.2)--(.5,-.2);\node[above left]at(.25,-.16){$R$};
+\node[anchor=west,align=left]at(3.2,1.4){完全润湿：$\theta=0$\\[5pt]接触处液面切线平行管壁\\[5pt]周界长度：$2\pi R$};
+\node[anchor=west,align=left]at(3.2,-.7){$F_\sigma=2\pi R\sigma$\\[5pt]忽略弯月面体积修正，$R\ll h$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\newcommand{\bubbleRevisionDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[DeepBlue,thick](0,0)circle(1.6);\draw[DeepBlue,thick](0,0)circle(1.5);
+\draw[guide](0,0)circle(1.85);\fill(0,0)circle(1pt);
+\draw[->](0,0)--node[above left]{$R$}(45:1.6);\node at(-.5,-.5){$p_R$};
+\draw[->,thick](1.6,0)--(2.2,0)node[right]{$x>0$};\node at(-2.1,1.4){$p_0$};
+\node[anchor=west,align=left]at(3.8,1){实线：内、外两个气液界面\\[5pt]虚线：扰动后半径 $r=R+x$\\[5pt]总面积 $A_s=8\pi r^2$};
+\node[anchor=west]at(3.8,-1){液膜厚度仅为示意，不按比例};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\cycleQuestionRedraw}{\begin{center}\begin{tikzpicture}[x=1.1cm,y=.85cm,font=\small]
+\draw[axis](0,0)--(5.1,0)node[right]{$V$};\draw[axis](0,0)--(0,4.8)node[above]{$P$};
+\draw[guide](0,4)--(1,4)--(1,0) (0,1)--(4,1)--(4,0);
+\draw[cyclepath](1,4)--(1,1);\draw[cyclepath](1,1)--(4,1);
+\draw[cyclepath,domain=4:1,samples=95]plot(\x,{4/\x});
+\node[left]at(0,4){$P_1$};\node[left]at(0,1){$P_1/4$};\node[below]at(1,0){$V_1$};\node[below]at(4,0){$4V_1$};
+\foreach \x/\y/\n/\a in {1/4/a/above right,1/1/b/below left,4/1/c/right}{\fill(\x,\y)circle(1.5pt)node[\a]{$\n$};}
+\node at(3.5,3){$PV=P_1V_1$};\draw[TextGray](3.1,2.8)--(2,2);
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+\renewcommand{\cycleExampleDiagram}{\cycleQuestionRedraw}
+\renewcommand{\straightQuestionRedraw}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[axis](0,0)--(5.7,0)node[right]{$V$};\draw[axis](0,0)--(0,4.7)node[above]{$P$};
+\draw[guide](0,4)--(1.4,4)--(1.4,0) (0,2)--(4.6,2)--(4.6,0);
+\draw[cyclepath](1.4,4)--(4.6,2);\fill(1.4,4)circle(1.5pt)node[above]{$A$};\fill(4.6,2)circle(1.5pt)node[above right]{$B$};
+\node[left]at(0,4){$P_A$};\node[left]at(0,2){$P_A/2$};\node[below]at(1.4,0){$V_A$};\node[below]at(4.6,0){$V_B$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+\renewcommand{\straightProcessDiagram}{\straightQuestionRedraw}
+
+\renewcommand{\liftingPistonQuestionRedraw}{\begin{center}\begin{tikzpicture}[font=\small]
+\foreach \sx/\height/\lab/\gas in {0/1.4/初态/{p_0,T_0},5/3.8/最后密封的瞬间/{p_f,T_f}}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[DeepBlue!9](-1,0)rectangle(1,\height);
+\draw[thick](-1,3.8)--(-1,0)--(1,0)--(1,3.8);
+\draw[fill=SoftGray,thick](-1,\height)rectangle(1,{\height+.18});
+\draw[thick](0,{\height+.18})--(0,{\height+.85});
+\ifnum\sx=0
+\node[above]at(0,{\height+1.35}){$F=0$};
+\else
+\draw[->,DeepBlue,thick](0,{\height+.9})--(0,{\height+1.45});
+\node[right]at(0,{\height+1.2}){$F$};
+\fi
+\node at(0,.7){$\gas$};
+\draw[thick](-1.6,-.4)--(1.6,-.4);\draw[thick](-.8,0)--(-.8,-.4) (.8,0)--(.8,-.4);
+\draw[->](0,-.32)--(0,0);\node[below]at(0,-.55){底部通大气};\node at(0,5.6){\lab};
+\end{scope}}
+\node[anchor=west,align=left]at(8,2.2){缸壁与活塞密封接触\\[5pt]缸体质量 $M$、截面积 $A$\\[5pt]终态活塞下缘位于开口};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+\renewcommand{\liftingPistonDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node at(0,2.6){活塞};\draw[thick,fill=SoftGray](-1.2,-.1)rectangle(1.2,.1);
+\draw[->,thick](-.6,.1)--(-.6,1.6)node[above]{$F$};\draw[->,thick](.6,-1.5)--(.6,-.1)node[midway,right]{$pA$};
+\draw[->,thick](.6,1.6)--(.6,.1)node[midway,right]{$p_0A$};
+\begin{scope}[shift={(6,0)}]\node at(0,2.6){缸体（刚离地，$N=0$）};
+\draw[thick](-1,1.6)--(-1,0)--(1,0)--(1,1.6);
+\draw[->,thick](-.5,-1.5)--(-.5,0)node[midway,left]{$p_0A$};
+\draw[->,thick](.5,1.4)--(.5,0)node[midway,left]{$p_fA$};
+\draw[->,thick](1,0)--(1,-1.5)node[right]{$Mg$};\end{scope}
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\heatTransferMapDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node[draw=DeepBlue,minimum width=2.4cm,minimum height=.8cm](sys)at(0,0){热力学系统};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](cond)at(-5,1.8){直接接触（传导）\\需要介质};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](conv)at(-5,-1.8){流体运动（对流）\\需要介质};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](rad)at(5,1.8){电磁波（辐射）\\可穿过真空};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](work)at(5,-1.8){边界位移（功）};
+\draw[<->,DeepBlue,thick](cond.east)--node[above=4pt,sloped]{$Q$}(sys.north west);
+\draw[<->,DeepBlue,thick](conv.east)--node[below=4pt,sloped]{$Q$}(sys.south west);
+\draw[<->,DeepBlue,thick](rad.west)--node[above=4pt,sloped]{$Q$}(sys.north east);
+\draw[<->,DeepBlue,thick](work.west)--node[below=4pt,sloped]{$W$}(sys.south east);
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\isothermalAtmosphereDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\shade[bottom color=DeepBlue!22,top color=white](0,0)rectangle(4,4.8);
+\draw[axis](-.4,0)--(-.4,5)node[above]{$h$};
+\foreach \y/\alt/\lab in {0/0/{P_0,n_{N0}},2/H/{P_0/\e,n_{N0}/\e},4/{2H}/{P_0/\e^2,n_{N0}/\e^2}}{
+\draw(-.5,\y)--(-.25,\y);\node[left]at(-.5,\y){$\alt$};\node[anchor=west]at(.3,{\y+.22}){$\lab$};}
+\node[anchor=west,align=left]at(5.3,2.5){$P(h)=P_0\e^{-h/H}$\\[8pt]$n_N(h)=n_{N0}\e^{-h/H}$\\[8pt]$H=RT/(\mu g)$};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\heatCapacityRedraw}{\begin{center}\begin{tikzpicture}[x=3.2cm,y=1.05cm,font=\small]
+\draw[axis](0,0)--(3.25,0)node[right]{$T/\mathrm K$};\draw[axis](0,0)--(0,4.3)node[above]{$c_v/R$};
+\foreach \x/\t in {0/10,1/100,2/1000,3/10000}{\draw(\x,.06)--(\x,-.06)node[below]{$\t$};}
+\foreach \y/\t in {1.5/{3/2},2.5/{5/2},3.5/{7/2}}{\draw[guide](0,\y)--(3.1,\y);\node[left]at(0,\y){$\t$};}
+\draw[DeepBlue,thick,domain=0:3,samples=140]plot(\x,{1.5+1/(1+exp(min(8,max(-8,-15*(\x-.72)))))+1/(1+exp(min(8,max(-8,-15*(\x-2.25)))))});
+\node at(.35,1){平动};\node at(1.5,2){再加转动};\node at(2.65,3){再加振动};
+\node[anchor=west]at(.15,4.15){横轴为对数刻度；激发温区依分子种类而异};
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+\renewcommand{\pistonWorkFaithful}{\begin{center}\begin{tikzpicture}[font=\small]
+\foreach \sx/\top/\gas in {0/1.3/V,3/1.8/{V+\dd V}}{
+\begin{scope}[shift={(\sx,0)}]\fill[DeepBlue!9](-.85,0)rectangle(.85,\top);
+\draw[thick](-.85,2.4)--(-.85,0)--(.85,0)--(.85,2.4);
+\draw[thick,fill=SoftGray](-.85,\top)rectangle(.85,{\top+.18});
+\draw[thick](0,{\top+.18})--(0,{\top+1.25});\node at(0,.6){$\gas$};\end{scope}}
+\draw[guide](3.85,1.3)--(4.25,1.3);\draw[<->](4.2,1.3)--node[right]{$\dd y$}(4.2,1.8);
+\node at(1.5,-.6){$\dd V=A\dd y$};
+\begin{scope}[shift={(6,0)},x=1.1cm,y=.8cm]
+\draw[axis](0,0)--(5.3,0)node[right]{$V$};\draw[axis](0,0)--(0,4.9)node[above]{$P$};
+\fill[PaleBlue](1,0)--plot[domain=1:4.5,samples=100](\x,{4/\x})--(4.5,0)--cycle;
+\draw[cyclepath,domain=.9:4.8,samples=100]plot(\x,{4/\x});
+\foreach \x/\s in {1/i,4.5/f}{\draw[guide](\x,0)--(\x,{4/\x});\fill(\x,{4/\x})circle(1.3pt)node[above right]{$\s$};\node[below]at(\x,0){$V_\s$};}
+\node at(2.5,-1.1){$W^{\rm out}=\int_{V_i}^{V_f}P\,\dd V$};\end{scope}
+\end{tikzpicture}\end{center}\nopagebreak[2]}
+
+
+在热力学第一定律建立以前，人们曾反复尝试制造一种不需要任何能量供应、却能持续对外做功的机器，
+也就是所谓的第一类永动机。所有这类尝试的失败，使人们逐渐认识到：必定存在一条普遍规律，使这种
+机器从根本上不可能实现。今天我们知道，这条规律就是能量的转化和守恒定律。它是十九世纪科学发展中
+最重要的成就之一；热力学第一定律则是能量守恒在包含热现象的系统中的定量陈述。
+
+对于一个既不与外界交换物质、也不交换能量的孤立系统，总能量始终保持不变；若系统与环境之间存在
+物质或能量交换，那么特定过程前后系统总能量的改变量，必然等于净输入系统的总能量。这里的总能量
+包括内能、整体动能及整体势能；流入、流出的物质也能携带能量，不能只计算热量和边界功。
+这一定律把一种新的宏观能量形式——内能——同热量、功以及其他可能的能量交换方式联系起来。
+
+\par\noindent\begin{minipage}{\linewidth}
+\perpetualMotionFaithful
+\diagramcaption{三类第一类永动机设想。转轮、循环配重和径向摆锤的结构不同，却都企图在没有净能量输入时持续输出功。}\label{ch15:fig:s29-20-1}
+\end{minipage}\par\medskip
+
+图~\ref{ch15:fig:s29-20-1}中的装置并不是因为“某个齿轮比例没有调好”才失败。只要装置完成一个循环并回到原状态，内能
+的净变化就是零；若又没有从外界吸收能量，便不可能有正的净功输出。后文将把这一判断写成可计算的
+方程。
+
+\section{内能}
+
+热力学中的内能（internal energy）定义为包含在给定系统中的总能量，扣除系统质心整体运动带来的
+动能，以及系统在外场中的整体势能。内能由系统内部微观粒子的运动状态和相互作用决定。在最简单的
+经典图像中，它可以理解为微观粒子热运动的动能与粒子间相互作用势能之和。
+
+一般情形下，系统内能的绝对值很难直接确定，因为分子之间存在复杂的相互作用。幸运的是，在经典物理
+中，真正进入可观测规律的通常是内能的改变 $\Delta U$。这与海面航行的类比相似：许多问题并不需要
+知道海水总量或海底的绝对深度，只需要知道海面高度在过程中的变化。内能的转化过程仍由底层的动力学
+规律支配，但热力学把大量微观自由度压缩为少数宏观状态量。
+
+只有在某些简单模型中，内能可以直接写出。例如单原子理想气体：构成气体的原子在所研究的过程中内部
+结构不变，气体处于绝对温度 $T$ 的热平衡状态，分子数为 $N$，物质的量为 $n=N/N_A$。理想气体忽略
+分子间相互作用，因而不存在分子间势能；每个单原子分子有三个平动自由度。由能量均分定理，每个分子
+平均具有 $3k_BT/2$ 的平动动能，所以全部分子的内能为
+\begin{equation}
+  \boxed{U=\frac32Nk_BT=\frac32nRT}. \label{ch15:eq:s29-20-1}
+\end{equation}
+由此可见，在热平衡下，一定量单原子理想气体的内能只与温度有关。
+
+以氧气、氮气为代表的双原子气体稍复杂。除质心的三个平动自由度外，分子还可以转动，也可能沿两原子
+连线方向振动。若不加判断地使用经典能量均分定理，会得到高温极限下的 $U=7nRT/2$；实际测量却显示，
+常温下振动自由度并没有充分激发，气体的行为更像只有平动和转动自由度。这个问题长期困扰经典物理，
+直到量子理论建立后，人们才理解：相应能级间隔若远大于 $k_BT$，该自由度会被冻结；温度升高后，
+振动贡献才逐渐显现。
+
+对于不能忽略分子间势能的物质，内能通常不仅与温度有关，也会与体积有关，因为体积改变会改变分子
+间距和相互作用势能。尽管内能的具体表达式可能很复杂，但有一点极其重要：当系统的宏观平衡状态完全
+给定时，其内能也随之确定。内能是状态函数；系统以何种过程来到同一个状态，不会改变该状态的内能。
+
+\section{热交换：传导、对流与辐射}
+
+当系统与外界环境存在温度差时，就具备发生热量交换的条件。约定系统从状态1到状态2的过程中，从外界
+净输入热量记作 $Q_{1\to2}$。若 $Q>0$，能量以热的形式净流入系统；若
+$Q<0$，系统净放热。后文第一定律中的 $Q^{\rm in}$ 也表示这一带符号的净热量，即 $Q^{\rm in}=Q$。
+计算循环效率时，另把各吸热段的热量总和记为正量 $Q_h$，各放热段排出的热量总和记为正量 $Q_c$，则
+\begin{equation*}
+  Q_{\rm cyc}=Q_h-Q_c.
+\end{equation*}
+这两个正的累计热量一般不相等，也不是互为负数。
+热量像功一样，是过程量而不是状态量：不能说“某个状态含有多少热量”，只能说某一过程中传递了多少
+热量。
+
+温度差只创造了热交换的条件，能量真正传递还需要具体机制。常见机制包括直接接触传导、流体对流和
+热辐射。两个温度不同的固体直接接触，或通过某种介质接触时，热端粒子的平均能量较高；相互作用使
+能量在大量碰撞中向冷端传递。宏观上热端降温、冷端升温，这就是热传导。在最简单的近似下，热流率
+与温差成正比，比例系数还取决于材料和几何尺寸，所以不同介质的传热能力差别显著。
+
+\par\noindent\begin{minipage}{\linewidth}
+\redrawimage[0.62\linewidth]{figure20-2-redraw-v3.png}
+\diagramcaption{手掌附近的对流羽流示意。空气受热、密度减小并上升；颜色表示相对冷热，不代表实测温度。}\label{ch15:fig:s29-20-2}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-2}中，手掌是局部热源；上方羽流逐渐扩展，表明热空气上升时还会卷入周围空气。
+
+气体只靠分子扩散传导热量的能力通常不强；当介质是重力场中的流体，并在竖直方向存在足够大的温度梯度
+时，会出现效率更高的对流。以地表附近的空气为例，随高度增加，大气压强和密度逐渐减小。若低处一团
+较热气体受到扰动向上运动，到达高处后密度仍小于周围气体，它将继续受到向上的浮力，并把所携带的
+热量送往高处。对流一旦形成，流体的整体运动会迅速交换各区域的能量，趋向减小温差。
+
+\par\noindent\begin{minipage}{\linewidth}
+\stellarInteriorRevision
+\diagramcaption{太阳与红巨星的内部剖面及表面对流细节。箭头表示对流区物质的循环运动；两星大小与内部层厚不按同一比例。}\label{ch15:fig:s29-20-3}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-3}左侧太阳的核心产生能量，能量先穿过辐射区，再经外层对流区向外传递；右侧红巨星具有扩展的
+对流包层和相对紧凑的内部区域。下方局部图中，亮区对应较热物质上涌，暗边界对应较冷物质下沉。
+这说明对流不仅发生在地球空气中，也能成为恒星内部的重要输能方式；不能把表面纹理直接当作内部结构。
+
+传导和对流都需要物质介质，热辐射则可以穿过真空。太阳与地球之间的能量交换就是典型例子。所有温度
+高于绝对零度的物体都会发出电磁辐射，辐射带走能量；温度越高，单位面积的总辐射功率越大。不同物质
+的发射能力不同。吸收能力越强的表面，在同一温度下通常也具有更强的发射能力。能够吸收全部入射辐射
+的理想物体称为黑体（black body）。黑体温度为 $T$ 时，单位表面积的总辐射功率为
+\begin{equation}
+  \boxed{j_{\rm rad}=\sigma T^4}, \label{ch15:eq:s29-20-2}
+\end{equation}
+其中 $\sigma\approx\SI{5.670374419e-8}{W.m^{-2}.K^{-4}}$ 是斯蒂芬--玻尔兹曼常数。四次方关系
+说明，温度升高时热辐射能力会急剧增强。
+
+\par\noindent\begin{minipage}{\linewidth}
+\redrawimage[0.72\linewidth]{figure20-4-redraw-v2.png}
+\diagramcaption{手部热辐射强弱示意。掌心、指尖、手腕和边缘的温度不同；图中颜色不是实验测量值。}\label{ch15:fig:s29-20-4}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-4}的各部位即使没有接触远处探测器，也能通过电磁辐射交换能量。
+
+\par\noindent\begin{minipage}{\linewidth}
+\heatTransferMapDiagram
+\figcap{热传递与边界功的路径。热辐射不需要物质介质，功对应边界受力和位移。}\label{ch15:fig:heat-transfer-map}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:heat-transfer-map}中的 $Q$ 与 $W$ 都跨越系统边界，却对应不同的能量交换机制。
+
+上述三种热交换都由温度差驱动，但路径不同：传导靠微观碰撞逐步传能，对流还伴随流体团块的宏观位移，
+辐射则以电磁波携带能量。判断题目中的热传递方式时，不能只看“有没有接触”，还要看是否发生整体流动、
+是否允许真空传播，以及过程所经历的时间尺度。
+
+\subsection{从温差到热流率：串联热阻}
+热量 $Q$ 的单位是焦耳，热流率 $\dot Q$ 的单位是瓦。对于温度只沿 $x$ 方向变化的均匀平板，傅里叶定律为
+\[
+ \dot Q=-\lambda A\frac{\dd T}{\dd x},
+\]
+其中 $\lambda$ 是热导率，单位为 $\mathrm{W/(m\,K)}$，$A$ 是垂直热流方向的面积。负号表示能量自发流向温度降低的方向。无内部热源的稳态中，各截面的 $\dot Q$ 相同；若 $\lambda$ 为常数，对厚度 $L$ 积分得
+\[
+ T_h-T_c=\dot Q\frac{L}{\lambda A}=\dot Q\,\mathcal R_{\rm th}.
+\]
+定义的热阻 $\mathcal R_{\rm th}=L/(\lambda A)$ 以 $\mathrm{K/W}$ 为单位。串联层的温差相加、热流率相同，因此热阻相加；并联通道则温差相同、热流率相加。这里借用的是相同的线性关系，不是说热流就是电流。图\ref{ch15:fig:heat-transfer-map}中传导路径若有多种介质，就要沿该路径逐段计算。
+
+\Needspace{180pt}
+\begin{origexamplebox}{复合平板中的界面温度}\label{ch15:ex:teaching-conduction}
+面积为 $A$ 的两块平板紧贴串联，厚度为 $L_1,L_2$，热导率为 $\lambda_1,\lambda_2$。第一块外侧恒为 $T_h$，第二块外侧恒为 $T_c<T_h$。忽略接触热阻、侧面散热和内部热源，求稳态热流率及两板接触面的温度 $T_i$。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+取由热端指向冷端为正，两块板满足
+\[
+ \dot Q=\frac{T_h-T_i}{\mathcal R_1}
+       =\frac{T_i-T_c}{\mathcal R_2},\qquad
+ \mathcal R_j=\frac{L_j}{\lambda_jA}.
+\]
+两段温降之和为总温降，所以
+\[
+ \dot Q=\frac{T_h-T_c}{\mathcal R_1+\mathcal R_2},\qquad
+ T_i=\frac{\mathcal R_2T_h+\mathcal R_1T_c}{\mathcal R_1+\mathcal R_2}.
+\]
+较大热阻承担较大温降。例如 $\mathcal R_1\gg\mathcal R_2$ 时，第一层几乎承担全部温差，$T_i$ 接近冷端而不是热端。两段热流率相等保证界面没有能量积累；若初始温度还在变化，就不能仅凭这一稳态公式求整个升温过程。热量本身还要乘经过的时间：稳态持续 $\Delta t$ 时，$Q=\dot Q\Delta t$。
+\end{xesolution}
+
+\subsection{辐射发出功率与净散热功率}
+物体在发射的同时也吸收环境辐射。若灰体完全被温度均匀的巨大环境包围，相关温区内发射率与吸收率可用同一常数 $\epsilon$ 近似，且忽略其他换热，则净辐射散热率为
+\[
+ P_{\rm net}=\epsilon\sigma A(T^4-T_0^4).
+\]
+不是 $\epsilon\sigma AT^4$。当 $T=T_0$ 时，发射并未停止，只是发出与吸收相等。
+这与图\ref{ch15:fig:s29-20-4}中各部位仍持续发射辐射的情景相容。若视场内有多个温度不同的物体，就不能把它们任意替换为一个算术平均温度。
+
+\Needspace{180pt}
+\begin{origexamplebox}{电加热物体的辐射平衡与回稳时间}\label{ch15:ex:teaching-radiation}
+热容量为常数 $C$ 的物体内部温度均匀、表面积为 $A$，被温度 $T_0$ 的巨大环境包围。恒定电功率 $P$ 全部转化为物体内能，只通过上述灰体辐射模型交换热量。求平衡温度，并求偏离平衡很小时温差的衰减时间常数。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+以物体为系统，功率形式的第一定律为
+\[
+ C\frac{\dd T}{\dd t}=P-\epsilon\sigma A(T^4-T_0^4).
+\]
+平衡时左右能流相等，故
+\[
+ T_e=\left(T_0^4+\frac{P}{\epsilon\sigma A}\right)^{1/4}.
+\]
+令 $T=T_e+\vartheta$、$|\vartheta|\ll T_e$，展开 $T^4=T_e^4+4T_e^3\vartheta+O(\vartheta^2)$，平衡项抵消，得到
+\[
+ \frac{\dd\vartheta}{\dd t}=-\frac{\vartheta}{\tau},\qquad
+ \vartheta(t)=\vartheta(0)e^{-t/\tau},\qquad
+ \tau=\frac{C}{4\epsilon\sigma AT_e^3}.
+\]
+温度偏高时散热大于供热，偏低时反之，所以平衡稳定。分母是热流率对温度的变化率，单位为 $\mathrm{W/K}$，故 $\tau$ 的单位是秒。该指数衰减只适用于小偏离；很大温差时须保留四次方的非线性项。
+\end{xesolution}
+
+\section{机械功与准静态过程}
+
+当系统与环境之间存在压强差，并且系统边界允许移动时，就会发生另一类能量交换——机械功。系统膨胀
+时可对环境做功；系统被压缩时，环境对系统做功。
+
+设圆柱形气缸横截面积为 $A$，封闭气体压强为 $P$。气体作用在活塞上的力为 $F=PA$。活塞向外移动
+极小距离 $\dd y$ 时，体积增量 $\dd V=A\dd y$，气体对外所做的元功为
+\begin{equation*}
+  \dd W^{\rm out}=F\dd y=P\,\dd V.
+\end{equation*}
+这一结果与容器的具体形状无关。若可逆过程中压强随体积按 $P(V)$ 改变，从 $V_i$ 变到 $V_f$ 的对外功
+就是 $P$--$V$ 图像下的有向面积：
+\begin{equation}
+  \boxed{W^{\rm out}_{i\to f}=\int_{V_i}^{V_f}P(V)\,\dd V}. \label{ch15:eq:s29-20-3}
+\end{equation}
+
+\par\noindent\begin{minipage}{\linewidth}
+\pistonWorkFaithful
+\diagramcaption{活塞发生微小位移时，气体体积增加 $\dd V=A\dd y$；同一过程在 $P$--$V$ 图中曲线下的面积就是气体对外功。}\label{ch15:fig:s29-20-5}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-5}右图的 $i,f$ 与横轴上的 $V_i,V_f$ 一一对应，阴影上边界就是所积分的同一条压强曲线。
+
+若改用环境对系统所做的功，符号相反：$\dd W^{\rm in}=-P\dd V$。但把边界处的功直接写成
+$P\dd V$ 隐含一个条件：外界压强与系统压强在全过程中几乎相等，只保留足以推动边界移动的无穷小差别。
+因此过程必须足够缓慢，使系统在每一时刻都接近平衡态；这样的理想过程称为准静态过程。若再忽略摩擦、
+黏滞、有限温差传热等耗散，准静态过程可进一步视为可逆过程。
+
+真实压缩或膨胀总会偏离这一理想极限，但竞赛题若给出“缓慢”“光滑”“无摩擦”等条件，通常正是在
+授权使用准静态、可逆近似。非准静态过程仍满足能量守恒，只是系统内部可能没有统一压强，不能直接用
+系统平衡压强代入式~(\ref{ch15:eq:s29-20-3})计算边界功。
+
+\section{热力学第一定律}
+
+热交换和机械功是系统与环境交换能量的两种最常见方式。本章主要讨论不交换物质的封闭系统。
+一般应写 $\Delta(U+E_k+E_p)=Q+W^{\rm in}$。若系统从状态1经任意过程到达状态2，
+整体动能和外场势能的变化可忽略，只考虑热量和功两种交换形式，取“流入系统为正”，则可简化为
+\begin{equation}
+  \boxed{U_2-U_1=Q^{\rm in}_{1\to2}+W^{\rm in}_{1\to2}}. \label{ch15:eq:s29-20-4}
+\end{equation}
+若改用气体对外做功 $W^{\rm out}=-W^{\rm in}$，同一规律等价地写成
+\begin{equation*}
+  \boxed{Q^{\rm in}=\Delta U+W^{\rm out}}.
+\end{equation*}
+后一个形式在气体过程题中更常用：吸收的热量一部分增加内能，另一部分转化为气体对外功。
+
+热力学第一定律是能量守恒的直接体现，因此对可逆、不可逆过程都成立。可逆性的作用不是决定能量是否
+守恒，而是决定能否仅凭一条平衡态路径计算功和热量。内能 $U$ 是状态函数，$\Delta U$ 只取决于始末
+状态；热量 $Q$ 与功 $W$ 是过程量，同样的两个状态之间，沿不同路径的数值可以不同。
+
+若系统经历一个循环又回到初态，则 $\Delta U_{\rm cyc}=0$。因此
+\begin{equation*}
+  0=W^{\rm in}_{\rm cyc}+Q^{\rm in}_{\rm cyc},
+  \qquad
+  \boxed{W^{\rm out}_{\rm cyc}=Q^{\rm in}_{\rm cyc}}.
+\end{equation*}
+整个循环对外的净功必等于同一循环从外界吸收的净热量。若循环不从外部吸收任何能量，净功只能为零；
+任何企图无能量输入而持续对外做功的第一类永动机都不可能存在。
+
+\begin{warningbox}{先统一功的正方向}
+有的教材把“气体对外做功”记为正，有的教材把“外界对气体做功”记为正。两种约定都可以，但不能在
+同一推导中混用。本讲解答统一采用 $Q>0$ 表示气体吸热，$W^{\rm out}>0$ 表示气体对外做功，故
+$Q=\Delta U+W^{\rm out}$。
+\end{warningbox}
+
+\section{理想气体的等容、等压与等温过程}
+
+热力学第一定律配合理想气体状态方程，可以进一步研究具体过程。理想气体的内能只与温度有关；在温区
+不太宽、摩尔热容可近似为常量时，$n$ 摩尔气体有
+\begin{equation*}
+  \dd U=n c_v\,\dd T,
+\end{equation*}
+其中 $c_v$ 是定容摩尔热容。微分式也适用于随温度变化的 $c_v(T)$；但有限温差时一般应算
+\[
+ \Delta U=n\int_{T_1}^{T_2}c_v(T)\,\dd T.
+\]
+只有在该温区内 $c_v$ 近似不变，才可把它提出积分得到 $n c_v\Delta T$。
+
+理想气体经历等容过程时，$\dd V=0$，因而不发生体积功。吸收的热量全部表现为内能增加：
+\begin{equation*}
+  \boxed{Q_V=n c_v\Delta T}.
+\end{equation*}
+单原子理想气体在经典适用范围内 $c_v=3R/2$。双原子气体的热容随温度改变：低温时部分转动自由度
+冻结，常温时主要有平动和转动贡献，高温时振动自由度逐渐激发。
+
+\par\noindent\begin{minipage}{\linewidth}
+\heatCapacityRedraw
+\diagramcaption{双原子气体热容的自由度激发示意。三个平台为 $3R/2,5R/2,7R/2$，横轴各十倍温区等宽；不计解离、电子激发和相变。}\label{ch15:fig:s29-20-6}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-6}中每增加一个平台，表示又有一组自由度开始贡献热容，不是气体发生了不连续的温度跳变。
+
+等压过程比等容过程多了膨胀功。温度增加 $\Delta T$ 时，理想气体状态方程给出
+$P\Delta V=nR\Delta T$，于是
+\begin{equation*}
+  Q_P=n c_v\Delta T+P\Delta V
+  =n(c_v+R)\Delta T=n c_p\Delta T.
+\end{equation*}
+因此理想气体满足迈耶关系
+\begin{equation*}
+  \boxed{c_p=c_v+R}.
+\end{equation*}
+$c_p$ 是一摩尔气体在等压过程中升高一开尔文所需的热量。它比 $c_v$ 大一个 $R$，正是因为等压升温
+时还要为膨胀功提供能量。
+
+若气体全过程同恒温热库接触并始终保持温度 $T$，便经历等温过程。对理想气体，$U$ 只与 $T$ 有关，
+所以等温过程 $\Delta U=0$。气体等温膨胀时吸收的热量完全转化为对外功。$n$ 摩尔理想气体从 $V_1$
+等温膨胀到 $V_2$ 时
+\begin{equation}
+  \boxed{Q^{\rm in}=W^{\rm out}
+  =\int_{V_1}^{V_2}P\,\dd V
+  =nRT\ln\!\frac{V_2}{V_1}}. \label{ch15:eq:s29-20-5}
+\end{equation}
+理想气体具有“等温即内能不变”的简单性质。真实物质的内能通常还依赖体积，不能把这条结论直接
+推广到液体、固体或高密度真实气体。
+
+\par\noindent\begin{minipage}{\linewidth}
+\processComparisonDiagram
+\figcap{四类常用气体过程的约束。等压热量式和绝热幂律分别使用常热容与可逆绝热近似。}\label{ch15:fig:process-constraints}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:process-constraints}应按已知条件逐项选用；例如 $Q=0$ 本身并不足以推出 $PV^\gamma$ 恒定。
+
+\subsection{同一对初末态，不一定有同样的功和热}
+
+以内能只依赖温度的理想气体为例，设初态为 $(T_0,V_1)$，末态为 $(T_0,V_2)$，且 $V_2>V_1$。
+若气体接触温度为 $T_0$ 的热库，作可逆等温膨胀，则
+\[
+ \Delta U=0,\qquad W^{\rm out}=nRT_0\ln\frac{V_2}{V_1},\qquad Q=W^{\rm out}>0.
+\]
+若改在绝热刚性容器中撤去隔板，让气体向真空自由膨胀到同一体积，则外压为零，
+整个容器外壁也不移动，所以 $W^{\rm out}=0$；绝热给出 $Q=0$，于是仍有 $\Delta U=0$。
+理想气体的平衡末温仍为 $T_0$，两条路径连接相同的初末态，但功、热不同。
+自由膨胀的中间过程并非一串均匀平衡态，不能把平衡物态方程 $p=nRT_0/V$
+当作边界上的实际外压去积分。写体积功之前必须说明使用哪一侧的压强，以及边界是否准静态。
+
+同理，$Q=0$ 不能单独推出 $TV^{\gamma-1}$ 恒定；刚才的自由膨胀就是反例。
+内能的改变量由状态决定，热和功则由实际能量交换的方式决定，这是后续所有过程题选式的依据。
+
+\section{绝热过程}
+
+温差出现后，真正传递有限热量需要一定时间。现实中的快速过程虽然可能存在明显温差，但在过程持续的
+短时间内，热交换相对于功和内能改变很小，可以近似为绝热过程。绝热过程定义为系统与环境之间没有
+热量交换，即 $Q=0$。若没有其他能量交换，绝热膨胀对外做的功完全来自内能降低；绝热压缩时，外界
+做功则转化为内能增加。
+快速并不是绝热的定义：隔热良好的系统也可以缓慢地发生绝热变化。若要同时使用“绝热”和“准静态”
+近似，过程时间应长于系统内部恢复力学平衡的时间，又短于显著漏热的时间。
+
+考虑 $n$ 摩尔理想气体从平衡状态 $(P,V,T)$ 作无穷小可逆绝热变化。由
+\begin{equation*}
+  T=\frac{PV}{nR},
+  \qquad
+  \dd T=\frac{P\dd V+V\dd P}{nR},
+\end{equation*}
+以及第一定律 $\dd U+P\dd V=n c_v\dd T+P\dd V=0$，先代入温度微分：
+\[
+ \frac{c_v}{R}(P\dd V+V\dd P)+P\dd V=0,
+ \qquad (c_v+R)P\dd V+c_v V\dd P=0.
+\]
+利用 $c_p=c_v+R$，再除以 $c_vPV$，得到
+\begin{equation}
+  \boxed{\gamma\frac{\dd V}{V}+\frac{\dd P}{P}=0},
+  \qquad
+  \boxed{\gamma=\frac{c_p}{c_v}}. \label{ch15:eq:s29-20-6}
+\end{equation}
+$\gamma$ 称为绝热指数。以下幂律公式还要求 $c_v,c_p$ 在所研究温区内为常数。对微分式从初态积分至末态：
+\[
+ \int_{P_1}^{P_2}\frac{\dd P}{P}+\gamma\int_{V_1}^{V_2}\frac{\dd V}{V}=0,
+ \qquad \ln\frac{P_2}{P_1}+\gamma\ln\frac{V_2}{V_1}=0.
+\]
+把对数相加并取指数，得 $P_2V_2^\gamma=P_1V_1^\gamma$，即泊松（Poisson）绝热方程
+\begin{equation}
+  \boxed{PV^\gamma=\mathrm{const}}. \label{ch15:eq:s29-20-7}
+\end{equation}
+
+利用 $P=nRT/V$，有 $PV^\gamma=nRTV^{\gamma-1}$；定量气体的 $nR$ 不变，故
+\begin{equation}
+  \boxed{TV^{\gamma-1}=\mathrm{const}}. \label{ch15:eq:s29-20-8}
+\end{equation}
+这一形式适合研究封闭气体在热机中的体积、温度变化。若代入 $V=nRT/P$，则
+$PV^\gamma=(nR)^\gamma T^\gamma/P^{\gamma-1}$，所以
+\begin{equation}
+  \boxed{\frac{T^\gamma}{P^{\gamma-1}}=\mathrm{const}}. \label{ch15:eq:s29-20-9}
+\end{equation}
+压强和温度都是强度量，式~(\ref{ch15:eq:s29-20-9})不显含气体总量，适合跟踪开放环境中不与外界混合的
+同一小气团，并不意味着可随意用于有质量流入、流出的系统。再以密度
+$\rho$ 代替体积，可写成
+\begin{equation}
+  \boxed{P=\mathrm{const}\cdot\rho^\gamma}. \label{ch15:eq:s29-20-10}
+\end{equation}
+压强与密度的关系是描述气体物态及其变化的直接工具。
+这里每条绝热线的常数取决于气体状态。对固定物质的量、常热容理想气体，下一章的熵公式给出
+\[
+ S_2-S_1=n c_v\ln\frac{P_2V_2^\gamma}{P_1V_1^\gamma}.
+\]
+所以同一条可逆绝热线也是等熵线；这个常数不是焓。若热容明显随温度变化，须改用
+$\int_{T_1}^{T_2}c_v(T)\dd T/T+R\ln(V_2/V_1)=0$，不能套固定指数的幂律。
+
+\par\noindent\begin{minipage}{\linewidth}
+\adiabaticCurvesDiagram
+\figcap{从同一初态出发，理想气体等温线与可逆绝热线的比较。}\label{ch15:fig:adiabatic-comparison}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:adiabatic-comparison}中，在任一相同的末体积处，下支的压强较低，对应膨胀降温的绝热过程。
+
+在相同初态出发的膨胀过程中，绝热线比等温线下降得更陡。等温膨胀可以从热库持续吸热来补偿对外功；
+绝热膨胀没有热量补充，只能消耗内能，温度随体积增大而下降。这也是水汽和空气团快速上升时降温的
+基本原因。
+
+\subsection{给定过程曲线时，先由约束求温度变化}
+常见等压、等温与可逆绝热过程不是全部可能路径。若定量理想气体按准静态路径 $pV^{\kappa}=K$ 变化，$\kappa$ 为给定过程指数，则由 $pV=nRT$ 得
+\[
+ TV^{\kappa-1}=\mathrm{const},\qquad
+ \frac{\dd T}{T}=(1-\kappa)\frac{\dd V}{V}.
+\]
+$\kappa$ 是路径参数，不能一看到幂律便将它写成气体的 $\gamma=c_p/c_v$。
+设 $c_v$ 为常数，当 $\kappa\ne1$ 时，第一定律逐项给出
+\[
+ \delta Q=nc_v\dd T+p\dd V
+ =n\left(c_v+\frac{R}{1-\kappa}\right)\dd T.
+\]
+括号内是沿该路径定义的摩尔过程热容，不是新的物性常数。等压的 $\kappa=0$ 恢复 $c_p$；可逆绝热的 $\kappa=\gamma$ 使其为零。$\kappa=1$ 时温度不变却可以传热，必须直接算功，不能把上式发散理解为吸收无限热量。
+
+\Needspace{180pt}
+\begin{origexamplebox}{温度下降的膨胀是否一定吸热}\label{ch15:ex:teaching-polytropic}
+一摩尔单原子理想气体从 $(p_1,V_1,T_1)$ 沿准静态路径 $pV^2=\mathrm{const}$ 膨胀至 $V_2=2V_1$。只做体积功，求末温、对外功、内能变化和热量，并解释热量的符号。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+由路径和状态方程，$TV=\mathrm{const}$，所以 $T_2=T_1/2$。实际压力曲线给出
+\[
+ W^{\rm out}=\int_{V_1}^{2V_1}\frac{p_1V_1^2}{V^2}\dd V
+ =\frac12p_1V_1=\frac12RT_1>0.
+\]
+单原子气体内能变化为
+\[
+ \Delta U=\frac32R(T_2-T_1)=-\frac34RT_1,
+ \qquad Q=\Delta U+W^{\rm out}=-\frac14RT_1.
+\]
+气体边膨胀边放热：内能减少量比所做功更大，多减少的部分排给环境。也可用过程热容 $c=3R/2-R=R/2$，得到 $Q=c(T_2-T_1)$，与直接积分一致。与图\ref{ch15:fig:adiabatic-comparison}的两条路径比较，本题 $\kappa=2>\gamma=5/3$，膨胀降温比同初态可逆绝热更快，因而必须再向外放热。
+\end{xesolution}
+
+\section{重力场中形成对流的条件}
+
+绝热方程的一个重要应用，是判断重力场中的理想气体能否形成对流。受扰动气团来到新高度后，会随外界
+压强变化而膨胀或压缩。大气中高处压强较小，气团上升时迅速膨胀；若上升足够快，气团与周围空气来不及
+交换显著热量，便可近似为绝热过程。
+
+设大气具有已知的稳定温度分布 $T(h)$。在高度 $h$ 与 $h+\dd h$ 之间，静力平衡给出
+\begin{equation*}
+  \dd P=-\rho g\,\dd h=-\frac{\mu gP}{RT}\,\dd h,
+\end{equation*}
+其中 $\mu$ 为气体平均摩尔质量。把同一小气团从 $h$ 绝热抬升到 $h+\dd h$，由式~(\ref{ch15:eq:s29-20-9})可得它的
+温度改变
+\begin{equation*}
+  \dd T_1=\frac{\gamma-1}{\gamma}\frac{T}{P}\dd P
+  =-\frac{\gamma-1}{\gamma}\frac{\mu g}{R}\dd h
+  =-\frac{\mu g}{c_p}\dd h.
+\end{equation*}
+而环境中原本位于 $h+\dd h$ 处的空气温度为
+\begin{equation*}
+  T_2=T+\frac{\dd T}{\dd h}\dd h.
+\end{equation*}
+两团气体在同一高度具有近似相同压强和成分；温度较高者密度较小。要使受扰动上升后的气团比周围空气
+更热、更轻，从而继续上升，必须满足
+\begin{equation}
+  \boxed{\frac{\dd T}{\dd h}<-\frac{\mu g}{c_p}}. \label{ch15:eq:s29-20-11}
+\end{equation}
+因此，只要求低处比高处热还不够；环境温度随高度降低的速率必须大于气团的绝热降温率。
+
+\par\noindent\begin{minipage}{\linewidth}
+\pressureLayerRedraw
+\diagramcaption{取横截面积为 $A$、厚度为 $\dd h$ 的水平气层，由竖直方向受力平衡得到 $\dd P=-\rho g\dd h$。}\label{ch15:fig:s29-20-7}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-7}中上、下表面压强差支撑薄层的重量；$\dd h>0$ 时 $\dd P<0$。
+
+\par\noindent\begin{minipage}{\linewidth}
+\convectionCriterionDiagram
+\figcap{受扰动气团与环境温度的比较。两者来到同一高度后，压强近似相等。}\label{ch15:fig:convection-displacement}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:convection-displacement}中，应比较上方气团的 $T+\dd T_1$ 与该高度环境的 $T+\dd T_2$，
+不能只比较气团上升前后的温度。
+
+\par\noindent\begin{minipage}{\linewidth}
+\atmosphereProfileFaithful
+\diagramcaption{地球大气的代表性温度、压强与分层。下方列出相关自然情景和飞行器，二者不是同一比例的图。}\label{ch15:fig:s29-20-8}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-8}上方的温度和压强对应同一个高度刻度；下方情景只帮助辨认物体，并不按高度比例排布。
+
+从地表向上，对流层的平均温度通常随高度降低，但“随高度降低”本身不保证干对流不稳定。
+例如约 $6.5\,\mathrm{K/km}$ 的平均温度递减率，小于干空气约 $9.8\,\mathrm{K/km}$ 的绝热递减率；
+地表局部强加热或水汽凝结才可能使情况改变。再向上进入平流层，
+温度可能随高度增加，对流受到抑制。云层多位于对流活跃区域，民航巡航高度则常接近平流层下部，以避开
+低层大气中较强的天气扰动。水汽、二氧化碳等吸收地表长波辐射；平流层臭氧吸收太阳紫外线，
+热层稀薄气体吸收更高能辐射。极光主要来自带电粒子激发高层气体，并不是空气热辐射的直接显示。
+真实大气还受到水汽凝结、辐射吸收和地表加热等影响，式~(\ref{ch15:eq:s29-20-11})给出的是
+干燥理想气体的基本判据。
+
+
+
+\Needspace{16\baselineskip}\section{综合例题}
+\begin{origexamplebox}{【正方形循环】}\label{ch15:ex:s29-20-1}
+小明制作了一个气缸，封住了一些理想气体，并让气体在 $P$--$V$ 图中完成三种顺时针循环。三种循环
+具有相同的边界压强 $P_1,P_2$ 和边界体积 $V_1,V_2$：
+
+（1）矩形循环；（2）上三角循环；（3）下三角循环；（4）比较这三种循环以及不同大小循环的效率。
+
+下图给出三种循环的形状与运行方向。设气体的定容摩尔
+热容为 $c_v$，并在所考察温区内近似不变。
+\par\noindent\begin{minipage}{\linewidth}
+\threeCyclesDiagram
+\figcap{矩形、上三角与下三角循环。三个图使用相同的 $P_1,P_2,V_1,V_2$。}\label{ch15:fig:three-geometric-cycles}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+记
+\begin{equation*}
+  \Delta P=P_2-P_1,\qquad \Delta V=V_2-V_1,
+  \qquad \alpha=\frac{c_v}{R}.
+\end{equation*}
+对任意过程，理想气体的温度满足 $nRT=PV$，所以
+\begin{equation*}
+  \Delta U=n c_v\Delta T=\alpha\Delta(PV),
+  \qquad Q=\Delta U+W^{\rm out}.
+\end{equation*}
+
+图\ref{ch15:fig:three-geometric-cycles}中的箭头均围出正的循环功，但各段吸热量并不相同。
+
+（1）矩形循环的净功就是矩形面积：
+\begin{equation*}
+  W_{\text{矩}}=\Delta P\,\Delta V.
+\end{equation*}
+吸热发生在左侧等容升压段与上侧等压膨胀段。两段吸热量分别为
+\begin{equation*}
+  Q_{V_1}=\alpha V_1\Delta P,
+  \qquad
+  Q_{P_2}=(\alpha+1)P_2\Delta V.
+\end{equation*}
+因此
+\begin{equation}
+  \boxed{\eta_{\text{矩}}=
+  \frac{\Delta P\Delta V}
+  {\alpha V_1\Delta P+(\alpha+1)P_2\Delta V}}.
+\end{equation}
+
+（2）上三角循环的顺时针面积为矩形的一半。它的吸热过程仍是完整的左侧等容升压段和上侧等压膨胀段；
+从右上角沿斜线回到左下角时，$P,V,T$ 都下降，同时外界对气体做功，该段为放热。因此
+\begin{equation}
+  \boxed{\eta_{\rm upper}=
+  \frac{\tfrac12\Delta P\Delta V}
+  {\alpha V_1\Delta P+(\alpha+1)P_2\Delta V}}.
+\end{equation}
+
+（3）下三角循环从左下角沿直线膨胀到右上角时吸热，其余等容降压、等压压缩两段都放热。直线段对外功
+等于梯形面积，故吸热量为
+\begin{align*}
+  Q_{\rm diag}
+  &=\alpha(P_2V_2-P_1V_1)
+    +\frac{P_1+P_2}{2}(V_2-V_1).
+\end{align*}
+于是
+\begin{equation}
+  \boxed{\eta_{\rm lower}=
+  \frac{\tfrac12\Delta P\Delta V}
+  {\alpha(P_2V_2-P_1V_1)+\tfrac12(P_1+P_2)\Delta V}}.
+\end{equation}
+
+为了比较，令矩形循环的吸热量为 $Q_{\text{矩}}$、净功为 $W_{\text{矩}}$。下三角斜边吸热量可化为
+\begin{equation*}
+  Q_{\rm diag}=Q_{\text{矩}}-\frac12W_{\text{矩}}.
+\end{equation*}
+又因为这里的矩形热机有 $0<W_{\text{矩}}<Q_{\text{矩}}$，所以
+\begin{equation*}
+  \boxed{\eta_{\text{矩}}>\eta_{\rm lower}>\eta_{\rm upper}}.
+\end{equation*}
+
+（4）循环画得“面积更大”并不自动意味着效率更高。效率只依赖无量纲比值
+$P_2/P_1$、$V_2/V_1$ 和 $c_v/R$。若把循环关于原点相似放大，使这两个比值不变，功和吸热量按同一
+比例增大，效率不变；若固定 $P_1,V_1$ 而改变 $P_2,V_2$，则必须代入上述公式具体比较。功率、每循环
+输出功和效率是三个不同概念。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【新式气缸】}\label{ch15:ex:s29-20-2}
+小明制作了一种新式气缸，气体在其中完成下列循环：
+
+（1）两绝热、两等温循环；（2）两绝热、两等体循环；（3）两绝热、两等压循环。
+
+试用各状态点的温度、体积或压强，以最简单形式表示循环效率。取定量、定组成的理想气体，
+摩尔热容在整个温区内近似不变，所有绝热段均可逆。下图依次为卡诺、奥托和布雷顿循环。
+\par\noindent\begin{minipage}{\linewidth}
+\standardHeatCyclesDiagram
+\figcap{三种循环的状态点与方向。均按 $1\to2\to3\to4\to1$ 运行；各曲线由同一气体的状态方程确定。}\label{ch15:fig:three-standard-cycles}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+三种循环都用绝热段连接吸热、放热过程。绝热段本身 $Q=0$，关键是分别计算另外两段的吸、放热量。
+
+在图\ref{ch15:fig:three-standard-cycles}中，卡诺循环的 $1\to2$ 为高温等温膨胀；奥托与布雷顿循环的
+$1\to2$ 则为绝热压缩。下面的温度下标严格沿用各图的状态号。
+
+（1）两条等温线温度分别为 $T_h,T_c$。高温等温膨胀吸热，低温等温压缩放热。由两条绝热线
+$TV^{\gamma-1}=\mathrm{const}$ 有
+\[
+ T_hV_2^{\gamma-1}=T_cV_3^{\gamma-1},\qquad
+ T_hV_1^{\gamma-1}=T_cV_4^{\gamma-1}.
+\]
+相除得 $(V_2/V_1)^{\gamma-1}=(V_3/V_4)^{\gamma-1}$。
+记两边的体积比为 $r>1$，两等温段的吸、放热量大小因此为
+\begin{equation*}
+  Q_h=nRT_h\ln r,\qquad Q_c=nRT_c\ln r.
+\end{equation*}
+故卡诺循环效率为
+\begin{equation}
+  \boxed{\eta_{\rm C}=1-\frac{T_c}{T_h}}.
+\end{equation}
+
+（2）两条等容线位于 $V_{\min}$、$V_{\max}$，定义压缩比
+$r=V_{\max}/V_{\min}>1$。等容吸、放热量为
+\begin{equation*}
+  Q_h=n c_v(T_3-T_2),\qquad Q_c=n c_v(T_4-T_1).
+\end{equation*}
+两条绝热线给出
+\begin{equation*}
+  \frac{T_2}{T_1}=\frac{T_3}{T_4}=r^{\gamma-1},
+\end{equation*}
+分别写成 $T_2=r^{\gamma-1}T_1$ 和 $T_3=r^{\gamma-1}T_4$，相减得
+$T_3-T_2=r^{\gamma-1}(T_4-T_1)$。代入热量比并约去 $nc_v$，
+得到 $Q_c/Q_h=1/r^{\gamma-1}$，奥托循环效率为
+\begin{equation}
+  \boxed{\eta_{\rm O}=1-\frac{1}{r^{\gamma-1}}}.
+\end{equation}
+
+（3）两条等压线压强分别为 $P_h,P_l$，定义压强比 $r_p=P_h/P_l>1$。等压吸、放热量为
+\begin{equation*}
+  Q_h=n c_p(T_3-T_2),\qquad Q_c=n c_p(T_4-T_1).
+\end{equation*}
+由绝热关系 $T^\gamma/P^{\gamma-1}=\mathrm{const}$，
+\begin{equation*}
+  \frac{T_2}{T_1}=\frac{T_3}{T_4}=r_p^{(\gamma-1)/\gamma}.
+\end{equation*}
+令 $b=r_p^{(\gamma-1)/\gamma}$，则 $T_2=bT_1,T_3=bT_4$，所以
+$T_3-T_2=b(T_4-T_1)$。约去热量比中的 $nc_p$，得到布雷顿循环效率
+\begin{equation}
+  \boxed{\eta_{\rm B}=1-\frac{1}{r_p^{(\gamma-1)/\gamma}}}.
+\end{equation}
+三式的共同结构都是 $\eta=1-Q_c/Q_h$；区别在于吸、放热段受何种状态量约束。
+这里 $Q_h,Q_c$ 均为正的热量大小。效率无量纲，且在温差、压缩比或压强比
+分别趋于零、1、1时趋于零；同一气体、同一可逆绝热条件必须贯穿整个推导。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【变化的热容】}\label{ch15:ex:s29-20-3}
+小明发现，气体在一段过程中对应的过程热容未必保持为常数。为验证这一点，他设计了一摩尔理想气体
+经历的过程
+\begin{equation*}
+  \frac{P}{P_0}+\frac{V}{V_0}=1.
+\end{equation*}
+设气体的定容摩尔热容为 $c_v$，求整个过程中摩尔过程热容随体积的变化关系。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+过程热容定义为 $C=\delta Q/\dd T$。它是过程属性，不等同于气体本身的 $c_v$ 或 $c_p$。
+由 $P>0,V>0$，本题的物理区间为 $0<V<V_0$；两截距只是边界，不是气体可取的常温有限状态。由过程方程
+\begin{equation*}
+  P=P_0\left(1-\frac{V}{V_0}\right),
+\end{equation*}
+一摩尔理想气体的温度为
+\begin{equation*}
+  T(V)=\frac{PV}{R}
+  =\frac{P_0}{R}\left(V-\frac{V^2}{V_0}\right),
+\end{equation*}
+从而
+\begin{equation*}
+  \frac{\dd T}{\dd V}=\frac{P_0}{R}\left(1-\frac{2V}{V_0}\right).
+\end{equation*}
+
+\par\noindent\begin{minipage}{\linewidth}
+\variableHeatCapacityDiagram
+\figcap{线性 $P(V)$ 与相应的 $T(V)$。温度抛物线的顶点严格位于两个体积截距的中间。}\label{ch15:fig:variable-heat}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:variable-heat}中左侧压强随体积线性下降，右侧温度却先升后降，这正是过程热容变号的原因。
+
+由第一定律
+\begin{equation*}
+  \delta Q=c_v\dd T+P\dd V,
+\end{equation*}
+所以
+\begin{align*}
+  C(V)
+  &=c_v+P\frac{\dd V}{\dd T}\\
+  &=c_v+R\frac{1-V/V_0}{1-2V/V_0}.
+\end{align*}
+即
+\begin{equation}
+  \boxed{C(V)=c_v+R\frac{V_0-V}{V_0-2V}}.
+\end{equation}
+在 $V=V_0/2$ 处，温度达到最大值，温度的一阶变化为零，但热量的一阶变化仍有
+$\delta Q=P\dd V=(P_0/2)\dd V\ne0$，所以以 $\delta Q/\dd T$
+定义的过程热容发散。发散不是气体储存了无穷能量，而是“用温度变化量作分母”在温度转折点失去良好
+定义。令 $z=V/V_0$、$\alpha=c_v/R>0$，则
+\[
+ \frac{C}{R}=\frac{(\alpha+1)-(2\alpha+1)z}{1-2z},\qquad
+ z_* =\frac{\alpha+1}{2\alpha+1}\in(1/2,1).
+\]
+因此 $0<z<1/2$ 时 $C>0$；$1/2<z<z_*$ 时 $C<0$；$z=z_*$ 时 $C=0$；
+$z_*<z<1$ 时 $C>0$。膨胀经过负热容区时仍吸热，却因对外做功更多而降温。
+在零点，内能减少恰好补偿膨胀功，元热量为零。$C$ 的单位始终与 $R,c_v$ 相同。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【恒定的热容】}\label{ch15:ex:s29-20-4}
+小明猜想，可能存在一些过程使过程热容保持不变，例如常见的等容、等压、等温和绝热过程。但逐一枚举
+容易遗漏。能否得到“过程热容为常量”的统一过程方程？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+设一摩尔、定组成理想气体沿准静态过程的摩尔过程热容为有限常量 $C$，并取常数 $c_v,c_p$。由定义与第一定律
+\begin{equation*}
+  C\dd T=c_v\dd T+P\dd V,
+\end{equation*}
+即
+\begin{equation*}
+  (C-c_v)\dd T=P\dd V.
+\end{equation*}
+又由 $RT=PV$，
+\begin{equation*}
+  R\dd T=P\dd V+V\dd P.
+\end{equation*}
+消去 $\dd T$，得到
+\begin{equation*}
+  (C-c_v)V\dd P+(C-c_p)P\dd V=0.
+\end{equation*}
+在 $C\ne c_v$ 时两边除以 $PV(C-c_v)$ 并积分：
+\begin{equation*}
+  \frac{\dd P}{P}+k\frac{\dd V}{V}=0,
+  \qquad
+  k=\frac{C-c_p}{C-c_v},
+\end{equation*}
+所以统一的过程方程是
+\begin{equation}
+  \boxed{PV^k=\mathrm{const}},
+  \qquad
+  \boxed{k=\frac{C-c_p}{C-c_v}},
+\end{equation}
+或反解为
+\begin{equation}
+  \boxed{C=c_v+\frac{R}{1-k}}.
+\end{equation}
+这就是多方过程。它包含若干重要极限：
+\begin{center}
+\small
+\begin{tabular}{c c c}
+\toprule
+过程 & 多方指数 $k$ & 过程热容 $C$\\
+\midrule
+等压 & $0$ & $c_p$\\
+等温 & $1$ & 形式上发散（$\dd T=0$）\\
+绝热 & $\gamma$ & $0$\\
+等容 & $k\to\infty$ & $c_v$\\
+\bottomrule
+\end{tabular}
+\end{center}\nopagebreak[2]
+特别地，$C=c_v$ 时不能除以 $C-c_v$，应回到 $(C-c_v)\dd T=P\dd V$，直接得到 $\dd V=0$。
+$k=1$ 的等温过程通常有 $\delta Q\ne0$、$\dd T=0$，并没有一个有限的过程热容，
+只能列为 $|C|\to\infty$ 的极限。因此有限恒热容过程除等容这一单列情形外，构成
+$PV^k=\mathrm{const}$ 的一整族过程；不能把“无穷大”当作与 $c_p$ 一样的有限常数。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【等温大气】}\label{ch15:ex:s29-20-5}
+小明研究一个简化的大气模型。假设大气经过长时间热接触后处处具有相同温度 $T$，气体平均摩尔质量
+为 $\mu$。考虑气体密度随压强改变，求压强和分子数密度随高度 $h$ 的变化关系。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+取高度 $h$ 处厚度为 $\dd h$ 的水平气层。静力平衡要求
+\begin{equation*}
+  \dd P=-\rho g\,\dd h.
+\end{equation*}
+等温理想气体满足
+\begin{equation*}
+  \rho=\frac{\mu P}{RT},
+\end{equation*}
+故
+\begin{equation*}
+  \frac{\dd P}{P}=-\frac{\mu g}{RT}\dd h.
+\end{equation*}
+取地面 $h=0$ 处压强为 $P_0$，积分得到
+\begin{equation}
+  \boxed{P(h)=P_0\exp\!\left(-\frac{\mu gh}{RT}\right)}.
+\end{equation}
+分子数密度 $n_N=P/(k_BT)$，所以
+\begin{equation}
+  \boxed{n_N(h)=n_{N0}\exp\!\left(-\frac{\mu gh}{RT}\right)}.
+\end{equation}
+
+\par\noindent\begin{minipage}{\linewidth}
+\isothermalAtmosphereDiagram
+\figcap{等温大气的指数分布。标高 $H$ 决定压强和数密度衰减的快慢。}\label{ch15:fig:isothermal-atmosphere}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:isothermal-atmosphere}的指数关系要求温度、成分与重力加速度近似不随高度变化。
+
+定义等温标高
+\begin{equation*}
+  \boxed{H=\frac{RT}{\mu g}},
+\end{equation*}
+则压强、质量密度和分子数密度都按 $\e^{-h/H}$ 衰减。真实大气并不等温，重力加速度和气体成分也会随
+高度改变；本题给出的是最基本的指数大气模型。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【毛细现象】}\label{ch15:ex:s29-20-6}
+小明把一根内半径为 $R$ 的玻璃管插入水面。假设水完全润湿玻璃，表面张力系数为 $\sigma$，水的密度
+为 $\rho$。水面会上升多高？小明认为大树吸水、蒸腾也是同样机制，那么仅靠毛细作用给
+$\SI{10}{m}$ 高处供水，需要多细的管半径？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+完全润湿时接触角 $\theta=0$。沿管内圆周，表面张力的竖直合力为
+\begin{equation*}
+  F_\sigma=2\pi R\sigma\cos\theta=2\pi R\sigma.
+\end{equation*}
+上升水柱的重力为
+\begin{equation*}
+  G=\rho g(\pi R^2h).
+\end{equation*}
+平衡时二者相等，故
+\begin{equation}
+  \boxed{h=\frac{2\sigma}{\rho gR}}.
+\end{equation}
+
+\par\noindent\begin{minipage}{\linewidth}
+\capillaryRevisionDiagram
+\figcap{完全润湿的毛细管。弯月面中心低、壁边高，壁边表面张力沿切线向上。}\label{ch15:fig:capillary-wetting}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:capillary-wetting}的 $h$ 从外部水平水面量起。这里忽略弯月面附近体积相对长水柱的微小修正；
+接触角为零使周界张力全用于托住水柱，量纲也给出 $[\sigma/(\rho gR)]=\mathrm m$。
+
+若要求 $h=\SI{10}{m}$，则
+\begin{equation*}
+  \boxed{R=\frac{2\sigma}{\rho gh}}.
+\end{equation*}
+取室温水 $\sigma\approx\SI{0.073}{N.m^{-1}}$、$\rho\approx\SI{1.0e3}{kg.m^{-3}}$，得到
+\begin{equation*}
+  R\approx\frac{2\times0.073}{10^3\times9.8\times10}
+  \approx\SI{1.5e-6}{m}.
+\end{equation*}
+这说明微米级管道的毛细压强足以对应十米水柱。但真实树木的远距离输水并非单靠静态毛细平衡：叶片
+蒸腾在木质部水柱中产生负压，水分子的内聚力和导管结构共同维持连续水柱；毛细作用主要帮助润湿和
+稳定细小导管。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【吹泡泡】}\label{ch15:ex:s29-20-7}
+小明拿出泡泡水吹泡泡。设泡泡水的表面张力系数为 $\sigma$，泡泡为半径 $R$ 的正球。
+
+（1）若不计液膜厚度，泡泡内部压强为多大？
+
+（2）若平衡时液膜的质量面密度为 $\sigma_0$，忽略空气质量，把空气看成双原子理想气体。在小的径向
+扰动下，设气泡仍能维持球形，判断平衡是否稳定。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+（1）肥皂泡有内、外两个气液界面，每个球面都产生 $2\sigma/R$ 的拉普拉斯压强差，因此总压强差为
+\begin{equation*}
+  p_{\rm in}-p_0=\frac{4\sigma}{R}.
+\end{equation*}
+所以
+\begin{equation}
+  \boxed{p_{\rm in}=p_0+\frac{4\sigma}{R}}.
+\end{equation}
+注意：只有一个界面的液滴压强差是 $2\sigma/R$；肥皂泡有两个界面，不能漏掉因子2。
+
+\par\noindent\begin{minipage}{\linewidth}
+\bubbleRevisionDiagram
+\figcap{肥皂泡的两界面与径向扰动。$p_R$ 是平衡时内部压强；虚线表示均匀向外位移。}\label{ch15:fig:bubble-radius}
+\end{minipage}\par\medskip
+也可直接对图\ref{ch15:fig:bubble-radius}作虚功计算：$\dd V=4\pi r^2\dd r$，
+两界面的面积增量为 $\dd A_s=16\pi r\dd r$，平衡要求
+$(p_R-p_0)\dd V=\sigma\dd A_s$，由此再次得到因子4。
+
+（2）设半径受扰动变为 $r=R+x$，$|x|\ll R$。小振幅并不自动意味着变化很快：
+若传热足够快，气体接近等温；若振动周期远短于漏热时间、又足以维持内部压强近似均匀，则接近绝热。
+先统一用多方指数 $\kappa$ 表示这两种极限：等温为1，常温双原子气体的可逆绝热近似为 $7/5$。
+取表面张力 $\sigma$ 在扰动中不变，忽略气体惯性、膜的黏性耗散和外部空气附加质量。记 $p_R=p_{\rm in}$，于是
+\begin{equation*}
+  p(r)r^{3\kappa}=p_R R^{3\kappa},
+  \qquad
+  p'(R)=-\frac{3\kappa p_R}{R}.
+\end{equation*}
+球面对称时所有真实力的矢量合力为零，不能把它作为整个泡的平移合力。这里计算的是与半径 $r$
+共轭的广义力，即虚功中 $\dd r$ 的系数：压强贡献为 $4\pi r^2[p(r)-p_0]$。
+两个界面的表面张力功对应有效势 $E_s=8\pi\sigma r^2$，向内的广义力为
+\begin{equation*}
+  -\frac{\dd E_s}{\dd r}=-16\pi\sigma r.
+\end{equation*}
+故总径向广义力为
+\begin{equation*}
+  F(r)=4\pi r^2[p(r)-p_0]-16\pi\sigma r.
+\end{equation*}
+在 $r=R$ 处利用平衡条件 $p_{\rm in}-p_0=4\sigma/R$，得到
+\begin{equation*}
+  F'(R)=4\pi\bigl(4\sigma-3\kappa Rp_R\bigr).
+\end{equation*}
+液膜质量为 $m_f=4\pi R^2\sigma_0$。线性化运动方程写成
+\begin{equation*}
+  m_f\ddot x=F'(R)x=-m_f\omega^2x,
+\end{equation*}
+其中
+\begin{equation}
+  \boxed{\omega^2=
+  \frac{3\kappa Rp_R-4\sigma}{R^2\sigma_0}}.
+\end{equation}
+代入 $p_R=p_0+4\sigma/R$，分子为
+\begin{equation*}
+  3\kappa Rp_0+(12\kappa-4)\sigma>0\qquad(\kappa=1\ \text{或}\ 7/5).
+\end{equation*}
+所以 $\omega^2>0$，小的球对称径向扰动会产生回复力，
+\begin{equation*}
+  \boxed{\text{该平衡对题设的小径向扰动稳定。}}
+\end{equation*}
+这里判断的是理想化的球对称模式；真实泡膜还可能因排液、蒸发、膜厚不均或非球形扰动而破裂。
+由 $[\sigma]=\mathrm{N/m}$、$[\sigma_0]=\mathrm{kg/m^2}$ 可验得 $[\omega^2]=\mathrm{s^{-2}}$。
+一般传热速率介于两极限之间时，还可能出现相位滞后和阻尼，题设不足以指定唯一振动频率；但上述两极限都稳定。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【华氏温标】}\label{ch15:ex:s29-20-8}
+美国常用的华氏温标把标准大气压下冰的熔点定为 $32\,{}^\circ\mathrm F$，水的沸点定为
+$212\,{}^\circ\mathrm F$。
+
+（1）导出华氏温度与摄氏温度之间的换算关系；（2）给出绝对零度的华氏温度。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+摄氏温标中冰点与沸点相差 $100$ 度，华氏温标中相差 $212-32=180$ 度，因此同一温差满足
+\begin{equation*}
+  \Delta t_F=\frac{180}{100}\Delta t_C=\frac95\Delta t_C.
+\end{equation*}
+再用 $t_C=0$ 对应 $t_F=32$，得到
+\begin{equation}
+  \boxed{t_F=\frac95t_C+32},
+  \qquad
+  \boxed{t_C=\frac59(t_F-32)}.
+\end{equation}
+绝对零度 $t_C=-273.15\,{}^\circ\mathrm C$，所以
+\begin{equation*}
+  t_F=\frac95(-273.15)+32=-459.67\,{}^\circ\mathrm F.
+\end{equation*}
+即
+\begin{equation}
+  \boxed{0\,\mathrm K=-459.67\,{}^\circ\mathrm F}.
+\end{equation}
+温差换算只乘 $9/5$，绝对温度读数换算还必须处理零点偏移；这是两类公式最容易混淆之处。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【循环过程】}\label{ch15:ex:s29-20-9}
+如图所示，一定量单原子理想气体从初态 $a(P_1,V_1)$ 出发，先经等容过程到状态 $b$，再经等压过程
+到状态 $c$，最后经等温过程回到 $a$，完成一个循环。图中 $P_b=P_c=P_1/4$。已知一摩尔气体温度
+改变 $\SI{1}{K}$ 时内能改变 $c_v=3R/2$。
+
+（1）$c\to a$ 吸热还是放热，热量多少？（2）$a\to b$ 吸热还是放热，热量多少？
+
+（3）$b\to c$ 吸热还是放热，热量多少？（4）整个循环的净功和净吸放热量各为多少？
+\par\noindent\begin{minipage}{\linewidth}
+\cycleQuestionRedraw
+\diagramcaption{$a\to b\to c\to a$ 循环。箭头给出过程方向，$c\to a$ 为等温压缩。}\label{ch15:fig:s29-20-9}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-9}中 $a,c$ 在同一条双曲线上，而 $b,c$ 具有相同压强。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+过程 $c\to a$ 等温，所以 $P_cV_c=P_aV_a$。由 $P_c=P_1/4$ 得
+\begin{equation*}
+  \frac{P_1}{4}V_c=P_1V_1,
+  \qquad
+  \boxed{V_c=4V_1}.
+\end{equation*}
+设气体物质的量为 $n$，并统一取 $Q>0$ 为吸热、$W^{\rm out}>0$ 为气体对外做功。
+
+\par\noindent\begin{minipage}{\linewidth}
+\cycleExampleDiagram
+\figcap{循环计算所用状态。$a,b$ 等体积，$b,c$ 等压，$a,c$ 等温。}\label{ch15:fig:cycle-solution}
+\end{minipage}\par\medskip
+以下逐段热量与图\ref{ch15:fig:cycle-solution}的三条有向路径对应。
+
+（1）$c\to a$ 为温度 $T_a=P_1V_1/(nR)$ 的等温压缩，$\Delta U_{ca}=0$，
+\begin{equation*}
+  Q_{ca}=W^{\rm out}_{ca}
+  =nRT_a\ln\frac{V_a}{V_c}
+  =P_1V_1\ln\frac14.
+\end{equation*}
+因此
+\begin{equation}
+  \boxed{Q_{ca}=-P_1V_1\ln4},
+\end{equation}
+即气体放热 $P_1V_1\ln4$。
+
+（2）$a\to b$ 等容，且 $T_b=T_a/4$。所以
+\begin{equation*}
+  W^{\rm out}_{ab}=0,
+  \qquad
+  Q_{ab}=\Delta U_{ab}
+  =\frac32nR\left(\frac{T_a}{4}-T_a\right)
+  =-\frac98P_1V_1.
+\end{equation*}
+故
+\begin{equation}
+  \boxed{Q_{ab}=-\frac98P_1V_1},
+\end{equation}
+即放热 $9P_1V_1/8$。
+
+（3）$b\to c$ 等压，温度由 $T_a/4$ 升到 $T_a$。单原子气体 $c_p=c_v+R=5R/2$，所以
+\begin{equation*}
+  Q_{bc}=nc_p(T_c-T_b)
+  =\frac52nR\cdot\frac34T_a
+  =\frac{15}{8}P_1V_1.
+\end{equation*}
+即
+\begin{equation}
+  \boxed{Q_{bc}=\frac{15}{8}P_1V_1},
+\end{equation}
+气体吸热。
+
+（4）净功可由各段相加。等容段功为零，等压段功为
+\begin{equation*}
+  W^{\rm out}_{bc}=\frac{P_1}{4}(4V_1-V_1)=\frac34P_1V_1,
+\end{equation*}
+等温压缩段功为 $-P_1V_1\ln4$。因此
+\begin{equation}
+  \boxed{W^{\rm out}_{\rm cyc}=P_1V_1\left(\frac34-\ln4\right)<0}.
+\end{equation}
+循环内能改变量为零，故净热量与净功相等：
+\begin{equation}
+  \boxed{Q_{\rm cyc}=P_1V_1\left(\frac34-\ln4\right)<0}.
+\end{equation}
+所以该循环是逆时针循环，外界对气体做净功
+$P_1V_1(\ln4-3/4)$，气体向外净放出同样多的热量。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【直线过程】}\label{ch15:ex:s29-20-10}
+如图所示，一摩尔理想气体从 $P$--$V$ 图中的状态 $A$ 出发，沿缓慢直线过程到达状态 $B$。已知
+$P_B/P_A=1/2$。若要使全过程的最终结果是气体从外界吸收热量，状态 $B$ 与状态 $A$ 的体积比应满足
+什么条件？已知该理想气体每摩尔内能为 $U=3RT/2$。
+\par\noindent\begin{minipage}{\linewidth}
+\straightQuestionRedraw
+\diagramcaption{状态 $A$ 到状态 $B$ 的准静态直线过程；解答中的详图进一步补出端点压强、体积及面积关系。}\label{ch15:fig:s29-20-10}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-10}中 $B$ 的纵坐标为 $A$ 的一半，这个比例将同时用于内能变化和梯形面积。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+令
+\begin{equation*}
+  x=\frac{V_B}{V_A},
+  \qquad P_B=\frac12P_A.
+\end{equation*}
+直线过程的对外功等于图下梯形面积：
+\begin{equation*}
+  W^{\rm out}
+  =\frac{P_A+P_B}{2}(V_B-V_A)
+  =\frac34P_AV_A(x-1).
+\end{equation*}
+
+\par\noindent\begin{minipage}{\linewidth}
+\straightProcessDiagram
+\figcap{直线过程的两个端点及轴上投影。积分区间是 $V_A$ 到 $V_B$。}\label{ch15:fig:straight-solution}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:straight-solution}中直线下方的梯形面积给功，端点的 $PV$ 差给内能变化，二者要分别计算。
+
+由 $U=3RT/2$ 以及一摩尔理想气体 $RT=PV$，
+\begin{align*}
+  \Delta U
+  &=\frac32(P_BV_B-P_AV_A)\\
+  &=\frac34P_AV_A(x-2).
+\end{align*}
+因此吸热量
+\begin{align*}
+  Q&=\Delta U+W^{\rm out}\\
+   &=\frac34P_AV_A[(x-2)+(x-1)]\\
+   &=\frac34P_AV_A(2x-3).
+\end{align*}
+要求气体净吸热即 $Q>0$，得到
+\begin{equation}
+  \boxed{\frac{V_B}{V_A}>\frac32}.
+\end{equation}
+若 $1<x<3/2$，气体虽然膨胀并对外做功，但温度、内能下降得更多，仍会净放热；因此“膨胀”不等于
+“吸热”。
+\end{xesolution}
+
+
+\Needspace{16\baselineskip}\begin{origexamplebox}{【提升活塞】}\label{ch15:ex:s29-20-11}
+如图所示，在质量为 $M$、内部横截面积为 $A$ 的竖直绝热气缸中，活塞封闭了一定量初温为 $T_0$ 的
+理想气体。活塞也绝热，活塞质量及活塞与气缸之间的摩擦均可忽略。大气压强为 $p_0$，重力加速度为
+$g$。气缸由不密封的小支脚支承，大气能作用于缸底外侧；忽略气体质量，取恒定绝热指数
+$\gamma=c_p/c_v$，并满足 $Mg<p_0A$。现把活塞缓慢上提；当活塞到达气缸开口处、气体尚未泄出时，
+气缸恰好离开支承面。求此时气体温度。
+\par\noindent\begin{minipage}{\linewidth}
+\liftingPistonQuestionRedraw
+\diagramcaption{初态与刚离地终态。终态取活塞仍密封气体的极限位置；缸底外侧受到大气压。}\label{ch15:fig:s29-20-11}
+\end{minipage}\par\medskip
+图~\ref{ch15:fig:s29-20-11}右侧取开口前最后密封的状态；活塞再向上、气体泄出后就不能继续使用同一封闭系统的绝热方程。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\par\nopagebreak[4]\begin{xesolution}
+初始时活塞没有质量，又未受额外拉力，故气体压强为 $p_i=p_0$。上提过程缓慢，使每一时刻都可视为
+平衡态；气缸、活塞又绝热，所以封闭气体经历可逆绝热膨胀。
+
+设某时刻气体压强为 $p$，外界对活塞的上拉力为 $F$。质量可忽略的活塞受力平衡给出
+\begin{equation*}
+  F+pA=p_0A,
+  \qquad
+  F=(p_0-p)A.
+\end{equation*}
+还必须单独检查缸体，不能说低压气体把缸底“向上拉”。缸底内侧气体给缸体向下的力 $pA$，
+外侧大气给向上的力 $p_0A$，支承力为 $N$。竖直平衡给出
+\[
+ N+p_0A=pA+Mg,\qquad N=Mg-(p_0-p)A.
+\]
+随着气体膨胀，$p$ 下降，支承力逐渐减小。刚离地时 $N=0$，于是
+\begin{equation*}
+  \boxed{p_f=p_0-\frac{Mg}{A}}.
+\end{equation*}
+
+\par\noindent\begin{minipage}{\linewidth}
+\liftingPistonDiagram
+\figcap{活塞与缸体分别受力。力箭头的作用对象不同，不能直接在一张受力图中混加。}\label{ch15:fig:lift-forces}
+\end{minipage}\par\medskip
+图\ref{ch15:fig:lift-forces}左图给 $F=(p_0-p)A$，右图在 $N=0$ 时给 $(p_0-p_f)A=Mg$，因此才有 $F_f=Mg$。
+
+由绝热关系 $T^\gamma/P^{\gamma-1}=\mathrm{const}$，
+\begin{equation*}
+  \frac{T_f^\gamma}{p_f^{\gamma-1}}
+  =\frac{T_0^\gamma}{p_0^{\gamma-1}}.
+\end{equation*}
+因此
+\begin{equation}
+  \boxed{T_f=T_0\left(\frac{p_f}{p_0}\right)^{(\gamma-1)/\gamma}
+  =T_0\left(1-\frac{Mg}{p_0A}\right)^{(\gamma-1)/\gamma}}.
+\end{equation}
+要使末态压强为正并能准静态达到，题设参数必须满足 $Mg<p_0A$。上提过程中气体膨胀并对外做功，却
+没有从环境吸热，因此内能和温度都降低，结果中的括号确实小于1。
+\end{xesolution}
+}
+
+\endgroup
+
+\hypersetup{bookmarksdepth=2}

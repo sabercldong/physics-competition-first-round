@@ -1,0 +1,522 @@
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 2.1【电势算电场】}
+小明发现电势和电场有非常明确的关系，并且电势是标量，应该更方便计算。请利用先求电势再求电场的方式，
+求解上一讲中诸多问题的电场。您一定会发现有的问题这样求解似乎不太正确，思考为什么以及对应的解决办法。
+\end{origexamplebox}
+
+\begin{xesolution}
+基本路线是先由
+\[
+  \varphi(\boldsymbol r)=\frac{1}{4\pi\varepsilon_0}
+  \int\frac{\dd q}{|\boldsymbol r-\boldsymbol r'|}
+\]
+求标量电势，再作 $\boldsymbol E=-\boldsymbol\nabla\varphi$。困难不在求导，而在于：对无限延伸的带电体，
+把无穷远取作零电势会使电势积分发散。
+
+\potentialMethodFigure
+
+\textbf{1. 点电荷。} 对 $\varphi=kQ/r$ 直接求梯度：
+\[
+  \boldsymbol E=-\frac{\dd\varphi}{\dd r}\hat{\boldsymbol r}
+  =\boxed{\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\hat{\boldsymbol r}}.
+\]
+
+\textbf{2. 有限长直线。} 令导线沿 $y$ 轴，从 $-L_2$ 延伸到 $L_1$，线密度为 $\lambda$；观察点在
+$(a,0)$。电势为
+\[
+  \varphi(a)=\frac{\lambda}{4\pi\varepsilon_0}
+  \int_{-L_2}^{L_1}\frac{\dd y}{\sqrt{a^2+y^2}}
+  =\frac{\lambda}{4\pi\varepsilon_0}
+  \left[\operatorname{arsinh}\frac{L_1}{a}
+  +\operatorname{arsinh}\frac{L_2}{a}\right].
+\]
+对称导线 $L_1=L_2=L$ 时
+\[
+  E_\perp=-\frac{\dd\varphi}{\dd a}
+  =\frac{\lambda}{2\pi\varepsilon_0a}
+  \frac{L}{\sqrt{a^2+L^2}}
+  =\boxed{\frac{\lambda}{2\pi\varepsilon_0a}\sin\theta},
+\]
+与上一讲的矢量积分一致。非对称时不能只对 $a$ 求导就认为得到了全部电场。
+在一般观察点 $(x,y)$、$x>0$ 写成
+\[
+ \varphi(x,y)=k\lambda\left[\operatorname{arsinh}\frac{L_1-y}{x}
+ +\operatorname{arsinh}\frac{L_2+y}{x}\right].
+\]
+于是先对 $x,y$ 分别求偏导，再令 $(x,y)=(a,0)$：
+\[
+ E_x=\frac{k\lambda}{a}\left(\frac{L_1}{\sqrt{a^2+L_1^2}}+
+ \frac{L_2}{\sqrt{a^2+L_2^2}}\right),\quad
+ E_y=k\lambda\left(\frac1{\sqrt{a^2+L_1^2}}-\frac1{\sqrt{a^2+L_2^2}}\right).
+\]
+这也恢复了非对称有限导线的两个分量。
+
+\textbf{3. 无限长直线。} 若直接令 $L\to\infty$，上式中的 $\varphi$ 发散；原因是无限直线的电场只按
+$1/a$ 衰减，从有限位置积分到无穷远得到对数发散。解决办法是选择一个有限参考距离 $a_0$：
+\[
+  \boxed{\varphi(a)-\varphi(a_0)
+  =-\frac{\lambda}{2\pi\varepsilon_0}\ln\frac{a}{a_0}}.
+\]
+求导仍给出
+\[
+  \boxed{E_a=-\frac{\dd\varphi}{\dd a}
+  =\frac{\lambda}{2\pi\varepsilon_0a}}.
+\]
+所以“绝对电势发散”不妨碍有限位置间的电势差和电场有确定值。
+
+\textbf{4. 无限大平面。} 设平面在 $z=0$，则
+\[
+  \boxed{\varphi(z)-\varphi(0)=-\frac{\sigma}{2\varepsilon_0}|z|},
+\]
+从而
+\[
+  \boxed{E_z=-\frac{\dd\varphi}{\dd z}
+  =\frac{\sigma}{2\varepsilon_0}\operatorname{sgn}z}.
+\]
+这里也不能令 $\varphi(\infty)=0$，因为匀强电场的电势沿距离线性变化。
+
+\textbf{5. 均匀圆盘。} 半径为 $R$、面密度为 $\sigma$ 的圆盘，在轴线上 $z>0$ 处的电势为
+\[
+  \varphi(z)=\frac{1}{4\pi\varepsilon_0}
+  \int_0^R\frac{\sigma2\pi r\dd r}{\sqrt{z^2+r^2}}
+  =\frac{\sigma}{2\varepsilon_0}
+  \left(\sqrt{z^2+R^2}-z\right).
+\]
+因此
+\[
+  \boxed{E_z=-\frac{\dd\varphi}{\dd z}
+  =\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{z}{\sqrt{z^2+R^2}}\right)}.
+\]
+\textbf{6. 无限长条带。} 条带位于 $z=0$，沿 $y$ 方向无限，宽度范围 $-b_1\le u\le b_2$。
+取有限参考点 $P_0=(0,0,z_0)$，$z_0>0$。窄条 $\dd\lambda=\sigma\dd u$ 是无限线电荷，因而
+\[
+ \varphi(x,z)-\varphi(0,z_0)
+ =-\frac{\sigma}{4\pi\varepsilon_0}\int_{-b_1}^{b_2}
+ \ln\frac{(x-u)^2+z^2}{u^2+z_0^2}\,\dd u.
+\]
+分母固定参考电势，且比值无量纲。对 $x,z$ 求偏导，积分中的参考项导数为零：
+\[
+ E_x=\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}
+ \frac{x-u}{(x-u)^2+z^2}\,\dd u,\qquad
+ E_z=\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}
+ \frac{z}{(x-u)^2+z^2}\,\dd u.
+\]
+在 $P=(0,0,a)$ 处得到
+\[
+ E_x=\frac{\sigma}{4\pi\varepsilon_0}\ln\frac{a^2+b_1^2}{a^2+b_2^2},\qquad
+ E_z=\frac{\sigma}{2\pi\varepsilon_0}\left(\arctan\frac{b_1}{a}+\arctan\frac{b_2}{a}\right),
+\]
+与直接积分的条带结果相同；当 $b_1=b_2$ 时横向分量确为零。
+
+有限系统可以取无穷远为零点；无限直线、无限条带和无限平面则应先计算电势差，或先保留有限尺寸、求导
+得到电场后再取无限大极限。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 2.2【均匀带电球】}
+小明给一个金属球壳均匀充电，得到一个半径为 $R$、电量为 $Q$ 的均匀带电球壳。试求：
+\begin{enumerate}[label=\arabic*.]
+  \item 空间中总的电场能量；
+  \item 必须用力压住球壳才能保证其不会四散飞走。需要多大的压强？
+  \item 若是均匀带电的绝缘实心球，答案有什么变化？
+  \item 为什么常见的是均匀带电的“金属球壳”和“绝缘球体”？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+金属球壳与绝缘实心球的电场分布如下。黑线是球壳：内部场为零，表面外侧跃变到
+$Q/(4\pi\varepsilon_0R^2)$；蓝线是均匀带电实心球：内部场从球心开始线性增加，并在表面与外部点电荷场
+连续相接。
+
+\chargedSphereEnergyFigure
+
+\textbf{1. 金属球壳的能量。} 球外
+$E=Q/(4\pi\varepsilon_0r^2)$，球内 $E=0$，所以
+\[
+  U=\int_R^\infty\frac12\varepsilon_0E^2\,4\pi r^2\dd r
+  =\boxed{\frac{Q^2}{8\pi\varepsilon_0R}}.
+\]
+
+\textbf{2. 维持球壳的压强。} 设球壳半径发生准静态改变，电荷量保持 $Q$ 不变。电斥力对应的向外广义力
+为
+\[
+  F_R=-\frac{\dd U}{\dd R}
+  =\frac{Q^2}{8\pi\varepsilon_0R^2}.
+\]
+除以球面积 $4\pi R^2$，得到需要由材料或外界提供的向内压强
+\[
+  \boxed{p_e=\frac{F_R}{4\pi R^2}
+  =\frac{Q^2}{32\pi^2\varepsilon_0R^4}}
+  =\boxed{\frac{\sigma_s^2}{2\varepsilon_0}}
+  =\boxed{\frac12\varepsilon_0E_{\rm out}^2},
+\]
+其中 $\sigma_s=Q/(4\pi R^2)$。不能用 $\sigma_sE_{\rm out}$，因为面电荷受到的是去掉自身奇异场后的平均
+场 $(E_{\rm out}+E_{\rm in})/2=E_{\rm out}/2$。
+
+\textbf{3. 均匀带电绝缘实心球。} 球内体电荷密度
+$\rho=3Q/(4\pi R^3)$，由 Gauss 定律
+\[
+  E(r)=\frac{Qr}{4\pi\varepsilon_0R^3}\quad(r<R),
+  \qquad
+  E(r)=\frac{Q}{4\pi\varepsilon_0r^2}\quad(r>R).
+\]
+内、外能量相加：
+\[
+  U_{\rm in}=\frac{Q^2}{40\pi\varepsilon_0R},
+  \qquad U_{\rm out}=\frac{Q^2}{8\pi\varepsilon_0R},
+\]
+故
+\[
+  \boxed{U_{\rm solid}=\frac{3Q^2}{20\pi\varepsilon_0R}
+  =\frac35\frac{1}{4\pi\varepsilon_0}\frac{Q^2}{R}}.
+\]
+绝缘球内部存在体电荷力，维持它的机械应力随半径变化，不能只用一个表面压强描述。若只问把整个球作
+相似压缩所需的平均广义压强，则
+\[
+  \bar p=-\frac{\dd U}{\dd V}
+  =\frac{3Q^2}{80\pi^2\varepsilon_0R^4}.
+\]
+
+\textbf{4. 材料区别。} 导体达到静电平衡后，内部自由电荷会迁移到外表面，因此均匀带电导体自然表现为
+“带电球壳”；绝缘体中的电荷可以被冻结在体内，才可能形成均匀体电荷分布。几何上当然也能制作绝缘空壳，
+但“均匀带电金属实心球”在静电平衡下不可能保持均匀体电荷。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 2.3【相互作用能】}
+小明尝试构建一个由 10 个点电荷组成的体系，电荷记为 $Q_i$，$i=1,2,\ldots,10$；任意两电荷之间的
+距离为 $r_{ij}$。为了把这 10 个电荷从无穷远搬到对应位置，小明需要做功多少？
+\end{origexamplebox}
+
+\begin{xesolution}
+按任意顺序逐个移入电荷。第一个电荷移入时没有其他电荷，外力做功为零；第二个电荷只与第一个发生相互
+作用；第 $i$ 个电荷移入时，只需计算它与已经就位的 $i-1$ 个电荷的作用。这样每一对电荷恰好出现一次。
+
+\chargeAssemblyFigure
+
+外力在准静态组装过程中所做的总功等于系统静电势能：
+\[
+  \boxed{W_{\rm ext}=U
+  =\frac{1}{4\pi\varepsilon_0}
+  \sum_{i=1}^{10}\sum_{j=1}^{i-1}\frac{Q_iQ_j}{r_{ij}}}.
+\]
+也可写成
+\[
+  \boxed{U=\frac12\sum_{i=1}^{10}Q_i\varphi_i'},
+  \qquad
+  \varphi_i'=\frac{1}{4\pi\varepsilon_0}
+  \sum_{j\ne i}\frac{Q_j}{r_{ij}}.
+\]
+若异号电荷使某些项为负，外力总功也可能为负，表示组装过程中静电力向外界释放能量。答案与移入顺序
+无关，因为静电力是保守力。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 2.4【零等势面】}
+小明将两个点电荷 $+Q,-q$ 分别置于 $(a,0,0)$ 和原点。求零电势等势面的方程（以无穷远为电势零点）。
+\end{origexamplebox}
+
+\begin{xesolution}
+空间点 $P(x,y,z)$ 到 $+Q$ 和 $-q$ 的距离分别为
+\[
+  r_+=\sqrt{(x-a)^2+y^2+z^2},
+  \qquad r_-=\sqrt{x^2+y^2+z^2}.
+\]
+零电势条件为
+\[
+  \frac{Q}{r_+}=\frac{q}{r_-}.
+\]
+令 $\mu=Q/q$，平方并整理：
+\[
+  \mu^2(x^2+y^2+z^2)=(x-a)^2+y^2+z^2.
+\]
+当 $\mu\ne1$ 时，配方得到球面
+\[
+  \boxed{\left(x+\frac{a}{\mu^2-1}\right)^2+y^2+z^2
+  =\left(\frac{a\mu}{|\mu^2-1|}\right)^2}.
+\]
+
+\apolloniusSphereFigure
+
+若 $Q>q$，球心在负 $x$ 轴，球面包围位于原点的较小电荷 $-q$；若 $Q<q$，则包围 $+Q$。特别地，
+$Q=q$ 时不能除以 $\mu^2-1$，原方程直接化为
+\[
+  \boxed{x=\frac a2},
+\]
+即两电荷连线的中垂面。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 2.5【无限长导线】}
+两根无限长直导线沿 $z$ 方向，带电线密度分别为 $+\lambda$ 和 $-\lambda$，与 $xOy$ 平面的交点分别为
+$(a,0)$ 和 $(-a,0)$。求平面内任意等势线的方程及电场线方程。
+\end{origexamplebox}
+
+\begin{xesolution}
+设 $P(x,y)$ 到正、负线电荷的距离为
+\[
+  r_+=\sqrt{(x-a)^2+y^2},\qquad
+  r_-=\sqrt{(x+a)^2+y^2}.
+\]
+单根无限线电荷的绝对电势发散，但一正一负两根导线的发散常数相消。取中垂面 $x=0$ 为零电势，可写成
+\[
+  \boxed{\varphi(x,y)=\frac{\lambda}{2\pi\varepsilon_0}
+  \ln\frac{r_-}{r_+}}.
+\]
+令 $C=\exp(2\pi\varepsilon_0\varphi_0/\lambda)>0$，等势线满足
+\[
+  \boxed{\frac{r_-}{r_+}=C},
+\]
+即
+\[
+  \boxed{(x+a)^2+y^2=C^2\bigl[(x-a)^2+y^2\bigr]}.
+\]
+$C\ne1$ 时是圆，$C=1$ 时退化为直线 $x=0$。
+
+电场线与等势线正交。令
+\[
+  \beta=\arg\bigl[(x-a)+\mathrm i y\bigr]
+  -\arg\bigl[(x+a)+\mathrm i y\bigr]
+\]
+为点 $P$ 看两导线所成的有向角，则 $\beta=$ 常量给出电场线。消去角度：
+\[
+  \boxed{x^2+y^2-a^2=2ay\cot\beta},
+\]
+或
+\[
+  \boxed{x^2+(y-a\cot\beta)^2=a^2\csc^2\beta}.
+\]
+这是一族通过 $(\pm a,0)$ 的圆；$y=0$ 是需单独保留的直线分支。
+为何有向角不变？令 $u=\ln(r_-/r_+)$，直接求导可得
+$\beta_x=u_y$、$\beta_y=-u_x$。而 $\boldsymbol E=-(\lambda/2\pi\varepsilon_0)\nabla u$，
+所以 $\nabla\beta\cdot\boldsymbol E=0$，沿场线 $\beta$ 不变。
+等势圆的圆心 $(c,0)$ 和半径 $R_c$ 满足 $c^2-R_c^2=a^2$；
+场线圆的圆心 $(0,d)$ 和半径 $R_d$ 满足 $R_d^2-d^2=a^2$。
+两圆相交于 $P=(x,y)$ 时，相应半径的点积为
+$ (x-c,y)\cdot(x,y-d)=x^2+y^2-cx-dy=0$，证明两族曲线正交。
+
+\twoLinesFamiliesFigure
+
+图中 $+\lambda$ 位于右侧，$-\lambda$ 位于左侧，箭头从正电荷指向负电荷；实线等势圆与虚线场线圆处处正交。三维空间中，两类截线沿 $z$ 方向平移，分别形成等势柱面和场线
+柱面。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 2.6【有限长导线】}
+一根有限长直导线带电线密度 $\lambda$，位于 $(a,0,0)$ 到 $(-a,0,0)$ 之间。系统绕 $x$ 轴旋转对称。
+求包含 $x$ 轴的平面内任意等势线的方程及电场线方程。
+\end{origexamplebox}
+
+\begin{xesolution}
+在包含导线的子午面内，以 $s=\sqrt{y^2+z^2}$ 表示点到 $x$ 轴的距离，并定义点到两个端点的距离
+\[
+  r_+=\sqrt{(x-a)^2+s^2},
+  \qquad r_-=\sqrt{(x+a)^2+s^2}.
+\]
+直接积分得到
+\[
+  \varphi(x,s)=\frac{\lambda}{4\pi\varepsilon_0}
+  \int_{-a}^{a}\frac{\dd x'}{\sqrt{(x-x')^2+s^2}}
+  =\boxed{\frac{\lambda}{4\pi\varepsilon_0}
+  \ln\frac{r_++r_-+2a}{r_++r_--2a}}.
+\]
+因此 $\varphi=$ 常量等价于
+\[
+  \boxed{r_++r_-=\text{常量}},
+\]
+在子午面内是一族以导线两端为焦点的椭圆，绕 $x$ 轴旋转后成为长旋转椭球面。
+
+引入长旋转椭圆坐标
+\[
+  \xi=\frac{r_++r_-}{2a},
+  \qquad \eta=\frac{r_--r_+}{2a}.
+\]
+由两焦点距离可反解出
+\[
+ x=a\xi\eta,\qquad s=a\sqrt{(\xi^2-1)(1-\eta^2)},\quad \xi\ge1,\quad -1\le\eta\le1.
+\]
+两条坐标切向量的点积为
+\[
+ \frac{\partial(x,s)}{\partial\xi}\cdot\frac{\partial(x,s)}{\partial\eta}
+ =a^2\xi\eta-
+ a^2\frac{\xi\sqrt{1-\eta^2}}{\sqrt{\xi^2-1}}
+ \frac{\eta\sqrt{\xi^2-1}}{\sqrt{1-\eta^2}}=0.
+\]
+因此它们正交。电势只依赖 $\xi$，场垂直于 $\xi=$ 常量的椭圆，
+沿 $\eta=$ 常量的坐标线，即
+\[
+  \boxed{r_--r_+=\text{常量}}.
+\]
+它在子午面内是一族共焦双曲线，绕轴旋转后成为双曲面。
+
+\finiteRodFamiliesFigure
+
+图中粗黑线表示 $-a\le x\le a$ 的均匀带电导线（$\lambda>0$）；实线是等势椭圆，虚线箭头从导线不同位置向外。椭圆与双曲线在每个交点正交。导线两端是共同焦点，不是椭圆或双曲线的圆心；这一位置关系是正确画图的
+关键。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 2.7【同性相斥】}
+一个可视为点电荷的小球 $A$，质量为 $m$、电量为 $+q$，用长度未知的轻绳悬挂。
+另一小球 $B$ 也带电 $+q$，初始足够远，以两球初始相互作用能为零的极限处理，$A$ 初始竖直静止。
+小明缓慢移动 $B$ 并排斥 $A$，使 $A$ 始终近似平衡；最终 $B$ 占据 $A$ 原来的最低位置，$A$ 上升 $h$。
+忽略两球尺寸变化及 $B$ 的重力功（所求手的功仅计克服静电相互作用的部分），求小明做的功和电场能量增量。
+\emRepellingQuestion
+\figcap{悬点、轻绳及两球的最终位置；虚线标出原来的最低位置。}\label{fig:em-source-thirty-third-section-7}
+\end{origexamplebox}
+
+\begin{xesolution}
+取初态 $B$ 在足够远处、$A$ 竖直悬挂，末态缓慢达到平衡。设绳长为 $L$，末态绳与竖直方向夹角为
+$\theta$，两球距离为 $r$。$A,B$ 都在以悬点为圆心、半径为 $L$ 的圆周上，所以
+\[
+  r=2L\sin\frac\theta2,
+  \qquad h=L(1-\cos\theta)=2L\sin^2\frac\theta2.
+\]
+因此
+\[
+  \boxed{h=r\sin\frac\theta2}.
+\]
+
+图 2.6 中两段悬线位置均长 $L$，夹角为 $\theta$；$A,B$ 的连线决定电斥力方向，$h$ 是两球的高度差。
+
+\repellingSpheresFigure
+\diagramcaption{图 2.6：末态几何与 $A$ 球受力。$B$ 位于 $A$ 原来的最低位置，三力方向由实际位置唯一确定。}
+
+沿 $A$ 球运动圆周的切向列平衡条件。电斥力
+$F_e=kq^2/r^2$，其切向分量为 $F_e\cos(\theta/2)$；重力切向分量为 $mg\sin\theta$：
+\[
+  F_e\cos\frac\theta2=mg\sin\theta
+  =2mg\sin\frac\theta2\cos\frac\theta2.
+\]
+故
+\[
+  F_e=2mg\sin\frac\theta2=\frac{2mgh}{r}.
+\]
+再代入 $F_e=kq^2/r^2$：
+\[
+  \frac{kq^2}{r}=2mgh.
+\]
+两球相互作用的电场能量从零增至
+\[
+  \boxed{\Delta U_E=\frac{kq^2}{r}=2mgh}.
+\]
+$A$ 的重力势能增加 $mgh$，绳的拉力不做功；准静态过程中小明所做功等于总势能增加：
+\[
+  \boxed{W_{\text{小明}}=\Delta U_E+\Delta U_g=3mgh}.
+\]
+答案与未知绳长 $L$ 无关，正是因为平衡条件和圆周几何把 $L,\theta,r$ 全部消去了。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 2.8【玻尔氢原子】}
+在玻尔氢原子模型中，电子在原子核外以光速的 $1/137$ 绕原子核作圆周运动。这个氢原子的总能量是多少？
+为什么是负能量？
+\end{origexamplebox}
+
+\begin{xesolution}
+氢核带电 $+e$，电子带电 $-e$。Coulomb 吸引力提供向心力：
+\[
+  \frac{m_ev^2}{r}=\frac{1}{4\pi\varepsilon_0}\frac{e^2}{r^2}.
+\]
+因此
+\[
+  \frac{1}{4\pi\varepsilon_0}\frac{e^2}{r}=m_ev^2.
+\]
+
+\bohrAtomFigure
+
+电子动能和电势能分别为
+\[
+  K=\frac12m_ev^2,
+  \qquad U=-\frac{1}{4\pi\varepsilon_0}\frac{e^2}{r}=-m_ev^2.
+\]
+所以总能量
+\[
+  E=K+U=-\frac12m_ev^2.
+\]
+代入 $v=c/137$：
+\[
+  \boxed{E=-\frac{m_ec^2}{2\times137^2}
+  \approx-13.6\,\mathrm{eV}}.
+\]
+同时可得轨道半径 $r\approx5.29\times10^{-11}\,\mathrm m$。总能量为负，是因为把相距无穷远、静止的
+质子和电子规定为零能量；氢原子是束缚态，要输入 $13.6\,\mathrm{eV}$ 才能把电子完全移到无穷远。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 2.9【$\alpha$ 粒子散射】}
+小明用一个 $\alpha$ 粒子打向带 $Z$ 个单位正电荷的金原子核。
+\begin{enumerate}[label=\arabic*.]
+  \item 若认为金原子核不动，$\alpha$ 粒子的轨迹如何随初始状态变化？
+  \item 若有很多 $\alpha$ 粒子同时入射，出射的微分散射截面是多少？
+  \item 历史上谁第一次做了这个实验？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+记 $\alpha$ 粒子电荷为 $+2e$，入射动能为 $E_k=\tfrac12mv_\infty^2$，瞄准参数为 $b$。把 Coulomb
+排斥势写成
+\[
+  V(r)=\frac{\kappa}{r},
+  \qquad
+  \kappa=\frac{1}{4\pi\varepsilon_0}(2e)(Ze).
+\]
+
+\rutherfordFigure
+图中三条曲线使用同一 $\kappa/(2E_k)=0.7$ 和同一核位置，长度以同一个任意单位表示。
+虚线是入射与出射渐近线，$b$ 是入射渐近线到核的垂距；蓝线的 $b$ 最小，因而偏转最大。
+
+
+\textbf{1. 轨迹。} 能量与角动量守恒，角动量为 $L=mv_\infty b$。排斥平方反比力的轨迹是以原子核为
+焦点的双曲线。为补出角度关系，令 $u=1/r$，以最近点的径向为极角 $\psi=0$。
+比奈方程为 $u''+u=-m\kappa/L^2$，其对称解为
+\[
+ u=\frac{m\kappa}{L^2}(\epsilon\cos\psi-1).
+\]
+将最近点 $u'(0)=0$ 代入能量式
+$E_k=(L^2/2m)(u'^2+u^2)+\kappa u$，得到
+$\epsilon^2=1+2E_kL^2/(m\kappa^2)=1+(2E_kb/\kappa)^2$。
+两条渐近线处 $u=0$，故 $\cos\psi_\infty=1/\epsilon$。
+速度入射方向与入射位置矢量反向，因而偏转角
+$\Theta=\pi-2\psi_\infty$，有
+$\sin(\Theta/2)=1/\epsilon$。消去 $\epsilon$ 后，散射角 $\Theta$ 与瞄准参数满足
+\[
+  \boxed{b=\frac{\kappa}{2E_k}\cot\frac\Theta2},
+  \qquad
+  \boxed{\tan\frac\Theta2=\frac{\kappa}{2E_kb}}.
+\]
+$b$ 越小或入射能量越低，偏转越强；$b=0$ 时发生正碰并反向散射，最近距离
+\[
+  \boxed{r_{\min}=\frac{\kappa}{E_k}}.
+\]
+双曲线离心率为
+\[
+  \epsilon=\sqrt{1+\left(\frac{2E_kb}{\kappa}\right)^2}>1.
+\]
+
+\textbf{2. Rutherford 微分截面。} 入射束中瞄准参数在 $b$ 到 $b+\dd b$ 的粒子占据环带面积
+$\dd\sigma=2\pi b|\dd b|$；散射到 $\Theta$ 到 $\Theta+\dd\Theta$ 的立体角为
+$\dd\Omega=2\pi\sin\Theta\dd\Theta$。令 $B_0=\kappa/(2E_k)$，则
+\[
+ \left|\frac{\dd b}{\dd\Theta}\right|=\frac{B_0}{2}\csc^2\frac\Theta2,
+ \qquad \frac{\dd\sigma}{\dd\Omega}=
+ \frac{b}{\sin\Theta}\left|\frac{\dd b}{\dd\Theta}\right|.
+\]
+代入 $b=B_0\cot(\Theta/2)$ 和 $\sin\Theta=2\sin(\Theta/2)\cos(\Theta/2)$，得到
+\[
+  \boxed{\frac{\dd\sigma}{\dd\Omega}
+  =\left(\frac{\kappa}{4E_k}\right)^2
+  \frac{1}{\sin^4(\Theta/2)}}.
+\]
+若关心散射角大于 $\Theta_0$ 的总截面，则
+\[
+  \boxed{\sigma(\Theta>\Theta_0)
+  =\pi\left(\frac{\kappa}{2E_k}\right)^2
+  \cot^2\frac{\Theta_0}{2}}.
+\]
+
+\textbf{3. 历史。} 1909 年，Hans Geiger 和 Ernest Marsden 在 Ernest Rutherford 指导下完成金箔
+$\alpha$ 粒子散射实验；Rutherford 于 1911 年用核式原子模型解释大角散射。严格说，实际执行实验并最先
+报告结果的是 Geiger 与 Marsden，提出决定性理论解释的是 Rutherford。
+\end{xesolution}

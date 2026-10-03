@@ -1,0 +1,326 @@
+% Restrained TikZ redraws for Lesson 31.
+
+\newcommand{\twoConductorFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.76,>=Latex]
+  % Exact two-dimensional bipolar-coordinate construction.  The two solid
+  % conductor circles and all dashed curves are constant-potential circles;
+  % the blue field lines are the orthogonal family of circles through the
+  % two hidden foci (-2.2,0) and (2.2,0).
+  \draw[TextGray,dashed] (-3.31,0) circle (2.48);
+  \draw[TextGray,dashed] (-2.82,0) circle (1.77);
+  \draw[TextGray,dashed] (2.89,0) circle (1.87);
+  \draw[TextGray,dashed] (2.59,0) circle (1.37);
+
+  \draw[DeepBlue,thick] (-2.2,0) arc[start angle=160.0,end angle=20.0,radius=2.34];
+  \draw[DeepBlue,thick] (-2.2,0) arc[start angle=144.0,end angle=36.0,radius=2.72];
+  \draw[DeepBlue,thick] (-2.2,0) arc[start angle=124.5,end angle=55.5,radius=3.88];
+  \draw[DeepBlue,thick] (-2.2,0) arc[start angle=-160.0,end angle=-20.0,radius=2.34];
+  \draw[DeepBlue,thick] (-2.2,0) arc[start angle=-144.0,end angle=-36.0,radius=2.72];
+  \draw[DeepBlue,thick] (-2.2,0) arc[start angle=-124.5,end angle=-55.5,radius=3.88];
+  \draw[DeepBlue,thick] (-2.2,0)--(2.2,0);
+
+  % Cover the portions of the field-line circles lying inside the conductors.
+  \fill[PaleBlue] (-2.52,0) circle (1.22);
+  \fill[PaleBlue] (2.39,0) circle (0.92);
+  \draw[curve] (-2.52,0) circle (1.22);
+  \draw[curve] (2.39,0) circle (0.92);
+
+  % Direction markers are placed in the real exterior region.
+  \foreach \y in {-1.54,-1.12,-0.68,0,0.68,1.12,1.54}
+    {\draw[->,DeepBlue,thick] (-0.32,\y)--(0.32,\y);}
+  \node[DeepBlue] at (-2.52,0) {$\varphi_A$};
+  \node[Ink] at (2.39,0) {$\varphi_B$};
+  \node[TextGray,align=left,anchor=west] at (5.95,0.55)
+    {$\varphi_A>\varphi_B$\\实线：电场线\\虚线：等势线\\两族曲线处处正交};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.1(a)\quad 双导体的严格二维示意：导体边界和虚线均为等势线，蓝线与之正交}
+\end{center}}
+
+\newcommand{\conductorEquilibriumDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[PaleBlue] (0,0) ellipse (2.15 and 1.35);
+  \draw[curve] (0,0) ellipse (2.15 and 1.35);
+  \node[TextGray] at (0,0.25) {$\vect E_{\rm in}=0$};
+  \node[TextGray] at (0,-0.28) {$\varphi=\text{常量}$};
+  \foreach \a in {18,52,92,137,184,224,273,318,346}{
+    \fill[DeepBlue] ({2.15*cos(\a)},{1.35*sin(\a)}) circle (1.5pt);
+  }
+  \foreach \a in {18,52,92,137,184,224,273,318,346}{
+    \pgfmathsetmacro{\nx}{cos(\a)/2.15}
+    \pgfmathsetmacro{\ny}{sin(\a)/1.35}
+    \pgfmathsetmacro{\nn}{sqrt(\nx*\nx+\ny*\ny)}
+    \draw[vector] ({2.15*cos(\a)},{1.35*sin(\a)})
+      --++({0.62*\nx/\nn},{0.62*\ny/\nn});
+  }
+  \node[TextGray,align=left,anchor=west] at (3.45,0.45)
+    {净电荷只在表面\\表面外场强沿法线\\$E_n=\sigma/\varepsilon_0$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.1(b)\quad 导体静电平衡的局部性质}
+\end{center}}
+
+\newcommand{\inductionGroundingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.8,>=Latex]
+  \foreach \x in {0,4.4,8.8}{\draw[curve] (\x,0) circle (1.05);}
+  \fill[DeepBlue] (-2.0,0) circle (4pt) node[above] {$+Q$};
+  \fill[DeepBlue] (2.4,0) circle (4pt) node[above] {$+Q$};
+  \foreach \y in {-0.55,-0.18,0.18,0.55}{
+    \node[Ink] at (0-0.74,\y) {$-$};
+    \node[DeepBlue] at (0+0.72,\y) {$+$};
+  }
+  \foreach \y in {-0.55,-0.18,0.18,0.55}{\node[Ink] at (4.4-0.72,\y) {$-$};}
+  \draw[thick] (5.25,-0.63)--(5.95,-1.25);
+  \draw[thick] (5.95,-1.25)--(5.95,-1.62);
+  \draw[thick] (5.55,-1.62)--(6.35,-1.62);
+  \draw[thick] (5.67,-1.78)--(6.23,-1.78);
+  \draw[thick] (5.82,-1.94)--(6.08,-1.94);
+  \foreach \a in {0,45,...,315}{\node[Ink] at ({8.8+0.72*cos(\a)},{0.72*sin(\a)}) {$-$};}
+  \draw[vector] (1.45,0)--(2.9,0);
+  \draw[vector] (5.85,0)--(7.3,0);
+  \node[TextGray] at (0,-2.45) {靠近正电荷，导体极化};
+  \node[TextGray] at (4.4,-2.45) {保持外电荷不动并接地};
+  \node[TextGray] at (8.8,-2.45) {先断地线，再移开外电荷；负电荷均匀分布};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.2\quad 感应起电中“先断地线”的次序}
+\end{center}}
+
+\newcommand{\sphereImageDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \draw[axis] (-2.2,0)--(5.2,0);
+  \draw[curve] (0,0) circle (1.55);
+  \fill (0,0) circle (1.4pt) node[below left=2pt,fill=white,inner sep=0.5pt] {$O$};
+  \fill[Ink] (0.55,0) circle (4pt);
+  \node[above=8pt,fill=white,inner sep=0.8pt] (qprime) at (0.20,0.54) {$q'=-QR/L$};
+  \draw[TextGray,thin] (qprime.south east)--(0.55,0.10);
+  \fill[DeepBlue] (4.35,0) circle (4pt) node[above=4pt,fill=white,inner sep=0.7pt] {$Q$};
+  \draw[<->] (0,-0.72)--node[fill=white,inner sep=1pt] {$R$}(1.55,-0.72);
+  \draw[<->] (0,-1.18)--node[fill=white,inner sep=1pt] {$R^2/L$}(0.55,-1.18);
+  \draw[<->] (0,-1.64)--node[fill=white,inner sep=1pt] {$L$}(4.35,-1.64);
+  \node[TextGray,align=left,anchor=west] at (5.75,0.15)
+    {圆外的真实电荷不变\\圆内像电荷只替代导体的作用};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.3\quad 接地导体球外点电荷的像电荷}
+\end{center}}
+
+\newcommand{\plasmaOscillationDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (-2.5,-1.2) rectangle (2.5,1.2);
+  \draw[TextGray,thick] (-2.5,-1.2) rectangle (2.5,1.2);
+  \foreach \x in {-2.1,-1.4,...,2.1}{
+    \foreach \y in {-0.8,-0.25,0.3,0.85}{\node[TextGray] at (\x,\y) {$+$};}
+  }
+  \fill[white,opacity=0.88] (-1.65,-1.15) rectangle (2.5,1.15);
+  \foreach \x in {-1.25,-0.55,...,2.25}{
+    \foreach \y in {-0.72,-0.1,0.52}{\node[Ink] at (\x,\y) {$-$};}
+  }
+  \draw[vector] (-0.55,1.62)--(0.95,1.62) node[midway,above] {$\vect\xi$};
+  \node[TextGray] at (-2.0,-1.65) {裸露正电荷层};
+  \node[TextGray] at (1.75,-1.65) {电子云整体位移};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.4(a)\quad 电子云微小位移产生线性回复场}
+\end{center}}
+
+\newcommand{\discretePotentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.0cm,y=0.9cm,>=Latex]
+  \draw[axis] (-0.4,0)--(9.4,0) node[right] {$x$};
+  \foreach \i in {0,...,9}{
+    \fill[DeepBlue] (\i,0) circle (2.2pt);
+    \node[above] at (\i,0) {$\varphi_{\i}$};
+  }
+  \draw[<->] (4,-0.65)--node[below] {$a$}(5,-0.65);
+  \draw[DeepBlue,very thick] (4,0.35)--(4,-0.35);
+  \draw[DeepBlue,very thick] (5,0.35)--(5,-0.35);
+  \node[TextGray,align=left,anchor=west] at (10.0,0.3)
+    {$\displaystyle \frac{\varphi_{n+1}-2\varphi_n+\varphi_{n-1}}{a^2}$\\是 $\varphi''(x_n)$ 的离散近似};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.4(b)\quad 连续电势函数的离散化与中心二阶差分}
+\end{center}}
+
+\newcommand{\ionosphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  \fill[PaleBlue] (0,0) circle (2.2);
+  \draw[curve] (0,0) circle (2.2);
+  \draw[TextGray,dashed,thick] (0,0) circle (3.05);
+  \draw[TextGray,dashed,thick] (0,0) circle (3.55);
+  \node[TextGray] at (0,0) {地球};
+  \node[TextGray] at (-2.75,3.78) {电离层};
+  \coordinate (A) at (-1.85,1.18); \coordinate (B) at (1.85,1.18);
+  \fill[Ink] (A) circle (2.8pt) node[left] {发射站};
+  \fill[Ink] (B) circle (2.8pt) node[right] {接收站};
+  \draw[->,DeepBlue,very thick] (A) .. controls (-0.95,3.95) and (0.95,3.95) .. (B);
+  \draw[->,Gold,very thick] (-0.55,2.05) .. controls (-0.25,3.25) and (0.15,4.15) .. (0.65,5.05);
+  \draw[DeepBlue,very thick] (4.55,3.50)--(5.25,3.50);
+  \node[DeepBlue,anchor=west] at (5.42,3.50) {低于等离子体频率：反射};
+  \draw[Gold,very thick] (4.55,4.35)--(5.25,4.35);
+  \node[TextGray,anchor=west] at (5.42,4.35) {更高频率：穿透};
+  \draw[TextGray,thin] (-4.25,-1.5)--(-3.55,-1.5)--(-3.55,-0.8);
+  \node[TextGray,align=left,anchor=west] at (4.6,1.05)
+    {电离层不是镜面\\图示只表达传播路径与频率阈值\\不表示固定反射高度};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.6(a)\quad 电离层等离子体频率与远距离无线电传播}
+\end{center}}
+
+\newcommand{\pairPotentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (-2.0,0) circle (1.15); \draw[curve] (-2.0,0) circle (1.15);
+  \fill[PaleBlue] (2.0,0) circle (0.93); \draw[curve] (2.0,0) circle (0.93);
+  \node at (-2.0,0) {$A$}; \node at (2.0,0) {$B$};
+  \foreach \y in {-0.52,-0.18,0.18,0.52}{
+    \node[DeepBlue] at (-1.05,\y) {$+$};
+    \node[Ink] at (1.18,\y) {$-$};
+  }
+  \draw[vector] (-0.62,1.55)--(0.72,1.55) node[midway,above] {电势降低};
+  \node[TextGray,align=left,anchor=west] at (4.0,0.4)
+    {电场线只能从高电势出发，\\终止于低电势或无穷远};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.5\quad 判断表面电荷符号应先比较导体电势}
+\end{center}}
+
+\newcommand{\isolatedSphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.91,>=Latex]
+  \draw[curve] (0,0) circle (1.45);
+  \fill[DeepBlue] (4.1,0) circle (4pt) node[above] {$+q$};
+  \fill[DeepBlue] (0,0) circle (3.4pt);
+  \node[above left=8pt,fill=white,inner sep=0.8pt] (qzero) at (-0.10,0.55) {$q_0=q(1+R/a)$};
+  \draw[TextGray,thin] (qzero.south east)--(0,0.10);
+  \fill[Ink] (0.51,0) circle (3.4pt);
+  \node[above right=8pt,fill=white,inner sep=0.8pt] (qone) at (0.72,0.47) {$q_1=-qR/a$};
+  \draw[TextGray,thin] (qone.south west)--(0.51,0.10);
+  \draw[axis] (-1.9,0)--(4.9,0);
+  \draw[<->] (0,-0.7)--node[fill=white,inner sep=1pt] {$R$}(1.45,-0.7);
+  \draw[<->] (0,-1.18)--node[fill=white,inner sep=1pt] {$a$}(4.1,-1.18);
+  \node[TextGray] at (0,-2.0) {中心像电荷保证金属球的给定净电荷；偏心像电荷描述极化};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.6(b)\quad 带净电荷的孤立导体球需要两个像电荷}
+\end{center}}
+
+\newcommand{\innerSphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \fill[SoftGray] (0,0) circle (2.1);
+  \fill[white] (0,0) circle (1.65);
+  \draw[curve] (0,0) circle (1.65);
+  \draw[TextGray,thick] (0,0) circle (2.1);
+  \fill[DeepBlue] (0.88,0) circle (4pt) node[above left=4pt,fill=white,inner sep=0.7pt] {$-q$};
+  \fill[Ink] (3.1,0) circle (4pt) node[above right=4pt,fill=white,inner sep=0.7pt] {$+qR/x$};
+  \fill (0,0) circle (1.4pt) node[below left=2pt,fill=white,inner sep=0.5pt] {$O$};
+  \draw[axis] (-2.6,0)--(3.7,0);
+  \draw[<->] (0,-0.68)--node[fill=white,inner sep=1pt] {$x$}(0.88,-0.68);
+  \draw[<->] (0,-1.12)--node[fill=white,inner sep=1pt] {$R$}(1.65,-1.12);
+  \draw[<->] (0,-1.56)--node[fill=white,inner sep=1pt] {$R^2/x$}(3.1,-1.56);
+  \node[TextGray] at (0,-2.35) {像电荷位于求解区域之外；它不是金属中的真实电荷};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.7\quad 接地球壳内点电荷的像电荷位置}
+\end{center}}
+
+\newcommand{\quarterPlaneDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[axis] (-4.0,0)--(4.0,0) node[right] {$x$};
+  \draw[axis] (0,-3.3)--(0,3.3) node[above] {$y$};
+  \draw[DeepBlue,very thick] (0,0)--(4.0,0);
+  \draw[DeepBlue,very thick] (0,0)--(0,3.3);
+  \fill[DeepBlue] (2.0,1.55) circle (4pt) node[above right] {$+q(a,b)$};
+  \fill[Ink] (-2.0,1.55) circle (4pt) node[above left] {$-q$};
+  \fill[Ink] (2.0,-1.55) circle (4pt) node[below right] {$-q$};
+  \fill[DeepBlue] (-2.0,-1.55) circle (4pt) node[below left] {$+q$};
+  \draw[guide] (-2.0,1.55)--(2.0,1.55)--(2.0,-1.55)--(-2.0,-1.55)--cycle;
+  \node[TextGray,align=left,anchor=west] at (4.55,1.0)
+    {第一象限为真实区域\\其余三个点均为像电荷};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.8\quad 两相互垂直接地平面的三像电荷构造}
+\end{center}}
+
+\newcommand{\hemisphereImageDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \fill[SoftGray] (-1.55,0) arc[start angle=180,end angle=0,radius=1.55] -- cycle;
+  \draw[curve] (-1.55,0) arc[start angle=180,end angle=0,radius=1.55];
+  \draw[DeepBlue,very thick] (-4.5,0)--(-1.55,0) (1.55,0)--(4.5,0);
+  \draw[axis] (0,-2.8)--(0,4.1) node[above] {$z$};
+  \fill[DeepBlue] (0,3.25) circle (4pt) node[right] {$+q$};
+  \fill[Ink] (0,-3.25) circle (4pt) node[right] {$-q$};
+  \fill[Ink] (0,0.75) circle (3.5pt) node[right] {$-qR/a$};
+  \fill[DeepBlue] (0,-0.75) circle (3.5pt) node[right] {$+qR/a$};
+  \node[TextGray,align=left,anchor=west] at (5.0,1.1)
+    {关于平面成镜像\\关于球面成 Kelvin 反演像};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.9\quad 接地平面上半球凸起的四电荷构造}
+\end{center}}
+
+\newcommand{\groundPlaneEnergyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \draw[DeepBlue,very thick] (-4.2,0)--(4.2,0) node[right] {接地平面};
+  \fill[DeepBlue] (0,2.15) circle (4pt) node[right] {$q$};
+  \fill[Ink] (0,-2.15) circle (4pt) node[right] {$-q$（像）};
+  \draw[<->] (-0.8,0)--node[left] {$a$}(-0.8,2.15);
+  \draw[<->] (-0.8,-2.15)--node[left] {$a$}(-0.8,0);
+  \draw[vector] (0,2.15)--(0,1.05) node[right] {$\vect F$};
+  % The induced charge density is largest beneath q and decays laterally.
+  \foreach \x in {-3.4,-2.35,-1.55,-0.95,-0.50,-0.20,0,0.20,0.50,0.95,1.55,2.35,3.4}{
+    \node[Ink] at (\x,-0.28) {$-$};
+  }
+  \node[TextGray,align=left,anchor=west] at (4.85,1.0)
+    {力可按真实电荷与像电荷计算\\能量必须再乘 $1/2$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.10\quad 点电荷与接地平面的力和能量}
+\end{center}}
+
+\newcommand{\uniformFieldSphereDiagram}{%
+\begin{samepage}
+\begin{center}
+\begin{tikzpicture}[scale=0.72,>=Latex]
+  \draw[curve] (0,0) circle (1.35);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}]
+    (-4.3,2.0) .. controls (-2.4,2.0) and (-1.8,2.18) .. (0,2.18)
+    .. controls (1.8,2.18) and (2.4,2.0) .. (4.3,2.0);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}]
+    (-4.3,1.25) .. controls (-2.5,1.25) and (-1.75,1.78) .. (0,1.78)
+    .. controls (1.75,1.78) and (2.5,1.25) .. (4.3,1.25);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}]
+    (-4.3,0.58) .. controls (-2.5,0.58) and (-1.7,1.48) .. (0,1.48)
+    .. controls (1.7,1.48) and (2.5,0.58) .. (4.3,0.58);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}]
+    (-4.3,-2.0) .. controls (-2.4,-2.0) and (-1.8,-2.18) .. (0,-2.18)
+    .. controls (1.8,-2.18) and (2.4,-2.0) .. (4.3,-2.0);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}]
+    (-4.3,-1.25) .. controls (-2.5,-1.25) and (-1.75,-1.78) .. (0,-1.78)
+    .. controls (1.75,-1.78) and (2.5,-1.25) .. (4.3,-1.25);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}]
+    (-4.3,-0.58) .. controls (-2.5,-0.58) and (-1.7,-1.48) .. (0,-1.48)
+    .. controls (1.7,-1.48) and (2.5,-0.58) .. (4.3,-0.58);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}] (-4.3,0)--(-1.35,0);
+  \draw[DeepBlue,thick,-{Latex[length=2.1mm]}] (1.35,0)--(4.3,0);
+  \foreach \a in {-65,-35,0,35,65}{
+    \node[Ink] at ({-1.10*cos(\a)},{1.10*sin(\a)}) {$-$};
+    \node[DeepBlue] at ({1.10*cos(\a)},{1.10*sin(\a)}) {$+$};
+  }
+  \draw[vector] (-4.0,2.65)--(-2.5,2.65) node[midway,above] {$\vect E_0$};
+  \node[TextGray] at (0,-2.75) {$\sigma(\theta)=3\varepsilon_0E_0\cos\theta$，球内电场为零};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 31.11\quad 匀强电场中的中性导体球及其感应电荷}
+\end{center}
+\end{samepage}}

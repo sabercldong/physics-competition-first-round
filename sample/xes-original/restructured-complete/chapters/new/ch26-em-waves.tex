@@ -1,0 +1,343 @@
+\section{位移电流的定量应用}
+
+真空中的经典电磁场满足
+\begin{align}
+ \nabla\cdot\vect E&=\frac{\rho}{\varepsilon_0},&
+ \nabla\cdot\vect B&=0,\\
+ \nabla\times\vect E&=-\frac{\partial\vect B}{\partial t},&
+ \nabla\times\vect B&=\mu_0\vect J+\mu_0\varepsilon_0
+ \frac{\partial\vect E}{\partial t}.
+\end{align}
+最后一式中的 $\varepsilon_0\partial\vect E/\partial t$ 是位移电流密度。它保证电荷守恒与Ampere环路定律相容：
+对充电电容器，无论选取跨过导线还是穿过极板间隙的曲面，环路积分都给出同一磁场。
+
+
+下面从充电电流出发，确定极板间变化的电场如何产生磁场。
+
+\begin{origexamplebox}{平行板电容器中的位移电流}
+真空圆形平行板电容器极板半径为 $R$，板间距远小于 $R$，在拟稳近似下忽略边缘效应，以恒定电流 $I$ 充电。沿轴线观察时，板间电场沿出纸面方向增大，如图~\ref{ch26:fig:displacement-question}。求板间距轴线 $r<R$ 处的磁感应强度，并说明径向跨过 $r=R$ 时结果如何衔接。
+% Question contract: show plate radius and observation point only; B and the Ampere loop belong in the solution.
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[very thick] (0,0) circle (1.8);
+ \foreach \x/\y in {0/0,.55/.55,-.55/.55,.55/-.55,-.55/-.55,1.35/0,-1.35/0,0/1.35,0/-1.35}{
+   \draw[TextGray] (\x,\y) circle (.07);\fill[TextGray] (\x,\y) circle (.018);
+ }
+ \draw[TextGray] (0,0)--(-1.485,1.018) node[above left] {$R$};
+ \draw[TextGray] (0,0)--(.743,-.743) node[midway,below left] {$r$};
+ \fill[DeepBlue] (.743,-.743) circle (2pt) node[right] {$P$};
+ \node[below] at (0,-2) {沿板间轴线观察};
+ \node[align=left,anchor=west] at (2.3,.3)
+  {$\odot$：电场沿出纸面方向增大\\[4pt]
+   圆周：极板边缘的投影\\[4pt]
+   $P$ 点的磁场待求};
+\end{tikzpicture}
+\figcap{极板半径、观察点位置及电场变化方向。}\label{ch26:fig:displacement-question}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+图~\ref{ch26:fig:displacement-current} 给出解答中选取的安培环路及相应磁场方向。
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[very thick] (0,0) circle (1.8);
+ \draw[DeepBlue,dashed,thick] (0,0) circle (1.05);
+ \foreach \x/\y in {0/0,.55/.55,-.55/.55,.55/-.55,-.55/-.55,1.35/0,-1.35/0,0/1.35,0/-1.35}{
+   \draw[TextGray] (\x,\y) circle (.07);\fill[TextGray] (\x,\y) circle (.018);
+ }
+ \draw[->,DeepBlue,thick] (1.05,0) arc[start angle=0,end angle=70,radius=1.05];
+ \draw[TextGray] (0,0)--(-1.485,1.018);
+ \node[above left] at (-1.485,1.018) {$R$};
+ \draw[TextGray] (0,0)--(.743,-.743);
+ \node[below left] at (.44,-.38) {$r$};
+ \node[right,DeepBlue] at (1.08,.72) {$\vect B$};
+ \node[below] at (0,-2) {沿板间轴线观察};
+ \node[align=left,anchor=west] at (2.7,.5)
+  {$\odot$：$\partial\vect E/\partial t$ 出纸面\\[4pt]
+   虚线圆：安培环路 $C$\\[4pt]
+   实线圆：极板边缘的投影\\[4pt]
+   $I_{\rm d}(r)=I\,r^2/R^2$};
+\end{tikzpicture}
+\figcap{充电电容器中的位移电流。环路 $C$ 围成的曲面穿过极板间隙时，由变化电场补足传导电流。}\label{ch26:fig:displacement-current}
+\end{center}
+
+由 $Q=\varepsilon_0E\pi R^2$ 和 $\dd Q/\dd t=I$，有 $\varepsilon_0\partial E/\partial t=I/(\pi R^2)$。板间电场近似均匀，总位移电流等于传导电流 $I$。半径为 $r$ 的安培环路所包围的电场面积占总极板面积的 $r^2/R^2$，故
+\[
+ I_d(r)=I\frac{r^2}{R^2}.
+\]
+由安培--麦克斯韦定律
+\[
+ B(2\pi r)=\mu_0I_d(r),
+ \qquad
+ \boxed{B(r)=\frac{\mu_0Ir}{2\pi R^2}\quad(r<R)}.
+\]
+在同一横截面上，$r\ge R$ 的环路包围全部位移电流，故 $B(r)=\mu_0I/(2\pi r)$。两支表达式在 $r=R$ 相等，验证径向连续性；这不是把板间观察点直接移到任意一段真实导线附近。
+图中的位移电流出纸面，右手拇指朝向读者，四指给出逆时针磁场方向。$r\to0$ 时 $B\to0$，轴线上不应存在优选切向；$\mu_0Ir/R^2$ 的单位为特斯拉。
+\end{xesolution}
+
+\section{平面波方向与相位判读}
+
+在无电荷、无电流的真空区域，对Faraday定律再取旋度并使用
+$\nabla\times(\nabla\times\vect E)=\nabla(\nabla\cdot\vect E)-\nabla^2\vect E$，得到
+\begin{equation}
+ \nabla^2\vect E-\mu_0\varepsilon_0\frac{\partial^2\vect E}{\partial t^2}=0.
+\end{equation}
+磁场满足同样的波动方程，传播速度为
+\begin{equation}
+ c=\frac1{\sqrt{\mu_0\varepsilon_0}}.
+\end{equation}
+平面波中 $\vect E$、$\vect B$ 和传播方向 $\uvec k$ 两两垂直，并满足
+\begin{equation}
+ \vect B=\frac1c\uvec k\times\vect E,
+ \qquad B=\frac Ec.
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.78cm,>=Latex]
+ \foreach \y/\lab in {1.65/{E_x/E_0},-1.65/{cB_y/E_0}}{
+  \draw[axis] (0,\y)--(8.3,\y) node[right] {$z$};
+  \draw[axis] (0,\y-1.25)--(0,\y+1.3);
+  \node[anchor=east] at (-.15,\y+.8) {$\lab$};
+  \draw[DeepBlue,very thick] plot[domain=0:8,samples=180] (\x,{\y+sin(90*\x)});
+ }
+ \foreach \x in {1,3,5,7}{\draw[guide] (\x,-2.8)--(\x,2.8);}
+ \draw[->,TextGray,thick] (5,3.2)--(7,3.2) node[midway,above] {传播方向 $+\uvec z$};
+\end{tikzpicture}
+\figcap{同一时刻的电、磁场分量，分两行绘出以比较相位。}\label{ch26:fig:wave-phase}
+\end{center}
+图~\ref{ch26:fig:wave-phase} 中两行的波峰、波谷和零点位于相同的 $z$，因此两场同相。
+纵坐标分别为归一化分量，而非两个空间坐标；实际方向为 $\vect E\parallel\uvec x$、
+$\vect B\parallel\uvec y$，由 $\uvec x\times\uvec y=\uvec z$ 确定向前的能流。
+
+
+% EM teaching enrichment 20260927
+\paragraph{从一个电场分量补齐整束平面波}
+给定 $\boldsymbol E=E_0\cos(kz-\omega t)\boldsymbol e_x$，等相位条件 $kz-\omega t=\text{常量}$ 表明波沿 $+z$ 传播。于是
+\[
+ \boldsymbol B=\frac{E_0}{c}\cos(kz-\omega t)\boldsymbol e_y,
+ \qquad \omega=ck.
+\]
+电场与磁场同时反向时，$\boldsymbol E\times\boldsymbol B$ 仍沿 $+z$。若把相位改为 $kz+\omega t$，传播方向反向，磁场的相对方向也必须反向。
+只画两条正弦曲线还不足以说明空间关系；应同时给出坐标轴、传播方向以及叉积检验。波形图纵坐标表示场分量，不是粒子在空间中的上下振动轨迹。
+
+\section{能量、动量与辐射压}
+
+电磁场能量密度与Poynting矢量为
+\begin{equation}
+ u=\frac12\varepsilon_0E^2+\frac{B^2}{2\mu_0},
+ \qquad \vect S=\frac1{\mu_0}\vect E\times\vect B.
+\end{equation}
+$\vect S$ 给出单位面积单位时间通过的能量及其方向。真空简谐平面波的平均光强
+\begin{equation}
+ I=\langle S\rangle=\frac12c\varepsilon_0E_0^2.
+\end{equation}
+正入射完全吸收表面的平均辐射压为 $I/c$，正入射理想反射表面为 $2I/c$；斜入射还需取法向动量变化。
+
+\begin{origexamplebox}{激光束的场强和辐射压}
+功率 $P$ 均匀分布在截面积 $A$ 的连续激光束中，将光束近似为单色线偏振平面波。求真空中的电场峰值；若光束正入射并被完全吸收，求平均压力。
+\end{origexamplebox}
+\begin{xesolution}
+光强 $I=P/A$。由 $I=c\varepsilon_0E_0^2/2$，
+\[
+ \boxed{E_0=\sqrt{\frac{2P}{Ac\varepsilon_0}}}.
+\]
+峰值电场与有效值电场相差 $\sqrt2$，上式中的因子 $2$ 来自对 $\cos^2\omega t$ 取平均。
+在短时间 $\Delta t$ 内，到达面积 $A$ 的能量为 $IA\Delta t$，携带向前的动量为 $IA\Delta t/c$。
+完全吸收时这部分动量全部交给物体，故 $F=(IA\Delta t/c)/\Delta t=IA/c$，再除以面积得到压力
+\[
+ \boxed{p_{\rm rad}=\frac{P}{Ac}}.
+\]
+若改为理想镜面反射，法向动量反向，压力加倍。$P/(Ac)$ 的单位为 $\mathrm{N/m^2}$；
+保持面积不变而使功率趋零，场强和压力也都趋零。
+\end{xesolution}
+
+\begin{center}
+\begin{tikzpicture}[scale=.92,>=Latex]
+  \draw[very thick] (5,-1.5)--(5,1.5);
+  \foreach \y in {-1,-.5,0,.5,1}{\draw[vector] (.3,\y)--(3.5,\y);}
+  \draw[->,TextGray,very thick] (5,0)--(6.5,0) node[right]{$\vect F$};
+  \draw[->,DeepBlue,thick] (3.8,.85)--(4.8,.85) node[midway,above]{$\vect p_\gamma$};
+  \node[clearlabel,above] at (5,1.65) {吸收面};
+  \node[clearlabel] at (1.9,-1.35) {均匀光束，光强 $I$};
+\end{tikzpicture}
+\figcap{光束被吸收时把传播方向的动量交给物体；压力等于单位面积单位时间的法向动量通量。}\label{ch26:fig:radiation-pressure}
+\end{center}
+图~\ref{ch26:fig:radiation-pressure} 中力箭头与入射传播方向同向；若改成反射，光子法向动量反向，力增大一倍。
+
+\begin{origexamplebox}{太阳辐射对完全反射薄膜的推力}
+面积为 $A$ 的平面薄膜正对光强为 $I$ 的光束，薄膜作理想镜面反射且光束完全覆盖薄膜。求推力；若光束与薄膜法线夹角为 $\theta$，求法向力。
+\end{origexamplebox}
+\begin{xesolution}
+正入射反射使单位能量携带的法向动量从 $+1/c$ 变为 $-1/c$，变化量为 $2/c$，所以
+\[
+ \boxed{F=\frac{2IA}{c}}.
+\]
+斜入射时，设 $0\le\theta\le\pi/2$，薄膜在垂直光束方向的投影面积为 $A\cos\theta$，整片薄膜截获的功率为 $IA\cos\theta$，每单位能量的法向动量变化为
+$2\cos\theta/c$，故
+\[
+ \boxed{F_n=\frac{2IA}{c}\cos^2\theta}.
+\]
+$\theta=0$ 回到正入射结果，$\theta\to\pi/2$ 时截获功率和法向动量都趋零。$IA/c$ 的单位为牛顿。
+\end{xesolution}
+
+\section{介质中的传播与色散}
+
+均匀、线性、各向同性且无耗的介质中 $\vect D=\varepsilon\vect E$、$\vect B=\mu\vect H$，相速度
+$v=1/\sqrt{\varepsilon\mu}$。实际介质的 $\varepsilon$ 随频率变化，因此折射率
+$n(\omega)=c/v_p$ 具有色散。波包包络以群速度
+\begin{equation}
+ v_g=\frac{\dd\omega}{\dd k}
+\end{equation}
+传播；在强色散和吸收区，群速度不能不加分析地解释为信息或能量速度。
+
+法向入射到两个无耗、非磁介质的平面波，在界面处切向 $E,H$ 连续。定义波阻抗
+\begin{equation}
+ Z=\sqrt{\frac{\mu}{\varepsilon}},
+\end{equation}
+电场振幅反射系数和透射系数为
+\begin{equation}
+ r_E=\frac{Z_2-Z_1}{Z_2+Z_1},
+ \qquad
+ t_E=\frac{2Z_2}{Z_1+Z_2}.
+\end{equation}
+这些振幅系数来自两个边界方程。统一以切向电场的同一正方向记有符号振幅，
+则 $E_i+E_r=E_t$；由于反射波传播反向，其磁场对该正方向的贡献反号，故
+\[
+ \frac{E_i-E_r}{Z_1}=\frac{E_t}{Z_2}.
+\]
+代入 $E_t=E_i+E_r$，整理为 $(Z_2-Z_1)E_i=(Z_1+Z_2)E_r$，
+得到 $r_E$，再用 $t_E=1+r_E$ 得到透射系数。
+平均能流为 $E_0^2/(2Z)$，所以
+\[
+ R=|r_E|^2,\qquad T=\frac{Z_1}{Z_2}|t_E|^2
+   =\frac{4Z_1Z_2}{(Z_1+Z_2)^2},\qquad R+T=1.
+\]
+最后一步是将分子 $(Z_2-Z_1)^2+4Z_1Z_2$ 合并为 $(Z_1+Z_2)^2$。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \fill[DeepBlue!5] (4,-2)--(8,-2)--(8,2)--(4,2)--cycle;
+  \draw[very thick] (4,-2)--(4,2);
+  \draw[vector] (.5,.6)--(3.65,.6) node[midway,above]{$\vect k_i$};
+  \draw[vector] (3.55,-.5)--(.7,-.5) node[midway,below]{$\vect k_r$};
+  \draw[vector] (4.35,.6)--(7.5,.6) node[midway,above]{$\vect k_t$};
+  \node[clearlabel] at (2,1.55) {$Z_1$};
+  \node[clearlabel] at (6,1.55) {$Z_2$};
+  \node[clearlabel,below] at (4,-2) {界面};
+\end{tikzpicture}
+\figcap{法向入射的反射与透射。箭头表示传播方向；反射电场的正负由振幅系数 $r_E$ 决定。}\label{ch26:fig:interface}
+\end{center}
+图~\ref{ch26:fig:interface} 把三个传播方向分开；$r_E<0$ 表示电场相位翻转，并不把反射箭头改画成向右。
+
+
+% EM teaching enrichment 20260927
+\paragraph{相速度与群速度怎样从同一色散关系得到}
+在窄带、弱吸收条件下写 $k=n(\omega)\omega/c$，则
+\[
+ v_p=\frac c{n(\omega)},\qquad
+ v_g=\left(\frac{\dd k}{\dd\omega}\right)^{-1}
+ =\frac c{n+\omega\,\dd n/\dd\omega}.
+\]
+无色散时两者相同；有色散时，单色波峰的速度与包络速度不同。若在某一频段近似 $n=n_0+a\omega$，则 $v_g=c/(n_0+2a\omega)$，并非简单的 $c/n$。
+这个线性近似只在所给窄频段使用，不能外推到任意频率。强吸收引起波包重塑时，包络峰值运动也不能直接当作新信息的传播速度。
+
+\begin{origexamplebox}{介质界面的能流守恒}
+真空中的平面波法向入射到折射率为 $n$、磁导率近似为 $\mu_0$ 的无耗介质。设 $n>0$。求电场振幅反射系数、功率反射率与透射率，验证能流守恒，并检验 $n=1$ 与 $n\to\infty$ 的极限。
+\end{origexamplebox}
+\begin{xesolution}
+界面没有自由面电流时，切向电场和磁场连续。把入射电场振幅归一化为1，
+反射、透射振幅分别为 $r_E,t_E$，则
+\[
+ 1+r_E=t_E,\qquad \frac{1-r_E}{Z_0}=\frac{t_E}{Z_0/n}.
+\]
+第二式中的负号来自反射波传播方向反转，不能把反射磁场仍按入射方向相加。
+消去 $t_E$，即 $1-r_E=n(1+r_E)$。非磁介质波阻抗 $Z=Z_0/n$，于是
+\[
+ r_E=\frac{Z_2-Z_1}{Z_2+Z_1}
+ =\frac{1-n}{1+n}.
+\]
+因此
+\[
+ \boxed{R=|r_E|^2=\left(\frac{n-1}{n+1}\right)^2}.
+\]
+透射振幅系数 $t_E=1+r_E=2/(1+n)$，所以
+\[
+ T=n|t_E|^2=\frac{4n}{(1+n)^2},\qquad
+ R+T=\frac{(n-1)^2+4n}{(n+1)^2}=1.
+\]
+只有 $n>1$ 时 $r_E<0$，反射电场相位翻转；$0<n<1$ 时不翻转。
+$n=1$ 时 $R=0,T=1$；在本无耗实折射率模型的 $n\to\infty$ 极限中 $R\to1,T\to0$。
+后一极限不等于对真实吸收金属的描述。$R,T$ 均无量纲且位于 $[0,1]$。
+\end{xesolution}
+
+\section{超导环的量子态选择}
+
+超导体进入迈斯纳态时，体内磁感应强度被排斥；含孔的超导环还允许磁通以离散方式被俘获。对电荷为 $2e$ 的库珀对，磁通量子为
+\begin{equation}
+ \Phi_0=\frac{h}{2e}.
+\end{equation}
+在壁厚远大于穿透深度、环路位于超导体内部的理想情形，磁通子（fluxoid）量子化可近似写成
+$\Phi=n\Phi_0$。薄环或沿积分路径的超电流密度不可忽略时，量子化的是
+\begin{equation}
+ \Phi+\mu_0\lambda_L^2\oint_C\vect j_s\cdot\dd\vect l=n\Phi_0.
+\end{equation}
+其中 $\lambda_L$ 为伦敦穿透深度，$\vect j_s$ 为超电流密度，$C$ 位于超导材料内，磁通 $\Phi$ 的正法向与 $C$ 按右手规则配对。
+第二项反映载流子运动；只有选取深入厚壁、$\vect j_s\approx0$ 的路径时才能略去。
+不能把任意几何区域的磁通都机械地取整。用集中参数描述薄环时，可将这一项写成 $L_kI$，
+并用总电感 $L=L_g+L_k$ 代替单纯的几何自感。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \fill[DeepBlue!12,even odd rule] (0,0) circle (1.7) (0,0) circle (.9);
+ \draw[thick] (0,0) circle (1.7) (0,0) circle (.9);
+ \foreach \x/\y in {0/0,.45/0,-.45/0,0/.45,0/-.45}{
+   \draw[DeepBlue] (\x,\y) circle (.09);\fill[DeepBlue] (\x,\y) circle (.025);
+ }
+ \draw[->,DeepBlue,very thick] (25:1.3) arc[start angle=25,end angle=150,radius=1.3];
+ \node[above] at (0,1.9) {$I>0$：逆时针};
+ \node[align=left,anchor=west] at (2.4,.3)
+  {俯视图：$\odot$ 表示出纸面磁通\\[5pt]
+   取出纸面为正，$I>0$ 产生正自感磁通\\[5pt]
+   $I<0$ 时环流和自感场同时反向};
+\end{tikzpicture}
+\figcap{含孔超导环中的俘获磁通。环流方向调节总磁通子满足量子化条件。}\label{ch26:fig:flux-quantization}
+\end{center}
+图~\ref{ch26:fig:flux-quantization} 中持续电流产生的自感磁通与外磁通相加，正是下题模型 $\Phi_{\rm ext}+LI=n\Phi_0$ 的几何含义。
+
+\begin{origexamplebox}{超导环的最邻近磁通态}
+超导环外加磁通为 $\Phi_{\rm ext}$，总电感为 $L$（厚环可忽略动能电感）。假设不同量子态之间能够充分弛豫，并忽略其他态间能量差。用简化模型
+$\Phi_{\rm ext}+LI=n\Phi_0$，相应电感能量为 $U_n=LI^2/2$。求给定 $\Phi_{\rm ext}$ 时的平衡量子数选择规则，并求相邻两态简并的位置。
+\end{origexamplebox}
+\begin{xesolution}
+第 $n$ 态的持续电流和能量为
+\[
+ I_n=\frac{n\Phi_0-\Phi_{\rm ext}}{L},
+ \qquad
+ U_n=\frac{(n\Phi_0-\Phi_{\rm ext})^2}{2L}.
+\]
+平衡态选择使 $|n\Phi_0-\Phi_{\rm ext}|$ 最小的整数 $n$，即
+\[
+ \boxed{n=\operatorname*{argmin}_{m\in\mathbb Z}|m-\Phi_{\rm ext}/\Phi_0|}.
+\]
+$n$ 与 $n+1$ 两态简并时
+\[
+ (n\Phi_0-\Phi_{\rm ext})^2=[(n+1)\Phi_0-\Phi_{\rm ext}]^2,
+\]
+两边相减，得
+\[
+ [(n+1)-n]\Phi_0[(2n+1)\Phi_0-2\Phi_{\rm ext}]=0.
+\]
+因 $\Phi_0\ne0$，故
+\[
+ \boxed{\Phi_{\rm ext}=\left(n+\frac12\right)\Phi_0}.
+\]
+$\Phi/L$ 的单位为安培，能量式单位为焦耳。远离半整数点时最低能态唯一；在简并点两种环流分别为 $-\Phi_0/(2L)$ 和 $+\Phi_0/(2L)$，能量均为 $\Phi_0^2/(8L)$。
+上述规则选择全局最低能量态，并不保证实际圆环随外场改变就立即跳到该态。若量子态转换需要跨越相位滑移势垒，圆环可滞留在固定 $n$ 的亚稳态；此时应沿同一个 $I_n(\Phi_{\rm ext})$ 分支计算，直到发生允许的状态转换。
+\end{xesolution}
+
+\begin{starread}{波导、驻波与边界条件}
+理想导体表面切向电场为零。空心、单连通截面的金属波导只允许满足边界条件的离散横向模式，并存在截止频率。
+这里不包括同轴线等双导体结构；后者可以支持无截止频率的横电磁（TEM）模式。
+对真空填充、理想无耗的矩形波导，横电（TE）与横磁（TM）模式具有不同场结构；传播模式满足 $\omega^2=c^2k_z^2+\omega_c^2$，故 $v_p=\omega/k_z>c$、$v_g=c^2k_z/\omega<c$，并不允许超光速传信。
+谐振腔把传播方向也离散化，品质因数由单位周期储能与损耗之比决定。电磁模式量子化后，每个模式成为频率为
+$\omega$ 的量子谐振子，这是黑体辐射与光子概念的基础之一。
+\end{starread}

@@ -1,0 +1,1601 @@
+\hypersetup{bookmarksdepth=3}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\tcbset{breakable/.default=false}
+\chapter{温度、物态、理想气体与分子模型}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-eighth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-eighth-section/assets/}}
+
+% Teaching diagrams. Labels are transparent; geometry is shared where applicable.
+\newcommand{\boltzmannRayleighContext}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\includegraphics[width=.9\linewidth]{boltzmann-rayleigh-context.png}
+\figcap{左：玻尔兹曼（Ludwig Boltzmann）与分子运动的统计图像；右：瑞利勋爵（Lord Rayleigh）与精密气体测量。}
+\label{ch14:fig:history}\end{minipage}\end{center}}
+\newcommand{\molecularMicroscopyFigure}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\includegraphics[width=.72\linewidth]{figure19-1-redraw.png}
+\figcap{分子尺度成像示意。左、右分别表示局部分子结构与规则排列的分子；此图不表示实验测量数据。}\label{ch14:fig:s28-19-1}
+\end{minipage}\end{center}}
+
+\newcommand{\thermometerMeasurementDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\draw[axis] (0,0)--(6.6,0) node[right]{$t$};
+\draw[axis] (0,0)--(0,3.4) node[above]{$T$};
+\draw[DeepBlue,thick,domain=0:6,samples=65] plot(\x,{1.6+1.3*exp(-\x)});
+\draw[Ink,thick,domain=0:6,samples=65] plot(\x,{1.6-1.1*exp(-\x)});
+\draw[TextGray,dashed] (0,1.6)--(6.2,1.6);
+\node[left] at(0,2.9){$T_{\text{物},0}$}; \node[left] at(0,.5){$T_{\text{计},0}$};
+\node[above,DeepBlue] at(3,2){被测物降温};
+\node[below] at(3,1.1){温度计升温};
+\node[right] at(6.3,1.6){$T_f$};
+\end{tikzpicture}
+\figcap{接触后的温度变化：在隔热的整体中，两者从不同初温趋于共同温度 $T_f$。}\label{ch14:fig:thermometry}
+\end{minipage}\end{center}}
+
+\newcommand{\molecularEquilibriumDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.8cm,y=.8cm,>=Latex]
+\foreach \offset/\title in {0/{较高温度},4.6/{较低温度},10.2/{共同温度}}{
+\draw[Ink,thick] (\offset,0) rectangle ++(3.8,2.8);
+\node[above] at(\offset+1.9,3){\title};}
+\foreach \xx/\yy/\ang in {.5/.5/35,1.8/.8/110,2.6/1.6/190,.8/2.1/320}{
+\fill[Ink] (\xx,\yy) circle(1.5pt);
+\draw[->,Ink,thick] (\xx,\yy)--++(\ang:.85);
+\fill[Ink] (\xx+4.6,\yy) circle(1.5pt);
+\draw[->,Ink,thick] (\xx+4.6,\yy)--++(\ang:.38);
+\fill[DeepBlue] (\xx+10.2,\yy) circle(1.5pt);
+\draw[->,DeepBlue,thick] (\xx+10.2,\yy)--++(\ang:.6);}
+\draw[->,DeepBlue,thick] (8.65,1.4)--(9.95,1.4);
+\node[below,align=center] at(4.2,-.2){接触并交换能量};
+\node[below,align=center] at(12.1,-.2){单分子能量仍涨落};
+\end{tikzpicture}
+\figcap{同种气体的热平衡示意：箭头表示典型热运动速度，不表示共同的宏观流速。}\label{ch14:fig:equilibrium}
+\end{minipage}\end{center}}
+
+% q=r/r0, U/epsilon=q^-12-2q^-6; exact roots of U/epsilon=E.
+\newcommand{\ThermalPotentialAxes}[1]{%
+\pgfmathsetmacro{\qleft}{(1+sqrt(1+#1))^(-1/6)}
+\pgfmathsetmacro{\qright}{(1-sqrt(1+#1))^(-1/6)}
+\draw[axis] (.76,0)--(1.93,0) node[right]{$r/r_0$};
+\draw[axis] (.76,-1.2)--(.76,1.0) node[above]{$U/\varepsilon$};
+\begin{scope}\clip (.79,-1.08) rectangle (1.87,.88);
+\draw[DeepBlue,very thick,domain=.80:1.86,samples=180,smooth] plot(\x,{(\x)^(-12)-2*(\x)^(-6)});
+\end{scope}
+\draw[TextGray,dashed] (.8,#1)--(1.83,#1);
+\fill[Ink] (\qleft,#1) circle(.4pt) (\qright,#1) circle(.4pt);
+\draw[TextGray,dashed] (1,-1)--(1,0);
+\node[above] at(1,0){$1$};
+\node[left] at(.76,-1){$-1$};
+\node[right,font=\small] at(1.84,#1){$-1+E_T/\varepsilon$};}
+\newcommand{\anharmonicPotentialDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=5.5cm,y=1.65cm,>=Latex]
+\ThermalPotentialAxes{-.5}
+\draw[TextGray,dashed] (\qleft,-.5)--(\qleft,-1.38);
+\draw[TextGray,dashed] (\qright,-.5)--(\qright,-1.38);
+\draw[<->,DeepBlue] (\qleft,-1.3)--(\qright,-1.3);
+\node[below,font=\small] at({(\qleft+\qright)/2},-1.32){$r_2-r_1=2A_T$};
+\node[font=\small] at(.86,-.18){$r_1$};
+\draw[TextGray,thin] (.88,-.23)--(\qleft,-.5);
+\node[font=\small] at(1.4,-.98){$r_2$};
+\draw[TextGray,thin] (1.37,-.9)--(\qright,-.5);
+\end{tikzpicture}
+\figcap{非对称势阱与同一能量水平的两个真实交点。横坐标按 $r_0$ 归一化；$A_T$ 只表示两转折点间距的一半。}\label{ch14:fig:anharmonic}
+\end{minipage}\end{center}}
+
+\newcommand{\gasWallCollisionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\fill[DeepBlue!10] (1,0) rectangle (4,2.4);
+\draw[Ink,line width=1.2pt] (4,-.4)--(4,2.9);
+\draw[TextGray,dashed] (1,0)--(4,0) (1,2.4)--(4,2.4) (1,0)--(1,2.4);
+\foreach \xx/\yy in {1.3/.5,2.3/1.8,2.7/.9}{
+\fill[Ink] (\xx,\yy) circle(1.5pt); \draw[->,DeepBlue] (\xx,\yy)--++(.8,0);}
+\draw[<->] (1,-.65)--node[below]{$v_x\Delta t$}(4,-.65);
+\node[above] at(2.5,3.2){朝向壁面的候选分子层};
+\node[align=left,anchor=west] at(4.5,1.2){壁面面积 $S$\\层体积 $Sv_x\Delta t$\\单次壁面冲量 $2mv_x$\\此处 $v_x>0$};
+\end{tikzpicture}
+\figcap{给定正法向速度的分子在 $\Delta t$ 内能够到壁面的薄层；图为法向剖面。}\label{ch14:fig:collision-layer}
+\end{minipage}\end{center}}
+
+\newcommand{\traditionalBarometerDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\ThermalBarometerBase{3.5}{4.6}
+\node[anchor=west,align=left] at(3,2.1){管顶残余气体压强 $p_g$\\[4pt]$p_{\rm atm}=\rho_{\rm Hg}gH+p_g$\\[4pt]真空近似：$p_g\ll p_{\rm atm}$};
+\end{tikzpicture}
+\figcap{水银气压计的压力平衡。高度 $H$ 从汞槽自由液面量到管内液面，不从槽底起算。}\label{ch14:fig:barometer-principle}
+\end{minipage}\end{center}}
+
+\newcommand{\rayleighApparatusDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\foreach \sx/\lab in {0/B,5/C}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[DeepBlue!22] (-.65,1.8)--(-.25,1.65)--(-.25,.7)--(.25,.7)--(.25,1.65)--(.65,1.8)--(.65,0)--(-.65,0)--cycle;
+\draw[Ink,thick] (-.65,2.6)--(-.65,0)--(.65,0)--(.65,2.6);
+\draw[Ink,thick] (-.25,3)--(-.25,.7)--(.25,.7)--(.25,3);
+\draw[DeepBlue,thick] (-.65,1.8)..controls(-.45,1.8)and(-.3,1.72)..(-.25,1.65);
+\draw[DeepBlue,thick] (.25,1.65)..controls(.3,1.72)and(.45,1.8)..(.65,1.8);
+\draw[TextGray,dashed] (-1,.7)--(1,.7);
+\node[below] at(0,-.3){$\lab$ 处的局部剖面};
+\end{scope}}
+\node[align=center] at(2.5,2.2){同形玻璃元件\\同种液体\\相同接触状态};
+\draw[<->,DeepBlue] (1.3,.7)--(3.7,.7);
+\end{tikzpicture}
+\figcap{两处同形叉状汞面与标志的比较原理。放大图把两处移到同一基准高度，以比较几何形状；实际装置的高度差见前图。}\label{ch14:fig:rayleigh-forks}
+\end{minipage}\end{center}}
+
+\newcommand{\heatFeelingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\foreach \sx/\title/\desc in {0/{冷热水后摸温水}/{初态与热流方向},4/{湿冷环境}/{多种换热因素},8/{泡脚后打喷嚏}/{单次观察不定因},12/{高温环境}/{不能据此认定安全}}{
+\node[align=center] at(\sx,1){\title};
+\node[align=center,font=\small,TextGray] at(\sx,0){\desc};}
+\end{tikzpicture}
+\figcap{四个情境需要分别判断：热感觉、换热过程与安全防护不是同一问题。}\label{ch14:fig:heat-feeling}
+\end{minipage}\end{center}}
+
+\newcommand{\surfacePhenomenaDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\begin{scope}[shift={(-4.8,0)}]
+\fill[DeepBlue!15] (-1,-1)--(-1,.3)..controls(-.55,1.1)and(.55,1.1)..(1,.3)--(1,-1)--cycle;
+\draw[Ink,thick] (-1,-1.2)--(-1,1.8) (1,-1.2)--(1,1.8);
+\draw[DeepBlue,thick] (-1,.3)..controls(-.55,1.1)and(.55,1.1)..(1,.3);
+\draw[TextGray,dashed] (0,.9)--(2,.9);\node[right,font=\small] at(2,.9){水平视线};
+\node[above] at(0,2){凸液面};
+\end{scope}
+\begin{scope}
+\draw[Ink,thick] (-.22,1.6)--(-.22,.65) (.22,1.6)--(.22,.65);
+\fill[DeepBlue!15,draw=DeepBlue,thick] (-.22,.65)..controls(-.2,.25)and(-.75,-.15)..(-.65,-.55)..controls(-.5,-1.3)and(.5,-1.3)..(.65,-.55)..controls(.75,-.15)and(.2,.25)..(.22,.65)--cycle;
+\draw[->,Ink] (0,-.5)--(0,-1.8) node[below]{$mg$};
+\draw[->,DeepBlue] (-.22,.6)--(-.22,1.4);
+\draw[->,DeepBlue] (.22,.6)--(.22,1.4);
+\node[right,font=\small] at(.6,1.2){张力竖直分量};
+\node[above] at(0,2){悬在管口的液滴};
+\end{scope}
+\begin{scope}[shift={(5.6,0)}]
+\draw[Ink,line width=2pt] (-1.05,1.5)--(.75,-1.2);
+\draw[DeepBlue,line width=1.8pt] (-2,1.2)..controls(-1.4,1.15)and(-1.1,1.4)..(-.95,1.17)--(.77,-1.4);
+\draw[->,DeepBlue] (-.4,.05)--(.1,-.7);
+\draw[Ink,thick] (-.05,-.6)--(-.05,-1.8)--(2,-1.8)--(2,-.6);
+\node[above] at(0,2){液流贴着玻璃棒一侧};
+\end{scope}
+\end{tikzpicture}
+\figcap{凸弯月面、与管口相连的液滴及沿玻璃棒一侧流下的液流。蓝色液流不穿过玻璃棒。}\label{ch14:fig:surface-phenomena}
+\end{minipage}\end{center}}
+
+% Openings in the circular bulbs are the same intersections used by the tube walls.
+\newcommand{\ThermalBulbOutline}{%
+\pgfmathsetmacro{\ang}{asin(.15/.8)}\pgfmathsetmacro{\dx}{sqrt(.8*.8-.15*.15)}
+\draw[Ink,thick] ({-2+\dx},.15) arc[start angle=\ang,end angle={360-\ang},radius=.8];
+\draw[Ink,thick] ({2-\dx},-.15) arc[start angle={180+\ang},end angle={540-\ang},radius=.8];
+\draw[Ink,thick] ({-2+\dx},.15)--({2-\dx},.15) ({-2+\dx},-.15)--({2-\dx},-.15);}
+\newcommand{\bulbThermometerDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\begin{scope}[shift={(-4.2,0)}]
+\ThermalBulbOutline
+\fill[DeepBlue] (-.09,-.15) rectangle (.09,.15);
+\node[above] at(0,1.1){水平：活塞居中};
+\node at(-2,0){$V_0$};\node at(2,0){$V_0$};
+\end{scope}
+\begin{scope}[shift={(2.5,0)}]
+\begin{scope}[rotate=90]\ThermalBulbOutline\end{scope}
+\fill[DeepBlue] (-.15,-.54) rectangle (.15,-.36);
+\draw[TextGray,dashed] (-.7,0)--(.9,0);
+\draw[{Latex[length=1.6pt,width=2pt]}-{Latex[length=1.6pt,width=2pt]}] (.75,0)--(.75,-.45);\node[right] at(.9,-.23){$h$};
+\node[right] at(1,2){$V_0+Sh,\ p_{\text{上}}$};
+\node[right] at(1,-2){$V_0-Sh,\ p_{\text{下}}$};
+\draw[->,Ink] (-.65,-.45)--(-.65,-1.1) node[left]{$mg$};
+\node[above] at(0,3){竖直：活塞下移};
+\end{scope}
+\end{tikzpicture}
+\figcap{两球通过细管真正连通；活塞只在直管段内滑动，密封整个管截面。}\label{ch14:fig:bulb-thermometer}
+\end{minipage}\end{center}}
+
+\newcommand{\torricelliDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\foreach \sx/\height/\idx/\gasLen in {-3.2/3.7/1/8,3.2/3.6/2/10}{
+\begin{scope}[shift={(\sx,0)}]
+\ThermalBarometerBase{\height}{4.1}
+\draw[{Latex[length=1.6pt,width=2pt]}-{Latex[length=1.6pt,width=2pt]}] (-.9,\height)--(-.9,4.1);
+\node[above left,font=\small] at(-.9,4.1){$\ell_{\idx}=\gasLen\,\mathrm{cm}$};
+\node[below] at(0,-1){状态 \idx};
+\end{scope}}
+\end{tikzpicture}
+\figcap{同一固定管顶、同一汞槽液面基准。左：$H_1=74\,\mathrm{cm}$；右：$H_2=72\,\mathrm{cm}$，残余气柱由8厘米增至10厘米。}\label{ch14:fig:torricelli}
+\end{minipage}\end{center}}
+
+\newcommand{\heatedCylinderDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\begin{axis}[width=9cm,height=6cm,xmin=.97,xmax=1.14,ymin=.87,ymax=1.14,
+xlabel={$V/V_0$},ylabel={$p/p_0$},xtick={1,1.1},ytick={.9,1,1.1},grid=major,
+scaled ticks=false,tick label style={/pgf/number format/fixed},clip=false]
+\addplot[DeepBlue,very thick,->] coordinates{(1,.9)(1,1)};
+\addplot[DeepBlue,very thick,->] coordinates{(1,1)(1.1,1)};
+\addplot[DeepBlue,very thick,->] coordinates{(1.1,1)(1.1,1.1)};
+\node[left] at(axis cs:1,.95){定容};
+\node[above] at(axis cs:1.05,1){定压};
+\node[right] at(axis cs:1.1,1.05){定容};
+\end{axis}
+\end{tikzpicture}
+\figcap{缓慢加热的三个阶段。坐标只显示 $V/V_0$ 与 $p/p_0$ 的局部范围，刻度在各自轴上均为线性。}\label{ch14:fig:heated-path}
+\end{minipage}\end{center}}
+
+\newcommand{\sandPistonDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\foreach \sx/\height/\idx/\sand in {-4.2/1.5/0/1,0/2.25/1/1,4.2/2.7/2/0}{
+\begin{scope}[shift={(\sx,0)}]
+\draw[Ink,thick] (-1,3.6)--(-1,0)--(1,0)--(1,3.6);
+\draw[Ink,line width=2pt] (-1,1.48)--(-.8,1.48) (.8,1.48)--(1,1.48);
+\filldraw[fill=SoftGray,draw=Ink] (-1,\height) rectangle (1,\height+.14);
+\ifnum\sand=1\fill[TextGray!45] (-.78,\height+.14)--(0,\height+.65)--(.78,\height+.14)--cycle;\fi
+\draw[<->] (-1.35,0)--node[left]{$H_{\idx}$}(-1.35,\height);
+\node at(0,.65){气体};
+\node[below,align=center,font=\small] at(0,-.3){\ifnum\idx=0 初态及起动前\else\ifnum\idx=1 砂未取走\else 砂已取尽\fi\fi};
+\end{scope}}
+\end{tikzpicture}
+\figcap{三个状态的几何比例：$H_1=1.5H_0$，$H_2=1.8H_0$；活塞密封气缸，铁砂直接承托在活塞上。}\label{ch14:fig:sand-states}
+\end{minipage}\end{center}}
+
+\newcommand{\mercurySpillDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\foreach \sx/\air/\hg/\title in {-4/1.75/.7/{初态},0/2.8/.7/{刚到管口},4/3.5/0/{全部溢出}}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[DeepBlue!30] (-.3,\air) rectangle (.3,\air+\hg);
+\draw[Ink,thick] (-.3,3.5)--(-.3,0)--(.3,0)--(.3,3.5);
+\node[below] at(0,-.2){\title};
+\end{scope}}
+\begin{scope}[shift={(-3,-5.7)}]
+\begin{axis}[width=8cm,height=4.5cm,xmin=0,xmax=20,ymin=450,ymax=490,
+xtick={0,12,20},ytick={456,480,484},xlabel={$x/\mathrm{cm}$},ylabel={$T/\mathrm K$},
+scaled ticks=false,grid=major,xmajorgrids=false,clip=false]
+\addplot[DeepBlue,thick,domain=0:20,samples=60]{(76+x)*(100-x)/16};
+\addplot[only marks,mark=*] coordinates{(12,484)};
+\node[below] at(axis cs:12,478){最高点};
+\draw[thin,Ink] (axis cs:12,479)--(axis cs:12,483);
+\draw[->,Ink] (axis cs:19,461)--(axis cs:15,461);
+\node[above,font=\small] at(axis cs:17,461){溢出方向};
+\end{axis}
+\end{scope}
+\end{tikzpicture}
+\figcap{水银到达管口后，剩余长度 $x$ 从20厘米减至0；所需温度在 $x=12\,\mathrm{cm}$ 处最大。}\label{ch14:fig:mercury-spill}
+\end{minipage}\end{center}}
+
+\newcommand{\lennardJonesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=5.5cm,y=1.6cm,>=Latex]
+\ThermalPotentialAxes{-.8}
+\draw[TextGray,densely dashed,domain=.86:1.15,samples=60] plot(\x,{-1+36*(\x-1)^2});
+\node[anchor=west,font=\small,align=left] at(1.45,.65){实线：完整势能\\虚线：局部二阶近似};
+\end{tikzpicture}
+\figcap{势阱最低点为 $(r_0,-\varepsilon)$；二阶近似关于 $r_0$ 对称，而三次项改变左右两侧的形状。}\label{ch14:fig:lennard-jones}
+\end{minipage}\end{center}}
+
+% Source figure roles retained; quantitative geometry independently constructed.
+\newcommand{\figureNineteenTwoFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\includegraphics[width=.9\linewidth]{thermometer-contact.png}
+\figcap{左侧温度计尚未接触水；右侧温包浸入水中且不接触容器底，等待热平衡后读数。}\label{ch14:fig:s28-19-2}
+\end{minipage}\end{center}}
+
+\newcommand{\figureNineteenThreeFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=5.5cm,y=1.6cm,>=Latex]
+\ThermalPotentialAxes{-.5}
+\pgfmathsetmacro{\qa}{(1+sqrt(.2))^(-1/6)}
+\pgfmathsetmacro{\qb}{(1-sqrt(.2))^(-1/6)}
+\draw[TextGray,dashed] (.8,-.8)--(1.8,-.8);
+\fill[Ink] (\qa,-.8) circle(.4pt) (\qb,-.8) circle(.4pt);
+\draw[DeepBlue,->] (\qa,-1.37)--(\qleft,-1.37);
+\draw[DeepBlue,->] (\qb,-1.37)--(\qright,-1.37);
+\draw[TextGray,dotted] (\qleft,-.5)--(\qleft,-1.35) (\qright,-.5)--(\qright,-1.35);
+\node[below,font=\small] at(1.14,-1.4){能量升高时，右端移动更多};
+\node[right,font=\small] at(1.84,-.8){较低能量};
+\end{tikzpicture}
+\figcap{非对称势阱中的两组转折点。平均间距必须按运动时间或统计权重计算，不能把左右转折点的中点直接当作平均值。}\label{ch14:fig:s28-19-3}
+\end{minipage}\end{center}}
+
+\newcommand{\ThermalBarometerBase}[2]{%
+\fill[DeepBlue!23] (-1.5,-.65) rectangle (1.5,0);
+\fill[DeepBlue!23] (-.28,-.5) rectangle (.28,#1);
+\draw[Ink,thick] (-1.5,.35)--(-1.5,-.65)--(1.5,-.65)--(1.5,.35);
+\draw[Ink,thick] (-.28,-.4)--(-.28,#2)--(.28,#2)--(.28,-.4);
+\draw[DeepBlue,thick] (-1.5,0)--(-.28,0) (.28,0)--(1.5,0) (-.28,#1)--(.28,#1);
+\draw[TextGray,dashed] (.35,#1)--(1.05,#1);
+\draw[<->] (.9,0)--node[right]{$H$}(.9,#1);}
+\newcommand{\figureNineteenFourFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\ThermalBarometerBase{3.5}{4.6}
+\node[font=\small,anchor=west] at(.7,4.1){近似真空};
+\draw[Ink,thin] (.3,4.05)--(.6,4.1);
+\draw[Ink] (2,0)--(2,4.2);
+\foreach \height in {0,.5,...,4}{\draw[Ink] (2,\height)--(2.15,\height);}
+\draw[Ink,thin] (2.15,1.8)--(2.5,1.8);
+\node[right] at(2.5,1.8){读数尺};
+\node[left] at(-1.55,-.3){汞槽};
+\end{tikzpicture}
+\figcap{传统水银气压计。管口浸入汞槽，管内汞柱与槽中水银连续连通。}\label{ch14:fig:s28-19-4}
+\end{minipage}\end{center}}
+
+\newcommand{\figureNineteenFiveFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+% Same fork-shaped chambers at different elevations. Gas spaces are not joined.
+\foreach \yy/\lab in {0/B,4.3/C}{
+\begin{scope}[shift={(1,\yy)}]
+\fill[DeepBlue!22] (-.65,1.5)--(-.23,1.38)--(-.23,.65)--(.23,.65)--(.23,1.38)--(.65,1.5)--(.65,0)--(-.65,0)--cycle;
+\draw[Ink,thick] (-.65,2.1)--(-.65,0)--(.65,0)--(.65,2.1);
+\draw[Ink,thick] (-.65,2.1)--(-.23,2.1) (.23,2.1)--(.65,2.1);
+\draw[Ink,thick] (-.23,2.35)--(-.23,.65)--(.23,.65)--(.23,2.35);
+\draw[DeepBlue] (-.65,1.5)..controls(-.4,1.5)and(-.25,1.4)..(-.23,1.38);
+\draw[DeepBlue] (.23,1.38)..controls(.25,1.4)and(.4,1.5)..(.65,1.5);
+\node[left] at(-.95,.65){$\lab$};
+\end{scope}}
+% Hydraulic line, shown as a connection, distinct from measurement chambers.
+\draw[DeepBlue,line width=1.5pt] (1.6,.2)--(3,.2)--(3,4.5)--(1.6,4.5);
+\node[right,align=left,font=\small] at(3.2,3.6){连通汞路\\可调储槽};
+\draw[DeepBlue] (3,1.1)--(4,1.1);
+\draw[Ink,thick] (3.65,1.5)--(3.65,.7)--(4.5,.7)--(4.5,1.5);
+\draw[DeepBlue,line width=2pt] (3.67,1.1)--(4.48,1.1);
+% Sample gas to lower chamber; upper gas has its own vacuum valve.
+\draw[Ink,thick] (-3.1,1.6) circle(.65);
+\draw[Ink,thick] (-2.45,1.6)--(.35,1.9);
+\node[below,align=center,font=\small] at(-3.1,.6){待测气体球\\低温恒温环境};
+\draw[Ink,thick] (.35,6.2)--(-.7,6.2)--(-.7,7);
+\draw[Ink] (-.9,6.6)--(-.5,6.9) (-.9,6.9)--(-.5,6.6);
+\node[left] at(-.9,6.75){$D$};
+\node[left,font=\small] at(-.9,7.2){抽气、检验真空};
+\draw[TextGray,dashed] (1.3,.65)--(2.5,.65) (1.3,4.95)--(2.5,4.95);
+\draw[<->] (2.3,.65)--node[left]{$h$}(2.3,4.95);
+\end{tikzpicture}
+\figcap{瑞利精密气压计的测量结构示意。$B,C$ 为同形叉状端面，$D$ 位于真空参考气路；蓝线表示汞路，黑线表示气路。}\label{ch14:fig:s28-19-5}
+\end{minipage}\end{center}}
+
+\newcommand{\figureNineteenSixFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x={(.9cm,0cm)},y={(.38cm,.24cm)},z={(0cm,.9cm)},>=Latex]
+\begin{scope}[shift={(-4,0)}]
+\draw[TextGray,dashed] (0,2.5,0)--(0,0,0) (0,2.5,0)--(2.5,2.5,0) (0,2.5,0)--(0,2.5,2.5);
+\draw[Ink,thick] (0,0,0)--(2.5,0,0)--(2.5,0,2.5)--(0,0,2.5)--cycle;
+\draw[Ink,thick] (2.5,0,0)--(2.5,2.5,0)--(2.5,2.5,2.5)--(2.5,0,2.5);
+\draw[Ink,thick] (0,0,2.5)--(0,2.5,2.5)--(2.5,2.5,2.5);
+\draw[->] (0,0,0)--(3.2,0,0) node[right]{$x$};
+\draw[->] (2.5,0,0)--(2.5,3.4,0) node[right]{$y$};
+\draw[->] (0,0,0)--(0,0,3.3) node[above]{$z$};
+\fill[DeepBlue] (.7,.7,.8) circle(1.6pt);
+\draw[->,DeepBlue,thick] (.7,.7,.8)--(1.9,1.1,1.8) node[above]{$\vect v$};
+\draw[->,Ink] (.7,.7,.8)--(1.9,.7,.8);
+\draw[TextGray,thin] (1.3,.7,.8)--(-.35,0,.55);
+\node[left=3pt] at(-.35,0,.55){$v_x$};
+\node[below] at(1.25,0,-.55){边长 $d$；右手坐标系};
+\end{scope}
+\begin{scope}[x=1cm,y=1cm,shift={(2.3,0)}]
+\draw[Ink,thick] (3.3,-.2)--(3.3,3.7);
+\draw[->,DeepBlue,thick] (.3,.3)--(3.3,1.8);
+\draw[->,DeepBlue,thick] (3.3,1.8)--(.3,3.3);
+\draw[TextGray,dashed] (1.8,1.8)--(3.3,1.8);
+\node[below right] at(1.1,.7){$\vect v=(v_x,v_z)$};
+\node[above right] at(.3,3.3){$\vect v'=(-v_x,v_z)$};
+\fill[Ink] (3.3,1.8) circle(1.5pt);
+\node[right] at(3.5,1.8){$Q$};
+\node[below,font=\small] at(1.5,-.5){$xz$ 剖面，$v_y$ 未画出};
+\end{scope}
+\end{tikzpicture}
+\figcap{左为立方容器中的速度分解；右为垂直于 $x$ 轴的壁面反射，法向速度反号、切向速度不变，两线与法线夹角相等。}\label{ch14:fig:s28-19-6}
+\end{minipage}\end{center}}
+
+\newcommand{\exampleNineteenSixFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\draw[Ink,thick] (0,1.4)--(0,0)--(4.5,0) (0,1.4)--(4.5,1.4);
+\draw[Ink,line width=3pt] (2.88,0)--(2.88,.22) (3.42,1.4)--(3.42,1.18);
+\filldraw[fill=SoftGray,draw=Ink] (2.95,0) rectangle (3.05,1.4);
+\draw[TextGray,dashed] (3.3,0)--(3.3,1.4);
+\draw[->] (2.5,1.9)--(3,1.9);
+\draw[->] (3.8,1.9)--(3.3,1.9);
+\node[above,align=center,font=\small] at(3.15,2){$AB$ 间容积\\$0.1V_0$};
+\draw[TextGray,thin] (3,-.08)--(2.6,-.5);
+\draw[TextGray,thin] (3.3,-.08)--(3.7,-.5);
+\node[below] at(2.6,-.5){$B$};\node[below] at(3.7,-.5){$A$};
+\node at(1.4,.7){$V_0,\ 0.9p_0$};
+\node at(4,.7){$p_0$};
+\begin{scope}[shift={(6.1,-.2)}]
+\begin{axis}[width=5.8cm,height=4.3cm,xmin=.97,xmax=1.14,ymin=.87,ymax=1.24,
+xlabel={$V/V_0$},ylabel={$p/p_0$},xtick={1,1.1},ytick={.9,1,1.1,1.2},grid=major,
+scaled ticks=false,tick label style={font=\scriptsize,/pgf/number format/fixed}]
+\end{axis}
+\end{scope}
+\end{tikzpicture}
+\figcap{左：活塞初始在 $B$ 处；两个挡块限制左、右移动。右：待画过程线的局部 $p$--$V$ 坐标，坐标轴均为线性刻度。}\label{ch14:fig:heated-apparatus}
+\end{minipage}\end{center}}
+
+\newcommand{\figureNineteenSevenFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\draw[Ink,thick] (-1.2,3.5)--(-1.2,0)--(1.2,0)--(1.2,3.5);
+\draw[Ink,line width=2pt] (-1.2,1.48)--(-1,1.48) (1,1.48)--(1.2,1.48);
+\filldraw[fill=SoftGray,draw=Ink] (-1.2,1.5) rectangle (1.2,1.68);
+\fill[TextGray!45] (-1,1.68)--(0,2.35)--(1,1.68)--cycle;
+\node at(0,.7){$p_0,T_0$};
+\draw[<->] (-1.65,0)--node[left]{$H_0$}(-1.65,1.5);
+\node[right] at(1.7,1.55){卡环承托活塞};
+\draw[TextGray] (1.1,1.47)--(1.65,1.55);
+\node[right] at(1.7,2.2){铁砂};
+\end{tikzpicture}
+\figcap{初态气体压强等于大气压；卡环承担铁砂的重量，活塞与缸壁之间没有漏气间隙。}\label{ch14:fig:s28-19-7}
+\end{minipage}\end{center}}
+
+\newcommand{\figureNineteenEightFaithful}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\fill[DeepBlue!30] (-.3,2) rectangle (.3,2.8);
+\draw[Ink,thick] (-.3,4)--(-.3,0)--(.3,0)--(.3,4);
+\draw[<->] (.8,0)--node[right]{$a=50\,\mathrm{cm}$}(.8,2);
+\draw[<->] (.8,2)--node[right]{$h=20\,\mathrm{cm}$}(.8,2.8);
+\draw[<->] (-2.8,0)--node[left]{$L=100\,\mathrm{cm}$}(-2.8,4);
+\draw[Ink,thin] (0,.8)--(0,-.25);
+\node[below] at(0,-.35){封闭空气};
+\node[above] at(0,4.2){开口，外压 $p_0$};
+\end{tikzpicture}
+\figcap{管内空气、汞柱及管口的位置按 $50:20:100$ 的长度比例绘制。}\label{ch14:fig:s28-19-8}
+\end{minipage}\end{center}}
+
+\newcommand{\ThermalUTubeState}[1]{%
+\pgfmathsetmacro{\leftlevel}{2+#1}
+\pgfmathsetmacro{\rightlevel}{2-#1}
+\fill[DeepBlue!18] (-1.7,\leftlevel)--(-1.1,\leftlevel)--(-1.1,0) arc(180:360:1.1)--(1.1,\rightlevel)--(1.7,\rightlevel)--(1.7,0) arc(0:-180:1.7)--cycle;
+\draw[Ink,thick] (-1.7,4)--(-1.7,0) arc(180:360:1.7)--(1.7,4)--(1.1,4)--(1.1,0) arc(360:180:1.1)--(-1.1,4)--cycle;
+\draw[DeepBlue,thick] (-1.7,\leftlevel)--(-1.1,\leftlevel) (1.1,\rightlevel)--(1.7,\rightlevel);
+\draw[<->] (-2.1,\leftlevel)--(-2.1,4);
+\draw[<->] (2.1,\rightlevel)--(2.1,4);}
+\newcommand{\closedUTubeDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.75cm,y=.75cm,>=Latex]
+\begin{scope}[shift={(-3.7,0)}]
+\ThermalUTubeState{0}
+\node[left] at(-2.1,3){$L$};\node[right] at(2.1,3){$L$};
+\node[above] at(0,4.9){初态：两端封闭};
+\node[above,font=\small] at(-1.4,4.15){$p_0,T_0$};
+\node[above,font=\small] at(1.4,4.15){$p_0,T_0$};
+\end{scope}
+\begin{scope}[shift={(3.7,0)}]
+\ThermalUTubeState{.4}
+\node[left] at(-2.1,3.2){$L-x$};\node[right] at(2.1,2.8){$L+x$};
+\draw[TextGray,dashed] (-1.1,2.4)--(.4,2.4) (.4,1.6)--(1.1,1.6);
+\draw[<->] (.25,1.6)--node[left]{$2x$}(.25,2.4);
+\node[above] at(0,4.9){末态：右侧受热};
+\node[above,font=\small] at(-1.4,4.15){$p_L,T_0$};
+\node[above,font=\small] at(1.4,4.15){$p_R,T_R$};
+\end{scope}
+\end{tikzpicture}
+\figcap{水连续充满两腿及弯管；加热后左液面上升、右液面下降，气体仍各自封闭。}\label{ch14:fig:closed-u}
+\end{minipage}\end{center}}
+
+% Ideal narrow L pipe. Filled mercury is clipped to its same constant-width boundary.
+\newcommand{\ThermalLPipe}[1]{%
+\begin{scope}
+\clip (-2,-.12)--(2.62,-.12)--(2.62,2)--(2.38,2)--(2.38,.12)--(-2,.12)--cycle;
+\pgfmathsetmacro{\tailx}{min(#1,2.5)}
+\pgfmathsetmacro{\taily}{max(0,#1-2.5)}
+\pgfmathsetmacro{\headx}{min(#1+1,2.5)}
+\pgfmathsetmacro{\heady}{min(2,max(0,#1+1-2.5))}
+\pgfmathparse{#1<2.5?1:0}
+\ifnum\pgfmathresult=1
+\pgfmathparse{#1+1<2.5?1:0}
+\ifnum\pgfmathresult=1
+\fill[DeepBlue!45] (\tailx,-.12) rectangle (\headx,.12);
+\else
+\fill[DeepBlue!45] (\tailx,-.12)--(2.62,-.12)--(2.62,\heady)--(2.38,\heady)--(2.38,.12)--(\tailx,.12)--cycle;
+\fi
+\else
+\fill[DeepBlue!45] (2.38,\taily) rectangle (2.62,\heady);
+\fi
+\end{scope}
+\draw[Ink,thick] (-2,.12)--(2.38,.12)--(2.38,2);
+\draw[Ink,thick] (-2,.12)--(-2,-.12)--(2.62,-.12)--(2.62,2);
+\draw[TextGray,dashed] (0,-.45)--(0,.55);
+\node[below,font=\scriptsize] at(0,-.48){$s=0$};}
+\newcommand{\lPipeInitialDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\ThermalLPipe{0}
+\draw[<->] (-2,-1.15)--node[below]{$a$}(0,-1.15);
+\draw[<->] (0,-1.15)--node[below]{$b$}(1,-1.15);
+\draw[<->] (0,-1.75)--node[below]{$c$}(2.5,-1.75);
+\draw[<->] (3.1,0)--node[right]{$d$}(3.1,2);
+\node[above] at(-1,.3){封闭气体};
+\node[above] at(.5,.3){水银};
+\node[above] at(2.5,2.2){出口 $s=c+d$};
+\end{tikzpicture}
+\figcap{初始位置与沿管中心线坐标。弯头体积和曲率半径相对直管长度忽略不计。}\label{ch14:fig:l-initial}
+\end{minipage}\end{center}}
+\newcommand{\lPipeStagesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\foreach \sx/\sy/\xx/\title in {0/0/.5/{水平段},7/0/2/{跨越弯头},0/-4/2.8/{竖直段},7/-4/4/{逐渐流出}}{
+\begin{scope}[shift={(\sx,\sy)}]
+\ThermalLPipe{\xx}
+\node[below] at(.3,-1){\title};
+\fill[Ink] ({min(\xx,2.5)},{max(0,\xx-2.5)}) circle(1pt);
+\end{scope}}
+\end{tikzpicture}
+\figcap{四阶段水银位置。黑点为水银后端，其沿程坐标等于 $x$；流出阶段管内只保留长度 $c+d-x$ 的水银。}\label{ch14:fig:l-stages}
+\end{minipage}\end{center}}
+
+
+热物理研究热、温度以及物质宏观状态的变化。日常生活中经常使用温度，但把温度作为基本物理量写入
+定量规律，是热学区别于纯力学的重要特征。十九世纪中叶以前，热学与动力学长期沿着两条相对独立的
+道路发展，能量守恒也多半只在特定力学系统中使用。焦耳等人的实验逐渐表明，伴随热现象发生的
+能量转移与机械功没有本质区别，热只是能量转移的一种形式。此后，分子运动论和统计物理把宏观温度
+同微观粒子的无规则运动联系起来。连接两种尺度的基本常量之一是玻尔兹曼常数
+\begin{equation}
+  \boxed{k_B=\SI{1.380649e-23}{J.K^{-1}}}.
+\end{equation}
+它的量纲是“能量/温度”，意味着 $k_BT$ 正是温度 $T$ 所对应的微观能量尺度。
+
+从历史次序看，这一理论框架并不是一开始就完整出现的。人们先在热机、量热和气体实验中积累经验，
+再逐步确认机械功与热量能够相互转化；此后近半个世纪中，分子运动论、玻尔兹曼的统计方法以及对
+微观粒子存在性的实验检验相互推进，才使“热和温度具有微观基础”成为可以定量使用的物理理论。
+所以本讲既从宏观可测量的温度、压强出发，也反复回到分子的运动和碰撞，说明两种描述如何对应。
+
+图\ref{ch14:fig:history}把统计理论与精密气体实验两条研究路径并列展示。
+\boltzmannRayleighContext
+
+\section{分子运动论}\label{ch14:sec:molecules}
+
+化学课程往往从原子、分子出发，热物理也可以采用同样的路径：宏观物质由大量微观粒子构成，粒子
+遵循力学和电磁学的基本规律，而温度、压强、密度等宏观量则是大量粒子共同运动的统计结果。这样的
+观点避开了早期“热质”等历史概念，直接把可观察的热现象放进微观动力学框架中。
+
+这里可以作一个很鲜明的课程比较：化学课一开始就引入原子、分子，而初等物理通常从牛顿
+力学开始。如果物理也完全按现代基本理论的层次起步，第一课就不得不谈相对论、量子论、粒子物理和
+宇宙学标准模型，这显然超出了现阶段所能掌握的范围。热学却有一个便利之处：我们不必重新经历关于
+“热质”等古老概念的全部曲折，只要承认物质由微粒构成，便能较快切入热现象的本质。这里采用分子
+运动论，不是省略宏观实验事实，而是用一个统一的微观图景解释这些事实。
+
+十九世纪八十年代，原子、分子虽然已经成为重要的科学概念，但它们是否真实存在，仍曾引起激烈争论。
+爱因斯坦（Albert Einstein）对布朗运动的理论分析给出了可检验的粒子图像；让·佩兰（Jean Perrin） 随后的实验测量使这一图像得到
+有力支持：悬浮在液体中的微粒不会全部沉到底部，而会在液体分子不断碰撞下持续作无规则运动。现代的
+原子力显微镜和扫描隧道显微镜甚至可以在适当条件下直接获得分子尺度的图像。
+
+\molecularMicroscopyFigure
+
+今天我们知道，分子是普通宏观物质的重要组成单元，但不是自然界最基本的粒子。在本课程讨论的温度
+和能量范围内，通常把分子的内部结构视为稳定；若发生化学反应，可以理解为原子组合方式改变，而不是
+把热运动直接当成任意的粒子裂变过程。
+
+佩兰的工作之所以重要，不只是“看见一些小颗粒在动”。如果液体是完全连续、内部没有微粒的介质，
+悬浮颗粒长期不规则运动及其随颗粒大小、温度变化的统计规律就很难得到统一解释；在分子图景下，它们
+恰好是大量液体分子从各个方向撞击颗粒而产生的可见结果。图\ref{ch14:fig:s28-19-1}帮助理解分子尺度成像的外观，并不是一份实验记录。
+真实原子力显微镜探测针尖与样品之间的力或力梯度，扫描隧道显微镜探测隧穿电流；它们的衬度
+还受仪器模式和样品电子性质影响，不能一概看成几何高度。两类技术都能把研究尺度推进到分子量级。
+
+分子有几个共同特点。第一，尺度很小，典型线度约为 $\SI{0.1}{nm}$ 到 $\SI{1}{nm}$，单个分子的质量也
+很小，所以宏观物体总含有极多分子。第二，同种分子具有全同性；除非能连续追踪系统中每个粒子的轨迹，
+原则上无法给同种分子贴上永久标签。第三，构成物质的分子并不静止：气体分子可在较大空间内自由运动
+并频繁碰撞；液体分子彼此靠近，却仍能不断交换近邻；固体原子虽有近似固定的平衡位置，仍会在其附近
+振动并通过相互作用交换能量。
+
+“全同性”在大量粒子问题中尤其值得注意。在通常的少体力学中，我们可以把第一个、第二个物体分别
+编号并追踪轨迹；同种分子却没有可测量的永久身份差别。除非能够从始至终追踪系统中每一个分子，否则
+交换了位置的两个同种分子在物理上不可分辨。正是粒子数巨大而又彼此全同，使宏观热系统的描述方式与
+只研究几个物体的动力学有很大差别，也使统计方法成为必需。
+
+分子运动论的基本假设是：每一个分子的运动仍遵循基本物理定律。只是在面对约 $10^{23}$ 个粒子时，
+逐一求轨迹既不现实，也没有必要；真正需要的是从微观规律推导密度、弹性、声速、热导率、电导率、
+热膨胀和折射率等宏观量。统计规律并不否定单个粒子的动力学，而是在巨量自由度下提取稳定的整体性质。
+
+因此，“每个分子遵守力学定律”不是一句无法检验的口号。以微观相互作用和粒子统计为起点，人们确实
+能够计算物质的密度、弹性、声速、热导率、电导率、热膨胀系数以及透明介质的折射率，并同实验比较。
+热物理的任务，就是说明为什么单个分子的剧烈涨落不会使宏观物体的温度和压强同样剧烈地跳动，以及
+哪些条件下这些平均量能够稳定、可重复地测量。
+
+\section{温度、热平衡与能量均分}\label{ch14:sec:temperature}
+
+测量温度时，需要让温度计与被测物充分接触，并等待温度计示数稳定。两个物体接触后，若有净能量从
+一方流向另一方，就说它们温度不同；若在宏观上没有净能量交换，就说二者处于热平衡。热平衡关系具有
+传递性，这使我们能够用温度计比较不同物体的温度。
+这里的“没有净能量交换”专指通过允许的热接触不再发生净传热；两个温度不同、却被绝热壁隔开的
+物体，也可以暂时没有热量交换，不能因此判定热平衡。
+热平衡的传递性通常称为热力学第零定律：若 $A$、$B$ 分别与温度计 $C$ 热平衡，
+则 $A$、$B$ 也彼此热平衡。温标还需要选定可测的测温量和标定规则，不能把“热平衡”本身当成数值刻度。
+
+例如，暂把温度计和被测物的热容量分别视为常数 $C_t,C_b$，初温分别为 $T_t,T_b$，
+接触过程中整体绝热且不做功。把二者一同选为系统，能量守恒为
+\[
+ C_t(T_f-T_t)+C_b(T_f-T_b)=0,
+ \qquad T_f=\frac{C_tT_t+C_bT_b}{C_t+C_b}.
+\]
+因此测量对被测物的扰动是
+\[
+ T_f-T_b=\frac{C_t}{C_t+C_b}(T_t-T_b).
+\]
+只有 $C_t\ll C_b$ 时，温度计达到平衡的读数才接近被测物接触前的温度。
+“等到示数稳定”排除了尚未达到平衡的误差，却不能消除温度计本身吸、放热造成的扰动。
+
+图\ref{ch14:fig:s28-19-2}比较未接触与正确浸入的两种放置方式；只有右图的温包与水充分接触，示数才可用来判断水温。
+\figureNineteenTwoFaithful
+
+图\ref{ch14:fig:thermometry}中，初温较低的温度计吸收能量，而被测物略微冷却。
+只在温度计热容量相对很小时，共同终温 $T_f$ 才近似等于被测物原来的温度。
+\thermometerMeasurementDiagram
+
+以气体为例，分子之间不断发生碰撞。能量较高与能量较低的分子相撞时，单次碰撞的能量转移方向并不
+确定，但在大量碰撞的统计意义下，极端高能或极端低能状态都不占多数。若追踪单个分子，它的能量会
+随时间不断涨落；若观察足够多分子，平均量却可以稳定下来。两个初始平均能量不同的气体接触后，碰撞
+会使能量重新分配，最后达到共同的热平衡状态。
+
+更具体地说，两分子碰撞满足能量、动量守恒，但这并不保证每次都是“高能分子把能量交给低能分子”。
+碰撞结果还与质量、入射方向和相位有关。能够成立的是概率陈述：在一个能量很高的分子与普通分子频繁
+碰撞的长时间过程中，前者更可能损失一部分能量；能量很低的分子则更可能从周围获得能量。若真的追踪
+一个分子并记录它的能量--时间曲线，曲线会不断上下波动，偶尔偏离平均值，却不大可能永久停留在极大
+或极小值。温度对应的是这种统计分布的尺度，而不是某个指定分子在某一瞬间的动能。
+
+图\ref{ch14:fig:equilibrium}中的箭头比较同种分子热运动的典型大小；箭头方向杂乱，
+表示平均流速为零，而不是所有分子停止运动。
+\molecularEquilibriumDiagram
+
+大量分子经过频繁碰撞后能够充分交换原先所具有的能量，最后达到稳定状态。此时气体均匀充满可用空间，
+不存在整体宏观流动，密度、压强等状态量也不再随时间系统地改变，这就是热平衡。若把两份各自平衡的
+气体混合，而它们原先每个分子的平均平动能相同，混合后的碰撞不会引起持续的净能量转移；若平均动能
+不同，则原先平均动能较高的一方会在统计上失去能量，另一方获得能量，直至两者达到共同温度。这正与
+“热量从高温物体传向低温物体”的宏观经验相对应。
+
+温度与分子无规则运动的平均能量有直接关系。经典能量均分定理指出：在经典统计成立且系统处于温度
+$T$ 的热平衡状态时，每一个能写成二次型的自由度，平均具有
+\begin{equation}
+  \boxed{\langle E\rangle=\frac12k_BT}.
+\end{equation}
+绝对温度与摄氏温度的关系是
+\begin{equation}
+  \boxed{T=t_{\rm C}+273.15},
+\end{equation}
+其中 $T$ 用 K 表示，$t_{\rm C}$ 用 $\si{\degreeCelsius}$ 表示。温差的数值满足
+$\Delta T=\Delta t_{\rm C}$，但物态方程中必须使用绝对温度。
+
+平动动能、转动动能以及近似简谐振子的动能和势能，都是速度、角速度或形变量的二次型；在相应自由度
+被充分激发时，它们可按能量均分定理分配能量。单原子理想气体分子有三个平动自由度，因此
+\begin{equation}
+  \left\langle E_{\rm tr}\right\rangle=\frac32k_BT,
+  \qquad
+  v_{\rm rms}=\sqrt{\langle v^2\rangle}=\sqrt{\frac{3k_BT}{m}}.
+\end{equation}
+例如在 $T=\SI{300}{K}$ 时，氧分子的均方根速率约为数百米每秒，远大于通常风速，并与声速处于同一
+数量级。宏观空气没有整体高速流动，是因为各分子速度方向无规则，矢量平均速度接近零，而
+$\langle v^2\rangle$ 并不为零。
+
+在 $T=\SI{300}{K}$ 时，每个二次型自由度的平均能量为
+\begin{equation}
+  \frac12k_BT\simeq\SI{2.07e-21}{J},
+\end{equation}
+三个平动自由度合计
+\begin{equation}
+  \left\langle E_{\rm tr}\right\rangle
+  =\frac32k_BT\simeq\SI{6.21e-21}{J}.
+\end{equation}
+取氧分子摩尔质量 $\mu=\SI{32e-3}{kg.mol^{-1}}$，单分子质量 $m=\mu/N_A$，可得
+\begin{equation}
+  v_{\rm rms}=\sqrt{\frac{3k_BT}{m}}\simeq\SI{484}{m.s^{-1}}.
+\end{equation}
+这一定量结果补足了“数百米每秒”的数量级判断。它与声速同量级并非偶然，后续研究气体中的声传播时，
+声速正是由分子的热运动尺度和气体的可压缩性共同决定。
+
+能量均分定理有适用范围。它要求相应自由度能够用经典物理描述并在热平衡中被充分激发。金属中的电子、
+低温下冻结的分子振动自由度等对象需要量子统计，不能把 $\tfrac12k_BT$ 不加判断地套给所有自由度。
+
+金属中的电子提供了一个反例：若在室温下机械地使用经典能量均分，所得电子典型速率约为
+$10^5\,\mathrm{m/s}$；实际金属中电子的特征速率可达到约 $10^6\,\mathrm{m/s}$。这一数量级差别不是
+实验粗糙造成的，而是电子服从量子统计的直接表现。能量均分定理非常有用，但“先判断是否经典、相应
+自由度是否已被激发”是使用它不可省略的一步。
+
+\section{热膨胀}\label{ch14:sec:expansion}
+
+几乎所有物质在温度升高时都会发生尺寸变化。许多温度计正是利用液体的热胀冷缩来显示温度。固体中的
+原子不能自由远离近邻；原子间相互作用在平衡距离 $r_0$ 附近形成势阱。绝对零度的经典图像中，原子
+处在势能最低点；温度升高后，原子获得热运动能量，在平衡位置附近振动。
+
+若势阱关于 $r_0$ 完全对称，振动幅度虽然增加，平均位置仍等于 $r_0$，不会产生一阶热膨胀。真实原子间
+势能在短程排斥侧很陡，在长程吸引侧较缓，因此右侧转折点比左侧移动得更多，平均原子间距随温度升高
+而增加。这种微观的不对称性正是通常固体热膨胀的来源。
+
+图\ref{ch14:fig:anharmonic}的两个转折点 $r_1,r_2$ 是同一能量水平与势能曲线的交点。
+图\ref{ch14:fig:s28-19-3}进一步比较两个能量水平。右侧变宽是理解热膨胀的线索，
+但平均间距 $\langle r\rangle$ 需要按粒子在各位置停留的时间或平衡概率加权，不能只取两端的中点。
+\anharmonicPotentialDiagram
+
+\figureNineteenThreeFaithful
+
+设固体在参考温度 $T_0$ 时长度为 $L_0$，温度改变 $\Delta T=T-T_0$ 后长度改变 $\Delta L$。线膨胀系数
+定义为
+\begin{equation}
+  \boxed{\alpha=\frac{1}{L_0}\frac{\Delta L}{\Delta T}},
+  \qquad
+  \boxed{\Delta L=\alpha L_0\Delta T},
+  \qquad
+  \boxed{L=L_0(1+\alpha\Delta T)}.
+\end{equation}
+这里必须保留初始长度 $L_0$，以保证伸长量具有正确量纲。对于各向同性固体，在改变量很小时，面积和体积
+膨胀系数分别近似为 $2\alpha$ 和 $3\alpha$。
+
+线膨胀系数严格说来可以随温度缓慢变化。上面的线性关系是在温区不太宽、总相对伸长很小的条件下，把
+$\alpha(T)$ 近似看成常量后得到的。若温区很宽，应写成
+\begin{equation}
+  \frac{\mathrm dL}{L}=\alpha(T)\,\mathrm dT,
+  \qquad
+  \ln\frac{L}{L_0}=\int_{T_0}^{T}\alpha(T')\,\mathrm dT'.
+\end{equation}
+表~\ref{ch14:tab:s28-19-1}所列数值是室温附近的典型实验值，用于估算时还应注意材料成分、热处理状态以及各向异性。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\small
+\begin{tabular}{lclc}
+\toprule
+材料 & $\alpha/\si{K^{-1}}$ & 材料 & $\alpha/\si{K^{-1}}$\\
+\midrule
+铝 & $24\times10^{-6}$ & 黄铜、青铜 & $19\times10^{-6}$\\
+耐热玻璃 & $3.2\times10^{-6}$ & 普通玻璃 & $9\times10^{-6}$\\
+铅 & $29\times10^{-6}$ & 钢 & $11\times10^{-6}$\\
+铜 & $17\times10^{-6}$ & 混凝土 & $12\times10^{-6}$\\
+\bottomrule
+\end{tabular}
+\booktablecaption{室温附近若干常见材料的线膨胀系数。}\label{ch14:tab:s28-19-1}
+\end{minipage}\end{center}
+
+热膨胀产生的约束力可以很大，桥梁、轨道、管路和精密仪器都必须预留温度变化造成的尺寸改变。纪尧姆（Guillaume）
+因研究镍铁合金获得1920年诺贝尔物理学奖。含镍约 $35.4\%$ 的因瓦合金线膨胀系数可低至约
+$0.9\times10^{-6}\,\si{K^{-1}}$，因此适合制作精密仪器的结构件。
+
+工程中真正危险的往往不是自由膨胀，而是“想膨胀却被约束”。若一根杆完全不能伸长，温度变化产生的
+热应变 $\alpha\Delta T$ 会转化为应力，在线弹性范围内约为 $\sigma=E\alpha\Delta T$。由于杨氏
+模量 $E$ 很大，即使 $\alpha\Delta T$ 很小也可能产生显著内力。桥梁伸缩缝、铁轨间隙和管道补偿器
+都是对这一事实的工程回应；因瓦合金的价值则在于从材料本身减小热应变。
+
+\subsection{自由膨胀量怎样转化为约束力}
+先区分两种应变。温度变化引起的自由热应变是 $\alpha\Delta T$；外力引起的轴向弹性应变是 $\sigma/Y$，其中 $Y$ 为杨氏模量，规定拉应力为正。在小形变、线弹性和温度均匀的近似下，总应变为
+\[
+ \varepsilon=\alpha\Delta T+\frac{\sigma}{Y}.
+\]
+固定两端不是令每一项都为零，而是要求总伸长为零。于是均匀杆升温后有 $\sigma=-Y\alpha\Delta T$，负号表示受压。前面所说的热应力量值 $Y\alpha\Delta T$，应与这里的有符号应力区分。
+若杆可以自由移动，则约束力为零，伸长才等于自由膨胀量；若已经屈服、脱离支座或发生屈曲，就要重新建模。
+
+\Needspace{180pt}
+\begin{origexamplebox}{两种串联材料受热后的共同轴力}\label{ch14:ex:teaching-composite}
+两根细杆首尾牢固连接，长度为 $L_1,L_2$，截面积同为 $A$，杨氏模量为 $Y_1,Y_2$，线膨胀系数为 $\alpha_1,\alpha_2$。初温时恰好无应力地安装在两个固定支座间。现均匀升温 $\Delta T>0$，求轴力大小和两杆各自的长度变化。假定保持直线，不发生屈曲；两个外端支座固定，两杆在连接处无相对滑移，但连接点可以整体移动。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+取拉力 $F$ 为正。连接处没有额外轴向外力，静力平衡要求两杆承受同一轴力，而不是承受相同伸长。分别有
+\[
+ \Delta L_i=\alpha_iL_i\Delta T+\frac{FL_i}{AY_i},\qquad i=1,2.
+\]
+固定的是两杆总长，因此 $\Delta L_1+\Delta L_2=0$，得到
+\[
+ F=-A\Delta T\frac{\alpha_1L_1+\alpha_2L_2}{L_1/Y_1+L_2/Y_2}.
+\]
+若两膨胀系数均为正，$F<0$，两杆受压，压力大小为 $|F|$。将同一个 $F$ 代回第一式，并将分母同乘 $Y_1Y_2$，得
+\[
+ \Delta L_1=\frac{L_1L_2(\alpha_1Y_1-\alpha_2Y_2)}{L_1Y_2+L_2Y_1}\Delta T,
+ \qquad \Delta L_2=-\Delta L_1.
+\]
+若第一根杆位于左边，则连接点向右的位移正是 $\Delta L_1$。连接点可以移动，所以通常并不是 $\Delta L_1=\Delta L_2=0$；一段略伸长时另一段必须等量缩短。仅当 $\alpha_1Y_1=\alpha_2Y_2$ 时，两段才都不改变长度。
+分母的单位为长度除以压强，所得 $F$ 的单位为力；若两种材料相同，就回到 $F=-AY\alpha\Delta T$，与总长度无关。若仅一段非常柔软，更多的弹性压缩会集中在该段，这也解释了不能简单平均两个杨氏模量的原因。
+\end{xesolution}
+
+\section{理想气体物态方程}\label{ch14:sec:ideal-gas}
+
+物态方程用宏观状态参量之间的函数关系描述物质。较高温度、较低密度的气体具有最简单的近似：忽略
+分子本身体积和分子间相互作用，把它处理为理想气体。若容器体积为 $V$，气体压强为 $P$、绝对温度为
+$T$、物质的量为 $\nu$，则
+\begin{equation}
+  \boxed{PV=\nu RT},
+  \qquad R\approx\SI{8.314462618}{J.mol^{-1}.K^{-1}}.
+\end{equation}
+
+这一简洁方程来自很长时期的气体实验。若容器中气体总质量为 $M$、平均摩尔质量为 $\mu$，则
+$\nu=M/\mu$，物态方程也可写成
+\begin{equation}
+  PV=\frac{M}{\mu}RT.
+\end{equation}
+实验上分别改变压强、体积和温度，经过一个多世纪的积累才逐渐确认：在足够稀薄、远离液化条件时，
+不同气体都趋近同一种形式。所谓“理想气体”因此是一种受实验支持的极限模型，而不是声称真实分子
+没有体积、没有相互作用。
+对同一份封闭气体，在没有泄漏和化学反应时 $\nu$ 不变，任意两个平衡状态满足
+\begin{equation}
+  \boxed{\frac{P_1V_1}{T_1}=\frac{P_2V_2}{T_2}}.
+\end{equation}
+使用这个比例式时，压强和体积可采用任意彼此一致的单位，但温度仍必须使用 K。
+
+这里有两种常见使用情形。第一，对给定容器内的一份封闭气体，只要过程没有泄漏、化学反应或物质交换，
+物质的量 $\nu$ 就不变，因而 $PV/T$ 保持常量。比例式中同一种物理量的单位会在分子、分母间相消，所以
+可以直接用 $\mathrm{cmHg}$、升等方便单位。第二，对通常大气这类开放环境，无法指定“整团空气”的
+固定体积和总物质的量，就应改用单位体积内的质量，即密度形式，而不能生硬套用一份封闭气体的比例式。
+
+若研究开放环境中的气体，没有一个固定的总体积。把 $\nu=M/\mu$ 与密度 $\rho=M/V$ 代入物态方程，可得
+\begin{equation}
+  \boxed{P=\frac{\rho RT}{\mu}},
+  \qquad
+  \boxed{\rho=\frac{P\mu}{RT}},
+\end{equation}
+其中 $\mu$ 是摩尔质量。气体越远离液化条件，理想气体近似通常越好；温度较低或密度较大时，分子有限
+体积和相互作用会带来明显偏差。
+
+“离液化状态越远，越像理想气体”是一个实用判断。升高温度使热运动更容易压过分子间吸引，降低密度
+则减小分子彼此靠近的机会；相反，低温高密度下，分子有限体积和相互作用都不可忽略，需要更精细的
+状态方程。竞赛题若直接称“理想气体”，意味着题目已经授权使用上述近似；若讨论真实气体实验精度，
+则必须重新检查偏差是否小到可以忽略。
+
+\section{混合气体与氩气的发现}\label{ch14:sec:mixtures}
+
+空气主要由氮气和氧气组成，并含少量其他气体。在理想气体近似下，第 $i$ 种成分满足
+\begin{equation}
+  P_iV=\nu_iRT=\frac{m_i}{\mu_i}RT,
+  \qquad
+  P_i=\frac{\rho_iRT}{\mu_i}.
+\end{equation}
+道尔顿分压定律给出
+\begin{equation}
+  \boxed{P=\sum_iP_i=RT\sum_i\frac{\rho_i}{\mu_i}}.
+\end{equation}
+因此，若能准确测出气体压强和密度，就有机会识别混合物中少量而未知的成分。
+
+传统水银气压计通过水银柱高度确定压强，但残余气体、弯月面端点和管壁不规则折射都会形成系统误差。
+
+传统装置的基本原理很直接：汞槽液面受大气压作用，长管上端若接近真空，则汞柱静止时有
+$p_{\rm atm}\simeq\rho_{\rm Hg}gH$。它很适合日常测量，却未必满足精密研究。第一，很难仅凭外观确认
+汞柱上方是否达到足够可靠的真空；第二，汞面弯月线使“上端”和“下端”究竟取哪一点缺少完全一致的
+判据；第三，玻璃管壁的不规则折射会让看到的位置偏离真实位置。这些不是多测几次就自动消失的随机
+误差，而是需要改变装置结构才能压低的系统误差。
+
+图\ref{ch14:fig:s28-19-4}中，管口始终浸在汞槽内，管内与槽中的水银连续连通。
+\figureNineteenFourFaithful
+
+图\ref{ch14:fig:barometer-principle}标明了高度 $H$ 的两端及残余气体压强 $p_g$。
+\traditionalBarometerDiagram
+
+瑞利改进了气体压强测量装置。他特别设计出形状一致的叉形液面，使两端弯月面的表面张力效应能够
+相互抵消；可靠的阀门和参考端用于检查真空状态。这样，真正需要比较的是两个明确标志位置之间的高度差，
+而不是凭肉眼猜测弯月面的“顶端”。
+
+图\ref{ch14:fig:s28-19-5}中 $C$ 处的结构把汞柱限制成与 $B$ 处相同的叉形，使两个端面的毛细和表面张力效应尽量同形；
+测量 $C$、$B$ 处活塞或标志之间的高度差时，共同误差便可相消。$D$ 处阀门用于检验参考端真空是否
+可靠，其余储槽、连接管和调节部件则用来缓慢改变液面位置。精密仪器的核心不是“画得更复杂”，而是
+把每个难以判断的端点改造成可重复比较的量。
+
+\figureNineteenFiveFaithful
+
+图\ref{ch14:fig:rayleigh-forks}放大比较 $B,C$ 两处的同形接触结构。
+只有两处液体、润湿状态及几何相同，毛细修正才可近似作为共同项抵消。
+\rayleighApparatusDiagram
+
+通过化合物分解得到的氮气密度约为 $\SI{1.2511}{g.L^{-1}}$，而从空气中除去已知活泼成分后所得“氮气”
+密度约为 $\SI{1.2572}{g.L^{-1}}$。差值远大于实验误差，说明后者并非纯氮。设未知重气体在混合气体中
+的分压占比为 $\alpha$，同温同压下氮气和未知气体的密度分别为 $\rho_1,\rho_2$，则混合气体密度
+可以从各成分质量逐步推出。若给定体积 $V$ 中两种气体质量分别为 $m_1,m_2$，摩尔质量分别为
+$\mu_1,\mu_2$，它们的分压满足
+\begin{equation}
+  P_1V=\frac{m_1}{\mu_1}RT,
+  \qquad
+  P_2V=\frac{m_2}{\mu_2}RT.
+\end{equation}
+由 $P=P_1+P_2$ 和 $\rho'=(m_1+m_2)/V$ 得
+\begin{equation}
+  \rho'=\frac{P_1\mu_1+P_2\mu_2}{RT}.
+\end{equation}
+令未知重气体的分压 $P_2=\alpha P$，而同温同压下纯氮和未知气体密度分别为
+$\rho_1=P\mu_1/(RT)$、$\rho_2=P\mu_2/(RT)$，便得到
+\begin{equation}
+  \rho'=(1-\alpha)\rho_1+\alpha\rho_2,
+\end{equation}
+因而
+\begin{equation}
+  \Delta\rho=\rho'-\rho_1=\alpha(\rho_2-\rho_1),
+  \qquad
+  \rho_2=\rho_1+\frac{\Delta\rho}{\alpha}.
+\end{equation}
+瑞利勋爵与拉姆齐（William Ramsay）通过进一步去除空气中的已知成分并测定体积、分压，得到 $\alpha\approx0.0104$，
+这里的 $\alpha$ 是除去氧等成分后残余混合气体中的比例，不是全部空气中的比例。
+这些实验确认了一种新气体——氩。氩是18号元素，摩尔质量约为
+$\SI{39.948}{g.mol^{-1}}$，主要以单原子形式存在，在干燥空气中的体积分数约为 $0.934\%$。瑞利
+因气体密度研究及氩的发现获得1904年诺贝尔物理学奖。
+
+这个故事还要追溯到1785年。卡文迪许曾不断去除空气中的已知活泼成分，得到极少量残余气体，却没有
+把它认定为新元素。一个多世纪后，瑞利重新采用类似分离思路：如果残余气体近似为纯未知成分，
+便可通过分离前后的体积变化确定它在原混合气体中的分压比例 $\alpha$。问题的代数并不复杂，困难在于
+$\Delta\rho$ 和 $\alpha$ 都很小，任何弯月面读数、残余气体或温度控制误差都会被放大。正因有精密、
+可复现的压强和密度测量，密度差才不能再被当作偶然误差。
+
+在 $0\,{}^\circ\mathrm C$、$1\,\mathrm{atm}$ 条件下，氩气密度约为 $\SI{1.784}{g.L^{-1}}$。须注意，上列历史近似数据并不是一套足以重现现代精确密度的自洽数据：
+直接用 $\Delta\rho=0.0061\,\mathrm{g/L}$ 和 $\alpha=0.0104$ 代入，会得到
+$\rho_2\simeq1.84\,\mathrm{g/L}$，不能把它写成精确算得 $1.784\,\mathrm{g/L}$。
+精密比较必须采用同一温压条件及同一批实验得到的比例。
+氩化学性质稳定，今天广泛用于惰性保护气氛、科研
+实验、医疗和照明等领域。这里的重点不是记住几个年份，而是看清一条实验推理链：先发现超过
+误差范围的反常密度，再改进仪器、排除系统误差，最后用混合气体物态方程把微小差异转化为未知成分的
+密度和摩尔质量。
+
+\subsection{分压按分子数分配，不按质量分配}
+各组分处在同一温度、同一可用体积时，由 $p_iV=n_iRT$ 和 $pV=(\sum_i n_i)RT$ 相除，得到
+\[
+ x_i=\frac{n_i}{n},\qquad \frac{p_i}{p}=x_i,\qquad
+ \overline\mu=\frac{\sum_i n_i\mu_i}{\sum_i n_i}=\sum_i x_i\mu_i.
+\]
+这里 $x_i$ 是摩尔分数，$\overline\mu$ 是混合气体的平均摩尔质量。若已知的是质量分数 $w_i=m_i/\sum_jm_j$，先用 $n_i=m_i/\mu_i$ 换算，才有
+\[
+ \frac1{\overline\mu}=\sum_i\frac{w_i}{\mu_i}.
+\]
+因此，质量相等的轻、重气体并不贡献相等分压。用密度反推成分之前，必须先说明给出的是哪一种比例。
+
+\Needspace{180pt}
+\begin{origexamplebox}{等质量氦、氮混合物的分压与密度}\label{ch14:ex:teaching-mixture}
+质量各为 $m$ 的氦气和氮气装在同一容器中，达到温度 $T$、总压强 $p$ 的平衡态，均按理想气体处理。取摩尔质量分别为 $4$ 和 $28\,\mathrm{g/mol}$。求两者分压、混合气体平均摩尔质量及密度。
+\end{origexamplebox}
+\Needspace{65pt}
+\begin{xesolution}
+相同质量下，物质的量之比为
+\[
+ n_{\rm He}:n_{\rm N_2}=(m/4):(m/28)=7:1.
+\]
+所以氦、氮的摩尔分数分别为 $7/8,1/8$，分压分别为 $7p/8,p/8$，并非各为 $p/2$。平均摩尔质量既可按摩尔分数加权，也可用总质量除以总物质的量：
+\[
+ \overline\mu=\frac78\times4+\frac18\times28
+ =7\,\mathrm{g/mol},\qquad
+ \rho=\frac{p\overline\mu}{RT}.
+\]
+最后一式使用SI单位时须代入 $\overline\mu=7\times10^{-3}\,\mathrm{kg/mol}$。平均值位于两种摩尔质量之间且更靠近氦，是因为氦的分子数更多，而不是因为两种质量不相等。总压由两分压相加恢复为 $p$，总密度也等于各组分密度之和。
+\end{xesolution}
+
+\section{理想气体压强的微观推导}\label{ch14:sec:pressure}
+
+设体积为 $V$ 的容器内有 $N$ 个同种分子，每个质量为 $m$。取一块垂直于 $x$ 轴、面积为 $S$ 的壁面。
+某分子以 $x$ 方向速度分量 $v_x>0$ 撞向壁面并完全弹性反射，分子的 $x$ 动量由 $mv_x$ 变为
+$-mv_x$，故壁面获得冲量 $2mv_x$。
+
+\figureNineteenSixFaithful
+
+图\ref{ch14:fig:s28-19-6}右侧的 $Q$ 点为碰撞点，入射、反射线具有相等的法向夹角。
+图\ref{ch14:fig:collision-layer}另画出参与计数的薄层，避免把三维反射轨迹与计数体积混在一起。
+\gasWallCollisionDiagram
+
+在时间 $\Delta t$ 内，能到达该壁面的同类分子位于底面积 $S$、长度 $v_x\Delta t$ 的薄柱中；还要乘
+$1/2$，因为热平衡时约有一半分子朝向该壁面。把所有分子的贡献相加，壁面得到的总冲量为
+\begin{equation}
+  \Delta p_x=\frac12\sum_{i=1}^N(2mv_{ix})
+  \frac{Sv_{ix}\Delta t}{V}
+  =\frac{mS\Delta t}{V}\sum_{i=1}^Nv_{ix}^2.
+\end{equation}
+
+这里的几何因子可以直接从图\ref{ch14:fig:collision-layer}读出：速度的法向分量为 $v_x$，所以在 $\Delta t$ 内，距离壁面不超过
+$v_x\Delta t$ 的分子才可能撞到所取面积 $S$；相应候选区域体积为 $Sv_x\Delta t$，占整个容积的比例
+为 $Sv_x\Delta t/V$。统计时若把 $v_x^2$ 相同的正、负方向分子都算进求和，就必须再乘 $1/2$，因为
+背离该壁面运动的那一半分子不会在这段时间撞上它。这个 $1/2$ 不是碰撞损失能量，而是方向计数修正。
+于是平均力 $F=\Delta p_x/\Delta t$，压强为
+\begin{equation}
+  \boxed{P=\frac FS=\frac{mN}{V}\overline{v_x^2}
+  =n_Nm\overline{v_x^2}},
+\end{equation}
+其中 $n_N=N/V$ 是分子数密度。热平衡气体各向同性，故
+\begin{equation}
+  \overline{v_x^2}=\overline{v_y^2}=\overline{v_z^2}
+  =\frac13\overline{v^2}.
+\end{equation}
+
+分子动量的改变来自壁面对分子的力；按牛顿第三定律，分子同时把大小相等、方向相反的冲量交给
+壁面。单位时间总冲量就是壁面所受平均力，再除以面积才得到压强。热平衡时没有优先方向，因此三个
+直角坐标方向的速度平方平均值相同。注意这里相等的是 $\overline{v_x^2},\overline{v_y^2},
+\overline{v_z^2}$，而不是要求每个分子在每一瞬间都有 $v_x=v_y=v_z$。
+所以
+\begin{equation}
+  \boxed{P=\frac13n_Nm\overline{v^2}
+  =\frac23n_N\left\langle\frac12mv^2\right\rangle
+  =\frac23u_{\rm tr}},
+\end{equation}
+其中 $u_{\rm tr}$ 是单位体积内的平均平动动能。再用
+$\langle E_{\rm tr}\rangle=3k_BT/2$，得到
+\begin{equation}
+  \boxed{P=n_Nk_BT},
+  \qquad
+  \boxed{PV=Nk_BT=\frac{N}{N_A}N_Ak_BT=\nu RT}.
+\end{equation}
+这里 $\nu=N/N_A$ 是物质的量（单位 $\mathrm{mol}$），$n_N=N/V$ 是数密度（单位 $\mathrm{m^{-3}}$），二者不可混用。
+因此普适气体常数满足 $R=N_Ak_B$。宏观物态方程并不是孤立的经验公式，而是大量分子碰壁冲量的统计
+结果。
+
+\Needspace{8\baselineskip}
+\Needspace{16\baselineskip}\section{综合例题}
+\begin{origexamplebox}{【人体膨胀】}\label{ch14:ex:s28-19-1}
+已知人体的线膨胀系数为 $\alpha$。那么冬天时小明在室内（$25\,{}^\circ\mathrm C$）比室外
+（$0\,{}^\circ\mathrm C$）体积大多少？小明的密度膨胀系数为多少？
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+先明确模型：环境温度从 $0\,{}^\circ\mathrm C$ 变到 $25\,{}^\circ\mathrm C$，
+并不意味着真实人体各部分也改变同样的温度；人体有体温调节，不能据此算出实际体积变化。
+若按题意作理想化计算，须另外假定物体整体温度确实改变 $25\,\mathrm K$、质量不变、
+膨胀系数恒定且各向同性。以下求的是这一模型的结果。设 $0\,{}^\circ\mathrm C$ 时三个方向的特征长度分别为
+$a_0,b_0,c_0$，升高温度 $\Delta T$ 后，三个方向都按同一个线膨胀系数变化：
+\begin{equation}
+  a=a_0(1+\alpha\Delta T),\quad
+  b=b_0(1+\alpha\Delta T),\quad
+  c=c_0(1+\alpha\Delta T).
+\end{equation}
+于是
+\begin{equation}
+  \frac{V}{V_0}=(1+\alpha\Delta T)^3
+  \simeq 1+3\alpha\Delta T,
+\end{equation}
+其中略去了 $\alpha^2$ 及更高阶小量。取 $\Delta T=25\,\mathrm K$，得到
+\begin{equation}
+  \boxed{\frac{V_{25}-V_0}{V_0}\simeq(75\,\mathrm K)\alpha},
+  \qquad
+  \boxed{V_{25}-V_0\simeq(75\,\mathrm K)\alpha V_0}.
+\end{equation}
+
+若人体质量近似不随温度改变，$\rho=m/V$。因此
+\begin{equation}
+  \frac{\rho}{\rho_0}=\frac{1}{1+3\alpha\Delta T}
+  \simeq1-3\alpha\Delta T.
+\end{equation}
+若把体积膨胀系数定义为 $\beta_V=(1/V)(\mathrm dV/\mathrm dT)$，则
+$\boxed{\beta_V\simeq3\alpha}$；若题目所说的“密度膨胀系数”是
+$\beta_\rho=(1/\rho)(\mathrm d\rho/\mathrm dT)$，则
+$\boxed{\beta_\rho\simeq-3\alpha}$。负号表示升温时密度减小。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【“真实”感受】}\label{ch14:ex:s28-19-2}
+小明为了研究“物体的冷热程度”做了以下实验。试通过以下实验说明，小明感受到的冷热程度究竟是什么。
+
+（1）一只手放在冷水里，另一只手放在热水里，然后同时拿出后立刻放在温水里。
+
+（2）小明发现南方的冬天很冷，即便大多数日子天气预报报道的气温是比北方高的。
+
+（3）小明给妈妈打热水泡脚，妈妈把脚伸进水盆后打了个喷嚏。
+
+（4）小明发现有的叔叔需要进入到 $60\,{}^\circ\mathrm C$ 以上的环境工作，进去之前要先吃点辣椒，
+再穿上棉被。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+皮肤并不是直接读取环境的温度数值。冷、热感受首先取决于皮肤与外界之间的热流大小和方向，同时还
+受到感受器适应、血管舒缩、出汗、蒸发以及神经反射的影响。因此，相同温度的物体可以带来不同感觉，
+不同温度的环境也可能带来相似感觉。
+
+图\ref{ch14:fig:heat-feeling}把四类观察分开列出；前三者不能推出第四种做法安全。
+\heatFeelingDiagram
+
+（1）放过冷水的手温度较低，进入温水后热量由水流入手，感觉“热”；放过热水的手温度较高，进入
+同一盆温水后热量由手流向水，感觉“冷”。温水的客观温度只有一个，感觉不同来自皮肤初态以及热流
+方向不同。这也说明手感不能代替温度计。
+
+（2）体感温度不只由气温决定。空气湿度、风速、日照、衣物含水程度、室内取暖条件以及人体活动量
+都会改变对流、蒸发和辐射换热。南方冬季在高湿、衣物或墙体容易潮湿且室内缺少持续供暖的情形下，
+皮肤失热状况可能比气温数值显示的更明显；“南方一定比北方冷”并不是普遍物理定律，必须结合具体
+湿度、风速和生活环境判断。
+
+（3）泡脚与喷嚏先后发生，只说明时间上相邻，不能由一次观察确定因果。
+是否存在温度刺激之外的因素，题目没有提供足够证据。这个事例不能用一个热学公式解释喷嚏机制，
+也不能把喷嚏当成温度计读数；可以确定的是，单次生理反应不足以判断水温或人体净吸热量。
+
+（4）当环境温度高于体表温度时，热量可能从环境流向人体。棉被在这里不是“生热”，而是用低导热、
+低对流的空气层短时减小某些外来热流；但厚重衣物也会阻碍散热和汗液蒸发。
+因此不能单凭隔热一项就判断净热量减少，更不能把吃辣椒当成可靠的防热措施。
+进入高温作业环境需要专门的风险评估、工程控制、合适防护和休息制度；题述做法不能作为安全操作方法，
+不应模仿。这个例子在物理上要说明的是：隔热同时影响热量进入与排出，必须比较全部热流。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【学习化学的小明】}\label{ch14:ex:s28-19-3}
+小明开始学习化学了。
+
+（1）老师教小明用量筒时说，视线要与凹液面相平，读数才能准确。可是有一次小明在称量液体时，
+竟然发现没有凹液面，反而是凸液面。请说出可能的原因，这样是否会造成测量不准确？
+
+（2）使用滴定管时，小明发现液滴半天也不滴下去，请说出可能的原因。
+
+（3）老师说在烧杯中倒水时，需要“引流”。这是什么意思？
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+这三个现象都与液体的表面张力以及液体对固体表面的润湿性有关。
+
+图\ref{ch14:fig:surface-phenomena}左图的最高点与视线同高；中图液滴颈部仍接触管口；
+右图液流沿玻璃棒的一侧进入接收容器。这三种接触关系正对应三个子问。
+\surfacePhenomenaDiagram
+
+（1）水能润湿洁净玻璃，玻璃壁附近液面被拉高，形成凹液面；水银等不能润湿玻璃的液体，接触角
+大于 $90^\circ$，玻璃壁附近液面反而降低，形成凸液面。量筒刻度仍然可以使用，但读数基准要改为凸
+液面的最高点，并保持视线水平，避免视差。若仍机械地按凹液面的最低点读数，当然会产生系统误差；
+此外，量筒若不是按这种液体校准，附着残留和弯月面形状也会带来额外误差。
+
+（2）滴定管尖端的液滴受到向下的重力，同时液滴颈部周围的表面张力提供向上的合力。液滴很小时，
+$mg$ 尚不足以克服表面张力，便会悬在管口。继续流入液体使液滴变大，或轻触接收容器内壁改变接触线，
+液滴才可能落下。因此“暂时不滴”不一定意味着管口堵塞；只有在旋塞已打开、液柱压差充分而仍无液体
+流出时，才需要检查气泡、旋塞和尖嘴堵塞。
+
+（3）所谓引流，是让玻璃棒一端靠在烧杯嘴，另一端贴近接收容器内壁，使水沿玻璃棒连续流下。水对
+洁净玻璃的附着与润湿使液流贴着玻璃棒运动，从而减小飞溅并便于控制落点。玻璃棒只起导流作用，不能
+把它当作搅动液流的杠杆去敲碰容器。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【简易温度计】}\label{ch14:ex:s28-19-4}
+细玻璃管连接着两个相同玻璃球，管壁光滑，管内有一个质量为 $m$ 的活塞，组成一个实验装置。
+当装置水平放置时，活塞恰在管中点。问竖直放置时活塞的位移 $h$ 满足什么条件？可否根据这一原理
+制作简易气温计？
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设细管横截面积为 $S$。装置水平、活塞居中时，两边封闭气体的压强相同；玻璃球相同，若两边温度
+也相同，则两边气体的物质的量相同，记为 $\nu$，各自体积记为 $V_0$。
+
+图\ref{ch14:fig:bulb-thermometer}标出活塞中点基准及下移量 $h$。
+设两球之间可供活塞移动的直管有效长度为 $\ell_{\text{管}}$，还必须检查活塞是否留在直管内。
+\bulbThermometerDiagram
+
+竖直放置后，活塞在重力作用下向下移动 $h$。下腔体积减为 $V_0-Sh$，上腔体积增为 $V_0+Sh$。
+设共同温度为 $T$，两侧气体压强分别为
+\begin{equation}
+  p_{\text{下}}=\frac{\nu RT}{V_0-Sh},\qquad
+  p_{\text{上}}=\frac{\nu RT}{V_0+Sh}.
+\end{equation}
+活塞静止时，向上的压强差作用力与重力平衡：
+\begin{equation}
+  (p_{\text{下}}-p_{\text{上}})S=mg.
+\end{equation}
+代入物态方程，得到位移必须满足
+\begin{equation}
+  \boxed{\frac{2\nu RTS^2h}{V_0^2-S^2h^2}=mg},
+  \qquad 0<h<\min\left(\frac{V_0}{S},\frac{\ell_{\text{管}}}2\right).
+\end{equation}
+反解温度可得
+\begin{equation}
+  \boxed{T(h)=\frac{mg\bigl(V_0^2-S^2h^2\bigr)}{2\nu RS^2h}}.
+\end{equation}
+因此，只要先用两个已知温度标定 $h$ 与 $T$ 的对应关系，原理上可以做成气体温度计。不过它并不是
+等刻度温度计；实际灵敏度还会受到活塞摩擦、漏气、管径不均匀、玻璃热膨胀、两球温度不完全相同等
+因素影响。题设的“管壁光滑”正是为了排除最显著的静摩擦误差。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【托里拆利实验】}\label{ch14:ex:s28-19-5}
+有一水银气压计，因水银柱上的玻璃管内有微量空气，致使读数不准确。当大气压力为
+$76\,\mathrm{cmHg}$ 时，此气压计读数为 $74\,\mathrm{cm}$，此时其上空气柱长为
+$8.0\,\mathrm{cm}$。若气压计读数为 $72.0\,\mathrm{cm}$ 时，则正确的大气压力为多少？
+（不考虑温度变化）
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+先写带量纲的关系 $p_{\rm atm}=\rho_{\rm Hg}gH+p_g$。
+若引入汞柱压强水头 $b_{\rm atm}=p_{\rm atm}/(\rho_{\rm Hg}g)$、$b_g=p_g/(\rho_{\rm Hg}g)$，
+各个 $b$ 都是与压强等效的汞柱高度，单位为长度。管顶若是真空，$b_g=0$，于是
+$b_{\rm atm}=H$；现在残余气体对汞柱上表面施压，压力平衡可等价写成
+\begin{equation}
+  b_{\rm atm}=H+b_g.
+\end{equation}
+例如，压强为 $76\,\mathrm{cmHg}$，就对应 $b_{\rm atm}=76\,\mathrm{cm}$；
+不能直接把以帕为单位的压强与以米为单位的高度相加。
+
+图\ref{ch14:fig:torricelli}采用足够大的汞槽，使两状态的槽液面高度近似不变。
+\torricelliDiagram
+
+第一状态中
+\begin{equation}
+  b_{g1}=b_{\rm atm,1}-H_1=(76-74)\,\mathrm{cm}=2\,\mathrm{cm},
+  \qquad \ell_1=8.0\,\mathrm{cm}.
+\end{equation}
+第二次读数由 $74\,\mathrm{cm}$ 降到 $72\,\mathrm{cm}$，在管顶固定、管径均匀的条件下，水银柱
+上端下降 $2.0\,\mathrm{cm}$，故残余空气柱长度变为
+\begin{equation}
+  \ell_2=8.0+2.0=10.0\,\mathrm{cm}.
+\end{equation}
+温度不变，且残余气体量不变，由波义耳定律（Boyle's law）
+\begin{equation}
+  \begin{gathered}
+  p_{g1}\ell_1=p_{g2}\ell_2
+  \quad\Longrightarrow\quad b_{g1}\ell_1=b_{g2}\ell_2,
+  \\
+  b_{g2}=2\,\mathrm{cm}\times\frac{8}{10}=1.6\,\mathrm{cm}.
+  \end{gathered}
+\end{equation}
+所以第二状态的真实大气压为
+\begin{equation}
+  \begin{gathered}
+  b_{\rm atm,2}=H_2+b_{g2}=(72.0+1.6)\,\mathrm{cm}=73.6\,\mathrm{cm},
+  \\
+  \boxed{p_{\rm atm,2}=73.6\,\mathrm{cmHg}}.
+  \end{gathered}
+\end{equation}
+图中的 $H$ 是水银柱高度，$\ell$ 是管顶残余气柱长度；二者此消彼长，不能把气柱长度仍误取为
+$8.0\,\mathrm{cm}$。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【加热气体】}\label{ch14:ex:s28-19-6}
+如图所示，水平放置的汽缸内壁光滑，活塞厚度不计，在 $A$、$B$ 两处设有限制装置，使活塞只能在
+$A$、$B$ 之间运动，$B$ 左面汽缸的容积为 $V_0$，$A$、$B$ 之间的容积为 $0.1V_0$。开始时活塞
+在 $B$ 处，缸内气体的压强为 $0.9p_0$（$p_0$ 为大气压强），温度为 $297\,\mathrm K$，现缓慢
+加热汽缸内气体，直至 $399.3\,\mathrm K$。
+
+（1）活塞刚离开 $B$ 处时的温度 $T_B$；
+
+（2）缸内气体最后的压强 $p'$；
+
+（3）画出整个过程的 $p$--$V$ 图像。
+\exampleNineteenSixFaithful
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+活塞经历三个阶段：在 $B$ 处被挡住时定容升压；离开 $B$ 后在大气压下向 $A$ 移动，近似定压膨胀；
+到达 $A$ 后再次被挡住，继续定容升压。图\ref{ch14:fig:heated-apparatus}中两个挡块分别限制向左、向右移动，
+图\ref{ch14:fig:heated-path}把三个阶段与 $p$--$V$ 图中的三段折线一一对应。
+
+\heatedCylinderDiagram
+
+第一阶段 $V=V_0$。活塞刚能离开 $B$ 时，缸内压强升到外界大气压 $p_0$，故
+\begin{equation}
+  \frac{0.9p_0}{297}=\frac{p_0}{T_B},\qquad
+  \boxed{T_B=330\,\mathrm K}.
+\end{equation}
+
+第二阶段 $p=p_0$，活塞从 $B$ 移到 $A$，体积由 $V_0$ 增至 $1.1V_0$。到达 $A$ 时
+\begin{equation}
+  \frac{V_0}{330}=\frac{1.1V_0}{T_A},\qquad
+  T_A=363\,\mathrm K.
+\end{equation}
+
+第三阶段 $V=1.1V_0$，由 $363\,\mathrm K$ 升到 $399.3\,\mathrm K$：
+\begin{equation}
+  \frac{p_0}{363}=\frac{p'}{399.3},\qquad
+  \boxed{p'=1.10p_0}.
+\end{equation}
+$p$--$V$ 图依次经过
+\begin{equation}
+  (V_0,0.9p_0)\longrightarrow(V_0,p_0)
+  \longrightarrow(1.1V_0,p_0)\longrightarrow(1.1V_0,1.1p_0),
+\end{equation}
+即“竖直—水平—竖直”三段，分别对应定容、定压、定容过程。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【各种过程】}\label{ch14:ex:s28-19-7}
+一个质量可不计的活塞将一定量的理想气体封闭在上端开口的直立圆筒形气缸内，活塞上堆放着铁砂，
+如图所示。最初活塞搁置在气缸内壁的固定卡环上，气体柱的高度为 $H_0$，压强等于大气压强 $p_0$。
+现对气体缓慢加热，当气体温度升高了 $\Delta T=60\,\mathrm K$ 时，活塞（及铁砂）开始离开卡环而
+上升；继续加热直到气柱高度为 $H_1=1.5H_0$。此后，在维持温度不变的条件下逐渐取走铁砂，直到
+铁砂全部取走时，气柱高度变为 $H_2=1.8H_0$。求此时气体的温度（不计活塞与气缸之间的摩擦）。
+\figureNineteenSevenFaithful
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设初温为 $T_0$，活塞刚离开卡环时气体压强为 $P_1$。气缸横截面积不变，所以气体体积与气柱高度
+成正比。图\ref{ch14:fig:s28-19-7}给出初态卡环与活塞的接触关系，
+图\ref{ch14:fig:sand-states}按实际比例画出 $H_0,H_1,H_2$，分别对应三个状态中的气体体积。
+
+\sandPistonDiagram
+
+最后铁砂全部取走，活塞质量又可忽略，故气体最终压强等于大气压 $p_0$。取走铁砂的过程保持温度
+不变，于是
+\begin{equation}
+  P_1H_1=p_0H_2,\qquad
+  \frac{P_1}{p_0}=\frac{H_2}{H_1}=\frac{1.8}{1.5}=1.2.
+\end{equation}
+最初到活塞刚起动前，卡环使气体体积保持不变；温度从 $T_0$ 升到 $T_0+60$，压强从 $p_0$ 升到
+$P_1$：
+\begin{equation}
+  \frac{P_1}{p_0}=\frac{T_0+60}{T_0}=1.2,
+\end{equation}
+解得
+\begin{equation}
+  \boxed{T_0=300\,\mathrm K}.
+\end{equation}
+活塞离开卡环后，铁砂质量尚未改变，外压恒定为 $P_1$，所以从 $H_0$ 膨胀至 $H_1=1.5H_0$ 的
+过程是定压过程：
+\begin{equation}
+  \frac{T_1}{T_0+60}=\frac{H_1}{H_0}=1.5.
+\end{equation}
+因此在气柱达到 $H_1$ 时以及随后恒温取砂直至末态，气体温度均为
+\begin{equation}
+  \boxed{T_1=1.5\times360=540\,\mathrm K}.
+\end{equation}
+这里最容易颠倒的是等温取砂阶段的压强比：体积由 $1.5H_0$ 增到 $1.8H_0$，压强应由 $1.2p_0$
+降到 $p_0$。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【气体膨胀】}\label{ch14:ex:s28-19-8}
+如图所示，开口向上、粗细均匀的玻璃管长 $L=100\,\mathrm{cm}$，管内有一段高
+$h=20\,\mathrm{cm}$ 的水银柱，封闭着长 $a=50\,\mathrm{cm}$ 的空气柱，大气压强
+$p_0=76\,\mathrm{cmHg}$，温度 $t_0=27\,{}^\circ\mathrm C$。求温度至少升到多高时，
+可使水银全部溢出？
+\figureNineteenEightFaithful
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+这是一个“先膨胀到管口，再边溢出边变化”的过程。仅求水银柱上端刚到管口的温度还不够；水银开始
+溢出后，剩余汞柱变短，气体压强下降，但气体可占体积继续增大，两种作用竞争会形成一个温度势垒。
+
+\mercurySpillDiagram
+
+图\ref{ch14:fig:s28-19-8}给出初始长度；
+图\ref{ch14:fig:mercury-spill}中 $x$ 表示剩余汞柱的高度，不是活塞位移。
+为避免把压强与长度相加，引入 $b_0=p_0/(\rho_{\rm Hg}g)=76\,\mathrm{cm}$。
+初态封闭气体压强为
+\begin{equation}
+  p_1=\rho_{\rm Hg}g(b_0+h)=96\,\mathrm{cmHg},\qquad T_0=27+273=300\,\mathrm K,
+\end{equation}
+这里沿用题目计算精度，将 $273.15$ 近似取作 $273$，故 $T_0\simeq300\,\mathrm K$。
+气柱长度为 $a=50\,\mathrm{cm}$。水银柱上端刚到管口时，汞柱仍高 $20\,\mathrm{cm}$，气柱长度
+变为 $L-h=80\,\mathrm{cm}$，由理想气体状态方程得到
+\begin{equation}
+  T_{\text{口}}=T_0\frac{96\times80}{96\times50}=480\,\mathrm K.
+\end{equation}
+但此时还没有“全部溢出”。令溢出过程中管内剩余汞柱高度为 $x$。它的下端距管底 $L-x$，所以封闭
+气柱长为 $L-x$；汞柱平衡又给出气体压强 $p=\rho_{\rm Hg}g(b_0+x)$。于是准静态过程所需温度为
+\begin{equation}
+  T(x)=T_0\frac{(b_0+x)(L-x)}{(b_0+h)a},\qquad 0\le x\le h.
+\end{equation}
+要使水银能连续溢出，外界温度至少应达到该函数在区间 $[0,h]$ 上的最大值。令
+\begin{equation}
+  f(x)=(b_0+x)(L-x),\qquad
+  f'(x)=L-b_0-2x,
+\end{equation}
+得到最大值位置
+\begin{equation}
+  x_*=\frac{L-b_0}{2}=12\,\mathrm{cm}.
+\end{equation}
+因此
+\begin{equation}
+  T_{\min}=300\times\frac{(76+12)(100-12)}{96\times50}
+  =484\,\mathrm K,
+\end{equation}
+即
+\begin{equation}
+  \boxed{t_{\min}\simeq484-273=211\,{}^\circ\mathrm C}.
+\end{equation}
+图中的曲线在 $x=12\,\mathrm{cm}$ 处达到最高点：加热到 $480\,\mathrm K$ 只能使水银刚到管口，
+还必须跨过 $484\,\mathrm K$ 的最高点，越过极大值后，在不降低加热温度的条件下，不再有静态平衡阻止剩余水银流出。
+此后的实际运动未必继续准静态；极大值用于判断能否越过整条平衡路径。
+\end{xesolution}
+
+\Needspace{18\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【定性分析】}\label{ch14:ex:s28-19-9}
+等截面U形管的两端封闭，两腿竖直。初态液面距弯管上缘的高度至少为 $L$，以保证以下过程中液面均在竖直段内。管内水柱把左右两团理想气体隔开。初态两液面等高，两侧气柱长度均为
+$L$，压强和温度均为 $p_0,T_0$。现缓慢加热右侧气体至 $T_R>T_0$，左侧气体始终保持
+$T_0$。水的密度为 $\rho$，忽略毛细现象。判断两液面的移动方向，并写出末态位移所满足的方程；
+说明物理解是否唯一。
+
+
+\closedUTubeDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图\ref{ch14:fig:closed-u}两端都封闭，水柱在弯管处连续连通。右侧升温后，若液面尚未来得及移动，其压强先增大，所以水柱被向左推：右液面下降、左液面上升。
+设两液面各移动 $x$。截面积相同保证两侧体积变化量相等，因而末态气柱长度分别为 $L-x$、$L+x$。
+由理想气体状态方程
+\[
+ p_L=\frac{p_0L}{L-x},\qquad
+ p_R=\frac{p_0L}{L+x}\frac{T_R}{T_0}.
+\]
+右液面比左液面低 $2x$，静水压关系为
+\[
+ \boxed{\frac{p_0L(T_R/T_0)}{L+x}-\frac{p_0L}{L-x}=2\rho gx},
+ \qquad 0<x<L.
+\]
+令左端减右端为 $F(x)$。有
+\[
+ F(0)=p_0\!\left(\frac{T_R}{T_0}-1\right)>0,\qquad
+ \lim_{x\to L^-}F(x)=-\infty,
+\]
+并且
+\[
+ F'(x)=-\frac{p_0L(T_R/T_0)}{(L+x)^2}
+       -\frac{p_0L}{(L-x)^2}-2\rho g<0.
+\]
+所以 $F(x)$ 在 $(0,L)$ 内严格递减且只过零一次，移动方向和末态位移均唯一。
+当 $T_R\to T_0^+$ 时 $F(0)\to0$，唯一解趋于 $x=0$；这与没有温差便不移动一致。
+题设的直腿长度条件保证 $0<x<L$ 内右液面不会提前进入弯头。
+\end{xesolution}
+
+\Needspace{22\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【L 型管】}\label{ch14:ex:s28-19-10}
+粗细均匀的L形玻璃管左端封闭、上端开口。沿管中心线取坐标 $s$：初态封闭气体占据
+$-a\le s\le0$，长为 $b$ 的水银柱占据 $0\le s\le b$；弯头在 $s=c$，竖直出口终点在
+$s=c+d$。已知 $0<b<c$、$d\ge b$，初态气体温度为 $T_0$、大气压为 $p_0$，管截面积为
+$S$，弯头曲率半径和容积相对各直管段忽略不计。缓慢改变气体温度，使水银准静态地向出口移动。求水银能够全部流出时气体必须达到的最低温度。
+
+
+\lPipeInitialDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图\ref{ch14:fig:l-initial}规定全部长度与坐标；图\ref{ch14:fig:l-stages}分别画出水银的四种位置。
+黑点标明后端，前端在尚未流出时位于沿程坐标 $x+b$。
+\lPipeStagesDiagram
+设水银柱后端移动了 $x$。封闭气体体积为 $V(x)=S(a+x)$。水银柱两端的竖直高度差记为
+$h(x)$；它随水银柱位置分四段：
+\[
+h(x)=
+\begin{cases}
+0,&0\le x\le c-b,\\
+x+b-c,&c-b\le x\le c,\\
+b,&c\le x\le c+d-b,\\
+c+d-x,&c+d-b\le x\le c+d.
+\end{cases}
+\]
+准静态平衡要求气体压强为 $p(x)=p_0+\rho_{\rm Hg}g h(x)$。初态 $p(0)=p_0$、
+$V(0)=Sa$，故沿着平衡路径所需温度为
+\[
+ T(x)=T_0\frac{p(x)V(x)}{p_0Sa}
+ =T_0\frac{[p_0+\rho_{\rm Hg}g h(x)](a+x)}{p_0a}.
+\]
+要连续越过全过程，至少应达到 $T(x)$ 在 $0\le x\le c+d$ 上的最大值。前三段中压强不降而
+体积增加，所以温度单调增加。最后一段令
+\[
+ \Phi(x)=[p_0+\rho_{\rm Hg}g(c+d-x)](a+x),
+\]
+逐项求导，
+\[
+ \Phi'(x)=p_0+\rho_{\rm Hg}g(c+d-a-2x),\qquad
+ \Phi''(x)=-2\rho_{\rm Hg}g<0.
+\]
+所以最后一段是开口向下的抛物线，其唯一驻点为
+\[
+ x_*=\frac{p_0/(\rho_{\rm Hg}g)+c+d-a}{2}.
+\]
+把它截取到最后一段的允许区间：
+\[
+ \widehat x=\min\!\left\{c+d,
+ \max\!\left[c+d-b,x_*\right]\right\}.
+\]
+于是所求最低温度为
+\[
+ \boxed{T_{\min}=T_0
+ \frac{[p_0+\rho_{\rm Hg}g(c+d-\widehat x)](a+\widehat x)}{p_0a}}.
+\]
+若 $x_*\le c+d-b$，最后一段一开始便下降，最大值在它的起点；
+若 $c+d-b<x_*<c+d$，最大值在内部驻点；
+若 $x_*\ge c+d$，最后一段始终上升，最大值在全部流出的终点。
+因而截取公式包含这三种情形。量纲检查中
+$pV/(p_0V_0)$ 无量纲，故结果仍为温度。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\Needspace{16\baselineskip}\begin{origexamplebox}{【一维原子链】}\label{ch14:ex:s28-19-11}
+如果认为单原子链中每个原子感受到的平均势能为莱纳德--琼斯势
+\begin{equation}
+  U(r)=4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12}
+  -\left(\frac{\sigma}{r}\right)^6\right],
+\end{equation}
+其中 $\varepsilon$、$\sigma$ 为常数，$r$ 为所有原子之间的统一间距。求：
+
+（1）零温下平衡态每原子结合能、晶格常数；
+
+（2）把原子势能在平衡位置展开到二阶项和三阶项，求单原子在温度为 $T$ 时的振动幅度、原子链的
+形变模量和热膨胀系数。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+先令 $U'(r_0)=0$。对势能求导：
+\begin{equation}
+  U'(r)=4\varepsilon\left(-\frac{12\sigma^{12}}{r^{13}}
+  +\frac{6\sigma^6}{r^7}\right).
+\end{equation}
+于是 $r_0^6=2\sigma^6$，即
+\begin{equation}
+  \boxed{r_0=2^{1/6}\sigma}.
+\end{equation}
+把它代回势能，得到 $U(r_0)=-\varepsilon$。因此零温下的晶格常数为 $r_0$，从势阱底把一个原子
+移到无穷远所需的结合能大小为
+\begin{equation}
+  \boxed{E_b=\varepsilon}.
+\end{equation}
+
+图\ref{ch14:fig:lennard-jones}标出真实最低点，并将局部二阶近似与完整势能比较。
+\lennardJonesDiagram
+
+令 $x=r-r_0$。在平衡位置作泰勒展开：
+\begin{equation}
+  U(r)=-\varepsilon+\frac12kx^2+\frac16\lambda x^3+O(x^4),
+\end{equation}
+二、三阶导数分别为
+\[
+ U''(r)=4\varepsilon\left(\frac{156\sigma^{12}}{r^{14}}-\frac{42\sigma^6}{r^8}\right),\qquad
+ U'''(r)=4\varepsilon\left(-\frac{2184\sigma^{12}}{r^{15}}+\frac{336\sigma^6}{r^9}\right).
+\]
+利用 $\sigma^6/r_0^6=1/2$、$\sigma^{12}/r_0^{12}=1/4$，可分别提出 $r_0^{-2}$、$r_0^{-3}$，
+得到 $4(156/4-42/2)=72$、$4(-2184/4+336/2)=-1512$。因此
+\begin{equation}
+  \boxed{k=U''(r_0)=\frac{72\varepsilon}{r_0^2}},
+  \qquad
+  \boxed{\lambda=U'''(r_0)=-\frac{1512\varepsilon}{r_0^3}}.
+\end{equation}
+二阶近似是简谐振子。其势能这个二次型自由度平均分得 $k_BT/2$，故
+\begin{equation}
+  \frac12k\langle x^2\rangle=\frac12k_BT,
+  \qquad
+  \boxed{x_{\rm rms}=r_0\sqrt{\frac{k_BT}{72\varepsilon}}}.
+\end{equation}
+若把“振动幅度”理解为平均总振动能 $k_BT$ 对应的经典转折幅度，则
+\begin{equation}
+  \frac12kA^2=k_BT,\qquad
+  \boxed{A=r_0\sqrt{\frac{k_BT}{36\varepsilon}}}.
+\end{equation}
+
+设原子链应变为 $\eta=x/r_0$。每个原子的弹性能为
+\begin{equation}
+  \frac12kx^2=\frac12kr_0^2\eta^2.
+\end{equation}
+除以每个原子在链上占据的长度 $r_0$，与一维弹性能密度
+$u=\tfrac12Y_{1\rm D}\eta^2$ 比较，得到
+\begin{equation}
+  \boxed{Y_{1\rm D}=kr_0=\frac{72\varepsilon}{r_0}}.
+\end{equation}
+这里 $Y_{1\rm D}$ 的量纲是力；若要得到通常三维杨氏模量，还需给定原子链的有效横截面积。
+
+三次项 $\lambda<0$ 使势阱右缓左陡。热膨胀所需的是平均间距，
+而不是左右转折点的几何中点。以下在粒子被约束于平衡距离附近、经典统计有效、振幅较小的条件下计算；
+可用的温度窗口为 $\hbar\sqrt{k/m}\ll k_BT\ll\varepsilon$。下文积分是局部势阱的渐近近似，
+不把粒子在无穷远自由解离的状态算入这条原子链的平衡分布。
+
+令 $\beta=1/(k_BT)$，零阶高斯权重为 $w_0(x)=\exp(-\beta kx^2/2)$。
+三次项小，玻尔兹曼权重可展开为
+\[
+ e^{-\beta(kx^2/2+\lambda x^3/6)}
+ \simeq w_0(x)\left(1-\frac{\beta\lambda x^3}{6}\right).
+\]
+平均位移是归一化后的积分之比：
+\[
+ \langle x\rangle=
+ \frac{\int xw_0(x)(1-\beta\lambda x^3/6)\,\mathrm dx}
+ {\int w_0(x)(1-\beta\lambda x^3/6)\,\mathrm dx}.
+\]
+在局部小振动近似中将积分限延伸为 $(-\infty,\infty)$；奇函数积分为零，
+所以分子中零阶的 $\int xw_0\,\mathrm dx=0$，分母中的一阶修正
+$\int x^3w_0\,\mathrm dx=0$。于是
+\[
+ \langle x\rangle=-\frac{\beta\lambda}{6}\langle x^4\rangle_0.
+\]
+四阶矩也可直接推导。记 $a=\beta k/2$、$I(a)=\int e^{-ax^2}\mathrm dx=\sqrt{\pi/a}$，
+对 $a$ 连续求两次导数：
+\[
+ I'(a)=-\int x^2e^{-ax^2}\mathrm dx,\qquad
+ I''(a)=\int x^4e^{-ax^2}\mathrm dx=\frac{3\sqrt\pi}{4a^{5/2}}.
+\]
+因而 $\langle x^4\rangle_0=I''/I=3/(4a^2)=3(k_BT/k)^2$，最终
+\[
+ \langle x\rangle=-\frac{\lambda k_BT}{2k^2}>0,\qquad
+ \boxed{\alpha=\frac1{r_0}\frac{\mathrm d\langle x\rangle}{\mathrm dT}
+ =\frac{7k_B}{48\varepsilon}}.
+\]
+其量纲为 $\mathrm K^{-1}$；$\lambda<0$ 给出正膨胀，与图中的右缓左陡相符。
+若令三次项为零，平均位移与这一阶热膨胀都为零。
+
+还可比较一个容易混淆的几何估计。把同一能量的转折点写成
+$x_\pm=\pm A+\delta$，其中 $kA^2/2=k_BT$。代入势能并保留一阶非谐项，
+\[
+ \frac{k}{2}(\pm A+\delta)^2+\frac{\lambda}{6}(\pm A+\delta)^3
+ \simeq\frac{kA^2}{2}\pm kA\delta\pm\frac{\lambda A^3}{6},
+\]
+故 $\delta=-\lambda A^2/(6k)=-\lambda k_BT/(3k^2)$。
+中点随温度变化所给出的系数为 $7k_B/(72\varepsilon)$，它不是上面所求的热膨胀系数。
+原因在于粒子并不在两转折点之间匀速运动；必须使用时间或统计权重，不能把中点法与统计法并列成两种正确答案。
+\end{xesolution}
+}
+
+\endgroup
+
+\hypersetup{bookmarksdepth=2}

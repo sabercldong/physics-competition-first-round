@@ -1,0 +1,357 @@
+% Restrained TikZ redraws for Lesson 33.
+
+\newcommand{\currentDensityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (-3.6,-1.15) rectangle (3.6,1.15);
+  \draw[curve] (-3.6,-1.15) rectangle (3.6,1.15);
+  \draw[DeepBlue,very thick] (0,-1.15)--(0,1.15);
+  \foreach \y in {-0.75,-0.25,0.25,0.75}{
+    \draw[vector] (-2.8,\y)--(-0.3,\y);
+    \draw[vector] (0.3,\y)--(2.8,\y);
+  }
+  \node[above] at (0,1.2) {截面 $S$};
+  \node[TextGray] at (0,-1.7) {$I=\displaystyle\int_S\vect j\cdot\dd\vect S$，箭头表示约定的电流方向};
+\end{tikzpicture}
+
+{\small\color{TextGray}补图 33-A\quad 电流是电流密度穿过截面的通量}
+\end{center}}
+
+\newcommand{\ivCharacteristicDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[axis] (-3.5,0)--(3.7,0) node[right] {$U$};
+  \draw[axis] (0,-2.6)--(0,2.8) node[above] {$I$};
+  \draw[DeepBlue,very thick] (-2.7,-2.1)--(2.7,2.1) node[above right] {理想电阻};
+  \draw[Ink,very thick] (-2.9,-2.15) .. controls (-1.8,-0.45) and (-0.7,-0.25) .. (0,0)
+    .. controls (0.7,0.25) and (1.8,0.45) .. (2.9,2.15);
+  \node[Ink,anchor=west] at (2.35,1.2) {非欧姆元件};
+  \draw[guide] (2.0,0)--(2.0,1.56);
+  \node[TextGray] at (0,-3.15) {选定端口电压、电流正方向后，曲线完整描述二端元件的外特性};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.1\quad 二端元件及其伏安特性曲线}
+\end{center}}
+
+\newcommand{\ohmHistoryContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \node[inner sep=0] at (-3.7,0)
+    {\includegraphics[height=3.4cm]{ohm-portrait-redraw.png}};
+  \node[TextGray] at (-3.7,-2.05) {Georg Simon Ohm};
+  \begin{scope}[xshift=2.0cm]
+    \draw[thick,rounded corners=4pt] (-2.3,-1.45) rectangle (3.0,1.45);
+    \foreach \y in {-1.2,-0.8,...,1.2}{
+      \draw[TextGray] (-2.42,\y)--(-2.3,\y);
+      \draw[TextGray] (3.0,\y)--(3.12,\y);
+    }
+    \draw[thick] (-1.6,0)--(-0.85,0);
+    \draw[fill=SoftGray,thick,rounded corners=2pt] (-0.85,-0.38) rectangle (1.5,0.38);
+    \draw[thick] (1.5,0)--(2.25,0);
+    \foreach \x in {-0.45,0.05,0.55,1.05}{\draw[DeepBlue,very thick] (\x,-0.38)--(\x,0.38);}
+    \node[DeepBlue,font=\large] at (0.3,0.95) {$U=IR$};
+    \node[TextGray,font=\small] at (0.3,-0.95) {色环电阻与 Ohm 定律};
+  \end{scope}
+\end{tikzpicture}
+{\small\color{TextGray}图 33.2、33.3\quad Ohm 肖像与纪念 Ohm 定律的邮票图案（重绘）}
+\end{center}}
+
+\newcommand{\uniformResistorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \fill[SoftGray] (-3.2,-0.72) rectangle (3.2,0.72);
+  \draw[Ink,thick] (-3.2,-0.72) rectangle (3.2,0.72);
+  \draw[Ink,thick] (-3.2,0) ellipse (0.24 and 0.72);
+  \draw[Ink,thick] (3.2,0) ellipse (0.24 and 0.72);
+  \draw[vector] (-2.5,1.25)--(2.5,1.25) node[midway,above] {$I$};
+  \draw[<->] (-3.2,-1.2)--node[below] {$l$}(3.2,-1.2);
+  \node at (-3.85,0.25) {$A$};
+  \node[TextGray,align=left,anchor=west] at (4.3,0.35)
+    {均匀材料：电阻率 $\rho$\\截面积 $A$，长度 $l$\\$\displaystyle R=\rho\frac lA$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.4\quad 均匀圆柱形电阻的几何参数}
+\end{center}}
+
+\newcommand{\gasDischargeContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.03cm,y=0.92cm,>=Latex]
+  \draw[axis] (0,0)--(8.1,0) node[right] {$I$};
+  \draw[axis] (0,0)--(0,4.15) node[above] {$U$};
+  \foreach \x/\lab in {0.8/$10^{-15}$,2.5/$10^{-10}$,4.5/$10^{-5}$,6.4/$10^0$}{
+    \draw (\x,0.08)--(\x,-0.08) node[below] {\lab};
+  }
+  \foreach \y/\lab in {1.0/300,2.0/600,3.35/1000}{
+    \draw (0.08,\y)--(-0.08,\y) node[left] {\lab};
+  }
+  \draw[guide,dashed] (4.25,0)--(4.25,3.8);
+  \draw[guide,dashed] (6.25,0)--(6.25,3.8);
+  \node[TextGray] at (2.1,3.75) {暗放电};
+  \node[TextGray] at (5.2,3.75) {辉光放电};
+  \node[TextGray] at (7.1,3.75) {弧光放电};
+  \draw[DeepBlue,very thick]
+    (0.45,0.25) .. controls (0.7,0.28) and (0.82,0.55) .. (0.92,1.75)
+    .. controls (1.02,2.05) and (1.18,2.12) .. (1.35,2.15)
+    -- (3.85,2.3)
+    .. controls (4.35,2.28) and (4.5,2.05) .. (4.8,1.75)
+    .. controls (5.1,1.35) and (5.4,0.9) .. (5.75,0.95)
+    .. controls (6.05,1.0) and (6.1,1.75) .. (6.22,2.25)
+    .. controls (6.3,2.75) and (6.36,3.45) .. (6.45,3.5)
+    .. controls (6.55,3.3) and (6.42,0.6) .. (6.75,0.42)
+    .. controls (7.1,0.28) and (7.55,0.48) .. (7.85,0.58);
+  \fill[DeepBlue] (3.85,2.3) circle (2.4pt);
+  \fill[DeepBlue] (5.75,0.95) circle (2.4pt);
+  \fill[DeepBlue] (6.45,3.5) circle (2.4pt);
+  \fill[DeepBlue] (6.75,0.42) circle (2.4pt);
+  \draw[<-,Ink,thick] (5.25,1.05)--(4.55,0.45)
+    node[below left,align=center] {$\dd U/\dd I<0$\\负微分电阻};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.7\quad 典型气体放电的电压—电流曲线；横轴按对数刻度标示}
+\end{center}}
+
+\newcommand{\drudeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \fill[SoftGray] (-4.0,-1.35) rectangle (4.0,1.35);
+  \foreach \x in {-3.4,-2.3,...,3.3}{\foreach \y in {-0.85,0,0.85}{\fill[TextGray] (\x,\y) circle (2.4pt);}}
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-3.5,0.55) .. controls (-2.7,1.05) and (-2.1,-0.8) .. (-1.2,-0.25)
+    .. controls (-0.4,0.45) and (0.5,-0.8) .. (1.25,0.1)
+    .. controls (1.9,0.85) and (2.65,-0.45) .. (3.45,0.35);
+  \draw[vector] (-1.1,2.0)--(1.1,2.0) node[midway,above] {$\vect E$};
+  \draw[vector] (1.0,-1.95)--(-1.0,-1.95) node[midway,below] {电子平均漂移};
+  \node[TextGray] at (0,-2.55) {高速无规则运动叠加很小的定向漂移；碰撞使动量不断弛豫};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.6\quad 导体内电子的高速无规则运动与微小定向漂移}
+\end{center}}
+
+\newcommand{\resistorConnectionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \draw[thick] (-5.0,0)--(-4.2,0);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (-4.2,0)--(-2.8,0);
+  \draw[thick] (-2.8,0)--(-2.2,0);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (-2.2,0)--(-0.8,0);
+  \draw[thick] (-0.8,0)--(-0.1,0);
+  \node[above] at (-3.5,0.45) {$R_1$}; \node[above] at (-1.5,0.45) {$R_2$};
+  \node[TextGray] at (-2.55,-1.0) {串联：电流相同};
+  \draw[thick] (1.1,1.05)--(1.8,1.05) (1.1,-1.05)--(1.8,-1.05);
+  \draw[thick] (1.8,1.05)--(1.8,-1.05) (5.2,1.05)--(5.2,-1.05);
+  \draw[thick] (1.8,0.62)--(2.45,0.62);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (2.45,0.62)--(4.5,0.62);
+  \draw[thick] (4.5,0.62)--(5.2,0.62);
+  \draw[thick] (1.8,-0.62)--(2.45,-0.62);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (2.45,-0.62)--(4.5,-0.62);
+  \draw[thick] (4.5,-0.62)--(5.2,-0.62);
+  \node[above] at (3.48,0.88) {$R_1$}; \node[below] at (3.48,-0.88) {$R_2$};
+  \node[TextGray] at (3.15,-1.65) {并联：电压相同};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.8\quad 电阻的串联与并联}
+\end{center}}
+
+\newcommand{\circuitTerminologyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \coordinate (A) at (-3.6,1.35); \coordinate (B) at (0,1.35);
+  \coordinate (C) at (3.6,1.35); \coordinate (D) at (-3.6,-1.35);
+  \coordinate (E) at (0,-1.35); \coordinate (F) at (3.6,-1.35);
+  \foreach \p/\n in {A/$a$,B/$b$,C/$c$,D/$d$,E/$e$,F/$f$}{
+    \fill[DeepBlue] (\p) circle (2.7pt) node[above=4pt] {\n};
+  }
+  \draw[thick] (A)--node[above] {元件 1}(B)--node[above] {元件 2}(C);
+  \draw[thick] (D)--node[below] {元件 4}(E)--node[below] {元件 5}(F);
+  \draw[thick] (A)--node[left] {支路}(D);
+  \draw[thick] (B)--node[right] {元件 3}(E);
+  \draw[thick] (C)--(F);
+  \draw[DeepBlue,very thick,rounded corners=3pt,-{Latex[length=2mm]}]
+    (-3.95,1.7)--(0.35,1.7)--(0.35,-1.0)--(-3.95,-1.0)--cycle;
+  \node[DeepBlue] at (-1.8,0.25) {一个回路};
+  \node[TextGray,align=left,anchor=west] at (4.45,0.55)
+    {节点：支路的连接点\\支路：相邻节点间的通路\\回路：从节点出发并返回的闭合路径};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.9\quad 电路网络中的元件、节点、支路与回路}
+\end{center}}
+
+\newcommand{\kirchhoffDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[DeepBlue] (0,0) circle (3pt) node[below right] {节点};
+  \draw[vector] (-3.2,1.4)--(-0.2,0.1) node[midway,above] {$I_1$};
+  \draw[vector] (-3.2,-1.4)--(-0.2,-0.1) node[midway,below] {$I_2$};
+  \draw[vector] (0.2,0.12)--(3.2,1.35) node[midway,above] {$I_3$};
+  \draw[vector] (0.2,-0.12)--(3.2,-1.35) node[midway,below] {$I_4$};
+  \node[TextGray] at (0,-2.15) {KCL：$I_1+I_2=I_3+I_4$};
+  \draw[DeepBlue,thick,rounded corners] (5.1,-1.25) rectangle (9.2,1.25);
+  \draw[vector] (5.45,-0.85)--(7.0,-0.85);
+  \node[TextGray] at (7.15,-2.15) {KVL：沿闭合回路电压代数和为零};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.10\quad Kirchhoff 电流定律与电压定律}
+\end{center}}
+
+\newcommand{\nodeMethodDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \coordinate (a) at (-3.4,1.35); \coordinate (b) at (0,1.35); \coordinate (c) at (3.4,1.35);
+  \coordinate (g1) at (-3.4,-1.35); \coordinate (g2) at (0,-1.35); \coordinate (g3) at (3.4,-1.35);
+  \draw[thick] (a)--(b)--(c); \draw[thick] (g1)--(g2)--(g3);
+  \draw[thick] (a)--(-3.4,0.55);
+  \draw[very thick,DeepBlue] (-3.75,0.38)--(-3.05,0.38) (-3.62,0.03)--(-3.18,0.03);
+  \draw[thick] (-3.4,0.03)--(g1); \node[left] at (-3.85,0.2) {$\mathcal E_0$};
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (b)--(g2);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (c)--(g3);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (a)--(b);
+  \node[above] at (-1.7,1.65) {$R_1$}; \node[right] at (0.35,0) {$R_2$}; \node[right] at (3.75,0) {$R_3$};
+  \fill[DeepBlue] (a) circle (2.7pt) node[above left] {$a:\ \varphi_a=\mathcal E_0$};
+  \fill[DeepBlue] (b) circle (2.7pt) node[above right] {$b:\ \varphi_b=\varphi$};
+  \fill[Ink] (g2) circle (2.7pt) node[below] {参考节点 $\varphi=0$};
+  \node[TextGray,align=left,anchor=west] at (5.0,0.45)
+    {选参考节点后，各支路电压\\自动等于节点电势之差；\\只需对未知节点列 KCL};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.11\quad 节点电压法：先求节点电势，再由伏安特性求支路电流}
+\end{center}}
+
+\newcommand{\tolmanDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (0,0) ellipse (2.25 and 1.35);
+  \draw[vector] (0,0)--(0.95,0.8) node[midway,above left] {$r$};
+  \draw[DeepBlue,very thick,-{Latex[length=2.5mm]}] (1.65,0.92) arc[start angle=35,end angle=135,x radius=2.05,y radius=1.28];
+  \node[DeepBlue] at (0,1.95) {$\omega$};
+  \draw[vector] (2.25,0)--(2.25,-1.05) node[right] {$\vect v_e(0)$};
+  \draw[very thick] (-0.15,1.35)--(0.15,1.35);
+  \node[TextGray,align=left,anchor=west] at (4.0,0.55)
+    {晶格突然停止\\电子因惯性继续运动\\随后在碰撞中指数衰减};
+\end{tikzpicture}
+
+{\small\color{TextGray}解图 33.1-A\quad Tolman--Stewart 转动铜环实验}
+\end{center}}
+
+\newcommand{\transientCurrentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[axis] (-0.4,0)--(6.0,0) node[right] {$t$};
+  \draw[axis] (0,-0.2)--(0,3.2) node[above] {$I$};
+  \draw[guide] (0,2.55)--(5.7,2.55) node[right] {$U/R$};
+  \draw[DeepBlue,very thick] (0,0) .. controls (0.75,1.75) and (1.7,2.35) .. (5.5,2.54);
+  \draw[<->] (0,-0.55)--node[below] {$\tau$}(1.55,-0.55);
+  \node[TextGray] at (2.8,-1.15) {$I(t)=\dfrac UR(1-\e^{-t/\tau})$，载流子惯性使电流不能瞬间建立};
+\end{tikzpicture}
+
+{\small\color{TextGray}解图 33.2-A\quad 突加电压后的微观暂态电流}
+\end{center}}
+
+\newcommand{\rotatingRingDiagram}{%
+\begin{samepage}
+\begin{center}
+\begin{tikzpicture}[scale=0.70,>=Latex]
+  \draw[curve] (0,0) circle (1.65);
+  \foreach \a in {0,30,...,330}{\node[DeepBlue] at ({1.65*cos(\a)},{1.65*sin(\a)}) {$+$};}
+  \draw[DeepBlue,very thick,-{Latex[length=2.5mm]}] (1.35,0.95) arc[start angle=35,end angle=135,radius=1.65];
+  \draw[vector] (0,0)--(1.1,0) node[midway,above] {$R$};
+  \node[TextGray,align=left,anchor=west] at (3.4,0.6)
+    {每转一周，任一截面通过总电荷 $Q$\\周期 $T=2\pi/\omega$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.12\quad 转动带电环与等效环电流}
+\end{center}
+\end{samepage}}
+
+\newcommand{\vacuumDiodeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \draw[DeepBlue,very thick] (-3.5,-1.2)--(-3.5,1.2) node[above] {阴极 $\varphi=0$};
+  \draw[DeepBlue,very thick] (3.5,-1.2)--(3.5,1.2) node[above] {阳极 $\varphi=U$};
+  \foreach \x in {-2.7,-1.9,...,2.9}{\node[Ink] at (\x,0) {$-$};}
+  \draw[vector] (-2.8,-0.75)--(2.7,-0.75) node[midway,below] {电子运动};
+  \draw[axis] (-3.5,-1.75)--(4.1,-1.75) node[right] {$x$};
+  \draw[<->] (-3.5,-2.25)--node[fill=white,inner sep=1pt] {$L$}(3.5,-2.25);
+  \node[TextGray] at (0,-2.95) {$\varphi(x)=U(x/L)^{4/3}$，空间电荷使电势不是线性分布};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.13\quad 平板真空二极管中的空间电荷限制电流}
+\end{center}}
+
+\newcommand{\nonlinearShellDiagram}{%
+\begin{samepage}
+\begin{center}
+\begin{tikzpicture}[scale=0.70,>=Latex]
+  \fill[PaleBlue] (0,0) circle (1.85); \fill[white] (0,0) circle (0.82);
+  \draw[curve] (0,0) circle (0.82); \draw[curve] (0,0) circle (1.85);
+  \foreach \a in {0,45,...,315}{\draw[component] ({0.92*cos(\a)},{0.92*sin(\a)})--({1.7*cos(\a)},{1.7*sin(\a)});}
+  \draw[<->] (0,0)--node[above] {$a$}(0.82,0);
+  \draw[<->] (0,-0.35)--node[below] {$b$}(1.85,-0.35);
+  \node[TextGray,align=left,anchor=west] at (3.5,0.6)
+    {$j(r)=I/(4\pi r^2)$\\$j=kE^2$\\故 $E\propto1/r$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.14\quad 电导率满足 $\sigma=kE$ 的厚球壳}
+\end{center}
+\end{samepage}}
+
+\newcommand{\ionChamberDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.83,>=Latex]
+  \draw[DeepBlue,very thick] (-4.1,1.35)--(4.1,1.35) node[right] {阴极 $-U_0$};
+  \draw[DeepBlue,very thick] (-4.1,-1.35)--(4.1,-1.35) node[right] {阳极};
+  \draw[guide] (-3.2,-0.35)--(3.1,-0.35) node[right] {粒子径迹};
+  \foreach \x in {-2.7,-1.9,...,2.9}{\node[DeepBlue] at (\x,-0.15) {$+$}; \node[Ink] at (\x,-0.55) {$-$};}
+  \draw[vector] (-1.4,-0.05)--(-1.4,0.95) node[right] {$v^+$};
+  \draw[vector] (0.8,-0.55)--(0.8,-1.12) node[right] {$v^-$};
+  \draw[<->] (-4.55,-1.35)--node[left] {$D$}(-4.55,1.35);
+  \draw[<->] (3.55,-1.35)--node[right] {$x_0$}(3.55,-0.35);
+  \node[TextGray] at (0,-2.15) {电子先到达阳极形成快分量，正离子随后形成慢分量};
+\end{tikzpicture}
+
+{\small\color{TextGray}题图 33.6\quad 平行板电离室中的电子--离子漂移}
+\end{center}}
+
+\newcommand{\ringResistanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (RingA) at (-2.7,0);
+  \coordinate (RingO) at (0,0);
+  \coordinate (RingB) at (2.13,-1.49);
+  \draw[curve] (0,0) circle (1.75);
+  \fill[DeepBlue] (-1.75,0) circle (3pt) node[left] {$a$};
+  \fill[DeepBlue] ({1.75*cos(-35)},{1.75*sin(-35)}) circle (3pt) node[right] {$b$};
+  \draw[axis] (0,0)--(-2.7,0);
+  \draw[axis] (0,0)--({2.6*cos(-35)},{2.6*sin(-35)});
+  \draw pic[draw,"$\theta$",angle radius=11mm,angle eccentricity=1.35]
+    {angle=RingA--RingO--RingB};
+  \node[TextGray,align=left,anchor=west] at (4.1,0.5)
+    {两段电阻 $R_1+R_2=R$\\在端点 $a,b$ 之间并联};
+\end{tikzpicture}
+
+{\small\color{TextGray}题图 33.7\quad 圆环电阻被接点分成两条并联支路}
+\end{center}}
+
+\newcommand{\dualSourceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-4.0,1.5)--(4.0,1.5) (-4.0,-1.5)--(4.0,-1.5);
+  \draw[thick] (-3.2,1.5)--(-3.2,0.95);
+  \draw[very thick,DeepBlue] (-3.55,0.75)--(-2.85,0.75) (-3.43,0.38)--(-2.97,0.38);
+  \draw[thick] (-3.2,0.38)--(-3.2,-0.1);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (-3.2,-0.1)--(-3.2,-1.05);
+  \draw[thick] (-3.2,-1.05)--(-3.2,-1.5);
+  \node[left] at (-3.65,0.55) {$\mathcal E_1$}; \node[left] at (-3.65,-0.55) {$r_1$};
+  \draw[thick] (0,1.5)--(0,0.95);
+  \draw[very thick,DeepBlue] (-0.35,0.75)--(0.35,0.75) (-0.23,0.38)--(0.23,0.38);
+  \draw[thick] (0,0.38)--(0,-0.1);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (0,-0.1)--(0,-1.05);
+  \draw[thick] (0,-1.05)--(0,-1.5);
+  \node[right] at (0.45,0.55) {$\mathcal E_2$}; \node[right] at (0.45,-0.55) {$r_2$};
+  \draw[thick] (3.2,1.5)--(3.2,0.95);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (3.2,0.95)--(3.2,-0.95);
+  \draw[thick] (3.2,-0.95)--(3.2,-1.5);
+  \node[right] at (3.55,0) {$R$};
+  \draw[vector] (2.75,1.85)--(3.65,1.85) node[midway,above] {$I$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 33.15\quad 两个有内阻电源并联向负载供电}
+\end{center}}

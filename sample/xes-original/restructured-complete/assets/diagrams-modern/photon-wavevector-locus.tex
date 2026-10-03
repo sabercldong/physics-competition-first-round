@@ -1,0 +1,19 @@
+% Deterministic momentum-space ellipse, meridional section of prolate ellipsoid.
+% Foci z=0,k0; center k0/2; semimajor=k0, semiminor=sqrt(3)k0/2.
+\begin{tikzpicture}[>=Latex,font=\small,x=2cm,y=2cm]
+ \draw[->,TextGray] (-.85,0)--(1.85,0) node[right]{$k_{\parallel}/k_0$};
+ \draw[->,TextGray] (0,-1.08)--(0,1.08) node[above]{$k_{\perp}/k_0$};
+ \draw[DeepBlue,thick] (.5,0) ellipse[x radius=1,y radius=.8660254];
+ \coordinate (P) at ({.5+cos(65)},{.8660254*sin(65)});
+ \fill (0,0) circle(.023) (1,0) circle(.023) (P) circle(.023);
+ \draw[->,thick] (0,0)--(P);
+ \draw[->,thick] (P)--(1,0);
+ \node[below left=4pt] at (0,0){$O$};
+ \node[below=5pt] at (1,0){$\vect K/k_0$};
+ \node[above right=4pt] at (P){$P$};
+ \node at (.37,.61){$\vect k_3/k_0$};
+ \node[anchor=west] at (1.6,.55){$\vect k_4/k_0$};
+ \draw[TextGray] (1.55,.55)--(.98,.4);
+ \draw[TextGray](-.5,-.04)--(-.5,.04);\node[below left=3pt] at (-.5,-.04){$-\tfrac12$};
+ \draw[TextGray](1.5,-.04)--(1.5,.04);\node[below right=3pt] at (1.5,-.04){$\tfrac32$};
+\end{tikzpicture}

@@ -1,0 +1,306 @@
+% 第7章技术图：标签均为透明背景；用留白、错位和引线避免压住结构线。
+\newcommand{\figStrain}{%
+\begin{center}
+\begin{tikzpicture}[scale=.86]
+ \begin{scope}[yshift=1.7cm]
+  \draw[guide] (-4.4,-.55) rectangle (4.0,.55);
+  \draw[curve,fill=Blue!9] (-3.8,-.48) rectangle (3.45,.48);
+  \foreach \y in {-.34,-.17,0,.17,.34}{
+   \draw[vector] (-3.8,\y)--++(-.75,0);
+   \draw[vector] (3.45,\y)--++(.75,0);
+  }
+  \draw[fill=DeepBlue!18,draw=DeepBlue] (-1.55,-.36) rectangle (-.65,.36);
+  \draw[fill=TextGray!18,draw=TextGray,rotate around={45:(1.25,0)}] (.93,-.32) rectangle (1.57,.32);
+  \node[labelclean,below=6pt] at (0,-.55){受拉棒中的两个材料微元};
+ \end{scope}
+ \begin{scope}[xshift=-2.45cm,yshift=-1.05cm]
+  \draw[guide] (-.9,-.8) rectangle (.9,.8);
+  \draw[curve,fill=DeepBlue!16] (-.9,-.8) rectangle (1.3,.8);
+  \draw[axis] (-1.25,-1.05)--(1.65,-1.05) node[right]{$x$};
+  \draw[axis] (-1.25,-1.05)--(-1.25,1.18) node[above]{$y$};
+  \draw[<->,TextGray] (-.9,1.03)--(1.3,1.03) node[midway,above=3pt]{$X+\delta$};
+  \node[labelclean] at (.1,-1.55){(a) 正应变：长度改变};
+ \end{scope}
+ \begin{scope}[xshift=2.55cm,yshift=-1.05cm]
+  \draw[guide] (-.9,-.8) rectangle (.9,.8);
+  \draw[curve,fill=Blue!17] (-.9,-.8)--(.9,-.8)--(1.35,.8)--(-.45,.8)--cycle;
+  \draw[axis] (-1.25,-1.05)--(1.65,-1.05) node[right]{$x$};
+  \draw[axis] (-1.25,-1.05)--(-1.25,1.18) node[above]{$y$};
+  \draw[->,TextGray] (-.45,.35) arc[start angle=90,end angle=73,radius=.45];
+  \node[labelclean] at (-.03,.53){$\alpha$};
+  \node[labelclean] at (.1,-1.55){(b) 剪应变：直角改变};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{正应变与剪应变。虚线是原微元；实线微元已平移、转正后与原状比较。}
+\label{r2ch07:fig:001}
+\end{center}}
+
+\newcommand{\figStress}{%
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-2.8cm]
+  \draw[curve,fill=Blue!12] (-1.45,-.75) rectangle (1.45,.75);
+  \draw[very thick,DeepBlue] (-1.45,.75)--(1.45,.75);
+  \foreach \x in {-1.05,-.52,0,.52,1.05}{\draw[vector] (\x,.75)--++(0,.78);}
+  \draw[vector,TextGray] (0,.75)--++(0,1.25) node[right=4pt]{$\dd\vect S$};
+  \node[labelclean] at (0,-1.2){正应力 $\sigma_n$};
+ \end{scope}
+ \begin{scope}[xshift=2.8cm]
+  \draw[curve,fill=Blue!12] (-1.45,-.75) rectangle (1.45,.75);
+  \draw[very thick,DeepBlue] (-1.45,.75)--(1.45,.75);
+  \foreach \x in {-1.05,-.52,0,.52,1.05}{\draw[vector] (\x,.75)--++(.65,0);}
+  \draw[vector,TextGray] (0,.75)--++(0,1.25) node[right=4pt]{$\dd\vect S$};
+  \node[labelclean] at (0,-1.2){剪应力 $\tau$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{同一面元上的正应力与剪应力；面法向由 $\dd\vect S$ 指定。}
+\label{r2ch07:fig:002}
+\end{center}}
+
+\newcommand{\figElasticModuli}{%
+\begin{center}
+\begin{tikzpicture}[scale=.76]
+ \begin{scope}[xshift=-5.1cm]
+  \draw[guide] (-1.1,-1.05) rectangle (1.1,1.05);
+  \draw[curve,fill=DeepBlue!14] (-1.1,-1.05)--(1.1,-1.05)--(1.45,1.05)--(-.75,1.05)--cycle;
+  \draw[vector] (-.65,.82)--++(.9,0) node[above=3pt]{$F_\tau$};
+  \draw[vector] (1.0,-.82)--++(-.9,0) node[below=3pt]{$F_\tau$};
+  \draw[<->,TextGray] (-1.38,-1.05)--(-1.38,1.05) node[midway,left=3pt]{$h$};
+  \draw[<->,TextGray] (-1.1,1.34)--(-.75,1.34) node[midway,above=3pt]{$\delta$};
+  \node[labelclean] at (0,-1.75){剪切：$G$};
+ \end{scope}
+ \begin{scope}
+  \draw[curve,fill=orange!18]
+   plot[smooth cycle,tension=.85] coordinates{(-1.35,-.2)(-.95,-1.0)(0,-1.25)(1.05,-.85)(1.45,.05)(.95,.95)(0,1.25)(-.95,.85)};
+  \foreach \a in {0,45,...,315}{
+   \draw[vector,TextGray] ({1.8*cos(\a)},{1.5*sin(\a)})--({1.38*cos(\a)},{1.15*sin(\a)});
+  }
+  \node[labelclean] at (0,0){$V$};
+  \node[labelclean] at (0,-1.75){体变：$K$};
+ \end{scope}
+ \begin{scope}[xshift=5.0cm]
+  \draw[guide] (-1.55,-.8) rectangle (1.55,.8);
+  \draw[curve,fill=Blue!12] (-1.85,-.68) rectangle (1.85,.68);
+  \foreach \y in {-.45,-.22,0,.22,.45}{
+   \draw[vector] (-1.85,\y)--++(-.65,0);
+   \draw[vector] (1.85,\y)--++(.65,0);
+  }
+  \draw[<->,TextGray] (-1.85,1.08)--(1.85,1.08) node[midway,above=3pt]{$L+\delta L$};
+  \draw[<->,TextGray] (2.15,-.68)--(2.15,.68) node[midway,right=3pt]{$d-\delta d$};
+  \node[labelclean] at (0,-1.75){单轴拉伸：$E,\nu$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{三类基本形变分别定义剪变模量、体弹性模量、杨氏模量与泊松比。}
+\label{r2ch07:fig:003}
+\end{center}}
+
+\newcommand{\figRodModel}{%
+\begin{center}
+\begin{tikzpicture}[scale=.79]
+ \draw[axis] (-5.4,2.0)--(5.35,2.0) node[right]{$x$};
+ \draw[curve,fill=Blue!8] (-4.8,1.18) rectangle (3.9,1.72);
+ \draw[<->,TextGray] (-4.8,2.35)--(3.9,2.35) node[midway,above=3pt]{$L$};
+ \draw[vector] (-.85,1.45)--++(1.2,0) node[above=3pt]{$\xi(x)$};
+ \draw[guide] (-2.75,.05) rectangle (-1.55,.67);
+ \draw[curve,fill=DeepBlue!18] (-2.55,.05) rectangle (-1.75,.67);
+ \draw[<->,TextGray] (-2.55,-.25)--(-1.75,-.25) node[midway,below=3pt]{$\dd x$};
+ \draw[guide] (.45,.05) rectangle (2.0,.67);
+ \draw[curve,fill=DeepBlue!18] (.7,.05) rectangle (1.7,.67);
+ \draw[<->,TextGray] (.7,-.25)--(1.7,-.25) node[midway,below=3pt]{$\dd x+\dd\xi$};
+ \begin{scope}[yshift=-1.75cm]
+  \draw[curve,fill=Blue!8] (-1.25,-.42) rectangle (1.25,.42);
+  \draw[vector] (-1.25,0)--++(-1.05,0) node[above=3pt]{$\sigma S$};
+  \draw[vector] (1.25,0)--++(1.05,0) node[above=3pt]{$(\sigma+\dd\sigma)S$};
+  \node[labelclean] at (0,-.8){质量 $\rho S\,\dd x$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{弹性棒建模：位移梯度给出应变，应力差给出微元的纵向合力。}
+\label{r2ch07:fig:004}
+\end{center}}
+
+\newcommand{\figStringModel}{%
+\begin{center}
+\begin{tikzpicture}[scale=.88]
+ \draw[axis] (-4.7,0)--(4.8,0) node[right]{$x$};
+ \draw[curve,domain=-4.4:4.3,samples=120,smooth] plot (\x,{.52*sin(58*\x)});
+ \coordinate (A) at (-.45,{.52*sin(58*(-.45))});
+ \coordinate (B) at (.75,{.52*sin(58*.75)});
+ \draw[very thick,DeepBlue] (A)--(B);
+ \fill (A) circle(2pt);\fill (B) circle(2pt);
+ \draw[vector] (A)--++(-1.25,-.38) node[left=4pt]{$T\uvec e(x)$};
+ \draw[vector] (B)--++(1.25,.20) node[right=4pt]{$T\uvec e(x+\dd x)$};
+ \draw[<->,TextGray] ($(A)+(0,-.72)$)--($(B)+(0,-.72)$) node[midway,below=3pt]{$\dd x$};
+ \draw[axis] (-3.1,-1.1)--(-3.1,1.65) node[above]{$\eta$};
+ \draw[axis] (-3.1,-1.1)--(-1.6,-1.1) node[right]{$\xi$};
+\end{tikzpicture}
+\bookcaption{张紧弦的微元及两个偏振方向；张力大小近似不变，方向随切线改变。}
+\label{r2ch07:fig:005}
+\end{center}}
+
+\newcommand{\figMembraneModel}{%
+\begin{center}
+\begin{tikzpicture}[scale=.88]
+ \coordinate (A) at (-3.4,-1.0);\coordinate (B) at (2.5,-1.0);
+ \coordinate (C) at (3.7,1.1);\coordinate (D) at (-2.2,1.1);
+ \fill[Blue!10] (A)--(B)--(C)--(D)--cycle;
+ \draw[curve] (A)--(B)--(C)--(D)--cycle;
+ \draw[DeepBlue,very thick] (-.8,-.15) .. controls (-.25,.1) and (.25,.7) .. (.85,.45)
+  .. controls (1.15,.25) and (.5,-.3) .. (-.8,-.15);
+ \coordinate (P) at (.15,.35);
+ \draw[vector] (P)--++(0,1.75) node[above]{$\uvec n$};
+ \draw[axis] (-3.4,-1.0)--(-4.25,-1.55) node[left]{$x$};
+ \draw[axis] (-3.4,-1.0)--(-2.35,-1.0) node[right]{$y$};
+ \draw[axis] (-3.4,-1.0)--(-3.4,.65) node[above]{$\zeta$};
+ \draw[<->,TextGray] (-.3,.0)--(.65,.22) node[midway,below=5pt]{$(\dd x,\dd y)$};
+ \node[labelclean] at (2.15,-1.55){张力系数 $\Sigma$ 沿边界切法向作用};
+\end{tikzpicture}
+\bookcaption{弹性膜建模：曲面边界上的面内张力合成垂直膜面的恢复力。}
+\label{r2ch07:fig:006}
+\end{center}}
+
+\newcommand{\figBodyWaves}{%
+\begin{center}
+\begin{tikzpicture}[scale=.83]
+ \begin{scope}[xshift=-4.25cm]
+  \draw[axis] (-2.4,0)--(2.55,0) node[right]{$\vect k$};
+  \foreach \x in {-2,-1.55,...,2}{\fill[DeepBlue] (\x,0) circle(2pt);}
+  \foreach \x in {-1.85,-.95,-.05,.85,1.75}{\draw[vector] (\x,.45)--++(.45,0);}
+  \draw[decorate,decoration={brace,amplitude=5pt},TextGray] (-1.58,-.3)--(-.92,-.3)
+   node[midway,below=7pt,labelclean]{压缩区};
+  \node[labelclean] at (0,-1.1){P波：$\vect A_P\parallel\vect k$};
+ \end{scope}
+ \begin{scope}[xshift=4.25cm]
+  \draw[axis] (-2.4,0)--(2.55,0) node[right]{$\vect k$};
+  \draw[curve,domain=-2.2:2.2,samples=100,smooth] plot (\x,{.55*sin(95*\x)});
+  \foreach \x in {-1.8,-.9,0,.9,1.8}{\fill[DeepBlue] (\x,{.55*sin(95*\x)}) circle(2pt);}
+  \draw[vector] (0,.15)--++(0,1.05) node[right=4pt]{$\vect A_S$};
+  \node[labelclean] at (0,-1.1){S波：$\vect A_S\perp\vect k$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{弹性体中的纵向P波与横向S波；箭头给出位移偏振相对传播方向的关系。}
+\label{r2ch07:fig:007}
+\end{center}}
+
+\newcommand{\figRotatingRope}{%
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \draw[very thick] (-3.8,-2.0)--(-3.8,2.25);
+ \draw[->,DeepBlue,thick] (-4.3,1.5) arc[start angle=150,end angle=510,radius=.48];
+ \node[labelclean,left=4pt] at (-4.35,1.1){$\omega$};
+ \coordinate (O) at (-3.8,0);\fill (O) circle(2.5pt);\node[labelclean,below left=4pt] at (O){$O$};
+ \draw[curve,line width=2.4pt] (O)--(3.75,0);
+ \foreach \x in {-2.7,-1.35,.1,1.75,3.1}{\draw[TextGray] (\x,-.18)--(\x,.18);}
+ \fill[DeepBlue] (1.0,0) circle(2.3pt);
+ \node[labelclean,below=5pt] at (1.0,0){材料点 $X$};
+ \draw[vector] (1.0,.62)--(0,.62) node[midway,above=3pt]{$T(X)$};
+ \draw[<->,TextGray] (-3.8,-.65)--(3.75,-.65) node[midway,below=3pt]{$L$};
+ \node[labelclean,anchor=south east] at (3.75,.38){$T(L_0)=0$};
+\end{tikzpicture}
+\bookcaption{均匀弹性绳绕端点轴旋转；越靠近转轴，张力承担的外侧向心质量越多。}
+\label{r2ch07:fig:008}
+\end{center}}
+
+\newcommand{\figPointScatter}{%
+\begin{center}
+\begin{tikzpicture}[scale=.86]
+ \draw[axis] (-5.0,0)--(5.15,0) node[right]{$x$};
+ \draw[very thick] (0,-1.25)--(0,1.45);
+ \fill[DeepBlue] (0,0) circle(5pt);
+ \draw[TextGray,thin] (.08,.12)--(.55,.62);
+ \node[labelclean,anchor=west] at (.58,.66){质点 $m$};
+ \draw[curve,domain=-4.7:-.15,samples=100,smooth] plot (\x,{.45*sin(75*\x)});
+ \draw[curve,domain=.15:4.7,samples=100,smooth] plot (\x,{.28*sin(75*\x)});
+ \draw[vector] (-3.9,1.05)--(-2.35,1.05) node[midway,above=3pt]{$A$ 入射};
+ \draw[vector,TextGray] (-2.1,-1.0)--(-3.55,-1.0) node[midway,below=3pt]{$B$ 反射};
+ \draw[vector] (2.1,1.0)--(3.65,1.0) node[midway,above=3pt]{$C$ 透射};
+ \node[labelclean] at (0,-1.65){$x=0$};
+\end{tikzpicture}
+\bookcaption{行波在附加点质量处的反射与透射；位移连续，斜率跃变提供质点加速度。}
+\label{r2ch07:fig:009}
+\end{center}}
+
+\newcommand{\figRadialMembrane}{%
+\begin{center}
+\begin{tikzpicture}[scale=.84]
+ \begin{scope}[xshift=-3.7cm]
+  \foreach \r/\c in {.45/DeepBlue,1.0/DeepBlue!75,1.55/DeepBlue!55,2.1/TextGray}{%
+   \pgfmathsetmacro{\yr}{.45*\r}%
+   \draw[\c,thick] (0,0) ellipse [x radius=\r,y radius=\yr];}
+  \fill (0,0) circle(2pt);\node[labelclean,above=5pt] at (0,0){波源};
+  \draw[vector] (0,0)--(2.05,0) node[midway,above=4pt]{$r$};
+  \node[labelclean] at (0,-1.45){同心圆波前};
+ \end{scope}
+ \begin{scope}[xshift=3.35cm]
+  \draw[axis] (-.2,-1.25)--(4.2,-1.25) node[right]{$r$};
+  \draw[axis] (-.2,-1.25)--(-.2,1.65) node[above]{$z$};
+  \draw[curve,domain=.18:4.0,samples=160,smooth]
+   plot (\x,{1.25/sqrt(\x+.25)*cos(145*\x)});
+  \draw[guide,domain=.18:4.0,samples=80] plot (\x,{1.25/sqrt(\x+.25)});
+  \draw[guide,domain=.18:4.0,samples=80] plot (\x,{-1.25/sqrt(\x+.25)});
+  \node[labelclean] at (2.2,1.25){包络 $A(r)\propto r^{-1/2}$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{轴对称膜波的圆周长度随 $r$ 增大，能流守恒使振幅按 $r^{-1/2}$ 衰减。}
+\label{r2ch07:fig:010}
+\end{center}}
+
+\newcommand{\figSonometer}{%
+\begin{center}
+\begin{tikzpicture}[scale=.86]
+ \draw[very thick] (-4.8,-.35)--(-4.1,-.35)--(-4.1,.35)--(-4.8,.35);
+ \draw[curve] (-4.1,0)--(3.4,0);
+ \draw[very thick] (3.4,0) circle(.22);
+ \draw[curve] (3.62,0)--(3.62,-2.05);
+ \draw[curve,fill=Blue!12] (3.05,-2.05) rectangle (4.18,-2.85);
+ \node[labelclean] at (3.62,-2.45){$m$};
+ \draw[<->,TextGray] (-4.1,.85)--(3.4,.85) node[midway,above=3pt]{$l$};
+ \draw[curve,DeepBlue,domain=-4.1:3.4,samples=150,smooth]
+  plot (\x,{.42*cos(180*(\x+4.1)/7.5)});
+ \node[labelclean] at (-4.45,-.75){音叉端：波腹};
+ \node[labelclean] at (3.55,.55){滑轮端：波节};
+\end{tikzpicture}
+\bookcaption{音叉—弦线—配重装置；理想驱动端为波腹，滑轮处横位移为零。}
+\label{r2ch07:fig:011}
+\end{center}}
+
+\newcommand{\figAcrobat}{%
+\begin{center}
+\begin{tikzpicture}[scale=.78]
+ \coordinate (L) at (-4,0);\coordinate (R) at (4,0);
+ \coordinate (P0) at (0,-3);\coordinate (P1) at (3,-2.4);\coordinate (P2) at (3,-3);
+ \draw[axis] (-4.8,0)--(4.9,0) node[right]{$x$};
+ \draw[axis] (0,.6)--(0,-4.0) node[below]{$y$};
+ \fill (L) circle(2.5pt);\fill (R) circle(2.5pt);
+ \node[labelclean,above=5pt] at (L){$(-4l,0)$};\node[labelclean,above=5pt] at (R){$(4l,0)$};
+ \draw[guide] (L)--(P0)--(R);
+ \draw[curve] (L)--(P1)--(R);
+ \draw[orange!80!black,dash pattern=on 4pt off 2pt] (L)--(P2)--(R);
+ \fill[TextGray] (P0) circle(2.3pt);\node[labelclean,left=6pt] at (P0){初态 $(0,3l)$};
+ \fill[DeepBlue] (P1) circle(2.5pt);\node[labelclean,right=6pt] at (P1){(a) 末态};
+ \fill[orange!80!black] (P2) circle(2.5pt);\node[labelclean,right=6pt] at (P2){(b) 末态};
+ \draw[vector] (P0)--++(0,-.78) node[left=4pt]{$G$};
+ \draw[<->,TextGray] (.22,-4.05)--(3,-4.05) node[midway,below=3pt]{$3l$};
+\end{tikzpicture}
+\bookcaption{杂技演员水平移动 $3l$；灰虚线为初态，蓝实线与橙虚线分别为不可伸长绳和零原长弹性支的末态。}
+\label{r2ch07:fig:012}
+\end{center}}
+
+\newcommand{\figDoorBearing}{%
+\begin{center}
+\begin{tikzpicture}[scale=.88]
+ \draw[ground] (-3.0,-1.65)--(3.0,-1.65);
+ \draw[curve,fill=orange!28] (-1.5,-1.25)--(-1.5,1.35) arc[start angle=180,end angle=360,x radius=1.5,y radius=.42]--(1.5,-1.25) arc[start angle=0,end angle=-180,x radius=1.5,y radius=.42]--cycle;
+ \draw[curve,fill=orange!38] (0,1.35) ellipse (1.5 and .42);
+ \draw[guide] (0,-1.25)--(0,1.35);
+ \draw[very thick,DeepBlue] (0,1.35)--(.45,-1.25);
+ \draw[->,DeepBlue,thick] (-1.85,1.75) arc[start angle=155,end angle=385,x radius=1.85,y radius=.65];
+ \node[labelclean] at (0,2.3){顶端匀速转动 $\omega$};
+ \draw[->,TextGray] (.1,.45) arc[start angle=90,end angle=79,radius=1.0];
+ \node[labelclean,anchor=west] at (.82,.42){扭角 $\varphi$};
+ \draw[<->,TextGray] (-1.8,-1.25)--(-1.8,1.35) node[midway,left=4pt]{$h$};
+ \draw[<->,TextGray] (0,-1.48)--(1.5,-1.48) node[midway,below=3pt]{$R$};
+ \draw[vector,TextGray] (2.15,-.9)--(1.35,-.9) node[midway,above=5pt]{$\mu p$};
+\end{tikzpicture}
+\bookcaption{门轴承的粘滑模型：底面粘住时圆柱积累扭转，达到摩擦极限后迅速滑移。}
+\label{r2ch07:fig:013}
+\end{center}}

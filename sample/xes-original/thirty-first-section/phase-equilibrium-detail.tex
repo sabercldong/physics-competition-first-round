@@ -1,0 +1,62 @@
+\subsubsection*{相变时为什么吸热而不升温}
+
+对固定压强下的两相平衡，温度由共存条件确定。输入热量主要用于改变两相比例，
+并不必然增大每个分子的平均平动能。设单位质量潜热为 $L$，转化质量为 $m$，则
+$Q=mL$。但 $L$ 不是单位质量内能变化：若只有体积功，第一定律给出
+\begin{equation}
+ \Delta u=L-p(v_2-v_1),
+\end{equation}
+其中 $u$ 为比内能，$v$ 为比体积，单位分别为 $\mathrm{J/kg}$、$\mathrm{m^3/kg}$。
+把 $h=u+pv$ 定义为比焓，在同一压强下就有 $L=h_2-h_1$。
+气化时 $v_g-v_l>0$，吸热的一部分成为向外膨胀功；因此通常 $\Delta u<L$。
+若过程包含显著电功、表面功或动能变化，就必须另列这些能量项，不能直接套用这一简式。
+
+\subsubsection*{两相比例与杠杆关系}
+
+在给定的气液共存温度下，令总质量为 $m$，其中气相质量为 $m_g$，气相质量分数
+$x=m_g/m$。忽略界面体积，两相总体积满足
+\[
+ V=(m-m_g)v_l+m_gv_g,
+ \qquad \bar v=\frac Vm=(1-x)v_l+xv_g.
+\]
+移项得
+\begin{equation}
+ x=\frac{\bar v-v_l}{v_g-v_l},\qquad 0\le x\le1.
+\end{equation}
+所以等温两相区的体积变化不是各相任意改变密度，而主要是气相、液相比例改变。
+当 $\bar v=v_l$ 时全部为液体；当 $\bar v=v_g$ 时刚好全部成为蒸气。
+这也解释了后面含水空气题中，液水尚存与液水恰好消失之后必须使用不同压强表达式。
+
+\subsubsection*{共存曲线的斜率：克拉珀龙方程}
+
+对固定组成、仅有体积功的纯物质，可逆基本关系为
+$\dd U=T\dd S-p\dd V$。定义 $G=U+pV-TS$，逐项微分并约去对应项：
+\[
+ \dd G=(T\dd S-p\dd V)+p\dd V+V\dd p-T\dd S-S\dd T
+ =V\dd p-S\dd T.
+\]
+对同一种物质的单位质量，$g=G/m$ 满足 $\dd g=v\dd p-s\dd T$。
+两相平衡要求 $g_1=g_2$；沿共存曲线移动一小步后仍然相等，因此
+\[
+ v_1\dd p-s_1\dd T=v_2\dd p-s_2\dd T,
+ \qquad (v_2-v_1)\dd p=(s_2-s_1)\dd T.
+\]
+相变可逆且等温时 $L=T(s_2-s_1)$，于是
+\begin{equation}
+ \frac{\dd p}{\dd T}=\frac{L}{T(v_2-v_1)}.
+\end{equation}
+两边的单位均为 $\mathrm{Pa/K}$。汽化时 $L>0,v_g>v_l$，共存曲线斜率为正；
+普通条件下冰融化为水时体积反而减小，故水的固液共存线斜率为负。
+这给出了相图中倾斜方向的物理依据，不应靠记忆图形判断。
+
+在远离临界点的汽化过程中，若 $v_g\gg v_l$、蒸气近似理想气体，
+$v_g=RT/(Mp)$，其中 $M$ 是摩尔质量，则
+\[
+ \frac{\dd\ln p_s}{\dd T}=\frac{ML}{RT^2}.
+\]
+再在不太宽的温区内把 $L$ 视为常数，从 $T_1$ 积分到 $T_2$ 得
+\begin{equation}
+ \ln\frac{p_s(T_2)}{p_s(T_1)}
+ =\frac{ML}{R}\left(\frac1{T_1}-\frac1{T_2}\right).
+\end{equation}
+升温时右端为正，饱和蒸气压升高；临界点附近两相比体积接近，不能继续忽略 $v_l$。

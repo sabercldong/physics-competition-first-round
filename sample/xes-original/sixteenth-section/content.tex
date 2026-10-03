@@ -1,0 +1,424 @@
+\input{theory.tex}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 14.1【统统算出来】}
+已知 $\overrightarrow{AB}=(1,1,1)$，$\overrightarrow{AC}=(1,1,0)$，求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item $\overrightarrow{AB}\times\overrightarrow{AC}$；
+  \item $\overrightarrow{AB}\cdot\overrightarrow{AC}$；
+  \item $\overrightarrow{AB}$ 与 $\overrightarrow{AC}$ 夹角的正弦；
+  \item $\overrightarrow{AB}$ 与 $\overrightarrow{AC}$ 夹角的余弦；
+  \item 验证 $\sin^2\theta+\cos^2\theta=1$。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+记 $\vect a=(1,1,1)$、$\vect b=(1,1,0)$。直接按分量计算：
+\[
+ \vect a\times\vect b
+ =\begin{vmatrix}
+   \vect i&\vect j&\vect k\\
+   1&1&1\\
+   1&1&0
+  \end{vmatrix}
+ =\boxed{(-1,1,0)}.
+\]
+而
+\[
+ \vect a\cdot\vect b=1+1+0=\boxed2,
+ \qquad
+ |\vect a|=\sqrt3,\quad |\vect b|=\sqrt2.
+\]
+由内、外积的几何意义，
+\[
+ \sin\theta=\frac{|\vect a\times\vect b|}{|\vect a||\vect b|}
+ =\frac{\sqrt2}{\sqrt6}=\boxed{\frac1{\sqrt3}},
+\]
+\[
+ \cos\theta=\frac{\vect a\cdot\vect b}{|\vect a||\vect b|}
+ =\frac2{\sqrt6}=\boxed{\sqrt{\frac23}}.
+\]
+最后
+\[
+ \sin^2\theta+\cos^2\theta=\frac13+\frac23=1,
+\]
+验证完毕。由于内积为正，夹角是锐角；因此这里的正弦、余弦均取正值。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 14.2【面积速度】}
+学习角动量之前，小明定义了“面积速度”：在参考点看来，一个质点与参考点的连线在运动
+过程中会扫过一定面积。按照右手螺旋方向把面积定义为面积矢量 $\vect S$，面积速度矢量即
+单位时间内扫过的面积矢量。试说明面积速度矢量与角动量的关系。
+\areaVelocityDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+在短时间 $\dd t$ 内，质点位移为 $\dd\vect r=\vect v\dd t$。
+图~\ref{ch09:fig:area}中窄三角形的有向面积为
+\[
+ \dd\vect S=\frac12\vect r\times\dd\vect r
+ =\frac12\vect r\times\vect v\,\dd t.
+\]
+所以面积速度矢量
+\[
+ \boxed{\frac{\dd\vect S}{\dd t}
+ =\frac12\vect r\times\vect v
+ =\frac{\vect L}{2m}}.
+\]
+面积速度与角动量方向相同，大小相差常数 $2m$。于是，有心力作用下角动量守恒等价于
+面积速度恒定，这正是开普勒第二定律的几何本质。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 14.3【继续算出来】}
+小明研究刚体的角动量，需要先计算转动惯量。以下刚体质量均匀分布，质量均为 $m$。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 长为 $l$ 的细杆绕其中垂线的转动惯量；
+  \item 半径为 $R$ 的圆盘绕一条直径的转动惯量；
+  \item 半径为 $R$ 的空心球壳绕一条直径的转动惯量；
+  \item 半径为 $R$ 的实心球体绕一条直径的转动惯量。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+四问都从 $I=\int r_\perp^2\dd m$ 出发；$r_\perp$ 必须是到所求转轴的垂距，而不一定是到原点的距离。
+
+\textbf{(1) 细杆。}\quad 取杆中点为原点，线密度 $\lambda=m/l$：
+\[
+ I=\lambda\int_{-l/2}^{l/2}x^2\dd x
+ =\frac ml\left[\frac{x^3}{3}\right]_{-l/2}^{l/2}
+ =\frac ml\frac{l^3}{12}=\boxed{\frac1{12}ml^2}.
+\]
+
+\textbf{(2) 圆盘。}\quad 先算垂直盘面过圆心轴的转动惯量。面密度
+$\sigma=m/(\pi R^2)$，半径为 $r$ 的圆环质量 $\dd m=2\pi r\sigma\dd r$，故
+\[
+ I_z=\int_0^Rr^2(2\pi r\sigma\dd r)=\frac12mR^2.
+\]
+对平面薄片使用垂直轴定理 $I_z=I_x+I_y$，又由对称性 $I_x=I_y$，所以绕直径
+\[
+ \boxed{I_x=\frac14mR^2}.
+\]
+
+\textbf{(3) 空心球壳。}\quad 这里指厚度可忽略的均匀薄球壳。取z为所求直径轴，
+极角$\theta$从正z方向量起。图~\ref{ch09:fig:sphere-band}中球带的环半径为 $R\sin\theta$，
+沿球面的带宽为 $R\dd\theta$，二者相乘再乘 $2\pi$ 得球带面积；它不是投影到水平面后的面积。
+\sphereBandDiagram
+面密度 $\sigma=m/(4\pi R^2)$，因而
+\[
+ \dd m=2\pi R^2\sigma\sin\theta\dd\theta,
+ \qquad r_\perp=R\sin\theta.
+\]
+于是
+\[
+ I=2\pi\sigma R^4\int_0^\pi\sin^3\theta\dd\theta.
+\]
+令 $u=\cos\theta$，$\dd u=-\sin\theta\dd\theta$，上下限由1变为−1：
+\[
+ \int_0^\pi\sin^3\theta\dd\theta
+ =\int_{-1}^{1}(1-u^2)\dd u
+ =\left[u-\frac{u^3}{3}\right]_{-1}^{1}=\frac43.
+\]
+代入面密度，$I=2\pi[m/(4\pi R^2)]R^4(4/3)=\boxed{2mR^2/3}$。
+
+\textbf{(4) 实心球。}\quad 把球体看成半径为 $r$、厚度 $\dd r$ 的球壳。设体密度
+$\rho=3m/(4\pi R^3)$，球壳质量为 $\dd m=4\pi r^2\rho\dd r$，其转动惯量为
+$\dd I=(2/3)r^2\dd m$，故
+\[
+ I=\frac{8\pi\rho}{3}\int_0^Rr^4\dd r
+ =\frac{8\pi\rho R^5}{15}
+ =\boxed{\frac25mR^2}.
+\]
+四个结果都有质量乘长度平方的量纲；同质量、同外半径下，实心球的质量更靠近轴，
+其惯量小于薄球壳，$2/5<2/3$ 与几何分布一致。
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 14.4【小明的疑惑】}
+质量为 $m$ 的质点被长为 $l$ 的绳子拉着，在水平面内做圆周运动，绳子与竖直方向夹角
+$\theta$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 小球的速度大小为多大？
+  \item 小球旋转的角速度 $\vect\omega$ 的大小和方向？
+  \item 相对于悬挂点，小球角动量 $\vect L$ 的方向？
+  \item 角动量与角速度似乎不在同一方向上，这样对吗？
+  \item 验证这个运动是否满足角动量定理。
+\end{enumerate}
+\conicalPendulumDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $0<\theta<\pi/2$，绳不可伸长且小球可视为质点。图~\ref{ch09:fig:conical}中圆周半径
+$r=l\sin\theta$。绳的张力 $T$ 的竖直分量平衡重力，水平分量提供向心力：
+\[
+ T\cos\theta=mg,
+ \qquad
+ T\sin\theta=\frac{mv^2}{l\sin\theta}.
+\]
+相除得
+\[
+ \boxed{v=\sqrt{gl\,\frac{\sin^2\theta}{\cos\theta}}}.
+\]
+小球绕竖直轴转动，故
+\[
+ \boxed{\omega=\frac{v}{l\sin\theta}
+ =\sqrt{\frac{g}{l\cos\theta}}},
+\]
+$\vect\omega$ 沿竖直轴，方向由圆周运动方向按右手螺旋法则确定。
+
+再看相对于悬点 $O$ 的角动量。与图一致，取 $+x$ 向右、$+z$ 向上、$+y$ 入纸面，
+小球此刻在O的右下方，速度沿 $+y$，因此 $\vect\omega$ 向上。此时
+\[
+ \vect r=(l\sin\theta,0,-l\cos\theta),\qquad
+ \vect v=(0,v,0).
+\]
+所以
+\[
+ \boxed{\vect L=m\vect r\times\vect v
+ =(mlv\cos\theta,0,mlv\sin\theta)}.
+\]
+$\vect L$ 与绳、竖直轴共面，且垂直于绳；它一般并不与竖直的 $\vect\omega$ 平行。
+这并不矛盾：只有绕对称主轴定轴转动时才能简单写成 $\vect L=I\vect\omega$，质点作圆锥摆
+并不满足该条件。
+
+最后验证角动量定理。张力沿 $\vect r$，对悬点力矩为零；只有重力产生力矩：
+\[
+ \vect M_O=\vect r\times m\vect g=(0,mgl\sin\theta,0).
+\]
+上面的 $\vect L$ 随小球以角速度 $\omega$ 绕竖直轴转动。其水平分量大小为
+$L_h=mlv\cos\theta$，因而
+\[
+ \left|\frac{\dd\vect L}{\dd t}\right|
+ =\omega L_h
+ =\frac{v}{l\sin\theta}(mlv\cos\theta)
+ =\frac{mv^2\cos\theta}{\sin\theta}
+ =mgl\sin\theta,
+\]
+其方向为 $+y$：绕 $+z$ 转动使L的正x水平分量转向 $+y$。
+也可直接用 $\dot{\vect L}=\vect\omega\times\vect L$
+得到 $(0,\omega mlv\cos\theta,0)$，故大小和方向都与 $\vect M_O$ 一致。
+当$\theta$趋于零时v趋于零，轨道缩为一点；角速度公式的有限极限不代表静止点仍有可见的圆周轨迹。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 14.5【哑铃落地】}
+两端各为质量m质点的哑铃由长 $2l$ 的轻杆连接，以速度 $v_0$ 竖直向下纯平动，杆与地面
+夹角为 $0\le\theta\le\pi/2$。下端A首先碰到沙地，并在极短碰撞中粘住、固定在该点；
+另一端B不同时碰地。忽略碰撞期间重力冲量。用角动量方法求碰后瞬间角速度、B的速度及机械能损失。
+这也是把碰撞与能量方法用于哑铃落地模型的另一种解法。
+\dumbbellGroundDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:dumbbell-ground}标出了A、B及碰前速度。对固定接触点A取矩，
+沙地冲量的力矩为零，故碰撞前后关于A的角动量守恒。取顺时针为正，B的动量产生正角动量。
+$\theta$=0的情形应理解为A先接触的极限；若两端同时接触，则是另一种约束，不能套本解。
+
+碰前上端 $B$ 的动量为 $m\vect v_0$，下端 $A$ 相对自身无力臂，所以
+\[
+ L_A^-=m v_0(2l\cos\theta).
+\]
+碰后哑铃绕 $A$ 转动，转动惯量只有上端质点贡献：
+\[
+ I_A=m(2l)^2=4ml^2.
+\]
+因此
+\[
+ m v_0(2l\cos\theta)=4ml^2\omega,
+ \qquad
+ \boxed{\omega=\frac{v_0\cos\theta}{2l}}.
+\]
+碰后瞬间上端速度大小为
+\[
+ \boxed{v_B'=2l\omega=v_0\cos\theta},
+\]
+方向垂直于杆。碰撞损失的机械能为
+\[
+ \Delta E
+ =mv_0^2-\frac12I_A\omega^2
+ =\boxed{mv_0^2\left(1-\frac12\cos^2\theta\right)}.
+\]
+这里不能对整个哑铃应用线动量守恒，因为沙地给出的外冲量不可忽略；但以碰撞点取矩后，
+该冲量的力矩冲量为零，角动量守恒恰好可用。
+\end{xesolution}
+
+\Needspace{0.40\textheight}
+\begin{origexamplebox}{例题 14.6【哑铃的碰撞】}
+两个相同哑铃进行完全弹性碰撞：一个初始静止，另一个以速度 $v_0$ 撞来。左侧哑铃的右端
+重物与右侧哑铃的左端重物发生对心正碰，且碰撞线垂直于两根轻杆。每个端点重物的质量均为
+$m$。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 碰后四个重物的运动速度；
+  \item 计算接触两端点的恢复系数。
+\end{enumerate}
+\dumbbellCollisionDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+令每根杆长为 $2l$。只讨论沿碰撞线方向的速度；图~\ref{ch09:fig:dumbbell-collision}画的是碰撞前，
+运动哑铃纯平动，四个端点依次记为
+$A,B,C,D$，其中 $B,C$ 接触。设碰撞冲量大小为 $J$，方向使 $B$ 减速、$C$ 加速。
+
+对左哑铃，总质量 $2m$，质心速度改变量为 $-J/(2m)$；关于质心的角冲量为 $-Jl$，而
+$I_{\rm c}=2ml^2$，故角速度改变量为 $-J/(2ml)$。于是
+\[
+ v_A'=v_0,\qquad v_B'=v_0-\frac{J}{m}.
+\]
+同理对右哑铃，
+\[
+ v_C'=\frac{J}{m},\qquad v_D'=0.
+\]
+这组结果清楚地显示：冲量只改变两个接触端点的瞬时速度，远端点在碰后瞬间仍保持原速度。
+
+完全弹性碰撞还要求系统动能守恒：
+\[
+ \frac12m(v_0^2+v_0^2)
+ =\frac12m\left[v_0^2+\left(v_0-\frac Jm\right)^2
+ +\left(\frac Jm\right)^2+0^2\right].
+\]
+除去无碰撞的 $J=0$ 解，得到 $J=mv_0$，因而
+\[
+ \boxed{v_A'=v_0,\quad v_B'=0,\quad v_C'=v_0,\quad v_D'=0}.
+\]
+接触点的接近速度为 $v_B-v_C=v_0$，分离速度为 $v_C'-v_B'=v_0$，所以
+\[
+ \boxed{e=\frac{v_C'-v_B'}{v_B-v_C}=1}.
+\]
+这也与题设“完全弹性碰撞”一致。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 14.7【跷跷板跳高】}
+小明想跳得更高，以便扣篮。他把两个轻质、等臂跷跷板顺次放在篮球场上。A 同学质量
+$90\,\mathrm{kg}$，B 同学质量 $80\,\mathrm{kg}$，小明质量 $60\,\mathrm{kg}$。A 从
+$50\,\mathrm{cm}$ 高处落在第一块跷跷板上，把 B 弹起；B 随后落在第二块跷跷板上，把
+小明弹起。所有碰撞均为弹性碰撞。按短时、等臂的理想冲击模型，只计算各人的竖直运动：
+跷跷板在碰撞位置近于水平，B两次接触点等高，忽略转移到第二装置所需的水平运动对竖直运动的影响，
+两次弹射后人与板均可分离。小明相对于起跳位置的重心能上升多高？
+\seesawDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+A 落到跷跷板时的速率为
+\[
+ u_A=\sqrt{2gh_0},\qquad h_0=0.50\,\mathrm m.
+\]
+图~\ref{ch09:fig:seesaw}用两个面板表示两次冲击，面板间的箭头只表示过程先后，不是飞行轨迹。
+设第一次接触中板给A、B的竖直向上冲量大小分别为 $J_A,J_B$。对轻质板的固定支点取冲量矩，
+等臂且板的转动惯量忽略，故 $J_A=J_B=J$。令A碰后向下速度为 $u_A'$、B向上速度为 $v_B$：
+\[
+ m_A(u_A'-u_A)=-J,\qquad m_Bv_B=J.
+\]
+消去J得 $m_Au_A=m_Au_A'+m_Bv_B$。完全弹性的理想传递还给出
+\[
+ \frac12m_Au_A^2=\frac12m_Au_A'^2+\frac12m_Bv_B^2.
+\]
+由第一式 $m_A(u_A-u_A')=m_Bv_B$，代入第二式并除去无传递的零解，得到
+$u_A+u_A'=v_B$。再与动量形式的关系联立，第一次弹射速度为
+\[
+ v_B=\frac{2m_A}{m_A+m_B}u_A.
+\]
+B 上升后再落回同一高度，撞击第二块跷跷板前速率仍为 $v_B$。第二次弹性碰撞后，小明的
+起跳速度为
+\[
+ v_C=\frac{2m_B}{m_B+m_C}v_B
+ =\frac{2m_B}{m_B+m_C}\frac{2m_A}{m_A+m_B}u_A.
+\]
+故小明相对于起跳位置的上升高度
+\begin{align*}
+ h&=\frac{v_C^2}{2g}
+ =h_0\left(
+ \frac{2m_A}{m_A+m_B}
+ \frac{2m_B}{m_B+m_C}
+ \right)^2\\
+ &=0.50\left(\frac{180}{170}\cdot\frac{160}{140}\right)^2\mathrm m
+ \approx\boxed{0.732\,\mathrm m}.
+\end{align*}
+结果是在题设理想传递与等高条件下的重心上升量。轻板两端的瞬时几何约束不意味着A、B分离后的
+自由速度相等；正是冲量关系与弹性条件共同给出结果。若B第二次落点低于第一次起跳点 $\Delta h$，
+应把第二次入射速率改为 $\sqrt{v_B^2+2g\Delta h}$，不能仍用 $v_B$。
+式中速度与 $\sqrt{gh_0}$ 同量纲，全部质量同比放大时高度不变；实际耗散、板质量和主动蹬跳须另建模型。
+\end{xesolution}
+
+\Needspace{0.44\textheight}
+\begin{origexamplebox}{例题 14.8【漏斗与黄豆】}
+一个光滑漏斗内部为圆锥面，轴截面是正三角形。小明把一粒黄豆放在漏斗内，给它合适的
+水平初速度 $v_0$，黄豆在漏斗中作匀速圆周运动。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 黄豆转圈位置与圆心的距离为多大？
+  \item 若把初速度加倍，且黄豆不会飞出或漏下，最高、最低分别能达到多高？
+  \item 若把初速度减半，且黄豆不会飞出或漏下，最高、最低分别能达到多高？
+\end{enumerate}
+\funnelDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:funnel}以O为圆锥顶点，h竖直向上量；P处的初速度垂直轴截面，不能沿半径。
+圆锥轴截面是正三角形，所以母线与竖直轴夹角 $\theta=30^\circ$，半径与高度满足
+$r=h\tan\theta=h/\sqrt3$。
+
+\textbf{(1)} 黄豆作水平匀速圆周运动。支持力 $N$ 的竖直分量平衡重力，水平分量提供向心力：
+\[
+ N\sin\theta=mg,
+ \qquad
+ N\cos\theta=\frac{mv_0^2}{r_0}.
+\]
+所以
+\[
+ \frac{v_0^2}{r_0}=g\cot\theta,
+ \qquad r_0=\frac{v_0^2\tan\theta}{g}=\boxed{\frac{v_0^2}{\sqrt3g}},
+ \qquad
+ h_0=r_0\cot\theta=\boxed{\frac{v_0^2}{g}}.
+\]
+
+\textbf{(2)(3)} 改变初速度后，黄豆不再作定高圆周运动，但关于圆锥轴的角动量和机械能仍守恒。
+令新初速度为 $u=kv_0$，其中加倍时 $k=2$，减半时 $k=1/2$。初态位于 $r_0$，在最高、
+最低回归点处径向速度为零。轴向角动量守恒给出
+\[
+ mur_0=mvr,
+ \qquad v=\frac{ur_0}{r}.
+\]
+机械能守恒，且 $h=\sqrt3r$：
+\[
+ \frac12mu^2+mg\sqrt3r_0
+ =\frac12m\frac{u^2r_0^2}{r^2}+mg\sqrt3r.
+\]
+令 $x=r/r_0$，再用原匀速圆周条件 $v_0^2=\sqrt3gr_0=gh_0$，把能量等式除以 $mv_0^2$：
+\[
+ \frac{k^2}{2}+1=\frac{k^2}{2x^2}+x.
+\]
+乘以 $2x^2$ 并移项，化为
+\[
+ 2x^3-(k^2+2)x^2+k^2
+ =(x-1)\bigl(2x^2-k^2x-k^2\bigr)=0.
+\]
+$x=1$ 是改变速度的瞬间所在回归点，另一个正根为
+\[
+ x_* =\frac{k^2+k\sqrt{k^2+8}}{4}.
+\]
+因高度与半径成正比，$h_*=x_*h_0$。
+
+当 $k=2$ 时，$x_*=1+\sqrt3>1$，初始位置是最低点：
+\[
+ \boxed{h_{\min}=h_0=\frac{v_0^2}{g}},
+ \qquad
+ \boxed{h_{\max}=(1+\sqrt3)h_0
+ =\frac{(1+\sqrt3)v_0^2}{g}}.
+\]
+\end{xesolution}
+
+\begin{solutioncontinuation}
+当 $k=1/2$ 时，$x_*=(1+\sqrt{33})/16<1$，初始位置是最高点：
+\[
+ \boxed{h_{\max}=h_0=\frac{v_0^2}{g}},
+ \qquad
+ \boxed{h_{\min}=\frac{1+\sqrt{33}}{16}h_0
+ =\frac{(1+\sqrt{33})v_0^2}{16g}}.
+\]
+图中的 $h$ 是从圆锥顶点所在水平面量起的竖直高度；两种结论都需要满足题设“不飞出、
+不漏下”的边界条件。若k=1，方程化为 $(x-1)^2(2x+1)=0$，唯一正回归半径仍为 $r_0$，
+恢复原匀速圆周；这也是对全部系数的检验。各高度都与 $v_0^2/g$ 同量纲。
+光滑圆锥面的法向方程还给出 $N=m(g\sin\theta+v_\varphi^2\cos\theta/r)>0$，
+说明在r为正的这段运动中无需负支持力；实际漏斗的口缘与底孔仍须按题设检查。
+\end{solutioncontinuation}

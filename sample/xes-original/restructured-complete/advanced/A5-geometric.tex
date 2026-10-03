@@ -1,0 +1,747 @@
+\section{几何光学}
+
+\subsection{光线方程}
+
+在折射率随位置连续变化的介质中，把光的局域传播方向记为单位切向量
+$\vect\tau$，弧长记为 $s$。光线垂直于等相位面，满足
+\begin{equation}\label{advA5:eq:ray}
+ \boxed{\frac{\dd}{\dd s}(n\vect\tau)=\nabla n}.
+\end{equation}
+取 Frenet 标架 $\vect\tau,\vect\nu$，并记曲率
+$\kappa=\dd\theta/\dd s$，式 \eqref{advA5:eq:ray} 的切向和法向分量分别为
+\[
+ \frac{\dd n}{\dd s}=(\nabla n)\cdot\vect\tau,\qquad
+ n\kappa=(\nabla n)\cdot\vect\nu .
+\]
+前式是链式法则，后式则说明光线总向折射率增大的方向弯曲。图
+\ref{advA5:fig:ray-equation} 把局部折射率分层、切向、法向和梯度放在同一幅图中；
+其中所有标签都避开了曲线。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.9]
+ \foreach \y in {-.5,.4,1.3}{\draw[RuleGray,dashed] (-3,\y)--(3.3,\y);}
+ \draw[curve,domain=-2.7:2.7,samples=90] plot (\x,{.4+.13*\x*\x});
+ \coordinate(P)at(0,.4);\fill(P)circle(2pt)node[below left]{$P$};
+ \draw[vector] (P)--(1.4,.4) node[below]{$\vect\tau$};
+ \draw[vector] (P)--(0,1.55) node[left]{$\vect\nu$};
+ \draw[vector,Gold!80!black] (1.9,.4)--(1.9,1.55) node[above]{$\nabla n$};
+ \node[right] at (3.35,1.3){等 $n$ 线};\node at (-1.6,1.9){光线向高折射率侧弯曲};
+\end{tikzpicture}
+\bookcaption{光线方程的局域几何：$\nabla n$ 的法向分量决定曲率}
+\label{advA5:fig:ray-equation}
+\end{minipage}\end{center}
+
+若介质具有固定法线方向的平行分层（例如 $n=n(y)$），$\vect\tau$ 与 $\nabla n$ 夹角为
+$\varphi$，则
+\[
+ \dd n=|\nabla n|\cos\varphi\,\dd s,\qquad
+ \dd(n\sin\varphi)=0,
+\]
+因而
+\[
+ \left|\frac{\dd\varphi}{\dd s}\right|
+ =\frac{|\nabla n|}{n}\sin\varphi,\qquad
+ n\frac{\dd\theta}{\dd s}=(\nabla n)\cdot\vect\nu,
+\]
+这里梯度方向固定，上式才可由角度 $\varphi$ 直接积分。对一般 $n(\vect r)$，$\nabla n$ 自身方向也沿途改变，不能声称 $n\sin\varphi$ 守恒；球对称介质相应的不变量为 $nr\sin\varphi$。
+
+二维情形若 $n=n(y)$，取 $\theta$ 为光线与 $y$ 轴的夹角，则平移对称性给出
+\[
+ \boxed{n(y)\sin\theta=\text{常量}}.
+\]
+它是分层介质 Snell 定律的连续极限。已知初始点与初始方向后，
+$\dd x/\dd y=\tan\theta(y)$ 便给出轨迹。
+
+\begin{advexamplebox}{费马原理与光线方程的等价性}\label{advA5:ex:fermat-ray}
+从光程泛函
+\[
+ \mathcal S[\vect r]=\int_A^B n(\vect r)\,\dd s
+\]
+出发，证明其驻值条件与式 \eqref{advA5:eq:ray} 等价。
+\end{advexamplebox}
+\begin{advsolution}
+以任意参数 $\lambda$ 描述路径，令
+$\dot{\vect r}=\dd\vect r/\dd\lambda$，则
+\[
+ \mathcal S=\int n(\vect r)|\dot{\vect r}|\,\dd\lambda .
+\]
+Euler--Lagrange 方程为
+\[
+ \frac{\dd}{\dd\lambda}
+ \left(n\frac{\dot{\vect r}}{|\dot{\vect r}|}\right)
+ -|\dot{\vect r}|\,\nabla n=0.
+\]
+利用 $\vect\tau=\dot{\vect r}/|\dot{\vect r}|$ 以及
+$\dd s=|\dot{\vect r}|\dd\lambda$，约去 $|\dot{\vect r}|$ 得
+\[
+ \frac{\dd}{\dd s}(n\vect\tau)=\nabla n.
+\]
+反过来，若每段光线满足此方程，乘以任意端点固定的变分
+$\delta\vect r$ 并分部积分，边界项为零，得到
+$\delta\mathcal S=0$。两者等价。量纲上两边均为
+$\text{长度}^{-1}$；均匀介质 $\nabla n=0$ 时
+$\vect\tau$ 不变，退化为直线传播。
+\end{advsolution}
+
+\subsection{光力类比与变折射率介质}
+
+把质量取为 $1$ 的辅助粒子速度规定为 $\vect v=n\vect\tau$，则
+\[
+ \frac{\dd\vect v}{\dd t}=n\nabla n
+ =-\nabla\!\left(-\frac{n^2}{2}\right).
+\]
+因此光线轨迹等价于辅助粒子在
+\[
+ V(\vect r)=-\frac{n^2(\vect r)}2,\qquad
+ E=\frac{v^2}2+V=0
+\]
+中的零能量轨迹。这里的 $v=n$ 只是一种重新参数化，绝不是介质中的真实光速
+$c/n$。平移对称性对应 $n\sin\theta$ 守恒，球对称性对应
+$nr\sin\theta$ 守恒。
+
+\begin{advexamplebox}{浅水波靠岸的轨迹}\label{advA5:ex:beach-ray}
+海岸线为 $x$ 轴，水深 $H(y)=ay$，$y>0$。在浅水近似下
+$c(y)=\sqrt{gH(y)}$。求一条波线的轨迹，并说明它如何靠岸。
+\end{advexamplebox}
+\begin{advsolution}
+定频波的等效折射率 $n\propto1/c\propto y^{-1/2}$。
+沿海岸方向平移对称，故
+\[
+ n\sin\theta=C,\qquad
+ \sin\theta=\sqrt{\frac{y}{y_m}},
+\]
+其中 $y_m$ 是轨迹在 $\theta=\pi/2$ 处的最深位置。于是
+\[
+ \frac{\dd x}{\dd y}=\tan\theta
+ =\sqrt{\frac{y}{y_m-y}}.
+\]
+积分得到
+\[
+ \boxed{x-x_c
+ =y_m\arcsin\sqrt{\frac{y}{y_m}}
+ -\sqrt{y(y_m-y)}}.
+\]
+令 $y=y_m\sin^2u$，可写成摆线参数式
+\[
+ y=\frac{y_m}{2}(1-\cos2u),\qquad
+ x-x_c=y_m\!\left(u-\frac12\sin2u\right).
+\]
+图中靠岸端 $y\to0$ 时 $\theta\to0$，波线垂直海岸入射，符合海浪近岸转向的物理图像。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.75]
+ \fill[DeepBlue!7] (-.4,0) rectangle (7,3.25);
+ \draw[thick] (-.4,0)--(7,0);
+ \node[below] at (5.8,0) {海岸};
+ \draw[->] (0,0)--(0,3.45) node[above]{$y$};
+ \draw[->] (0,0)--(7.2,0) node[right]{$x$};
+ \draw[DeepBlue,very thick,->,domain=.06:3.05,samples=80]
+   plot ({2.1*(\x-.5*sin(2*\x r))},{2.1*sin(\x r)^2});
+ \node[TextGray] at (5.35,2.65) {$H(y)=ay$};
+\end{tikzpicture}
+\end{center}
+\end{advsolution}
+
+\begin{advexamplebox}{构造全方向无像差成像的折射率场}\label{advA5:ex:maxwell-fisheye}
+构造一个球对称折射率场，使任一点发出的全部光线在另一点重新会聚。
+\end{advexamplebox}
+\begin{advsolution}
+取 Maxwell 鱼眼分布
+\[
+ \boxed{n(r)=\frac{2n_0}{1+(r/a)^2}}.
+\]
+作球极投影 $r=a\tan(\chi/2)$，平面线元满足
+\[
+ n^2(r)(\dd r^2+r^2\dd\phi^2)
+ =n_0^2a^2(\dd\chi^2+\sin^2\chi\,\dd\phi^2).
+\]
+右端正是半径 $n_0a$ 的球面度量，所以平面中的光线对应球面大圆。
+任一点在球面上的对跖点由所有经过该点的大圆共同通过，投影回平面便得到唯一像点。
+若物点为复坐标 $z_0$，像点为
+\[
+ \boxed{z_i=-\frac{a^2}{\bar z_0}}.
+\]
+等光程来自球面上两对跖点间大圆弧长恒为 $\pi n_0a$。
+在 $r\ll a$ 的局部，$n\approx2n_0$，光线近似直线；在 $r\to\infty$ 时
+$n\to0$，这说明理想分布需要有限边界或镜面截断才能工程实现。
+\end{advsolution}
+
+\begin{advexamplebox}{螺旋光线、出射双曲面与透镜束腰}\label{advA5:ex:helical-fiber}
+圆柱光纤中，一条光线在半径 $r$ 的薄层上以螺距 $h$ 沿 $z$ 方向传播，
+该层折射率为 $n$。
+
+\begin{enumerate}
+\item 求该处 $\dd n/\dd r$；
+\item 光线从端面 $z=0$ 射入真空，求所有出射线构成的包络曲面；
+\item 端面加焦距 $f$ 的薄凸透镜，在出射光满足近轴条件时求束腰半径和束腰到端面的距离。
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.72]
+ \draw[RuleGray] (-2,-1.25) ellipse (1.15 and .38);
+ \draw[RuleGray] (-2,2.1) ellipse (1.15 and .38);
+ \draw[RuleGray] (-3.15,-1.25)--(-3.15,2.1) ( -0.85,-1.25)--(-.85,2.1);
+ \draw[DeepBlue,thick,domain=0:720,samples=150]
+   plot ({-2+1.15*cos(\x)},{-1.1+.0042*\x+.18*sin(\x)});
+ \draw[->] (-2,-1.4)--(-2,2.75) node[above]{$z$};
+ \draw[<->] (-2,-.82)--(-.85,-.82) node[midway,above]{$r$};
+ \draw[<->] (-3.55,-1.08)--(-3.55,.44) node[midway,left]{$h$};
+ \draw[->,DeepBlue] ({-2+1.15*cos(675)},{-1.1+.0042*675+.18*sin(675)})--++(.7,.316698) node[right]{$\vect\tau$};
+\end{tikzpicture}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+令 $b=h/(2\pi)$。螺线可写为
+$\vect r(\phi)=(r\cos\phi,r\sin\phi,b\phi)$，其曲率
+\[
+ \kappa=\frac{r}{r^2+b^2},
+\]
+主法向沿径向内侧。光线方程的法向分量给出
+\[
+ \boxed{\frac{\dd n}{\dd r}=-n\kappa
+ =-\frac{nr}{r^2+b^2}}.
+\]
+负号表示折射率向轴心增大，才能提供向心弯曲。
+
+螺线相对端面法线的入射角满足
+$\sin\theta_i=r/\sqrt{r^2+b^2}$。由 Snell 定律
+\[
+ q\equiv\tan\theta_t,\qquad
+ \sin\theta_t=\frac{nr}{\sqrt{r^2+b^2}},
+\]
+这要求右端不超过 $1$；否则发生全反射，题设的出射不成立。
+出射线的横向分量沿圆周切向，故传播距离 $z$ 后
+\[
+ \boxed{\rho^2=r^2+q^2z^2},
+\]
+是一叶双曲面的外侧轮廓。
+
+薄透镜只增加径向会聚斜率 $-r/f$，不改变切向斜率 $q$。因此
+\[
+ \rho^2(z)=\left(r-\frac{rz}{f}\right)^2+q^2z^2.
+\]
+令其对 $z$ 的导数为零，得到
+\[
+ \boxed{z_w=\frac{r^2f}{r^2+q^2f^2}},\qquad
+ \boxed{\rho_w=\frac{rqf}{\sqrt{r^2+q^2f^2}}}.
+\]
+$q\to0$ 时回到普通聚焦 $z_w=f,\rho_w=0$；$f\to\infty$ 时
+$z_w\to0,\rho_w\to r$，极限正确。
+\end{advsolution}
+
+\subsection{成像法则与傍轴系统}
+
+点光源 $S$ 发出的全部光线组成物方光场；若一族真实光线在另一点 $S'$ 再次相交，
+则 $S'$ 为像点。由费马原理，同一连续光线族的光程相等，这就是物像间的等光程原理。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[>=Latex,scale=.78]
+ \coordinate (S) at (-3.4,0); \coordinate (I) at (3.4,0);
+ \foreach \h in {-2,-1.25,-.55,.55,1.25,2}{
+   \draw[DeepBlue!85,->] (S) .. controls (-1.2,\h) and (1.2,\h) .. (I);
+ }
+ \fill (S) circle(1.5pt) node[left]{$S$};
+ \fill (I) circle(1.5pt) node[right]{$S'$};
+ \coordinate (P) at (0,1.45);
+ \fill (P) circle(1.3pt) node[above]{$P$};
+\end{tikzpicture}
+\bookcaption{物点与像点：连续光线族在两端共同相交且光程相等}
+\label{advA5:fig:object-image}
+\end{minipage}\end{center}
+
+实际光具组通常在主光轴附近工作，满足傍轴条件
+$|\theta|\ll1$ 或横向尺度与轴向尺度之比远小于 $1$。入射光发散时称实物，
+入射光会聚时称虚物；出射光会聚形成实像，出射光发散而反向延长相交形成虚像。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.82]
+ \begin{scope}
+  \draw[axis](-2.7,0)--(2.7,0);\draw[very thick](0,-1.3)--(0,1.3)node[above]{系统};
+  \foreach \h in {-.8,.8}{\draw[DeepBlue,->](-2.4,{2.2*\h})--(0,\h);\draw[DeepBlue,->](0,\h)--(2.4,\h);\draw[guide](0,\h)--(2,0);}
+  \fill(2,0)circle(1.6pt)node[below]{$S$};\node at (0,-2){虚物：入射线向前延长相交};
+ \end{scope}
+ \begin{scope}[xshift=6.8cm]
+  \draw[axis](-2.7,0)--(2.7,0);\draw[very thick](0,-1.3)--(0,1.3)node[above]{系统};
+  \foreach \h in {-.65,.65}{\draw[DeepBlue,->](-2.4,\h)--(0,\h);\draw[DeepBlue,->](0,\h)--(2.4,{2.2*\h});\draw[guide](0,\h)--(-2,0);}
+  \fill(-2,0)circle(1.6pt)node[below]{$S'$};\node at (0,-2){虚像：出射线向后延长相交};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{实物、虚物、实像和虚像由光束的发散或会聚状态判定}
+\label{advA5:fig:real-virtual}
+\end{minipage}\end{center}
+
+考虑曲率半径为 $R$ 的球面折射，物方、像方折射率分别为 $n,n'$。
+按“实物距、实像距为正；从出射方看曲率中心所在侧 $R>0$”的约定，
+傍轴展开等光程至二阶得到
+\begin{equation}\label{advA5:eq:spherical-refraction}
+ \boxed{\frac ns+\frac{n'}{s'}=\frac{n'-n}{R}},
+ \qquad
+ \boxed{\beta=\frac{y'}y=-\frac{ns'}{n's}}.
+\end{equation}
+反射可视为令像方传播方向反转；在统一符号约定下球面镜满足
+$1/s+1/s'=2/R$。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.9]
+\begin{scope}
+\draw[axis](-3.3,0)--(3.5,0);\draw[thick,domain=-65:65,variable=\t] plot ({1-cos(\t)},{sin(\t)});
+\fill(-3,0)circle(1.4pt)node[below]{$S$};\fill(2.771218,0)circle(1.4pt)node[below]{$S'$};
+\draw[DeepBlue,->](-3,0)--(0.063250,0.35)--(2.771218,0);
+\draw[guide](0.063250,0.35)--(1,0);\fill(1,0)circle(1.3pt)node[below]{$C$};
+\node at (-1.8,1){$n=1$};\node at (2,1){$n'=2$};\node at (0,-1.3){球面折射};
+\end{scope}
+\begin{scope}[xshift=7.1cm]
+\draw[axis](-3.4,0)--(.8,0);\draw[very thick,domain=-38:38,variable=\t] plot ({-2+2*cos(\t)},{2*sin(\t)});
+\fill(-3,0)circle(1.4pt)node[below]{$S$};\fill(-1.486050,0)circle(1.4pt)node[above left]{$S'$};
+\draw[DeepBlue,->](-3,0)--(-0.108572,0.65)--(-1.486050,0);
+\draw[guide](-2,0)--(-0.108572,0.65);\fill(-2,0)circle(1.3pt)node[below]{$C$};
+\node at (-1.3,-1.3){球面反射：法线通过 $C$};
+\end{scope}\end{tikzpicture}
+\bookcaption{球面折射（左）与球面反射（右）的物像几何和符号}
+\label{advA5:fig:spherical-imaging}
+\end{minipage}\end{center}
+
+定义光焦度
+\[
+ \Phi=\frac{n'-n}{R},\qquad
+ f=\frac n\Phi,\qquad f'=\frac{n'}\Phi ,
+\]
+于是
+\[
+ \frac fs+\frac{f'}{s'}=1,\qquad f:f'=n:n'.
+\]
+若改用从焦点量起的 Newton 坐标 $x=s-f$、$x'=s'-f'$，则
+\[
+ \boxed{xx'=ff'},\qquad
+ \boxed{\beta=-\frac fx=-\frac{x'}{f'}}.
+\]
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.9]
+ \draw[axis](-4.2,0)--(3.6,0);
+ \filldraw[fill=DeepBlue!8,thick] (0,-1.3) .. controls (-0.22,-0.65) and (-0.22,0.65) .. (0,1.3) .. controls (0.22,0.65) and (0.22,-0.65) .. cycle;
+ \foreach \x/\lab in {-2/F,0/O,2/F'}{\fill(\x,0)circle(1.5pt)node[below=4pt]{$\lab$};}
+ \foreach \h in {-.8,.8}{\draw[DeepBlue,->](-4,\h)--(0,\h)--(3,{-.5*\h});}
+ \draw[<->](-2,1.65)--(0,1.65)node[midway,above]{$f$};
+ \draw[<->](0,1.65)--(2,1.65)node[midway,above]{$f'$};
+ \node at (-.4,-1.7){同一介质中的薄会聚透镜：$f=f'$};
+\end{tikzpicture}
+\bookcaption{焦点、光心与物像方焦距；焦距符号服从实正虚负}
+\label{advA5:fig:focal-points}
+\end{minipage}\end{center}
+
+薄透镜可看成两个密接球面，光焦度直接相加：
+\[
+ \Phi=\Phi_1+\Phi_2
+ =\frac{n_L-n}{R_1}+\frac{n'-n_L}{R_2}.
+\]
+在空气中、采用几何曲率半径的常用符号，薄透镜制造者公式为
+$1/f=(n_L-1)(1/R_1-1/R_2)$。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.95]
+ \draw[axis](-4.4,0)--(3.1,0);\filldraw[fill=DeepBlue!8,thick] (0,-1.3) .. controls (-0.22,-0.65) and (-0.22,0.65) .. (0,1.3) .. controls (0.22,0.65) and (0.22,-0.65) .. cycle;
+ \draw[very thick,->](-4,0)--(-4,1)node[above]{$y$};
+ \draw[very thick,->](2.4,0)--(2.4,-.6)node[below]{$y'$};
+ \draw[DeepBlue,->](-4,1)--(0,1)--(2.4,-.6);
+ \draw[Gold!80!black,->](-4,1)--(0,-.6)--(2.4,-.6);
+ \draw[TextGray,->](-4,1)--(2.4,-.6);
+ \foreach \x/\lab in {-1.5/F,0/O,1.5/F'}{\fill(\x,0)circle(1.4pt)node[below=4pt]{$\lab$};}
+\end{tikzpicture}
+\bookcaption{薄透镜的三条傍轴特殊光线}
+\label{advA5:fig:thin-lens}
+\end{minipage}\end{center}
+
+若两个等效薄透镜相距 $d$，定义其相邻焦点间光学距离
+$\Delta=d-f_1'-f_2$，则复合系统的等效焦距为
+\[
+ f=-\frac{f_1f_2}{\Delta},\qquad
+ f'=-\frac{f_1'f_2'}{\Delta}.
+\]
+其主点一般不在任何一个透镜处；从主点量起，Gaussian 与 Newton 公式仍保持不变。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[x=1.65cm,y=1cm]
+ \draw[axis](-2.5,0)--(3.5,0);
+ \draw[very thick](0,-1.25)--(0,1.3)node[above]{$O_1$};
+ \draw[very thick](1,-1.25)--(1,1.3)node[above]{$O_2$};
+ \foreach \x/\lab in {-2/F_1,2/F'_1,-1/F_2,3/F'_2}{\fill(\x,0)circle(1.4pt)node[below]{$\lab$};}
+ \draw[guide](.666667,-1)--(.666667,1)node[above]{$H$};
+ \draw[guide](.333333,-1)--(.333333,1)node[below]{$H'$};
+ \draw[DeepBlue,->](-2.4,.8)--(0,.8)--(1,.4)--(2,-.2);
+ \draw[<->](0,-1.65)--(1,-1.65)node[midway,below]{$d$};
+ \node at (.5,1.95){示例：$f_1=f_2=2d$，主面由矩阵确定};
+\end{tikzpicture}
+\bookcaption{分离透镜组的光学距离、焦点与等效主面}
+\label{advA5:fig:lens-group}
+\end{minipage}\end{center}
+
+\subsection{理想成像系统与基点}
+
+\paragraph{用同一套矩阵核对光线和基点。}
+取光线列向量 $(y,nu)^{\mathsf T}$，其中 $u$ 为相对正光轴的小倾角；传播距离 $\ell$ 与光焦度 $\Phi$ 的薄界面分别为
+\[
+ T(\ell,n)=\begin{pmatrix}1&\ell/n\\0&1\end{pmatrix},
+ \qquad R(\Phi)=\begin{pmatrix}1&0\\-\Phi&1\end{pmatrix}.
+\]
+依照光实际通过的次序从右往左相乘。系统矩阵 $M=(\begin{smallmatrix}A&B\\C&D\end{smallmatrix})$ 的行列式为1，因而保存两条光线的拉格朗日不变量；共轭面之间 $B=0$，横向放大率为 $A$。
+空气中两薄透镜相距 $d$ 时，$M=R(1/f_2)T(d,1)R(1/f_1)$，故
+\[
+ C=-\left(\frac1{f_1}+\frac1{f_2}-\frac d{f_1f_2}\right),
+ \qquad f_{\rm eff}=-\frac1C.
+\]
+若 $d=f_1+f_2$，则 $C=0$，平行束入射后仍平行，是无焦系统，通常有限主面/有限焦距的构造不再适用。画图前应先据矩阵求焦点和主面，再选两条独立光线；焦点本身不是折射界面，光线不能在那里凭空拐折。
+
+
+理想成像系统是扩充空间中的可逆点映射，保主光轴、绕主光轴对称，并把直线和平面仍映成直线和平面。
+因此垂直主轴的平面彼此共轭，其间横向映射是统一放缩。除望远系统外，可用两对基点确定：
+横向放大率为 $1$ 的主点 $H,H'$，以及物方焦点 $F$ 和像方焦点 $F'$。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.86]
+ \draw[axis](-4.6,0)--(4.6,0);
+ \foreach \x/\lab in {-2.5/F,-1/H,1/H',2.5/F'}{\draw[RuleGray](\x,-1.4)--(\x,1.4);\node[above] at(\x,1.4){$\lab$};}
+ \draw[DeepBlue,->](-4.2,.7)--(-1,.7);\draw[guide,DeepBlue](-1,.7)--(1,.7);\draw[DeepBlue,->](1,.7)--(4,-.7);
+ \draw[Gold!80!black,->](-4,-.6)--(-1,.6);\draw[guide,Gold!80!black](-1,.6)--(1,.6);\draw[Gold!80!black,->](1,.6)--(4.2,.6);
+ \node at(0,-1.85){主面间虚线为等效对应，非真实内部光路};
+\end{tikzpicture}
+\bookcaption{主面和焦面决定的特殊光线}
+\label{advA5:fig:special-rays}
+\end{minipage}\end{center}
+
+从图 \ref{advA5:fig:special-rays} 可见：入射到物方主面高度 $y$ 的光线从像方主面同高处出射；
+平行光在像方焦面会聚，物方焦面上一点发出的光出射后平行。由相似三角形立刻得到
+$xx'=ff'$ 与 $\beta=-f/x=-x'/f'$。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.86]
+ \draw[axis](-5.1,0)--(3.8,0);
+ \foreach \x/\lab in {-2.2/F,-.7/H,.7/H',2.2/F'}{\draw[RuleGray](\x,-1)--(\x,1.5);\node[above] at(\x,1.5){$\lab$};}
+ \draw[very thick,->](-4.7,0)--(-4.7,1)node[above]{$S$};
+ \draw[very thick,->](3.1,0)--(3.1,-.6)node[below right]{$S'$};
+ \draw[DeepBlue,->](-4.7,1)--(-.7,1);\draw[guide,DeepBlue](-.7,1)--(.7,1);\draw[DeepBlue,->](.7,1)--(3.1,-.6);
+ \draw[Gold!80!black,->](-4.7,1)--(-.7,-.6);\draw[guide,Gold!80!black](-.7,-.6)--(.7,-.6);\draw[Gold!80!black,->](.7,-.6)--(3.1,-.6);
+ \draw[<->](-4.7,-1.35)--(-2.2,-1.35)node[midway,below]{$x$};
+ \draw[<->](2.2,-1.35)--(3.1,-1.35)node[midway,below]{$x'$};
+\end{tikzpicture}
+\bookcaption{共轭物像点与 Newton 坐标的几何推导}
+\label{advA5:fig:conjugate-points}
+\end{minipage}\end{center}
+
+角放大率定义为 $B=\tan u'/\tan u$，傍轴下为 $u'/u$。拉格朗日--亥姆霍兹不变量给出
+\[
+ nyu=n'y'u',\qquad
+ \boxed{B=\frac{n}{n'\beta}}.
+\]
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.95]
+ \draw[axis](-4.6,0)--(3.1,0);\draw[very thick](0,-1.4)--(0,1.4)node[above]{薄透镜};
+ \foreach \h in {-.9,.9}{\draw[DeepBlue,->](-4,0)--(0,\h)--(2.4,0);}
+ \fill(-4,0)circle(1.5pt)node[below]{$S$};\fill(2.4,0)circle(1.5pt)node[below]{$S'$};
+ \draw[Gold!80!black](-2.65,0)arc[start angle=0,end angle=12.6804,radius=1.35];
+ \node at(-2.30,.36){$u$};
+ \draw[Gold!80!black](1.3,0)arc[start angle=180,end angle=159.444,radius=1.1];
+ \node at(.85,.4){$|u'|$};
+ \node at(-.8,-1.7){$u,u'$ 按有向光线对主轴的小倾角定义};
+\end{tikzpicture}
+\bookcaption{角放大率由共轭光锥的顶角比定义}
+\label{advA5:fig:angular-magnification}
+\end{minipage}\end{center}
+
+除焦点外，三对常用基点为
+\[
+\begin{array}{c|c|c}
+\text{基点}&(x,x')&\text{特性}\\ \hline
+\text{主点}&(-f,-f')&\beta=1\\
+\text{节点}&(-f',-f)&B=1\\
+\text{二倍焦距点}&(f,f')&\beta=-1
+\end{array}
+\]
+当物像方折射率相同，$f=f'$，主点与节点重合。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.87]
+ \draw[axis](-5,0)--(5.2,0);
+ \foreach \x/\lab/\pos in {-3.5/F/below,0/N/above,-1/H/below,1/H'/below,2/N'/above,4.5/F'/below}{\fill(\x,0)circle(1.5pt)node[\pos=4pt]{$\lab$};}
+ \draw[RuleGray](-1,-1.2)--(-1,1.4)(1,-1.2)--(1,1.4);
+ \draw[DeepBlue,->](-4,-.8)--(-1,-.2);\draw[guide,DeepBlue](-1,-.2)--(1,-.2);\draw[DeepBlue,->](1,-.2)--(4,.4);
+ \draw[guide](1,-.2)--(2,0);
+ \draw[<->](-3.5,1.8)--(-1,1.8)node[midway,above]{$f$};
+ \draw[<->](1,1.8)--(4.5,1.8)node[midway,above]{$f'$};
+ \node at(0,-1.65){指向 $N$ 的入射线与由 $N'$ 出射的光线平行};
+\end{tikzpicture}
+\bookcaption{焦点、主点和节点三对关键基点}
+\label{advA5:fig:cardinal-points}
+\end{minipage}\end{center}
+
+空气中的厚透镜，折射率为 $n$、中心厚度为 $d$，常用制造者公式为
+\[
+ \Phi=\frac1f=(n-1)\left[
+ \frac1{R_1}-\frac1{R_2}+\frac{(n-1)d}{nR_1R_2}\right],
+\]
+其中 $R_1,R_2$ 按几何曲率正负取值。正负并不由外形名称单独决定，而由 $\Phi$ 决定。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.85]
+\begin{scope}[xshift=0.0cm]\filldraw[thick,fill=DeepBlue!10] (-.12,-1)..controls(-.7,-.4)and(-.7,.4)..(-.12,1)--(.12,1)..controls(.7,.4)and(.7,-.4)..(.12,-1)--cycle;\node at(0,-1.45){双凸};\end{scope}
+\begin{scope}[xshift=1.7cm]\filldraw[thick,fill=DeepBlue!10] (-.3,-1)--(-.3,1)--(-.05,1)..controls(.7,.4)and(.7,-.4)..(-.05,-1)--cycle;\node at(0,-1.45){平凸};\end{scope}
+\begin{scope}[xshift=3.4cm]\filldraw[thick,fill=DeepBlue!10] (-.45,-1)..controls(.15,-.4)and(.15,.4)..(-.45,1)--(-.25,1)..controls(.95,.4)and(.95,-.4)..(-.25,-1)--cycle;\node at(0,-1.45){正弯月};\end{scope}
+\begin{scope}[xshift=5.1cm]\filldraw[thick,fill=DeepBlue!10] (-.65,-1)..controls(.3,-.4)and(.3,.4)..(-.65,1)--(.15,1)..controls(.55,.4)and(.55,-.4)..(.15,-1)--cycle;\node at(0,-1.45){负弯月};\end{scope}
+\begin{scope}[xshift=6.8cm]\filldraw[thick,fill=DeepBlue!10] (-.5,-1)--(-.5,1)--(.5,1)..controls(-.3,.4)and(-.3,-.4)..(.5,-1)--cycle;\node at(0,-1.45){平凹};\end{scope}
+\begin{scope}[xshift=8.5cm]\filldraw[thick,fill=DeepBlue!10] (-.6,-1)..controls(-.1,-.4)and(-.1,.4)..(-.6,1)--(.6,1)..controls(.1,.4)and(.1,-.4)..(.6,-1)--cycle;\node at(0,-1.45){双凹};\end{scope}
+\end{tikzpicture}
+\bookcaption{六种常见厚透镜外形；实际正负性由光焦度判定}
+\label{advA5:fig:lens-types}
+\end{minipage}\end{center}
+
+厚透镜有四个值得单独核验的极限：两曲面共心、等效光焦度为零、一个曲面为平面、
+两曲面均为平面。图 \ref{advA5:fig:four-thick-lens-cases} 给出界面、曲率中心和光线的位置关系；无焦系统没有有限的通常主面，
+避免把曲率中心误画成焦点。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.85]
+ \begin{scope}
+  \draw[axis](-3.4,0)--(1,0);
+  \fill[DeepBlue!8] (145:2.4)arc(145:215:2.4)--(215:3)arc(215:145:3)--cycle;
+  \draw[thick](145:2.4)arc(145:215:2.4)(145:3)arc(145:215:3);
+  \fill(0,0)circle(1.4pt)node[below]{$C$};
+  \draw[DeepBlue,->](160:3.5)--(160:1.3);\draw[guide](160:1.3)--(0,0);
+  \node at(-1.3,2){共心：法线均过 $C$};
+ \end{scope}
+ \begin{scope}[xshift=6cm]
+  \draw[axis](-1,0)--(4.3,0);\filldraw[thick,fill=DeepBlue!8](0,-1)..controls(-0.2,-0.5)and(-0.2,0.5)..(0,1)..controls(0.2,0.5)and(0.2,-0.5)..cycle;\filldraw[thick,fill=DeepBlue!8](3,-1)..controls(2.8,-0.5)and(2.8,0.5)..(3,1)..controls(3.2,0.5)and(3.2,-0.5)..cycle;
+  \foreach \h in {-.65,.65}{\draw[DeepBlue,->](-1,\h)--(0,\h)--(3,{-.5*\h})--(4.2,{-.5*\h});}
+  \fill(2,0)circle(1.4pt)node[below=4pt]{$F'_1=F_2$};
+  \node at(1.5,2){望远系统：无有限主面};
+  \draw[<->](0,-1.35)--(3,-1.35)node[midway,below]{$d=f'_1+f_2$};
+ \end{scope}
+ \begin{scope}[yshift=-4.7cm]
+  \draw[axis](-3.4,0)--(1.6,0);
+  \fill[DeepBlue!8](-1.2,-.866025)--(-1.2,.866025)--(-1,.866025)arc(60:-60:1)--cycle;
+  \draw[thick](-1.2,-.866025)--(-1.2,.866025)--(-1,.866025)arc(60:-60:1)--cycle;
+  \foreach \sgn in {-1,1}{\draw[DeepBlue,->](-3.2,{\sgn*.18})--(-.516334,{\sgn*.18})--(1.426032,{0});}
+  \fill(1.426032,0)circle(1.4pt)node[below=4pt]{$F'$};
+  \node at(-.6,1.8){平凸：近轴附近的对称光线};\node[above left] at(-1.35,.5){$n=1.5$};\draw[guide](-1.4,.5)--(-.9,.4);
+ \end{scope}
+ \begin{scope}[shift={(6,-4.7)}]
+  \draw[axis](-1.4,0)--(4,0);\filldraw[fill=DeepBlue!8] (0,-1.1)rectangle(1.2,1.1);
+  \draw[DeepBlue,->](-1,1.07735)--(0,.5)--(1.2,.075736)--(3,-.963495);
+  \draw[guide](0,.5)--(2.4,-.88564);\node[below] at(.6,-1.25){$n=1.5$};
+  \node at(1.3,1.8){平行平板：出射平行、侧移};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{厚透镜的四种特殊极限及相应光线关系}
+\label{advA5:fig:four-thick-lens-cases}
+\end{minipage}\end{center}
+
+\subsection{射影变换的成像本质}
+
+实射影几何基本定理指出，维数不小于 $2$ 的射影空间中，保持共线关系的非退化映射由半线性变换诱导。
+在实数域且排除非连续域自同构后，可用齐次矩阵表示。对绕主轴对称的子午面成像，
+\[
+ (X,Y)\mapsto(X',Y'),\qquad
+ X'=\frac{aX+c}{gX+i},\quad
+ Y'=\frac{eY}{gX+i}.
+\]
+$g=0$ 时是望远系统，物像距线性且横向放大率恒定；$g\ne0$ 时平移坐标后必可化为
+\[
+ xx'=ff',\qquad \frac{y'}y=-\frac fx.
+\]
+因此 Gaussian 和 Newton 公式并非偶然的薄透镜特例，而是轴对称理想点成像的射影结构。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[>=Latex,scale=.72]
+ \begin{scope}
+  \draw[->] (-2.6,0)--(2.7,0) node[right]{$X$};
+  \draw[->] (0,-1.45)--(0,1.55) node[above]{$Y$};
+  \draw[DeepBlue,thick] (-2,-.65)--(1.85,.9);
+  \draw[Gold!80!black,thick] (-1.8,-.95)--(2.0,.58);
+  \node at (0,-1.8){物平面中的共线点};
+ \end{scope}
+ \begin{scope}[xshift=6.4cm]
+  \draw[->] (-2.6,0)--(2.7,0) node[right]{$X'$};
+  \draw[->] (0,-1.45)--(0,1.55) node[above]{$Y'$};
+  \coordinate (O) at (-1.7,-1.05);
+  \draw[RuleGray] (O)--(1.85,1.05) (O)--(1.35,-.15);
+  \draw[DeepBlue,thick] (.65,-1.25)--(.65,1.35);
+  \fill (O) circle(1.3pt) node[left]{$\mathcal O$};
+  \node at (0,-1.8){齐次空间投影};
+ \end{scope}
+ \draw[->,very thick] (2.75,.65)--(3.65,.65) node[midway,above]{$\mathcal C$};
+\end{tikzpicture}
+\bookcaption{共线性映射可由高一维线性变换与射影实现}
+\label{advA5:fig:projective-map}
+\end{minipage}\end{center}
+
+\begin{advexamplebox}{厚目镜望远镜：景物像、刻线与出瞳}\label{advA5:ex:thick-eyepiece}
+如图，薄凸物镜 $L_O$ 在右，折射率 $n=3$ 的厚凸目镜 $L_E$ 在左，光从右向左传播；镜筒长度 $L=8\,\mathrm{cm}$。目镜右表面刻有基准线，用来测量远物张角。设计要求景物与刻线均可由放松眼看清，并把右侧物镜的孔径成像到目镜左出射面，使收集的光束进入眼瞳。角放大率大小 $M=5$。求目镜厚度 $x$、两镜空气间距 $y$、物镜焦距 $f_O$、目镜左、右表面曲率半径大小 $R,R'$，以及匹配人眼瞳孔 $d=4\,\mathrm{mm}$ 的物镜孔径 $D$。采用近轴球面折射模型。
+\end{advexamplebox}
+\begin{advsolution}
+原图的“将右侧凸透镜成像至左侧单球面透镜”是\textbf{物镜孔径的瞳成像}，与景物成像同时发生。不能把它读成目镜右表面向左表面成像。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Design: 12 cm print width, 9 pt labels; source p175 right-to-left layout.
+% [eye d] <- [left R | glass x,n | right R'刻线] <- air y <- [objective D].
+% Exact first-order ray vertices; surface outlines only identify the curved faces.
+\begin{tikzpicture}[>=Latex,font=\small,x=1.25cm,y=1.25cm]
+\draw[gray,dashed](-.7,0)--(8.8,0);
+\draw[thick,fill=DeepBlue!6](.15,-.9)..controls(-.05,-.4)and(-.05,.4)..(.15,.9)--(2.8,.9)..controls(3.08,.4)and(3.08,-.4)..(2.8,-.9)--cycle;
+\draw[thick,<->](8,-1.15)--(8,1.15);
+\node[above]at(1.5,1.1){目镜 $L_E$，$n=3$};\node[above]at(8,1.25){物镜 $L_O$};
+\node[below left]at(0,-.8){$R$};\node[below right]at(3,-.8){$R'$};
+\foreach \u in {-.7,.7}{
+ \draw[DeepBlue,thick,->](8.65,\u)--(8,\u)--(3,0)--(0,{-.2*\u})--(-.55,{-.2*\u});
+}
+\fill(3,0)circle(1.3pt);\draw[gray,thin](3,0)--(4,1.15);\node[above]at(4,1.15){景物第一像与刻线};
+\draw[<->](0,-1.4)--(3,-1.4)node[midway,below]{$x$};
+\draw[<->](3,-1.4)--(8,-1.4)node[midway,below]{$y$};
+\draw[<->](0,-2.1)--(8,-2.1)node[midway,below]{$L=x+y$};
+\draw[<->](8.45,-.7)--(8.45,.7)node[midway,right]{$D$};
+\draw[<->](-.35,-.14)--(-.35,.14);\node[left]at(-.45,.4){$d$};
+\end{tikzpicture}
+\figcap{轴上景物的两条边缘光线。目镜右面是景物像面，左面是物镜的孔径像面；两种共轭不能混用。\label{advA5:fig:eyepiece-source}}
+\end{minipage}\end{center}
+远物经薄物镜在后焦面成像；为使该像与刻线重合，应有
+\[
+ y=f_O,\qquad x+y=L.
+\]
+刻线在玻璃内距左出射面 $x$。经该球面折射后要成为平行光；在玻璃到空气、传播向左的约定下，左凸面的有向曲率为 $-R$，故
+\[
+ \frac n x+\frac1\infty=\frac{1-n}{-R}
+ \quad\Longrightarrow\quad R=\frac{n-1}{n}x.
+\]
+另一方面，物镜孔径作为目镜右球面的物，物距 $y$，其像在玻璃内左表面，像距 $x$。空气到玻璃的球面式给出
+\[
+ \frac1y+\frac n x=\frac{n-1}{R'}.
+\]
+远物张角 $\theta$ 在刻线面形成高度大小 $f_O\theta$，左表面出射角大小为 $n f_O\theta/x$，所以
+\[
+ M=\frac{nf_O}{x}=5.
+\]
+与 $x+y=8\,\mathrm{cm}$、$y=f_O$ 联立，得
+\[
+ \boxed{x=3.00\,\mathrm{cm},\qquad y=f_O=5.00\,\mathrm{cm}},
+ \qquad
+ \boxed{R=2.00\,\mathrm{cm},\quad R'=\frac53\,\mathrm{cm}}.
+\]
+瞳成像的横向倍率是
+\[
+ \beta_p=-\frac{x}{ny}=-\frac15.
+\]
+使整个孔径像恰好落入眼瞳，有 $d=|\beta_p|D$，即
+\[
+ \boxed{D=5d=20\,\mathrm{mm}}.
+\]
+独立检验：令物镜面光线高度为 $u$、入射倾角为 $\theta$，连续应用两球面折射和玻璃内传播，可得目镜左面的高度 $-u/5$、出射倾角 $-5\theta$。前者与 $\theta$ 无关，说明孔径确已成像；后者与 $u$ 无关，说明远物确实给出平行出射光。负号表示景物倒像。这些是近轴设计参数，不能据此声称有限孔径下的球差、色差与边缘通光已经全部校正。
+\end{advsolution}
+
+\begin{advexamplebox}{潜望镜的五片透镜、镜筒长度与视场}\label{advA5:ex:periscope}
+潜望镜有两块反射棱镜及五片薄凸透镜 $L_0,\ldots,L_4$，焦距和有效孔径分别为 $f_i,D_i$。两棱镜反射中心的竖直间距为 $H$。原图在 $L_1,L_3$ 处分别标出了远物的第一、第二实像 $y',y''$，$L_2$ 在二者之间。说明各镜作用，求适配镜筒的焦距及共轭条件、望远倍率，并讨论各孔径如何限制视场。
+\end{advexamplebox}
+\begin{advsolution}
+$L_0$ 是物镜；$L_1$ 是第一像面上的场镜；$L_2$ 是将第一像再次成像的中继物镜；$L_3$ 是第二像面上的场镜；$L_4$ 是目镜。\textbf{不能把 $L_2,L_3$ 当作两片中继物镜}：光线在 $L_3$ 处已经会聚为第二像，场镜改变光束的去向，却不改变位于自身平面上的物像点。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Design: 12.5cm, 9pt; left folded source geometry, right unfolded distance map.
+\begin{tikzpicture}[>=Latex,font=\small,scale=.95]
+\begin{scope}
+ \draw[gray,dashed](-2.2,5)--(0,5)--(0,-1)--(2.1,-1);
+ \draw[thick](-.5,5.5)--(.5,4.5);\draw[thick](-.95,-.05)--(.95,-1.95);
+ \node[right]at(.6,5){$P$};\node[below]at(-.75,-1.85){$P'$};
+ \foreach \yy/\name in {4.4/0,3.3/1,1.9/2,.5/3}{
+  \draw[thick,<->](-.75,\yy)--(.75,\yy);\node[right]at(.85,\yy){$L_{\name}$};}
+ \draw[thick,<->](1.5,-2.25)--(1.5,.25);\node[right]at(1.7,-1){$L_4$};
+ \draw[DeepBlue,thick,->](-2,5.4)--(-.4,5.4)--(-.4,4.4)--(0,3.3)--(.5090909,1.9)--(0,.5)--(-.4,-.6)--(1.5,.0909091)--(2.2,.0909091);
+ \draw[DeepBlue,thick](-2,4.6)--(.4,4.6)--(.4,4.4)--(0,3.3)--(-.5090909,1.9)--(0,.5)--(.8571429,-1.8571429)--(1.5,-2.0909091)--(2.2,-2.0909091);
+ \fill(0,3.3)circle(1.3pt);\fill(0,.5)circle(1.3pt);
+ \node[left]at(-.9,3.3){$y'$};\node[left]at(-.9,.5){$y''$};
+ \draw[<->](-2.6,-1)--(-2.6,5)node[midway,left]{$H$};
+ \node[below,align=center]at(-.2,-2.6){原图折叠关系\\棱镜玻璃路程按薄棱镜忽略};
+\end{scope}
+\begin{scope}[xshift=7cm]
+ \draw[gray,dashed](0,-1.2)--(0,5.5);
+ \foreach \yy/\name in {5/0,3.8/1,1.8/2,-.2/3,-1.2/4}{
+  \draw[thick,<->](-.8,\yy)--(.8,\yy);\node[left]at(-.9,\yy){$L_{\name}$};}
+ \foreach \top/\bottom/\lab in {5/3.8/f_0,3.8/1.8/a,1.8/-.2/b,-.2/-1.2/f_4}{
+  \draw[<->](1.3,\top)--(1.3,\bottom)node[midway,right]{$\lab$};}
+ \node[below,align=center]at(0,-2.6){沿传播方向展开\\$1/a+1/b=1/f_2$};
+\end{scope}
+\end{tikzpicture}
+\figcap{潜望镜原图的两次成像与展开距离。左图只表示轴上束与折叠关系，尺寸未按比例；右图明确两片场镜所在的像面。\label{advA5:fig:periscope-source}}
+\end{minipage}\end{center}
+令 $a=L_1L_2$、$b=L_2L_3$ 为展开后的正距离。景物从无穷远到无穷远的共轭条件为
+\[
+ L_0L_1=f_0,\qquad \frac1a+\frac1b=\frac1{f_2},\qquad L_3L_4=f_4.
+\]
+第一像高度为 $f_0\theta$，中继倍率为 $-b/a$，目镜将第二像转换为倾角 $-y''/f_4$，故
+\[
+ \boxed{M=+\frac{f_0b}{af_4}}.
+\]
+系统两次倒像给出正立像；只有等倍中继 $a=b=2f_2$ 时才有 $M=f_0/f_4$。
+
+$H$ 是棱镜中心距，不应直接改称光程。设从上棱镜中心 $P$ 到 $L_0$ 的展开距离为 $p$，下棱镜中心 $P'$ 到 $L_4$ 的距离为 $q$，则
+\[
+ \boxed{H=f_0+a+b+f_4+p-q}.
+\]
+常用的对称端部近似 $p=q$ 下，令 $S=H-f_0-f_4$，有
+\[
+ a+b=S,\quad ab=f_2S,\quad
+ a,b=\frac{S\pm\sqrt{S(S-4f_2)}}2.
+\]
+因此必须 $H\ge f_0+f_4+4f_2$；等号才是等倍中继。原图未给 $p,q$ 和等倍条件，不能无条件写出 $H=4f_2$。
+
+进一步求\textbf{全照明视场}，即物镜全孔径都能通过。令入口瞳坐标 $|u|\le D_0/2$，定义
+\[
+ C_2=f_0+a-\frac{af_0}{f_1},\qquad
+ C_4=-\frac{(b+f_4)f_0}{a}-\frac{f_4 C_2}{b}
+       +\frac{f_4bf_0}{af_3}.
+\]
+依次用 $h_{\rm next}=h+\ell\theta$、$\theta_{\rm out}=\theta_{\rm in}-h/f$，得到
+\[
+ h_1=f_0\theta,\quad h_2=C_2\theta-\frac a{f_0}u,\quad
+ h_3=-\frac ba f_0\theta,\quad
+ h_4=C_4\theta+\frac{af_4}{bf_0}u.
+\]
+每个面都要满足 $|h_i|\le D_i/2$。对整个入口孔径取最大值，得
+\[
+\begin{split}
+ 2f_0|\theta|&\le D_1,\\
+ 2|C_2||\theta|+\frac a{f_0}D_0&\le D_2,\\
+ 2\frac ba f_0|\theta|&\le D_3,\\
+ 2|C_4||\theta|+\frac{af_4}{bf_0}D_0&\le D_4.
+\end{split}
+\]
+满足所有不等式的最大 $|\theta|$ 为全照明半视场角。$D_1,D_3$ 是像面视场限制；一般情况下 $D_2,D_4$ 也会随视场截光。若允许渐晕，应要求存在\emph{同一个} $u$ 同时通过所有孔径，而不是分别挑选不同光线。
+
+场镜常按瞳共轭条件设计：
+\[
+ \frac1{f_1}=\frac1{f_0}+\frac1a,\qquad
+ \frac1{f_3}=\frac1b+\frac1{f_4}.
+\]
+这时 $C_2=C_4=0$，全照明条件简化为
+\[
+ |\theta|\le\min\left(\frac{D_1}{2f_0},\frac{aD_3}{2bf_0}\right),\quad
+ D_2\ge\frac a{f_0}D_0,\quad D_4\ge\frac{af_4}{bf_0}D_0.
+\]
+在这一附加设计及 $p=q$ 条件下，各焦距满足
+\[
+ \frac1{f_2}=\frac1{f_1}+\frac1{f_3}-\frac1{f_0}-\frac1{f_4},\qquad
+ H=\frac{f_0^2}{f_0-f_1}+\frac{f_4^2}{f_4-f_3}.
+\]
+棱镜的有效面宽若有限，也须加入相同的逐面截光检验；仅由五个透镜孔径无法保证真实棱镜不挡光。
+\end{advsolution}

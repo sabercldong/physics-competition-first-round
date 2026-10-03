@@ -1,0 +1,41 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../../common-style.tex}
+\usetikzlibrary{decorations.pathmorphing}
+
+\hypersetup{
+  pdftitle={高中物理竞赛一轮讲义：第四章第四节 能量的转化与守恒定律（含解答与解图）},
+  pdfsubject={高中物理竞赛一轮讲义：系统边界与能量守恒关系},
+  pdfauthor={物理竞赛一轮资料编写组}
+}
+
+\fancyhead[R]{\small\color{TextGray}第四章\quad 功和动能，机械能守恒}
+
+\newtcolorbox{origexamplebox}[1]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue}
+}
+
+\newenvironment{xesolution}{%
+  \par\smallskip
+  \begingroup\small
+  \noindent{\bfseries\color{DeepBlue}解答}\quad
+}{%
+  \par\endgroup\medskip
+}
+
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{chapter}{4}
+\setcounter{section}{3}
+
+\section{能量的转化与守恒定律}
+
+\input{content.tex}
+\end{document}

@@ -1,0 +1,223 @@
+{
+  "scope": "第19—26章115题专项精修",
+  "source_examples": 102,
+  "supplementary_examples": 13,
+  "retained_examples": 115,
+  "changed_examples": [
+    "19.11",
+    "20.2",
+    "20.11",
+    "22.11",
+    "24.7",
+    "24.12",
+    "24.15",
+    "24.18",
+    "24.21",
+    "25.2",
+    "25.5",
+    "26.1",
+    "26.2",
+    "26.3",
+    "26.4"
+  ],
+  "integrity": [
+    {
+      "chapter": 19,
+      "examples_before": 16,
+      "examples_after": 16,
+      "old_labels_retained_once": 36,
+      "tikz_before": 21,
+      "tikz_after": 21
+    },
+    {
+      "chapter": 20,
+      "examples_before": 21,
+      "examples_after": 21,
+      "old_labels_retained_once": 55,
+      "tikz_before": 36,
+      "tikz_after": 36
+    },
+    {
+      "chapter": 21,
+      "examples_before": 18,
+      "examples_after": 18,
+      "old_labels_retained_once": 49,
+      "tikz_before": 47,
+      "tikz_after": 47
+    },
+    {
+      "chapter": 22,
+      "examples_before": 17,
+      "examples_after": 17,
+      "old_labels_retained_once": 26,
+      "tikz_before": 38,
+      "tikz_after": 38
+    },
+    {
+      "chapter": 23,
+      "examples_before": 9,
+      "examples_after": 9,
+      "old_labels_retained_once": 39,
+      "tikz_before": 37,
+      "tikz_after": 37
+    },
+    {
+      "chapter": 24,
+      "examples_before": 21,
+      "examples_after": 21,
+      "old_labels_retained_once": 65,
+      "tikz_before": 54,
+      "tikz_after": 56
+    },
+    {
+      "chapter": 25,
+      "examples_before": 8,
+      "examples_after": 8,
+      "old_labels_retained_once": 9,
+      "tikz_before": 9,
+      "tikz_after": 9
+    },
+    {
+      "chapter": 26,
+      "examples_before": 5,
+      "examples_after": 5,
+      "old_labels_retained_once": 25,
+      "tikz_before": 19,
+      "tikz_after": 20
+    }
+  ],
+  "changes": [
+    {
+      "example": "19.11",
+      "problem": "无限长线电荷的恒速积分缺少有限装置条件，强偏转结论过于绝对",
+      "resolution": "补有限区间横向冲量、arctan偏转角、纵向动能变化须小的条件及线长/线径限制；删除强偏转必依赖瞄准距的断言。"
+    },
+    {
+      "example": "20.2",
+      "problem": "等量同号情形只给相同对称球结论",
+      "resolution": "补一般导体即使等量，电势仍可不同，低电势者仍可能出现负电斑块。"
+    },
+    {
+      "example": "20.11",
+      "problem": "柱形电容答案符号与题图不一致",
+      "resolution": "统一为内半径a、外半径b、长度h，推导与框式均对应题图。"
+    },
+    {
+      "example": "22.11",
+      "problem": "只给Hall电压大小，未明确上下端极性",
+      "resolution": "采用原题右手x/y/z坐标，定义上表面减下表面电势，给出正载流子正号及负载流子反号。"
+    },
+    {
+      "example": "24.7",
+      "problem": "外接电感模型的固定几何假设未明示",
+      "resolution": "明确忽略其余自感与电阻，外接电感不随棒位置变化。"
+    },
+    {
+      "example": "24.12",
+      "problem": "原扫描有限D被缩窄成无穷远端点",
+      "resolution": "恢复有限CD=ell的反正切通式，无穷远保留为特例；题图和分析图均改有限D，补零长度、h=0及反向积分检验。"
+    },
+    {
+      "example": "24.15",
+      "problem": "“总边长2a”与图和电阻计算不一致",
+      "resolution": "改为“外框边长2a”，每小边a与r的定义保持。"
+    },
+    {
+      "example": "24.18",
+      "problem": "题框含线元与位移向量的证明辅助图",
+      "resolution": "新增仅两线圈及给定电流的题图；原双积分分析图移入解答，原标签保留。"
+    },
+    {
+      "example": "24.21",
+      "problem": "题图提前显示相速度和零场分界辅助线",
+      "resolution": "题框仅保留装置、尺寸、速度和给定场函数；相速度/场分区图移入解答。"
+    },
+    {
+      "example": "25.2",
+      "problem": "装置图在题框外，频率条件未展开全部退化情况",
+      "resolution": "装置图移入题框，图注不提前提示方法；解出频率平方，补无实根、分母零及两支匹配时任意频率为纯电阻的情况。"
+    },
+    {
+      "example": "25.5",
+      "problem": "题目依赖题框外前置电路图",
+      "resolution": "原线圈-电容装置图移入题框，不重复插图。"
+    },
+    {
+      "example": "26.1",
+      "problem": "题干引用已经给出磁场方向与位移电流公式的分析图",
+      "resolution": "新增只有极板边界、观察点和电场变化方向的题图；原安培环路及磁场分析图移入解答。"
+    },
+    {
+      "example": "26.2",
+      "problem": "峰值公式缺少偏振/波形条件",
+      "resolution": "明确按单色线偏振平面波近似，保证峰值与平均能流的因子2适用。"
+    },
+    {
+      "example": "26.3",
+      "problem": "理想反射未明确是镜面反射",
+      "resolution": "明确镜面反射，支持斜入射法向动量反转的推导。"
+    },
+    {
+      "example": "26.4",
+      "problem": "直接引用反射系数，边界求解步骤略去",
+      "resolution": "补切向E、H连续方程，说明反射磁场负号，再解出反射/透射系数并核对能流。"
+    }
+  ],
+  "report": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/audit/电磁学115题专项精修_20260930.md",
+  "publication": {
+    "published_at": "2026-09-30T10:17:08.468890+08:00",
+    "files": {
+      "高中物理竞赛一轮讲义_第19章_静电场与电势_含解答与解图.pdf": {
+        "sha256": "4354cfa88c91bb44ff48ec3d4c274c35559e585bb8434507cf885a02d9a212de",
+        "pages": 37,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch19/ch19.pdf"
+      },
+      "高中物理竞赛一轮讲义_第20章_导体、电介质与电容器_含解答与解图.pdf": {
+        "sha256": "4d20389afee8b6309e440f4cbbf7eef53ceffe5816d593cbcd1f8245c40741dd",
+        "pages": 41,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch20/ch20.pdf"
+      },
+      "高中物理竞赛一轮讲义_第21章_恒定电流与复杂电路.pdf": {
+        "sha256": "0eb36007b4644e63f7abb842b01011b2067ab54b49a9f34777e5aa29442c8711",
+        "pages": 38,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch21/ch21.pdf"
+      },
+      "高中物理竞赛一轮讲义_第22章_洛伦兹力与带电粒子运动.pdf": {
+        "sha256": "24d978ce1f20cd728380553b6324b7850974b15bd2cc04b2aa618997d7411c75",
+        "pages": 29,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch22/ch22.pdf"
+      },
+      "高中物理竞赛一轮讲义_第23章_磁场、安培力与安培定律.pdf": {
+        "sha256": "b372283261f48b7e259359a36a282d904ccfc7c1c89378f27d54a81686859932",
+        "pages": 27,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch23/ch23.pdf"
+      },
+      "高中物理竞赛一轮讲义_第24章_电磁感应.pdf": {
+        "sha256": "5e08f3010325465e60ac01ae539c97cd6bd1ab2e0867c0c6fe4610d9b62eab6a",
+        "pages": 39,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch24/ch24.pdf"
+      },
+      "高中物理竞赛一轮讲义_第25章_交流电、相量与RLC电路.pdf": {
+        "sha256": "35a66cdb42b7cec85caa9206fba2b66c576711b6f8292146c13ed52a5a4524bf",
+        "pages": 14,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch25/ch25.pdf"
+      },
+      "高中物理竞赛一轮讲义_第26章_电磁场、电磁波与超导体.pdf": {
+        "sha256": "cfe421dd223d275ccc9269b7cfe39ee214c754866435f4175c18793a20633d9e",
+        "pages": 28,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/ch26/ch26.pdf"
+      },
+      "高中物理竞赛一轮讲义_第4卷_电磁学.pdf": {
+        "sha256": "7abfde030ffda7a6a88e81cf72768f65941578a200da9895406f33afd0fbbfde",
+        "pages": 267,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/volume4/volume4.pdf"
+      },
+      "高中物理竞赛一轮讲义.pdf": {
+        "sha256": "5fa7d2e7987e6bf5aa962d6987e375598c99a9078de6262a9ec8606fed37d7d8",
+        "pages": 1077,
+        "source": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/final-build/main/main.pdf"
+      }
+    },
+    "backup": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/build/revision-em-problems-20260930/baseline"
+  }
+}

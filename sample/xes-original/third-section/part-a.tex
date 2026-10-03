@@ -1,0 +1,413 @@
+在多个力作用下处于平衡状态的系统，所受到各个力的大小和方向必然有一定的联系。因
+为力的效果总是使物体的运动状态发生变化，而处于静力平衡的物体的运动状态没有发生
+变化，所以它受到的合力必然为零。对这一事实的描写有两种方式。一种是直接的矢量计算，
+画出各个力的大小和方向，对于处于平衡状态系统中的每一个独立的部分，处于静力平衡时
+所受外力的矢量和必然为零，利用此方法更多地需要几何知识和技巧。第二种常用的方法则
+是根据问题的特点将各个物体所受的外力向两到三个彼此正交的方向分解，平衡时每个方
+向上的合力分量必然为零，即各外力在该方向上的分量之和为零，而不是每一个分力均为零。
+当以这种方式处理问题时，解方程的能力则是必不可少的。
+
+\sourcefigure[0.54\linewidth]{fig-1-1.png}
+\origcaption{图 1.1：力矩的定义}
+
+力的效果除了让物体有沿力的方向运动的趋势以外，对于刚体来说还会引起转动的趋势，
+力学中用力矩定量地描写力引起的转动效果。对于如图所示的刚性杆，其一端固定于 $O$ 点，
+在杆上 $A$ 点处有外力 $\vec F$ 的作用。令 $\vec r=\overrightarrow{OA}$，力对 $O$ 点的力矩先按
+矢量定义为
+\begin{equation}
+  \vec M_O=\vec r\times\vec F.
+\end{equation}
+若只讨论图示平面内的转动，令 $\theta$ 为杆的作用线与力的作用线的较小夹角，则力矩大小为
+\begin{equation}
+  M_O=Fr_{\perp}=F_{\perp}r=Fr\sin\theta.
+\end{equation}
+
+各个量已在图中标出，其中 $O$ 称为定义力矩的参考点，$A$ 为力的作用点；从 $O$ 向力
+$\vec F$ 的作用线所作垂线段的长度 $OB=r_\perp$ 称为力臂。除了具有一定的大
+小，力矩其实也是有方向的，对于定轴转动的物体来说，力矩的方向可以用它使物体有顺时
+针或逆时针转动的趋势来描写。当一个物体受到多个力作用时，合力矩则是各个分力力矩之
+和。因为力矩使物体有转动的趋势，所以处于静力平衡的系统中每个物体所受的合力矩也必须
+为零。需要注意的是和力不同，力矩的定义除了要指定力的大小和方向以外还有一个转动的
+参考点 $O$，$O$ 点的选取并不一定必须在转动轴，甚至也不一定必须在受力物体上，无论将
+力矩的参考点选在何处，静力平衡均要求合力矩为零。合理地选择参考点可以极大地简化受
+力分析的计算量。
+
+总的来说，处于平衡状态的力学系统中，每个可独立研究的部分都需要满足合外力为零，相对任意
+参考点的合力矩为零。
+
+\begin{origexamplebox}{例 1.10}
+如图三根长度均为 $l$ 的轻杆用铰链连接并固定在水平天花板上的 $A$、$B$ 两点，$AB$
+两点相距 $2l$，若在铰链 $C$ 上悬挂一个质量为 $m$ 的重物，要使 $CD$ 杆保持水平，则在 $D$ 点
+上应施加的最小力为多少？
+\sourcefigurefixB
+\end{origexamplebox}
+
+\begin{xesolution}
+由 $AB=2l$、$CD=l$ 以及三杆等长可知，左右两根斜杆与水平方向的夹角均为
+$60^\circ$。先研究铰链 $C$。设杆 $AC$ 中的轴力为 $S$，杆 $CD$ 中的轴力为 $H$。解图把
+$C$、$D$ 两个铰链的受力分开画出：
+\soldiagOneTen
+由解图 (a) 可得
+\[
+  S\sin60^\circ=mg,
+  \qquad
+  H=S\cos60^\circ=\frac{mg}{\sqrt3}.
+\]
+在铰链 $D$ 处，杆 $DB$ 只能提供沿 $DB$ 方向的力。因此，外力中垂直于 $DB$ 的分量
+必须抵消 $H$ 垂直于 $DB$ 的分量。外力与 $DB$ 垂直时，其大小最小，故
+\[
+  F_{\min}=H\sin60^\circ=\boxed{\frac{mg}{2}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.11}
+质量为 $m$ 的小球静止在固定斜面与可调整方向的挡板之间，两处接触均光滑。下斜面与水平面
+夹角 $\alpha$ 固定，且 $0<\alpha<90^\circ$；挡板与下斜面之间的夹角为 $\theta$。
+在能够保持两处接触的范围内，求挡板在何角度时对小球的压力最小。
+\sourcefiguretrim[0.40\linewidth]{ex-1-11.png}{0 0 0 65}
+\end{origexamplebox}
+
+\Needspace{62mm}
+\begin{xesolution}
+设下方斜面和挡板对球的压力分别为 $N_1$、$N$。三个力的方向及投影方向如解图所示：
+\soldiagOneEleven
+$N_1$ 垂直于下方斜面，沿该斜面方向的分量为零。因此沿斜面向上取正方向，
+$N$ 的分量 $N\sin\theta$ 与重力分量 $mg\sin\alpha$ 平衡：
+\[
+  N\sin\theta=mg\sin\alpha,
+  \qquad
+  N=\frac{mg\sin\alpha}{\sin\theta}.
+\]
+当 $\sin\theta$ 取最大值 $1$ 时压力最小，即
+\[
+  \boxed{\theta=90^\circ},
+  \qquad
+  \boxed{N_{\min}=mg\sin\alpha}.
+\]
+还需检查这个角度能够实现：$\theta=90^\circ$ 时挡板压力恰沿下斜面向上，下斜面压力
+为 $N_1=mg\cos\alpha>0$，两处接触均不需要“拉住”小球，所以最小值确实可取。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.12}
+一质量为 $m$ 的匀质球静止于两固定斜面之间，如图所示。下斜面与水平面的夹角为
+$\theta_1$，上斜面与同一水平面的夹角为 $\theta_2$，其中 $0<\theta_1<\theta_2<\pi/2$。
+所有接触面都光滑，求斜面作用于球上的力。
+\sourcefigure[0.43\linewidth]{ex-1-12.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+按题图，两个倾角都从水平面量起，因而两斜面之间的夹角是 $\theta_2-\theta_1$。
+设下、上斜面对球的压力分别为 $N_1$、$N_2$，三个力
+的方向如解图所示：
+\soldiagOneTwelve
+取水平向右、竖直向上为正方向，有
+\[
+  -N_1\sin\theta_1+N_2\sin\theta_2=0,
+\]
+\[
+  N_1\cos\theta_1-N_2\cos\theta_2-mg=0.
+\]
+由第一式得 $N_2=N_1\sin\theta_1/\sin\theta_2$，代入第二式。利用
+\[
+ \cos\theta_1\sin\theta_2-\sin\theta_1\cos\theta_2=\sin(\theta_2-\theta_1),
+\]
+得
+\[
+  \boxed{N_1=\frac{mg\sin\theta_2}{\sin(\theta_2-\theta_1)}},
+  \qquad
+  \boxed{N_2=\frac{mg\sin\theta_1}{\sin(\theta_2-\theta_1)}}.
+\]
+两力均为正，符合光滑接触只能推不能拉的条件；量纲都是力。
+当下斜面趋于水平，即 $\theta_1\to0$ 且 $\theta_2$ 保持不变时，
+$N_1\to mg$、$N_2\to0$，与水平面独自承重相符。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.13}
+两个质量为 $M$，半径为 $R$ 的相同圆球 $A$ 和 $B$，用两根长为 $l$（$l=2R$）的绳悬
+挂于 $O$ 点。这里绳长 $l$ 指从 $O$ 到球面连接点的长度，连接点处的半径与绳共线，
+所以 $O$ 到大球球心的距离为 $l+R$。在两球上另有一质量为 $m$（$m=nM$），半径为
+$r$（$r=R/2$）的圆球 $C$，如图，
+已知三球的表面光滑，试讨论此系统处于平衡时，绳与竖直线的夹角 $\theta$ 与 $n$ 的关系。
+\sourcefigure[0.43\linewidth]{ex-1-13.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+把图中 $O$ 点到大球球心的距离记为 $d_0$。由题设的绳长定义和 $l=2R$，有
+$d_0=l+R=3R$。
+
+接触几何和一个大球的受力分别画在解图 (a)、(b) 中：
+\soldiagOneThirteen
+
+两大球接触时，其球心间距为 $2R$，所以
+\[
+  2d_0\sin\theta_0=2R,
+  \qquad
+  \theta_0=\arcsin\frac{R}{d_0}.
+\]
+按图示取 $d_0=3R$，有 $\theta_0=\arcsin(1/3)$。设小球与大球球心连线同水平方向
+的夹角为 $\beta$。当两大球接触时
+\[
+  \cos\beta_0=\frac{R}{R+r}=\frac23,
+  \qquad
+  \sin\beta_0=\frac{\sqrt5}{3}.
+\]
+设小球与每个大球间的压力为 $N$，则小球平衡给出
+\[
+  2N\sin\beta=nMg.
+\]
+再研究一个大球。若两大球之间的压力为 $Q$，绳中张力为 $T$，则
+\[
+  T\cos\theta=Mg+N\sin\beta=Mg\left(1+\frac n2\right),
+\]
+\[
+  T\sin\theta=N\cos\beta+Q.
+\]
+在两大球刚好失去接触时 $Q=0$，于是临界质量比为
+\[
+  n_{\rm c}
+  =\frac{2\tan\theta_0}{\cot\beta_0-\tan\theta_0}.
+\]
+按 $d_0=3R$ 计算，
+\[
+  \boxed{n_{\rm c}=\frac{2\sqrt5}{4\sqrt2-\sqrt5}\approx1.31}.
+\]
+因此 $0\le n\le n_{\rm c}$ 时，两大球可以保持接触，且
+\[
+  \boxed{\theta=\arcsin\frac13}.
+\]
+若两大球分离，则 $Q=0$，几何关系与平衡关系分别为
+\[
+  \cos\beta=\frac{d_0\sin\theta}{R+r},
+  \qquad
+  \boxed{n=\frac{2\tan\theta}{\cot\beta-\tan\theta}}.
+\]
+按 $d_0=3R$、$r=R/2$，这可写成
+\[
+  \boxed{n=\frac{2\sqrt{1-4\sin^2\theta}}
+  {2\cos\theta-\sqrt{1-4\sin^2\theta}}},
+  \qquad
+  \arcsin\frac13<\theta<30^\circ.
+\]
+下面确定分离支的存在范围。记 $w=\sqrt{1-4\sin^2\theta}>0$，则
+\[
+ n=\frac{2w}{2\cos\theta-w},\qquad
+ w'=-\frac{4\sin\theta\cos\theta}{w}.
+\]
+分母为正；对 $n$ 求导并合并分子，得到
+\[
+ \frac{\mathrm dn}{\mathrm d\theta}
+ =\frac{4(w'\cos\theta+w\sin\theta)}{(2\cos\theta-w)^2}
+ =-\frac{12\sin\theta}{w(2\cos\theta-w)^2}<0.
+\]
+当 $\theta$ 从 $\theta_0$ 增至 $30^\circ$ 时，$n$ 从 $n_{\rm c}$ 单调减至零。
+所以每个 $0<n<n_{\rm c}$ 都有一个接触构型和一个分离构型，而非只有一个解。
+$n=n_{\rm c}$ 时分离支到达接触边界；$n>n_{\rm c}$ 时两支都不能托住小球。
+
+还要判断分离构型能否抵抗小扰动。取两大球对称地分开、但小球仍同时接触两大球的扰动，
+以悬点 $O$ 为高度原点。解图 (a) 中 $OA=d_0$，因此两个大球球心的高度均为
+$z_A=-3R\cos\theta$。小球球心比大球球心高
+\[
+ (R+r)\sin\beta=\frac{3R}{2}\sqrt{1-4\sin^2\theta}=\frac{3R}{2}w,
+\]
+所以 $z_C=-3R\cos\theta+3Rw/2$。把三球重力势能相加：
+\[
+ U=2Mgz_A+nMgz_C
+ =MgR\left[-3(2+n)\cos\theta+\frac{3n}{2}w\right].
+\]
+其中绳长、半径和质量比在扰动中保持不变。定义
+$A(\theta)=2\cos\theta/w-1$，则
+\[
+ \frac{U'}{MgR}=3\sin\theta[2-nA(\theta)],\qquad
+ A'(\theta)=\frac{6\sin\theta}{w^3}.
+\]
+在分离平衡点 $2-nA=0$，故
+\[
+ \frac{U''}{MgR}=-3n\sin\theta A'
+ =-\frac{18n\sin^2\theta}{w^3}<0.
+\]
+势能在该方向上为局部极大值，稍有偏离便可继续降低势能，因此分离支是不稳定平衡。
+在 $n=n_{\rm c}$ 的接触边界，从允许的分离方向扰动也会降低势能，临界构型同样不能抵抗这种扰动。
+$n>n_{\rm c}$ 时，小球会把两大球推开并从中间落下。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.14}
+如图所示一个均匀的质量为 $m_1$、半径为 $R$ 的球挂在天花板上 $O$ 点处，从 $O$ 点
+到球心的距离已知为 $l$。另一根轻且不可伸长的绳从同一点引出，与球面光滑接触后
+竖直悬挂质量为 $m_2$ 的重物。求图中 $\theta$ 角的大小。
+\sourcefigure[0.36\linewidth]{ex-1-14.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+设悬挂 $m_2$ 的绳中张力为 $T=m_2g$，球心到 $O$ 的连线与绳的上方切线之间夹角为
+$\delta$。由切线性质
+\[
+  \sin\delta=\frac{R}{l}.
+\]
+再设上方切线与竖直方向的夹角为 $\psi$，由图中几何关系 $\delta=\theta+\psi$。
+球与这段绕绳之间的合力，等于两端张力矢量之和。设悬球绳的张力为 $S$，对球列水平、
+竖直方向的平衡方程。相应的几何关系与合力图如下：
+\soldiagOneFourteen
+于是
+\[
+  S\sin\theta=T\sin\psi,
+\]
+\[
+  S\cos\theta=m_1g+T(1-\cos\psi).
+\]
+消去 $S$ 并代入 $T=m_2g$，得到
+\[
+  (m_1+m_2)\sin\theta
+  =m_2\sin(\theta+\psi)
+  =m_2\sin\delta
+  =m_2\frac{R}{l}.
+\]
+故
+\[
+  \boxed{\theta=\arcsin\!\left(\frac{m_2R}{(m_1+m_2)l}\right)}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.15}
+有一个半径为 $a$，高为 $4a$，质量为 $M$ 的两端开口的薄壁圆筒，现将筒竖放在光
+滑的水平面上，之后将半径为 $r$，质量为 $m$ 的两个完全相同的光滑圆球放入筒内而呈叠放
+状态，当 $a<2r<2a$ 时，试求使圆筒不翻倒的条件。
+\sourcefigure[0.46\linewidth]{ex-1-15.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+设两球球心连线与水平方向的夹角为 $\beta$。由几何关系
+\[
+  2r\cos\beta=2(a-r),
+  \qquad
+  \cos\beta=\frac{a-r}{r}.
+\]
+筒壁所受的两水平力及其高度差如解图所示：
+\soldiagOneFifteen
+研究上方小球。设两球间压力为 $N$、右壁压力为 $N_2$，则
+\[
+  N\sin\beta=mg,
+  \qquad
+  N_2=N\cos\beta=mg\cot\beta.
+\]
+下方小球对左壁的水平压力也等于 $N_2$。这两个大小相等、方向相反的水平力作用高度
+相差 $2r\sin\beta$，对圆筒形成的力偶矩为
+\[
+  \mathcal M=N_2(2r\sin\beta)
+  =2mgr\cos\beta=2mg(a-r).
+\]
+圆筒将要翻倒时，地面对筒的支持力作用线移到筒底边缘，筒重能够提供的最大抗倾覆
+力矩为 $Mga$。所以不翻倒的条件为
+\[
+  2mg(a-r)\le Mga,
+  \qquad
+  \boxed{M\ge \frac{2m(a-r)}{a}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.16}
+有一轻木板，其自重可忽略，长为 $l$，$A$ 端用铁链固定在竖直墙面上，另一端用水
+平绳拉住，板上依次放着三个圆柱体，其半径均为 $r$，质量均为 $m$，木板与墙面的夹角为 $\theta$，
+一切摩擦均忽略不计，求水平绳对板的拉力 $F$ 多大？
+\sourcefigure[0.44\linewidth]{ex-1-16.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+沿木板向上的单位方向记为 $\boldsymbol t$，板的法线方向记为 $\boldsymbol n$。木板与竖直
+墙面的夹角为 $\theta$。设三个圆柱与板的接触点到 $A$ 的距离依次为 $s_1,s_2,s_3$。
+由第一个圆柱同时与墙、板相切可得
+\[
+  s_1\sin\theta-r\cos\theta=r,
+  \qquad
+  s_1=r\frac{1+\cos\theta}{\sin\theta}=r\cot\frac\theta2.
+\]
+又因相邻圆柱相切，故
+\[
+  s_2=s_1+2r,
+  \qquad
+  s_3=s_1+4r.
+\]
+这些接触位置及法向力如解图所示：
+\soldiagOneSixteen
+设板对三个圆柱的支持力依次为 $N_1,N_2,N_3$。后两个圆柱所受的圆柱间作用力沿板
+方向，故沿板法线列平衡方程有
+\[
+  N_2=N_3=mg\sin\theta.
+\]
+再把三个圆柱看成整体。墙的支持力无竖直分量，所以
+\[
+  (N_1+N_2+N_3)\sin\theta=3mg,
+  \qquad
+  N_1+N_2+N_3=\frac{3mg}{\sin\theta}.
+\]
+对木板取 $A$ 点力矩。水平绳的力臂为 $l\cos\theta$，从而
+\[
+  Fl\cos\theta=N_1s_1+N_2s_2+N_3s_3
+  =\frac{3mg}{\sin\theta}s_1+6mgr\sin\theta.
+\]
+代入 $s_1$ 后得到
+\[
+  \boxed{F=\frac{3mgr}{l\cos\theta}
+  \left(\frac{1+\cos\theta}{\sin^2\theta}+2\sin\theta\right)}.
+\]
+上述构型除了要求 $s_3\le l$，还要保证最上方圆柱不与水平绳相交。第三个圆柱的圆心
+高度为 $s_3\cos\theta+r\sin\theta$，而水平绳的高度为 $l\cos\theta$，故还需
+\[
+  l\cos\theta-\bigl(s_3\cos\theta+r\sin\theta\bigr)\ge r.
+\]
+也就是
+\[
+  \boxed{l-s_3\ge r\frac{1+\sin\theta}{\cos\theta}}.
+\]
+这些条件只限制图示构型能否实现，不改变上面的拉力表达式。
+\end{xesolution}
+
+\begin{origexamplebox}{例 1.17}
+某机场候机楼结构简化图如图所示：候机楼侧壁是倾斜的，用钢索将两边斜壁系
+住，在钢索上有许多竖直短钢棒将屋面支撑在钢索上。假设每边斜壁的质量为 $4m$，质量分布
+均匀；钢索与屋面（包括短钢棒）的总质量为 $2m$，在地面处用铰链与水平地面连接，钢索固
+定于斜壁上端以支撑整个屋面，钢索上端与斜壁的夹角为 $30^\circ$；整个系统左右对称。求斜壁
+对钢索的拉力的大小和斜壁与地面的夹角。
+\sourcefigure[0.54\linewidth]{ex-1-17.png}
+\end{origexamplebox}
+
+\begin{xesolution}
+设斜壁与地面的夹角为 $\beta$，钢索端部切线与地面的夹角为 $\gamma$。由图示几何关系
+\[
+  \beta-\gamma=30^\circ.
+\]
+取一侧斜壁，关键力和角度如解图所示：
+\soldiagOneSeventeen
+把钢索、屋面和短钢棒作为一个整体。其总重为 $2mg$，由左右两端对称支承，因此每一端
+拉力 $T$ 的竖直分量应为 $mg$：
+\begin{equation}\label{roof-vertical}
+  T\sin\gamma=mg.
+\end{equation}
+再研究一侧斜壁。斜壁重力为 $4mg$，对底部铰链取矩；其力臂为斜壁长度的
+$\cos\beta/2$，钢索拉力与斜壁的夹角为 $30^\circ$，故
+\[
+  T\sin30^\circ=\frac{4mg}{2}\cos\beta.
+\]
+因 $\sin30^\circ=1/2$，得
+\begin{equation}\label{wall-moment}
+ T=4mg\cos\beta.
+\end{equation}
+联立式~\eqref{roof-vertical}、\eqref{wall-moment}，并代入 $\gamma=\beta-30^\circ$，得
+\[
+  4\cos\beta\sin(\beta-30^\circ)=1.
+\]
+利用积化和差公式，左边为
+\[
+  4\cos\beta\sin(\beta-30^\circ)
+  =2\sin(2\beta-30^\circ)-1.
+\]
+在图示实际构型 $30^\circ<\beta<90^\circ$ 内，方程化为
+$\sin(2\beta-30^\circ)=1$，故
+\[
+  \boxed{\beta=60^\circ},\qquad \gamma=30^\circ.
+\]
+最后由式~\eqref{roof-vertical} 得
+\[
+  \boxed{T=\frac{mg}{\sin30^\circ}=2mg}.
+\]
+代回式~\eqref{wall-moment} 也得到 $T=4mg\cos60^\circ=2mg$，两部分平衡条件一致。
+\end{xesolution}

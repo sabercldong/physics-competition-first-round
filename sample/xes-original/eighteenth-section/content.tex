@@ -1,0 +1,490 @@
+电磁相互作用是自然界的基本相互作用之一。与质点力学相比，静电学引入了一个新的描述层次：
+带电体先改变周围空间的物理性质，形成电场；另一个电荷进入该区域后，再受到电场的作用。
+本讲从电荷与库仑定律出发，建立电场强度、电场线和电通量的概念，最后给出高斯定律的积分
+形式与微分形式。
+
+\subsection*{物质结构与电荷}
+
+宏观物质由原子、分子组成。原子核带正电，核外电子带负电。物体所带电荷量记为 $q$，
+国际单位为库仑（\si{C}）。电荷具有以下基本性质：
+\begin{enumerate}[label=\arabic*.,leftmargin=2em]
+  \item \textbf{可加性：}复合系统的总电荷等于各部分电荷的代数和；
+  \item \textbf{守恒性：}孤立系统内的总电荷在任何过程中保持不变；
+  \item \textbf{量子化：}宏观物体的电荷量是元电荷
+  \begin{equation}
+    e=1.602176634\times10^{-19}\ \si{C}
+  \end{equation}
+  的整数倍。电子带电 $-e$，质子带电 $+e$。
+\end{enumerate}
+
+\matterStructureDiagram
+
+点电荷是对带电体的理想化：当带电体的线度远小于问题中的距离尺度时，可以忽略其形状和
+大小，只保留位置与总电荷量。
+
+\subsection*{库仑定律}
+
+真空中两个静止点电荷 $q_1,q_2$ 相距 $r$，它们之间的静电力为
+\begin{equation}
+  \boxed{\vect F_{12}=
+  \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r^3}\vect r_{12}},
+\end{equation}
+其中 $\vect r_{12}$ 从 $q_1$ 指向 $q_2$，$\varepsilon_0$ 为真空介电常数，并有
+\begin{equation}
+  k\equiv\frac{1}{4\pi\varepsilon_0}
+  \approx8.99\times10^9\ \si{N.m^2.C^{-2}}.
+\end{equation}
+同号电荷相斥，异号电荷相吸。多个点电荷同时存在时，总静电力满足矢量叠加原理。
+
+\coulombDiagram
+
+Coulomb 用扭秤把很小的静电力转化为可测的扭转角。若悬丝的扭转系数为 $\kappa$，电力对悬丝
+轴的力臂为 $d$，平衡时满足
+\begin{equation}Fd=\kappa\theta.\end{equation}
+保持电荷量不变并改变两带电小球的距离，测得的 $\theta$ 就与 $F$ 成正比；实验所得
+$\theta\propto r^{-2}$，从而给出平方反比关系。下图右侧装置中的细丝、横杆和带电小球正是
+这一测量链条的实物结构。
+
+\coulombHistoryContextDiagram
+
+库仑力与万有引力同为平方反比中心力，许多数学结论可以类比使用；但电荷有正、负两种，
+因而静电力既可能吸引，也可能排斥。两个点电荷的相互作用势能为
+\begin{equation}
+  U=\frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r},
+\end{equation}
+零势能取在两电荷相距无穷远处。
+
+\subsection*{电场与电场线}
+
+电场强度描述电场在空间某点对电荷的作用。把电荷量为 $q$ 的试探电荷置于该点，若它受到
+电场力 $\vect F$，则
+\begin{equation}
+  \boxed{\vect E=\frac{\vect F}{q}},
+  \qquad \vect F=q\vect E.
+\end{equation}
+电场由场源电荷决定，与试探电荷的大小和正负无关。点电荷 $Q$ 在位置矢量 $\vect r$ 处产生
+的电场为
+\begin{equation}
+  \boxed{\vect E(\vect r)=
+  \frac{1}{4\pi\varepsilon_0}\frac{Q}{r^3}\vect r}.
+\end{equation}
+对于离散电荷系与连续电荷分布，叠加原理分别给出
+\begin{equation}
+  \vect E=\frac{1}{4\pi\varepsilon_0}
+  \sum_i\frac{q_i\vect r_i}{r_i^3},
+  \qquad
+  \vect E=\frac{1}{4\pi\varepsilon_0}
+  \int\frac{\vect r}{r^3}\,\dd q.
+\end{equation}
+式中的 $\vect r_i$ 或 $\vect r$ 均从电荷元指向场点。
+
+电场线是在每一点都与当地电场方向相切的曲线。它不是空间中真实存在的细线，也不代表
+带电粒子的运动轨迹。静电场的电场线从正电荷或无穷远出发，终止于负电荷或无穷远；不同
+电场线不能相交，否则交点处的电场方向将不唯一。
+
+\fieldLineDiagram
+
+若在平面内用参数方程 $\vect r(s)$ 描述电场线，它满足
+\begin{equation}
+  \frac{\dd\vect r}{\dd s}\parallel\vect E,
+\end{equation}
+在直角坐标中可写为
+\begin{equation}
+  \frac{\dd x}{E_x}=\frac{\dd y}{E_y}=\frac{\dd z}{E_z}.
+\end{equation}
+
+\subsection*{电通量与高斯定律}
+
+匀强电场 $\vect E$ 穿过面积为 $S$ 的平面，取该面的单位法向量为 $\vect n$，定义面积矢量
+$\vect S=S\vect n$，则电通量为
+\begin{equation}
+  \Phi_E=\vect E\cdot\vect S=ES\cos\theta.
+\end{equation}
+
+\fluxDiagram
+
+对一般曲面，把曲面分割为无限小面积元 $\dd\vect S$，电通量为
+\begin{equation}
+  \Phi_E=\int_S\vect E\cdot\dd\vect S.
+\end{equation}
+闭合曲面的面积元方向规定为由内向外。真空中的高斯定律为
+\begin{equation}
+  \boxed{\oint_S\vect E\cdot\dd\vect S
+  =\frac{Q_{\rm in}}{\varepsilon_0}},
+\end{equation}
+其中 $Q_{\rm in}$ 是闭合曲面包围的净电荷。面外电荷会改变曲面各处的电场，却不改变穿出
+整个闭合面的净通量。
+
+\gaussDiagram
+
+\gaussContextDiagram
+
+从左至右看，肖像后的第一幅小图对应面积元通量
+$\dd\Phi_E=\vect E\cdot\dd\vect S=E\dd S\cos\theta$；后两幅图比较点电荷位于闭合面内、外
+两种情况。电荷在面内时，无论闭合面怎样变形，包围同一电荷的总通量仍为
+$q/\varepsilon_0$；电荷在面外时，电场线穿入与穿出闭合面的贡献相互抵消，净通量为零。
+这正对应高斯定律中真正需要判断的量 $Q_{\rm in}$，而不是曲面的形状或面外电荷的多少。
+
+高斯定律在任何电荷分布下都成立，但只有当电场具有足够高的对称性时，它才适合直接计算
+电场。例如球对称、柱对称和平面对称系统中，可选择与对称性匹配的高斯面，使积分中的
+$E$ 成为常量或使部分面积上的通量为零。
+
+利用散度定理
+\begin{equation}
+  \oint_S\vect E\cdot\dd\vect S
+  =\iiint_V(\nabla\cdot\vect E)\,\dd V
+\end{equation}
+以及 $Q_{\rm in}=\iiint_V\rho\,\dd V$，可得高斯定律的微分形式
+\begin{equation}
+  \boxed{\nabla\cdot\vect E=\frac{\rho}{\varepsilon_0}}.
+\end{equation}
+它表明电荷密度是静电场的“源”：正电荷附近有净电通量流出，负电荷附近有净电通量流入。
+
+\gaussDifferentialCubeDiagram
+
+\input{expanded-theory.tex}
+\input{source-restoration.tex}
+\input{full-source-restoration.tex}
+
+\Needspace{0.45\textheight}
+\begin{origexamplebox}{例题 29.1【统统算出来】}
+利用积分或高斯定律计算下列均匀带电系统产生的电场：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 无限长直导线外距导线 $a$ 处，线电荷密度为 $\lambda$；
+  \item 有限长直导线中垂线外距中点 $a$ 处，两端对中垂线所张角分别为 $\theta_1,\theta_2$；
+  \item 无限大均匀带电平面外，面电荷密度为 $\sigma$；
+  \item 仅一个方向无限延伸的均匀带电条带外距条带 $a$ 处，两侧边缘所张角为
+  $\theta_1,\theta_2$；
+  \item 半径为 $R$、面电荷密度为 $\sigma$ 的圆盘轴线上，距圆盘中心 $a$ 处。
+\end{enumerate}
+\finiteLineDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+记 $k=1/(4\pi\varepsilon_0)$。
+
+\textbf{(1) 无限长直导线。}取与导线同轴、半径 $a$、长度 $L$ 的圆柱面。电场沿径向，
+且仅圆柱侧面有通量。由高斯定律
+\[
+  E(2\pi aL)=\frac{\lambda L}{\varepsilon_0},
+\]
+故
+\[
+  \boxed{E=\frac{\lambda}{2\pi\varepsilon_0a}}.
+\]
+当 $\lambda>0$ 时方向背离导线，$\lambda<0$ 时方向指向导线。
+\lineFieldDiagram
+
+\textbf{(2) 有限长直导线。}以中垂线指向场点为法向正方向，沿导线取坐标 $x$，电荷元
+$\dd q=\lambda\dd x$ 到场点的距离为 $r=\sqrt{a^2+x^2}$。它产生的场元为
+\[
+  \dd E=\frac{k\lambda\dd x}{a^2+x^2}.
+\]
+将场元分解到法向和导线方向，并令 $x=a\tan\theta$，得到
+\[
+  \boxed{E_\perp=\frac{k\lambda}{a}
+  (\sin\theta_1+\sin\theta_2)},
+\]
+\[
+  \boxed{E_\parallel=\frac{k\lambda}{a}
+  (\cos\theta_1-\cos\theta_2)}.
+\]
+$E_\parallel$ 的正方向取向张角为 $\theta_1$ 的一端；若线段关于中垂线对称，
+$\theta_1=\theta_2=\theta$，则切向分量抵消，
+\[
+  \boxed{E=\frac{2k\lambda}{a}\sin\theta}.
+\]
+令 $\theta\to\pi/2$，即回到无限长直导线的结果。
+
+\textbf{(3) 无限大平面。}取跨过平面的薄圆柱高斯面。由平面对称性，两底面的电场大小
+相同且垂直平面，侧面无通量，因而
+\[
+  2ES=\frac{\sigma S}{\varepsilon_0},
+  \qquad
+  \boxed{E=\frac{\sigma}{2\varepsilon_0}}.
+\]
+
+\textbf{(4) 无限长条带。}把条带分成许多与无限方向平行的细线，每条细线的线电荷密度
+$\dd\lambda=\sigma\dd x$。设场点到条带所在平面的垂足为坐标原点，条带两边分别位于
+$x=-a\tan\theta_2$ 和 $x=a\tan\theta_1$。叠加无限长直线的电场，有
+\[
+  \boxed{E_\perp=\frac{\sigma}{2\pi\varepsilon_0}
+  (\theta_1+\theta_2)},
+\]
+\[
+  \boxed{E_\parallel=
+  \frac{\sigma}{2\pi\varepsilon_0}
+  \ln\frac{\cos\theta_1}{\cos\theta_2}}.
+\]
+这里 $E_\parallel$ 的正方向取向张角为 $\theta_1$ 的一侧。
+若场点位于条带中垂面，$\theta_1=\theta_2=\theta$，则
+\[
+  \boxed{E=\frac{\sigma\theta}{\pi\varepsilon_0}}.
+\]
+当条带宽度趋于无穷，$\theta\to\pi/2$，再次得到 $E=\sigma/(2\varepsilon_0)$。
+
+\textbf{(5) 均匀带电圆盘。}把圆盘分成半径 $s$、宽度 $\dd s$ 的同心圆环，
+$\dd q=2\pi\sigma s\dd s$。圆环在轴线场点处的横向分量相消，轴向场元为
+\[
+  \dd E_x=k\frac{a\,\dd q}{(a^2+s^2)^{3/2}}.
+\]
+从 $s=0$ 积分到 $R$，得到
+\[
+  \boxed{E_x=\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{a}{\sqrt{a^2+R^2}}\right)}.
+\]
+若圆盘边缘对场点的半张角为 $\theta$，则
+\[
+  \boxed{E_x=\frac{\sigma}{2\varepsilon_0}(1-\cos\theta)}.
+\]
+\diskFieldDiagram
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 29.2【奇妙的电场线】}
+点电荷 $+Q$、$-q$ 分别位于 $(-a,0,0)$、$(a,0,0)$，且 $Q>q>0$。系统关于两电荷连线
+旋转对称。回答：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item $+Q$ 发出的电场线能否到达无穷远？$-q$ 接收的电场线是否来自无穷远？
+  \item 空间中是否存在电场为零的点？该点附近的电场线有何特征？
+  \item 无穷远处的电场有什么特征？
+  \item 写出电场线方程的一种隐式表示。
+\end{enumerate}
+\unequalChargeDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} 电场线条数只能用来表示通量比例，不是绝对数量。由于净电荷为 $Q-q>0$，
+$+Q$ 发出的电通量中有一部分终止于 $-q$，其余必然延伸到无穷远。$-q$ 所接收的全部电场线
+都可来自 $+Q$，不需要由无穷远进入。
+
+\textbf{(2)} 零场点只能在两电荷连线延长线上。两电荷之间的电场同向，不可能抵消；
+在 $+Q$ 左侧，大电荷又更近，也不能抵消。因此零场点在 $-q$ 的右侧。设其坐标为 $x_0>a$，
+则
+\[
+  \frac{kQ}{(x_0+a)^2}=\frac{kq}{(x_0-a)^2},
+\]
+解得
+\[
+  \boxed{x_0=a\frac{\sqrt Q+\sqrt q}{\sqrt Q-\sqrt q}}.
+\]
+零场点附近的场具有鞍点结构：沿两电荷连线方向，电场线从零场点两侧离开；沿垂直方向，
+电场线向该轴线汇聚。电场线本身不穿过电场为零的点，因为该点没有确定的切向方向。
+
+\textbf{(3)} 当 $r\gg a$ 时，观察者分辨不出两电荷的间距，最低阶电场等效于位于原点的
+净电荷 $Q-q$：
+\[
+  \boxed{\vect E\simeq k\frac{Q-q}{r^2}\uvec r}.
+\]
+因此无穷远处的电场线近似沿径向向外，偶极修正比主项多衰减一个 $1/r$。
+
+\textbf{(4)} 在包含两电荷的任一子午面内，设场点相对于 $+Q$、$-q$ 的极角分别为
+$\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电场的通量函数可得，
+每一条电场线满足
+\[
+  \boxed{Q(1-\cos\theta_+)-q(1-\cos\theta_-)=C},
+\]
+其中 $C$ 由所选电场线决定。等价地，也可写成
+\[
+  Q\cos\theta_+-q\cos\theta_-=C'.
+\]
+这是一种隐式方程；绕 $x$ 轴旋转即可得到三维电场线族。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{例题 29.3【球壳空洞】}
+一个球体内部挖去偏心球形空腔，未挖去部分具有均匀体电荷密度 $\rho$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求空腔内的电场；
+  \item 分析它与万有引力中同类模型的联系，并讨论题目若把球体称为“金属球体”会有什么问题。
+\end{enumerate}
+\cavityDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+设完整大球球心为 $O$，空腔球心为 $C$，$\vect d=\overrightarrow{OC}$。把实际电荷分布分解为：
+以 $O$ 为球心、密度为 $\rho$ 的完整均匀带电球，加上以 $C$ 为球心、密度为 $-\rho$ 的小球。
+均匀带电实心球内部距球心位置矢量为 $\vect r$ 的点，电场为
+\[
+  \vect E=\frac{\rho}{3\varepsilon_0}\vect r.
+\]
+对空腔内任一点 $P$，记 $\vect r=\overrightarrow{OP}$、$\vect r'=\overrightarrow{CP}$，
+则 $\vect r=\vect d+\vect r'$。叠加两球的电场：
+\[
+  \vect E=\frac{\rho}{3\varepsilon_0}\vect r
+  -\frac{\rho}{3\varepsilon_0}\vect r'
+  =\boxed{\frac{\rho}{3\varepsilon_0}\vect d}.
+\]
+所以空腔内电场是匀强电场，方向由大球球心指向空腔球心。
+
+万有引力也服从平方反比定律，均匀球形空腔可用完全相同的叠加方法计算，只需把电学常量与
+质量密度替换为引力常量与质量密度；引力只有吸引，最终场方向相应改变。
+
+若把球体称为“金属球体”并同时规定内部均匀体电荷密度，这在静电平衡下不成立。导体内
+自由电荷会重新分布，导体材料内部电场必须为零。因此上述答案适用于均匀体电荷被冻结的
+绝缘球体；若确为处于静电平衡的导体，必须按导体边界条件重新求解。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 29.4【电偶极子】}
+一正一负两个点电荷的电荷量分别为 $+q$、$-q$，间距为 $l$。求 $r\gg l$ 处电场强度的
+大小和方向，并求在该近似下的电场线方程。
+\dipoleDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+定义电偶极矩
+\[
+  \vect p=q\vect l,
+\]
+方向由负电荷指向正电荷。取偶极子中心为极点，以 $\vect p$ 方向为极轴。当 $r\gg l$ 时，
+两点电荷势的最低阶非零项为
+\[
+  \varphi(r,\theta)=k\frac{p\cos\theta}{r^2}.
+\]
+由 $\vect E=-\nabla\varphi$ 得
+\[
+  \boxed{E_r=\frac{2kp\cos\theta}{r^3}},
+  \qquad
+  \boxed{E_\theta=\frac{kp\sin\theta}{r^3}}.
+\]
+因此
+\[
+  \boxed{E=\frac{kp}{r^3}\sqrt{1+3\cos^2\theta}}.
+\]
+方向由 $E_r,E_\theta$ 共同确定；轴线上电场沿 $\vect p$，中垂面上电场与 $\vect p$ 反向。
+
+电场线满足
+\[
+  \frac{\dd r}{r\dd\theta}=\frac{E_r}{E_\theta}=2\cot\theta.
+\]
+积分后得到
+\[
+  \boxed{r=C\sin^2\theta},
+\]
+其中 $C>0$ 标记不同的电场线。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 29.5【直线电四极子】}
+三个共线点电荷依次为 $-q,+2q,-q$，相邻电荷间距均为 $l$。求 $r\gg l$ 处电场强度的
+大小和方向，并求在该近似下的电场线方程。
+\quadrupoleDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $+2q$ 所在点为原点，以三电荷连线为极轴。电荷系的总电荷与偶极矩都为零，因此远场的
+最低阶非零项是四极项。利用
+\[
+  \frac{1}{|\vect r-\vect r'|}
+  =\frac1r\sum_{n=0}^{\infty}\left(\frac{r'}r\right)^nP_n(\cos\theta)
+\]
+并保留 $n=2$ 项，得到
+\[
+  \varphi(r,\theta)\simeq
+  \frac{kql^2}{r^3}(1-3\cos^2\theta).
+\]
+于是
+\[
+  \boxed{E_r=\frac{3kql^2}{r^4}(1-3\cos^2\theta)},
+\]
+\[
+  \boxed{E_\theta=-\frac{6kql^2}{r^4}\sin\theta\cos\theta}.
+\]
+电场大小为
+\[
+  \boxed{E=\frac{3kql^2}{r^4}
+  \sqrt{1-2\cos^2\theta+5\cos^4\theta}}.
+\]
+可见四极场按 $1/r^4$ 衰减，比偶极场的 $1/r^3$ 更快。
+
+由电场线微分方程
+\[
+  \frac{\dd r}{r\dd\theta}=\frac{E_r}{E_\theta}
+  =-\frac{1-3\cos^2\theta}{2\sin\theta\cos\theta}
+\]
+积分得
+\[
+  \boxed{r=C\sin\theta\sqrt{|\cos\theta|}}.
+\]
+上下半空间分别选取常量 $C$；$\cos\theta=0$ 的中垂面是场线结构的分界面。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 29.6【无穷大厚板】}
+在 $y,z$ 两个方向无限延伸的厚板，仅在 $-d<x<d$ 内有均匀体电荷密度 $\rho>0$。
+初始时，一个质量为 $m$、带电量 $+q$ 的点电荷在原点以速度 $v_0$ 沿 $+x$ 方向运动，
+求该运动的周期。
+\slabDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+先由平面对称性求电场。取横跨中平面的柱形高斯面，可得
+\[
+  \vect E(x)=
+  \begin{cases}
+    \dfrac{\rho x}{\varepsilon_0}\uvec x, & |x|<d,\\[6pt]
+    \dfrac{\rho d}{\varepsilon_0}\operatorname{sgn}(x)\uvec x, & |x|\ge d.
+  \end{cases}
+\]
+对题目给定的 $q>0$，电场力始终把电荷推离中平面。在板内有
+\[
+  \ddot x=\frac{q\rho}{m\varepsilon_0}x,
+\]
+其解为双曲函数而非简谐函数；离开厚板后电荷仍受到向外的恒力。因此电荷不会返回，
+\textbf{不存在运动周期}。可见题设电荷符号与“求周期”的要求相互矛盾。
+
+若题意原本是带电量 $-q$ 的粒子，其中 $q>0$ 表示电荷量大小，则板内运动才是简谐运动：
+\[
+  \ddot x+\omega^2x=0,
+  \qquad
+  \omega=\sqrt{\frac{q\rho}{m\varepsilon_0}}.
+\]
+当 $v_0\le\omega d$ 时粒子始终留在厚板内，周期为
+\[
+  \boxed{T=\frac{2\pi}{\omega}
+  =2\pi\sqrt{\frac{m\varepsilon_0}{q\rho}}}.
+\]
+当 $v_0>\omega d$ 时粒子会越出厚板，但外侧恒力仍指向厚板。令
+$u=\sqrt{v_0^2-\omega^2d^2}$，完整周期为
+\[
+  \boxed{T=\frac{4}{\omega}\arcsin\frac{\omega d}{v_0}
+  +\frac{4u}{\omega^2d}}.
+\]
+第一项是粒子四次穿过半块厚板所用的时间，第二项是两侧板外往返时间之和。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 29.7【电子透镜】}
+电子显微镜中的一束电子先经电势差 $U_0$ 加速，再掠过一根与电子束原方向垂直的绷紧带电
+细金属线。金属线带正电，线电荷密度为 $\lambda$；电场很弱，可把电子轨迹近似为直线。
+若入射电子的瞄准参数为 $b$，求电子通过金属线后的偏转角 $\alpha$。
+\electronLensDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+电子经电势差 $U_0$ 加速后满足
+\[
+  \frac12m_ev^2=eU_0.
+\]
+取金属线为 $z$ 轴，未偏转轨迹为 $y=b$、$x=vt$。正线电荷在电子位置产生的电场为
+\[
+  \vect E=\frac{\lambda}{2\pi\varepsilon_0(x^2+b^2)}
+  (x\uvec x+b\uvec y).
+\]
+电子带电 $-e$。由于关于 $x=0$ 对称，纵向冲量相消；横向冲量为
+\begin{align*}
+  \Delta p_y
+  &=-\int_{-\infty}^{\infty}
+  \frac{e\lambda b}{2\pi\varepsilon_0(x^2+b^2)}\frac{\dd x}{v}\\
+  &=-\frac{e\lambda}{2\varepsilon_0v}.
+\end{align*}
+弱偏转条件下 $\alpha\simeq|\Delta p_y|/(m_ev)$，所以
+\[
+  \alpha=\frac{e\lambda}{2\varepsilon_0m_ev^2}
+  =\boxed{\frac{\lambda}{4\varepsilon_0U_0}}.
+\]
+在无限长直线、弱偏转近似下，结果与瞄准参数 $b$ 无关；$b$ 只决定电子从金属线哪一侧通过。
+正线电荷吸引电子，因此偏转方向指向金属线。若 $\alpha$ 不够小或金属线长度有限，则必须
+使用真实弯曲轨迹和边缘场重新计算。
+\end{xesolution}

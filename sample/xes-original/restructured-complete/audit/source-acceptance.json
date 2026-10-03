@@ -1,0 +1,448 @@
+{
+  "schema_version": 1,
+  "policy": "仅当源文件哈希、全部教学页范围和已存在的内容/插图审查证据同时匹配时，来源对象才可进入 accepted 状态。",
+  "sources": [
+    {
+      "source_id": "r1-mechanics",
+      "accepted_sha256": "d65916a3602e25534bc75262c2aa6c61d2c9bf5a2d3968f30baf264ad582d561",
+      "accepted_teaching_ranges": [
+        [
+          3,
+          82
+        ]
+      ],
+      "basis": "既有第1—37节逐节精修基线、32章来源映射和独立章成品回归",
+      "evidence": [
+        "generated/source-map.json",
+        "audit/ch05-source-figure-ledger.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_第05章_力、受力分析与静力平衡_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-calculus",
+      "accepted_sha256": "e482e0671ec481c2d2660069e6816260e46092685b906aba5a239d98ddaa070b",
+      "accepted_teaching_ranges": [
+        [
+          1,
+          20
+        ]
+      ],
+      "basis": "数学工具章节来源映射、独立章双向内容回归",
+      "evidence": [
+        "generated/source-map.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_第01章_数学工具：量纲、矢量、坐标、导数和积分_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-summer",
+      "accepted_sha256": "43d70247d107e2301a2276e84645eee5a5865e56afcc2ec90b2168a3ba47f3e0",
+      "accepted_teaching_ranges": [
+        [
+          3,
+          80
+        ]
+      ],
+      "basis": "力学主线既有逐节精修基线、来源映射和独立章回归",
+      "evidence": [
+        "generated/source-map.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_第09章_角动量与刚体动力学_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-autumn-em-1",
+      "accepted_sha256": "21f9cfb7c6eeee33b5ae09fa1e33610ab51f7f7a8d04f6f9cfbec79d178c2ae6",
+      "accepted_teaching_ranges": [
+        [
+          5,
+          52
+        ]
+      ],
+      "basis": "2019秋/2020春逐题、逐问、逐推导和逐图差异比较",
+      "evidence": [
+        "generated/appendix-e-difference-ledger.json",
+        "build/check-appendix-e-rev/appendix-e.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-autumn-em-2",
+      "accepted_sha256": "c3fac09f2ae19eeda41a354dffad0c6d848388cf01dddfbdaf781a00d7ec3769",
+      "accepted_teaching_ranges": [
+        [
+          5,
+          81
+        ]
+      ],
+      "basis": "2019秋/2020春逐题、逐问、逐推导和逐图差异比较",
+      "evidence": [
+        "generated/appendix-e-difference-ledger.json",
+        "build/check-appendix-e-rev/appendix-e.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-thermal",
+      "accepted_sha256": "74fbc798a37434371504dd3b177bc9505692150ed9bd4642b6f2ed74e76389f0",
+      "accepted_teaching_ranges": [
+        [
+          5,
+          52
+        ]
+      ],
+      "basis": "热学主线逐节精修基线、来源映射和分卷回归",
+      "evidence": [
+        "generated/source-map.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_第3卷_热学与统计物理_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-spring-em",
+      "accepted_sha256": "e212638999b2f3f75f43ccc42663b771b7de3656ec24e4d96134bc5ba9990d05",
+      "accepted_teaching_ranges": [
+        [
+          5,
+          72
+        ],
+        [
+          73,
+          85
+        ],
+        [
+          87,
+          98
+        ],
+        [
+          99,
+          115
+        ],
+        [
+          117,
+          124
+        ]
+      ],
+      "basis": "2020春电磁学逐节精修、独立讲成品与差异附录反向核验",
+      "evidence": [
+        "generated/source-map.json",
+        "generated/appendix-e-difference-ledger.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_2020春电磁学全十讲_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-optics",
+      "accepted_sha256": "d3d5f976658868b2fd34f58734556022538a8a4212cee6c3263da83784c152c6",
+      "accepted_teaching_ranges": [
+        [
+          5,
+          16
+        ],
+        [
+          18,
+          31
+        ],
+        [
+          32,
+          44
+        ],
+        [
+          46,
+          54
+        ]
+      ],
+      "basis": "光学四讲逐节精修、来源映射和全四讲合订回归",
+      "evidence": [
+        "generated/source-map.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_2020寒光学全四讲_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r1-kinematics-supplement",
+      "accepted_sha256": "3c3a992be8d4e24124561b5642abc55136edda735b2efeb4780943c4302b4784",
+      "accepted_teaching_ranges": [
+        [
+          6,
+          86
+        ]
+      ],
+      "basis": "K1—K11逐节精修、32章重组映射和运动学全十一节回归",
+      "evidence": [
+        "generated/source-map.json",
+        "../../../output/pdf/高中物理竞赛一轮讲义_力学补编运动学_全十一节_含解答与解图.pdf"
+      ]
+    },
+    {
+      "source_id": "r2-mechanics-notes",
+      "accepted_sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+      "accepted_teaching_ranges": [
+        [
+          73,
+          98
+        ],
+        [
+          99,
+          104
+        ],
+        [
+          111,
+          122
+        ],
+        [
+          123,
+          128
+        ]
+      ],
+      "basis": "二轮力学页段人工提取笔记、桥梁题及第10—13章来源映射",
+      "evidence": [
+        "audit/source-review/high2-notes",
+        "generated/source-map.json",
+        "build/check-ch12/ch12.pdf"
+      ],
+      "pending_independent_review": [
+        {
+          "pages": [
+            105,
+            110
+          ],
+          "topic": "刚体",
+          "reason": "原第11章末页归属误记；本次只核验99—104及111—122。"
+        }
+      ],
+      "revision_20260912": {
+        "ranges": [
+          [
+            99,
+            104
+          ],
+          [
+            111,
+            122
+          ]
+        ],
+        "chapters": [
+          11,
+          12
+        ],
+        "ledger": "audit/source-review/ch11-ch12-revision-ledger-20260912.json",
+        "evidence": "build/revision-ch11-ch12-20260912/release-checks.json",
+        "visual": "build/revision-ch11-ch12-20260912/visual-reviewed.json",
+        "publication": "build/revision-ch11-ch12-20260912/publication.json",
+        "scope_note": "仅本字段所列范围为本次逐页修订，其他既有范围未重新内容验收。"
+      }
+    },
+    {
+      "source_id": "r2-mechanics-exercises",
+      "accepted_sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba",
+      "accepted_teaching_ranges": [
+        [
+          36,
+          39
+        ],
+        [
+          40,
+          43
+        ],
+        [
+          49,
+          52
+        ],
+        [
+          53,
+          56
+        ]
+      ],
+      "basis": "第10—13章逐题桥梁题映射、解答配对与独立章回归",
+      "evidence": [
+        "generated/source-map.json",
+        "build/check-ch12/ch12.pdf",
+        "../../../output/pdf/高中物理竞赛一轮讲义_第13章_流体静力学与动力学_含解答与解图.pdf"
+      ],
+      "revision_20260912": {
+        "ranges": [
+          [
+            40,
+            43
+          ],
+          [
+            49,
+            52
+          ]
+        ],
+        "chapters": [
+          11,
+          12
+        ],
+        "ledger": "audit/source-review/ch11-ch12-revision-ledger-20260912.json",
+        "evidence": "build/revision-ch11-ch12-20260912/release-checks.json",
+        "visual": "build/revision-ch11-ch12-20260912/visual-reviewed.json",
+        "publication": "build/revision-ch11-ch12-20260912/publication.json",
+        "scope_note": "仅本字段所列范围为本次逐页修订，其他既有范围未重新内容验收。"
+      }
+    },
+    {
+      "source_id": "r2-winter",
+      "accepted_sha256": "7576f82186b6c6ffeca89e9ae99c969349b5c4642535f4c6ed2c9d6b49a5cc14",
+      "accepted_teaching_ranges": [
+        [
+          68,
+          77
+        ],
+        [
+          78,
+          87
+        ],
+        [
+          88,
+          99
+        ],
+        [
+          100,
+          108
+        ]
+      ],
+      "basis": "第68—108页高清逐页审查、联系图和新版章节映射",
+      "evidence": [
+        "audit/source-review/winter",
+        "generated/source-map.json"
+      ]
+    },
+    {
+      "source_id": "r2-spring",
+      "accepted_sha256": "7d47436e2942ee0a77afb18a8ea9abf4fa3d6e22831466ce6b19935b0fd9251c",
+      "accepted_teaching_ranges": [
+        [
+          111,
+          114
+        ],
+        [
+          115,
+          119
+        ],
+        [
+          121,
+          132
+        ],
+        [
+          143,
+          144
+        ]
+      ],
+      "basis": "2026-09-23纠正范围：120为空白；145—146为静电场习题，撤销其近代物理验收。相关落点未核实，不计入本章已映射对象。其他旧验收范围本轮未重新审查。",
+      "evidence": [
+        "audit/source-review/spring",
+        "generated/source-map.json"
+      ]
+    },
+    {
+      "source_id": "r2-comprehensive",
+      "accepted_sha256": "7fc1fe760505033b0dfbd434d206188f66849af0c1ffaafa446dabb237b1c95b",
+      "accepted_teaching_ranges": [
+        [
+          5,
+          66
+        ],
+        [
+          67,
+          86
+        ],
+        [
+          87,
+          130
+        ],
+        [
+          131,
+          160
+        ],
+        [
+          161,
+          190
+        ],
+        [
+          191,
+          221
+        ]
+      ],
+      "basis": "LiteParse逐页版面索引、A1—A6对象包数量核验、双遍编译和逐图检查",
+      "evidence": [
+        "audit/advanced-packets/index.json",
+        "build/check-A6/A6-standalone.pdf"
+      ],
+      "units": {
+        "A1": {
+          "expected_counts": {
+            "example": 42,
+            "definition": 18,
+            "theorem": 25,
+            "figure": 4,
+            "embedded_image": 6
+          },
+          "evidence": [
+            "audit/advanced-packets/A1.json",
+            "build/check-A1/A1-standalone.pdf"
+          ]
+        },
+        "A2": {
+          "expected_counts": {
+            "example": 27,
+            "definition": 3,
+            "theorem": 8,
+            "figure": 0,
+            "embedded_image": 1
+          },
+          "evidence": [
+            "audit/advanced-packets/A2.json",
+            "build/check-A2/A2-standalone.pdf"
+          ]
+        },
+        "A3": {
+          "expected_counts": {
+            "example": 23,
+            "definition": 16,
+            "theorem": 21,
+            "figure": 3,
+            "embedded_image": 3
+          },
+          "evidence": [
+            "audit/advanced-packets/A3.json",
+            "build/check-A3/A3-standalone.pdf"
+          ]
+        },
+        "A4": {
+          "expected_counts": {
+            "example": 27,
+            "definition": 1,
+            "theorem": 13,
+            "figure": 0,
+            "embedded_image": 2
+          },
+          "evidence": [
+            "audit/advanced-packets/A4.json",
+            "build/check-A4/A4-standalone.pdf"
+          ]
+        },
+        "A5": {
+          "expected_counts": {
+            "example": 11,
+            "definition": 0,
+            "theorem": 4,
+            "figure": 19,
+            "embedded_image": 25
+          },
+          "evidence": [
+            "audit/advanced-packets/A5.json",
+            "build/check-A5/A5-standalone.pdf"
+          ]
+        },
+        "A6": {
+          "expected_counts": {
+            "example": 18,
+            "definition": 10,
+            "theorem": 6,
+            "figure": 1,
+            "embedded_image": 3
+          },
+          "evidence": [
+            "audit/advanced-packets/A6.json",
+            "build/check-A6/A6-standalone.pdf"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 19.6【加热气体】}
+如图所示，水平放置的汽缸内壁光滑，活塞厚度不计，在 $A$、$B$ 两处设有限制装置，使活塞只能在
+$A$、$B$ 之间运动，$B$ 左面汽缸的容积为 $V_0$，$A$、$B$ 之间的容积为 $0.1V_0$。开始时活塞
+在 $B$ 处，缸内气体的压强为 $0.9p_0$（$p_0$ 为大气压强），温度为 $297\,\mathrm K$，现缓慢
+加热汽缸内气体，直至 $399.3\,\mathrm K$。
+
+（1）活塞刚离开 $B$ 处时的温度 $T_B$；
+
+（2）缸内气体最后的压强 $p'$；
+
+（3）画出整个过程的 $p$--$V$ 图像。
+\exampleNineteenSixFaithful
+\end{origexamplebox}
+
+\begin{xesolution}
+活塞经历三个阶段：在 $B$ 处被挡住时定容升压；离开 $B$ 后在大气压下向 $A$ 移动，近似定压膨胀；
+到达 $A$ 后再次被挡住，继续定容升压。图\ref{ch14:fig:heated-apparatus}中两个挡块分别限制向左、向右移动，
+图\ref{ch14:fig:heated-path}把三个阶段与 $p$--$V$ 图中的三段折线一一对应。
+
+\heatedCylinderDiagram
+
+第一阶段 $V=V_0$。活塞刚能离开 $B$ 时，缸内压强升到外界大气压 $p_0$，故
+\begin{equation}
+  \frac{0.9p_0}{297}=\frac{p_0}{T_B},\qquad
+  \boxed{T_B=330\,\mathrm K}.
+\end{equation}
+
+第二阶段 $p=p_0$，活塞从 $B$ 移到 $A$，体积由 $V_0$ 增至 $1.1V_0$。到达 $A$ 时
+\begin{equation}
+  \frac{V_0}{330}=\frac{1.1V_0}{T_A},\qquad
+  T_A=363\,\mathrm K.
+\end{equation}
+
+第三阶段 $V=1.1V_0$，由 $363\,\mathrm K$ 升到 $399.3\,\mathrm K$：
+\begin{equation}
+  \frac{p_0}{363}=\frac{p'}{399.3},\qquad
+  \boxed{p'=1.10p_0}.
+\end{equation}
+$p$--$V$ 图依次经过
+\begin{equation}
+  (V_0,0.9p_0)\longrightarrow(V_0,p_0)
+  \longrightarrow(1.1V_0,p_0)\longrightarrow(1.1V_0,1.1p_0),
+\end{equation}
+即“竖直—水平—竖直”三段，分别对应定容、定压、定容过程。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 19.7【各种过程】}
+一个质量可不计的活塞将一定量的理想气体封闭在上端开口的直立圆筒形气缸内，活塞上堆放着铁砂，
+如图所示。最初活塞搁置在气缸内壁的固定卡环上，气体柱的高度为 $H_0$，压强等于大气压强 $p_0$。
+现对气体缓慢加热，当气体温度升高了 $\Delta T=60\,\mathrm K$ 时，活塞（及铁砂）开始离开卡环而
+上升；继续加热直到气柱高度为 $H_1=1.5H_0$。此后，在维持温度不变的条件下逐渐取走铁砂，直到
+铁砂全部取走时，气柱高度变为 $H_2=1.8H_0$。求此时气体的温度（不计活塞与气缸之间的摩擦）。
+\figureNineteenSevenFaithful
+\end{origexamplebox}
+
+\begin{xesolution}
+设初温为 $T_0$，活塞刚离开卡环时气体压强为 $P_1$。气缸横截面积不变，所以气体体积与气柱高度
+成正比。图\ref{ch14:fig:s28-19-7}给出初态卡环与活塞的接触关系，
+图\ref{ch14:fig:sand-states}按实际比例画出 $H_0,H_1,H_2$，分别对应三个状态中的气体体积。
+
+\sandPistonDiagram
+
+最后铁砂全部取走，活塞质量又可忽略，故气体最终压强等于大气压 $p_0$。取走铁砂的过程保持温度
+不变，于是
+\begin{equation}
+  P_1H_1=p_0H_2,\qquad
+  \frac{P_1}{p_0}=\frac{H_2}{H_1}=\frac{1.8}{1.5}=1.2.
+\end{equation}
+最初到活塞刚起动前，卡环使气体体积保持不变；温度从 $T_0$ 升到 $T_0+60$，压强从 $p_0$ 升到
+$P_1$：
+\begin{equation}
+  \frac{P_1}{p_0}=\frac{T_0+60}{T_0}=1.2,
+\end{equation}
+解得
+\begin{equation}
+  \boxed{T_0=300\,\mathrm K}.
+\end{equation}
+活塞离开卡环后，铁砂质量尚未改变，外压恒定为 $P_1$，所以从 $H_0$ 膨胀至 $H_1=1.5H_0$ 的
+过程是定压过程：
+\begin{equation}
+  \frac{T_1}{T_0+60}=\frac{H_1}{H_0}=1.5.
+\end{equation}
+因此在气柱达到 $H_1$ 时以及随后恒温取砂直至末态，气体温度均为
+\begin{equation}
+  \boxed{T_1=1.5\times360=540\,\mathrm K}.
+\end{equation}
+这里最容易颠倒的是等温取砂阶段的压强比：体积由 $1.5H_0$ 增到 $1.8H_0$，压强应由 $1.2p_0$
+降到 $p_0$。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 19.8【气体膨胀】}
+如图所示，开口向上、粗细均匀的玻璃管长 $L=100\,\mathrm{cm}$，管内有一段高
+$h=20\,\mathrm{cm}$ 的水银柱，封闭着长 $a=50\,\mathrm{cm}$ 的空气柱，大气压强
+$p_0=76\,\mathrm{cmHg}$，温度 $t_0=27\,{}^\circ\mathrm C$。求温度至少升到多高时，
+可使水银全部溢出？
+\figureNineteenEightFaithful
+\end{origexamplebox}
+
+\begin{xesolution}
+这是一个“先膨胀到管口，再边溢出边变化”的过程。仅求水银柱上端刚到管口的温度还不够；水银开始
+溢出后，剩余汞柱变短，气体压强下降，但气体可占体积继续增大，两种作用竞争会形成一个温度势垒。
+
+\mercurySpillDiagram
+
+图\ref{ch14:fig:s28-19-8}给出初始长度；
+图\ref{ch14:fig:mercury-spill}中 $x$ 表示剩余汞柱的高度，不是活塞位移。
+为避免把压强与长度相加，引入 $b_0=p_0/(\rho_{\rm Hg}g)=76\,\mathrm{cm}$。
+初态封闭气体压强为
+\begin{equation}
+  p_1=\rho_{\rm Hg}g(b_0+h)=96\,\mathrm{cmHg},\qquad T_0=27+273=300\,\mathrm K,
+\end{equation}
+这里沿用题目计算精度，将 $273.15$ 近似取作 $273$，故 $T_0\simeq300\,\mathrm K$。
+气柱长度为 $a=50\,\mathrm{cm}$。水银柱上端刚到管口时，汞柱仍高 $20\,\mathrm{cm}$，气柱长度
+变为 $L-h=80\,\mathrm{cm}$，由理想气体状态方程得到
+\begin{equation}
+  T_{\text{口}}=T_0\frac{96\times80}{96\times50}=480\,\mathrm K.
+\end{equation}
+但此时还没有“全部溢出”。令溢出过程中管内剩余汞柱高度为 $x$。它的下端距管底 $L-x$，所以封闭
+气柱长为 $L-x$；汞柱平衡又给出气体压强 $p=\rho_{\rm Hg}g(b_0+x)$。于是准静态过程所需温度为
+\begin{equation}
+  T(x)=T_0\frac{(b_0+x)(L-x)}{(b_0+h)a},\qquad 0\le x\le h.
+\end{equation}
+要使水银能连续溢出，外界温度至少应达到该函数在区间 $[0,h]$ 上的最大值。令
+\begin{equation}
+  f(x)=(b_0+x)(L-x),\qquad
+  f'(x)=L-b_0-2x,
+\end{equation}
+得到最大值位置
+\begin{equation}
+  x_*=\frac{L-b_0}{2}=12\,\mathrm{cm}.
+\end{equation}
+因此
+\begin{equation}
+  T_{\min}=300\times\frac{(76+12)(100-12)}{96\times50}
+  =484\,\mathrm K,
+\end{equation}
+即
+\begin{equation}
+  \boxed{t_{\min}\simeq484-273=211\,{}^\circ\mathrm C}.
+\end{equation}
+图中的曲线在 $x=12\,\mathrm{cm}$ 处达到最高点：加热到 $480\,\mathrm K$ 只能使水银刚到管口，
+还必须跨过 $484\,\mathrm K$ 的最高点，越过极大值后，在不降低加热温度的条件下，不再有静态平衡阻止剩余水银流出。
+此后的实际运动未必继续准静态；极大值用于判断能否越过整条平衡路径。
+\end{xesolution}
+
+\Needspace{18\baselineskip}
+\begin{origexamplebox}{例题 19.9【定性分析】}
+等截面U形管的两端封闭，两腿竖直。初态液面距弯管上缘的高度至少为 $L$，以保证以下过程中液面均在竖直段内。管内水柱把左右两团理想气体隔开。初态两液面等高，两侧气柱长度均为
+$L$，压强和温度均为 $p_0,T_0$。现缓慢加热右侧气体至 $T_R>T_0$，左侧气体始终保持
+$T_0$。水的密度为 $\rho$，忽略毛细现象。判断两液面的移动方向，并写出末态位移所满足的方程；
+说明物理解是否唯一。
+
+
+\closedUTubeDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图\ref{ch14:fig:closed-u}两端都封闭，水柱在弯管处连续连通。右侧升温后，若液面尚未来得及移动，其压强先增大，所以水柱被向左推：右液面下降、左液面上升。
+设两液面各移动 $x$。截面积相同保证两侧体积变化量相等，因而末态气柱长度分别为 $L-x$、$L+x$。
+由理想气体状态方程
+\[
+ p_L=\frac{p_0L}{L-x},\qquad
+ p_R=\frac{p_0L}{L+x}\frac{T_R}{T_0}.
+\]
+右液面比左液面低 $2x$，静水压关系为
+\[
+ \boxed{\frac{p_0L(T_R/T_0)}{L+x}-\frac{p_0L}{L-x}=2\rho gx},
+ \qquad 0<x<L.
+\]
+令左端减右端为 $F(x)$。有
+\[
+ F(0)=p_0\!\left(\frac{T_R}{T_0}-1\right)>0,\qquad
+ \lim_{x\to L^-}F(x)=-\infty,
+\]
+并且
+\[
+ F'(x)=-\frac{p_0L(T_R/T_0)}{(L+x)^2}
+       -\frac{p_0L}{(L-x)^2}-2\rho g<0.
+\]
+所以 $F(x)$ 在 $(0,L)$ 内严格递减且只过零一次，移动方向和末态位移均唯一。
+当 $T_R\to T_0^+$ 时 $F(0)\to0$，唯一解趋于 $x=0$；这与没有温差便不移动一致。
+题设的直腿长度条件保证 $0<x<L$ 内右液面不会提前进入弯头。
+\end{xesolution}
+
+\Needspace{22\baselineskip}
+\begin{origexamplebox}{例题 19.10【L 型管】}
+粗细均匀的L形玻璃管左端封闭、上端开口。沿管中心线取坐标 $s$：初态封闭气体占据
+$-a\le s\le0$，长为 $b$ 的水银柱占据 $0\le s\le b$；弯头在 $s=c$，竖直出口终点在
+$s=c+d$。已知 $0<b<c$、$d\ge b$，初态气体温度为 $T_0$、大气压为 $p_0$，管截面积为
+$S$，弯头曲率半径和容积相对各直管段忽略不计。缓慢改变气体温度，使水银准静态地向出口移动。求水银能够全部流出时气体必须达到的最低温度。
+
+
+\lPipeInitialDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图\ref{ch14:fig:l-initial}规定全部长度与坐标；图\ref{ch14:fig:l-stages}分别画出水银的四种位置。
+黑点标明后端，前端在尚未流出时位于沿程坐标 $x+b$。
+\lPipeStagesDiagram
+设水银柱后端移动了 $x$。封闭气体体积为 $V(x)=S(a+x)$。水银柱两端的竖直高度差记为
+$h(x)$；它随水银柱位置分四段：
+\[
+h(x)=
+\begin{cases}
+0,&0\le x\le c-b,\\
+x+b-c,&c-b\le x\le c,\\
+b,&c\le x\le c+d-b,\\
+c+d-x,&c+d-b\le x\le c+d.
+\end{cases}
+\]
+准静态平衡要求气体压强为 $p(x)=p_0+\rho_{\rm Hg}g h(x)$。初态 $p(0)=p_0$、
+$V(0)=Sa$，故沿着平衡路径所需温度为
+\[
+ T(x)=T_0\frac{p(x)V(x)}{p_0Sa}
+ =T_0\frac{[p_0+\rho_{\rm Hg}g h(x)](a+x)}{p_0a}.
+\]
+要连续越过全过程，至少应达到 $T(x)$ 在 $0\le x\le c+d$ 上的最大值。前三段中压强不降而
+体积增加，所以温度单调增加。最后一段令
+\[
+ \Phi(x)=[p_0+\rho_{\rm Hg}g(c+d-x)](a+x),
+\]
+逐项求导，
+\[
+ \Phi'(x)=p_0+\rho_{\rm Hg}g(c+d-a-2x),\qquad
+ \Phi''(x)=-2\rho_{\rm Hg}g<0.
+\]
+所以最后一段是开口向下的抛物线，其唯一驻点为
+\[
+ x_*=\frac{p_0/(\rho_{\rm Hg}g)+c+d-a}{2}.
+\]
+把它截取到最后一段的允许区间：
+\[
+ \widehat x=\min\!\left\{c+d,
+ \max\!\left[c+d-b,x_*\right]\right\}.
+\]
+于是所求最低温度为
+\[
+ \boxed{T_{\min}=T_0
+ \frac{[p_0+\rho_{\rm Hg}g(c+d-\widehat x)](a+\widehat x)}{p_0a}}.
+\]
+若 $x_*\le c+d-b$，最后一段一开始便下降，最大值在它的起点；
+若 $c+d-b<x_*<c+d$，最大值在内部驻点；
+若 $x_*\ge c+d$，最后一段始终上升，最大值在全部流出的终点。
+因而截取公式包含这三种情形。量纲检查中
+$pV/(p_0V_0)$ 无量纲，故结果仍为温度。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 19.11【一维原子链】}
+如果认为单原子链中每个原子感受到的平均势能为 Lennard--Jones 势
+\begin{equation}
+  U(r)=4\varepsilon\left[\left(\frac{\sigma}{r}\right)^{12}
+  -\left(\frac{\sigma}{r}\right)^6\right],
+\end{equation}
+其中 $\varepsilon$、$\sigma$ 为常数，$r$ 为所有原子之间的统一间距。求：
+
+（1）零温下平衡态每原子结合能、晶格常数；
+
+（2）把原子势能在平衡位置展开到二阶项和三阶项，求单原子在温度为 $T$ 时的振动幅度、原子链的
+形变模量和热膨胀系数。
+\end{origexamplebox}
+
+\begin{xesolution}
+先令 $U'(r_0)=0$。对势能求导：
+\begin{equation}
+  U'(r)=4\varepsilon\left(-\frac{12\sigma^{12}}{r^{13}}
+  +\frac{6\sigma^6}{r^7}\right).
+\end{equation}
+于是 $r_0^6=2\sigma^6$，即
+\begin{equation}
+  \boxed{r_0=2^{1/6}\sigma}.
+\end{equation}
+把它代回势能，得到 $U(r_0)=-\varepsilon$。因此零温下的晶格常数为 $r_0$，从势阱底把一个原子
+移到无穷远所需的结合能大小为
+\begin{equation}
+  \boxed{E_b=\varepsilon}.
+\end{equation}
+
+图\ref{ch14:fig:lennard-jones}标出真实最低点，并将局部二阶近似与完整势能比较。
+\lennardJonesDiagram
+
+令 $x=r-r_0$。在平衡位置作泰勒展开：
+\begin{equation}
+  U(r)=-\varepsilon+\frac12kx^2+\frac16\lambda x^3+O(x^4),
+\end{equation}
+二、三阶导数分别为
+\[
+ U''(r)=4\varepsilon\left(\frac{156\sigma^{12}}{r^{14}}-\frac{42\sigma^6}{r^8}\right),\qquad
+ U'''(r)=4\varepsilon\left(-\frac{2184\sigma^{12}}{r^{15}}+\frac{336\sigma^6}{r^9}\right).
+\]
+利用 $\sigma^6/r_0^6=1/2$、$\sigma^{12}/r_0^{12}=1/4$，可分别提出 $r_0^{-2}$、$r_0^{-3}$，
+得到 $4(156/4-42/2)=72$、$4(-2184/4+336/2)=-1512$。因此
+\begin{equation}
+  \boxed{k=U''(r_0)=\frac{72\varepsilon}{r_0^2}},
+  \qquad
+  \boxed{\lambda=U'''(r_0)=-\frac{1512\varepsilon}{r_0^3}}.
+\end{equation}
+二阶近似是简谐振子。其势能这个二次型自由度平均分得 $k_BT/2$，故
+\begin{equation}
+  \frac12k\langle x^2\rangle=\frac12k_BT,
+  \qquad
+  \boxed{x_{\rm rms}=r_0\sqrt{\frac{k_BT}{72\varepsilon}}}.
+\end{equation}
+若把“振动幅度”理解为平均总振动能 $k_BT$ 对应的经典转折幅度，则
+\begin{equation}
+  \frac12kA^2=k_BT,\qquad
+  \boxed{A=r_0\sqrt{\frac{k_BT}{36\varepsilon}}}.
+\end{equation}
+
+设原子链应变为 $\eta=x/r_0$。每个原子的弹性能为
+\begin{equation}
+  \frac12kx^2=\frac12kr_0^2\eta^2.
+\end{equation}
+除以每个原子在链上占据的长度 $r_0$，与一维弹性能密度
+$u=\tfrac12Y_{1\rm D}\eta^2$ 比较，得到
+\begin{equation}
+  \boxed{Y_{1\rm D}=kr_0=\frac{72\varepsilon}{r_0}}.
+\end{equation}
+这里 $Y_{1\rm D}$ 的量纲是力；若要得到通常三维 Young 模量，还需给定原子链的有效横截面积。
+
+三次项 $\lambda<0$ 使势阱右缓左陡。热膨胀所需的是平均间距，
+而不是左右转折点的几何中点。以下在粒子被约束于平衡距离附近、经典统计有效、振幅较小的条件下计算；
+可用的温度窗口为 $\hbar\sqrt{k/m}\ll k_BT\ll\varepsilon$。下文积分是局部势阱的渐近近似，
+不把粒子在无穷远自由解离的状态算入这条原子链的平衡分布。
+
+令 $\beta=1/(k_BT)$，零阶高斯权重为 $w_0(x)=\exp(-\beta kx^2/2)$。
+三次项小，玻尔兹曼权重可展开为
+\[
+ e^{-\beta(kx^2/2+\lambda x^3/6)}
+ \simeq w_0(x)\left(1-\frac{\beta\lambda x^3}{6}\right).
+\]
+平均位移是归一化后的积分之比：
+\[
+ \langle x\rangle=
+ \frac{\int xw_0(x)(1-\beta\lambda x^3/6)\,\mathrm dx}
+ {\int w_0(x)(1-\beta\lambda x^3/6)\,\mathrm dx}.
+\]
+在局部小振动近似中将积分限延伸为 $(-\infty,\infty)$；奇函数积分为零，
+所以分子中零阶的 $\int xw_0\,\mathrm dx=0$，分母中的一阶修正
+$\int x^3w_0\,\mathrm dx=0$。于是
+\[
+ \langle x\rangle=-\frac{\beta\lambda}{6}\langle x^4\rangle_0.
+\]
+四阶矩也可直接推导。记 $a=\beta k/2$、$I(a)=\int e^{-ax^2}\mathrm dx=\sqrt{\pi/a}$，
+对 $a$ 连续求两次导数：
+\[
+ I'(a)=-\int x^2e^{-ax^2}\mathrm dx,\qquad
+ I''(a)=\int x^4e^{-ax^2}\mathrm dx=\frac{3\sqrt\pi}{4a^{5/2}}.
+\]
+因而 $\langle x^4\rangle_0=I''/I=3/(4a^2)=3(k_BT/k)^2$，最终
+\[
+ \langle x\rangle=-\frac{\lambda k_BT}{2k^2}>0,\qquad
+ \boxed{\alpha=\frac1{r_0}\frac{\mathrm d\langle x\rangle}{\mathrm dT}
+ =\frac{7k_B}{48\varepsilon}}.
+\]
+其量纲为 $\mathrm K^{-1}$；$\lambda<0$ 给出正膨胀，与图中的右缓左陡相符。
+若令三次项为零，平均位移与这一阶热膨胀都为零。
+
+还可比较一个容易混淆的几何估计。把同一能量的转折点写成
+$x_\pm=\pm A+\delta$，其中 $kA^2/2=k_BT$。代入势能并保留一阶非谐项，
+\[
+ \frac{k}{2}(\pm A+\delta)^2+\frac{\lambda}{6}(\pm A+\delta)^3
+ \simeq\frac{kA^2}{2}\pm kA\delta\pm\frac{\lambda A^3}{6},
+\]
+故 $\delta=-\lambda A^2/(6k)=-\lambda k_BT/(3k^2)$。
+中点随温度变化所给出的系数为 $7k_B/(72\varepsilon)$，它不是上面所求的热膨胀系数。
+原因在于粒子并不在两转折点之间匀速运动；必须使用时间或统计权重，不能把中点法与统计法并列成两种正确答案。
+\end{xesolution}

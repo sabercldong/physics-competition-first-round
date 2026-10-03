@@ -1,0 +1,50 @@
+\subsubsection*{平动非惯性系与等效重力场}
+
+设参考系 $S'$ 相对惯性系作平动，原点加速度为 $\vec a_0$。若两系坐标轴不转动，则
+$\vec a=\vec a'+\vec a_0$，于是
+\begin{equation}
+ m\vec a'=\sum\vec F-m\vec a_0.
+\end{equation}
+把 $-m\vec a_0$ 称为惯性力，便可在车厢、电梯等非惯性系中沿用平衡和动力学方程。惯性力
+与质量成正比，没有施力物体，也没有第三定律的反作用力；它只是坐标系加速在运动方程中的
+表现。若所有真实物体都同时受均匀重力 $m\vec g$，可把两者合并为
+\begin{equation}
+ \vec g_{\rm eff}=\vec g-\vec a_0.
+\end{equation}
+悬线、自由液面和小振动平衡位置都由有效重力方向决定。
+
+这种局部等效有明确限度。自由落体电梯中，均匀重力与惯性力相消，舱内物体近似失重；但地球
+重力随位置改变，不同点的自由落体加速度略有差异，仍会出现潮汐效应。因此自由落体系只能在
+足够小的空间和足够短的时间内近似消除均匀重力对自由物体相对运动的影响。
+按牛顿力学的定义，它仍是相对地面加速的非惯性系，不能仅因自由物体相对匀速就改变这个判定。
+广义相对论中自由落体与局部惯性坐标的联系属于另一理论层次，这里不把两种定义混用。
+判断均匀场近似是否可用，应比较被忽略的差异加速度与题目
+要求的精度，而不能仅凭“物体正在自由下落”下结论。
+
+若参考系还在转动，需要区分相对位置和绝对位置。设地面惯性系为 $S$，转动系为 $S'$，
+$S'$ 原点的位置、速度、加速度分别为 $\vec R_0,\vec V_0,\vec a_0$；
+$\vec r$ 是从 $S'$ 原点指向质点的位置矢量，$\vec v'$、$\vec a'$ 是在 $S'$ 中求得的相对速度、相对加速度。
+转动系角速度为 $\vec\omega$，角加速度为 $\dot{\vec\omega}$。
+对任意矢量 $\vec b$，两种求导满足
+\[
+ \left(\frac{\dd\vec b}{\dd t}\right)_S
+ =\left(\frac{\dd\vec b}{\dd t}\right)_{S'}+\vec\omega\times\vec b.
+\]
+由绝对位置 $\vec R_0+\vec r$ 求导，得
+\[
+ \vec v=\vec V_0+\vec v'+\vec\omega\times\vec r.
+\]
+再求一次导数：$\vec v'$ 产生 $\vec a'+\vec\omega\times\vec v'$，而最后一项产生
+$\dot{\vec\omega}\times\vec r+\vec\omega\times(\vec v'+\vec\omega\times\vec r)$。
+两处相同的交叉项相加，得到
+\begin{equation}
+ \vec a=\vec a_0+\vec a'+2\vec\omega\times\vec v'
+ +\vec\omega\times(\vec\omega\times\vec r)
+ +\dot{\vec\omega}\times\vec r.
+\end{equation}
+五项依次为原点平动加速度、相对加速度、科里奥利项、随转动产生的向心项和角加速度项。
+将除 $\vec a'$ 外的参考系运动项移到动力学方程右侧并乘 $-m$，就得到相应惯性力。
+其中 $-m\vec\omega\times(\vec\omega\times\vec r)$ 指向远离转轴的方向，即离心力。
+本节转杆问题中原点固定、$\vec\omega$ 恒定且质点相对杆静止，因而
+$\vec a_0=0$、$\dot{\vec\omega}=0$、$\vec v'=0$，只需加入离心力。
+转盘上运动物体的侧向偏转则还涉及科里奥利项，不能把所有非惯性效应都写成同一个 $-m\vec a_0$。

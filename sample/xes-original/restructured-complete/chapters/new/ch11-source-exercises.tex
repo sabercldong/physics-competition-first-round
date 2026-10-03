@@ -1,0 +1,397 @@
+\Needspace{22\baselineskip}
+\section{天体运动综合问题}
+
+\begin{origexamplebox}{哈雷彗星的轨道状态}
+\label{ch11:ex:03}
+哈雷彗星绕太阳沿椭圆轨道逆时针运动，周期为 $T=76.1\,\mathrm y$。1986年经过近日点
+$P_0$ 时，日彗距离为 $r_0=0.590\,\mathrm{AU}$；此后到达 $P$ 点，位置矢量
+$\overrightarrow{SP}$ 与近日点方向 $\overrightarrow{SP_0}$ 的夹角为 $\theta=72^\circ$。
+取 $1\,\mathrm{AU}=1.5\times10^{11}\,\mathrm m$。求此时的日彗距离、速度大小和速度方向
+（以速度矢量与射线 $SP_0$ 的逆时针夹角表示）。
+
+
+\begin{center}
+\begin{tikzpicture}[scale=.90,>=Latex]
+  \coordinate (S) at (0,0);
+  \draw[axis,->] (0,0)--(4.3,0) node[right] {近日点方向};
+  \draw[curve,samples=180,smooth,variable=\a,domain=-104:104]
+    plot ({2.0*1.16062*cos(\a)/(1+.96715*cos(\a))},
+          {2.0*1.16062*sin(\a)/(1+.96715*cos(\a))});
+  \fill (S) circle (2.6pt) node[below left] {太阳 $S$};
+  \coordinate (P0) at (1.18,0);
+  \fill[DeepBlue] (P0) circle (2.2pt) node[below right] {$P_0$};
+  \coordinate (P) at ({1.78712*cos(72)},{1.78712*sin(72)});
+  \draw[guide] (S)--(P);
+  \fill[DeepBlue] (P) circle (2.4pt) node[above right] {$P$};
+  \draw[->,TextGray] (.70,0) arc[start angle=0,end angle=72,radius=.70];
+  \node at (36:.95) {$\theta$};
+\end{tikzpicture}
+\figcap{题设轨道的近日点附近示意。$S$ 为太阳，$P_0$ 为近日点，$\theta=72^\circ$。}
+\label{ch11:fig:halley}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch11:fig:halley-analysis}中 $SP_0$ 是位置角的零方向，速度沿轨道切线。
+\begin{center}
+\begin{tikzpicture}[scale=.90,>=Latex]
+  \coordinate (S) at (0,0);
+  \draw[axis,->] (0,0)--(4.3,0) node[right] {近日点方向};
+  \draw[curve,samples=180,smooth,variable=\a,domain=-104:104]
+    plot ({2.0*1.16062*cos(\a)/(1+.96715*cos(\a))},
+          {2.0*1.16062*sin(\a)/(1+.96715*cos(\a))});
+  \fill (S) circle (2.6pt) node[below left] {太阳 $S$};
+  \coordinate (P0) at (1.18,0);
+  \fill[DeepBlue] (P0) circle (2.2pt) node[below right] {$P_0$};
+  \coordinate (P) at ({1.78712*cos(72)},{1.78712*sin(72)});
+  \draw[guide] (S)--(P);
+  \fill[DeepBlue] (P) circle (2.4pt) node[above right] {$P$};
+  \draw[->,DeepBlue,very thick] (P)--++(126.70:1.25) node[above left] {$\vect v$};
+  \draw[->,TextGray] (.70,0) arc[start angle=0,end angle=72,radius=.70];
+  \node at (36:.95) {$\theta$};
+\end{tikzpicture}
+\figcap{近日点方向取作极轴。图中 $\theta$ 是位置角，而速度方向还要由径向、切向两个分量共同确定。}
+\label{ch11:fig:halley-analysis}
+\end{center}
+以地球轨道为单位使用开普勒第三定律，太阳质量占主导时有
+\[
+ \left(\frac{T}{1\,\mathrm y}\right)^2
+ =\left(\frac{a}{1\,\mathrm{AU}}\right)^3,
+ \qquad
+ a=(76.1)^{2/3}\,\mathrm{AU}=17.9579\,\mathrm{AU}.
+\]
+近日点满足 $r_0=a(1-e)$，所以
+\[
+ e=1-\frac{r_0}{a}=0.967145,
+ \qquad
+ p=a(1-e^2)=1.16062\,\mathrm{AU}.
+\]
+图中 $SP_0$ 已选作真近点角的零方向，故在 $\theta=72^\circ$ 处
+\[
+ \boxed{r=\frac{p}{1+e\cos\theta}=0.893562\,\mathrm{AU}}
+ \approx1.34\times10^{11}\,\mathrm m.
+\]
+
+在 $\mathrm{AU}$、年为单位时，太阳引力参数为
+$\mu_\odot=GM_\odot=4\pi^2\,\mathrm{AU^3/y^2}$。由活力公式
+\[
+ v=\sqrt{\mu_\odot\left(\frac2r-\frac1a\right)}
+   =9.28243\,\mathrm{AU/y},
+\]
+取一年为 $365.25$ 天，把 $\mathrm{AU/y}$ 换算成 $\mathrm{km/s}$，即
+\[
+ \boxed{v=44.0\,\mathrm{km/s}}.
+\]
+只给速度大小还不能确定图中的箭头。令单位质量角动量
+$h=r^2\dot\theta=\sqrt{\mu_\odot p}$。对轨道方程求导，
+\[
+ \frac{\dd r}{\dd\theta}=\frac{pe\sin\theta}{(1+e\cos\theta)^2},\qquad
+ \dot r=\frac{\dd r}{\dd\theta}\frac h{r^2}=\frac h p e\sin\theta,\qquad
+ r\dot\theta=\frac h r.
+\]
+利用 $h/p=\mu_\odot/h$，沿径向外和逆时针切向的分量分别为
+\[
+ v_r=\frac{\mu_\odot}{h}e\sin\theta=5.36456\,\mathrm{AU/y},
+ \qquad
+ v_\theta=\frac{\mu_\odot}{h}(1+e\cos\theta)=7.57529\,\mathrm{AU/y}.
+\]
+因 $v_r>0$，彗星正在远离太阳。速度相对径向 $SP$ 再逆时针偏转
+$\arctan(v_\theta/v_r)=54.695^\circ$，所以相对 $SP_0$ 的方向角为
+\[
+ \boxed{\psi=72^\circ+54.695^\circ=126.695^\circ}.
+\]
+代回 $v^2=v_r^2+v_\theta^2$ 可恢复前述活力公式数值，方向与大小相互校验。
+\end{xesolution}
+
+\begin{origexamplebox}{双星系统中的瞬时对称失质量}
+\label{ch11:ex:04}
+质量分别为 $M$ 和 $m$（$M>m$）的两颗星相距 $d$，在相互引力作用下绕共同质心作圆周运动。
+某次超新星爆发使质量较大的星体瞬时、各向同性地失去质量 $\Delta M$；抛出物不碰撞另一颗星，
+且爆发不对残余星体施加反冲。求爆发后两颗残余星体仍保持束缚的条件。
+\end{origexamplebox}
+\begin{xesolution}
+爆发前相对运动的圆轨道速度满足
+\[
+ v_{\rm rel}^2=\frac{G(M+m)}{d}.
+\]
+爆发是瞬时的，位置与两颗残余星体的速度均来不及改变；爆发后的引力质量和却变为
+$M-\Delta M+m$。于是单位约化质量的相对轨道能量为
+\begin{align*}
+ \varepsilon'
+ &=\frac12v_{\rm rel}^2-\frac{G(M-\Delta M+m)}{d}\\
+ &=\frac{G}{2d}\,[2\Delta M-(M+m)].
+\end{align*}
+实际失质量还应满足 $0\le\Delta M<M$。残余双星保持束缚等价于 $\varepsilon'<0$，故
+\[
+ \boxed{\Delta M<\frac{M+m}{2}}.
+\]
+等号对应抛物线临界逃逸；超过该值为双曲线分离。这个判据依赖“瞬时、对称、无反冲”，若爆发给残余星体一个踢速度，
+还必须把该速度矢量加入爆发瞬间的相对速度后重新计算能量。
+\end{xesolution}
+
+\begin{origexamplebox}{拉普拉斯--龙格--楞次矢量}
+\label{ch11:ex:05}
+质量为 $m$ 的质点在质量为 $M$ 的固定中心产生的平方反比引力中运动。证明
+拉普拉斯--龙格--楞次矢量（Laplace--Runge--Lenz vector）
+\[
+ \vect e=\frac{\vect p\times\vect L}{GMm^2}-\frac{\vect r}{r}
+\]
+守恒，并由此推出轨道的圆锥曲线方程
+\[
+ r=\frac{p_0}{1+e\cos\theta}.
+\]
+\end{origexamplebox}
+\begin{xesolution}
+这里 $\vect p=m\vect v$、$\vect L=\vect r\times\vect p$，并记
+$\uvec r=\vect r/r$。引力为
+\[
+ \vect F=-\frac{GMm}{r^3}\vect r,
+\]
+所以 $\dot{\vect L}=\vect r\times\vect F=0$。另一方面，利用三重积恒等式，
+\begin{align*}
+ \frac{\dd}{\dd t}(\vect p\times\vect L)
+ &=\vect F\times\vect L\\
+ &=-\frac{GMm}{r^3}\,
+   \vect r\times(\vect r\times\vect p)\\
+ &=GMm\left(\frac{\vect p}{r}
+ -\frac{\vect r(\vect r\cdot\vect p)}{r^3}\right)
+ =GMm^2\frac{\dd\uvec r}{\dd t}.
+\end{align*}
+因此 $\dot{\vect e}=0$，所给矢量确为常矢量。
+
+取极轴沿 $\vect e$，令 $\theta$ 为 $\vect e$ 与 $\vect r$ 的夹角。将守恒式点乘 $\uvec r$，并注意
+\[
+ (\vect p\times\vect L)\cdot\uvec r
+ =\frac1r\vect L\cdot(\vect r\times\vect p)=\frac{L^2}{r},
+\]
+便有
+\[
+ e\cos\theta=\frac{L^2}{GMm^2r}-1.
+\]
+整理得
+\[
+ \boxed{r=\frac{p_0}{1+e\cos\theta}},
+ \qquad
+ \boxed{p_0=\frac{L^2}{GMm^2}}.
+\]
+这里取 $L\ne0$。$0<e<1,e=1,e>1$ 分别给出椭圆、抛物线、双曲线；
+矢量的模就是轨道偏心率，方向指向近心点。$e=0$ 时轨道为圆，$\vect e=0$，
+不能沿零矢量选极轴，任取平面内固定方向即可。$L=0$ 的纯径向运动直接用径向能量方程，
+不将 $p_0=0$ 代入非退化轨道公式。$\vect e$ 无量纲，$p_0$ 具有长度量纲。
+\end{xesolution}
+
+\begin{origexamplebox}{星际尘埃造成的引力阻力}
+\label{ch11:ex:06}
+宇宙飞船质量为 $M_s$、几何半径为 $r_s$，以速度 $v$ 穿过密度为 $\rho$ 的均匀稀薄尘埃。
+尘埃微粒质量远小于飞船质量，远处可视为平行来流；只有冲量参数不大于 $R_d$ 的尘埃计入环境范围。
+
+（1）先把飞船视为固定的引力中心，求尘埃被散射到 $\theta$ 至 $\theta+\dd\theta$ 时的微分散射截面
+$\dd\sigma/\dd\Omega$；（2）假设直接撞击的尘埃被飞船吸收，并且引力散射均为小角度，求直接碰撞阻力与
+掠过飞船的尘埃造成的引力阻力。
+\end{origexamplebox}
+\begin{xesolution}
+设尘埃的冲量参数为 $b$，即远处入射直线与引力中心的距离，而不是最近距离。
+远处单位质量能量为 $v^2/2$，单位质量角动量为 $bv$。代入偏心率公式得到
+\[
+ e=\sqrt{1+\frac{b^2v^4}{G^2M_s^2}}=\sqrt{1+\frac{b^2}{a_g^2}},
+ \qquad a_g=\frac{GM_s}{v^2}.
+\]
+在无穷远处 $1+e\cos\nu_\infty=0$；入射与出射速度的夹角为
+$\theta=2\nu_\infty-\pi$，故 $\sin(\theta/2)=1/e$，从而
+\[
+ \tan\frac\theta2=\frac{a_g}{b},
+ \qquad
+ a_g=\frac{GM_s}{v^2}.
+\]
+图\ref{ch11:fig:scattering}左侧实线是双曲线轨迹，右侧单独比较远处的速度矢量，
+不把近处尚在变化的切线方向当作最终散射方向。
+\begin{center}
+\begin{tikzpicture}[scale=.87,>=Latex]
+  \pgfmathsetmacro{\ag}{.35}\pgfmathsetmacro{\cc}{sqrt(1+\ag*\ag)}
+  \pgfmathsetmacro{\cs}{\ag/\cc}\pgfmathsetmacro{\sn}{1/\cc}
+  \pgfmathsetmacro{\chi}{2*atan(\ag)}
+  \draw[guide] (-4.1,0)--(3.4,0);
+  \draw[guide] (-4.1,1)--(-.2,1);
+  \draw[<->] (-3.9,0)--(-3.9,1) node[midway,left] {$b$};
+  \draw[curve,domain=2.05:-1.8,samples=180,variable=\u,->]
+   plot ({\cs*(\cc-\ag*cosh(\u))-\sn*sinh(\u)},
+         {\sn*(\cc-\ag*cosh(\u))+\cs*sinh(\u)});
+  \filldraw[draw=DeepBlue,fill=DeepBlue!12] (0,0) circle(.14);
+  \node[below] at (0,-.18) {$M_s$};
+  \draw[->,DeepBlue] (-3.4,1.4)--(-2.2,1.4) node[midway,above] {远处入射};
+  \node at (-.3,-1.65) {轨迹：$a_g/b=0.35$};
+  \begin{scope}[shift={(5,1)}]
+   \draw[vector] (0,0)--(2.3,0) node[right] {$\vect v$};
+   \draw[vector] (0,0)--(-\chi:2.3) node[below right] {$\vect v'$};
+   \draw[->] (.8,0) arc(0:-\chi:.8);
+   \node at (-.5*\chi:1.14) {$\theta$};
+   \draw[guide] (-\chi:2.3)--({2.3*cos(\chi)},0);
+   \node[above] at (1.0,.20) {$v'=v$};
+   \node at (1.15,-2.45) {纵向变化 $v-v\cos\theta$};
+  \end{scope}
+\end{tikzpicture}
+\figcap{引力双曲线与远处速度夹角。右图把远处速度平移到同一起点比较，两者大小相等。}
+\label{ch11:fig:scattering}
+\end{center}
+
+由于 $b=a_g\cot(\theta/2)$、$\dd\Omega=2\pi\sin\theta\,\dd\theta$，轴对称散射给出
+\begin{align*}
+ \frac{\dd\sigma}{\dd\Omega}
+ &=\frac{b}{\sin\theta}\left|\frac{\dd b}{\dd\theta}\right|\\
+ &=\boxed{\left(\frac{GM_s}{2v^2}\right)^2
+ \csc^4\frac\theta2}.
+\end{align*}
+这里使用了 $|\dd b/\dd\theta|=(a_g/2)\csc^2(\theta/2)$ 以及
+$\sin\theta=2\sin(\theta/2)\cos(\theta/2)$。尘埃质量在速度与能量关系中约去，
+因此截面与单个尘粒质量无关；结果量纲为面积。
+
+几何半径与远处碰撞截面半径不同。恰好碰到表面的轨道在最近处速度为 $b_{\rm hit}v/r_s$，
+由能量守恒
+\[
+ \frac{v^2}{2}=\frac{b_{\rm hit}^2v^2}{2r_s^2}-\frac{GM_s}{r_s}
+ \quad\Longrightarrow\quad b_{\rm hit}^2=r_s^2+2a_gr_s.
+\]
+所以直接撞击的质量流率为 $\rho v\pi b_{\rm hit}^2$。在“吸收并停到飞船参考系”的假设下，每单位质量损失纵向动量 $v$，故
+\[
+ F_{\rm hit}=\pi b_{\rm hit}^2\rho v^2
+ =\pi\rho v^2(r_s^2+2a_gr_s)\simeq\boxed{\pi r_s^2\rho v^2}.
+\]
+末一步与题设的小角近似一致，要求 $a_g\ll r_s$，在这一阶忽略引力聚焦对直接碰撞的修正。
+冲量参数在 $b$ 到 $b+\dd b$ 的掠射尘埃，单位时间通过的质量为
+$\rho v\,2\pi b\dd b$，纵向速度损失为 $v(1-\cos\theta)$。又
+\[
+ 1-\cos\theta=\frac{2a_g^2}{b^2+a_g^2},
+\]
+所以排除直接碰撞区域后
+\begin{align*}
+ F_{\rm grav}
+ &=\rho v^2\int_{b_{\rm hit}}^{R_d}2\pi b(1-\cos\theta)\,\dd b\\
+ &=2\pi\rho v^2a_g^2
+ \ln\!\frac{R_d^2+a_g^2}{b_{\rm hit}^2+a_g^2}.
+\end{align*}
+当所有散射角都很小，即 $a_g\ll r_s<R_d$ 时，化为
+\[
+ \boxed{F_{\rm grav}\simeq
+ \frac{4\pi\rho G^2M_s^2}{v^2}\ln\frac{R_d}{r_s}}.
+\]
+总阻力为 $F_{\rm hit}+F_{\rm grav}$，方向与飞船相对尘埃的速度相反。若尘埃发生镜面反弹、烧蚀或强引力聚焦，
+直接碰撞项的系数和积分下限都需相应修正；上述精确积分要求 $R_d>b_{\rm hit}$，小角结果还用到 $b_{\rm hit}\simeq r_s$。
+碰撞区不能再计入掠射阻力，否则会重复计算。
+\end{xesolution}
+
+\begin{origexamplebox}{弱线性径向附加力造成的近日点进动}
+\label{ch11:ex:07}
+除太阳质量 $M$ 的平方反比引力外，质量为 $m$ 的行星还受到很小的径向外力
+$\vect F_1=kmr\,\uvec r$，其中 $k>0$ 为常量。设近圆轨道半径为 $R$，求近日点进动角速度。
+\end{origexamplebox}
+\begin{xesolution}
+附加力向外，故单位质量势能可写为
+\[
+ \Phi(r)=-\frac{GM}{r}-\frac12kr^2.
+\]
+在半径 $R$ 的圆轨道上，向心条件给出实际平均角频率
+\[
+ \boxed{\Omega^2=\frac{GM}{R^3}-k}.
+\]
+为求近日点进动，必须把径向小振动频率与 $\Omega$ 区分。令单位质量角动量为 $h=R^2\Omega$，
+有效势为 $\Phi_{\rm eff}=\Phi+h^2/(2r^2)$。逐次求导得
+\[
+ \Phi_{\rm eff}'=\frac{GM}{r^2}-kr-\frac{h^2}{r^3},\qquad
+ \Phi_{\rm eff}''=-\frac{2GM}{r^3}-k+\frac{3h^2}{r^4}.
+\]
+圆轨道条件使 $\Phi_{\rm eff}'(R)=0$ 且 $h^2=GMR-kR^4$。
+写 $r=R+x$，将 $\ddot r=-\Phi_{\rm eff}'(r)$ 保留到 $x$ 的一阶，得到
+\[
+ \ddot x+\kappa_r^2x=0,
+ \qquad
+ \kappa_r^2=\Phi_{\rm eff}''(R)
+ =\frac{GM}{R^3}-4k.
+\]
+因此一次径向周期内方位角略多于 $2\pi$，近日点沿运动方向进动，其角速度为
+\[
+ \boxed{\dot\varpi=\Omega-\kappa_r
+ =\sqrt{\frac{GM}{R^3}-k}
+ -\sqrt{\frac{GM}{R^3}-4k}}.
+\]
+记无扰动平均运动 $n=\sqrt{GM/R^3}$。在 $k\ll n^2$ 时，
+$\Omega=n-k/(2n)+O(k^2/n^3)$，
+$\kappa_r=n-2k/n+O(k^2/n^3)$，相减得
+\[
+ \boxed{\dot\varpi\simeq\frac{3k}{2n}
+ =\frac{3k}{2}\sqrt{\frac{R^3}{GM}}}.
+\]
+稳定近圆运动还要求 $GM/R^3>4k$。当 $k\to0$ 时 $\Omega=\kappa_r$、进动消失，极限正确。
+\end{xesolution}
+
+\begin{origexamplebox}{弱速度阻力下椭圆轨道的长期演化}
+\label{ch11:ex:08}
+质量为 $m$ 的质点在固定质量 $M$ 的平方反比引力下沿椭圆运动，同时受到很小的阻力
+$\vect f=-\gamma\vect v$。取时间间隔 $\dd t$ 远长于轨道周期、又短到轨道根数的相对变化仍很小。
+已知机械能和角动量的大小分别为 $E<0,L$。求周期平均后的 $\dd E,\dd L$，并证明轨道只按比例缩小、偏心率不变。
+\end{origexamplebox}
+\begin{xesolution}
+阻力的瞬时功率为
+\[
+ \dot E=\vect f\cdot\vect v=-\gamma v^2.
+\]
+一周内先忽略微小阻力对轨道形状的改变。沿这一闭合开普勒轨道，
+\[
+ \frac{\dd}{\dd t}(\vect r\cdot\vect v)
+ =v^2+\vect r\cdot\dot{\vect v}=v^2-\frac{GM}{r}.
+\]
+一周后 $\vect r\cdot\vect v$ 回到原值，故左端周期平均为零，
+$\langle v^2\rangle=GM\langle1/r\rangle$。代入
+$E=m\langle v^2\rangle/2-GMm\langle1/r\rangle$，
+得 $E=-m\langle v^2\rangle/2$。于是长期平均为
+\[
+ \boxed{\dd E=\frac{2\gamma}{m}E\,\dd t}.
+\]
+因为 $E<0$，右端为负，轨道能量变得更负。阻力矩则直接给出
+\[
+ \dot{\vect L}=\vect r\times(-\gamma\vect v)
+ =-\frac\gamma m\vect L,
+ \qquad
+ \boxed{\dd L=-\frac\gamma mL\,\dd t}.
+\]
+
+开普勒椭圆的偏心率满足
+\[
+ e^2=1+\frac{2EL^2}{G^2M^2m^3}.
+\]
+在当前精度下
+\[
+ \frac{\dd(EL^2)}{EL^2}
+ =\frac{\dd E}{E}+2\frac{\dd L}{L}
+ =\frac{2\gamma}{m}\dd t-\frac{2\gamma}{m}\dd t=0,
+\]
+所以
+\[
+ \boxed{\dd e=0}.
+\]
+另一方面 $E=-GMm/(2a)$，从而
+\[
+ \frac{\dd a}{a}=-\frac{\dd E}{E}
+ =-\frac{2\gamma}{m}\dd t.
+\]
+半长轴按比例减小而偏心率不变，因此近、远点距离 $a(1\mp e)$ 以相同比例收缩。这个结论是周期平均结果，
+单个轨道周期内的瞬时轨道根数仍会有小幅振荡。
+
+把半长轴方程积分，得到
+\[
+ \boxed{a(t)=a_0\exp\!\left(-\frac{2\gamma t}{m}\right)}.
+\]
+由开普勒第三定律 $T\propto a^{3/2}$，轨道周期随时间按
+\[
+ \boxed{T(t)=T_0\exp\!\left(-\frac{3\gamma t}{m}\right)}
+\]
+缩短。这个指数规律并不意味着质点在有限时间撞到中心；在该平均模型中 $a$ 只在
+$t\to\infty$ 时趋于零。
+
+还可直接核对能量损失率：阻力功率为
+$\dot E=\vect F_d\cdot\vect v=-\gamma v^2$。椭圆轨道一周平均满足
+$\langle v^2\rangle=GM/a$，于是
+\[
+ \langle\dot E\rangle=-\frac{\gamma GM}{a},
+\]
+与 $E=-GMm/(2a)$ 及 $\dot a/a=-2\gamma/m$ 完全一致。
+上述推导要求一周内轨道根数变化很小，即 $\gamma T/m\ll1$；阻尼过强时不能再把运动看成一串缓慢收缩的开普勒椭圆。
+\end{xesolution}

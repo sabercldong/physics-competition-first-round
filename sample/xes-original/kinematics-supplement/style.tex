@@ -1,0 +1,41 @@
+\input{../../common-style.tex}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\graphicspath{{assets/}}
+\usetikzlibrary{decorations.pathmorphing,intersections,calc,arrows.meta,angles,quotes,patterns.meta}
+
+\fancyhead[R]{\small\color{TextGray}力学补编\quad 运动学}
+\setlength{\headheight}{25pt}
+\renewcommand{\theequation}{K.\arabic{equation}}
+
+\newtcolorbox{origexamplebox}[1]{
+  enhanced,breakable,colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue}
+}
+\NewDocumentEnvironment{xesolution}{+b}{
+  \par\smallskip\begingroup\small\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par
+  \endgroup\medskip
+}{}
+\newcommand{\figcap}[1]{\par\nopagebreak[4]\smallskip{\centering\small\color{TextGray}#1\par}\medskip}
+\newcommand{\unitheading}[2]{%
+  \clearpage\phantomsection
+  \section*{#1}
+}
+\newcommand{\sourceimage}[3][0.9\linewidth]{%
+  \begin{center}\begin{minipage}{#1}\centering
+  \includegraphics[width=\linewidth]{#2}\par\smallskip
+  {\small\color{TextGray}#3}
+  \end{minipage}\end{center}
+}
+\tikzset{
+  every node/.append style={fill=none,inner sep=1.2pt},
+  clearlabel/.style={fill=none,inner sep=1pt,text=Ink},
+  point/.style={circle,fill=Ink,draw=none,inner sep=1.7pt},
+  kaxis/.style={-{Latex[length=2mm]},thin,draw=TextGray},
+  kcurve/.style={very thick,draw=DeepBlue},
+  kguide/.style={densely dashed,draw=TextGray}
+}

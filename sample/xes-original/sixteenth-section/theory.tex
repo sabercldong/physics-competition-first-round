@@ -1,0 +1,279 @@
+在运动学中，角速度和角加速度描述转动怎样进行；在动力学中，还需要知道转动状态怎样受力而改变。
+地球的自转、收拢双臂的滑冰者和高速旋转的陀螺，都涉及这一问题。相应的物理量是角动量，
+改变角动量的是力矩。零外力矩保证角动量不变，却不保证任意刚体的角速度方向都不变。
+
+\subsection{外积与转动方向}
+内积把两个矢量联系成标量，适合描述投影、功和功率；外积又称叉积，适合描述有方向的转动。
+对非零矢量 $\vect a,\vect b$，取它们同起点时的夹角 $0\le\theta\le\pi$，有
+\begin{equation}
+ |\vect a\times\vect b|=ab\sin\theta.
+\end{equation}
+其大小是以两矢量为邻边的平行四边形面积，方向垂直于该平面。右手四指沿小于或等于
+$180^\circ$ 的转角从 $\vect a$ 弯向 $\vect b$，拇指所指就是外积方向。平行或反平行时
+外积为零，不再给零矢量指定方向。图~\ref{ch09:fig:cross}中从向右的 $\vect a$ 转到右上的
+$\vect b$ 为逆时针，故外积出纸面，以 $\odot$ 表示；$\otimes$ 表示入纸面。
+\crossProductDiagram
+外积满足反交换律和分配律，但一般不满足结合律：
+\begin{align}
+ \vect a\times\vect b&=-\vect b\times\vect a,\qquad \vect a\times\vect a=\vect0,\\
+ (\vect a+\vect b)\times\vect c&=\vect a\times\vect c+\vect b\times\vect c,\\
+ (\vect a\times\vect b)\times\vect c&=(\vect a\cdot\vect c)\vect b-(\vect b\cdot\vect c)\vect a,\\
+ \vect a\times(\vect b\times\vect c)&=(\vect a\cdot\vect c)\vect b-(\vect a\cdot\vect b)\vect c.
+\end{align}
+在右手直角坐标系中，分量计算为
+\begin{equation}
+ \vect a\times\vect b=
+ (a_yb_z-a_zb_y,\ a_zb_x-a_xb_z,\ a_xb_y-a_yb_x).
+\end{equation}
+例如纸面为 $xy$ 平面，向右、向上分别为正方向，$+z$ 就是出纸面。这个约定下
+$(\vect r\times\vect p)_z=xp_y-yp_x$，正值对应逆时针趋势，负值对应顺时针趋势。
+这是右手定则的代数形式，不能在一道题中途更换正方向。
+
+位置、速度、动量属于极矢量，角速度、力矩和角动量属于轴矢量。以空间反演为例，
+极矢量 $\vect r,\vect p$ 都变号，而 $(-\vect r)\times(-\vect p)=\vect r\times\vect p$ 不变。
+因此外积的变换性质不同于普通位置矢量；例如轴矢量与极矢量的外积
+$\vect v=\vect\omega\times\vect r$ 仍是极矢量。
+
+\subsection{角动量、力矩与参考点}
+先在一个惯性系内取固定点 $O$。质量恒定为 $m$ 的质点位置为 $\vect r=\overrightarrow{OP}$，
+速度为 $\vect v$，动量为 $\vect p=m\vect v$。定义
+\begin{equation}
+ \vect L_O=\vect r\times\vect p,\qquad L_O=mrv\sin\varphi=p\,d,
+\end{equation}
+其中 $\varphi$ 是 $\vect r$ 与 $\vect v$ 的夹角，$d$ 是 $O$ 到动量作用线的垂距，
+不是 $O$ 到质点的距离。图~\ref{ch09:fig:particle}把 $\vect r$ 平移到 $P$ 再量角，
+两矢量的夹角为锐角；$p_y=0,y>0$，故 $L_z=-yp_x<0$，角动量入纸面。
+\particleAngularMomentumDiagram
+若质点沿过 $O$ 的直线径向运动，则 $d=0$、$L_O=0$；若以恒定速度沿不经过 $O$ 的直线运动，
+$d$ 不变，角动量也不变。角动量必须附带参考点，同一动量对不同点的角动量一般不同。
+
+由于 $O$ 固定，$\dd\vect r/\dd t=\vect v$。对定义求导，并利用牛顿第二定律：
+\begin{align}
+ \frac{\dd\vect L_O}{\dd t}
+ &=\frac{\dd\vect r}{\dd t}\times m\vect v+
+   \vect r\times\frac{\dd(m\vect v)}{\dd t}\\
+ &=\vect v\times m\vect v+\vect r\times\vect F
+ =\vect r\times\vect F.
+\end{align}
+第一项为零，因为两个矢量平行。定义对同一点的力矩 $\vect M_O=\vect r\times\vect F$，得
+\begin{equation}
+ \boxed{\frac{\dd\vect L_O}{\dd t}=\vect M_O}.\label{ch09:eq:angular-law}
+\end{equation}
+力矩大小是力乘以相应垂直力臂，平行于 $\vect r$ 的力分量不贡献力矩。合力非零，合力矩仍可为零。
+角动量单位为 $\mathrm{kg\,m^2/s}$，力矩单位为 $\mathrm{N\,m}=\mathrm{kg\,m^2/s^2}$，
+二者相差一个时间因子。积分形式为
+\begin{equation}
+ \vect L_O(t_2)-\vect L_O(t_1)=\int_{t_1}^{t_2}\vect M_O\,\dd t.
+\end{equation}
+右侧称为冲量矩。碰撞时外力瞬时很大不一定破坏近似守恒，但必须确认该外力的冲量矩可忽略，
+或其作用线通过所取矩心；不能仅凭“时间短”就一概使用角动量守恒。
+
+\subsection{质点系、质心分解及移动矩心}
+对质量不变的质点系，设总质量为 $M$，总动量为 $\vect P$，质心位置、速度分别为
+$\vect R_C,\vect V_C$。令 $\vect r_i=\vect R_C+\vect r_i'$、
+$\vect v_i=\vect V_C+\vect v_i'$。质心定义给出
+\begin{equation}
+ \sum_i m_i\vect r_i'=\vect0,\qquad
+ \sum_i m_i\vect v_i'=\frac{\dd}{\dd t}\sum_i m_i\vect r_i'=\vect0.
+\end{equation}
+逐项展开角动量求和，而不是把混合项略去：
+\begin{align}
+ \vect L_O&=\sum_i m_i(\vect R_C+\vect r_i')\times(\vect V_C+\vect v_i')\\
+ &=M\vect R_C\times\vect V_C
+ +\vect R_C\times\sum_i m_i\vect v_i'
+ +\left(\sum_i m_i\vect r_i'\right)\times\vect V_C
+ +\sum_i m_i\vect r_i'\times\vect v_i'\\
+ &=\boxed{M\vect R_C\times\vect V_C+\vect L_C}.
+\end{align}
+第一项称轨道角动量，第二项是相对质心的内部角动量。以地球为例，对太阳取矩时，
+公转与自转分别对应这两项。此分解不要求系统是刚体：粒子团、爆炸碎片和可形变物体同样适用。
+
+设 $\vect F_{ij}$ 是 $j$ 对 $i$ 的内力，若 $\vect F_{ji}=-\vect F_{ij}$ 且内力沿两质点连线，
+则一对内力的力矩和为
+\begin{equation}
+ \vect r_i\times\vect F_{ij}+\vect r_j\times\vect F_{ji}
+ =(\vect r_i-\vect r_j)\times\vect F_{ij}=\vect0.
+\end{equation}
+因此总角动量的变化只由合外力矩决定。若其全部分量为零，则角动量矢量守恒；
+若只有某一固定方向的力矩分量为零，则只能断定那个方向的角动量分量守恒。
+轨道角动量的变化率是 $\vect R_C\times\vect F_{\rm ext}$，即把合外力作用于质心后
+对 $O$ 的力矩；自转角动量的变化率是各外力对质心的合力矩。两项相加才是各外力对O的总力矩，
+不能把总力矩全部算进轨道部分。
+
+\textbf{换固定矩心。}若 $O,O'$ 都固定在同一惯性系中，$\vect a=\overrightarrow{OO'}$，则
+\begin{align}
+ \vect L_{O'}&=\vect L_O-\vect a\times\vect P,\\
+ \vect M_{O'}&=\vect M_O-\vect a\times\vect F_{\rm ext}.
+\end{align}
+总动量为零时角动量与固定参考点选择无关；合外力为零时外力矩与固定参考点选择无关。
+一般情形两者均随矩心改变。选支点是为消去支点力矩，并不意味着其他外力矩自动为零。
+
+\textbf{矩心移动。}若 $O$ 以速度 $\vect v_O$ 移动，仍用惯性系中的绝对速度定义
+$\vect L_O^{\rm abs}=\sum_i(\vect r_i-\vect R_O)\times m_i\vect v_i$，则
+\begin{equation}
+ \frac{\dd\vect L_O^{\rm abs}}{\dd t}
+ =\sum_i(\vect v_i-\vect v_O)\times m_i\vect v_i+\vect M_O
+ =\vect M_O-\vect v_O\times\vect P.
+\end{equation}
+所以即使矩心匀速运动，也不能不加条件地沿用固定点公式。
+若改用相对速度定义 $\vect L_O^{\rm rel}$，并让参考轴只平移、不旋转，则
+\begin{equation}
+ \frac{\dd\vect L_O^{\rm rel}}{\dd t}
+ =\vect M_O-\left[\sum_i m_i(\vect r_i-\vect R_O)\right]\times\vect a_O.
+\end{equation}
+两种公式对应不同的角动量定义，不应混用。特别取 $O=C$ 时，括号中的量为零。
+在只随质心平移的坐标系里，也可把每个质点的惯性力写成 $-m_i\vect a_C$，其对质心的合力矩
+\begin{equation}
+ \sum_i\vect r_i'\times(-m_i\vect a_C)
+ =-\left(\sum_i m_i\vect r_i'\right)\times\vect a_C=\vect0.
+\end{equation}
+这才是质心即使加速，仍有 $\dd\vect L_C/\dd t=\vect M_C^{\rm ext}$ 的原因。
+
+\subsection{有心力、回归点与有效势}
+力始终沿质点与固定力心的连线，称为有心力。它对力心的力矩为零，角动量守恒；
+若 $\vect L\ne\vect0$，$\vect r,\vect v$ 始终垂直于固定的 $\vect L$，轨迹处于一个固定平面。
+$L=0$ 对应径向运动，应单独处理。平面极坐标中取沿运动的方位角 $\varphi$，有
+\begin{equation}
+ \vect v=\dot r\,\uvec e_r+r\dot\varphi\,\uvec e_\varphi,
+ \qquad L=mr^2\dot\varphi.
+\end{equation}
+窄扇形面积为 $\dd A=\tfrac12r^2\dd\varphi$，故面积速度
+\begin{equation}
+ \frac{\dd A}{\dd t}=\frac12r^2\dot\varphi=\frac{L}{2m}.
+\end{equation}
+这对任何固定中心力成立，不只适用于平方反比引力；面积矢量的直接推导见后面的面积速度例题。
+
+质点到力心的距离达到极值的位置称回归点，此时 $\dot r=0$，速度只有横向分量。
+若有两个回归点 $r_1,r_2$，便有 $r_1v_1=r_2v_2$；回归点不是合力为零的点。
+图~\ref{ch09:fig:apsides}中两处速度都与日心连线垂直，近点半径小，速率反而大。
+\apsidesDiagram
+若中心力又是保守力，势能为 $U(r)$，把速度分解代入机械能：
+\begin{align}
+ E&=\frac12m\dot r^2+\frac12mr^2\dot\varphi^2+U(r)\\
+ &=\frac12m\dot r^2+U_{\rm eff}(r),
+ \qquad U_{\rm eff}(r)=U(r)+\frac{L^2}{2mr^2}.
+\end{align}
+有效势中的第二项不是新增的真实相互作用，而是角动量约束在径向方程中的体现。
+可达范围必须有 $E\ge U_{\rm eff}$，回归点满足等号。圆轨道还要求
+$U'_{\rm eff}(r_0)=0$；若 $U''_{\rm eff}(r_0)>0$，小径向扰动稳定，负值则不稳定，
+二阶导数为零时不能仅凭二阶判据下结论。能量给速度大小，角动量把横向速度与半径联系起来，二者不能互相替代。
+
+以 $M\gg m$ 的万有引力为例，$U=-GMm/r$。在回归点代入 $v=L/(mr)$，令 $u=1/r$：
+\begin{equation}
+ \frac{L^2}{2m}u^2-GMm\,u-E=0,
+ \quad
+ u_\pm=\frac{GMm^2}{L^2}
+ \left(1\pm\sqrt{1+\frac{2EL^2}{G^2M^2m^3}}\right).
+\end{equation}
+这里已假定 $L\ne0$。允许能量须满足判别式非负：
+$E\ge E_{\min}=-G^2M^2m^3/(2L^2)$。
+当 $E_{\min}<E<0$ 时，两根均正，对应椭圆的近、远日点；$E=E_{\min}$ 时重根对应圆轨道。
+$E=0$ 时一个根为零，即远端趋向无穷远；$E>0$ 时仅一个根为正，只存在一个有限距离的回归点。
+图~\ref{ch09:fig:kepler}专画束缚椭圆情形，太阳位于焦点而非中心，两个半径都从太阳量起。
+\keplerContextDiagram
+
+\subsection{中心力轨道方程与开普勒定律}
+进一步把时间消去，可以直接求轨道形状。设 $h=L/m=r^2\dot\varphi\ne0$，令 $u=1/r$，
+撇号在本小节表示对 $\varphi$ 求导。由 $\dot\varphi=hu^2$，
+\begin{equation}
+ \dot r=-\frac{u'}{u^2}\dot\varphi=-hu',\qquad
+ \ddot r=-h u''\dot\varphi=-h^2u^2u'',\qquad
+ r\dot\varphi^2=h^2u^3.
+\end{equation}
+把它们代入径向牛顿方程 $m(\ddot r-r\dot\varphi^2)=F(r)$，得到比内方程（Binet equation）
+\begin{equation}
+ u''+u=-\frac{F(1/u)}{mh^2u^2}.
+\end{equation}
+引力 $F=-GMmu^2$ 使右侧成为常量 $GM/h^2$，故
+\begin{equation}
+ u=\frac{GM}{h^2}+A\cos\varphi+B\sin\varphi
+ =\frac1p[1+e\cos(\varphi-\varphi_0)],
+ \quad p=\frac{h^2}{GM},\quad e=p\sqrt{A^2+B^2}.
+\end{equation}
+其中 $p$ 称半通径，$e\ge0$ 是离心率，$\varphi_0$ 给出近点方位；于是
+$r=p/[1+e\cos(\varphi-\varphi_0)]$。$0\le e<1$ 是椭圆，$e=1$ 是抛物线，
+$e>1$ 是双曲线，圆是 $e=0$ 的特殊情形。各类均须限制 $r>0$ 的方位范围。
+椭圆半长轴 $a$、半短轴 $b$、焦距 $c$ 满足
+$c=ae=\sqrt{a^2-b^2}$，$p=a(1-e^2)=b^2/a$。
+
+对椭圆，$r_{\rm p}=a(1-e)$、$r_{\rm a}=a(1+e)$。
+把近点半径及 $L^2=GMm^2p$ 代入能量，逐步化简得
+\begin{align}
+ E&=\frac{GMm\,a(1-e^2)}{2a^2(1-e)^2}-\frac{GMm}{a(1-e)}\\
+ &=\frac{GMm}{2a(1-e)}[(1+e)-2]
+ =-\frac{GMm}{2a}.
+\end{align}
+一周扫过面积为 $\pi ab$，面积速度为 $h/2$，所以
+\begin{equation}
+ T=\frac{2\pi ab}{h},\qquad
+ T^2=\frac{4\pi^2a^2b^2}{GMp}=\frac{4\pi^2a^3}{GM}.
+\end{equation}
+这分别给出轨道能量与开普勒第三定律。$a$ 是半长轴，不是近点距离；同一中心天体周围的
+椭圆轨道满足 $T^2\propto a^3$，与面积速度恒定一起把几何、时间与动力学联系起来。
+
+\subsection{转动惯量及两条移轴定理}
+刚体各质元相对位置不变，绕固定轴转动时有共同角速度。对轴向角动量，有
+\begin{equation}
+ L_{\rm axis}=I_{\rm axis}\omega,\qquad
+ I_{\rm axis}=\sum_i m_i r_{i\perp}^2=\int r_\perp^2\dd m.
+\end{equation}
+$r_\perp$ 是到轴的垂距。仅当该轴是相应的主惯量轴时，才可把整个角动量写成
+$\vect L=I\vect\omega$；一般情况下还有垂直于该轴的角动量分量。
+在三维中可写 $\vect L_C=\mathbf I_C\vect\omega$，$\mathbf I_C$ 称惯量张量，
+其作用不一定只是乘一个数，也可能改变方向。后面用两质点刚体具体说明。
+
+图~\ref{ch09:fig:inertia}列出八种均匀物体及指定转轴。薄圆筒的质量全在半径R处，故为 $MR^2$；
+实心圆柱的一部分质量更靠近轴，故为 $MR^2/2$。形状、尺寸含义和轴位置必须同时核对。
+\momentsContextDiagram
+例如边长 $a,b$ 的矩形薄板，取过中心且垂直板面的轴。面密度为 $M/(ab)$，有
+\begin{align}
+ I&=\frac{M}{ab}\int_{-a/2}^{a/2}\int_{-b/2}^{b/2}(x^2+y^2)\,\dd y\,\dd x\\
+ &=\frac{M}{ab}\left(b\frac{a^3}{12}+a\frac{b^3}{12}\right)
+ =\frac{M(a^2+b^2)}{12}.
+\end{align}
+量纲为质量乘长度平方，$b\to0$ 时回到细杆过中心垂轴的结果。
+
+设目标轴与过质心的轴平行，轴间距为d。质元到质心轴的横向矢量为 $\vect\rho_i$，
+到目标轴的横向矢量为 $\vect\rho_i+\vect d$。展开平方得到平行轴定理：
+\begin{align}
+ I&=\sum_i m_i|\vect\rho_i+\vect d|^2\\
+ &=I_C+2\vect d\cdot\sum_i m_i\vect\rho_i+Md^2
+ =\boxed{I_C+Md^2}.
+\end{align}
+中间项由质心定义消失。这解释了同一细杆绕端点的惯量从 $ML^2/12$ 增加到 $ML^2/3$。
+两轴必须平行；复合体各部分先移到同一轴再相加，挖孔则减去被移除部分关于同一轴的惯量。
+
+若所有质元在同一薄平面内，x、y轴在板面内且互相垂直，z轴过同一点垂直板面，则
+\begin{equation}
+ I_z=\int(x^2+y^2)\dd m=\int x^2\dd m+\int y^2\dd m=I_y+I_x.
+\end{equation}
+这就是垂直轴定理。它不要求原点必须是质心，但要求三轴共点、两两垂直及物体为平面薄片，
+不能直接套用于有厚度的三维物体。
+
+\subsection{角动量守恒与陀螺进动}
+系统总角动量守恒，不要求每个部分的角动量分别守恒。收拢双臂使转动惯量减小，
+在外力矩可忽略且绕同一主轴的条件下，$I\omega=L$ 不变而转速增加。
+此时 $E_k=L^2/(2I)$ 反而增加，能量来自肌肉做功；角动量守恒不等于机械能守恒。
+图~\ref{ch09:fig:cosmic}的飓风与天体吸积结构说明旋转在不同尺度都很常见。
+分析它们仍要检查外力矩、摩擦、角动量输运及物质交换，不能仅凭旋涡外形断言整个系统严格守恒。
+\historyfigure[0.78\linewidth]{cosmic-angular-momentum-redraw.png}{飓风与天体吸积结构中的旋转\label{ch09:fig:cosmic}}
+
+图~\ref{ch09:fig:gyro}中，对称陀螺固定支点为O，质心为C，$OC=r$，质量为M；
+自转轴对竖直方向的倾角为$\theta$，高速自转角速度为 $\omega_0$。若自转角动量占主导，
+$L\simeq I_0\omega_0$ 沿自转轴。重力对O的力矩大小 $Mgr\sin\theta$，垂直于
+$\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对O的力矩。
+\gyroDiagram
+稳定进动时$\theta$近似不变，$\vect L$ 的端点沿水平圆周移动，圆半径为 $L\sin\theta$。
+两根等长矢量 $\vect L_i,\vect L_f$ 的差连接其端点，若转过小方位角 $\dd\phi$，
+\begin{equation}
+ |\dd\vect L|=L\sin\theta\,\dd\phi,
+ \qquad \left|\frac{\dd\vect L}{\dd t}\right|=L\sin\theta\,\omega_p.
+\end{equation}
+与重力矩相等，且 $\sin\theta\ne0$，得到
+\begin{equation}
+ Mgr\sin\theta=I_0\omega_0\sin\theta\,\omega_p,
+ \qquad \boxed{\omega_p=\frac{Mgr}{I_0\omega_0}}.
+\end{equation}
+进动主要改变L的方向。上述式子忽略了进动本身对角动量的贡献，并要求自转足够快、倾角稳定、
+支点固定；自转较慢时可能出现明显章动，即倾角随时间振荡。$\theta$=0时轴没有可辨认的绕竖直进动圆，
+不能用约去零因子的步骤推断可观测的进动。式中r始终是支点到质心的距离，不是陀螺轮体半径。

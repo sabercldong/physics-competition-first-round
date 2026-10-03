@@ -1,0 +1,1897 @@
+{
+  "chapter": 10,
+  "date": "2026-09-09",
+  "sources": [
+    {
+      "source_id": "r2-mechanics-notes",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛学生版讲义.pdf",
+      "sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+      "physical_pages": [
+        73,
+        98
+      ],
+      "objects": [
+        {
+          "source_object_id": "r2notes:p73:teaching:01",
+          "physical_page": 73,
+          "printed_page": 71,
+          "object_type": "teaching_argument",
+          "description": "振幅、平衡位置、相位与初相位",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p73:teaching:02",
+          "physical_page": 73,
+          "printed_page": 71,
+          "object_type": "teaching_argument",
+          "description": "复物理量、复振幅及取实部",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p73:teaching:03",
+          "physical_page": 73,
+          "printed_page": 71,
+          "object_type": "teaching_argument",
+          "description": "复表示的一阶、二阶导数",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p73:teaching:04",
+          "physical_page": 73,
+          "printed_page": 71,
+          "object_type": "teaching_argument",
+          "description": "位移、速度和加速度关系",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p74:teaching:01",
+          "physical_page": 74,
+          "printed_page": 72,
+          "object_type": "teaching_argument",
+          "description": "状态反求相位与多值分支",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p74:teaching:02",
+          "physical_page": 74,
+          "printed_page": 72,
+          "object_type": "teaching_argument",
+          "description": "连续相位和两状态历时",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p74:teaching:03",
+          "physical_page": 74,
+          "printed_page": 72,
+          "object_type": "teaching_argument",
+          "description": "线性回复判据及证明",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p74:teaching:04",
+          "physical_page": 74,
+          "printed_page": 72,
+          "object_type": "teaching_argument",
+          "description": "平方和判据及分段积分证明",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p74:teaching:05",
+          "physical_page": 74,
+          "printed_page": 72,
+          "object_type": "teaching_argument",
+          "description": "实部平方不能当复数平方的实部",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p75:teaching:01",
+          "physical_page": 75,
+          "printed_page": 73,
+          "object_type": "teaching_argument",
+          "description": "稳定平衡条件",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p75:teaching:02",
+          "physical_page": 75,
+          "printed_page": 73,
+          "object_type": "teaching_argument",
+          "description": "势能二阶展开",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p75:teaching:03",
+          "physical_page": 75,
+          "printed_page": 73,
+          "object_type": "teaching_argument",
+          "description": "坐标相关等效惯量和小振动频率",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p75:teaching:04",
+          "physical_page": 75,
+          "printed_page": 73,
+          "object_type": "teaching_argument",
+          "description": "单摆能量与周期",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p75:teaching:05",
+          "physical_page": 75,
+          "printed_page": 73,
+          "object_type": "teaching_argument",
+          "description": "有限摆幅误差及10度换算",
+          "target_file": "chapters/new/ch10-foundations.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p76:teaching:01",
+          "physical_page": 76,
+          "printed_page": 74,
+          "object_type": "teaching_argument",
+          "description": "线性黏滞阻力模型",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p76:teaching:02",
+          "physical_page": 76,
+          "printed_page": 74,
+          "object_type": "teaching_argument",
+          "description": "阻尼系数、衰减参数及固有频率",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p76:teaching:03",
+          "physical_page": 76,
+          "printed_page": 74,
+          "object_type": "teaching_argument",
+          "description": "特征方程",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p76:teaching:04",
+          "physical_page": 76,
+          "printed_page": 74,
+          "object_type": "teaching_argument",
+          "description": "欠阻尼通解",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p77:teaching:01",
+          "physical_page": 77,
+          "printed_page": 75,
+          "object_type": "teaching_argument",
+          "description": "过阻尼双指数通解",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p77:teaching:02",
+          "physical_page": 77,
+          "printed_page": 75,
+          "object_type": "teaching_argument",
+          "description": "临界阻尼通解及重根极限",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p77:teaching:03",
+          "physical_page": 77,
+          "printed_page": 75,
+          "object_type": "teaching_argument",
+          "description": "最快回归说法的比较条件",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p77:teaching:04",
+          "physical_page": 77,
+          "printed_page": 75,
+          "object_type": "teaching_argument",
+          "description": "衰减包络与弛豫时间",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p77:teaching:05",
+          "physical_page": 77,
+          "printed_page": 75,
+          "object_type": "teaching_argument",
+          "description": "弱阻尼能量分析",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p78:teaching:01",
+          "physical_page": 78,
+          "printed_page": 76,
+          "object_type": "teaching_argument",
+          "description": "品质因数与每周期损耗",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p78:teaching:02",
+          "physical_page": 78,
+          "printed_page": 76,
+          "object_type": "teaching_argument",
+          "description": "阻尼螺旋相图",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p78:teaching:03",
+          "physical_page": 78,
+          "printed_page": 76,
+          "object_type": "teaching_argument",
+          "description": "速度相位偏离与损耗角",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p78:teaching:04",
+          "physical_page": 78,
+          "printed_page": 76,
+          "object_type": "teaching_argument",
+          "description": "归一化椭圆的交叉项及轴方向",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p79:teaching:01",
+          "physical_page": 79,
+          "printed_page": 77,
+          "object_type": "teaching_argument",
+          "description": "自由暂态加受迫稳态",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p79:teaching:02",
+          "physical_page": 79,
+          "printed_page": 77,
+          "object_type": "teaching_argument",
+          "description": "复振幅代入求解",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p79:teaching:03",
+          "physical_page": 79,
+          "printed_page": 77,
+          "object_type": "teaching_argument",
+          "description": "振幅与相位",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p79:teaching:04",
+          "physical_page": 79,
+          "printed_page": 77,
+          "object_type": "teaching_argument",
+          "description": "低中高频响应及分支",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p80:teaching:01",
+          "physical_page": 80,
+          "printed_page": 78,
+          "object_type": "teaching_argument",
+          "description": "位移共振及其存在条件",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p80:teaching:02",
+          "physical_page": 80,
+          "printed_page": 78,
+          "object_type": "teaching_argument",
+          "description": "速度与功率共振",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p80:teaching:03",
+          "physical_page": 80,
+          "printed_page": 78,
+          "object_type": "teaching_argument",
+          "description": "输入功率的周期平均",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p80:teaching:04",
+          "physical_page": 80,
+          "printed_page": 78,
+          "object_type": "teaching_argument",
+          "description": "洛伦兹型近峰曲线",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p81:teaching:01",
+          "physical_page": 81,
+          "printed_page": 79,
+          "object_type": "teaching_argument",
+          "description": "高斯型与洛伦兹型线宽对比",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p81:teaching:02",
+          "physical_page": 81,
+          "printed_page": 79,
+          "object_type": "teaching_argument",
+          "description": "半高全宽",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p81:teaching:03",
+          "physical_page": 81,
+          "printed_page": 79,
+          "object_type": "teaching_argument",
+          "description": "峰高与线宽归一化",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p81:teaching:04",
+          "physical_page": 81,
+          "printed_page": 79,
+          "object_type": "teaching_argument",
+          "description": "品质因数的谱线解释",
+          "target_file": "chapters/new/ch10-damping.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p82:teaching:01",
+          "physical_page": 82,
+          "printed_page": 80,
+          "object_type": "teaching_argument",
+          "description": "多自由度平衡与二阶动能势能",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p82:teaching:02",
+          "physical_page": 82,
+          "printed_page": 80,
+          "object_type": "teaching_argument",
+          "description": "惯性矩阵与弹性矩阵元素",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p82:teaching:03",
+          "physical_page": 82,
+          "printed_page": 80,
+          "object_type": "teaching_argument",
+          "description": "混合偏导与矩阵对称性",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p83:teaching:01",
+          "physical_page": 83,
+          "printed_page": 81,
+          "object_type": "teaching_argument",
+          "description": "耦合摆实际弹簧长度",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p83:teaching:02",
+          "physical_page": 83,
+          "printed_page": 81,
+          "object_type": "teaching_argument",
+          "description": "耦合摆完整能量和二阶矩阵",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p83:teaching:03",
+          "physical_page": 83,
+          "printed_page": 81,
+          "object_type": "teaching_argument",
+          "description": "双摆下球速度与动能交叉项",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p83:teaching:04",
+          "physical_page": 83,
+          "printed_page": 81,
+          "object_type": "teaching_argument",
+          "description": "双摆势能和两矩阵对比",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p84:teaching:01",
+          "physical_page": 84,
+          "printed_page": 82,
+          "object_type": "teaching_argument",
+          "description": "逐变量配方与对角化",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p84:teaching:02",
+          "physical_page": 84,
+          "printed_page": 82,
+          "object_type": "teaching_argument",
+          "description": "动能正定和退化",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p84:teaching:03",
+          "physical_page": 84,
+          "printed_page": 82,
+          "object_type": "teaching_argument",
+          "description": "冗余或奇异坐标",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p84:teaching:04",
+          "physical_page": 84,
+          "printed_page": 82,
+          "object_type": "teaching_argument",
+          "description": "势能负方向、零方向和高阶稳定性",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p85:teaching:01",
+          "physical_page": 85,
+          "printed_page": 83,
+          "object_type": "teaching_argument",
+          "description": "双摆配方后势能重新耦合",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p85:teaching:02",
+          "physical_page": 85,
+          "printed_page": 83,
+          "object_type": "teaching_argument",
+          "description": "正逆坐标变换",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p85:teaching:03",
+          "physical_page": 85,
+          "printed_page": 83,
+          "object_type": "teaching_argument",
+          "description": "二次型矩阵形式",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p85:teaching:04",
+          "physical_page": 85,
+          "printed_page": 83,
+          "object_type": "teaching_argument",
+          "description": "合同变换",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p85:teaching:05",
+          "physical_page": 85,
+          "printed_page": 83,
+          "object_type": "teaching_argument",
+          "description": "广义本征问题的物理意义",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p86:teaching:01",
+          "physical_page": 86,
+          "printed_page": 84,
+          "object_type": "teaching_argument",
+          "description": "拉格朗日方程至矩阵运动方程",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p86:teaching:02",
+          "physical_page": 86,
+          "printed_page": 84,
+          "object_type": "teaching_argument",
+          "description": "行列式为零",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p86:teaching:03",
+          "physical_page": 86,
+          "printed_page": 84,
+          "object_type": "teaching_argument",
+          "description": "不同特征值质量正交证明",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p86:teaching:04",
+          "physical_page": 86,
+          "printed_page": 84,
+          "object_type": "teaching_argument",
+          "description": "简并子空间正交化",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p86:teaching:05",
+          "physical_page": 86,
+          "printed_page": 84,
+          "object_type": "teaching_argument",
+          "description": "模态矩阵给出两能量对角元",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p87:teaching:01",
+          "physical_page": 87,
+          "printed_page": 85,
+          "object_type": "teaching_argument",
+          "description": "双摆二次特征方程",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p87:teaching:02",
+          "physical_page": 87,
+          "printed_page": 85,
+          "object_type": "teaching_argument",
+          "description": "两个频率和振幅比",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p87:teaching:03",
+          "physical_page": 87,
+          "printed_page": 85,
+          "object_type": "teaching_argument",
+          "description": "变换矩阵与逆变换",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p87:teaching:04",
+          "physical_page": 87,
+          "printed_page": 85,
+          "object_type": "teaching_argument",
+          "description": "简正坐标",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p88:teaching:01",
+          "physical_page": 88,
+          "printed_page": 86,
+          "object_type": "teaching_argument",
+          "description": "双摆变换后两能量",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p88:teaching:02",
+          "physical_page": 88,
+          "printed_page": 86,
+          "object_type": "teaching_argument",
+          "description": "独立模态方程和通解",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p88:teaching:03",
+          "physical_page": 88,
+          "printed_page": 86,
+          "object_type": "teaching_argument",
+          "description": "简正坐标、简正频率、简正模三概念",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p88:teaching:04",
+          "physical_page": 88,
+          "printed_page": 86,
+          "object_type": "teaching_argument",
+          "description": "初始状态决定各模叠加",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p88:teaching:05",
+          "physical_page": 88,
+          "printed_page": 86,
+          "object_type": "teaching_argument",
+          "description": "耦合摆对称模式方法",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p89:teaching:01",
+          "physical_page": 89,
+          "printed_page": 87,
+          "object_type": "teaching_argument",
+          "description": "耦合摆同相反相频率",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p89:teaching:02",
+          "physical_page": 89,
+          "printed_page": 87,
+          "object_type": "teaching_argument",
+          "description": "苯分子至六坐标模型的限制",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p89:teaching:03",
+          "physical_page": 89,
+          "printed_page": 87,
+          "object_type": "teaching_argument",
+          "description": "环模型能量和动力学",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p89:teaching:04",
+          "physical_page": 89,
+          "printed_page": 87,
+          "object_type": "teaching_argument",
+          "description": "循环指标",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p90:teaching:01",
+          "physical_page": 90,
+          "printed_page": 88,
+          "object_type": "teaching_argument",
+          "description": "六重和两类二重轴操作",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p90:teaching:02",
+          "physical_page": 90,
+          "printed_page": 88,
+          "object_type": "teaching_argument",
+          "description": "能量不变性与非对称交换的区别",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p90:teaching:03",
+          "physical_page": 90,
+          "printed_page": 88,
+          "object_type": "teaching_argument",
+          "description": "方程对称性不保证任意初态对称",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p90:teaching:04",
+          "physical_page": 90,
+          "printed_page": 88,
+          "object_type": "teaching_argument",
+          "description": "对称操作保频与简并",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p91:teaching:01",
+          "physical_page": 91,
+          "printed_page": 89,
+          "object_type": "teaching_argument",
+          "description": "六次单位根投影与共同本征向量",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p91:teaching:02",
+          "physical_page": 91,
+          "printed_page": 89,
+          "object_type": "teaching_argument",
+          "description": "二重轴正负本征值",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p91:teaching:03",
+          "physical_page": 91,
+          "printed_page": 89,
+          "object_type": "teaching_argument",
+          "description": "单重态的符号分类",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p91:teaching:04",
+          "physical_page": 91,
+          "printed_page": 89,
+          "object_type": "teaching_argument",
+          "description": "交替态与整体转动零模",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p92:teaching:01",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "teaching_argument",
+          "description": "两个二重简并代表态",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p92:teaching:02",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "teaching_argument",
+          "description": "零位移点的力抵消",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p92:teaching:03",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "teaching_argument",
+          "description": "各代表态牛顿方程",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p92:teaching:04",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "teaching_argument",
+          "description": "旋转产生伙伴",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p92:teaching:05",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "teaching_argument",
+          "description": "二次旋转的线性关系",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p92:teaching:06",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "teaching_argument",
+          "description": "六模完备列表",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p93:teaching:01",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "teaching_argument",
+          "description": "群与群表示的用途",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p93:teaching:02",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "teaching_argument",
+          "description": "12原子36坐标减6刚体自由度",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p93:teaching:03",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "teaching_argument",
+          "description": "20组30个内部振动模式",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p93:teaching:04",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "teaching_argument",
+          "description": "分子光谱、振动能级和光子频率",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p93:teaching:05",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "teaching_argument",
+          "description": "吸收需满足选择条件",
+          "target_file": "chapters/new/ch10-modes.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p94:teaching:01",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "teaching_argument",
+          "description": "非线性摄动仅为源标题，现有扩展在nonlinear模块保留",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p94:teaching:02",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "teaching_argument",
+          "description": "原子实、晶格热运动与声波",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p94:teaching:03",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "teaching_argument",
+          "description": "耦合运动与传声传热",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p94:teaching:04",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "teaching_argument",
+          "description": "独立模式和声子",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p94:teaching:05",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "teaching_argument",
+          "description": "单原子链方程",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p94:teaching:06",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "teaching_argument",
+          "description": "平移算符本征态",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p95:teaching:01",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "teaching_argument",
+          "description": "实指数空间解和截止",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p95:teaching:02",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "teaching_argument",
+          "description": "波矢与相位差",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p95:teaching:03",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "teaching_argument",
+          "description": "第一布里渊区及端点等价",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p95:teaching:04",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "teaching_argument",
+          "description": "最短波长",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p95:teaching:05",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "teaching_argument",
+          "description": "群速度与相速度",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p95:teaching:06",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "teaching_argument",
+          "description": "长波连续介质极限",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p96:teaching:01",
+          "physical_page": 96,
+          "printed_page": 94,
+          "object_type": "teaching_argument",
+          "description": "双原子晶胞和两个位移坐标",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p96:teaching:02",
+          "physical_page": 96,
+          "printed_page": 94,
+          "object_type": "teaching_argument",
+          "description": "两条运动方程",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p96:teaching:03",
+          "physical_page": 96,
+          "printed_page": 94,
+          "object_type": "teaching_argument",
+          "description": "复振幅及行列式",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p96:teaching:04",
+          "physical_page": 96,
+          "printed_page": 94,
+          "object_type": "teaching_argument",
+          "description": "轻质量低频串联近似",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p96:teaching:05",
+          "physical_page": 96,
+          "printed_page": 94,
+          "object_type": "teaching_argument",
+          "description": "高频根的近似",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p97:teaching:01",
+          "physical_page": 97,
+          "printed_page": 95,
+          "object_type": "teaching_argument",
+          "description": "两支色散端点",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p97:teaching:02",
+          "physical_page": 97,
+          "printed_page": 95,
+          "object_type": "teaching_argument",
+          "description": "光学支胞内反向运动",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p97:teaching:03",
+          "physical_page": 97,
+          "printed_page": 95,
+          "object_type": "teaching_argument",
+          "description": "声学支长波",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p97:teaching:04",
+          "physical_page": 97,
+          "printed_page": 95,
+          "object_type": "teaching_argument",
+          "description": "两质量不同时的带隙",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p97:teaching:05",
+          "physical_page": 97,
+          "printed_page": 95,
+          "object_type": "teaching_argument",
+          "description": "每个波矢的两个自由度",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p98:teaching:01",
+          "physical_page": 98,
+          "printed_page": 96,
+          "object_type": "teaching_argument",
+          "description": "声子模式的量子化和热学联系",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p98:teaching:02",
+          "physical_page": 98,
+          "printed_page": 96,
+          "object_type": "teaching_argument",
+          "description": "电子能带和禁带的类比",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p98:teaching:03",
+          "physical_page": 98,
+          "printed_page": 96,
+          "object_type": "teaching_argument",
+          "description": "电子与晶格相互作用",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p98:teaching:04",
+          "physical_page": 98,
+          "printed_page": 96,
+          "object_type": "teaching_argument",
+          "description": "两种激发的动力学及统计区别",
+          "target_file": "chapters/new/ch10-lattice.tex",
+          "status": "mapped",
+          "notes": "按教学段、公式链与证明功能成组核对；不把文字改写后的字数当完整性证据。"
+        },
+        {
+          "source_object_id": "r2notes:p76:fig:4.1",
+          "physical_page": 76,
+          "printed_page": 74,
+          "object_type": "figure_group",
+          "source_number": "4.1",
+          "target_ids": [
+            "ch10:fig:damping-types"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p77:fig:4.2",
+          "physical_page": 77,
+          "printed_page": 75,
+          "object_type": "figure_group",
+          "source_number": "4.2",
+          "target_ids": [
+            "ch10:fig:damping-envelope"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p78:fig:4.3",
+          "physical_page": 78,
+          "printed_page": 76,
+          "object_type": "figure_group",
+          "source_number": "4.3",
+          "target_ids": [
+            "ch10:fig:damped-phase"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p79:fig:4.4",
+          "physical_page": 79,
+          "printed_page": 77,
+          "object_type": "figure_group",
+          "source_number": "4.4",
+          "target_ids": [
+            "ch10:fig:resonance"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p81:fig:4.5",
+          "physical_page": 81,
+          "printed_page": 79,
+          "object_type": "figure_group",
+          "source_number": "4.5",
+          "target_ids": [
+            "ch10:fig:profiles"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p83:fig:4.6",
+          "physical_page": 83,
+          "printed_page": 81,
+          "object_type": "figure_group",
+          "source_number": "4.6",
+          "target_ids": [
+            "ch10:fig:coupled-pendula"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p83:fig:4.7",
+          "physical_page": 83,
+          "printed_page": 81,
+          "object_type": "figure_group",
+          "source_number": "4.7",
+          "target_ids": [
+            "ch10:fig:double-pendulum"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p89:fig:4.8",
+          "physical_page": 89,
+          "printed_page": 87,
+          "object_type": "figure_group",
+          "source_number": "4.8",
+          "target_ids": [
+            "ch10:fig:benzene-model"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p90:fig:4.9",
+          "physical_page": 90,
+          "printed_page": 88,
+          "object_type": "figure_group",
+          "source_number": "4.9",
+          "target_ids": [
+            "ch10:fig:ring-symmetry"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p92:fig:4.10",
+          "physical_page": 92,
+          "printed_page": 90,
+          "object_type": "figure_group",
+          "source_number": "4.10",
+          "target_ids": [
+            "ch10:fig:ring-modes"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig:4.11",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_group",
+          "source_number": "4.11",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a",
+            "ch10:fig:benzene-modes-b",
+            "ch10:fig:benzene-modes-c",
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p94:fig:4.12",
+          "physical_page": 94,
+          "printed_page": 92,
+          "object_type": "figure_group",
+          "source_number": "4.12",
+          "target_ids": [
+            "ch10:fig:mono-chain"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p95:fig:4.13",
+          "physical_page": 95,
+          "printed_page": 93,
+          "object_type": "figure_group",
+          "source_number": "4.13",
+          "target_ids": [
+            "ch10:fig:mono-dispersion"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p96:fig:4.14",
+          "physical_page": 96,
+          "printed_page": 94,
+          "object_type": "figure_group",
+          "source_number": "4.14",
+          "target_ids": [
+            "ch10:fig:diatomic-chain"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p97:fig:4.15",
+          "physical_page": 97,
+          "printed_page": 95,
+          "object_type": "figure_group",
+          "source_number": "4.15",
+          "target_ids": [
+            "ch10:fig:diatomic-dispersion"
+          ],
+          "status": "mapped"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:395:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/395/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:395:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/395/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:599:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/599/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:599:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/599/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:677:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/677/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:700:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/700/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:838:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/838/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:838:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/838/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-a"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:954:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/954/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:954:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/954/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:981:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/981/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:994:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/994/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1014:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1014/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1048:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1048/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1048:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1048/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1137:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1137/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-b"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1162:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1162/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1162:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1162/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1332:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1332/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1376:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1376/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1477:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1477/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1477:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1477/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1612:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1612/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:1612:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/1612/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-c"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:3080:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/3080/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:3092:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/3092/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:3092:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/3092/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:3110:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/3110/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:3110:2",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/3110/2",
+          "target_ids": [
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        },
+        {
+          "source_object_id": "r2notes:p93:fig4.11:3121:1",
+          "physical_page": 93,
+          "printed_page": 91,
+          "object_type": "figure_panel",
+          "source_number": "4.11/3121/1",
+          "target_ids": [
+            "ch10:fig:benzene-modes-d"
+          ],
+          "status": "mapped",
+          "notes": "定性振型；保留频率组、平面内/外和简并结构，不把箭长当定量本征矢量。"
+        }
+      ]
+    },
+    {
+      "source_id": "r2-mechanics-exercises",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛习题.pdf",
+      "sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba",
+      "physical_pages": [
+        36,
+        39
+      ],
+      "objects": [
+        {
+          "source_object_id": "r2ex:p36:problem9.1",
+          "physical_page": 36,
+          "printed_page": null,
+          "object_type": "problem_with_subquestions",
+          "source_number": "第九讲第1题",
+          "target_ids": [
+            "ch10:ex:friction"
+          ],
+          "target_example": "10.4",
+          "status": "mapped",
+          "notes": "题设、全部子问及解答；第5题恢复水分子自由度类比。"
+        },
+        {
+          "source_object_id": "r2ex:p36:fig9.1",
+          "physical_page": 36,
+          "object_type": "figure_group",
+          "source_number": "第九讲第1题题图",
+          "target_ids": [
+            "ch10:fig:friction-problem"
+          ],
+          "status": "mapped",
+          "analysis_ids": [
+            "ch10:fig:friction"
+          ],
+          "revision_note": "2026-09-23：原装置恢复到独立题面，分析图保留在解答。"
+        },
+        {
+          "source_object_id": "r2ex:p36:problem9.2",
+          "physical_page": 36,
+          "printed_page": null,
+          "object_type": "problem_with_subquestions",
+          "source_number": "第九讲第2题",
+          "target_ids": [
+            "ch10:ex:governor"
+          ],
+          "target_example": "10.5",
+          "status": "mapped",
+          "notes": "题设、全部子问及解答；第5题恢复水分子自由度类比。"
+        },
+        {
+          "source_object_id": "r2ex:p36:fig9.2",
+          "physical_page": 36,
+          "object_type": "figure_group",
+          "source_number": "第九讲第2题题图",
+          "target_ids": [
+            "ch10:fig:governor-problem"
+          ],
+          "status": "mapped",
+          "analysis_ids": [
+            "ch10:fig:governor"
+          ],
+          "revision_note": "2026-09-23：原装置恢复到独立题面，分析图保留在解答。"
+        },
+        {
+          "source_object_id": "r2ex:p37:problem9.3",
+          "physical_page": 37,
+          "printed_page": null,
+          "object_type": "problem_with_subquestions",
+          "source_number": "第九讲第3题",
+          "target_ids": [
+            "ch10:ex:chain"
+          ],
+          "target_example": "10.6",
+          "status": "mapped",
+          "notes": "题设、全部子问及解答；第5题恢复水分子自由度类比。"
+        },
+        {
+          "source_object_id": "r2ex:p37:fig9.3",
+          "physical_page": 37,
+          "object_type": "figure_group",
+          "source_number": "第九讲第3题题图",
+          "target_ids": [
+            "ch10:fig:chain-problem"
+          ],
+          "status": "mapped",
+          "analysis_ids": [
+            "ch10:fig:chain"
+          ],
+          "revision_note": "2026-09-23：原装置恢复到独立题面，分析图保留在解答。"
+        },
+        {
+          "source_object_id": "r2ex:p37:problem9.4",
+          "physical_page": 37,
+          "printed_page": null,
+          "object_type": "problem_with_subquestions",
+          "source_number": "第九讲第4题",
+          "target_ids": [
+            "ch10:ex:wedges"
+          ],
+          "target_example": "10.7",
+          "status": "mapped",
+          "notes": "题设、全部子问及解答；第5题恢复水分子自由度类比。"
+        },
+        {
+          "source_object_id": "r2ex:p37:fig9.4",
+          "physical_page": 37,
+          "object_type": "figure_group",
+          "source_number": "第九讲第4题题图",
+          "target_ids": [
+            "ch10:fig:wedges-problem"
+          ],
+          "status": "mapped",
+          "analysis_ids": [
+            "ch10:fig:wedges"
+          ],
+          "revision_note": "2026-09-23：原装置恢复到独立题面，分析图保留在解答。"
+        },
+        {
+          "source_object_id": "r2ex:p38:problem9.5",
+          "physical_page": 38,
+          "printed_page": null,
+          "object_type": "problem_with_subquestions",
+          "source_number": "第九讲第5题",
+          "target_ids": [
+            "ch10:ex:charges"
+          ],
+          "target_example": "10.8",
+          "status": "mapped",
+          "notes": "题设、全部子问及解答；第5题恢复水分子自由度类比。"
+        },
+        {
+          "source_object_id": "r2ex:p39:problem9.6",
+          "physical_page": 39,
+          "printed_page": null,
+          "object_type": "problem_with_subquestions",
+          "source_number": "第九讲第6题",
+          "target_ids": [
+            "ch10:ex:spring-pendulum"
+          ],
+          "target_example": "10.9",
+          "status": "mapped",
+          "notes": "题设、全部子问及解答；第5题恢复水分子自由度类比。"
+        }
+      ]
+    }
+  ],
+  "scope": "本章26页讲义与4页习题的独有教学内容及19组来源图。逐组核对不等于字面逐字复制。",
+  "boundary": {
+    "physical_page": 99,
+    "belongs_to_chapter": 11,
+    "reason": "万有引力开始；不计入振动，不排除为非教学页。"
+  },
+  "corrections": [
+    "相位反函数分支",
+    "10度为0.1745弧度",
+    "瞬时能量和弱阻尼平均能量区别",
+    "共振条件与相位象限",
+    "本征值符号和稳定性",
+    "六环旋转关系符号",
+    "声学传播和有限热导率不等同",
+    "模式图中的入出面、成对方向及定性标度"
+  ],
+  "source_figures": 19,
+  "source_molecular_panels": 30,
+  "retained_examples": 9,
+  "new_numbered_figure_groups": 29,
+  "image_provenance": {
+    "asset": "assets/ch10/benzene-model.png",
+    "sha256": "c52906427b6d5366567d80395e79fd1da00ff044134b002a4ca986b8d2bcdd9c",
+    "method": "内置图像生成工具",
+    "original_output": "/Users/dongxingxi/.codex/generated_images/019fe8f7-db8d-7383-b4b2-16a55baa634b/exec-ec5df910-95bc-467b-9805-a2290351bf7e.png",
+    "prompt_summary": "白底斜视苯分子；六碳六氢，闭合平面六边形，每碳一氢；环上下淡蓝离域电子云；无文字。"
+  }
+}

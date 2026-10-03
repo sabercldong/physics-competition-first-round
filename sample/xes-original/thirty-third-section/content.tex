@@ -1,0 +1,306 @@
+上一讲从带电体受力的角度认识电场。物理中许多问题都可以从“力”和“能量交换”两个方面考察，电场也不
+例外：除了用各点的电场强度描述电场，还可以研究给定电荷在各点具有的能量。后一种描述引出电势能和
+电势。
+
+把电荷量为 $q$ 的试探电荷放进一个既定电场，并假定它不足以改变场源电荷的位置，试探电荷受到的力为
+$\boldsymbol F=q\boldsymbol E$。当它的位置改变时，电场力会做功。静电场中的电场力是保守力，因此可以
+定义电势能。由于电场力处处正比于 $q$，电势能也必定正比于 $q$：
+\begin{equation}
+  \boxed{E_p=q\varphi}.
+\end{equation}
+比例因子 $\varphi$ 只由场源和空间位置决定，称为该点的\textbf{电势}。它等于单位正电荷在该点具有的
+电势能。电场强度是矢量，电势是标量；二者描述的是同一个静电场。
+
+\subsection*{电势与电场}
+
+在直角坐标系中，电势写成标量函数 $\varphi(x,y,z)$，试探电荷的势能为
+$E_p(x,y,z)=q\varphi(x,y,z)$。保守力分量等于势能对相应坐标导数的负值：
+\[
+  F_x=-\frac{\partial E_p}{\partial x},\qquad
+  F_y=-\frac{\partial E_p}{\partial y},\qquad
+  F_z=-\frac{\partial E_p}{\partial z}.
+\]
+再与 $F_x=qE_x,F_y=qE_y,F_z=qE_z$ 比较，得到
+\begin{equation}
+  \boxed{E_x=-\frac{\partial\varphi}{\partial x},\qquad
+  E_y=-\frac{\partial\varphi}{\partial y},\qquad
+  E_z=-\frac{\partial\varphi}{\partial z}}
+  \qquad\Longleftrightarrow\qquad
+  \boxed{\boldsymbol E=-\boldsymbol\nabla\varphi}.
+\end{equation}
+负号表示电场总是指向电势降低最快的方向。知道电势函数后，对三个坐标求偏导即可得到电场。
+
+反过来，若电场 $\boldsymbol E(x,y,z)$ 已知，电荷从 $A$ 沿任意路径运动到 $B$，电场力做功
+\[
+  W_{A\to B}=q\int_A^B\boldsymbol E\cdot\dd\boldsymbol l.
+\]
+保守力做功等于势能减少量，因此
+\begin{equation}
+  \boxed{\varphi(B)-\varphi(A)
+  =-\int_A^B\boldsymbol E\cdot\dd\boldsymbol l}.
+\end{equation}
+静电力是保守力，积分结果只取决于起点和终点，与路径无关。沿电场方向移动时
+$\boldsymbol E\cdot\dd\boldsymbol l>0$，电势降低；逆电场方向移动时电势升高。
+
+
+% EM teaching enrichment 20260927
+\paragraph{势的零点与平衡点}
+给电势加常数不改变电场，也不改变电势差。若沿一维约束轨道有
+$\varphi(x)=\varphi_0+ax^2/2$，则 $E_x=-ax$，电荷运动方程为 $m\ddot x=-qa x$。
+$qa>0$ 时小振动角频率为 $\sqrt{qa/m}$；$qa<0$ 时原点不稳定。因此稳定性取决于 $q\varphi$ 的曲率，负电荷在电势极大处反而可能具有势能极小值。本结论限于给定的一维约束，不能直接推出三维自由空间中的稳定悬浮。
+
+\subsection*{叠加原理}
+
+把无穷远选为电势零点，静止点电荷 $Q$ 在距它 $r$ 处产生的电势为
+\begin{equation}
+  \boxed{\varphi(r)=\frac{1}{4\pi\varepsilon_0}\frac{Q}{r}}.
+\end{equation}
+在少数延伸到无穷远的带电系统中，这一零点选择并不可行，只能谈两个有限位置之间的电势差。对于有限的
+孤立带电体，通常都取 $\varphi(\infty)=0$。
+
+多个点电荷的电场可以矢量叠加，它们的电势则可以直接作代数和。空间中一点到各电荷 $Q_n$ 的距离为
+$r_n$ 时
+\begin{equation}
+  \boxed{\varphi=\frac{1}{4\pi\varepsilon_0}
+  \sum_n\frac{Q_n}{r_n}}.
+\end{equation}
+若电荷连续分布，把求和改为积分即可。因为标量叠加通常比矢量叠加简单，复杂带电体常采用“先求电势，
+再用 $\boldsymbol E=-\boldsymbol\nabla\varphi$ 求电场”的路线。
+
+图中的电偶极子由 $+q,-q$ 构成，两电荷到中心 $C$ 的距离均为 $a$。任意点 $P$ 到两电荷的距离分别为
+$r_+,r_-$，到中心的距离为 $r$，$\boldsymbol r$ 与偶极矩方向的夹角为 $\theta$。由叠加原理
+\[
+  \varphi(P)=\frac{q}{4\pi\varepsilon_0}
+  \left(\frac1{r_+}-\frac1{r_-}\right).
+\]
+当 $r\gg a$ 时，$r_- -r_+\approx2a\cos\theta$。定义偶极矩
+$\boldsymbol p$ 由负电荷指向正电荷，大小 $p=2qa$，则
+\begin{equation}
+  \boxed{\varphi(P)=\frac{1}{4\pi\varepsilon_0}
+  \frac{p\cos\theta}{r^2}
+  =\frac{1}{4\pi\varepsilon_0}\frac{\boldsymbol p\cdot\boldsymbol r}{r^3}}.
+\end{equation}
+
+\dipolePotentialGeometry
+\diagramcaption{电偶极子远场近似中的距离和角度关系。$\boldsymbol p$ 沿 $-q$ 指向 $+q$。}
+
+另一个重要例子是半径为 $R$、总电荷为 $Q$ 的均匀带电球壳。它与均匀质量球壳的引力势问题具有完全相同
+的平方反比结构。球壳外部的电势等同于把全部电荷集中在球心，内部电势处处等于表面电势：
+\begin{equation}
+  \boxed{\varphi(r)=
+  \begin{cases}
+    \dfrac{1}{4\pi\varepsilon_0}\dfrac{Q}{r},&r>R,\\[6pt]
+    \dfrac{1}{4\pi\varepsilon_0}\dfrac{Q}{R},&r<R.
+  \end{cases}}
+\end{equation}
+球壳内部电势虽不一定为零，但其空间导数为零，因此内部电场为零。
+
+
+% EM teaching enrichment 20260927
+\paragraph{先算势再求场：求导时保持什么不变}
+对均匀细圆环，轴线上电势为 $\varphi(z)=kQ/\sqrt{a^2+z^2}$，求导立即得到
+$E_z=-\dd\varphi/\dd z=kQz/(a^2+z^2)^{3/2}$，其中 $Q,a$ 保持不变。
+但只知道轴线上的电势函数，并不能直接对横坐标求导得到轴外电场；轴外场必须从完整空间函数或额外对称关系获得。
+无限长线电荷则给出
+\[
+ \varphi(r)-\varphi(r_0)=-\frac{\lambda}{2\pi\varepsilon_0}\ln\frac r{r_0}.
+\]
+令 $r_0\to\infty$ 会发散，所以应保留有限参考半径。场强是否随距离趋零，与无穷远电势积分是否收敛，是两件不同的事。
+
+\subsection*{等势面}
+
+把空间中电势相同的点连接起来，得到的曲面称为等势面。它与地形图中的等高线相似，使标量函数
+$\varphi(x,y,z)$ 具有直观的几何表示。图2.1给出匀强电场、正点电荷和电偶极子的等势面截线；实线带箭头
+表示电场线，灰色虚线表示等势面在纸面内的截线。
+
+\equipotentialGallery
+\diagramcaption{图 2.1：三种典型静电场中的等势面与电场线。两族曲线在每个交点处互相垂直。}
+
+等势面和电场线具有三条直接性质。第一，不同电势的等势面不能相交，电场线也不能在电场非零处相交；
+否则同一点会出现两个电势值或两个电场方向。第二，电场线处处垂直于等势面，因为电荷沿等势面移动时
+$\dd\varphi=0$，电场力不做功。第三，若用相同电势差画相邻等势面，等势面越密的地方场强越大，因为
+$|\boldsymbol E|$ 是电势沿法线方向的空间变化率。
+
+两个不等量异号点电荷 $+Q,-q$ 产生的电势为
+\[
+  \varphi(P)=\frac{1}{4\pi\varepsilon_0}
+  \left(\frac{Q}{r_+}-\frac{q}{r_-}\right).
+\]
+零电势面满足
+\[
+  \frac{r_+}{r_-}=\frac{Q}{q}.
+\]
+到两个定点的距离之比为常数的点构成 Apollonius 球面。因此当 $Q\ne q$ 时，零电势面是一个包围电荷
+绝对值较小者的球面；当 $Q=q$ 时，它退化为两电荷连线的中垂面。
+
+图 2.2 取 $Q=2q$；圆周上 $P$ 到正、负电荷的距离分别为 $r_+,r_-$，满足 $r_+=2r_-$，故两项电势正好相消。
+
+\zeroEquipotentialFigure
+\diagramcaption{图 2.2：不等量异号点电荷的零电势面截面。球面包围绝对值较小的电荷。}
+
+
+% EM teaching enrichment 20260927
+\paragraph{等势线读数不能代替粒子轨迹}
+沿局部法线，相邻等势面差为 $\Delta\varphi$、间距为 $\Delta n$ 时，
+$E_n\simeq-\Delta\varphi/\Delta n$。必须比较相同电势差的线距；随意多画几条线不会使真实场变强。
+例如两相邻等势面差 $20\,\mathrm V$、法向间距 $2.0\,\mathrm{mm}$，局部场强约为 $10^4\,\mathrm{V/m}$。
+电荷沿等势面移动时电场不做功，但可存在垂直于速度的电场力；若没有合适约束，粒子通常不会一直留在该面上。
+
+\subsection*{电子伏特}
+
+电荷量为 $q$ 的粒子从电势 $\varphi_A$ 运动到 $\varphi_B$，电场做功
+\[
+  W=q(\varphi_A-\varphi_B)=qU,
+\]
+其中 $U=\varphi_A-\varphi_B$ 是沿运动方向的电势降。电子通过 $1\,\mathrm V$ 的电势差获得的能量定义为
+$1\,\mathrm{eV}$：
+\begin{equation}
+  \boxed{1\,\mathrm{eV}=1.602\,176\,634\times10^{-19}\,\mathrm J}.
+\end{equation}
+电子伏特特别适合描述原子、原子核和高能粒子的能量。由 $k_BT=1\,\mathrm{eV}$ 可得
+\begin{equation}
+  \boxed{T\approx1.2\times10^4\,\mathrm K}.
+\end{equation}
+因此做数量级估算时，可以把“约一万开尔文”与“热运动典型能量约 $1\,\mathrm{eV}$”联系起来。
+
+中性原子中的电子被原子核的 Coulomb 吸引束缚。外来粒子若传给电子足够能量，电子就会脱离原子，原子
+成为正离子，这个最低能量称为第一电离能。图2.3显示其随原子序数的周期性：每个周期的碱金属处较低，
+稀有气体处较高；绝大多数原子的第一电离能在 $5$--$25\,\mathrm{eV}$ 的尺度内。
+
+\ionizationEnergyFigure
+\diagramcaption{图 2.3：原子的第一电离能随原子序数的周期性变化。覆盖 $Z=1$--$108$，符号区分元素类别；空心点表示含理论或估计标识的数据。}
+
+质量数较大的原子核可能发生 $\alpha$ 衰变，放出由两个质子和两个中子组成的氦核。母核的质量数减少 4，
+核电荷数减少 2；典型 $\alpha$ 粒子能量约为 $5\,\mathrm{MeV}$。
+
+\alphaDecayFigure
+
+以 $5\,\mathrm{MeV}$ 的 $\alpha$ 粒子正碰金核为例，金的核电荷数 $Z=79$。若金核近似不动，最近距离
+$r_m$ 由动能完全转化为 Coulomb 势能确定：
+\[
+  5\,\mathrm{MeV}
+  =\frac{1}{4\pi\varepsilon_0}\frac{2\times79e^2}{r_m},
+  \qquad r_m\approx4.5\times10^{-14}\,\mathrm m.
+\]
+在如此小的距离上仍观察到平方反比散射，说明原子的正电荷集中在远小于原子尺度的原子核中。
+
+为了研究更高能量下的粒子相互作用，人们建造粒子加速器。大型电子--正电子对撞机曾把单束电子加速到
+$104.5\,\mathrm{GeV}$，使对撞质心能量达到 $209\,\mathrm{GeV}$；大型强子对撞机的设计单束质子能量达到
+$7\,\mathrm{TeV}$。把巨大能量集中在极小空间区域，可以产生并探测更重的粒子。宇宙线中还存在能量超过
+$10^{20}\,\mathrm{eV}$ 的粒子，远高于人造加速器能量。
+
+图 2.4 中的蓝色磁体沿隧道弯曲排列，束流在内部真空管中传播；磁场用于约束轨道，粒子的能量由加速电场提供。
+
+\acceleratorTunnelFigure
+\diagramcaption{图 2.4：大型强子对撞机环形隧道中的超导磁体和束流管结构示意。环形主隧道周长约 $26.7\,\mathrm{km}$。}
+
+
+% EM teaching enrichment 20260927
+\paragraph{先判能量变化，再换速度}
+电子由静止从低电势点进入高 $U$ 的电势点，$q=-e$，故
+$\Delta K=-q\Delta\varphi=eU>0$。若 $U=100\,\mathrm V$，其动能为 $100\,\mathrm{eV}$，非相对论速率为
+\[
+ v=\sqrt{\frac{2eU}{m_e}}\simeq5.93\times10^6\,\mathrm{m/s}.
+\]
+电子伏特是能量单位，不能直接代入以千克为质量单位的速度公式，须先换焦耳。若所得 $eU$ 与 $m_ec^2$ 同量级，应改用 $eU=(\gamma-1)m_ec^2$，而非继续使用 $mv^2/2$。
+
+\subsection*{气体放电}
+
+气体通常近似绝缘，但过强电场会使它击穿。气体中少量自由电子先被电场加速；若电子在两次碰撞之间获得
+的能量足以激发原子，原子退激时便可能发光；碰撞能量超过电离阈值时，还可能电离原子并产生新的电子。
+超过阈值不意味着每次碰撞都电离，碰撞过程具有一定概率。电离产生的载流子足以补偿复合、扩散等损失时，
+放电才能持续。辉光放电同样包含电离，并常依靠阴极二次电子发射补充电子，不能说成“只激发、不电离”。
+辉光、弧光、火花是不同的放电状态，区别还取决于气压、电流、气体温度、电极及供电条件；弧光通常具有
+较大的持续电流和明显加热，火花则是击穿时的快速放电。图2.5中的闪电是大尺度气体击穿。
+
+\lightningFigure
+\diagramcaption{图 2.5：闪电中的分支放电通道。亮通道是空气被击穿后形成的高温等离子体。}
+
+典型原子的电离能约为 $10\,\mathrm{eV}$。若电子与原子的碰撞截面取
+$\sigma\sim10^{-20}\,\mathrm{m^2}$，理想气体数密度为 $n=P/(k_BT)$，则平均自由程估计为
+\[
+  l\sim\frac1{n\sigma}\sim\frac{k_BT}{P\sigma}.
+\]
+在 $T=300\,\mathrm K$、$P=1\,\mathrm{atm}$ 时，$l\sim4\times10^{-6}\,\mathrm m$。若电子要在一个
+自由程内获得约 $10\,\mathrm{eV}$，所需场强量级为
+\[
+  E\sim\frac{10\,\mathrm V}{4\times10^{-6}\,\mathrm m}
+  \approx2.5\times10^6\,\mathrm{V/m}.
+\]
+真实击穿场强还受气体种类、压强、湿度、电极曲率和初始电离等因素影响，但这一估算说明为什么尖端附近
+的强局域电场容易触发放电。
+
+
+% EM teaching enrichment 20260927
+\paragraph{碰撞尺度估算的用途与限制}
+把电离所需能量记为 $W_i$，单次自由飞行的获得能量约为 $eE\ell$。条件 $eE\ell\sim W_i$ 只检验一次碰撞是否可能有效，不能独自决定能否形成自持放电。
+在固定温度、固定碰撞截面的粗略模型中 $\ell\propto1/P$，故相似的单次加速条件对应近似固定的 $E/P$。实际有限电极间隙还要能容纳足够多次增殖碰撞；气压极低时虽自由程变长，碰撞次数却减少。因此不能由该局部估算推断“气压越低必然越容易击穿”。
+
+\subsection*{静电势能}
+
+必须区分“一个试探电荷在外电场中的势能”与“构造整个带电系统所需的总静电势能”。前者是
+$E_p=q\varphi$；后者是把全部电荷从无穷远逐个搬到指定位置时，外力所做功的总和。
+
+设系统由 $N$ 个点电荷 $Q_i$ 构成，$r_{ij}$ 为 $Q_i,Q_j$ 的距离。把每一对电荷的相互作用能只计算一次，
+得到
+\begin{equation}
+  \boxed{U=\sum_{i=1}^{N}\sum_{j=1}^{i-1}
+  \frac{1}{4\pi\varepsilon_0}\frac{Q_iQ_j}{r_{ij}}
+  =\frac12\sum_{i=1}^{N}Q_i\varphi_i'}.
+\end{equation}
+$\varphi_i'$ 是除 $Q_i$ 自身以外的其他电荷在 $Q_i$ 处产生的电势。第二种写法前面的 $1/2$ 不能遗漏，
+因为直接求和 $Q_i\varphi_i'$ 会把每一对相互作用计算两次；点电荷自身的无穷大自能并不包含在式中。
+
+对总电荷为 $Q$、半径为 $R$ 的均匀带电球壳，表面电势为
+$Q/(4\pi\varepsilon_0R)$，所以
+\begin{equation}
+  \label{shell-energy}\boxed{U=\frac12Q\varphi(R)
+  =\frac{1}{2}\frac{1}{4\pi\varepsilon_0}\frac{Q^2}{R}}
+  =\boxed{\frac{Q^2}{8\pi\varepsilon_0R}}.
+\end{equation}
+半径越小，静电势能越高。压缩球壳时必须克服表面电荷之间的斥力，外力所做的功就储存在静电系统中。
+
+
+% EM teaching enrichment 20260927
+\paragraph{用逐个装配核对二分之一}
+三个相同点电荷 $q$ 放在边长 $a$ 的等边三角形顶点。搬入第一个不做相互作用功，第二个需 $kq^2/a$，第三个需 $2kq^2/a$，所以总能为 $3kq^2/a$。
+若只把第三个移到无穷远、其余固定，电场对它做功 $2kq^2/a$，此处应使用第三个在既定外场中的势能 $q\varphi'$，不能再乘 $1/2$。
+“整个系统能量按电荷对计数”与“一个粒子在不变外场中的能量”是两种不同问题，辨明过程比记忆系数更可靠。
+
+\subsection*{电场能量}
+
+静电能不仅可以看成电荷对之间的相互作用能，也可以看成分布在电场中的能量。真空中电场强度为 $E$ 的
+位置具有能量密度
+\begin{equation}
+  \boxed{w_E=\frac12\varepsilon_0E^2}.
+\end{equation}
+从无场状态建立电场必须输入能量。例如把原本紧贴的等量异号电荷拉开，外力做功形成电场；移动电荷时，
+场的分布和储存的能量也随之改变。
+
+均匀带电球壳内部 $E=0$，外部电场为点电荷场。球外距离 $r$ 处的能量密度是
+\[
+  w_E(r)=\frac12\varepsilon_0
+  \left(\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\right)^2.
+\]
+把它对球壳外部全空间积分：
+\begin{equation}
+  \boxed{U=\int_R^\infty w_E(r)\,4\pi r^2\dd r}.
+\end{equation}
+代入后得到 $U=Q^2/(8\pi\varepsilon_0R)$，与式\eqref{shell-energy}完全一致。电荷对求和强调相互作用，能量密度积分
+强调能量保存在空间中的场里；后者可以推广到随时间变化的电磁场。
+
+本讲使用的核心概念依次是：电势能、电势、等势面、静电系统的相互作用能以及电场能量密度。计算时必须
+同时检查电势零点是否能取在无穷远、求和是否重复计算电荷对，以及所求的是单个电荷的势能还是整个系统
+的总能量。
+
+% EM teaching enrichment 20260927
+\paragraph{总场平方中的交叉项}
+两组固定电荷产生 $\boldsymbol E_1,\boldsymbol E_2$ 时，场能含
+\[
+ \frac{\varepsilon_0}{2}(\boldsymbol E_1+\boldsymbol E_2)^2
+ =\frac{\varepsilon_0E_1^2}{2}+\frac{\varepsilon_0E_2^2}{2}
+ +\varepsilon_0\boldsymbol E_1\cdot\boldsymbol E_2.
+\]
+前两项是各自自能，交叉项给出相互作用能；它可以为负，虽然完整场能密度非负。
+移动刚性带电体而不改变自身分布时，自能不变，求能量差可只算相互作用项。点电荷模型的自能发散，不能把含自场的 $q\varphi$ 当成有限相互作用势能。
+

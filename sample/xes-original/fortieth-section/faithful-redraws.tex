@@ -1,0 +1,40 @@
+% Faithful independent redraw of the generator diagram from Lesson 9.
+\newcommand{\generatorFigureFaithful}{%
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[x=0.90cm,y=0.90cm,>=Latex,line cap=round,line join=round]
+  % left panel: rotating rectangular coil between pole pieces, slip rings and lamp
+  \begin{scope}[shift={(-4.4,0)}]
+    \draw[fill=SoftGray,draw=Ink,thick] (-3.8,0.45)--(-1.65,1.55)--(-0.85,1.05)--(-2.95,-0.05)--cycle;
+    \draw[fill=SoftGray,draw=Ink,thick] (0.85,1.05)--(3.05,2.15)--(3.80,1.62)--(1.63,0.52)--cycle;
+    \node[font=\bfseries] at (-2.45,0.73) {$N$}; \node[font=\bfseries] at (2.35,1.35) {$S$};
+    \draw[DeepBlue,line width=1.6pt] (-1.28,-0.72)--(-0.78,1.22)--(1.30,0.70)--(0.80,-1.24)--cycle;
+    \draw[Ink,thick] (-0.25,-2.12)--(-0.25,1.00);
+    \draw[Ink,thick] (-0.82,-1.75) ellipse (0.58 and 0.22);
+    \draw[Ink,thick] (0.28,-1.92) ellipse (0.58 and 0.22);
+    \draw[DeepBlue,thick,->] (-1.70,-1.95) arc[start angle=190,end angle=350,x radius=1.45,y radius=0.55];
+    \node[below] at (-0.25,-2.43) {$\omega$};
+    \draw[Ink,thick] (-1.36,-1.68)--(-2.30,-2.60)--(-2.30,-3.05);
+    \draw[Ink,thick] (0.85,-1.85)--(2.25,-2.60)--(2.25,-3.05);
+    \draw[Ink,thick] (-2.30,-3.05)--(-1.05,-3.05) (1.05,-3.05)--(2.25,-3.05);
+    \draw[Ink,thick] (-1.05,-3.05) .. controls (-0.95,-2.15) and (0.95,-2.15) .. (1.05,-3.05);
+    \draw[Ink,thick] (-0.72,-2.86) arc[start angle=200,end angle=-20,x radius=0.72,y radius=0.45];
+    \node[font=\scriptsize] at (0,-3.55) {滑环、电刷与负载};
+  \end{scope}
+  % right panel: coil normal in uniform field
+  \begin{scope}[shift={(5.0,0.25)}]
+    \foreach \y in {-2.0,-1.45,...,2.0}{\draw[TextGray,thick,->] (-3.45,\y)--(3.35,\y);}
+    \node[above,font=\bfseries] at (0,2.18) {$\vect B$};
+    \begin{scope}[rotate=37]
+      \foreach \s in {-0.18,-0.09,0,0.09,0.18}{\draw[Ink,thick] (-1.55+\s,-1.05)--(1.55+\s,-1.05)--(1.55+\s,1.05)--(-1.55+\s,1.05)--cycle;}
+    \end{scope}
+    \draw[->,DeepBlue,very thick] (0,0)--(2.05,1.58) node[right] {法线 $\vect n$};
+    \draw[TextGray,dashed] (0,0)--(2.65,0);
+    \draw[DeepBlue,thick,->] (1.05,0) arc[start angle=0,end angle=37,radius=1.05];
+    \node[DeepBlue] at (1.25,0.48) {$\theta$};
+    \draw[DeepBlue,thick,->] (-1.58,-1.25) arc[start angle=220,end angle=305,x radius=0.88,y radius=0.50];
+    \node[below,font=\scriptsize] at (0,-2.48) {$\Phi_B=NAB\cos\theta$};
+  \end{scope}
+\end{tikzpicture}}%
+\par\smallskip{\small\color{TextGray}图 9.4：磁极间转动线圈、滑环与负载；右图给出磁场、线圈面积法向和夹角。}
+\end{center}}

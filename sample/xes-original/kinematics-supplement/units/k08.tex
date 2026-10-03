@@ -1,0 +1,157 @@
+\unitheading{K8\quad 受约束的运动}{unit-k08}
+\addcontentsline{toc}{chapter}{K8 受约束的运动}
+
+前面的多数质点可以在空间中自由运动。真实物体却常受几何条件限制，称为受约束运动。刚杆保持两端距离恒定；不可伸长的绳在绷紧时长度恒定，但松弛时两端距离可以小于绳长；固体表面阻止物体进入内部，若保持接触，则表面形状直接限定运动。约束形式很多，解决问题的核心是先把不变量写成几何方程，再对时间求导。
+
+常见约束的物理含义必须分别判断：
+\begin{itemize}
+\item 刚杆约束要求杆上任意两点的距离保持不变。若一端固定，另一端只能在以固定端为圆心、杆长为半径的圆或球面上运动；
+\item 绳约束只有在绳已经绷紧时才给出“总绳长不变”。柔绳可以弯折并经滑轮改变方向，也可能松弛，所以不能无条件把两端距离写成绳长；
+\item 固体表面首先给出“不允许进入内部”的不等式。只有题目明确物体始终贴着表面时，接触点才满足表面方程的等式约束。
+\end{itemize}
+
+约束并不直接说明各点速度相等，而是说明某个长度、坐标关系或接触方程在全过程中成立。正确做法是先用坐标把这个不变量写出来，再对时间求导得到速度关系；若要求加速度，再求导一次。求导后出现的三角函数、投影和符号都要回到原图解释，特别要检查接触点是否确实落在两个物体的边界上。
+
+长度约束求导时，最容易出现的错误是把“绳端速度”直接等同于“物体速度”。绳长变化率只等于物体速度在绳方向上的投影；当绳方向本身倾斜或转动时，物体还可能具有垂直绳方向的速度分量。例2.90中船速大于收绳速率，正是因为只有 $u\cos\theta$ 用于缩短斜绳。固定滑轮只改变绳的方向，若忽略滑轮半径，绕轮部分长度不变。
+
+移动曲面约束可写成 $y=f(x-X(t))$，其中 $X(t)$ 是曲面整体的水平位移，竖杆横坐标 $x$ 固定。对时间求导得
+\begin{equation}
+ \dot y=-f'(x-X)\dot X,
+\end{equation}
+它说明竖直速度由接触处斜率与曲面平移速度共同决定；再求导还会出现曲率 $f''$。所以图中杆与曲面的接触点、局部切线方向必须准确，否则即使代数形式看似正确，速度和加速度方向也会随之画反。
+
+刚杆问题也可用距离平方避免根号。若两端坐标为 $(x_A,y_A)$、$(x_B,y_B)$，约束为
+\begin{equation}
+ (x_A-x_B)^2+(y_A-y_B)^2=L^2.
+\end{equation}
+求导后得到两端相对速度在杆方向上的投影为零。这不表示两端速度相同，而只表示它们不会沿杆方向彼此靠近或远离。把这一投影关系与端点各自允许的运动方向结合，才能唯一确定速度比例。
+
+约束方程求出的速度关系只在约束有效的阶段成立。绳一旦松弛，原来的等长方程要改成不等式；物体一旦脱离表面，接触高度方程也不再适用。求得结果后应检查绳张紧趋势、接触方向和几何可达范围。若模型给出接近某位置时速度趋于无穷，通常说明理想驱动、刚性或无滑动假设在该极限前已经失效，而不是现实物体真能达到无限速度。
+
+接触约束规定两物体在接触处具有同一个空间位置，且不能沿公法线互相穿入；绳端系于物体时，绳端与系点的位置相同。导向结构则限制杆的横坐标。把这些位置条件与长度不变条件共同使用，才能建立完整的运动方程。
+
+\begin{origexamplebox}{例2.89\quad 墙角中滑动的刚杆}
+长为 $L$ 的刚杆两端 $A,B$ 始终分别接触竖直墙和水平地面。（1）杆与墙夹角为 $\theta$，$A$ 以速率 $v_A$ 向下运动，求 $B$ 的瞬时速度。（2）杆从竖直到水平，求距 $A$ 为 $aL$（$0<a<1$）的点 $P$ 的轨迹。（3）求该时刻 $P$ 的速度大小和方向。
+\par 题图见图~\ref{question-figure-2-89}。
+\KQuestionDL
+\end{origexamplebox}
+\begin{xesolution}
+取墙角为原点，$B$ 的横坐标和 $A$ 的纵坐标为
+\SlidingRodDiagram
+\[
+x_B=L\sin\theta,\qquad y_A=L\cos\theta.
+\]
+因 $A$ 向下，$v_A=-\dot y_A=L\sin\theta\,\dot\theta$。于是
+\[
+\boxed{v_B=\dot x_B=L\cos\theta\,\dot\theta=v_A\cot\theta}.
+\]
+
+$P$ 从 $A$ 向 $B$ 占杆长比例 $a$，故
+\[
+x_P=aL\sin\theta,\qquad y_P=(1-a)L\cos\theta.
+\]
+消去 $\theta$：
+\[
+\boxed{\frac{x_P^2}{(aL)^2}+\frac{y_P^2}{[(1-a)L]^2}=1},
+\]
+轨迹是第一象限内的四分之一椭圆。
+左图的 $AP=aL$、$PB=(1-a)L$ 决定右图两条半轴。杆竖直时 $P=(0,(1-a)L)$，杆水平时 $P=(aL,0)$；从前者向后者运动，$P$ 的速度沿椭圆切线指向右下方。
+
+对坐标求导：
+\[
+v_{Px}=a v_A\cot\theta,\qquad v_{Py}=-(1-a)v_A.
+\]
+所以
+\[
+\boxed{v_P=v_A\sqrt{a^2\cot^2\theta+(1-a)^2}},
+\]
+方向向右下方，与水平正向的俯角 $\phi$ 满足
+\[
+\boxed{\tan\phi=\frac{(1-a)\tan\theta}{a}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例2.90\quad 汽车通过定滑轮牵船}
+岸边汽车以恒定速率 $v$ 沿水平绳段远离定滑轮，拉动不可伸长的绳。滑轮的转向位置高出船上系绳点所在水平面 $h$；忽略滑轮半径，小船系绳点始终处于该水平面。斜绳与水平面夹角为 $\theta$ 时，求船速 $u$。
+\par 题图见图~\ref{question-figure-2-90}。
+\KQuestionDM
+\end{origexamplebox}
+\begin{xesolution}
+设滑轮到船的斜绳长为 $l$，汽车侧水平绳长为 $l_c$。汽车远离转向点，$\dot l_c=v$；总长 $l+l_c$ 不变，故 $\dot l=-v$。两侧长度都在改变，只是变化率之和为零。船向岸速度为 $u$，其在绳方向的分量为 $u\cos\theta$，故
+\BoatTowDiagram
+\[
+\dot l=-u\cos\theta.
+\]
+两式相等：
+\[
+\boxed{u=\frac{v}{\cos\theta}}.
+\]
+也可由几何直接验证：设船与转向点的水平距离为 $x$，则 $l^2=x^2+h^2$。求导得 $l\dot l=x\dot x$，代入 $\dot x=-u$、$x/l=\cos\theta$，仍得 $\dot l=-u\cos\theta$。
+船越接近岸边，$\theta$ 越大，理想模型给出的船速越大；现实中绳、动力和阻力会限制这一增长。
+\end{xesolution}
+
+\KinematicKeepSpace{9cm}
+\begin{origexamplebox}{例2.91\quad 平移斜面顶起竖杆}
+倾角为 $\theta$ 的斜面在水平地面上以速率 $v_0$ 匀速平移，一根杆被限制为只能竖直运动并与斜面接触。求杆的竖直速度。
+\par 题图见图~\ref{question-figure-2-91}。
+\KQuestionDN
+\end{origexamplebox}
+\begin{xesolution}
+在杆的固定横坐标处，斜面水平移动 $\Delta x$ 会使接触高度改变 $\Delta y=\Delta x\tan\theta$。按题图斜面向右移动时，杆被向上顶起，因此
+\MovingConstraintDiagram
+\[
+\boxed{v=v_0\tan\theta}
+\]
+且方向竖直向上。若斜面反向运动，速度符号相反。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.92\quad 平移半圆柱顶起竖杆}
+半径为 $R$ 的半圆柱体以水平速率 $v_0$ 平移，圆柱面上搁一根只能竖直运动的杆。接触点半径与竖直方向夹角为 $\theta$。求杆上任一点的速度和加速度。
+\par 题图见图~\ref{question-figure-2-92}。
+\KQuestionDO
+\end{origexamplebox}
+\begin{xesolution}
+本题题图~\ref{question-figure-2-92}中的两条导向边限制杆的横坐标为 $x_0$。以半圆柱底边为 $y=0$，圆心为 $C=(X,0)$。接触点 $P$ 在右半圆上，$CP=R$，因此
+\[
+x_0-X=R\sin\theta,\qquad y=R\cos\theta.
+\]
+$\dot X=v_0$，故 $-v_0=R\cos\theta\,\dot\theta$。于是
+\[
+\boxed{v_y=\dot y=-R\sin\theta\,\dot\theta=v_0\tan\theta}.
+\]
+再求导：
+\[
+\boxed{a_y=v_0\sec^2\theta\,\dot\theta
+=-\frac{v_0^2}{R\cos^3\theta}}.
+\]
+速度向上而加速度向下；杆作平动，所以杆上各点具有相同的 $v_y,a_y$。这一区分能避免把“当前向上”误判成“加速度也向上”。
+\end{xesolution}
+
+\KinematicKeepSpace{10cm}
+\begin{origexamplebox}{例2.93\quad 转杆端点牵引物块}
+杆 $OA$ 长 $R$，可绕 $O$ 在竖直平面内转动。端点 $A$ 系着跨过固定滑轮 $B,C$ 的不可伸长轻绳，另一端连接物块 $M$；滑轮半径忽略，绳始终绷紧。$B$ 在 $O$ 正上方，$OB=H$。当 $BA$ 与 $BO$ 的夹角为 $\alpha$、杆角速度为 $\omega$ 时，求物块速率 $v_M$。取逆时针转动为 $\omega$ 的正方向，图示 $A$ 位于 $OB$ 右侧。
+\par 题图见图~\ref{question-figure-2-93}。
+\KQuestionDP
+\end{origexamplebox}
+\begin{xesolution}
+图中用固定转向点 $B,C$ 表示半径忽略的滑轮。$BC$ 长度不变，故物块竖直绳段的长度变化率与 $AB$ 段相反，速率大小等于 $|\dot{AB}|$。$AB$ 长度的变化率是 $A$ 点速度在 $BA$ 方向的投影。
+\RodPulleyDiagram
+
+取 $O=(0,0)$、$B=(0,H)$，从 $B$ 指向 $A$ 的单位矢量为 $(\sin\alpha,-\cos\alpha)$。设 $AB=l$，则
+\[
+A=(l\sin\alpha,H-l\cos\alpha).
+\]
+$A$ 绕 $O$ 的速度为 $\vect v_A=\omega(-y_A,x_A)$。投影得
+\[
+\dot l=\vect v_A\cdot(\sin\alpha,-\cos\alpha)
+=-\omega(H-l\cos\alpha)\sin\alpha
+-\omega l\sin\alpha\cos\alpha
+=-\omega H\sin\alpha.
+\]
+因此物块速率为
+\[
+\boxed{v_M=H|\omega|\sin\alpha}.
+\]
+$R$ 决定哪些 $\alpha$ 几何上可达，但在给定瞬时 $\alpha$ 后投影结果中恰好消去。
+在图示 $\omega>0$ 的情况下 $AB$ 缩短、悬垂段增长，所以物块向下；$\omega<0$ 时方向相反。$H\omega$ 的单位是速度，$\sin\alpha$ 无量纲。
+\end{xesolution}

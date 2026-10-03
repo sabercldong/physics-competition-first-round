@@ -1,0 +1,270 @@
+% 第4章技术图：所有标签均为透明背景，标签位置避开曲线、弹簧和力线。
+\newcommand{\figDampingRegimes}{%
+\begin{center}\begin{tikzpicture}[x=1.05cm,y=1.0cm]
+ \draw[axis] (0,0)--(10.7,0) node[right]{$t$};
+ \foreach \y/\name in {2.4/欠阻尼,0.8/临界阻尼,-.8/过阻尼}{
+   \draw[guide] (0,\y)--(10.2,\y);\node[labelclean,left=4pt] at (0,\y){\name};}
+ \draw[curve,samples=180,domain=0:10,smooth,variable=\t]
+   plot ({\t},{2.4+1.0*exp(-.20*\t)*cos(150*\t)});
+ \draw[curve,samples=100,domain=0:10,smooth,variable=\t]
+   plot ({\t},{.8+(.9+.45*\t)*exp(-.72*\t)});
+ \draw[curve,samples=100,domain=0:10,smooth,variable=\t]
+   plot ({\t},{-.8+.82*exp(-.25*\t)+.18*exp(-1.3*\t)});
+\end{tikzpicture}\bookcaption{欠阻尼、临界阻尼和过阻尼的典型位移曲线}\label{r2ch04:fig:001}\end{center}}
+
+\newcommand{\figDampedEnvelope}{%
+\begin{center}\begin{tikzpicture}[x=.95cm,y=1.25cm]
+ \draw[axis] (0,0)--(10.5,0) node[right]{$t$};\draw[axis] (0,-1.55)--(0,1.7) node[above]{$x$};
+ \draw[curve,samples=220,domain=0:10,smooth,variable=\t]
+   plot ({\t},{1.35*exp(-.16*\t)*cos(170*\t)});
+ \draw[guide,samples=100,domain=0:10,smooth,variable=\t] plot ({\t},{1.35*exp(-.16*\t)});
+ \draw[guide,samples=100,domain=0:10,smooth,variable=\t] plot ({\t},{-1.35*exp(-.16*\t)});
+ \node[labelclean,above right=3pt] at (4.2,.7){$A_0\e^{-\beta t}$};
+\end{tikzpicture}\bookcaption{小阻尼振动及指数衰减包络}\label{r2ch04:fig:002}\end{center}}
+
+\newcommand{\figDampedPhase}{%
+\begin{center}\begin{tikzpicture}[scale=1.05]
+ \draw[axis] (-3.0,0)--(3.2,0) node[right]{$x$};\draw[axis] (0,-2.2)--(0,2.35) node[above]{$\dot x/\omega_0$};
+ \draw[curve,postaction={decorate},decoration={markings,mark=at position .23 with {\arrow{Latex}},mark=at position .58 with {\arrow{Latex}}},
+   samples=260,domain=0:20,smooth,variable=\t]
+   plot ({2.7*exp(-.105*\t)*cos(115*\t)},{-1.8*exp(-.105*\t)*sin(115*\t)-.18*exp(-.105*\t)*cos(115*\t)});
+ \fill (0,0) circle(1.8pt);\node[labelclean,above right=4pt] at (0,0){平衡点};
+\end{tikzpicture}\bookcaption{欠阻尼振动在相平面中螺旋趋向平衡点}\label{r2ch04:fig:003}\end{center}}
+
+\newcommand{\figForcedResponse}{%
+\begin{center}\begin{tikzpicture}[x=.72cm,y=1.15cm]
+ \begin{scope}
+  \draw[axis] (0,0)--(6.7,0) node[right]{$\omega/\omega_0$};\draw[axis] (0,0)--(0,2.8) node[above]{$|A|$};
+  \foreach \q/\col in {3/TextGray,7/Blue,15/DeepBlue}{
+   \draw[draw=\col,thick,samples=160,domain=.02:2.5,smooth,variable=\x]
+    plot ({2.45*\x},{.13*\q/sqrt(\q*\q*(1-\x*\x)^2+\x*\x)});}
+  \draw[guide] (2.45,0)--(2.45,2.45);\node[labelclean,below=5pt] at (2.45,0){$1$};
+  \node[labelclean,align=left] at (5.4,2.15){$Q=3,7,15$\\峰越高也越窄};
+ \end{scope}
+ \begin{scope}[xshift=8.1cm]
+  \draw[axis] (0,0)--(6.7,0) node[right]{$\omega/\omega_0$};\draw[axis] (0,-2.8)--(0,.25) node[above]{$\phi$};
+  \draw[curve,samples=160,domain=.02:2.5,smooth,variable=\x]
+    plot ({2.45*\x},{-atan2(2*.08*\x,1-\x*\x)/180*2.45});
+  \draw[guide] (2.45,0)--(2.45,-2.6);\node[labelclean,left=4pt] at (0,-1.23){$-\pi/2$};
+  \node[labelclean,below=5pt] at (2.45,0){$1$};
+ \end{scope}
+\end{tikzpicture}\bookcaption{受迫振动的幅频特性（左）与相频特性（右）}\label{r2ch04:fig:004}\end{center}}
+
+\newcommand{\figLineShapes}{%
+\begin{center}\begin{tikzpicture}[x=1.0cm,y=3.0cm]
+ \draw[axis] (-4.2,0)--(4.4,0) node[right]{$x-x_0$};\draw[axis] (0,0)--(0,1.08) node[above]{$I/I_{\max}$};
+ \draw[curve,samples=160,domain=-4:4,smooth,variable=\x] plot ({\x},{1/(1+\x*\x)});
+ \draw[TextGray,thick,dash pattern=on 5pt off 3pt,samples=160,domain=-4:4,smooth,variable=\x] plot ({\x},{exp(-\x*\x/2)});
+ \draw[guide] (-1,.5)--(1,.5);\draw[<->,TextGray] (-1,.42)--(1,.42) node[midway,below=3pt]{FWHM};
+ \node[labelclean] at (2.35,.36){洛伦兹型};\node[labelclean] at (1.55,.75){高斯型};
+\end{tikzpicture}\bookcaption{洛伦兹型具有较慢的翼部，高斯型衰减更快}\label{r2ch04:fig:005}\end{center}}
+
+\newcommand{\figCoupledPendula}{%
+\begin{center}\begin{tikzpicture}[scale=.83]
+ \draw[ground] (-3.4,2.6)--(3.4,2.6);
+ \coordinate (A) at (-2.0,2.6);\coordinate (B) at (2.0,2.6);
+ \coordinate (P) at (-1.55,.25);\coordinate (Q) at (1.55,.55);
+ \draw[thick] (A)--(P);\draw[thick] (B)--(Q);\fill (P) circle(.17);\fill (Q) circle(.17);
+ \draw[spring] (P)--(Q);
+ \draw[guide] (A)--++(0,-2.6);\draw[guide] (B)--++(0,-2.6);
+ \node[labelclean,left=5pt] at (P){$\theta_1$};\node[labelclean,right=5pt] at (Q){$\theta_2$};
+ \node[labelclean,above=7pt] at (0,.55){$k$};
+\end{tikzpicture}\bookcaption{相同单摆通过轻弹簧发生弱耦合}\label{r2ch04:fig:006}\end{center}}
+
+\newcommand{\figDoublePendulum}{%
+\begin{center}\begin{tikzpicture}[scale=.9]
+ \draw[ground] (-2.3,2.8)--(2.3,2.8);\coordinate (O) at (0,2.8);\coordinate (P) at (.65,.75);\coordinate (Q) at (1.7,-.9);
+ \draw[guide] (O)--(0,-.2);\draw[thick] (O)--(P)--(Q);\fill (P) circle(.17);\fill (Q) circle(.17);
+ \draw[->,TextGray] (0,1.75) arc[start angle=-90,end angle=-72,radius=1.05];
+ \draw[guide] (P)--++(0,-2.1);\draw[->,TextGray] (.65,-.05) arc[start angle=-90,end angle=-58,radius=.8];
+ \node[labelclean] at (.28,1.45){$\theta_1$};\node[labelclean] at (1.05,-.22){$\theta_2$};
+ \node[labelclean,left=5pt] at (P){$m$};\node[labelclean,right=5pt] at (Q){$m$};
+\end{tikzpicture}\bookcaption{等长等质量双摆及两广义角坐标}\label{r2ch04:fig:007}\end{center}}
+
+\newcommand{\figBenzeneModel}{%
+\begin{center}\begin{tikzpicture}[scale=.86]
+ \begin{scope}[xshift=-3.4cm]
+  \foreach \a in {0,60,...,300}{\coordinate (C\a) at (\a:1.65);}
+  \draw[very thick,DeepBlue] (C0)--(C60)--(C120)--(C180)--(C240)--(C300)--cycle;
+  \foreach \a in {0,60,...,300}{\fill[Blue!45] (C\a) circle(.22);\draw[thick] (C\a)--(\a:2.35);\fill (\a:2.35) circle(.11);}
+  \node[labelclean,below=10pt] at (0,-2.35){球棍结构};
+ \end{scope}
+ \begin{scope}[xshift=3.4cm]
+  \draw[guide] (0,0) circle(1.65);
+  \foreach \a/\n in {90/1,30/2,-30/3,-90/4,-150/5,150/6}{
+   \fill (\a:1.65) circle(.13);\node[labelclean] at (\a:2.05){$x_{\n}$};}
+  \foreach \a in {90,30,-30,-90,-150,150}{\draw[spring] (\a:1.65)--({\a-60}:1.65);}
+  \node[labelclean,below=10pt] at (0,-2.35){六质点环模型};
+ \end{scope}
+\end{tikzpicture}\bookcaption{苯分子的球棍结构与六质点环近似}\label{r2ch04:fig:008}\end{center}}
+
+\newcommand{\figCyclicSymmetry}{%
+\begin{center}\begin{tikzpicture}[scale=.92]
+ \foreach \a/\n in {90/1,30/2,-30/3,-90/4,-150/5,150/6}{\fill (\a:1.65) circle(.14);\node[labelclean] at (\a:2.05){$\n$};}
+ \draw[thick] (90:1.65)--(30:1.65)--(-30:1.65)--(-90:1.65)--(-150:1.65)--(150:1.65)--cycle;
+ \draw[vector] (0,0)--(0,2.65) node[above]{$C_6$};
+ \draw[->,DeepBlue,very thick] (70:2.45) arc[start angle=70,end angle=10,radius=2.45];
+ \node[labelclean,right=7pt] at (2.25,1.05){旋转 $60^\circ$};
+\end{tikzpicture}\bookcaption{六质点环在循环置换下保持动力学方程不变}\label{r2ch04:fig:009}\end{center}}
+
+\newcommand{\figDegenerateModes}{%
+\begin{center}\begin{tikzpicture}[scale=.72]
+ \foreach \shift/\vals/\title in {-3.4/{1,1,0,-1,-1,0}/模式 I,3.4/{0,1,1,0,-1,-1}/模式 II}{
+  \begin{scope}[xshift=\shift cm]
+   \draw[guide] (0,0) circle(1.55);
+   \foreach \a/\v [count=\i] in {90/1,30/1,-30/0,-90/-1,-150/-1,150/0}{\fill (\a:1.55) circle(.12);}
+   \ifdim\shift pt<0pt
+    \foreach \a/\v in {90/1,30/1,-30/0,-90/-1,-150/-1,150/0}{\draw[vector] (\a:1.55)--($(\a:1.55)+(0,{.42*\v})$);}
+   \else
+    \foreach \a/\v in {90/0,30/1,-30/1,-90/0,-150/-1,150/-1}{\draw[vector] (\a:1.55)--($(\a:1.55)+(0,{.42*\v})$);}
+   \fi
+   \node[labelclean,below=10pt] at (0,-1.65){\title};
+  \end{scope}}
+ \node[labelclean] at (0,0){$C_6$};\draw[vector] (-.7,0)--(.7,0);
+\end{tikzpicture}\bookcaption{循环变换联系的一对二重简并振动模式}\label{r2ch04:fig:010}\end{center}}
+
+\newcommand{\figBenzeneModeTable}{%
+\begin{center}\begin{tikzpicture}[scale=.84]
+ % 30个振动自由度按源图的4行8+8+8+6布局逐个画出。
+ \foreach \row/\ncol in {0/8,1/8,2/8,3/6}{
+  \foreach \col in {1,...,\ncol}{
+   \begin{scope}[xshift={2.15*\col cm},yshift={-2.20*\row cm}]
+    \pgfmathtruncatemacro{\mode}{8*\row+\col}
+    \draw[thick] (0:0.58)--(60:0.58)--(120:0.58)--(180:0.58)--(240:0.58)--(300:0.58)--cycle;
+    \foreach \a [count=\j from 0] in {0,60,...,300}{
+     \draw[thick] (\a:.58)--(\a:.94);
+     \draw[fill=Blue!14] (\a:.58) circle(.075);
+     \draw[fill=none] (\a:.94) circle(.055);
+     \pgfmathtruncatemacro{\sgn}{mod(\mode+\j,2)==0 ? 1 : -1}
+     \pgfmathtruncatemacro{\famidx}{mod(\mode,3)}
+     \ifnum\famidx=0
+       \ifnum\sgn=1
+         \draw[component] (\a:.94)--(\a:1.12);
+       \else
+         \draw[component] (\a:.94)--(\a:.76);
+       \fi
+     \else\ifnum\famidx=1
+       \draw[component] (\a:.94)--($(\a:.94)+({\a+90*\sgn}:.18)$);
+     \else
+       \ifnum\sgn=1
+         \draw[fill=none] (\a:.94) circle(.09);\fill (\a:.94) circle(.018);
+       \else
+         \draw (\a:.88)--(\a:1.00) ({\a-5}:.88)--({\a+5}:1.00);
+       \fi
+     \fi\fi
+    }
+    \node[labelclean,font=\scriptsize,below=3pt] at (0,-.96){$\nu_{\mode}$};
+   \end{scope}
+  }
+ }
+\end{tikzpicture}
+\par\smallskip{\scriptsize
+\begin{tabular}{@{}ll@{}}
+$\nu_1$--$\nu_8$&
+$395(E_{2u}),\,599(E_{2g}),\,677(A_{2u}),\,700(B_{2g}),\,838(E_{1g})\ \mathrm{cm}^{-1}$\\
+$\nu_9$--$\nu_{16}$&
+$954(E_{2u}),\,981(B_{2g}),\,994(B_{2u}),\,1014(A_{1g}),\,1048(E_{1u}),\,1137(B_{1u})\ \mathrm{cm}^{-1}$\\
+$\nu_{17}$--$\nu_{24}$&
+$1162(E_{2g}),\,1332(A_{2g}),\,1376(B_{1u}),\,1477(E_{1u}),\,1612(E_{2g})\ \mathrm{cm}^{-1}$\\
+$\nu_{25}$--$\nu_{30}$&
+$3080(B_{2u}),\,3092(E_{2g}),\,3110(E_{1u}),\,3121(A_{1g})\ \mathrm{cm}^{-1}$
+\end{tabular}}
+\bookcaption{苯分子的30个振动自由度：简并模式并列显示，箭头、点和叉分别表示面内与面外位移}\label{r2ch04:fig:011}\end{center}}
+
+\newcommand{\figMonoatomicChain}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \foreach \x/\n in {0/{i-2},2/{i-1},4/i,6/{i+1},8/{i+2}}{\draw[fill=Blue!13] (\x-.28,-.28) rectangle (\x+.28,.28);\node[labelclean,below=6pt] at (\x,-.28){$x_{\n}$};}
+ \foreach \x in {.28,2.28,4.28,6.28}{\draw[spring] (\x,0)--({\x+1.44},0);}
+ \draw[<->,TextGray] (4,-.8)--(6,-.8) node[midway,below=3pt]{$a$};
+\end{tikzpicture}\bookcaption{最近邻弹簧耦合的单原子一维链}\label{r2ch04:fig:012}\end{center}}
+
+\newcommand{\figMonoDispersion}{%
+\begin{center}\begin{tikzpicture}[x=2.0cm,y=1.7cm]
+ \draw[axis] (-3.5,0)--(3.65,0) node[right]{$Ka$};\draw[axis] (0,0)--(0,2.5) node[above]{$\omega/\omega_0$};
+ \draw[curve,samples=160,domain=-3.1416:3.1416,smooth,variable=\x] plot ({\x},{2*abs(sin(deg(\x/2)))});
+ \draw[guide] (-3.1416,0)--(-3.1416,2);\draw[guide] (3.1416,0)--(3.1416,2);
+ \node[labelclean,below=5pt] at (-3.1416,0){$-\pi$};\node[labelclean,below=5pt] at (3.1416,0){$\pi$};
+ \node[labelclean,left=4pt] at (0,2){$2$};\node[labelclean] at (2.15,1.78){$\omega=2\omega_0|\sin(Ka/2)|$};
+\end{tikzpicture}\bookcaption{单原子链第一布里渊区内的色散关系}\label{r2ch04:fig:013}\end{center}}
+
+\newcommand{\figDiatomicChain}{%
+\begin{center}\begin{tikzpicture}[scale=.8]
+ \foreach \x in {0,4,8}{\draw[fill=Blue!12] (\x-.36,-.36) rectangle (\x+.36,.36);\node[labelclean,below=6pt] at (\x,-.36){$M$};}
+ \foreach \x in {2,6}{\draw[fill=TextGray!12] (\x-.25,-.25) rectangle (\x+.25,.25);\node[labelclean,below=6pt] at (\x,-.25){$m$};}
+ \foreach \x/\d in {.36/1.39,2.25/1.39,4.36/1.39,6.25/1.39}{\draw[spring] (\x,0)--({\x+\d},0);}
+ \draw[<->,TextGray] (0,-1)--(4,-1) node[midway,below=3pt]{晶格常数 $a$};
+\end{tikzpicture}\bookcaption{每个原胞含质量 $M,m$ 两个原子的双原子链}\label{r2ch04:fig:014}\end{center}}
+
+\newcommand{\figAcousticOptical}{%
+\begin{center}\begin{tikzpicture}[x=1.9cm,y=1.35cm]
+ \draw[axis] (-3.45,0)--(3.6,0) node[right]{$Ka$};\draw[axis] (0,0)--(0,3.75) node[above]{$\omega$};
+ \draw[curve,samples=160,domain=-3.1416:3.1416,smooth,variable=\x] plot ({\x},{1.35*abs(sin(deg(\x/2)))});
+ \draw[curve,samples=160,domain=-3.1416:3.1416,smooth,variable=\x] plot ({\x},{3.15-.55*sin(deg(\x/2))^2});
+ \node[labelclean] at (2.05,1.15){声学支};\node[labelclean] at (2.1,3.05){光学支};
+ \draw[guide] (-3.1416,0)--(-3.1416,3.1);\draw[guide] (3.1416,0)--(3.1416,3.1);
+ \node[labelclean,below=5pt] at (-3.1416,0){$-\pi$};\node[labelclean,below=5pt] at (3.1416,0){$\pi$};
+ \draw[<->,TextGray] (.35,1.45)--(.35,2.55) node[midway,right=4pt]{禁带};
+\end{tikzpicture}\bookcaption{双原子链的声学支、光学支及两支之间的频率间隙}\label{r2ch04:fig:015}\end{center}}
+
+% 配套习题题意图与解图。
+\newcommand{\figElasticRopeBlocks}{%
+\begin{center}\begin{tikzpicture}[scale=.83]
+ \draw[ground] (-4,-.55)--(4,-.55);
+ \draw[fill=Blue!12] (-3,-.55) rectangle (-1.8,.35);\node[labelclean] at (-2.4,-.1){$M$};
+ \draw[fill=Blue!12] (1.8,-.55) rectangle (3,.35);\node[labelclean] at (2.4,-.1){$m$};
+ \draw[spring] (-1.8,-.1)--(1.8,-.1);\node[labelclean,above=7pt] at (0,-.1){弹性绳 $k,l_0$};
+ \draw[vector] (-2.4,.7)--(-1.25,.7);\draw[vector] (2.4,.7)--(1.25,.7);
+\end{tikzpicture}\bookcaption{两物块由只能受拉的弹性绳连接}\label{r2ch04:fig:016}\end{center}}
+
+\newcommand{\figFlyballGovernor}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \draw[axis] (0,-2.7)--(0,3.1) node[above]{转轴};
+ \coordinate (U) at (0,2.2);\coordinate (L) at (0,-1.45);\coordinate (A) at (-2,.35);\coordinate (B) at (2,.35);
+ \draw[thick] (U)--(A)--(L)--(B)--cycle;\fill (A) circle(.18);\fill (B) circle(.18);
+ \draw[fill=TextGray!12] (-.42,2.0) rectangle(.42,2.4);\draw[fill=Blue!12] (-.5,-1.7) rectangle(.5,-1.2);
+ \node[labelclean,right=5pt] at (.5,-1.45){$M$};\node[labelclean,left=5pt] at (A){$m$};\node[labelclean,right=5pt] at (B){$m$};
+ \draw[<->,TextGray] (.75,-1.45)--(.75,2.2) node[midway,right=4pt]{$h$};
+ \draw[->,DeepBlue] (1.15,2.72) arc[start angle=160,end angle=-135,x radius=1.15,y radius=.38];\node[labelclean,right=4pt] at (1.15,2.72){$\omega_0$};
+\end{tikzpicture}\bookcaption{瓦特飞球调速器的几何变量与转动方向}\label{r2ch04:fig:017}\end{center}}
+
+\newcommand{\figHangingChain}{%
+\begin{center}\begin{tikzpicture}[scale=.82]
+ \draw[ground] (-2,3.2)--(2,3.2);\draw[spring] (0,3.2)--(0,2.15);\node[labelclean,right=5pt] at (0,2.7){$k$};
+ \draw[DeepBlue,very thick] (0,2.15)--(0,-.15) .. controls (0,-.55) and (.8,-.55) .. (1.35,-.55);
+ \draw[ground] (-2,-.58)--(2,-.58);\draw[<->,TextGray] (-1.15,-.55)--(-1.15,3.2) node[midway,left=4pt]{$H$};
+ \draw[<->,TextGray] (.42,-.55)--(.42,2.15) node[midway,right=4pt]{$y$};
+ \node[labelclean,below=7pt] at (1.0,-.55){地板上的链段静止};
+\end{tikzpicture}\bookcaption{零原长弹簧悬挂软链，$y$ 为离地悬垂长度}\label{r2ch04:fig:018}\end{center}}
+
+\newcommand{\figSeparatingWedges}{%
+\begin{center}\begin{tikzpicture}[scale=.78]
+ \draw[ground] (-5,-1.25)--(5,-1.25);
+ \fill[Blue!9] (-3.65,-1.25)--(0,-1.25)--(-3.65,2.4)--cycle;
+ \draw[thick] (-3.65,-1.25)--(0,-1.25)--(-3.65,2.4)--cycle;
+ \fill[Blue!9] (0,-1.25)--(3.65,-1.25)--(3.65,2.4)--cycle;
+ \draw[thick] (0,-1.25)--(3.65,-1.25)--(3.65,2.4)--cycle;
+ \fill (-3.65,2.4) circle(.16);\fill (3.65,2.4) circle(.16);\draw[spring] (-3.49,2.4)--(3.49,2.4);
+ \node[labelclean,left=5pt] at (-3.65,2.4){$m$};\node[labelclean,right=5pt] at (3.65,2.4){$m$};
+ \node[labelclean] at (-2.5,-.72){$m$};\node[labelclean] at (2.5,-.72){$m$};
+ \node[labelclean,above=8pt] at (0,2.4){$k,\ L$};\node[labelclean] at (2.95,-.82){$45^\circ$};
+ \draw[vector] (-.2,-.9)--(-1.4,-.9);\draw[vector] (.2,-.9)--(1.4,-.9);
+\end{tikzpicture}\bookcaption{两个可分离斜劈与水平轻弹性杆的对称运动}\label{r2ch04:fig:019}\end{center}}
+
+\newcommand{\figChargesOnSphere}{%
+\begin{center}\begin{tikzpicture}[scale=.85]
+ \draw[thick] (0,0) circle(2.25);\draw[guide] (-2.25,0) arc[start angle=180,end angle=360,x radius=2.25,y radius=.65];
+ \draw[guide] (2.25,0) arc[start angle=0,end angle=180,x radius=2.25,y radius=.65];
+ \coordinate (A) at (90:1.75);\coordinate (B) at (210:1.75);\coordinate (C) at (330:1.75);
+ \draw[curve] (A)--(B)--(C)--cycle;\foreach \p/\n in {A/1,B/2,C/3}{\fill[DeepBlue] (\p) circle(.16);\node[labelclean,above right=4pt] at (\p){$Q_{\n}$};}
+ \draw[vector] (0,0)--(A) node[midway,left=4pt]{$R$};
+ \node[labelclean,right=10pt,align=left] at (2.45,.55){三点在过球心的大圆上\\弧距均为 $2\pi/3$};
+\end{tikzpicture}\bookcaption{三等电荷的稳定平衡构型与内部振动坐标}\label{r2ch04:fig:020}\end{center}}
+
+\newcommand{\figSpringPendulumExpansion}{%
+\begin{center}\begin{tikzpicture}[scale=.9]
+ \draw[ground] (-2.2,2.8)--(2.2,2.8);\draw[spring] (0,2.8)--(.7,.25);\fill (.7,.25) circle(.18);
+ \draw[guide] (0,2.8)--(0,-.55);\draw[axis] (.7,.25)--(2.35,.25) node[right]{$x$};\draw[axis] (.7,.25)--(.7,-1.5) node[below]{$y$};
+ \draw[<->,TextGray] (-.35,2.8)--(-.35,.25) node[midway,left=4pt]{$r_e$};
+ \draw[->,TextGray] (0,1.65) arc[start angle=-90,end angle=-74,radius=1.15];\node[labelclean] at (.25,1.55){$\theta$};
+ \node[labelclean,right=5pt] at (.7,.25){$m$};
+\end{tikzpicture}\bookcaption{弹簧摆平衡位置附近的横向、纵向位移定义}\label{r2ch04:fig:021}\end{center}}

@@ -1,0 +1,369 @@
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 22.1【饱和蒸气】}
+一端封闭的均匀管子内有空气和水银蒸气，被 $10\,\mathrm{cm}$ 长的水银柱封闭（不论管子如何放置）。
+当管子水平放置时，空气柱稳定长度为 $17\,\mathrm{cm}$；管子竖直放置时，空气柱稳定长度为
+$20\,\mathrm{cm}$。两次均在同一温度下达到平衡。若大气压强为 $76\,\mathrm{cmHg}$，求水银蒸气的饱和蒸气压。
+\end{origexamplebox}
+
+\begin{xesolution}
+水银蒸气与液态水银共存，所以只要温度不变，它的分压始终等于饱和蒸气压 $p_s$；能使用 Boyle 定律的
+是管内那部分物质的量固定的空气，而不是“空气与水银蒸气”的混合气体整体。
+
+水平放置时，水银柱两侧没有高度差，封闭气体总压强等于大气压强 $76\,\mathrm{cmHg}$，故空气分压为
+$76-p_s$。竖直放置并使封闭端在上时，下方大气对水银柱向上作用，上方封闭气体的压力与重力向下。
+由 $p_{\rm atm}A=p_{\rm trap}A+\rho_{\rm Hg}g\ell A$，其总压强为
+$76-10=66\,\mathrm{cmHg}$，空气分压为 $66-p_s$。两种放置方式与各段长度的对应关系如下图。
+
+\mercuryTubeFigure
+\diagramcaption{水平和竖直放置时的封闭气柱与水银柱。}\label{s31:fig:mercury}
+
+图~\ref{s31:fig:mercury} 中竖直气柱长20厘米、水银柱长10厘米，图上的共同长度比例与题设一致。
+管子截面积不变，空气体积与空气柱长度成正比。对空气列 Boyle 定律：
+\[
+  (76-p_s)\times17=(66-p_s)\times20.
+\]
+解得
+\[
+  1292-17p_s=1320-20p_s,
+  \qquad
+  \boxed{p_s=\frac{28}{3}\,\mathrm{cmHg}\approx9.33\,\mathrm{cmHg}}.
+\]
+若把竖直图误画成“开口在上、封闭端在下”，封闭气体压强就会变成 $86\,\mathrm{cmHg}$，与题给长度
+由 $17\,\mathrm{cm}$ 增至 $20\,\mathrm{cm}$ 的事实矛盾；因此图中的上下位置也是方程的一部分。
+\end{xesolution}
+
+\Needspace{9\baselineskip}
+\begin{origexamplebox}{例题 22.2【内能变化】}
+在 $80.2\,{}^{\circ}\mathrm C$ 和 $1\,\mathrm{atm}$ 下，液体苯（$\mathrm{C_6H_6}$）蒸发为苯蒸气。
+已知在此条件下苯的汽化热 $L=94.4\,\mathrm{cal/g}$，苯蒸气符合理想气体物态方程，且蒸气体积远大于
+液体体积。求内能的改变。
+\end{origexamplebox}
+
+\begin{xesolution}
+取质量为 $m$ 的苯为系统。等压汽化过程中系统吸收的热量是 $Q=mL$。热力学第一定律给出
+\[
+  Q=\Delta U+W,
+  \qquad W=p(V_g-V_l).
+\]
+因为 $V_g\gg V_l$，可忽略液体体积；苯蒸气视为理想气体，若物质的量为 $n=m/M$，则
+\[
+  W\approx pV_g=nRT=\frac{m}{M}RT.
+\]
+所以单位质量苯汽化时的内能增量为
+\[
+  \frac{\Delta U}{m}=L-\frac{RT}{M}.
+\]
+取 $T=80.2+273.15=353.35\,\mathrm K$，$M=78.1\,\mathrm{g/mol}$，
+$R=1.987\,\mathrm{cal/(mol\,K)}$，得到
+\[
+  \boxed{\frac{\Delta U}{m}
+  =94.4-\frac{1.987\times353.35}{78.1}
+  \approx85.4\,\mathrm{cal/g}}.
+\]
+相应的摩尔内能增量为
+\[
+  \boxed{\Delta U_m=ML-RT
+  \approx6.67\times10^3\,\mathrm{cal/mol}
+  \approx27.9\,\mathrm{kJ/mol}}.
+\]
+汽化热并不全部变成内能，其中约 $RT$ 用来克服外界压强完成膨胀功。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 22.3【气体膨胀】}
+一汽缸的初始体积为 $V$，其中盛有 $2\,\mathrm{mol}$ 空气和少量水（水的体积可以忽略）。平衡时气体
+总压强为 $3.0\,\mathrm{atm}$。经等温膨胀使体积变为 $2V$，在膨胀结束时水刚好全部消失，此时总压强
+为 $2.0\,\mathrm{atm}$。试计算：
+\begin{enumerate}[label=\arabic*.]
+  \item 汽缸中气体的温度；
+  \item 若继续作等温压缩，使体积变为 $V/2$，汽缸中气体的总压强；
+  \item 若继续作等温膨胀，使体积变为 $4V$，汽缸中气体的总压强。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+在液态水尚未完全消失时，水蒸气分压恒等于该温度的饱和蒸气压 $p_s$；空气物质的量始终是
+$2\,\mathrm{mol}$，记为 $n_a$，其分压服从理想气体方程。初态和体积为 $2V$ 的末态分别满足
+\[
+  3.0\,\mathrm{atm}=\frac{n_aRT}{V}+p_s,
+  \qquad
+  2.0\,\mathrm{atm}=\frac{n_aRT}{2V}+p_s,
+\]
+两式相减得到
+\[
+  \frac{n_aRT}{2V}=1.0\,\mathrm{atm},
+  \qquad p_s=1.0\,\mathrm{atm}.
+\]
+
+\mixedGasPVFigure
+\diagramcaption{含水空气的分段等温过程。各状态点由分压方程确定。}\label{s31:fig:mixed}
+
+因此温度为
+\[
+  \boxed{T\approx373.15\,\mathrm K\quad(t\approx100\,{}^\circ\mathrm C)}.
+\]
+这是由水在 $1\,\mathrm{atm}$ 饱和蒸气压下的温度确定的，不需要预先给出体积。
+要注意：这里是水蒸气的分压，不是初态的总压强。反过来可求
+\[V=\frac{n_aRT}{2.0\,\mathrm{atm}}\approx30.6\,\mathrm L.\]
+
+在体积 $2V$ 处，水刚好全部成为蒸气，水蒸气的物质的量为
+\[
+  n_w=\frac{p_s(2V)}{RT}=2\,\mathrm{mol}.
+\]
+
+继续压缩到 $V/2$ 时，部分水蒸气凝结，故水蒸气分压仍为 $1.0\,\mathrm{atm}$。
+空气分压为 $p_a=n_aRT/(V/2)=4.0\,\mathrm{atm}$，所以总压强为
+\[
+  \boxed{p_{V/2}=p_a+p_s=5.0\,\mathrm{atm}}.
+\]
+
+从 $2V$ 继续膨胀时已经没有液态水，空气和水蒸气的总物质的量固定为 $2+2=4\,\mathrm{mol}$。在
+$4V$ 处
+\[
+  \boxed{p_{4V}=\frac{(n_a+n_w)RT}{4V}=1.0\,\mathrm{atm}}.
+\]
+图~\ref{s31:fig:mixed} 中蓝色实线表示 $V'\le2V$ 时的 $p=p_s+n_aRT/V'$，虚线表示 $V'\ge2V$ 时的 $p=(n_a+n_w)RT/V'$；两段在
+$V'=2V$ 处连续相接。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 22.4【高压锅】}
+考虑下述理想化压力锅模型：先使锅内水沸腾并排除空气，再由限压阀 $S$ 密封，此时可以
+认为锅内只有水的饱和蒸气，空气已经全部排除；然后继续加热，直到压力阀被锅内水蒸气顶起，锅内达到
+设计温度。现有一压力锅，按正确方法加热能达到的预期温度为 $120\,{}^{\circ}\mathrm C$，大气压为
+$1.01\times10^5\,\mathrm{Pa}$。
+
+若改为在加热前、锅内温度为 $10\,{}^{\circ}\mathrm C$ 时就封闭压力阀，那么加热
+到压力阀刚被顶起时，锅内水的温度是多少？若继续加热，锅内水的温度最高可达多少？假设空气不溶于水。
+已知水的饱和蒸气压 $p_w(t)$ 与摄氏温度的关系如图所示。始终保留液态水；本题模型不作为实际器具的操作说明。
+\pressureCookerQuestionFigure
+\diagramcaption{限压阀与水的饱和蒸气压曲线；曲线给出题目所需的读数条件。}\label{s31:fig:cooker-given}
+\end{origexamplebox}
+
+\begin{xesolution}
+压力阀是否顶起取决于锅内外压强差。正确使用时锅内只有饱和水蒸气，并在 $120\,{}^{\circ}\mathrm C$
+顶起，因此阀门对应的锅内绝对压强阈值就是
+\[
+  p_*=p_w(120\,{}^{\circ}\mathrm C)\approx1.99\times10^5\,\mathrm{Pa}.
+\]
+
+错误使用时，$10\,{}^{\circ}\mathrm C$ 就把阀门装上，锅内同时封入空气和少量水蒸气。设锅内容积不变，
+初始空气分压为
+\[
+  p_{a0}=p_{\rm atm}-p_w(10\,{}^{\circ}\mathrm C).
+\]
+在阀门开启前空气物质的量不变，故
+\[
+  p_a(t)=p_{a0}\frac{t+273.15}{283.15}.
+\]
+锅内始终有水，水蒸气分压为 $p_w(t)$。首次顶起条件是
+\[
+  p_w(t)+\bigl[p_{\rm atm}-p_w(10)\bigr]
+  \frac{t+273.15}{283.15}=p_w(120).
+\]
+
+\pressureCookerFigure
+\diagramcaption{限压装置及首次开启的压强条件。}\label{s31:fig:cooker}
+
+由曲线读数 $p_w(10)\approx1.2\times10^3\,\mathrm{Pa}$、
+$p_w(120)\approx1.99\times10^5\,\mathrm{Pa}$，联立上式，即在图~\ref{s31:fig:cooker} 中找总压强曲线与水平阈值线的交点，得到
+\[
+  \boxed{t_{\rm lift}\approx90\,{}^{\circ}\mathrm C}.
+\]
+此时饱和蒸气压约 $7.0\times10^4\,\mathrm{Pa}$，空气分压约 $1.29\times10^5\,\mathrm{Pa}$，二者之和
+已经达到阀门阈值，所以水尚未达到 $100\,{}^{\circ}\mathrm C$，阀门便会被顶起。
+
+阀门开启后，锅内总压强被限制在 $p_*$ 附近，空气与蒸气的混合气不断逸出。继续升温时 $p_w(t)$ 增加，
+空气分压 $p_a=p_*-p_w(t)$ 相应减小；到 $120\,{}^{\circ}\mathrm C$ 时，$p_w=p_*$，锅内空气已趋于排尽。
+再供热只会使水猛烈沸腾并从阀门排出蒸气，因而
+\[
+  \boxed{t_{\max}=120\,{}^{\circ}\mathrm C}.
+\]
+图中的细虚线表示封闭空气分压随绝对温度线性增加，蓝线表示饱和蒸气压；二者相加得到灰色总压强曲线。
+总压强曲线与 $p_*$ 水平线的交点决定首次开启温度。超过交点后，图中虚线仅表示假设阀门仍未开启的外推，
+实际压强受限于水平的 $p_*$。$120\,{}^\circ\mathrm C$ 是模型中空气排尽后的上限，前提是液态水尚存。
+\end{xesolution}
+
+\par\medskip
+\begin{origexamplebox}{例题 22.5【奇怪的过程】}
+用不导热细管连接的两个相同容器里装有压强为 $1\,\mathrm{atm}$、相对湿度为 $50\%$、温度为
+$100\,{}^{\circ}\mathrm C$ 的空气。现将其中一个容器浸在 $0\,{}^{\circ}\mathrm C$ 的冰中，另一个容器
+仍维持在 $100\,{}^{\circ}\mathrm C$。忽略凝结水所占体积，并采用普通气体的扩散平衡近似，
+不考虑细管内温差引起的热扩散效应。问系统的压强改变为多大？每一容器中的相对湿度为多少？已知
+$0\,{}^{\circ}\mathrm C$ 时水的饱和蒸气压为 $4.6\,\mathrm{mmHg}$。
+\end{origexamplebox}
+
+\begin{xesolution}
+在 $100\,{}^{\circ}\mathrm C$ 时水的饱和蒸气压约为 $1\,\mathrm{atm}$，所以初态相对湿度 $50\%$
+对应的水蒸气分压和干空气分压均为 $0.5\,\mathrm{atm}$。设每个容器体积为 $V$。
+
+冷端降到 $0\,{}^{\circ}\mathrm C$ 后，水蒸气在那里凝结，整个连通系统中的水蒸气分压被限制为
+\[
+  p_v=p_s(0)=4.6\,\mathrm{mmHg}=0.00605\,\mathrm{atm}.
+\]
+因为细管连通，两端同一种气体的分压相等；但两端温度不同，同样分压所对应的物质的量不同。
+
+\twoVesselsFigure
+\diagramcaption{冷热容器通过开放管口连通；凝结水的厚度只用于辨识液相，不按比例，计算中忽略其体积。}\label{s31:fig:vessels}
+图~\ref{s31:fig:vessels} 中连通管位于气相区域，冷端凝结水在管口下方，两端分别维持给定温度。
+
+干空气的总物质的量守恒。初态两容器中共有
+\[
+  n_a=2\frac{(0.5p_{\rm atm})V}{R(373\,\mathrm K)}
+  =\frac{p_{\rm atm}V}{R(373\,\mathrm K)}.
+\]
+末态设干空气共同分压为 $p_a$，则
+\[
+  n_a=\frac{p_aV}{R(373\,\mathrm K)}
+      +\frac{p_aV}{R(273\,\mathrm K)}.
+\]
+两式相等，解得
+\[
+  p_a=p_{\rm atm}\frac{273}{273+373}
+  \approx0.4226\,\mathrm{atm}.
+\]
+因此系统末态总压强为
+\[
+  p_f=p_a+p_v\approx0.4226+0.00605=0.4287\,\mathrm{atm}
+  \approx326\,\mathrm{mmHg}.
+\]
+相对初态的压强改变为
+\[
+  \boxed{\Delta p=p_f-p_i\approx-0.571\,\mathrm{atm}
+  \approx-434\,\mathrm{mmHg}\approx-57.9\,\mathrm{kPa}}.
+\]
+
+冷容器内有凝结水，水蒸气达到饱和，所以
+\[
+  \boxed{\varphi_{0{}^\circ\mathrm C}=100\%}.
+\]
+热容器仍为 $100\,{}^{\circ}\mathrm C$，其饱和蒸气压为 $760\,\mathrm{mmHg}$，实际水蒸气分压只有
+$4.6\,\mathrm{mmHg}$，故
+\[
+  \boxed{\varphi_{100{}^\circ\mathrm C}
+  =\frac{4.6}{760}\times100\%\approx0.61\%}.
+\]
+在忽略热扩散、细管温差效应并采用普通气体扩散平衡的模型中，细管使两端分压相同，却不使两端相对湿度相同；相对湿度还取决于当地温度对应的饱和蒸气压。
+\end{xesolution}
+
+\Needspace{12\baselineskip}
+\begin{origexamplebox}{例题 22.6【云的形成】}
+以下是一个形成云的简单模型。热空气带着地球表面的水蒸气上升，当升到一定高度时，水蒸气达到饱和并
+开始凝结成水滴，云就产生了。假设空气是由氧和氮构成的理想气体，比例为 $21:79$；令 $g$ 为重力加速度，
+忽略它随高度的变化；气体上升过程近似为绝热过程。在这些假设下可证明
+\[
+  p=p_0\left(\frac{T_0-\Gamma z}{T_0}\right)^\alpha,
+\]
+其中 $p_0,T_0$ 分别是海平面 $z=0$ 处的压强和温度，$\Gamma>0$ 是温度随高度的递减率。
+\begin{enumerate}[label=\arabic*.]
+  \item 用 $\gamma,R,g,m_a$ 给出 $\Gamma$，其中 $\gamma$ 为绝热系数，$m_a$ 为空气的摩尔质量；
+  \item 估计高度每升高 $1\,\mathrm{km}$ 时温度的改变量；
+  \item 用 $\gamma$ 表示指数 $\alpha$；
+  \item 在该模型中大气层的总厚度为多少；
+  \item 饱和蒸气压随温度的变化满足 Clapeyron 方程
+  \[
+    \frac{\dd p_s}{\dd T}=\frac{L}{T(v_2-v_1)},
+  \]
+  其中 $L$ 为摩尔相变潜热（单位 $\mathrm{J/mol}$），$v_1,v_2$ 是两相的摩尔体积。试在液体体积远小于蒸气体积的极限下求
+  饱和蒸气压与温度的关系；
+  \item 找出水蒸气开始凝结的条件。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{1. 温度递减率。} 采用静力平衡、恒定组成及等熵的大气柱近似，气团与周围压强近似相等。
+这比单说“一个气团绝热上升”更强；以下线性递减率是这一模型的结果。
+高度为 $z$ 处空气密度为
+\[
+  \rho=\frac{m_a p}{RT}.
+\]
+静力平衡给出
+\[
+  \frac{\dd p}{\dd z}=-\rho g=-\frac{m_ag}{RT}p.
+\]
+另一方面，理想气体的可逆绝热关系为
+\[
+  p\propto T^{\gamma/(\gamma-1)}.
+\]
+对数微分后与静力平衡式比较，并利用 $\dd T/\dd z=-\Gamma$，得到
+\[
+  \boxed{\Gamma=\frac{\gamma-1}{\gamma}\frac{m_ag}{R}}.
+\]
+
+\textbf{2. 数值估计。} 空气平均摩尔质量
+\[
+  m_a\approx0.21\times32+0.79\times28=28.8\,\mathrm{g/mol}.
+\]
+取 $\gamma\approx1.40$、$g\approx9.8\,\mathrm{m/s^2}$，有
+\[
+  \Gamma\approx9.7\times10^{-3}\,\mathrm{K/m}
+  \approx9.7\,\mathrm{K/km}.
+\]
+所以在这个“干绝热”模型中，高度每升高 $1\,\mathrm{km}$，温度约降低
+\[
+  \boxed{\Delta T\approx-9.7\,\mathrm K}.
+\]
+
+\textbf{3. 压强指数。} 由绝热关系直接得到
+\[
+  \boxed{\alpha=\frac{\gamma}{\gamma-1}}.
+\]
+也可把题给表达式对 $z$ 求导，与静力平衡式比较，得到 $\alpha\Gamma=m_ag/R$，再代入上一问的
+$\Gamma$，结果相同。
+
+\textbf{4. 模型大气厚度。} 题给线性温度模型在 $T=T_0-\Gamma z=0$ 时终止，因此
+\[
+  \boxed{H=\frac{T_0}{\Gamma}}.
+\]
+若取 $T_0\approx288\,\mathrm K$，则 $H\approx29.7\,\mathrm{km}$。真实大气当然不会在这个高度突然
+终止；这一结果只表明“恒定干绝热递减率”不能无限向上外推。
+
+\textbf{5. 饱和蒸气压。} 取汽化潜热 $L_m>0$，用 $v_g\gg v_l$ 写 Clapeyron 方程：
+\[
+  \frac{\dd p_s}{\dd T}
+  =\frac{L_m}{T(v_g-v_l)}
+  \approx\frac{L_m}{Tv_g}.
+\]
+饱和蒸气近似为理想气体，$v_g=RT/p_s$，故
+\[
+  \frac{1}{p_s}\frac{\dd p_s}{\dd T}
+  =\frac{L_m}{RT^2}.
+\]
+若在所研究温区把 $L_m$ 近似为常量，从参考温度 $T_0$ 积分到 $T$：
+\[
+  \boxed{p_s(T)=p_s(T_0)
+  \exp\!\left[\frac{L_m}{R}\left(\frac1{T_0}-\frac1T\right)\right]}.
+\]
+这就是 Clausius--Clapeyron 近似关系，它表明饱和蒸气压随温度下降得非常快。
+
+\textbf{6. 凝结条件。} 在开始凝结以前，水蒸气与干空气一起绝热上升，水蒸气摩尔分数 $x_v$ 近似
+不变，因而
+\[
+  p_v(z)=x_vp(z)=p_{v0}\left(\frac{T}{T_0}\right)^\alpha,
+  \qquad T=T_0-\Gamma z.
+\]
+水蒸气首次凝结的条件是实际分压等于该温度的饱和蒸气压：
+\[
+  \boxed{p_{v0}\left(\frac{T_d}{T_0}\right)^\alpha=p_s(T_d)}.
+\]
+若海平面相对湿度为 $\varphi_0$，则 $p_{v0}=\varphi_0p_s(T_0)$，条件可写成
+\[
+  \boxed{\varphi_0\left(\frac{T_d}{T_0}\right)^\alpha
+  =\exp\!\left[\frac{L_m}{R}
+  \left(\frac1{T_0}-\frac1{T_d}\right)\right]}.
+\]
+求出 $T_d$ 后，云底高度为
+\[
+  \boxed{z_d=\frac{T_0-T_d}{\Gamma}}.
+\]
+
+\par\noindent\begin{minipage}{\linewidth}
+\cloudFormationFigure
+\diagramcaption{未凝结气团上升膨胀；实际分压与饱和蒸气压相等时到达云底。}\label{s31:fig:cloud}
+\end{minipage}\par\smallskip
+
+图~\ref{s31:fig:cloud} 右侧以 $T_0=288\,\mathrm K,\varphi_0=0.6,\alpha=3.5,L_m=44\,\mathrm{kJ/mol}$ 为一组示例参数，
+空气团随上升冷却从右向左运动；两曲线第一次相交时开始凝结，
+左图对应的高度就是云底。图形把“压强降低”与“饱和蒸气压下降得更快”这两个同时发生的效应放在一起。
+凝结以后释放潜热，气相水的物质的量也改变，不能继续沿未凝结分支外推。
+\end{xesolution}

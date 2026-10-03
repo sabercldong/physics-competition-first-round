@@ -1,0 +1,217 @@
+% Original problem figures and added solution diagrams for Section 3.2.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solimpulse/.style={-{Latex[length=2.4mm]},draw=DeepBlue,line width=1.25pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+\input{../momentum-common-diagrams.tex}
+
+\newcommand{\soldiagThreeThirteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.76]
+  \draw[solbody] (-2.8,-.75)--(2.8,-.75);
+  \fill[TextGray!28,draw=Ink] (0,-.75) ellipse (2.1 and .48);
+  \fill[Ink] (0,-.18) circle (2.8pt);
+  \draw[solimpulse] (0,-.12)--++(0,1.35) node[above,sollabel] {$p=mv$};
+  \draw[solimpulse] (0,-.78)--++(0,-.75) node[below,sollabel] {$P_{\rm E}=-p$};
+  \node[sollabel] at (1.1,-.75) {地球};
+  \node[sollabel,align=left] at (3.9,.45) {$mv+M_{\rm E}V_{\rm E}=0$\\内力交换动量};
+\end{tikzpicture}
+\diagcaption{解图}{人获得向上动量时，地球获得大小相等、方向相反的反冲动量。}\label{ch07:fig:soldiagThreeThirteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFourteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \draw[solbody] (-3.2,0)--(3.2,0);
+ \foreach \x/\m in {-2.25/1,-.75/2,.75/3,2.25/4}{
+  \draw[solbody,fill=SoftGray] (\x,.25) circle (.25);
+  \node[sollabel] at (\x,.85) {$m_{\m}$};}
+ \node[sollabel] at (0,1.6) {$\sum_i m_i\dot x_i=0\ \Longrightarrow\ \dot x_C=0$};
+ \node[sollabel] at (0,-.45) {各球仅在水平面内运动};
+\end{tikzpicture}
+\diagcaption{解图}{水平总动量初值为零，故质心的水平速度始终为零。}\label{ch07:fig:soldiagThreeFourteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \pgfmathsetmacro{\ell}{3} \pgfmathsetmacro{\half}{40}
+ \pgfmathsetmacro{\span}{2*\ell*sin(\half)}
+ \pgfmathsetmacro{\xL}{-3*\span/8} \pgfmathsetmacro{\xH}{\span/8}
+ \pgfmathsetmacro{\xR}{5*\span/8} \pgfmathsetmacro{\yH}{\ell*cos(\half)}
+ \coordinate (L) at (\xL,0); \coordinate (H) at (\xH,\yH); \coordinate (R) at (\xR,0);
+ \draw[axis] (-2.1,0)--(3.15,0) node[right,sollabel] {$x$};
+ \draw[solbody] (L)--(H)--(R);
+ \foreach \p in {L,H,R}{\fill[Ink] (\p) circle (2.5pt);}
+ \node[sollabel,below left=6pt] at (L) {$L,2m$}; \node[sollabel,below right=6pt] at (R) {$R,m$};
+ \node[sollabel,above=6pt] at (H) {$H,m$};
+ \node[sollabel,left=7pt] at ($(L)!.5!(H)$) {$l$};
+ \node[sollabel,right=7pt] at ($(R)!.5!(H)$) {$l$};
+ \draw[solgeom] (H)--(\xH,0);
+ \draw[TextGray] ($(H)+(-130:.65)$) arc (-130:-50:.65);
+ \node[sollabel] at ({\xH+.35},{\yH-.95}) {$\theta$};
+ \fill[DeepBlue] (0,{\yH/4}) circle (2pt) node[left=7pt,sollabel] {$C$};
+ \draw[solgeom] (0,0)--(0,{\yH/4});
+ \node[sollabel,below=6pt] at (0,0) {$O$};
+ \draw[solgeom] (L)--(\xL,-.9) (R)--(\xR,-.9);
+ \draw[<->,TextGray] (\xL,-.85)--(\xR,-.85) node[midway,below=4pt,sollabel] {$2l\sin(\theta/2)$};
+ \node[sollabel] at (.5,-1.6) {$x_C=0$；$C$ 的高度随杆张开而改变};
+\end{tikzpicture}
+\diagcaption{题图}{两等长轻杆在竖直平面内张开，三个球的水平质心保持不变。}\label{ch07:fig:probdiagThreeFifteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \pgfmathsetmacro{\ell}{3} \pgfmathsetmacro{\half}{40}
+ \pgfmathsetmacro{\span}{2*\ell*sin(\half)}
+ \pgfmathsetmacro{\xL}{-3*\span/8} \pgfmathsetmacro{\xH}{\span/8}
+ \pgfmathsetmacro{\xR}{5*\span/8} \pgfmathsetmacro{\yH}{\ell*cos(\half)}
+ \coordinate (L) at (\xL,0); \coordinate (H) at (\xH,\yH); \coordinate (R) at (\xR,0);
+ \draw[axis] (-2.1,0)--(3.15,0) node[right,sollabel] {$x$};
+ \draw[solbody] (L)--(H)--(R);
+ \foreach \p in {L,H,R}{\fill[Ink] (\p) circle (2.5pt);}
+ \node[sollabel,below left=6pt] at (L) {$L,2m$}; \node[sollabel,below right=6pt] at (R) {$R,m$};
+ \node[sollabel,above=6pt] at (H) {$H,m$};
+ \node[sollabel,left=7pt] at ($(L)!.5!(H)$) {$l$};
+ \node[sollabel,right=7pt] at ($(R)!.5!(H)$) {$l$};
+ \draw[solgeom] (H)--(\xH,0);
+ \draw[TextGray] ($(H)+(-130:.65)$) arc (-130:-50:.65);
+ \node[sollabel] at ({\xH+.35},{\yH-.95}) {$\theta$};
+ \fill[DeepBlue] (0,{\yH/4}) circle (2pt) node[left=7pt,sollabel] {$C$};
+ \draw[solgeom] (0,0)--(0,{\yH/4});
+ \node[sollabel,below=6pt] at (0,0) {$O$};
+ \draw[solgeom] (L)--(\xL,-.9) (R)--(\xR,-.9);
+ \draw[<->,TextGray] (\xL,-.85)--(\xR,-.85) node[midway,below=4pt,sollabel] {$2l\sin(\theta/2)$};
+ \node[sollabel] at (.5,-1.6) {$x_C=0$；$C$ 的高度随杆张开而改变};
+\end{tikzpicture}
+\diagcaption{解图}{等长杆给出 $x_H=(x_L+x_R)/2$，质心约束给出 $2x_L+x_H+x_R=0$。}\label{ch07:fig:soldiagThreeFifteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.73]
+  \draw[solbody] (-2.5,-1.55)--(2.75,-1.55);
+  \foreach \x in {-2.35,-2.0,...,2.6}{\draw[TextGray,line width=.35pt] (\x,-1.55)--++(-.15,-.18);}
+  \draw[solgeom] (.35,-1.55)--(.35,2.25);
+  \draw[solbody,fill=white] (.10,1.95) rectangle (.60,2.35); \node[sollabel,left=6pt] at (.1,2.15) {$M$};
+  \draw[solbody,fill=white] (.10,.10) rectangle (.60,.50);
+  \draw[solflow] (-2.25,.30)--(.05,.30) node[midway,above,sollabel] {$m,\ v$};
+  \draw[<->,draw=TextGray] (1.05,-1.55)--(1.05,2.15) node[midway,right,sollabel] {$H$};
+  \draw[<->,draw=TextGray] (1.72,-1.55)--(1.72,.30) node[midway,right,sollabel] {$h$};
+\end{tikzpicture}
+\diagcaption{题图}{物体下落至高度 $h$ 时被水平子弹击中并粘合。}\label{ch07:fig:probdiagThreeSixteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \node[solpanel] at (-2.5,3) {碰前动量};
+ \fill[Ink] (-2.3,1.6) circle (2.5pt);
+ \draw[solimpulse] (-3.8,1.6)--(-2.3,1.6) node[midway,above=5pt,sollabel] {$mv$};
+ \draw[solimpulse] (-2.3,1.6)--(-2.3,.35) node[midway,left=5pt,sollabel] {$Mu$};
+ \node[solpanel] at (2.4,3) {碰后：$V_x>0,\ V_y>0$（向下）};
+ \coordinate (Q) at (.3,2.2);
+ \draw[curve,domain=0:1,samples=70] plot ({.3+2.8*\x},{2.2-.9*\x-1.3*\x*\x});
+ \draw[solflow] (Q)--(1.42,2.2) node[midway,above=5pt,sollabel] {$V_x$};
+ \draw[solflow] (Q)--(.3,1.84) node[left=6pt,sollabel] {$V_y$};
+ \draw[solgeom] (Q)--(.3,0);
+ \draw[solbody] (-.1,0)--(3.7,0);
+ \draw[<->,DeepBlue] (.3,-.45)--(3.1,-.45) node[midway,below=4pt,sollabel] {$l=V_xT$};
+ \fill[Ink] (3.1,0) circle (2pt);
+\end{tikzpicture}
+\diagcaption{解图}{碰撞用二维动量守恒求 $V_x,V_y$，随后再用抛体运动求落点。}\label{ch07:fig:soldiagThreeSixteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSeventeen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \coordinate (C) at (.5,0);
+ \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt},line width=.8pt] (-2.5,0)--(2.5,0);
+ \fill[Ink] (-2.5,0) circle (2.5pt); \fill[Ink] (2.5,0) circle (2.5pt);
+ \node[sollabel] at (-2.5,.7) {$m_1$}; \node[sollabel] at (2.5,.7) {$m_2$};
+ \draw[solgeom] (C)--(.5,.6); \node[sollabel] at (.5,1) {$C$：固定材料点};
+ \draw[solgeom] (-2.5,-.2)--(-2.5,-.8) (C)--(.5,-.8) (2.5,-.2)--(2.5,-.8);
+ \draw[<->,TextGray] (-2.5,-.65)--(.5,-.65) node[midway,below=4pt,sollabel] {$L_1$};
+ \draw[<->,TextGray] (.5,-.65)--(2.5,-.65) node[midway,below=4pt,sollabel] {$L_2$};
+ \node[sollabel] at (0,-1.4) {$m_1L_1=m_2L_2$};
+\end{tikzpicture}
+\diagcaption{解图}{零总动量使质心固定；固定点按反质量比分割弹簧瞬时长度。}\label{ch07:fig:soldiagThreeSeventeen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  % Draw the bowl as a closed rigid body, not just as an isolated circular arc.
+  \path[fill=SoftGray]
+    (-2.65,1.10)--(-2.65,-1.35)--(2.65,-1.35)--(2.65,1.10)--
+    (1.95,1.10) arc[start angle=0,end angle=-180,radius=1.95]--cycle;
+  \draw[solbody] (-2.65,1.10)--(-2.65,-1.35)--(2.65,-1.35)--(2.65,1.10);
+  \draw[solbody] (-2.65,1.10)--(-1.95,1.10) (1.95,1.10)--(2.65,1.10);
+  \draw[solbody] (-1.95,1.10) arc[start angle=180,end angle=360,radius=1.95];
+  \draw[solbody] (-3.05,-1.35)--(3.05,-1.35);
+  \foreach \x in {-2.9,-2.5,...,2.9}{\draw[TextGray,line width=.35pt] (\x,-1.35)--++(-.14,-.14);}
+  \fill[Ink] (1.95,1.10) circle (4pt) node[above=7pt,sollabel] {$m$};
+  \node[sollabel] at (2.16,.72) {$A$}; \node[sollabel] at (2.18,-.94) {$M$};
+  % The endpoint lies on the inner circular wall, so this segment is visibly a radius.
+  \draw[solgeom] (0,1.10)--({-1.95/sqrt(2)},{1.10-1.95/sqrt(2)}) node[midway,above left=4pt,sollabel] {$R$};
+  \fill[Ink] (0,1.10) circle (1.7pt);
+\end{tikzpicture}
+\diagcaption{题图}{质点从可水平移动的半球形碗右边缘由静止释放。}\label{ch07:fig:probdiagThreeEighteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ % Example mass ratio M=m. Circle and trajectory share R, theta and X.
+ \pgfmathsetmacro{\rad}{2} \pgfmathsetmacro{\ang}{35}
+ \pgfmathsetmacro{\X}{\rad/2*(1-sin(\ang))}
+ \coordinate (C) at (\X,\rad);
+ \coordinate (A) at ({\X+\rad*sin(\ang)},{\rad*(1-cos(\ang))});
+ \draw[axis] (-2.4,0)--(3.1,0) node[right,sollabel] {$x$};
+ \draw[axis] (0,-.45)--(0,3.1) node[above,sollabel] {$y$};
+ \draw[solgeom] (-2,2) arc (180:360:2);
+ \draw[solbody] ({\X-2},2) arc (180:360:2);
+ \draw[curve,domain=90:35,samples=70] plot ({1+sin(\x)},{2*(1-cos(\x))});
+ \draw[solgeom] (C)--(A) (C)--(\X,0);
+ \draw[TextGray] ($(C)+(-90:.5)$) arc (-90:-55:.5);
+ \node[sollabel] at ({\X+.25},1.25) {$\theta$};
+ \node[sollabel,left=6pt] at ($(C)!.6!(A)$) {$R$};
+ \fill[Ink] (A) circle (2.5pt) node[right=7pt,sollabel] {$A$};
+ \fill[Ink] (2,2) circle (2pt) node[above right=5pt,sollabel] {$A_0$};
+ \node[sollabel,below left=5pt] at (0,0) {$O$};
+ \draw[solgeom] (0,2)--(0,2.6) (C)--(\X,2.6);
+ \draw[<->,TextGray] (0,2.5)--(\X,2.5) node[midway,above=4pt,sollabel] {$X$};
+ \node[sollabel] at (.2,-.9) {虚线为初始碗；实线为当前碗；蓝线为对地轨迹};
+\end{tikzpicture}
+\diagcaption{解图}{圆心、接触点和轨迹使用同一组参数；图取 $M=m$，一般关系见推导。}\label{ch07:fig:soldiagThreeEighteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeNineteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRain
+\diagcaption{解图}{雨水只增加质量，不带入水平动量；外力使总水平动量按 $Ft$ 增长。}\label{ch07:fig:soldiagThreeNineteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwenty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumPickup
+\diagcaption{解图}{提力同时承担已提起绳段的重量，并为新进入运动段的绳元提供动量。}\label{ch07:fig:soldiagThreeTwenty}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeTwentyOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumFallingRope
+\diagcaption{题图}{柔绳上端释放后自由下落，绳元依次落到秤盘上并停止。}\label{ch07:fig:probdiagThreeTwentyOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRopeLoad
+\diagcaption{解图}{秤盘既承受已落绳段的重量，也要连续吸收下落绳元的动量。}\label{ch07:fig:soldiagThreeTwentyOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyTwo}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumAccretion
+\diagcaption{解图}{静止介质进入运动物体时要被加速，形成随 $v^2$ 增长的动量流项。}\label{ch07:fig:soldiagThreeTwentyTwo}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyThree}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumDroplet
+\diagcaption{解图}{半径增长扩大迎风面积，质量增长又改变速度；三者通过动量流彼此耦合。}\label{ch07:fig:soldiagThreeTwentyThree}\end{minipage}\end{center}}

@@ -1,0 +1,150 @@
+{
+  "date": "2026-09-23",
+  "type": "findings_not_acceptance",
+  "scope": "current chapters 31-32 plus corresponding A6 problems; not a full-book audit",
+  "source_pages": [
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+    217,
+    218,
+    219,
+    220,
+    221
+  ],
+  "source_problem_count": 21,
+  "source_figures": [
+    {
+      "source_object_id": "r2-spring:exercise:L10:Q1:figure-group",
+      "physical_page": 193,
+      "printed_page": 49,
+      "panels": 1,
+      "target": null,
+      "finding": "未找到对应题图"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L10:Q2:figure-group",
+      "physical_page": 194,
+      "printed_page": 50,
+      "panels": 2,
+      "target": null,
+      "finding": "未找到对应题图"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L10:Q5:figure-group",
+      "physical_page": 197,
+      "printed_page": 53,
+      "panels": 1,
+      "target": "advA6:ex:relativistic-accelerator",
+      "finding": "已画，标注拥挤且原题解答未完成"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L11:Q1:figure-group",
+      "physical_page": 200,
+      "printed_page": 56,
+      "panels": 2,
+      "target": null,
+      "finding": "未找到对应题图"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L11:Q2:figure-group",
+      "physical_page": 201,
+      "printed_page": 57,
+      "panels": 2,
+      "target": null,
+      "finding": "未找到对应题图"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L11:Q3:figure-group",
+      "physical_page": 202,
+      "printed_page": 58,
+      "panels": 1,
+      "target": null,
+      "finding": "未找到对应题图"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L11:Q6:figure-group",
+      "physical_page": 204,
+      "printed_page": 60,
+      "panels": 2,
+      "target": "advA6:ex:elliptic-cylinder",
+      "finding": "已画，缺多项原图变量标注"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L14:Q4:figure-group",
+      "physical_page": 219,
+      "printed_page": 75,
+      "panels": 1,
+      "target": null,
+      "finding": "未找到对应题图；一般卢瑟福推导不等价"
+    },
+    {
+      "source_object_id": "r2-spring:exercise:L14:Q5:figure-group",
+      "physical_page": 220,
+      "printed_page": 76,
+      "panels": 1,
+      "target": null,
+      "finding": "未找到对应题图；一般布拉格图不等价"
+    }
+  ],
+  "main_solution_explanation_priorities": [
+    "31.2",
+    "31.4",
+    "31.8",
+    "32.1",
+    "32.3",
+    "32.7"
+  ],
+  "advanced_problem_priorities": [
+    "A6.2",
+    "A6.3",
+    "A6.1",
+    "A6.4"
+  ],
+  "formal_pdfs_modified": false,
+  "files": [
+    {
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/兴趣二阶春季.pdf",
+      "sha256": "7d47436e2942ee0a77afb18a8ea9abf4fa3d6e22831466ce6b19935b0fd9251c"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义.pdf",
+      "sha256": "981a0aea1b521d49e835da0d2bc677d0f64086edd8278a9bb651803d6102713a"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第31章_狭义相对论.pdf",
+      "sha256": "ac6e4d3a4b9029d3c7c8c4b461a39d10a026d9f6836b57122eb3dead2b7fdf41"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第32章_量子现象、原子与原子核物理.pdf",
+      "sha256": "d639f3de469915e40302f21832c4edf3825fdfd8c7b4d732975fcd44ff30c190"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/chapters/new/ch31-relativity.tex",
+      "sha256": "f06bf32ca26a1fb4aebcf017379d6e8322d9c67eaa2febdd885be322827f3b1d"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/chapters/new/ch32-modern.tex",
+      "sha256": "1f46f345a425709665f30c7546349dc1cc38bd3a5b1d6c638b0a663052cba586"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/advanced/A6-relativity.tex",
+      "sha256": "fb2c20f3a6fe45e9e72bb906ba5a002a061dd414b7e254e0e1ce797705afb2e3"
+    },
+    {
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/advanced/A6-quantum-mechanics.tex",
+      "sha256": "0ec3383f87803e4a116ddbd373e72186eb80cf668296d245b8137326ff34cc60"
+    }
+  ]
+}

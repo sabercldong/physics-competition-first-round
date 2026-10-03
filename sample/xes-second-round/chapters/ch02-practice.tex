@@ -1,0 +1,944 @@
+\section{配套习题：质点动力学}
+\label{r2ch02:sec:practice-point}
+
+\begin{practicebox}{偏置一维随机行走}
+一只跛脚的猫从原点出发，每一步以概率 $p$ 向右走一单位，以概率 $1-p$ 向左走一单位。求走完 $n$ 步后横坐标的期望与标准差。
+\label{r2ch02:pr:001}
+\begin{solution}
+按随机行走的通常模型，各步独立，并且每一步的向右概率均为 $p$。令第 $i$ 步的位移为 $X_i$，其取值为 $+1$ 和 $-1$。期望是按概率加权的平均，因此
+\[
+ \langle X_i\rangle=p\cdot1+(1-p)(-1)=2p-1,
+ \qquad \langle X_i^2\rangle=p+(1-p)=1.
+\]
+方差定义为偏离均值的平方的平均：
+\[
+ \operatorname{Var}X_i
+ =\langle(X_i-\langle X_i\rangle)^2\rangle
+ =\langle X_i^2\rangle-\langle X_i\rangle^2
+ =4p(1-p).
+\]
+走完 $n$ 步的位置为 $X=\sum_{i=1}^nX_i$，所以期望为各步期望之和。独立性还使不同步的协方差为零，故总方差也可相加：
+\[
+ \langle X\rangle=\sum_i\langle X_i\rangle,
+ \qquad \operatorname{Var}X=\sum_i\operatorname{Var}X_i=4np(1-p).
+\]
+标准差是方差的正平方根，最终得到
+\[
+ \boxed{\langle X\rangle=n(2p-1)},\qquad
+ \boxed{\sigma_X=2\sqrt{np(1-p)}}.
+\]
+$p=1/2$ 时平均位置为零而标准差为 $\sqrt n$，体现扩散宽度按 $\sqrt n$ 增长；$p=0$ 或1时运动完全确定，标准差为零。若一步实际长 $b$，均值和标准差都应再乘 $b$，因此两者均为长度量。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{三维自由程模型}
+用以下模型简化扩散过程：质点从原点出发，在三维欧氏空间中随机游走，每一步的自由程都等于 $\lambda$，速率都是 $v$，方向完全随机；步与步之间的碰撞时间忽略。自由程很短、碰撞很频繁时，求经过时间 $t$ 后 $\langle r^2\rangle$ 及三个坐标平方的均值。
+\label{r2ch02:pr:002}
+\begin{solution}
+这里是“每一步长度固定”的模型，不是仅规定平均长度而允许长度随机变化。每一步耗时 $\lambda/v$。先取 $t=N\lambda/v$，即恰好完成 $N$ 步。设第 $i$ 步位移为 $\vect s_i$，$|\vect s_i|=\lambda$，各步方向独立且在球面上均匀分布，于是
+\[
+ \vect r=\sum_{i=1}^N\vect s_i,\qquad
+ \langle\vect s_i\rangle=0,\qquad
+ r^2=\sum_i s_i^2+2\sum_{i<j}\vect s_i\cdot\vect s_j.
+\]
+独立性给出 $\langle\vect s_i\cdot\vect s_j\rangle
+=\langle\vect s_i\rangle\cdot\langle\vect s_j\rangle=0$，而每个 $\langle s_i^2\rangle=\lambda^2$，故
+\[
+ \boxed{\langle r^2\rangle=N\lambda^2=\lambda vt}.
+\]
+由于 $r^2=x^2+y^2+z^2$，且各向同性使三个平方的均值相同，因而
+\[
+ \boxed{\langle x^2\rangle=\langle y^2\rangle=\langle z^2\rangle=\frac13\lambda vt}.
+\]
+一般时刻写成 $t=N\lambda/v+\delta t$，其中 $N$ 为整数、$0\leqslant\delta t<\lambda/v$。尚未走完的最后一步长度为 $v\delta t$，同样与此前各步独立，所以精确式为
+\[
+ \langle r^2\rangle=N\lambda^2+(v\delta t)^2.
+\]
+当 $vt\gg\lambda$，末步修正最多为 $\lambda^2$ 的量级，相对误差很小，这才可以对连续的 $t$ 使用 $\langle r^2\rangle\simeq\lambda vt$。与 $\langle r^2\rangle=6Dt$ 比较得 $D=\lambda v/6$，其量纲为 $L^2/T$。若改成指数分布的随机自由程，会得到不同的系数，不能在本题中悄悄更换模型。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{圆滚线上的支持力和摩擦}
+质量为 $m$ 的质点从光滑圆滚线尖端无初速下滑，圆滚线为
+\[
+ x=a(2\theta+\sin2\theta),\qquad y=-a(1+\cos2\theta).
+\]
+求任一点的压力。若轨道粗糙、动摩擦因数恒为 $\mu$，质点到最低点恰好停止，求 $\mu$。
+\label{r2ch02:pr:003}
+\begin{solution}
+取右侧尖端 $\theta=\pi/2$ 为起点，最低点为 $\theta=0$，下降时 $\theta$ 逐渐减小。令 $s$ 暂表示沿 $\theta$ 增大方向的弧长参数。由参数方程逐项求导，
+\[
+ x_\theta=4a\cos^2\theta,\qquad
+ y_\theta=4a\sin\theta\cos\theta,
+ \qquad \frac{\dd s}{\dd\theta}=4a\cos\theta.
+\]
+相应单位切向量为 $\uvec t=(\cos\theta,\sin\theta)$，单位主法向量为
+$\uvec n=(-\sin\theta,\cos\theta)$。因为 $\dd\uvec t/\dd\theta=\uvec n$，曲率为 $\dd\theta/\dd s$，因此
+\[
+ \dd s=4a\cos\theta\,\dd\theta,\qquad \rho=4a\cos\theta,\qquad
+ \Delta h=2a\cos^2\theta.
+\]
+这里 $\Delta h$ 为从尖端下降的高度。图~\ref{r2ch02:fig:004} 中速度沿 $-\uvec t$，支持力沿 $\uvec n$；轨道向上托住质点。光滑时能量守恒 $mv^2/2=mg\Delta h$ 给 $v^2=4ag\cos^2\theta$。沿指向曲率中心的法向列式
+\[
+ N-mg\cos\theta=m\frac{v^2}{\rho}=mg\cos\theta,
+\]
+故
+\[
+ \boxed{N=2mg\cos\theta}.
+\]
+\figCycloidForce
+粗糙时速度改变，支持力也随之改变，不能继续代入光滑情形的 $N=2mg\cos\theta$。设 $w(\theta)=v^2(\theta)$。法向方程仍为
+\[
+ N=mg\cos\theta+\frac{mw}{4a\cos\theta}.
+\]
+质点沿 $-\uvec t$ 运动，动摩擦力 $\mu N\uvec t$ 沿斜上方。对弧长参数 $s$ 写动能定理，得到
+\[
+ \frac m2\frac{\dd w}{\dd s}=-mg\sin\theta+\mu N.
+\]
+用 $\dd s/\dd\theta=4a\cos\theta$ 消去 $s$，整理为
+\[
+ \frac{\dd w}{\dd\theta}-2\mu w
+ =8ag(-\sin\theta\cos\theta+\mu\cos^2\theta).
+\]
+乘积分因子 $\e^{-2\mu\theta}$，并用尖端初值 $w(\pi/2)=0$ 积分：
+\[
+ w(\theta)=8ag\e^{2\mu\theta}
+ \int_\theta^{\pi/2}\e^{-2\mu u}
+ (\sin u\cos u-\mu\cos^2u)\,\dd u.
+\]
+最低点恰好停止要求 $w(0)=0$。记
+$J_\mu=\int_0^{\pi/2}\e^{-2\mu u}\cos^2u\,\dd u$。
+利用
+\[
+ \frac{\dd}{\dd u}(\e^{-2\mu u}\cos^2u)
+ =-2\e^{-2\mu u}(\sin u\cos u+\mu\cos^2u)
+\]
+可将边界条件化为 $1/2-2\mu J_\mu=0$。再以
+$\cos^2u=(1+\cos2u)/2$ 积分，得
+\[
+ J_\mu=\frac{1-\e^{-\pi\mu}}{4\mu}
+       +\frac{\mu(1+\e^{-\pi\mu})}{4(1+\mu^2)}.
+\]
+代入 $4\mu J_\mu=1$，消去分母，最终只剩
+\[
+ \boxed{\mu^2=\e^{-\pi\mu}},\qquad
+ \boxed{\mu\approx0.47454}.
+\]
+左边在 $\mu>0$ 上严格增加，右边严格减少，且两端大小互换，所以正根唯一。该根的解在 $0<\theta<\pi/2$ 内满足 $w>0$：积分中的因子 $\sin u-\mu\cos u$ 只在 $u=\arctan\mu$ 变号，结合全区间积分为零，任意内部下限对应的积分均为正。因此质点不会提前停止；法向方程也给出 $N>0$。所有速度平方均与 $ag$ 成比例，而 $\mu$ 无量纲，与 $m,a,g$ 无关。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{地球自转造成的落体偏移}
+地球以角速度 $\Omega$ 自转，质点在纬度 $\varphi$ 上空高度 $h$ 处自由下落。忽略空气阻力，把离心效应计入当地 $g$，求科里奥利力造成的水平偏移和下落时间延缓。
+\label{r2ch02:pr:004}
+\begin{solution}
+在落点附近取东、北、上为 $x,y,z$ 正向，原点选在释放点；这是右手坐标系。取局部 $g$ 为常量，忽略地球曲率、重力梯度及离心力的空间变化，只求题设规定的科里奥利修正。则 $\vect\Omega=(0,\Omega\cos\varphi,\Omega\sin\varphi)$，初始位置和速度均为零，方程为
+\[
+\begin{aligned}
+ \ddot x&=2\Omega\sin\varphi\,\dot y-2\Omega\cos\varphi\,\dot z,\\
+ \ddot y&=-2\Omega\sin\varphi\,\dot x,\\
+ \ddot z&=-g+2\Omega\cos\varphi\,\dot x.
+\end{aligned}
+\]
+按小参数 $\Omega t$ 逐阶求解。零阶运动为 $\dot z=-gt$、$x=y=0$；代回第一式，一阶东向加速度为
+\[
+ a_x=-2(\vect\Omega\times\vect v)_x=2\Omega g t\cos\varphi.
+\]
+由 $\dot x(0)=x(0)=0$ 积分得 $\dot x=\Omega gt^2\cos\varphi$、$x=\Omega gt^3\cos\varphi/3$。令零阶下落时间 $t_0=\sqrt{2h/g}$，则
+\[
+ \boxed{\Delta x=\frac13\Omega g t_0^3\cos\varphi}
+\]
+其方向向东。东向速度又在第二、三式中产生二阶修正：
+\[
+ \ddot y=-2\Omega^2gt^2\sin\varphi\cos\varphi,
+ \qquad
+ a_z^{(2)}=2\Omega^2gt^2\cos^2\varphi.
+\]
+各积分两次，得到
+\[
+ y=-\frac16\Omega^2gt^4\sin\varphi\cos\varphi,\qquad
+ z=-\frac12gt^2+\frac16\Omega^2g t^4\cos^2\varphi.
+\]
+因此还有较小的南北偏移
+\[
+ \boxed{\Delta y=-\frac16\Omega^2g t_0^4\sin\varphi\cos\varphi}.
+\]
+北半球偏南、南半球偏北，即均偏向赤道。落地条件为 $z=-h$；写 $t=t_0+\delta t$，利用 $gt_0^2/2=h$ 并只保留到 $\Omega^2$ 阶：
+\[
+ -h=-h-gt_0\delta t+\frac16\Omega^2gt_0^4\cos^2\varphi.
+\]
+于是
+\[
+ \boxed{\delta t=\frac16\Omega^2t_0^3\cos^2\varphi}.
+\]
+一阶东偏和时间延缓在赤道最大，在极点消失；二阶南北偏移在赤道也为零。$\Delta x,\Delta y$ 均为长度，$\delta t$ 为时间。科里奥利力始终垂直速度而不做功；“竖直下落减慢”来自速度方向改变，并不表示它耗散机械能。本展开要求 $\Omega t_0\ll1$。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{滑轮—桌面系统的瞬时加速度}
+如图~\ref{r2ch02:fig:005}，轻绳与滑轮间无摩擦，两物体质量相同，右侧绳段初始与水平面成 $\theta_0=30^\circ$，系统由静止释放。求绳段夹角变为 $\theta$ 时 $B$ 的左行加速度，并判断何时 $B$ 脱离水平桌面。
+\label{r2ch02:pr:005}
+\begin{solution}
+先采用光滑桌面、绳不可伸长、滑轮半径相对绳长可忽略的通常模型。题设没有给出桌面摩擦参数或滑轮尺寸；若保留这些影响，须另给相应数据，不能由本题的角度单独确定运动。
+
+图~\ref{r2ch02:fig:005} 中，用 $O$ 表示绳转向处，$H$ 为其到物块系绳点水平线的高度，$x$ 为系绳点到 $O$ 正下方的水平距离，$\ell=\sqrt{x^2+H^2}$。于是 $\sin\theta=H/\ell$、$\cos\theta=x/\ell$。设 $B$ 左行速率为 $u=-\dot x$、左行加速度为 $a=\dot u$。绳长不变给出 $A$ 的下行速度 $v_A=-\dot\ell=u\cos\theta$。还需对速度约束再求一次导数：
+\[
+ \dot\theta=\frac{u\sin\theta}{\ell},\qquad
+ a_A=a\cos\theta-\frac{u^2\sin^2\theta}{\ell}.
+\]
+最后一项源于绳角在运动中改变，只有释放瞬间 $u=0$ 时才能删去。分别对 $A$ 的竖直方向和 $B$ 的水平方向列式：
+\[
+ mg-T=m\left(a\cos\theta-\frac{u^2\sin^2\theta}{\ell}\right),
+ \qquad T\cos\theta=ma.
+\]
+消去 $T$，得到任意时刻的加速度关系
+\[
+ a=\frac{\cos\theta}{1+\cos^2\theta}
+       \left(g+\frac{u^2\sin^2\theta}{\ell}\right).
+\]
+\figPulleyTable
+
+接触未失效时 $B$ 没有竖直位移，$A$ 的下降量为 $\ell_0-\ell$。支持力不做功，绳张力对两物体的总功为零，故能量守恒给出
+\[
+ mg(\ell_0-\ell)=\frac12mu^2+\frac12m(u\cos\theta)^2,
+ \qquad \ell_0=\frac H{\sin30^\circ}=2H.
+\]
+因此
+\[
+ \frac{u^2}{\ell}=\frac{2g(2\sin\theta-1)}{1+\cos^2\theta}.
+\]
+代回动力学方程，所求左行加速度为
+\[
+ \boxed{a=g\cos\theta\,
+ \frac{2-3\sin^2\theta+4\sin^3\theta}{(2-\sin^2\theta)^2}}.
+\]
+竖直方向满足 $N+T\sin\theta=mg$。用 $T=ma/\cos\theta$ 整理，有
+\[
+ \frac N{mg}
+ =\frac{(2-3\sin^2\theta)(\sin^2\theta-\sin\theta+2)}
+        {(2-\sin^2\theta)^2}.
+\]
+由于第二个因子始终为正，$\theta$ 从 $30^\circ$ 增大时首次 $N=0$ 出现在
+\[
+ \boxed{\sin\theta_*=\sqrt{\frac23}},\qquad
+ \boxed{\theta_*\approx54.736^\circ}.
+\]
+这一临界点之后不能继续使用“$B$ 在桌面上”的方程，否则会算出负支持力。所求加速度式仅适用于 $30^\circ\leqslant\theta\leqslant\theta_*$；在 $\theta=30^\circ$ 处，确实退化为释放瞬间的 $g\cos\theta/(1+\cos^2\theta)$。结果中的长度 $H$ 消去、加速度与 $g$ 同量纲，符合相似装置的尺度性质。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{磁场稳定倒置二维势阱}
+带电量 $q$、质量 $m$ 的点电荷在光滑 $x$--$y$ 平面运动，势能
+$V=-Ix^2/2-Jy^2/2$，$I,J>0$。垂直平面加匀强磁场 $B$，求原点成为束缚平衡的条件；并讨论 $I=J$ 时简正圆模的角动量和能量。
+\label{r2ch02:pr:006}
+\begin{solution}
+取 $\vect B=B\uvec e_z$，线性方程为
+\[
+ m\ddot x=Ix+qB\dot y,\qquad m\ddot y=Jy-qB\dot x.
+\]
+令 $(x,y)\propto e^{\lambda t}$，特征方程为
+\[
+ m^2\lambda^4+[q^2B^2-m(I+J)]\lambda^2+IJ=0.
+\]
+令 $A_B=q^2B^2-m(I+J)$、$z=\lambda^2$。两个 $z$ 的积为 $IJ/m^2>0$，和为 $-A_B/m^2$。要使任意小扰动都作有界振动，须有两个不同的实负根，即
+\[
+ A_B>0,\qquad A_B^2-4m^2IJ>0.
+\]
+合并为 $A_B>2m\sqrt{IJ}$，所以严格稳定条件是
+\[
+ \boxed{|qB|>\sqrt m\,(\sqrt I+\sqrt J)}.
+\]
+等号时两振动频率合并，通常出现 $t\e^{\ii\omega t}$ 型随时间增长的解；仅存在某些特殊有界轨道，并不意味着平衡对任意小初始扰动稳定。若低于阈值，至少出现实指数或带实部的复指数增长。磁力不做功，但能把轨迹持续偏转；由于此处机械能不是正定二次型，“能量守恒”本身不能代替稳定性分析。
+
+当 $I=J=K$，令 $z=x+\ii y$，两分量方程合为
+\[
+ m\ddot z+\ii qB\dot z-Kz=0.
+\]
+采用带符号角速度约定 $z=A\e^{\ii(\omega t+\delta)}$，$\omega>0$ 表示从 $+z$ 方向看逆时针。代入得
+\[
+ m\omega^2+qB\omega+K=0,\qquad
+ \omega_\pm=\frac{-qB\pm\sqrt{q^2B^2-4mK}}{2m}.
+\]
+两根的积为 $K/m>0$，和为 $-qB/m$，所以两个圆模同向旋转：$qB>0$ 时均为顺时针，$qB<0$ 时均为逆时针。它们的区别是角速率和能量符号，不是转向相反。
+
+半径为 $A$ 时，$x\dot y-y\dot x=A^2\omega$、$\dot x^2+\dot y^2=A^2\omega^2$，所以机械角动量和总机械能为
+\[
+ L_z=mA^2\omega,\qquad E=\frac12(m\omega^2-K)A^2,
+\]
+消去 $A$，并利用频率方程 $K=-m\omega^2-qB\omega$，得到
+\[
+ \boxed{E=\left(\omega+\frac{qB}{2m}\right)L_z}.
+\]
+以 $qB>0$ 为例，较快圆模能量为正，较慢圆模能量为负；两模的 $L_z$ 都为负。这并不违反能量守恒，因为原点是电势能的极大点。若使用含磁场项的正则角动量，在对称规范下它为
+$\mathcal L_z=L_z+qBA^2/2$，关系相应写成 $E=\omega\mathcal L_z$；不能把两种角动量混用。$qB/m$ 与 $\omega$ 同为逆时间，乘角动量后确为能量。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{弹性绳绕细圆柱收短}
+一根原长为零、劲度系数为 $k$ 的弹性绳一端连质量 $m$ 的物块，另一端绕在半径很小的圆柱上，圆柱半径为 $a$。初始物块在弹性绳拉力下近似作半径 $r_0$ 的匀速圆周运动；绳一旦绕上圆柱即锁定，不能在柱面上相对滑动。若此后始终可近似为圆周运动，求半径和速率随时间的关系。
+\label{r2ch02:pr:007}
+\begin{solution}
+关键是区分“多少绳绕上了圆柱”与“自由段的伸长量怎样变化”。弹性绳会伸缩，不能直接写 $\dd r=-a\dd\phi$。而且题给 $k$ 是初始整段绳的劲度系数；自由绳段减少后是否仍取同一个 $k$，对应不同的材料模型。下面先按均匀胡克弹性绳处理，再给出把自由段劲度强行保持不变的替代模型。
+
+图~\ref{r2ch02:fig:006} 中，$O$ 为圆柱中心、$P$ 为切点、$B$ 为物块，$OP=a$、$OB=r$，张力沿 $BP$。切点使张力对 $O$ 的力臂恰为 $a$。取物块绕绳的运动方向为角度 $\phi$ 增大方向，张力力矩与该方向相反。$a/r\ll1$ 时，自由段长度 $BP=\sqrt{r^2-a^2}\simeq r$，径向张力近似为总张力 $F$，故缓慢收缩的圆周近似给出
+\[
+ F\simeq\frac{mv^2}{r},\qquad \dot\phi\simeq\frac vr,
+ \qquad \frac{\dd}{\dd t}(mrv)=-aF.
+\]
+初始 $F_0=kr_0$，所以 $v_0=r_0\sqrt{k/m}$。将力矩方程除以 $mv$，得到
+\begin{equation}
+ \dot r+\frac r v\dot v=-\frac{av}{r}.
+ \label{r2ch02:eq:029}
+\end{equation}
+\figElasticWinding
+
+以 $\alpha$ 表示还未锁定的绳所占初始材料的比例，初始 $\alpha=1$。均匀弹性绳截去一部分后，剩余段劲度与剩余材料比例成反比，因此 $k_{\rm free}=k/\alpha$。在零原长理想模型中
+\[
+ F=\frac{k}{\alpha}r,\qquad \alpha=\frac{kr}{F}.
+\]
+每单位材料比例在张力 $F$ 下伸长到 $F/k$。转过 $\dd\phi$ 时，新锁定的实际弧长为 $a\dd\phi$，故自由材料减少量为
+\[
+ -\dd\alpha=\frac{k}{F}a\dd\phi.
+\]
+注意，这里减少的是材料比例，不是简单地把自由段长度减少同样的弧长。对 $\alpha=kr/F$ 取对数微分，并使用 $\dot\phi=v/r$，有
+\[
+ \frac{\dot r}{r}-\frac{\dot F}{F}=-\frac{av}{r^2}.
+\]
+再由 $F=mv^2/r$，有 $\dot F/F=2\dot v/v-\dot r/r$，从而
+\begin{equation}
+ 2\dot r-2\frac r v\dot v=-\frac{av}{r}.
+ \label{r2ch02:eq:030}
+\end{equation}
+联立式~\eqref{r2ch02:eq:029}、\eqref{r2ch02:eq:030}，得
+\[
+ \dot r=-\frac{3av}{4r},\qquad
+ \dot v=-\frac{av^2}{4r^2}.
+\]
+两式相除，$\dd v/\dd r=v/(3r)$，积分得到
+$v=v_0(r/r_0)^{1/3}$。把它代回 $\dot r$，再积分：
+\[
+ \frac{\dd}{\dd t}r^{5/3}
+ =-\frac{5av_0}{4r_0^{1/3}}.
+\]
+所以均匀弹性绳模型的结果为
+\[
+ \boxed{r(t)=r_0\left(1-\frac{t}{t_*}\right)^{3/5}},\qquad
+ \boxed{v(t)=v_0\left(1-\frac{t}{t_*}\right)^{1/5}},\qquad
+ t_*=\frac{4r_0^2}{5av_0}.
+\]
+这里 $t_*$ 是形式上把近似解外推到零半径的时间，实际只能用到 $r\gg a$。由结果 $\alpha=(r/r_0)^{4/3}$，可见自由材料比例逐渐减小，张力 $F=F_0(r/r_0)^{-1/3}$ 反而逐渐增大。这也说明不能把全程张力简单写成 $kr$。
+
+可用能量再检查一次。在缓慢绕入、不发生额外耗散的理想锁定模型中，自由段弹性能为 $U_{\rm free}=Fr/2$，每绕入实际长度 $a\dd\phi$，留在锁定段中的弹性能增加 $(F/2)a\dd\phi$。由上述材料关系，
+\[
+ \dot U_{\rm free}=F\dot r+\frac{Fav}{2r},\qquad
+ \dot U_{\rm locked}=\frac{Fav}{2r},\qquad
+ \dot T=mv\dot v=-F\dot r-\frac{Fav}{r},
+\]
+三项相加为零。若只计算自由段能量，会误把留在锁定段的能量当成能量损失。
+
+若另行规定“不论绕去多少，自由段始终满足 $F=kr$”，则得到不同模型。此时 $v/r=\omega_0=\sqrt{k/m}$，但仍须满足力矩方程~\eqref{r2ch02:eq:029}，于是
+\[
+ 2\dot r=-a\omega_0,\qquad
+ \boxed{r=r_0-\frac a2\omega_0t},\qquad
+ \boxed{v=\omega_0r}.
+\]
+这不等同于截短后的均匀弹性绳，不能和前一结果混为同一答案。两种模型均满足 $a\to0$ 时半径、速率不再变化；时间尺度均为 $r_0/(a\omega_0)$，与长度、速度量纲相容。
+\end{solution}
+\end{practicebox}
+
+\section{配套习题：质点系动力学}
+\label{r2ch02:sec:practice-system}
+
+\begin{practicebox}{离散小球链落孔与连续极限}
+$N$ 个质量均为 $m$ 的小球用长为 $l$ 的轻绳相连，盘在光滑桌面小孔附近。一个小球先从孔口下落；每个小球越过孔口后立即与下方小球共速。求最后一个小球越过孔口时的速度，并取连续链极限。
+\label{r2ch02:pr:008}
+\begin{solution}
+“刚从洞口落下”是指该球已被绳冲量带动、与下方球同速的瞬间。第一个球在孔口由静止释放，因此 $v_1=0$。在第 $n$ 个小球刚并入后记共同速度为 $v_n$。已运动的 $n$ 个球再下落 $l$，下一段松绳被拉直之前，它们都以 $g$ 加速，故 $u_n^2=v_n^2+2gl$。绳拉直的极短过程中，重力冲量可忽略；按照题设的共同速度模型，一个原本静止的小球被完全非弹性地并入运动链段，竖直动量关系为
+\[
+ (n+1)v_{n+1}=nu_n.
+\]
+因此
+\[
+ (n+1)^2v_{n+1}^2=n^2v_n^2+2gl\,n^2.
+\]
+令 $A_n=n^2v_n^2$，则 $A_{n+1}-A_n=2gl\,n^2$。从 $n=1$ 累加到 $N-1$，并代入 $A_1=0$：
+\[
+ N^2v_N^2=2gl\sum_{n=1}^{N-1}n^2
+ =2gl\frac{(N-1)N(2N-1)}6.
+\]
+所以离散问题的答案为
+\[
+ \boxed{v_N=\sqrt{\frac{gl(N-1)(2N-1)}{3N}}}.
+\]
+$N=1$ 时该瞬间仍为释放时刻，速度为零；$N=2$ 时第一个球先自由落下 $l$，再带上第二球，得到 $v_2=\sqrt{2gl}/2$，与上式相符。每次并入前后损失的动能为
+\[
+ \frac12nm u_n^2-\frac12(n+1)m v_{n+1}^2
+ =\frac12m\frac n{n+1}u_n^2>0,
+\]
+因此不能对整个下落过程直接用机械能守恒。
+
+有限链的首末球距离为 $L=(N-1)l$。令 $N\to\infty$、$l\to0$，同时保持 $L$ 和总质量有限，则 $v_N^2\to2gL/3$。还可直接建立连续模型：下垂长度为 $x$、线密度为 $\lambda$，新并入的链元在并入前竖直速度为零，因此变质量动量方程为
+\[
+ \frac{\dd}{\dd t}(\lambda x\dot x)=\lambda xg
+\]
+展开导数得到 $x\dot v+v^2=xg$。令 $w=v^2$，由于 $\dot v=v\,\dd v/\dd x=\tfrac12\dd w/\dd x$，
+\[
+ \frac{\dd w}{\dd x}+\frac2xw=2g,\qquad
+ \frac{\dd}{\dd x}(x^2w)=2gx^2.
+\]
+积分得 $w=2gx/3+C/x^2$。要求由极短下垂段静止启动、$x\to0$ 时速度不发散，便有 $C=0$。当整链通过孔口，
+\[
+ \boxed{v\longrightarrow\sqrt{\frac{2gL}{3}}}.
+\]
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{地月共转系与潮汐等势面}
+地球质量为 $M$，月球质量为 $m$，地月距离为 $L$。按圆轨道模型求：（a）地月绕转角速度 $\Omega$；（b）地月质心离地心距离 $l$；（c）取地月质心为原点 $O$、以角速度 $\Omega$ 转动，使地月在系中静止，地球半径为 $R$，求图~\ref{r2ch02:fig:007} 中轨道平面内地心极坐标为 $(r=R+h,\phi)$ 的点的引力势及有效势；（d）在 $L\gg R$、$h\ll R$ 下求等势面函数 $h(\phi)$，并说明是否需要 $l\ll R$ 或 $l\gg R$。
+\label{r2ch02:pr:009}
+\begin{solution}
+（a）、（b）地心记为 $E$。质心条件为 $Ml=m(L-l)$，所以 $l=mL/(M+m)$。地球绕 $O$ 作半径为 $l$ 的圆周运动，万有引力提供向心力：
+\[
+ M\Omega^2l=\frac{GMm}{L^2}.
+\]
+将 $l$ 代入，得到
+\[
+ \boxed{\Omega^2=\frac{G(M+m)}{L^3}},\qquad
+ \boxed{l=\frac{m}{M+m}L}.
+\]
+（c）图中的 $r,\phi$ 从地心 $E$ 量起，不能误从质心 $O$ 量起；转轴通过 $O$，$EO=l$。月球到点 $P$ 的距离由余弦定理给出，纯引力势为
+\[
+ \Phi_g=-\frac{GM}{r}
+ -\frac{Gm}{\sqrt{L^2+r^2-2Lr\cos\phi}}.
+\]
+若研究在旋转系中静止的液面，还必须加入离心势。轨道平面内 $OP^2=r^2-2lr\cos\phi+l^2$，所以单位质量的有效势为
+\[
+ \Phi=-\frac{GM}{r}-\frac{Gm}{\sqrt{L^2+r^2-2Lr\cos\phi}}
+ -\frac12\Omega^2(r^2-2lr\cos\phi+l^2).
+\]
+\figEarthMoon
+（d）用 $r/L\ll1$ 展开月球项，
+\[
+ \frac1{\sqrt{L^2+r^2-2Lr\cos\phi}}
+ =\frac1L+\frac{r\cos\phi}{L^2}
+   +\frac{r^2(3\cos^2\phi-1)}{2L^3}
+   +\order{r^3/L^4}.
+\]
+月球势的一次项为 $-Gmr\cos\phi/L^2$，离心势的一次项为 $+\Omega^2lr\cos\phi$。由 $\Omega^2l=Gm/L^2$，两项严格抵消；常量项并不相互抵消，只是可并入势的零点。留下
+\[
+ \Phi_{\rm tide}=-\frac{Gm}{2L^3}r^2(3\cos^2\phi-1)
+ -\frac12\Omega^2r^2.
+\]
+令 $r=R+h(\phi)$，地球项的一阶变化为
+$-GM/(R+h)\simeq-GM/R+gh$，其中 $g=GM/R^2$。小扰动项中的 $r^2$ 可取 $R^2$，故等势条件 $gh+\Phi_{\rm tide}(R,\phi)=\text{常量}$ 给出
+\[
+ \boxed{h(\phi)=h_0+\frac{R^2}{g}
+ \left[\frac{Gm}{2L^3}(3\cos^2\phi-1)+\frac12\Omega^2\right]}.
+\]
+$h_0$ 由液体体积或所选等势值决定，不由局部等势条件单独确定。相对于 $\phi=\pi/2$ 的高度差为
+\[
+ h(\phi)-h(\pi/2)=\frac{3GmR^2}{2gL^3}\cos^2\phi,
+\]
+所以朝向和背向月球的两侧都隆起。式中 $R^2Gm/(gL^3)$ 为长度。轨道平面内离心项对角向高度差只贡献常量；三维面形还涉及到转轴的垂直距离，不能把这个二维结果直接当作完整三维液面。
+
+推导没有展开 $l/R$，因此既不需要 $l\ll R$，也不需要 $l\gg R$。需要的是 $r/L\ll1$、$h/R\ll1$ 以及潮汐、离心加速度相对地表重力足够小。若过早令 $l=0$，反而破坏一次项的精确抵消。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{横向冲量后的二体弹簧}
+质量均为 $m$ 的两个质点由原长 $l$、劲度系数 $k$ 的弹簧连接，原在光滑水平面静止。一个质点受到垂直弹簧方向的冲量 $I$。求两质点间的最大距离和最大瞬时速率。取 $m=1\,\mathrm{kg}$、$k=1\,\mathrm{N/m}$、$I=1\,\mathrm{N\,s}$；$l$ 保留为参数。
+\label{r2ch02:pr:010}
+\begin{solution}
+冲量刚结束，受冲量质点的速度为 $I/m$，另一质点仍静止。总动量为 $I$，故质心速度 $V_C=I/(2m)$ 沿冲量方向。弹簧力为沿两球连线的内力；在质心系，相对运动的约化质量为 $\mu=m/2$，初始相对速率 $u_0=I/m$ 且垂直初始连线，所以相对角动量和能量为
+\[
+ J=\mu lu_0=\frac{Il}{2},\qquad E_{\rm rel}=\frac{I^2}{4m}.
+\]
+设相对位矢为 $\vect r$、方位角为 $\phi$。角动量守恒给出 $J=\mu r^2\dot\phi$；能量可写为
+\[
+ E_{\rm rel}=\frac12\mu\dot r^2+\frac{J^2}{2\mu r^2}
+             +\frac12k(r-l)^2.
+\]
+从 $r=l$、$\dot r=0$ 出发，由于离心项，间距先增大。最大距离 $r_{\max}>l$ 处径向速度再变为零，故它是方程
+\[
+ \boxed{\frac{I^2}{4m}=\frac{J^2}{2\mu r_{\max}^2}
+ +\frac12k(r_{\max}-l)^2}
+\]
+的大于 $l$ 的根。引入 $z=r_{\max}/l$ 和无量纲量 $\eta=I^2/(2mkl^2)$，除去初始转折点 $z=1$，化为
+\[
+ \boxed{z^2(z-1)=\eta(z+1),\qquad z>1}.
+\]
+左侧移项写成 $z^2(z-1)/(z+1)=\eta$，其对数导数为
+$2/z+1/(z-1)-1/(z+1)>0$；函数从0增至无穷，因此所求根唯一。
+
+相对动能满足 $\mu u^2/2=E_{\rm rel}-k(r-l)^2/2\leqslant I^2/(4m)$，所以 $u\leqslant I/m$。两粒子速度为 $\vect V_C\pm\vect u/2$，由三角不等式，单粒子速率不超过 $V_C+u/2\leqslant I/m$；初始受冲量粒子已达到该上界：
+\[
+ \boxed{v_{\max}=I/m}.
+\]
+题给数值下 $v_{\max}=1\,\mathrm{m/s}$，而最大距离仍通过
+$\eta=(1\,\mathrm m)^2/(2l^2)$、$r_{\max}=lz$ 决定，不能凭空把 $l$ 设为 $1\,\mathrm m$。作为额外算例，若另取 $l=1\,\mathrm m$，则 $2z^3-2z^2-z-1=0$，得 $z\approx1.53697$。当 $I\to0$ 时 $z\to1$，最大距离回到原长；最大速率也回到零。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{吸能核反应的阈能}
+动能为 $E_0$ 的 ${}^{4}\mathrm{He}$ 核轰击静止的 ${}^{7}\mathrm{Li}$ 核，先形成 ${}^{11}\mathrm B$，再分裂成 ${}^{10}\mathrm B$ 与中子；反应吸收 $Q=2.8\,\mathrm{MeV}$。求阈能。
+\label{r2ch02:pr:011}
+\begin{solution}
+阈值是刚好能完成反应所需的最小入射能量，并不是仅把入射动能取成吸收能 $Q$。设入射核质量为 $m_a$、靶核质量为 $m_A$，入射动量满足 $p^2=2m_aE_0$。在非相对论、反应前后总惯性质量近似相等的模型下，体系质心速度为 $V_C=p/(m_a+m_A)$。由于总动量不能消失，至少必须留下质心平动动能
+\[
+ T_C=\frac{p^2}{2(m_a+m_A)}
+ =\frac{m_a}{m_a+m_A}E_0.
+\]
+其余能量 $E_0-T_C$ 才能用于吸收能 $Q$ 及末态相对动能。阈值处两产物在质心系中相对静止，因此
+\[
+ E_{\rm th}-\frac{m_a}{m_a+m_A}E_{\rm th}=Q.
+\]
+解得非相对论阈能公式
+\[
+ E_{\rm th}=Q\left(1+\frac{m_a}{m_A}\right).
+\]
+取质量数近似 $m_a:m_A=4:7$，
+\[
+ \boxed{E_{\rm th}=2.8\times\frac{11}{7}=4.4\,\mathrm{MeV}}.
+\]
+此题的 $Q>0$ 表示吸收能；若采用核反应中常见的“释放能为正”约定，反应 $Q$ 值应写为 $-2.8\,\mathrm{MeV}$，不可混淆。中间的 $\,{}^{11}\mathrm B$ 只是反应通道的一步，不改变初末态动量和能量限制。$m_A\to\infty$ 时反冲能趋零，阈能才趋于 $Q$。本题按质量数近似给出 $4.4\,\mathrm{MeV}$，不声称它包含精确核质量和相对论修正。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{开普勒运动的时间平均}
+求天体在一个开普勒周期内动能与引力势能的平均值。
+\label{r2ch02:pr:012}
+\begin{solution}
+令 $\kappa=GMm$、$V=-\kappa/r$。取中心天体静止的近似，运动天体的位力量为 $\mathcal G=m\vect r\cdot\vect v$。逐项求导，
+\[
+ \dot{\mathcal G}=mv^2+\vect r\cdot\vect F=2T-\frac{\kappa}{r}=2T+V.
+\]
+在完整椭圆周期 $\mathcal T$ 后，位置和速度都恢复，故
+$\langle\dot{\mathcal G}\rangle=[\mathcal G(\mathcal T)-\mathcal G(0)]/\mathcal T=0$，也就是
+$2\langle T\rangle=-\langle V\rangle$。又因总机械能恒定，
+$E=\langle T\rangle+\langle V\rangle$。联立两式得到
+\[
+ \boxed{\langle T\rangle=-E},\qquad
+ \boxed{\langle V\rangle=2E}.
+\]
+对半长轴 $a$ 的椭圆，$E=-GMm/(2a)$，故
+$\langle T\rangle=GMm/(2a)$、$\langle V\rangle=-GMm/a$。这里平均的是时间，不是对真近点角作均匀平均；天体在远心点附近停留更久。圆轨道是其特例，此时动能和势能本就不随时间变化。若两天体都运动，上式适用于质心系中的相对运动和总相对动能；实验室总动能还须加上恒定的质心平动部分。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{弱吸引气体的第二位力修正}
+若气体分子间存在微弱的球对称吸引势 $u(r)$，证明状态方程可写为
+\[
+ \left(p+\frac{a\nu^2}{V^2}\right)V=\nu RT,
+\]
+并讨论 $a$ 的形式。
+\label{r2ch02:pr:013}
+\begin{solution}
+这里把“引力”理解为分子间的吸引作用，而不是不经截断的牛顿万有引力。采用均匀、稀薄、弱相互作用近似，且势 $u(r)$ 在大距离衰减足够快、所写积分收敛。由于作用很弱，先把二体关联函数近似取为1；若存在强排斥硬核，还须另计排斥部分。
+
+设分子数为 $N$，粒子对的间距为 $r_{ij}$。一对中心力对系统位力的贡献为 $-r_{ij}u'(r_{ij})$。因此系统位力定理给出
+\[
+ 3pV=3Nk_{\rm B}T-\sum_{i<j}\langle r_{ij}u'(r_{ij})\rangle.
+\]
+均匀模型中，对一个指定分子，另一分子位于半径 $r$、厚度 $\dd r$ 球壳内的概率为 $4\pi r^2\dd r/V$。无序粒子对有 $N(N-1)/2\simeq N^2/2$ 对，故
+\[
+ \sum_{i<j}\langle r_{ij}u'(r_{ij})\rangle
+ \simeq\frac{N^2}{2V}\int_0^\infty r u'(r)\,4\pi r^2\dd r.
+\]
+代入并除以 $3V$，得到
+\[
+ p=\frac{Nk_{\rm B}T}{V}-\frac{2\pi N^2}{3V^2}
+ \int_0^\infty r^3u'(r)\,\dd r.
+\]
+用 $N=\nu N_A$ 比较可得
+\[
+ \boxed{a=\frac{2\pi N_A^2}{3}\int_0^\infty r^3u'(r)\,\dd r
+ =-2\pi N_A^2\int_0^\infty r^2u(r)\,\dd r}.
+\]
+第二个形式使用分部积分
+$\int r^3u'\dd r=[r^3u]_0^\infty-3\int r^2u\dd r$，
+要求两个端点的边界项消失。满足这些条件的吸引势 $u<0$ 给 $a>0$，使同温同密度下的压强低于理想气体值。$a\nu^2/V^2$ 与压强同量纲；$a$ 的量纲是压强乘摩尔体积的平方。
+
+严格按摩尔密度展开的术语，第二位力系数是
+$B_2(T)=-a/(RT)$，而 $a$ 是这里的吸引修正常数，两者并非同一个量。若 $u(r)=-C/r$ 一直延伸到无穷远，$\int r^2u(r)\dd r$ 发散，均匀短程气体的这一推导便不适用；需要指定有限体系及其密度分布，不能直接得到与系统大小无关的常数 $a$。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{磁场中的带电刚性偶极子}
+质量均为 $m$、电量分别为 $+q,-q$ 的两球用长 $l$ 的刚性轻杆相连，保持在一个平面内运动，受垂直于平面的匀强磁场 $\vect B$ 作用。体系的机械动量、对固定原点的角动量和动能分别为
+\[
+ \vect P=m\vect v_++m\vect v_-,\qquad
+ \vect L=\vect r_+\times m\vect v_++\vect r_-\times m\vect v_-,
+ \qquad E=\frac m2(v_+^2+v_-^2).
+\]
+判断三者是否守恒，并用质心位矢 $\vect R$ 及其导数、相对位矢 $\vect l=\vect r_+-\vect r_-$、角速度 $\vect\omega$ 和 $\vect B$ 表示相应导数。
+\label{r2ch02:pr:014}
+\begin{solution}
+两球位置为 $\vect r_\pm=\vect R\pm\vect l/2$。因为杆长固定，
+$\dot{\vect l}=\vect\omega\times\vect l$，所以
+$\vect v_\pm=\dot{\vect R}\pm(\vect\omega\times\vect l)/2$。
+杆的内力等大反向，沿杆方向，其合力和总力矩均为零。磁力分别为
+$\vect F_+=q\vect v_+\times\vect B$、
+$\vect F_-=-q\vect v_-\times\vect B$。外洛伦兹力之和为
+\[
+ \boxed{\dot{\vect P}=q(\vect v_+-\vect v_-)\times\vect B
+ =q(\vect\omega\times\vect l)\times\vect B},
+\]
+故机械动量一般不守恒。正负电荷之和为零，并不意味着不同速度下磁力必相互抵消。
+
+对固定原点求总力矩，把 $\vect r_\pm=\vect R\pm\vect l/2$ 代入，先按质心项和相对项分组：
+\[
+\begin{aligned}
+ \dot{\vect L}
+ &=\vect r_+\times\vect F_++\vect r_-\times\vect F_-\\
+ &=\vect R\times(\vect F_++\vect F_-)
+   +\frac{\vect l}{2}\times(\vect F_+-\vect F_-).
+\end{aligned}
+\]
+其中
+$\vect F_+-\vect F_-=q(\vect v_++\vect v_-)\times\vect B
+=2q\dot{\vect R}\times\vect B$，于是
+\[
+ \boxed{\dot{\vect L}=q\!\left[
+ \vect R\times((\vect\omega\times\vect l)\times\vect B)
+ +\vect l\times(\dot{\vect R}\times\vect B)
+ \right]}.
+\]
+角动量一般也不守恒。若只取关于质心的转动角动量，导数仅保留第二项
+$q\vect l\times(\dot{\vect R}\times\vect B)$；本题的 $\vect L$ 则包含质心绕原点的轨道角动量，不能删去第一项。
+
+最后看动能。每个洛伦兹力都与本球速度垂直。设杆对正球的力为 $f\hat{\vect l}$，对负球为其反向，则内力总功率为
+$f\hat{\vect l}\cdot(\vect v_+-\vect v_-)
+=f\hat{\vect l}\cdot(\vect\omega\times\vect l)=0$。因此
+\[
+ \boxed{\dot E=\sum_\pm q_\pm\vect v_\pm\cdot(\vect v_\pm\times\vect B)=0}.
+\]
+这里始终守恒的是机械动能；机械动量或角动量只在特定运动状态下可能不变。一个交叉检查是：因 $\vect B$ 匀强且不随时间变化，
+$\dd(\vect P-q\vect l\times\vect B)/\dd t=0$。这个带磁场项的守恒组合不等于机械动量本身。$B\to0$ 时，上述两个导数都趋零，恢复孤立刚性二球系统的结果。
+\end{solution}
+\end{practicebox}
+
+\section{配套习题：碰撞}
+\label{r2ch02:sec:practice-collision}
+
+\begin{practicebox}{弹性碰撞链的阻抗匹配}
+质量 $m_0$ 的质点以速度 $v$ 依次与 $n-1$ 个可任选质量的静止质点碰撞，最后撞上质量 $m_n$ 的静止质点。每次均为完全弹性正碰，且相邻质点只碰一次。怎样选择中间质量使 $m_n$ 的末速最大？并求此时各质点的末速度。
+\label{r2ch02:pr:015}
+\begin{solution}
+设 $u_i$ 为第 $i$ 个质点刚获得速度、尚未撞击下一个质点时的速度，$u_0=v$。由两体动量守恒和相对速度反号，
+\[
+ m_i u_i=m_i v_i^{\rm out}+m_{i+1}u_{i+1},\qquad
+ u_i=u_{i+1}-v_i^{\rm out}.
+\]
+消去 $v_i^{\rm out}$，得到传递速度
+\[
+ u_{i+1}=\frac{2m_i}{m_i+m_{i+1}}u_i.
+\]
+令 $r_i=m_{i+1}/m_i$，则 $\prod r_i=m_n/m_0$，且
+$u_n=v\prod_{i=0}^{n-1}2/(1+r_i)$。令 $s_i=\ln r_i$，约束为
+$\sum s_i=\ln(m_n/m_0)$。函数 $f(s)=\ln(1+\e^s)$ 的二阶导数
+$f''(s)=\e^s/(1+\e^s)^2>0$，由凸性，
+\[
+ \sum_{i=0}^{n-1}\ln(1+r_i)
+ =\sum_i f(s_i)\geqslant n f\!\left(\frac1n\sum_i s_i\right).
+\]
+等号只在所有 $r_i$ 相等时成立，所以这是全局最大末速而不只是驻点。记共同质量比为 $r=(m_n/m_0)^{1/n}$，得到
+\[
+ \boxed{m_i=m_0\left(\frac{m_n}{m_0}\right)^{i/n}},\qquad
+ \boxed{u_n=v\left[\frac{2}{1+(m_n/m_0)^{1/n}}\right]^n}.
+\]
+此时 $u_i=v[2/(1+r)]^i$；第 $i$ 个质点撞过下一个之后，其末速度为
+\[
+ \boxed{v_i^{\rm out}=\frac{1-r}{1+r}
+       \left(\frac2{1+r}\right)^i v,\quad i=0,\ldots,n-1}.
+\]
+最后一个质点的末速度就是上述 $u_n$。$r>1$ 时前面的质点反弹，$r<1$ 时仍前进，$r=1$ 时每次交换速度，只有最后一个质点运动。质量按几何级数变化，正是逐级传递的最优选择。由每次碰撞的守恒关系逐项相加，总能量和总动量仍守恒；“中间质量可选”并不提供额外能量。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{碰撞耗能与弹簧支承斜面}
+（1）两质点作非弹性正碰，碰前接触相对速率为 $v$，碰后分离相对速率为 $v'$，传递冲量为 $I$，求损失能量。
+
+（2）重力竖直向下，等腰直角斜面倚靠粗糙竖墙，下端由竖直弹簧支承，初始处于平衡。两直角边均长 $a$，墙面动摩擦因数 $\mu=0.5$；弹簧原长 $2a$、平衡长度 $a$，故斜面水平底边距地面 $a$。地面 $A$ 点在斜面最右端右侧 $2.5a$ 处，石子从 $A$ 抛出，在斜面斜边中点 $B$ 垂直斜面发生完全弹性碰撞；石子与斜面质量相等，碰后斜面向下。求石子反弹后的地面落点，以及弹簧相对于碰前平衡位置的最大再次压缩量。
+\label{r2ch02:pr:016}
+\begin{solution}
+（1）由式~\eqref{r2ch02:eq:027}，两质点总动能变化为 $I(v'-v)/2$，所以
+\[
+ \boxed{E_{\rm loss}=\frac I2(v-v')}.
+\]
+
+（2）采用图~\ref{r2ch02:fig:008} 的坐标：墙为 $x=0$、地面为 $y=0$，斜面三个顶点为 $(0,a),(a,a),(0,2a)$，因而
+$A=(3.5a,0)$、$B=(a/2,3a/2)$。设撞前速度为 $(-w,-w)$，其中 $w>0$，符合垂直斜边且向左下。飞行时间由水平位移给出 $t_1=3a/w$；由竖直末速度关系，初竖直速度为 $-w+gt_1$。所以
+\[
+ \frac32a=(-w+gt_1)t_1-\frac12gt_1^2
+ =-3a+\frac{9ga^2}{2w^2},
+\]
+解得 $w^2=ga$，即
+\[
+ \vect v_-=-\sqrt{ga}(\uvec e_x+\uvec e_y).
+\]
+\figWedgeImpact
+取斜面对石子的单位法向 $\uvec n=(\uvec e_x+\uvec e_y)/\sqrt2$，冲量为 $J\uvec n$。石子速度改变为 $J\uvec n/m$，而斜面受到相反的冲量。墙的法向冲量 $K_w=J/\sqrt2$ 抵消斜面的水平冲量；斜面向下滑，墙摩擦冲量向上，大小为 $\mu K_w$。忽略有限重力和弹簧力在短碰撞中的冲量，斜面向下速度满足
+\[
+ V=\frac{(1-\mu)J}{\sqrt2m}.
+\]
+石子碰后的两速度分量相同，均为 $-w+J/(\sqrt2m)$，斜面速度为 $(0,-V)$。接触法向恢复系数取1，故
+\[
+ \left[\left(-w+\frac{J}{\sqrt2m},-w+\frac{J}{\sqrt2m}\right)
+       -(0,-V)\right]\cdot\uvec n=\sqrt2w.
+\]
+即 $-\sqrt2w+J/m+V/\sqrt2=\sqrt2w$。再代入 $V$，得
+\[
+ \frac Jm=\frac{4\sqrt2}{3-\mu}\sqrt{ga}.
+\]
+在 $\mu=1/2$ 时，石子碰后两分量均为 $0.6\sqrt{ga}$，斜面速度为 $0.8\sqrt{ga}$。石子从 $B$ 点高度 $3a/2$ 作斜抛，令 $\tau=t\sqrt{g/a}$，落地条件
+$3/2+0.6\tau-\tau^2/2=0$，故
+\[
+ \tau=0.6+\sqrt{3.36},\qquad
+ \boxed{x_{\rm land}=\frac a2+0.6a\tau\approx1.960a}
+\]
+（从墙量起）。图中的反弹轨迹必须从 $B$ 出发，不能把斜面底边错放到地面，少算一段高度 $a$。
+
+平衡时没有水平挤压力，墙摩擦为零，故 $ka=mg$。碰撞结束后，石子已离开，竖直弹簧和重力也不产生水平压墙力；无额外预紧力时，墙的法向力和摩擦力均为零。设相对碰前平衡位置的向下位移为 $z$，则
+\[
+ m\ddot z=mg-k(a+z)=-kz,\qquad z(0)=0,\quad\dot z(0)=V.
+\]
+由 $\tfrac12kz_{\max}^2=\tfrac12mV^2$，附加最大压缩量为
+\[
+ \boxed{\Delta x_{\max}=V\sqrt{\frac mk}=0.8a},
+\]
+故弹簧相对原长的最大总压缩为 $1.8a$。这时底边仍离地 $0.2a$，尚未触地。虽然石子与斜面的法向恢复系数为1，墙面摩擦仍耗散能量；两者碰后总动能为 $(0.36+0.32)mga=0.68mga$，碰前为 $mga$，差值 $0.32mga$ 正好等于墙摩擦冲量与斜面平均接触速度给出的耗能，不能另加“两物体总动能守恒”这一错误条件。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{铰接正六边形的冲量响应}
+六根全同均匀杆光滑铰接成正六边形。静止时在底边中点施加竖直瞬时冲量，使底边获得向上速度 $v$。求顶边速度 $v'$。
+\label{r2ch02:pr:017}
+\begin{solution}
+设每根杆长 $b$、质量 $m$。图~\ref{r2ch02:fig:009} 的顶边和底边均水平。左右对称性保证上下两杆瞬时作竖直平移；中层右铰点水平速度取向右为 $U_m$，左铰点则为 $-U_m$，二者竖直速度同为 $V_m$。右下斜杆与水平面成 $60^\circ$，长度不变要求端点相对速度沿杆的投影为零：
+\[
+ \frac12U_m+\frac{\sqrt3}{2}(V_m-v)=0.
+\]
+右上斜杆相应给出
+$\tfrac12U_m+\tfrac{\sqrt3}{2}(v'-V_m)=0$。联立得
+\[
+ V_m=\frac{v+v'}2,\qquad U_m=\frac{\sqrt3}{2}(v-v').
+\]
+\figHexagonImpulse
+对均匀杆上距端点 $A$ 为 $\xi b$ 的点，其速度为
+$\vect v(\xi)=(1-\xi)\vect v_A+\xi\vect v_B$。积分 $\tfrac12m\int_0^1v(\xi)^2\dd\xi$ 得到
+\[
+ T_{AB}=\frac m6(v_A^2+\vect v_A\cdot\vect v_B+v_B^2).
+\]
+上下两杆贡献 $m(v^2+v'^2)/2$；两根下斜杆各贡献
+$m[v^2+vV_m+U_m^2+V_m^2]/6$，两根上斜杆各贡献
+$m[v'^2+v'V_m+U_m^2+V_m^2]/6$。代入 $U_m,V_m$ 并合并，六杆总动能为
+\[
+ T=\frac m3(5v^2-vv'+5v'^2).
+\]
+可取底边和顶边的竖直坐标为两个独立广义坐标，其速度分别为 $v,v'$。冲量只作用于底边中点，对顶边坐标的广义冲量为零；理想铰链内冲量的总虚功抵消。积分拉格朗日方程，碰前广义动量为零，故碰后
+$\partial T/\partial v'=0$，即 $m(-v+10v')/3=0$。所以
+\[
+ \boxed{v'=\frac v{10}}.
+\]
+方向向上，与底边相同但速度较小。还可用总竖直动量检查：六杆总动量为 $3m(v+v')=3.3mv$；底边广义冲量则为 $\partial T/\partial v=m(10v-v')/3=3.3mv$，二者一致。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{带自转实心球的粗糙碰撞}
+半径 $R$ 的实心匀质球从球底离地高度 $h$ 处竖直下落，初始竖直速度为零，有绕水平轴的初角速度 $\omega_0$。球—地恢复系数为 $e$、摩擦因数为 $\mu$。求第二落点与第一落点的水平距离，并把反弹方向与地面的夹角 $\theta$ 和 $\omega_0$ 的关系画成图。
+\label{r2ch02:pr:018}
+\begin{solution}
+取初始自转为图~\ref{r2ch02:fig:010}(a) 所示的顺时针，$\omega_0\geqslant0$；球底因自转而向左滑，地面摩擦冲量向右。反向自转时全部水平运动镜像反向，距离和锐角公式用 $|\omega_0|$。$h$ 表示球心下落的高度差，而不是初始球心离地高度；若给的是后者 $h_C$，下式应换成 $h=h_C-R$。
+
+碰前竖直速率为 $u=\sqrt{2gh}$。竖直向上取正，由恢复系数定义，碰后竖直速度为 $v_y=eu$，所以法向冲量为
+$J_n=m[eu-(-u)]=m(1+e)u$。实心球的质心转动惯量为 $I_C=2mR^2/5$。设向右的切向冲量已累积到 $J_t$，则
+\[
+ v_x=\frac{J_t}{m},\qquad
+ \omega=\omega_0-\frac{RJ_t}{I_C}
+       =\omega_0-\frac{5J_t}{2mR}.
+\]
+接触点对地的水平速度为
+\[
+ v_{P,x}=v_x-R\omega=\frac{7J_t}{2m}-R\omega_0.
+\]
+消除滑动要求 $v_{P,x}=0$，故所需切向冲量为
+\[
+ J_* =\frac{2}{7}mR|\omega_0|.
+\]
+采用库仑冲量模型：若全程滑动，切向冲量为 $\mu J_n$；若先达到无滑动，且余下接触过程中不需额外切向冲量，则冲量停止增长。因此实际冲量大小为
+\[
+ J_t=\min\!\left(J_*,\mu m(1+e)u\right),\qquad v_x=J_t/m,\quad v_y=eu.
+\]
+碰后球心从高度 $R$ 开始抛体运动：
+\[
+ x=v_xt,\qquad y=R+eu\,t-\frac12gt^2.
+\]
+第二次接触地面时球心再次位于 $y=R$，不是 $y=0$。在 $e>0,h>0$ 时飞行时间为 $2eu/g$，故
+\[
+ \boxed{X=\frac{2eu}{g}\frac{J_t}{m}},\qquad
+ \boxed{\tan\theta=\frac{eu}{J_t/m}}.
+\]
+令 $\eta=R|\omega_0|/u$，便有
+\[
+ \tan\theta=
+ \begin{cases}
+  7e/(2\eta),&\eta\le\frac72\mu(1+e),\\[2pt]
+  e/[\mu(1+e)],&\eta>\frac72\mu(1+e).
+\end{cases}
+\]
+\figSphereBounce
+第一支表示滑动在碰撞结束前消失，角度从 $\pi/2$ 随 $|\omega_0|$ 增加而下降；第二支表示全程滑动，角度达到平台 $\arctan[e/(\mu(1+e))]$，不再随自转增大而改变。图(b) 用 $\eta$ 作横轴，画出 $e=0.75,\mu=0.20$ 的示例曲线；拐点 $\eta_*=\tfrac72\mu(1+e)$ 与两段公式完全对应。任意给定 $e,\mu$ 都按同一规则画图；若横轴取带符号的 $\omega_0$，关于纵轴对称。
+
+$\omega_0=0$ 或 $\mu=0$ 时无水平冲量，$X=0$，反弹竖直；$e=0$ 时没有一次离地再落地的飞行过程，应取水平飞行距离为零，而不把上面的反弹角公式用于不存在的飞行。$J_t/m$ 的量纲为速度，乘 $2eu/g$ 后为长度。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{飞行中 $\pi$ 介子的二体衰变（选读）}
+动量为 $200\,\mathrm{GeV}/c$ 的 $\pi$ 介子经 $\pi\to\mu+\nu$ 衰变。已知 $\tau_\pi=2.60\times10^{-8}\,\mathrm s$，$m_\pi c^2=139.6\,\mathrm{MeV}$，$m_\mu c^2=105.7\,\mathrm{MeV}$，中微子静质量忽略。求平均飞行距离、$\mu$ 相对母粒子方向的最大角度，以及中微子实验室动量范围。
+\label{r2ch02:pr:019}
+\begin{solution}
+高能弱相互作用中，可利用 $\pi$ 介子和 $K$ 介子在飞行中的衰变产生中微子束。本题研究其中的 $\pi\to\mu+\nu$ 通道。这里的 $200\,\mathrm{GeV}/c$ 是动量，乘 $c$ 后才是能量，不能把其单位写成质量单位 $\mathrm{GeV}/c^2$。
+
+（1）令母粒子实验室动量为 $p_\pi$、总能量为 $E_\pi$，速度为 $\beta c$。相对论能量—动量关系给出
+\[
+ \gamma=\frac{\sqrt{p_\pi^2c^2+m_\pi^2c^4}}{m_\pi c^2}\approx1432.67,\qquad
+ \beta\approx0.999999756.
+\]
+其中 $\gamma=(1-\beta^2)^{-1/2}$。题给 $\tau_\pi$ 为母粒子静止系的平均寿命，实验室平均寿命为 $\gamma\tau_\pi$，故平均飞行距离为
+\[
+ \boxed{\ell=\beta\gamma c\tau_\pi\approx1.12\times10^4\,\mathrm m}.
+\]
+（2）先在母粒子静止系中求末态动量。初始总动量为零，所以 $\mu$ 子和无静质量中微子的动量等大反向，大小均记为 $p^*$。中微子能量为 $p^*c$，能量守恒为
+\[
+ m_\pi c^2=E_\mu^*+p^*c,\qquad
+ E_\mu^{*2}=m_\mu^2c^4+p^{*2}c^2.
+\]
+将第一式的 $E_\mu^*=m_\pi c^2-p^*c$ 代入第二式，展开并抵消 $p^{*2}c^2$ 项，得到
+\[
+ p^*c=\frac{m_\pi^2-m_\mu^2}{2m_\pi}c^2=29.784\,\mathrm{MeV},\quad
+ E_\mu^*=109.816\,\mathrm{MeV}.
+\]
+取母粒子运动方向为 $x$ 轴，设静止系中 $\mu$ 子发射角为 $\alpha$。沿 $x$ 的洛伦兹变换为
+\[
+ p_x=\gamma\left(p^*\cos\alpha+\frac{\beta E_\mu^*}{c}\right),
+ \qquad p_\perp=p^*\sin\alpha.
+\]
+横向动量不变，因此实验室偏角满足
+\[
+ \tan\theta=\frac{p^*c\sin\alpha}
+ {\gamma(\beta E_\mu^*+p^*c\cos\alpha)}.
+\]
+本题 $\beta E_\mu^*>p^*c$，所有 $\mu$ 子在实验室中均向前。对 $\alpha$ 求导，令分子
+$\beta E_\mu^*\cos\alpha+p^*c=0$，得最大值位置
+$\cos\alpha_*=-p^*c/(\beta E_\mu^*)$，代回即有
+\[
+ \tan\theta_{\max}=\frac{p^*c}{\gamma\sqrt{\beta^2E_\mu^{*2}-p^{*2}c^2}},
+\]
+故 $\boxed{\theta_{\max}\approx1.97\times10^{-4}\,\mathrm{rad}=0.0113^\circ}$。最大偏角不是静止系中恰好横向发射时的偏角；这里先优化再代入，避免漏掉分母随方向的变化。
+
+（3）设中微子在母粒子静止系中的发射角为 $\alpha_\nu$。其能量和动量大小在实验室满足
+$E_\nu=p_\nu c=\gamma p^*c(1+\beta\cos\alpha_\nu)$。
+这是 $\cos\alpha_\nu$ 的线性函数，所以前、后向发射分别给最大、最小动量：
+\[
+ \boxed{p_{\nu,\min}=\gamma p^*(1-\beta)\approx0.0104\,\mathrm{MeV}/c},
+\quad
+ \boxed{p_{\nu,\max}=\gamma p^*(1+\beta)\approx85.34\,\mathrm{GeV}/c}.
+\]
+最小值计算时可用 $\gamma(1-\beta)=1/[\gamma(1+\beta)]$，避免两个接近1的数相减损失精度。母粒子静止的极限下两端都回到 $p^*$；高能极限下中微子的最小、最大动量分别随 $1/\gamma$ 和 $\gamma$ 变化。所用洛伦兹变换和固有寿命概念将在相对论章进一步展开。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{转板端点的周期横跳}
+“反复横跳”（Repetition Side Step）情景中，坂本在可绕中心自由转动的匀质木板上周期地从一端跳到另一端，每次起跳速度都垂直木板，人的质量等于木板质量。木板在竖直平面内转动，重力竖直向下。求实现图示左右对称周期运动时，起跳瞬间木板与竖直方向的夹角。
+\label{r2ch02:pr:020}
+\begin{solution}
+人离板后受重力，应作抛体运动，不能用直线连接起落点。设木板长 $2b$、质量为 $m$，人也视为质量为 $m$ 的质点，转轴 $O$ 固定且无摩擦。木板质心就在轴上，重力对轴力矩为零，所以人在空中时木板匀速转动。
+
+取 $x$ 向右、$y$ 向上。图~\ref{r2ch02:fig:011} 中左起跳点和右落点分别为
+\[
+ A=(-b\sin\theta,b\cos\theta),\qquad
+ B=(b\sin\theta,b\cos\theta).
+\]
+每次起跳速率设为 $u$，从 $A$ 起跳的速度为 $(u\cos\theta,u\sin\theta)$，正好与 $OA$ 垂直。起落同高，所以飞行时间 $\tau=2u\sin\theta/g$；水平位移为 $2b\sin\theta$，故
+\[
+ u\cos\theta\,\tau=2b\sin\theta
+ \quad\Longrightarrow\quad
+ \boxed{u^2\cos\theta=gb}.
+\]
+\figSideStep
+
+再由碰撞瞬间的角动量关系求木板角速度。设从左到右飞行时木板逆时针角速度为 $\omega>0$，则
+$J= m(2b)^2/12=mb^2/3$。到达 $B$ 时，人的速度为 $(u\cos\theta,-u\sin\theta)$，对 $O$ 的角动量为 $-mbu$。左右对称的下一半周期要求人向左上方以 $(-u\cos\theta,u\sin\theta)$ 起跳，角动量变成 $+mbu$，同时木板角速度反向为 $-\omega$。
+
+把落脚与再次起跳合并为很短过程，重力角冲量可忽略，轴的冲量对 $O$ 无力矩，因此
+\[
+ J\omega-mbu=-J\omega+mbu,\qquad
+ \boxed{\omega=\frac{mbu}{J}=\frac{3u}{b}}.
+\]
+“人和板等质量”在这里进入动力学，不能仅凭几何对称性使用它。
+
+若在两次起跳之间木板不额外转整圈，为让另一个物理端点从右下方转到 $B$，木板须逆时针转过 $\pi-2\theta$。因此
+\[
+ \omega\tau=\pi-2\theta.
+\]
+代入 $\omega=3u/b$、$\tau=2u\sin\theta/g$，再用 $u^2\cos\theta=gb$ 消去 $u$，得到
+\[
+ \boxed{6\tan\theta=\pi-2\theta},\qquad
+ \boxed{\theta\approx0.37834\,\mathrm{rad}=21.677^\circ}.
+\]
+左侧随 $\theta\in(0,\pi/2)$ 严格增大，右侧严格减小，故最短转动的对称周期解唯一。人的起跳、落地速率相同；周期接触前后人的速率不变、板的角速率仅反向，总动能也相同，与理想周期运动一致。
+
+如果允许木板在一次飞行中额外转 $n$ 整圈，则角度条件改为
+$6\tan\theta=(2n+1)\pi-2\theta$，$n=0,1,2,\ldots$，各有一个解。通常图示的是 $n=0$ 的最短转动；没有“转几圈”的限制时，不能把 $21.677^\circ$ 说成所有可能周期运动的唯一角度。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{墙—小块—大块间的频繁弹性碰撞}
+小物块质量为 $m$、初速 $u_0$，在固定墙和初始静止的大物块之间频繁碰撞。大物块质量 $M=km$，初距墙 $x_0$，地面完全光滑，每次碰撞完全弹性，且 $k\gg1$。求频繁碰撞近似下大物块到达 $x$ 的时间，并分别估计大小物块之间的碰撞次数和计入撞墙后的总碰撞次数。
+\label{r2ch02:pr:021}
+\begin{solution}
+（1）图~\ref{r2ch02:fig:012} 中，记大物块瞬时速度为 $V$，小物块在两次碰撞之间的速率为 $u$。在 $V/u\ll1$、$k\gg1$ 的阶段，一次往返用时约 $2x/u$。小物块撞向缓慢后退的大物块时，由弹性碰撞的相对速度反号，其反弹速率约减少 $2V$，所以
+\[
+ \frac{\dd u}{\dd t}\simeq-\frac{2V}{2x/u}=-\frac{uV}{x}.
+\]
+再用 $\dot x=V$，得到 $\dd u/\dd x=-u/x$，积分为
+\[
+ ux=u_0x_0.
+\]
+这是一维往返运动的绝热关系，不能误写成 $u^2x$ 不变。系统机械能守恒给出
+\[
+ \frac12mu_0^2=\frac12mu^2+\frac12kmV^2.
+\]
+消去 $u=u_0x_0/x$，得到
+\[
+ V(x)=\frac{u_0}{\sqrt k}\sqrt{1-\frac{x_0^2}{x^2}}.
+\]
+\figFrequentCollisions
+于是，从连续模型中 $x=x_0$ 的起算时刻到达 $x$ 所需时间为
+\[
+ t=\frac{\sqrt k}{u_0}\int_{x_0}^{x}
+ \frac{\xi\,\dd\xi}{\sqrt{\xi^2-x_0^2}}
+ =\boxed{\frac{\sqrt k}{u_0}\sqrt{x^2-x_0^2}}.
+\]
+小物块初始位置没有给出，所以到第一次撞击的等待时间并不固定，其量级为 $x_0/u_0$。连续模型研究的慢时间尺度为 $\sqrt k\,x_0/u_0$，前者相对较小。近似还要求
+\[
+ \frac Vu=\frac{\sqrt{x^2-x_0^2}}{\sqrt k\,x_0}\ll1,
+\]
+所以接近最后几次碰撞时不能继续无条件外推。初始阶段该式给出
+$x-x_0\simeq u_0^2t^2/(2kx_0)$，其加速度 $u_0^2/(kx_0)$ 也等于平均冲量率 $mu_0^2/x_0$ 除以 $M$，相互核验一致。
+
+（2）次数可直接从精确的弹性碰撞映射估计。用质量加权速度坐标
+$X=\sqrt m\,v_m$、$Y=\sqrt M\,V$，能量守恒使 $(X,Y)$ 位于定半径圆上。令
+$\alpha=\arctan(1/\sqrt k)$。一次两物块碰撞再接一次撞墙，使角位置增加 $2\alpha$；初始点为 $(\sqrt m\,u_0,0)$，到不再发生追碰时总转角接近 $\pi/2$。因此两物块之间碰撞次数为
+\[
+ \boxed{N_{\rm block}=\frac{\pi}{4\alpha}+O(1)
+ \simeq\frac\pi4\sqrt k}.
+\]
+除去末尾有限次差异，每次两物块碰撞之间有一次撞墙，故计入墙的全部碰撞次数为
+\[
+ \boxed{N_{\rm all}=\frac{\pi}{2\alpha}+O(1)
+ \simeq\frac\pi2\sqrt k}.
+\]
+两个“总次数”的口径不同，不能把 $\pi\sqrt k/2$ 当成仅大小物块之间的次数。例如 $k=100$，精确逐次碰撞给出两物块碰撞8次、撞墙7次，总计15次，分别与上述两种近似一致。$O(1)$ 表示取整、初末事件造成的有限次修正，不表示可以忽略一个二倍因子。
+\end{solution}
+\end{practicebox}

@@ -1,0 +1,307 @@
+% Original problem figures and added solution diagrams for Section 3.1.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solimpulse/.style={-{Latex[length=2.4mm]},draw=DeepBlue,line width=1.25pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+
+\newcommand{\probdiagThreeOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \draw[solbody] (-2.8,1.2)--(0,1.2)--(0,-1.2)--(3,-1.2);
+ \draw[DeepBlue,line width=1pt] (-1.8,1.22)--(.9,1.22);
+ \draw[solbody,fill=SoftGray] (-.82,1.24) rectangle (-.08,1.85);
+ \node[sollabel] at (-.45,1.55) {铁块};
+ \draw[solflow] (.3,1.65)--(1.5,1.65) node[midway,above=3pt,sollabel] {$v$：抽纸速度};
+ \node[sollabel] at (1.4,.96) {纸条};
+ \draw[solbody,fill=SoftGray] (1.65,-1.2) rectangle (2.35,-.62);
+ \node[sollabel] at (2,-.35) {$P$};
+\end{tikzpicture}
+\diagcaption{题图}{纸条从桌边抽出，铁块随后从桌边落下。}\label{ch07:fig:probdiagThreeOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \draw[solbody] (-1.1,2.2)--(0,2.2)--(0,0);
+ \draw[axis] (0,0)--(6.7,0) node[right,sollabel] {$x$};
+ \draw[curve,domain=0:1,samples=60] plot ({3*\x},{2.2*(1-\x*\x)});
+ \draw[TextGray,line width=.9pt,domain=0:1,samples=60] plot ({5.5*\x},{2.2*(1-\x*\x)});
+ \draw[solflow] (0,2.2)--(1.3,2.2) node[midway,above=4pt,sollabel] {$v_x$};
+ \node[sollabel,below=4pt] at (3,0) {$O$：抽速 $2v$};
+ \node[sollabel,below=4pt] at (5.5,0) {$P$：抽速 $v$};
+ \node[sollabel] at (3.1,3.05) {$I_f=f\tau$；接触时间较短，离桌速度较小};
+\end{tikzpicture}
+\diagcaption{解图}{抽得越快，摩擦力作用越短，离桌速度和水平射程越小。}\label{ch07:fig:soldiagThreeOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwo}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[x=.42cm,y=.25cm]
+  \draw[axis] (0,-5.5)--(0,9.7) node[above,sollabel] {$F/\mathrm N$};
+  \draw[axis] (0,0)--(16.5,0) node[right,sollabel] {$t/\mathrm s$};
+  \draw[curve] (0,8)--(5,8)--(5,5)--(9,5)--(9,0)--(15,0);
+  \draw[draw=TextGray,line width=.9pt] (0,-4)--(15,-4);
+  \draw[solgeom] (5,.5)--(5,8.5) (9,.5)--(9,5.5);
+  \foreach \x in {5,9,15}{\draw[solgeom] (\x,-4.5)--(\x,-1.7);}
+  \foreach \x/\lab in {5/5,9/9,15/15}{\draw (\x,.25)--(\x,-.25) node[below,sollabel] {\lab};}
+  \node[sollabel] at (2.5,8.8) {$F_1=8$}; \node[sollabel] at (7,5.8) {$F_2=5$};
+  \node[sollabel] at (12,-4.8) {$f=4$（向左）};
+\end{tikzpicture}
+\diagcaption{解图}{应用力的正冲量面积等于摩擦力的负冲量面积。}\label{ch07:fig:soldiagThreeTwo}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeThree}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody,fill=white] (-.48,1.55) rectangle (.48,2.25); \node[sollabel] at (0,1.90) {$m_1$};
+  \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt},line width=.75pt] (0,1.55)--(0,-.55);
+  \draw[solbody,fill=white] (-.48,-1.25) rectangle (.48,-.55); \node[sollabel] at (0,-.90) {$m_2$};
+  \draw[solforce] (1.0,1.9)--++(0,-.9) node[below,sollabel] {$v_1$};
+  \node[sollabel] at (-1.25,.5) {$k,\ l_0$};
+\end{tikzpicture}
+\diagcaption{题图}{弹簧初态未知的二物体系统由静止竖直下落。}\label{ch07:fig:probdiagThreeThree}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeThree}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+  \draw[solbody,rounded corners=1.5pt] (-1.45,-1.2) rectangle (1.45,1.25);
+  \node[sollabel] at (0,.55) {$m_1+m_2+$ 弹簧};
+  \draw[solimpulse] (0,.15)--++(0,-1.65) node[below,sollabel] {$(m_1+m_2)gt$};
+  \node[sollabel,align=left] at (3.9,.2) {$P_f=m_1v_1+m_2v_2$\\（向下为正）};
+  \node[sollabel] at (2.05,.2) {$\Longrightarrow$};
+\end{tikzpicture}
+\diagcaption{解图}{把弹簧力纳入系统内部，只保留重力的外冲量。}\label{ch07:fig:soldiagThreeThree}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeFour}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \begin{scope}[rotate=25]
+  \draw[solbody] (-3,0)--(3.2,0);
+  \draw[solbody,fill=SoftGray] (-2.2,0) rectangle (-1.25,.7);
+  \draw[solbody,fill=SoftGray] (.35,0) rectangle (1.3,.7);
+  \draw[DeepBlue] (-1.25,.35)--(.35,.35);
+  \node[sollabel,rotate=0] at (-1.725,.35) {$A$};
+  \node[sollabel,rotate=0] at (.825,.35) {$B$};
+  \draw[solforce] (1.3,.35)--(2.8,.35) node[midway,above=4pt,sollabel] {$F$};
+ \end{scope}
+\end{tikzpicture}
+\diagcaption{题图}{$A$、$B$ 沿斜面上滑，经过 $t_1$ 后连接线断裂。}\label{ch07:fig:probdiagThreeFour}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFour}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=.53cm]
+ \draw[axis] (0,0)--(5.7,0) node[right,sollabel] {$t$};
+ \draw[axis] (0,0)--(0,8) node[above,sollabel] {$v$};
+ % Illustrative ratio m_A=m_B and t_2=t_1; all slopes share these parameters.
+ \draw[curve] (0,0)--(2,2);
+ \draw[curve] (2,2)--(4,0);
+ \draw[TextGray,line width=.9pt] (2,2)--(4,8);
+ \draw[solgeom] (0,2)--(2,2)--(2,0) (4,0)--(4,8);
+ \node[sollabel,left=4pt] at (0,2) {$at_1$};
+ \node[sollabel,below=4pt] at (2,0) {$t_1$};
+ \node[sollabel,below=4pt] at (4,0) {$t_1+t_2$};
+ \node[sollabel,anchor=west] at (4.15,7.3) {$B$：$a_B>a$};
+ \node[sollabel,anchor=west] at (4.15,1.2) {$A$：减速至零};
+\end{tikzpicture}
+\diagcaption{解图}{断线后 $B$ 的斜率增大；图取 $m_A=m_B,\ t_2=t_1$ 显示相同定性关系。}\label{ch07:fig:soldiagThreeFour}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeFive}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.74]
+  \draw[solbody] (-3.0,-.85)--(3.15,-.85);
+  \draw[solbody,fill=white] (-2.15,-.84) rectangle (-1.3,-.12); \node[sollabel] at (-1.72,-.48) {$A$};
+  \draw[solbody,fill=white] (1.35,-.84) rectangle (2.20,-.12); \node[sollabel] at (1.78,-.48) {$B$};
+  \draw[solforce] (-1.30,-.48)--++(1.25,0) node[right,sollabel] {$v_0$};
+  \node[sollabel] at (-1.72,-1.15) {$m_A=2\,\mathrm{kg}$};
+  \node[sollabel] at (1.78,-1.15) {$m_B=1\,\mathrm{kg}$};
+\end{tikzpicture}
+\diagcaption{题图}{箱子 $A$ 在光滑面上冲向静止的箱子 $B$。}\label{ch07:fig:probdiagThreeFive}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFive}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \node[solpanel] at (-2.4,1.6) {碰前};
+ \node[solpanel] at (2.4,1.6) {碰后};
+ \draw[solbody,fill=SoftGray] (-3.5,-.35) rectangle (-2.6,.35);
+ \draw[solbody,fill=SoftGray] (-1.8,-.35) rectangle (-.9,.35);
+ \node[sollabel] at (-3.05,0) {$A$}; \node[sollabel] at (-1.35,0) {$B$};
+ \draw[solbody,fill=SoftGray] (1,-.35) rectangle (1.9,.35);
+ \draw[solbody,fill=SoftGray] (2.6,-.35) rectangle (3.5,.35);
+ \node[sollabel] at (1.45,0) {$A$}; \node[sollabel] at (3.05,0) {$B$};
+ \draw[solimpulse] (-3.5,.85)--(-.9,.85) node[midway,above=3pt,sollabel] {$P_i=m_Av_0$};
+ \draw[solimpulse] (1,.85)--(3.6,.85) node[midway,above=3pt,sollabel] {$P_f=P_i$};
+ \node[sollabel] at (0,-1.05) {以上箭头表示系统总动量；$I_x^{\rm ext}=0$};
+\end{tikzpicture}
+\diagcaption{解图}{碰撞内力冲量相消，系统总动量由碰前原样传到碰后。}\label{ch07:fig:soldiagThreeFive}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeSix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \coordinate (A) at (-2.4,.8); \coordinate (B) at (0,.8);
+ \coordinate (C) at ($(B)+(-60:2.4)$);
+ \draw[solbody] (A)--(B)--(C); \draw[solgeom] (B)--++(1.8,0);
+ \draw[TextGray] ($(B)+(0:.65)$) arc (0:-60:.65);
+ \draw[TextGray] ($(B)+(180:.5)$) arc (180:300:.5);
+ \foreach \p in {A,B,C}{\fill[Ink] (\p) circle (2.5pt);}
+ \node[sollabel,above=7pt] at (A) {$A$}; \node[sollabel,above=7pt] at (B) {$B$};
+ \node[sollabel,below=6pt] at (C) {$C$};
+ \node[sollabel] at (.95,.34) {$60^\circ$}; \node[sollabel] at (-.8,.05) {$120^\circ$};
+ \draw[solimpulse] (A)--++(-1.1,0) node[midway,above=4pt,sollabel] {$I$};
+\end{tikzpicture}
+\diagcaption{题图}{冲量 $I$ 沿 $BA$ 方向；两根绳在冲击后仍不可伸长。}\label{ch07:fig:probdiagThreeSix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \coordinate (A) at (-2.7,1); \coordinate (B) at (0,1);
+ \coordinate (C) at ($(B)+(-60:2.7)$);
+ \draw[solgeom] (A)--(B)--(C);
+ \foreach \p in {A,B,C}{\fill[Ink] (\p) circle (2.4pt);}
+ \node[sollabel,below=8pt] at (A) {$A$}; \node[sollabel,above=7pt] at (B) {$B$};
+ \node[sollabel,below=7pt] at (C) {$C$};
+ \draw[solimpulse] (A)--++(-1.05,0) node[midway,above=4pt,sollabel] {$I$};
+ \draw[solimpulse] (A)--++(.95,0) node[midway,above=4pt,sollabel] {$J_1$};
+ \draw[solimpulse] (B)--++(-.95,0) node[midway,above=4pt,sollabel] {$J_1$};
+ \draw[solimpulse] (B)--++(-60:1) node[midway,right=5pt,sollabel] {$J_2$};
+ \draw[solimpulse] (C)--++(120:1) node[midway,right=5pt,sollabel] {$J_2$};
+ \draw[solflow] (2.4,.7)--++(-60:.85) node[right=4pt,sollabel] {$\hat{\boldsymbol u}$};
+ \draw[solflow] (2.4,.7)--++(.95,0) node[right=3pt,sollabel] {$+x$};
+\end{tikzpicture}
+\diagcaption{解图}{先对三球分别列冲量方程，再用两条绳方向上的速度约束闭合方程组。}\label{ch07:fig:soldiagThreeSix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSeven}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ % g=1, v0=2, theta=45 degrees, wall at s0=2.5 in drawing units.
+ \coordinate (Q) at (2.5,.9375);
+ \draw[solbody] (-.3,0)--(2.5,0)--(2.5,2.8);
+ \draw[curve,domain=0:2.5,samples=60] plot ({\x},{\x-\x*\x/4});
+ \draw[solflow] (0,0)--(45:1.1) node[above left=3pt,sollabel] {$v_0$};
+ \draw[TextGray] (.5,0) arc (0:45:.5); \node[sollabel] at (.85,.22) {$\theta$};
+ \draw[<->,TextGray] (0,-.45)--(2.5,-.45) node[midway,below=3pt,sollabel] {$s_0$};
+ \fill[Ink] (Q) circle (2pt) node[below left=5pt,sollabel] {$Q$};
+ \draw[solflow] (2.5,1.05)--(2.5,2.3);
+ \node[sollabel,anchor=west] at (2.7,2.25) {蹬后竖直上升};
+ \begin{scope}[shift={(5.2,1.2)}]
+  \fill[Ink] (0,0) circle (2.5pt);
+  \draw[solimpulse] (0,0)--(-1.1,0) node[midway,below=4pt,sollabel] {$J_N$};
+  \draw[solimpulse] (0,0)--(0,1.2) node[right=4pt,sollabel] {$J_f$};
+  \node[sollabel] at (0,-1.1) {接触冲量，单独画出};
+ \end{scope}
+\end{tikzpicture}
+\diagcaption{解图}{法向冲量消去水平速度，最大向上摩擦冲量继续增加竖直速度。}\label{ch07:fig:soldiagThreeSeven}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeEight}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (O) at (-.5,1.4); \coordinate (S) at (-2,-.4);
+ \coordinate (A) at ({-.5+2.8*1.5/1.8},-1.4);
+ \coordinate (B) at ({-.5+2.8*1.5/1.8+.7},-1.4);
+ \draw[solbody] (-3,1.4)--(3.1,1.4) (-3,-1.4)--(3.1,-1.4);
+ \draw[TextGray,line width=.8pt] (S)--(O)--(A);
+ \draw[curve] (O)--(B);
+ \draw[solflow] (S)--($(S)!.45!(O)$) node[midway,above left=3pt,sollabel] {$\vec v$};
+ \draw[solgeom] (O)--(-.5,-1.4);
+ \foreach \p in {O,S,A,B}{\fill[Ink] (\p) circle (2pt);}
+ \node[sollabel,above=5pt] at (O) {$O$}; \node[sollabel,left=5pt] at (S) {$S$};
+ \node[sollabel,below=5pt] at (A) {$A$}; \node[sollabel,below=5pt] at (B) {$B$};
+ \draw[<->,TextGray] (-3.35,-1.4)--(-3.35,1.4) node[midway,left=4pt,sollabel] {$d$};
+ \node[sollabel] at (0,2.35) {俯视；本图取摩擦冲量向右};
+\end{tikzpicture}
+\diagcaption{题图}{光滑墙落点为 $A$；有摩擦时落点为 $B$。}\label{ch07:fig:probdiagThreeEight}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeEight}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (O) at (-1,1.2); \coordinate (A) at (.2,-1.2); \coordinate (B) at (1.4,-1.2);
+ \draw[solbody] (-2,1.2)--(2,1.2) (-2,-1.2)--(2,-1.2);
+ \draw[TextGray] (O)--(A); \draw[curve] (O)--(B);
+ \node[sollabel,above=5pt] at (O) {$O$};
+ \node[sollabel,below left=5pt] at (A) {$A$}; \node[sollabel,below right=5pt] at (B) {$B$};
+ \draw[solgeom] (A)--(.2,-1.9) (B)--(1.4,-1.9);
+ \draw[<->,DeepBlue] (.2,-1.8)--(1.4,-1.8) node[midway,below=4pt,sollabel] {$AB=|\Delta v_t|d/v_n$};
+ \begin{scope}[shift={(4,0)}]
+  \fill[Ink] (0,.6) circle (2pt);
+  \draw[solimpulse] (0,.6)--(0,-.55) node[midway,left=4pt,sollabel] {$J_N$};
+  \draw[solimpulse] (0,.6)--(1.2,.6) node[midway,above=4pt,sollabel] {$J_t$};
+  \node[sollabel,align=center] at (.35,-1.25) {持续滑动时\\$J_t=\mu J_N$};
+ \end{scope}
+\end{tikzpicture}
+\diagcaption{解图}{左右两部分分别表示落点偏移和接触冲量，不能把冲量箭头当作轨迹。}\label{ch07:fig:soldiagThreeEight}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeNine}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \draw[solbody,fill=SoftGray] (1.2,-1.1) rectangle (1.9,1.1);
+ \draw[solflow] (-2.5,.5)--(1.2,.5) node[pos=.35,above=4pt,sollabel] {$v_{\rm in}=v$};
+ \draw[solflow] (1.2,-.5)--(-2.5,-.5) node[pos=.65,below=4pt,sollabel] {$v_{\rm out}=-v$};
+ \node[sollabel] at (-.1,1.75) {飞船系：碰前、碰后路线分行示意};
+ \draw[solforce] (1.6,-1.6)--(3,-1.6) node[midway,below=4pt,sollabel] {$F=2\rho Sv^2$};
+ \node[sollabel] at (2.55,.45) {迎流面};
+\end{tikzpicture}
+\diagcaption{解图}{飞船系中的入射与原路反弹分别列示；飞船所受反作用力沿来流方向。}\label{ch07:fig:soldiagThreeNine}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (T) at (-1,0);
+ \fill[SoftGray] (-4,1.2)--(T)--(-4,-1.2)--cycle;
+ \draw[solgeom] (-4,-1.2) arc (-90:90:.25 and 1.2);
+ \draw[solbody] (-4,1.2) arc (90:270:.25 and 1.2);
+ \draw[solbody] (-4,1.2)--(T)--(-4,-1.2);
+ \draw[solgeom] (-4.4,0)--(-.65,0);
+ \foreach \y in {-.7,.7}{\draw[solflow] (-.1,\y)--({-1-abs(\y)/.4},\y);}
+ \draw[<->,TextGray] (-4,-1.65)--(-1,-1.65) node[midway,below=4pt,sollabel] {$L$};
+ \draw[<->,TextGray] (-4.55,0)--(-4.55,1.2) node[midway,left=3pt,sollabel] {$R$};
+ \node[solpanel] at (-2.5,2.6) {空间外形：平行来流};
+ \begin{scope}[shift={(1.4,0)}]
+  \pgfmathsetmacro{\ang}{atan(.4)}
+  \coordinate (P) at (3,0); \coordinate (Q) at (1.2,.72);
+  \draw[solbody] (0,1.2)--(P)--(0,-1.2);
+  \draw[solgeom] (-.2,0)--(3.5,0);
+  \draw[solflow] (3.3,.72)--(Q) node[pos=.35,above=4pt,sollabel] {$\vec v_{\rm in}$};
+  \draw[solflow] (Q)--++({180-2*\ang}:1.4) node[above left=3pt,sollabel] {$\vec v_{\rm out}$};
+  \draw[solgeom,->] (Q)--++({90-\ang}:1.15) node[above right=3pt,sollabel] {$\hat{\boldsymbol n}$};
+  \draw[TextGray] (2.35,0) arc (180:{180-\ang}:.65);
+  \node[sollabel] at (2.15,.15) {$\alpha$};
+  \node[sollabel] at (1.5,-1.7) {$R=L\tan\alpha$};
+ \end{scope}
+ \node[solpanel] at (2.9,2.6) {轴截面：法向分量反向};
+\end{tikzpicture}
+\diagcaption{解图}{左图说明 $L$、$R$ 与来流的空间关系；右图取包含轴线和碰撞点的截面，显示镜面反射。}\label{ch07:fig:soldiagThreeTen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeEleven}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[x=5.3cm,y=5.7cm]
+  \draw[axis] (0,0)--(1.13,0) node[right,sollabel] {$v/v_0$};
+  \draw[axis] (0,0)--(0,.19) node[above,sollabel] {$P/(2\rho Sv_0^3)$};
+  \draw[curve,domain=0:1,samples=70,smooth,variable=\x] plot ({\x},{\x*(1-\x)^2});
+  \draw[solgeom] (1/3,0)--(1/3,4/27);
+  \fill[DeepBlue] (1/3,4/27) circle (.55pt);
+  \node[sollabel,below] at (1/3,0) {$1/3$};
+  \node[sollabel,above right] at (1/3,4/27) {最大功率};
+  \node[sollabel,below] at (1,0) {$1$};
+\end{tikzpicture}
+\diagcaption{解图}{无量纲功率 $x(1-x)^2$ 在 $x=v/v_0=1/3$ 处取得最大值。}\label{ch07:fig:soldiagThreeEleven}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwelve}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (O) at (-1.4,0); \coordinate (S) at (1.4,0);
+ \draw[solgeom] (O) circle (2.8);
+ \draw[solbody,fill=SoftGray] (O) circle (.45);
+ \node[sollabel] at (-1.4,0) {太阳};
+ \foreach \a in {-18,0,18}{\draw[solflow] ($(O)+(\a:.5)$)--($(O)+(\a:2.8)$);}
+ \draw[solbody,line width=1.3pt] (1.4,-.4)--(1.4,.4);
+ \draw[solforce] (1.4,0)--(2.65,0) node[midway,above=4pt,sollabel] {$F$};
+ \node[sollabel,anchor=west] at (1.65,-.7) {小接收面 $S$，正入射};
+ \draw[solgeom] (-1.4,-.5)--(-1.4,-1.4) (1.4,-.4)--(1.4,-1.4);
+ \draw[<->,TextGray] (-1.4,-1.35)--(1.4,-1.35) node[midway,below=4pt,sollabel] {$r$};
+ \node[sollabel] at (-1.3,3.3) {虚线球面的面积 $4\pi r^2$};
+\end{tikzpicture}
+\diagcaption{解图}{距离从太阳中心量起，接收面中心落在半径 $r$ 的球面上。}\label{ch07:fig:soldiagThreeTwelve}\end{minipage}\end{center}}

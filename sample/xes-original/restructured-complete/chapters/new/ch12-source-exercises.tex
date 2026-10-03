@@ -1,0 +1,591 @@
+\section{弹性体与波动综合问题}
+
+\begin{origexamplebox}{绕端点旋转的均匀弹性绳}
+\label{ch12:ex:09}
+一根自然长度为 $L_0$、质量为 $M$ 的均匀弹性绳，以角速度 $\omega$ 绕通过一端 $O$、且与绳垂直的轴匀速旋转，
+忽略重力。绳的轴向刚度为 $EA=kL_0$，即同一根绳在均匀受拉时的整体劲度系数为 $k$。
+求稳定旋转时的绳长、弹性势能和动能。
+
+
+\begin{center}
+\begin{tikzpicture}[scale=.92,>=Latex]
+  \draw[axis] (0,-2.0)--(0,2.1);
+  \fill (0,0) circle (2.5pt) node[below left] {$O$};
+  \draw[curve,very thick] (0,0)--(5.3,0) node[right] {自由端};
+  \draw[->,DeepBlue,thick] (-.75,1.12) arc[start angle=150,end angle=-145,x radius=.75,y radius=.32];
+  \node[left] at (-.72,.75) {$\omega$};
+  \draw[<->,guide] (0,-.65)--(5.3,-.65) node[midway,below] {$L$};
+  \node[above] at (2.65,0) {$L_0,\ M,\ k$};
+\end{tikzpicture}
+\figcap{弹性绳绕过端点 $O$ 的垂直轴旋转。$L_0$ 为自然长度，$L$ 为待求的旋转绳长。}
+\label{ch12:fig:rotating-rope}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch12:fig:rotating-rope}中，整根绳沿径向伸展，但各处的伸长不相同。
+
+
+以自然构形中的坐标 $s\in[0,L_0]$ 标记绳元，令其稳定旋转时的半径为 $r(s)$。
+自然线密度为 $\lambda_0=M/L_0$，局部小形变张力为
+\[
+ T(s)=EA\left(\frac{\dd r}{\dd s}-1\right).
+\]
+图\ref{ch12:fig:rotating-element}把自然微元与其实际半径分开标出。
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+ \draw[guide] (0,0)--(7,0); \fill(0,0)circle(2pt) node[left] {$O$};
+ \draw[very thick,DeepBlue] (3,0)--(4,0);
+ \draw[vector] (3,0)--(1.7,0) node[midway,above] {$T(s)$};
+ \draw[vector] (4,0)--(5.2,0) node[midway,above] {$T(s+\dd s)$};
+ \draw[<->] (0,-.6)--(3,-.6) node[midway,below] {$r(s)$};
+ \node at (3.5,1.0) {$\dd m=(M/L_0)\dd s$};
+ \draw[vector] (3.5,-1.35)--(2.2,-1.35) node[left] {$\omega^2r$};
+\end{tikzpicture}
+\figcap{旋转绳微元的径向受力。内侧张力较大，两端张力的差产生向心加速度。}
+\label{ch12:fig:rotating-element}
+\end{center}
+长度为 $\dd s$ 的绳元所需向心力为 $\lambda_0\omega^2r\,\dd s$；由相邻截面的张力差得到
+\[
+ \frac{\dd T}{\dd s}=-\lambda_0\omega^2r.
+\]
+代入 $EA=kL_0$，并定义
+\[
+ \alpha=\omega\sqrt{\frac Mk},
+ \qquad q=\frac\alpha{L_0},
+\]
+便有
+\[
+ r''+q^2r=0.
+\]
+边界条件是转轴端 $r(0)=0$，自由端无张力 $T(L_0)=0$，即 $r'(L_0)=1$。因此
+\[
+ r(s)=\frac{\sin(qs)}{q\cos\alpha},
+ \qquad
+ \boxed{L=r(L_0)=L_0\frac{\tan\alpha}{\alpha}}.
+\]
+满足正伸长且无内部折返的主解支为 $0\le\alpha<\pi/2$，但线性小应变还要求最大应变 $\sec\alpha-1\ll1$；当 $\alpha\to\pi/2$ 时线性弹性模型预言长度发散，实际上材料会先离开线性范围。
+
+弹性势能必须按非均匀应变积分：
+\begin{align*}
+ U
+ &=\frac{EA}{2}\int_0^{L_0}(r'-1)^2\,\dd s\\
+ &=\frac{kL_0^2}{2}\int_0^1\left(\frac{\cos(\alpha z)}{\cos\alpha}-1\right)^2\dd z\\
+ &=\boxed{\frac{kL_0^2}{2}
+ \left(1+\frac{1}{2\cos^2\alpha}
+ -\frac{3\tan\alpha}{2\alpha}\right)}.
+\end{align*}
+动能为各绳元转动动能之和：
+\begin{align*}
+ K
+ &=\frac12\lambda_0\omega^2\int_0^{L_0}r^2(s)\,\dd s\\
+ &=\frac{kL_0^2}{2\cos^2\alpha}\int_0^1\sin^2(\alpha z)\dd z\\
+ &=\boxed{\frac{kL_0^2}{4\cos^2\alpha}
+ \left(1-\frac{\sin2\alpha}{2\alpha}\right)}.
+\end{align*}
+上述积分使用
+$\int_0^1\cos(\alpha z)\dd z=\sin\alpha/\alpha$、
+$\int_0^1\cos^2(\alpha z)\dd z=1/2+\sin2\alpha/(4\alpha)$；
+$\sin^2$ 的积分把末项改为负号。小角速度极限下 $L=L_0(1+\alpha^2/3+\cdots)$、
+$K\simeq M\omega^2L_0^2/6$，后者正是未伸长均匀细绳绕端点转动的动能，因而结果通过极限检验。
+\end{xesolution}
+
+\begin{origexamplebox}{弦上点质量的反射与透射}
+\label{ch12:ex:10}
+一根无限长弦的线密度为 $\lambda$、张力为 $T$。从 $x<0$ 远处入射行波
+\[
+ y_i=A\cos(\omega t-kx).
+\]
+在 $x=0$ 处附着一个可随弦横向运动、质量为 $m$ 的质点，弦在质点两侧材料相同。求：（1）$k$ 与 $\omega$ 的关系；
+（2）位移振幅的反射、透射系数，以及能量反射率、透射率。
+
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.8]
+ \draw[axis] (-3.5,0)--(3.6,0) node[right] {$x$};
+ \draw[axis] (0,-.5)--(0,2) node[above] {$y$};
+ \draw[curve] (-3,.25) .. controls (-1.8,.25) and (-1.5,1.1) .. (0,1.1)
+ .. controls (1.5,1.1) and (1.8,1.5) .. (3,1.75);
+ \filldraw[fill=DeepBlue!20,draw=DeepBlue] (0,1.1) circle(.12);
+ \node[above left] at (-.12,1.15) {$m$};
+ \node[below left] at (0,0) {$O$};
+ \draw[->] (-3,2)--(-1.5,2) node[midway,above] {入射方向};
+\end{tikzpicture}
+\figcap{原题装置示意：质点附着在 $x=0$ 处，并随弦横向运动。曲线仅示意弦的瞬时形状。}
+\label{ch12:fig:point-mass}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+先按题设的持续单频激励画出图\ref{ch12:fig:point-mass-analysis}。
+\begin{center}
+\begin{tikzpicture}[>=Latex,x=.9cm,y=.85cm]
+ \draw[axis] (-4.5,0)--(4.6,0) node[right] {$x$};
+ \draw[curve,domain=-4:0,samples=100] plot(\x,{.7*(cos(90*\x)+sin(90*\x))});
+ \draw[curve,domain=0:4,samples=100] plot(\x,{.7*(cos(90*\x)-sin(90*\x))});
+ \filldraw[fill=DeepBlue!20,draw=DeepBlue] (0,.7) circle(.15);
+ \node[above right] at (.15,.85) {$m$};
+ \draw[vector] (-3,1.6)--(-1.5,1.6) node[midway,above] {入射};
+ \draw[vector] (-1.5,-1.7)--(-3,-1.7) node[midway,below] {反射};
+ \draw[vector] (1.5,1.6)--(3,1.6) node[midway,above] {透射};
+ \node at (0,-2.6) {$\beta=1,\ t=0$：实线为两侧总位移};
+\end{tikzpicture}
+\figcap{持续单频波在点质量处的一个瞬间。左侧入射与反射相加，右侧为透射波；两侧在质点处位移连续而斜率不同。}
+\label{ch12:fig:point-mass-analysis}
+\end{center}
+
+弦的波动方程给出
+\[
+ \boxed{k=\omega\sqrt{\frac\lambda T}},
+ \qquad c=\frac\omega k=\sqrt{\frac T\lambda}.
+\]
+用复振幅并取时间因子 $e^{\ii\omega t}$，写成
+\[
+ y_-=(Ae^{-\ii kx}+Be^{\ii kx})e^{\ii\omega t},
+ \qquad
+ y_+=Ce^{-\ii kx}e^{\ii\omega t}.
+\]
+实际位移取复表达式的实部。质点处位移连续，所以 $A+B=C$。
+图\ref{ch12:fig:point-mass-analysis}取 $\beta=1$，即 $B/A=(-1-\ii)/2$、$C/A=(1-\ii)/2$，
+用同一波数、同一时刻绘制，不能把三列单频波画成互不相连的孤立脉冲。
+右侧张力向右，其竖直分量为 $Ty_x(0^+)$；左侧张力向左，其竖直分量为 $-Ty_x(0^-)$。
+质点受到的横向合力为
+$T[y_x(0^+)-y_x(0^-)]$，牛顿第二定律给出
+\[
+ T[y_x(0^+)-y_x(0^-)]=m y_{tt}(0).
+\]
+在 $x=0$，$y_x(0^+)=-\ii kC$、
+$y_x(0^-)=-\ii kA+\ii kB$，省略共同时间因子。
+用 $C=A+B$，左端为 $-2\ii kTB$，右端为 $-m\omega^2C$，故
+\[
+ 2\ii kT B=m\omega^2C.
+\]
+令
+\[
+ \beta=\frac{m\omega^2}{2kT}
+ =\frac{m\omega}{2\sqrt{T\lambda}},
+\]
+则位移振幅系数为
+\[
+ \boxed{t\equiv\frac CA=\frac1{1+\ii\beta}},
+ \qquad
+ \boxed{r\equiv\frac BA=-\frac{\ii\beta}{1+\ii\beta}}.
+\]
+两侧阻抗相同，故能流比就是振幅模平方：
+\[
+ \boxed{\mathcal R=|r|^2=\frac{\beta^2}{1+\beta^2}},
+ \qquad
+ \boxed{\mathcal T=|t|^2=\frac1{1+\beta^2}},
+ \qquad \mathcal R+\mathcal T=1.
+\]
+低频时质点几乎随弦运动，$\mathcal T\to1$；高频时惯性使连接点近似固定，$r\to-1$，反射发生相位反转。
+\end{xesolution}
+
+\begin{origexamplebox}{圆膜上的轴对称外行波}
+\label{ch12:ex:11}
+面密度为 $\mu$、单位长度张力为 $\sigma$ 的均匀张紧圆膜上，有一列从中心向外传播的轴对称小振幅波。
+远离中心处写成
+\[
+ z(r,t)=A(r)\cos(\omega t-kr).
+\]
+求 $\omega/k$ 和振幅 $A(r)$ 的渐近形式，并用环形微元的牛顿第二定律说明这一形式为什么只在 $kr\gg1$ 时成立。
+\end{origexamplebox}
+\begin{xesolution}
+半径 $r$、宽度 $\dd r$ 的环形微元质量为 $\mu2\pi r\dd r$。
+图\ref{ch12:fig:ring-element}中内、外边界张力朝相反的径向；
+竖直分量分别为 $-2\pi r\sigma z_r(r)$ 与 $2\pi(r+\dd r)\sigma z_r(r+\dd r)$。
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+ \draw[thick] (0,0) circle(1.1); \draw[thick] (0,0) circle(1.45);
+ \draw[->] (0,0)--(135:1.1) node[midway,above right] {$r$};
+ \draw[vector] (1.45,0)--(2.1,0); \draw[vector] (1.1,0)--(.5,0);
+ \node at (0,-2) {俯视：环内侧与外侧的力反向};
+ \begin{scope}[shift={(5,0)}]
+  \draw[curve,domain=0:3,samples=60] plot(\x,{.14*(\x-1)^2});
+  \draw[vector] (1,0)--(.1,0) node[above] {内侧};
+  \draw[vector] (2,.14)--(2.9,.392) node[above] {外侧};
+  \draw[guide] (1,0)--(1,-.7) (2,.14)--(2,-.7);
+  \draw[<->] (1,-.6)--(2,-.6) node[midway,below] {$\dd r$};
+  \node at (1.5,-2) {径向截面：力沿局部切线};
+ \end{scope}
+\end{tikzpicture}
+\figcap{圆膜的环形微元与径向剖面。外边界比内边界周长大，求合力时不能只对斜率作差。}
+\label{ch12:fig:ring-element}
+\end{center}
+两项相减并展开到 $\dd r$ 一阶，竖直合力为
+\[
+ 2\pi\sigma\frac{\partial}{\partial r}
+ \left(r\frac{\partial z}{\partial r}\right)\dd r.
+\]
+牛顿第二定律因此给出径向波动方程
+\[
+ z_{tt}=c^2\left(z_{rr}+\frac1r z_r\right),
+ \qquad
+ \boxed{c=\sqrt{\frac\sigma\mu}=\frac\omega k}.
+\]
+把复数形式 $z=A(r)e^{\ii(kr-\omega t)}$ 代入，并使用 $\omega=ck$，得到
+\[
+ A''+\left(2\ii k+\frac1r\right)A'
+ +\frac{\ii k}{r}A=0.
+\]
+当 $kr\gg1$ 时，振幅在一个波长内变化很慢，可忽略 $A''$ 与 $A'/r$ 相对 $2\ii kA'$ 的贡献，于是
+\[
+ 2A'+\frac Ar\simeq0,
+ \qquad
+ \boxed{A(r)=\frac{C}{\sqrt r}}.
+\]
+用 $A=C r^{-1/2}$ 回查：$A'=-A/(2r)$、$A''=3A/(4r^2)$，
+被忽略项量级为 $A/r^2$，保留项量级为 $kA/r$，比值为 $O((kr)^{-1})$；
+所以必须有 $kr\gg1$。同一结论也来自能流守恒：圆周长正比于 $r$，而单位长度平均能流正比于 $A^2$，故 $rA^2$ 为常量。
+精确外行解是零阶汉克尔函数（Hankel function）$H_0^{(1)}(kr)$，其大宗量渐近式确为
+$r^{-1/2}e^{\ii(kr-\pi/4)}$；靠近 $r=0$ 时上述渐近式发散，必须用完整的贝塞尔函数（Bessel function）并结合中心激励条件。
+\end{xesolution}
+
+\begin{origexamplebox}{音叉驱动弦的驻波}
+\label{ch12:ex:12}
+线密度为 $0.15\,\mathrm{g/cm}$ 的弦，一端连接频率为 $50\,\mathrm{Hz}$、
+沿弦横向振动的音叉，另一端跨过光滑小滑轮并悬挂配重；音叉到滑轮的水平弦长为
+$l=1.00\,\mathrm m$。讨论弱端位移、弦内部共振振幅明显大于叉股振幅的通常实验情形，
+忽略滑轮半径相对 $l$ 的修正。
+
+（1）共振时音叉连接点近似看作波节还是波腹？
+（2）水平弦段有一、二、三个波腹时，所需配重质量分别为多少？
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.83]
+ \draw[thick] (-4.5,-.4)--(-4.05,-.4);
+ \draw[thick] (-2.8,.25)--(-3.4,.25) arc(90:270:.65)--(-2.8,-1.05);
+ \draw[curve,very thick] (-2.8,.25)--(3,.25) arc(90:0:.30)--(3.3,-1.7);
+ \draw[thick] (3,-.05) circle(.30);
+ \draw[thick,fill=DeepBlue!8] (2.9,-1.7) rectangle(3.7,-2.35);
+ \node at (3.3,-2.02) {$m$};
+ \draw[<->] (-2.8,.9)--(3,.9) node[midway,above] {$l$};
+ \node[left] at (-3.6,-1.2) {音叉};
+\end{tikzpicture}
+\figcap{音叉、水平弦、光滑滑轮和配重。水平弦接在叉股末端，并与滑轮顶部相切。}
+\label{ch12:fig:fork}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+连接点有位移，不等于它就是波腹。设叉股位移振幅为 $a_d$，
+弦的稳态空间振幅为 $U(x)$。给定位移的边界条件是
+$U(0)=a_d,\ U(l)=0$，并不是自由端的 $U'(0)=0$。
+由 $U''+k^2U=0$ 先满足右端边界，写 $U=C\sin[k(l-x)]$，
+再用左端边界得到
+\[
+ U(x)=a_d\frac{\sin[k(l-x)]}{\sin(kl)}.
+\]
+当 $kl$ 接近 $n\pi$ 时，分母很小，内部振幅显著大于 $a_d$；
+真实阻尼和音叉耦合使共振振幅有限。因端点振幅相对内部波腹很小，
+共振的两端均近似波节，而不是严格声称运动的叉股位移恒为零。
+图\ref{ch12:fig:fork-analysis}画清了叉股末端连接与弦在滑轮上的相切关系。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.83]
+ \draw[thick] (-4.5,-.4)--(-4.05,-.4);
+ \draw[thick] (-2.8,.25)--(-3.4,.25) arc(90:270:.65)--(-2.8,-1.05);
+ \draw[curve,very thick] (-2.8,.25)--(3,.25) arc(90:0:.30)--(3.3,-1.7);
+ \draw[thick] (3,-.05) circle(.30);
+ \draw[thick,fill=DeepBlue!8] (2.9,-1.7) rectangle(3.7,-2.35);
+ \node at (3.3,-2.02) {$m$};
+ \draw[<->] (-2.8,.9)--(3,.9) node[midway,above] {$l$};
+ \node[left] at (-3.6,-1.2) {音叉};
+ \node[above] at (-2.8,1.55) {近似波节};
+ \node[above] at (3,1.55) {近似波节};
+ \foreach \n in {1,2,3}{
+  \begin{scope}[shift={(-2.8,{-2.9-1.1*\n})}]
+   \draw[guide] (0,0)--(5.8,0);
+   \draw[curve,domain=0:5.8,samples=100] plot(\x,{.37*sin(\n*180*\x/5.8)});
+   \fill(0,0)circle(1.5pt); \fill(5.8,0)circle(1.5pt);
+   \node[left] at (-.4,0) {$n=\n$};
+  \end{scope}}
+\end{tikzpicture}
+\figcap{音叉横向驱动弦及前三个共振模态。水平弦接在叉股末端；到滑轮顶部相切，再沿圆弧转向竖直。}
+\label{ch12:fig:fork-analysis}
+\end{center}
+
+$n$ 个波腹对应 $l=n\lambda_n/2$，故
+\[
+ f=\frac{n}{2l}\sqrt{\frac{T_n}{\mu}},\quad
+ \mu=0.15\,\mathrm{g/cm}=0.015\,\mathrm{kg/m},\quad
+ T_n=\mu\left(\frac{2lf}{n}\right)^2=\frac{150}{n^2}\,\mathrm N.
+\]
+配重静止时 $T_n=m_ng$，因此
+\[
+\begin{array}{c|ccc}
+ n&1&2&3\\ \hline
+ T_n/\mathrm N&150&37.5&16.667\\
+ m_n/\mathrm{kg}\ (g=9.8\,\mathrm{m/s^2})&15.306&3.827&1.701\\
+ m_n/\mathrm{kg}\ (g=10\,\mathrm{m/s^2})&15.0&3.75&1.667
+\end{array}
+\]
+同一 $f,l$ 下波腹越多，波长越短、波速越小，所需张力按 $1/n^2$ 减小。
+“强驱动”本身不会把给定位移端变成自由端；若叉股与弦强烈耦合，
+应联立叉股动力学，而非自行换用奇数四分之一波长公式。
+\end{xesolution}
+
+\begin{origexamplebox}{高空绳索上的水平移动}
+\label{ch12:ex:13}
+两悬点 $A,B$ 的坐标为 $(-4l,0)$、$(4l,0)$，取 $y$ 轴竖直向下。
+重为 $G$ 的演员初始骑独轮车、未踩动而平衡在一根轻绳上，位置为 $(0,3l)$。
+他蹬轮缓慢向右移动水平距离 $3l$，初末静止。分别求终点坐标及所做的功：
+
+（1）绳不可伸长；（2）绳为均匀的零原长胡克弹性绳。
+
+采用轻绳、理想无滑动驱动接触，轮半径相对 $l$ 可忽略；
+忽略平动、转动动能及耗散，但保留驱动力矩引起的两侧张力差。
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.62]
+ \draw[axis] (-5,0)--(5.2,0) node[right] {$x$};
+ \draw[axis] (0,.5)--(0,-4.2) node[below] {$y$};
+ \draw[curve,thick] (-4,0)--(0,-3)--(4,0);
+ \fill (-4,0) circle(2pt) node[above] {$A(-4l,0)$};
+ \fill (4,0) circle(2pt) node[above] {$B(4l,0)$};
+ \filldraw[fill=DeepBlue!10] (0,-3) circle(.13);
+ \node[below left] at (-.18,-3.1) {$(0,3l)$};
+ \draw[<->] (-.65,0)--(-.65,-3) node[midway,left] {$3l$};
+ \draw[->] (.35,-3)--(3,-3) node[midway,below] {$3l$};
+\end{tikzpicture}
+\figcap{两悬点间连续绳的初态。$y$ 轴竖直向下，箭头表示题设的水平位移。}
+\label{ch12:fig:rope-initial}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+把人和轮合起来研究。准静态平动平衡要求绳的两个张力与重力合力为零；
+驱动轮能够传递力矩，所以不能另外强加 $T_L=T_R$。
+令 $a=4l$，当前位置 $P=(x,y)$，两段实际绳长为
+\[
+ L_L=\sqrt{(a+x)^2+y^2},\qquad L_R=\sqrt{(a-x)^2+y^2}.
+\]
+图\ref{ch12:fig:rope-branches}分别画出两种绳在终态仍与悬点相连的形状。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.62]
+ \foreach \sh/\yf/\name in {0/2.4/不可伸长绳,11/1.3125/连续弹性绳}{
+ \begin{scope}[shift={(\sh,0)}]
+  \coordinate(A)at(-4,0);\coordinate(B)at(4,0);
+  \draw[guide] (A)--(0,-3)--(B);
+  \draw[curve] (A)--(3,-\yf)--(B);
+  \fill(A)circle(2pt)node[above]{$A$};
+  \fill(B)circle(2pt)node[above]{$B$};
+  \fill(0,-3)circle(2pt); \node[below] at(-.3,-3.2){$(0,3l)$};
+  \fill(3,-\yf)circle(2pt); \node[right] at(3.25,-\yf-.25){$P_f$};
+  \node at (0,1.2) {\name};
+  \draw[<->] (0,-4.25)--(3,-4.25)node[midway,below]{$3l$};
+ \end{scope}}
+\end{tikzpicture}
+\figcap{连续绳的初末构形。虚线为初态，实线为终态；两幅图都保留同一根绳的两个支撑段。}
+\label{ch12:fig:rope-branches}
+\end{center}
+
+（1）初态总长 $2\sqrt{(4l)^2+(3l)^2}=10l$，运动时
+$L_L+L_R=10l$。这是焦点为 $A,B$、半长轴 $5l$、半短轴 $3l$ 的椭圆：
+\[
+ \frac{x^2}{25l^2}+\frac{y^2}{9l^2}=1.
+\]
+在 $x_f=3l$ 处取悬点下方的正根，得到
+\[
+ \boxed{(x_f,y_f)=\left(3l,\frac{12}{5}l\right)}.
+\]
+不可伸长绳不储存新的弹性能，初末动能均为零。
+演员上升 $3l-12l/5=3l/5$，其输出的机械功为
+$\boxed{W_1=3Gl/5}$。
+
+（2）必须跟踪连续绳两侧的材料份额，而不是把它改成两根固定劲度的弹簧。
+设整根绳的柔度为 $C_0$（劲度倒数，单位 $\mathrm{m/N}$）。
+某一材料段占总材料份额 $q$，其柔度为 $qC_0$；零原长胡克定律给出
+$L_L=qC_0T_L,\ L_R=(1-q)C_0T_R$。
+因此无论有多少材料转移到轮的另一侧，
+\begin{equation}
+ \frac{L_L}{T_L}+\frac{L_R}{T_R}=C_0.
+ \label{ch12:eq:rope-compliance}
+\end{equation}
+初态左右对称，$T_0(3/5)\times2=G$，所以
+$T_0=5G/6,\ C_0=10l/T_0=12l/G$。
+
+当前位置的水平、竖直平衡分别为
+\[
+ T_L\frac{a+x}{L_L}=T_R\frac{a-x}{L_R},\qquad
+ T_L\frac y{L_L}+T_R\frac y{L_R}=G.
+\]
+令 $U=T_L/L_L,V=T_R/L_R$，这两式成为
+$(a+x)U=(a-x)V,\ U+V=G/y$，解得
+\[
+ U=\frac{G(a-x)}{2ay},\qquad V=\frac{G(a+x)}{2ay}.
+\]
+代入式\eqref{ch12:eq:rope-compliance}，
+\[
+ C_0=\frac1U+\frac1V
+ =\frac{4a^2y}{G(a^2-x^2)},\qquad
+ y=\frac{GC_0}{4}\left(1-\frac{x^2}{a^2}\right)
+ =3l\left(1-\frac{x^2}{16l^2}\right).
+\]
+这次是抛物线而不是椭圆，因总实际绳长可以改变。在 $x=3l$ 处
+\[
+ \boxed{(x_f,y_f)=\left(3l,\frac{21}{16}l\right)}.
+\]
+回查材料份额 $q=(L_L/T_L)/C_0=(a+x)/(2a)$，终态 $q=7/8$，
+仍在 $0<q<1$ 内。两侧张力都为正，模型在本题位移范围内自洽。
+
+零原长线性弹性段的储能为 $TL/2$。利用上面的 $U,V$，
+\begin{align*}
+ E_{\rm el}&=\frac12(T_LL_L+T_RL_R)\\
+ &=\frac{G}{4ay}\left[(a-x)L_L^2+(a+x)L_R^2\right]\\
+ &=\frac{G(a^2-x^2+y^2)}{2y}
+ =\frac G2\left(\frac{4a^2}{GC_0}+y\right).
+\end{align*}
+因此 $\Delta E_{\rm el}=G(y_f-y_0)/2$，而重力势能变化为
+$-G(y_f-y_0)$。由能量守恒，
+\[
+ \boxed{W_2=\Delta E_{\rm el}+\Delta E_g
+ =\frac G2(y_0-y_f)=\frac{27}{32}Gl}.
+\]
+演员上升的同时弹性能减少，故所做功小于单独的重力势能增加，这并不违背守恒。
+
+若另行改成“两根相同、材料段不交换的独立零原长弹性绳，并由外部水平力拖动”，
+每根劲度 $k=G/(6l)$，合力为 $(-2kx,-2ky)$；
+竖直平衡给出 $y=3l$，外部做功
+$\int_0^{3l}2kx\,\dd x=3Gl/2$。
+这个结果对应另一装置，不是上面的连续绳驱动模型。
+若轮与绳完全无摩擦，蹬轮又不能传递驱动力矩，也不能直接沿用本题的驱动过程。
+\end{xesolution}
+
+\begin{origexamplebox}{门轴粘滑与木门啸叫的简化模型}
+\label{ch12:ex:14}
+把门轴承视为半径 $a=1.0\,\mathrm{cm}$、高 $h=1.0\,\mathrm{cm}$ 的实心圆柱。
+门重 $W=100\,\mathrm N$ 为它对水平支承面的法向载荷，压力均匀，
+静摩擦因数 $\mu_f=0.30$，材料剪切模量 $G_s=0.50\,\mathrm{GPa}$。
+门带动顶端以恒定角速度 $\omega$ 转动。采用集中参数近似：圆柱为扭转弹簧，下端固连刚性端盘；
+端盘以接触面可传递的总摩擦力矩为粘滑阈值，忽略接触区的局部部分滑移。
+忽略滑动时间，求自激粘滑的重复角频率与 $\omega$ 的关系；
+先保留每次释放后的剩余扭转角，再讨论近似释放到零的情形。
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.86]
+ \draw[thick] (-1.2,.1)--(-1.7,-.55)--(1.7,-.55)--(2.2,.1)--(1,.1);
+ \draw[thick] (-1.2,.1)--(-1,.1);
+ \draw[thick] (-1,0)--(-1,2.1) (1,0)--(1,2.1);
+ \draw[thick] (0,2.1) ellipse(1 and .3);
+ \draw[thick] (-1,0) arc(180:360:1 and .3);
+ \draw[guide] (-1,0) arc(180:0:1 and .3);
+ \draw[thick] (-1,0)--(-1,-.18) (1,0)--(1,-.18);
+ \draw[thick] (-1,-.18) arc(180:360:1 and .3);
+ \draw[TextGray,thin] (-.75,-.35)--(-1.8,-.9);
+ \node[left,font=\small] at (-1.8,-.9) {刚性端盘};
+ \draw[guide] (0,0)--(0,2.1);
+ \draw[<->] (1.55,0)--(1.55,2.1) node[midway,right] {$h$};
+ \draw[->] (0,2.1)--(1,2.1) node[midway,above] {$a$};
+ \draw[->,DeepBlue] (-.9,2.75) arc(140:30:1.17 and .35);
+ \node[above] at (0,3.15) {$\omega$};
+\end{tikzpicture}
+\figcap{门轴承的几何与驱动。圆柱下端连接刚性端盘，端盘与支承面构成等效摩擦接触。}
+\label{ch12:fig:hinge}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch12:fig:hinge-analysis}用两个截面的相对径向角表示扭转 $\phi$。
+轴线保持直线；表面母线的倾斜反映剪切角，而不是把轴线倾斜当作扭转。
+半径 $r$ 处上下截面的相对切向位移为 $r\phi$，
+剪应变 $\gamma(r)=r\phi/h$，剪应力为 $G_s r\phi/h$。
+面积环 $\dd A=2\pi r\dd r$ 对轴的力矩为 $r(G_s r\phi/h)\dd A$，积分得到
+\[
+ \tau_{\rm el}=\frac{G_s\phi}{h}\int_0^a2\pi r^3\dd r
+ =K_\phi\phi,\qquad K_\phi=\frac{G_s\pi a^4}{2h}.
+\]
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.86]
+ \draw[thick] (-1.2,.1)--(-1.7,-.55)--(1.7,-.55)--(2.2,.1)--(1,.1);
+ \draw[thick] (-1.2,.1)--(-1,.1);
+ \draw[thick] (-1,0)--(-1,2.1) (1,0)--(1,2.1);
+ \draw[thick] (0,2.1) ellipse(1 and .3);
+ \draw[thick] (-1,0) arc(180:360:1 and .3);
+ \draw[guide] (-1,0) arc(180:0:1 and .3);
+ \draw[thick] (-1,0)--(-1,-.18) (1,0)--(1,-.18);
+ \draw[thick] (-1,-.18) arc(180:360:1 and .3);
+ \draw[TextGray,thin] (-.75,-.35)--(-1.8,-.9);
+ \node[left,font=\small] at (-1.8,-.9) {刚性端盘};
+ \draw[guide] (0,0)--(0,2.1);
+ \draw[<->] (1.55,0)--(1.55,2.1) node[midway,right] {$h$};
+ \draw[->] (0,2.1)--(1,2.1) node[midway,above] {$a$};
+ \draw[->,DeepBlue] (-.9,2.75) arc(140:30:1.17 and .35);
+ \node[above] at (0,3.15) {$\omega$};
+ \begin{scope}[shift={(5.1,1.1)}]
+  \draw[thick] (0,0) circle(1);
+  \draw[guide] (0,0)--(1,0);
+  \draw[thick,DeepBlue] (0,0)--(40:1);
+  \draw[->] (.55,0) arc(0:40:.55);
+  \node[right] at (.63,.25) {$\phi$};
+  \node[align=center,text width=3cm] at (0,-1.65) {两截面径向标记\\的相对转角};
+ \end{scope}
+ \begin{scope}[shift={(9.2,0)}]
+  \draw[guide] (0,0)--(0,2.1);
+  \draw[thick,DeepBlue] (0,0)--(.7,2.1);
+  \draw[<->] (0,2.5)--(.7,2.5);
+  \node[above] at (.35,2.6) {$a\phi$};
+  \node[align=center,text width=3.3cm] at (.45,-.85) {展开表面\\$\gamma(a)\simeq a\phi/h$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{门轴承的圆柱、截面转角和展开表面。$\phi$ 是绕轴转角，$\gamma$ 是表面剪切角，两者含义不同。}
+\label{ch12:fig:hinge-analysis}
+\end{center}
+
+刚性端盘的接触压力为 $p=W/(\pi a^2)$。在所采用的总力矩阈值模型中，
+临界时各环的摩擦应力均取极限值 $\mu_fp$，于是
+\[
+ \tau_s=\int_0^a r\,\mu_fp(2\pi r\dd r)=\frac23\mu_fWa,
+ \qquad\phi_{\max}=\frac{\tau_s}{K_\phi}.
+\]
+这个阈值属于刚性端盘的等效模型。若圆柱弹性底面直接接触支承面，并要求每个局部都严格粘着，
+则 $\tau(r)=G_s r\phi/h$ 随半径增加，外缘会先达到 $\mu_fp$：
+\[
+ \phi_{\rm edge}=\frac{\mu_fWh}{\pi G_sa^3},\qquad
+ K_\phi\phi_{\rm edge}=\frac12\mu_fWa.
+\]
+这只标志局部滑移开始，不能直接当作整个底面的滑动阈值；后续还需接触应力重分布模型。
+以下数值均限于题干明确采用的刚性端盘总力矩近似。
+
+粘着时端盘静止，顶面转动使相对角以 $\omega$ 增加。
+若一次滑动结束后剩余角为 $\phi_{\min}$，
+\[
+ t_{\rm stick}=\frac{\phi_{\max}-\phi_{\min}}{\omega},\quad
+ f_{\rm rep}=\frac{\omega}{\phi_{\max}-\phi_{\min}},\quad
+ \boxed{\Omega_{\rm rep}=\frac{2\pi\omega}{\phi_{\max}-\phi_{\min}}}.
+\]
+“滑动很快”只说明其持续时间短，并不能推出剩余扭转必为零。
+释放后重新粘着还要求 $|\phi_{\min}|\le\phi_{\max}$，否则弹性力矩仍超过最大静摩擦力矩。
+设 $q=\phi_{\min}/\phi_{\max}$、$-1\le q<1$，则
+\[
+ \boxed{\Omega_{\rm rep}=\frac{3\pi^2G_sa^3}{2\mu_fWh(1-q)}\,\omega}.
+\]
+若采用释放后近似无扭转的闭合模型 $q=0$，代入数值得
+\[
+ K_\phi=7.85\times10^2\,\mathrm{N\,m/rad},\quad
+ \tau_s=0.200\,\mathrm{N\,m},\quad
+ \phi_{\max}=2.55\times10^{-4}\,\mathrm{rad},
+ \qquad
+ \boxed{\Omega_{\rm rep}\simeq2.47\times10^4\,\omega}.
+\]
+例如 $\omega=0.10\,\mathrm{rad/s}$，该理想模型给出
+$t_{\rm stick}=2.55\times10^{-3}\,\mathrm s$、
+$f_{\rm rep}\simeq393\,\mathrm{Hz}$。是否真能忽略滑动时间，需要另验接触动力学。
+
+这里求的是粘滑事件的重复频率，不是材料的自由扭转固有频率。
+$W$ 是门施加的载荷，不能令轴承质量等于 $W/g$。
+若另给一个确切的等效振型、有效转动惯量 $I_{\rm eff}$，
+才可建立单自由度近似
+$I_{\rm eff}\ddot\phi+K_\phi\phi=0$，得到
+$\Omega_0=\sqrt{K_\phi/I_{\rm eff}}$。
+快慢分离需 $t_{\rm stick}$ 远大于实际释放时间；
+若用 $1/\Omega_0$ 估计释放时间，就还需 $t_{\rm stick}\Omega_0\gg1$。
+没有 $I_{\rm eff}$ 及滑动摩擦规律，不能凭门重给这个条件添上数值。
+
+在 $q=0$ 模型下，一次储能为
+\[
+ U_c=\frac12K_\phi\phi_{\max}^2
+ =\frac{\tau_s^2}{2K_\phi}=2.55\times10^{-5}\,\mathrm J.
+\]
+若释放时这部分能量耗散，平均输入功率为
+$\overline P=U_c/t_{\rm stick}=\tau_s\omega/2$，
+与粘着期间力矩从零线性增长到 $\tau_s$ 的平均功率相符。
+一般 $q$ 时，释放能量为
+$K_\phi(\phi_{\max}^2-\phi_{\min}^2)/2$；
+相应平均功率为 $K_\phi(\phi_{\max}+\phi_{\min})\omega/2$。
+实际声能只是耗散的一部分，其余主要变成接触区内能。
+$G_sa^3/(Wh)$ 无量纲，故重复角频率与驱动角速度量纲相同。
+\end{xesolution}

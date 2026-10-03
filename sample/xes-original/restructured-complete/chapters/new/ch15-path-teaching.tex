@@ -1,0 +1,30 @@
+\subsection{给定过程曲线时，先由约束求温度变化}
+常见等压、等温与可逆绝热过程不是全部可能路径。若定量理想气体按准静态路径 $pV^{\kappa}=K$ 变化，$\kappa$ 为给定过程指数，则由 $pV=nRT$ 得
+\[
+ TV^{\kappa-1}=\mathrm{const},\qquad
+ \frac{\dd T}{T}=(1-\kappa)\frac{\dd V}{V}.
+\]
+$\kappa$ 是路径参数，不能一看到幂律便将它写成气体的 $\gamma=c_p/c_v$。
+设 $c_v$ 为常数，当 $\kappa\ne1$ 时，第一定律逐项给出
+\[
+ \delta Q=nc_v\dd T+p\dd V
+ =n\left(c_v+\frac{R}{1-\kappa}\right)\dd T.
+\]
+括号内是沿该路径定义的摩尔过程热容，不是新的物性常数。等压的 $\kappa=0$ 恢复 $c_p$；可逆绝热的 $\kappa=\gamma$ 使其为零。$\kappa=1$ 时温度不变却可以传热，必须直接算功，不能把上式发散理解为吸收无限热量。
+
+\begin{origexamplebox}{温度下降的膨胀是否一定吸热}\label{ch15:ex:teaching-polytropic}
+一摩尔单原子理想气体从 $(p_1,V_1,T_1)$ 沿准静态路径 $pV^2=\mathrm{const}$ 膨胀至 $V_2=2V_1$。只做体积功，求末温、对外功、内能变化和热量，并解释热量的符号。
+\end{origexamplebox}
+\begin{xesolution}
+由路径和状态方程，$TV=\mathrm{const}$，所以 $T_2=T_1/2$。实际压力曲线给出
+\[
+ W^{\rm out}=\int_{V_1}^{2V_1}\frac{p_1V_1^2}{V^2}\dd V
+ =\frac12p_1V_1=\frac12RT_1>0.
+\]
+单原子气体内能变化为
+\[
+ \Delta U=\frac32R(T_2-T_1)=-\frac34RT_1,
+ \qquad Q=\Delta U+W^{\rm out}=-\frac14RT_1.
+\]
+气体边膨胀边放热：内能减少量比所做功更大，多减少的部分排给环境。也可用过程热容 $c=3R/2-R=R/2$，得到 $Q=c(T_2-T_1)$，与直接积分一致。与图\ref{ch15:fig:adiabatic-comparison}的两条路径比较，本题 $\kappa=2>\gamma=5/3$，膨胀降温比同初态可逆绝热更快，因而必须再向外放热。
+\end{xesolution}

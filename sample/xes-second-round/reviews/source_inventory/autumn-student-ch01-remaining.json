@@ -1,0 +1,1359 @@
+{
+  "source_id": "autumn_student_2020",
+  "source_sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+  "independent_visual_inventory": true,
+  "review_scope": "2026-09-05逐页看过物理15—26页（印刷13—24页）源图并对照新稿，登记教学段落、定义、公式、证明、源编号图及脚注。物理26页仅页眉页脚，无教学内容。此清单只证明逐对象落点，不替代当前PDF的最终物理和视觉验收。",
+  "pages": [
+    {
+      "physical_page": 15,
+      "printed_page": 13,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-015.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "页首：直角坐标追逐较难求解，引入活动标架",
+          "description": "页首：直角坐标追逐较难求解，引入活动标架",
+          "target_id": "r2ch01:sec:pursuit"
+        },
+        {
+          "id": "fn10",
+          "object_type": "footnote",
+          "source_locator": "脚注10：有兴趣可挑战直角坐标法",
+          "description": "脚注10：有兴趣可挑战直角坐标法",
+          "target_id": "r2ch01:sec:pursuit",
+          "notes": "以两分量约束与极坐标比较承接；仅记为学习提示，不另计新题"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "活动标架：在质点处沿r和theta建立局部正交方向",
+          "description": "活动标架：在质点处沿r和theta建立局部正交方向",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "er=(∂r矢/∂r)/|∂r矢/∂r|=∂r矢/∂r",
+          "description": "er=(∂r矢/∂r)/|∂r矢/∂r|=∂r矢/∂r",
+          "target_id": "r2ch01:eq:012"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "etheta=(∂r矢/∂theta)/|∂r矢/∂theta|=(1/r)∂r矢/∂theta",
+          "description": "etheta=(∂r矢/∂theta)/|∂r矢/∂theta|=(1/r)∂r矢/∂theta",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "偏导模为r的理由是圆弧长度与半径、圆心角的关系",
+          "description": "偏导模为r的理由是圆弧长度与半径、圆心角的关系",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "fig06",
+          "object_type": "figure",
+          "source_locator": "图1.6：位置r与r+dr、径横基矢及转后基矢、位移的径横分解",
+          "description": "图1.6：位置r与r+dr、径横基矢及转后基矢、位移的径横分解",
+          "target_id": "r2ch01:fig:005",
+          "source_number": "图1.6",
+          "notes": "补回局部位移分解面板，正文明确两段及基矢旋转；一阶微分不冒充有限转角几何"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "位移dr矢=dR er+dTheta etheta",
+          "description": "位移dr矢=dR er+dTheta etheta",
+          "target_id": "r2ch01:fig:005"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "位置的全微分=∂r矢/∂r dr+∂r矢/∂theta dtheta",
+          "description": "位置的全微分=∂r矢/∂r dr+∂r矢/∂theta dtheta",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "dR=dr，dTheta=r dtheta",
+          "description": "dR=dr，dTheta=r dtheta",
+          "target_id": "r2ch01:fig:005"
+        },
+        {
+          "id": "d02",
+          "object_type": "definition",
+          "source_locator": "拉梅系数：沿坐标方向弧长与坐标变化量之比",
+          "description": "拉梅系数：沿坐标方向弧长与坐标变化量之比",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "随粒子运动基矢改变，矢量在局部基矢分解",
+          "description": "随粒子运动基矢改变，矢量在局部基矢分解",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "A=Ar er+Atheta etheta",
+          "description": "A=Ar er+Atheta etheta",
+          "target_id": "r2ch01:eq:014"
+        },
+        {
+          "id": "f07",
+          "object_type": "formula",
+          "source_locator": "dA=d'A+牵连dA",
+          "description": "dA=d'A+牵连dA",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f08",
+          "object_type": "formula",
+          "source_locator": "d'A=dAr er+dAtheta etheta；牵连dA=Ar der+Atheta detheta",
+          "description": "d'A=dAr er+dAtheta etheta；牵连dA=Ar der+Atheta detheta",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "d03",
+          "object_type": "definition",
+          "source_locator": "相对变化与牵连/随体变化，基矢变化不能忽略",
+          "description": "相对变化与牵连/随体变化，基矢变化不能忽略",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f09",
+          "object_type": "formula",
+          "source_locator": "der=dtheta矢×er=dtheta etheta；detheta=dtheta矢×etheta=−dtheta er",
+          "description": "der=dtheta矢×er=dtheta etheta；detheta=dtheta矢×etheta=−dtheta er",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "dtheta矢垂直纸面向外、模为转角增量",
+          "description": "dtheta矢垂直纸面向外、模为转角增量",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f10",
+          "object_type": "formula",
+          "source_locator": "(dA)r=dAr−Atheta dtheta；(dA)theta=dAtheta+Ar dtheta",
+          "description": "(dA)r=dAr−Atheta dtheta；(dA)theta=dAtheta+Ar dtheta",
+          "target_id": "r2ch01:eq:014",
+          "notes": "正文由全微分除以dt写成同内容的导数式"
+        }
+      ]
+    },
+    {
+      "physical_page": 16,
+      "printed_page": 14,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-016.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "两边除时间得到矢量导数分量和分量导数的关系",
+          "description": "两边除时间得到矢量导数分量和分量导数的关系",
+          "target_id": "r2ch01:eq:014"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "(dot A)r=dot Ar−dot theta Atheta；(dot A)theta=dot Atheta+dot theta Ar",
+          "description": "(dot A)r=dot Ar−dot theta Atheta；(dot A)theta=dot Atheta+dot theta Ar",
+          "target_id": "r2ch01:eq:014"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "导数分量不等于分量导数；投影与求导不对易",
+          "description": "导数分量不等于分量导数；投影与求导不对易",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "e·∂tA不等于∂t(e·A)",
+          "description": "e·∂tA不等于∂t(e·A)",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "r矢=r er+0 etheta，故rr=r、rtheta=0",
+          "description": "r矢=r er+0 etheta，故rr=r、rtheta=0",
+          "target_id": "r2ch01:eq:012"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "由r导数得vr=dot r、vtheta=r dot theta",
+          "description": "由r导数得vr=dot r、vtheta=r dot theta",
+          "target_id": "r2ch01:eq:015"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "由v导数得ar=ddot r−r dot theta²，atheta=r ddot theta+2dot r dot theta",
+          "description": "由v导数得ar=ddot r−r dot theta²，atheta=r ddot theta+2dot r dot theta",
+          "target_id": "r2ch01:eq:016"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "继续对a求导得jerk的径向分量",
+          "description": "继续对a求导得jerk的径向分量",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "f07",
+          "object_type": "formula",
+          "source_locator": "jerk的横向分量含theta三阶导数及三项乘积",
+          "description": "jerk的横向分量含theta三阶导数及三项乘积",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "极坐标速度加速度二分量公式的常用性",
+          "description": "极坐标速度加速度二分量公式的常用性",
+          "target_id": "r2ch01:eq:015"
+        },
+        {
+          "id": "f08",
+          "object_type": "formula",
+          "source_locator": "追逐模型vr²+vtheta²=v²，vtheta/vr=−1",
+          "description": "追逐模型vr²+vtheta²=v²，vtheta/vr=−1",
+          "target_id": "r2ch01:eq:018"
+        },
+        {
+          "id": "f09",
+          "object_type": "formula",
+          "source_locator": "dot r=−v/√2，r dot theta=v/√2",
+          "description": "dot r=−v/√2，r dot theta=v/√2",
+          "target_id": "r2ch01:eq:018"
+        },
+        {
+          "id": "f10",
+          "object_type": "formula",
+          "source_locator": "初始r0、theta0=0时r=r0−vt/√2",
+          "description": "初始r0、theta0=0时r=r0−vt/√2",
+          "target_id": "r2ch01:ex:001"
+        },
+        {
+          "id": "f11",
+          "object_type": "formula",
+          "source_locator": "dot theta=v/(√2r0−vt)，theta=−ln(1−vt/(√2r0))",
+          "description": "dot theta=v/(√2r0−vt)，theta=−ln(1−vt/(√2r0))",
+          "target_id": "r2ch01:ex:001"
+        },
+        {
+          "id": "f12",
+          "object_type": "formula",
+          "source_locator": "消参dr/dtheta=−r、r=r0 exp(−theta)",
+          "description": "消参dr/dtheta=−r、r=r0 exp(−theta)",
+          "target_id": "r2ch01:eq:019"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "对数螺线的名称及追逐轨迹",
+          "description": "对数螺线的名称及追逐轨迹",
+          "target_id": "r2ch01:eq:019"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "平面极坐标推广到柱坐标与球坐标，核心仍是基矢微分",
+          "description": "平面极坐标推广到柱坐标与球坐标，核心仍是基矢微分",
+          "target_id": "r2ch01:sec:polar"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "3.自然坐标系下的分解",
+          "description": "3.自然坐标系下的分解",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "p05",
+          "object_type": "paragraph",
+          "source_locator": "自然标架不由背景坐标决定，而由瞬时速度方向及曲率决定",
+          "description": "自然标架不由背景坐标决定，而由瞬时速度方向及曲率决定",
+          "target_id": "r2ch01:sec:frenet"
+        }
+      ]
+    },
+    {
+      "physical_page": 17,
+      "printed_page": 15,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-017.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "自然坐标从轨迹曲线性质出发，微积分与解析几何构成古典微分几何",
+          "description": "自然坐标从轨迹曲线性质出发，微积分与解析几何构成古典微分几何",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "指定空间曲线起点并以弧长s为坐标，把r写成r(s)",
+          "description": "指定空间曲线起点并以弧长s为坐标，把r写成r(s)",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "单位切矢tau=dr/ds",
+          "description": "单位切矢tau=dr/ds",
+          "target_id": "r2ch01:eq:020"
+        },
+        {
+          "id": "proof01",
+          "object_type": "proof",
+          "source_locator": "分子微位移长度等于ds，因而切矢模为1",
+          "description": "分子微位移长度等于ds，因而切矢模为1",
+          "target_id": "r2ch01:eq:020"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "切线：邻近点割线PQ在Q趋向P时的极限",
+          "description": "切线：邻近点割线PQ在Q趋向P时的极限",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "d02",
+          "object_type": "definition",
+          "source_locator": "密切圆/曲率圆：三相邻点确定圆的极限",
+          "description": "密切圆/曲率圆：三相邻点确定圆的极限",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "d03",
+          "object_type": "definition",
+          "source_locator": "密切平面为密切圆所在平面",
+          "description": "密切平面为密切圆所在平面",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "d04",
+          "object_type": "definition",
+          "source_locator": "曲率中心C及从P指向C的主法向",
+          "description": "曲率中心C及从P指向C的主法向",
+          "target_id": "r2ch01:sec:frenet"
+        },
+        {
+          "id": "d05",
+          "object_type": "definition",
+          "source_locator": "副法向beta=tau×n，三方向组成Frenet/TNB标架",
+          "description": "副法向beta=tau×n，三方向组成Frenet/TNB标架",
+          "target_id": "r2ch01:eq:020"
+        },
+        {
+          "id": "fig07",
+          "object_type": "figure",
+          "source_locator": "图1.7：空间轨迹、P/Q/R、密切圆C、切线和三正交方向",
+          "description": "图1.7：空间轨迹、P/Q/R、密切圆C、切线和三正交方向",
+          "target_id": "r2ch01:fig:007",
+          "source_number": "图1.7",
+          "notes": "用当前密切平面局部视图表达；副法向出纸面用点符号；邻点不强行放到密切圆上"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "三基矢导数的最一般九系数展开",
+          "description": "三基矢导数的最一般九系数展开",
+          "target_id": "r2ch01:eq:021"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "三个基矢各自模为1、两两点积为0",
+          "description": "三个基矢各自模为1、两两点积为0",
+          "target_id": "r2ch01:eq:021"
+        },
+        {
+          "id": "proof02",
+          "object_type": "proof",
+          "source_locator": "单位模求导使对角系数为0；正交求导使非对角系数反对称",
+          "description": "单位模求导使对角系数为0；正交求导使非对角系数反对称",
+          "target_id": "r2ch01:eq:021"
+        },
+        {
+          "id": "proof03",
+          "object_type": "proof",
+          "source_locator": "主法向按tau导数方向定义，tau导数的副法向系数为0",
+          "description": "主法向按tau导数方向定义，tau导数的副法向系数为0",
+          "target_id": "r2ch01:eq:021"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "Frenet三式：tau'=kn，n'=−ktau+gamma beta，beta'=−gamma n",
+          "description": "Frenet三式：tau'=kn，n'=−ktau+gamma beta，beta'=−gamma n",
+          "target_id": "r2ch01:eq:021"
+        },
+        {
+          "id": "d06",
+          "object_type": "definition",
+          "source_locator": "曲率衡量切线随弧长的转动快慢",
+          "description": "曲率衡量切线随弧长的转动快慢",
+          "target_id": "r2ch01:eq:020"
+        }
+      ]
+    },
+    {
+      "physical_page": 18,
+      "printed_page": 16,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-018.jpg",
+      "objects": [
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "k=|d tau/ds|=dtheta/ds及rho=1/k",
+          "description": "k=|d tau/ds|=dtheta/ds及rho=1/k",
+          "target_id": "r2ch01:eq:020",
+          "notes": "平面有向角导数加绝对值；三维不使用单一方位角"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "挠率衡量密切平面绕切线的转动",
+          "description": "挠率衡量密切平面绕切线的转动",
+          "target_id": "r2ch01:eq:021"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "挠率不贡献速度和加速度的普通表达式",
+          "description": "挠率不贡献速度和加速度的普通表达式",
+          "target_id": "r2ch01:eq:025"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "运动描述为s(t)和三个自然基矢的时间变化",
+          "description": "运动描述为s(t)和三个自然基矢的时间变化",
+          "target_id": "r2ch01:eq:023"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "r'=tau，r''=kn，r'''=−k²tau+k'n+kgamma beta",
+          "description": "r'=tau，r''=kn，r'''=−k²tau+k'n+kgamma beta",
+          "target_id": "r2ch01:eq:022"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "几何轨迹既定后，给出s(t)即可确定运动学量",
+          "description": "几何轨迹既定后，给出s(t)即可确定运动学量",
+          "target_id": "r2ch01:eq:022"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "r关于弧长三阶Taylor展开",
+          "description": "r关于弧长三阶Taylor展开",
+          "target_id": "r2ch01:eq:022",
+          "notes": "源一阶切向项误多一因子k，新版使用s tau并满足量纲"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "局部坐标最低阶T=ds，N=k ds²/2，B=kgamma ds³/6",
+          "description": "局部坐标最低阶T=ds，N=k ds²/2，B=kgamma ds³/6",
+          "target_id": "r2ch01:eq:022"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "s关于t的三阶Taylor展开",
+          "description": "s关于t的三阶Taylor展开",
+          "target_id": "r2ch01:eq:023"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "位置时间展开Delta r=v dt+a dt²/2+j dt³/6",
+          "description": "位置时间展开Delta r=v dt+a dt²/2+j dt³/6",
+          "target_id": "r2ch01:eq:025"
+        },
+        {
+          "id": "f07",
+          "object_type": "formula",
+          "source_locator": "v=dot s tau，a=ddot s tau+k dot s² n",
+          "description": "v=dot s tau，a=ddot s tau+k dot s² n",
+          "target_id": "r2ch01:eq:024"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "速度沿切线，切向加速度改变速率，法向加速度为v²/rho",
+          "description": "速度沿切线，切向加速度改变速率，法向加速度为v²/rho",
+          "target_id": "r2ch01:eq:024"
+        },
+        {
+          "id": "f08",
+          "object_type": "formula",
+          "source_locator": "加加速度三分量包括曲率平方、曲率导数及挠率项",
+          "description": "加加速度三分量包括曲率平方、曲率导数及挠率项",
+          "target_id": "r2ch01:eq:025"
+        },
+        {
+          "id": "p05",
+          "object_type": "paragraph",
+          "source_locator": "可以由轨迹曲率求法向加速度，也可反由运动学求曲率",
+          "description": "可以由轨迹曲率求法向加速度，也可反由运动学求曲率",
+          "target_id": "r2ch01:eq:026"
+        },
+        {
+          "id": "f09",
+          "object_type": "formula",
+          "source_locator": "rho=v³/|a×v|",
+          "description": "rho=v³/|a×v|",
+          "target_id": "r2ch01:eq:026"
+        }
+      ]
+    },
+    {
+      "physical_page": 19,
+      "printed_page": 17,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-019.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "利用辅助质点在y=f(x)上运动计算几何曲率",
+          "description": "利用辅助质点在y=f(x)上运动计算几何曲率",
+          "target_id": "r2ch01:eq:027"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "令x=t、y=f(t)，得v=(1,f')、a=(0,f'')",
+          "description": "令x=t、y=f(t)，得v=(1,f')、a=(0,f'')",
+          "target_id": "r2ch01:eq:027",
+          "notes": "改用有量纲的x=ut，保留辅助运动法并避免坐标时间量纲混同"
+        },
+        {
+          "id": "proof01",
+          "object_type": "proof",
+          "source_locator": "代入速度和叉积得rho=(1+f'²)^(3/2)/|f''|",
+          "description": "代入速度和叉积得rho=(1+f'²)^(3/2)/|f''|",
+          "target_id": "r2ch01:eq:027"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "对数螺线r=a exp(k theta)的曲率求法",
+          "description": "对数螺线r=a exp(k theta)的曲率求法",
+          "target_id": "r2ch01:eq:028"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "指定theta=omega t，r=a exp(k omega t)",
+          "description": "指定theta=omega t，r=a exp(k omega t)",
+          "target_id": "r2ch01:eq:028"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "螺线极坐标速度两分量(k omega r,omega r)",
+          "description": "螺线极坐标速度两分量(k omega r,omega r)",
+          "target_id": "r2ch01:eq:028"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "螺线加速度两分量((k²−1)omega²r,2k omega²r)",
+          "description": "螺线加速度两分量((k²−1)omega²r,2k omega²r)",
+          "target_id": "r2ch01:eq:028"
+        },
+        {
+          "id": "proof02",
+          "object_type": "proof",
+          "source_locator": "用运动学公式计算螺线曲率半径sqrt(1+k²)r",
+          "description": "用运动学公式计算螺线曲率半径sqrt(1+k²)r",
+          "target_id": "r2ch01:eq:028"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "1.2.2刚体的运动",
+          "description": "1.2.2刚体的运动",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "刚体可由所有点相对某参考系静止定义，但先用直观框架引入",
+          "description": "刚体可由所有点相对某参考系静止定义，但先用直观框架引入",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "三根正交射线、原点C的位置和三单位基矢共四个矢量描述框架",
+          "description": "三根正交射线、原点C的位置和三单位基矢共四个矢量描述框架",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "fig08",
+          "object_type": "figure",
+          "source_locator": "图1.8：定系、动系C、三固连基矢、三轴与共同角速度",
+          "description": "图1.8：定系、动系C、三固连基矢、三轴与共同角速度",
+          "target_id": "r2ch01:fig:008",
+          "source_number": "图1.8"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "三基矢导数在自身基底的九系数展开",
+          "description": "三基矢导数在自身基底的九系数展开",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "proof03",
+          "object_type": "proof",
+          "source_locator": "对正交归一关系求导，九系数矩阵反对称",
+          "description": "对正交归一关系求导，九系数矩阵反对称",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "fn11",
+          "object_type": "footnote",
+          "source_locator": "脚注11：定系原基矢记作ex、ey、ez",
+          "description": "脚注11：定系原基矢记作ex、ey、ez",
+          "target_id": "r2ch01:eq:009"
+        },
+        {
+          "id": "fn12",
+          "object_type": "footnote",
+          "source_locator": "脚注12：i/j已有字面点，时间求导符号需避免混淆",
+          "description": "脚注12：i/j已有字面点，时间求导符号需避免混淆",
+          "target_id": "r2ch01:sec:rigid",
+          "notes": "统一改用带下标单位基矢e_i，时间点号独立写在基矢上"
+        }
+      ]
+    },
+    {
+      "physical_page": 20,
+      "printed_page": 18,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-020.jpg",
+      "objects": [
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "三导数重写为i_dot=omega3 j−omega2 k及两个循环式",
+          "description": "三导数重写为i_dot=omega3 j−omega2 k及两个循环式",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "定义omega=omega1 i+omega2 j+omega3 k",
+          "description": "定义omega=omega1 i+omega2 j+omega3 k",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "各基矢导数=omega叉乘该基矢",
+          "description": "各基矢导数=omega叉乘该基矢",
+          "target_id": "r2ch01:eq:029"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "角速度矢量及其共同作用于刚体的含义",
+          "description": "角速度矢量及其共同作用于刚体的含义",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "d02",
+          "object_type": "definition",
+          "source_locator": "固连点在动坐标系的三个坐标恒定",
+          "description": "固连点在动坐标系的三个坐标恒定",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "全部点固连于同一坐标系时不能形变，刚体与固连系相互定义",
+          "description": "全部点固连于同一坐标系时不能形变，刚体与固连系相互定义",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "固连两点之差R=R1 i+R2 j+R3 k且分量常数",
+          "description": "固连两点之差R=R1 i+R2 j+R3 k且分量常数",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "proof01",
+          "object_type": "proof",
+          "source_locator": "R_dot=sum Ri ei_dot=omega×R",
+          "description": "R_dot=sum Ri ei_dot=omega×R",
+          "target_id": "r2ch01:eq:029"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "角速度方向是瞬时轴，大小为转角率；所有固连矢量共享它",
+          "description": "角速度方向是瞬时轴，大小为转角率；所有固连矢量共享它",
+          "target_id": "r2ch01:sec:rigid"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "A_dot=omega×A，A fixed in frame",
+          "description": "A_dot=omega×A，A fixed in frame",
+          "target_id": "r2ch01:eq:029",
+          "notes": "补充大小也必须固定；仅方向不变时仍有相对幅值导数"
+        },
+        {
+          "id": "d03",
+          "object_type": "definition",
+          "source_locator": "刚体基点C可任选固连点，用基点位置及角速度描述运动",
+          "description": "刚体基点C可任选固连点，用基点位置及角速度描述运动",
+          "target_id": "r2ch01:eq:030"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "rOP=rOC+rCP，一阶求导得vP=vC+R_dot",
+          "description": "rOP=rOC+rCP，一阶求导得vP=vC+R_dot",
+          "target_id": "r2ch01:eq:030"
+        },
+        {
+          "id": "f07",
+          "object_type": "formula",
+          "source_locator": "速度基点公式vP=vC+omega×R",
+          "description": "速度基点公式vP=vC+omega×R",
+          "target_id": "r2ch01:eq:030"
+        },
+        {
+          "id": "proof02",
+          "object_type": "proof",
+          "source_locator": "再次求导包含omega_dot×R和omega×R_dot两项",
+          "description": "再次求导包含omega_dot×R和omega×R_dot两项",
+          "target_id": "r2ch01:eq:031"
+        },
+        {
+          "id": "f08",
+          "object_type": "formula",
+          "source_locator": "加速度基点公式aP=aC+beta×R+omega×(omega×R)",
+          "description": "加速度基点公式aP=aC+beta×R+omega×(omega×R)",
+          "target_id": "r2ch01:eq:031"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "解释平动、角加速度切向项和转动向轴项",
+          "description": "解释平动、角加速度切向项和转动向轴项",
+          "target_id": "r2ch01:eq:031"
+        }
+      ]
+    },
+    {
+      "physical_page": 21,
+      "printed_page": 19,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-021.jpg",
+      "objects": [
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "1.3参考系变换；1.3.1点变换",
+          "description": "1.3参考系变换；1.3.1点变换",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "旋转参考系需原点运动方程及角速度、角加速度",
+          "description": "旋转参考系需原点运动方程及角速度、角加速度",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "vC=rC_dot，aC=rC_ddot；beta=omega_dot",
+          "description": "vC=rC_dot，aC=rC_ddot；beta=omega_dot",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "固连牵连点速度vc=vC+omega×r'",
+          "description": "固连牵连点速度vc=vC+omega×r'",
+          "target_id": "r2ch01:eq:034"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "固连牵连点加速度ac=aC+omega×(omega×r')+beta×r'",
+          "description": "固连牵连点加速度ac=aC+omega×(omega×r')+beta×r'",
+          "target_id": "r2ch01:eq:035"
+        },
+        {
+          "id": "fig09",
+          "object_type": "figure",
+          "source_locator": "图1.9：定系O-xyz与动系C-xi eta zeta、任意运动点P及动系角速度",
+          "description": "图1.9：定系O-xyz与动系C-xi eta zeta、任意运动点P及动系角速度",
+          "target_id": "r2ch01:fig:009",
+          "source_number": "图1.9"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "同一质点在两个系分别由x/y/z及xi/eta/zeta描述",
+          "description": "同一质点在两个系分别由x/y/z及xi/eta/zeta描述",
+          "target_id": "r2ch01:eq:033"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "r=rC+r'是位矢分解，但不直接推出v=vC+v'",
+          "description": "r=rC+r'是位矢分解，但不直接推出v=vC+v'",
+          "target_id": "r2ch01:eq:033"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "求导算符随参考系不同，同一运动有不同速度描述",
+          "description": "求导算符随参考系不同，同一运动有不同速度描述",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "相对位矢在动系固定、定系固定及一般变化三种情形",
+          "description": "相对位矢在动系固定、定系固定及一般变化三种情形",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "绝对导数D：固定定系基矢，分别求投影分量导数",
+          "description": "绝对导数D：固定定系基矢，分别求投影分量导数",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "v=Dr，a=Dv",
+          "description": "v=Dr，a=Dv",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "d02",
+          "object_type": "definition",
+          "source_locator": "相对导数D'：固定动系基矢求分量导数",
+          "description": "相对导数D'：固定动系基矢求分量导数",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "v'=D'r'，a'=D'v'，分量写在动基矢中",
+          "description": "v'=D'r'，a'=D'v'，分量写在动基矢中",
+          "target_id": "r2ch01:eq:034"
+        },
+        {
+          "id": "d03",
+          "object_type": "definition",
+          "source_locator": "随体导数：仅取动系基矢旋转造成的变化",
+          "description": "随体导数：仅取动系基矢旋转造成的变化",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f07",
+          "object_type": "formula",
+          "source_locator": "牵连DA=sum Ai ei_dot=omega×A",
+          "description": "牵连DA=sum Ai ei_dot=omega×A",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f08",
+          "object_type": "formula",
+          "source_locator": "算符恒等式D=D'+牵连D",
+          "description": "算符恒等式D=D'+牵连D",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "fn13",
+          "object_type": "footnote",
+          "source_locator": "脚注13：导数是从运动方程到速度矢量的映射",
+          "description": "脚注13：导数是从运动方程到速度矢量的映射",
+          "target_id": "r2ch01:eq:008"
+        }
+      ]
+    },
+    {
+      "physical_page": 22,
+      "printed_page": 20,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-022.jpg",
+      "objects": [
+        {
+          "id": "proof01",
+          "object_type": "proof",
+          "source_locator": "莱布尼茨法则：分量变化与基矢变化共同组成导数",
+          "description": "莱布尼茨法则：分量变化与基矢变化共同组成导数",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "对位置分解逐项求导得v=vC+omega×r'+v'",
+          "description": "对位置分解逐项求导得v=vC+omega×r'+v'",
+          "target_id": "r2ch01:eq:034"
+        },
+        {
+          "id": "proof02",
+          "object_type": "proof",
+          "source_locator": "二次求导逐项展开，两个Coriolis项分别来自Dr'和Dv'",
+          "description": "二次求导逐项展开，两个Coriolis项分别来自Dr'和Dv'",
+          "target_id": "r2ch01:eq:035",
+          "notes": "纠正待修底稿展开多写第三份omega×v'的问题；末式与展开统一为两份"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "a=aC+beta×r'+omega×(omega×r')+2omega×v'+a'",
+          "description": "a=aC+beta×r'+omega×(omega×r')+2omega×v'+a'",
+          "target_id": "r2ch01:eq:035"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "科里奥利加速度2omega×v'",
+          "description": "科里奥利加速度2omega×v'",
+          "target_id": "r2ch01:eq:035"
+        },
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "合成结构为绝对=牵连+相对，加速度另加科氏项",
+          "description": "合成结构为绝对=牵连+相对，加速度另加科氏项",
+          "target_id": "r2ch01:eq:034"
+        },
+        {
+          "id": "d02",
+          "object_type": "definition",
+          "source_locator": "牵连速度与牵连加速度对应当前与动点重合的固连点",
+          "description": "牵连速度与牵连加速度对应当前与动点重合的固连点",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "牵连速度vtr=vC+omega×r'",
+          "description": "牵连速度vtr=vC+omega×r'",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "牵连加速度atr=aC+omega×(omega×r')+beta×r'",
+          "description": "牵连加速度atr=aC+omega×(omega×r')+beta×r'",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "动点动系法：确定定系、动系、动点、当前重合的固连牵连点",
+          "description": "动点动系法：确定定系、动系、动点、当前重合的固连牵连点",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "分别在定系求绝对量、动系求相对量、固连点求牵连量",
+          "description": "分别在定系求绝对量、动系求相对量、固连点求牵连量",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "建立绝对、相对与牵连的矢量关系",
+          "description": "建立绝对、相对与牵连的矢量关系",
+          "target_id": "r2ch01:sec:transform"
+        },
+        {
+          "id": "p05",
+          "object_type": "paragraph",
+          "source_locator": "只有转动且相对运动才可能有科氏项；不由相对位置单独决定",
+          "description": "只有转动且相对运动才可能有科氏项；不由相对位置单独决定",
+          "target_id": "r2ch01:sec:transform",
+          "notes": "增加omega与v'平行时也为零的必要方向判断"
+        },
+        {
+          "id": "p06",
+          "object_type": "paragraph",
+          "source_locator": "相对位移变化与相对速度基矢旋转是两份科氏贡献来源",
+          "description": "相对位移变化与相对速度基矢旋转是两份科氏贡献来源",
+          "target_id": "r2ch01:eq:035"
+        },
+        {
+          "id": "fn14",
+          "object_type": "footnote",
+          "source_locator": "脚注14：矢量关系可脱离具体坐标运算，可自由选择分量标架",
+          "description": "脚注14：矢量关系可脱离具体坐标运算，可自由选择分量标架",
+          "target_id": "r2ch01:sec:transform"
+        }
+      ]
+    },
+    {
+      "physical_page": 23,
+      "printed_page": 21,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-023.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "动系omega与beta恒为0时为平动系，牵连量就是原点量",
+          "description": "动系omega与beta恒为0时为平动系，牵连量就是原点量",
+          "target_id": "r2ch01:eq:036"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "平动系v=vC+v'，a=aC+a'",
+          "description": "平动系v=vC+v'，a=aC+a'",
+          "target_id": "r2ch01:eq:036"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "1.3.2刚体变换",
+          "description": "1.3.2刚体变换",
+          "target_id": "r2ch01:eq:037"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "刚体由基点速度加速度以及自身角速度角加速度完整描述",
+          "description": "刚体由基点速度加速度以及自身角速度角加速度完整描述",
+          "target_id": "r2ch01:eq:037"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "刚体基点线速度和线加速度的参考系合成",
+          "description": "刚体基点线速度和线加速度的参考系合成",
+          "target_id": "r2ch01:eq:038"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "角速度Omega=omega+Omega'",
+          "description": "角速度Omega=omega+Omega'",
+          "target_id": "r2ch01:eq:037"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "角加速度B=beta+omega×Omega'+B'",
+          "description": "角加速度B=beta+omega×Omega'+B'",
+          "target_id": "r2ch01:eq:038"
+        },
+        {
+          "id": "proof01",
+          "object_type": "proof",
+          "source_locator": "源要求读者自行证明的刚体变换",
+          "description": "源要求读者自行证明的刚体变换",
+          "target_id": "r2ch01:eq:038",
+          "notes": "已补任意固连矢量推角速度叠加、再用转动求导推角加速度；线运动为点变换"
+        },
+        {
+          "id": "h02",
+          "object_type": "heading",
+          "source_locator": "1.4运动的牵连；1.4.1接触系",
+          "description": "1.4运动的牵连；1.4.1接触系",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "几何交点对两个对象分别写运动合成，结果一致产生约束",
+          "description": "几何交点对两个对象分别写运动合成，结果一致产生约束",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "相切是特殊相交，保持接触限制两个物体可相容的运动",
+          "description": "相切是特殊相交，保持接触限制两个物体可相容的运动",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "P1盘上固定材料点、P2地面材料点、P3每时刻的几何最低点",
+          "description": "P1盘上固定材料点、P2地面材料点、P3每时刻的几何最低点",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "p05",
+          "object_type": "paragraph",
+          "source_locator": "圆筒中保持最低位置的松鼠类比几何点P3",
+          "description": "圆筒中保持最低位置的松鼠类比几何点P3",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "fig10",
+          "object_type": "figure",
+          "source_locator": "图1.10：滚动圆盘、盘上材料点、旋轮线整拱、顶点(pi a,2a)、一周2pi a、参数式",
+          "description": "图1.10：滚动圆盘、盘上材料点、旋轮线整拱、顶点(pi a,2a)、一周2pi a、参数式",
+          "target_id": "r2ch01:fig:010",
+          "source_number": "图1.10",
+          "notes": "补回完整旋轮线，圆盘、材料点和轨迹使用同一角参数，正文推导两个参数式"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "接触物体各取内法向为正，v1n=−v2n",
+          "description": "接触物体各取内法向为正，v1n=−v2n",
+          "target_id": "r2ch01:eq:039"
+        },
+        {
+          "id": "p06",
+          "object_type": "paragraph",
+          "source_locator": "几何点相对两个轮廓的速度都沿公切线",
+          "description": "几何点相对两个轮廓的速度都沿公切线",
+          "target_id": "r2ch01:sec:contact"
+        }
+      ]
+    },
+    {
+      "physical_page": 24,
+      "printed_page": 22,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-024.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "一般接触加速度含轮廓曲率法向项与转系科里奥利项",
+          "description": "一般接触加速度含轮廓曲率法向项与转系科里奥利项",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "h01",
+          "object_type": "heading",
+          "source_locator": "1.4.2纯滚系",
+          "description": "1.4.2纯滚系",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "纯滚在接触条件外还有无相对滑动的额外约束",
+          "description": "纯滚在接触条件外还有无相对滑动的额外约束",
+          "target_id": "r2ch01:eq:039"
+        },
+        {
+          "id": "d01",
+          "object_type": "definition",
+          "source_locator": "两轮廓滚过的接触弧长相等是纯滚几何定义",
+          "description": "两轮廓滚过的接触弧长相等是纯滚几何定义",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "几何切点对两物体的相对速度相同，v1'=v2'=sdot tau",
+          "description": "几何切点对两物体的相对速度相同，v1'=v2'=sdot tau",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "由两次速度合成得材料点切向速度v1tau=v2tau",
+          "description": "由两次速度合成得材料点切向速度v1tau=v2tau",
+          "target_id": "r2ch01:eq:039"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "切向速度不等即连滚带滑，不能称纯滚",
+          "description": "切向速度不等即连滚带滑，不能称纯滚",
+          "target_id": "r2ch01:sec:contact"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "引入两物体角速度、接触处曲率与切点滚过速度",
+          "description": "引入两物体角速度、接触处曲率与切点滚过速度",
+          "target_id": "r2ch01:eq:040"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "切点相对轮廓切向转率为k1 sdot、k2 sdot",
+          "description": "切点相对轮廓切向转率为k1 sdot、k2 sdot",
+          "target_id": "r2ch01:eq:040"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "相对角速度大小等于(k1+k2)|sdot|",
+          "description": "相对角速度大小等于(k1+k2)|sdot|",
+          "target_id": "r2ch01:eq:040",
+          "notes": "正文先定义统一有向切向，再得到有向等式及绝对值版"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "对几何切点列牵连+科氏+相对加速度相等的法向关系",
+          "description": "对几何切点列牵连+科氏+相对加速度相等的法向关系",
+          "target_id": "r2ch01:eq:041",
+          "notes": "保留原物理作用；改用沿几何切点求材料速度场导数逐步推导，避免源法向符号混乱"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "a1n+a2n=(omega1−omega2)²/(k1+k2)",
+          "description": "a1n+a2n=(omega1−omega2)²/(k1+k2)",
+          "target_id": "r2ch01:eq:041"
+        },
+        {
+          "id": "p05",
+          "object_type": "paragraph",
+          "source_locator": "当前接触的两个材料点随后分开，法向相对加速度由相对角速度与曲率决定",
+          "description": "当前接触的两个材料点随后分开，法向相对加速度由相对角速度与曲率决定",
+          "target_id": "r2ch01:eq:041"
+        },
+        {
+          "id": "fn15",
+          "object_type": "footnote",
+          "source_locator": "脚注15：曲率可负，局部曲率和应满足接触条件",
+          "description": "脚注15：曲率可负，局部曲率和应满足接触条件",
+          "target_id": "r2ch01:eq:041",
+          "notes": "补内接小圆k1=1/r,k2=−1/R；r=R及两平面等退化情况单列，纠正必然严格大于零的泛化"
+        },
+        {
+          "id": "h02",
+          "object_type": "heading",
+          "source_locator": "1.4.3约束系",
+          "description": "1.4.3约束系",
+          "target_id": "r2ch01:sec:rod"
+        },
+        {
+          "id": "p06",
+          "object_type": "paragraph",
+          "source_locator": "本章讨论绳与杆，约束的一般讨论归入静力学",
+          "description": "本章讨论绳与杆，约束的一般讨论归入静力学",
+          "target_id": "r2ch01:sec:rod"
+        }
+      ]
+    },
+    {
+      "physical_page": 25,
+      "printed_page": 23,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-025.jpg",
+      "objects": [
+        {
+          "id": "p01",
+          "object_type": "paragraph",
+          "source_locator": "不可伸长轻绳绷直时，局部运动学等价于不可伸长轻杆",
+          "description": "不可伸长轻绳绷直时，局部运动学等价于不可伸长轻杆",
+          "target_id": "r2ch01:sec:rope"
+        },
+        {
+          "id": "p02",
+          "object_type": "paragraph",
+          "source_locator": "杆长l，两端速度加速度沿杆和垂杆分解",
+          "description": "杆长l，两端速度加速度沿杆和垂杆分解",
+          "target_id": "r2ch01:sec:rod"
+        },
+        {
+          "id": "f01",
+          "object_type": "formula",
+          "source_locator": "v1perp−v2perp=omega l",
+          "description": "v1perp−v2perp=omega l",
+          "target_id": "r2ch01:eq:042"
+        },
+        {
+          "id": "f02",
+          "object_type": "formula",
+          "source_locator": "v1parallel−v2parallel=0",
+          "description": "v1parallel−v2parallel=0",
+          "target_id": "r2ch01:eq:042"
+        },
+        {
+          "id": "f03",
+          "object_type": "formula",
+          "source_locator": "a1perp−a2perp=beta l",
+          "description": "a1perp−a2perp=beta l",
+          "target_id": "r2ch01:eq:043"
+        },
+        {
+          "id": "f04",
+          "object_type": "formula",
+          "source_locator": "a1parallel−a2parallel=−omega²l",
+          "description": "a1parallel−a2parallel=−omega²l",
+          "target_id": "r2ch01:eq:043"
+        },
+        {
+          "id": "p03",
+          "object_type": "paragraph",
+          "source_locator": "端点沿杆分速相等；不可伸长绳过定滑轮，沿固定路径绳速相等",
+          "description": "端点沿杆分速相等；不可伸长绳过定滑轮，沿固定路径绳速相等",
+          "target_id": "r2ch01:sec:rope"
+        },
+        {
+          "id": "p04",
+          "object_type": "paragraph",
+          "source_locator": "允许弯曲但不伸长时要求每点局部没有切向相对伸缩率",
+          "description": "允许弯曲但不伸长时要求每点局部没有切向相对伸缩率",
+          "target_id": "r2ch01:sec:rope"
+        },
+        {
+          "id": "f05",
+          "object_type": "formula",
+          "source_locator": "(partial v矢/partial s)·tau=0",
+          "description": "(partial v矢/partial s)·tau=0",
+          "target_id": "r2ch01:eq:044"
+        },
+        {
+          "id": "f06",
+          "object_type": "formula",
+          "source_locator": "不能误写为partial(v·tau)/partial s=0",
+          "description": "不能误写为partial(v·tau)/partial s=0",
+          "target_id": "r2ch01:eq:044",
+          "notes": "补乘积法则与partial v_tau/partial s=kappa v_n，说明额外项何时消失"
+        }
+      ]
+    },
+    {
+      "physical_page": 26,
+      "printed_page": 24,
+      "classification": "excluded",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-026.jpg",
+      "exclusion_reason": "整页只有页眉与页码，无正文、题目、公式或插图；第一章空白尾页。",
+      "objects": []
+    }
+  ]
+}
+

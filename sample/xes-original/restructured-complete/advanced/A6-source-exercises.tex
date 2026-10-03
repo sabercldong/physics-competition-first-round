@@ -1,0 +1,608 @@
+\section{相对论时空与量子现象综合题}
+\begingroup\tcbset{breakable/.default=false}
+
+\begingroup\tcbset{breakable/.default=false}
+\begin{advexamplebox}{闭合轨道上的固有时与局部同步}\label{advA6:ex:closed-clock}
+静质量为 $m$ 的相对论性质点在外力下沿平面内一条光滑简单闭合曲线作周期运动。
+沿轨道走过的弧长为 $s$，动量大小为连续函数 $p(s)$；从O出发，$s=0$，
+走到 $s=S$ 时返回O，$S$ 是周长，$A$ 是曲线围成的面积。
+\begin{enumerate}
+\item 用积分表示质点携带的钟在一周期内的走时 $\tau_1$。
+\item 大量全同质点先后从O出发，作完全相同的运动。沿从 $s=0$ 到 $s=S$ 的开线段校准各钟：
+每个质点的局部惯性观察者认为足够近的前后邻钟与自己同步。求O两侧的钟读数差的大小 $\tau_2$，用积分表示。
+\item 证明 $\tau_1\tau_2\ge4\pi A/c^2$，并讨论等号条件。
+\end{enumerate}
+\begin{center}
+\input{assets/diagrams-modern/closed-clock-source.tex}
+\par\smallskip
+O既是弧长零点也是同步开线段的接缝；动量始终沿轨道切向。
+\end{center}
+\end{advexamplebox}
+\endgroup\par\nopagebreak[3]
+\begin{advsolution}
+（1）图中 $s$ 按粒子前进方向增大，令速率 $u(s)>0$、
+$\gamma(s)=1/\sqrt{1-u(s)^2/c^2}$。在微小弧段内，
+\[
+ \dd t=\frac{\dd s}{u},\qquad
+ \dd\tau=\frac{\dd t}{\gamma}=\frac{\dd s}{\gamma u}
+ =\frac{m\,\dd s}{p(s)}.
+\]
+所以
+\[
+ \boxed{\tau_1=m\int_0^S\frac{\dd s}{p(s)}}.
+\]
+若某个孤立点速率为零，应把上式理解为相应的广义积分；题称有限周期，要求该积分收敛。
+
+（2）必须区分“某一时刻按局部同时性校准”与“以后所有时刻一直同步”。
+先按前一种含义求校准后的接缝差。令 $C(t,s)$ 表示实验室事件 $(t,s)$ 处的钟读数。
+钟随粒子移动，故其固有走时率为
+\[
+ C_t+u C_s=1/\gamma.
+\]
+局部惯性系的相邻同时事件满足 $\dd t-u\dd s/c^2=0$。
+让这两个事件的钟读数相同，即 $\dd C=C_t\dd t+C_s\dd s=0$，得到
+\[
+ C_s+\frac u{c^2}C_t=0.
+\]
+联立两式，而不是把实验室同时误作局部同时：
+\[
+ C_t=\gamma,\qquad C_s=-\frac{\gamma u}{c^2}=-\frac{p(s)}{mc^2}.
+\]
+因此沿同一实验室校准时刻绕行，从 $0^+$ 到 $S^-$ 的钟读数逐渐减小，
+\[
+ C(t,S^-)-C(t,0^+)=-\frac1{mc^2}\int_0^S p(s)\,\dd s,
+ \qquad
+ \boxed{\tau_2=\frac1{mc^2}\int_0^S p(s)\,\dd s}.
+\]
+图中O是同一个位置，但把闭合线切开实施局部同步后，接缝两侧保留这个读数跳跃。
+$\tau_2$ 是其绝对值；若交换两侧相减的顺序，符号随之改变。
+
+如果第二问被理解为自由走时的钟必须在所有时刻永久保持上述局部同步，条件更强。
+这时两式须在一段时间内同时成立，连续混合偏导要求
+\[
+ \partial_s C_t=\frac{\dd\gamma}{\dd s}
+ =\partial_t C_s=0.
+\]
+也就是速率和动量大小必须沿轨道恒定。任意变化的 $p(s)$ 只能在选定时刻作此校准，
+不能靠一次调整钟读数就永远同步。即使匀速，闭合一周仍有接缝跳跃，不能建立全局单值的同步读数；
+自由运行的钟群所携带的切口随钟群移动，若坚持把切口固定在O，过缝的钟便需要重新校准。
+下面的不等式对瞬时校准的任意正 $p(s)$ 成立，匀速的局部持续同步分支也包含在内。
+
+（3）代入两个积分，质量约去。柯西不等式给出
+\[
+ \tau_1\tau_2
+ =\frac1{c^2}\left(\int_0^S\frac{\dd s}{p}\right)
+ \left(\int_0^S p\,\dd s\right)
+ \ge\frac1{c^2}\left(\int_0^S1\,\dd s\right)^2
+ =\frac{S^2}{c^2}.
+\]
+等号要求 $p(s)$ 恒定。再用平面简单闭合曲线的等周不等式 $S^2\ge4\pi A$，
+即得题求结论。这里说明第二个不等式的依据：选曲线弧长平均位置为原点，
+记 $\vect r(s)=(x(s),y(s))$，则 $\int\vect r\dd s=0$、$|\vect r'|=1$。
+格林公式及柯西不等式给出
+\[
+ 2A=\left|\int_0^S(xy'-yx')\dd s\right|
+ \le\left(\int_0^S|\vect r|^2\dd s\right)^{1/2}S^{1/2}.
+\]
+把均值为零的周期函数 $x,y$ 展成正弦、余弦级数，每个非零模的波数至少为 $2\pi/S$，所以
+\[
+ \int_0^S|\vect r|^2\dd s
+ \le\left(\frac S{2\pi}\right)^2\int_0^S|\vect r'|^2\dd s
+ =\frac{S^3}{4\pi^2}.
+\]
+合并便有 $2A\le S^2/(2\pi)$。两步均取等号要求曲线为圆。
+因此最终等号恰在沿圆周匀速运动时成立。
+检验匀速圆：$\tau_1=2\pi R/(\gamma u)$、$\tau_2=2\pi R\gamma u/c^2$，
+乘积为 $4\pi^2R^2/c^2=4\pi A/c^2$；两边的量纲都是时间平方。
+\end{advsolution}
+
+\begin{advexamplebox}{核辐射的反冲与运动共振}\label{advA6:ex:nuclear-resonance}
+晶体(a)冷却到内部原子的热运动可以忽略，其中一个原子核 $N$ 向探测器方向发射光子，
+自身向相反方向反冲，反冲速率远小于光速。光子在另一晶体(b)中的同种原子核 $N'$ 处被吸收。
+晶体(b)相对(a)以速率 $v$ 接近。两个核发生同一种能级跃迁，但环境不同：
+发射核的跃迁能为 $hc\sigma$，吸收核的跃迁能为 $hc\sigma'$；$\sigma,\sigma'$ 是相应辐射的波数，
+这里“波数”采用波长倒数 $1/\lambda$，不是角波数 $2\pi/\lambda$。
+已知原子核质量为 $M$，用 $v,\sigma,M$ 表示发生共振吸收所需的 $\sigma'$，并说明近似条件。
+\begin{center}
+\input{assets/diagrams-modern/recoil-resonance-source.tex}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+图(a)中光子沿 $+x$ 传播，反冲核沿 $-x$ 运动；图(b)中的吸收核在吸收前沿 $-x$ 接近光源。
+不能把跃迁能直接当成实际发射的光子能量，因为一部分能量变成了反冲动能。
+先按照题设的单核反冲模型计算，记 $\Delta=hc\sigma$、$\Delta'=hc\sigma'$。
+
+设光源静止系中的光子能量为 $\varepsilon$。动量守恒给核的反冲动量大小 $p_N=\varepsilon/c$。
+由于反冲速度很小，可用 $p_N^2/(2M)$ 表示反冲动能。因此
+\[
+ \Delta=\varepsilon+\frac{\varepsilon^2}{2Mc^2}.
+\]
+令 $r=\Delta/(Mc^2)\ll1$。反冲项本身已是一阶小修正，故在该项中用 $\varepsilon\simeq\Delta$，得
+\[
+ \varepsilon=\Delta-\frac{\Delta^2}{2Mc^2}+O(r^2\Delta).
+\]
+在吸收核的吸收前静止系中，迎面而来的光子能量被多普勒增大为
+\[
+ \varepsilon_a=\gamma_v(1+v/c)\varepsilon,
+ \qquad \gamma_v=(1-v^2/c^2)^{-1/2}.
+\]
+吸收后核获得光子动量，也要付出反冲动能。这次能量守恒为
+\[
+ \varepsilon_a=\Delta'+\frac{\varepsilon_a^2}{2Mc^2},
+ \quad\text{即}\quad
+ \Delta'=\varepsilon_a-\frac{\varepsilon_a^2}{2Mc^2}.
+\]
+若晶体的接近速度不取低速近似，记 $D=\gamma_v(1+v/c)$，则在
+$r\ll1$ 且 $Dr\ll1$、发射和吸收反冲均非相对论的条件下，可先得到
+\[
+ \boxed{\sigma'\simeq D\sigma-\frac{h\sigma^2}{2Mc}(D+D^2)}.
+\]
+这里 $D$ 乘发射反冲修正，而吸收反冲修正含 $D^2$，两者在一般速度下不相等。
+常见的小速度调谐再取 $\beta=v/c\ll1$。只保留 $\beta$ 和 $r$ 的一次项，舍去 $\beta^2,r^2,\beta r$：
+\begin{align*}
+ \Delta'
+ &\simeq(1+\beta)\left(\Delta-\frac{\Delta^2}{2Mc^2}\right)
+     -\frac{\Delta^2}{2Mc^2}\\
+ &\simeq\Delta(1+\beta)-\frac{\Delta^2}{Mc^2}.
+\end{align*}
+除以 $hc$，得到
+\[
+ \boxed{\sigma'\simeq\sigma\left(1+\frac vc\right)-\frac{h\sigma^2}{Mc}}.
+\]
+最后一项包含发射和吸收两次反冲，不能只扣一次。$h\sigma^2/(Mc)$ 的量纲是长度的倒数，
+与 $\sigma$ 一致。若 $M\to\infty$，反冲项消失，只剩迎面运动的多普勒蓝移；
+若两环境完全相同而 $\sigma'=\sigma$，则一阶近似要求 $v=h\sigma/M$，即用蓝移补偿两次反冲损失。
+
+还要区分本题模型与穆斯堡尔效应中的无反冲谱线。晶体中的核有一定概率不激发晶格振动，
+此时动量由整个晶体承担，反冲有效质量远大于单个原子核的 $M$，上面的单核反冲修正便显著减小。
+不能在同一步计算中既采用单核质量，又宣称反冲完全由晶体承担。
+\end{advsolution}
+
+\begin{advexamplebox}{两光子散射与出射波矢的取值范围}\label{advA6:ex:photon-scattering}
+两光子可经四个电磁相互作用顶点发生散射，图(a)给出一幅电子闭合内线图：
+两条入射光子外线对应 $\nu_1,\nu_2$，两条出射外线对应 $\nu_3,\nu_4$。
+中间电子用虚粒子传播子描述，不能预先认为它们都是满足
+$E^2=p^2c^2+m_e^2c^4$、能量为正的自由实粒子。
+\begin{enumerate}
+\item 证明不能把图中过程解释为一个自由光子先变成一对真实电子、正电子，再依次吸收或发射光子。
+说明能量、动量守恒与中间电子为虚粒子之间的关系。
+\item 图(b)中两入射光子的频率均为 $\nu_0$，入射方向夹角为 $120^\circ$。
+求两出射光子的波矢在三维波矢空间中的取值范围、频率与出射方向的关系，以及最大和最小频率。
+\end{enumerate}
+\begin{center}
+\input{assets/diagrams-modern/photon-scattering-source.tex}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+（1）一个自由光子的四动量平方为零。若它能在真空中单独变成一对正能量的真实电子和正电子，
+则末态总四动量平方至少为 $(2m_ec)^2>0$：在二者的质心系，
+总能量至少为 $2m_ec^2$，总动量为零。这与初态四动量平方为零矛盾。
+也可以直接用三维不等式：
+\[
+ E_++E_->c(|\vect p_+|+|\vect p_-|)
+ \ge c|\vect p_++\vect p_-|,
+\]
+而初态光子恰有 $E_\gamma=c|\vect p_\gamma|$，不能同时满足总能量和总动量守恒。
+
+同样，一个自由实电子不能在保持同一静质量的同时单独吸收一个非零能量的实光子：
+若电子初四动量为 $P$、光子为 $k$，假定吸收后的电子也在质量壳上，则
+\[
+ (P+k)^2=P^2\quad\Rightarrow\quad2P\mathbin{\cdot}k=0.
+\]
+但在初电子静止系，$P\mathbin{\cdot}k=m_e E_\gamma>0$，仍然矛盾。
+因此图(a)不能解释为一系列经典的、可逐个观测的自由电子中间态。
+闭合内线必须作为虚粒子传播子处理；每个顶点仍严格满足四动量守恒，
+并不是“虚粒子可以暂时不守恒能量”。“虚”指它不是可作为初末态观测的自由在壳粒子。
+这项论证排除把全部中间过程解释成实粒子的图景，并不要求在环动量积分的每个积分点，
+每一条内线都绝不经过质量壳上的数值；不能把图中线段当成电子实际走过的空间轨迹。
+
+（2）以下波矢采用角波数，$k_0=2\pi\nu_0/c$，光子能量为 $\hbar ck_0$。
+图(b)的合波矢 $\vect K=\vect k_1+\vect k_2$ 沿两入射方向的角平分线，且
+\[
+ K^2=k_0^2+k_0^2+2k_0^2\cos120^\circ=k_0^2.
+\]
+由能量、动量守恒，两个出射波矢满足
+\[
+ \vect k_3+\vect k_4=\vect K,\qquad k_3+k_4=2k_0.
+\]
+把 $\vect k_3$ 的端点记为P，则 $OP=k_3$、从P到 $\vect K$ 端点的距离为 $k_4$。
+所以P到两个定点O、$\vect K$ 的距离之和恒为 $2k_0$。
+这不是椭球内部的任意点，而是旋转椭球的\emph{表面}；两个焦点相距 $k_0$，
+中心为 $\vect K/2$，长半轴为 $k_0$，短半轴为 $\sqrt3k_0/2$。
+下面画其包含 $\vect K$ 的一个截面；绕水平轴旋转即为完整允许面。
+\begin{center}
+\input{assets/diagrams-modern/photon-wavevector-locus.tex}
+\end{center}
+图中的O到P代表 $\vect k_3$，P到第二焦点代表 $\vect k_4$，两矢量首尾相接恰等于 $\vect K$。
+用 $k_\parallel$ 和 $k_\perp$ 表示任一出射波矢平行、垂直于 $\vect K$ 的分量，允许面满足
+\[
+ \frac{(k_\parallel-k_0/2)^2}{k_0^2}
+ +\frac{k_\perp^2}{3k_0^2/4}=1.
+\]
+再求方向与频率。令 $\theta$ 为 $\vect k_3$ 与 $\vect K$ 的夹角，如题图(b)，并令 $k=k_3$。
+另一光子的波数必须同时满足
+\[
+ k_4=2k_0-k,\qquad
+ k_4^2=|\vect K-\vect k_3|^2=k_0^2+k^2-2k_0k\cos\theta.
+\]
+代入、平方展开并消去 $k^2$：
+\[
+ 4k_0^2-4k_0k=k_0^2-2k_0k\cos\theta,
+ \qquad
+ \boxed{\nu(\theta)=\frac{3\nu_0}{2(2-\cos\theta)}}.
+\]
+两光子全同，交换下标后这一关系对另一光子也成立。由于 $-1\le\cos\theta\le1$，
+所有方向都允许，分母恒正；频率范围是
+\[
+ \boxed{\frac{\nu_0}{2}\le\nu\le\frac{3\nu_0}{2}}.
+\]
+最大值沿合动量方向出现，最小值沿其反方向出现。极值时两光子反向传播，频率分别为
+$3\nu_0/2$ 和 $\nu_0/2$：频率和为 $2\nu_0$，动量差为 $\hbar k_0$，正好复核两条守恒式。
+允许面给出运动学范围，不意味着各方向的散射概率相同；概率还取决于量子散射振幅。
+\end{advsolution}
+
+\begin{advexamplebox}{有限质量氢靶的卢瑟福散射}\label{advA6:ex:rutherford-recoil}
+动能为 $K=2\,\mathrm{MeV}$ 的 $\alpha$ 粒子入射到静止氢核上。
+采用非相对论弹性库仑散射模型，取 $m_\alpha=4m_p=4m$。
+图中 $\theta_L,\varphi_L$ 分别表示实验室系中 $\alpha$ 粒子的散射角、氢核的反冲角，
+$\theta_c,\varphi_c$ 表示对应的质心系角。求实验室系中反冲氢核沿
+$\varphi_L=30^\circ$ 方向的微分散射截面及其反冲动能。
+\begin{center}
+\input{assets/diagrams-modern/rutherford-recoil-source.tex}
+\end{center}
+图为同一比例尺的速度矢量构图；C表示质心平移速度的端点，不是碰撞时第三个粒子的位置。
+\end{advexamplebox}
+\begin{advsolution}
+设入射速率为 $v_0$，入射方向为 $+x$。质心速度和相对运动约化质量分别为
+\[
+ V=\frac{4m}{5m}v_0=\frac45v_0,\qquad
+ \mu=\frac{4m\cdot m}{5m}=\frac45m.
+\]
+相对运动初速度仍为 $v_0$，所以用于卢瑟福公式的能量不是 $K$，而是
+\[
+ E_{\rm rel}=\frac12\mu v_0^2=\frac K5=0.4\,\mathrm{MeV}.
+\]
+质心系中 $\alpha$ 粒子的初末速率均为 $v_0/5$，氢核的初末速率均为 $4v_0/5$。
+取 $\alpha$ 出射到 $x$ 轴上方，则它的质心系速度为
+$(v_0/5)(\cos\theta_c,\sin\theta_c)$，氢核速度与之相反、大小为其四倍。
+加上平移速度 $V\vect e_x$ 后，氢核在实验室系的速度为
+\[
+ \vect u_p=\frac{4v_0}5(1-\cos\theta_c,-\sin\theta_c).
+\]
+题图中的 $OC$ 是共同加上的平移速度，$C\alpha$ 与 $Cp$ 是反向的质心系速度，
+而 $O\alpha$、$Op$ 为实验室速度。因此反冲角满足
+\[
+ \tan\varphi_L=\frac{\sin\theta_c}{1-\cos\theta_c}
+ =\cot\frac{\theta_c}2,
+ \quad \varphi_L=\frac\pi2-\frac{\theta_c}2.
+\]
+由 $\varphi_L=30^\circ$ 得 $\theta_c=120^\circ$，同时 $\varphi_c=60^\circ$。
+图中的 $\alpha$ 实验室散射角则满足
+$\tan\theta_L=\sin\theta_c/(4+\cos\theta_c)$，数值约为 $13.9^\circ$，
+不能把 $\theta_L$、$\theta_c$ 或 $\varphi_L$ 混作同一个角。
+
+记库仑常数参数 $\kappa=Z_\alpha Z_p e^2/(4\pi\varepsilon_0)$。
+相对运动的排斥库仑双曲线给出冲量参数
+\[
+ b=\frac{\kappa}{2E_{\rm rel}}\cot\frac{\theta_c}2.
+\]
+下面把它转成截面，明确角度变换而不直接套用固定重靶公式。
+轴对称入射中，$b$ 至 $b+\dd b$ 的环形面积为 $2\pi b|\dd b|$，
+质心系对应立体角为 $\dd\Omega_c=2\pi\sin\theta_c|\dd\theta_c|$，故
+\[
+ \frac{\dd\sigma}{\dd\Omega_c}
+ =\frac b{\sin\theta_c}\left|\frac{\dd b}{\dd\theta_c}\right|
+ =\left(\frac{\kappa}{4E_{\rm rel}}\right)^2
+   \frac1{\sin^4(\theta_c/2)}.
+\]
+探测器接收的是反冲氢核，所需立体角是
+$\dd\Omega_L=2\pi\sin\varphi_L|\dd\varphi_L|$。
+由 $\theta_c=\pi-2\varphi_L$，有
+\[
+ \left|\frac{\dd\Omega_c}{\dd\Omega_L}\right|
+ =\frac{2\sin(2\varphi_L)}{\sin\varphi_L}=4\cos\varphi_L.
+\]
+同一批散射事件数不变，故
+\[
+ \boxed{\frac{\dd\sigma}{\dd\Omega_L}
+ =\frac{\kappa^2}{4E_{\rm rel}^2\cos^3\varphi_L}}.
+\]
+对 $Z_\alpha=2,Z_p=1$，$\kappa\simeq2.880\,\mathrm{MeV\,fm}$，代入得到
+\[
+ \left.\frac{\dd\sigma}{\dd\Omega_L}\right|_{30^\circ}
+ =\frac{(2.880)^2}{4(0.4)^2(\sqrt3/2)^3}\,\mathrm{fm^2/sr}
+ \simeq19.95\,\mathrm{fm^2/sr}=0.1995\,\mathrm{b/sr}.
+\]
+这是\emph{反冲氢核}的微分截面；若观测散射 $\alpha$ 粒子，需另用 $\theta_L$ 的雅可比，
+不能沿用这一结果。
+
+反冲速率由速度矢量长度直接得到
+\[
+ u_p=\frac{8v_0}5\sin\frac{\theta_c}2
+ =\frac{8v_0}5\cos\varphi_L,
+\]
+因此
+\[
+ \boxed{K_p=\frac12mu_p^2
+ =\frac{16}{25}K\cos^2\varphi_L=0.96\,\mathrm{MeV}}.
+\]
+余下 $\alpha$ 粒子动能为 $1.04\,\mathrm{MeV}$；用其图示速度分量
+$v_0(0.7,\sqrt3/10)$ 计算也得到 $K_\alpha=0.52K$，两者之和为 $2\,\mathrm{MeV}$。
+当 $\varphi_L\to90^\circ$，反冲动能趋于零，而纯库仑模型的小角散射截面发散；
+实际屏蔽会限制该理想模型在极小动量转移处的适用性。
+\end{advsolution}
+
+\begin{advexamplebox}{中子重力干涉与两个输出端口}\label{advA6:ex:neutron-gravity}
+低能中子经单晶片发生布拉格衍射，可沿特定方向反射或透射。
+四段光路构成边长均为 $l$ 的菱形 $OACB$，底边 $OB$ 水平，入射方向沿 $OB$。
+晶体的布拉格角为 $\theta$，分束后的两方向夹角为 $2\theta$。
+装置可绕平行于底边的轴转过倾角 $\varphi$。已知中子质量为 $m$、入射动能为 $E_k$，
+入射束强度为1，求端口1、2的输出强度。
+先给出理想等分束、两臂完全反射的结果，再说明分束比或中间晶体反射率不是理想值时怎样计算。
+\begin{center}
+\input{assets/diagrams-modern/neutron-interferometer-source.tex}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+几何关系必须先从图(a)确定。$OB$、$AC$ 长为 $l$ 且水平，$OA$、$BC$ 与它们夹角为 $2\theta$，
+对角线 $OC$ 才与底边夹角为 $\theta$。不能把整个菱形的顶角错当作布拉格角。
+菱形面积为 $A=l^2\sin2\theta$，垂直于转轴的宽度为 $l\sin2\theta$。
+图(b)表示绕 $OB$ 倾转后上下两条水平臂的高度差：
+\[
+ h=l\sin2\theta\sin\varphi.
+\]
+
+先求重力引起的相位差。中子非相对论速率为 $v=\sqrt{2E_k/m}$，
+假定 $mgh\ll E_k$，忽略重力造成的轨迹偏折，只保留重力相位的一阶修正。
+在固定总能量下，离底边高度 $z$ 处的局部动量为
+\[
+ p(z)=\sqrt{2m(E_k-mgz)}
+ \simeq p_0-\frac{mgz}{v},\qquad p_0=mv.
+\]
+空间传播相位为 $\hbar^{-1}\int p\,\dd s$。
+两条斜臂 $OA$、$BC$ 的高度分布完全相同，积分相消；
+上方水平臂 $AC$ 比下方 $OB$ 高 $h$，且长度都是 $l$。于是
+\[
+ \delta\equiv\Phi_{OAC}-\Phi_{OBC}
+ =-\frac{mghl}{\hbar v}
+ =-\frac{mg l^2\sin2\theta\sin\varphi}{\hbar\sqrt{2E_k/m}}.
+\]
+高处动量较小，所以上臂相位少积累，负号由路径次序决定。
+以下强度只含 $\cos\delta$，交换两臂或反向倾转不改变强度。
+
+输出强度不能只看相位差，还要把晶片的透射、衍射振幅相加。
+为把端口对应讲清，取无吸收、对称的第一和末片晶体的振幅系数
+$t=\sqrt T$、$r=\mathrm i\sqrt R$，其中 $T+R=1$；这个 $\pi/2$ 相对相位使分束矩阵幺正。
+两条中间臂各衍射一次，设其共同反射振幅为 $r_m$，$|r_m|^2=R_m$。
+端口1沿 $AC$ 的延长线：上臂经历 $r,r_m,t$，下臂经历 $t,r_m,r$；
+端口2沿 $BC$ 的延长线：上臂经历 $r,r_m,r$，下臂经历 $t,r_m,t$。
+因此
+\begin{align*}
+ a_1&=r_mtr\left(e^{\mathrm i\Phi_{OAC}}+e^{\mathrm i\Phi_{OBC}}\right),\\
+ a_2&=r_m\left(r^2e^{\mathrm i\Phi_{OAC}}+t^2e^{\mathrm i\Phi_{OBC}}\right),
+\end{align*}
+从而对单位入射强度，
+\[
+ \boxed{I_1=2R_mTR(1+\cos\delta)},\qquad
+ \boxed{I_2=R_m(T^2+R^2-2TR\cos\delta)}.
+\]
+理想马赫--曾德尔模型取 $T=R=1/2$、$R_m=1$，得到
+\[
+ \boxed{I_1=\cos^2\frac\delta2,\qquad I_2=\sin^2\frac\delta2}.
+\]
+在无其他相移、$\varphi=0$ 时，端口1亮、端口2暗，二者之和为1。
+若中间晶片本身也只是反射率 $1/2$ 的普通分束晶片，则 $R_m=1/2$，上述两个强度都须再乘 $1/2$；
+其余中子从未进入这两个端口的旁路离开，不能仍宣称 $I_1+I_2=1$。
+如果把进入最终重合两臂的中子束强度重新归一为1，才可约去共同因子 $R_m$。
+
+题设没有给出晶片分束比、损耗和附加相位，故不附加理想假设时，
+能够确定的是重力相位及上述参数化关系，而不是唯一的绝对强度曲线。
+若两臂还有固定相位差 $\delta_0$，把公式中的 $\delta$ 换为 $\delta+\delta_0$。
+检验：$\delta$ 的量纲为能量乘时间除以作用量，是无量纲；
+$g\to0$ 或 $\varphi\to0$ 时重力条纹位移消失；一般无吸收模型恒有 $I_1+I_2=R_m$。
+\end{advsolution}
+
+\begin{advexamplebox}{发光杆、激光脉冲与恒星光行差}\label{advA6:ex:rod-pulse-aberration}
+惯性系 $S'$ 相对 $S$ 以速率 $v$ 沿 $+x$ 运动，两系坐标轴平行。
+\begin{enumerate}
+\item $S$ 中有一根静止发光直杆，与 $x$ 轴夹角为 $\theta$，长度为 $l$。
+求 $S'$ 中同时测量所得的杆长 $l_1$ 和放置方向 $\theta_1$。
+\item $S$ 中沿与 $x$ 轴夹角 $\theta$ 的方向传播一个长为 $l$ 的激光脉冲，传播速度为 $c$。
+求 $S'$ 中的传播方向 $\theta_2$ 和脉冲长度 $l_2$，说明长度的测量约定。
+\item 在远方恒星静止系中，恒星位于 $\theta$ 方向，天文台向右以 $v$ 运动。
+不换参考系，从运动学推导望远镜在该系中的朝向 $\theta_3$，使星像位于视野正中。
+\item 再换到天文台参考系，分别计算望远镜轴与恒星的方向，验证二者重合。
+\end{enumerate}
+\begin{center}
+\input{assets/diagrams-modern/rod-telescope-source.tex}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+令 $\beta=v/c$、$\gamma=(1-\beta^2)^{-1/2}$，所有角均从本系的正 $x$ 轴量起。
+这里“方向”指坐标测量方向，不是未作光传播时延校正的杆的照片形状。
+
+（1）杆在 $S$ 中静止，两端坐标差恒为 $(l\cos\theta,l\sin\theta)$。
+$S'$ 的测长必须使用 $\Delta t'=0$ 的两端事件。
+由洛伦兹变换 $\Delta t'=\gamma(\Delta t-v\Delta x/c^2)=0$，得到
+$\Delta t=v\Delta x/c^2$，从而
+\[
+ \Delta x'=\gamma(\Delta x-v\Delta t)=\frac{l\cos\theta}{\gamma},
+ \qquad \Delta y'=l\sin\theta.
+\]
+因此
+\[
+ \boxed{l_1=l\sqrt{\cos^2\theta/\gamma^2+\sin^2\theta}},\qquad
+ \boxed{\tan\theta_1=\gamma\tan\theta}.
+\]
+正切式不能单独确定象限，须同时使用 $\Delta x',\Delta y'$ 的符号。
+沿运动方向的杆缩短为 $l/\gamma$，横杆长度不变，作为两种极限检验。
+
+（2）光速的分量为 $u_x=c\cos\theta,u_y=c\sin\theta$。速度变换给出
+\[
+ \boxed{\cos\theta_2=\frac{\cos\theta-\beta}{1-\beta\cos\theta}},\qquad
+ \boxed{\sin\theta_2=\frac{\sin\theta}{\gamma(1-\beta\cos\theta)}}.
+\]
+两式平方和为1，表明合速度仍为 $c$。这与静止杆的方向变换不同：
+杆的两端是两个物质点，光的传播方向是一个光子相邻两事件的速度方向。
+
+通常把激光脉冲长度定义为近似平面的前、后包络波面之间\emph{沿传播方向的距离}；
+有限横向光束的完整形状还需要横向包络信息。
+在 $S$ 中令 $\vect n=(\cos\theta,\sin\theta)$，脉冲占据的相位区间宽度是
+$c t-\vect n\cdot\vect r$ 的宽度 $l$。波四矢量变换给频率比
+$D=\gamma(1-\beta\cos\theta)$；因同一组前后包络面的相位差不变，
+而在 $S'$ 同时截面上波数扩大为 $D$ 倍，包络面的法向间距便为
+\[
+ \boxed{l_2=\frac{l}{\gamma(1-\beta\cos\theta)}}.
+\]
+也可取脉冲中相同的振荡周期数 $N$：$l=Nc/\nu$、$l_2=Nc/\nu'=l/D$。
+
+如果“光束”指一串横向宽度趋于零、首尾光子在 $S$ 中相距 $l\vect n$ 的有限光子列，
+那么 $S'$ 同时测量的\emph{两个端点的空间距离}是另一个量。
+取后端在 $t=0$ 经过原点，前端轨迹为 $\vect r_f=l\vect n+c t\vect n$。
+选后端事件 $t'=0$，前端同时事件满足
+$t_f=v x_f/c^2$，解得 $t_f=\beta l\cos\theta/[c(1-\beta\cos\theta)]$。于是
+\[
+ \Delta\vect r'=
+ \frac{l}{1-\beta\cos\theta}\left(\frac{\cos\theta}{\gamma},\sin\theta\right),
+ \qquad
+ |\Delta\vect r'|=l\sqrt{\frac{1+\beta\cos\theta}{1-\beta\cos\theta}}.
+\]
+这根首尾连线一般\emph{不沿}光子的传播方向，不能把其长度冒充包络的纵向长度；
+把它投影到上述 $\vect n'$ 后，才得到 $\Delta\vect r'\cdot\vect n'=l/D$。
+两种定义都明确后，便不会把不同测量过程的两个公式误认为矛盾。
+
+（3）恒星的视线方向为 $\vect n=(\cos\theta,\sin\theta)$，
+光实际沿 $-\vect n$ 传播，不能漏掉这个负号。
+图(b)中镜筒由后端指向前端的向量记为 $\vect L$。
+光在时刻0到达前端，在时刻 $\Delta t$ 到达后端；这段时间里后端向右移动 $v\Delta t$。
+在同一个恒星静止系里，光的位移与两端的位移关系为
+\[
+ -c\vect n\Delta t=-\vect L+v\vect e_x\Delta t,
+ \quad\Rightarrow\quad
+ \vect L=c\Delta t(\vect n+\beta\vect e_x).
+\]
+因此镜筒朝向应满足
+\[
+ \boxed{\tan\theta_3=\frac{\sin\theta}{\cos\theta+\beta}}.
+\]
+仍用两个分量共同确定象限。图中恒星虚线与镜筒轴不平行，正是因为光穿过镜筒期间，
+镜筒本身也向右移动；不能在恒星系强行把镜筒轴画成入射光线。
+
+（4）镜筒在天文台系静止；第一问的长度收缩关系逆用时，
+恒星系看到的纵向长度比天文台系短 $1/\gamma$，故
+\[
+ \tan\theta'_{\rm tube}=\frac{\tan\theta_3}{\gamma}
+ =\frac{\sin\theta}{\gamma(\cos\theta+\beta)}.
+\]
+另一方面把传播方向 $-\vect n$ 代入第二问的速度变换，再取反便是恒星的观测方向：
+\[
+ \cos\theta'_{\rm star}=\frac{\cos\theta+\beta}{1+\beta\cos\theta},\qquad
+ \sin\theta'_{\rm star}=\frac{\sin\theta}{\gamma(1+\beta\cos\theta)}.
+\]
+二者分量比和象限均与镜筒相同，所以星像位于镜筒正中。
+当 $v\to0$，四个方向均回到 $\theta$；对 $\theta=90^\circ$，
+恒星观测方向具有正 $x'$ 分量 $\beta$，即向天文台运动前方偏移。
+\end{advsolution}
+
+\begin{advexamplebox}{等速追及曲线与迟延接收的多普勒频移}\label{advA6:ex:pursuit-doppler}
+雷达鼠R以恒定速率 $v$ 沿直线运动，电波狗D也以相同速率运动，
+且它每一时刻的速度都指向该时刻的R。初始时狗的速度与鼠的速度垂直，两者距离为 $p$。
+\begin{enumerate}
+\item 当瞬时连线与鼠运动方向的夹角为 $\theta$ 时，求两者距离。
+\item 狗的静质量为 $m$，求维持该运动所需的力。
+\item 狗在此时发射自身瞬时静止系频率为 $\nu_0$ 的短光脉冲，求鼠接收到的频率。
+必须考虑传播期间鼠的位置变化。
+\end{enumerate}
+\begin{center}
+\input{assets/diagrams-modern/pursuit-source.tex}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+令鼠沿 $+x$ 运动，初态 $R_0=(0,0)$、$D_0=(0,-p)$。
+图中 $D_e,R_e$ 是发射时刻的位置，$R_r$ 是接收时刻的位置。
+用 $\ell$ 表示瞬时距离，$\vect e=(\cos\theta,\sin\theta)$ 指向由狗到鼠，
+狗的速度为 $v\vect e$，鼠的速度为 $v\vect e_x$。
+
+（1）相对位置满足 $\vect r_R-\vect r_D=\ell\vect e$。
+对时间求导，并沿连线及其法向 $\vect e_\theta=(-\sin\theta,\cos\theta)$ 分解：
+\[
+ \dot\ell=v(\cos\theta-1),\qquad
+ \ell\dot\theta=-v\sin\theta.
+\]
+两式相除以消去时间，得到
+\[
+ \frac{\dd\ell}{\ell}=\frac{1-\cos\theta}{\sin\theta}\dd\theta
+ =\tan\frac\theta2\dd\theta=-2\dd\ln\cos\frac\theta2.
+\]
+用初值 $\theta=\pi/2,\ell=p$ 确定常数，得
+\[
+ \boxed{\ell=\frac{p}{1+\cos\theta}}.
+\]
+角度逐渐减小、距离也减小，但极限为 $p/2$，狗始终追不上同速的鼠。
+题图轨迹由这一方程生成；若设 $q=\tan(\theta/2)$，可积分得
+\[
+ x_D=\frac p4(q^2-1)-\frac p2\ln q,\quad y_D=-pq,
+ \quad x_R=\frac p4(1-q^2)-\frac p2\ln q.
+\]
+对这些表达式求导，轨迹切线恰指向 $R_e$，图中的速度箭头因而不是凭外观放置的。
+
+（2）速率不变，所以 $\gamma=(1-v^2/c^2)^{-1/2}$ 为常数，
+动量大小为 $\gamma mv$，只有方向转动。力为
+\[
+ \vect F=\frac{\dd}{\dd t}(\gamma mv\vect e)
+ =\gamma mv\dot\theta\vect e_\theta
+ =\boxed{\frac{\gamma mv^2\sin\theta}{\ell}(\sin\theta,-\cos\theta)}.
+\]
+其大小为 $\gamma mv^2\sin\theta(1+\cos\theta)/p$，
+方向如下面的解图所示，从 $D_e$ 指向曲率中心一侧，与瞬时速度垂直，因此外力不做功、动能恒定。
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Solution-only: equal-speed pursuit has force normal to velocity.
+\begin{tikzpicture}[>=Latex,scale=.95]
+ \fill(0,0)circle(1.6pt)node[left]{$D_e$};
+ \draw[->,thick,DeepBlue](0,0)--(1.6,1.2)node[above right]{$\vect v_D$};
+ \draw[->,thick](0,0)--(1.2,-1.6)node[below right]{$\vect F$};
+ \draw[thin](.24,.18)--(.42,-.06)--(.18,-.24);
+ \node[anchor=west]at(2.2,0){$\vect F\cdot\vect v_D=0$};
+\end{tikzpicture}
+\bookcaption{同速追逐的受力方向：力改变动量方向而不改变其大小}\label{advA6:fig:pursuit-force-solution}
+\end{minipage}\end{center}
+
+初始力向右，大小为 $\gamma mv^2/p$；当 $\theta\to0$ 时曲线趋于直线，所需力趋于零。
+
+（3）不能把发射时刻的 $D_eR_e$ 当作光脉冲的传播方向：
+鼠在光到达前继续向右移动，所以光应沿 $D_eR_r$。
+令实验室光方向单位矢量为 $\vect n$，传播时间为 $\Delta t$，并记 $\beta=v/c$。
+追光的几何条件是
+\[
+ c\Delta t\vect n=\ell\vect e+v\Delta t\vect e_x.
+\]
+设 $a=\ell/(c\Delta t)>0$，则 $\vect n=a\vect e+\beta\vect e_x$。
+由 $|\vect n|=1$ 得
+\[
+ a^2+2\beta a\cos\theta+\beta^2=1,
+ \quad a=Q-\beta\cos\theta,\quad
+ Q=\sqrt{1-\beta^2\sin^2\theta}.
+\]
+取正根保证光向未来传播，且 $Q>\beta\cos\theta$。
+
+设该光在实验室频率为 $\nu$。发射者、接收者所测频率分别由四波矢与各自四速度的内积给出：
+\[
+ \nu_0=\gamma\nu(1-\beta\vect n\cdot\vect e),\qquad
+ \nu_r=\gamma\nu(1-\beta n_x).
+\]
+两者速率相同，$\gamma$ 因子相消，但方向因子不相消。用
+$\vect n\cdot\vect e=a+\beta\cos\theta=Q$、$n_x=\beta+a\cos\theta$，得到
+\[
+ \boxed{\frac{\nu_r}{\nu_0}
+ =\frac{1-\beta^2-\beta a\cos\theta}{1-\beta Q}
+ =\frac{aQ}{1-\beta Q}},\qquad a=Q-\beta\cos\theta.
+\]
+这里的频率是短脉冲的局部载频，忽略脉冲持续期间狗的速度方向变化。
+检验低速极限：$Q\simeq1$、$a\simeq1-\beta\cos\theta$，故
+$\nu_r/\nu_0\simeq1+\beta(1-\cos\theta)$，与距离在减小产生的蓝移一致。
+当 $\theta\to0$，两者同向同速，比例回到1。初始 $\theta=90^\circ$ 时也须使用上述迟延几何，
+不能直接套“横向接收”公式，因为实际光线并不沿瞬时竖直连线。
+低速蓝移也不能推广到所有高速情况。例如 $\beta=0.9,\theta=60^\circ$ 时，
+本式给出 $\nu_r/\nu_0\simeq0.2535$：尽管瞬时间距减小，迟延接收仍出现红移。
+\end{advsolution}
+\endgroup

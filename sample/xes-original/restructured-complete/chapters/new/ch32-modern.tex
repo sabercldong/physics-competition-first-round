@@ -1,0 +1,566 @@
+\section{热辐射与能量量子}
+
+黑体是在给定温度下对各波长辐射具有最大吸收率的理想系统。经典能量均分与连续电磁模式结合会在高频给出发散，
+普朗克（Max Planck）假定频率为 $\nu$ 的模式与物质交换能量时以 $h\nu$ 为单位，得到正确的黑体谱。单位体积、单位频率间隔的谱能量密度为
+\begin{equation}
+ u_\nu(T)=\frac{8\pi h\nu^3}{c^3}\frac1{e^{h\nu/(k_BT)}-1}.
+\end{equation}
+低频极限 $h\nu\ll k_BT$ 时，令 $x=h\nu/(k_BT)$，利用 $e^x-1\simeq x$，得到
+\[
+ u_\nu\simeq\frac{8\pi\nu^2k_BT}{c^3}.
+\]
+这就是瑞利--金斯形式（Rayleigh--Jeans law）。高频端的指数因子压过三次幂，因而不存在经典理论的紫外发散。
+对频率积分得到的是单位体积内的总辐射能量 $u=\int_0^\infty u_\nu\,\dd\nu$，单位为 $\mathrm{J/m^3}$，并不是功率。
+各向同性辐射中，每单位立体角分配的能量密度为 $u/(4\pi)$。穿过单位面积的能流还要乘传播速度 $c$ 和法向投影 $\cos\theta$，因此出射半球给出
+\[
+ j=\int_0^{2\pi}\!\int_0^{\pi/2}\frac{cu}{4\pi}\cos\theta\sin\theta\,\dd\theta\,\dd\varphi
+ =\frac{cu}{4}.
+\]
+同一角积分还说明单位面积向立体角元 $\dd\Omega$ 发射的功率满足 $\dd j/\dd\Omega=(j/\pi)\cos\theta$，即朗伯余弦定律；$\theta$ 从表面外法线量起。
+所以黑体的总辐出度（单位面积的出射功率）为
+\begin{equation}
+ j=\sigma T^4,
+\end{equation}
+面积为 $S$ 的均匀黑体表面的出射功率为 $P=Sj$。这里 $j$ 的单位为 $\mathrm{W/m^2}$；若计算与温度为 $T_0$ 的黑体环境之间的净交换功率，则为 $\sigma S(T^4-T_0^4)$。
+单位波长间隔的能量密度需作变量变换，而不能只把 $\nu$ 换成 $c/\lambda$：
+\[
+ u_\lambda=u_\nu(c/\lambda)\left|\frac{\dd\nu}{\dd\lambda}\right|
+ =\frac{8\pi hc}{\lambda^5}\frac1{e^{hc/(\lambda k_BT)}-1},\qquad M_\lambda=\frac c4u_\lambda.
+\]
+令 $z=hc/(\lambda k_BT)$。固定温度时，$M_\lambda$ 的极大值对应 $z^5/(e^z-1)$ 的极大值，其导数为零要求
+\[
+ 5(e^z-1)-ze^z=0,\qquad 5(1-e^{-z})=z.
+\]
+非零解 $z\simeq4.9651$ 给出维恩位移律（Wien's displacement law）$\lambda_{\max}T=b=hc/(4.9651k_B)$。
+按频率和按波长表示的谱密度，其峰值不是简单的倒数关系。谱峰波长随温度升高向短波移动，但不能把
+$hc/\lambda_{\max}$ 直接当作所有光子的平均能量。
+
+热平衡时，同一频率和方向上的发射率等于吸收率，这就是基尔霍夫热辐射定律（Kirchhoff's law）。黑体的吸收率为1；实际物体的发射谱还必须乘上不超过1且依赖材料、波长和方向的发射率，不能只凭温度把所有表面都当成理想黑体。
+
+
+\input{../modern-expansion/32-radiation.tex}
+\subsection{黑体谱的温标}
+
+\setcounter{bookexample}{4}
+\begin{origexamplebox}{恒星表面温度与辐出度}
+把一颗恒星表面近似为黑体，其单位波长间隔的辐射谱峰值在 $500\,\mathrm{nm}$。用
+$b=2.898\times10^{-3}\,\mathrm{m\,K}$、$\sigma=5.67\times10^{-8}\,\mathrm{W\,m^{-2}K^{-4}}$，求表面温度和单位面积总辐射功率。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/blackbody.tex}
+\figcap{黑体单色辐出度随温度的变化：升温后总面积增大，峰值向短波移动。}\label{ch32:fig:blackbody}
+\end{center}
+
+
+维恩位移律给出
+\[
+ T=\frac b{\lambda_{\max}}
+ =\frac{2.898\times10^{-3}}{500\times10^{-9}}
+ \approx\boxed{5.80\times10^3\,\mathrm K}.
+\]
+斯蒂芬--玻尔兹曼定律给出
+\[
+ j=\sigma T^4\approx5.67\times10^{-8}(5.80\times10^3)^4
+ \approx\boxed{6.4\times10^7\,\mathrm{W/m^2}}.
+\]
+峰值波长乘温度的单位为 $\mathrm{m\,K}$；温度升高时 $\lambda_{\max}$ 变短且总功率按 $T^4$ 增大，与图~\ref{ch32:fig:blackbody} 一致。
+\end{xesolution}
+
+
+
+\section{光子、光电效应与康普顿散射}
+
+光的量子具有
+\begin{equation}
+ E=h\nu=\frac{hc}{\lambda},\qquad p=\frac E c=\frac h\lambda.
+\end{equation}
+光电效应中，一个电子吸收一个光子的最简能量关系为
+\begin{equation}
+ K_{\max}=h\nu-W,
+\end{equation}
+其中 $W$ 为逸出功，只有 $h\nu\ge W$ 才能发生这一单光子光电过程。截止电压 $U_s$ 指使最快光电子也不能到达收集极的反向电压大小。
+设发射极电势为零，收集极电势为 $-U_s$；电子电荷为 $-e$，到达收集极需要增加的电势能为 $(-e)(-U_s)=eU_s$。临界时末动能为零，所以 $eU_s=K_{\max}$。
+频率决定单个光子的能量和截止电压，光强主要改变单位时间到达的光子数；在多光子或强场条件下还会出现更复杂过程。
+
+\setcounter{bookexample}{0}
+\begin{origexamplebox}{光电效应截止电压}
+金属逸出功 $W=2.2\,\mathrm{eV}$，用波长 $400\,\mathrm{nm}$ 的单色光照射。求光电子最大动能和截止电压。
+\end{origexamplebox}
+\begin{xesolution}
+使用 $hc\simeq1240\,\mathrm{eV\,nm}$：
+\[
+ E_\gamma=\frac{1240}{400}\,\mathrm{eV}=3.10\,\mathrm{eV}.
+\]
+所以
+\[
+ K_{\max}=3.10-2.20=0.90\,\mathrm{eV},
+ \qquad \boxed{U_s=0.90\,\mathrm V}.
+\]
+这里第二个数值不是把能量直接改写成电压。电子伏特的定义是
+$1\,\mathrm{eV}=e\times1\,\mathrm V$，因此
+\[
+ U_s=\frac{K_{\max}}e
+ =\frac{0.90\times1.602\times10^{-19}\,\mathrm J}
+ {1.602\times10^{-19}\,\mathrm C}=0.90\,\mathrm V.
+\]
+\begin{center}
+\input{../../assets/diagrams-modern/photoelectric-apparatus.tex}
+\figcap{截止电压的电势约定。K接较高电势，A接较低电势；图示电场和受力方向相反。}\label{ch32:fig:photoelectric-apparatus}
+\end{center}
+如图~\ref{ch32:fig:photoelectric-apparatus}，电子向右时电场力向左，故减速。
+从K到A电势降低 $U_s$，电子电势能却增加 $eU_s$；
+最快电子恰好耗尽初动能时到达临界截止，收集极电势为 $-0.90\,\mathrm V$。
+若增加同频光强，饱和光电流可增大，但理想模型中的截止电压不变。
+\end{xesolution}
+
+\subsection{光电效应的直线判据}
+
+\setcounter{bookexample}{5}
+\begin{origexamplebox}{由截止电压数据求普朗克常数}
+同一种金属在频率 $f_1=6.0\times10^{14}\,\mathrm{Hz}$ 时截止电压为 $0.50\,\mathrm V$，
+在 $f_2=8.0\times10^{14}\,\mathrm{Hz}$ 时为 $1.33\,\mathrm V$。估算 $h$、阈频和逸出功。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.72\linewidth,height=4.7cm,axis lines=left,
+  xlabel={$f\;(10^{14}\,\mathrm{Hz})$},ylabel={$U_s\;(\mathrm V)$},xmin=3.5,xmax=9,ymin=0,ymax=1.8,
+  xtick={4.8,6,8},xticklabels={$f_0$,$f_1$,$f_2$},ytick={.5,1.33},
+  every axis label/.style={fill=none}]
+  \addplot[DeepBlue,very thick,domain=4.795180723:8.8]{.415*x-1.99};
+  \addplot[only marks,mark=*,DeepBlue] coordinates{(6,.5)(8,1.33)};
+  \draw[guide] (axis cs:6,0)--(axis cs:6,.5);
+  \draw[guide] (axis cs:8,0)--(axis cs:8,1.33);
+\end{axis}
+\end{tikzpicture}
+\figcap{截止电压对频率的直线关系 $U_s=(h/e)f-W/e$。斜率决定普朗克常数，横截距决定阈频。}\label{ch32:fig:photoelectric-line}
+\end{center}
+图~\ref{ch32:fig:photoelectric-line} 标出的两测量点用于本题的斜率计算，不能用连线在纵轴上的截距误认逸出功本身。
+
+
+由 $eU_s=hf-W$，直线斜率为
+（把两个频率对应的等式相减，逸出功 $W$ 消去）
+\[
+ \frac he=\frac{1.33-0.50}{(8.0-6.0)\times10^{14}}
+ =4.15\times10^{-15}\,\mathrm{V\,s}.
+\]
+取 $e=1.602\times10^{-19}\,\mathrm C$，
+\[
+ \boxed{h\approx6.65\times10^{-34}\,\mathrm{J\,s}}.
+\]
+阈频
+\[
+ f_0=f_1-\frac{U_{s1}}{h/e}
+ \approx\boxed{4.80\times10^{14}\,\mathrm{Hz}}.
+\]
+以电子伏特表示，$W/e=(h/e)f_0\approx1.99\,\mathrm V$，故
+$\boxed{W\approx1.99\,\mathrm{eV}}$。两组数据的斜率单位为 $\mathrm{V\,s}$，乘电荷后为 $\mathrm{J\,s}$。
+\end{xesolution}
+
+\subsection{散射中的能量与动量守恒}
+康普顿散射（Compton scattering）中，取初始自由电子静止，入射光子沿 $x$ 轴，散射光子与它成角 $\theta$。
+设两光子能量分别为 $E,E'$，末态电子总能量为 $E_e$。能量和两个方向的动量守恒分别给出
+\[
+ E+m_ec^2=E'+E_e,\qquad p_{ex}=\frac{E-E'\cos\theta}{c},\qquad
+ p_{ey}=-\frac{E'\sin\theta}{c}.
+\]
+因此 $p_e^2c^2=E^2+E'^2-2EE'\cos\theta$。再用 $E_e^2=m_e^2c^4+p_e^2c^2$，代入 $E_e=m_ec^2+E-E'$，消去两边共同项：
+\[
+ 2m_ec^2(E-E')=2EE'(1-\cos\theta),\qquad
+ \frac1{E'}-\frac1E=\frac{1-\cos\theta}{m_ec^2}.
+\]
+最后代入 $E=hc/\lambda$，得到波长改变
+\begin{equation}
+ \lambda'-\lambda=\frac{h}{m_ec}(1-\cos\theta).
+\end{equation}
+它说明高能电磁辐射交换能量和动量时具有不可忽略的量子性。
+
+\subsection{康普顿散射几何}
+
+\setcounter{bookexample}{6}
+\begin{origexamplebox}{九十度康普顿散射}
+波长 $\lambda=0.0710\,\mathrm{nm}$ 的X射线被近似静止的自由电子散射，光子偏转 $90^\circ$。
+取电子康普顿波长 $h/(m_ec)=0.002426\,\mathrm{nm}$，求散射光波长及散射前后光子能量。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/compton.tex}
+\figcap{康普顿散射中的动量矢量方向，箭长不表示动量大小。散射角 $\theta$ 是入射与散射光子方向的夹角。}\label{ch32:fig:compton}
+\end{center}
+图~\ref{ch32:fig:compton} 对应本题的 $90^\circ$ 散射：散射光子向上带走动量，反冲电子便必须具有向下的动量分量，同时保有向右的动量分量。电子箭头的方向由 $\vect p_e=\vect p-\vect p'$ 决定，而不是任意画出。
+
+
+$\theta=90^\circ$ 时 $1-\cos\theta=1$，故
+\[
+ \boxed{\lambda'=0.0710+0.002426=0.07343\,\mathrm{nm}}.
+\]
+用 $hc=1.23984\,\mathrm{keV\,nm}$：
+\[
+ E=\frac{1.23984}{0.0710}\approx17.46\,\mathrm{keV},
+ \qquad
+ E'=\frac{1.23984}{0.07343}\approx16.89\,\mathrm{keV}.
+\]
+保留未舍入数值作差，光子损失约 $0.577\,\mathrm{keV}$，转化为电子动能。$\theta=0$ 时波长不变；$\theta=\pi$ 时改变量达到两倍康普顿波长。
+图~\ref{ch32:fig:compton} 的出射光子向上，故按前面的动量守恒式有
+\[
+ p_{ex}=E/c>0,\qquad p_{ey}=-E'/c<0,
+ \qquad \tan\phi=\frac{|p_{ey}|}{p_{ex}}=\frac{E'}E\approx0.967.
+\]
+电子在入射方向下方约 $44.0^\circ$ 反冲，与图中的箭头一致。
+还可作独立能量检查：$p_e^2c^2=E^2+E'^2$，所以
+\[
+ K_e=\sqrt{(m_ec^2)^2+E^2+E'^2}-m_ec^2\approx0.577\,\mathrm{keV}.
+\]
+它与 $E-E'$ 一致；若把两光子的能量差全部当作电子的总能量，就会漏掉电子原有的静止能量。
+\end{xesolution}
+
+
+
+\section{物质波与量子态}
+
+德布罗意关系（de Broglie relation）把粒子动量与波长联系起来：
+\begin{equation}
+ \lambda=\frac hp.
+\end{equation}
+电子、中子、原子乃至更大复合粒子都能在适当相干条件下产生衍射。这里“波”指量子态的概率振幅具有相位并可叠加，
+“粒子”指探测时能量、电荷等以局域事件交换。量子对象不是一颗始终沿唯一轨迹运动的经典小球，也不是在三维空间中可直接测量的经典物质波；
+实验装置和测量问题决定哪些概率分布可被观察。
+
+记约化普朗克常数为 $\hbar=h/(2\pi)$。位置与动量的不确定关系为
+\begin{equation}
+ \Delta x\,\Delta p_x\ge\frac\hbar2.
+\end{equation}
+这里 $\Delta x=\sqrt{\langle x^2\rangle-\langle x\rangle^2}$，$\Delta p_x$ 同样是标准差，而不是两次测量值之差。它是量子态允许的概率分布宽度关系，不等同于仪器粗糙造成的普通测量误差。把波包限制得更窄需要更宽的动量成分。
+
+\setcounter{bookexample}{1}
+\begin{origexamplebox}{电子经电势差加速后的波长}
+电子从静止经电势差 $U$ 加速，且 $eU\ll m_ec^2$。求德布罗意波长，并说明何时需相对论修正。
+\end{origexamplebox}
+\begin{xesolution}
+非相对论能量关系 $eU=p^2/(2m_e)$ 给出
+\[
+ \boxed{\lambda=\frac h{\sqrt{2m_eeU}}}.
+\]
+若 $eU$ 与 $m_ec^2=511\,\mathrm{keV}$ 不再相比很小，应使用
+\[
+ (pc)^2=(m_ec^2+eU)^2-m_e^2c^4
+\]
+求动量。展开右侧并取正根，得到
+\[
+ pc=\sqrt{2m_ec^2eU+(eU)^2},\qquad
+ \lambda=\frac{h}{\sqrt{2m_eeU}\sqrt{1+eU/(2m_ec^2)}}.
+\]
+当 $eU/(m_ec^2)\to0$ 时第二个根式趋于1，回到前面的低压公式。低压近似的适用条件来自能量尺度比较，而不是只看电压数值是否“很大”。
+\end{xesolution}
+
+\begin{starread}{薛定谔方程与自旋}
+非相对论单粒子量子态由波函数 $\psi(\vect r,t)$ 表示，满足
+\[
+ \ii\hbar\frac{\partial\psi}{\partial t}
+ =\left[-\frac{\hbar^2}{2m}\nabla^2+V(\vect r,t)\right]\psi.
+\]
+$|\psi|^2$ 是位置概率密度，满足 $\int |\psi|^2\,\dd^3r=1$。定态问题化为哈密顿（Hamilton）算符的本征值问题；边界条件使束缚态能量离散。
+自旋是粒子的内禀角动量，不等同于带电小球绕自身轴作经典旋转。电子自旋测量沿任意轴只得到
+$\pm\hbar/2$，原子中的离散单电子能级与泡利不相容原理决定基本的壳层填充：每个空间轨道至多容纳两个自旋态不同的电子。自旋磁矩则参与磁场中的能级分裂等磁相互作用，不能把磁矩本身说成壳层填充的原因。
+\end{starread}
+\input{../modern-expansion/32-wave.tex}
+\subsection{电子衍射}
+
+\setcounter{bookexample}{7}
+\begin{origexamplebox}{低能电子的德布罗意波长与布拉格角}
+电子从静止经 $54.0\,\mathrm V$ 加速后入射晶体，晶面间距为 $0.200\,\mathrm{nm}$。
+电子波长可用下式计算（$\lambda$ 以纳米计，$U$ 以伏特计）：
+\[
+ \lambda(\mathrm{nm})\approx\frac{1.227}{\sqrt{U(\mathrm V)}}.
+\]
+求电子波长和一级布拉格角。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/bragg.tex}
+\figcap{晶面间距为 $d$ 的布拉格衍射几何。相邻晶面反射波程差为 $2d\sin\theta$。}\label{ch32:fig:electron-diffraction}
+\end{center}
+图~\ref{ch32:fig:electron-diffraction} 中 $\theta$ 是电子束与晶面的掠射角，而不是与晶面法线的夹角。两束平行波分别在上层的 $A$ 和下层的 $B$ 处散射。
+从 $A$ 向下层入射线、出射线作垂线，垂足分别为 $C,D$。$AC$ 是入射等相位面的截线，$AD$ 用来比较出射相位；下层波多走的路程正是 $CB+BD$。
+因为 $AB=d$，两个直角三角形分别给出 $CB=d\sin\theta$、$BD=d\sin\theta$。
+两段相加得到波程差 $2d\sin\theta$；同相叠加要求此值等于整数倍波长。图中角度为几何示意，本题另由数据计算。
+
+
+非相对论德布罗意波长
+\[
+ \lambda=\frac{1.227}{\sqrt{54.0}}\,\mathrm{nm}
+ \approx\boxed{0.167\,\mathrm{nm}}.
+\]
+一级布拉格条件 $2d\sin\theta=\lambda$ 给出
+\[
+ \sin\theta=\frac{1.227/\sqrt{54.0}}{0.400}\approx0.4174,
+ \qquad \boxed{\theta\approx24.7^\circ}.
+\]
+$\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$，非相对论近似自洽；若电压接近该尺度须修正动量关系。
+\end{xesolution}
+
+
+
+\section{原子光谱与玻尔模型}
+
+氢原子光谱满足里德伯关系（Rydberg formula）
+\begin{equation}
+ \frac1\lambda=R_H\left(\frac1{n_f^2}-\frac1{n_i^2}\right),
+ \qquad n_i>n_f.
+\end{equation}
+玻尔模型（Bohr model）先近似把质子视为静止，记 $k_e=1/(4\pi\varepsilon_0)$。库仑力提供向心力，角动量取离散值：
+\[
+ \frac{k_ee^2}{r_n^2}=\frac{m_ev_n^2}{r_n},\qquad m_ev_nr_n=n\hbar.
+\]
+把 $v_n=n\hbar/(m_er_n)$ 代入第一式，约去公共因子，得
+\[
+ r_n=\frac{n^2\hbar^2}{m_ek_ee^2}=a_0n^2,\qquad v_n=\frac{k_ee^2}{n\hbar}.
+\]
+以无限远处电子与质子静止时的能量为零，势能 $V=-k_ee^2/r_n$，动能 $K=m_ev_n^2/2=k_ee^2/(2r_n)$，故总能量
+\[
+ E_n=K+V=-\frac{k_ee^2}{2r_n}=-\frac{m_ek_e^2e^4}{2\hbar^2n^2}.
+\]
+代入常数后得到
+\begin{equation}
+ r_n=a_0n^2,\qquad E_n=-\frac{13.6\,\mathrm{eV}}{n^2}.
+\end{equation}
+跃迁光子满足 $h\nu=E_i-E_f$。玻尔模型正确解释氢样离子能级的主要结构，却不能完整描述多电子原子、谱线强度、精细结构和自旋；
+这些需要量子力学。
+
+原子尺度上电磁相互作用的无量纲强度由精细结构常数
+\begin{equation}
+ \alpha=\frac{e^2}{4\pi\varepsilon_0\hbar c}\approx\frac1{137}
+\end{equation}
+刻画。玻尔半径可写成 $a_0=\hbar/(m_ec\alpha)$，轨道速率为 $v_n=\alpha c/n$。
+约化康普顿波长 $\bar\lambda_C=\hbar/(m_ec)$ 与经典电子半径 $r_e=k_ee^2/(m_ec^2)$ 因而满足
+\[
+ \bar\lambda_C=\alpha a_0,\qquad r_e=\alpha\bar\lambda_C=\alpha^2a_0.
+\]
+这里 $r_e$ 是由能量尺度定义的长度，不表示电子是半径为 $r_e$ 的刚性球。精细结构能量相对主能级通常带有 $\alpha^2$ 量级的小因子。这种无量纲参数比单独比较带单位常数更能显示修正项的相对大小。
+
+\setcounter{bookexample}{2}
+\begin{origexamplebox}{氢原子的电离与谱线}
+处于 $n=3$ 能级的氢原子跃迁到 $n=2$。（1）求光子能量；（2）从 $n=3$ 状态电离至少需要多少能量？
+\end{origexamplebox}
+\begin{xesolution}
+\[
+ E_3=-\frac{13.6}{9}\,\mathrm{eV},\qquad E_2=-\frac{13.6}{4}\,\mathrm{eV}.
+\]
+发射光子能量
+\[
+ \boxed{E_\gamma=E_3-E_2=13.6\left(\frac14-\frac19\right)\mathrm{eV}
+ \approx1.89\,\mathrm{eV}}.
+\]
+从 $n=3$ 到连续谱零能级所需
+\[
+ \boxed{E_{\rm ion}=0-E_3=\frac{13.6}{9}\,\mathrm{eV}\approx1.51\,\mathrm{eV}}.
+\]
+两问对应不同终态，不能把跃迁光子能量当成该状态的电离能。
+\begin{center}
+\input{../../assets/diagrams-modern/hydrogen-two-processes.tex}
+\figcap{从同一 $n=3$ 能级出发的两个不同过程，能级高度按能量绘制。}\label{ch32:fig:hydrogen-two-processes}
+\end{center}
+图~\ref{ch32:fig:hydrogen-two-processes} 左箭头向下，原子的能量减少，
+光子获得正能量 $E_3-E_2$；右箭头向上，原子需要吸收正能量 $0-E_3$。
+零能量线表示电子与质子在无限远处、相对动能为零的电离阈值，不是又一个有限半径的束缚轨道。
+\end{xesolution}
+
+
+\input{../modern-expansion/32-atom.tex}
+\subsection{氢光谱的级次}
+
+\setcounter{bookexample}{8}
+\begin{origexamplebox}{巴耳末系最长波长与系限}
+取里德伯常数 $R_H=1.097\times10^7\,\mathrm{m^{-1}}$。求氢原子巴耳末系（终态 $n_f=2$）的最长波长和短波极限。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/hydrogen.tex}
+\figcap{氢原子能级与巴耳末系。纵轴在基态与第一激发态之间断开；上部各能级按能量比例绘制，越靠近电离极限，间隔越小。}\label{ch32:fig:hydrogen-levels}
+\end{center}
+
+
+最长波长对应最小能级差，即 $n_i=3$：
+\[
+ \frac1{\lambda_{\max}}=R_H\left(\frac14-\frac19\right)
+ =R_H\frac5{36},
+\]
+所以 $\boxed{\lambda_{\max}\approx656\,\mathrm{nm}}$。短波极限对应 $n_i\to\infty$：
+\[
+ \frac1{\lambda_{\min}}=\frac{R_H}{4},
+ \qquad \boxed{\lambda_{\min}\approx364.6\,\mathrm{nm}}.
+\]
+图~\ref{ch32:fig:hydrogen-levels} 显示高能级向电离极限聚集，故跃迁光子能量趋于有限上限而不是无限增大。
+\end{xesolution}
+
+
+
+\section{原子核、结合能与核反应}
+
+原子的典型尺度约为 $10^{-10}\,\mathrm m$；原子核半径通常在 $10^{-15}$--$10^{-14}\,\mathrm m$ 范围，
+经验关系为
+\begin{equation}
+ R\simeq r_0A^{1/3},\qquad r_0\approx1.2\,\mathrm{fm}.
+\end{equation}
+核质量小于自由核子质量之和，质量亏损对应结合能
+\begin{equation}
+ B=\Delta mc^2.
+\end{equation}
+平均每核子结合能反映核的相对稳定性。轻核聚变和重核裂变都可能向更高平均结合能方向释放能量。
+
+
+\input{../modern-expansion/32-nuclear.tex}
+\subsection{结合能曲线与裂变能}
+
+\setcounter{bookexample}{9}
+\begin{origexamplebox}{由平均结合能估算裂变能}
+粗略取 $^{235}\mathrm U$ 的平均每核子结合能为 $7.6\,\mathrm{MeV}$，裂变产物平均为
+$8.5\,\mathrm{MeV}$。忽略裂变中子与产物间的细小差别，估算一次裂变释放的能量，并换算为焦耳。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/binding.tex}
+\figcap{平均每核子结合能的典型趋势。轻核聚变和重核裂变都可向更高结合能方向释放能量。}\label{ch32:fig:binding-curve}
+\end{center}
+图~\ref{ch32:fig:binding-curve} 中箭头只指示反应趋向，不表示精确核素之间的能量差；折线为典型趋势，不能代替核质量表。本题用题给的反应前后平均结合能之差，乘参与反应的核子数估算释放能量。
+
+
+总结合能增加约
+\[
+ Q\approx235(8.5-7.6)\,\mathrm{MeV}
+ =\boxed{2.12\times10^2\,\mathrm{MeV}}.
+\]
+用 $1\,\mathrm{MeV}=1.602\times10^{-13}\,\mathrm J$，
+\[
+ \boxed{Q\approx3.39\times10^{-11}\,\mathrm J}.
+\]
+这是数量级估算，精确值应使用各核素静质量和实际产物分支。符号为正，因为末态总结合能更大、总静质量更小。
+\end{xesolution}
+
+\subsection{核反应的Q值}
+
+\setcounter{bookexample}{10}
+\begin{origexamplebox}{氘氚聚变的Q值}
+反应 $^2\mathrm H+{}^3\mathrm H\to{}^4\mathrm{He}+n$ 中，氘、氚、氦的中性原子质量以及中子的质量依次为
+$2.014102\,\mathrm u$、$3.016049\,\mathrm u$、$4.002603\,\mathrm u$、$1.008665\,\mathrm u$。
+取 $1\,\mathrm u\,c^2=931.5\,\mathrm{MeV}$，求Q值。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/fusion.tex}
+\figcap{氘氚聚变的质量--能量收支。核子数和电荷数在反应前后分别守恒。}\label{ch32:fig:fusion-q}
+\end{center}
+图~\ref{ch32:fig:fusion-q} 把反应物和产物分列两侧，下面计算先用质量差判断 $Q$ 值符号，再核验两个守恒数。
+
+
+两侧电子数相同，电子静质量在相减时抵消；电子结合能仍有很小差异，
+但在本题约 $17.6\,\mathrm{MeV}$ 的精度下可以忽略。因此用所给中性原子质量计算。质量差
+\[
+ \Delta m=(2.014102+3.016049-4.002603-1.008665)\,\mathrm u
+ =0.018883\,\mathrm u.
+\]
+故
+\[
+ \boxed{Q=\Delta mc^2\approx0.018883\times931.5
+ \approx17.6\,\mathrm{MeV}}.
+\]
+$Q>0$，静质量减少量转化为产物动能。核子数 $2+3=4+1$、电荷数 $1+1=2+0$ 均守恒，是写反应式时的第一层检查。
+\end{xesolution}
+
+
+
+\section{放射性衰变与粒子守恒}
+
+放射性核数满足
+\begin{equation}
+ N(t)=N_0e^{-\lambda t},\qquad
+ T_{1/2}=\frac{\ln2}{\lambda},\qquad
+ \mathcal A(t)=\lambda N(t).
+\end{equation}
+活度记为 $\mathcal A$，单位为贝可勒尔（$\mathrm{Bq}=\mathrm{s^{-1}}$），以免与质量数 $A$ 混淆。指数规律来自 $\dd N/\dd t=-\lambda N$：分离变量并积分得 $\ln[N(t)/N_0]=-\lambda t$；令 $N/N_0=1/2$ 即得半衰期。半衰期是统计规律，不表示某个原子核在半衰期时刻必然衰变。
+
+\Needspace{12\baselineskip}
+\setcounter{bookexample}{3}
+\begin{origexamplebox}{经过三个半衰期的剩余量}
+某样品半衰期为 $T_{1/2}$。经过 $3T_{1/2}$ 后，未衰变核数和活度分别为初值的多少？
+\end{origexamplebox}
+\begin{xesolution}
+每经过一个半衰期剩余一半，故
+\[
+ \boxed{\frac N{N_0}=2^{-3}=\frac18}.
+\]
+同一核素的 $\lambda$ 不变，活度 $\mathcal A=\lambda N$，所以
+\[
+ \boxed{\frac{\mathcal A}{\mathcal A_0}=\frac18}.
+\]
+若衰变产物也有放射性，总测得活度还要加上子核贡献，不能只用单指数。
+\end{xesolution}
+
+
+\input{../modern-expansion/32-decay.tex}
+\subsection{两级放射性衰变链}
+
+\setcounter{bookexample}{11}
+\begin{origexamplebox}{母核--子核衰变链的峰值}
+母核1以衰变常数 $\lambda_1$ 变成放射性子核2，子核2再以 $\lambda_2=2\lambda_1$ 衰变为稳定核。
+初始有 $N_{10}$ 个母核且无子核。求 $N_2(t)$、子核数达到最大值的时刻和最大值。
+\end{origexamplebox}
+\begin{xesolution}
+
+\begin{center}
+\input{../../assets/diagrams-modern/decay.tex}
+\figcap{$\lambda_2=2\lambda_1$ 时母核与子核数目的变化。子核先积累，达到峰值后再衰减。}\label{ch32:fig:decay-chain}
+\end{center}
+
+
+母核数 $N_1=N_{10}e^{-\lambda_1t}$。子核满足
+\[
+ \dot N_2=\lambda_1N_1-\lambda_2N_2,
+ \qquad N_2(0)=0.
+\]
+将方程写成 $\dot N_2+\lambda_2N_2=\lambda_1N_{10}e^{-\lambda_1t}$。两侧乘积分因子 $e^{\lambda_2t}$，左侧恰好成为乘积的导数：
+\[
+ \frac{\dd}{\dd t}(N_2e^{\lambda_2t})=\lambda_1N_{10}e^{(\lambda_2-\lambda_1)t}.
+\]
+从0积分到 $t$，利用 $N_2(0)=0$，当 $\lambda_2\ne\lambda_1$ 时有
+\[
+ N_2e^{\lambda_2t}=\lambda_1N_{10}\frac{e^{(\lambda_2-\lambda_1)t}-1}{\lambda_2-\lambda_1}.
+\]
+两侧乘 $e^{-\lambda_2t}$，得到一般的巴特曼形式
+\[
+ N_2=N_{10}\frac{\lambda_1}{\lambda_2-\lambda_1}
+ \left(e^{-\lambda_1t}-e^{-\lambda_2t}\right).
+\]
+代入 $\lambda_2=2\lambda_1$：
+\[
+ \boxed{N_2=N_{10}\left(e^{-\lambda_1t}-e^{-2\lambda_1t}\right)}.
+\]
+求导得 $\dot N_2=\lambda_1N_{10}e^{-\lambda_1t}[-1+2e^{-\lambda_1t}]$。
+前面的因子始终为正，方括号由正变负，故唯一零点就是最大值点。令 $e^{-\lambda_1t}=1/2$，所以
+\[
+ \boxed{t_{\max}=\frac{\ln2}{\lambda_1}},
+ \qquad \boxed{N_{2,\max}=\frac{N_{10}}4}.
+\]
+$t=0$ 与 $t\to\infty$ 时 $N_2$ 都为零，峰值位于中间，和图~\ref{ch32:fig:decay-chain} 一致。
+\end{xesolution}
+
+\input{../modern-expansion/32-decay-limit.tex}
+\subsection{中微子与粒子物理概览}
+
+连续的 $\beta$ 衰变能谱促使泡利（Wolfgang Pauli）提出中微子，以保持逐次事件中的能量、动量和角动量守恒。中微子只参与弱相互作用和引力，
+探测率极低。2002年诺贝尔物理学奖的一半授予戴维斯和小柴昌俊，表彰宇宙中微子探测方面的开创性工作；另一半授予贾科尼，表彰宇宙X射线源研究。2015年奖项表彰中微子振荡的发现，
+这一现象表明中微子具有非零质量。两次奖项对应不同成果，不能合并成一次“发现中微子质量”的奖项。
+
+标准模型把物质基本粒子分为夸克和轻子，以规范玻色子传递强、电磁和弱相互作用。质子、中子由夸克和胶子组成；
+夸克具有分数电荷但在通常条件下不能孤立观测。标准模型不包含完整的量子引力理论，也不能单独解释暗物质等所有现象。
+
+
+

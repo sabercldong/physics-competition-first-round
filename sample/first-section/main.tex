@@ -1,0 +1,568 @@
+% !TEX program = xelatex
+\ifdefined\MASTERBOOK\else
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\usepackage[a4paper,top=20mm,bottom=22mm,left=19mm,right=19mm,headheight=24pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{siunitx}
+\usepackage{booktabs,tabularx,array,multicol}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% ---------- Theme ----------
+\definecolor{Ink}{HTML}{202326}
+\definecolor{DeepBlue}{HTML}{294E69}
+\definecolor{Blue}{HTML}{47687D}
+\definecolor{PaleBlue}{HTML}{F3F5F6}
+\definecolor{Gold}{HTML}{6E777D}
+\definecolor{PaleGold}{HTML}{F6F6F5}
+\definecolor{Green}{HTML}{5B6D76}
+\definecolor{PaleGreen}{HTML}{F3F5F6}
+\definecolor{Alert}{HTML}{666B6F}
+\definecolor{PaleAlert}{HTML}{F6F6F6}
+\definecolor{RuleGray}{HTML}{D3D7DA}
+\definecolor{TextGray}{HTML}{61686D}
+
+\color{Ink}
+\sisetup{
+  per-mode=symbol,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  exponent-product=\times
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DeepBlue,
+  urlcolor=Blue,
+  pdftitle={高中物理竞赛一轮讲义样章：物理量、单位与量纲},
+  pdfsubject={高中物理竞赛一轮资料重排样章},
+  pdfauthor={物理竞赛一轮资料编写组}
+}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlist{nosep,leftmargin=2em}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\numberwithin{equation}{section}
+\counterwithin{table}{section}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+
+\ctexset{
+  chapter={
+    format=\raggedright\LARGE\bfseries\color{Ink},
+    titleformat=\LARGE\bfseries\color{Ink},
+    beforeskip=0pt,
+    afterskip=18pt
+  },
+  section={
+    format=\Large\bfseries\color{DeepBlue},
+    beforeskip=1.8ex,
+    afterskip=1.0ex
+  },
+  subsection={
+    format=\large\bfseries\color{Ink},
+    beforeskip=1.5ex,
+    afterskip=0.8ex
+  },
+  subsubsection={
+    format=\normalsize\bfseries\color{Ink}
+  }
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{TextGray}高中物理竞赛一轮讲义}
+\fancyhead[R]{\small\color{TextGray}第一章\quad 数学与物理工具}
+\fancyfoot[C]{\small\color{TextGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{RuleGray}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\dimens}[1]{\operatorname{dim}\!\left(#1\right)}
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\tagpill}[2]{%
+  \tikz[baseline=(tag.base)]\node[rounded corners=2pt,inner xsep=5pt,inner ysep=2pt,
+  fill=#1!12,text=#1,font=\small\bfseries] (tag) {#2};%
+}
+
+\newtcolorbox{goalbox}{
+  enhanced,breakable,
+  colback=PaleBlue,colframe=Blue,
+  boxrule=0.7pt,arc=2mm,
+  title={本节目标},fonttitle=\bfseries,
+  coltitle=DeepBlue,
+  attach boxed title to top left={xshift=5mm,yshift=-2mm},
+  boxed title style={colback=white,colframe=Blue,boxrule=0.7pt,arc=1.5mm}
+}
+
+\newtcolorbox[auto counter,number within=section]{examplebox}[2][]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={例题~\thetcbcounter\quad #2},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue},
+  #1
+}
+
+\newtcolorbox{methodbox}[1]{
+  enhanced,breakable,
+  colback=PaleGreen,colframe=Green,
+  boxrule=0.5pt,arc=0mm,
+  title={方法：#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleGreen,
+  borderline west={1.2pt}{0pt}{DeepBlue}
+}
+
+\newtcolorbox{warningbox}[1]{
+  enhanced,breakable,
+  colback=PaleAlert,colframe=Alert,
+  boxrule=0.5pt,arc=0mm,
+  title={易错提醒：#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleAlert,
+  borderline west={1.2pt}{0pt}{TextGray}
+}
+
+\newtcolorbox{extensionbox}[1]{
+  enhanced,breakable,
+  colback=PaleGold,colframe=Gold,
+  boxrule=0.5pt,arc=0mm,
+  title={拓展：#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleGold,
+  borderline west={1.2pt}{0pt}{DeepBlue}
+}
+
+\newtcolorbox{summarybox}{
+  enhanced,breakable,
+  colback=PaleBlue,colframe=DeepBlue,
+  boxrule=0.9pt,arc=1.5mm,
+  title={本节小结},fonttitle=\bfseries,
+  coltitle=white,colbacktitle=DeepBlue
+}
+
+\newtcolorbox{exercisebox}[1]{
+  enhanced,breakable,
+  colback=white,colframe=RuleGray,
+  boxrule=0.7pt,arc=1.5mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=DeepBlue,colbacktitle=PaleBlue
+}
+
+\begin{document}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\chapter{数学与物理工具}
+\fi
+\section{物理量、单位与量纲}
+
+物理公式不只是字母之间的代数关系。每一个字母都代表某种可以测量的物理属性，
+而这种属性并不会因为单位的选取而改变。量纲正是从这一事实出发，把公式中与单位制
+无关的结构提取出来。它既能用来检查推导，也能在运动规律尚不清楚时给出可靠的尺度关系。
+
+本节从物理量的表示开始，逐步说明量纲齐次性的来源，再通过单摆、流体阻力和爆炸冲击波
+等例子讨论量纲分析的能力与边界。重点不是背诵量纲表，而是学会从定义推导，并在每一步中
+保留完整的量纲依据。
+
+{\small\color{TextGray}\noindent\textbf{题源说明：}本节例题为本讲义依据量纲分析的经典模型自编，
+未逐字取自特定竞赛原题；爆炸冲击波部分采用经典 Taylor--Sedov 尺度模型。\par}
+
+\subsection{物理量不是一个孤立的数字}
+
+物理学描述的是可比较、可测量的属性。一个物理量 $Q$ 应写成
+\begin{equation}
+  Q=q\,u_Q,
+  \label{eq:quantity-number-unit}
+\end{equation}
+其中 $q$ 是在所选单位下的数值，$u_Q$ 是单位。改变单位时，物理量本身不变，数值随之改变。例如
+\[
+  \SI{2}{\metre}=\SI{200}{\centi\metre}.
+\]
+等号连接的是同一个长度，而不是数字 $2$ 与 $200$。
+
+设同一个物理量还可以写成 $Q=q'u'_Q$。由
+\[
+  q\,u_Q=q'\,u'_Q
+\]
+可得
+\begin{equation}
+  q'=q\frac{u_Q}{u'_Q}.
+  \label{eq:number-unit-change}
+\end{equation}
+这说明数值与单位的大小成反比：新单位若缩小为原来的 $1/100$，数值就扩大为原来的
+$100$ 倍。物理计算中的“单位换算”并不是附加步骤，而是式 \eqref{eq:number-unit-change}
+所表达的不变性。
+
+单位给出了比较的标准，\textbf{量纲}则说明这个物理量属于哪一种物理属性。长度可以用米、厘米或天文单位表示，但它们的量纲都记作 $\mathsf{L}$。在力学中，最基本的三个量纲是
+\[
+  \text{长度 }\mathsf{L},\qquad
+  \text{质量 }\mathsf{M},\qquad
+  \text{时间 }\mathsf{T}.
+\]
+
+在更一般的国际单位制中还会用到电流 $\mathsf{I}$、热力学温度 $\Theta$、物质的量 $\mathsf{N}$ 和发光强度 $\mathsf{J}$。一轮力学问题通常只需要 $\mathsf{L}$、$\mathsf{M}$、$\mathsf{T}$。
+
+\begin{warningbox}{数值不能脱离单位}
+“这辆车的速度是 $20$”并不是完整的物理陈述。$\SI{20}{\metre\per\second}$ 与 $\SI{20}{\kilo\metre\per\hour}$ 对应完全不同的运动状态。计算过程允许暂时只处理数值，但最后结果必须恢复单位。
+\end{warningbox}
+
+\subsection{导出量纲与常见物理量}
+
+若一个力学量 $Q$ 可以由长度、质量、时间构成，就可以写成
+\begin{equation}
+  \dimens{Q}=\mathsf{L}^{\alpha}\mathsf{M}^{\beta}\mathsf{T}^{\gamma},
+  \label{eq:dimension-general}
+\end{equation}
+其中指数 $\alpha,\beta,\gamma$ 可以是整数、分数或零。量纲的推导来自物理量的定义，而不是死记硬背。例如
+\[
+  \dimens{v}=\frac{\mathsf{L}}{\mathsf{T}}=\mathsf{LT}^{-1},
+  \qquad
+  \dimens{a}=\frac{\dimens{v}}{\mathsf{T}}=\mathsf{LT}^{-2},
+\]
+进而
+\[
+  \dimens{F}=\dimens{ma}
+  =\mathsf{M}\cdot\mathsf{LT}^{-2}
+  =\mathsf{MLT}^{-2}.
+\]
+同样，由功的定义 $W=\int \vect F\cdot\dd\vect r$，积分并不改变被积量与积分变量
+乘积的量纲，因此
+\[
+  \dimens{W}=\dimens{F}\dimens{r}
+  =\mathsf{ML}^{2}\mathsf{T}^{-2}.
+\]
+只要沿着定义逐层展开，复杂物理量最终都会化为基本量纲的幂乘积。
+
+\begin{table}[htbp]
+\centering
+\caption{一轮力学中常见物理量的量纲}
+\rowcolors{2}{PaleBlue}{white}
+\begin{tabularx}{\textwidth}{>{\bfseries}l >{\centering\arraybackslash}X >{\centering\arraybackslash}X l}
+\toprule
+物理量 & 定义或关系 & 量纲 & SI 单位 \\
+\midrule
+速度 $v$ & $\dd x/\dd t$ & $\mathsf{LT}^{-1}$ & \si{\metre\per\second} \\
+加速度 $a$ & $\dd v/\dd t$ & $\mathsf{LT}^{-2}$ & \si{\metre\per\second\squared} \\
+动量 $\vect p$ & $m\vect v$ & $\mathsf{MLT}^{-1}$ & \si{\kilogram\metre\per\second} \\
+力 $F$ & $ma$ & $\mathsf{MLT}^{-2}$ & \si{\newton} \\
+功、能量 $E$ & $Fs$ & $\mathsf{ML}^{2}\mathsf{T}^{-2}$ & \si{\joule} \\
+功率 $P$ & $E/t$ & $\mathsf{ML}^{2}\mathsf{T}^{-3}$ & \si{\watt} \\
+压强 $p$ & $F/S$ & $\mathsf{ML}^{-1}\mathsf{T}^{-2}$ & \si{\pascal} \\
+角动量 $L$ & $rp$ & $\mathsf{ML}^{2}\mathsf{T}^{-1}$ & \si{\kilogram\metre\squared\per\second} \\
+万有引力常量 $G$ & $Fr^2/(m_1m_2)$ & $\mathsf{M}^{-1}\mathsf{L}^{3}\mathsf{T}^{-2}$ & \si{\metre\cubed\per\kilogram\per\second\squared} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+平面角是两个长度之比，因此在 SI 中属于无量纲量：
+\[
+  \theta=\frac{s}{r},\qquad \dimens{\theta}=1.
+\]
+“无量纲”不等于“没有意义”。弧度标明角度数值所采用的约定；微积分中的三角函数默认
+以弧度为自变量，需要避免误读时仍应明确写出 \si{\radian}。
+
+\subsection{量纲齐次性：公式的第一道安检}
+
+任何有意义的物理方程都必须满足\textbf{量纲齐次性}：
+\begin{enumerate}[label=\arabic*.]
+  \item 等式两端量纲相同；
+  \item 能够相加、相减的各项量纲相同；
+  \item 指数函数、对数函数和三角函数的自变量必须无量纲。
+\end{enumerate}
+
+为什么各项必须同量纲？以只涉及长度的关系 $A=B+C$ 为例。若把长度单位从米改为厘米，
+每一个长度数值都会同时乘以 $100$，方程仍保持原样。若 $C$ 不是长度量，它在换单位时就
+不会按相同倍数改变，于是方程的成立将依赖于单位的选择，这显然不可能。对质量、时间等
+基本量纲分别作同样的单位缩放，便得到：等式两端以及所有加减项中，每一种基本量纲的指数
+都必须相同。
+
+函数自变量必须无量纲也可以从级数看出。例如
+\[
+  \mathrm e^x=1+x+\frac{x^2}{2!}+\cdots,
+  \qquad
+  \sin x=x-\frac{x^3}{3!}+\cdots.
+\]
+求和各项必须同量纲，而常数 $1$ 没有量纲，所以 $x$ 只能是无量纲量。因此在振动表达式
+$x=A\cos(\omega t+\varphi)$ 中，$\omega t$ 和相位 $\varphi$ 都必须无量纲。
+
+例如匀变速运动关系
+\[
+  x=x_0+v_0t+\frac12 at^2
+\]
+中每一项的量纲都是 $\mathsf{L}$。若误写成 $x=x_0+v_0t+\frac12 at$，最后一项的量纲变成 $\mathsf{LT}^{-1}$，不可能与位移相加。
+
+\begin{methodbox}{三步量纲检查}
+\begin{enumerate}[label=\arabic*.]
+  \item 把每个量替换成基本量纲 $\mathsf{L},\mathsf{M},\mathsf{T},\ldots$；
+  \item 分别合并各基本量纲的指数；
+  \item 比较等式两端以及每个加减项。若不一致，公式必错；若一致，公式仍需接受物理规律和边界条件的检验。
+\end{enumerate}
+\end{methodbox}
+
+\begin{examplebox}{用量纲定位公式错误}
+某同学把弹簧振子的机械能写成
+\[
+  E=\frac12 mv+\frac12 kx^2.
+\]
+判断错误发生在哪里。
+
+\tcblower
+弹性势能项的量纲为
+\[
+  \dimens{kx^2}=\dimens{\frac{F}{x}x^2}=\mathsf{ML}^{2}\mathsf{T}^{-2},
+\]
+确为能量量纲；但
+\[
+  \dimens{mv}=\mathsf{MLT}^{-1}
+\]
+是动量量纲。动能项应为 $\frac12 mv^2$。因此正确表达式是
+\[
+  E=\frac12 mv^2+\frac12 kx^2.
+\]
+\end{examplebox}
+
+\begin{warningbox}{“量纲正确”只是必要条件}
+公式 $s=3vt$ 与 $s=\pi vt$ 都量纲正确，但这并不能说明它们符合具体运动规律。量纲分析通常不能确定纯数系数，也不能判断正负号、矢量方向以及函数的具体形式。
+\end{warningbox}
+
+\subsection{从量纲推出尺度关系}
+
+如果已经知道某物理量只依赖于少数几个参量，而且关系可以近似写成幂函数乘积，量纲分析就能确定各参量的指数。
+
+一般地，设
+\[
+  Q=Cx_1^{a_1}x_2^{a_2}\cdots x_n^{a_n},
+\]
+并把每个参量写成
+\[
+  \dimens{x_i}=\mathsf{L}^{\ell_i}\mathsf{M}^{m_i}\mathsf{T}^{t_i},
+  \qquad
+  \dimens{Q}=\mathsf{L}^{\ell_Q}\mathsf{M}^{m_Q}\mathsf{T}^{t_Q}.
+\]
+比较三种基本量纲的指数，就得到线性方程组
+\begin{equation}
+  \sum_i \ell_i a_i=\ell_Q,
+  \qquad
+  \sum_i m_i a_i=m_Q,
+  \qquad
+  \sum_i t_i a_i=t_Q.
+  \label{eq:dimension-linear-system}
+\end{equation}
+量纲分析确定幂指数，本质上就是求解这一方程组。若未知指数多于独立方程数，解中会出现
+自由度；这个自由度对应某个不能由量纲决定的无量纲组合。
+
+\begin{examplebox}{单摆周期的尺度关系}
+长度为 $\ell$ 的单摆在重力加速度 $g$ 的环境中做小角度振动。假设周期 $T$ 只由 $\ell$ 和 $g$ 决定，求其尺度关系。
+
+\tcblower
+设
+\[
+  T=C\ell^a g^b,
+\]
+其中 $C$ 是无量纲常数。比较量纲：
+\[
+  \mathsf{T}
+  =\mathsf{L}^{a}\bigl(\mathsf{LT}^{-2}\bigr)^b
+  =\mathsf{L}^{a+b}\mathsf{T}^{-2b}.
+\]
+于是
+\[
+  a+b=0,\qquad -2b=1,
+\]
+解得 $a=\frac12$、$b=-\frac12$，所以
+\begin{equation}
+  T=C\sqrt{\frac{\ell}{g}}.
+  \label{eq:pendulum-scaling}
+\end{equation}
+量纲分析确定了 $T\propto \sqrt{\ell}$ 与 $T\propto g^{-1/2}$，但不能给出 $C=2\pi$。这个系数必须由动力学方程求得。
+\end{examplebox}
+
+\begin{methodbox}{幂律关系的标准步骤}
+若目标量 $Q$ 由 $x_1,x_2,\ldots,x_n$ 决定，可先假设
+\[
+  Q=Cx_1^{a_1}x_2^{a_2}\cdots x_n^{a_n}.
+\]
+把两侧写成基本量纲，对每一种基本量纲分别列指数方程。解出的 $a_i$ 给出尺度关系，$C$ 则需要通过理论、实验或边界条件确定。
+\end{methodbox}
+
+\begin{examplebox}{高速阻力的数量级}
+半径为 $R$ 的球以速度 $v$ 在密度为 $\rho$ 的流体中运动。若高速情况下阻力 $F$ 主要由 $\rho$、$v$、$R$ 决定，估计 $F$ 的尺度关系。
+
+\tcblower
+设 $F=C\rho^a v^bR^c$。利用
+\[
+  \dimens{F}=\mathsf{MLT}^{-2},\quad
+  \dimens{\rho}=\mathsf{ML}^{-3},\quad
+  \dimens{v}=\mathsf{LT}^{-1},
+\]
+比较 $\mathsf{M}$、$\mathsf{L}$、$\mathsf{T}$ 的指数，得到
+\[
+  \begin{aligned}
+    a&=1, & b&=2, & c&=2.
+  \end{aligned}
+\]
+因此
+\[
+  F=C\rho v^2R^2.
+\]
+这说明高速阻力与速度平方同阶。系数 $C$ 以及公式是否适用，还取决于球的形状、表面性质和流动状态。
+\end{examplebox}
+
+\subsection{无量纲量与相似性}
+
+两个同量纲物理量的比值是无量纲量，例如相对误差 $\Delta x/x$、折射率 $n=c/v$、相对密度 $\rho/\rho_0$。无量纲量能够把不同大小、不同单位的系统放到同一标准下比较。
+
+表达式 $\sin(\omega t)$ 是合法的，因为 $\dimens{\omega}=\mathsf{T}^{-1}$，所以 $\omega t$ 无量纲。表达式 $\ln(t)$ 则不完整；严格写法应是
+\[
+  \ln\!\left(\frac{t}{t_0}\right),
+\]
+其中 $t_0$ 是某个参考时间。
+
+无量纲量还揭示了量纲分析何时不能给出唯一答案。以无空气阻力的斜抛射程为例，若
+$R$ 依赖 $v_0,g,\theta$，其中角度 $\theta$ 无量纲。先令
+\[
+  R=v_0^a g^b f(\theta),
+\]
+这里不能把未知的角度依赖擅自设成 $\theta$ 的某个幂，而应保留为任意无量纲函数
+$f$。比较量纲：
+\[
+  \mathsf L=(\mathsf{LT}^{-1})^a(\mathsf{LT}^{-2})^b
+  =\mathsf L^{a+b}\mathsf T^{-a-2b}.
+\]
+于是
+\[
+  a+b=1,\qquad -a-2b=0,
+\]
+解得 $a=2,b=-1$，故
+\begin{equation}
+  R=\frac{v_0^2}{g}f(\theta).
+  \label{eq:projectile-dimensional-form}
+\end{equation}
+动力学计算会进一步给出 $f(\theta)=\sin 2\theta$，但这一步超出了量纲分析的能力。
+
+再看球体在流体中的阻力。如果动力黏度 $\eta$ 也不可忽略，阻力应写成
+\[
+  F=F(\rho,v,R,\eta).
+\]
+四个参量只涉及三种基本量纲，因此式 \eqref{eq:dimension-linear-system} 不足以唯一确定
+全部指数。可以构造无量纲的雷诺数
+\[
+  \mathrm{Re}=\frac{\rho vR}{\eta},
+\]
+于是阻力的一般量纲形式为
+\begin{equation}
+  F=\rho v^2R^2\,\Phi(\mathrm{Re}),
+  \label{eq:drag-dimensionless-form}
+\end{equation}
+其中 $\Phi$ 是量纲方法无法确定的函数。高速惯性主导时，$\Phi$ 近似为常数，便回到
+$F\sim\rho v^2R^2$；低速黏性主导时，$\Phi(\mathrm{Re})\sim1/\mathrm{Re}$，于是
+$F\sim\eta Rv$。两种看似不同的阻力规律，因此可以统一在同一个无量纲框架中。
+
+\begin{extensionbox}{爆炸冲击波的半径}
+设一次瞬时爆炸释放能量 $E$，周围介质密度为 $\rho$。若冲击波半径 $R$ 在初始阶段只由 $E$、$\rho$ 和爆炸后的时间 $t$ 决定，令
+\[
+  R=CE^a\rho^bt^c.
+\]
+由
+\[
+  \dimens{E}=\mathsf{ML}^{2}\mathsf{T}^{-2},\qquad
+  \dimens{\rho}=\mathsf{ML}^{-3}
+\]
+可列出
+\[
+  \begin{aligned}
+    a+b&=0, & 2a-3b&=1, & -2a+c&=0.
+  \end{aligned}
+\]
+解得 $a=\frac15$、$b=-\frac15$、$c=\frac25$，即
+\[
+  R=C\left(\frac{Et^2}{\rho}\right)^{1/5}.
+\]
+仅凭一张带时间标记的冲击波照片，就可以利用这一尺度关系反推爆炸能量的数量级。这正是量纲分析在复杂问题中的力量。
+\end{extensionbox}
+
+\subsection{单位换算与数量级检查}
+
+单位换算的稳妥方法是把“等于 $1$ 的换算因子”逐次乘入。例如
+\[
+\SI{72}{\kilo\metre\per\hour}
+\times\frac{\SI{1000}{\metre}}{\SI{1}{\kilo\metre}}
+\times\frac{\SI{1}{\hour}}{\SI{3600}{\second}}
+=\SI{20}{\metre\per\second}.
+\]
+每一步都能直接约去单位，不必记忆“乘还是除”。
+
+得到数值结果后，还应做数量级和极限检查。例如地球表面附近的逃逸速度若计算成 $\SI{11}{\metre\per\second}$，即使单位正确也显然不合理；正确结果应在 $10^4\,\si{\metre\per\second}$ 的数量级。竞赛计算中，一次十秒钟的估算往往能够避免整道题因代数错误而失分。
+
+\begin{examplebox}{从量纲关系到动力学公式}
+设质量为 $M$、半径为 $R$ 的球形天体，其表面附近的第一宇宙速度 $v$ 只由
+$G,M,R$ 决定。先用量纲分析求尺度关系，再由圆周运动条件确定纯数系数。
+
+\tcblower
+设
+\[
+  v=CG^aM^bR^c.
+\]
+利用 $\dimens{G}=\mathsf{M}^{-1}\mathsf{L}^3\mathsf{T}^{-2}$，有
+\[
+  \mathsf{LT}^{-1}
+  =(\mathsf{M}^{-1}\mathsf{L}^3\mathsf{T}^{-2})^a
+   \mathsf{M}^b\mathsf{L}^c
+  =\mathsf{M}^{-a+b}\mathsf{L}^{3a+c}\mathsf{T}^{-2a}.
+\]
+逐项比较指数：
+\[
+  -a+b=0,\qquad 3a+c=1,\qquad -2a=-1.
+\]
+解得 $a=b=\frac12,c=-\frac12$，所以
+\[
+  v=C\sqrt{\frac{GM}{R}}.
+\]
+量纲分析到此只能确定尺度关系。对贴近天体表面的圆轨道，万有引力提供向心力：
+\[
+  \frac{GMm}{R^2}=m\frac{v^2}{R}.
+\]
+约去 $m$ 并整理，得到
+\[
+  v=\sqrt{\frac{GM}{R}},
+\]
+因而这个具体问题中 $C=1$。这也说明纯数系数必须由实际动力学条件补足。
+\end{examplebox}
+
+量纲检验贯穿整个物理推导：开始计算前，它帮助判断参量是否遗漏；计算过程中，它检查
+每一步的加减与幂次；得到答案后，还要与数量级、极限情形和具体物理机制共同核对。
+量纲不齐次的式子一定错误，而量纲齐次只说明它通过了最基本的一关。
+
+\subsection*{分层训练}
+以下各题先独立列出量纲方程，再核对参考结果。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.4em]
+  \item \textbf{基础} 线性阻力写成 $F=\alpha v$，平方阻力写成 $F=\beta v^2$。
+  分别求 $\alpha,\beta$ 的量纲，并说明两者为什么不能使用同一个阻力系数。
+  \item \textbf{基础} 已知天体表面重力加速度为 $g$、半径为 $R$。不用万有引力常量，
+  由量纲关系估计贴近表面的圆轨道速度，并用 $g=\SI{9.8}{\metre\per\second\squared}$、
+  $R=\SI{6.4e6}{\metre}$ 估计地球的相应速度。
+  \item \textbf{方法} 密度为 $\rho$、半径为 $R$ 的小液滴发生表面振动。若周期 $T$
+  只由 $\rho,R$ 和表面张力系数 $\gamma$ 决定，且
+  $\dimens{\gamma}=\mathsf{MT}^{-2}$，求 $T$ 的尺度关系。
+  \item \textbf{提升} 球体在流体中的阻力同时依赖 $\rho,v,R,\eta$。说明为什么量纲分析
+  不能唯一确定四个参量的幂次，并写出一个含雷诺数的最简一般形式。
+\end{enumerate}
+{\small\color{TextGray}\noindent
+参考结果：$\dimens{\alpha}=\mathsf{MT}^{-1}$，
+$\dimens{\beta}=\mathsf{ML}^{-1}$；$v\sim\sqrt{gR}\approx\SI{7.9}{\kilo\metre\per\second}$；
+$T\sim\sqrt{\rho R^3/\gamma}$；$F=\rho v^2R^2\Phi(\rho vR/\eta)$。\par}
+
+\ifdefined\MASTERBOOK
+  \let\sectionfinish\relax
+\else
+  \def\sectionfinish{\end{document}}
+\fi
+\sectionfinish

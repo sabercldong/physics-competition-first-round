@@ -1,0 +1,2564 @@
+\chapter{电磁学补充专题}
+
+本附录补充第19—26章的电磁学专题与例题，重点讨论连续电荷分布、电势、电容器、恒定电流和复杂电阻网络。各题配有完整解答与图示，可结合正文选读。
+
+\Needspace{18\baselineskip}
+
+\section{静电场：连续分布与场线}
+
+\begingroup
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eighteenth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eighteenth-section/assets/}}
+
+% Restrained TikZ redraws for Lesson 29.
+
+\newcommand{\matterStructureDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  % Atom
+  \begin{scope}[xshift=-6.0cm]
+    \fill[DeepBlue] (0,0) circle (3pt);
+    \draw[TextGray,rotate=18] (0,0) ellipse (1.25 and 0.48);
+    \draw[TextGray,rotate=-42] (0,0) ellipse (1.25 and 0.48);
+    \draw[TextGray,rotate=78] (0,0) ellipse (1.25 and 0.48);
+    \fill[Ink] (1.05,0.28) circle (2.2pt);
+    \node[TextGray] at (0,-1.55) {原子 $\sim10^{-10}\,\mathrm m$};
+  \end{scope}
+  % Nucleus
+  \begin{scope}[xshift=-2.0cm]
+    \foreach \x/\y in {-0.50/0.20,-0.15/0.52,0.25/0.42,0.55/0.05,0.22/-0.35,-0.28/-0.32}{
+      \fill[DeepBlue!70] (\x,\y) circle (0.28);
+      \draw[Ink] (\x,\y) circle (0.28);
+    }
+    \node[TextGray] at (0,-1.55) {原子核 $\sim10^{-14}\,\mathrm m$};
+  \end{scope}
+  % Nucleon
+  \begin{scope}[xshift=2.0cm]
+    \draw[curve,fill=PaleBlue] (0,0) circle (0.95);
+    \foreach \a in {20,80,...,320}{
+      \draw[TextGray] (0,0)--({0.68*cos(\a)},{0.68*sin(\a)});
+    }
+    \node[TextGray] at (0,-1.55) {核子 $\sim10^{-15}\,\mathrm m$};
+  \end{scope}
+  % Quark content
+  \begin{scope}[xshift=6.0cm]
+    \draw[curve,fill=PaleBlue] (0,0) circle (0.95);
+    \fill[DeepBlue] (-0.38,-0.18) circle (0.22) node[below left] {$u$};
+    \fill[Gold] (0.38,-0.18) circle (0.22) node[below right] {$u$};
+    \fill[Ink] (0,0.43) circle (0.22) node[above] {$d$};
+    \draw[TextGray] (-0.38,-0.18)--(0.38,-0.18)--(0,0.43)--cycle;
+    \node[TextGray] at (0,-1.55) {夸克尺度 $<10^{-18}\,\mathrm m$};
+  \end{scope}
+  \foreach \x in {-4.0,0,4.0}{\draw[vector] (\x-0.55,0)--(\x+0.55,0);}
+\end{tikzpicture}
+
+\figcap{从原子到核子内部的物质层级；长度标度为数量级示意}\label{appE:fig:s18-legacy-01}
+\end{center}}
+
+\newcommand{\coulombDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (-2.7,0); \coordinate (B) at (2.7,0);
+  \fill[DeepBlue] (A) circle (3pt) node[below=4pt] {$q_1$};
+  \fill[DeepBlue] (B) circle (3pt) node[below=4pt] {$q_2$};
+  \draw[guide] (A)--(B);
+  \draw[<->] (-2.55,-0.75)--node[fill=white,inner sep=1pt] {$r$}(2.55,-0.75);
+  \draw[vector] (A)--++(-1.6,0) node[above] {$\vect F_{21}$};
+  \draw[vector] (B)--++(1.6,0) node[above] {$\vect F_{12}$};
+  \node[TextGray] at (0,1.0) {图示为同号电荷；异号时两力同时反向};
+\end{tikzpicture}
+
+\figcap{点电荷间的库仑力沿两电荷连线，且满足作用力与反作用力关系}\label{appE:fig:s18-legacy-02}
+\end{center}}
+
+\newcommand{\coulombHistoryContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \node[inner sep=0] at (-4.4,0)
+    {\includegraphics[height=3.8cm]{coulomb-portrait-redraw.png}};
+  \node[TextGray] at (-4.4,-2.25) {Charles-Augustin de 库仑};
+  \begin{scope}[xshift=1.2cm]
+    \node[TextGray,anchor=west] at (-2.25,1.75) {俯视};
+    \draw[thick] (-2.0,2.0)--(2.0,2.0);
+    \draw[thick] (0,2.0)--(0,0.35);
+    \draw[very thick] (-2.0,0.25)--(2.0,0.25);
+    \fill[DeepBlue] (-2.0,0.25) circle (5pt) node[below] {$q_1$};
+    \fill[DeepBlue] (2.0,0.25) circle (5pt) node[below] {$q_2$};
+    \fill[Ink] (-2.0,1.35) circle (5pt) node[left] {$Q$};
+    \draw[guide] (-2.0,1.35)--(-2.0,0.25);
+    % Q is placed tangentially to the suspended arm, so the 库仑 force
+    % produces a nonzero torque about the suspension axis.
+    \draw[vector] (-2.0,0.25)--(-2.0,-0.62) node[left] {$\vect F$};
+    \draw[<->] (0,-0.82)--node[fill=white,inner sep=1pt] {$d$}(-2.0,-0.82);
+    \draw[DeepBlue,thick,->] (0,0.75) arc[start angle=90,end angle=25,radius=0.65];
+    \node[DeepBlue] at (0.65,0.9) {$\theta$};
+    \node[TextGray,align=left,anchor=west] at (3.0,0.55)
+      {悬丝扭转\\$Fd=\kappa\theta$\\$\theta\propto r^{-2}$};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{库仑与扭秤测力原理：静电力矩由悬丝的回复力矩平衡}\label{appE:fig:s18-legacy-03}
+\end{center}}
+
+\newcommand{\fieldLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72,>=Latex]
+  \begin{scope}[xshift=-6.0cm]
+    \fill[DeepBlue] (-0.75,0) circle (4pt) node[below] {$+Q$};
+    \fill[DeepBlue] (0.75,0) circle (4pt) node[below] {$+Q$};
+    \draw[->,DeepBlue,thick] (-0.98,0)--(-2.35,0);
+    \draw[->,DeepBlue,thick] (0.98,0)--(2.35,0);
+    \foreach \s in {-1,1}{
+      \draw[->,DeepBlue,thick] ({0.75*\s},{0.18}) .. controls ({1.25*\s},0.65) and ({1.45*\s},1.45) .. ({1.55*\s},2.1);
+      \draw[->,DeepBlue,thick] ({0.75*\s},{-0.18}) .. controls ({1.25*\s},-0.65) and ({1.45*\s},-1.45) .. ({1.55*\s},-2.1);
+      \draw[->,DeepBlue,thick] ({0.62*\s},0.16) .. controls ({0.35*\s},0.85) and ({0.25*\s},1.55) .. ({0.18*\s},2.15);
+      \draw[->,DeepBlue,thick] ({0.62*\s},-0.16) .. controls ({0.35*\s},-0.85) and ({0.25*\s},-1.55) .. ({0.18*\s},-2.15);
+    }
+    \node[TextGray] at (0,-2.55) {等量同号电荷};
+  \end{scope}
+  \begin{scope}
+    \fill[DeepBlue] (-1.4,0) circle (4pt) node[below] {$+Q$};
+    \fill[Ink] (1.4,0) circle (4pt) node[below] {$-Q$};
+    \foreach \h in {0.28,0.62,1.0,1.45}{
+      \draw[->,DeepBlue,thick]
+        (-1.16,{0.55*\h}) .. controls (-0.35,{1.45*\h}) and (0.35,{1.45*\h}) .. (1.16,{0.55*\h});
+      \draw[->,DeepBlue,thick]
+        (-1.16,{-0.55*\h}) .. controls (-0.35,{-1.45*\h}) and (0.35,{-1.45*\h}) .. (1.16,{-0.55*\h});
+    }
+    \draw[->,DeepBlue,thick] (-1.05,0)--(1.05,0);
+    \node[TextGray] at (0,-2.55) {等量异号电荷};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \fill[DeepBlue] (0,0) circle (4pt) node[below right] {$q(t)$};
+    \draw[guide,dashed] (0,-2.1)--(0,2.1) node[above] {振动轴};
+    \draw[->,DeepBlue,thick] (0.15,0.05) .. controls (0.55,0.35) and (0.25,0.95) .. (0.95,1.30)
+      .. controls (1.55,1.60) and (1.25,2.05) .. (2.25,2.25);
+    \draw[->,DeepBlue,thick] (-0.15,0.05) .. controls (-0.55,0.35) and (-0.25,0.95) .. (-0.95,1.30)
+      .. controls (-1.55,1.60) and (-1.25,2.05) .. (-2.25,2.25);
+    \draw[->,DeepBlue,thick] (0.15,-0.05) .. controls (0.55,-0.35) and (0.25,-0.95) .. (0.95,-1.30)
+      .. controls (1.55,-1.60) and (1.25,-2.05) .. (2.25,-2.25);
+    \draw[->,DeepBlue,thick] (-0.15,-0.05) .. controls (-0.55,-0.35) and (-0.25,-0.95) .. (-0.95,-1.30)
+      .. controls (-1.55,-1.60) and (-1.25,-2.05) .. (-2.25,-2.25);
+    \node[TextGray] at (0,-2.55) {振荡电荷：场线随时间演化};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{同号、异号与振荡电荷的典型电场线；第三幅不能按静电场理解}\label{appE:fig:s18-legacy-04}
+\end{center}}
+
+\newcommand{\fluxDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (Etip) at (2.45,1.25);
+  \coordinate (Stip) at (0.7,2.15);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (-1.8,-0.85)--(1.8,-0.30)--(1.8,1.05)--(-1.8,0.50)--cycle;
+  \draw[vector] (O)--++(0.7,2.15) node[above] {$\vect S$};
+  \draw[vector] (O)--++(2.45,1.25) node[right] {$\vect E$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=Etip--O--Stip};
+  \node[TextGray] at (0,-1.35) {$\Phi_E=\vect E\cdot\vect S=ES\cos\theta$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gaussDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[DeepBlue,thick] (0,0) ellipse (2.7 and 1.75);
+  \fill[DeepBlue] (-0.45,0.15) circle (4pt) node[below right] {$q_{\rm in}$};
+  \fill[Ink] (3.9,0.65) circle (4pt) node[right] {$q_{\rm out}$};
+  \foreach \a in {10,55,...,325}{
+    \draw[->,TextGray,thin] (-0.45,0.15)--++({1.9*cos(\a)},{1.35*sin(\a)});
+  }
+  \draw[vector] (2.35,0.88)--++(0.85,0.35) node[right] {$\dd\vect S$};
+  \node[TextGray,align=left,anchor=west] at (5.0,0)
+    {闭合面的净通量只由面内净电荷决定；\\面外电荷会改变局部电场，但净通量贡献为零。};
+\end{tikzpicture}
+
+\figcap{高斯定律中的闭合曲面}\label{appE:fig:s18-legacy-05}
+\end{center}}
+
+\newcommand{\gaussContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  \node[inner sep=0] at (-6.0,0.2)
+    {\includegraphics[width=2.2cm]{gauss-portrait-redraw.png}};
+  \node[TextGray] at (-6.0,-1.65) {高斯};
+  \begin{scope}[xshift=-2.8cm]
+    \fill[PaleBlue] (-1.15,-0.6)--(1.15,-0.25)--(0.9,0.8)--(-1.3,0.5)--cycle;
+    \draw[thick] (-1.15,-0.6)--(1.15,-0.25)--(0.9,0.8)--(-1.3,0.5)--cycle;
+    \draw[vector] (0,0)--(0.55,1.55) node[above] {$\dd\vect S$};
+    \draw[vector] (0,0)--(1.65,0.65) node[right] {$\vect E$};
+    \coordinate (Ee) at (1.65,0.65);
+    \coordinate (Oo) at (0,0);
+    \coordinate (Ss) at (0.55,1.55);
+    \draw pic[draw,"$\theta$",angle radius=6mm,angle eccentricity=1.3]
+      {angle=Ee--Oo--Ss};
+    \node[DeepBlue] at (0,-1.55) {$\dd\Phi_E=E\dd S\cos\theta$};
+  \end{scope}
+  \begin{scope}[xshift=1.2cm]
+    \draw[DeepBlue,thick,rounded corners=12pt] plot[smooth cycle] coordinates
+      {(-1.45,0.1) (-0.8,1.25) (0.7,1.1) (1.45,0.2) (0.8,-1.2) (-0.9,-1.0)};
+    \fill[Ink] (0,0) circle (3pt) node[below right] {$q$};
+    \foreach \a in {15,60,...,330}{
+      \draw[->,TextGray] ({0.25*cos(\a)},{0.25*sin(\a)})--({1.05*cos(\a)},{0.85*sin(\a)});
+    }
+    \node[DeepBlue] at (0,-1.55) {$\Phi_E=q/\varepsilon_0$};
+  \end{scope}
+  \begin{scope}[xshift=5.35cm]
+    \draw[DeepBlue,thick,rounded corners=12pt] plot[smooth cycle] coordinates
+      {(-1.35,0.1) (-0.75,1.15) (0.75,1.0) (1.4,0.15) (0.75,-1.15) (-0.8,-1.0)};
+    \fill[Ink] (-2.25,0) circle (3pt) node[below] {$q$};
+    \foreach \y in {-0.65,-0.2,0.25,0.7}{
+      \draw[->,TextGray] (-2.0,\y)--(1.0,{0.75*\y});
+    }
+    \node[DeepBlue] at (0,-1.55) {$\Phi_E=0$};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{面积元通量、面内电荷与面外电荷三种几何情形}\label{appE:fig:s18-legacy-06}
+\end{center}}
+
+\newcommand{\gaussDifferentialCubeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (A) at (0,0); \coordinate (B) at (3.4,0.35);
+  \coordinate (C) at (4.65,1.35); \coordinate (D) at (1.25,1.0);
+  \coordinate (E) at (0,2.55); \coordinate (F) at (3.4,2.90);
+  \coordinate (G) at (4.65,3.90); \coordinate (H) at (1.25,3.55);
+  \draw[curve] (A)--(B)--(C)--(D)--cycle;
+  \draw[curve] (E)--(F)--(G)--(H)--cycle;
+  \draw[curve] (A)--(E) (B)--(F) (C)--(G) (D)--(H);
+  \draw[axis] (A)--++(5.5,0.55);
+  \node[below] at (5.70,0.10) {$x$};
+  \draw[axis] (A)--++(1.65,1.33) node[above right] {$y$};
+  \draw[axis] (A)--++(0,4.45) node[above] {$z$};
+  \draw[vector] (B)--++(1.25,0.13);
+  \node[anchor=west,fill=white,inner sep=0.8pt] at (5.10,1.02)
+    {$E_x(x+\Delta x)$};
+  \draw[TextGray,thin] (5.10,0.91)--(4.68,0.51);
+  \draw[vector] (A)--++(-1.1,-0.11) node[below] {$E_x(x)$};
+  \draw[vector] (H)--++(0,1.15) node[left] {$E_z(z+\Delta z)$};
+  \node[TextGray,align=left,anchor=west] at (6.45,2.55)
+    {六个面的净通量相加\\保留一阶差分\\$\displaystyle \nabla\!\cdot\!\vect E=\rho/\varepsilon_0$};
+  \node[DeepBlue] at (2.0,-0.55) {$\Delta x$};
+  \node[DeepBlue,fill=white,inner sep=0.8pt] at (4.85,1.72) {$\Delta y$};
+  \node[DeepBlue] at (-0.35,1.3) {$\Delta z$};
+\end{tikzpicture}
+
+\figcap{无穷小长方体上的通量收支给出高斯定律的微分形式}\label{appE:fig:s18-legacy-07}
+\end{center}}
+
+\newcommand{\lineFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.84,>=Latex]
+  \draw[very thick] (0,-2.2)--(0,2.2);
+  \node[left] at (0,2.0) {$\lambda$};
+  \coordinate (P) at (3.0,0);
+  \fill[DeepBlue] (P) circle (2.4pt) node[right] {$P$};
+  \draw[<->] (0,-0.45)--node[fill=white,inner sep=1pt] {$a$}(3.0,-0.45);
+  \draw[vector] (P)--++(1.5,0) node[above] {$\vect E$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\finiteLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (P) at (3.2,0);
+  \coordinate (T) at (0,2.3); \coordinate (D) at (0,-2.3);
+  \draw[very thick] (0,-2.3)--(0,2.3);
+  \fill[DeepBlue] (P) circle (2.4pt) node[right] {$P$};
+  \draw[<->] (0,-0.5)--node[fill=white,inner sep=1pt] {$a$}(3.2,-0.5);
+  \draw[guide] (P)--(0,2.3) (P)--(0,-2.3);
+  \draw pic[draw,"$\theta_1$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=T--P--O};
+  \draw pic[draw,"$\theta_2$",angle radius=11mm,angle eccentricity=1.25]
+    {angle=O--P--D};
+  \draw[vector] (P)--++(1.35,0) node[above] {$\vect E$};
+\end{tikzpicture}
+
+\figcap{有限长带电直线中垂线上的场点}\label{appE:fig:s18-legacy-08}
+\end{center}}
+
+\newcommand{\diskFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (P) at (4.0,0);
+  \coordinate (T) at (0,2.1);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (O) ellipse (0.65 and 2.1);
+  \draw[DeepBlue] (O) ellipse (0.38 and 1.2);
+  \fill (O) circle (1.6pt) node[below left] {$O$};
+  \fill[DeepBlue] (P) circle (2.4pt) node[right] {$P$};
+  \draw[axis] (-0.8,0)--(5.3,0) node[right] {$x$};
+  \draw[<->] (0,-2.5)--node[below] {$a$}(4.0,-2.5);
+  \draw[guide] (P)--(0,2.1);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=T--P--O};
+  \node[left] at (-0.65,1.7) {$\sigma$};
+\end{tikzpicture}
+
+\figcap{均匀带电圆盘轴线上的场点；图中 $a$ 表示场点到圆盘的距离}\label{appE:fig:s18-legacy-09}
+\end{center}}
+
+\newcommand{\unequalChargeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (-2.1,0); \coordinate (B) at (2.1,0); \coordinate (N) at (5.4,0);
+  \fill[DeepBlue] (A) circle (4pt) node[below] {$+Q$};
+  \fill[Ink] (B) circle (4pt) node[below] {$-q$};
+  \fill[DeepBlue] (N) circle (2.4pt) node[below] {$N$};
+  \draw[axis] (-3.2,0)--(6.6,0) node[right] {$x$};
+  \draw[<->] (-2.1,-0.8)--node[fill=white,inner sep=1pt] {$2a$}(2.1,-0.8);
+  \draw[<->] (2.1,0.75)--node[fill=white,inner sep=1pt] {$x_0-a$}(5.4,0.75);
+  \node[TextGray] at (1.65,1.45) {$Q>q>0$，零场点位于小电荷外侧};
+\end{tikzpicture}
+
+\figcap{不等量异号点电荷的零场点}\label{appE:fig:s18-legacy-10}
+\end{center}}
+
+\newcommand{\cavityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (C) at (1.15,0.40); \coordinate (P) at (1.82,1.12);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (O) circle (2.40);
+  \draw[fill=white,draw=Ink,thick] (C) circle (1.02);
+  \fill (O) circle (1.5pt) node[below left=2pt,fill=white,inner sep=0.5pt] {$O$};
+  \fill (C) circle (1.5pt) node[below=3pt,fill=white,inner sep=0.5pt] {$C$};
+  \fill[DeepBlue] (P) circle (2.2pt) node[above right=2pt,fill=white,inner sep=0.5pt] {$P$};
+  \draw[vector] (O)--(C) node[pos=0.52,below=3pt,fill=white,inner sep=0.7pt] {$\vect d$};
+  \draw[vector] (C)--(P) node[pos=0.55,right=4pt,fill=white,inner sep=0.7pt] {$\vect r'$};
+  \draw[vector] (O)--(P) node[pos=0.48,above left=3pt,fill=white,inner sep=0.7pt] {$\vect r$};
+  \node[TextGray,align=left,anchor=west] at (3.55,0.25)
+    {均匀带正电球体\\叠加同位置、同大小、带负电的球体\\以挖去偏心球形空腔};
+\end{tikzpicture}
+
+\figcap{球形空腔的叠加模型，$\vect r=\vect d+\vect r'$}\label{appE:fig:s18-legacy-11}
+\end{center}}
+
+\newcommand{\multipoleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \begin{scope}[xshift=-3.8cm]
+    \coordinate (O1) at (0,0); \coordinate (X1) at (2.7,0); \coordinate (P1) at (2.7,2.3);
+    \fill[Ink] (-0.75,0) circle (3pt) node[below] {$-q$};
+    \fill[DeepBlue] (0.75,0) circle (3pt) node[below] {$+q$};
+    \draw[<->] (-0.7,-0.75)--node[fill=white,inner sep=1pt] {$l$}(0.7,-0.75);
+    \draw[axis] (0,0)--(2.7,2.3) node[right] {$P(r,\theta)$};
+    \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+      {angle=X1--O1--P1};
+    \node[TextGray] at (0,-1.45) {电偶极子};
+  \end{scope}
+  \begin{scope}[xshift=4.0cm]
+    \coordinate (O2) at (0,0); \coordinate (X2) at (2.7,0); \coordinate (P2) at (2.6,2.3);
+    \fill[Ink] (-1.0,0) circle (3pt) node[below] {$-q$};
+    \fill[DeepBlue] (0,0) circle (3pt) node[below] {$+2q$};
+    \fill[Ink] (1.0,0) circle (3pt) node[below] {$-q$};
+    \draw[<->] (-0.95,-0.75)--node[fill=white,inner sep=1pt] {$l$}(-0.05,-0.75);
+    \draw[<->] (0.05,-0.75)--node[fill=white,inner sep=1pt] {$l$}(0.95,-0.75);
+    \draw[axis] (0,0)--(2.6,2.3) node[right] {$P(r,\theta)$};
+    \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+      {angle=X2--O2--P2};
+    \node[TextGray] at (0,-1.45) {直线电四极子};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{例题 29.4 与例题 29.5 的几何关系}\label{appE:fig:s18-legacy-12}
+\end{center}}
+
+\newcommand{\dipoleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (X) at (3.3,0); \coordinate (P) at (3.3,2.5);
+  \fill[Ink] (-0.85,0) circle (3pt) node[below] {$-q$};
+  \fill[DeepBlue] (0.85,0) circle (3pt) node[below] {$+q$};
+  \draw[<->] (-0.8,-0.75)--node[fill=white,inner sep=1pt] {$l$}(0.8,-0.75);
+  \draw[axis] (O)--(P) node[right] {$P(r,\theta)$};
+  \draw[guide] (O)--(X);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=X--O--P};
+  \draw[vector] (-0.75,0.55)--(0.75,0.55) node[midway,above] {$\vect p$};
+\end{tikzpicture}
+
+\figcap{电偶极矩 $\vect p$ 从负电荷指向正电荷}\label{appE:fig:s18-legacy-13}
+\end{center}}
+
+\newcommand{\quadrupoleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (X) at (3.3,0); \coordinate (P) at (3.1,2.5);
+  \fill[Ink] (-1.1,0) circle (3pt) node[below] {$-q$};
+  \fill[DeepBlue] (0,0) circle (3pt) node[below] {$+2q$};
+  \fill[Ink] (1.1,0) circle (3pt) node[below] {$-q$};
+  \draw[<->] (-1.05,-0.75)--node[fill=white,inner sep=1pt] {$l$}(-0.05,-0.75);
+  \draw[<->] (0.05,-0.75)--node[fill=white,inner sep=1pt] {$l$}(1.05,-0.75);
+  \draw[axis] (O)--(P) node[right] {$P(r,\theta)$};
+  \draw[guide] (O)--(X);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=X--O--P};
+\end{tikzpicture}
+
+\figcap{直线电四极子的几何关系}\label{appE:fig:s18-legacy-14}
+\end{center}}
+
+\newcommand{\slabDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (2.65,0.52); \coordinate (B) at (3.85,0.52); \coordinate (C) at (3.85,0.35);
+  \fill[PaleBlue] (-2.1,-1.15) rectangle (2.1,1.15);
+  \draw[DeepBlue,thick] (-2.1,-1.15) rectangle (2.1,1.15);
+  \foreach \x in {-1.7,-1.0,...,1.8}
+    \foreach \y in {-0.75,0,0.75}
+      \fill[DeepBlue] (\x,\y) circle (1.2pt);
+  \draw[axis] (-4.0,0)--(4.0,0) node[right] {$x$};
+  \node[below] at (-2.1,-1.2) {$-d$}; \node[below] at (2.1,-1.2) {$d$};
+  \fill[Ink] (0,0) circle (2.8pt) node[above] {$m,q$};
+  \draw[vector] (0,0)--++(1.35,0) node[above] {$\vect v_0$};
+  \node[TextGray] at (0,1.55) {体电荷密度 $\rho>0$};
+\end{tikzpicture}
+
+\figcap{仅在 $-d<x<d$ 内均匀带电的无穷大厚板}\label{appE:fig:s18-legacy-15}
+\end{center}}
+
+\newcommand{\electronLensDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[very thick] (0,-2.0)--(0,2.0) node[above] {正线电荷 $\lambda$};
+  \draw[axis] (-4.4,0)--(4.5,0) node[right] {$x$};
+  \draw[guide] (-3.8,1.05)--(3.8,1.05);
+  \draw[DeepBlue,very thick,-{Latex[length=2.5mm]}]
+    (-3.8,1.05) .. controls (-1.2,1.05) and (1.2,0.66) .. (3.8,0.35);
+  \draw[<->] (-3.1,0)--node[left] {$b$}(-3.1,1.05);
+  \draw[vector] (-3.7,1.05)--++(1.35,0) node[above] {$\vect v$};
+  \draw[guide] (2.65,0.52)--++(1.2,0);
+  \draw pic[draw,"$\alpha$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=B--A--C};
+\end{tikzpicture}
+
+\figcap{电子掠过正线电荷时受到指向金属线的微弱偏转}\label{appE:fig:s18-legacy-16}
+\end{center}}
+
+
+\begin{origexamplebox}{【统统算出来】}\label{appE:ex:s18-29-1}
+利用积分或高斯定律计算下列均匀带电系统产生的电场：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 无限长直导线外距导线 $a$ 处，线电荷密度为 $\lambda$；
+  \item 有限长直导线中垂线外距中点 $a$ 处，两端对中垂线所张角分别为 $\theta_1,\theta_2$；
+  \item 无限大均匀带电平面外，面电荷密度为 $\sigma$；
+  \item 仅一个方向无限延伸的均匀带电条带外距条带 $a$ 处，两侧边缘所张角为
+  $\theta_1,\theta_2$；
+  \item 半径为 $R$、面电荷密度为 $\sigma$ 的圆盘轴线上，距圆盘中心 $a$ 处。
+\end{enumerate}
+\finiteLineDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+记 $k=1/(4\pi\varepsilon_0)$。
+
+\textbf{(1) 无限长直导线。}取与导线同轴、半径 $a$、长度 $L$ 的圆柱面。电场沿径向，
+且仅圆柱侧面有通量。由高斯定律
+\[
+  E(2\pi aL)=\frac{\lambda L}{\varepsilon_0},
+\]
+故
+\[
+  \boxed{E=\frac{\lambda}{2\pi\varepsilon_0a}}.
+\]
+当 $\lambda>0$ 时方向背离导线，$\lambda<0$ 时方向指向导线。
+\lineFieldDiagram
+
+\textbf{(2) 有限长直导线。}以中垂线指向场点为法向正方向，沿导线取坐标 $x$，电荷元
+$\dd q=\lambda\dd x$ 到场点的距离为 $r=\sqrt{a^2+x^2}$。它产生的场元为
+\[
+  \dd E=\frac{k\lambda\dd x}{a^2+x^2}.
+\]
+将场元分解到法向和导线方向，并令 $x=a\tan\theta$，得到
+\[
+  \boxed{E_\perp=\frac{k\lambda}{a}
+  (\sin\theta_1+\sin\theta_2)},
+\]
+\[
+  \boxed{E_\parallel=\frac{k\lambda}{a}
+  (\cos\theta_1-\cos\theta_2)}.
+\]
+$E_\parallel$ 的正方向取向张角为 $\theta_1$ 的一端；若线段关于中垂线对称，
+$\theta_1=\theta_2=\theta$，则切向分量抵消，
+\[
+  \boxed{E=\frac{2k\lambda}{a}\sin\theta}.
+\]
+令 $\theta\to\pi/2$，即回到无限长直导线的结果。
+
+\textbf{(3) 无限大平面。}取跨过平面的薄圆柱高斯面。由平面对称性，两底面的电场大小
+相同且垂直平面，侧面无通量，因而
+\[
+  2ES=\frac{\sigma S}{\varepsilon_0},
+  \qquad
+  \boxed{E=\frac{\sigma}{2\varepsilon_0}}.
+\]
+
+\textbf{(4) 无限长条带。}把条带分成许多与无限方向平行的细线，每条细线的线电荷密度
+$\dd\lambda=\sigma\dd x$。设场点到条带所在平面的垂足为坐标原点，条带两边分别位于
+$x=-a\tan\theta_2$ 和 $x=a\tan\theta_1$。叠加无限长直线的电场，有
+\[
+  \boxed{E_\perp=\frac{\sigma}{2\pi\varepsilon_0}
+  (\theta_1+\theta_2)},
+\]
+\[
+  \boxed{E_\parallel=
+  \frac{\sigma}{2\pi\varepsilon_0}
+  \ln\frac{\cos\theta_1}{\cos\theta_2}}.
+\]
+这里 $E_\parallel$ 的正方向取向张角为 $\theta_1$ 的一侧。
+若场点位于条带中垂面，$\theta_1=\theta_2=\theta$，则
+\[
+  \boxed{E=\frac{\sigma\theta}{\pi\varepsilon_0}}.
+\]
+当条带宽度趋于无穷，$\theta\to\pi/2$，再次得到 $E=\sigma/(2\varepsilon_0)$。
+
+\textbf{(5) 均匀带电圆盘。}把圆盘分成半径 $s$、宽度 $\dd s$ 的同心圆环，
+$\dd q=2\pi\sigma s\dd s$。圆环在轴线场点处的横向分量相消，轴向场元为
+\[
+  \dd E_x=k\frac{a\,\dd q}{(a^2+s^2)^{3/2}}.
+\]
+从 $s=0$ 积分到 $R$，得到
+\[
+  \boxed{E_x=\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{a}{\sqrt{a^2+R^2}}\right)}.
+\]
+若圆盘边缘对场点的半张角为 $\theta$，则
+\[
+  \boxed{E_x=\frac{\sigma}{2\varepsilon_0}(1-\cos\theta)}.
+\]
+\diskFieldDiagram
+\end{xesolution}
+
+\begin{origexamplebox}{【奇妙的电场线】}\label{appE:ex:s18-29-2}
+点电荷 $+Q$、$-q$ 分别位于 $(-a,0,0)$、$(a,0,0)$，且 $Q>q>0$。系统关于两电荷连线
+旋转对称。回答：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item $+Q$ 发出的电场线能否到达无穷远？$-q$ 接收的电场线是否来自无穷远？
+  \item 空间中是否存在电场为零的点？该点附近的电场线有何特征？
+  \item 无穷远处的电场有什么特征？
+  \item 写出电场线方程的一种隐式表示。
+\end{enumerate}
+\unequalChargeDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} 电场线条数只能用来表示通量比例，不是绝对数量。由于净电荷为 $Q-q>0$，
+$+Q$ 发出的电通量中有一部分终止于 $-q$，其余必然延伸到无穷远。$-q$ 所接收的全部电场线
+都可来自 $+Q$，不需要由无穷远进入。
+
+\textbf{(2)} 零场点只能在两电荷连线延长线上。两电荷之间的电场同向，不可能抵消；
+在 $+Q$ 左侧，大电荷又更近，也不能抵消。因此零场点在 $-q$ 的右侧。设其坐标为 $x_0>a$，
+则
+\[
+  \frac{kQ}{(x_0+a)^2}=\frac{kq}{(x_0-a)^2},
+\]
+解得
+\[
+  \boxed{x_0=a\frac{\sqrt Q+\sqrt q}{\sqrt Q-\sqrt q}}.
+\]
+零场点附近的场具有鞍点结构：沿两电荷连线方向，电场线从零场点两侧离开；沿垂直方向，
+电场线向该轴线汇聚。电场线本身不穿过电场为零的点，因为该点没有确定的切向方向。
+
+\textbf{(3)} 当 $r\gg a$ 时，观察者分辨不出两电荷的间距，最低阶电场等效于位于原点的
+净电荷 $Q-q$：
+\[
+  \boxed{\vect E\simeq k\frac{Q-q}{r^2}\uvec r}.
+\]
+因此无穷远处的电场线近似沿径向向外，偶极修正比主项多衰减一个 $1/r$。
+
+\textbf{(4)} 在包含两电荷的任一子午面内，设场点相对于 $+Q$、$-q$ 的极角分别为
+$\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电场的通量函数可得，
+每一条电场线满足
+\[
+  \boxed{Q(1-\cos\theta_+)-q(1-\cos\theta_-)=C},
+\]
+其中 $C$ 由所选电场线决定。等价地，也可写成
+\[
+  Q\cos\theta_+-q\cos\theta_-=C'.
+\]
+这是一种隐式方程；绕 $x$ 轴旋转即可得到三维电场线族。
+\end{xesolution}
+
+\begin{origexamplebox}{【球壳空洞】}\label{appE:ex:s18-29-3}
+一个球体内部挖去偏心球形空腔，未挖去部分具有均匀体电荷密度 $\rho$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求空腔内的电场；
+  \item 分析它与万有引力中同类模型的联系，并讨论题目若把球体称为“金属球体”会有什么问题。
+\end{enumerate}
+\cavityDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+设完整大球球心为 $O$，空腔球心为 $C$，$\vect d=\overrightarrow{OC}$。把实际电荷分布分解为：
+以 $O$ 为球心、密度为 $\rho$ 的完整均匀带电球，加上以 $C$ 为球心、密度为 $-\rho$ 的小球。
+均匀带电实心球内部距球心位置矢量为 $\vect r$ 的点，电场为
+\[
+  \vect E=\frac{\rho}{3\varepsilon_0}\vect r.
+\]
+对空腔内任一点 $P$，记 $\vect r=\overrightarrow{OP}$、$\vect r'=\overrightarrow{CP}$，
+则 $\vect r=\vect d+\vect r'$。叠加两球的电场：
+\[
+  \vect E=\frac{\rho}{3\varepsilon_0}\vect r
+  -\frac{\rho}{3\varepsilon_0}\vect r'
+  =\boxed{\frac{\rho}{3\varepsilon_0}\vect d}.
+\]
+所以空腔内电场是匀强电场，方向由大球球心指向空腔球心。
+
+万有引力也服从平方反比定律，均匀球形空腔可用完全相同的叠加方法计算，只需把电学常量与
+质量密度替换为引力常量与质量密度；引力只有吸引，最终场方向相应改变。
+
+若把球体称为“金属球体”并同时规定内部均匀体电荷密度，这在静电平衡下不成立。导体内
+自由电荷会重新分布，导体材料内部电场必须为零。因此上述答案适用于均匀体电荷被冻结的
+绝缘球体；若确为处于静电平衡的导体，必须按导体边界条件重新求解。
+\end{xesolution}
+
+\begin{origexamplebox}{【电偶极子】}\label{appE:ex:s18-29-4}
+一正一负两个点电荷的电荷量分别为 $+q$、$-q$，间距为 $l$。求 $r\gg l$ 处电场强度的
+大小和方向，并求在该近似下的电场线方程。
+\dipoleDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+定义电偶极矩
+\[
+  \vect p=q\vect l,
+\]
+方向由负电荷指向正电荷。取偶极子中心为极点，以 $\vect p$ 方向为极轴。当 $r\gg l$ 时，
+两点电荷势的最低阶非零项为
+\[
+  \varphi(r,\theta)=k\frac{p\cos\theta}{r^2}.
+\]
+由 $\vect E=-\nabla\varphi$ 得
+\[
+  \boxed{E_r=\frac{2kp\cos\theta}{r^3}},
+  \qquad
+  \boxed{E_\theta=\frac{kp\sin\theta}{r^3}}.
+\]
+因此
+\[
+  \boxed{E=\frac{kp}{r^3}\sqrt{1+3\cos^2\theta}}.
+\]
+方向由 $E_r,E_\theta$ 共同确定；轴线上电场沿 $\vect p$，中垂面上电场与 $\vect p$ 反向。
+
+电场线满足
+\[
+  \frac{\dd r}{r\dd\theta}=\frac{E_r}{E_\theta}=2\cot\theta.
+\]
+积分后得到
+\[
+  \boxed{r=C\sin^2\theta},
+\]
+其中 $C>0$ 标记不同的电场线。
+\end{xesolution}
+
+\endgroup
+
+\Needspace{18\baselineskip}
+
+\section{电势与相互作用能}
+
+\begingroup
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/nineteenth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/nineteenth-section/assets/}}
+
+% Restrained TikZ redraws for Lesson 30.
+
+\newcommand{\potentialGradientDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72,>=Latex]
+  \begin{scope}[xshift=-6.0cm]
+    \foreach \x in {-1.8,-0.9,0,0.9,1.8}{\draw[DeepBlue,thick] (\x,-1.65)--(\x,1.65);}
+    \foreach \y in {-1.15,-0.38,0.38,1.15}{\draw[->,TextGray] (-2.15,\y)--(2.15,\y);}
+    \node[TextGray] at (0,-2.1) {匀强电场};
+  \end{scope}
+  \begin{scope}
+    \fill[DeepBlue] (0,0) circle (4pt) node[below right] {$+Q$};
+    \foreach \r in {0.55,1.05,1.55}{\draw[DeepBlue,thick] (0,0) circle (\r);}
+    \foreach \a in {0,45,...,315}{\draw[->,TextGray] ({0.35*cos(\a)},{0.35*sin(\a)})--({2.05*cos(\a)},{2.05*sin(\a)});}
+    \node[TextGray] at (0,-2.1) {孤立正点电荷};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \fill[DeepBlue] (-1.15,0) circle (4pt) node[below] {$+q$};
+    \fill[Ink] (1.15,0) circle (4pt) node[below] {$-q$};
+    \foreach \h in {0.35,0.75,1.15}{
+      \draw[->,TextGray] (-0.95,{0.55*\h}) .. controls (-0.25,{1.45*\h}) and (0.25,{1.45*\h}) .. (0.95,{0.55*\h});
+      \draw[->,TextGray] (-0.95,{-0.55*\h}) .. controls (-0.25,{-1.45*\h}) and (0.25,{-1.45*\h}) .. (0.95,{-0.55*\h});
+    }
+    \draw[DeepBlue,thick,dashed] (0,-1.85)--(0,1.85) node[above] {$\varphi=0$};
+    \node[TextGray] at (0,-2.1) {等量异号点电荷};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{三类典型电场的等势线（蓝）与电场线（灰）；两者处处正交}\label{appE:fig:s19-legacy-01}
+\end{center}}
+
+\newcommand{\dipoleEquipotentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \fill[DeepBlue] (-1.35,0) circle (4pt) node[below] {$+q$};
+  \fill[Ink] (1.35,0) circle (4pt) node[below] {$-q$};
+  \foreach \h in {0.35,0.7,1.05,1.4}{
+    \draw[DeepBlue,thick] (-1.12,{0.5*\h}) .. controls (-0.35,{1.45*\h}) and (0.35,{1.45*\h}) .. (1.12,{0.5*\h});
+    \draw[DeepBlue,thick] (-1.12,{-0.5*\h}) .. controls (-0.35,{-1.45*\h}) and (0.35,{-1.45*\h}) .. (1.12,{-0.5*\h});
+  }
+  \draw[TextGray,thick,dashed] (0,-2.4)--(0,2.4) node[above] {$\varphi=0$};
+  \draw[TextGray] (-1.35,0) circle (0.55);
+  \draw[TextGray] (1.35,0) circle (0.55);
+\end{tikzpicture}
+
+\figcap{等量异号点电荷的电场线与零等势面}\label{appE:fig:s19-legacy-02}
+\end{center}}
+
+\newcommand{\ionizationEnergyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.54cm,y=0.12cm,>=Latex]
+  \draw[axis] (0,0)--(19.4,0) node[right] {原子序数 $Z$};
+  \draw[axis] (0,0)--(0,28) node[above] {第一电离能/eV};
+  \foreach \y in {5,10,15,20,25}{
+    \draw[TextGray,thin] (0,\y)--(18.6,\y);
+    \node[TextGray,left] at (0,\y) {\y};
+  }
+  \draw[DeepBlue,thick] plot coordinates {
+    (1,13.60) (2,24.59) (3,5.39) (4,9.32) (5,8.30) (6,11.26)
+    (7,14.53) (8,13.62) (9,17.42) (10,21.56) (11,5.14) (12,7.65)
+    (13,5.99) (14,8.15) (15,10.49) (16,10.36) (17,12.97) (18,15.76)};
+  \foreach \x/\y in {1/13.60,2/24.59,3/5.39,4/9.32,5/8.30,6/11.26,7/14.53,8/13.62,9/17.42,10/21.56,11/5.14,12/7.65,13/5.99,14/8.15,15/10.49,16/10.36,17/12.97,18/15.76}{
+    \fill[DeepBlue] (\x,\y) circle (2pt);
+  }
+  \foreach \x/\lab in {1/H,2/He,3/Li,6/C,8/O,10/Ne,11/Na,14/Si,17/Cl,18/Ar}{
+    \node[TextGray,below,rotate=55,anchor=east] at (\x,-0.3) {\lab};
+  }
+  \node[TextGray,align=left,anchor=west] at (19.9,16)
+    {稀有气体形成峰值\\碱金属形成低谷\\多数原子处于 $5$--$25\,\mathrm{eV}$};
+\end{tikzpicture}
+
+\figcap{前18号元素的第一电离能；折线连接仅用于显示周期性趋势}\label{appE:fig:s19-legacy-03}
+\end{center}}
+
+\newcommand{\sphereEnergyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[curve] (O) circle (1.55);
+  \foreach \a in {0,30,...,330}{
+    \fill[DeepBlue] ({1.55*cos(\a)},{1.55*sin(\a)}) circle (1.2pt);
+  }
+  \draw[vector] (O)--(1.1,1.1) node[midway,above left] {$R$};
+  \draw[vector] (1.55,0)--++(1.4,0) node[above] {$E(R)$};
+  \draw[vector] (1.05,1.14)--++(0.95,1.02) node[right] {$p$};
+  \node[TextGray,align=left,anchor=west] at (4.1,0.35)
+    {$Q$ 均匀分布在球面\\表面电场 $E(R)=Q/(4\pi\varepsilon_0R^2)$\\静电压强 $p=\varepsilon_0E^2/2$};
+\end{tikzpicture}
+
+\figcap{均匀带电球壳的电场能量与静电压强}\label{appE:fig:s19-legacy-04}
+\end{center}}
+
+\newcommand{\zeroPotentialSphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \draw[axis] (-4.6,0)--(5.25,0) node[right] {$x$};
+  \fill[Ink] (0,0) circle (4pt) node[below] {$-q$};
+  \fill[DeepBlue] (4.2,0) circle (4pt) node[below] {$+Q$};
+  % Draw the exact Q=2q member of the Apollonius family: centre=-a/3,
+  % radius=2a/3.  It therefore encloses the smaller charge at the origin.
+  \draw[DeepBlue,thick] (-1.4,0) circle (2.8);
+  \node[TextGray] at (-1.4,3.25) {$\varphi=0$（示意取 $Q=2q$）};
+  \draw[<->] (0,-0.8)--node[fill=white,inner sep=1pt] {$a$}(4.2,-0.8);
+  \node[TextGray] at (-1.4,-3.25)
+    {当 $Q>q$ 时，零等势面包围较小的负电荷};
+\end{tikzpicture}
+
+\figcap{不等量异号点电荷的零等势面是 Apollonius 球面}\label{appE:fig:s19-legacy-05}
+\end{center}}
+
+\newcommand{\twoLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[axis] (-4.6,0)--(4.6,0) node[right] {$x$};
+  \draw[axis] (0,-2.7)--(0,2.7) node[above] {$y$};
+  \fill[DeepBlue] (1.8,0) circle (4pt) node[below] {$+\lambda$};
+  \fill[Ink] (-1.8,0) circle (4pt) node[below] {$-\lambda$};
+  \draw[TextGray,dashed] (0,-2.4)--(0,2.4) node[above right] {$\varphi=0$};
+  % Equipotentials: Apollonius circles surrounding one line charge.
+  % K=3 and K=5 members.  Every circle surrounds the corresponding
+  % line charge at x=+/-a rather than sitting between the charges.
+  \draw[DeepBlue,thick] (2.25,0) circle (1.35);
+  \draw[DeepBlue,thick] (1.95,0) circle (0.75);
+  \draw[DeepBlue,thick] (-2.25,0) circle (1.35);
+  \draw[DeepBlue,thick] (-1.95,0) circle (0.75);
+  % Field lines: circles through both line charges (only representative arcs).
+  \draw[TextGray,thick,dashed] (0,1.65) circle (2.44);
+  \draw[TextGray,thick,dashed] (0,-1.65) circle (2.44);
+  \node[TextGray] at (0,-3.2) {实线是等势线；虚线是与它们正交、并通过两导线的电场线};
+\end{tikzpicture}
+
+\figcap{两根异号无限长带电直线的横截面}\label{appE:fig:s19-legacy-06}
+\end{center}}
+
+\newcommand{\finiteLineDiagramThirty}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \draw[axis] (-4.2,0)--(4.2,0) node[right] {$x$};
+  \draw[axis] (0,-2.4)--(0,2.4) node[above] {$\rho$};
+  \draw[DeepBlue,very thick] (-1.7,0)--(1.7,0);
+  \fill (0,0) circle (1.5pt) node[below] {$O$};
+  \node[below] at (-1.7,0) {$-a$}; \node[below] at (1.7,0) {$a$};
+  \coordinate (P) at (2.7,1.6);
+  \fill[DeepBlue] (P) circle (2.5pt) node[right] {$P(x,\rho)$};
+  \draw[guide] (P)--(-1.7,0) (P)--(1.7,0);
+  \node[TextGray] at (0,-2.95) {$r_++r_-=\text{常量}$ 为旋转椭球；$r_--r_+=\text{常量}$ 为旋转双曲面};
+\end{tikzpicture}
+
+\figcap{有限长均匀带电直线的轴对称几何}\label{appE:fig:s19-legacy-07}
+\end{center}}
+
+\newcommand{\repulsionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \draw[thick] (-1.8,3.5)--(1.8,3.5);
+  \foreach \x in {-1.6,-1.2,...,1.6}{\draw[TextGray] (\x,3.5)--++(-0.18,0.18);}
+  \coordinate (O) at (0,3.5); \coordinate (A) at (-1.55,1.05); \coordinate (B) at (0,0.42);
+  \draw[curve] (O)--(A);
+  \fill[DeepBlue] (A) circle (4pt) node[below left=3pt,fill=white,inner sep=0.7pt] {$A(+q)$};
+  \fill[DeepBlue] (B) circle (4pt) node[right=4pt,fill=white,inner sep=0.7pt] {$B(+q)$};
+  \draw[guide] (O)--(B);
+  \draw[<->] (-2.25,0.42)--node[left] {$h$}(-2.25,1.05);
+  \draw[vector] (A)--++(0,-1.15) node[below right=2pt,fill=white,inner sep=0.7pt] {$m\vect g$};
+  \draw[vector] (A)--++(0.75,1.18) node[above right=2pt,fill=white,inner sep=0.7pt] {$\vect T$};
+  \draw[vector] (A)--++(-1.25,0.51) node[above left=2pt,fill=white,inner sep=0.7pt] {$\vect F_e$};
+  \node[TextGray,align=left,anchor=west] at (3.0,1.55)
+    {$B$ 最终位于 $A$ 原来的最低点\\慢速移动时可用能量关系};
+\end{tikzpicture}
+
+\figcap{同号小球排斥过程的始末几何}\label{appE:fig:s19-legacy-08}
+\end{center}}
+
+\newcommand{\bohrDiagram}{%
+\begin{center}
+  \begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[DeepBlue] (0,0) circle (5pt) node[below left=4pt,fill=white,inner sep=0.7pt] {$p(+e)$};
+  \draw[DeepBlue,thick] (0,0) circle (2.05);
+  \fill[Ink] (2.05,0) circle (4pt) node[below right=4pt,fill=white,inner sep=0.7pt] {$e^-(-e)$};
+  \draw[vector] (2.05,0)--++(0,1.45) node[above right=2pt,fill=white,inner sep=0.7pt] {$\vect v$};
+  \draw[vector] (2.05,0)--++(-1.25,0) node[pos=0.55,above=4pt,fill=white,inner sep=0.7pt] {$\vect F_e$};
+  \draw[<->] (0,-1.05)--node[fill=white,inner sep=1pt] {$r$}(2.05,-1.05);
+\end{tikzpicture}
+
+\figcap{玻尔基态模型中的电子圆周运动}\label{appE:fig:s19-legacy-09}
+\end{center}}
+
+\newcommand{\rutherfordDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[DeepBlue] (0,0) circle (5pt) node[below right] {$Ze$};
+  \draw[axis] (-4.8,0)--(4.8,0) node[right] {$x$};
+  \draw[guide] (-4.2,1.25)--(0,1.25);
+  \draw[DeepBlue,very thick,-{Latex[length=2.7mm]}]
+    (-4.2,1.25) .. controls (-1.5,1.25) and (-0.8,2.2) .. (3.4,3.0);
+  \draw[<->] (-3.4,0)--node[left] {$b$}(-3.4,1.25);
+  \draw[vector] (-4.0,1.25)--++(1.3,0) node[above] {$\vect v_\infty$};
+  \draw[guide] (1.9,2.55)--++(1.7,0);
+  \coordinate (A) at (1.9,2.55); \coordinate (B) at (3.6,2.55); \coordinate (C) at (3.4,3.0);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.25]
+    {angle=B--A--C};
+\end{tikzpicture}
+
+\figcap{库仑斥力下的双曲线散射轨迹}\label{appE:fig:s19-legacy-10}
+\end{center}}
+
+
+\begin{origexamplebox}{【电势算电场】}\label{appE:ex:s19-30-1}
+利用“先求电势，再求电场”的方法，重新计算上一讲中的典型带电系统：点电荷系、有限带电体
+和无限长或无限大的电荷分布。分析哪些情况下不能取无穷远为零电势，并给出处理方法。
+\end{origexamplebox}
+
+\begin{xesolution}
+方法的核心是
+\[
+  \varphi(\vect r)=k\int\frac{\dd q}{|\vect r-\vect r'|},
+  \qquad
+  \vect E=-\nabla\varphi,
+  \qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+
+\textbf{点电荷系。}直接标量叠加
+\[
+  \varphi=k\sum_i\frac{Q_i}{r_i},
+\]
+然后求梯度即得
+\[
+  \vect E=k\sum_i\frac{Q_i}{r_i^3}\vect r_i.
+\]
+这种方法对偶极子、多极子尤其方便，因为远场展开先在标量电势上进行，再求导即可。
+
+\textbf{均匀带电圆盘。}半径 $R$、面密度 $\sigma$ 的圆盘，在轴线上距圆心 $z>0$ 处的电势为
+\[
+  \varphi(z)=k\int_0^R\frac{2\pi\sigma s\dd s}{\sqrt{z^2+s^2}}
+  =\frac{\sigma}{2\varepsilon_0}
+  \bigl(\sqrt{z^2+R^2}-z\bigr).
+\]
+因此
+\[
+  \boxed{E_z=-\frac{\dd\varphi}{\dd z}
+  =\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{z}{\sqrt{z^2+R^2}}\right)}.
+\]
+
+\textbf{无限长直线。}若线电荷密度为 $\lambda$，$E_r=\lambda/(2\pi\varepsilon_0r)$。
+从有限参考半径 $r_0$ 积分得
+\[
+  \boxed{\varphi(r)-\varphi(r_0)
+  =-\frac{\lambda}{2\pi\varepsilon_0}\ln\frac r{r_0}}.
+\]
+因为 $r\to\infty$ 时对数发散，所以不能令无穷远处电势为零。
+
+\textbf{无限大平面。}若面电荷密度为 $\sigma$，取平面为 $z=0$，则
+\[
+  E_z=\frac{\sigma}{2\varepsilon_0}\operatorname{sgn}(z),
+\]
+取 $\varphi(0)=0$ 后
+\[
+  \boxed{\varphi(z)=-\frac{\sigma}{2\varepsilon_0}|z|}.
+\]
+它同样不能用无穷远作为零电势。对非局域电荷分布，正确做法是选定有限参考点，始终只计算
+电势差；若多个无限分布组合后总场在远处衰减足够快，也可先把组合视为整体再选零点。
+\end{xesolution}
+
+\endgroup
+
+\Needspace{18\baselineskip}
+
+\section{电介质与电容器}
+
+\begingroup
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-first-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-first-section/assets/}}
+
+% Restrained TikZ redraws for Lesson 32.
+
+\newcommand{\arbitraryCapacitorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \fill[PaleBlue] plot[smooth cycle,tension=0.78] coordinates
+    {(-3.7,0.1) (-3.3,1.35) (-2.05,1.55) (-1.45,0.55) (-1.8,-0.75) (-3.05,-1.25) (-3.95,-0.55)};
+  \draw[DeepBlue,very thick] plot[smooth cycle,tension=0.78] coordinates
+    {(-3.7,0.1) (-3.3,1.35) (-2.05,1.55) (-1.45,0.55) (-1.8,-0.75) (-3.05,-1.25) (-3.95,-0.55)};
+  \fill[SoftGray] plot[smooth cycle,tension=0.78] coordinates
+    {(3.7,0.15) (3.15,1.45) (1.85,1.25) (1.4,0.15) (1.95,-1.05) (3.35,-1.25) (4.0,-0.45)};
+  \draw[Ink,very thick] plot[smooth cycle,tension=0.78] coordinates
+    {(3.7,0.15) (3.15,1.45) (1.85,1.25) (1.4,0.15) (1.95,-1.05) (3.35,-1.25) (4.0,-0.45)};
+  \foreach \p in {(-3.35,0.65),(-2.65,1.05),(-2.15,0.15),(-3.1,-0.55)}
+    \node[DeepBlue] at \p {$+$};
+  \foreach \p in {(3.3,0.7),(2.45,0.95),(1.95,0.05),(2.85,-0.55)}
+    \node[Ink] at \p {$-$};
+  \draw[component] (-1.65,0.82) .. controls (-0.5,1.5) and (0.5,1.5) .. (1.65,0.82);
+  \draw[component] (-1.45,0.15) .. controls (-0.45,0.65) and (0.45,0.65) .. (1.45,0.15);
+  \draw[component] (-1.62,-0.55) .. controls (-0.5,-1.15) and (0.5,-1.15) .. (1.72,-0.55);
+  \node[DeepBlue] at (-2.7,-1.65) {$+Q,\ \varphi_+$};
+  \node[Ink] at (2.7,-1.65) {$-Q,\ \varphi_-$};
+  \draw[<->,TextGray] (-1.05,-1.9)--node[below] {$U=\varphi_+-\varphi_-$}(1.05,-1.9);
+\end{tikzpicture}
+
+\figcap{任意形状的两块导体组成双极电容器}\label{appE:fig:s21-legacy-01}
+\end{center}}
+
+\newcommand{\capacitorGeometryDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  % parallel plates
+  \draw[DeepBlue,very thick] (-5.2,0.8)--(-2.6,0.8);
+  \draw[DeepBlue,very thick] (-5.2,-0.8)--(-2.6,-0.8);
+  \foreach \x in {-4.9,-4.4,...,-2.9}{
+    \node[DeepBlue] at (\x,0.48) {$+$}; \node[Ink] at (\x,-0.48) {$-$};
+    \draw[component] (\x,0.32)--(\x,-0.32);
+  }
+  \draw[<->] (-5.55,-0.8)--node[left] {$d$}(-5.55,0.8);
+  \node[TextGray] at (-3.9,-1.45) {平行板};
+  % spherical
+  \draw[curve] (0,0) circle (0.73); \draw[curve] (0,0) circle (1.28);
+  \draw[<->] (0,0)--node[above] {$R_1$}(0.73,0);
+  \draw[<->] (0,-0.28)--node[below] {$R_2$}(1.28,-0.28);
+  \node[TextGray] at (0,-1.45) {同心球};
+  % coaxial
+  \draw[curve] (3.6,0) circle (0.62); \draw[curve] (3.6,0) circle (1.20);
+  \foreach \a in {0,45,...,315}{\draw[component] ({3.6+0.66*cos(\a)},{0.66*sin(\a)})--({3.6+1.12*cos(\a)},{1.12*sin(\a)});}
+  \node at (3.6,0) {$a$}; \node[above right] at (4.35,0.75) {$b$};
+  \node[TextGray] at (3.6,-1.45) {同轴圆柱截面};
+\end{tikzpicture}
+
+\figcap{平行板、同心球与同轴圆柱电容器}\label{appE:fig:s21-legacy-02}
+\end{center}}
+
+\newcommand{\seriesParallelDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  % parallel
+  \draw[thick] (-5.0,1.25)--(-4.2,1.25) (-5.0,-1.25)--(-4.2,-1.25);
+  \draw[thick] (-4.2,1.25)--(-4.2,-1.25) (-1.5,1.25)--(-1.5,-1.25);
+  \draw[thick] (-4.2,0.72)--(-3.3,0.72) (-2.4,0.72)--(-1.5,0.72);
+  \draw[very thick,DeepBlue] (-3.3,0.38)--(-3.3,1.06) (-2.4,0.38)--(-2.4,1.06);
+  \draw[thick] (-4.2,-0.72)--(-3.3,-0.72) (-2.4,-0.72)--(-1.5,-0.72);
+  \draw[very thick,DeepBlue] (-3.3,-1.06)--(-3.3,-0.38) (-2.4,-1.06)--(-2.4,-0.38);
+  \node at (-2.85,1.28) {$C_1$}; \node at (-2.85,-1.28) {$C_2$};
+  \node[TextGray] at (-3.25,-1.85) {并联：电压相同};
+  % series
+  \draw[thick] (0.8,0)--(1.8,0) (2.55,0)--(3.45,0) (4.2,0)--(5.2,0);
+  \draw[very thick,DeepBlue] (1.8,-0.55)--(1.8,0.55) (2.55,-0.55)--(2.55,0.55);
+  \draw[very thick,DeepBlue] (3.45,-0.55)--(3.45,0.55) (4.2,-0.55)--(4.2,0.55);
+  \node at (2.18,0.95) {$C_1$}; \node at (3.82,0.95) {$C_2$};
+  \node[TextGray] at (3.0,-1.85) {串联：中间孤立导体净电荷不变};
+\end{tikzpicture}
+
+\figcap{电容器的并联与串联}\label{appE:fig:s21-legacy-03}
+\end{center}}
+
+\newcommand{\polarizationDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.87,>=Latex]
+  \fill[PaleBlue] (-3.3,-1.5) rectangle (3.3,1.5);
+  \draw[TextGray,thick] (-3.3,-1.5) rectangle (3.3,1.5);
+  \foreach \x in {-2.6,-1.3,0,1.3,2.6}{
+    \foreach \y in {-0.85,0,0.85}{
+      \node[Ink] at (\x-0.16,\y) {$-$}; \node[DeepBlue] at (\x+0.16,\y) {$+$};
+    }
+  }
+  \foreach \y in {-1.05,-0.35,0.35,1.05}{
+    \node[Ink] at (-3.55,\y) {$-$}; \node[DeepBlue] at (3.55,\y) {$+$};
+  }
+  \draw[vector] (-1.0,2.05)--(1.0,2.05) node[midway,above] {$\vect E$};
+  \draw[vector] (-1.0,-2.05)--(1.0,-2.05) node[midway,below] {$\vect P$};
+  \node[TextGray,align=left,anchor=west] at (4.25,0.45)
+    {分子偶极矩沿外场排列\\两端出现束缚面电荷};
+\end{tikzpicture}
+
+\figcap{外场作用下电介质的极化与束缚面电荷}\label{appE:fig:s21-legacy-04}
+\end{center}}
+
+\newcommand{\reciprocitySphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \draw[curve] (-2.5,0) circle (1.18);
+  \fill (-2.5,0) circle (1.8pt) node[below=4pt] {$O$};
+  \fill[DeepBlue] (2.5,0) circle (2.6pt) node[above=5pt] {$P$};
+  \draw[<->] (-2.5,0.25)--node[above] {$r$}(2.5,0.25);
+  \node[align=center] at (-2.5,-1.65) {状态 I：球带单位电荷\\状态 II：$P$ 点放电荷 $q$};
+  \node[align=left,anchor=west,TextGray] at (4.0,0.45)
+    {$\displaystyle \sum_i Q_i\varphi_i'=\sum_iQ_i'\varphi_i$\\[4pt]
+     交换“源”与“测量位置”，\\倒易关系保持不变};
+\end{tikzpicture}
+
+\figcap{格林倒易定理：导体球与球外一点的两种静电状态}\label{appE:fig:s21-legacy-05}
+\end{center}}
+
+\newcommand{\reciprocityConductorsDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \fill[PaleBlue] plot[smooth cycle,tension=0.8] coordinates
+    {(-4.1,0.2) (-3.5,1.25) (-2.15,1.05) (-1.65,0) (-2.3,-1.1) (-3.7,-0.95)};
+  \draw[DeepBlue,thick] plot[smooth cycle,tension=0.8] coordinates
+    {(-4.1,0.2) (-3.5,1.25) (-2.15,1.05) (-1.65,0) (-2.3,-1.1) (-3.7,-0.95)};
+  \fill[SoftGray] plot[smooth cycle,tension=0.8] coordinates
+    {(4.05,0.15) (3.35,1.2) (2.0,0.9) (1.55,-0.15) (2.35,-1.2) (3.75,-0.85)};
+  \draw[Ink,thick] plot[smooth cycle,tension=0.8] coordinates
+    {(4.05,0.15) (3.35,1.2) (2.0,0.9) (1.55,-0.15) (2.35,-1.2) (3.75,-0.85)};
+  \node[align=center] at (-2.85,0) {$Q_1$\\$\varphi_1$};
+  \node[align=center] at (2.85,0) {$Q_2$\\$\varphi_2$};
+  \draw[<->,TextGray] (-1.15,0)--node[above] {静电感应}(1.15,0);
+  \node[align=center,TextGray] at (0,-1.7)
+    {第二状态用 $Q_1',Q_2',\varphi_1',\varphi_2'$ 表示；导体几何保持不变};
+\end{tikzpicture}
+
+\figcap{格林倒易定理：两个任意导体的两种静电平衡状态}\label{appE:fig:s21-legacy-06}
+\end{center}}
+
+\newcommand{\dielectricExperimentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.86cm,y=0.86cm,>=Latex]
+  \foreach \shift/\lab/\needle in {-4.3/{未插入介质：$C_0,U_0$}/32,4.3/{插入介质：$C=\varepsilon_rC_0$}/-8}{
+    \begin{scope}[shift={(\shift,0)}]
+      \draw[Ink,very thick] (-1.15,1.0)--(-1.15,3.1);
+      \draw[Ink,very thick] (1.15,1.0)--(1.15,3.1);
+      \node[DeepBlue] at (-1.45,2.1) {$+$}; \node[Ink] at (1.45,2.1) {$-$};
+      \ifdim\shift pt>0pt
+        \fill[DeepBlue!18] (-0.95,1.15) rectangle (0.95,2.95);
+        \draw[DeepBlue,thick] (-0.95,1.15) rectangle (0.95,2.95);
+        \node[DeepBlue,rotate=90] at (0,2.05) {电介质};
+      \fi
+      \draw[Ink,thick] (-1.15,1.0)--(-1.15,0.45)--(-0.75,0.45);
+      \draw[Ink,thick] (1.15,1.0)--(1.15,0.45)--(0.75,0.45);
+      \draw[rounded corners=3pt,fill=SoftGray,draw=Ink,thick] (-0.75,-1.5) rectangle (0.75,0.55);
+      \draw[Ink] (0,-0.25) circle (0.48);
+      \draw[DeepBlue,very thick] (0,-0.25)--({0.38*cos(\needle)},{-0.25+0.38*sin(\needle)});
+      \foreach \a in {20,50,...,160}{\draw[TextGray] ({0.38*cos(\a)},{-0.25+0.38*sin(\a)})--({0.45*cos(\a)},{-0.25+0.45*sin(\a)});}
+      \node[align=center] at (0,-2.05) {\lab};
+    \end{scope}
+  }
+  \draw[vector] (-1.15,0.2)--(1.15,0.2) node[midway,above] {插入介质};
+\end{tikzpicture}
+
+\figcap{保持电荷不变时，插入电介质使电势差减小、电容增大}\label{appE:fig:s21-legacy-07}
+\end{center}}
+
+\newcommand{\touchingSpheresDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \draw[curve] (-1.3,0) circle (1.3); \draw[curve] (1.3,0) circle (1.3);
+  \fill (0,0) circle (1.4pt) node[below] {接触点};
+  \draw[<->] (1.3,0)--node[above] {$R$}(2.6,0);
+  \foreach \x/\r in {-1.75/2.3,-0.95/1.8,-0.48/1.25,0.48/1.25,0.95/1.8,1.75/2.3}{
+    \fill[DeepBlue] (\x,0) circle (\r pt);
+  }
+  \node[TextGray] at (0,-2.05) {接触极限可由双球坐标或无穷像电荷序列求得};
+\end{tikzpicture}
+
+\figcap{两个等半径相切球连成一个等势导体}\label{appE:fig:s21-legacy-08}
+\end{center}}
+
+\newcommand{\twoCylinderDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (-2.2,0) circle (0.85); \draw[curve] (2.2,0) circle (0.85);
+  \node at (-2.2,0) {$+\lambda$}; \node at (2.2,0) {$-\lambda$};
+  \fill ( -2.2,0) circle (1.3pt); \fill (2.2,0) circle (1.3pt);
+  \draw[<->] (-2.2,-1.28)--node[fill=white,inner sep=1pt] {$L$}(2.2,-1.28);
+  \draw[<->] (-2.2,0)--node[above] {$R$}(-1.35,0);
+  \draw[DeepBlue,thick] (-1.55,0.8) .. controls (0,2.0) .. (1.55,0.8);
+  \draw[DeepBlue,thick] (-1.55,-0.8) .. controls (0,-2.0) .. (1.55,-0.8);
+  \draw[DeepBlue,thick] (-1.35,0.25) .. controls (0,0.78) .. (1.35,0.25);
+  \draw[DeepBlue,thick] (-1.35,-0.25) .. controls (0,-0.78) .. (1.35,-0.25);
+  \node[TextGray] at (0,-2.35) {$\cosh\tau_0=L/(2R)$，两圆柱面对应 $\tau=\pm\tau_0$};
+\end{tikzpicture}
+
+\figcap{两根等半径平行圆柱导体的横截面}\label{appE:fig:s21-legacy-09}
+\end{center}}
+
+\newcommand{\splitDielectricDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.83,>=Latex]
+  % side-by-side
+  \draw[DeepBlue,very thick] (-5.1,1.0)--(-1.9,1.0) (-5.1,-1.0)--(-1.9,-1.0);
+  \fill[PaleBlue] (-5.1,-0.95) rectangle (-3.5,0.95);
+  \draw[guide] (-3.5,-1.0)--(-3.5,1.0);
+  \node at (-4.3,0) {$\varepsilon$}; \node at (-2.7,0) {$\varepsilon_0$};
+  \node[TextGray] at (-3.5,-1.55) {按面积分割：并联};
+  % layered
+  \draw[DeepBlue,very thick] (1.2,1.0)--(4.4,1.0) (1.2,-1.0)--(4.4,-1.0);
+  \fill[PaleBlue] (1.2,0) rectangle (4.4,0.95);
+  \draw[guide] (1.2,0)--(4.4,0);
+  \node at (2.8,0.5) {$\varepsilon$}; \node at (2.8,-0.5) {$\varepsilon_0$};
+  \node[TextGray] at (2.8,-1.55) {按厚度分割：串联};
+\end{tikzpicture}
+
+\figcap{部分填充介质的两种等效方式}\label{appE:fig:s21-legacy-10}
+\end{center}}
+
+\newcommand{\dielectricPullDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[DeepBlue,very thick] (-3.8,0.8)--(3.8,0.8) (-3.8,-0.8)--(3.8,-0.8);
+  \fill[PaleBlue] (-3.8,-0.72) rectangle (0.6,0.72);
+  \draw[TextGray,thick] (-3.8,-0.72) rectangle (0.6,0.72);
+  \draw[<->] (-3.8,-1.22)--node[fill=white,inner sep=1pt] {$x$}(0.6,-1.22);
+  \draw[<->] (0.6,-1.22)--node[fill=white,inner sep=1pt] {$a-x$}(3.8,-1.22);
+  \draw[<->] (4.15,-0.8)--node[right] {$d$}(4.15,0.8);
+  \draw[vector] (0.55,0)--(-1.1,0) node[midway,above] {$\vect F$};
+  \node[TextGray] at (0,-1.95) {介质进入越深，等效电容越大，电场把介质继续拉入};
+\end{tikzpicture}
+
+\figcap{部分插入平行板电容器的介质板}\label{appE:fig:s21-legacy-11}
+\end{center}}
+
+\newcommand{\dielectricSphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (0,0) circle (1.35); \draw[curve] (0,0) circle (1.35);
+  \foreach \a in {-60,-30,0,30,60}{
+    \node[Ink] at ({-1.08*cos(\a)},{1.08*sin(\a)}) {$-$};
+    \node[DeepBlue] at ({1.08*cos(\a)},{1.08*sin(\a)}) {$+$};
+  }
+  \draw[vector] (-4.3,1.95)--(-2.8,1.95) node[midway,above] {$\vect E_0$};
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-4.2,1.72)--(4.2,1.72);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-4.2,-1.72)--(4.2,-1.72);
+  \draw[DeepBlue,thick] (-4.2,0.92) .. controls (-2.6,0.92) and (-1.8,0.62) .. (-1.26,0.48);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-1.26,0.48)--(1.26,0.48);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (1.26,0.48) .. controls (1.8,0.62) and (2.6,0.92) .. (4.2,0.92);
+  \draw[DeepBlue,thick] (-4.2,-0.92) .. controls (-2.6,-0.92) and (-1.8,-0.62) .. (-1.26,-0.48);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-1.26,-0.48)--(1.26,-0.48);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (1.26,-0.48) .. controls (1.8,-0.62) and (2.6,-0.92) .. (4.2,-0.92);
+  \draw[DeepBlue,thick] (-4.2,0)--(-1.35,0);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-1.35,0)--(1.35,0);
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (1.35,0)--(4.2,0);
+  \node at (0,-0.82) {$\varepsilon$};
+  \node[TextGray] at (0,-2.35) {$\vect E_{\rm in}=\dfrac{3\varepsilon_0}{\varepsilon+2\varepsilon_0}\vect E_0$};
+\end{tikzpicture}
+
+\figcap{匀强电场中的线性电介质球}\label{appE:fig:s21-legacy-12}
+\end{center}}
+
+\newcommand{\chargingDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[thick] (-3.8,0)--(-2.9,0);
+  \draw[thick] (-2.9,-0.55)--(-2.9,0.55); \draw[very thick,DeepBlue] (-2.55,-0.35)--(-2.55,0.35);
+  \node[below] at (-2.72,-0.62) {$\mathcal E$};
+  \draw[thick] (-2.55,0)--(-1.7,0);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (-1.7,0)--(0.2,0);
+  \node[above] at (-0.75,0.35) {$R$};
+  \draw[thick] (0.2,0)--(1.25,0);
+  \draw[very thick,DeepBlue] (1.25,-0.55)--(1.25,0.55) (1.85,-0.55)--(1.85,0.55);
+  \node[above] at (1.55,0.75) {$C$};
+  \draw[thick] (1.85,0)--(2.8,0)--(2.8,-1.35)--(-3.8,-1.35)--(-3.8,0);
+  \node[TextGray,align=left,anchor=west] at (4.0,-0.1)
+    {电源功 $C\mathcal E^2$\\电场能 $C\mathcal E^2/2$\\焦耳热 $C\mathcal E^2/2$};
+\end{tikzpicture}
+
+\figcap{电阻参与的电容器充电过程}\label{appE:fig:s21-legacy-13}
+\end{center}}
+
+\newcommand{\starCapacitorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.94,>=Latex]
+  \fill[DeepBlue] (0,0) circle (2pt) node[below right] {$\varphi_0$};
+  \foreach \a/\c/\p in {90/C_1/\varphi_1,210/C_2/\varphi_2,330/C_3/\varphi_3}{
+    \draw[thick] (0,0)--({0.95*cos(\a)},{0.95*sin(\a)});
+    \draw[very thick,DeepBlue] ({0.78*cos(\a)-0.35*sin(\a)},{0.78*sin(\a)+0.35*cos(\a)})--({0.78*cos(\a)+0.35*sin(\a)},{0.78*sin(\a)-0.35*cos(\a)});
+    \draw[very thick,DeepBlue] ({1.12*cos(\a)-0.35*sin(\a)},{1.12*sin(\a)+0.35*cos(\a)})--({1.12*cos(\a)+0.35*sin(\a)},{1.12*sin(\a)-0.35*cos(\a)});
+    \draw[thick] ({1.12*cos(\a)},{1.12*sin(\a)})--({2.2*cos(\a)},{2.2*sin(\a)});
+    \node at ({1.48*cos(\a)+0.45*sin(\a)},{1.48*sin(\a)-0.45*cos(\a)}) {$\c$};
+    \node at ({2.55*cos(\a)},{2.55*sin(\a)}) {$\p$};
+  }
+  \node[TextGray,align=left,anchor=west] at (4.0,0.45)
+    {中心导体孤立且初始中性\\$\sum C_i(\varphi_0-\varphi_i)=0$};
+\end{tikzpicture}
+
+\figcap{三电容星形连接的浮置中心节点}\label{appE:fig:s21-legacy-14}
+\end{center}}
+
+\newcommand{\atmosphereCapacitorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.83,>=Latex]
+  \fill[PaleBlue] (0,0) circle (2.18); \fill[white] (0,0) circle (1.86);
+  \fill[SoftGray] (0,0) circle (1.62);
+  \draw[curve] (0,0) circle (1.62); \draw[DeepBlue,thick] (0,0) circle (2.18);
+  \node at (0,0) {地球};
+  \foreach \a in {0,35,...,325}{
+    \node[Ink] at ({1.72*cos(\a)},{1.72*sin(\a)}) {$-$};
+    \node[DeepBlue] at ({2.05*cos(\a)},{2.05*sin(\a)}) {$+$};
+  }
+  \draw[<->] (2.35,0)--node[right] {$h$}(2.35,0.56);
+  \node[TextGray,align=left,anchor=west] at (4.1,0.7)
+    {内半径 $R_\oplus$\\外半径 $R_\oplus+h$\\大气同时提供电容与漏电电阻};
+\end{tikzpicture}
+
+\figcap{开尔文的大气球形电容器模型}\label{appE:fig:s21-legacy-15}
+\end{center}}
+
+
+\begin{origexamplebox}{【统统算出来】}\label{appE:ex:s21-32-1}
+求下列三种电容器的电容：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 面积 $S=l^2$、间距 $d$ 的平行板电容器，$l\gg d$；
+  \item 内、外半径为 $R_1,R_2$ 的同心球形电容器，$R_1<R_2$；
+  \item 内、外半径为 $a,b$、长度为 $l$ 的同轴圆柱形电容器，$l\gg b-a$。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+三题都让内、外电极分别带 $+Q$、$-Q$，先由高斯定律求两极间电场，再积分求电压。
+
+\textbf{(1) 平行板。}忽略边缘效应，板间场为
+\[
+  E=\frac{Q}{\varepsilon_0S},\qquad
+  U=Ed=\frac{Qd}{\varepsilon_0S}.
+\]
+因此
+\begin{equation}
+  \boxed{C_{\rm pp}=\frac QU=\frac{\varepsilon_0S}{d}}.
+\end{equation}
+
+\textbf{(2) 同心球。}在 $R_1<r<R_2$ 内，
+\[
+  E(r)4\pi r^2=\frac Q{\varepsilon_0},
+  \qquad E(r)=\frac{Q}{4\pi\varepsilon_0r^2}.
+\]
+故
+\[
+  U=\int_{R_1}^{R_2}E(r)\dd r
+  =\frac{Q}{4\pi\varepsilon_0}\left(\frac1{R_1}-\frac1{R_2}\right),
+\]
+从而
+\begin{equation}
+  \boxed{C_{\rm sph}=4\pi\varepsilon_0
+  \frac{R_1R_2}{R_2-R_1}}.
+\end{equation}
+令 $R_2\to\infty$，得到孤立球的 $C=4\pi\varepsilon_0R_1$。
+
+\textbf{(3) 同轴圆柱。}柱面高斯面给出
+\[
+  E(r)2\pi rl=\frac Q{\varepsilon_0},
+  \qquad E(r)=\frac{Q}{2\pi\varepsilon_0lr}.
+\]
+所以
+\[
+  U=\int_a^bE(r)\dd r=\frac{Q}{2\pi\varepsilon_0l}\ln\frac ba,
+\]
+以及
+\begin{equation}
+  \boxed{C_{\rm cyl}=\frac{2\pi\varepsilon_0l}{\ln(b/a)}}.
+\end{equation}
+三种推导中的近似只用于忽略开口或极板边缘的非均匀场；在理想同心球中不存在边缘近似。
+\end{xesolution}
+
+\begin{origexamplebox}{【改造电容器】}\label{appE:ex:s21-32-4}
+平行板电容器的极板面积为 $S$、间距为 $d$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 沿面积方向，在左半边完全填入相对介电常数为 $\varepsilon_r$ 的介质；
+  \item 沿厚度方向，在上半层填入相对介电常数为 $\varepsilon_r$ 的介质。
+\end{enumerate}
+分别求改造后的电容，并判断增减。
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1) 按面积分成左右两区。}两区具有相同板间距与电压，相当于并联：
+\[
+  C_1=\frac{\varepsilon_r\varepsilon_0(S/2)}d,
+  \qquad C_2=\frac{\varepsilon_0(S/2)}d.
+\]
+故
+\begin{equation}
+  \boxed{C_{\rm left}=C_1+C_2
+  =\frac{\varepsilon_0S}{2d}(\varepsilon_r+1)}.
+\end{equation}
+
+\textbf{(2) 按厚度分成上下两层。}两层面积相同，自由面电荷密度相同，电位移的法向分量连续，
+相当于串联：
+\[
+  C_1=\frac{\varepsilon_r\varepsilon_0S}{d/2},
+  \qquad C_2=\frac{\varepsilon_0S}{d/2}.
+\]
+于是
+\begin{equation}
+  \boxed{C_{\rm upper}=\left(\frac1{C_1}+\frac1{C_2}\right)^{-1}
+  =\frac{2\varepsilon_r}{\varepsilon_r+1}\frac{\varepsilon_0S}{d}}.
+\end{equation}
+因 $\varepsilon_r>1$，两种改造都使电容变大；但一般有
+\[
+  C_{\rm left}-C_{\rm upper}
+  =\frac{\varepsilon_0S}{d}\frac{(\varepsilon_r-1)^2}{2(\varepsilon_r+1)}\ge0,
+\]
+所以相同介质量按面积并排放置，增容更明显。
+
+\splitDielectricDiagram
+\end{xesolution}
+
+\begin{origexamplebox}{【奇妙的吸引力】}\label{appE:ex:s21-32-5}
+小明又需要你的帮助了。他把一块相对介电常数为 $\varepsilon_r$ 的电介质插入平行板电容器中。
+极板面积为 $S=ab$、间距为 $d$，介质厚度等于板间距，并沿边长 $a$ 的方向插入深度 $x$。
+电介质会受到继续向电容器内部运动的吸引力；这个力从微观上怎样产生并不容易直接看清，请利用虚功法
+把它算出来。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 电容器电荷 $Q$ 保持不变，用介质内电场 $E$ 表示吸入力；
+  \item 电容器接在恒压电源上，用介质内电场 $E$ 表示吸入力。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+忽略边缘场，已填充区域与真空区域相当于并联：
+\begin{equation}
+  C(x)=\frac{\varepsilon_0b}{d}\,[a+(\varepsilon_r-1)x],
+  \qquad
+  \frac{\dd C}{\dd x}=\frac{\varepsilon_0b}{d}(\varepsilon_r-1).
+\end{equation}
+
+\textbf{(1) 固定电荷。}系统静电能 $W=Q^2/[2C(x)]$，介质所受力沿 $x$ 增大方向：
+\[
+  F=-\left(\frac{\partial W}{\partial x}\right)_Q
+  =\frac{Q^2}{2C^2}\frac{\dd C}{\dd x}
+  =\frac{U^2}{2}\frac{\dd C}{\dd x}.
+\]
+介质内场 $E=U/d$，故
+\begin{equation}
+  \boxed{F_Q=\frac12\varepsilon_0(\varepsilon_r-1)bdE^2}.
+\end{equation}
+
+\textbf{(2) 固定电压。}电容器能量 $CU^2/2$ 随 $C$ 增大而增大，但电源还会输送电荷并做功
+$U\dd Q=U^2\dd C$。把电源计入后，机械势能的增量是
+$\dd(CU^2/2)-U\dd Q=-U^2\dd C/2$，所以
+\[
+  F=\frac{U^2}{2}\frac{\dd C}{\dd x}.
+\]
+仍用 $E=U/d$ 表示，得到
+\begin{equation}
+  \boxed{F_U=\frac12\varepsilon_0(\varepsilon_r-1)bdE^2}.
+\end{equation}
+两式形式相同，是因为题目要求用各自状态下的 $E$ 表示；固定 $Q$ 时 $E$ 随 $x$ 改变，固定
+$U$ 时 $E$ 不变。力都把介质拉入电容器，因为介质进入会增大电容。
+
+\dielectricPullDiagram
+\end{xesolution}
+
+\begin{origexamplebox}{【充电过程】}\label{appE:ex:s21-32-8}
+用电动势为 $\mathcal E$ 的理想电源给电容 $C$ 充电。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 电路中串联电阻 $R$，充电完成前电源做功和电阻发热各为多少；
+  \item 令 $R$ 趋于零，两个结果怎样变化；
+  \item 若理想电路中完全没有电阻，应如何理解？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} 充电完成后 $Q=C\mathcal E$。电源搬运总电荷 $Q$，故
+\begin{equation}
+  \boxed{W_{\rm source}=\mathcal EQ=C\mathcal E^2}.
+\end{equation}
+电容器最终储能
+\[
+  W_C=\frac12C\mathcal E^2.
+\]
+其余能量变成焦耳热：
+\begin{equation}
+  \boxed{Q_R=W_{\rm source}-W_C=\frac12C\mathcal E^2}.
+\end{equation}
+也可由 $i(t)=\mathcal E e^{-t/(RC)}/R$ 积分验证：
+$\int_0^\infty i^2R\dd t=C\mathcal E^2/2$。
+
+\textbf{(2)} 当 $R\to0^+$，充电时间常数 $RC\to0$、初始电流峰值趋于无穷，但热量积分仍为
+$C\mathcal E^2/2$，与 $R$ 的数值无关。这是先对有限 $R$ 完成积分、再取极限的结果。
+
+\textbf{(3)} 完全没有电阻、电感和辐射的理想回路不能由一阶 $RC$ 方程描述；它要求电容电压在
+零时间内突变，产生无穷大电流，数学模型自相矛盾。真实电路总有寄生电感、导线电阻和电磁辐射。
+若保留电感而不含耗散，能量会在电容电场与电感磁场之间振荡，电容电压并不单调趋于
+$\mathcal E$；微小电阻或辐射最终耗散那一半能量。因而“零电阻”只能作为 $R\to0^+$ 的极限，
+不能把所有寄生参数同时删掉后仍期待同样的稳态充电过程。
+
+\chargingDiagram
+\end{xesolution}
+
+\begin{origexamplebox}{【超大电容】}\label{appE:ex:s21-32-11}
+物理学家开尔文最先把地球和大气层构造为一个电容器模型：地球表面是其中一个极板，带负电荷；
+高空的大气等效为另一个极板，带正电荷。把地球表面和高空 $h=\SI{5}{km}$ 处的大气层近似为
+同心球形电容器。取地球半径
+$R_\oplus=\SI{6.4e6}{m}$，地球带电量绝对值 $Q=\SI{5e5}{C}$，空气电阻率
+$\rho=\SI{3e13}{\ohm.m}$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求球形电容器的电容；
+  \item 求地表电场能量密度和电容器总能量；
+  \item 求大气层的径向漏电电阻；
+  \item 求 $RC$ 放电时间常数；
+  \item 若每次雷电平均向地面补充 $\SI{25}{C}$ 电荷，维持该电荷量每天约需多少次雷电？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+令内、外半径分别为 $R=R_\oplus$、$R+h$。
+
+\textbf{(1) 电容。}
+\begin{equation}
+  C=4\pi\varepsilon_0\frac{R(R+h)}h
+  \approx\boxed{\SI{0.912}{F}}.
+\end{equation}
+因 $h\ll R$，也可用薄层近似 $C\approx4\pi\varepsilon_0R^2/h$。
+
+\textbf{(2) 地表场与能量。}地表外侧
+\[
+  E(R)=\frac{Q}{4\pi\varepsilon_0R^2}approx\SI{1.10e2}{V.m^{-1}}.
+\]
+故
+\begin{equation}
+  \boxed{u(R)=\frac12\varepsilon_0E^2\approx\SI{5.33e-8}{J.m^{-3}}}.
+\end{equation}
+总能量
+\begin{equation}
+  \boxed{W=\frac{Q^2}{2C}\approx\SI{1.37e11}{J}}.
+\end{equation}
+
+\textbf{(3) 径向电阻。}半径 $r$ 处厚度 $\dd r$ 的球壳电阻
+$\dd R_{\rm el}=\rho\dd r/(4\pi r^2)$，所以
+\begin{equation}
+  R_{\rm el}=\frac\rho{4\pi}\left(\frac1R-\frac1{R+h}\right)
+  \approx\boxed{\SI{2.91e2}{\ohm}}.
+\end{equation}
+
+\textbf{(4) 时间常数。}相乘时几何因子恰好消去：
+\begin{equation}
+  \boxed{\tau=R_{\rm el}C=\rho\varepsilon_0
+  \approx\SI{2.66e2}{s}\approx\SI{4.43}{min}}.
+\end{equation}
+
+\textbf{(5) 雷电补充率。}漏电电流的平均量级为
+\[
+  I=\frac Q\tau\approx\SI{1.88e3}{A}.
+\]
+每天漏失电荷 $I\times\SI{86400}{s}$，所需雷电次数
+\begin{equation}
+  \boxed{N=\frac{Q}{\tau}\frac{\SI{86400}{s}}{\SI{25}{C}}
+  \approx6.5\times10^6\ \text{次/天}}.
+\end{equation}
+这是题设参数下的数量级模型；真实全球电路的电荷分布、天气电导率和雷暴补充机制更复杂。
+
+\atmosphereCapacitorDiagram
+\end{xesolution}
+
+\endgroup
+
+\Needspace{18\baselineskip}
+
+\section{恒定电流}
+
+\begingroup
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-second-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-second-section/assets/}}
+
+% Restrained TikZ redraws for Lesson 33.
+
+\newcommand{\currentDensityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \fill[PaleBlue] (-3.6,-1.15) rectangle (3.6,1.15);
+  \draw[curve] (-3.6,-1.15) rectangle (3.6,1.15);
+  \draw[DeepBlue,very thick] (0,-1.15)--(0,1.15);
+  \foreach \y in {-0.75,-0.25,0.25,0.75}{
+    \draw[vector] (-2.8,\y)--(-0.3,\y);
+    \draw[vector] (0.3,\y)--(2.8,\y);
+  }
+  \node[above] at (0,1.2) {截面 $S$};
+  \node[TextGray] at (0,-1.7) {$I=\displaystyle\int_S\vect j\cdot\dd\vect S$，箭头表示约定的电流方向};
+\end{tikzpicture}
+
+\figcap{补图 33-A\quad 电流是电流密度穿过截面的通量}\label{appE:fig:s22-legacy-01}
+\end{center}}
+
+\newcommand{\ivCharacteristicDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[axis] (-3.5,0)--(3.7,0) node[right] {$U$};
+  \draw[axis] (0,-2.6)--(0,2.8) node[above] {$I$};
+  \draw[DeepBlue,very thick] (-2.7,-2.1)--(2.7,2.1) node[above right] {理想电阻};
+  \draw[Ink,very thick] (-2.9,-2.15) .. controls (-1.8,-0.45) and (-0.7,-0.25) .. (0,0)
+    .. controls (0.7,0.25) and (1.8,0.45) .. (2.9,2.15);
+  \node[Ink,anchor=west] at (2.35,1.2) {非欧姆元件};
+  \draw[guide] (2.0,0)--(2.0,1.56);
+  \node[TextGray] at (0,-3.15) {选定端口电压、电流正方向后，曲线完整描述二端元件的外特性};
+\end{tikzpicture}
+
+\figcap{二端元件及其伏安特性曲线}\label{appE:fig:s22-legacy-02}
+\end{center}}
+
+\newcommand{\ohmHistoryContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \node[inner sep=0] at (-3.7,0)
+    {\includegraphics[height=3.4cm]{ohm-portrait-redraw.png}};
+  \node[TextGray] at (-3.7,-2.05) {格奥尔格·西蒙·欧姆};
+  \begin{scope}[xshift=2.0cm]
+    \draw[thick,rounded corners=4pt] (-2.3,-1.45) rectangle (3.0,1.45);
+    \foreach \y in {-1.2,-0.8,...,1.2}{
+      \draw[TextGray] (-2.42,\y)--(-2.3,\y);
+      \draw[TextGray] (3.0,\y)--(3.12,\y);
+    }
+    \draw[thick] (-1.6,0)--(-0.85,0);
+    \draw[fill=SoftGray,thick,rounded corners=2pt] (-0.85,-0.38) rectangle (1.5,0.38);
+    \draw[thick] (1.5,0)--(2.25,0);
+    \foreach \x in {-0.45,0.05,0.55,1.05}{\draw[DeepBlue,very thick] (\x,-0.38)--(\x,0.38);}
+    \node[DeepBlue,font=\large] at (0.3,0.95) {$U=IR$};
+    \node[TextGray,font=\small] at (0.3,-0.95) {色环电阻与欧姆定律};
+  \end{scope}
+\end{tikzpicture}
+\figcap{欧姆肖像与纪念欧姆定律的邮票图案}\label{appE:fig:s22-legacy-03}
+\end{center}}
+
+\newcommand{\uniformResistorDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \fill[SoftGray] (-3.2,-0.72) rectangle (3.2,0.72);
+  \draw[Ink,thick] (-3.2,-0.72) rectangle (3.2,0.72);
+  \draw[Ink,thick] (-3.2,0) ellipse (0.24 and 0.72);
+  \draw[Ink,thick] (3.2,0) ellipse (0.24 and 0.72);
+  \draw[vector] (-2.5,1.25)--(2.5,1.25) node[midway,above] {$I$};
+  \draw[<->] (-3.2,-1.2)--node[below] {$l$}(3.2,-1.2);
+  \node at (-3.85,0.25) {$A$};
+  \node[TextGray,align=left,anchor=west] at (4.3,0.35)
+    {均匀材料：电阻率 $\rho$\\截面积 $A$，长度 $l$\\$\displaystyle R=\rho\frac lA$};
+\end{tikzpicture}
+
+\figcap{均匀圆柱形电阻的几何参数}\label{appE:fig:s22-legacy-04}
+\end{center}}
+
+\newcommand{\gasDischargeContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1.03cm,y=0.92cm,>=Latex]
+  \draw[axis] (0,0)--(8.1,0) node[right] {$I$};
+  \draw[axis] (0,0)--(0,4.15) node[above] {$U$};
+  \foreach \x/\lab in {0.8/$10^{-15}$,2.5/$10^{-10}$,4.5/$10^{-5}$,6.4/$10^0$}{
+    \draw (\x,0.08)--(\x,-0.08) node[below] {\lab};
+  }
+  \foreach \y/\lab in {1.0/300,2.0/600,3.35/1000}{
+    \draw (0.08,\y)--(-0.08,\y) node[left] {\lab};
+  }
+  \draw[guide,dashed] (4.25,0)--(4.25,3.8);
+  \draw[guide,dashed] (6.25,0)--(6.25,3.8);
+  \node[TextGray] at (2.1,3.75) {暗放电};
+  \node[TextGray] at (5.2,3.75) {辉光放电};
+  \node[TextGray] at (7.1,3.75) {弧光放电};
+  \draw[DeepBlue,very thick]
+    (0.45,0.25) .. controls (0.7,0.28) and (0.82,0.55) .. (0.92,1.75)
+    .. controls (1.02,2.05) and (1.18,2.12) .. (1.35,2.15)
+    -- (3.85,2.3)
+    .. controls (4.35,2.28) and (4.5,2.05) .. (4.8,1.75)
+    .. controls (5.1,1.35) and (5.4,0.9) .. (5.75,0.95)
+    .. controls (6.05,1.0) and (6.1,1.75) .. (6.22,2.25)
+    .. controls (6.3,2.75) and (6.36,3.45) .. (6.45,3.5)
+    .. controls (6.55,3.3) and (6.42,0.6) .. (6.75,0.42)
+    .. controls (7.1,0.28) and (7.55,0.48) .. (7.85,0.58);
+  \fill[DeepBlue] (3.85,2.3) circle (2.4pt);
+  \fill[DeepBlue] (5.75,0.95) circle (2.4pt);
+  \fill[DeepBlue] (6.45,3.5) circle (2.4pt);
+  \fill[DeepBlue] (6.75,0.42) circle (2.4pt);
+  \draw[<-,Ink,thick] (5.25,1.05)--(4.55,0.45)
+    node[below left,align=center] {$\dd U/\dd I<0$\\负微分电阻};
+\end{tikzpicture}
+
+\figcap{典型气体放电的电压—电流曲线；横轴按对数刻度标示}\label{appE:fig:s22-legacy-05}
+\end{center}}
+
+\newcommand{\drudeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \fill[SoftGray] (-4.0,-1.35) rectangle (4.0,1.35);
+  \foreach \x in {-3.4,-2.3,...,3.3}{\foreach \y in {-0.85,0,0.85}{\fill[TextGray] (\x,\y) circle (2.4pt);}}
+  \draw[DeepBlue,thick,-{Latex[length=2mm]}] (-3.5,0.55) .. controls (-2.7,1.05) and (-2.1,-0.8) .. (-1.2,-0.25)
+    .. controls (-0.4,0.45) and (0.5,-0.8) .. (1.25,0.1)
+    .. controls (1.9,0.85) and (2.65,-0.45) .. (3.45,0.35);
+  \draw[vector] (-1.1,2.0)--(1.1,2.0) node[midway,above] {$\vect E$};
+  \draw[vector] (1.0,-1.95)--(-1.0,-1.95) node[midway,below] {电子平均漂移};
+  \node[TextGray] at (0,-2.55) {高速无规则运动叠加很小的定向漂移；碰撞使动量不断弛豫};
+\end{tikzpicture}
+
+\figcap{导体内电子的高速无规则运动与微小定向漂移}\label{appE:fig:s22-legacy-06}
+\end{center}}
+
+\newcommand{\resistorConnectionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \draw[thick] (-5.0,0)--(-4.2,0);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (-4.2,0)--(-2.8,0);
+  \draw[thick] (-2.8,0)--(-2.2,0);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (-2.2,0)--(-0.8,0);
+  \draw[thick] (-0.8,0)--(-0.1,0);
+  \node[above] at (-3.5,0.45) {$R_1$}; \node[above] at (-1.5,0.45) {$R_2$};
+  \node[TextGray] at (-2.55,-1.0) {串联：电流相同};
+  \draw[thick] (1.1,1.05)--(1.8,1.05) (1.1,-1.05)--(1.8,-1.05);
+  \draw[thick] (1.8,1.05)--(1.8,-1.05) (5.2,1.05)--(5.2,-1.05);
+  \draw[thick] (1.8,0.62)--(2.45,0.62);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (2.45,0.62)--(4.5,0.62);
+  \draw[thick] (4.5,0.62)--(5.2,0.62);
+  \draw[thick] (1.8,-0.62)--(2.45,-0.62);
+  \draw[thick,decorate,decoration={zigzag,segment length=6pt,amplitude=2.5pt}] (2.45,-0.62)--(4.5,-0.62);
+  \draw[thick] (4.5,-0.62)--(5.2,-0.62);
+  \node[above] at (3.48,0.88) {$R_1$}; \node[below] at (3.48,-0.88) {$R_2$};
+  \node[TextGray] at (3.15,-1.65) {并联：电压相同};
+\end{tikzpicture}
+
+\figcap{电阻的串联与并联}\label{appE:fig:s22-legacy-07}
+\end{center}}
+
+\newcommand{\circuitTerminologyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \coordinate (A) at (-3.6,1.35); \coordinate (B) at (0,1.35);
+  \coordinate (C) at (3.6,1.35); \coordinate (D) at (-3.6,-1.35);
+  \coordinate (E) at (0,-1.35); \coordinate (F) at (3.6,-1.35);
+  \foreach \p/\n in {A/$a$,B/$b$,C/$c$,D/$d$,E/$e$,F/$f$}{
+    \fill[DeepBlue] (\p) circle (2.7pt) node[above=4pt] {\n};
+  }
+  \draw[thick] (A)--node[above] {元件 1}(B)--node[above] {元件 2}(C);
+  \draw[thick] (D)--node[below] {元件 4}(E)--node[below] {元件 5}(F);
+  \draw[thick] (A)--node[left] {支路}(D);
+  \draw[thick] (B)--node[right] {元件 3}(E);
+  \draw[thick] (C)--(F);
+  \draw[DeepBlue,very thick,rounded corners=3pt,-{Latex[length=2mm]}]
+    (-3.95,1.7)--(0.35,1.7)--(0.35,-1.0)--(-3.95,-1.0)--cycle;
+  \node[DeepBlue] at (-1.8,0.25) {一个回路};
+  \node[TextGray,align=left,anchor=west] at (4.45,0.55)
+    {节点：支路的连接点\\支路：相邻节点间的通路\\回路：从节点出发并返回的闭合路径};
+\end{tikzpicture}
+
+\figcap{电路网络中的元件、节点、支路与回路}\label{appE:fig:s22-legacy-08}
+\end{center}}
+
+\newcommand{\kirchhoffDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[DeepBlue] (0,0) circle (3pt) node[below right] {节点};
+  \draw[vector] (-3.2,1.4)--(-0.2,0.1) node[midway,above] {$I_1$};
+  \draw[vector] (-3.2,-1.4)--(-0.2,-0.1) node[midway,below] {$I_2$};
+  \draw[vector] (0.2,0.12)--(3.2,1.35) node[midway,above] {$I_3$};
+  \draw[vector] (0.2,-0.12)--(3.2,-1.35) node[midway,below] {$I_4$};
+  \node[TextGray] at (0,-2.15) {KCL：$I_1+I_2=I_3+I_4$};
+  \draw[DeepBlue,thick,rounded corners] (5.1,-1.25) rectangle (9.2,1.25);
+  \draw[vector] (5.45,-0.85)--(7.0,-0.85);
+  \node[TextGray] at (7.15,-2.15) {KVL：沿闭合回路电压代数和为零};
+\end{tikzpicture}
+
+\figcap{基尔霍夫电流定律与电压定律}\label{appE:fig:s22-legacy-09}
+\end{center}}
+
+\newcommand{\nodeMethodDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+  \coordinate (a) at (-3.4,1.35); \coordinate (b) at (0,1.35); \coordinate (c) at (3.4,1.35);
+  \coordinate (g1) at (-3.4,-1.35); \coordinate (g2) at (0,-1.35); \coordinate (g3) at (3.4,-1.35);
+  \draw[thick] (a)--(b)--(c); \draw[thick] (g1)--(g2)--(g3);
+  \draw[thick] (a)--(-3.4,0.55);
+  \draw[very thick,DeepBlue] (-3.75,0.38)--(-3.05,0.38) (-3.62,0.03)--(-3.18,0.03);
+  \draw[thick] (-3.4,0.03)--(g1); \node[left] at (-3.85,0.2) {$\mathcal E_0$};
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (b)--(g2);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (c)--(g3);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (a)--(b);
+  \node[above] at (-1.7,1.65) {$R_1$}; \node[right] at (0.35,0) {$R_2$}; \node[right] at (3.75,0) {$R_3$};
+  \fill[DeepBlue] (a) circle (2.7pt) node[above left] {$a:\ \varphi_a=\mathcal E_0$};
+  \fill[DeepBlue] (b) circle (2.7pt) node[above right] {$b:\ \varphi_b=\varphi$};
+  \fill[Ink] (g2) circle (2.7pt) node[below] {参考节点 $\varphi=0$};
+  \node[TextGray,align=left,anchor=west] at (5.0,0.45)
+    {选参考节点后，各支路电压\\自动等于节点电势之差；\\只需对未知节点列 KCL};
+\end{tikzpicture}
+
+\figcap{节点电压法：先求节点电势，再由伏安特性求支路电流}\label{appE:fig:s22-legacy-10}
+\end{center}}
+
+\newcommand{\tolmanDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[curve] (0,0) ellipse (2.25 and 1.35);
+  \draw[vector] (0,0)--(0.95,0.8) node[midway,above left] {$r$};
+  \draw[DeepBlue,very thick,-{Latex[length=2.5mm]}] (1.65,0.92) arc[start angle=35,end angle=135,x radius=2.05,y radius=1.28];
+  \node[DeepBlue] at (0,1.95) {$\omega$};
+  \draw[vector] (2.25,0)--(2.25,-1.05) node[right] {$\vect v_e(0)$};
+  \draw[very thick] (-0.15,1.35)--(0.15,1.35);
+  \node[TextGray,align=left,anchor=west] at (4.0,0.55)
+    {晶格突然停止\\电子因惯性继续运动\\随后在碰撞中指数衰减};
+\end{tikzpicture}
+
+\figcap{托尔曼--斯图尔特转动铜环实验}\label{appE:fig:s22-legacy-11}
+\end{center}}
+
+\newcommand{\transientCurrentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[axis] (-0.4,0)--(6.0,0) node[right] {$t$};
+  \draw[axis] (0,-0.2)--(0,3.2) node[above] {$I$};
+  \draw[guide] (0,2.55)--(5.7,2.55) node[right] {$U/R$};
+  \draw[DeepBlue,very thick] (0,0) .. controls (0.75,1.75) and (1.7,2.35) .. (5.5,2.54);
+  \draw[<->] (0,-0.55)--node[below] {$\tau$}(1.55,-0.55);
+  \node[TextGray] at (2.8,-1.15) {$I(t)=\dfrac UR(1-\e^{-t/\tau})$，载流子惯性使电流不能瞬间建立};
+\end{tikzpicture}
+
+\figcap{突加电压后的微观暂态电流}\label{appE:fig:s22-legacy-12}
+\end{center}}
+
+\newcommand{\rotatingRingDiagram}{%
+\begin{samepage}
+\begin{center}
+\begin{tikzpicture}[scale=0.70,>=Latex]
+  \draw[curve] (0,0) circle (1.65);
+  \foreach \a in {0,30,...,330}{\node[DeepBlue] at ({1.65*cos(\a)},{1.65*sin(\a)}) {$+$};}
+  \draw[DeepBlue,very thick,-{Latex[length=2.5mm]}] (1.35,0.95) arc[start angle=35,end angle=135,radius=1.65];
+  \draw[vector] (0,0)--(1.1,0) node[midway,above] {$R$};
+  \node[TextGray,align=left,anchor=west] at (3.4,0.6)
+    {每转一周，任一截面通过总电荷 $Q$\\周期 $T=2\pi/\omega$};
+\end{tikzpicture}
+
+\figcap{转动带电环与等效环电流}\label{appE:fig:s22-legacy-13}
+\end{center}
+\end{samepage}}
+
+\newcommand{\vacuumDiodeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \draw[DeepBlue,very thick] (-3.5,-1.2)--(-3.5,1.2) node[above] {阴极 $\varphi=0$};
+  \draw[DeepBlue,very thick] (3.5,-1.2)--(3.5,1.2) node[above] {阳极 $\varphi=U$};
+  \foreach \x in {-2.7,-1.9,...,2.9}{\node[Ink] at (\x,0) {$-$};}
+  \draw[vector] (-2.8,-0.75)--(2.7,-0.75) node[midway,below] {电子运动};
+  \draw[axis] (-3.5,-1.75)--(4.1,-1.75) node[right] {$x$};
+  \draw[<->] (-3.5,-2.25)--node[fill=white,inner sep=1pt] {$L$}(3.5,-2.25);
+  \node[TextGray] at (0,-2.95) {$\varphi(x)=U(x/L)^{4/3}$，空间电荷使电势不是线性分布};
+\end{tikzpicture}
+
+\figcap{平板真空二极管中的空间电荷限制电流}\label{appE:fig:s22-legacy-14}
+\end{center}}
+
+\newcommand{\nonlinearShellDiagram}{%
+\begin{samepage}
+\begin{center}
+\begin{tikzpicture}[scale=0.70,>=Latex]
+  \fill[PaleBlue] (0,0) circle (1.85); \fill[white] (0,0) circle (0.82);
+  \draw[curve] (0,0) circle (0.82); \draw[curve] (0,0) circle (1.85);
+  \foreach \a in {0,45,...,315}{\draw[component] ({0.92*cos(\a)},{0.92*sin(\a)})--({1.7*cos(\a)},{1.7*sin(\a)});}
+  \draw[<->] (0,0)--node[above] {$a$}(0.82,0);
+  \draw[<->] (0,-0.35)--node[below] {$b$}(1.85,-0.35);
+  \node[TextGray,align=left,anchor=west] at (3.5,0.6)
+    {$j(r)=I/(4\pi r^2)$\\$j=kE^2$\\故 $E\propto1/r$};
+\end{tikzpicture}
+
+\figcap{电导率满足 $\sigma=kE$ 的厚球壳}\label{appE:fig:s22-legacy-15}
+\end{center}
+\end{samepage}}
+
+\newcommand{\ionChamberDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.83,>=Latex]
+  \draw[DeepBlue,very thick] (-4.1,1.35)--(4.1,1.35) node[right] {阴极 $-U_0$};
+  \draw[DeepBlue,very thick] (-4.1,-1.35)--(4.1,-1.35) node[right] {阳极};
+  \draw[guide] (-3.2,-0.35)--(3.1,-0.35) node[right] {粒子径迹};
+  \foreach \x in {-2.7,-1.9,...,2.9}{\node[DeepBlue] at (\x,-0.15) {$+$}; \node[Ink] at (\x,-0.55) {$-$};}
+  \draw[vector] (-1.4,-0.05)--(-1.4,0.95) node[right] {$v^+$};
+  \draw[vector] (0.8,-0.55)--(0.8,-1.12) node[right] {$v^-$};
+  \draw[<->] (-4.55,-1.35)--node[left] {$D$}(-4.55,1.35);
+  \draw[<->] (3.55,-1.35)--node[right] {$x_0$}(3.55,-0.35);
+  \node[TextGray] at (0,-2.15) {电子先到达阳极形成快分量，正离子随后形成慢分量};
+\end{tikzpicture}
+
+\figcap{平行板电离室中的电子--离子漂移}\label{appE:fig:s22-legacy-16}
+\end{center}}
+
+\newcommand{\ringResistanceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (RingA) at (-2.7,0);
+  \coordinate (RingO) at (0,0);
+  \coordinate (RingB) at (2.13,-1.49);
+  \draw[curve] (0,0) circle (1.75);
+  \fill[DeepBlue] (-1.75,0) circle (3pt) node[left] {$a$};
+  \fill[DeepBlue] ({1.75*cos(-35)},{1.75*sin(-35)}) circle (3pt) node[right] {$b$};
+  \draw[axis] (0,0)--(-2.7,0);
+  \draw[axis] (0,0)--({2.6*cos(-35)},{2.6*sin(-35)});
+  \draw pic[draw,"$\theta$",angle radius=11mm,angle eccentricity=1.35]
+    {angle=RingA--RingO--RingB};
+  \node[TextGray,align=left,anchor=west] at (4.1,0.5)
+    {两段电阻 $R_1+R_2=R$\\在端点 $a,b$ 之间并联};
+\end{tikzpicture}
+
+\figcap{圆环电阻被接点分成两条并联支路}\label{appE:fig:s22-legacy-17}
+\end{center}}
+
+\newcommand{\dualSourceDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[thick] (-4.0,1.5)--(4.0,1.5) (-4.0,-1.5)--(4.0,-1.5);
+  \draw[thick] (-3.2,1.5)--(-3.2,0.95);
+  \draw[very thick,DeepBlue] (-3.55,0.75)--(-2.85,0.75) (-3.43,0.38)--(-2.97,0.38);
+  \draw[thick] (-3.2,0.38)--(-3.2,-0.1);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (-3.2,-0.1)--(-3.2,-1.05);
+  \draw[thick] (-3.2,-1.05)--(-3.2,-1.5);
+  \node[left] at (-3.65,0.55) {$\mathcal E_1$}; \node[left] at (-3.65,-0.55) {$r_1$};
+  \draw[thick] (0,1.5)--(0,0.95);
+  \draw[very thick,DeepBlue] (-0.35,0.75)--(0.35,0.75) (-0.23,0.38)--(0.23,0.38);
+  \draw[thick] (0,0.38)--(0,-0.1);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (0,-0.1)--(0,-1.05);
+  \draw[thick] (0,-1.05)--(0,-1.5);
+  \node[right] at (0.45,0.55) {$\mathcal E_2$}; \node[right] at (0.45,-0.55) {$r_2$};
+  \draw[thick] (3.2,1.5)--(3.2,0.95);
+  \draw[thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2.2pt}] (3.2,0.95)--(3.2,-0.95);
+  \draw[thick] (3.2,-0.95)--(3.2,-1.5);
+  \node[right] at (3.55,0) {$R$};
+  \draw[vector] (2.75,1.85)--(3.65,1.85) node[midway,above] {$I$};
+\end{tikzpicture}
+
+\figcap{两个有内阻电源并联向负载供电}\label{appE:fig:s22-legacy-18}
+\end{center}}
+
+
+\begin{origexamplebox}{【真空二极管】}\label{appE:ex:s22-33-4}
+平板真空二极管的阴极、阳极面积均为 $S$，间距为 $L$。阴极位于 $x=0$ 且电势为零，阳极位于
+$x=L$ 且电势为 $U>0$。电子从阴极以可忽略的初速度发射，稳恒电流为 $I$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 写出板间电势满足的方程；
+  \item 用 $\varphi(x)$ 表示电子速度；
+  \item 用 $I$、速度表示电子数密度；
+  \item 消去速度和数密度，写出电势的微分方程与空间电荷限制状态的边界条件；
+  \item 求伏安关系并证明查尔德--朗缪尔定律 $I=KU^{3/2}$。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} 电子数密度为 $n(x)$，体电荷密度 $\rho_q=-en$。泊松方程给出
+\begin{equation}
+  \frac{\dd^2\varphi}{\dd x^2}=-\frac{\rho_q}{\varepsilon_0}
+  =\frac{en}{\varepsilon_0}.
+\end{equation}
+
+\textbf{(2)} 电子从阴极由静止出发。能量守恒
+\[
+  \frac12mv^2=e\varphi,
+\]
+所以
+\begin{equation}
+  \boxed{v(x)=\sqrt{\frac{2e\varphi(x)}m}}.
+\end{equation}
+
+\textbf{(3)} 稳恒电流在各截面相同，取电流大小有
+\begin{equation}
+  I=en(x)v(x)S,
+  \qquad
+  \boxed{n(x)=\frac{I}{eSv(x)}}.
+\end{equation}
+
+\textbf{(4)} 消去 $n,v$：
+\begin{equation}
+  \frac{\dd^2\varphi}{\dd x^2}
+  =\frac{I}{\varepsilon_0S}\sqrt{\frac{m}{2e}}\,\varphi^{-1/2}.
+\end{equation}
+空间电荷限制的最大稳定电流状态下，阴极表面电场恰为零；若阴极场反向，发出的电子会被推回。
+边界条件为
+\begin{equation}
+  \varphi(0)=0,
+  \qquad \varphi'(0)=0,
+  \qquad \varphi(L)=U.
+\end{equation}
+
+\textbf{(5)} 记
+\[
+  A_0=\frac{I}{\varepsilon_0S}\sqrt{\frac{m}{2e}}.
+\]
+用 $\varphi'$ 乘微分方程并从阴极积分：
+\[
+  \frac12(\varphi')^2=2A_0\sqrt\varphi,
+  \qquad
+  \varphi'=2\sqrt{A_0}\,\varphi^{1/4}.
+\]
+再次积分得
+\[
+  \varphi(x)=\left(\frac32\sqrt{A_0}\,x\right)^{4/3}.
+\]
+代入 $\varphi(L)=U$，得到电势分布和电流：
+\begin{equation}
+  \boxed{\varphi(x)=U\left(\frac xL\right)^{4/3}},
+\end{equation}
+\begin{equation}
+  \boxed{I=\frac49\varepsilon_0S\sqrt{\frac{2e}{m}}
+  \frac{U^{3/2}}{L^2}}.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{K=\frac49\frac{\varepsilon_0S}{L^2}\sqrt{\frac{2e}{m}}}.
+\end{equation}
+这一定律建立在平板近似、零初速度、充分电子发射和稳恒一维空间电荷等条件上。
+图~\ref{appE:fig:s22-33-9} 中电子从零电势阴极向高电势阳极运动；$\varphi\propto x^{4/3}$ 也表明板间电场
+$E=\varphi'$ 并非均匀场。
+
+\vacuumDiodeDiagram\label{appE:fig:s22-33-9}
+\end{xesolution}
+
+\begin{origexamplebox}{【电离计数器】}\label{appE:ex:s22-33-6}
+电离计数器测量带电粒子穿过气体时产生的电离电荷。电场把电离产物中的电子和正离子分别引向
+阳极和阴极；若入射粒子在气体中被完全吸收，还可由总电离量估计粒子能量。最简单的电离室由
+一对平行板电极构成，密封容器中充有工作气体。板间距为 $D$、面积为 $S$，阴极电势为 $-U_0$，
+阳极接读出电路。带电粒子在距阳极 $x_0$ 处沿平行于极板的径迹产生 $N$ 对电子--离子；若粒子
+沉积能量为 $E_{\rm dep}$、气体中产生一对电子--离子所需平均能量为 $W$，则
+$N=E_{\rm dep}/W$。正离子与电子的漂移速率分别为 $v^+,v^-$，假设电荷全部被收集，忽略复合、
+电子俘获和次级电离。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求均匀电场；
+  \item 求极板电容；
+  \item 当负载电阻很大时，求输出电压变化 $\Delta U(t)$；
+  \item 在 $v^-\gg v^+$ 时描述波形；
+  \item 若负载电阻 $R$ 不可忽略，写出输出电压的时间关系。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $x$ 从阳极指向阴极，阳极 $x=0$、阴极 $x=D$。
+
+\textbf{(1)} 忽略边缘效应，
+\begin{equation}
+  \boxed{E=\frac{U_0}{D}}.
+\end{equation}
+场方向由阳极指向阴极；电子向阳极漂移，正离子向阴极漂移。
+
+\textbf{(2)} 气体介电常数近似为 $\varepsilon_0$，
+\begin{equation}
+  \boxed{C=\frac{\varepsilon_0S}{D}}.
+\end{equation}
+
+\textbf{(3)} 平行板的读出权重场为 $1/D$。每个仍在漂移的电荷产生大小为 $ev/D$ 的感应电流。
+令
+\[
+  t_- =\frac{x_0}{v^-},
+  \qquad
+  t_+ =\frac{D-x_0}{v^+}
+\]
+分别为电子到阳极、离子到阴极的时间。感应电流大小为
+\begin{equation}
+  i_{\rm ind}(t)=\frac{Ne}{D}
+  \left[v^-H(t_--t)+v^+H(t_+-t)\right],
+\end{equation}
+其中 $H$ 为阶跃函数。负载近似开路时，感应电荷全部给电容充电：
+\begin{equation}
+  \boxed{\Delta U(t)=\frac{Ne}{CD}\left[
+  v^-\min(t,t_-)+v^+\min(t,t_+)\right]}.
+\end{equation}
+当两类载流子全部到达电极，$\Delta U(\infty)=Ne/C$，与电离位置 $x_0$ 无关。
+
+\textbf{(4)} 通常 $v^-\gg v^+$，电子在短时间 $t_-$ 内形成陡峭快分量
+$Ne x_0/(CD)$；随后正离子在较长时间 $t_+$ 内形成缓慢上升分量
+$Ne(D-x_0)/(CD)$。两部分相加仍为 $Ne/C$。
+
+\textbf{(5)} 负载电阻使已形成的电压以时间常数 $\tau_c=RC$ 泄放。电路方程为
+\begin{equation}
+  \boxed{C\frac{\dd\Delta U}{\dd t}+\frac{\Delta U}{R}=i_{\rm ind}(t)}.
+\end{equation}
+取 $\Delta U(0)=0$，统一写成卷积形式
+\begin{equation}
+  \boxed{\Delta U(t)=\frac1C\int_0^t
+  i_{\rm ind}(t')\e^{-(t-t')/(RC)}\dd t'}.
+\end{equation}
+它表明每一小段新产生的感应电压都从产生时刻起指数衰减。若粒子在气体中完全损失能量
+$E_p$，且产生一对电子--离子的平均能量为 $W$，还可用 $N=E_p/W$ 反推粒子能量。
+图~\ref{appE:fig:s22-33-11} 把两段漂移路程直接标成 $x_0$ 与 $D-x_0$：它们分别决定快分量和慢分量的持续时间
+及最终幅度。
+
+\ionChamberDiagram\label{appE:fig:s22-33-11}
+\end{xesolution}
+
+\begin{origexamplebox}{【圆环电阻】}\label{appE:ex:s22-33-7}
+总电阻为 $R$ 的均匀电阻丝弯成圆环，在环上两点 $a,b$ 之间接入电源。固定 $a$，移动 $b$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 若电源保持电压 $U$，何时总发热功率最小，最小值是多少；
+  \item 若改用保持电流 $I$ 的理想恒流源，结果怎样？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+两接点把圆环分成电阻 $R_1,R_2$ 的两段，且 $R_1+R_2=R$。两段在 $a,b$ 之间并联：
+\begin{equation}
+  R_{\rm eq}=\frac{R_1R_2}{R_1+R_2}=\frac{R_1R_2}{R}.
+\end{equation}
+
+\textbf{(1) 固定电压。}
+\[
+  P_U=\frac{U^2}{R_{\rm eq}}=\frac{U^2R}{R_1R_2}.
+\]
+在 $R_1+R_2=R$ 下，乘积 $R_1R_2$ 在 $R_1=R_2=R/2$ 时最大，故功率最小。此时 $b$ 与 $a$
+位于直径两端，
+\begin{equation}
+  \boxed{R_{\rm eq}=\frac R4},
+  \qquad
+  \boxed{P_{U,\min}=\frac{4U^2}{R}}.
+\end{equation}
+
+\textbf{(2) 固定电流。}
+\[
+  P_I=I^2R_{\rm eq}=I^2\frac{R_1R_2}{R}.
+\]
+此时要使乘积 $R_1R_2$ 尽量小，因此 $b$ 应尽量靠近 $a$。在允许两接点重合的理想模型中
+\begin{equation}
+  \boxed{P_{I,\min}=0\quad(b=a)}.
+\end{equation}
+若规定 $a,b$ 必须不同，则没有被实际取到的正最小值，只有当 $b\to a$ 时趋于零的下确界。固定
+电压与固定电流给出相反的优化方向，是因为一个最小化 $1/R_{\rm eq}$，另一个最小化
+$R_{\rm eq}$。
+图~\ref{appE:fig:s22-33-12} 中两条圆弧正是并联的 $R_1,R_2$；把 $b$ 移到 $a$ 的对径点，两条圆弧等长，
+对应 $R_1=R_2$。
+
+\ringResistanceDiagram\label{appE:fig:s22-33-12}
+\end{xesolution}
+
+\endgroup
+
+\Needspace{18\baselineskip}
+
+\section{复杂电阻网络}
+
+\begingroup
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-third-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-third-section/assets/}}
+
+\tikzset{
+  resistor/.style={thick,decorate,decoration={zigzag,segment length=4.2pt,amplitude=1.8pt}},
+  circuitwire/.style={thick,Ink},
+  samenode/.style={circle,draw=DeepBlue,fill=PaleBlue,inner sep=1.6pt},
+  terminal/.style={circle,fill=DeepBlue,inner sep=2.2pt}
+}
+
+\newcommand{\sourceEquivalentDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \begin{scope}[xshift=-3.4cm]
+    \draw[circuitwire] (-1.5,1)--(-0.45,1);
+    \draw[very thick,DeepBlue] (-0.45,1.35)--(-0.45,0.65) (-0.08,1.24)--(-0.08,0.76);
+    \draw[resistor] (-0.08,1)--(1.25,1);
+    \draw[circuitwire] (1.25,1)--(1.55,1) (-1.5,-1)--(1.55,-1);
+    \node at (-0.25,1.65) {$\mathcal E$}; \node at (0.65,1.45) {$r$};
+    \node[terminal] at (-1.5,1){}; \node[terminal] at (-1.5,-1){};
+  \end{scope}
+  \draw[<->,DeepBlue,very thick] (-1.0,0)--(1.0,0)
+    node[midway,above] {$\mathcal E=I_{\rm N}r$};
+  \begin{scope}[xshift=3.4cm]
+    \draw[circuitwire] (-1.5,1)--(1.45,1) (-1.5,-1)--(1.45,-1);
+    \draw[circuitwire] (0.15,1)--(0.15,0.45) (0.15,-0.45)--(0.15,-1);
+    \draw[resistor] (0.15,0.45)--(0.15,-0.45);
+    \draw[circuitwire] (1.05,1)--(1.05,0.48) (1.05,-0.48)--(1.05,-1);
+    \draw[DeepBlue,very thick,->] (1.05,-0.48)--(1.05,0.48);
+    \node[left] at (-0.05,0) {$r$}; \node[right] at (1.25,0) {$I_{\rm N}$};
+    \node[terminal] at (-1.5,1){}; \node[terminal] at (-1.5,-1){};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{实际电压源与实际电流源的端口等效}\label{appE:fig:s23-legacy-01}
+\end{center}}
+
+\newcommand{\theveninDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[rounded corners=2mm,fill=PaleBlue,draw=RuleGray] (-4,-1.35) rectangle (-1.25,1.35);
+  \node[align=center] at (-2.62,0) {任意线性\\有源二端网络};
+  \draw[circuitwire] (-1.25,0.75)--(-0.65,0.75) (-1.25,-0.75)--(-0.65,-0.75);
+  \node[terminal] at (-0.65,0.75){}; \node[terminal] at (-0.65,-0.75){};
+  \draw[->,DeepBlue,very thick] (0,0)--(1.1,0);
+  \draw[circuitwire] (1.6,0.75)--(2.1,0.75);
+  \draw[very thick,DeepBlue] (2.1,1.1)--(2.1,0.4) (2.45,0.98)--(2.45,0.52);
+  \draw[resistor] (2.45,0.75)--(3.75,0.75);
+  \draw[circuitwire] (3.75,0.75)--(4.1,0.75) (1.6,-0.75)--(4.1,-0.75);
+  \node at (2.3,1.35) {$U_{\rm oc}$}; \node at (3.15,1.2) {$R_{\rm th}$};
+  \node[terminal] at (4.1,0.75){}; \node[terminal] at (4.1,-0.75){};
+\end{tikzpicture}
+
+\figcap{戴维南等效只保留开路电压与端口内阻}\label{appE:fig:s23-legacy-02}
+\end{center}}
+
+\newcommand{\bridgeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (L) at (-3,0); \coordinate (T) at (0,1.65);
+  \coordinate (B) at (0,-1.65); \coordinate (R) at (3,0);
+  \draw[resistor] (L)--node[above left] {$R_1$}(T);
+  \draw[resistor] (T)--node[above right] {$R_2$}(R);
+  \draw[resistor] (L)--node[below left] {$R_3$}(B);
+  \draw[resistor] (B)--node[below right] {$R_4$}(R);
+  \draw[resistor,DeepBlue] (T)--node[right] {$R_5$}(B);
+  \fill[DeepBlue] (L) circle (2.5pt) node[left] {$A$};
+  \fill[DeepBlue] (R) circle (2.5pt) node[right] {$B$};
+  \node[TextGray,align=left,anchor=west] at (4.0,0.35)
+    {$R_1/R_2=R_3/R_4$\\$\Rightarrow\ U_T=U_B$\\$\Rightarrow\ I_5=0$};
+\end{tikzpicture}
+
+\figcap{平衡电桥的中间支路可断开，也可将两端等势点合并}\label{appE:fig:s23-legacy-03}
+\end{center}}
+
+\newcommand{\starDeltaDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86,>=Latex]
+  \begin{scope}[xshift=-3.1cm]
+    \coordinate (A) at (0,1.65); \coordinate (B) at (-1.7,-1.1); \coordinate (C) at (1.7,-1.1);
+    \draw[resistor] (A)--node[left] {$R_{AB}$}(B);
+    \draw[resistor] (B)--node[below] {$R_{BC}$}(C);
+    \draw[resistor] (C)--node[right] {$R_{CA}$}(A);
+    \node[above] at (A) {$A$}; \node[left] at (B) {$B$}; \node[right] at (C) {$C$};
+  \end{scope}
+  \draw[<->,DeepBlue,very thick] (-0.55,0)--(0.55,0);
+  \begin{scope}[xshift=3.1cm]
+    \coordinate (A) at (0,1.65); \coordinate (B) at (-1.7,-1.1); \coordinate (C) at (1.7,-1.1); \coordinate (O) at (0,0);
+    \draw[resistor] (A)--node[right] {$R_A$}(O);
+    \draw[resistor] (B)--node[above left] {$R_B$}(O);
+    \draw[resistor] (C)--node[above right] {$R_C$}(O);
+    \node[above] at (A) {$A$}; \node[left] at (B) {$B$}; \node[right] at (C) {$C$};
+    \fill[DeepBlue] (O) circle (2.2pt);
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{三角形连接与星形连接的端口等效}\label{appE:fig:s23-legacy-04}
+\end{center}}
+
+\newcommand{\gridDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \foreach \x in {0,1,2}{\draw[curve] (\x,0)--(\x,2);}
+  \foreach \y in {0,1,2}{\draw[curve] (0,\y)--(2,\y);}
+  \foreach \x in {0,1,2}{\foreach \y in {0,1,2}{\fill[Ink] (\x,\y) circle (1.5pt);}}
+  \node[left] at (0,0) {$A$}; \node[right] at (2,0) {$B$}; \node[right] at (2,2) {$C$};
+  \draw[->,DeepBlue] (3.0,1)--(4.25,1);
+  \node[TextGray,align=left,anchor=west] at (4.6,1)
+    {先按端点对称性分组\\再合并等势节点};
+\end{tikzpicture}
+
+\figcap{田字格网络的节点与端点标记}\label{appE:fig:s23-legacy-05}
+\end{center}}
+
+\newcommand{\tetrahedronDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88]
+  \coordinate (A) at (0,2); \coordinate (B) at (-2,-1.25);
+  \coordinate (C) at (2,-1.25); \coordinate (D) at (0,-0.35);
+  \foreach \u/\v in {A/B,A/C,A/D,B/C,B/D,C/D}{\draw[curve] (\u)--(\v);}
+  \foreach \u/\pos in {A/above,B/left,C/right,D/below}{\fill[DeepBlue] (\u) circle (2.3pt) node[\pos] {$\u$};}
+  \node[TextGray,anchor=west,align=left] at (3.0,0.35)
+    {从 $A$ 流入、从 $B$ 流出时\\$C,D$ 关于交换对称，故等势};
+\end{tikzpicture}
+
+\figcap{正四面体六条棱均接电阻 $R$}\label{appE:fig:s23-legacy-06}
+\end{center}}
+
+\newcommand{\completeGraphDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \foreach \i in {0,...,4}{\coordinate (P\i) at ({90+72*\i}:1.8);}
+  \foreach \i in {0,...,4}{\foreach \j in {0,...,4}{\ifnum\i<\j\draw[curve] (P\i)--(P\j);\fi}}
+  \foreach \i in {0,...,4}{\fill[DeepBlue] (P\i) circle (2.2pt);}
+  \node[TextGray,anchor=west,align=left] at (3.0,0.35)
+    {$K_N$ 中任意两点都有一只 $R$\\其余 $N-2$ 个节点彼此等势};
+\end{tikzpicture}
+
+\figcap{$N=5$ 时的完全图电阻网络}\label{appE:fig:s23-legacy-07}
+\end{center}}
+
+\newcommand{\octagonDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.75]
+  \foreach \i in {0,...,7}{\coordinate (O\i) at ({22.5+45*\i}:2.25);}
+  \foreach \i in {0,...,7}{\foreach \j in {0,...,7}{
+    \pgfmathtruncatemacro{\d}{mod(\j-\i+8,8)}
+    \ifnum\i<\j\ifnum\d=4\else\draw[thin,TextGray] (O\i)--(O\j);\fi\fi}}
+  \foreach \i in {0,...,7}{\fill[Ink] (O\i) circle (1.7pt);}
+  \fill[DeepBlue] (O0) circle (3pt) node[right] {$A$};
+  \fill[DeepBlue] (O4) circle (3pt) node[left] {$B$};
+  \node[TextGray,anchor=west,align=left] at (3.7,0.3)
+    {删去四条最长对角线\\求对径端点 $A,B$ 间电阻};
+\end{tikzpicture}
+
+\figcap{变种八边形：除对径点外任意两点均以 $R$ 相连}\label{appE:fig:s23-legacy-08}
+\end{center}}
+
+\newcommand{\cubeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \coordinate (A) at (-2,-1.3); \coordinate (B) at (1,-1.3);
+  \coordinate (C) at (1,1.5); \coordinate (D) at (-2,1.5);
+  \coordinate (E) at (-0.8,-0.35); \coordinate (F) at (2.2,-0.35);
+  \coordinate (G) at (2.2,2.45); \coordinate (H) at (-0.8,2.45);
+  \foreach \u/\v in {A/B,B/C,C/D,D/A,E/F,F/G,G/H,H/E,A/E,B/F,C/G,D/H}{\draw[curve] (\u)--(\v);}
+  \draw[guide] (E)--(F) (E)--(H) (A)--(E);
+  \foreach \u in {A,B,C,D,E,F,G,H}{\fill[Ink] (\u) circle (1.7pt);}
+  \node[left] at (A) {$A$}; \node[below] at (B) {$B$}; \node[right] at (C) {$C$}; \node[above] at (G) {$C_1$};
+  \node[TextGray,anchor=west,align=left] at (3.25,0.55)
+    {棱相邻：$A,B$\\面对角：$A,C$\\体对角：$A,G$};
+\end{tikzpicture}
+
+\figcap{正方体十二条棱均接电阻 $R$}\label{appE:fig:s23-legacy-09}
+\end{center}}
+
+\newcommand{\ladderDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78]
+  \node[left] at (0,1.2) {$a$}; \node[left] at (0,-1.2) {$b$};
+  \foreach \i in {0,1,2,3}{
+    \draw[resistor] (1.45*\i,1.2)--(1.45*\i+1.05,1.2);
+    \draw[resistor] (1.45*\i,-1.2)--(1.45*\i+1.05,-1.2);
+    \draw[resistor] (1.45*\i+1.05,1.2)--(1.45*\i+1.05,-1.2);
+    \fill[Ink] (1.45*\i+1.05,1.2) circle (1.4pt);
+    \fill[Ink] (1.45*\i+1.05,-1.2) circle (1.4pt);
+  }
+  \draw[dotted,thick] (5.7,1.2)--(6.45,1.2) (5.7,-1.2)--(6.45,-1.2);
+\end{tikzpicture}
+
+\figcap{每一节含上下两个串联电阻和一只横接电阻}\label{appE:fig:s23-legacy-10}
+\end{center}}
+
+\newcommand{\threeRailDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72]
+  \foreach \row/\lab in {1.6/A,0/B,-1.6/C}{\node[left] at (0,\row) {$\lab$};}
+  \foreach \i in {0,1,2,3}{
+    \foreach \row in {1.6,0,-1.6}{\draw[resistor] (1.5*\i,\row)--(1.5*\i+1.05,\row);}
+    \draw[resistor] (1.5*\i+1.05,1.6)--(1.5*\i+1.05,0);
+    \draw[resistor] (1.5*\i+1.05,0)--(1.5*\i+1.05,-1.6);
+  }
+  \foreach \row in {1.6,0,-1.6}{\draw[dotted,thick] (5.6,\row)--(6.35,\row);}
+\end{tikzpicture}
+
+\figcap{三端无限方格网络及端点 $A,B,C$}\label{appE:fig:s23-legacy-11}
+\end{center}}
+
+\newcommand{\nestedTriangleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \coordinate (A) at (-3,-1.55); \coordinate (B) at (3,-1.55); \coordinate (C) at (0,3.65);
+  \draw[curve] (A)--(B)--(C)--cycle;
+  \coordinate (L1) at (-1.5,1.05); \coordinate (R1) at (1.5,1.05); \coordinate (M1) at (0,-1.55);
+  \draw[curve] (L1)--(R1)--(M1)--cycle;
+  \coordinate (L2) at (-0.75,-0.25); \coordinate (R2) at (0.75,-0.25); \coordinate (M2) at (0,1.05);
+  \draw[curve] (L2)--(R2)--(M2)--cycle;
+  \coordinate (L3) at (-0.375,0.40); \coordinate (R3) at (0.375,0.40); \coordinate (M3) at (0,-0.25);
+  \draw[curve] (L3)--(R3)--(M3)--cycle;
+  \node[left] at (A) {$A$}; \node[right] at (B) {$B$}; \node[above] at (C) {$C$};
+  \node[TextGray,anchor=west,align=left] at (4.0,0.65)
+    {边长依次为\\$a,a/2,a/4,\ldots$};
+\end{tikzpicture}
+
+\figcap{相邻内接等边三角形在三个中点处与外层相接}\label{appE:fig:s23-legacy-12}
+\end{center}}
+
+\newcommand{\sierpinskiDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78]
+  \begin{scope}[xshift=-3.4cm]
+    \fill[PaleBlue] (-1.7,-1.1)--(1.7,-1.1)--(0,1.84)--cycle;
+    \node[below] at (0,-1.45) {第 0 阶};
+  \end{scope}
+  \begin{scope}
+    \fill[PaleBlue] (-1.7,-1.1)--(0,-1.1)--(-0.85,0.37)--cycle;
+    \fill[PaleBlue] (0,-1.1)--(1.7,-1.1)--(0.85,0.37)--cycle;
+    \fill[PaleBlue] (-0.85,0.37)--(0.85,0.37)--(0,1.84)--cycle;
+    \draw[curve] (-1.7,-1.1)--(1.7,-1.1)--(0,1.84)--cycle;
+    \node[below] at (0,-1.45) {第 1 阶};
+  \end{scope}
+  \begin{scope}[xshift=3.4cm]
+    \foreach \sx/\sy in {-1.275/-0.735,0/-0.735,-0.6375/0.3675}{
+      \fill[PaleBlue] (\sx-0.425,\sy-0.3675)--(\sx+0.425,\sy-0.3675)--(\sx,\sy+0.3675)--cycle;
+    }
+    \foreach \sx/\sy in {-0.425/-0.735,0.85/-0.735,0.425/0.3675}{
+      \fill[PaleBlue] (\sx-0.425,\sy-0.3675)--(\sx+0.425,\sy-0.3675)--(\sx,\sy+0.3675)--cycle;
+    }
+    \fill[PaleBlue] (-0.425,0.735)--(0.425,0.735)--(0,1.47)--cycle;
+    \draw[curve] (-1.7,-1.1)--(1.7,-1.1)--(0,1.84)--cycle;
+    \node[below] at (0,-1.45) {第 2 阶};
+  \end{scope}
+\end{tikzpicture}
+
+\figcap{谢尔宾斯基镂垫的前几阶构造}\label{appE:fig:s23-legacy-13}
+\end{center}}
+
+
+\begin{origexamplebox}{【正方体电阻】}\label{appE:ex:s23-34-6}
+正方体框架的十二条棱均接电阻 $R$。求两顶点分别为下列位置关系时的等效电阻：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 棱相邻；
+  \item 面对角线两端；
+  \item 体对角线两端。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+这里以 $1\,\mathrm A$ 电流法统一处理。将流出端取零电势，按保持两个端点不动的对称变换把其余
+顶点分组，列每组的 KCL；流入端电势数值就是等效电阻。
+
+\textbf{(1) 棱相邻。}
+除端点外的六个顶点按对称性合并后，只需列少量节点方程。解得流入端电势为
+$7R/12$，故
+\begin{equation}
+  \boxed{R_{\rm edge}=\frac{7}{12}R}.
+\end{equation}
+
+\textbf{(2) 面对角。}
+以包含两端点的面对角平面作对称，四个中间节点成两个等势组。节点方程给出
+\begin{equation}
+  \boxed{R_{\rm face}=\frac34R}.
+\end{equation}
+
+\textbf{(3) 体对角。}
+与流入端相邻的三个顶点等势，与流出端相邻的三个顶点也等势。网络直接化成
+\[
+  \frac R3+\frac R6+\frac R3,
+\]
+其中中间两组之间有六只 $R$ 并联。因此
+\begin{equation}
+  \boxed{R_{\rm body}=\frac56R}.
+\end{equation}
+三个结果满足“端点在图上的最短距离越远，等效电阻越大”。图~\ref{appE:fig:s23-34-9} 用实线画出全部十二条棱；
+透视图中的交叉不增加节点。
+
+\cubeDiagram\label{appE:fig:s23-34-9}
+\end{xesolution}
+
+\begin{origexamplebox}{【无穷网络】}\label{appE:ex:s23-34-7}
+无限梯形网络如图~\ref{appE:fig:s23-34-10}，每只电阻均为 $R$。每一节的上、下支路各串联一只 $R$，随后用一只
+$R$ 横接两支路。求最左端 $a,b$ 间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+记整个无限网络的等效电阻为 $X$。越过最左端上下两只串联电阻后，后面的网络与原网络完全相同，
+等效电阻仍为 $X$；它与该处横接的电阻 $R$ 并联。因此
+\begin{equation}
+  X=2R+(R\parallel X)=2R+\frac{RX}{R+X}.
+\end{equation}
+移项得
+\[
+  X^2-2RX-2R^2=0.
+\]
+电阻必须为正，取正根
+\begin{equation}
+  \boxed{X=(1+\sqrt3)R}.
+\end{equation}
+图~\ref{appE:fig:s23-34-10} 中切去第一节后留下的虚线部分，与切去前的整张图在拓扑和每只电阻值上完全相同；
+这正是方程中再次出现 $X$ 的原因。
+
+\ladderDiagram\label{appE:fig:s23-34-10}
+\end{xesolution}
+
+\begin{origexamplebox}{【三端无穷网络】}\label{appE:ex:s23-34-8}
+图~\ref{appE:fig:s23-34-11} 的三端无限方格网络中，每只电阻均为 $R$。求 $A,C$ 间和 $A,B$ 间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+先把三端无限尾部等效成一个三角形电导网络。以 $1/R$ 为电导单位，由上下反射对称性，设尾部
+$AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边再添一列三只纵向电阻和三只
+横向电阻后，网络应与原网络相同。
+
+对新增的三个内部节点作消元，端口等效电导变换为
+\begin{equation}
+  p'=\frac{p+1}{3p+4},
+\end{equation}
+\begin{equation}
+  q'=\frac{p^2+2pq+2p+3q+1}{(3p+4)(p+2q+2)}.
+\end{equation}
+自相似要求 $p'=p, q'=q$。取正电导解，可把最终所需电阻化简为
+\begin{equation}
+  \boxed{R_{AC}=(1+\sqrt5)R},
+\end{equation}
+\begin{equation}
+  \boxed{R_{AB}=\left(1+\frac{\sqrt5+\sqrt{21}}4\right)R}.
+\end{equation}
+数值上 $R_{AC}\approx3.236R$，$R_{AB}\approx2.705R$。相邻端点的等效电阻较小，符合电流可在
+较短路径间分流的直觉。图~\ref{appE:fig:s23-34-11} 把尾部的三个端口都保留下来，所以不能像二端梯形网络那样只设
+一个未知电阻；这里必须用两个独立参数 $p,q$ 描述三端口。
+
+\threeRailDiagram\label{appE:fig:s23-34-11}
+\end{xesolution}
+
+\begin{origexamplebox}{【分形电阻】}\label{appE:ex:s23-34-10}
+边长为 $a$ 的正三角形 $ABC$，每一步都将每个保留三角形的三边二等分，并挖去中央倒立三角形，
+无限进行得到谢尔宾斯基镂垫。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求最终剩余面积；
+  \item 求所有孔洞的总边长，不计最外边界；
+  \item 若保留下来的所有边均由单位长度电阻为 $\rho_\ell$ 的金属丝构成，求 $A,B$ 间等效电阻；
+  \item 讨论这些结果所反映的分形性质。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+设原三角形面积为 $S_0=\sqrt3a^2/4$。
+
+\textbf{(1) 面积。}
+第 $n$ 步保留 $3^n$ 个边长 $a/2^n$ 的小三角形，故
+\begin{equation}
+  S_n=S_0\left(\frac34\right)^n
+  \longrightarrow\boxed{0}.
+\end{equation}
+
+\textbf{(2) 孔洞总边长。}
+第 $n\ge1$ 步新挖出 $3^{n-1}$ 个边长 $a/2^n$ 的孔，新增周长
+\[
+  L_n=3^{n-1}\cdot3\frac{a}{2^n}=a\left(\frac32\right)^n.
+\]
+因此
+\begin{equation}
+  \sum_{n=1}^{\infty}L_n
+  =a\sum_{n=1}^{\infty}\left(\frac32\right)^n
+  =\boxed{+\infty}.
+\end{equation}
+
+\textbf{(3) 等效电阻。}
+记第 $n$ 阶有限网络两顶点间电阻为 $X_n$。第 $n+1$ 阶由三个第 $n$ 阶副本组成，每个副本的
+线性尺度减半，所以若单位长度电阻不变，其全部电阻同时乘 $1/2$。由于三端对称，一个副本若两端
+等效电阻为 $X_n$，其等效三角形每边电阻为 $3X_n/2$；缩小后每边为 $3X_n/4$。把三个这样的
+三角形按图~\ref{appE:fig:s23-34-13} 连接，对中点节点列 KCL，得到新网络的两端电阻为单个三角形边电阻的 $10/9$，
+于是
+\begin{equation}
+  X_{n+1}=\frac{10}{9}\cdot\frac{3X_n}{4}=\frac56X_n.
+\end{equation}
+第 0 阶只是三边电阻均为 $\rho_\ell a$ 的三角形，
+\[
+  X_0=\rho_\ell a\parallel2\rho_\ell a=\frac23\rho_\ell a.
+\]
+所以
+\begin{equation}
+  X_n=\frac23\rho_\ell a\left(\frac56\right)^n
+  \longrightarrow\boxed{0}.
+\end{equation}
+
+\textbf{(4) 讨论。}
+面积趋零而内部边界总长发散，表明“占据面积”与“边界复杂度”可以朝相反方向演化；网络总导电
+能力则因并联通道数的增长快于单段电阻因缩短而产生的变化，最终等效电阻趋零。图~\ref{appE:fig:s23-34-13} 的前三阶
+同时显示：每一步都复制三个半尺度副本，这正是三组几何级数与电阻递推的共同来源。
+
+\sierpinskiDiagram\label{appE:fig:s23-34-13}
+\end{xesolution}
+
+\endgroup
+
+\Needspace{18\baselineskip}
+\section{同题异解中的进一步结果}
+
+下列两项与主章题目采用同一模型，但旧版推导给出了主线解答之外仍有价值的推广，
+因此单独保留；主章中的基本结论不在这里重复计算。
+
+\subsection{中性导体球的极化率与非均匀场受力}
+
+第20章已经得到：半径为 $R$ 的中性导体球置于局部匀强电场
+$\vect E_0$ 中时，球外附加电势等效于球心偶极子，
+\[
+ \vect p=4\pi\varepsilon_0R^3\vect E_0.
+\]
+所以导体球的静电极化率为
+\[
+ \boxed{\alpha=4\pi\varepsilon_0R^3},
+ \qquad \vect p=\alpha\vect E_0.
+\]
+由球面感应电荷密度
+$\sigma(\theta)=3\varepsilon_0E_0\cos\theta$ 还可直接检验中性条件：
+\[
+ Q_+=\int_0^{2\pi}\!\int_0^{\pi/2}
+ 3\varepsilon_0E_0\cos\theta\,R^2\sin\theta
+ \,\dd\theta\dd\phi
+ =3\pi\varepsilon_0E_0R^2,
+ \qquad Q_-=-Q_+.
+\]
+净电荷虽然为零，正、负电荷中心的分离仍产生非零偶极矩。
+
+若外场在小球尺度内缓慢变化，把小球从无场处准静态移到场强 $E$ 处，
+建立感应偶极矩所需的相互作用能为
+\[
+ U_{\rm ind}=-\int_0^E\alpha E'\,\dd E'
+ =-\frac12\alpha E^2.
+\]
+因此低阶受力为
+\[
+ \boxed{\vect F=-\nabla U_{\rm ind}
+ =\frac12\alpha\nabla(E^2)}.
+\]
+它指向场强较大的区域。该近似要求 $R$ 远小于外场的空间变化尺度；
+若外场严格均匀，合力为零，只剩内部应力。
+
+\subsection{两等势导体球的有限间距推广}
+
+设两个等半径导体球的半径为 $R$、球心距为 $L>2R$，二者导通并保持共同电势 $V$。
+定义双球坐标参数
+\[
+ \cosh\alpha=\frac{L}{2R}.
+\]
+逐次球面反演产生两列交错的等效像电荷。把两球总电荷求和，可得组合导体的单极电容
+\[
+ \boxed{C(L)=8\pi\varepsilon_0R\sinh\alpha
+ \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\sinh(n\alpha)}}.
+\]
+当 $L\to\infty$ 时，$\alpha\to\infty$，级数由首项主导，
+\[
+ C(L)\longrightarrow 8\pi\varepsilon_0R,
+\]
+即两个相互影响可忽略的孤立球电容之和。
+
+相切极限 $L\to2R^+$ 对应 $\alpha\to0^+$，且
+\[
+ \frac{\sinh\alpha}{\sinh(n\alpha)}\longrightarrow\frac1n.
+\]
+于是
+\[
+ C(2R)=8\pi\varepsilon_0R
+ \left(1-\frac12+\frac13-\frac14+\cdots\right)
+ =\boxed{8\pi\varepsilon_0R\ln2},
+\]
+连续退回第20章相切双球的结果。这个推广同时给出了远离与相切两个极限，
+可用来检查级数的符号、量纲和单调趋势。
+

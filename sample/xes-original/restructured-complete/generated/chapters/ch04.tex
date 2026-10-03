@@ -1,0 +1,1965 @@
+\begingroup
+\tcbset{breakable/.default=false}
+\chapter{相对运动、约束和刚体运动学}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\section{相对运动与参考系}
+\newcommand{\CrossRiverRoundTripDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \fill[Blue!7] (-3,-1.45) rectangle (3,1.45);
+ \draw[very thick] (-3,-1.45)--(3,-1.45) (-3,1.45)--(3,1.45);
+ \coordinate (A) at (0,-1.45);\coordinate (B) at (0,1.45);
+ \node[point,label={[clearlabel]below:$A$}] at (A) {};
+ \node[point,label={[clearlabel]above:$B$}] at (B) {};
+ \draw[DeepBlue,very thick,->] (.10,-1.25)--(.10,1.20);
+ \draw[DeepBlue,very thick,->] (-.10,1.20)--(-.10,-1.25);
+ \draw[vector] (-2.35,.15)--(-1.05,.15) node[midway,clearlabel,above]{$\vect u$};
+ \draw[vector] (A)--++(145:1.25) node[near end,clearlabel,below left]{$\vect v$};
+ \draw[vector] (B)--++(215:1.25) node[near end,clearlabel,above left]{$\vect v$};
+ \draw[<->,TextGray] (2.45,-1.45)--(2.45,1.45) node[midway,clearlabel,right]{$L$};
+\end{tikzpicture}\figcap{解图：$A,B$ 位于两岸正对位置；往返时都用船对水速度的上游分量抵消水流。}\label{ch04:fig:k07-ex-2-73}\end{center}}
+
+\newcommand{\EqualSpeedFrameDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[very thick] (-3,0)--(3,0);
+ \coordinate (A) at (-2.1,0);\coordinate (B) at (2.1,0);
+ \node[point,label={[clearlabel]below:$A$}] at (A) {};
+ \node[point,label={[clearlabel]below:$B$}] at (B) {};
+ \draw[vector] (A)--++(1.55,0) node[midway,clearlabel,above]{$v$};
+ \draw[vector] (-.75,1.0)--(.75,1.0) node[midway,clearlabel,above]{$S'\text{ 的速度 }u$};
+ \draw[->,TextGray] (-1.55,-.58)--(-.2,-.58);
+ \draw[->,TextGray] (1.55,-.58)--(.2,-.58);
+ \node[below] at (0,-.65){在 $S'$ 中迎面接近};
+\end{tikzpicture}\figcap{解图：在地面系中 $A$ 向右、$B$ 静止，参考系 $S'$ 也向右平动。}\label{ch04:fig:k07-ex-2-74}\end{center}}
+
+\newcommand{\VelocityTriangleDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+ \coordinate (O) at (0,0);\coordinate (A) at (2.7,0);\coordinate (B) at (2.7,1.8);
+ \draw[vector] (O)--(A) node[midway,clearlabel,below]{$\vect v_{P/A}$};
+ \draw[vector] (A)--(B) node[midway,clearlabel,right]{$\vect v_{A/O}$};
+ \draw[vector] (O)--(B) node[midway,clearlabel,above left]{$\vect v_{P/O}$};
+\end{tikzpicture}\figcap{相对速度三角形：先走“物体相对载体”，再走“载体相对地面”，得到物体相对地面。}\end{center}}
+
+\newcommand{\KinematicKeepSpace}[1]{%
+\par\begingroup
+\dimen0=#1\relax
+\dimen2=\lastskip
+\advance\dimen0 by \dimen2
+\vskip-\dimen2
+\vskip0pt plus\dimen0
+\penalty-100
+\vskip0pt plus-\dimen0
+\vskip\dimen0
+\penalty9999
+\vskip-\dimen0
+\vskip\dimen2
+\endgroup}
+
+\newcommand{\ReferenceFramesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.88]
+\draw[kaxis] (-.3,0)--(7,0) node[right]{$S:x$};
+\draw[kaxis] (2,1.6)--(7,1.6) node[right]{$S':x'$};
+\coordinate (P) at (5.7,2.4);
+\draw[kguide] (2,-.6)--(2,1.6) (P)--(5.7,-.6);
+\fill (0,0) circle(1.5pt) (2,1.6) circle(1.5pt) (P) circle(1.5pt);
+\node[below left] at (0,0){$O$};\node[above left] at (2,1.6){$O'$};
+\node[above] at (P){$P$};
+\draw[<->] (0,-.65)--(2,-.65) node[midway,below]{$x_{O'}$};
+\draw[<->,DeepBlue] (0,-1.25)--(5.7,-1.25) node[midway,below]{$x$};
+\draw[<->,DeepBlue] (2,.8)--(5.7,.8) node[midway,above]{$x'$};
+\draw[vector] (2.6,2.35)--(3.9,2.35) node[midway,above]{$u$};
+\draw (5.7,0)--(5.7,.12) (5.7,1.6)--(5.7,1.72);
+\end{tikzpicture}\figcap{同一点的两个横向投影坐标满足 $x=x_{O'}+x'$；轴的上下错开不表示额外横向距离。}\label{ch04:fig:k07-2-19}\end{minipage}\end{center}}
+
+\newcommand{\AircraftWindDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.88]
+\begin{scope}
+\draw[kaxis] (0,0)--(4,0) node[right]{东};\draw[kaxis] (0,0)--(0,2.4) node[above]{北};
+\draw[vector] (0,0)--(3,0) node[midway,below]{$\vect V$};
+\draw[vector] (3,0)--(3,1.5) node[midway,right]{$\vect u$};
+\draw[vector] (0,0)--(3,1.5) node[midway,above left]{$\vect v_{\text{地}}$};
+\node at (1.7,-.85){(a) 机头正东};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\draw[kaxis] (0,0)--(3.8,0) node[right]{东};\draw[kaxis] (0,0)--(0,2.4) node[above]{北};
+\draw[vector] (0,0)--(2.598,-1.5) node[midway,below left]{$\vect V$};
+\draw[vector] (2.598,-1.5)--(2.598,0) node[midway,right]{$\vect u$};
+\draw[vector] (0,0)--(2.598,0) node[midway,above]{$\vect v_{\text{地}}$};
+\draw (.8,0) arc(0:-30:.8);\node at (1.15,-.3){$\theta$};
+\node at (1.5,-2.1){(b) 航迹正东};
+\end{scope}
+\end{tikzpicture}\figcap{解图：风速向北；两图均按 $\vect v_{\text{地}}=\vect V+\vect u$ 首尾相接。}\label{ch04:fig:k07-ex-2-81}\end{minipage}\end{center}}
+
+\newcommand{\RiverCrossingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\fill[Blue!5] (-.5,0) rectangle (3.9,3);
+\draw[thick] (-.5,0)--(3.9,0) (-.5,3)--(3.9,3);
+\coordinate (A) at (0,0);\draw[kguide] (A)--(2.25,3);
+\fill (A) circle(1.5pt);\node[below] at (A){$A$};
+\draw[vector] (A)--(0,1.6) node[midway,left]{$\vect v_1$};
+\draw[vector] (0,1.6)--(1.2,1.6) node[midway,above]{$\vect v_2$};
+\draw[vector] (A)--(1.2,1.6);
+\node[right] at (1.55,.65){$\vect v_{\text{岸}}$};\draw[thin] (1.55,.78)--(.82,1.02);
+\draw[<->] (3.5,0)--(3.5,3) node[midway,left]{$d$};
+\node at (1.7,-.8){(a) 最短时间的实际航迹};
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=.35cm]
+\coordinate (W) at (2.5,0);\coordinate (T) at (1.6,1.2);
+\draw[kaxis] (-.3,0)--(4.4,0) node[right]{$v_x$};
+\draw[kaxis] (0,-1.75)--(0,2.3) node[above]{$v_y$};
+\draw (W) circle(1.5);\draw[kguide] (W)--(T);
+\draw[vector] (0,0)--(T);\fill (W) circle(1.5pt) (T) circle(1.5pt);
+\node[below left] at (0,0){$O$};\node[below] at (W){$W$};\node[above] at (T){$T$};
+\node[above right] at (2.2,.65){$v_1$};
+\draw[<->] (0,-1.9)--(2.5,-1.9) node[midway,below]{$v_2$};
+\draw (.4,0) arc(0:36.87:.4);\node at (.67,.2){$\psi$};
+\node at (1.8,-2.65){(b) $v_1<v_2$ 的速度圆};
+\end{scope}
+\end{tikzpicture}\figcap{解图：左图出发点在岸上，航迹平行于合速度；右图 $WT\perp OT$，切线给出最小位移方向。}\label{ch04:fig:k07-ex-2-82}\end{minipage}\end{center}}
+
+\newcommand{\AircraftEqualSpeedDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\foreach \s/\shift/\txt in {1/0/东,-1/6/西}{
+\begin{scope}[xshift=\shift cm]
+\coordinate (O) at (0,0);\coordinate (G) at (0,3.6);
+\coordinate (A) at ({\s*1.74284},3.15);\coordinate (F) at ($(A)!.5!(G)$);
+\draw[vector] (O)--(A);\draw[vector] (A)--(G);\draw[vector] (O)--(G);
+\draw[kguide] (O)--(F);
+\node[below] at (O){$O$};\node[above] at (G){$G$};
+\ifnum\s>0 \node[right] at (A){$A$};\node[left] at (0,1.45){$60$};
+\else \node[left] at (A){$A$};\node[right] at (0,1.45){$60$};\fi
+\node[above] at (F){$F$};\node at ({\s*1.35},1.6){$60$};
+\draw (90:1.4) arc[start angle=90,end angle={90-\s*28.955},radius=1.4];
+\node at ({\s*.61},1.77){$\theta$};
+\node at ({\s*.9},3.9){$30$};
+\node at (0,-.65){机头北偏\txt};
+\end{scope}}
+\node at (3,2.1){正北 $\uparrow$};
+\end{tikzpicture}\figcap{解图：$OA$ 为空速，$AG$ 为风速，$OG$ 为地速；$F$ 为风速边中点，速度单位均为 $\mathrm{m/s}$。}\label{ch04:fig:k07-ex-2-83}\end{minipage}\end{center}}
+
+\newcommand{\SmokeWindDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\foreach \vv/\shift/\txt in {1/0/第一次,3/6/第二次}{
+\begin{scope}[xshift=\shift cm]
+\draw[kaxis] (-.3,0)--(3.3,0) node[right]{东};\draw[kaxis] (0,-1.6)--(0,2.6) node[above]{北};
+\draw[vector] (0,0)--(2,-1) node[midway,below left]{$\vect w$};
+\draw[vector] (2,-1)--(2,{\vv-1});
+\node[right] at (2.1,{.5*\vv-1}){$-\vect v_{\text{船}}$};
+\draw[vector] (0,0)--(2,{\vv-1});
+\node[above left] at (1,{.5*(\vv-1)+.2}){$\vect v_{\text{烟/船}}$};
+\node at (1.4,-2.1){\txt};
+\end{scope}}
+\end{tikzpicture}\figcap{解图：同一风速加上两种反向船速，分别得到向东、向东北的烟对船速度。}\label{ch04:fig:k07-ex-2-84}\end{minipage}\end{center}}
+
+\newcommand{\InterceptTriangleDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,x=.045cm,y=.045cm]
+\coordinate (A) at (0,0);\coordinate (B) at (-93.9693,34.2020);
+\coordinate (C1) at (-17.3065,34.2020);\coordinate (C2) at (79.9527,34.2020);
+\draw[thick] (A)--(B);\draw[vector] (B)--(C2);
+\draw[vector] (A)--(C1);\draw[vector] (A)--(C2);
+\foreach \p/\lab/\pos in {A/A/below,B/B/above left,C1/C_1/above,C2/C_2/above right}{\fill (\p) circle(1.6pt);\node[\pos] at (\p){$\lab$};}
+\node[left] at (-50,12){$L$};\node[above] at (30,38){敌船沿 $+x$};
+\node[left] at (-8,20){$v_2t_1$};\node[below right] at (42,17){$v_2t_2$};
+\draw (B)++(0:22) arc(0:-20:22);\node at (-64,29){$\alpha$};
+\draw (23.16018:14) arc(23.16018:160:14);\node[below] at (0,-12){$\beta_1=\angle BAC_1,\quad\beta_2=\angle BAC_2$};
+\end{tikzpicture}\figcap{解图：按文中数值例得到的两个未来交点；发射方向由各自的 $AC_i$ 决定，而不只由正弦值决定。}\label{ch04:fig:k07-ex-2-85}\end{minipage}\end{center}}
+
+\newcommand{\BombInterceptDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.92]
+\draw[kaxis] (-5,0)--(3.8,0) node[right]{$x$};
+\coordinate (B) at (-4,3);\coordinate (Q) at (-2,2.25);
+\draw[kcurve,domain=0:1,samples=60,variable=\t] plot({-4+4*\t},{3*(1-\t*\t)});
+\draw[kguide] (B)--(-4,0);\draw[vector] (B)--(-2.8,3) node[midway,above]{$v_1$};
+\draw[thick,dashed] (-2,0)--(Q) (2,0)--(Q);
+\foreach \x/\lab/\pos in {0/0/below,-2/-D/below,2/+D/below}{\fill (\x,0) circle(1.6pt);\node[\pos] at (\x,0){$\lab$};}
+\node[above left] at (B){$(-L,H)$};\fill (Q) circle(1.6pt);\node[above right] at (Q){$Q$};
+\draw[<->] (-4.65,0)--(-4.65,3) node[midway,left]{$H$};
+\draw[<->] (-4,-.8)--(0,-.8) node[midway,below]{$L$};
+\node at (1.6,3){两炮位分别讨论};
+\end{tikzpicture}\figcap{解图：蓝线是炸弹轨迹；两条虚线仅连接炮位与相遇点，不是炮弹的抛物线轨迹。}\label{ch04:fig:k07-ex-2-86}\end{minipage}\end{center}}
+
+\newcommand{\ThreeBoatsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\begin{scope}
+\draw[kguide] (0,0)--(4.8,0);
+\foreach \x/\lab in {0/A,1.8/B,3.6/C}{\fill (\x,0) circle(1.5pt);\node[below] at (\x,0){$\lab$};}
+\draw[vector] (0,0)--(.6,0);\node[above] at (.3,0){$u$};
+\draw[vector] (1.8,0)--(1.8,1.2) node[above]{$2u$};
+\draw[vector] (3.6,0)--(4.8,1.2) node[above]{$2\sqrt2u$};
+\draw[<->] (0,-.65)--(1.8,-.65) node[midway,below]{$a$};
+\draw[<->] (1.8,-.65)--(3.6,-.65) node[midway,below]{$a$};
+\node at (2,2.1){(a) $t=0$，速度同比例};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\coordinate (M) at (2.7,2.2);\coordinate (A) at (0,0);
+\draw[kguide] (A)--(2.7,0)--(M);\draw[thick,->] (M)--(A);
+\fill (M) circle(1.5pt) (A) circle(1.5pt);
+\node[above] at (M){$M(t)$};\node[left] at (A){$A(t)$};
+\node[below] at (1.35,0){$3a/2$};\node[right] at (2.7,1){$2ut$};
+\draw[vector] (A)--(0,-1.2) node[below]{$\vect v_{A/M}=(0,-2u)$};
+\node[above left] at (1.5,1.3){$\vect r_{A/M}$};
+\node at (1.5,3.05){(b) 随 $M$ 平移的坐标};
+\end{scope}
+\end{tikzpicture}\figcap{解图：$M$ 与 $A$ 的横向速度相同，$MA$ 的水平分量固定、竖直分量随时间增加。}\label{ch04:fig:k07-ex-2-87}\end{minipage}\end{center}}
+
+\newcommand{\PursuitDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1.25]
+\draw[thick] (-.3,0)--(3.5,0);
+\draw[kguide] (0,3)--(3.1,3);
+\draw[kcurve,domain=1:0,samples=100,variable=\u] plot({3*(2/3-\u+\u^3/3)},{3*(1-\u^2)});
+\coordinate (D) at (.625,2.25);\coordinate (P) at (1.1875,3);
+\draw[thick] (D)--(P);\draw[kguide] (D)--++(1.3,0);
+\draw[vector] (D)--++(.27,.36);\draw[vector] (P)--++(.5,0) node[midway,above]{$v_0$};
+\fill (D) circle(1.5pt) (P) circle(1.5pt);
+\node[left] at (D){$D$};\node[above left] at (P){$P$};
+\node[left] at (.86,2.7){$r$};
+\draw (D)++(.38,0) arc(0:53.1301:.38);\node at (1.18,2.52){$\theta$};
+\draw[vector] (0,0)--(0,.7) node[left]{$v_1$};
+\draw[vector] (0,0)--(.65,0) node[below]{$a_0$};
+\draw[<->] (-.65,0)--(-.65,3) node[midway,left]{$H$};
+\node[below left] at (0,0){$A$};\node[above right] at (2,3){命中};
+\end{tikzpicture}\figcap{解图：取 $v_1=2v_0$ 展示追击曲线；中途导弹 $D$ 的切线沿同一时刻飞机 $P$ 的视线，初始竖直、末端水平。}\label{ch04:fig:k07-ex-2-88}\end{minipage}\end{center}}
+
+\newcommand{\KQuestionCV}{%
+%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \fill[Blue!7] (-3,-1.45) rectangle (3,1.45);
+ \draw[very thick] (-3,-1.45)--(3,-1.45) (-3,1.45)--(3,1.45);
+ \coordinate (A) at (0,-1.45);\coordinate (B) at (0,1.45);
+ \node[point,label={[clearlabel]below:$A$}] at (A) {};
+ \node[point,label={[clearlabel]above:$B$}] at (B) {};
+ \draw[vector] (-2.35,.15)--(-1.05,.15) node[midway,clearlabel,above]{$\vect u$};
+ \draw[vector] (A)--++(145:1.25) node[near end,clearlabel,below left]{$\vect v$};
+ \draw[<->,TextGray] (2.45,-1.45)--(2.45,1.45) node[midway,clearlabel,right]{$L$};
+\end{tikzpicture}\figcap{题图：两岸正对的 A、B 距离为 $L$，水流速度向右，船速指船相对水的速度。}\label{ch04:ref:question-figure-2-73}\end{center}
+}
+
+\newcommand{\KQuestionCW}{%
+%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[very thick] (-3,0)--(3,0);
+ \coordinate (A) at (-2.1,0);\coordinate (B) at (2.1,0);
+ \node[point,label={[clearlabel]below:$A$}] at (A) {};
+ \node[point,label={[clearlabel]below:$B$}] at (B) {};
+ \draw[vector] (A)--++(1.55,0) node[midway,clearlabel,above]{$v$};
+ \draw[vector] (-.75,1.0)--(.75,1.0) node[midway,clearlabel,above]{$S'\text{ 的速度 }u$};
+\end{tikzpicture}\figcap{题图：地面系中 A 向右运动、B 静止；参考系 $S\prime$ 以速度 $u$ 向右平动。}\label{ch04:ref:question-figure-2-74}\end{center}
+}
+
+\newcommand{\KQuestionDE}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\draw[thick] (-2,0)--(3,0) (-2,2.7)--(3,2.7);
+\node[point,label=below:$A$] at (0,0){};
+\draw[vector] (-1.7,1.5)--(-.3,1.5) node[midway,above]{$v_2$};
+\draw[vector] (0,0)--(110:1.4) node[pos=.5,right=7pt]{$v_1$};
+\draw[<->] (2.4,0)--(2.4,2.7) node[midway,left]{$d$};
+
+\end{tikzpicture}
+\figcap{题图：水流平行于河岸，小船对水速度的大小为 $v_1$，船头方向可以选择。}\label{ch04:ref:question-figure-2-82}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDH}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\coordinate (A) at (4,0);\coordinate (B) at (-2,2.4);\coordinate (C) at (2.4,2.4);
+\draw[thick] (A)--(B) node[midway,below left]{$L$};
+\draw[kguide] (B)--(5.1,2.4) (A)--(4,3.2) (A)--(C);
+\draw[vector] (B)--(-.7,2.4) node[midway,above]{$v_1$};
+\draw[vector] (A)--($(A)!.43!(C)$) node[left]{$v_2$};
+\draw (B)++(-21.801:.85) arc(-21.801:0:.85);\node at (-.7,2.1){$\alpha$};
+\draw (A)++(123.690:.65) arc(123.690:158.199:.65);\node at (3.23,.69){$\beta$};
+\foreach \p/\pos in {A/below right,B/above left,C/above}\node[point,label=\pos:$\p$] at (\p){};
+
+\end{tikzpicture}
+\figcap{题图：A 为潜艇、B 为敌船初始位置，C 表示可能的相遇点；发射方向待定。}\label{ch04:ref:question-figure-2-85}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDJ}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\draw[kguide] (0,0)--(4.8,0);
+\foreach \x/\lab in {0/A,1.8/B,3.6/C}{\fill (\x,0) circle(1.5pt);\node[below] at (\x,0){$\lab$};}
+\draw[vector] (0,0)--(.6,0);\node[above] at (.3,0){$u$};
+\draw[vector] (1.8,0)--(1.8,1.2) node[above]{$2u$};
+\draw[vector] (3.6,0)--(4.8,1.2) node[above]{$2\sqrt2u$};
+\draw[<->] (0,-.65)--(1.8,-.65) node[midway,below]{$a$};
+\draw[<->] (1.8,-.65)--(3.6,-.65) node[midway,below]{$a$};
+\end{tikzpicture}
+\figcap{题图：三船初始位置及对地速度，图中 A、B、C 等间距。}\label{ch04:ref:question-figure-2-87}
+\end{minipage}\end{center}
+}
+
+
+地球自转并绕太阳公转，太阳也在银河系中运动。不存在可供一切运动绝对参照的静止物体，因此观察者可以选择合适的物体作为参考系。在参考系中取原点和一组方向建立坐标系；同一运动在不同参考系中的坐标、速度乃至加速度表达可以不同，但它们之间有确定的变换关系。
+
+参考系与坐标系相关却并不等同。选择地面、车厢或船舱作为“静止的物体集合”，是在选择参考系；随后在其中指定原点、坐标轴和单位，才建立了坐标系。不同观察者都可以把自己所在的参考物体看作静止，并据此描述其他物体。运动学不要求寻找一个无法实现的“绝对静止”背景，而是要求把参考对象说清，并能在不同描述之间进行转换。
+
+这种相对性与日常经验完全一致：站在站台上看列车前进，坐在列车里看站台后退；两种叙述的速度数值不同，却对应同一组相遇事件。只要两个参考系之间的相对位置随时间已知，它们对任意第三个物体的坐标、速度和加速度描述就能互相换算，变换关系本身与第三个物体怎样运动无关。
+
+\subsection*{平动参考系的坐标变换}
+
+\ReferenceFramesDiagram
+
+若两个一维坐标系轴向相同、原点相距 $x_0$，则
+\begin{equation}
+x'=x-x_0.
+\end{equation}
+若 $S'$ 的原点相对 $S$ 沿正方向以常速 $u$ 运动，且 $t=0$ 两原点重合，则经典力学中取共同时间 $t$，有
+\begin{equation}
+x'=x-ut,\qquad v'=v-u,\qquad a'=a.
+\end{equation}
+共同时间只适用于远低于光速的经典极限；接近光速时应使用相对论的时空变换。
+
+图~\ref{ch04:fig:k07-2-19}中两条横轴上下错开是为了分别标出读数；比较的是同一点 $P$ 在平行轴上的投影坐标，不是斜线 $OP$、$O'P$ 的长度。图中两个投影落点在同一竖直线上，横向有向距离满足 $x=x_{O'}+x'$，即 $x'=x-x_{O'}$。当两个原点相对静止时，$x_{O'}=x_0$ 为常数，对时间求导后速度、加速度相同；当 $x_{O'}=ut$ 时，速度相差 $u$，而因 $u$ 恒定，加速度仍相同。
+
+经典力学把不同参考系的时钟视为同步，认为同一事件在各系中的时间坐标相同。这在普通车辆、飞机和抛体的速度范围内精度足够高，并构成伽利略变换的基础。接近光速时，这一共同时间假设不再成立；此处指出适用范围，是为了避免把经典公式错误外推到相对论情形。
+
+\begin{origexamplebox}{横渡流动河水往返}\label{ch04:ex:k07-2-73}
+河宽为 $L$，两岸正对位置分别为 $A,B$。船在静水中的速率为 $v$，河水沿河岸以速率 $u$ 匀速流动，且 $v>u$。船从 $A$ 出发驶向 $B$，再沿同一直线由 $B$ 返回 $A$。求往返时间。若要使河中往返时间等于船以速率 $v$ 在静水中按同一路线往返的时间，河中船对水速率应提高到多少？
+\par 题图见图~\ref{ch04:ref:question-figure-2-73}。
+\KQuestionCV
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+要使船对岸速度沿 $AB$，船头在两个航程中都必须偏向上游，使船对水速度的沿河分量恰好抵消水流：
+\CrossRiverRoundTripDiagram
+\[
+v_{\parallel}=u.
+\]
+船对水速度大小为 $v$，所以横河分量，也就是船对岸沿 $AB$ 的速率，为
+\[
+v_{\perp}=\sqrt{v^2-u^2}.
+\]
+往、返两程的横河速率相同，故
+\[
+\boxed{T=\frac{2L}{\sqrt{v^2-u^2}}}.
+\]
+设提高后的对水速率为 $V$。要求
+\[
+\frac{2L}{\sqrt{V^2-u^2}}=\frac{2L}{v},
+\]
+因此
+\[
+\boxed{V=\sqrt{v^2+u^2}}.
+\]
+当 $u\to0$ 时，$T\to2L/v$、$V\to v$，退化为静水结果；同时 $v>u$ 保证横渡可以完成。
+\end{xesolution}
+
+
+\begin{origexamplebox}{选择迎面等速的参考系}\label{ch04:ex:k07-2-74}
+在地面系 $S$ 中，质点 $A$ 以速率 $v$ 撞向静止质点 $B$。参考系 $S'$ 沿 $A$ 的运动方向以速率 $u$ 匀速运动。$u$ 取何值时，$S'$ 看见两质点以相同速率迎面碰撞？
+\par 题图见图~\ref{ch04:ref:question-figure-2-74}。
+\KQuestionCW
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+地面系中的位置和速度方向如图。变换到向右运动的 $S'$ 后，$A$ 的速度为 $v-u$，$B$ 的速度为 $-u$：
+\EqualSpeedFrameDiagram
+迎面且等速要求 $v-u=u$，所以
+\[
+\boxed{u=\frac v2}.
+\]
+这正是两质点速度的算术平均值。
+\end{xesolution}
+
+\begin{origexamplebox}{匀速平动系中的两质点速度}\label{ch04:ex:k07-2-75}
+在地面系 $S$ 中，$A$ 以速率 $v$ 沿正方向撞向静止的 $B$。求相对 $S$ 沿正方向以速率 $u$ 匀速运动的参考系中两质点的速度。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+直接用伽利略速度变换：
+\[
+\boxed{v_A'=v-u},\qquad \boxed{v_B'=-u}.
+\]
+若 $u>v$，两者在 $S'$ 中都沿负方向运动，但 $B$ 的负向速度更大，二者仍相互接近。
+\end{xesolution}
+
+一般平动参考系的原点坐标为 $x_0(t)$ 时，
+\begin{equation}
+x'=x-x_0(t),\qquad v'=v-v_0(t),\qquad a'=a-a_0(t).
+\end{equation}
+这些式子要求两坐标系的轴始终平行；若参考系转动，还会出现额外项。选自由落体系时，所有同受重力加速度的抛体相对它都作匀速直线运动。
+
+一般变换可从位置关系连续求导得到：原点速度 $v_0=\dot x_0$ 从物体在 $S$ 中的速度中扣除，原点加速度 $a_0=\ddot x_0$ 同样从物体加速度中扣除。若坐标轴还在转动，仅减去原点平动已不够，因为同一个空间方向在两系中的分量也随时间改变。本节公式因此只用于轴始终平行的平动参考系。
+
+选择参考系的价值不只是换一组数值，而是可能把复杂运动变简单。两个物体具有相同加速度时，选其中一个为平动参考系，另一物体的相对加速度为零，原本的两段匀加速运动就转化为匀速相对运动。自由落体系正是这一思想：所有忽略空气阻力的抛体都含共同的 $\vect g$，相减后重力项消失。相遇、追及和碰撞题常可用这种方法直接得到相对距离何时关闭。
+
+不过，参考系变换不会改变事件是否相遇。若两个物体在某时刻同处一点，任何合法坐标系都应给出相同的相遇时刻和相遇事件；若不同解法给出互相矛盾的结论，通常是速度下标、正方向或初始位置转换出了问题。位置、速度的数值可以变，物理事件之间的对应关系不能变。
+
+
+\begin{origexamplebox}{加速火车上的人}\label{ch04:ex:k07-2-76}
+火车启动时相对地面以加速度 $a_1$ 匀加速；车上的人沿列车前进方向，以相对列车初速度 $v_2$、加速度 $a_2$ 匀加速跑动。证明人相对地面也作匀加速运动，并求加速度。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+人的地面位置为 $x=x_{\text{车}}+x_{\text{人/车}}$。两次求导：
+\[
+v=v_{\text{车}}+v_{\text{人/车}},\qquad
+a=a_1+a_2.
+\]
+因此
+\[
+\boxed{a_{\text{人/地}}=a_1+a_2},
+\]
+为常量，故确为匀加速运动。若人反向跑，$a_2$ 应按选定正方向带符号。
+\end{xesolution}
+
+\begin{origexamplebox}{各向抛出小球形成的球面}\label{ch04:ex:k07-2-77}
+$t=0$ 时从同一点以相同速率 $v_0$ 向各个方向抛出小球。证明任意时刻这些小球位于一个球面上，球心以自由落体加速度下落，并求球半径。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+任一小球的位移为
+\[
+\vect r=\vect v_0t+\frac12\vect g t^2,
+\qquad |\vect v_0|=v_0.
+\]
+取球心位置 $\vect r_C=\frac12\vect g t^2$，则
+\[
+|\vect r-\vect r_C|=|\vect v_0|t=v_0t.
+\]
+所以球心由静止以加速度 $\vect g$ 下落，球面半径为
+\[
+\boxed{R(t)=v_0t}.
+\]
+在随球心自由下落的参考系中，各小球只是沿初始方向匀速远离原点。
+这里使用匀强重力、忽略空气阻力的自由飞行模型；球面结论只适用于各球尚未碰到地面或其他障碍物的阶段。
+\end{xesolution}
+
+\subsection*{质心及其运动}
+
+由质量 $m_i$、位置 $\vect r_i$ 的质点组成的系统，总质量 $M=\sum_i m_i$，质心为
+\begin{equation}
+\vect r_C=\frac1M\sum_i m_i\vect r_i.
+\end{equation}
+把 $\vect r_i=(x_i,y_i,z_i)$ 按三个坐标方向展开，就是
+\begin{equation}
+x_C=\frac{\sum_i m_ix_i}{M},\qquad
+y_C=\frac{\sum_i m_iy_i}{M},\qquad
+z_C=\frac{\sum_i m_iz_i}{M}.
+\end{equation}
+例如两质点沿 $x$ 轴分布时，$x_C=(m_1x_1+m_2x_2)/(m_1+m_2)$；它不是两位置的简单平均，除非两质量相等。
+连续物体可分割为许多微元并取极限。质心位置随各部分运动而改变，是连接运动学与后续动力学的重要量。
+
+质心不是必须由真实物质占据的点，而是质量分布的加权平均位置。质量越大的部分对质心位置影响越大；两个质点的质心位于连线上，并更靠近质量较大的一个。对连续物体，可把它划分为许多足够小的质量元，对各质量元使用同一加权平均，最后取分割无限细的极限。由于质量在刚体内部的位置不变，刚体质心相对刚体也保持固定。
+
+对质心定义分别求一次和二次时间导数，就得到质心速度和加速度分别是各质点速度、加速度的质量加权平均。这些纯运动学关系不要求各质点速度相同，也不要求系统是刚体；只要各部分质量在考察过程中不发生交换，就可以使用。
+具体地，因 $m_i$ 和 $M$ 不随时间改变，求导可移入求和号：
+\begin{align}
+\vect v_C&=\frac{\dd}{\dd t}\left(\frac{\sum_i m_i\vect r_i}{M}\right)
+=\frac1M\sum_i m_i\frac{\dd\vect r_i}{\dd t}
+=\frac1M\sum_i m_i\vect v_i,\\
+\vect a_C&=\frac{\dd\vect v_C}{\dd t}
+=\frac1M\sum_i m_i\frac{\dd\vect v_i}{\dd t}
+=\frac1M\sum_i m_i\vect a_i.
+\end{align}
+若质量随时间交换，就不能直接把质量当常数移出求导；那属于变质量系统问题。
+
+以质心为原点的参考系称为质心系。在该系中，各质点质量加权的位置和速度之和都为零：
+\begin{equation}
+ \sum_i m_i\vect r_i'=0,\qquad
+ \sum_i m_i\vect v_i'=0.
+\end{equation}
+对两质点系统，这意味着它们在质心系中的速度方向相反，大小与对方质量成反比。质心系并不保证每个质点静止，只保证整个系统的质量加权平均运动被扣除；它在以后处理碰撞和系统动力学时尤其重要。
+
+\begin{origexamplebox}{匀速质点系的质心速度}\label{ch04:ex:k07-2-78}
+证明：若质点系中每个质点都作匀速运动，质心也作匀速运动。若各质点都沿 $x$ 轴，速度为 $v_i$，写出质心速度。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+对质心坐标求导：
+\[
+\boxed{v_C=\frac{\sum_i m_iv_i}{\sum_i m_i}}.
+\]
+各 $v_i$ 和质量均为常量，所以 $v_C$ 也是常量，质心作匀速直线运动。矢量形式为 $\vect v_C=M^{-1}\sum_i m_i\vect v_i$。
+\end{xesolution}
+
+\begin{origexamplebox}{两质点在质心系中的速度}\label{ch04:ex:k07-2-79}
+质量为 $m_1,m_2$ 的两质点在一条直线上相对地面以速度 $v_1,v_2$ 匀速运动。求在质心参考系中的速度。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+质心速度 $V_C=(m_1v_1+m_2v_2)/(m_1+m_2)$。在随质心平移的坐标系中，要从每个地面速度扣除同一个 $V_C$，而不是分别扣除两速率的绝对值。例如
+\[
+v_1'=v_1-V_C
+=\frac{(m_1+m_2)v_1-m_1v_1-m_2v_2}{m_1+m_2}.
+\]
+同理计算 $v_2'=v_2-V_C$，得到
+\[
+\boxed{v_1'=\frac{m_2}{m_1+m_2}(v_1-v_2)},\qquad
+\boxed{v_2'=-\frac{m_1}{m_1+m_2}(v_1-v_2)}.
+\]
+并有 $m_1v_1'+m_2v_2'=0$，这是质心系定义的直接检验。
+\end{xesolution}
+
+\begin{origexamplebox}{质心加速度}\label{ch04:ex:k07-2-80}
+质量为 $m_1,m_2$ 的两质点沿直线以加速度 $a_1,a_2$ 匀加速运动，求质心加速度。若质心作匀速直线运动，已知 $a_1$，求 $a_2$。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+从 $x_C=(m_1x_1+m_2x_2)/(m_1+m_2)$ 连续求导两次，先得到 $v_C=(m_1v_1+m_2v_2)/(m_1+m_2)$，再得到
+\[
+\boxed{a_C=\frac{m_1a_1+m_2a_2}{m_1+m_2}}.
+\]
+质心匀速意味着 $a_C=0$，故
+\[
+\boxed{a_2=-\frac{m_1}{m_2}a_1}.
+\]
+负号表示两质点加速度方向相反。
+\end{xesolution}
+
+\subsection*{相对运动的矢量运算}
+
+若 $A$ 相对 $O$ 的位置、速度、加速度分别为 $\vect r_{A/O},\vect v_{A/O},\vect a_{A/O}$，而 $B$ 相对 $A$ 的相应量已知，则
+\begin{align}
+\vect r_{B/O}&=\vect r_{B/A}+\vect r_{A/O},\\
+\vect v_{B/O}&=\vect v_{B/A}+\vect v_{A/O},\\
+\vect a_{B/O}&=\vect a_{B/A}+\vect a_{A/O}.
+\end{align}
+
+\VelocityTriangleDiagram
+
+下标应按“前者相对后者”阅读。例如 $\vect v_{B/O}$ 表示 $B$ 相对 $O$ 的速度。式子对应一条首尾相接的矢量链：先从 $O$ 到 $A$，再从 $A$ 到 $B$，总效果就是从 $O$ 到 $B$。位置关系对时间求导，便得到同样形式的速度和加速度关系。船—水—岸、飞机—空气—地面等问题都应先写清这条链，再画速度三角形，避免仅凭“顺流相加、逆流相减”的口号误判二维方向。
+
+相对速度还有两个常用几何解释。其一，$\vect v_{B/A}=\vect v_B-\vect v_A$ 是在速度平面中由 $\vect v_A$ 终点指向 $\vect v_B$ 终点的矢量；其二，在短时间 $\Delta t$ 内，它给出 $B$ 相对 $A$ 的位置变化 $\Delta\vect r_{B/A}\simeq\vect v_{B/A}\Delta t$。因此两匀速质点的最短距离可以转化为初始相对位置到相对运动直线的垂距，拦截问题则转化为相对位置能否沿相对速度方向缩短到零。
+
+二维风、河流问题中，速度三角形必须保持同一矢量链。例如“船对岸”$=$“船对水”$+$“水对岸”；若改求“船对水”，应移项得到“船对岸”减“水对岸”。下标顺序一旦颠倒，矢量方向也会反向。画图时让相加矢量首尾相接，并把题目给定的速率标在对应边上，是最稳妥的方向检查。
+
+三维平动参考系的关系与一维完全相同，只需把标量坐标改成矢量：
+\begin{equation}
+ \vect r'=\vect r-\vect r_0(t),\qquad
+ \vect v'=\vect v-\vect v_0(t),\qquad
+ \vect a'=\vect a-\vect a_0(t).
+\end{equation}
+各分量都使用同一个时间，坐标轴保持平行。所谓“迎面”“横风”“垂直击中”等文字条件，最终都应翻译为相对速度在特定方向上的分量条件。
+
+追踪问题与普通直线拦截不同：若追踪者速度方向始终指向目标，它的方向会随视线转动，轨迹通常是曲线。速率恒定只意味着切向加速度为零，视线角速度仍会产生法向加速度。例~\ref{ch04:ex:k07-2-88}发射瞬间，导弹速度竖直而飞机横向运动，视线立刻转动，所以导弹从一开始就有水平法向加速度，不能把它当成先直飞一段再转弯。
+
+相对运动答案应做极限检查：河水或风速趋于零时，应退化为静止介质中的结果；追踪者速率趋近目标速率时，捕获时间应显著增大；两个参考系相对速度为零时，坐标差只剩常量平移。这些极限能快速暴露加减号或速度下标写反的问题。
+
+\begin{origexamplebox}{飞机与风的速度合成}\label{ch04:ex:k07-2-81}
+机载罗盘指出飞机机头向正东，空气相对地面向正北运动。画出飞机相对地面的速度。飞行员应怎样驾驶，才能使地面航迹为正东？本题的风方向指空气速度的去向，不指气象术语中的来向。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+飞机对地速度为飞机对空气速度与风对地速度的矢量和。机头正东、风向正北时，合速度指向东北。若要地面航迹正东，机头必须向东偏南，使其向南的空气速度分量恰好抵消风的北向分量。设空速为 $V$、风速为 $u$，偏南角为 $\theta$，则
+\AircraftWindDiagram
+左图中蓝色合速度为 $(V,u)$，与正东的夹角为 $\arctan(u/V)$。右图把机头改为东偏南 $\theta$，于是合速度的北向分量为 $-V\sin\theta+u$；令它等于零，得到
+\[
+\boxed{V\sin\theta=u},\qquad u<V.
+\]
+地面向东速率为 $V\cos\theta=\sqrt{V^2-u^2}$。必须严格要求 $u<V$：$u=V$ 时机头只能正南，地速为零，并没有向东飞行；$u>V$ 时更不可能抵消北向漂移。
+\end{xesolution}
+
+
+\begin{origexamplebox}{渡河的最短时间和最小位移}\label{ch04:ex:k07-2-82}
+河宽 $d$，水流对岸速率为 $v_2$。小船相对水保持速率 $v_1$，船头方向可选。求最短渡河时间和最小位移。求最优航向时先取航向恒定；随后说明改变航向能否进一步改善结果。
+\par 题图见图~\ref{ch04:ref:question-figure-2-82}。
+\KQuestionDE
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+渡河时间由对岸速度的横河分量决定。船头垂直河岸时该分量最大为 $v_1$，所以
+\RiverCrossingDiagram
+\[
+\boxed{t_{\min}=d/v_1}.
+\]
+取沿河向下游为 $x$、横河为 $y$。船对水速度与 $+x$ 夹角为 $\eta$ 时，$v_x=v_2+v_1\cos\eta$、$v_y=v_1\sin\eta>0$，到岸时间 $t=d/v_y$，横向漂移 $\Delta x=dv_x/v_y$，位移大小为 $s=\sqrt{d^2+\Delta x^2}$。
+
+（1）若 $v_1>v_2$，可取 $v_1\cos\eta=-v_2$，把船头偏向上游，使沿河分量抵消水流，位移就是河宽：
+\[
+\boxed{s_{\min}=d},\qquad
+t=\frac{d}{\sqrt{v_1^2-v_2^2}}.
+\]
+（2）若 $v_1=v_2$，令 $v_x=0$ 就会同时令 $v_y=0$，不能完成横渡。任意有限时间的横渡都有 $s>d$；取 $\eta=\pi-\varepsilon$，则
+\[
+\frac{\Delta x}{d}=\frac{1-\cos\varepsilon}{\sin\varepsilon}
+=\tan\frac\varepsilon2\longrightarrow0,
+\qquad t=\frac{d}{v_1\sin\varepsilon}\longrightarrow\infty.
+\]
+因此 $d$ 是位移的下确界，而不是能取得的最小值。
+
+（3）若 $v_1<v_2$，速度圆圆心 $W=(v_2,0)$、半径 $v_1$，圆外原点 $O$ 发出的切线 $OT$ 给出合速度最大的偏转角 $\psi$。在直角三角形 $OWT$ 中，$WT=v_1$、$OW=v_2$，所以
+\[
+\sin\psi_{\max}=\frac{v_1}{v_2},\qquad
+\boxed{s_{\min}=\frac{d}{\sin\psi_{\max}}=\frac{dv_2}{v_1}}.
+\]
+此时 $v_y=v_1\sqrt{v_2^2-v_1^2}/v_2$，有限渡河时间为 $dv_2/[v_1\sqrt{v_2^2-v_1^2}]$。图中的 $OT$ 是速度，不是河中的位置线；二者仅方向相同。
+
+若中途改变航向，平均对水速度仍位于同一速度圆的内部或边界。这个圆盘给出的合速度方向范围不比圆周更大，横河平均分量也不超过 $v_1$，所以以上最优结果不会被改进。特别在 $v_1=v_2$ 时，每一瞬间 $v_x\ge0$；总漂移为零要求始终逆流，仍无法横渡。
+\end{xesolution}
+
+
+\begin{origexamplebox}{空速、风速与地速}\label{ch04:ex:k07-2-83}
+飞机在静止空气中的速率为 $60\,\mathrm{m/s}$，风速为 $30\,\mathrm{m/s}$，飞机仍能以 $60\,\mathrm{m/s}$ 的地速正北飞行。求风向和机头指向。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+设空速矢量与正北夹角为 $\theta$。空速与地速大小同为 $60$，两矢量之差是大小 $30$ 的风速，因此等腰三角形给出
+\[
+30=2(60)\sin\frac\theta2,
+\quad
+\boxed{\theta=2\arcsin\frac14\approx28.96^\circ}.
+\]
+\AircraftEqualSpeedDiagram
+图中 $OG=OA=60$、$AG=30$；作风速边 $AG$ 的中点 $F$，等腰三角形的 $OF$ 平分顶角且垂直 $AG$，所以 $\sin(\theta/2)=AF/OA=15/60$。这说明半角公式来自哪一个直角三角形。
+
+取东为 $x$ 正向、北为 $y$ 正向。机头北偏东 $28.96^\circ$ 时，空速分量约为 $(29.05,52.5)\,\mathrm{m/s}$，风速必须为 $(0,60)-(29.05,52.5)=(-29.05,7.5)\,\mathrm{m/s}$，即空气向西偏北 $14.48^\circ$ 运动。镜像方案为机头北偏西 $28.96^\circ$、空气向东偏北 $14.48^\circ$ 运动。两种风的速度都朝向北侧；若换用气象学的风来向，要再反向 $180^\circ$。
+\end{xesolution}
+
+\begin{origexamplebox}{由烟迹判断风速}\label{ch04:ex:k07-2-84}
+轮船先以速率 $v_1$ 向南航行，船上人看到烟囱冒出的烟向东；船速增至 $v_2$ 后，看到烟向东北。假设烟一离开烟囱就立即随空气以风速运动，忽略上升与喷出过程，且两次风速不变。求风速。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+取东为 $x$ 正向、北为 $y$ 正向，风对地速度为 $(w_x,w_y)$。烟立即随风运动，故烟对船速度等于风速减去船速。图中两次船速分别为 $(0,-v_1)$、$(0,-v_2)$：
+\SmokeWindDiagram
+第一次烟对船速度 $(w_x,w_y+v_1)$ 正东，纵分量必须为零、横分量为正，故 $w_y=-v_1$、$w_x>0$。第二次烟对船速度 $(w_x,w_y+v_2)$ 指东北，两个正分量相等，故 $w_x=w_y+v_2=v_2-v_1$。于是
+\[
+\boxed{\vect w=(v_2-v_1,-v_1)},\qquad
+\boxed{|\vect w|=\sqrt{(v_2-v_1)^2+v_1^2}}.
+\]
+风向为东偏南 $\arctan[v_1/(v_2-v_1)]$，并要求 $v_2>v_1$。
+\end{xesolution}
+
+\begin{origexamplebox}{鱼雷拦截匀速敌船}\label{ch04:ex:k07-2-85}
+潜艇静止于 $A$，敌船在 $B$，$AB=L$。敌船以速率 $v_1$ 匀速直线航行，其方向与 $BA$ 的夹角为 $\alpha$。鱼雷速率为 $v_2$ 且发射后沿直线运动。求能击中敌船的发射方向。
+\par 题图见图~\ref{ch04:ref:question-figure-2-85}。
+\KQuestionDH
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+取潜艇 $A$ 为原点，敌船速度沿 $+x$，并把初始船位放在上半平面；另一侧是镜像。$0\le\alpha\le\pi$，初始 $B=(-L\cos\alpha,L\sin\alpha)$。若在时刻 $t>0$ 相撞，则交点
+\[
+C=(-L\cos\alpha+v_1t,L\sin\alpha).
+\]
+鱼雷恰好走过 $AC=v_2t$，因此
+\[
+(-L\cos\alpha+v_1t)^2+L^2\sin^2\alpha=v_2^2t^2,
+\]
+展开整理为
+\[
+\boxed{(v_2^2-v_1^2)t^2+2Lv_1\cos\alpha\,t-L^2=0}.
+\]
+求出这个方程的\emph{全部正根}，才能列全发射方向。图中 $C_1,C_2$ 展示较慢的鱼雷也可能有两次截击机会：
+\InterceptTriangleDiagram
+若 $v_2\ne v_1$，两个候选时间为
+\[
+t_{\pm}=\frac{L[-v_1\cos\alpha\pm\sqrt{v_2^2-v_1^2\sin^2\alpha}]}{v_2^2-v_1^2}.
+\]
+逐一保留实数且严格为正的根。每个有效根 $t_i$ 给出唯一的单位发射方向
+\[
+\boxed{\widehat{\vect n}_i=
+\left(\frac{-L\cos\alpha+v_1t_i}{v_2t_i},
+\frac{L\sin\alpha}{v_2t_i}\right)}.
+\]
+两分量的平方和为 $1$，是对速率条件的检验。发射线与 $AB$ 的夹角 $\beta_i\in[0,\pi]$ 可由点积确定：
+\[
+\cos\beta_i=\frac{L-v_1t_i\cos\alpha}{v_2t_i}.
+\]
+对非退化三角形，正弦定理也给出 $\sin\beta_i=(v_1/v_2)\sin\alpha$，但它不能区分锐角与钝角，不能只取反正弦主值。
+
+可以把存在性分成三种情况（两速率均为正）：
+\begin{itemize}
+\item $v_2>v_1$：二次项系数为正，常数项为负，两根异号，恰有一次正时间截击。
+\item $v_2=v_1$：方程降为一次式。仅当 $\cos\alpha>0$ 时有 $t=L/(2v_1\cos\alpha)$；否则不能截击。
+\item $v_2<v_1$：必须同时满足 $\cos\alpha>0$ 与 $v_2\ge v_1\sin\alpha$。严格大于时有两个正根，等于时两根重合，几何上是相切；其余情况无解。
+\end{itemize}
+例如 $L=100\,\mathrm m$、$v_1=20\,\mathrm{m/s}$、$v_2=10\,\mathrm{m/s}$、$\alpha=20^\circ$，得到 $t_1=3.8331\,\mathrm s$、$t_2=8.6961\,\mathrm s$，对应 $\beta_1=43.160^\circ$、$\beta_2=136.840^\circ$。两次均在敌船未来的位置相遇，不应舍弃后一个钝角解。若 $\alpha=0$，三点共线，直接使用坐标方程仍有效，而不必使用退化三角形的正弦定理。
+\end{xesolution}
+
+\begin{origexamplebox}{炸弹与炮弹的相遇}\label{ch04:ex:k07-2-86}
+轰炸机以速率 $v_1$ 在高度 $H$ 水平飞行。（1）投弹时距地面目标多远？（2）距目标水平距离 $D$ 处的大炮同时发射炮弹，使其击中飞行中的炸弹，炮弹初速率 $v_2$ 至少多大？（3）取最小值时发射角多大？所有物体只受重力。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+炸弹落地时间
+\[
+T=\sqrt{\frac{2H}{g}},
+\]
+故投弹点在目标前方水平距离
+\[
+\boxed{L=v_1T=v_1\sqrt{\frac{2H}{g}}}.
+\]
+
+题面未指定大炮在目标哪一侧，故分别考虑两侧。取目标为 $x=0$，轰炸机沿 $+x$ 飞行，投弹点为 $(-L,H)$；大炮坐标记为 $(s,0)$，其中 $s=+D$ 或 $-D$。图中的 $Q$ 是任一可能的空中相遇点。
+\BombInterceptDiagram
+炮弹和炸弹具有相同重力加速度，因此相减时重力项消失。具体写出相遇条件：
+\[
+s+u_xt=-L+v_1t,\qquad
+u_yt-\tfrac12gt^2=H-\tfrac12gt^2.
+\]
+严格要求击中“飞行中的炸弹”时 $0<t<T$，炮弹初速度必须为
+\[
+u_x(t)=v_1-\frac{L+s}{t},\qquad u_y(t)=\frac Ht,
+\]
+所以
+\[
+v_2^2(t)=\left(v_1-\frac{A}{t}\right)^2+\left(\frac Ht\right)^2,
+\qquad A=L+s.
+\]
+若 $A>0$，无约束极小点为
+\[
+t_0=\frac{A^2+H^2}{v_1A}.
+\]
+这是由
+\[
+\frac{\dd v_2^2}{\dd t}
+=\frac{2[v_1At-(A^2+H^2)]}{t^3}
+\]
+求零点得到的：$t<t_0$ 时函数递减，$t>t_0$ 时递增。
+
+当 $A>0$ 且 $t_0<T$ 时，最小值在空中取得，取 $t_*=t_0$，有
+\[
+\boxed{v_{2,\min}=\sqrt{\left(v_1-\frac{A}{t_*}\right)^2+\left(\frac H{t_*}\right)^2}},
+\]
+其值还可化为 $v_{2,\min}=v_1H/\sqrt{A^2+H^2}$。若 $A\le0$，导数始终为负；若 $A>0$ 但 $t_0\ge T$，函数在空中相遇的允许区间仍递减。因此这两类情形\emph{没有可取得的最小速率}，只有
+\[
+\boxed{\inf v_2=\sqrt{\left(v_1-\frac A T\right)^2+\left(\frac H T\right)^2}}.
+\]
+它只能在 $t\to T^-$ 时无限接近；若另允许落地瞬间相撞，才可令 $t_*=T$ 并称该值为最小值。这两种题意要分开。
+
+发射角 $\alpha$ 从 $+x$ 轴逆时针量起，$0<\alpha<\pi$。对任一允许的相遇时刻，令 $u_x=v_1-A/t$、$u_y=H/t>0$，则
+\[
+\cos\alpha=\frac{u_x}{\sqrt{u_x^2+u_y^2}},\qquad
+\sin\alpha=\frac{u_y}{\sqrt{u_x^2+u_y^2}}.
+\]
+$u_x>0$ 时向右上方发射，$u_x=0$ 时竖直发射，$u_x<0$ 时向左上方发射；按这三个象限条件取角不会误用反正切主值。若最小值只为下确界，发射角同样只能谈 $t\to T^-$ 的极限角。代入 $s=\pm D$ 即可逐侧判断。各速度分量均为长度除以时间，量纲一致。
+\end{xesolution}
+
+\begin{origexamplebox}{三船中点连线的角速度}\label{ch04:ex:k07-2-87}
+船 $A$ 以速率 $u$ 正东航行；船 $B$ 以 $2u$ 正北航行；船 $C$ 以 $2\sqrt2u$ 沿东偏北 $45^\circ$ 航行。$t=0$ 时 $B,C$ 同在 $A$ 航线前方，距 $A$ 分别为 $a,2a$。设 $M$ 为 $BC$ 中点，求连线 $MA$ 绕 $M$ 的角速度。
+\par 题图见图~\ref{ch04:ref:question-figure-2-87}。
+\KQuestionDJ
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+图中同时给出了三船的初始相对位置和速度方向。取 $t=0$ 时 $A=(0,0)$，$B=(a,0)$，$C=(2a,0)$：
+\ThreeBoatsDiagram
+速度分别为
+\[
+\vect v_A=(u,0),\quad\vect v_B=(0,2u),\quad\vect v_C=(2u,2u).
+\]
+故 $M(0)=(3a/2,0)$，$\vect v_M=(u,2u)$。从 $M$ 指向 $A$ 的相对位置和相对速度为
+\[
+\vect r_{A/M}=\left(-\frac{3a}{2},-2ut\right),\qquad
+\vect v_{A/M}=(0,-2u).
+\]
+图中右侧的 $M(t)$ 与 $A(t)$ 的横坐标差始终为 $-3a/2$，纵坐标差为 $-2ut$。若 $\vect r=(x,y)=r(\cos\phi,\sin\phi)$，分别求导后相减得
+\[
+x\dot y-y\dot x
+=r^2(\cos^2\phi+\sin^2\phi)\dot\phi=r^2\dot\phi.
+\]
+因此方向角变化率为 $(x\dot y-y\dot x)/(x^2+y^2)$。代入 $x=-3a/2$、$y=-2ut$、$\dot x=0$、$\dot y=-2u$：
+\[
+\Omega=\frac{(-3a/2)(-2u)-(-2ut)0}{9a^2/4+4u^2t^2},
+\]
+于是
+\[
+\boxed{\Omega(t)=\frac{12au}{9a^2+16u^2t^2}}.
+\]
+正号表示按所取坐标方向逆时针转动。
+\end{xesolution}
+
+\begin{origexamplebox}{导弹追踪匀速飞机}\label{ch04:ex:k07-2-88}
+敌机以水平速率 $v_0$ 在高度 $H$ 飞行。当它位于地面 $A$ 点正上方时，从 $A$ 发射速率恒为 $v_1>v_0$ 的导弹；导弹速度方向始终指向飞机。求发射瞬间的加速度和击中所需总时间。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+初始视线竖直，飞机的横向速度使视线角速度大小为 $v_0/H$。导弹速率恒定，故初始加速度纯属法向，水平指向飞机运动方向：
+\PursuitDiagram
+\[
+\boxed{a_0=v_1\frac{v_0}{H}}.
+\]
+
+设 $r$ 为导弹到飞机的距离，$\theta$ 为视线与飞机速度方向的夹角。相对运动满足
+\[
+\dot r=v_0\cos\theta-v_1,
+\qquad r\dot\theta=-v_0\sin\theta,
+\qquad r(\pi/2)=H.
+\]
+第一式是飞机与导弹在视线上的相对速度；第二式是飞机垂直视线的分量，负号表示 $\theta$ 随追踪减小。令 $q=v_1/v_0>1$，两式相除消去时间：
+\[
+\frac{\dd r}{\dd\theta}
+=r\frac{q-\cos\theta}{\sin\theta},\qquad
+\frac{\dd r}{r}=q\frac{\dd\theta}{\sin\theta}
+-\frac{\cos\theta}{\sin\theta}\dd\theta.
+\]
+利用 $\int\dd\theta/\sin\theta=\ln\tan(\theta/2)$ 与 $\int\cot\theta\,\dd\theta=\ln\sin\theta$，得
+\[
+\ln r=q\ln\tan(\theta/2)-\ln\sin\theta+C.
+\]
+初始 $r=H$、$\theta=\pi/2$，两三角函数都为 $1$，故 $C=\ln H$，于是
+\[
+r=H\frac{\tan^q(\theta/2)}{\sin\theta}.
+\]
+命中时 $r\to0$，对应 $\theta\to0$。由 $\dd t=-r\,\dd\theta/(v_0\sin\theta)$，把反向上下限交换：
+\[
+T=\frac H{v_0}\int_0^{\pi/2}
+\frac{\tan^q(\theta/2)}{\sin^2\theta}\,\dd\theta.
+\]
+令 $u=\tan(\theta/2)$，则 $\sin\theta=2u/(1+u^2)$、$\dd\theta=2\dd u/(1+u^2)$，上下限变为 $0,1$。因此
+\[
+T=\frac H{2v_0}\int_0^1(u^{q-2}+u^q)\dd u
+=\frac H{2v_0}\left(\frac1{q-1}+\frac1{q+1}\right).
+\]
+第一项在 $u=0$ 收敛要求 $q>1$，恰好是题设“导弹比飞机快”。合并分式，得到
+\[
+T=\frac{H}{v_0}\frac{q}{q^2-1}
+=\boxed{\frac{Hv_1}{v_1^2-v_0^2}}.
+\]
+$v_1\downarrow v_0$ 时捕获时间趋于无穷，符合极限判断。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\section{受约束的运动}
+\newcommand{\KinematicKeepSpace}[1]{%
+\par\begingroup
+\dimen0=#1\relax
+\dimen2=\lastskip
+\advance\dimen0 by \dimen2
+\vskip-\dimen2
+\vskip0pt plus\dimen0
+\penalty-100
+\vskip0pt plus-\dimen0
+\vskip\dimen0
+\penalty9999
+\vskip-\dimen0
+\vskip\dimen2
+\endgroup}
+
+\newcommand{\SlidingRodDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.88]
+\begin{scope}
+\coordinate (O) at (0,0);\coordinate (A) at (0,3.6);\coordinate (B) at (4,0);\coordinate (P) at (1.52,2.232);
+\draw[thick] (0,4.1)--(O)--(4.9,0);\draw[kcurve] (A)--(B);
+\foreach \p/\pos in {A/left,B/below,P/above right}{\fill (\p) circle(1.5pt);\node[\pos] at (\p){$\p$};}
+\draw[vector] (A)--++(0,-.8) node[midway,left]{$v_A$};\draw[vector] (B)--++(.8,0) node[above]{$v_B$};
+\draw (0,2.9) arc(-90:-41.987:.7);\node at (.42,2.7){$\theta$};
+\node[above right] at (.75,3.25){$aL$};\node[above right] at (2.7,1.4){$(1-a)L$};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\draw[kaxis] (0,0)--(3.3,0) node[right]{$x$};\draw[kaxis] (0,0)--(0,4.1) node[above]{$y$};
+\draw[kcurve,domain=0:90,samples=60] plot({.38*sqrt(28.96)*sin(\x)},{.62*sqrt(28.96)*cos(\x)});
+\coordinate (P) at (1.52,2.232);\fill (P) circle(1.5pt);
+\draw[vector] (P)--++(.342,-.62);\node[above right] at (P){$P$};
+\node[right] at (2,1.55){$\vect v_P$};
+\node[above left] at (0,3.337){$(1-a)L$};\node[below] at (2.045,0){$aL$};
+\end{scope}
+\end{tikzpicture}\figcap{解图：左图杆长固定、端点接触墙与地面；右图使用同一 $P$，速度沿四分之一椭圆的切线。}\label{ch04:fig:k08-ex-2-89}\end{minipage}\end{center}}
+
+\newcommand{\BoatTowDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.93]
+\coordinate (O) at (0,2.5);\coordinate (B) at (4,0);
+\draw[thick] (-3.8,2.3)--(-.15,2.3)--(-.15,-.4);
+\fill[Blue!5] (0,-.7) rectangle (5.3,0);\draw[thin,Blue] (0,0)--(5.3,0);
+\draw[thick] (-3.2,2.5) rectangle (-2.2,3);\draw (-3,2.4) circle(.1) (-2.4,2.4) circle(.1);
+\draw[kcurve] (-2.2,2.5)--(O)--(B);
+\fill (O) circle(1.8pt);\node[above right] at (O){$O$};
+\draw[thick] (B)--(5.1,0)--(4.9,-.4)--(4.2,-.4)--cycle;
+\fill (B) circle(1.5pt);\node[above right] at (B){$B$};
+\draw[vector] (-2.3,3.45)--(-3.4,3.45) node[midway,above]{$v$};
+\draw[vector] (4.9,-1)--(3.9,-1) node[midway,below]{$u$};
+\node[above] at (-1.2,2.5){$l_c$};\node[above right] at (1.9,1.32){$l$};
+\draw[<->] (-4.25,0)--(-4.25,2.5) node[midway,left]{$h$};
+\draw[kguide] (-4.25,0)--(0,0) (-4.25,2.5)--(-3.5,2.5);
+\draw (B)++(148:.9) arc(148:180:.9);\node at (2.82,.31){$\theta$};
+\draw[<->] (0,-.85)--(4,-.85) node[midway,below]{$x$};
+\end{tikzpicture}\figcap{解图：$O$ 表示半径忽略的定滑轮转向点；汽车侧增长 $\dot l_c=v$，船侧缩短 $\dot l=-v$。}\label{ch04:fig:k08-ex-2-90}\end{minipage}\end{center}}
+
+\newcommand{\MovingConstraintDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\draw[thick] (0,0)--(4,0)--(0,2)--cycle;
+\coordinate (P) at (2.2,.9);\draw[very thick] (P)--(2.2,3.1);
+\foreach \x in {2.06,2.34}{\draw[thick] (\x,2)--(\x,2.6);}
+\draw (1.6,2)--(2.06,2) (2.34,2)--(2.8,2);
+\fill (P) circle(1.5pt);\node[above right=3pt] at (P){$P$};
+\draw[vector] (.6,-.5)--(1.7,-.5) node[midway,below]{$v_0$};
+\draw[vector] (2.7,2.65)--(2.7,3.5) node[right]{$v$};
+\draw (3.2,0) arc(180:153.435:.8);\node at (2.95,.24){$\theta$};
+\node at (1.8,3.9){(a) 斜面与固定导向};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\coordinate (C) at (0,0);\coordinate (P) at (1.2,1.6);
+\draw[thick] (-2,0)--(2,0) arc(0:180:2);
+\draw[kguide] (C)--(0,2.2) (C)--(P) (P)--(1.2,0);
+\draw[very thick] (P)--(1.2,3.2);
+\foreach \x in {1.06,1.34}{\draw[thick] (\x,2.4)--(\x,3);}
+\draw (.6,2.4)--(1.06,2.4) (1.34,2.4)--(1.8,2.4);
+\fill (P) circle(1.5pt) (C) circle(1.5pt);
+\node[below left] at (C){$C=(X,0)$};\node[above right=3pt] at (P){$P$};
+\node at (.7,.46){$R$};\node[below] at (1.2,0){$x_0$};
+\draw (0,.75) arc(90:53.1301:.75);\node at (.29,1.13){$\theta$};
+\draw[vector] (1.8,2.7)--(1.8,3.5) node[right]{$v_y$};
+\draw[vector] (.5,-.8)--(1.6,-.8) node[midway,below]{$v_0$};
+\node at (0,3.9){(b) 半圆柱与固定导向};
+\end{scope}
+\end{tikzpicture}\figcap{解图：两侧固定导向只允许杆竖直平移；接触点由同一斜面方程或圆方程确定。}\label{ch04:fig:k08-ex-2-91}\end{minipage}\end{center}}
+
+\newcommand{\RodPulleyDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (O) at (0,0);\coordinate (B) at (0,3.4);\coordinate (A) at (2.3,1.2);\coordinate (C) at (-2.2,3.4);
+\draw[very thick] (O)--(A) node[midway,below=5pt]{$R$};
+\draw[kcurve] (A)--(B)--(C)--(-2.2,.65);
+\draw[thick] (-2.55,0) rectangle (-1.85,.65);\node at (-2.2,.32){$M$};
+\draw[kguide] (O)--(B);
+\foreach \p/\pos in {O/below,B/above,C/above,A/right}{\fill (\p) circle(1.7pt);\node[\pos] at (\p){$\p$};}
+\draw[<->] (-.65,0)--(-.65,3.4) node[midway,left]{$H$};
+\draw (B)++(-90:.8) arc(-90:-43.727:.8);\node at (.42,2.4){$\alpha$};
+\draw[vector] (A)--++(-.48,.92) node[above]{$\vect v_A$};
+\draw[->,DeepBlue] (35:.75) arc(35:120:.75);\node[above] at (.3,1.2){$\omega$};
+\draw[vector] (-2.85,.6)--(-2.85,-.3) node[below]{$v_M$};
+\node[left] at (.83,2.0){$l$};
+\end{tikzpicture}\figcap{解图：零半径转向点 $B,C$ 与绳折点重合；正角速度下 $AB$ 缩短而物块下降。}\label{ch04:fig:k08-ex-2-93}\end{minipage}\end{center}}
+
+\newcommand{\KQuestionDL}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\coordinate (O) at (0,0);\coordinate (A) at (0,3.6);\coordinate (B) at (4,0);\coordinate (P) at (1.52,2.232);
+\draw[thick] (0,4.1)--(O)--(4.9,0);\draw[kcurve] (A)--(B);
+\foreach \p/\pos in {A/left,B/below,P/above right}{\fill (\p) circle(1.5pt);\node[\pos] at (\p){$\p$};}
+\draw[vector] (A)--++(0,-.8) node[midway,left]{$v_A$};\draw[vector] (B)--++(.8,0) node[above]{$v_B$};
+\draw (0,2.9) arc(-90:-41.987:.7);\node at (.42,2.7){$\theta$};
+\node[above right] at (.75,3.25){$aL$};\node[above right] at (2.7,1.4){$(1-a)L$};
+\end{tikzpicture}
+\figcap{题图：杆的 A、B 端接触墙、地；$\theta$ 从竖直墙量起，$AP=aL$。}\label{ch04:ref:question-figure-2-89}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDM}{%
+%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.93]
+\coordinate (O) at (0,2.5);\coordinate (B) at (4,0);
+\draw[thick] (-3.8,2.3)--(-.15,2.3)--(-.15,-.4);
+\fill[Blue!5] (0,-.7) rectangle (5.3,0);\draw[thin,Blue] (0,0)--(5.3,0);
+\draw[thick] (-3.2,2.5) rectangle (-2.2,3);\draw (-3,2.4) circle(.1) (-2.4,2.4) circle(.1);
+\draw[kcurve] (-2.2,2.5)--(O)--(B);
+\fill (O) circle(1.8pt);\node[above right] at (O){$O$};
+\draw[thick] (B)--(5.1,0)--(4.9,-.4)--(4.2,-.4)--cycle;
+\fill (B) circle(1.5pt);\node[above right] at (B){$B$};
+\draw[vector] (-2.3,3.45)--(-3.4,3.45) node[midway,above]{$v$};
+\draw[vector] (4.9,-1)--(3.9,-1) node[midway,below]{$u$};
+\node[above] at (-1.2,2.5){$l_c$};\node[above right] at (1.9,1.32){$l$};
+\draw[<->] (-4.25,0)--(-4.25,2.5) node[midway,left]{$h$};
+\draw[kguide] (-4.25,0)--(0,0) (-4.25,2.5)--(-3.5,2.5);
+\draw (B)++(148:.9) arc(148:180:.9);\node at (2.82,.31){$\theta$};
+\draw[<->] (0,-.85)--(4,-.85) node[midway,below]{$x$};
+\end{tikzpicture}\figcap{题图：汽车经岸上定滑轮拉船；绳不可伸长，$h$ 为滑轮相对水面的高度。}\label{ch04:ref:question-figure-2-90}\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDN}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\draw[thick] (0,0)--(4,0)--(0,2)--cycle;
+\coordinate (P) at (2.2,.9);\draw[very thick] (P)--(2.2,3.1);
+\foreach \x in {2.06,2.34}{\draw[thick] (\x,2)--(\x,2.6);}
+\draw (1.6,2)--(2.06,2) (2.34,2)--(2.8,2);
+\fill (P) circle(1.5pt);\node[above right=3pt] at (P){$P$};
+\draw[vector] (.6,-.5)--(1.7,-.5) node[midway,below]{$v_0$};
+\draw[vector] (2.7,2.65)--(2.7,3.5) node[right]{$v$};
+\draw (3.2,0) arc(180:153.435:.8);\node at (2.95,.24){$\theta$};
+\end{tikzpicture}
+\figcap{题图：斜面向右运动，竖杆位于两侧固定导向之间，杆底 P 与斜面保持接触。}\label{ch04:ref:question-figure-2-91}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDO}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\coordinate (C) at (0,0);\coordinate (P) at (1.2,1.6);
+\draw[thick] (-2,0)--(2,0) arc(0:180:2);
+\draw[kguide] (C)--(0,2.2) (C)--(P) (P)--(1.2,0);
+\draw[very thick] (P)--(1.2,3.2);
+\foreach \x in {1.06,1.34}{\draw[thick] (\x,2.4)--(\x,3);}
+\draw (.6,2.4)--(1.06,2.4) (1.34,2.4)--(1.8,2.4);
+\fill (P) circle(1.5pt) (C) circle(1.5pt);
+\node[below left] at (C){$C=(X,0)$};\node[above right=3pt] at (P){$P$};
+\node at (.7,.46){$R$};\node[below] at (1.2,0){$x_0$};
+\draw (0,.75) arc(90:53.1301:.75);\node at (.29,1.13){$\theta$};
+\draw[vector] (.5,-.8)--(1.6,-.8) node[midway,below]{$v_0$};
+\end{tikzpicture}
+\figcap{题图：半圆柱向右运动；竖杆横坐标固定，P 为接触点，$\theta$ 从竖直方向量起。}\label{ch04:ref:question-figure-2-92}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDP}{%
+%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (O) at (0,0);\coordinate (B) at (0,3.4);\coordinate (A) at (2.3,1.2);\coordinate (C) at (-2.2,3.4);
+\draw[very thick] (O)--(A) node[midway,below=5pt]{$R$};
+\draw[kcurve] (A)--(B)--(C)--(-2.2,.65);
+\draw[thick] (-2.55,0) rectangle (-1.85,.65);\node at (-2.2,.32){$M$};
+\draw[kguide] (O)--(B);
+\foreach \p/\pos in {O/below,B/above,C/above,A/right}{\fill (\p) circle(1.7pt);\node[\pos] at (\p){$\p$};}
+\draw[<->] (-.65,0)--(-.65,3.4) node[midway,left]{$H$};
+\draw (B)++(-90:.8) arc(-90:-43.727:.8);\node at (.42,2.4){$\alpha$};
+\draw[->,DeepBlue] (35:.75) arc(35:120:.75);\node[above] at (.3,1.2){$\omega$};
+\node[left] at (.83,2.0){$l$};
+\end{tikzpicture}\figcap{题图：杆 OA 绕 O 转动，绳从 A 经固定转向点 B、C 连到物块 M。}\label{ch04:ref:question-figure-2-93}\end{minipage}\end{center}
+}
+
+
+前面的多数质点可以在空间中自由运动。真实物体却常受几何条件限制，称为受约束运动。刚杆保持两端距离恒定；不可伸长的绳在绷紧时长度恒定，但松弛时两端距离可以小于绳长；固体表面阻止物体进入内部，若保持接触，则表面形状直接限定运动。约束形式很多，解决问题的核心是先把不变量写成几何方程，再对时间求导。
+
+常见约束的物理含义必须分别判断：
+\begin{itemize}
+\item 刚杆约束要求杆上任意两点的距离保持不变。若一端固定，另一端只能在以固定端为圆心、杆长为半径的圆或球面上运动；
+\item 绳约束只有在绳已经绷紧时才给出“总绳长不变”。柔绳可以弯折并经滑轮改变方向，也可能松弛，所以不能无条件把两端距离写成绳长；
+\item 固体表面首先给出“不允许进入内部”的不等式。只有题目明确物体始终贴着表面时，接触点才满足表面方程的等式约束。
+\end{itemize}
+
+约束并不直接说明各点速度相等，而是说明某个长度、坐标关系或接触方程在全过程中成立。正确做法是先用坐标把这个不变量写出来，再对时间求导得到速度关系；若要求加速度，再求导一次。求导后出现的三角函数、投影和符号都要回到题图解释，特别要检查接触点是否确实落在两个物体的边界上。
+
+长度约束求导时，最容易出现的错误是把“绳端速度”直接等同于“物体速度”。绳长变化率只等于物体速度在绳方向上的投影；当绳方向本身倾斜或转动时，物体还可能具有垂直绳方向的速度分量。例~\ref{ch04:ex:k08-2-90}中船速大于收绳速率，正是因为只有 $u\cos\theta$ 用于缩短斜绳。固定滑轮只改变绳的方向，若忽略滑轮半径，绕轮部分长度不变。
+
+移动曲面约束可写成 $y=f(x-X(t))$，其中 $X(t)$ 是曲面整体的水平位移，竖杆横坐标 $x$ 固定。对时间求导得
+\begin{equation}
+ \dot y=-f'(x-X)\dot X,
+\end{equation}
+它说明竖直速度由接触处斜率与曲面平移速度共同决定；再求导还会出现曲率 $f''$。所以图中杆与曲面的接触点、局部切线方向必须准确，否则即使代数形式看似正确，速度和加速度方向也会随之画反。
+
+刚杆问题也可用距离平方避免根号。若两端坐标为 $(x_A,y_A)$、$(x_B,y_B)$，约束为
+\begin{equation}
+ (x_A-x_B)^2+(y_A-y_B)^2=L^2.
+\end{equation}
+求导后得到两端相对速度在杆方向上的投影为零。这不表示两端速度相同，而只表示它们不会沿杆方向彼此靠近或远离。把这一投影关系与端点各自允许的运动方向结合，才能唯一确定速度比例。
+
+约束方程求出的速度关系只在约束有效的阶段成立。绳一旦松弛，原来的等长方程要改成不等式；物体一旦脱离表面，接触高度方程也不再适用。求得结果后应检查绳张紧趋势、接触方向和几何可达范围。若模型给出接近某位置时速度趋于无穷，通常说明理想驱动、刚性或无滑动假设在该极限前已经失效，而不是现实物体真能达到无限速度。
+
+接触约束规定两物体在接触处具有同一个空间位置，且不能沿公法线互相穿入；绳端系于物体时，绳端与系点的位置相同。导向结构则限制杆的横坐标。把这些位置条件与长度不变条件共同使用，才能建立完整的运动方程。
+
+\begin{origexamplebox}{墙角中滑动的刚杆}\label{ch04:ex:k08-2-89}
+长为 $L$ 的刚杆两端 $A,B$ 始终分别接触竖直墙和水平地面。（1）杆与墙夹角为 $\theta$，$A$ 以速率 $v_A$ 向下运动，求 $B$ 的瞬时速度。（2）杆从竖直到水平，求距 $A$ 为 $aL$（$0<a<1$）的点 $P$ 的轨迹。（3）求该时刻 $P$ 的速度大小和方向。
+\par 题图见图~\ref{ch04:ref:question-figure-2-89}。
+\KQuestionDL
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+取墙角为原点，$B$ 的横坐标和 $A$ 的纵坐标为
+\SlidingRodDiagram
+\[
+x_B=L\sin\theta,\qquad y_A=L\cos\theta.
+\]
+因 $A$ 向下，$v_A=-\dot y_A=L\sin\theta\,\dot\theta$。于是
+\[
+\boxed{v_B=\dot x_B=L\cos\theta\,\dot\theta=v_A\cot\theta}.
+\]
+
+$P$ 从 $A$ 向 $B$ 占杆长比例 $a$，故
+\[
+x_P=aL\sin\theta,\qquad y_P=(1-a)L\cos\theta.
+\]
+消去 $\theta$：
+\[
+\boxed{\frac{x_P^2}{(aL)^2}+\frac{y_P^2}{[(1-a)L]^2}=1},
+\]
+轨迹是第一象限内的四分之一椭圆。
+左图的 $AP=aL$、$PB=(1-a)L$ 决定右图两条半轴。杆竖直时 $P=(0,(1-a)L)$，杆水平时 $P=(aL,0)$；从前者向后者运动，$P$ 的速度沿椭圆切线指向右下方。
+
+对坐标求导：
+\[
+v_{Px}=a v_A\cot\theta,\qquad v_{Py}=-(1-a)v_A.
+\]
+所以
+\[
+\boxed{v_P=v_A\sqrt{a^2\cot^2\theta+(1-a)^2}},
+\]
+方向向右下方，与水平正向的俯角 $\phi$ 满足
+\[
+\boxed{\tan\phi=\frac{(1-a)\tan\theta}{a}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{汽车通过定滑轮牵船}\label{ch04:ex:k08-2-90}
+岸边汽车以恒定速率 $v$ 沿水平绳段远离定滑轮，拉动不可伸长的绳。滑轮的转向位置高出船上系绳点所在水平面 $h$；忽略滑轮半径，小船系绳点始终处于该水平面。斜绳与水平面夹角为 $\theta$ 时，求船速 $u$。
+\par 题图见图~\ref{ch04:ref:question-figure-2-90}。
+\KQuestionDM
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+设滑轮到船的斜绳长为 $l$，汽车侧水平绳长为 $l_c$。汽车远离转向点，$\dot l_c=v$；总长 $l+l_c$ 不变，故 $\dot l=-v$。两侧长度都在改变，只是变化率之和为零。船向岸速度为 $u$，其在绳方向的分量为 $u\cos\theta$，故
+\BoatTowDiagram
+\[
+\dot l=-u\cos\theta.
+\]
+两式相等：
+\[
+\boxed{u=\frac{v}{\cos\theta}}.
+\]
+也可由几何直接验证：设船与转向点的水平距离为 $x$，则 $l^2=x^2+h^2$。求导得 $l\dot l=x\dot x$，代入 $\dot x=-u$、$x/l=\cos\theta$，仍得 $\dot l=-u\cos\theta$。
+船越接近岸边，$\theta$ 越大，理想模型给出的船速越大；现实中绳、动力和阻力会限制这一增长。
+\end{xesolution}
+
+
+\begin{origexamplebox}{平移斜面顶起竖杆}\label{ch04:ex:k08-2-91}
+倾角为 $\theta$ 的斜面在水平地面上以速率 $v_0$ 匀速平移，一根杆被限制为只能竖直运动并与斜面接触。求杆的竖直速度。
+\par 题图见图~\ref{ch04:ref:question-figure-2-91}。
+\KQuestionDN
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+在杆的固定横坐标处，斜面水平移动 $\Delta x$ 会使接触高度改变 $\Delta y=\Delta x\tan\theta$。按题图斜面向右移动时，杆被向上顶起，因此
+\MovingConstraintDiagram
+\[
+\boxed{v=v_0\tan\theta}
+\]
+且方向竖直向上。若斜面反向运动，速度符号相反。
+\end{xesolution}
+
+\begin{origexamplebox}{平移半圆柱顶起竖杆}\label{ch04:ex:k08-2-92}
+半径为 $R$ 的半圆柱体以水平速率 $v_0$ 平移，圆柱面上搁一根只能竖直运动的杆。接触点半径与竖直方向夹角为 $\theta$。求杆上任一点的速度和加速度。
+\par 题图见图~\ref{ch04:ref:question-figure-2-92}。
+\KQuestionDO
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+本题题图~\ref{ch04:ref:question-figure-2-92}中的两条导向边限制杆的横坐标为 $x_0$。以半圆柱底边为 $y=0$，圆心为 $C=(X,0)$。接触点 $P$ 在右半圆上，$CP=R$，因此
+\[
+x_0-X=R\sin\theta,\qquad y=R\cos\theta.
+\]
+$\dot X=v_0$，故 $-v_0=R\cos\theta\,\dot\theta$。于是
+\[
+\boxed{v_y=\dot y=-R\sin\theta\,\dot\theta=v_0\tan\theta}.
+\]
+再求导：
+\[
+\boxed{a_y=v_0\sec^2\theta\,\dot\theta
+=-\frac{v_0^2}{R\cos^3\theta}}.
+\]
+速度向上而加速度向下；杆作平动，所以杆上各点具有相同的 $v_y,a_y$。这一区分能避免把“当前向上”误判成“加速度也向上”。
+\end{xesolution}
+
+
+\begin{origexamplebox}{转杆端点牵引物块}\label{ch04:ex:k08-2-93}
+杆 $OA$ 长 $R$，可绕 $O$ 在竖直平面内转动。端点 $A$ 系着跨过固定滑轮 $B,C$ 的不可伸长轻绳，另一端连接物块 $M$；滑轮半径忽略，绳始终绷紧。$B$ 在 $O$ 正上方，$OB=H$。当 $BA$ 与 $BO$ 的夹角为 $\alpha$、杆角速度为 $\omega$ 时，求物块速率 $v_M$。取逆时针转动为 $\omega$ 的正方向，图示 $A$ 位于 $OB$ 右侧。
+\par 题图见图~\ref{ch04:ref:question-figure-2-93}。
+\KQuestionDP
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+图中用固定转向点 $B,C$ 表示半径忽略的滑轮。$BC$ 长度不变，故物块竖直绳段的长度变化率与 $AB$ 段相反，速率大小等于 $|\dot{AB}|$。$AB$ 长度的变化率是 $A$ 点速度在 $BA$ 方向的投影。
+\RodPulleyDiagram
+
+取 $O=(0,0)$、$B=(0,H)$，从 $B$ 指向 $A$ 的单位矢量为 $(\sin\alpha,-\cos\alpha)$。设 $AB=l$，则
+\[
+A=(l\sin\alpha,H-l\cos\alpha).
+\]
+$A$ 绕 $O$ 的速度为 $\vect v_A=\omega(-y_A,x_A)$。投影得
+\[
+\dot l=\vect v_A\cdot(\sin\alpha,-\cos\alpha)
+=-\omega(H-l\cos\alpha)\sin\alpha
+-\omega l\sin\alpha\cos\alpha
+=-\omega H\sin\alpha.
+\]
+因此物块速率为
+\[
+\boxed{v_M=H|\omega|\sin\alpha}.
+\]
+$R$ 决定哪些 $\alpha$ 几何上可达，但在给定瞬时 $\alpha$ 后投影结果中恰好消去。
+在图示 $\omega>0$ 的情况下 $AB$ 缩短、悬垂段增长，所以物块向下；$\omega<0$ 时方向相反。$H\omega$ 的单位是速度，$\sin\alpha$ 无量纲。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\section{刚体运动学}
+\newcommand{\KinematicKeepSpace}[1]{%
+\par\begingroup
+\dimen0=#1\relax
+\dimen2=\lastskip
+\advance\dimen0 by \dimen2
+\vskip-\dimen2
+\vskip0pt plus\dimen0
+\penalty-100
+\vskip0pt plus-\dimen0
+\vskip\dimen0
+\penalty9999
+\vskip-\dimen0
+\vskip\dimen2
+\endgroup}
+
+\newcommand{\EulerStepsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.87]
+\begin{scope}
+\draw[kaxis] (-.2,0)--(2,0) node[right]{$x$};\draw[kaxis] (0,-.2)--(0,2) node[above]{$y$};
+\draw[vector] (0,0)--(35:2) node[above right]{$N$};
+\draw[->] (.85,0) arc(0:35:.85);\node at (17.5:1.16){$\alpha$};
+\node[below left] at (0,0){$O$};\node at (.7,-.85){(1) 绕 $z$};\node at (.7,-1.35){从 $+z$ 端看};
+\end{scope}
+\begin{scope}[xshift=5cm]
+\draw[TextGray,thick] (-1.6,0)--(1.7,0) node[right]{$xy$};
+\draw[DeepBlue,thick] (215:1.7)--(35:1.7) node[right]{$XY$};
+\draw[kaxis] (0,0)--(90:2.1) node[above]{$z$};
+\draw[vector] (0,0)--(125:2.1) node[above left]{$Z$};
+\draw[->] (90:1.05) arc(90:125:1.05);\node at (107.5:1.45){$\beta$};
+\draw (0,0) circle(.085);\fill (0,0) circle(.02);
+\node[right] at (.12,-.4){$N$ 向外};
+\node at (0,-1.4){(2) 绕 $N$};\node at (0,-1.9){从 $+N$ 端看};
+\end{scope}
+\begin{scope}[xshift=9.8cm]
+\draw[kguide] (-.2,0)--(2,0) node[right]{$N$};
+\draw[vector] (0,0)--(35:2) node[above right]{$X$};
+\draw[vector] (0,0)--(125:1.9) node[above left]{$Y$};
+\draw[->] (.85,0) arc(0:35:.85);\node at (17.5:1.16){$\gamma$};
+\node[below left] at (0,0){$O$};\node at (.5,-.85){(3) 绕 $Z$};\node at (.5,-1.35){从 $+Z$ 端看};
+\end{scope}
+\end{tikzpicture}\figcap{右手正转的三步欧拉角；第二图中 $XY$ 截线转过 $\beta$，其法线 $Z$ 同转过 $\beta$，二者始终垂直。}\label{ch04:fig:k09-2-20}\end{minipage}\end{center}}
+
+\newcommand{\RigidMotionTypesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\foreach \dy in {0,1}{\draw[kguide,domain=0:1,samples=45,variable=\t] plot({3*\t},{\dy+.9*sin(180*\t)});}
+\draw[thick] (-.3,-.25) rectangle (.3,1.25);
+\draw[thick] (2.7,-.25) rectangle (3.3,1.25);
+\foreach \x in {0,3}{\foreach \y in {0,1}{\fill (\x,\y) circle(1.5pt);}}
+\draw[vector] (0,0)--(.6,.565);\draw[vector] (0,1)--(.6,1.565);
+\node[left] at (-.45,0){$P_1$};\node[left] at (-.45,1){$Q_1$};
+\node[right] at (3.45,0){$P_2$};\node[right] at (3.45,1){$Q_2$};
+\node at (1.5,2.4){(a) 曲线平动};
+\node at (1.5,-1){两姿态的对应边平行};
+\end{scope}
+\begin{scope}[xshift=8cm]
+\draw[kguide] (0,-1.2)--(0,1.2);
+\draw[thick] (0,-2)--(0,-1.2) node[pos=0,below]{$B$};
+\draw[kaxis] (0,1.2)--(0,2.4) node[above]{$A$};
+\draw[thick,dashed] (2,0) arc(0:180:2 and 1.2);
+\draw[thick] (-2,0) arc(180:360:2 and 1.2);
+\coordinate (P) at ({2*cos(315)},{1.2*sin(315)});
+\draw[thick] (0,0)--(P);\draw[kguide] (0,0)--(2,0);
+\draw[vector] (P)--++(.78,.468);
+\draw (.7,0) arc(0:-45:.7 and .42);
+\node at (1,-.19){$\theta$};\node at (.46,-.62){$R$};
+\fill (P) circle(1.5pt);\node[below] at (P){$P$};\node[left] at (0,0){$O$};
+\node[above right] at (2.2,-.38){$\vect v_P$};
+\node at (0,-2.7){(b) 定轴转动的圆平面投影};
+\end{scope}
+\end{tikzpicture}\figcap{平动可以沿曲线；定轴转动中 $OP=R$，点 $P$ 的切向速度为 $|\omega|R$。}\label{ch04:fig:k09-2-21}\end{minipage}\end{center}}
+
+\newcommand{\RigidBarCasesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\begin{scope}[xscale=1.5]
+\draw[thick] (0,0)--(2.4,0);\draw[kguide] (2.4,0)--(4.8,0);
+\draw[vector] (0,0)--(0,1.2) node[above]{$v_0$};\draw[vector] (2.4,0)--(2.4,.6) node[above]{$v_0/2$};
+\foreach \x/\lab in {0/A,2.4/B,4.8/I}{\fill (\x,0) circle(1.5pt);\node[below] at (\x,0){$\lab$};}
+\fill (1.2,0) circle(1.5pt);\node[above] at (1.2,0){$G$};
+\draw[<->] (0,-.7)--(2.4,-.7) node[midway,below]{$l$};\draw[<->] (2.4,-.7)--(4.8,-.7) node[midway,below]{$l$};
+\node at (2.4,2){(1) $x_G=l/2,\ x_I=2l$};
+\end{scope}
+\begin{scope}[yshift=-4.1cm,xscale=1.5]
+\draw[thick] (0,0)--(2.4,0);\draw[vector] (0,0)--(0,1.2) node[above]{$v_0$};\draw[vector] (2.4,0)--(2.4,-1.2) node[below]{$-v_0$};
+\node[left] at (0,0){$A$};\node[right] at (2.4,0){$B$};\fill (1.2,0) circle(1.6pt);\node[above] at (1.2,0){$G=I$};
+\node at (1.2,2){(2) 等质量};
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=-4.1cm]
+\draw[thick] (0,0)--(3.6,0);\draw[vector] (0,0)--(0,1.2) node[above]{$v_0$};\draw[vector] (3.6,0)--(3.6,-1.2) node[below]{$-v_0$};
+\node[left] at (0,0){$A$};\node[right] at (3.6,0){$B$};
+\fill (1.2,0) circle(1.6pt) (1.8,0) circle(1.6pt);\node[above] at (1.2,0){$G$};\node[below] at (1.8,0){$I$};
+\node at (1.8,2){(3) $m_A=2m_B$};
+\draw[<->] (0,-.65)--(1.2,-.65) node[midway,below]{$l/3$};
+\end{scope}
+\end{tikzpicture}\figcap{解图：三问分别标出实际速度、质心 $G$ 与瞬心 $I$；质量改变不改变给定速度场的瞬心。}\label{ch04:fig:k09-ex-2-94}\end{minipage}\end{center}}
+
+\newcommand{\RollingBallDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\draw[thick] (-2,0)--(4,0);\draw[thick] (0,1) circle(1);
+\fill (0,1) circle(1.5pt) (0,0) circle(1.5pt);\node[below left] at (0,1){$C$};\node[below left] at (0,0){$P$};
+\draw (0,1)--(-.707,1.707);\node[left] at (-.58,1.28){$R$};
+\draw[vector] (0,1)--(2.6,1);\node[above] at (2,1){$v_0$};
+\draw[->,DeepBlue,thick] (40:1.5)++(0,1) arc(40:145:1.5);
+\node[above] at (0,2.65){$\omega_0>0$（逆时针）};
+\draw[vector] (0,-.65)--(2.5,-.65) node[midway,below]{$v_P=v_0+R\omega_0$};
+\end{tikzpicture}\figcap{解图：接触点的平动速度和转动速度初始都向右；纯滚动要求它们相消。}\label{ch04:fig:k09-ex-2-95}\end{minipage}\end{center}}
+
+\newcommand{\KnifeOutline}{%
+\draw[thick,fill=TextGray!16] (-.15,-.012) rectangle (-.045,.012);
+\draw[thick,fill=Blue!8] (-.045,-.012)--(.10,0)--(-.045,.012)--cycle;}
+
+\newcommand{\KnifeFlightDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\begin{scope}[x=2.1cm,y=2.1cm]
+\draw[thick] (5,-.1)--(5,1.1);\node[right] at (5,.7){木靶};
+\draw[kguide,domain=0:1,samples=100,variable=\t] plot({4.9*\t},{4.9*tan(30)*\t*(1-\t)});
+\foreach \t/\n in {0/1,.25/2,.5/3,.75/4,1/5}{
+\begin{scope}[shift={({4.9*\t},{4.9*tan(30)*\t*(1-\t)})},rotate={60+300*\t}]
+\KnifeOutline\fill (0,0) circle(.7pt);
+\end{scope}
+\node[above] at ({4.9*\t},{4.9*tan(30)*\t*(1-\t)+.17}){\n};}
+\draw[<->] (0,-.35)--(5,-.35) node[midway,below]{$s=5.0\,\mathrm m$};
+\node at (2.5,-.8){(a) 质心抛物线与五个等时姿态};
+\end{scope}
+\begin{scope}[xshift=2.1cm,yshift=-3.8cm]
+\begin{scope}[scale=15]\KnifeOutline\end{scope}
+\fill (0,0) circle(1.5pt);\node[below] at (0,-.25){$C$};\node[right] at (1.5,0){刀尖};
+\draw[<->] (-2.25,-.65)--(1.5,-.65) node[midway,below]{$L=25\,\mathrm{cm}$};
+\draw[<->] (0,.65)--(1.5,.65) node[midway,above]{$l=10\,\mathrm{cm}$};
+\node at (0,-1.45){(b) 长度定义（局部放大）};
+\end{scope}
+\begin{scope}[xshift=8cm,yshift=-3.8cm]
+\draw[kaxis] (-.3,0)--(2.5,0) node[right]{$x$};
+\begin{scope}[rotate=60,scale=10]\KnifeOutline\end{scope}
+\draw[vector] (0,0)--(30:2.1) node[above right]{$\vect v_C$};
+\draw (.65,0) arc(0:30:.65);\node at (15:.95){$30^\circ$};
+\draw (60:1.85) arc(60:360:1.85);\draw[->] (335:1.85) arc(335:360:1.85);
+\node[left] at (-1.85,.45){$300^\circ$};
+\node[right] at (.25,-.45){$C$};\draw[thin] (.25,-.45)--(0,0);
+\node[above] at (60:2.05){$\theta=60^\circ$};
+\node at (.3,-2.45){(c) 初姿态与最小正转角};
+\end{scope}
+\end{tikzpicture}\figcap{解图：尖端在刀轴正向；第5姿态刀尖恰达木靶，质心仍距靶 $l$，不是整段刀身穿靶。}\label{ch04:fig:k09-ex-2-96}\end{minipage}\end{center}}
+
+\newcommand{\KnifeImpactDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\begin{scope}[x=2cm,y=2cm]
+\draw[kguide] (0,0)--(5,0);\draw[thick] (5,-.15)--(5,.5);
+\begin{scope}[shift={(4.9,0)}]\KnifeOutline\end{scope}
+\fill (0,0) circle(1.5pt);\node[above] at (0,0){$C_0$};\node[above] at (4.9,.15){$C_1$};
+\draw[<->] (0,-.35)--(4.9,-.35) node[midway,below]{$d_1=s-l$};
+\node at (2.5,.65){(a) 第一把刀击中靶点 $Q$};
+\end{scope}
+\begin{scope}[xshift=5cm,yshift=-3.9cm,x=15cm,y=15cm]
+\begin{scope}[shift={(.10,0)}]\KnifeOutline\end{scope}
+\begin{scope}[shift={(-.15,0)}]\KnifeOutline\end{scope}
+\draw[thick] (.20,-.08)--(.20,.09);
+\fill (-.05,0) circle(1.4pt) (-.15,0) circle(1.4pt) (.10,0) circle(1.4pt);
+\node[above] at (-.05,.025){$P$};\node[below] at (-.15,-.015){$C_2$};\node[below] at (.10,-.015){$C_1$};\node[right] at (.20,0){$Q$};
+\draw[<->] (-.05,.065)--(.20,.065) node[midway,above]{$L$};
+\draw[<->] (-.15,-.085)--(-.05,-.085) node[midway,below]{$l$};
+\node at (-.06,-.15){(b) 接触局部放大：$C_2P=l,\ PQ=L$};
+\end{scope}
+\end{tikzpicture}\figcap{碰撞几何：两刀仅在 $P$ 接触；第一把木柄远端就是第二把刀尖，故 $C_0C_2=s-L-l$。}\label{ch04:fig:k09-ex-2-96-dup2}\end{minipage}\end{center}}
+
+\newcommand{\KQuestionDQ}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\draw[thick] (0,0)--(4,0);\node[point,label=left:$A$] at (0,0){};\node[point,label=right:$B$] at (4,0){};
+\draw[vector] (0,0)--(0,1.6) node[above]{$v_A$};\draw[vector] (4,0)--(4,1.6) node[above]{$v_B$};
+\draw[<->] (0,-.55)--(4,-.55) node[midway,below]{$l$};
+
+\end{tikzpicture}
+\figcap{题图：A、B 用轻杆连接；图示规定竖直向上为端点速度的正方向，各问按给定符号取向。}\label{ch04:ref:question-figure-2-94}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDR}{%
+%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\draw[thick] (-2,0)--(4,0);\draw[thick] (0,1) circle(1);
+\fill (0,1) circle(1.5pt) (0,0) circle(1.5pt);\node[below left] at (0,1){$C$};\node[below left] at (0,0){$P$};
+\draw (0,1)--(-.707,1.707);\node[left] at (-.58,1.28){$R$};
+\draw[vector] (0,1)--(2.6,1);\node[above] at (2,1){$v_0$};
+\draw[->,DeepBlue,thick] (40:1.5)++(0,1) arc(40:145:1.5);
+\node[above] at (0,2.65){$\omega_0>0$（逆时针）};
+\end{tikzpicture}\figcap{题图：球初始向右平动并逆时针转动，地面为水平面。}\label{ch04:ref:question-figure-2-95}\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionDS}{%
+%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\begin{scope}[x=2.1cm,y=2.1cm]
+\draw[thick] (5,-.1)--(5,1.1);\node[right] at (5,.7){木靶};
+\draw[kguide,domain=0:1,samples=100,variable=\t] plot({4.9*\t},{4.9*tan(30)*\t*(1-\t)});
+\foreach \t/\n in {0/1,.25/2,.5/3,.75/4,1/5}{
+\begin{scope}[shift={({4.9*\t},{4.9*tan(30)*\t*(1-\t)})},rotate={60+300*\t}]
+\KnifeOutline\fill (0,0) circle(.7pt);
+\end{scope}
+\node[above] at ({4.9*\t},{4.9*tan(30)*\t*(1-\t)+.17}){\n};}
+\draw[<->] (0,-.35)--(5,-.35) node[midway,below]{$s=5.0\,\mathrm m$};
+\node at (2.5,-.8){(a) 质心抛物线与五个等时姿态};
+\end{scope}
+\begin{scope}[xshift=2.1cm,yshift=-3.8cm]
+\begin{scope}[scale=15]\KnifeOutline\end{scope}
+\fill (0,0) circle(1.5pt);\node[below] at (0,-.25){$C$};\node[right] at (1.5,0){刀尖};
+\draw[<->] (-2.25,-.65)--(1.5,-.65) node[midway,below]{$L=25\,\mathrm{cm}$};
+\draw[<->] (0,.65)--(1.5,.65) node[midway,above]{$l=10\,\mathrm{cm}$};
+\node at (0,-1.45){(b) 长度定义（局部放大）};
+\end{scope}
+\begin{scope}[xshift=8cm,yshift=-3.8cm]
+\draw[kaxis] (-.3,0)--(2.5,0) node[right]{$x$};
+\begin{scope}[rotate=60,scale=10]\KnifeOutline\end{scope}
+\draw[vector] (0,0)--(30:2.1) node[above right]{$\vect v_C$};
+\draw (.65,0) arc(0:30:.65);\node at (15:.95){$30^\circ$};
+\node[right] at (.25,-.45){$C$};\draw[thin] (.25,-.45)--(0,0);
+\node[above] at (60:2.05){$\theta=60^\circ$};
+\node at (.3,-2.45){(c) 初姿态与速度方向};
+\end{scope}
+\end{tikzpicture}\figcap{题图：飞刀的飞行姿态、长度及初始方向；木靶与初始质心等高。}\label{ch04:ref:question-figure-2-96}\end{minipage}\end{center}
+}
+
+
+刚体是内部任意两点距离始终不变的质点系统，是对形变可以忽略的真实物体的理想化。仅给出刚体质心位置还不足以确定其状态，还必须给出姿态。三维姿态可由三个参数描述，欧拉角是常用选择之一。
+
+任何真实物体受力后都会产生程度不同的形变；只有当形变量相对物体尺寸足够小、对所研究问题没有显著影响时，才把它理想化为刚体。由于内部质量分布相对刚体不变，质心在刚体上的位置也固定不动。描述质点只需给出一个位置，描述刚体则既要说明代表其整体平移的位置，通常取质心，又要说明物体朝向，因此自由度更多。
+
+\EulerStepsDiagram
+
+欧拉角不是三根固定轴上的三个独立转角，而是按顺序进行的三次转动：先绕固定轴 $z$ 定出两平面的交线（节线）$N$，再绕 $N$ 改变固连轴 $Z$ 的倾角，最后绕 $Z$ 决定刚体自身方位。高中阶段不要求用它作复杂计算，但应知道三维刚体姿态需要三个自由度。
+
+图~\ref{ch04:fig:k09-2-20}中每一步都从正转轴的一端朝原点看，正转向在纸面上表现为逆时针。第二图中 $N$ 垂直纸面向外，$xy$、$XY$ 两平面各表现为一条截线；$z$、$Z$ 分别垂直于它们，所以平面倾角与法线夹角同为 $\beta$。第三步才绕已经倾斜的 $Z$ 改变 $X,Y$ 的方位。三次转轴依次为 $z,N,Z$，不是始终固定的三根坐标轴；交换转动次序通常会改变最终姿态。
+
+常见刚体运动包括：
+
+\begin{itemize}
+\item 平动：刚体姿态不变，所有点在同一时刻速度和加速度相同，质心运动即可代表整体运动；
+\item 定轴转动：刚体绕空间中固定轴线转动，可用角位置、角速度和角加速度描述；
+\item 平面平行运动：平动与转动同时存在、转轴方向保持平行，轮的滚动是典型例子。
+\end{itemize}
+
+平面平行运动可以分解为选定参考点的平动与刚体绕该点的转动，通常选质心最方便；也可以在某一瞬间改选速度为零的瞬心，把当时的速度场看成绕瞬心的纯转动。两种分解描述的是同一瞬时运动，参考点的选择不同不会改变刚体各点的实际速度。
+
+定轴转动中，轴上各点速度为零，离轴垂直距离为 $r$ 的点速率为 $|\omega|r$，方向沿当地圆周切线。平面运动在某一瞬间的瞬心具有同样作用：任一点速度垂直于该点到瞬心的连线，大小与距离成正比。因此，已知两个不平行的点速度方向时，可分别作速度的垂线，其交点就是瞬心。若各点速度平行且相等，垂线不相交，瞬心可视为在无穷远处，对应纯平动。
+
+瞬心只由当时的速度场决定，可能随时间移动，也不必与质心重合。质心由质量分布决定，瞬心由运动状态决定；图~\ref{ch04:fig:k09-ex-2-94}的不同质量和端点速度组合正是为了把两者区分开。求瞬心时不应预先把质心标在杆的几何中点，更不能因为某点在图上居中就假定它的速度为零。
+
+\RigidMotionTypesDiagram
+图中左侧两个姿态的对应边始终平行，各点沿相同形状、彼此平移的曲线运动，说明平动不一定是直线运动。右侧 $P$ 到固定轴 $AB$ 的垂距为 $R$；从参考半径转过角位置 $\theta$ 后，$P$ 的速度仍垂直 $OP$，速率为 $|\omega|R$。后半圆用虚线表示，半径 $OP$ 与点 $P$ 处切线属于同一圆平面。
+
+平面刚体在任一瞬间都可视为绕一个速度为零的点转动，这个点称为瞬时转动中心，简称瞬心。它可以在刚体内部、边界或外部；纯平动的瞬心可视为在无穷远处。
+
+
+\begin{origexamplebox}{两质点轻杆刚体的质心与瞬心}\label{ch04:ex:k09-2-94}
+质点 $A,B$ 由长 $l$ 的刚性轻杆连接，此刻杆水平，约定有符号速度的正方向均为竖直向上（图中箭头另按各问实际方向画出）。分别求下列情形中质心位置、速度和瞬心位置：\par
+（1）$m_A=m_B=m$，$v_A=2v_B=v_0$；\par
+（2）$m_A=m_B=m$，$v_A=-v_B=v_0$；\par
+（3）$m_A=2m_B=m$，$v_A=-v_B=v_0$。
+\par 题图见图~\ref{ch04:ref:question-figure-2-94}。
+\KQuestionDQ
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+图中三种情形使用同一长度标度；$G$ 表示质心，$I$ 表示瞬心。取 $A$ 为 $x=0$、$B$ 为 $x=l$：
+\RigidBarCasesDiagram
+由质心的质量加权定义，坐标和速度分别为
+\[
+x_G=\frac{m_Bl}{m_A+m_B},\qquad
+v_G=\frac{m_Av_A+m_Bv_B}{m_A+m_B}.
+\]
+以 $A$ 为参考点，把运动分解成 $A$ 的平动和绕 $A$ 的转动。转动部分的竖直速度为 $\omega x$，而在 $B$ 点有 $\omega l=v_B-v_A$，所以沿杆各点的竖直速度随 $x$ 线性变化：
+\[
+v(x)=v_A+\frac{v_B-v_A}{l}x.
+\]
+瞬心 $I$ 满足 $v(x_I)=0$。
+
+（1）$x_G=l/2$，$v_G=3v_0/4$ 向上；
+\[
+x_I=-\frac{lv_A}{v_B-v_A}=2l,
+\]
+故瞬心在 $B$ 外侧、距 $B$ 为 $l$。
+
+（2）$x_G=l/2$，$v_G=0$，且 $x_I=l/2$。刚体此刻绕质心纯转动，角速度大小 $2v_0/l$，方向为顺时针。
+
+（3）由 $m_A=m$、$m_B=m/2$，得
+\[
+\boxed{x_G=l/3},\qquad \boxed{v_G=v_0/3\text{，向上}}.
+\]
+端点速度仍等大反向，所以瞬心仍在 $\boxed{x_I=l/2}$，不与质量分布一起移动。三种情况的结果分别说明瞬心由速度场决定，而质心由质量分布决定。
+\end{xesolution}
+
+
+\begin{origexamplebox}{滑动乒乓球转为纯滚动}\label{ch04:ex:k09-2-95}
+半径为 $R$ 的球初始质心速度为 $v_0$、向右，同时以角速度 $\omega_0$ 逆时针转动。转为纯滚动前，质心加速度大小为 $a$、向左，角加速度大小为 $\beta$、顺时针。接触点瞬时速度为零后，质心加速度和角加速度均变为零，球保持匀速纯滚动。求最终质心速度的大小和方向。
+\par 题图见图~\ref{ch04:ref:question-figure-2-95}。
+\KQuestionDR
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+题图把平动方向、转动方向和接触点放在同一幅图中。取向右和逆时针为正：
+\RollingBallDiagram
+滑动阶段
+\[
+v(t)=v_0-at,\qquad \omega(t)=\omega_0-\beta t.
+\]
+球底接触点速度为 $v+R\omega$；纯滚动临界条件是
+\[
+v_0-at_*+R(\omega_0-\beta t_*)=0.
+\]
+故
+\[
+t_*=\frac{v_0+R\omega_0}{a+R\beta},
+\]
+最终有符号速度
+\[
+\boxed{v_f=v_0-at_*
+=\frac{R(\beta v_0-a\omega_0)}{a+R\beta}}.
+\]
+因此速率为 $|v_f|$；$\beta v_0>a\omega_0$ 时向右，反之向左，等号时质心恰停下。此时必满足 $v_f=-R\omega_f$，可作方向校验。
+这里归零的是 $a_C$ 和角加速度，而不是所有物质点的加速度。匀速纯滚动时，取通过质心、平行于角速度的轴线，距此轴垂直距离为 $r$ 的球上点仍有大小 $\omega_f^2r$、指向此轴的向心加速度。这里的轴不是经过接触点的瞬时转动轴；底部瞬时接触点速度虽为零，加速度也不必为零。只有 $v_f=\omega_f=0$ 的静止情形才全部为零。
+\end{xesolution}
+
+
+\begin{origexamplebox}{飞刀的质心抛体与绕质心转动}\label{ch04:ex:k09-2-96}
+在一次飞刀表演中，表演者先后甩出两把飞刀：第一把钉在竖直木靶上，到达时刀身水平；第二把的刀尖恰好扎在第一把的木柄上。观察飞刀姿态序列可把运动分解为两部分：质心 $C$ 作抛体运动，飞刀整体同时绕质心 $C$ 匀速转动。要准确命中，必须同时控制质心出手速度的大小和方向，以及绕质心的角速度。\par
+飞刀质心 $C$ 与靶点初始等高，水平距离 $s=5.0\,\mathrm m$；刀轴与水平夹角 $\theta=60^\circ$，刀长 $L=25\,\mathrm{cm}$，质心到刀尖距离 $l=10\,\mathrm{cm}$，$g=9.8\,\mathrm{m/s^2}$。\par
+（1）质心按 $30^\circ$ 仰角抛出，使刀尖击中靶点且刀身最终水平、刀尖朝向木靶。刀从初始刀尖朝右上方 $60^\circ$ 的姿态逆时针转动，取达到上述姿态的最小正转角。求质心初速率 $v_C$ 和匀速转动角速度 $\omega$。\par
+（2）第二把飞刀从同一位置、同一初始姿态出手，刀尖击中第一把刀木柄的远端；碰撞瞬间第二把刀仍为水平姿态，并取从初始姿态转到该姿态的最小正转角。若两次运动的质心最大高度相同，求 $v_C'$、$\omega'$ 分别比 $v_C$、$\omega$ 小百分之几。
+\par 题图见图~\ref{ch04:ref:question-figure-2-96}。
+\KQuestionDS
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+第一把刀最终水平时，质心在刀尖后方 $l$，所以质心的水平射程是
+\KnifeFlightDiagram
+\[
+d_1=s-l.
+\]
+同高斜抛射程 $d_1=v_C^2\sin60^\circ/g$，故
+\[
+\boxed{v_C=\sqrt{\frac{g(s-l)}{\sin60^\circ}}
+\approx7.45\,\mathrm{m/s}}.
+\]
+飞行时间
+\[
+T=\frac{2v_C\sin30^\circ}{g}=\frac{v_C}{g}\approx0.760\,\mathrm s.
+\]
+刀从 $60^\circ$ 逆时针转到下一次“刀尖朝向木靶”的水平姿态时，方向角为 $360^\circ$，角位移为 $2\pi-\theta=5\pi/3$。途中 $180^\circ$ 虽然刀轴也水平，但刀尖朝后，不满足命中姿态。因此
+\[
+\boxed{\omega=\frac{2\pi-\theta}{T}\approx6.89\,\mathrm{rad/s}}.
+\]
+若允许额外整周，角速度还可加 $2\pi n/T$；题设取最小正值。图中的等时姿态由 $x_C=d_1t/T$、$y_C=v_C\sin30^\circ\,t-gt^2/2$、$\varphi=60^\circ+300^\circ t/T$ 同时决定。
+
+第二把刀的刀尖击中第一把刀木柄远端，且碰撞时刀身水平。下图的局部放大部分表明：从木靶 $Q$ 到撞击点 $P$ 要先退回第一把刀的全长 $L$，第二把刀的质心 $C_2$ 还要再退回 $l$：
+\KnifeImpactDiagram
+所以第二把刀质心的水平射程唯一确定为
+\[
+d_2=s-L-l=4.65\,\mathrm m.
+\]
+最大高度相同意味着初始竖直分速度相同；始末质心仍等高，所以飞行时间仍为 $T$。因此
+\[
+v_C'=\sqrt{\left(\frac{d_2}{T}\right)^2+\left(v_C\sin30^\circ\right)^2},
+\]
+并可写成比值
+\[
+\frac{v_C'}{v_C}=\frac{\cos30^\circ}{d_1}
+\sqrt{d_2^2+d_1^2\tan^2 30^\circ}\approx0.9620.
+\]
+故 $v_C'$ 约小 $\boxed{3.8\%}$。题设已经规定相同的最终水平姿态、最小正转角和相同飞行时间，故
+\[
+\boxed{\omega'=\omega},
+\]
+即减小 $\boxed{0\%}$。木柄上的撞击点与碰撞姿态均已在题设中固定，因此结果没有多解。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\section{运动学综合}
+\newcommand{\KinematicKeepSpace}[1]{%
+\par\begingroup
+\dimen0=#1\relax
+\dimen2=\lastskip
+\advance\dimen0 by \dimen2
+\vskip-\dimen2
+\vskip0pt plus\dimen0
+\penalty-100
+\vskip0pt plus-\dimen0
+\vskip\dimen0
+\penalty9999
+\vskip-\dimen0
+\vskip\dimen2
+\endgroup}
+
+\newcommand{\MarsCoplanarPath}{\draw[kcurve] plot coordinates {(-3.3333333,-0.5510407) (-3.3055556,-0.5222965) (-3.2777778,-0.4937709) (-3.2500000,-0.4654674) (-3.2222222,-0.4373898) (-3.1944444,-0.4095421) (-3.1666667,-0.3819279) (-3.1388889,-0.3545514) (-3.1111111,-0.3274165) (-3.0833333,-0.3005273) (-3.0555556,-0.2738881) (-3.0277778,-0.2475030) (-3.0000000,-0.2213764) (-2.9722222,-0.1955128) (-2.9444444,-0.1699166) (-2.9166667,-0.1445923) (-2.8888889,-0.1195447) (-2.8611111,-0.0947784) (-2.8333333,-0.0702983) (-2.8055556,-0.0461093) (-2.7777778,-0.0222163) (-2.7500000,0.0013755) (-2.7222222,0.0246611) (-2.6944444,0.0476352) (-2.6666667,0.0702925) (-2.6388889,0.0926277) (-2.6111111,0.1146351) (-2.5833333,0.1363092) (-2.5555556,0.1576444) (-2.5277778,0.1786350) (-2.5000000,0.1992751) (-2.4722222,0.2195588) (-2.4444444,0.2394801) (-2.4166667,0.2590329) (-2.3888889,0.2782111) (-2.3611111,0.2970085) (-2.3333333,0.3154188) (-2.3055556,0.3334355) (-2.2777778,0.3510522) (-2.2500000,0.3682624) (-2.2222222,0.3850595) (-2.1944444,0.4014369) (-2.1666667,0.4173877) (-2.1388889,0.4329052) (-2.1111111,0.4479827) (-2.0833333,0.4626132) (-2.0555556,0.4767897) (-2.0277778,0.4905054) (-2.0000000,0.5037533) (-1.9722222,0.5165262) (-1.9444444,0.5288173) (-1.9166667,0.5406194) (-1.8888889,0.5519254) (-1.8611111,0.5627284) (-1.8333333,0.5730214) (-1.8055556,0.5827972) (-1.7777778,0.5920490) (-1.7500000,0.6007698) (-1.7222222,0.6089529) (-1.6944444,0.6165913) (-1.6666667,0.6236784) (-1.6388889,0.6302076) (-1.6111111,0.6361725) (-1.5833333,0.6415667) (-1.5555556,0.6463840) (-1.5277778,0.6506184) (-1.5000000,0.6542641) (-1.4722222,0.6573154) (-1.4444444,0.6597670) (-1.4166667,0.6616138) (-1.3888889,0.6628508) (-1.3611111,0.6634734) (-1.3333333,0.6634776) (-1.3055556,0.6628593) (-1.2777778,0.6616150) (-1.2500000,0.6597415) (-1.2222222,0.6572363) (-1.1944444,0.6540970) (-1.1666667,0.6503219) (-1.1388889,0.6459097) (-1.1111111,0.6408597) (-1.0833333,0.6351718) (-1.0555556,0.6288464) (-1.0277778,0.6218845) (-1.0000000,0.6142879) (-0.9722222,0.6060591) (-0.9444444,0.5972011) (-0.9166667,0.5877179) (-0.8888889,0.5776141) (-0.8611111,0.5668950) (-0.8333333,0.5555671) (-0.8055556,0.5436373) (-0.7777778,0.5311136) (-0.7500000,0.5180049) (-0.7222222,0.5043209) (-0.6944444,0.4900722) (-0.6666667,0.4752704) (-0.6388889,0.4599281) (-0.6111111,0.4440586) (-0.5833333,0.4276764) (-0.5555556,0.4107969) (-0.5277778,0.3934361) (-0.5000000,0.3756115) (-0.4722222,0.3573410) (-0.4444444,0.3386438) (-0.4166667,0.3195397) (-0.3888889,0.3000495) (-0.3611111,0.2801948) (-0.3333333,0.2599979) (-0.3055556,0.2394821) (-0.2777778,0.2186712) (-0.2500000,0.1975897) (-0.2222222,0.1762629) (-0.1944444,0.1547165) (-0.1666667,0.1329767) (-0.1388889,0.1110704) (-0.1111111,0.0890246) (-0.0833333,0.0668668) (-0.0555556,0.0446247) (-0.0277778,0.0223265) (0.0000000,0.0000000) (0.0277778,-0.0223265) (0.0555556,-0.0446247) (0.0833333,-0.0668668) (0.1111111,-0.0890246) (0.1388889,-0.1110704) (0.1666667,-0.1329767) (0.1944444,-0.1547165) (0.2222222,-0.1762629) (0.2500000,-0.1975897) (0.2777778,-0.2186712) (0.3055556,-0.2394821) (0.3333333,-0.2599979) (0.3611111,-0.2801948) (0.3888889,-0.3000495) (0.4166667,-0.3195397) (0.4444444,-0.3386438) (0.4722222,-0.3573410) (0.5000000,-0.3756115) (0.5277778,-0.3934361) (0.5555556,-0.4107969) (0.5833333,-0.4276764) (0.6111111,-0.4440586) (0.6388889,-0.4599281) (0.6666667,-0.4752704) (0.6944444,-0.4900722) (0.7222222,-0.5043209) (0.7500000,-0.5180049) (0.7777778,-0.5311136) (0.8055556,-0.5436373) (0.8333333,-0.5555671) (0.8611111,-0.5668950) (0.8888889,-0.5776141) (0.9166667,-0.5877179) (0.9444444,-0.5972011) (0.9722222,-0.6060591) (1.0000000,-0.6142879) (1.0277778,-0.6218845) (1.0555556,-0.6288464) (1.0833333,-0.6351718) (1.1111111,-0.6408597) (1.1388889,-0.6459097) (1.1666667,-0.6503219) (1.1944444,-0.6540970) (1.2222222,-0.6572363) (1.2500000,-0.6597415) (1.2777778,-0.6616150) (1.3055556,-0.6628593) (1.3333333,-0.6634776) (1.3611111,-0.6634734) (1.3888889,-0.6628508) (1.4166667,-0.6616138) (1.4444444,-0.6597670) (1.4722222,-0.6573154) (1.5000000,-0.6542641) (1.5277778,-0.6506184) (1.5555556,-0.6463840) (1.5833333,-0.6415667) (1.6111111,-0.6361725) (1.6388889,-0.6302076) (1.6666667,-0.6236784) (1.6944444,-0.6165913) (1.7222222,-0.6089529) (1.7500000,-0.6007698) (1.7777778,-0.5920490) (1.8055556,-0.5827972) (1.8333333,-0.5730214) (1.8611111,-0.5627284) (1.8888889,-0.5519254) (1.9166667,-0.5406194) (1.9444444,-0.5288173) (1.9722222,-0.5165262) (2.0000000,-0.5037533) (2.0277778,-0.4905054) (2.0555556,-0.4767897) (2.0833333,-0.4626132) (2.1111111,-0.4479827) (2.1388889,-0.4329052) (2.1666667,-0.4173877) (2.1944444,-0.4014369) (2.2222222,-0.3850595) (2.2500000,-0.3682624) (2.2777778,-0.3510522) (2.3055556,-0.3334355) (2.3333333,-0.3154188) (2.3611111,-0.2970085) (2.3888889,-0.2782111) (2.4166667,-0.2590329) (2.4444444,-0.2394801) (2.4722222,-0.2195588) (2.5000000,-0.1992751) (2.5277778,-0.1786350) (2.5555556,-0.1576444) (2.5833333,-0.1363092) (2.6111111,-0.1146351) (2.6388889,-0.0926277) (2.6666667,-0.0702925) (2.6944444,-0.0476352) (2.7222222,-0.0246611) (2.7500000,-0.0013755) (2.7777778,0.0222163) (2.8055556,0.0461093) (2.8333333,0.0702983) (2.8611111,0.0947784) (2.8888889,0.1195447) (2.9166667,0.1445923) (2.9444444,0.1699166) (2.9722222,0.1955128) (3.0000000,0.2213764) (3.0277778,0.2475030) (3.0555556,0.2738881) (3.0833333,0.3005273) (3.1111111,0.3274165) (3.1388889,0.3545514) (3.1666667,0.3819279) (3.1944444,0.4095421) (3.2222222,0.4373898) (3.2500000,0.4654674) (3.2777778,0.4937709) (3.3055556,0.5222965) (3.3333333,0.5510407)};}
+
+\newcommand{\MarsInclinedPath}{\draw[TextGray,thick] plot coordinates {(-3.3295465,-2.0955284) (-3.2802682,-2.0811303) (-3.2311171,-2.0666671) (-3.1820946,-2.0521385) (-3.1332019,-2.0375442) (-3.0844402,-2.0228836) (-3.0358108,-2.0081564) (-2.9873151,-1.9933622) (-2.9389542,-1.9785006) (-2.8907295,-1.9635712) (-2.8426423,-1.9485736) (-2.7946940,-1.9335072) (-2.7468859,-1.9183719) (-2.6992194,-1.9031670) (-2.6516959,-1.8878922) (-2.6043168,-1.8725471) (-2.5570835,-1.8571312) (-2.5099975,-1.8416442) (-2.4630601,-1.8260855) (-2.4162729,-1.8104548) (-2.3696374,-1.7947516) (-2.3231551,-1.7789754) (-2.2768275,-1.7631259) (-2.2306561,-1.7472026) (-2.1846425,-1.7312051) (-2.1387883,-1.7151328) (-2.0930950,-1.6989855) (-2.0475643,-1.6827625) (-2.0021979,-1.6664635) (-1.9569973,-1.6500881) (-1.9119642,-1.6336357) (-1.8671004,-1.6171059) (-1.8224075,-1.6004983) (-1.7778873,-1.5838123) (-1.7335415,-1.5670477) (-1.6893719,-1.5502038) (-1.6453803,-1.5332802) (-1.6015685,-1.5162765) (-1.5579383,-1.4991923) (-1.5144916,-1.4820270) (-1.4712303,-1.4647802) (-1.4281562,-1.4474514) (-1.3852712,-1.4300402) (-1.3425774,-1.4125461) (-1.3000767,-1.3949687) (-1.2577710,-1.3773075) (-1.2156624,-1.3595620) (-1.1737529,-1.3417318) (-1.1320446,-1.3238164) (-1.0905395,-1.3058154) (-1.0492397,-1.2877284) (-1.0081475,-1.2695548) (-0.9672648,-1.2512942) (-0.9265939,-1.2329463) (-0.8861370,-1.2145104) (-0.8458963,-1.1959863) (-0.8058741,-1.1773734) (-0.7660726,-1.1586713) (-0.7264942,-1.1398796) (-0.6871411,-1.1209979) (-0.6480158,-1.1020257) (-0.6091205,-1.0829626) (-0.5704577,-1.0638082) (-0.5320299,-1.0445622) (-0.4938394,-1.0252240) (-0.4558888,-1.0057933) (-0.4181806,-0.9862697) (-0.3807174,-0.9666528) (-0.3435015,-0.9469423) (-0.3065358,-0.9271377) (-0.2698228,-0.9072387) (-0.2333651,-0.8872450) (-0.1971654,-0.8671562) (-0.1612265,-0.8469720) (-0.1255510,-0.8266920) (-0.0901418,-0.8063159) (-0.0550015,-0.7858435) (-0.0201331,-0.7652744) (0.0144606,-0.7446083) (0.0487768,-0.7238450) (0.0828125,-0.7029842) (0.1165648,-0.6820258) (0.1500307,-0.6609693) (0.1832073,-0.6398147) (0.2160915,-0.6185618) (0.2486803,-0.5972103) (0.2809706,-0.5757601) (0.3129592,-0.5542111) (0.3446432,-0.5325631) (0.3760191,-0.5108160) (0.4070840,-0.4889698) (0.4378346,-0.4670243) (0.4682675,-0.4449796) (0.4983796,-0.4228356) (0.5281674,-0.4005923) (0.5576278,-0.3782497) (0.5867573,-0.3558080) (0.6155525,-0.3332672) (0.6440100,-0.3106273) (0.6721263,-0.2878886) (0.6998980,-0.2650512) (0.7273216,-0.2421154) (0.7543935,-0.2190813) (0.7811103,-0.1959492) (0.8074682,-0.1727194) (0.8334638,-0.1493923) (0.8590933,-0.1259683) (0.8843532,-0.1024477) (0.9092398,-0.0788311) (0.9337493,-0.0551189) (0.9578781,-0.0313116) (0.9816224,-0.0074100) (1.0049784,0.0165855) (1.0279425,0.0406742) (1.0505107,0.0648552) (1.0726793,0.0891278) (1.0944445,0.1134912) (1.1158024,0.1379444) (1.1367491,0.1624866) (1.1572809,0.1871168) (1.1773937,0.2118338) (1.1970837,0.2366365) (1.2163470,0.2615238) (1.2351798,0.2864944) (1.2535780,0.3115470) (1.2715378,0.3366802) (1.2890553,0.3618925) (1.3061265,0.3871823) (1.3227475,0.4125482) (1.3389144,0.4379884) (1.3546232,0.4635011) (1.3698701,0.4890844) (1.3846513,0.5147366) (1.3989627,0.5404554) (1.4128005,0.5662389) (1.4261608,0.5920848) (1.4390399,0.6179909) (1.4514339,0.6439547) (1.4633391,0.6699738) (1.4747515,0.6960456) (1.4856676,0.7221674) (1.4960836,0.7483365) (1.5059959,0.7745500) (1.5154007,0.8008047) (1.5242946,0.8270978) (1.5326740,0.8534258) (1.5405354,0.8797856) (1.5478754,0.9061736) (1.5546905,0.9325863) (1.5609776,0.9590199) (1.5667332,0.9854707) (1.5719543,1.0119348) (1.5766377,1.0384079) (1.5807804,1.0648861) (1.5843795,1.0913649) (1.5874320,1.1178398) (1.5899353,1.1443064) (1.5918866,1.1707597) (1.5932834,1.1971951) (1.5941232,1.2236074) (1.5944036,1.2499916)};
+\draw[DeepBlue,thick] plot coordinates {(1.5944036,1.2499916) (1.5941294,1.2760148) (1.5933054,1.3020001) (1.5919299,1.3279421) (1.5900008,1.3538355) (1.5875167,1.3796745) (1.5844759,1.4054533) (1.5808772,1.4311661) (1.5767192,1.4568067) (1.5720010,1.4823691) (1.5667215,1.5078468) (1.5608801,1.5332334) (1.5544761,1.5585223) (1.5475092,1.5837068) (1.5399791,1.6087800) (1.5318859,1.6337349) (1.5232296,1.6585643) (1.5140107,1.6832610) (1.5042297,1.7078176) (1.4938874,1.7322266) (1.4829847,1.7564803) (1.4715230,1.7805711) (1.4595036,1.8044909) (1.4469283,1.8282319) (1.4337989,1.8517860) (1.4201176,1.8751449) (1.4058869,1.8983004) (1.3911094,1.9212441) (1.3757880,1.9439675) (1.3599260,1.9664621) (1.3435267,1.9887192) (1.3265940,2.0107302) (1.3091318,2.0324862) (1.2911445,2.0539784) (1.2726366,2.0751981) (1.2536130,2.0961362) (1.2340789,2.1167838) (1.2140397,2.1371319) (1.1935012,2.1571716) (1.1724694,2.1768938) (1.1509508,2.1962896) (1.1289519,2.2153500) (1.1064797,2.2340659) (1.0835415,2.2524286) (1.0601450,2.2704290) (1.0362979,2.2880583) (1.0120084,2.3053078) (0.9872852,2.3221687) (0.9621369,2.3386324) (0.9365727,2.3546905) (0.9106020,2.3703343) (0.8842345,2.3855558) (0.8574802,2.4003466) (0.8303493,2.4146987) (0.8028525,2.4286044) (0.7750006,2.4420557) (0.7468048,2.4550453) (0.7182764,2.4675657) (0.6894271,2.4796097) (0.6602689,2.4911705) (0.6308139,2.5022413) (0.6010746,2.5128157) (0.5710636,2.5228872) (0.5407939,2.5324501) (0.5102784,2.5414984) (0.4795306,2.5500267) (0.4485639,2.5580300) (0.4173921,2.5655031) (0.3860290,2.5724416) (0.3544888,2.5788412) (0.3227855,2.5846979) (0.2909335,2.5900080) (0.2589474,2.5947682) (0.2268418,2.5989754) (0.1946313,2.6026272) (0.1623307,2.6057210) (0.1299549,2.6082551) (0.0975190,2.6102277) (0.0650378,2.6116375) (0.0325264,2.6124838) (0.0000000,2.6127660) (-0.0325264,2.6124838) (-0.0650378,2.6116375) (-0.0975190,2.6102277) (-0.1299549,2.6082551) (-0.1623307,2.6057210) (-0.1946313,2.6026272) (-0.2268418,2.5989754) (-0.2589474,2.5947682) (-0.2909335,2.5900080) (-0.3227855,2.5846979) (-0.3544888,2.5788412) (-0.3860290,2.5724416) (-0.4173921,2.5655031) (-0.4485639,2.5580300) (-0.4795306,2.5500267) (-0.5102784,2.5414984) (-0.5407939,2.5324501) (-0.5710636,2.5228872) (-0.6010746,2.5128157) (-0.6308139,2.5022413) (-0.6602689,2.4911705) (-0.6894271,2.4796097) (-0.7182764,2.4675657) (-0.7468048,2.4550453) (-0.7750006,2.4420557) (-0.8028525,2.4286044) (-0.8303493,2.4146987) (-0.8574802,2.4003466) (-0.8842345,2.3855558) (-0.9106020,2.3703343) (-0.9365727,2.3546905) (-0.9621369,2.3386324) (-0.9872852,2.3221687) (-1.0120084,2.3053078) (-1.0362979,2.2880583) (-1.0601450,2.2704290) (-1.0835415,2.2524286) (-1.1064797,2.2340659) (-1.1289519,2.2153500) (-1.1509508,2.1962896) (-1.1724694,2.1768938) (-1.1935012,2.1571716) (-1.2140397,2.1371319) (-1.2340789,2.1167838) (-1.2536130,2.0961362) (-1.2726366,2.0751981) (-1.2911445,2.0539784) (-1.3091318,2.0324862) (-1.3265940,2.0107302) (-1.3435267,1.9887192) (-1.3599260,1.9664621) (-1.3757880,1.9439675) (-1.3911094,1.9212441) (-1.4058869,1.8983004) (-1.4201176,1.8751449) (-1.4337989,1.8517860) (-1.4469283,1.8282319) (-1.4595036,1.8044909) (-1.4715230,1.7805711) (-1.4829847,1.7564803) (-1.4938874,1.7322266) (-1.5042297,1.7078176) (-1.5140107,1.6832610) (-1.5232296,1.6585643) (-1.5318859,1.6337349) (-1.5399791,1.6087800) (-1.5475092,1.5837068) (-1.5544761,1.5585223) (-1.5608801,1.5332334) (-1.5667215,1.5078468) (-1.5720010,1.4823691) (-1.5767192,1.4568067) (-1.5808772,1.4311661) (-1.5844759,1.4054533) (-1.5875167,1.3796745) (-1.5900008,1.3538355) (-1.5919299,1.3279421) (-1.5933054,1.3020001) (-1.5941294,1.2760148) (-1.5944036,1.2499916)};
+\draw[TextGray,thick] plot coordinates {(-1.5944036,1.2499916) (-1.5941232,1.2236074) (-1.5932834,1.1971951) (-1.5918866,1.1707597) (-1.5899353,1.1443064) (-1.5874320,1.1178398) (-1.5843795,1.0913649) (-1.5807804,1.0648861) (-1.5766377,1.0384079) (-1.5719543,1.0119348) (-1.5667332,0.9854707) (-1.5609776,0.9590199) (-1.5546905,0.9325863) (-1.5478754,0.9061736) (-1.5405354,0.8797856) (-1.5326740,0.8534258) (-1.5242946,0.8270978) (-1.5154007,0.8008047) (-1.5059959,0.7745500) (-1.4960836,0.7483365) (-1.4856676,0.7221674) (-1.4747515,0.6960456) (-1.4633391,0.6699738) (-1.4514339,0.6439547) (-1.4390399,0.6179909) (-1.4261608,0.5920848) (-1.4128005,0.5662389) (-1.3989627,0.5404554) (-1.3846513,0.5147366) (-1.3698701,0.4890844) (-1.3546232,0.4635011) (-1.3389144,0.4379884) (-1.3227475,0.4125482) (-1.3061265,0.3871823) (-1.2890553,0.3618925) (-1.2715378,0.3366802) (-1.2535780,0.3115470) (-1.2351798,0.2864944) (-1.2163470,0.2615238) (-1.1970837,0.2366365) (-1.1773937,0.2118338) (-1.1572809,0.1871168) (-1.1367491,0.1624866) (-1.1158024,0.1379444) (-1.0944445,0.1134912) (-1.0726793,0.0891278) (-1.0505107,0.0648552) (-1.0279425,0.0406742) (-1.0049784,0.0165855) (-0.9816224,-0.0074100) (-0.9578781,-0.0313116) (-0.9337493,-0.0551189) (-0.9092398,-0.0788311) (-0.8843532,-0.1024477) (-0.8590933,-0.1259683) (-0.8334638,-0.1493923) (-0.8074682,-0.1727194) (-0.7811103,-0.1959492) (-0.7543935,-0.2190813) (-0.7273216,-0.2421154) (-0.6998980,-0.2650512) (-0.6721263,-0.2878886) (-0.6440100,-0.3106273) (-0.6155525,-0.3332672) (-0.5867573,-0.3558080) (-0.5576278,-0.3782497) (-0.5281674,-0.4005923) (-0.4983796,-0.4228356) (-0.4682675,-0.4449796) (-0.4378346,-0.4670243) (-0.4070840,-0.4889698) (-0.3760191,-0.5108160) (-0.3446432,-0.5325631) (-0.3129592,-0.5542111) (-0.2809706,-0.5757601) (-0.2486803,-0.5972103) (-0.2160915,-0.6185618) (-0.1832073,-0.6398147) (-0.1500307,-0.6609693) (-0.1165648,-0.6820258) (-0.0828125,-0.7029842) (-0.0487768,-0.7238450) (-0.0144606,-0.7446083) (0.0201331,-0.7652744) (0.0550015,-0.7858435) (0.0901418,-0.8063159) (0.1255510,-0.8266920) (0.1612265,-0.8469720) (0.1971654,-0.8671562) (0.2333651,-0.8872450) (0.2698228,-0.9072387) (0.3065358,-0.9271377) (0.3435015,-0.9469423) (0.3807174,-0.9666528) (0.4181806,-0.9862697) (0.4558888,-1.0057933) (0.4938394,-1.0252240) (0.5320299,-1.0445622) (0.5704577,-1.0638082) (0.6091205,-1.0829626) (0.6480158,-1.1020257) (0.6871411,-1.1209979) (0.7264942,-1.1398796) (0.7660726,-1.1586713) (0.8058741,-1.1773734) (0.8458963,-1.1959863) (0.8861370,-1.2145104) (0.9265939,-1.2329463) (0.9672648,-1.2512942) (1.0081475,-1.2695548) (1.0492397,-1.2877284) (1.0905395,-1.3058154) (1.1320446,-1.3238164) (1.1737529,-1.3417318) (1.2156624,-1.3595620) (1.2577710,-1.3773075) (1.3000767,-1.3949687) (1.3425774,-1.4125461) (1.3852712,-1.4300402) (1.4281562,-1.4474514) (1.4712303,-1.4647802) (1.5144916,-1.4820270) (1.5579383,-1.4991923) (1.6015685,-1.5162765) (1.6453803,-1.5332802) (1.6893719,-1.5502038) (1.7335415,-1.5670477) (1.7778873,-1.5838123) (1.8224075,-1.6004983) (1.8671004,-1.6171059) (1.9119642,-1.6336357) (1.9569973,-1.6500881) (2.0021979,-1.6664635) (2.0475643,-1.6827625) (2.0930950,-1.6989855) (2.1387883,-1.7151328) (2.1846425,-1.7312051) (2.2306561,-1.7472026) (2.2768275,-1.7631259) (2.3231551,-1.7789754) (2.3696374,-1.7947516) (2.4162729,-1.8104548) (2.4630601,-1.8260855) (2.5099975,-1.8416442) (2.5570835,-1.8571312) (2.6043168,-1.8725471) (2.6516959,-1.8878922) (2.6992194,-1.9031670) (2.7468859,-1.9183719) (2.7946940,-1.9335072) (2.8426423,-1.9485736) (2.8907295,-1.9635712) (2.9389542,-1.9785006) (2.9873151,-1.9933622) (3.0358108,-2.0081564) (3.0844402,-2.0228836) (3.1332019,-2.0375442) (3.1820946,-2.0521385) (3.2311171,-2.0666671) (3.2802682,-2.0811303) (3.3295465,-2.0955284)};
+\draw[->,DeepBlue,thick] plot coordinates {(-0.8732643,-1.2086051) (-0.8296331,-1.1884459) (-0.7862609,-1.1681816) (-0.7431505,-1.1478119) (-0.7003050,-1.1273361) (-0.6577273,-1.1067537) (-0.6154204,-1.0860642) (-0.5733875,-1.0652670) (-0.5316316,-1.0443616)};
+\draw[->,DeepBlue,thick] plot coordinates {(0.6894671,2.4795935) (0.6573750,2.4922850) (0.6249252,2.5043828) (0.5921344,2.5158783) (0.5590194,2.5267631) (0.5255976,2.5370295) (0.4918864,2.5466700) (0.4579039,2.5556774) (0.4236680,2.5640451)};
+\draw[->,DeepBlue,thick] plot coordinates {(0.8732643,-1.2086051) (0.9171514,-1.2286600) (0.9612918,-1.2486111) (1.0056825,-1.2684589) (1.0503207,-1.2882040) (1.0952037,-1.3078471) (1.1403288,-1.3273886) (1.1856933,-1.3468291) (1.2312945,-1.3661693)};}
+
+\newcommand{\LightTimingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\coordinate (A) at (-3,0);\coordinate (B) at (3,0);\coordinate (O) at (-.7,2.5);
+\draw[thick] (A)--(B);\draw[kguide] (A)--(O)--(B);
+\foreach \p/\pos in {A/below left,B/below right,O/above}{\fill (\p) circle(1.5pt);\node[\pos] at (\p){$\p$};}
+\node[above left] at (-1.95,1.2){$r_A$};\node[above right] at (1.4,1.2){$r_B$};
+\draw[vector] (-.8,-.7)--(.8,-.7) node[midway,below]{运动员};
+\node[above] at (0,0){$L=100\,\mathrm m$};
+\end{tikzpicture}\figcap{解图：观察者 $O$ 接收起点 $A$、终点 $B$ 的光信号；传播路程一般不相等。}\label{ch04:fig:k11-ex-2-102}\end{minipage}\end{center}}
+
+\newcommand{\ApparentTransverseDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (E) at (0,0);\coordinate (P1) at (0,4);\coordinate (P2) at (2,2.6);\coordinate (F) at (0,2.6);
+\draw[thick] (E)--(P1);\draw[thick] (E)--(P2);
+\draw[vector] (P1)--(P2);\draw[kguide] (F)--(P2);
+\fill (E) circle(1.6pt) (P1) circle(1.6pt) (P2) circle(1.6pt);
+\node[below] at (E){地球};\node[above] at (P1){$P_1$};\node[right] at (P2){$P_2$};
+\draw[<->] (-.9,0)--(-.9,4) node[midway,left]{$L$};
+\node[above right] at (.85,3.55){$v\Delta t$};\node[below right] at (1.15,1.4){$D_2$};
+\draw[kguide] (0,4.35)--(0,4.85) (P2)--(2,4.85);
+\draw[<->] (0,4.85)--(2,4.85) node[midway,above]{$v\sin\theta\,\Delta t$};
+\draw[<->] (-.4,2.6)--(-.4,4);\node[left,align=right] at (-1.3,3.3){接近量\\$v\cos\theta\,\Delta t$};\draw[thin] (-1.25,3.3)--(-.42,3.3);
+\draw (0,3.35) arc(-90:-34.992:.65);\node at (.3,3.1){$\theta$};
+\end{tikzpicture}\figcap{解图：横向与视线方向的位移分开标注；三角形给出 $D_2$，再对 $v\Delta t/L$ 作一阶展开。}\label{ch04:fig:k11-ex-2-103}\end{minipage}\end{center}}
+
+\newcommand{\MarsRetrogradeDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\foreach \t/\n/\dx/\dy in {-90/1/0/0,-60/2/3.5/0,-36.37/3/7/0,0/4/10.5/0,36.37/5/1.75/-4,60/6/5.25/-4,90/7/8.75/-4}{
+\begin{scope}[shift={(\dx,\dy)}]
+\draw[TextGray] (0,0) circle(.8);\draw[thick] (0,0) circle({.8*1.524});
+\fill (0,0) circle(1.3pt);\node[above] at (0,0){$S$};
+\pgfmathsetmacro{\ea}{.985609*\t-90}
+\pgfmathsetmacro{\ma}{.985609*\t*pow(1.524,-1.5)-90}
+\pgfmathsetmacro{\ex}{.8*cos(\ea)}\pgfmathsetmacro{\ey}{.8*sin(\ea)}
+\pgfmathsetmacro{\mx}{.8*1.524*cos(\ma)}\pgfmathsetmacro{\my}{.8*1.524*sin(\ma)}
+\draw[DeepBlue,dashed,thin,->] (\ex,\ey)--({\ex+1.7*(\mx-\ex)},{\ey+1.7*(\my-\ey)});
+\fill (\ex,\ey) circle(1.5pt) (\mx,\my) circle(1.5pt);
+\node[font=\scriptsize] at (\ea:.5){$E_{\n}$};
+\ifdim\t pt<0pt \node[font=\scriptsize,left] at ({\mx-.13},{\my-.16}){$M_{\n}$};
+\else \node[font=\scriptsize,right] at ({\mx+.13},{\my-.16}){$M_{\n}$};\fi
+\node[font=\footnotesize] at (0,1.7){\n：$t=\t\,\mathrm d$};
+\end{scope}}
+\node at (5.25,-6){虚线由地球经过火星，指向背景星空；各小图比例相同};
+\begin{scope}[xshift=5.25cm,yshift=-8.6cm]
+\draw[kaxis] (-3.7,0)--(3.8,0) node[right]{$t/\mathrm d$};
+\draw[kaxis] (0,-1.9)--(0,1.45) node[above]{$\lambda$};
+\MarsCoplanarPath
+\foreach \t/\n/\pos in {-90/1/above left,-60/2/above left,-36.37/3/above,0/4/below left,36.37/5/below,60/6/below right,90/7/below right}{
+\pgfmathsetmacro{\ll}{atan2(1.524*sin(.985609*\t*pow(1.524,-1.5))-sin(.985609*\t),1.524*cos(.985609*\t*pow(1.524,-1.5))-cos(.985609*\t))/12}
+\fill (\t/27,\ll) circle(1.5pt);\node[\pos] at (\t/27,\ll){\n};}
+\draw[<->] (-1.347,-1.75)--(1.347,-1.75) node[midway,below]{逆行};
+\node at (0,2.15){同平面模型：七个时刻的视经度};
+\node at (0,-2.65){第3、5点：$\dot\lambda=0$};
+\end{scope}
+\end{tikzpicture}\figcap{解图：七组位置与七个视方向一一对应；冲日取 $t=0$，第3至第5点之间视经度随时间减小。}\label{ch04:fig:k11-ex-2-105}\end{minipage}\end{center}}
+
+\newcommand{\MarsInclinedDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\draw[kaxis] (-4.4,-2.1)--(4.6,-2.1) node[right]{视经度增加};
+\draw[kaxis] (-4.4,-2.1)--(-4.4,3.05) node[above]{视纬度增加};
+\MarsInclinedPath
+\node[above] at (0,3.25){三维圆轨道示例：轨道倾角 $1.85^\circ$};
+\node at (0,-2.8){箭头表示时间先后；蓝色区间才是逆行};
+\end{tikzpicture}\figcap{回环与计算模型的区别：加入非零倾角后视纬度也会变化；蓝段按视经度减小的条件确定，不把整个回环都称为逆行。}\end{minipage}\end{center}}
+
+\newcommand{\RomerDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (S) at (0,0);\coordinate (J) at (5.2,0);
+\pgfmathsetmacro{\ang}{acos(1/5.2)}
+\draw[thick] (S) circle(1);\draw[TextGray] ({5.2*cos(-10)},{5.2*sin(-10)}) arc(-10:10:5.2);
+\foreach \a/\lab/\pos in {\ang/E_+/above left,-\ang/E_-/below left}{
+\coordinate (E) at (\a:1);\draw[kguide] (S)--(E);\draw[thick] (E)--(J);\fill (E) circle(1.6pt);\node[\pos] at (E){$\lab$};
+\draw[vector] (E)--++({-.65*sin(\a)},{.65*cos(\a)});}
+\fill (S) circle(1.6pt) (J) circle(1.6pt);\node[left] at (S){$S$};\node[right] at (J){$J$};
+\draw[kguide] (S)--(J);
+\draw[<->] (0,-2.25)--(5.2,-2.25) node[midway,below]{$R_J=5.2R_E$};
+\node at (2,1.65){$E_+$：距离增加，周期最长};\node at (2,-1.65){$E_-$：距离减小，周期最短};
+\begin{scope}[xshift=9cm]
+\draw (0,0) circle(.65);\fill (0,0) circle(2pt);\node[below] at (0,0){$J$};
+\fill (45:.65) circle(1.6pt);\node[above right] at (45:.65){木卫I};
+\draw[->] (50:.9) arc(50:170:.9);\node at (0,-1.2){卫星轨道放大};
+\end{scope}
+\end{tikzpicture}\figcap{解图：$SE_\pm\perp E_\pm J$，两切点为周期极值位置；木卫I单独放大，不与日心轨道混用比例。}\label{ch04:fig:k11-ex-2-106}\end{minipage}\end{center}}
+
+\newcommand{\AimLocusDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\draw[thick] (-.4,0)--(4.1,0);\draw[thick] (3.6,0)--(3.6,4.4);
+\coordinate (O) at (0,.6);\coordinate (Q) at (3.6,3.7);\coordinate (P) at (3.6,1.6);
+\draw[kguide] (O)--(Q);\draw[kcurve,domain=0:1,samples=70,variable=\t] plot({3.6*\t},{.6+3.1*\t-2.1*\t^2});
+\foreach \p in {O,Q,P}{\fill (\p) circle(1.5pt);}
+\node[above left=3pt] at (O){$O$};\node[right] at (Q){$Q$};\node[below left] at (3.5,1.45){$P\ (z=h)$};
+\draw[<->] (0,-.5)--(3.6,-.5) node[midway,below]{$r$};
+\draw[<->] (4.65,.6)--(4.65,3.7) node[midway,right]{$Z$};
+\draw[kguide] (0,.6)--(4.65,.6);
+\node[left] at (0,.25){$z_0$};
+\node at (1.8,5){(a) 包含 $OQ$ 的竖直截面};
+\end{scope}
+\begin{scope}[xshift=9cm]
+\draw[kaxis] (-2.4,0)--(2.6,0) node[right]{$x$};\draw[kaxis] (0,0)--(0,4.6) node[above]{$z$};
+\draw[DeepBlue,thick] (0,2.7) circle(1.5);\draw[thick] (-2.4,.7)--(2.4,.7);
+\coordinate (Q) at (1.2,3.6);\coordinate (P) at (1.2,.7);
+\draw[kguide] (Q)--(P);\fill (Q) circle(1.5pt) (P) circle(1.5pt) (0,2.7) circle(1.5pt);
+\node[above right] at (Q){$Q$};\node[below right] at (P){$P$};
+\node[right] at (2.45,.7){$h$};
+\node[left] at (-.1,2.7){$K$};
+\node at (0,5.25){(b) 正视墙面};
+\end{scope}
+\end{tikzpicture}\figcap{解图：瞄准点 $Q$ 位于以 $K$ 为圆心的墙面圆上，实际命中点 $P$ 位于水平线；两图分别说明投掷平面与墙面轨迹。}\label{ch04:fig:k11-ex-2-109}\end{minipage}\end{center}}
+
+\newcommand{\KQuestionDZ}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[>=Latex,scale=.9]
+
+\coordinate (E) at (0,0);\coordinate (P) at (0,3.3);
+\draw[thick] (E)--(P) node[midway,right]{$L$};
+\draw (E) circle(.25);\node[below] at (0,-.3){地球 E};
+\draw[vector] (P)--++(-135:1.5) node[below left]{$v$};
+\draw (P)++(-135:.7) arc(-135:-90:.7);\node at (-.4,2.34){$\theta$};
+\node[point,label=above:$P$] at (P){};
+
+\end{tikzpicture}
+\figcap{题图：天体初始距地球 $L$，运动方向与指向地球的视线成角 $\theta$。}\label{ch04:ref:question-figure-2-103}
+\end{minipage}\end{center}
+}
+
+\newcommand{\KQuestionEB}{%
+%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\foreach \t/\n/\dx/\dy in {-90/1/0/0,-60/2/3.5/0,-36.37/3/7/0,0/4/10.5/0,36.37/5/1.75/-4,60/6/5.25/-4,90/7/8.75/-4}{
+\begin{scope}[shift={(\dx,\dy)}]
+\draw[TextGray] (0,0) circle(.8);\draw[thick] (0,0) circle({.8*1.524});
+\fill (0,0) circle(1.3pt);\node[above] at (0,0){$S$};
+\pgfmathsetmacro{\ea}{.985609*\t-90}
+\pgfmathsetmacro{\ma}{.985609*\t*pow(1.524,-1.5)-90}
+\pgfmathsetmacro{\ex}{.8*cos(\ea)}\pgfmathsetmacro{\ey}{.8*sin(\ea)}
+\pgfmathsetmacro{\mx}{.8*1.524*cos(\ma)}\pgfmathsetmacro{\my}{.8*1.524*sin(\ma)}
+\draw[DeepBlue,dashed,thin,->] (\ex,\ey)--({\ex+1.7*(\mx-\ex)},{\ey+1.7*(\my-\ey)});
+\fill (\ex,\ey) circle(1.5pt) (\mx,\my) circle(1.5pt);
+\node[font=\scriptsize] at (\ea:.5){$E_{\n}$};
+\ifdim\t pt<0pt \node[font=\scriptsize,left] at ({\mx-.13},{\my-.16}){$M_{\n}$};
+\else \node[font=\scriptsize,right] at ({\mx+.13},{\my-.16}){$M_{\n}$};\fi
+\node[font=\footnotesize] at (0,1.7){\n：$t=\t\,\mathrm d$};
+\end{scope}}
+\node at (5.25,-6){虚线由地球经过火星，指向背景星空；各小图比例相同};
+\end{tikzpicture}\figcap{题图：七个时刻的日、地、火位置与观测视线；E 为地球、M 为火星、S 为太阳。}\label{ch04:ref:question-figure-2-105}\end{minipage}\end{center}
+%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\draw[kaxis] (-4.4,-2.1)--(4.6,-2.1) node[right]{视经度增加};
+\draw[kaxis] (-4.4,-2.1)--(-4.4,3.05) node[above]{视纬度增加};
+\MarsInclinedPath
+\node[above] at (0,3.25){三维圆轨道示例：轨道倾角 $1.85^\circ$};
+\node at (0,-2.8){箭头表示观测的时间先后};
+\end{tikzpicture}\figcap{同一现象在背景星空上的视位置回环示意。}\end{minipage}\end{center}
+}
+
+
+前面各节广泛讨论了运动学的内容，建立了坐标、矢量、分运动、相对运动和刚体运动等描述方法。现实世界中物体的运动具有更大的复杂性，往往需要把多个观念结合在一起。下面针对几种对未来学习具有启发性、同时又很有趣的问题展开讨论：光传播延迟、天体视运动、观测周期、射程修正和瞄准轨迹。它们既是运动学方法的综合，也为后续相对论、天体力学和波动理论留下接口。
+
+
+\begin{origexamplebox}{不同位置看到的百米成绩}\label{ch04:ex:k11-2-102}
+赛场不同位置的人看到短跑选手从出发到冲过终点所需的时间是否相同？光速为 $c$。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+设运动员真实比赛时间为 $T$，观察者到起点、终点的距离分别为 $r_A,r_B$。起跑光信号在 $r_A/c$ 后到达，冲线光信号在 $T+r_B/c$ 后到达，所以观察者由视觉得到的时间间隔为
+\LightTimingDiagram
+\[
+\boxed{T_{\rm obs}=T+\frac{r_B-r_A}{c}}.
+\]
+因此一般不相同；只有两观察者的 $r_B-r_A$ 相同，或先把光传播延迟校正掉，才会得到同一成绩。设跑道长为 $L=100\,\mathrm m$，三角形的两边之差不大于第三边，所以 $|r_B-r_A|\le L$。这给出单个观察结果相对真实时长的偏差界：
+\[
+|T_{\rm obs}-T|\le\frac Lc\approx0.334\,\mu\mathrm s.
+\]
+而起点观察者得到 $T+L/c$，终点观察者得到 $T-L/c$；两位观察者之间的最大差异是
+\[
+\boxed{\Delta T_{\rm observers,max}=\frac{2L}{c}\approx0.667\,\mu\mathrm s}.
+\]
+这两个界限比较的对象不同。它们在日常计时中很小，但概念上不能混为一谈。
+\end{xesolution}
+
+
+\begin{origexamplebox}{发光天体的视横向速度}\label{ch04:ex:k11-2-103}
+遥远发光天体距地球约为 $L$，以速率 $v$ 运动，速度方向与天体指向地球的连线夹角为 $\theta$。考虑光速 $c$ 有限，求地球观察者看到的横向运动速度。可用小量展开 $(1+ax+bx^2)^{1/2}\simeq1+ax/2$。
+这个展开式的意思是：当 $x\ll1$ 时，只保留常数项和 $x$ 的一次项，$x^2$ 及更高次项在数值上远小于前两项，可在一阶近似中忽略。
+\par 题图见图~\ref{ch04:ref:question-figure-2-103}。
+\KQuestionDZ
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+取地球所在惯性系，两次发光的坐标时刻间隔为 $\Delta t$，它不是天体随身钟测得的固有时间。初次发光位置为 $P_1$、到地球距离 $L$；第二次发光位置为 $P_2$。图中沿初始视线方向的接近量为 $v\cos\theta\,\Delta t$，横向位移为 $v\sin\theta\,\Delta t$：
+\ApparentTransverseDiagram
+由直角三角形，第二段传播路程的精确值为
+\begin{align*}
+D_2&=\sqrt{(L-v\cos\theta\,\Delta t)^2+(v\sin\theta\,\Delta t)^2}\\
+&=L\sqrt{1-2\varepsilon\cos\theta+\varepsilon^2},
+\qquad \varepsilon=\frac{v\Delta t}{L}.
+\end{align*}
+当 $\varepsilon\ll1$，使用题给展开得 $D_2=L-v\cos\theta\,\Delta t+O(L\varepsilon^2)$。两信号的接收时刻分别为 $t_1+L/c$、$t_1+\Delta t+D_2/c$，所以
+\[
+\Delta t_{\rm obs}=\Delta t+\frac{D_2-L}{c}
+\simeq\Delta t\left(1-\frac vc\cos\theta\right).
+\]
+横向位移除以接收间隔，再取 $\Delta t\to0$ 的瞬时极限，故视横向速度
+\[
+\boxed{v_{\perp,\rm app}=\frac{v\sin\theta}{1-(v/c)\cos\theta}}.
+\]
+若 $\theta>90^\circ$，$\cos\theta<0$，天体有远离地球的分量，分母自然大于 $1$，不必另改角度定义。$v<c$ 保证分母始终为正；$v/c\to0$ 时退化为 $v\sin\theta$。当天体接近光速、又以小而非零的角度朝观察者运动时，该“视速度”可超过 $c$；这来自信号到达间隔缩短，并不表示物质或信息真的超光速。
+\end{xesolution}
+
+
+\begin{origexamplebox}{新轨道上的太阳日与一年}\label{ch04:ex:k11-2-104}
+可以近似认为地球在一条圆轨道上绕日公转，取日心为参考系。地球公转一周的原恒星年为 $365.2564$ 个太阳日；地球上的人连续两次看见太阳在天空中同一位置的时间间隔称为一个太阳日，即 $24\,\mathrm h$。某种作用改变地球公转轨道半径，但不改变地球自转周期。若新的一年恰为 $360$ 个新太阳日，求（1）一个新太阳日是多少原小时；（2）新的一年是多少原小时。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+设不变的恒星自转周期为 $T_r$，原太阳日 $D=24\,\mathrm h$，原恒星年 $Y=365.2564D$。地球公转、自转同向，一天内地面子午线必须比日地连线多转一整圈，太阳才回到同一方位。所以 $(2\pi/T_r-2\pi/Y)D=2\pi$，约去 $2\pi D$ 得
+\[
+\frac1D=\frac1{T_r}-\frac1Y.
+\]
+由此
+\[
+T_r=\left(\frac1{24\,\mathrm h}+\frac1{365.2564\times24\,\mathrm h}\right)^{-1}
+\approx23.934472\,\mathrm h.
+\]
+新年 $Y'=360D'$，且
+\[
+\frac1{D'}=\frac1{T_r}-\frac1{Y'}
+=\frac1{T_r}-\frac1{360D'}.
+\]
+整理得 $D'=(361/360)T_r$。因此
+\[
+\boxed{D'\approx24.000957\,\mathrm h},
+\qquad
+\boxed{Y'=360D'\approx8640.344\,\mathrm h}.
+\]
+结果中的“361”来自一年内地球自转圈数比太阳日数多一圈。
+\end{xesolution}
+
+
+\begin{origexamplebox}{火星的顺行与逆行时间}\label{ch04:ex:k11-2-105}
+太阳系内行星的公转方向基本相同，地球观测者看到的行星位置是该行星在遥远背景星空中的投影。由于各行星公转速度和轨道位置不同，地球上看到的视运动方向并不总与地球公转方向相同。视运动方向与地球公转方向相同称为“顺行”，相反称为“逆行”；从顺行转为逆行或从逆行转为顺行的转折位置，行星看起来短暂停在星空中，称为“留”。地外行星、地球和太阳位于同一直线上，且太阳与地外行星分居地球两侧时，称为“冲日”。
+
+把地球和火星近似为在同一平面内绕太阳作同向圆周运动，火星轨道半径为地球的 $1.524$ 倍，不计地球自转。求相邻两次火星冲日之间，火星视运动逆行和顺行的时间。
+\par 题图见图~\ref{ch04:ref:question-figure-2-105}。
+\KQuestionEB
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+记 $k=R_M/R_E=1.524$。下面使用绕同一中心天体的圆轨道关系 $T^2\propto R^3$，即开普勒第三定律；其动力学依据见后续万有引力部分。先看七个时刻的轨道与视方向：
+\MarsRetrogradeDiagram
+角速度与周期成反比，所以
+\[
+q=\frac{\omega_M}{\omega_E}=k^{-3/2}\approx0.53152.
+\]
+相邻两次冲日的会合周期
+\[
+T_{\rm syn}=\frac{2\pi}{\omega_E-\omega_M}
+=\frac{T_E}{1-q}\approx779.67\,\mathrm d.
+\]
+
+设火星与地球的日心方位差为 $\delta$。火星相对地球的位置为 $\vect r=\vect r_M-\vect r_E$。
+视线方向角 $\lambda$ 的导数为 $\dot\lambda=(\vect r\times\dot{\vect r})_z/r^2$，它的正负决定顺行或逆行。为算叉积，可在考察的那一瞬间把地球日心方位取为零，则
+\begin{align*}
+\vect r/R_E&=(k\cos\delta-1,k\sin\delta),\\
+\dot{\vect r}/R_E&=(-k\omega_M\sin\delta,k\omega_M\cos\delta-\omega_E).
+\end{align*}
+两分量交叉相乘并相减：
+\begin{align*}
+\frac{(\vect r\times\dot{\vect r})_z}{R_E^2}
+&=(k\cos\delta-1)(k\omega_M\cos\delta-\omega_E)
++k^2\omega_M\sin^2\delta\\
+&=k^2\omega_M+\omega_E-k(\omega_E+\omega_M)\cos\delta.
+\end{align*}
+也就是
+\[
+(\vect r\times\dot{\vect r})_z
+=R_E^2\bigl[k^2\omega_M+\omega_E-k(\omega_E+\omega_M)\cos\delta\bigr]
+\]
+其中 $r^2$ 为正，所以“留”满足上述分子为零：
+\[
+\cos\delta_0=\frac{k^2q+1}{k(1+q)}\approx0.95735,
+\quad \delta_0\approx16.793^\circ.
+\]
+冲日前后 $|\delta|<\delta_0$ 为逆行。因此
+\[
+\boxed{T_{\text{逆}}=T_{\rm syn}\frac{\delta_0}{\pi}\approx72.74\,\mathrm d},
+\qquad
+\boxed{T_{\text{顺}}=T_{\rm syn}-T_{\text{逆}}\approx706.93\,\mathrm d}.
+\]
+这里 $\delta_0$ 代入时间公式时用弧度。两次“留”之间日心相对角变化 $2\delta_0$，除以相对角速度 $\omega_E-\omega_M$ 就得到逆行时长。
+
+图中的七个时刻在日心轨道、背景视方向与 $\lambda(t)$ 曲线上逐一对应；第3、5点是两次“留”，第4点是冲日。比较背景位置时要比较视线方向，不能把有限距离处的直线当作无限远星空。严格同平面模型的视方向在黄道同一大圆上往返，逆行段不是二维闭合圈。带有轨道倾角的三维模型还会产生视纬度变化，因而可能形成通常所说的回环；下方单独展示这种情况，不把它当作同平面计算的结果。
+\MarsInclinedDiagram
+\end{xesolution}
+
+
+\begin{origexamplebox}{由木卫I观测周期估算光速}\label{ch04:ex:k11-2-106}
+历史上曾有人比较地球位于公转轨道不同位置时测得的木星卫星周期，由此首次求得光的传播速度。已知木卫I真实周期 $T_0=42.5\,\mathrm h$；在地球轨道各处测得的所有周期中，最大值比 $T_0$ 多 $15\,\mathrm s$，最小值比 $T_0$ 少 $15\,\mathrm s$。近似认为地球、木星及木卫I都在同一平面内的圆轨道上运动：$R_E=1.5\times10^8\,\mathrm{km}$，$R_J=7.8\times10^8\,\mathrm{km}$，木卫I轨道半径 $R_I=4.2\times10^5\,\mathrm{km}$。（1）分析测得周期最大、最小时地球在公转轨道上的大致位置，以及地球、木星和木卫I的运动对测量周期的影响；（2）作合理近似，利用给定数据估算光速。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+连续两个同相位事件之间，地球—木星距离若增加 $\Delta D$，后一信号多传播 $\Delta D/c$，观测周期就变长；距离减小时观测周期变短。极值出现在地球相对木星的径向速度最大附近，即地球—木星视线近似与地球轨道相切的位置，而不是合日或冲日。木星也在公转，但因 $R_J\gg R_E$ 且其公转较慢，视线方向上的修正较小；木卫I在一个真实周期后回到同一相位，其轨道位移一阶抵消。$R_I$ 给出的卫星速率约 $17.2\,\mathrm{km/s}$，主要影响周期内的瞬时位置，不主导周期极值。
+\RomerDiagram
+
+地球轨道速率
+\[
+v_E=\frac{2\pi R_E}{365.2564\times86400\,\mathrm s}
+\approx29.86\,\mathrm{km/s}.
+\]
+在上述极值位置取 $|\Delta D|\simeq v_ET_0$，而 $|\Delta T_{\rm obs}|=15\,\mathrm s$，于是
+\[
+c\simeq\frac{v_ET_0}{15\,\mathrm s}
+=\frac{29.86\times(42.5\times3600)}{15}\,\mathrm{km/s}
+\approx\boxed{3.05\times10^5\,\mathrm{km/s}}.
+\]
+这一层是忽略木星公转的数量级估算。进一步保留地球和木星的公转，令 $\delta$ 为地球相对木星的日心方位角，则
+\[
+D^2=R_J^2+R_E^2-2R_ER_J\cos\delta,\qquad
+\dot D=\frac{R_ER_J(\omega_E-\omega_J)\sin\delta}{D}.
+\]
+为求 $|\dot D|$ 最大值，可令 $c_\delta=\cos\delta$，对 $(1-c_\delta^2)/(R_J^2+R_E^2-2R_ER_Jc_\delta)$ 求导。约去正因子后，极值条件为
+\[
+R_ER_Jc_\delta^2-(R_J^2+R_E^2)c_\delta+R_ER_J=0.
+\]
+两根为 $R_E/R_J$ 和 $R_J/R_E$；后者大于 $1$，舍去。有效位置满足
+\[
+\cos\delta=\frac{R_E}{R_J},\qquad
+\delta\approx78.91^\circ\ \text{或}\ 281.09^\circ,
+\qquad |\dot D|_{\max}=R_E(\omega_E-\omega_J).
+\]
+图中上侧 $E_+$ 处 $\dot D>0$，观测周期最长；下侧 $E_-$ 处 $\dot D<0$，观测周期最短。这两处 $SE$ 与 $EJ$ 垂直，确实是切点。
+
+用开普勒第三定律估计 $\omega_J/\omega_E=(R_E/R_J)^{3/2}\approx0.0843$，同样由周期偏差 $15\,\mathrm s$ 得
+\[
+c\simeq\frac{R_E(\omega_E-\omega_J)T_0}{15\,\mathrm s}
+\approx2.79\times10^5\,\mathrm{km/s}.
+\]
+保留木星公转使前一估计降低约 $8.4\%$，不能只称为很小的尾数修正。题给周期差本身是近似数据，不能为了更贴近标准光速而选择近似层级。木卫I半径相对地木距离很小，且同一轨道相位事件间其相对木星的位置重复；因此估计中不应把卫星速率 $2\pi R_I/T_0$ 直接加到长期地木径向速度上。
+\end{xesolution}
+
+\begin{origexamplebox}{用两次试射修正炮口角}\label{ch04:ex:k11-2-107}
+第一次以 $30^\circ$ 发射，落点比目标远 $20\,\mathrm m$；第二次以 $29^\circ$ 发射，落点比目标近 $30\,\mathrm m$。确定再次发射的角度，使炮弹尽可能命中目标。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+在 $1^\circ$ 小区间内把落点误差对角度作线性插值：从 $29^\circ$ 的 $-30\,\mathrm m$ 增加到 $30^\circ$ 的 $+20\,\mathrm m$，零点位于
+\[
+29^\circ+\frac{30}{30+20}\times1^\circ
+=\boxed{29.6^\circ}.
+\]
+若假设炮口速度不变、发射与落地点等高，射程 $S=K\sin2\theta$。由
+\[
+K\sin60^\circ=D+20,
+\qquad K\sin58^\circ=D-30
+\]
+先求 $K,D$，再令 $K\sin2\theta=D$，得到 $\theta\approx29.593^\circ$，与线性插值一致。因此实际设定 $29.6^\circ$ 已是合理最优值。
+\end{xesolution}
+
+\begin{origexamplebox}{步枪准线与枪管的夹角}\label{ch04:ex:k11-2-108}
+步枪的瞄准遵循“三点一线”原理：当缺口、准星和目标三点连成一线时击发。子弹速度虽然很大，通常约为 $800$--$1000\,\mathrm{m/s}$，但子弹在飞行中仍作抛体运动，因此必须在射击前校准步枪。校准的结果是使缺口与准星的连线并不与枪管平行，而是保留一个很小的夹角。忽略空气阻力，子弹初速率为 $v_0$，求为命中水平距离 $L$、与枪口等高的目标，瞄准线与枪管应有多大夹角 $\alpha$。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+瞄准线指向目标，近似水平；枪管需略向上抬高 $\alpha$。同高斜抛射程条件
+\[
+L=\frac{v_0^2}{g}\sin2\alpha
+\]
+给出
+\[
+\boxed{\alpha=\frac12\arcsin\frac{gL}{v_0^2}}.
+\]
+步枪中 $gL/v_0^2\ll1$，故
+\[
+\boxed{\alpha\simeq\frac{gL}{2v_0^2}}.
+\]
+角度很小但不能取零；否则子弹到达目标时已因重力下落。
+\end{xesolution}
+
+
+\begin{origexamplebox}{击中墙上水平线的瞄准点轨迹}\label{ch04:ex:k11-2-109}
+水平地面上有一面竖直墙，墙上离地 $h$ 处有一条水平直线。距墙 $L$ 的人以固定初速率 $v_0$ 投掷物体，要击中这条直线。求相应瞄准点在墙面上构成的轨迹。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+设投掷点 $O$ 离地高度为 $z_0$，先保留这一参数，最后再给出 $z_0=0$ 的特例。在墙面内取水平方向坐标 $x$，$x=0$ 对应 $O$ 在墙上的法向投影；瞄准点 $Q$ 的离地高度为 $z$，实际命中点 $P$ 的离地高度为 $h$。定义相对高度 $Z=z-z_0$、$H=h-z_0$。
+\AimLocusDiagram
+墙面俯视的水平直角三角形给出 $OP$ 的水平投影长度
+\[
+r=\sqrt{L^2+x^2}.
+\]
+初速度方向沿 $OQ$，故 $Z=r\tan\theta$。水平位移 $r=v_0\cos\theta\,t$，所以 $t=r/(v_0\cos\theta)$。把它代入竖直位移 $H=v_0\sin\theta\,t-gt^2/2$：
+\[
+H=r\tan\theta-\frac{gr^2}{2v_0^2\cos^2\theta}
+=Z-\frac{g}{2v_0^2}(r^2+Z^2).
+\]
+其中使用 $1/\cos^2\theta=1+\tan^2\theta=1+Z^2/r^2$。代入 $r^2=L^2+x^2$ 得 $x^2+Z^2-2v_0^2Z/g+L^2+2v_0^2H/g=0$，配方：
+\[
+\boxed{x^2+\left(z-z_0-\frac{v_0^2}{g}\right)^2
+=\frac{v_0^4}{g^2}-L^2-\frac{2v_0^2(h-z_0)}{g}}.
+\]
+右端记作 $\mathcal D$，各项量纲均为长度平方。$\mathcal D>0$ 时，瞄准点轨迹是墙面上的圆，图中圆心 $K$ 的坐标为 $(0,z_0+v_0^2/g)$，半径为
+\[
+\boxed{R_{\rm aim}=\sqrt{\frac{v_0^4}{g^2}-L^2-\frac{2v_0^2(h-z_0)}{g}}}.
+\]
+$\mathcal D=0$ 时只有圆心这一个瞄准点；$\mathcal D<0$ 时给定速率不能到达墙上的命中线。若采用出手点在地面的理想模型，令 $z_0=0$，便得到特例
+\[
+x^2+(z-v_0^2/g)^2=v_0^4/g^2-L^2-2v_0^2h/g.
+\]
+图中实际命中点 $P$ 总在水平线 $z=h$ 上，瞄准点 $Q$ 则在圆上变化，二者不能混同。在不限制投掷方向、墙无限延伸的理想模型中，完整圆均对应可能方向；若只许向上抛，则需进一步取 $z>z_0$ 的圆弧，墙高、开口等限制也要另取交集。$h,z_0\ge0$ 时抛物线在两端点连线的上方，因而在到墙之前不会先穿入地面。
+\end{xesolution}
+}
+
+\endgroup

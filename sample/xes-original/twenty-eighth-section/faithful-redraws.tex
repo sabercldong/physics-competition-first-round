@@ -1,0 +1,251 @@
+% Source figure roles retained; quantitative geometry independently constructed.
+\newcommand{\figureNineteenTwoFaithful}{%
+\begin{center}
+\includegraphics[width=.9\linewidth]{thermometer-contact.png}
+\figcap{图19.2：左侧温度计尚未接触水；右侧温包浸入水中且不接触容器底，等待热平衡后读数。}
+\end{center}}
+
+\newcommand{\figureNineteenThreeFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=5.5cm,y=1.6cm,>=Latex]
+\ThermalPotentialAxes{-.5}
+\pgfmathsetmacro{\qa}{(1+sqrt(.2))^(-1/6)}
+\pgfmathsetmacro{\qb}{(1-sqrt(.2))^(-1/6)}
+\draw[TextGray,dashed] (.8,-.8)--(1.8,-.8);
+\fill[Ink] (\qa,-.8) circle(.4pt) (\qb,-.8) circle(.4pt);
+\draw[DeepBlue,->] (\qa,-1.37)--(\qleft,-1.37);
+\draw[DeepBlue,->] (\qb,-1.37)--(\qright,-1.37);
+\draw[TextGray,dotted] (\qleft,-.5)--(\qleft,-1.35) (\qright,-.5)--(\qright,-1.35);
+\node[below,font=\small] at(1.14,-1.4){能量升高时，右端移动更多};
+\node[right,font=\small] at(1.84,-.8){较低能量};
+\end{tikzpicture}
+\figcap{图19.3：非对称势阱中的两组转折点。平均间距必须按运动时间或统计权重计算，不能把左右转折点的中点直接当作平均值。}
+\end{center}}
+
+\newcommand{\ThermalBarometerBase}[2]{%
+\fill[DeepBlue!23] (-1.5,-.65) rectangle (1.5,0);
+\fill[DeepBlue!23] (-.28,-.5) rectangle (.28,#1);
+\draw[Ink,thick] (-1.5,.35)--(-1.5,-.65)--(1.5,-.65)--(1.5,.35);
+\draw[Ink,thick] (-.28,-.4)--(-.28,#2)--(.28,#2)--(.28,-.4);
+\draw[DeepBlue,thick] (-1.5,0)--(-.28,0) (.28,0)--(1.5,0) (-.28,#1)--(.28,#1);
+\draw[TextGray,dashed] (.35,#1)--(1.05,#1);
+\draw[<->] (.9,0)--node[right]{$H$}(.9,#1);}
+\newcommand{\figureNineteenFourFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+\ThermalBarometerBase{3.5}{4.6}
+\node[font=\small,anchor=west] at(.7,4.1){近似真空};
+\draw[Ink,thin] (.3,4.05)--(.6,4.1);
+\draw[Ink] (2,0)--(2,4.2);
+\foreach \height in {0,.5,...,4}{\draw[Ink] (2,\height)--(2.15,\height);}
+\draw[Ink,thin] (2.15,1.8)--(2.5,1.8);
+\node[right] at(2.5,1.8){读数尺};
+\node[left] at(-1.55,-.3){汞槽};
+\end{tikzpicture}
+\figcap{图19.4：传统水银气压计。管口浸入汞槽，管内汞柱与槽中水银连续连通。}
+\end{center}}
+
+\newcommand{\figureNineteenFiveFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=.85cm,y=.85cm,>=Latex]
+% Same fork-shaped chambers at different elevations. Gas spaces are not joined.
+\foreach \yy/\lab in {0/B,4.3/C}{
+\begin{scope}[shift={(1,\yy)}]
+\fill[DeepBlue!22] (-.65,1.5)--(-.23,1.38)--(-.23,.65)--(.23,.65)--(.23,1.38)--(.65,1.5)--(.65,0)--(-.65,0)--cycle;
+\draw[Ink,thick] (-.65,2.1)--(-.65,0)--(.65,0)--(.65,2.1);
+\draw[Ink,thick] (-.65,2.1)--(-.23,2.1) (.23,2.1)--(.65,2.1);
+\draw[Ink,thick] (-.23,2.35)--(-.23,.65)--(.23,.65)--(.23,2.35);
+\draw[DeepBlue] (-.65,1.5)..controls(-.4,1.5)and(-.25,1.4)..(-.23,1.38);
+\draw[DeepBlue] (.23,1.38)..controls(.25,1.4)and(.4,1.5)..(.65,1.5);
+\node[left] at(-.95,.65){$\lab$};
+\end{scope}}
+% Hydraulic line, shown as a connection, distinct from measurement chambers.
+\draw[DeepBlue,line width=1.5pt] (1.6,.2)--(3,.2)--(3,4.5)--(1.6,4.5);
+\node[right,align=left,font=\small] at(3.2,3.6){连通汞路\\可调储槽};
+\draw[DeepBlue] (3,1.1)--(4,1.1);
+\draw[Ink,thick] (3.65,1.5)--(3.65,.7)--(4.5,.7)--(4.5,1.5);
+\draw[DeepBlue,line width=2pt] (3.67,1.1)--(4.48,1.1);
+% Sample gas to lower chamber; upper gas has its own vacuum valve.
+\draw[Ink,thick] (-3.1,1.6) circle(.65);
+\draw[Ink,thick] (-2.45,1.6)--(.35,1.9);
+\node[below,align=center,font=\small] at(-3.1,.6){待测气体球\\低温恒温环境};
+\draw[Ink,thick] (.35,6.2)--(-.7,6.2)--(-.7,7);
+\draw[Ink] (-.9,6.6)--(-.5,6.9) (-.9,6.9)--(-.5,6.6);
+\node[left] at(-.9,6.75){$D$};
+\node[left,font=\small] at(-.9,7.2){抽气、检验真空};
+\draw[TextGray,dashed] (1.3,.65)--(2.5,.65) (1.3,4.95)--(2.5,4.95);
+\draw[<->] (2.3,.65)--node[left]{$h$}(2.3,4.95);
+\end{tikzpicture}
+\figcap{图19.5：瑞利精密气压计的测量结构示意。$B,C$ 为同形叉状端面，$D$ 位于真空参考气路；蓝线表示汞路，黑线表示气路。}
+\end{center}}
+
+\newcommand{\figureNineteenSixFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x={(.9cm,0cm)},y={(.38cm,.24cm)},z={(0cm,.9cm)},>=Latex]
+\begin{scope}[shift={(-4,0)}]
+\draw[TextGray,dashed] (0,2.5,0)--(0,0,0) (0,2.5,0)--(2.5,2.5,0) (0,2.5,0)--(0,2.5,2.5);
+\draw[Ink,thick] (0,0,0)--(2.5,0,0)--(2.5,0,2.5)--(0,0,2.5)--cycle;
+\draw[Ink,thick] (2.5,0,0)--(2.5,2.5,0)--(2.5,2.5,2.5)--(2.5,0,2.5);
+\draw[Ink,thick] (0,0,2.5)--(0,2.5,2.5)--(2.5,2.5,2.5);
+\draw[->] (0,0,0)--(3.2,0,0) node[right]{$x$};
+\draw[->] (2.5,0,0)--(2.5,3.4,0) node[right]{$y$};
+\draw[->] (0,0,0)--(0,0,3.3) node[above]{$z$};
+\fill[DeepBlue] (.7,.7,.8) circle(1.6pt);
+\draw[->,DeepBlue,thick] (.7,.7,.8)--(1.9,1.1,1.8) node[above]{$\vect v$};
+\draw[->,Ink] (.7,.7,.8)--(1.9,.7,.8);
+\draw[TextGray,thin] (1.3,.7,.8)--(-.35,0,.55);
+\node[left=3pt] at(-.35,0,.55){$v_x$};
+\node[below] at(1.25,0,-.55){边长 $d$；右手坐标系};
+\end{scope}
+\begin{scope}[x=1cm,y=1cm,shift={(2.3,0)}]
+\draw[Ink,thick] (3.3,-.2)--(3.3,3.7);
+\draw[->,DeepBlue,thick] (.3,.3)--(3.3,1.8);
+\draw[->,DeepBlue,thick] (3.3,1.8)--(.3,3.3);
+\draw[TextGray,dashed] (1.8,1.8)--(3.3,1.8);
+\node[below right] at(1.1,.7){$\vect v=(v_x,v_z)$};
+\node[above right] at(.3,3.3){$\vect v'=(-v_x,v_z)$};
+\fill[Ink] (3.3,1.8) circle(1.5pt);
+\node[right] at(3.5,1.8){$Q$};
+\node[below,font=\small] at(1.5,-.5){$xz$ 剖面，$v_y$ 未画出};
+\end{scope}
+\end{tikzpicture}
+\figcap{图19.6：左为立方容器中的速度分解；右为垂直于 $x$ 轴的壁面反射，法向速度反号、切向速度不变，两线与法线夹角相等。}
+\end{center}}
+
+\newcommand{\exampleNineteenSixFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\draw[Ink,thick] (0,1.4)--(0,0)--(4.5,0) (0,1.4)--(4.5,1.4);
+\draw[Ink,line width=3pt] (2.88,0)--(2.88,.22) (3.42,1.4)--(3.42,1.18);
+\filldraw[fill=SoftGray,draw=Ink] (2.95,0) rectangle (3.05,1.4);
+\draw[TextGray,dashed] (3.3,0)--(3.3,1.4);
+\draw[->] (2.5,1.9)--(3,1.9);
+\draw[->] (3.8,1.9)--(3.3,1.9);
+\node[above,align=center,font=\small] at(3.15,2){$AB$ 间容积\\$0.1V_0$};
+\draw[TextGray,thin] (3,-.08)--(2.6,-.5);
+\draw[TextGray,thin] (3.3,-.08)--(3.7,-.5);
+\node[below] at(2.6,-.5){$B$};\node[below] at(3.7,-.5){$A$};
+\node at(1.4,.7){$V_0,\ 0.9p_0$};
+\node at(4,.7){$p_0$};
+\begin{scope}[shift={(6.1,-.2)}]
+\begin{axis}[width=5.8cm,height=4.3cm,xmin=.97,xmax=1.14,ymin=.87,ymax=1.24,
+xlabel={$V/V_0$},ylabel={$p/p_0$},xtick={1,1.1},ytick={.9,1,1.1,1.2},grid=major,
+scaled ticks=false,tick label style={font=\scriptsize,/pgf/number format/fixed}]
+\end{axis}
+\end{scope}
+\end{tikzpicture}
+\figcap{左：活塞初始在 $B$ 处；两个挡块限制左、右移动。右：待画过程线的局部 $p$--$V$ 坐标，坐标轴均为线性刻度。}\label{ch14:fig:heated-apparatus}
+\end{center}}
+
+\newcommand{\figureNineteenSevenFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\draw[Ink,thick] (-1.2,3.5)--(-1.2,0)--(1.2,0)--(1.2,3.5);
+\draw[Ink,line width=2pt] (-1.2,1.48)--(-1,1.48) (1,1.48)--(1.2,1.48);
+\filldraw[fill=SoftGray,draw=Ink] (-1.2,1.5) rectangle (1.2,1.68);
+\fill[TextGray!45] (-1,1.68)--(0,2.35)--(1,1.68)--cycle;
+\node at(0,.7){$p_0,T_0$};
+\draw[<->] (-1.65,0)--node[left]{$H_0$}(-1.65,1.5);
+\node[right] at(1.7,1.55){卡环承托活塞};
+\draw[TextGray] (1.1,1.47)--(1.65,1.55);
+\node[right] at(1.7,2.2){铁砂};
+\end{tikzpicture}
+\figcap{图19.7：初态气体压强等于大气压；卡环承担铁砂的重量，活塞与缸壁之间没有漏气间隙。}
+\end{center}}
+
+\newcommand{\figureNineteenEightFaithful}{%
+\begin{center}
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\fill[DeepBlue!30] (-.3,2) rectangle (.3,2.8);
+\draw[Ink,thick] (-.3,4)--(-.3,0)--(.3,0)--(.3,4);
+\draw[<->] (.8,0)--node[right]{$a=50\,\mathrm{cm}$}(.8,2);
+\draw[<->] (.8,2)--node[right]{$h=20\,\mathrm{cm}$}(.8,2.8);
+\draw[<->] (-2.8,0)--node[left]{$L=100\,\mathrm{cm}$}(-2.8,4);
+\draw[Ink,thin] (0,.8)--(0,-.25);
+\node[below] at(0,-.35){封闭空气};
+\node[above] at(0,4.2){开口，外压 $p_0$};
+\end{tikzpicture}
+\figcap{图19.8：管内空气、汞柱及管口的位置按 $50:20:100$ 的长度比例绘制。}
+\end{center}}
+
+\newcommand{\ThermalUTubeState}[1]{%
+\pgfmathsetmacro{\leftlevel}{2+#1}
+\pgfmathsetmacro{\rightlevel}{2-#1}
+\fill[DeepBlue!18] (-1.7,\leftlevel)--(-1.1,\leftlevel)--(-1.1,0) arc(180:360:1.1)--(1.1,\rightlevel)--(1.7,\rightlevel)--(1.7,0) arc(0:-180:1.7)--cycle;
+\draw[Ink,thick] (-1.7,4)--(-1.7,0) arc(180:360:1.7)--(1.7,4)--(1.1,4)--(1.1,0) arc(360:180:1.1)--(-1.1,4)--cycle;
+\draw[DeepBlue,thick] (-1.7,\leftlevel)--(-1.1,\leftlevel) (1.1,\rightlevel)--(1.7,\rightlevel);
+\draw[<->] (-2.1,\leftlevel)--(-2.1,4);
+\draw[<->] (2.1,\rightlevel)--(2.1,4);}
+\newcommand{\closedUTubeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.75cm,y=.75cm,>=Latex]
+\begin{scope}[shift={(-3.7,0)}]
+\ThermalUTubeState{0}
+\node[left] at(-2.1,3){$L$};\node[right] at(2.1,3){$L$};
+\node[above] at(0,4.9){初态：两端封闭};
+\node[above,font=\small] at(-1.4,4.15){$p_0,T_0$};
+\node[above,font=\small] at(1.4,4.15){$p_0,T_0$};
+\end{scope}
+\begin{scope}[shift={(3.7,0)}]
+\ThermalUTubeState{.4}
+\node[left] at(-2.1,3.2){$L-x$};\node[right] at(2.1,2.8){$L+x$};
+\draw[TextGray,dashed] (-1.1,2.4)--(.4,2.4) (.4,1.6)--(1.1,1.6);
+\draw[<->] (.25,1.6)--node[left]{$2x$}(.25,2.4);
+\node[above] at(0,4.9){末态：右侧受热};
+\node[above,font=\small] at(-1.4,4.15){$p_L,T_0$};
+\node[above,font=\small] at(1.4,4.15){$p_R,T_R$};
+\end{scope}
+\end{tikzpicture}
+\figcap{水连续充满两腿及弯管；加热后左液面上升、右液面下降，气体仍各自封闭。}\label{ch14:fig:closed-u}
+\end{center}}
+
+% Ideal narrow L pipe. Filled mercury is clipped to its same constant-width boundary.
+\newcommand{\ThermalLPipe}[1]{%
+\begin{scope}
+\clip (-2,-.12)--(2.62,-.12)--(2.62,2)--(2.38,2)--(2.38,.12)--(-2,.12)--cycle;
+\pgfmathsetmacro{\tailx}{min(#1,2.5)}
+\pgfmathsetmacro{\taily}{max(0,#1-2.5)}
+\pgfmathsetmacro{\headx}{min(#1+1,2.5)}
+\pgfmathsetmacro{\heady}{min(2,max(0,#1+1-2.5))}
+\pgfmathparse{#1<2.5?1:0}
+\ifnum\pgfmathresult=1
+\pgfmathparse{#1+1<2.5?1:0}
+\ifnum\pgfmathresult=1
+\fill[DeepBlue!45] (\tailx,-.12) rectangle (\headx,.12);
+\else
+\fill[DeepBlue!45] (\tailx,-.12)--(2.62,-.12)--(2.62,\heady)--(2.38,\heady)--(2.38,.12)--(\tailx,.12)--cycle;
+\fi
+\else
+\fill[DeepBlue!45] (2.38,\taily) rectangle (2.62,\heady);
+\fi
+\end{scope}
+\draw[Ink,thick] (-2,.12)--(2.38,.12)--(2.38,2);
+\draw[Ink,thick] (-2,.12)--(-2,-.12)--(2.62,-.12)--(2.62,2);
+\draw[TextGray,dashed] (0,-.45)--(0,.55);
+\node[below,font=\scriptsize] at(0,-.48){$s=0$};}
+\newcommand{\lPipeInitialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+\ThermalLPipe{0}
+\draw[<->] (-2,-1.15)--node[below]{$a$}(0,-1.15);
+\draw[<->] (0,-1.15)--node[below]{$b$}(1,-1.15);
+\draw[<->] (0,-1.75)--node[below]{$c$}(2.5,-1.75);
+\draw[<->] (3.1,0)--node[right]{$d$}(3.1,2);
+\node[above] at(-1,.3){封闭气体};
+\node[above] at(.5,.3){水银};
+\node[above] at(2.5,2.2){出口 $s=c+d$};
+\end{tikzpicture}
+\figcap{初始位置与沿管中心线坐标。弯头体积和曲率半径相对直管长度忽略不计。}\label{ch14:fig:l-initial}
+\end{center}}
+\newcommand{\lPipeStagesDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=.9cm,y=.9cm,>=Latex]
+\foreach \sx/\sy/\xx/\title in {0/0/.5/{水平段},7/0/2/{跨越弯头},0/-4/2.8/{竖直段},7/-4/4/{逐渐流出}}{
+\begin{scope}[shift={(\sx,\sy)}]
+\ThermalLPipe{\xx}
+\node[below] at(.3,-1){\title};
+\fill[Ink] ({min(\xx,2.5)},{max(0,\xx-2.5)}) circle(1pt);
+\end{scope}}
+\end{tikzpicture}
+\figcap{四阶段水银位置。黑点为水银后端，其沿程坐标等于 $x$；流出阶段管内只保留长度 $c+d-x$ 的水银。}\label{ch14:fig:l-stages}
+\end{center}}

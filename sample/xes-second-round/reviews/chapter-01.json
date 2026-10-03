@@ -1,0 +1,123 @@
+{
+  "status": "verified",
+  "verified_on": "2026-09-05",
+  "scope": "第1章内部锁定；不是全书发布许可",
+  "pdf_sha256": "252b02f4314ce65087feb3023116b069d2fe2ae81686a5bc75ae21b780b3c0d5",
+  "inputs": {
+    "book.json": "18702eba6d0aa5e2234074d44d1967366db287cc30222180d8b13c1f9319961f",
+    "chapters/ch01-diagrams.tex": "f79d8755c76c2130e4218adaf23a9347da85d6c93314d3b7636049e676d0bd4c",
+    "chapters/ch01-practice.tex": "6f9d26a462a09f8ffaa1603ecabdc40286f77bf57e78bfba1f9fd68f038afb88",
+    "chapters/ch01-theory.tex": "5a4be137f73a7cc90103acc7cb57777ba8f26b656bfeea627d34da1f3c61e9df",
+    "chapters/ch01.tex": "63ebe7135d54b8329037205da9ffd1b537bf11904e2d2252ec81bd3b39b14280",
+    "style.tex": "4b402b0aac0e9a5897146852243d667394b72f2523ed3a70303ceb3725a1b814",
+    "tools/build.py": "ead3a920c99f62cc1901fbcb4fe230f3ae0dc1ec184063bf97194e8a83889f26"
+  },
+  "checks": {
+    "page_layout": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-01-review-notes.md",
+        "build/chapter-01/render/contact-01.jpg",
+        "build/chapter-01/render/contact-02.jpg",
+        "build/chapter-01/render/contact-03.jpg",
+        "build/chapter-01/render/contact-04.jpg",
+        "build/chapter-01/render/manifest.json"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-01-review-notes.md": "a3ec46a3880cc12d59c4c3b602df20d0bacedd3a6d571e4c4fa13b1963c0e693",
+        "build/chapter-01/render/contact-01.jpg": "9957e019bfc8b7e1328a7d37b13250b054e6c4b6bfb1d89a35cdaea628c8c9e1",
+        "build/chapter-01/render/contact-02.jpg": "52603474737a3d7595bc7715cfaa8b3c803c296732015f4f45c7e74bdb52e8a2",
+        "build/chapter-01/render/contact-03.jpg": "c4f28d9feb55b58e5a7422af0d5e2dff19709fc439e8e9779d0f5c6b48d4bcda",
+        "build/chapter-01/render/contact-04.jpg": "b8dcf2256ccf653551a96b0727ae3158a73f426cf804075bc613b76e9a783bf5",
+        "build/chapter-01/render/manifest.json": "74998f22e9c6247dab2fb6ae149924f6cffe90359db405aa6fde46ecda0b9534"
+      }
+    },
+    "figures": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-01-review-notes.md",
+        "build/chapter-01/render/figure-01.png",
+        "build/chapter-01/render/figure-02.png",
+        "build/chapter-01/render/figure-03.png",
+        "build/chapter-01/render/figure-04.png",
+        "build/chapter-01/render/figure-05.png",
+        "build/chapter-01/render/figure-06.png",
+        "build/chapter-01/render/figure-07.png",
+        "build/chapter-01/render/figure-08.png",
+        "build/chapter-01/render/figure-09.png",
+        "build/chapter-01/render/figure-10.png",
+        "build/chapter-01/render/figure-11.png",
+        "build/chapter-01/render/figure-12.png",
+        "build/chapter-01/render/figure-13.png",
+        "build/chapter-01/render/figure-14.png",
+        "build/chapter-01/render/figure-15.png",
+        "build/chapter-01/render/figure-16.png",
+        "build/chapter-01/render/figure-17.png",
+        "tests/test_ch01_geometry.py"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-01-review-notes.md": "a3ec46a3880cc12d59c4c3b602df20d0bacedd3a6d571e4c4fa13b1963c0e693",
+        "build/chapter-01/render/figure-01.png": "81862b1ba72ceb367e9a8198769d058a1f3c8a6721d0681977524311874e7f69",
+        "build/chapter-01/render/figure-02.png": "1e02e0ca23da625fb1117abb05dda234a29d130b0e8d3b4231288f33e5809347",
+        "build/chapter-01/render/figure-03.png": "7399cf007d153841cf07243241a14bde0d4e0b76ae62305da57042cf22752250",
+        "build/chapter-01/render/figure-04.png": "98378ebad76029a39a3781063f314cd5d4fb1204b7e201a500375c57915595bd",
+        "build/chapter-01/render/figure-05.png": "3f74c1004d530a57d87404b229d005034b60e67b9251d86b8505d84097f84ac1",
+        "build/chapter-01/render/figure-06.png": "b9a11fb0024f0f52e74871335a1c8527ebb52e1d4e56f0094657e72fa7e89873",
+        "build/chapter-01/render/figure-07.png": "276b9c68445217e228eb076f1f41a6265e68525e579da1c8881d11f7b9831e47",
+        "build/chapter-01/render/figure-08.png": "bda7623fbefa2ef5fbdd1c73da82f694cfb6e45603b106a9970a154a4e6cf101",
+        "build/chapter-01/render/figure-09.png": "419d959143083d8e59710494f811552e8d624cab669d3d7eef58997e814edf28",
+        "build/chapter-01/render/figure-10.png": "d682995ff809606320222f0f318a715006c4b44b9822c2937957ea552a4f60b1",
+        "build/chapter-01/render/figure-11.png": "ef760683785bffedfde27e97ed3af19a3e2c1a188f4fc56cc8b3d324a9fef548",
+        "build/chapter-01/render/figure-12.png": "161052b34aeae399e5de2185ece507550dab52b351124723c7fe2d054dea026a",
+        "build/chapter-01/render/figure-13.png": "090a9097b2c0c24e09b97fdd4c2fd1b22d641662ae9e7fbaeb9d2be2b862d3a8",
+        "build/chapter-01/render/figure-14.png": "0d6e6c38dc58773efff548a89a3b17076fad3603613e35953e508ffbbe48168d",
+        "build/chapter-01/render/figure-15.png": "eb4b283856196594ed0dc1c4b88384809e9b721fd2b98efdf92d738f2e35c9ee",
+        "build/chapter-01/render/figure-16.png": "f0ba9c748495f007ab4dbf5b4f96ee6b63ac8877cab6db13120b379fb23230ff",
+        "build/chapter-01/render/figure-17.png": "5622771a5a45dd54d264202f74af2a0d68482a77cc40b2d4dc36f95519df0254",
+        "tests/test_ch01_geometry.py": "f89e85bdc7c03c3128b25920c3083061542892e349426a2a9afb5327b03af0c5"
+      }
+    },
+    "physics": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-01-review-notes.md",
+        "tests/test_ch01_geometry.py"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-01-review-notes.md": "a3ec46a3880cc12d59c4c3b602df20d0bacedd3a6d571e4c4fa13b1963c0e693",
+        "tests/test_ch01_geometry.py": "f89e85bdc7c03c3128b25920c3083061542892e349426a2a9afb5327b03af0c5"
+      }
+    },
+    "source_completeness": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-01-review-notes.md",
+        "reviews/source_inventory/autumn-practice-ch01.json",
+        "reviews/source_inventory/autumn-student-ch01-motion.json",
+        "reviews/source_inventory/autumn-student-ch01-opening.json",
+        "reviews/source_inventory/autumn-student-ch01-remaining.json"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-01-review-notes.md": "a3ec46a3880cc12d59c4c3b602df20d0bacedd3a6d571e4c4fa13b1963c0e693",
+        "reviews/source_inventory/autumn-practice-ch01.json": "a40b7371c056107c55cc9bbfaa8a82bf174a28daef5d99445e3adde20afe7b06",
+        "reviews/source_inventory/autumn-student-ch01-motion.json": "a6acfe854e4c6b3226b1c4c3227b45d81fa37fac2d2a4da4c046b8c69b271ce6",
+        "reviews/source_inventory/autumn-student-ch01-opening.json": "773def2c8e7103fd159caa89597488f9069233c2aa3f014af72e6dfbf3e3e3e5",
+        "reviews/source_inventory/autumn-student-ch01-remaining.json": "8a44c944e0a955f1ed72db1fdd1216220db37fcc143b934381ebbe5f3b6f0a8d"
+      }
+    },
+    "pdf_structure": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-01-review-notes.md",
+        "tests/test_ch01_pdf.py",
+        "build/chapter-01/main.log"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-01-review-notes.md": "a3ec46a3880cc12d59c4c3b602df20d0bacedd3a6d571e4c4fa13b1963c0e693",
+        "tests/test_ch01_pdf.py": "28194f448490b6dd331f04f6cdc7a3525f3899d308e4819bb19952cc350f8a56",
+        "build/chapter-01/main.log": "1bd9f8878e00cd2e1c1b3484b50a8a174b19fc4245434408a3816d85efa0c0d1"
+      }
+    }
+  },
+  "unresolved_findings": []
+}

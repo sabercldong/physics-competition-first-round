@@ -1,0 +1,721 @@
+\section{矢量分析}
+
+\subsection{指标语言与三维矢量}
+
+指标记号把成组分量、求和和缩并统一到一套语法中。例如
+\[
+ a_i=(1,2,3),\qquad b_i=(4,5,6),\qquad
+ c_{ij}=a_ib_j,\qquad a_ib_i=32.
+\]
+只出现一次的 $i,j,k$ 是\emph{自由指标}，等式两边必须逐一对应；同一项中恰好出现两次的指标是\emph{哑指标}，按爱因斯坦求和约定对其全部取值求和。不同自由指标独立取值，三维中含两个自由指标的量有 $3^2$ 个分量。哑指标可改名，却不能与同项已有自由指标冲突。
+
+从四个最小表达式可以引入这套语言：
+\[
+ a_i=(1,2,3),\qquad b_i=(4,5,6),
+\]
+\[
+ c_{ij}=a_ib_j=
+ \begin{pmatrix}4&5&6\\8&10&12\\12&15&18\end{pmatrix},
+ \qquad d=a_ib_i=1\cdot4+2\cdot5+3\cdot6=32.
+\]
+前两式各含一个自由指标，实际各代表三个分量；第三式的 $i,j$ 独立变化，代表九个分量；第四式的 $i$ 在同一单项式中出现两次，因而是哑指标，只代表一次求和。由此得到三条必须始终遵守的语法规则：
+
+\begin{enumerate}
+ \item 同一单项式中，一个指标只能出现一次（自由）或两次（缩并），不能出现三次，例如 $a_ib_ic_i$ 没有定义；
+ \item 等式两边的自由指标必须相同，例如 $A_{ij}=B_{ik}$ 不成立，因为右侧还含未缩并的 $k$；
+ \item 不同单项式中的哑指标可以独立改名，例如
+ $a_ib_i+c_jd_j=a_kb_k+c_ld_l$，但不能把它改成与同项自由指标冲突的名字。
+\end{enumerate}
+
+这些规则并非排版习惯，而是保证一个短式能够无歧义地还原成分量方程。比如
+$A_{ij}x_j=b_i$ 代表三条方程，每条方程内部对 $j$ 求和；而
+$A_{ij}x_i=b_j$ 则是另一个转置后的线性映射。指标的上下位置在一般坐标系中还区分逆变与协变分量；本节限于欧氏正交归一基，可用度量 $\delta_{ij}$ 升降指标，所以数值上 $x_i=x^i$，但概念上仍保留位置区别。
+
+\begin{advdefinition}{克罗内克符号}\label{advA3:def:kronecker}
+\[
+ \delta_{ij}=\begin{cases}1,&i=j,\\0,&i\ne j.
+ \end{cases}
+\]
+它是欧氏正交归一基中的单位张量分量。
+\end{advdefinition}
+
+\begin{advdefinition}{列维--奇维塔符号}\label{advA3:def:levi-civita}
+三维中
+\[
+ \varepsilon_{ijk}=\begin{cases}
+ +1,&(ijk)\text{ 是 }(123)\text{ 的偶置换},\\
+ -1,&(ijk)\text{ 是 }(123)\text{ 的奇置换},\\
+ 0,&i,j,k\text{ 中有重复}.
+ \end{cases}
+\]
+\end{advdefinition}
+$\delta_{ij}$ 缩并时起换指标作用，例如
+$a_ib_j\delta_{ij}=a_ib_i$、
+$\delta_{ij}\delta_{kl}A_{ikm}=A_{jlm}$。
+
+把换指标过程逐项写开可看得更清楚。对固定自由指标 $i$，
+\[
+ \delta_{ij}v_j=\delta_{i1}v_1+\delta_{i2}v_2+\delta_{i3}v_3=v_i.
+\]
+因此 $\delta_{ij}$ 是单位映射的分量。它的迹为
+$\delta_{ii}=3$；而 $\delta_{ij}\delta_{jk}=\delta_{ik}$ 表明单位映射复合后仍是自身。列维--奇维塔符号则记录三维空间的取向：只有三个指标互异时才非零，循环置换 $(123)\to(231)\to(312)$ 保持正号，任意一次对换改变符号。
+
+\begin{advtheorem}{列维--奇维塔缩并恒等式}\label{advA3:thm:epsilon-identities}
+\[
+ \varepsilon_{ijk}\varepsilon_{ijk}=6,
+ \qquad
+ \varepsilon_{ijk}\varepsilon_{ijn}=2\delta_{kn},
+\]
+\[
+ \boxed{\varepsilon_{ijk}\varepsilon_{imn}
+ =\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}},
+\]
+\[
+ \varepsilon_{ijk}\varepsilon_{lmn}
+ =\det\!\begin{pmatrix}
+ \delta_{il}&\delta_{im}&\delta_{in}\\
+ \delta_{jl}&\delta_{jm}&\delta_{jn}\\
+ \delta_{kl}&\delta_{km}&\delta_{kn}
+ \end{pmatrix}.
+\]
+\end{advtheorem}
+最后一式是两个有向体积形式的内积展开；令 $l=i$ 并缩并，依次得到前三式。
+
+还可以不用预设结论来检查最常用的二指标缩并。固定 $j,k,m,n$，对 $i$ 求和。若 $j=k$，左边因第一个 $\varepsilon$ 为零，右边也成为
+$\delta_{jm}\delta_{jn}-\delta_{jn}\delta_{jm}=0$。若 $j\ne k$，只有唯一一个与 $j,k$ 互补的 $i$ 可能贡献；第二个 $\varepsilon_{imn}$ 也只有当 $(m,n)$ 等于 $(j,k)$ 或 $(k,j)$ 时非零，正好分别对应右边的 $+1$ 与 $-1$。这给出独立的分量核验。
+
+\begin{advexamplebox}{用行列式构造列维--奇维塔符号}\label{advA3:ex:epsilon-determinant}
+令 $[i]_r$、$[i]_c$ 分别为三阶单位矩阵的第 $i$ 行和第 $i$ 列。
+\begin{enumerate}
+ \item 证明
+ $\varepsilon_{ijk}=\det([i]_r,[j]_r,[k]_r)^{\mathsf T}$；
+ \item 由此证明 $\varepsilon_{ijk}$ 全反对称；
+ \item 证明定理\ref{advA3:thm:epsilon-identities}。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+若 $i,j,k$ 有重复，行列式有两行相同而为零；若互异，这三行恰是单位阵三行的一个置换，行列式等于置换符号，正是 $\varepsilon_{ijk}$。交换任意两个指标等于交换两行，故符号反号。
+
+对两个行列式用柯西--比内公式，
+\[
+ \varepsilon_{ijk}\varepsilon_{lmn}
+ =\det([i]_r,[j]_r,[k]_r)^{\mathsf T}
+  \det([l]_c,[m]_c,[n]_c),
+\]
+矩阵乘积的九个元素就是相应的 $\delta$，得到定理最后一式。再令
+$l=i$ 求和；只有与固定 $(j,k)$ 互补的一个 $i$ 有贡献，展开行列式即得
+$\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}$。继续令 $m=j$、$n=k$ 缩并，分别得到 $2\delta_{kn}$ 和6。
+\end{advsolution}
+
+\begin{advdefinition}{三维欧氏矢量空间}\label{advA3:def:vector-space}
+取线性无关基 $\vect e_1,\vect e_2,\vect e_3$，三维实矢量空间为
+\[
+ \mathbb R^3=\{x^i\vect e_i\mid x^i\in\mathbb R\}.
+\]
+元素 $\vect x=x^i\vect e_i$ 称为矢量；$x^i$ 只是该矢量在选定基下的分量。抽象指标写法 $x^a$ 强调“这是一个矢量”而不指定基。
+\end{advdefinition}
+
+这里要严格区分三个对象：$\vect e_i$ 是基矢，$x^i$ 是三个实数分量，$x^a$ 是与选基无关的抽象矢量。若换基
+$\vect e'_i=M_i{}^j\vect e_j$，同一个几何矢量的分量必须反向变化，
+\[
+ x'^i=(M^{-1})^i{}_jx^j,
+ \qquad x'^i\vect e'_i=x^j\vect e_j.
+\]
+所以“把三个数排成一列”只有连同它们所依赖的基才表示矢量。基在定义线性空间时可以先视为“忘却结构的符号”：暂不赋予长度、角度或方向，随后再由点积与取向结构赋予欧氏几何含义。
+
+抽象指标 $a,b,c$ 不取 $1,2,3$ 中的数值，它只标明对象所在的张量空间。例如 $u^av^b$ 是二阶张量，$u^av_a$ 是缩并得到的标量；把抽象指标换成具体指标并补上基，才得到可计算的分量式。后续若不讨论换基，通常仍用粗体矢量记号提高可读性，但每一个矢量恒等式都可以退回指标式审查。
+
+\begin{advdefinition}{点积}\label{advA3:def:dot}
+点积是双线性、对称、正定映射 $\mathbb R^3\times\mathbb R^3\to\mathbb R$，在正交归一基中
+$\vect e_i\cdot\vect e_j=\delta_{ij}$，所以
+$\vect x\cdot\vect y=x^iy^j\delta_{ij}=x^iy^i$。
+\end{advdefinition}
+
+\begin{advdefinition}{叉积}\label{advA3:def:cross}
+在定向三维欧氏空间中，叉积是双线性映射
+$\mathbb R^3\times\mathbb R^3\to\mathbb R^3$，由
+\[
+ \vect e_i\times\vect e_j=\varepsilon_{ijk}\vect e_k
+\]
+确定方向与大小。
+\end{advdefinition}
+
+\begin{advtheorem}{点积交换、叉积反交换}\label{advA3:thm:dot-cross-symmetry}
+\[
+ \vect u\cdot\vect v=\vect v\cdot\vect u,
+ \qquad
+ \vect u\times\vect v=-\vect v\times\vect u.
+\]
+\end{advtheorem}
+证明只需分别使用 $\delta_{ij}=\delta_{ji}$ 与
+$\varepsilon_{ijk}=-\varepsilon_{jik}$。
+
+分量计算同时还原了熟悉的坐标公式：
+\[
+ \vect x\cdot\vect y=x_1y_1+x_2y_2+x_3y_3,
+\]
+\[
+ \vect x\times\vect y=
+ (x_2y_3-x_3y_2)\vect e_1
+ +(x_3y_1-x_1y_3)\vect e_2
+ +(x_1y_2-x_2y_1)\vect e_3.
+\]
+由 Cauchy--Schwarz 不等式可定义夹角
+$\cos\theta=(\vect x\cdot\vect y)/(|\vect x||\vect y|)$；而叉积大小满足
+\[
+ |\vect x\times\vect y|^2
+ =x_iy_jx_my_n\varepsilon_{ijk}\varepsilon_{mnk}
+ =|\vect x|^2|\vect y|^2-(\vect x\cdot\vect y)^2,
+\]
+所以 $|\vect x\times\vect y|=|\vect x||\vect y|\sin\theta$，方向由空间取向和右手规则确定。
+
+\begin{advdefinition}{三重标积}\label{advA3:def:triple-scalar}
+\[
+ \mathcal V(\vect u,\vect v,\vect w)
+ =(\vect u\times\vect v)\cdot\vect w
+ =u_iv_jw_k\varepsilon_{ijk}.
+\]
+它是三矢量张成平行六面体的有向体积。
+\end{advdefinition}
+
+\begin{advtheorem}{三重标积的刻画}\label{advA3:thm:triple-properties}
+$\mathcal V$ 对三个变量分别线性，任意两个输入相等时为零，循环置换不变，并满足
+$\mathcal V(\vect e_1,\vect e_2,\vect e_3)=1$。反过来，这四条性质唯一确定三重标积。
+\end{advtheorem}
+展开到基矢后，交错性把所有含重复指标的项消去，正规性和循环性把其余六项化成置换符号，因此必为
+$u_iv_jw_k\varepsilon_{ijk}$。
+
+用分量矩阵写就是
+\[
+ \mathcal V(\vect u,\vect v,\vect w)=
+ \det\!\begin{pmatrix}
+ u_1&u_2&u_3\\v_1&v_2&v_3\\w_1&w_2&w_3
+ \end{pmatrix}.
+\]
+交换两行改变取向，所以反号；若三个矢量共面，则三行线性相关，体积为零。反过来，只要这一行列式非零，三个矢量就构成一组基。三重标积因而同时承担几何体积、线性无关判据和坐标变换 Jacobian 三种角色。
+
+\begin{advtheorem}{三重矢积公式}\label{advA3:thm:triple-vector}
+\[
+ (\vect u\times\vect v)\times\vect w
+ =(\vect u\cdot\vect w)\vect v-(\vect v\cdot\vect w)\vect u,
+\]
+\[
+ \vect u\times(\vect v\times\vect w)
+ =(\vect u\cdot\vect w)\vect v-(\vect u\cdot\vect v)\vect w.
+\]
+\end{advtheorem}
+例如第一式的第 $l$ 分量为
+$u_iv_jw_k\varepsilon_{ijm}\varepsilon_{mkl}$；用定理\ref{advA3:thm:epsilon-identities}化为
+$u_iw_iv_l-v_iw_iu_l$，即得。
+
+\begin{advexamplebox}{叉积的雅可比恒等式}\label{advA3:ex:jacobi-cross}
+证明
+\[
+ (\vect u\times\vect v)\times\vect w
+ +(\vect w\times\vect u)\times\vect v
+ +(\vect v\times\vect w)\times\vect u=0.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+逐项使用定理\ref{advA3:thm:triple-vector}：
+\[
+ (u\cdot w)v-(v\cdot w)u
+ +(w\cdot v)u-(u\cdot v)w
+ +(v\cdot u)w-(w\cdot u)v=0.
+\]
+每一方向的两项因点积交换律相消。
+\end{advsolution}
+
+\begin{advexamplebox}{叉积导子与对易子}\label{advA3:ex:cross-derivation}
+定义 $D_{\vect u}(\vect v)=\vect u\times\vect v$，并令
+$[L_1,L_2]=L_1L_2-L_2L_1$。证明
+\[
+ [D_{\vect u},D_{\vect v}]=D_{\vect u\times\vect v},
+ \qquad
+ D_{\vect u}(\vect v\times\vect w)
+ =(D_{\vect u}\vect v)\times\vect w
+ +\vect v\times(D_{\vect u}\vect w).
+\]
+\end{advexamplebox}
+\begin{advsolution}
+对任意 $\vect w$，雅可比恒等式重排为
+\[
+ \vect u\times(\vect v\times\vect w)
+ -\vect v\times(\vect u\times\vect w)
+ =(\vect u\times\vect v)\times\vect w,
+\]
+即第一式。第二式直接展开右边并用三重矢积：
+\[
+ (u\times v)\times w+v\times(u\times w)
+ =(u\cdot w)v-(v\cdot w)u+(v\cdot w)u-(u\cdot v)w,
+\]
+等于 $u\times(v\times w)$。
+\end{advsolution}
+
+\subsection{张量与外代数}
+
+\begin{advdefinition}{张量与张量积}\label{advA3:def:tensor-product}
+二阶张量空间是
+\[
+ \mathbb R^3\otimes\mathbb R^3
+ =\{T^{ij}\vect e_i\vect e_j\},
+\]
+张量积由双线性和
+$\vect e_i\otimes\vect e_j=\vect e_i\vect e_j$ 定义。高阶张量用更多有序指标表示；零阶和一阶张量分别是标量和矢量。
+\end{advdefinition}
+张量积一般不交换：$u^av^b$ 与 $v^au^b$ 的分量顺序不同。各阶张量组成分级代数
+$T(\mathbb R^3)=\bigoplus_{n\ge0}T^n(\mathbb R^3)$。
+
+二阶张量在给定基下有九个分量，
+\[
+ \mathsf T=T^{ij}\vect e_i\otimes\vect e_j.
+\]
+它可以看成双线性型，也可以在用度量识别矢量和对偶矢量后看成线性映射。二者分量写法相近，但指标作用不同，因而不应仅凭“像矩阵”就随意交换次序。三个矢量的张量积
+$u^av^bw^c$ 属于三阶空间；一般有
+\[
+ T(\mathbb R^3)=T^0\oplus T^1\oplus T^2\oplus\cdots,
+ \qquad T^l\otimes T^m\subset T^{l+m}.
+\]
+标量是零阶张量，矢量是一阶张量。这个分级解释了为什么张量积会增加指标，而缩并会减少两个指标。
+
+\begin{advdefinition}{张量转置}\label{advA3:def:tensor-transpose}
+$t_{pq}$ 交换张量第 $p,q$ 个指标。例如
+$(t_{12}T)^{ab}=T^{ba}$；矩阵转置只是二阶张量的这一特例。
+\end{advdefinition}
+
+\begin{advdefinition}{张量缩并}\label{advA3:def:contraction}
+缩并 $c_{pq}$ 把第 $p,q$ 个一上一下指标相等并求和，从而使阶数降低2。例如
+$c_{12}(u^av_a)=u^au_a$，二阶张量的缩并是迹。
+\end{advdefinition}
+抽象指标能无歧义地区分矩阵乘法的不同转置组合：
+$A^{ab}B_{bc}$、$A^{ab}B_{cb}$、$A^{ba}B_{bc}$ 分别代表不同缩并。双点积也是两个指标同时缩并。
+
+更具体地，把 $A,B$ 的分量看作矩阵，四种常见乘积分别为
+\[
+ A^{ab}B_{bc}\leftrightarrow AB,\qquad
+ A^{ab}B_{cb}\leftrightarrow AB^{\mathsf T},
+\]
+\[
+ A^{ba}B_{bc}\leftrightarrow A^{\mathsf T}B,\qquad
+ A^{ba}B_{cb}\leftrightarrow A^{\mathsf T}B^{\mathsf T}.
+\]
+而
+$A^{ab}B_{ba}=\operatorname{tr}(AB)$ 与
+$A^{ab}B_{ab}=\operatorname{tr}(A^{\mathsf T}B)$
+是两种不同的双缩并。抽象指标的价值正在于：每一次转置和缩并都直接写在指标位置上，不依赖另造符号。
+
+\begin{advdefinition}{对称化与反对称化}\label{advA3:def:symmetrization}
+\[
+ T^{(a_1\cdots a_n)}=\frac1{n!}\sum_{\sigma\in S_n}
+ T^{a_{\sigma(1)}\cdots a_{\sigma(n)}},
+\]
+\[
+ T^{[a_1\cdots a_n]}=\frac1{n!}\sum_{\sigma\in S_n}
+ \operatorname{sgn}(\sigma)T^{a_{\sigma(1)}\cdots a_{\sigma(n)}}.
+\]
+两者都是投影算子：$\mathcal S^2=\mathcal S$、$\mathcal A^2=\mathcal A$。
+\end{advdefinition}
+
+二阶情形尤其直观：
+\[
+ T^{(ab)}=\frac12(T^{ab}+T^{ba}),\qquad
+ T^{[ab]}=\frac12(T^{ab}-T^{ba}),
+\]
+\[
+ T^{ab}=T^{(ab)}+T^{[ab]}.
+\]
+对称部分在转置下不变，反对称部分在转置下反号。除以 $n!$ 是必要的：若 $T$ 已完全对称，再做一次对称化必须仍等于 $T$，而不是变成 $n!T$。完全反对称张量只保留指标互异的分量，其余含重复指标的分量全部为零。
+
+\begin{advexamplebox}{对称张量空间的维数}\label{advA3:ex:symmetric-dimension}
+证明
+\[
+ \dim S^n(\mathbb R^3)=\frac{(n+1)(n+2)}2,
+\]
+并推广到 $S^n(\mathbb R^m)$。
+\end{advexamplebox}
+\begin{advsolution}
+完全对称分量只由指标1、2、3各出现多少次决定。令出现次数为
+$r_1,r_2,r_3\ge0$ 且 $r_1+r_2+r_3=n$，不同非负整数解的个数由插板法为
+\[
+ \binom{n+2}{2}=\frac{(n+1)(n+2)}2.
+\]
+$m$ 维时同理数 $r_1+\cdots+r_m=n$ 的非负整数解：
+\[
+ \boxed{\dim S^n(\mathbb R^m)=\binom{n+m-1}{m-1}}.
+\]
+\end{advsolution}
+
+三维中 $\dim\Lambda^0=1,\dim\Lambda^1=3,\dim\Lambda^2=3,\dim\Lambda^3=1$。二阶交错基可取
+$\vect e_1\wedge\vect e_2$、$\vect e_2\wedge\vect e_3$、$\vect e_3\wedge\vect e_1$；三阶只有体积元
+$\vect e_1\wedge\vect e_2\wedge\vect e_3$。
+
+按照本节楔积的归一化，
+\[
+ \vect e_i\wedge\vect e_j
+ =\vect e_i\otimes\vect e_j-\vect e_j\otimes\vect e_i,
+\]
+而三阶体积元是六个排列项按置换符号求和：
+\[
+ \begin{aligned}
+ \vect e_1\wedge\vect e_2\wedge\vect e_3
+ ={}&\vect e_1\vect e_2\vect e_3
+ +\vect e_2\vect e_3\vect e_1
+ +\vect e_3\vect e_1\vect e_2\\
+ &-\vect e_3\vect e_2\vect e_1
+ -\vect e_1\vect e_3\vect e_2
+ -\vect e_2\vect e_1\vect e_3.
+ \end{aligned}
+\]
+由这些显式展开即可自然过渡到一般交错代数。
+
+\begin{advtheorem}{三维四阶以上交错张量为零}\label{advA3:thm:alternating-zero}
+\[
+ n\ge4\quad\Longrightarrow\quad \Lambda^n(\mathbb R^3)=\{0\}.
+\]
+\end{advtheorem}
+证明：任意基张量含 $n\ge4$ 个取值只可能为1、2、3的指标，抽屉原理保证至少两个相同。交换这两个位置既不改变基张量，又因全反对称性使其反号，故该项为零。
+
+\begin{advdefinition}{楔积}\label{advA3:def:wedge}
+若 $\alpha\in\Lambda^l$、$\beta\in\Lambda^m$，定义
+\[
+ \alpha\wedge\beta=\frac{(l+m)!}{l!m!}\,
+ \mathcal A(\alpha\otimes\beta).
+\]
+它满足结合律及分次交换律
+$\alpha\wedge\beta=(-1)^{lm}\beta\wedge\alpha$。
+\end{advdefinition}
+
+分次交换律中的 $(-1)^{lm}$ 来自把 $\alpha$ 的 $l$ 个指标逐个越过 $\beta$ 的 $m$ 个指标，一共需要 $lm$ 次对换。因而两个1-形式反交换，一个1-形式与一个2-形式交换，两个2-形式也交换。特别地，对任意1-形式 $u$，
+$u\wedge u=0$。结合律保证可以无括号地写
+$u\wedge v\wedge w$，它等于三者张量积的完全反对称部分乘以 $3!$。
+
+\begin{advdefinition}{三维霍奇对偶}\label{advA3:def:hodge}
+霍奇算子 $\star:\Lambda^l\to\Lambda^{3-l}$ 线性，并由
+\[
+ \star1=\vect e_1\wedge\vect e_2\wedge\vect e_3,
+ \quad
+ \star\vect e_1=\vect e_2\wedge\vect e_3
+\]
+及循环关系确定；反向又有
+$\star(\vect e_2\wedge\vect e_3)=\vect e_1$。三维欧氏正定情形满足 $\star\star=1$。
+\end{advdefinition}
+由定义
+\[
+ \star(\vect x\wedge\vect y)=\vect x\times\vect y,
+ \qquad
+ \star(\vect x\wedge\vect y\wedge\vect z)
+ =\mathcal V(\vect x,\vect y,\vect z).
+\]
+这说明叉积是二矢量交错张量积的霍奇对偶，三重标积是三矢量楔积的霍奇对偶。
+
+逐个基矢核验第一式：
+\[
+ \star(\vect e_i\wedge\vect e_j)=\varepsilon_{ijk}\vect e_k,
+\]
+恰与叉积定义相同；由双线性即可推广到任意 $\vect x,\vect y$。再楔入 $\vect z$ 并取对偶，
+\[
+ \star(\vect x\wedge\vect y\wedge\vect z)
+ =x_iy_jz_k\varepsilon_{ijk},
+\]
+就是三重标积。于是三维叉积并不是一般维数都自然存在的基本乘法，而是“三维二阶交错张量与一阶矢量恰好同维”带来的特殊对偶。
+
+若记体积元
+$\Omega=\vect e_1\wedge\vect e_2\wedge\vect e_3$，则内插乘积满足
+\[
+ \iota_{\vect u}\Omega=\star\vect u,
+ \qquad \iota_{\vect v}\iota_{\vect u}\Omega
+ =\star(\vect u\wedge\vect v).
+\]
+也可用记号 $\vect e_i\cdot\Omega=\star\vect e_i$ 表达同一关系，并由此把三重矢积重写为
+\[
+ (\vect x\times\vect y)\times\vect z
+ =\iota_{\vect z}(\vect x\wedge\vect y)
+ =(\vect x\cdot\vect z)\vect y-(\vect y\cdot\vect z)\vect x.
+\]
+这里右式也再次说明三重矢积不满足结合律。
+
+\begin{advexamplebox}{外代数总维数}\label{advA3:ex:exterior-dimension}
+证明 $n$ 维空间的外代数满足
+\[
+ \dim\Lambda(\mathbb R^n)=2^n.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+$l$ 阶基由 $n$ 个基矢中任选 $l$ 个并按递增次序楔积得到，故
+$\dim\Lambda^l=\binom nl$。于是
+\[
+ \dim\Lambda=\sum_{l=0}^n\binom nl=(1+1)^n=2^n.
+\]
+这也给出三维的 $1+3+3+1=8$。
+\end{advsolution}
+
+\begin{advexamplebox}{霍奇对偶恢复点积}\label{advA3:ex:hodge-dot}
+证明对三维矢量 $\vect u,\vect v$，
+\[
+ \boxed{\star(\vect u\wedge\star\vect v)=\vect u\cdot\vect v}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+写 $\star\vect v=\tfrac12v_i\varepsilon_{ijk}\vect e_j\wedge\vect e_k$，则
+\[
+ \star(\vect u\wedge\star\vect v)
+ =\frac12u_lv_i\varepsilon_{ijk}\varepsilon_{ljk}
+ =u_lv_i\delta_{li}=u_iv_i.
+\]
+第二步用了 $\varepsilon_{ijk}\varepsilon_{ljk}=2\delta_{il}$。结果是标量，阶数也由
+$1+(3-1)=3$ 再对偶到0阶，检查一致。
+\end{advsolution}
+
+\subsection{三维矢量微分}
+
+在每点赋一个标量、矢量或张量分别得到标量场 $f(x)$、矢量场
+$\vect F=F_i(x)\vect e_i$ 和张量场。直角坐标固定基中
+\[
+ \nabla f=(\partial_i f)\vect e_i,
+ \quad
+ \nabla\vect F=(\partial_iF_j)\vect e_i\vect e_j,
+ \quad
+ \nabla\cdot\vect F=\partial_iF_i,
+ \quad
+ \nabla\times\vect F=\varepsilon_{ijk}\partial_iF_j\vect e_k.
+\]
+
+从全微分出发，
+\[
+ \dd f=(\partial_if)\dd x^i=\nabla f\cdot\dd\vect x,
+\]
+所以梯度是“与任意位移点乘后给出一阶变化”的唯一矢量。继续微分得到 Hessian：
+\[
+ \dd^2f=(\partial_i\partial_jf)\dd x^i\dd x^j
+ =(\dd\vect x\,\dd\vect x):\nabla\nabla f.
+\]
+矢量场的微分为
+\[
+ \dd\vect F=(\partial_iF_j)\dd x^i\vect e_j
+ =\dd\vect x\cdot\nabla\vect F.
+\]
+这三式解释了为什么 $\nabla f$ 是矢量、$\nabla\vect F$ 是二阶张量，也解释了张量指标的次序：第一个指标来自求导方向，第二个指标来自场的分量方向。
+
+\begin{advtheorem}{梯度的乘法与链式规则}\label{advA3:thm:gradient-rules}
+\[
+ \nabla(\lambda f+\mu g)=\lambda\nabla f+\mu\nabla g,
+ \quad \nabla(fg)=f\nabla g+g\nabla f,
+\]
+\[
+ \nabla F(g)=F'(g)\nabla g,
+ \quad
+ \nabla(f\vect F)=f\nabla\vect F+(\nabla f)\vect F,
+\]
+\[
+ \nabla(\vect F\cdot\vect G)
+ =(\nabla\vect F)\cdot\vect G+(\nabla\vect G)\cdot\vect F.
+\]
+\end{advtheorem}
+证明逐分量应用普通乘法和链式法则即可。最后两式要保留张量积的指标顺序，不能把 $(\nabla f)\vect F$ 随意换成 $\vect F\nabla f$。
+
+例如最后两式的分量推导为
+\[
+ \partial_i(fF_j)=f\partial_iF_j+(\partial_if)F_j,
+\]
+\[
+ \partial_i(F_jG_j)=(\partial_iF_j)G_j+(\partial_iG_j)F_j.
+\]
+第一式右端第二项确实是 $(\nabla f)\vect F$，而非 $\vect F(\nabla f)$；后者的分量是 $F_i\partial_jf$，除非张量恰好对称，否则两者不同。许多矢量恒等式错误都来自把张量积误当成普通数乘，因此这里必须保留指标顺序。
+
+\begin{advexamplebox}{径向函数的梯度与Hessian}\label{advA3:ex:radial-gradients}
+令 $r=(x_ix_i)^{1/2}$、$\vect r=x_i\vect e_i$。计算
+$\nabla x_i,\nabla r^2,\nabla r,\nabla(1/r),\nabla(\vect r/r^3)$ 以及 $\nabla\nabla r^n$（$r\ne0$）。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ \boxed{\nabla x_i=\vect e_i},\qquad
+ \boxed{\nabla r^2=2\vect r},\qquad
+ \boxed{\nabla r=\frac{\vect r}{r}},
+\]
+\[
+ \boxed{\nabla\frac1r=-\frac{\vect r}{r^3}},
+ \qquad
+ \boxed{\nabla\cdot\frac{\vect r}{r^3}=0\quad(r\ne0)}.
+\]
+最后一式若把“$\nabla$ 作用于矢量”理解为完整梯度，则
+\[
+ \nabla\left(\frac{\vect r}{r^3}\right)
+ =\frac{\mathsf1}{r^3}-3\frac{\vect r\vect r}{r^5}.
+\]
+一般地
+\[
+ \boxed{\nabla\nabla r^n
+ =nr^{n-2}\mathsf1+n(n-2)r^{n-4}\vect r\vect r}.
+\]
+其迹给出 $\nabla^2r^n=n(n+1)r^{n-2}$。$r=0$ 需按分布处理，例如
+$\nabla\cdot(\vect r/r^3)=4\pi\delta^{(3)}(\vect r)$。
+\end{advsolution}
+
+外导数可写成 $\nabla\wedge(\cdot)=\vect e_i\wedge\partial_i(\cdot)$。
+对标量，它就是梯度；对矢量取霍奇对偶得到旋度；对矢量的霍奇对偶再外导并对偶，得到散度。
+
+\begin{advtheorem}{庞加莱引理}\label{advA3:thm:poincare}
+在星形区域上，外导数满足 $\dd^2=0$；每个闭微分形式局部都是恰当形式。特别地
+\[
+ \nabla\times\nabla f=0,
+ \qquad
+ \nabla\cdot(\nabla\times\vect F)=0.
+\]
+\end{advtheorem}
+$\dd^2=0$ 直接来自偏导可交换与楔积反对称：
+$\partial_i\partial_j=\partial_j\partial_i$，而
+$\dd x^i\wedge\dd x^j=-\dd x^j\wedge\dd x^i$。闭形式局部恰当的构造可沿从星形中心到 $x$ 的径向线积分给出。
+
+\begin{advtheorem}{广义斯托克斯定理}\label{advA3:thm:general-stokes}
+对有向光滑流形 $M$ 及紧支撑微分形式 $\omega$，
+\[
+ \boxed{\int_M\dd\omega=\int_{\partial M}\omega}.
+\]
+\end{advtheorem}
+它在坐标小块上由一维微积分基本定理反复使用得到，再用单位分解拼接；内部相邻小块的公共边界因取向相反而抵消，只留下 $\partial M$。
+
+\begin{advtheorem}{散度定理}\label{advA3:thm:divergence-theorem}
+\[
+ \boxed{\oint_{\partial V}\vect F\cdot\dd\vect S
+ =\int_V\nabla\cdot\vect F\,\dd V}.
+\]
+\end{advtheorem}
+
+\begin{advtheorem}{开尔文--斯托克斯定理}\label{advA3:thm:curl-stokes}
+\[
+ \boxed{\oint_{\partial S}\vect F\cdot\dd\vect l
+ =\int_S(\nabla\times\vect F)\cdot\dd\vect S}.
+\]
+\end{advtheorem}
+两式分别把广义斯托克斯定理应用于 $\star\vect F$ 与矢量场对应的1-形式；边界方向与面法向必须满足右手定向。
+
+\begin{advtheorem}{散度运算公式}\label{advA3:thm:divergence-rules}
+\[
+ \nabla\cdot(f\vect F)=\nabla f\cdot\vect F+f\nabla\cdot\vect F,
+\]
+若并矢 $(\vect F\vect G)_{ij}=F_iG_j$ 且散度缩并第一个指标，则
+\[
+ \nabla\cdot(\vect F\vect G)
+ =(\nabla\cdot\vect F)\vect G+(\vect F\cdot\nabla)\vect G.
+\]
+\[
+ \nabla\cdot(\vect F\times\vect G)
+ =\vect G\cdot\nabla\times\vect F-\vect F\cdot\nabla\times\vect G,
+\]
+并且对二阶张量 $\mathsf T$，$(\nabla\cdot\mathsf T)_j=\partial_iT_{ij}$。线性规则逐项成立。
+\end{advtheorem}
+
+这些公式都可直接审查指标。例如
+\[
+ [\nabla\cdot(\vect F\vect G)]_j
+ =\partial_i(F_iG_j)=(\partial_iF_i)G_j+F_i\partial_iG_j,
+\]
+而
+\[
+ \nabla\cdot(\vect F\times\vect G)
+ =\partial_i(\varepsilon_{jki}F_jG_k)
+ =G_k\varepsilon_{kij}\partial_iF_j
+ -F_j\varepsilon_{jik}\partial_iG_k.
+\]
+这正是 $\vect G\cdot\nabla\times\vect F-\vect F\cdot\nabla\times\vect G$。指标推导还明确了散度对并矢缩并的是哪个位置，避免把 $(\vect F\cdot\nabla)\vect G$ 错写成 $(\nabla\vect G)\cdot\vect F$ 后再随意转置。
+
+\begin{advtheorem}{旋度与拉普拉斯公式}\label{advA3:thm:curl-rules}
+\[
+ \nabla\times(f\vect F)=\nabla f\times\vect F+f\nabla\times\vect F,
+\]
+\[
+ \boxed{\nabla\times(\nabla\times\vect F)
+ =\nabla(\nabla\cdot\vect F)-\nabla^2\vect F},
+\]
+\[
+ \nabla(\vect F\cdot\vect G)
+ =(\vect F\cdot\nabla)\vect G+(\vect G\cdot\nabla)\vect F
+ +\vect F\times(\nabla\times\vect G)
+ +\vect G\times(\nabla\times\vect F),
+\]
+\[
+ \nabla\times(\vect F\times\vect G)
+ =(\vect G\cdot\nabla)\vect F+(\nabla\cdot\vect G)\vect F
+ -(\vect F\cdot\nabla)\vect G-(\nabla\cdot\vect F)\vect G.
+\]
+\end{advtheorem}
+证明都可把叉积写成 $\varepsilon_{ijk}$ 并使用
+$\varepsilon_{ijk}\varepsilon_{imn}=\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}$；这同时避免凭图形直觉误换指标顺序。
+
+以最关键的双旋度为例，第 $i$ 分量为
+\[
+ [\nabla\times(\nabla\times\vect F)]_i
+ =\varepsilon_{jki}\partial_j
+ (\varepsilon_{lmk}\partial_lF_m).
+\]
+缩并两个 $\varepsilon$ 后得到
+\[
+ (\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})
+ \partial_j\partial_lF_m
+ =\partial_i(\partial_mF_m)-\partial_j\partial_jF_i.
+\]
+因此
+$\nabla\times\nabla\times\vect F=\nabla(\nabla\cdot\vect F)-\nabla^2\vect F$。
+其余两个含叉积的公式以同一恒等式展开；每项都只使用乘法法则与偏导交换，故在直角坐标固定基中成立。
+
+\begin{advtheorem}{标量、矢量与张量的边界积分形式}\label{advA3:thm:boundary-integrals}
+在分段光滑区域上，
+\[
+ \oint_{\partial V}f\,\dd\vect S=\int_V\nabla f\,\dd V,
+ \qquad
+ \oint_{\partial V}\dd\vect S\times\vect F
+ =\int_V\nabla\times\vect F\,\dd V,
+\]
+\[
+ \oint_{\partial V}\dd\vect S\,\vect F
+ =\int_V\nabla\vect F\,\dd V,
+ \qquad
+ \oint_{\partial V}\dd\vect S\cdot\vect F
+ =\int_V\nabla\cdot\vect F\,\dd V,
+\]
+以及
+\[
+ \oint_{\partial S}f\,\dd\vect l
+ =\int_S\dd\vect S\times\nabla f,
+ \qquad
+ \oint_{\partial S}\dd\vect l\times\vect F
+ =\int_S\bigl[(\nabla\vect F)\cdot\dd\vect S
+ -(\nabla\cdot\vect F)\dd\vect S\bigr],
+ \]
+\[
+ \oint_{\partial S}\vect F\cdot\dd\vect l
+ =\int_S(\nabla\times\vect F)\cdot\dd\vect S.
+\]
+\end{advtheorem}
+证明：前四式分别把散度定理应用于 $f\vect a$、
+$\vect a\cdot(\vect F\times\cdot)$、$T_{ij}$ 的每个分量和 $\vect F$，其中 $\vect a$ 为任意常矢量；任意性保证矢量或张量等式。后两式同理由开尔文--斯托克斯定理逐分量得到。
+
+中间的线积分叉积公式可用任意常矢量 $\vect a$ 核验：
+\[
+ \vect a\cdot\oint\dd\vect l\times\vect F
+ =\oint(\vect F\times\vect a)\cdot\dd\vect l
+ =\int_S\nabla\times(\vect F\times\vect a)\cdot\dd\vect S.
+\]
+由于 $\vect a$ 为常量，
+$\nabla\times(\vect F\times\vect a)
+=(\vect a\cdot\nabla)\vect F-\vect a(\nabla\cdot\vect F)$，把 $\vect a$ 提出即得原矢量等式。这个证明也固定了两个项的正负号和张量乘法次序。
+
+\begin{advexamplebox}{格林第一、第二恒等式}\label{advA3:ex:green-identities}
+证明
+\[
+ \int_V(\phi\nabla^2\psi+\nabla\phi\cdot\nabla\psi)\dd V
+ =\oint_{\partial V}\phi\nabla\psi\cdot\dd\vect S,
+\]
+\[
+ \int_V(\phi\nabla^2\psi-\psi\nabla^2\phi)\dd V
+ =\oint_{\partial V}(\phi\nabla\psi-\psi\nabla\phi)\cdot\dd\vect S.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+乘法法则给出
+\[
+ \nabla\cdot(\phi\nabla\psi)
+ =\nabla\phi\cdot\nabla\psi+\phi\nabla^2\psi.
+\]
+在 $V$ 上积分并用散度定理即得第一式。再交换 $\phi,\psi$ 得到另一份第一式，两式相减，交叉梯度项相消，得到第二式。若边界是分片光滑的，按每片外法向积分即可；内部人为分界面仍因法向相反而抵消。
+\end{advsolution}

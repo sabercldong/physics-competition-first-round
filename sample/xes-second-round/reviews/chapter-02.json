@@ -1,0 +1,123 @@
+{
+  "status": "verified",
+  "verified_on": "2026-09-05",
+  "scope": "第2章内部锁定；全书尚未通过发布门",
+  "pdf_sha256": "80f6de499349e04059d2f6f0a4899c3d23d5b0063710ab728a72d7d973cebc30",
+  "inputs": {
+    "assets/ch02/newtons-cradle-provenance.md": "20d6fce7e25268678a8715fffdb6c519f03e5937684cbb4ccd96f81ed373e64d",
+    "assets/ch02/newtons-cradle.png": "fa67806ac9c1016a995f6aafd09e9093c1a14ad1a1027e5cd7cb9a2273de69fb",
+    "assets/ch02/side-step-provenance.md": "897a01cf755d31a3e479c6c6e1cabdebf1014c30a6300db658626a4c12fd1928",
+    "assets/ch02/side-step-scenario.png": "f5f9d22d4bf72ed4157f4b199171175f2cc86dc5067ef36d0131dba15a14ff41",
+    "book.json": "18702eba6d0aa5e2234074d44d1967366db287cc30222180d8b13c1f9319961f",
+    "chapters/ch02-diagrams.tex": "cea6e974adeb18743c3377a81674aaf11a767c9002c026085bc8ff30dd2a7f43",
+    "chapters/ch02-practice.tex": "622584cf0797df075b284cf19470b97c08f0f87508cfbc30464a74451b73cc6b",
+    "chapters/ch02-theory.tex": "2fa01290f0271c8761a2408d76e6e4bd0f528426f5d544d737f48c1c15cebf56",
+    "chapters/ch02.tex": "e724094f3b46590e423739c7e1965d707c59b5825809d85748dbddfc31f3d031",
+    "style.tex": "4b402b0aac0e9a5897146852243d667394b72f2523ed3a70303ceb3725a1b814",
+    "tools/build.py": "ead3a920c99f62cc1901fbcb4fe230f3ae0dc1ec184063bf97194e8a83889f26"
+  },
+  "checks": {
+    "page_layout": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-02-review-notes.md",
+        "build/chapter-02/render/manifest.json",
+        "build/chapter-02/render/contact-01.jpg",
+        "build/chapter-02/render/contact-02.jpg",
+        "build/chapter-02/render/contact-03.jpg",
+        "build/chapter-02/render/contact-04.jpg"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-02-review-notes.md": "a98624a847eac092136f81342f19c075388829b549bb27042f0fdb62a1ce3c22",
+        "build/chapter-02/render/manifest.json": "57de7af69fb07c37a190aa3012b5a5c3ecd19dcdf186d54d68cb439cc524ee00",
+        "build/chapter-02/render/contact-01.jpg": "4b098b5fe02da74ec9b5c2722705301cae6abeee06c45364a9cec71911d27818",
+        "build/chapter-02/render/contact-02.jpg": "24b16a5fe060568f4730c8bf02dac538defad80927e27495e8b601adc1875a4a",
+        "build/chapter-02/render/contact-03.jpg": "00c4955be131df5db0f80784f0a225cb7b37deb2ebd29bd532c29cc13dae3abd",
+        "build/chapter-02/render/contact-04.jpg": "0a5f25ce2ccef0d3c9184f8fb9d1996fc988e50109f426235c11a4c7f7305440"
+      }
+    },
+    "figures": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-02-review-notes.md",
+        "build/chapter-02/figure-review/manifest.json",
+        "build/chapter-02/figure-review/figure-01.png",
+        "build/chapter-02/figure-review/figure-02.png",
+        "build/chapter-02/figure-review/figure-03.png",
+        "build/chapter-02/figure-review/figure-04.png",
+        "build/chapter-02/figure-review/figure-05.png",
+        "build/chapter-02/figure-review/figure-06.png",
+        "build/chapter-02/figure-review/figure-07.png",
+        "build/chapter-02/figure-review/figure-08.png",
+        "build/chapter-02/figure-review/figure-09.png",
+        "build/chapter-02/figure-review/figure-10.png",
+        "build/chapter-02/figure-review/figure-11.png",
+        "build/chapter-02/figure-review/figure-12.png",
+        "tests/test_ch02_physics.py",
+        "assets/ch02/newtons-cradle-provenance.md",
+        "assets/ch02/side-step-provenance.md"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-02-review-notes.md": "a98624a847eac092136f81342f19c075388829b549bb27042f0fdb62a1ce3c22",
+        "build/chapter-02/figure-review/manifest.json": "3a9368f8e919eb09ff2005d7c6e6ccdc93b01d99b5958aaf4686e0ccecdddc0b",
+        "build/chapter-02/figure-review/figure-01.png": "0aef4ea5a0e35ce57973a06401e5f7999792663dc70238330e5380b6c3f309e4",
+        "build/chapter-02/figure-review/figure-02.png": "cedf016e662fb61359a44d4d39df126cf4d8d1a70efb03acb77a6e2223fb9f28",
+        "build/chapter-02/figure-review/figure-03.png": "9a37c601385e1e5c5a1c991f355b27a697a33a2ad93355d7280cb7976e17e15f",
+        "build/chapter-02/figure-review/figure-04.png": "b0c8054de35a37732097c3634decb883637d8e8e7f0c64a825164d50a6ce0f84",
+        "build/chapter-02/figure-review/figure-05.png": "c68682430ead601d4863a7fb160396c12365d4b151d28c87c47646e15e1cfc4e",
+        "build/chapter-02/figure-review/figure-06.png": "9b4d4973d4dc5a6fbb49649ecb8a9ab4faec040149fef4048b00be1f584cca98",
+        "build/chapter-02/figure-review/figure-07.png": "071dc928b3d56eaf634b1586de273f480c2a713f33829e1e10054d9702d80b5c",
+        "build/chapter-02/figure-review/figure-08.png": "c53e274a727a2b0da2852bc928c732ce2392f8d8da58721900f163a38a36e544",
+        "build/chapter-02/figure-review/figure-09.png": "30a2159c6994fe670f013dee6c9b388e0d95743c733b2ce9d616eeeb38028a6a",
+        "build/chapter-02/figure-review/figure-10.png": "52b34119121b79bf729ad5b435cb980376528e3f5c0c010be3d7d88d324b517e",
+        "build/chapter-02/figure-review/figure-11.png": "081cf17f4708f909a3f209b49d43ffdb2e58cfcf4538724b8f7a247c6e6b0228",
+        "build/chapter-02/figure-review/figure-12.png": "9474d29612c68ee06d3dc74293b8388704f5ada3b2fb69f5edd73d8168576b79",
+        "tests/test_ch02_physics.py": "444c10d919124dc27c9524e16fbc9d07f5c62c45bb9babf3fccedade2ec78c6b",
+        "assets/ch02/newtons-cradle-provenance.md": "20d6fce7e25268678a8715fffdb6c519f03e5937684cbb4ccd96f81ed373e64d",
+        "assets/ch02/side-step-provenance.md": "897a01cf755d31a3e479c6c6e1cabdebf1014c30a6300db658626a4c12fd1928"
+      }
+    },
+    "physics": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-02-review-notes.md",
+        "tests/test_ch02_physics.py"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-02-review-notes.md": "a98624a847eac092136f81342f19c075388829b549bb27042f0fdb62a1ce3c22",
+        "tests/test_ch02_physics.py": "444c10d919124dc27c9524e16fbc9d07f5c62c45bb9babf3fccedade2ec78c6b"
+      }
+    },
+    "source_completeness": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-02-review-notes.md",
+        "reviews/source_inventory/autumn-student-ch02-newton.json",
+        "reviews/source_inventory/autumn-student-ch02-momentum-energy.json",
+        "reviews/source_inventory/autumn-student-ch02-virial-collision.json",
+        "reviews/source_inventory/autumn-practice-ch02.json"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-02-review-notes.md": "a98624a847eac092136f81342f19c075388829b549bb27042f0fdb62a1ce3c22",
+        "reviews/source_inventory/autumn-student-ch02-newton.json": "33fa9f02e59e0cda9fbcba60c3dabc8d5a912cf6ec2fd55a0a407527981f28e2",
+        "reviews/source_inventory/autumn-student-ch02-momentum-energy.json": "d091469c2d2b4e816681959c616a205a47ce641a609f63c126d49138c7ee229b",
+        "reviews/source_inventory/autumn-student-ch02-virial-collision.json": "a91d305cc3e4dcc98d15be0bf798548b2010658778dd958ad9b12117499ba456",
+        "reviews/source_inventory/autumn-practice-ch02.json": "b6b7958f61c61af1b03056c0dec9beef67eaa991959a0330487d5ad5f472a988"
+      }
+    },
+    "pdf_structure": {
+      "status": "passed",
+      "evidence": [
+        "reviews/chapter-02-review-notes.md",
+        "tests/test_ch02_pdf.py",
+        "build/chapter-02/main.log"
+      ],
+      "evidence_sha256": {
+        "reviews/chapter-02-review-notes.md": "a98624a847eac092136f81342f19c075388829b549bb27042f0fdb62a1ce3c22",
+        "tests/test_ch02_pdf.py": "d7d0b812340af03bf3c57eeba6dde38099d4077db13463bc41e1398f42126905",
+        "build/chapter-02/main.log": "eaca9fbbd0255938083ca70b1713f91c2f31072db75faba160546e849ebdc76d"
+      }
+    }
+  },
+  "unresolved_findings": []
+}

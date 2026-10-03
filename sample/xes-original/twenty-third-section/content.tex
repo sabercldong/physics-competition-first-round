@@ -1,0 +1,433 @@
+仅由电阻与线性电源构成的网络，原则上都可用 Kirchhoff 方程求解；真正的困难是未知量会随网络
+规模迅速增加。本讲的核心不是逃避基本定律，而是先利用线性、端口等效、等势点、对称性与自相似性
+压缩网络，再把剩余部分化为串并联或少量节点方程。
+
+\subsection*{线性叠加与等效电源}
+
+线性电阻网络的节点方程是线性方程组，因此多个独立电源同时作用时，各支路电流与各节点电势等于
+每个电源单独作用结果的代数和。考察某一个独立电源时，其余独立电压源置零，即用导线短路；独立
+电流源置零，即将支路断开。电阻仍保留不动。
+
+任何线性有源二端网络，从外部只看端口伏安关系，都可写成
+\begin{equation}
+  U=U_{\rm oc}-IR_{\rm th}.
+\end{equation}
+这里 $U_{\rm oc}$ 是开路电压，$R_{\rm th}$ 是将网络内所有独立源置零后从端口看入的电阻。因此
+它等效为电动势 $U_{\rm oc}$ 与内阻 $R_{\rm th}$ 串联的 Thevenin 电源。改写为
+\begin{equation}
+  I=I_{\rm sc}-\frac{U}{R_{\rm N}},
+  \qquad
+  I_{\rm sc}=\frac{U_{\rm oc}}{R_{\rm th}},
+  \qquad R_{\rm N}=R_{\rm th},
+\end{equation}
+便得到 Norton 电流源与内阻并联的形式。
+
+\sourceEquivalentDiagram
+
+\theveninDiagram
+
+\subsection*{等势点、对称性与平衡电桥}
+
+若在保持端点与外加条件不变的前提下，某个对称变换能交换两个内部节点而使整个网络不变，则这两点
+电势相等。等势点之间无电流，可以断开连接；也可用理想导线把它们合并。这两种画法虽相反，却不会
+改变原网络的电流分布，实际解题时应选择能使串并联关系最清楚的一种。
+
+Wheatstone 电桥在
+\begin{equation}
+  \boxed{\frac{R_1}{R_2}=\frac{R_3}{R_4}}
+\end{equation}
+时平衡。上下分压点电势相同，中间电阻 $R_5$ 中电流为零。图 34.3 将“断开中支路”与“合并
+等势点”所依据的同一事实标了出来。
+
+\bridgeDiagram
+
+等效电阻也可由“电流分布法”求得：设总电流 $I$ 从端点 $A$ 流入、从 $B$ 流出，利用对称性分配
+各支路电流，再沿任一路径计算 $U_{AB}$，最后取 $R_{AB}=U_{AB}/I$。这在高度对称的立体网络中
+尤其方便。
+
+\subsection*{三端网络的星形--三角形变换}
+
+三端纯电阻网络总可在端口处写成三角形连接。星形连接与三角形连接等效的条件是：无论端口电势
+$U_A,U_B,U_C$ 如何，三个端口流入电流都分别相同。记星形电阻为 $R_A,R_B,R_C$，令
+\begin{equation}
+  \Sigma=R_AR_B+R_BR_C+R_CR_A,
+\end{equation}
+则星形变三角形为
+\begin{equation}
+  \boxed{R_{AB}=\frac{\Sigma}{R_C}},\qquad
+  \boxed{R_{BC}=\frac{\Sigma}{R_A}},\qquad
+  \boxed{R_{CA}=\frac{\Sigma}{R_B}}.
+\end{equation}
+反向变换为
+\begin{equation}
+  \boxed{R_A=\frac{R_{AB}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}},
+  \quad
+  \boxed{R_B=\frac{R_{AB}R_{BC}}{R_{AB}+R_{BC}+R_{CA}}},
+\end{equation}
+\begin{equation}
+  \boxed{R_C=\frac{R_{BC}R_{CA}}{R_{AB}+R_{BC}+R_{CA}}}.
+\end{equation}
+变换只保持三个端口的外部关系，不保证中心点附近的内部电流逐支对应。
+
+\starDeltaDiagram
+
+\Needspace{0.34\textheight}
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例题 34.1【电流源】}
+小明利用一个电流源向外供电，小红却误以为是一个电压源。证明实际电流源与实际电压源可以等效，
+并利用这个关系求多个有内阻电压源同极性并联后的等效电源参数。
+\end{origexamplebox}
+
+\begin{xesolution}
+实际电压源由电动势 $\mathcal E$ 与内阻 $r$ 串联构成。若规定端口向外输出电流 $I$ 为正，其端电压
+为
+\[
+  U=\mathcal E-Ir.
+\]
+实际电流源由理想电流源 $I_{\rm N}$ 与内阻 $r$ 并联构成。流过内阻的电流为 $U/r$，故输出电流
+\[
+  I=I_{\rm N}-\frac Ur,
+  \qquad\text{即}\qquad U=I_{\rm N}r-Ir.
+\]
+当
+\begin{equation}
+  \boxed{\mathcal E=I_{\rm N}r}
+\end{equation}
+时，两者对任何外接负载都有相同的端口伏安关系，因而等效。这里说的是“实际电源”而非单独的
+理想电压源与理想电流源；若没有内阻，二者不能互换。
+
+对第 $k$ 个电压源，有 Norton 参数
+\[
+  I_{{\rm N},k}=\frac{\mathcal E_k}{r_k},\qquad r_k.
+\]
+并联后理想电流源相加，内阻并联，因此
+\begin{equation}
+  I_{\rm N,eq}=\sum_k\frac{\mathcal E_k}{r_k},
+  \qquad
+  \boxed{r_{\rm eq}=\left(\sum_k\frac1{r_k}\right)^{-1}}.
+\end{equation}
+再变回 Thevenin 形式，
+\begin{equation}
+  \boxed{\mathcal E_{\rm eq}
+  =r_{\rm eq}\sum_k\frac{\mathcal E_k}{r_k}
+  =\frac{\displaystyle\sum_k\mathcal E_k/r_k}
+  {\displaystyle\sum_k1/r_k}}.
+\end{equation}
+可见等效电动势是以电导 $1/r_k$ 为权的加权平均。若各电动势不同，即使外部开路，电源之间也可能
+出现环流；实际连接时还需确认充电方向和允许电流。图 34.1 中的双向箭头表示两种实际电源形式具有
+同一条端口伏安直线，而不是说理想电压源和理想电流源可以直接互换。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{例题 34.2【田电阻】}
+一个 $2\times2$ 方格组成田字格电阻网络，每一小段电阻均为 $R$。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 对角顶点 $A,C$ 间的等效电阻；
+  \item 相邻顶点 $A,B$ 间的等效电阻。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+为了把对称性与数值计算对应起来，令 $1\,\mathrm A$ 从第一个端点流入、从第二个端点流出，并把
+每个节点电势以 $R\,\mathrm V$ 为单位表示。
+
+\textbf{(1) 对角端点 $A,C$。}
+关于对角线 $AC$ 反射后，位于同一对称轨道的节点等势。对其余节点列 KCL，可得节点电势表
+\[
+\begin{array}{ccc}
+\frac32&1&\frac34\\[2pt]
+1&\frac34&\frac12\\[2pt]
+\frac34&\frac12&0
+\end{array}
+\quad(\text{左下为 }A\text{，右上为 }C).
+\]
+电流为 $1\,\mathrm A$ 时 $U_{AC}=(3/2)R\,\mathrm V$，故
+\begin{equation}
+  \boxed{R_{AC}=\frac32R}.
+\end{equation}
+
+\textbf{(2) 相邻端点 $A,B$。}
+网络关于底边中垂线对称。相同方法得到
+\[
+\begin{array}{ccc}
+\frac54&\frac58&0\\[2pt]
+\frac78&\frac58&\frac38\\[2pt]
+\frac34&\frac58&\frac12
+\end{array}
+\quad(\text{左下为 }A\text{，右下为 }B),
+\]
+于是
+\begin{equation}
+  \boxed{R_{AB}=\frac54R}.
+\end{equation}
+表中的镜像节点电势相等，正是图 34.5 所提示的“先分组、再合并”；把这些值代回每个内部节点，
+流入电流之和均为零，也完成了对结果的核验。
+
+\gridDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 34.3【正四面体电阻】}
+正四面体框架的六条棱均接电阻 $R$，求任意两个顶点间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+从 $A$ 流入总电流 $I$，从 $B$ 流出。其余顶点 $C,D$ 在保持 $A,B$ 不动的对称变换下可以互换，
+故 $U_C=U_D$，电阻 $CD$ 中无电流，可将 $C,D$ 合并为一个等势节点。
+
+从 $A$ 到该节点有两只 $R$ 并联，等效为 $R/2$；从该节点到 $B$ 同样为 $R/2$，两者串联得到
+$R$。它与直接连接 $A,B$ 的一只 $R$ 并联，因此
+\begin{equation}
+  \boxed{R_{AB}=R\parallel R=\frac R2}.
+\end{equation}
+图 34.6 中 $C,D$ 的位置虽是立体投影，但解题只使用“交换两点后网络不变”这一拓扑对称性，
+不依赖投影中线段的长短与交叉。
+
+\tetrahedronDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 34.4【$N$ 边形电阻】}
+有 $N$ 个顶点，每条边和每条对角线都用一只阻值为 $R$ 的电阻连接，即构成完全图 $K_N$。
+求任意两点间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+设电流从端点 $A$ 流入、从 $B$ 流出。其余 $N-2$ 个节点在保持 $A,B$ 不动的任意置换下完全
+对称，因此它们等势；这些节点之间的电阻均无电流。这里的“合并”只针对节点电势，不能把并联
+支路的条数一并丢掉。
+
+按对称性，每个中间节点都处在 $A,B$ 的中间电势。从 $A$ 流出的电流包括直接流向 $B$ 的
+$U/R$，以及流向 $N-2$ 个中间节点的 $(N-2)U/(2R)$，所以总电流
+\[
+  I=\frac UR+(N-2)\frac{U}{2R}=\frac{NU}{2R}.
+\]
+因此
+\begin{equation}
+  \boxed{R_{AB}=\frac UI=\frac{2R}{N}}.
+\end{equation}
+图 34.7 画的是 $N=5$ 的情形；图中线段相交处没有节点，真正的节点只有五个顶点。
+
+\completeGraphDiagram
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 34.5【变种八边形电阻】}
+八个顶点组成电阻网络。除四条连接对径点的最长对角线外，任意两点间均接一只阻值为 $R$ 的电阻。
+求一对相距最远的顶点 $A,B$ 间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+端点 $A,B$ 互为对径点，它们之间恰好没有直接电阻。其余六点在保持 $A,B$ 不动的反射与置换下
+可按三对对径点分组，但对于端口响应而言六点具有相同电势：每一点都以一只 $R$ 接到 $A$，也以
+一只 $R$ 接到 $B$；内部删去的只是组内对径连接，不会破坏把六点共同取为中间电势的 KCL 解。
+
+因此六点间已有的电阻都没有电流。每条 $A\to X_k\to B$ 路径由两只 $R$ 串联，电阻为 $2R$，
+共有六条等价路径并联：
+\begin{equation}
+  \boxed{R_{AB}=\frac{2R}{6}=\frac R3}.
+\end{equation}
+图 34.8 明确删去了所有最长对角线，特别是端点 $A,B$ 之间不存在容易误加的直接支路。
+
+\octagonDiagram
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 34.6【正方体电阻】}
+正方体框架的十二条棱均接电阻 $R$。求两顶点分别为下列位置关系时的等效电阻：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 棱相邻；
+  \item 面对角线两端；
+  \item 体对角线两端。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+这里以 $1\,\mathrm A$ 电流法统一处理。将流出端取零电势，按保持两个端点不动的对称变换把其余
+顶点分组，列每组的 KCL；流入端电势数值就是等效电阻。
+
+\textbf{(1) 棱相邻。}
+除端点外的六个顶点按对称性合并后，只需列少量节点方程。解得流入端电势为
+$7R/12$，故
+\begin{equation}
+  \boxed{R_{\rm edge}=\frac{7}{12}R}.
+\end{equation}
+
+\textbf{(2) 面对角。}
+以包含两端点的面对角平面作对称，四个中间节点成两个等势组。节点方程给出
+\begin{equation}
+  \boxed{R_{\rm face}=\frac34R}.
+\end{equation}
+
+\textbf{(3) 体对角。}
+与流入端相邻的三个顶点等势，与流出端相邻的三个顶点也等势。网络直接化成
+\[
+  \frac R3+\frac R6+\frac R3,
+\]
+其中中间两组之间有六只 $R$ 并联。因此
+\begin{equation}
+  \boxed{R_{\rm body}=\frac56R}.
+\end{equation}
+三个结果满足“端点在图上的最短距离越远，等效电阻越大”。图 34.9 用实线画出全部十二条棱；
+透视图中的交叉不增加节点。
+
+\cubeDiagram
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 34.7【无穷网络】}
+无限梯形网络如图 34.10，每只电阻均为 $R$。每一节的上、下支路各串联一只 $R$，随后用一只
+$R$ 横接两支路。求最左端 $a,b$ 间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+记整个无限网络的等效电阻为 $X$。越过最左端上下两只串联电阻后，后面的网络与原网络完全相同，
+等效电阻仍为 $X$；它与该处横接的电阻 $R$ 并联。因此
+\begin{equation}
+  X=2R+(R\parallel X)=2R+\frac{RX}{R+X}.
+\end{equation}
+移项得
+\[
+  X^2-2RX-2R^2=0.
+\]
+电阻必须为正，取正根
+\begin{equation}
+  \boxed{X=(1+\sqrt3)R}.
+\end{equation}
+图 34.10 中切去第一节后留下的虚线部分，与切去前的整张图在拓扑和每只电阻值上完全相同；
+这正是方程中再次出现 $X$ 的原因。
+
+\ladderDiagram
+\end{xesolution}
+
+\Needspace{0.44\textheight}
+\begin{origexamplebox}{例题 34.8【三端无穷网络】}
+图 34.11 的三端无限方格网络中，每只电阻均为 $R$。求 $A,C$ 间和 $A,B$ 间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+先把三端无限尾部等效成一个三角形电导网络。以 $1/R$ 为电导单位，由上下反射对称性，设尾部
+$AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边再添一列三只纵向电阻和三只
+横向电阻后，网络应与原网络相同。
+
+对新增的三个内部节点作消元，端口等效电导变换为
+\begin{equation}
+  p'=\frac{p+1}{3p+4},
+\end{equation}
+\begin{equation}
+  q'=\frac{p^2+2pq+2p+3q+1}{(3p+4)(p+2q+2)}.
+\end{equation}
+自相似要求 $p'=p, q'=q$。取正电导解，可把最终所需电阻化简为
+\begin{equation}
+  \boxed{R_{AC}=(1+\sqrt5)R},
+\end{equation}
+\begin{equation}
+  \boxed{R_{AB}=\left(1+\frac{\sqrt5+\sqrt{21}}4\right)R}.
+\end{equation}
+数值上 $R_{AC}\approx3.236R$，$R_{AB}\approx2.705R$。相邻端点的等效电阻较小，符合电流可在
+较短路径间分流的直觉。图 34.11 把尾部的三个端口都保留下来，所以不能像二端梯形网络那样只设
+一个未知电阻；这里必须用两个独立参数 $p,q$ 描述三端口。
+
+\threeRailDiagram
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 34.9【嵌套网络】}
+框架由同种均匀金属丝制成，单位长度电阻为 $\rho_\ell$。外层等边三角形边长为 $a$，以后每个
+内接等边三角形的边长依次减半，内接层数趋于无穷。求外层端点 $A,B$ 间的等效电阻。
+\end{origexamplebox}
+
+\begin{xesolution}
+每一层三角形在上一层三边中点处相接。先从三端口角度看整个无限框架：由于三重旋转对称，它等效
+为三边均为 $x$ 的三角形电阻网络。其 $A,B$ 两端等效电阻为
+\begin{equation}
+  R_{AB}=x\parallel(2x)=\frac{2x}{3}.
+\end{equation}
+
+把最外层三角形按三个中点切开。每个半边金属丝电阻为
+\[
+  r=\rho_\ell\frac a2.
+\]
+中心的余下无限网络是整体缩小 $1/2$ 的副本，线性尺寸减半使每段电阻也减半，因此它的三角形
+等效边为 $x/2$。最外层的六段半边电阻构成六边环，中心副本接在三个交替的中点之间。对这六个
+节点消元，或连续使用星--三角形变换，外端口对应的三角形边电阻为
+\begin{equation}
+  \frac{r(3r+x)}{2r+x/2}.
+\end{equation}
+自相似要求它等于 $x$，于是
+\[
+  x=\frac{r(3r+x)}{2r+x/2},
+  \qquad
+  x^2+2rx-6r^2=0.
+\]
+取正根 $x=(\sqrt7-1)r$，最终
+\begin{equation}
+  \boxed{R_{AB}=\frac{2x}{3}
+  =\frac{\sqrt7-1}{3}\,\rho_\ell a}.
+\end{equation}
+图 34.12 中每层三角形只在三个中点与相邻层连接；线段在图上的普通交叉不另设节点。
+
+\nestedTriangleDiagram
+\end{xesolution}
+
+\Needspace{0.48\textheight}
+\begin{origexamplebox}{例题 34.10【分形电阻】}
+边长为 $a$ 的正三角形 $ABC$，每一步都将每个保留三角形的三边二等分，并挖去中央倒立三角形，
+无限进行得到谢尔宾斯基镂垫。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求最终剩余面积；
+  \item 求所有孔洞的总边长，不计最外边界；
+  \item 若保留下来的所有边均由单位长度电阻为 $\rho_\ell$ 的金属丝构成，求 $A,B$ 间等效电阻；
+  \item 讨论这些结果所反映的分形性质。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+设原三角形面积为 $S_0=\sqrt3a^2/4$。
+
+\textbf{(1) 面积。}
+第 $n$ 步保留 $3^n$ 个边长 $a/2^n$ 的小三角形，故
+\begin{equation}
+  S_n=S_0\left(\frac34\right)^n
+  \longrightarrow\boxed{0}.
+\end{equation}
+
+\textbf{(2) 孔洞总边长。}
+第 $n\ge1$ 步新挖出 $3^{n-1}$ 个边长 $a/2^n$ 的孔，新增周长
+\[
+  L_n=3^{n-1}\cdot3\frac{a}{2^n}=a\left(\frac32\right)^n.
+\]
+因此
+\begin{equation}
+  \sum_{n=1}^{\infty}L_n
+  =a\sum_{n=1}^{\infty}\left(\frac32\right)^n
+  =\boxed{+\infty}.
+\end{equation}
+
+\textbf{(3) 等效电阻。}
+记第 $n$ 阶有限网络两顶点间电阻为 $X_n$。第 $n+1$ 阶由三个第 $n$ 阶副本组成，每个副本的
+线性尺度减半，所以若单位长度电阻不变，其全部电阻同时乘 $1/2$。由于三端对称，一个副本若两端
+等效电阻为 $X_n$，其等效三角形每边电阻为 $3X_n/2$；缩小后每边为 $3X_n/4$。把三个这样的
+三角形按图 34.13 连接，对中点节点列 KCL，得到新网络的两端电阻为单个三角形边电阻的 $10/9$，
+于是
+\begin{equation}
+  X_{n+1}=\frac{10}{9}\cdot\frac{3X_n}{4}=\frac56X_n.
+\end{equation}
+第 0 阶只是三边电阻均为 $\rho_\ell a$ 的三角形，
+\[
+  X_0=\rho_\ell a\parallel2\rho_\ell a=\frac23\rho_\ell a.
+\]
+所以
+\begin{equation}
+  X_n=\frac23\rho_\ell a\left(\frac56\right)^n
+  \longrightarrow\boxed{0}.
+\end{equation}
+
+\textbf{(4) 讨论。}
+面积趋零而内部边界总长发散，表明“占据面积”与“边界复杂度”可以朝相反方向演化；网络总导电
+能力则因并联通道数的增长快于单段电阻因缩短而产生的变化，最终等效电阻趋零。图 34.13 的前三阶
+同时显示：每一步都复制三个半尺度副本，这正是三组几何级数与电阻递推的共同来源。
+
+\sierpinskiDiagram
+\end{xesolution}

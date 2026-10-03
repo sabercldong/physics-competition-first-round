@@ -1,0 +1,70 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside]{ctexbook}
+\usepackage[a4paper,top=22mm,bottom=24mm,left=24mm,right=24mm]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs,tabularx,array}
+\usepackage{pdfpages}
+\usepackage[colorlinks=true,linkcolor={rgb:red,0.16;green,0.31;blue,0.41}]{hyperref}
+\definecolor{Ink}{HTML}{202326}
+\definecolor{DeepBlue}{HTML}{294E69}
+\definecolor{TextGray}{HTML}{61686D}
+\hypersetup{
+ pdftitle={高中物理竞赛一轮讲义：2020寒光学全四讲（含解答与解图）},
+ pdfauthor={原题资料：学而思；整理与解答：物理竞赛一轮资料编写组},
+ pdfsubject={几何光学光线与成像、波动光学干涉与衍射}
+}
+\pagestyle{empty}
+\begin{document}
+
+\begin{titlepage}
+ \centering
+ \vspace*{0.23\textheight}
+ {\color{DeepBlue}\rule{0.82\linewidth}{0.7pt}\par}
+ \vspace{1.5cm}
+ {\fontsize{25}{34}\selectfont\bfseries\color{Ink} 高中物理竞赛一轮讲义\par}
+ \vspace{0.7cm}
+ {\fontsize{18}{26}\selectfont\color{DeepBlue} 2020 寒假兴趣一阶·光学全四讲\par}
+ \vspace{1.0cm}
+ {\large 几何光学：光线与成像\quad·\quad 波动光学：干涉与衍射\par}
+ \vspace{0.8cm}
+ {\normalsize\color{TextGray} 含 45 道例题完整解答与解图\par}
+ \vfill
+ {\color{DeepBlue}\rule{0.82\linewidth}{0.7pt}\par}
+ \vspace{0.7cm}
+ {\small\color{TextGray}依据《2020寒兴趣一阶·光学》教学内容整理\par}
+\end{titlepage}
+
+\clearpage
+\pdfbookmark[0]{目录}{contents}
+\section*{目录}
+\vspace{1cm}
+\renewcommand\arraystretch{1.55}
+\noindent\begin{tabularx}{\linewidth}{X>{\raggedleft\arraybackslash}p{0.11\linewidth}}
+ \toprule
+ 内容 & 起始页\\
+ \midrule
+ \hyperlink{sec42}{\textcolor{DeepBlue}{\bfseries 第42节}}\quad 第19讲\quad 几何光学——光线的性质 & 3\\
+ \hyperlink{sec43}{\textcolor{DeepBlue}{\bfseries 第43节}}\quad 第20讲\quad 几何光学——成像 & 14\\
+ \hyperlink{sec44}{\textcolor{DeepBlue}{\bfseries 第44节}}\quad 第21讲\quad 波动光学——干涉 & 26\\
+ \hyperlink{sec45}{\textcolor{DeepBlue}{\bfseries 第45节}}\quad 第22讲\quad 波动光学——衍射 & 38\\
+ \bottomrule
+\end{tabularx}
+\vfill
+
+\clearpage
+\phantomsection\hypertarget{sec42}{}\pdfbookmark[0]{第42节　几何光学——光线的性质}{bookmark42}
+\includepdf[pages=-]{../forty-second-section/build/main.pdf}
+
+\clearpage
+\phantomsection\hypertarget{sec43}{}\pdfbookmark[0]{第43节　几何光学——成像}{bookmark43}
+\includepdf[pages=-]{../forty-third-section/build/main.pdf}
+
+\clearpage
+\phantomsection\hypertarget{sec44}{}\pdfbookmark[0]{第44节　波动光学——干涉}{bookmark44}
+\includepdf[pages=-]{../forty-fourth-section/build/main.pdf}
+
+\clearpage
+\phantomsection\hypertarget{sec45}{}\pdfbookmark[0]{第45节　波动光学——衍射}{bookmark45}
+\includepdf[pages=-]{../forty-fifth-section/build/main.pdf}
+
+\end{document}

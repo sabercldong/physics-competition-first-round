@@ -1,0 +1,184 @@
+\tikzset{solbody/.style={draw=Ink,line width=.8pt},solpath/.style={draw=Ink,line width=.8pt},
+ solforce/.style={-{Latex[length=2mm]},draw=DeepBlue,line width=.9pt},
+ solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=.8pt},
+ solgeom/.style={draw=TextGray,densely dashed,line width=.5pt},
+ sollabel/.style={font=\scriptsize,fill=none,inner sep=1.5pt},
+ solpanel/.style={font=\scriptsize\bfseries,text=TextGray},
+ spring/.style={decorate,decoration={coil,segment length=4pt,amplitude=2.5pt},draw=Ink}}
+\newcommand{\diagcaption}[2]{\refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+\newenvironment{energyfig}{\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}}
+\input{geometry-data.tex}
+
+\newcommand{\gravityPathsDiagram}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \coordinate(A)at(2.7,1.5);\coordinate(B)at(-2.7,-1);
+ \draw[solpath](A)--(B);
+ \draw[solpath](A)..controls(1.2,2.3)and(-1.8,2.3)..(B);
+ \draw[solpath](A)..controls(1,.9)and(-.8,1.2)..(B);
+ \draw[solpath](A)..controls(2.4,-.3)and(.2,-1.6)..(B);
+ \fill(A)circle(2pt)node[above right,sollabel]{$A,y_A$};\fill(B)circle(2pt)node[below left,sollabel]{$B,y_B$};
+ \draw[solgeom](-3.2,1.5)--(3,1.5);\draw[solgeom](-3.2,-1)--(3,-1);
+ \draw[<->,DeepBlue](-3.2,-1)--(-3.2,1.5)node[midway,left,sollabel]{$h$};
+\end{tikzpicture}\diagcaption{示意图}{只有在物体可达且保持固定轨道约束时，才能比较这些路径的终态速率。}\label{ch08:fig:gravityPathsDiagram}\end{energyfig}}
+
+\newcommand{\probdiagFourTen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.85]
+ \begin{scope}[xshift=-3.5cm,yshift=3.6cm]
+ \node[solpanel]at(0,1.7){(1) 不脱离的光滑槽};
+ \draw[solpath](-1.6,-.6)--(-.3,-.6)..controls(.9,-.6)and(.1,.8)..(.9,1.3);
+ \draw[solpath](-1.6,-.72)--(-.3,-.72)..controls(1.03,-.72)and(.23,.72)..(1.03,1.3);
+ \fill(-1.2,-.66)circle(2pt);\draw[solflow](-1.2,-.3)--(-.4,-.3)node[midway,above,sollabel]{$v$};
+ \end{scope}
+ \begin{scope}[xshift=3.5cm,yshift=3.6cm]
+ \node[solpanel]at(0,1.7){(2) 斜抛};\draw[solgeom](-1.5,-.6)--(1.5,-.6);
+ \fill(-1,-.6)circle(2pt);\draw[solforce](-1,-.6)--++(40:1.8)node[right,sollabel]{$v$};
+ \draw[TextGray](-.4,-.6)arc(0:40:.6);\node[sollabel]at(-.15,-.35){$\theta$};
+ \end{scope}
+ \foreach \pos/\title in {-3.5/{(3) 珠子套在细圆环上},3.5/{(4) 质点沿圆柱内壁}}{
+ \begin{scope}[xshift=\pos cm]
+ \node[solpanel]at(0,1.75){\title};\draw[solbody](0,0)circle(1.1);
+ \draw[solgeom](0,0)--(135:1.1)node[midway,left,sollabel]{$R$};
+ \draw[solflow](.25,-1.4)--(1.15,-1.4)node[right,sollabel]{$v$};
+ \end{scope}}
+ \draw[DeepBlue,line width=1pt](-3.5,-1.1)circle(.12);
+ \node[sollabel,below]at(-3.9,-1.3){套孔};\draw[TextGray](-3.9,-1.3)--(-3.62,-1.15);
+ \fill(3.5,-1.1)circle(2.2pt);
+\end{tikzpicture}\diagcaption{题图}{第三种约束可双向作用；第四种只能由内壁向圆心推压。}\label{ch08:fig:probdiagFourTen}\end{energyfig}}
+
+\newcommand{\soldiagFourTen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3.6cm]
+ \node[solpanel]at(0,2.9){套环：不发生脱离};\draw[solbody](0,0)circle(1.35);
+ \draw[DeepBlue,line width=1pt](45:1.35)circle(.13);
+ \draw[solforce](45:1.35)--(45:.4)node[below right,sollabel]{$N$};
+ \node[sollabel,align=center]at(0,-2){此处只画向内的一种状态\\其他状态允许反向};
+ \end{scope}
+ \begin{scope}[xshift=3.2cm]
+ \def\rr{1.6}\def\cc{-.8}\pgfmathsetmacro\ss{sqrt(1-\cc*\cc)}\pgfmathsetmacro\uu{sqrt(-\cc*\rr)}
+ \pgfmathsetmacro\ta{\uu*\ss}
+ \coordinate(O)at(0,0);\coordinate(D)at({\rr*\ss},{-\rr*\cc});
+ \node[solpanel]at(0,2.9){内壁：$D$ 点 $N=0$ 后脱离};
+ \draw[solbody](O)circle(\rr);\fill(O)circle(1.5pt)node[below left,sollabel]{$O$};
+ \draw[solgeom](0,-\rr)--(O)--(D);\fill(D)circle(2pt);\node[sollabel,anchor=west]at($(D)+(.25,.35)$){$D$};
+ \draw[TextGray](0,-.43)arc(-90:53.1301:.43);\node[sollabel]at(.65,-.3){$\varphi_{\rm d}$};
+ \draw[Blue,line width=.9pt,domain=0:{1.2*\ta},samples=80,variable=\t]
+ plot({\rr*\ss+\uu*\cc*\t},{-\rr*\cc+\uu*\ss*\t-.5*\t*\t});
+ \draw[solforce](D)--++({1.2*\cc},{1.2*\ss})node[above,sollabel]{$\vec u_{\rm d}$};
+ \draw[solgeom](2.25,{-\rr*\cc})--(D);
+ \draw[solforce](2.25,{-\rr*\cc})--++(0,{1.2*\ss})node[right,sollabel]{$u_{{\rm d},y}$};
+ \draw[<->,TextGray](-2,-\rr)--(-2,{-\rr*\cc})node[midway,left,sollabel]{$R(1-c)$};
+ \node[sollabel]at(0,-2){蓝线由抛体方程确定};
+ \end{scope}
+\end{tikzpicture}\diagcaption{解图}{右图取 $c=-0.8$ 展示脱离到首次最高点附近的运动，抛出切线与半径垂直。}\label{ch08:fig:soldiagFourTen}\end{energyfig}}
+
+\newcommand{\probdiagFourEleven}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \def\rr{2}\coordinate(O)at(0,0);\coordinate(D)at(45:\rr);
+ \draw[solbody](-2.6,0)--(3,0);\draw[solbody](-\rr,0)arc(180:0:\rr);
+ \fill(0,\rr)circle(2.5pt)node[above,sollabel]{初态质点 $m$};
+ \fill(O)circle(1.5pt)node[below,sollabel]{$O$};\draw[solgeom](0,\rr)--(O)--(D);
+ \fill(D)circle(1.5pt);\node[sollabel]at(1.1,.65){$R$};
+ \draw[TextGray](45:.65)arc(45:90:.65);\node[sollabel]at(67.5:.92){$\theta$};
+\end{tikzpicture}\diagcaption{题图}{初态位于圆面顶点；角度 $\theta$ 从竖直向上的半径量起。}\label{ch08:fig:probdiagFourEleven}\end{energyfig}}
+
+\newcommand{\soldiagFourEleven}{%
+\begin{energyfig}\begin{tikzpicture}[scale=1]
+ \def\rr{2}\pgfmathsetmacro\ss{sqrt(5)/3}\def\cc{.6666666667}
+ \pgfmathsetmacro\uu{sqrt(2*\rr/3)}\pgfmathsetmacro\ux{\uu*\cc}\pgfmathsetmacro\uy{-\uu*\ss}
+ \pgfmathsetmacro\tf{\uy+sqrt(\uy*\uy+2*\rr*\cc)}\pgfmathsetmacro\xf{\rr*\ss+\ux*\tf}
+ \coordinate(D)at({\rr*\ss},{\rr*\cc});
+ \draw[solbody](-2.5,0)--(3.4,0);\draw[solbody](-\rr,0)arc(180:0:\rr);
+ \draw[solgeom](0,\rr)--(0,0)--(D);\fill(0,0)circle(1.5pt)node[below left,sollabel]{$O$};
+ \fill(D)circle(2pt)node[above right,sollabel]{$D$};
+ \draw[Blue,line width=1pt,domain=0:\tf,samples=80,variable=\t]
+ plot({\rr*\ss+\ux*\t},{\rr*\cc+\uy*\t-.5*\t*\t});
+ \draw[solforce](D)--++({.95*\cc},{-.95*\ss})node[right,sollabel]{$\vec u$};
+ \draw[solforce](D)--++(0,-.75)node[below left,sollabel]{$mg$};
+ \draw[TextGray](41.8103:.5)arc(41.8103:90:.5);\node[sollabel]at(65:.8){$\theta$};
+ \fill(\xf,0)circle(2pt)node[above right,sollabel]{落点};
+ \draw[solgeom](0,0)--(0,-.55);\draw[solgeom](\xf,0)--(\xf,-.55);
+ \draw[<->,DeepBlue](0,-.45)--(\xf,-.45)node[midway,below,sollabel]{$x$};
+ \node[sollabel,align=left]at(-1.3,2.6){$D$ 点：$N=0$\\$\cos\theta=2/3$};
+\end{tikzpicture}\diagcaption{解图}{脱离速度沿圆面切线，落点在半圆右端之外；脱离后仅受重力。}\label{ch08:fig:soldiagFourEleven}\end{energyfig}}
+
+\newcommand{\probdiagFourTwelve}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \def\rr{1.8}\draw[solbody](-3,-\rr)--(0,-\rr)arc(-90:90:\rr);
+ \fill(-2.2,-\rr)circle(2pt)node[above,sollabel]{$m$};
+ \draw[solflow](-1.9,{-\rr+.4})--(-.8,{-\rr+.4})node[midway,above,sollabel]{$v$};
+ \fill(0,0)circle(1.5pt)node[left,sollabel]{$O$};
+ \draw[solgeom](0,0)--(45:\rr)node[midway,above left,sollabel]{$R$};
+ \node[sollabel,anchor=west]at(2.4,0){右半圆内壁};
+\end{tikzpicture}\diagcaption{题图}{水平段在圆弧最低点相切，质点先沿右半圆上升。}\label{ch08:fig:probdiagFourTwelve}\end{energyfig}}
+
+\newcommand{\soldiagFourTwelve}{%
+\begin{energyfig}\begin{tikzpicture}[scale=1]
+ \def\rr{1.9}\pgfmathsetmacro\cc{-1/sqrt(3)}\pgfmathsetmacro\ss{sqrt(2/3)}
+ \pgfmathsetmacro\uu{sqrt(-\rr*\cc)}\pgfmathsetmacro\tf{-\rr*\ss/(\uu*\cc)}
+ \coordinate(D)at({\rr*\ss},{-\rr*\cc});
+ \draw[solbody](-2.2,-\rr)--(0,-\rr)arc(-90:90:\rr);
+ \fill(0,0)circle(1.5pt)node[left,sollabel]{$O$};\fill(D)circle(2pt);\node[sollabel,anchor=west]at($(D)+(.3,.25)$){$D$};
+ \draw[solgeom](0,-\rr)--(0,0)--(D);\node[sollabel]at(1,.3){$R$};
+ \draw[TextGray](0,-.5)arc(-90:35.2644:.5);\node[sollabel]at(.75,-.35){$\varphi$};
+ \draw[Blue,line width=1pt,domain=0:\tf,samples=100,variable=\t]
+ plot({\rr*\ss+\uu*\cc*\t},{-\rr*\cc+\uu*\ss*\t-.5*\t*\t});
+ \draw[solforce](D)--++({1.05*\cc},{1.05*\ss})node[above right,sollabel]{$\vec u$};
+ \draw[solforce](D)--++(0,-.65)node[above left,sollabel]{$mg$};
+ \node[sollabel,align=left,anchor=east]at(-.65,1.15){$D$ 点 $N=0$\\[4pt]$u_x<0,\ u_y>0$};
+\end{tikzpicture}\diagcaption{解图}{脱离后轨迹沿切线进入圆内，水平坐标单调减小，随后经过 $O$。}\label{ch08:fig:soldiagFourTwelve}\end{energyfig}}
+
+\newcommand{\soldiagFourThirteen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3.6cm]
+ \node[solpanel]at(0,2.6){(3) 四次势能};\draw[solflow](-1.6,0)--(1.8,0)node[right,sollabel]{$x$};
+ \draw[solflow](0,-.3)--(0,2)node[above,sollabel]{$E_p$};
+ \draw[solpath,domain=-1.25:1.25,samples=60]plot(\x,{.65*\x*\x*\x*\x});
+ \node[sollabel]at(0,-.75){$x=0$ 稳定，$E_p''(0)=0$};
+ \end{scope}
+ \begin{scope}[xshift=1.7cm]
+ \node[solpanel]at(2,2.6){(4) 由定积分确定的吸引势};
+ \draw[solflow](0,0)--(4.5,0)node[right,sollabel]{$r$};
+ \draw[solflow](0,-1.8)--(0,1.2)node[above,sollabel]{$E_p$};
+ \screenedPotentialCurve
+ \node[sollabel,align=left]at(2.3,1.35){$E_p'(r)=ke^{-\alpha r}/r^2>0$\\[5pt]$r\to\infty$ 时 $E_p\to0^-$};
+ \end{scope}
+\end{tikzpicture}\diagcaption{解图}{曲线纵坐标为势能；斜率的负值才是力，不能只凭曲线大致形状作判断。}\label{ch08:fig:soldiagFourThirteen}\end{energyfig}}
+
+\newcommand{\probdiagFourFourteen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3cm]
+ \node[solpanel]at(0,2.3){(1)(2) 沿弹簧轴线运动};
+ \draw[solbody](-2,0)--(1.8,0);\draw[solbody](-2,0)--(-2,1);
+ \draw[spring](-2,.35)--(.5,.35);\draw[solbody,fill=SoftGray](.5,0)rectangle(1.3,.7);
+ \node[sollabel,above left]at(-2,.35){$A$};\node[sollabel]at(.9,.35){$m$};
+ \draw[solflow](.5,1.2)--(1.6,1.2)node[midway,above,sollabel]{$v_1$ 或 $v_2$};
+ \end{scope}
+ \begin{scope}[xshift=3.6cm]
+ \node[solpanel]at(0,2.3){(3) 竖直运动的三个位置};
+ \draw[solbody](-.7,1.7)--(.7,1.7);\node[sollabel,above left]at(0,1.7){$A$};
+ \draw[spring](0,1.7)--(0,-1.5);\fill(0,-1.5)circle(3pt);\node[sollabel]at(.30,-1.88){$m$};
+ \foreach \y/\txt in {.4/{原长 $x=0$},-.5/{平衡 $x=x_{\rm e}$},-1.5/{初态 $x=h$}}{
+ \draw[solgeom](-.5,\y)--(.6,\y);\node[sollabel,anchor=west]at(.85,\y){\txt};}
+ \draw[<->,TextGray](-1,-1.5)--(-1,.4)node[midway,left,sollabel]{$h$};
+ \draw[solflow](-1.9,-1.5)--(-1.9,-.6)node[left,sollabel]{$v_3$};
+ \end{scope}
+\end{tikzpicture}\diagcaption{题图}{右图展示 $h>x_{\rm e}$ 的一个初态，解答同时适用于其他 $h$；速度方向与位移基准分开标注。}\label{ch08:fig:probdiagFourFourteen}\end{energyfig}}
+
+\newcommand{\soldiagFourFourteen}{%
+\begin{energyfig}\begin{tikzpicture}[scale=.9]
+ \begin{scope}[xshift=-3.6cm]
+ \node[solpanel]at(0,2.3){水平：平衡在原长位置};
+ \draw[solflow](-1.8,0)--(1.9,0)node[right,sollabel]{$x$};\draw[solflow](0,-.2)--(0,1.7)node[above,sollabel]{$E_p$};
+ \draw[solpath,domain=-1.5:1.5,samples=60]plot(\x,{.65*\x*\x});
+ \node[sollabel,below]at(0,-.25){$0$};\end{scope}
+ \begin{scope}[xshift=1.8cm]
+ \node[solpanel]at(1.6,2.3){竖直：平衡位置向下移动};
+ \draw[solflow](-.3,0)--(3.8,0)node[right,sollabel]{$x$};\draw[solflow](0,-.6)--(0,1.7)node[above,sollabel]{$E_p$};
+ \draw[solpath,domain=-.2:3.3,samples=60]plot(\x,{.6*(\x-1.4)^2-.45});
+ \draw[solgeom](1.4,-1)--(1.4,1.2);\node[sollabel,below]at(1.4,-1){$x_{\rm e}=mg/k$};
+ \draw[solgeom](.2,.414)--(2.6,.414);\node[sollabel,anchor=west]at(2.75,.5){$E$};
+ \draw[<->,DeepBlue](1.4,1.15)--(2.6,1.15)node[midway,above,sollabel]{$\mathcal A$};
+ \draw[solgeom](2.6,.414)--(2.6,1.15);
+ \end{scope}
+\end{tikzpicture}\diagcaption{解图}{最低点斜率为零；右图的能量水平线与势阱相交于两个转折点。}\label{ch08:fig:soldiagFourFourteen}\end{energyfig}}

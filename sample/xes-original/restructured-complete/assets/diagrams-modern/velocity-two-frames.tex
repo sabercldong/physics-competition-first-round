@@ -1,0 +1,18 @@
+% Contract: same scale 6cm per c, components (.6,.3) and (.142857,.371154).
+% Axes form mathematical 2D x/y orientation; dashed legs are components.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \shift/\dx/\dy/\name in {0/3.6/1.8/S,6/.857143/2.226922/{S'}}{
+  \begin{scope}[xshift=\shift cm]
+   \draw[->] (-.2,0)--(4,0);\draw[->] (0,-.2)--(0,2.65);
+   \draw[DeepBlue,very thick,->] (0,0)--(\dx,\dy);
+   \draw[dashed,gray] (\dx,\dy)--(\dx,0);
+   \node at (1.8,-.85){$\name$};
+  \end{scope}
+ }
+ \node[above right=4pt] at (3.6,1.8){$\vect u$};
+ \node[below=4pt] at (1.8,0){$0.60c$};
+ \node[right=5pt] at (3.6,.9){$0.30c$};
+ \node[above right=4pt] at (6.857143,2.226922){$\vect u'$};
+ \node[below=5pt] at (6.45,0){$0.1429c$};
+ \node[right=5pt] at (6.857143,1.15){$0.3712c$};
+\end{tikzpicture}

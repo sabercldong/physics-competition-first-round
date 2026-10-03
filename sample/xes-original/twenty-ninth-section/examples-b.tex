@@ -1,0 +1,279 @@
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.7【吹泡泡】}
+小明拿出泡泡水吹泡泡。设泡泡水的表面张力系数为 $\sigma$，泡泡为半径 $R$ 的正球。
+
+（1）若不计液膜厚度，泡泡内部压强为多大？
+
+（2）若平衡时液膜的质量面密度为 $\sigma_0$，忽略空气质量，把空气看成双原子理想气体。在小的径向
+扰动下，设气泡仍能维持球形，判断平衡是否稳定。
+\end{origexamplebox}
+
+\begin{xesolution}
+（1）肥皂泡有内、外两个气液界面，每个球面都产生 $2\sigma/R$ 的 Laplace 压强差，因此总压强差为
+\begin{equation*}
+  p_{\rm in}-p_0=\frac{4\sigma}{R}.
+\end{equation*}
+所以
+\begin{equation}
+  \boxed{p_{\rm in}=p_0+\frac{4\sigma}{R}}.
+\end{equation}
+注意：只有一个界面的液滴压强差是 $2\sigma/R$；肥皂泡有两个界面，不能漏掉因子2。
+
+\bubbleRevisionDiagram
+\figcap{肥皂泡的两界面与径向扰动。$p_R$ 是平衡时内部压强；虚线表示均匀向外位移。}\label{fig:bubble-radius}
+也可直接对图\ref{fig:bubble-radius}作虚功计算：$\dd V=4\pi r^2\dd r$，
+两界面的面积增量为 $\dd A_s=16\pi r\dd r$，平衡要求
+$(p_R-p_0)\dd V=\sigma\dd A_s$，由此再次得到因子4。
+
+（2）设半径受扰动变为 $r=R+x$，$|x|\ll R$。小振幅并不自动意味着变化很快：
+若传热足够快，气体接近等温；若振动周期远短于漏热时间、又足以维持内部压强近似均匀，则接近绝热。
+先统一用多方指数 $\kappa$ 表示这两种极限：等温为1，常温双原子气体的可逆绝热近似为 $7/5$。
+取表面张力 $\sigma$ 在扰动中不变，忽略气体惯性、膜的黏性耗散和外部空气附加质量。记 $p_R=p_{\rm in}$，于是
+\begin{equation*}
+  p(r)r^{3\kappa}=p_R R^{3\kappa},
+  \qquad
+  p'(R)=-\frac{3\kappa p_R}{R}.
+\end{equation*}
+球面对称时所有真实力的矢量合力为零，不能把它作为整个泡的平移合力。这里计算的是与半径 $r$
+共轭的广义力，即虚功中 $\dd r$ 的系数：压强贡献为 $4\pi r^2[p(r)-p_0]$。
+两个界面的表面张力功对应有效势 $E_s=8\pi\sigma r^2$，向内的广义力为
+\begin{equation*}
+  -\frac{\dd E_s}{\dd r}=-16\pi\sigma r.
+\end{equation*}
+故总径向广义力为
+\begin{equation*}
+  F(r)=4\pi r^2[p(r)-p_0]-16\pi\sigma r.
+\end{equation*}
+在 $r=R$ 处利用平衡条件 $p_{\rm in}-p_0=4\sigma/R$，得到
+\begin{equation*}
+  F'(R)=4\pi\bigl(4\sigma-3\kappa Rp_R\bigr).
+\end{equation*}
+液膜质量为 $m_f=4\pi R^2\sigma_0$。线性化运动方程写成
+\begin{equation*}
+  m_f\ddot x=F'(R)x=-m_f\omega^2x,
+\end{equation*}
+其中
+\begin{equation}
+  \boxed{\omega^2=
+  \frac{3\kappa Rp_R-4\sigma}{R^2\sigma_0}}.
+\end{equation}
+代入 $p_R=p_0+4\sigma/R$，分子为
+\begin{equation*}
+  3\kappa Rp_0+(12\kappa-4)\sigma>0\qquad(\kappa=1\ \text{或}\ 7/5).
+\end{equation*}
+所以 $\omega^2>0$，小的球对称径向扰动会产生回复力，
+\begin{equation*}
+  \boxed{\text{该平衡对题设的小径向扰动稳定。}}
+\end{equation*}
+这里判断的是理想化的球对称模式；真实泡膜还可能因排液、蒸发、膜厚不均或非球形扰动而破裂。
+由 $[\sigma]=\mathrm{N/m}$、$[\sigma_0]=\mathrm{kg/m^2}$ 可验得 $[\omega^2]=\mathrm{s^{-2}}$。
+一般传热速率介于两极限之间时，还可能出现相位滞后和阻尼，题设不足以指定唯一振动频率；但上述两极限都稳定。
+\end{xesolution}
+
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{例题 20.8【华氏温标】}
+美国常用的华氏温标把标准大气压下冰的熔点定为 $32\,{}^\circ\mathrm F$，水的沸点定为
+$212\,{}^\circ\mathrm F$。
+
+（1）导出华氏温度与摄氏温度之间的换算关系；（2）给出绝对零度的华氏温度。
+\end{origexamplebox}
+
+\begin{xesolution}
+摄氏温标中冰点与沸点相差 $100$ 度，华氏温标中相差 $212-32=180$ 度，因此同一温差满足
+\begin{equation*}
+  \Delta t_F=\frac{180}{100}\Delta t_C=\frac95\Delta t_C.
+\end{equation*}
+再用 $t_C=0$ 对应 $t_F=32$，得到
+\begin{equation}
+  \boxed{t_F=\frac95t_C+32},
+  \qquad
+  \boxed{t_C=\frac59(t_F-32)}.
+\end{equation}
+绝对零度 $t_C=-273.15\,{}^\circ\mathrm C$，所以
+\begin{equation*}
+  t_F=\frac95(-273.15)+32=-459.67\,{}^\circ\mathrm F.
+\end{equation*}
+即
+\begin{equation}
+  \boxed{0\,\mathrm K=-459.67\,{}^\circ\mathrm F}.
+\end{equation}
+温差换算只乘 $9/5$，绝对温度读数换算还必须处理零点偏移；这是两类公式最容易混淆之处。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 20.9【循环过程】}
+如图所示，一定量单原子理想气体从初态 $a(P_1,V_1)$ 出发，先经等容过程到状态 $b$，再经等压过程
+到状态 $c$，最后经等温过程回到 $a$，完成一个循环。图中 $P_b=P_c=P_1/4$。已知一摩尔气体温度
+改变 $\SI{1}{K}$ 时内能改变 $c_v=3R/2$。
+
+（1）$c\to a$ 吸热还是放热，热量多少？（2）$a\to b$ 吸热还是放热，热量多少？
+
+（3）$b\to c$ 吸热还是放热，热量多少？（4）整个循环的净功和净吸放热量各为多少？
+\cycleQuestionRedraw
+\diagramcaption{图 20.9：$a\to b\to c\to a$ 循环。箭头给出过程方向，$c\to a$ 为等温压缩。}
+图20.9中 $a,c$ 在同一条双曲线上，而 $b,c$ 具有相同压强。
+\end{origexamplebox}
+
+\begin{xesolution}
+过程 $c\to a$ 等温，所以 $P_cV_c=P_aV_a$。由 $P_c=P_1/4$ 得
+\begin{equation*}
+  \frac{P_1}{4}V_c=P_1V_1,
+  \qquad
+  \boxed{V_c=4V_1}.
+\end{equation*}
+设气体物质的量为 $n$，并统一取 $Q>0$ 为吸热、$W^{\rm out}>0$ 为气体对外做功。
+
+\cycleExampleDiagram
+\figcap{循环计算所用状态。$a,b$ 等体积，$b,c$ 等压，$a,c$ 等温。}\label{fig:cycle-solution}
+以下逐段热量与图\ref{fig:cycle-solution}的三条有向路径对应。
+
+（1）$c\to a$ 为温度 $T_a=P_1V_1/(nR)$ 的等温压缩，$\Delta U_{ca}=0$，
+\begin{equation*}
+  Q_{ca}=W^{\rm out}_{ca}
+  =nRT_a\ln\frac{V_a}{V_c}
+  =P_1V_1\ln\frac14.
+\end{equation*}
+因此
+\begin{equation}
+  \boxed{Q_{ca}=-P_1V_1\ln4},
+\end{equation}
+即气体放热 $P_1V_1\ln4$。
+
+（2）$a\to b$ 等容，且 $T_b=T_a/4$。所以
+\begin{equation*}
+  W^{\rm out}_{ab}=0,
+  \qquad
+  Q_{ab}=\Delta U_{ab}
+  =\frac32nR\left(\frac{T_a}{4}-T_a\right)
+  =-\frac98P_1V_1.
+\end{equation*}
+故
+\begin{equation}
+  \boxed{Q_{ab}=-\frac98P_1V_1},
+\end{equation}
+即放热 $9P_1V_1/8$。
+
+（3）$b\to c$ 等压，温度由 $T_a/4$ 升到 $T_a$。单原子气体 $c_p=c_v+R=5R/2$，所以
+\begin{equation*}
+  Q_{bc}=nc_p(T_c-T_b)
+  =\frac52nR\cdot\frac34T_a
+  =\frac{15}{8}P_1V_1.
+\end{equation*}
+即
+\begin{equation}
+  \boxed{Q_{bc}=\frac{15}{8}P_1V_1},
+\end{equation}
+气体吸热。
+
+（4）净功可由各段相加。等容段功为零，等压段功为
+\begin{equation*}
+  W^{\rm out}_{bc}=\frac{P_1}{4}(4V_1-V_1)=\frac34P_1V_1,
+\end{equation*}
+等温压缩段功为 $-P_1V_1\ln4$。因此
+\begin{equation}
+  \boxed{W^{\rm out}_{\rm cyc}=P_1V_1\left(\frac34-\ln4\right)<0}.
+\end{equation}
+循环内能改变量为零，故净热量与净功相等：
+\begin{equation}
+  \boxed{Q_{\rm cyc}=P_1V_1\left(\frac34-\ln4\right)<0}.
+\end{equation}
+所以该循环是逆时针循环，外界对气体做净功
+$P_1V_1(\ln4-3/4)$，气体向外净放出同样多的热量。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 20.10【直线过程】}
+如图所示，一摩尔理想气体从 $P$--$V$ 图中的状态 $A$ 出发，沿缓慢直线过程到达状态 $B$。已知
+$P_B/P_A=1/2$。若要使全过程的最终结果是气体从外界吸收热量，状态 $B$ 与状态 $A$ 的体积比应满足
+什么条件？已知该理想气体每摩尔内能为 $U=3RT/2$。
+\straightQuestionRedraw
+\diagramcaption{图 20.10：状态 $A$ 到状态 $B$ 的准静态直线过程；解答中的详图进一步补出端点压强、体积及面积关系。}
+图20.10中 $B$ 的纵坐标为 $A$ 的一半，这个比例将同时用于内能变化和梯形面积。
+\end{origexamplebox}
+
+\begin{xesolution}
+令
+\begin{equation*}
+  x=\frac{V_B}{V_A},
+  \qquad P_B=\frac12P_A.
+\end{equation*}
+直线过程的对外功等于图下梯形面积：
+\begin{equation*}
+  W^{\rm out}
+  =\frac{P_A+P_B}{2}(V_B-V_A)
+  =\frac34P_AV_A(x-1).
+\end{equation*}
+
+\straightProcessDiagram
+\figcap{直线过程的两个端点及轴上投影。积分区间是 $V_A$ 到 $V_B$。}\label{fig:straight-solution}
+图\ref{fig:straight-solution}中直线下方的梯形面积给功，端点的 $PV$ 差给内能变化，二者要分别计算。
+
+由 $U=3RT/2$ 以及一摩尔理想气体 $RT=PV$，
+\begin{align*}
+  \Delta U
+  &=\frac32(P_BV_B-P_AV_A)\\
+  &=\frac34P_AV_A(x-2).
+\end{align*}
+因此吸热量
+\begin{align*}
+  Q&=\Delta U+W^{\rm out}\\
+   &=\frac34P_AV_A[(x-2)+(x-1)]\\
+   &=\frac34P_AV_A(2x-3).
+\end{align*}
+要求气体净吸热即 $Q>0$，得到
+\begin{equation}
+  \boxed{\frac{V_B}{V_A}>\frac32}.
+\end{equation}
+若 $1<x<3/2$，气体虽然膨胀并对外做功，但温度、内能下降得更多，仍会净放热；因此“膨胀”不等于
+“吸热”。
+\end{xesolution}
+
+\Needspace{11\baselineskip}
+\begin{origexamplebox}{例题 20.11【提升活塞】}
+如图所示，在质量为 $M$、内部横截面积为 $A$ 的竖直绝热气缸中，活塞封闭了一定量初温为 $T_0$ 的
+理想气体。活塞也绝热，活塞质量及活塞与气缸之间的摩擦均可忽略。大气压强为 $p_0$，重力加速度为
+$g$。气缸由不密封的小支脚支承，大气能作用于缸底外侧；忽略气体质量，取恒定绝热指数
+$\gamma=c_p/c_v$，并满足 $Mg<p_0A$。现把活塞缓慢上提；当活塞到达气缸开口处、气体尚未泄出时，
+气缸恰好离开支承面。求此时气体温度。
+\liftingPistonQuestionRedraw
+\diagramcaption{图 20.11：初态与刚离地终态。终态取活塞仍密封气体的极限位置；缸底外侧受到大气压。}
+图20.11右侧取开口前最后密封的状态；活塞再向上、气体泄出后就不能继续使用同一封闭系统的绝热方程。
+\end{origexamplebox}
+
+\begin{xesolution}
+初始时活塞没有质量，又未受额外拉力，故气体压强为 $p_i=p_0$。上提过程缓慢，使每一时刻都可视为
+平衡态；气缸、活塞又绝热，所以封闭气体经历可逆绝热膨胀。
+
+设某时刻气体压强为 $p$，外界对活塞的上拉力为 $F$。质量可忽略的活塞受力平衡给出
+\begin{equation*}
+  F+pA=p_0A,
+  \qquad
+  F=(p_0-p)A.
+\end{equation*}
+还必须单独检查缸体，不能说低压气体把缸底“向上拉”。缸底内侧气体给缸体向下的力 $pA$，
+外侧大气给向上的力 $p_0A$，支承力为 $N$。竖直平衡给出
+\[
+ N+p_0A=pA+Mg,\qquad N=Mg-(p_0-p)A.
+\]
+随着气体膨胀，$p$ 下降，支承力逐渐减小。刚离地时 $N=0$，于是
+\begin{equation*}
+  \boxed{p_f=p_0-\frac{Mg}{A}}.
+\end{equation*}
+
+\liftingPistonDiagram
+\figcap{活塞与缸体分别受力。力箭头的作用对象不同，不能直接在一张受力图中混加。}\label{fig:lift-forces}
+图\ref{fig:lift-forces}左图给 $F=(p_0-p)A$，右图在 $N=0$ 时给 $(p_0-p_f)A=Mg$，因此才有 $F_f=Mg$。
+
+由绝热关系 $T^\gamma/P^{\gamma-1}=\mathrm{const}$，
+\begin{equation*}
+  \frac{T_f^\gamma}{p_f^{\gamma-1}}
+  =\frac{T_0^\gamma}{p_0^{\gamma-1}}.
+\end{equation*}
+因此
+\begin{equation}
+  \boxed{T_f=T_0\left(\frac{p_f}{p_0}\right)^{(\gamma-1)/\gamma}
+  =T_0\left(1-\frac{Mg}{p_0A}\right)^{(\gamma-1)/\gamma}}.
+\end{equation}
+要使末态压强为正并能准静态达到，题设参数必须满足 $Mg<p_0A$。上提过程中气体膨胀并对外做功，却
+没有从环境吸热，因此内能和温度都降低，结果中的括号确实小于1。
+\end{xesolution}

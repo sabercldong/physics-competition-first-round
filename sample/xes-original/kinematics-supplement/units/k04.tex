@@ -1,0 +1,521 @@
+\unitheading{K4\quad 抛体运动}{unit-k04}
+\addcontentsline{toc}{chapter}{K4 抛体运动}
+
+加速度的大小和方向均不变的运动称为匀加速运动。若 $t=0$ 时质点位于 $\vect r_0$、速度为 $\vect v_0$，加速度为常矢量 $\vect a$，则
+\begin{equation}
+ \vect v(t)=\vect v_0+\vect a t,\qquad
+ \vect r(t)=\vect r_0+\vect v_0t+\frac12\vect a t^2.
+\end{equation}
+
+这两个矢量方程同时包含各坐标方向的运动规律。任选固定直角坐标系，把 $\vect r_0,\vect v_0,\vect a$ 分解到各轴，便可得到相互独立的分量方程；再把同一时刻各分量合起来，就还原出空间中的位置和速度。这种“先分解、分别研究、再合成”的方法并非抛体运动专用，而是处理一般匀加速运动的基本工具。
+
+在地球表面附近抛出的物体，若空气阻力可忽略，运动过程中加速度恒为重力加速度 $\vect g$，方向竖直向下。这样的运动称为抛体运动。若初速度仅有竖直分量，轨迹是直线；若初速度有水平分量，轨迹是抛物线。抛体运动容易观察，它所用的分解、合成方法也可推广到一般匀加速运动。
+
+理想模型中的“只受重力”包括两个条件：运动范围内可把 $g$ 视为常量，并且空气阻力相对重力足够小。此时水平分速度不受重力改变，竖直分速度每秒减少 $g$。物体是否正在上升、位于最高点或已经下降，只改变 $v_y$ 的符号，不改变加速度始终向下这一事实。
+
+取抛出点为原点，$x$ 轴水平向前，$y$ 轴竖直向上。初速率为 $v_0$，与水平面夹角为 $\theta$，则
+\begin{align}
+v_x(t)&=v_0\cos\theta,&x(t)&=v_0\cos\theta\,t,\\
+v_y(t)&=v_0\sin\theta-gt,&y(t)&=v_0\sin\theta\,t-\frac12gt^2.
+\end{align}
+这就是把平面曲线运动分解为水平方向的匀速运动和竖直方向的匀变速运动。由 $t=x/(v_0\cos\theta)$ 消去时间，得到轨迹方程
+\begin{equation}
+ \boxed{y=x\tan\theta-\frac{gx^2}{2v_0^2\cos^2\theta}}.
+\end{equation}
+它是开口向下的抛物线。$v_0=0$ 时为自由落体；$\theta=\pi/2$ 或 $-\pi/2$ 时为竖直上抛或竖直下抛；$\theta=0$ 时为平抛。
+
+分量运动必须使用同一个时间变量：不能先独立算出两个方向各自经历的时间，再把它们任意拼接。轨迹方程由消去这个共同的 $t$ 得到，它回答“到达水平坐标 $x$ 时高度是多少”；分量方程则能进一步回答到达该点的时刻和速度。轨迹的对称轴、最高点和宽窄都由 $v_0$ 与 $\theta$ 决定，同一抛物线的上升段和下降段在等高处具有大小相同、竖直分量方向相反的速度。
+
+当落点与抛出点等高且 $0<\theta<\pi/2$ 时，除去 $t=0$ 的根，由 $y(t)=0$ 得飞行时间
+\begin{equation}
+ T=\frac{2v_0\sin\theta}{g}.
+\end{equation}
+最高点满足 $v_y=0$，所以到达最高点的时间为 $T/2$，最大高度为 $v_0^2\sin^2\theta/(2g)$。水平射程为 $v_0\cos\theta\,T$。这些结果都依赖“始末等高”；从高台落地或落在斜面上时，不能未经修改直接使用。
+
+在任意高度相同的上升点和下降点，机械条件相同而时刻关于最高点对称。水平分速度相同，竖直分速度大小相同、方向相反，因而总速率相同。若题目给出落地速度方向、飞行时间或最高点条件，优先利用这些对称与分量性质往往比从完整二次方程重新求解更直接。
+
+固定初速率、改变抛射角时，同一目标点可能对应两个角度，也可能只有一个临界角或完全不可达。把 $u=\tan\theta$ 代入轨迹方程后，目标条件成为关于 $u$ 的二次方程；判别式大于零对应两条轨迹，等于零对应包络线上的唯一轨迹，小于零则不可达。图2.37的可达区域正是把这一判别条件对所有目标点统一表达出来。
+
+障碍问题不仅要让轨迹到达目标，还要保证到达前不穿过障碍。对有体积的球面、墙面或台阶，应比较整段轨迹与边界，而不是只让终点坐标相等。
+极限轨迹可能在目标之前与障碍相切，切点不一定是目标点。例2.45中，下降时命中球顶也满足题意；
+不能把“球顶”自动当作“抛物线顶点”。还需区分允许擦边的临界轨迹与要求完全不提前接触的实际轨迹。
+
+最终还应检查时间为正、根号内非负、发射角处在题设范围，并把所得轨迹代回边界条件。任何一个代数根若对应反向发射、碰撞发生在抛出前或提前穿过障碍，都不是物理解。
+
+\begin{origexamplebox}{例2.32\quad 网球发球的最低击球高度}
+网球场总长为 $2L$，球网高 $h$，发球区远端距球网为 $l$。把发球简化为从高度 $H$ 处以速率 $v_0$ 水平抛出。证明：要使球越过球网并落入规定区域，$H$ 必须大于某个值 $H_0$，并求 $H_0$。
+\par 题图见图~\ref{question-figure-2-32}。
+\KQuestionBG
+\end{origexamplebox}
+\begin{xesolution}
+令 $k=g/(2v_0^2)$，则球的高度为 $y=H-kx^2$。越过 $x=L$ 处球网要求
+\[
+ k<\frac{H-h}{L^2};
+\]
+\TennisServeDiagram
+
+在发球区远端 $x=L+l$ 之前落地要求
+\[
+ \sqrt{\frac Hk}\le L+l,\qquad k\ge\frac{H}{(L+l)^2}.
+\]
+两条件能由同一个 $k$ 满足，必须有
+\[
+ \frac{H}{(L+l)^2}<\frac{H-h}{L^2}.
+\]
+整理得
+\[
+ \boxed{H>H_0=\frac{h(L+l)^2}{l(2L+l)}}.
+\]
+等号对应擦网的临界情形，故合法发球需取严格大于。落点在球网之后的条件可与上述不等式同时满足。
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{14\baselineskip}\fi
+\begin{origexamplebox}{例2.33\quad 落地速度方向}
+石块从 $20\,\mathrm m$ 高处水平抛出，落地速度与水平面成 $45^\circ$。求抛出速度。
+\par 题图见图~\ref{question-figure-2-33}。
+\KQuestionBH
+\end{origexamplebox}
+\begin{xesolution}
+落地时竖直分速度大小 $v_y=\sqrt{2gh}$，水平分速度始终为 $v_0$。速度与水平面成 $45^\circ$，故 $v_0=v_y$：
+\[
+ \boxed{v_0=\sqrt{2gh}}.
+\]
+\HorizontalThrowImpactDiagram
+
+取 $g=10\,\mathrm{m/s^2}$、$h=20\,\mathrm m$，得 $\boxed{v_0=20\,\mathrm{m/s}}$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.34\quad 斜抛射程}
+证明：以初速率 $v_0$、仰角 $\theta$ 抛出的物体，回到抛出点同一高度时的射程为
+\[
+ S=\frac{v_0^2}{g}\sin2\theta,
+\]
+并证明同一初速率下 $45^\circ$ 斜抛射程最大。
+\par 题图见图~\ref{question-figure-2-34}。
+\KQuestionBI
+\end{origexamplebox}
+\begin{xesolution}
+除 $t=0$ 外，由 $y(t)=0$ 得飞行时间 $T=2v_0\sin\theta/g$，于是
+\[
+ S=v_0\cos\theta\,T
+ =\frac{2v_0^2\sin\theta\cos\theta}{g}
+ =\boxed{\frac{v_0^2}{g}\sin2\theta}.
+\]
+\ProjectileRangeDiagram
+
+因 $\sin2\theta\le1$，最大值在 $2\theta=90^\circ$ 即 $\boxed{\theta=45^\circ}$ 处取得，$S_{\max}=v_0^2/g$。
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{14\baselineskip}\fi
+\begin{origexamplebox}{例2.35\quad 互余抛射角}
+同一初速率 $v_0$ 下，仰角 $\theta_1$ 的射程为 $S$。证明仰角 $\theta_2=\pi/2-\theta_1$ 的射程也为 $S$，并求两次飞行时间乘积 $t_1t_2$。
+\par 题图见图~\ref{question-figure-2-35}。
+\KQuestionBJ
+\end{origexamplebox}
+\begin{xesolution}
+$\sin2\theta_2=\sin(\pi-2\theta_1)=\sin2\theta_1$，故射程相同。又
+\[
+t_1=\frac{2v_0\sin\theta_1}{g},\qquad
+t_2=\frac{2v_0\cos\theta_1}{g},
+\]
+\ComplementaryProjectileDiagram
+
+所以
+\[
+ t_1t_2=\frac{2v_0^2\sin2\theta_1}{g^2}
+ =\boxed{\frac{2S}{g}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例2.36\quad 越过障碍物的最小速度}
+从 $A$ 点抛出的物体要越过水平距离为 $L$、高度为 $H$ 的障碍物，求所需的最小初速率。
+\par 题图见图~\ref{question-figure-2-36}。
+\KQuestionBK
+\end{origexamplebox}
+\begin{xesolution}
+令 $u=\tan\theta$。轨迹通过临界点 $(L,H)$ 时
+\[
+H=Lu-\frac{gL^2}{2v_0^2}(1+u^2),
+\quad
+v_0^2=\frac{gL^2(1+u^2)}{2(Lu-H)}.
+\]
+\ObstacleClearanceDiagram
+
+由于速度平方必须为正，先限定 $Lu-H>0$，即 $u>H/L$。
+对 $u$ 求导，保留决定符号的部分：
+\[
+ \frac{\dd v_0^2}{\dd u}
+ =\frac{gL^2}{2}\,
+ \frac{2u(Lu-H)-L(1+u^2)}{(Lu-H)^2}
+ =\frac{gL^2}{2}\frac{Lu^2-2Hu-L}{(Lu-H)^2}.
+\]
+分子为零有两根。负号根小于 $H/L$，不满足可达条件；取正号根得
+\[
+u=\frac{H+\sqrt{H^2+L^2}}{L}.
+\]
+代回可得
+\[
+ \boxed{v_{\min}=\sqrt{g\bigl(\sqrt{L^2+H^2}+H\bigr)}}.
+\]
+在 $u\to(H/L)^+$ 与 $u\to+\infty$ 两端，$v_0^2$ 均趋于无穷，且允许范围内只有这一个驻点，因此它确为全局极小值。
+相应最优角满足 $\tan\theta=(H+\sqrt{H^2+L^2})/L$。
+式中 $g$ 乘长度后开方，量纲为速度；$H=0$ 时恢复 $\theta=45^\circ$ 和 $v_0=\sqrt{gL}$。
+图中所画的是经过顶端的边界轨迹。若“越过”要求不碰顶端，则速度必须略大于该界限，严格说该值为下确界。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.37\quad 固定速率的可达区域}
+质点从给定点 $A$ 以固定速率 $v_0$、不同方向抛出。求所有可能到达区域与不可到达区域的分界线。
+\par 题图见图~\ref{question-figure-2-37}。
+\KQuestionBL
+\end{origexamplebox}
+\begin{xesolution}
+把轨迹写成 $u=\tan\theta$ 的二次式：
+\[
+y=xu-\frac{gx^2}{2v_0^2}(1+u^2).
+\]
+\ProjectileReachabilityDiagram
+
+先取 $x>0$。记 $K=gx^2/(2v_0^2)>0$，按 $u$ 配方：
+\[
+ y=-K\left(u-\frac{v_0^2}{gx}\right)^2
+    +\frac{v_0^2}{2g}-\frac{gx^2}{2v_0^2}.
+\]
+平方项不能为负，所以在给定横坐标处，任何抛射角能到达的高度都不超过最后两项。
+当 $u=v_0^2/(gx)$ 时平方项为零，这个最高位置确实能到达。因此包络线为
+\[
+ \boxed{y=\frac{v_0^2}{2g}-\frac{gx^2}{2v_0^2}}.
+\]
+在图示 $x>0$ 半平面内，包络线以下有两个关于 $u$ 的实根，边界上两根重合，边界上方无实根。
+各实际轨迹只能与包络线相切，不能穿到它的上方。
+若题意允许向左右各方向抛射，则 $x<0$ 的情形由左右对称得到，分界线方程不变。
+$x=0$ 必须单独处理：竖直上抛的最高高度是 $v_0^2/(2g)$，正好是包络线顶点，不能在此处使用含 $1/x$ 的最优角公式。
+这里没有引入地面等额外障碍；若存在地面，还须把可达集合与允许运动空间相交。
+\end{xesolution}
+
+\ifdefined\Needspace\Needspace{12\baselineskip}\fi
+\begin{origexamplebox}{例2.38\quad 铅球的最佳出手角}
+运动员能使铅球以最大速率 $v_0$ 从离地 $H$ 处出手。求最大水平射程对应的出手角；当 $v_0=12.37\,\mathrm{m/s}$、$H=1.5\,\mathrm m$ 时，求角度与成绩。
+\end{origexamplebox}
+\begin{xesolution}
+落地时间为
+\[
+T=\frac{v_0\sin\theta+\sqrt{v_0^2\sin^2\theta+2gH}}{g},
+\]
+这里取了落地时间的正根，负根没有飞行意义。射程为 $R=v_0\cos\theta\,T$。
+直接对含根式的表达式求导较繁琐，可以把“给定 $R$ 是否能到达地面”写成同一个问题。
+以出手点为原点，落点为 $(R,-H)$，令 $u=\tan\theta$，则
+\[
+ -H=Ru-\frac{gR^2}{2v_0^2}(1+u^2)
+ =-\frac{gR^2}{2v_0^2}
+   \left(u-\frac{v_0^2}{gR}\right)^2
+   +\frac{v_0^2}{2g}-\frac{gR^2}{2v_0^2}.
+\]
+存在实数抛射角的条件为
+\[
+ -H\le\frac{v_0^2}{2g}-\frac{gR^2}{2v_0^2}
+ \quad\Longleftrightarrow\quad
+ g^2R^2\le v_0^4+2gHv_0^2.
+\]
+最大射程对应等号；此时平方项必须为零，于是
+$u_{\rm opt}=v_0^2/(gR_{\max})$。分别求出 $R_{\max}$ 和 $u_{\rm opt}$，得到
+\[
+ \boxed{\tan\theta_{\rm opt}=\frac{v_0}{\sqrt{v_0^2+2gH}}},
+ \qquad
+ \boxed{R_{\max}=\frac{v_0}{g}\sqrt{v_0^2+2gH}}.
+\]
+取 $g=9.8\,\mathrm{m/s^2}$，得 $\theta_{\rm opt}\approx42.5^\circ$，$R_{\max}\approx17.1\,\mathrm m$。出手点高于地面，所以最佳角小于 $45^\circ$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.39\quad 山坡靶的炮口初速}
+炮位看靶子的仰角为 $\alpha$，炮与靶的水平距离为 $L$，炮身仰角为 $\beta$。求击中目标所需的初速率。
+\par 题图见图~\ref{question-figure-2-39}。
+\KQuestionBN
+\end{origexamplebox}
+\begin{xesolution}
+目标坐标为 $(L,L\tan\alpha)$。代入轨迹方程：
+\[
+L\tan\alpha=L\tan\beta-
+\frac{gL^2}{2v_0^2\cos^2\beta}.
+\]
+\HillsideTargetDiagram
+
+所以
+\[
+ \boxed{v_0=\sqrt{\frac{gL}{2\cos^2\beta(\tan\beta-\tan\alpha)}}},
+\]
+并要求 $\beta>\alpha$，否则根号内不为正，理想抛体轨迹不能击中该点。
+\end{xesolution}
+
+\ProjectileVectorsDiagram
+
+除逐分量列方程外，抛体运动还可作矢量合成：
+\begin{equation}
+ \vect v(t)=\vect v_0+\vect g t,
+ \qquad
+ \vect r(t)=\vect v_0t+\frac12\vect g t^2.
+\end{equation}
+图2.12中，$\vect v_0$ 与 $\vect v_0t$ 平行，但两个实线三角形一般并不相似：重力项的相对长度差一个因子 $2$。
+图示时刻物体正在下降，因此 $\vect v$ 向右下；但它仍高于抛出点，因此 $\vect r$ 向右上。
+从右图 $\vect r$ 的终点再接一段 $\frac12\vect g t^2$，得到的新合矢量为
+\[
+ \vect r+\frac12\vect g t^2
+ =\vect v_0t+\vect g t^2=t(\vect v_0+\vect gt)=t\vect v.
+\]
+这个补上虚线的外侧三角形，其三条边才分别是速度三角形三边的 $t$ 倍。
+几何方向相同不代表速度与位移量纲相同；乘上同一时间后才可逐边比较。
+
+几何法的关键是保留矢量方向。$\vect g t$ 必须从 $\vect v_0$ 的终点接出，才能得到时刻 $t$ 的速度；$\frac12\vect g t^2$ 同理从 $\vect v_0t$ 的终点接出，得到相对抛出点的位移。若只把三个矢量的大小写成普通加法，便会丢失上升与下降、锐角与钝角等方向信息。遇到障碍、斜面或固定瞄准线时，矢量图常能直接揭示相似三角形和投影关系，减少繁琐的坐标消元。
+
+\begin{origexamplebox}{例2.40\quad 在障碍物顶端水平飞过}
+水平地面上距 $A$ 点 $L$ 处有高为 $H$ 的障碍物。从 $A$ 抛出的物体恰在通过障碍物上端时速度水平，求抛射仰角 $\theta$ 和初速率 $v_0$。
+\par 题图见图~\ref{question-figure-2-40}。
+\KQuestionBO
+\end{origexamplebox}
+\begin{xesolution}
+障碍物顶端即轨迹最高点。最高点条件给出
+\[
+H=\frac{v_0^2\sin^2\theta}{2g},\qquad
+L=\frac{v_0^2\sin\theta\cos\theta}{g}.
+\]
+\HorizontalAtObstacleDiagram
+
+相除得
+\[
+ \boxed{\tan\theta=\frac{2H}{L}},
+\]
+再代回任一式，得
+\[
+ \boxed{v_0=\sqrt{\frac{g(L^2+4H^2)}{2H}}}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例2.41\quad 垂直撞上斜面}
+从倾角为 $\alpha$ 的斜面底部斜向上抛出物体。仰角 $\theta$ 为何值时，物体击中斜面时的速度恰与斜面垂直？
+\par 题图见图~\ref{question-figure-2-41}。
+\KQuestionBP
+\end{origexamplebox}
+\begin{xesolution}
+以抛出点为原点，水平向右为 $x$ 轴、竖直向上为 $y$ 轴。
+图示构型取 $0<\alpha<\pi/2$、$\alpha<\theta<\pi/2$，即物体先进入斜面上方的空间。
+抛体的位置为
+\[
+ x=v_0\cos\theta\,t,\qquad y=v_0\sin\theta\,t-\frac12gt^2.
+\]
+\InclinedPlaneNormalImpactDiagram
+
+再次击中斜面时满足 $y=x\tan\alpha$，代入后整理为
+\[
+ t\left[v_0(\sin\theta-\cos\theta\tan\alpha)-\frac12gt\right]=0.
+\]
+其中 $t=0$ 只是抛出瞬间，不是所求的再次碰撞。利用
+$\sin\theta-\cos\theta\tan\alpha=\sin(\theta-\alpha)/\cos\alpha$，
+得到正的飞行时间
+\[
+t=\frac{2v_0\sin(\theta-\alpha)}{g\cos\alpha}.
+\]
+斜面切向单位矢量为 $(\cos\alpha,\sin\alpha)$。速度垂直斜面要求切向分量为零：
+\[
+v_0\cos(\theta-\alpha)-gt\sin\alpha=0.
+\]
+代入 $t$ 后
+\[
+\cot(\theta-\alpha)=2\tan\alpha,
+\]
+因此
+\[
+ \boxed{\theta=\alpha+\arctan\!\left(\frac{1}{2\tan\alpha}\right)}.
+\]
+这里反正切取 $(0,\pi/2)$ 内的值。由于
+$1/(2\tan\alpha)<\cot\alpha$，所得 $\theta-\alpha<\pi/2-\alpha$，
+确实满足 $\alpha<\theta<\pi/2$。此时法向速度指向斜面，表示撞入而不是离开斜面；
+飞行时间中的 $v_0/g$ 具有时间量纲，角度关系与初速率无关。
+\end{xesolution}
+
+因为抛体运动非常普遍，上述标准公式并不能自动替代建模。处理新题时应先确定坐标系、初始位置、落点或碰撞点的几何条件，再把同一时刻的水平和竖直方程联立。若题目含台阶、反弹或球面障碍，还要逐段检查碰撞后的速度规则以及整段轨迹是否提前与障碍相交，不能只验证终点坐标。
+
+\ifdefined\Needspace\Needspace{12\baselineskip}\fi
+\begin{origexamplebox}{例2.42\quad 轰炸机瞄准镜}
+轰炸机在离地高度 $H$ 处以速率 $v$ 水平匀速飞行。设计瞄准镜，使飞行员在目标位于十字线正中时投弹即可命中。求瞄准镜轴线与竖直线的夹角。
+\end{origexamplebox}
+\begin{xesolution}
+炸弹下落时间 $t=\sqrt{2H/g}$，在此期间水平前进
+\[
+D=vt=v\sqrt{\frac{2H}{g}}.
+\]
+投弹瞬间目标应位于飞机前下方，视线与竖直方向夹角 $\phi$ 满足
+\[
+ \boxed{\tan\phi=\frac DH=v\sqrt{\frac{2}{gH}}}.
+\]
+因此瞄准镜应沿此前下方视线设置；忽略空气阻力时炸弹保留飞机的水平速度。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.43\quad 台阶上的全同反弹}
+每级台阶长 $d$、高 $l$。球从 $A$ 点以水平速度 $v_0$ 抛出；碰撞后水平分速度不变，竖直分速度反向并变为碰撞前的 $e$ 倍，$e<1$。若每次碰撞前与台阶的相对速度相同，轨迹形成全同的往复过程，求 $v_0$ 和每次反弹后的上升高度。
+\par 题图见图~\ref{question-figure-2-43}。
+\KQuestionBR
+\end{origexamplebox}
+\begin{xesolution}
+设每次碰撞前竖直分速度大小为 $V$，则碰撞后向上为 $eV$。下一碰撞点比前一点低 $l$，由竖直运动的速度—位移关系
+\[
+V^2=e^2V^2+2gl,
+\quad
+V=\sqrt{\frac{2gl}{1-e^2}}.
+\]
+\StairBounceDiagram
+
+相邻碰撞间的时间等于竖直速度从 $+eV$ 变到 $-V$ 所需时间：
+\[
+T=\frac{(1+e)V}{g}.
+\]
+水平位移为 $d=v_0T$，故
+\[
+ \boxed{v_0=d\sqrt{\frac{g(1-e)}{2l(1+e)}}}.
+\]
+每次反弹后的上升高度为
+\[
+ \boxed{h_b=\frac{e^2V^2}{2g}=\frac{e^2l}{1-e^2}}.
+\]
+若题图另以 $H$ 表示首次下落高度，全同条件还要求 $H=l/(1-e^2)$，于是 $h_b=e^2H$。
+\end{xesolution}
+
+\begin{origexamplebox}{例2.44\quad 反弹轨迹的面积和}
+小球从距水平地面 $h$ 高处，以水平速度 $\sqrt{2gh}$ 抛出。每次落地反弹时水平速度不变，竖直速度反向且按固定比率 $e$ 减小。若从第一次反弹开始，各段轨迹与地面所围面积之和为 $\frac{8}{21}h^2$，求 $e$。提示：一次从地面出发又落回地面的斜抛轨迹所围面积，等于其最大高度与射程乘积的 $2/3$。
+\end{origexamplebox}
+\begin{xesolution}
+第一次落地前竖直速度大小为 $\sqrt{2gh}$。第 $n$ 次反弹后的竖直初速度为 $e^n\sqrt{2gh}$，故最大高度 $H_n=e^{2n}h$；水平速度为 $\sqrt{2gh}$，飞行时间 $2e^n\sqrt{2h/g}$，射程 $S_n=4e^nh$。于是第 $n$ 个面积
+\[
+A_n=\frac23H_nS_n=\frac83h^2e^{3n}.
+\]
+从 $n=1$ 起求和：
+\[
+\frac83h^2\frac{e^3}{1-e^3}=\frac8{21}h^2.
+\]
+解得 $7e^3=1-e^3$，所以
+\[
+ \boxed{e=\frac12}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例2.45\quad 击中球顶的速度界限}
+地面上放有半径为 $R$ 的球体。从地面斜向上抛出一个质点，要求击中球顶，且在此之前不碰球体。
+求所需初速率的下界及相应临界抛射角、抛出点到球底的距离，并判断这个下界能否取到。
+同时给出允许“提前与球面相切但不穿入”时的临界结果。
+\par 题图见图~\ref{question-figure-2-45}。
+\KQuestionBT
+\end{origexamplebox}
+\begin{xesolution}
+\textbf{先判断命中时的速度方向。}
+物体不可能上升着从球体内部穿到球顶；但既可以在球顶水平掠过，也可以在下降时命中。
+因此不能预先令球顶的竖直速度为零。下面把这两类运动统一处理。
+\SphereClearanceDiagram
+图中 $T$ 是球顶；左图临界轨迹在到达 $T$ 之前还与球面在 $P$ 点相切，右图则从球面上方经过后在下降阶段到达 $T$。
+两个点的作用不同：$T$ 决定命中，$P$ 决定是否提前碰球。
+
+\textbf{把全部候选轨迹写成两个参数。}
+以球底为水平坐标原点，以地面为 $y=0$，抛出点在 $x=-d$。
+设水平分速度为 $u>0$，到达 $T=(0,2R)$ 时的竖直分速度为 $w\le0$。
+记无量纲量
+\[
+ s=-\frac{x}{R},\qquad q=-\frac wu\ge0,\qquad
+ k=\frac{gR}{2u^2}>0.
+\]
+以球顶为已知点写轨迹，得到
+\[
+ y=2R+\frac wu x-\frac{g}{2u^2}x^2,
+ \qquad \boxed{\frac{y}{R}=2+qs-ks^2}.
+\]
+其中 $s>0$ 表示位于球顶左侧。$q=0$ 才是球顶速度水平的特殊情况。
+从抛出点到球顶上升的净高度为 $2R$。由竖直运动公式
+$v_{y0}^2-w^2=4gR$，可得
+\[
+ \frac{v_0^2}{gR}
+ =4+\frac{u^2+w^2}{gR}
+ =\boxed{4+\frac{1+q^2}{2k}}.
+\]
+这一式同时检查了机械能：初动能减去到球顶的动能恰为 $2mgR$。
+
+\textbf{检查到顶之前的整段球面。}
+在左半球的水平投影 $0<s\le1$ 内，球体上边界为
+\[
+ \frac{y_s}{R}=1+\sqrt{1-s^2}.
+\]
+所以不穿入球体要求
+\[
+ 2+qs-ks^2\ge1+\sqrt{1-s^2},
+ \quad\text{即}\quad
+ q\ge h_k(s):=ks-\frac{1-\sqrt{1-s^2}}{s}.
+\]
+严格“不提前接触”时，不等式在 $0<s\le1$ 必须严格成立。
+在球体投影以外没有球面障碍；轨迹与地面的左交点就是抛出点。
+给定 $k$ 后，速度平方随 $q\ge0$ 增加，因此应先找使整段不等式成立的最小 $q$。
+
+若 $k\le1/2$，由于
+\[
+ 1-\sqrt{1-s^2}=\frac{s^2}{1+\sqrt{1-s^2}}\ge\frac{s^2}{2}\ge ks^2,
+\]
+取 $q=0$ 已足够使轨迹位于球面上方，且
+\[
+ \frac{v_0^2}{gR}=4+\frac1{2k}\ge5.
+\]
+这给出“在球顶速度水平”一类轨迹的下界 $\sqrt{5gR}$，但它不一定是所有轨迹的下界。
+
+若 $k>1/2$，函数 $h_k$ 在球顶附近先增加，随后下降，最大值出现在一个内部点。
+为求这个点，令 $c=\sqrt{1-s^2}$。对 $s$ 求导，得到
+\[
+ h_k'(s)=k-\frac1{c(1+c)}.
+\]
+当 $s$ 从 $0$ 增加到 $1$，$c$ 从 $1$ 减少到 $0$，故第二项从 $1/2$ 单调增至无穷。
+因此恰有一个最大值点，满足
+\[
+ k=\frac1{c(1+c)},\qquad s=\sqrt{1-c^2},\qquad 0<c<1.
+\]
+在该点取 $q=h_k(s)$，化简为
+\[
+ q=\frac{s(1-c)}{c(1+c)}.
+\]
+这两个等式正是提前切点 $P$ 的位置相同、斜率相同条件；并非只在球顶作局部比较。
+
+\textbf{求所有临界轨迹中的最小速度。}
+将上述 $k,q$ 代入速度式，注意 $s^2=1-c^2$：
+\begin{align*}
+ \frac{1+q^2}{2k}
+ &=\frac{c^2(1+c)+(1-c)^3}{2c}\\
+ &=2c-\frac32+\frac1{2c}.
+\end{align*}
+于是
+\[
+ \frac{v_0^2}{gR}
+ =\frac52+2c+\frac1{2c}\ge\frac52+2=\frac92,
+\]
+其中用了 $2c>0$ 与 $(2c)^{-1}>0$ 的和不小于 $2$。
+等号在 $c=1/2$ 取得，故
+\[
+ k_*=\frac43,\quad q_*=\frac1{\sqrt3},\quad
+ u_*^2=\frac38gR,\quad w_*^2=\frac18gR,\quad w_*<0.
+\]
+初始竖直分速度满足 $v_{y0,*}^2=w_*^2+4gR=33gR/8$。
+由 $y(-d)=0$，取正的距离根：
+\[
+ \frac{d}{R}=\frac{q+\sqrt{q^2+8k}}{2k}.
+\]
+所以临界结果为
+\[
+ \boxed{v_*=\frac3{\sqrt2}\sqrt{gR}},\qquad
+ \boxed{\tan\theta_*=\sqrt{11}},\qquad
+ \boxed{d_*=\frac{\sqrt3+3\sqrt{11}}8R}.
+\]
+切点位于 $x_P=-\sqrt3R/2$、$y_P=3R/2$，早于球顶 $T$。
+
+\textbf{区分最小值和下确界。}
+上述等号轨迹先碰到 $P$，因此不满足严格的“不提前接触”。
+固定 $k=4/3$，取 $q=1/\sqrt3+\varepsilon$，$\varepsilon>0$，轨迹在每个 $s>0$ 处都比临界轨迹高出 $R\varepsilon s$；
+它避开提前接触，仍在 $T$ 命中。令 $\varepsilon\to0^+$，其初速率可无限趋近 $v_*$。
+因此：
+\[
+ \boxed{\text{严格不提前接触：}\quad v_0>v_*,
+ \quad \inf v_0=v_*\ \text{但不存在能取到的最小值。}}
+\]
+这里的不等式表示任何可行轨迹的必要速度界限，且可行速度可以从上方任意逼近此界；
+不能据此认为任意抛射角都能命中。若允许提前相切但不穿入，则 $v_*$ 可以取到，临界角和距离即上式。
+$\sqrt{gR}$ 具有速度量纲，$d_*\propto R$、$\theta_*$ 与尺度无关；半径缩小时速度界限按 $\sqrt R$ 减小，符合几何相似缩放。
+\end{xesolution}

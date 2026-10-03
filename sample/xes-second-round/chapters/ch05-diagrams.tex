@@ -1,0 +1,178 @@
+% 第5章技术图：标签均为透明背景；轨道、速度和力的方向分别核验。
+\newcommand{\figCentralStates}{%
+\begin{center}
+\begin{tikzpicture}[scale=.88]
+ \begin{scope}[xshift=-4.0cm]
+  \coordinate (O) at (-2.34,0);\coordinate (P) at (1.35,1.17);
+  \draw[curve] (0,0) ellipse (2.7 and 1.35);
+  \fill[DeepBlue] (O) circle(.12);\node[labelclean,below=5pt] at (O){$O$};
+  \fill (P) circle(2pt);\draw[vector] (O)--(P) node[midway,below=3pt]{$\vect r$};
+  \draw[vector] (P)--++(-1.30,.38) node[above=3pt]{$\vect v$};
+  \node[labelclean] at (0,-2.0){束缚运动};
+ \end{scope}
+ \begin{scope}[xshift=4.0cm]
+  \coordinate (O) at (0,0);
+  \draw[curve] (-3.05,1.20)
+   .. controls (-1.55,1.20) and (-.65,.95) .. (.15,.58)
+   .. controls (1.15,.10) and (2.25,-.48) .. (3.20,-.78);
+  \fill[DeepBlue] (O) circle(.12);\node[labelclean,below=5pt] at (O){$O$};
+  \draw[guide] (-3.1,0)--(3.25,0);
+  \draw[<->,TextGray] (-2.65,0)--(-2.65,1.20) node[midway,left=3pt]{$b$};
+  \draw[vector] (-2.65,1.20)--++(1.15,0) node[above=3pt]{$\vect v_\infty$};
+  \draw[vector] (2.20,-.46)--++(1.00,-.32) node[below=3pt]{$\vect v'_\infty$};
+  \draw[->,TextGray] (2.35,.05) arc[start angle=0,end angle=-18,radius=.78];
+  \node[labelclean] at (2.95,-.10){$\chi$};
+  \node[labelclean] at (0,-2.0){散射运动};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{有心力中的束缚态与散射态：$b$ 为瞄准距离，$\chi$ 为散射角。}
+\label{r2ch05:fig:001}
+\end{center}}
+
+\newcommand{\figPowerLawEffective}{%
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=.72cm]
+ \foreach \dx/\title in {0/$n<-3$,5/$-3<n<-1$,10/$n>-1$}{
+  \begin{scope}[xshift=\dx cm]
+   \draw[axis] (0,0)--(3.8,0) node[right]{$r$};
+   \draw[axis] (0,-2.0)--(0,2.55) node[above]{$V_{\rm eff}$};
+   \node[labelclean] at (1.85,-2.38){\title};
+  \end{scope}}
+ \begin{scope}
+  \draw[curve,samples=120,domain=.32:3.55,smooth,variable=\x]
+   plot ({\x},{1.65/\x^2-1.0/\x^3});
+  \fill (1.02,.62) circle(2pt);\node[labelclean,above=4pt] at (1.02,.62){$P$};
+ \end{scope}
+ \begin{scope}[xshift=5cm]
+  \draw[curve,samples=120,domain=.33:3.55,smooth,variable=\x]
+   plot ({\x},{1.05/\x^2-2.15/\x});
+  \fill (1.02,-1.08) circle(2pt);\node[labelclean,below=5pt] at (1.02,-1.08){$P$};
+  \draw[guide] (.43,-.54)--(3.45,-.54);
+ \end{scope}
+ \begin{scope}[xshift=10cm]
+  \draw[curve,samples=120,domain=.35:3.55,smooth,variable=\x]
+   plot ({\x},{.72/\x^2+.16*\x^2-1.30});
+  \fill (1.46,-.83) circle(2pt);\node[labelclean,below=5pt] at (1.46,-.83){$P$};
+  \draw[guide] (.55,-.25)--(3.45,-.25);
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{幂律引力叠加离心势垒后的三类有效势能；$P$ 为圆轨道对应的驻点。}
+\label{r2ch05:fig:002}
+\end{center}}
+
+\newcommand{\figHalleyOrbit}{%
+\begin{center}
+\begin{tikzpicture}[scale=.84]
+ \coordinate (S) at (0,0);\coordinate (Pp) at (1.02,0);\coordinate (P) at (.44,1.36);
+ \coordinate (Vr) at ($(P)+(.25,.76)$);\coordinate (Vend) at ($(Vr)+(-1.04,.34)$);
+ \draw[curve] (-2.38,0) ellipse (3.40 and 2.43);
+ \fill[orange!75!black] (S) circle(.15);\node[labelclean,below=6pt] at (S){太阳 $S$};
+ \fill (Pp) circle(2pt);\node[labelclean,above right=5pt] at (Pp){近日点 $P_0$};
+ \fill (P) circle(2pt);\node[labelclean,above=4pt] at (P){$P$};
+ \draw[vector] (S)--(P) node[midway,right=3pt]{$r$};
+ \draw[guide] (S)--++(1.8,0);
+ \draw[->,TextGray] ($(S)+(.78,0)$) arc[start angle=0,end angle=72,radius=.78];
+ \node[labelclean] at (.76,.52){$72^\circ$};
+ \draw[component] (P)--(Vr) node[midway,right=3pt]{$v_r$};
+ \draw[component] (Vr)--(Vend) node[midway,above=3pt]{$v_\theta$};
+ \draw[vector] (P)--(Vend) node[above left=3pt]{$\vect v$};
+ \draw[->,DeepBlue] (-3.6,1.35) arc[start angle=135,end angle=180,radius=.65];
+ \node[labelclean,left=3pt] at (-4.15,1.45){逆时针};
+\end{tikzpicture}
+\bookcaption{哈雷彗星轨道参数及速度的径向、横向分解。}
+\label{r2ch05:fig:003}
+\end{center}}
+
+\newcommand{\figBinaryMassLoss}{%
+\begin{center}
+\begin{tikzpicture}[scale=.95]
+ \coordinate (C) at (0,0);\coordinate (A) at (-2.25,0);\coordinate (B) at (3.05,0);
+ \draw[guide] (C) circle(2.25);\draw[guide] (C) circle(3.05);
+ \fill[DeepBlue] (A) circle(.20);
+ \fill[TextGray] (B) circle(.15);\node[labelclean,below=6pt] at (B){$m$};
+ \fill (C) circle(2pt);\node[labelclean,below=5pt] at (C){质心};
+ \draw[<->,TextGray] (A)--(B) node[midway,above=5pt]{$r$};
+ \draw[vector] (A)--++(0,-1.05) node[below=4pt]{$\vect v_M$};
+ \draw[vector] (B)--++(0,1.05) node[right=4pt]{$\vect v_m$};
+ \draw[guide] (A) circle(.52);
+ \foreach \a in {20,80,140,200,260,320}{\draw[component] ($(A)+(\a:.28)$)--($(A)+(\a:.78)$);}
+ \draw[TextGray] (A)--++(-1.15,-1.10) node[left=3pt,labelclean]{$M\to M-\Delta M$};
+ \node[labelclean,align=left] at (-4.4,1.55){爆炸球对称\\碎片总冲量为零};
+\end{tikzpicture}
+\bookcaption{双星中大质量星球对称失质量；爆炸瞬间位置和剩余星体速度连续。}
+\label{r2ch05:fig:004}
+\end{center}}
+
+\newcommand{\figLRLGeometry}{%
+\begin{center}
+\begin{tikzpicture}[scale=.95]
+ \coordinate (F) at (-2.236,0);\coordinate (P) at (1.50,1.732);
+ \draw[curve] (0,0) ellipse (3.0 and 2.0);
+ \fill[orange!75!black] (F) circle(.14);\node[labelclean,below=5pt] at (F){$O$};
+ \fill (P) circle(2pt);\node[labelclean,above=4pt] at (P){$P$};
+ \draw[vector] (F)--(P) node[midway,left=4pt]{$\vect r$};
+ \draw[vector] (F)--++(2.0,0) node[below=4pt]{$\vect e$};
+ \draw[vector] (P)--++(-1.30,.50) node[above=4pt]{$\vect p$};
+ \draw[->,TextGray] ($(F)+(1.0,0)$) arc[start angle=0,end angle=35,radius=1.0];
+ \node[labelclean] at (-1.08,.42){$\theta$};
+ \node[labelclean,align=left] at (4.1,.8){$\vect e$ 指向近日点\\$\vect L$ 垂直轨道面};
+\end{tikzpicture}
+\bookcaption{拉普拉斯—龙格—楞次矢量与圆锥曲线极角的定义。}
+\label{r2ch05:fig:005}
+\end{center}}
+
+\newcommand{\figGravityScattering}{%
+\begin{center}
+\begin{tikzpicture}[scale=.78]
+ \coordinate (O) at (0,0);
+ \draw[axis] (-5.0,0)--(5.1,0) node[right]{入射方向};
+ \draw[curve] (-4.50,1.45)
+  .. controls (-2.20,1.45) and (-.60,1.02) .. (.25,.75)
+  .. controls (1.40,.38) and (2.70,-.58) .. (3.80,-1.00);
+ \fill[DeepBlue] (O) circle(.16);\node[labelclean,below=5pt] at (O){飞船 $M$};
+ \draw[vector] (-4.25,1.45)--++(1.2,0) node[above=3pt]{$\vect v$};
+ \draw[<->,TextGray] (-3.65,0)--(-3.65,1.45) node[midway,left=4pt]{$b$};
+ \draw[vector] (3.15,-1.12)--++(1.08,-.42) node[below=4pt]{$\vect v'$};
+ \draw[->,TextGray] (3.1,-.05) arc[start angle=0,end angle=-22,radius=.95];
+ \node[labelclean] at (3.95,-.25){$\chi$};
+ \draw[guide] (O) circle(.58);
+ \draw[TextGray] (.42,.40)--(1.05,.92) node[right=3pt,labelclean]{$r_s$};
+\end{tikzpicture}
+\bookcaption{星际尘埃的引力散射几何；$r_s$ 是飞船特征半径。}
+\label{r2ch05:fig:006}
+\end{center}}
+
+\newcommand{\figApsidalAdvance}{%
+\begin{center}
+\begin{tikzpicture}[scale=.86]
+ \coordinate (S) at (0,0);
+ \draw[curve,samples=180,domain=0:360,smooth,variable=\t]
+  plot ({(2.2/(1+.38*cos(\t-8)))*cos(\t)},{(2.2/(1+.38*cos(\t-8)))*sin(\t)});
+ \draw[curve,draw=Blue,samples=180,domain=0:360,smooth,variable=\t]
+  plot ({(2.2/(1+.38*cos(\t-24)))*cos(\t)},{(2.2/(1+.38*cos(\t-24)))*sin(\t)});
+ \fill[orange!75!black] (S) circle(.15);\node[labelclean,below=5pt] at (S){太阳};
+ \draw[vector] (S)--({1.594*cos(8)},{1.594*sin(8)}) node[midway,below=3pt]{$R$};
+ \draw[vector] (S)--({1.594*cos(24)},{1.594*sin(24)});
+ \draw[->,TextGray] (1.00,.14) arc[start angle=8,end angle=24,radius=1.01];
+ \node[labelclean] at (1.48,.46){$\Delta\varpi$};
+ \draw[TextGray] (1.48,.70)--(2.45,1.20) node[right=3pt,labelclean,align=left]{径向周期后\\近日点向前移动};
+\end{tikzpicture}
+\bookcaption{附加微弱径向力使径向频率与角向频率不再相等，从而产生近日点进动。}
+\label{r2ch05:fig:007}
+\end{center}}
+
+\newcommand{\figDampedOrbit}{%
+\begin{center}
+\begin{tikzpicture}[scale=.82]
+ \fill[orange!75!black] (0,0) circle(.14);\node[labelclean,below=5pt] at (0,0){力心};
+ \draw[curve,domain=0:720,samples=260,smooth,variable=\t]
+  plot ({((2.60-.00120*\t)/(1+.42*cos(\t)))*cos(\t)},
+        {((2.60-.00120*\t)/(1+.42*cos(\t)))*sin(\t)});
+ \coordinate (P) at (0,2.49);
+ \draw[vector] (P)--++(-1.0,-.12) node[above=4pt]{$\vect v$};
+ \draw[component] (P)--++(.78,.10) node[above=4pt]{$-\gamma\vect v$};
+ \draw[TextGray] (1.55,1.2)--(2.55,1.75) node[right=3pt,labelclean,align=left]{长半轴逐渐减小\\离心率在一阶近似下不变};
+\end{tikzpicture}
+\bookcaption{弱线性阻力下椭圆轨道缓慢内缩的平均图像。}
+\label{r2ch05:fig:008}
+\end{center}}

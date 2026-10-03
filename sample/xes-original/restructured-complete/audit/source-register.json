@@ -1,0 +1,486 @@
+{
+  "policy": {
+    "primary": "一轮原PDF中的既有教学内容必须保留；二轮原件用于补足新版知识结构。",
+    "advanced_volume": "《讲义 .pdf》第5—221物理页全部进入独立高阶选读卷；第1—4页目录与使用说明排除。",
+    "page_number_kind": "physical_pdf_page",
+    "student_text_excludes_editorial_metadata": true
+  },
+  "sources": [
+    {
+      "id": "r1-mechanics",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/19春假兴趣1-力学.pdf",
+      "sha256": "d65916a3602e25534bc75262c2aa6c61d2c9bf5a2d3968f30baf264ad582d561",
+      "role": "primary",
+      "target_chapters": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "r1-calculus",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/19春假兴趣2-微积分在物理学中的应用.pdf",
+      "sha256": "e482e0671ec481c2d2660069e6816260e46092685b906aba5a239d98ddaa070b",
+      "role": "primary",
+      "target_chapters": [
+        1,
+        9
+      ]
+    },
+    {
+      "id": "r1-summer",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2019暑】兴趣一阶.pdf",
+      "sha256": "43d70247d107e2301a2276e84645eee5a5865e56afcc2ec90b2168a3ba47f3e0",
+      "role": "primary",
+      "target_chapters": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": "r1-autumn-em-1",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2019秋】兴趣一阶-1.pdf",
+      "sha256": "21f9cfb7c6eeee33b5ae09fa1e33610ab51f7f7a8d04f6f9cfbec79d178c2ae6",
+      "role": "secondary_merge",
+      "target_chapters": [
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "id": "r1-autumn-em-2",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2019秋】兴趣一阶-2.pdf",
+      "sha256": "c3fac09f2ae19eeda41a354dffad0c6d848388cf01dddfbdaf781a00d7ec3769",
+      "role": "secondary_merge",
+      "target_chapters": [
+        22,
+        23,
+        24,
+        26
+      ]
+    },
+    {
+      "id": "r1-thermal",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2020寒】兴趣一阶-热学.pdf",
+      "sha256": "74fbc798a37434371504dd3b177bc9505692150ed9bd4642b6f2ed74e76389f0",
+      "role": "primary",
+      "target_chapters": [
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": "r1-spring-em",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2020春】高一物理.pdf",
+      "sha256": "e212638999b2f3f75f43ccc42663b771b7de3656ec24e4d96134bc5ba9990d05",
+      "role": "primary",
+      "ranges": [
+        {
+          "pages": [
+            5,
+            72
+          ],
+          "targets": [
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "pages": [
+            73,
+            85
+          ],
+          "targets": [
+            22
+          ]
+        },
+        {
+          "pages": [
+            87,
+            98
+          ],
+          "targets": [
+            23
+          ]
+        },
+        {
+          "pages": [
+            99,
+            115
+          ],
+          "targets": [
+            24
+          ]
+        },
+        {
+          "pages": [
+            117,
+            124
+          ],
+          "targets": [
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r1-optics",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2020寒】兴趣一阶-光学.pdf",
+      "sha256": "d3d5f976658868b2fd34f58734556022538a8a4212cee6c3263da83784c152c6",
+      "role": "primary",
+      "ranges": [
+        {
+          "pages": [
+            5,
+            16
+          ],
+          "targets": [
+            27
+          ]
+        },
+        {
+          "pages": [
+            18,
+            31
+          ],
+          "targets": [
+            28
+          ]
+        },
+        {
+          "pages": [
+            32,
+            44
+          ],
+          "targets": [
+            29
+          ]
+        },
+        {
+          "pages": [
+            46,
+            54
+          ],
+          "targets": [
+            30
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r1-kinematics-supplement",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/资料.pdf",
+      "sha256": "3c3a992be8d4e24124561b5642abc55136edda735b2efeb4780943c4302b4784",
+      "role": "primary",
+      "ranges": [
+        {
+          "pages": [
+            6,
+            86
+          ],
+          "targets": [
+            2,
+            3,
+            4,
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r2-mechanics-notes",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛学生版讲义.pdf",
+      "sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+      "role": "secondary_expand",
+      "ranges": [
+        {
+          "pages": [
+            73,
+            98
+          ],
+          "targets": [
+            10
+          ],
+          "starred_subranges": [
+            [
+              82,
+              98
+            ]
+          ]
+        },
+        {
+          "pages": [
+            99,
+            104
+          ],
+          "targets": [
+            11
+          ],
+          "notes": "第99—104物理页已对照原件修订第11章；第105页进入刚体。证据：audit/source-review/ch11-ch12-revision-ledger-20260912.json"
+        },
+        {
+          "pages": [
+            105,
+            110
+          ],
+          "targets": [
+            9
+          ],
+          "status": "pending_independent_review",
+          "notes": "刚体相关教学范围；本次第11、12章修订不把它计入已验收或排除。"
+        },
+        {
+          "pages": [
+            111,
+            122
+          ],
+          "targets": [
+            12
+          ],
+          "starred_subranges": [
+            [
+              116,
+              119
+            ]
+          ]
+        },
+        {
+          "pages": [
+            123,
+            128
+          ],
+          "targets": [
+            13
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r2-mechanics-exercises",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛习题.pdf",
+      "sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba",
+      "role": "secondary_expand",
+      "ranges": [
+        {
+          "pages": [
+            36,
+            39
+          ],
+          "targets": [
+            10
+          ],
+          "problem_count": 6
+        },
+        {
+          "pages": [
+            40,
+            43
+          ],
+          "targets": [
+            11
+          ],
+          "problem_count": 6
+        },
+        {
+          "pages": [
+            49,
+            52
+          ],
+          "targets": [
+            12
+          ],
+          "problem_count": 6
+        },
+        {
+          "pages": [
+            53,
+            56
+          ],
+          "targets": [
+            13
+          ],
+          "problem_count": 6
+        }
+      ]
+    },
+    {
+      "id": "r2-winter",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/兴趣二阶寒假班.pdf",
+      "sha256": "7576f82186b6c6ffeca89e9ae99c969349b5c4642535f4c6ed2c9d6b49a5cc14",
+      "role": "secondary_expand",
+      "ocr_required": true,
+      "ranges": [
+        {
+          "pages": [
+            68,
+            77
+          ],
+          "targets": [
+            18
+          ]
+        },
+        {
+          "pages": [
+            78,
+            87
+          ],
+          "targets": [
+            27,
+            30
+          ]
+        },
+        {
+          "pages": [
+            88,
+            99
+          ],
+          "targets": [
+            28
+          ]
+        },
+        {
+          "pages": [
+            100,
+            108
+          ],
+          "targets": [
+            28
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r2-spring",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/兴趣二阶春季.pdf",
+      "sha256": "7d47436e2942ee0a77afb18a8ea9abf4fa3d6e22831466ce6b19935b0fd9251c",
+      "role": "secondary_expand",
+      "ocr_required": true,
+      "ranges": [
+        {
+          "pages": [
+            111,
+            114
+          ],
+          "targets": [
+            25
+          ]
+        },
+        {
+          "pages": [
+            115,
+            119
+          ],
+          "targets": [
+            31
+          ]
+        },
+        {
+          "pages": [
+            121,
+            132
+          ],
+          "targets": [
+            29,
+            30
+          ]
+        },
+        {
+          "pages": [
+            143,
+            144
+          ],
+          "targets": [
+            32
+          ]
+        }
+      ]
+    },
+    {
+      "id": "r2-comprehensive",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/讲义 .pdf",
+      "sha256": "7fc1fe760505033b0dfbd434d206188f66849af0c1ffaafa446dabb237b1c95b",
+      "role": "advanced_volume_primary",
+      "ranges": [
+        {
+          "pages": [
+            5,
+            66
+          ],
+          "targets": [
+            "A1"
+          ]
+        },
+        {
+          "pages": [
+            67,
+            86
+          ],
+          "targets": [
+            "A2"
+          ]
+        },
+        {
+          "pages": [
+            87,
+            130
+          ],
+          "targets": [
+            "A3"
+          ]
+        },
+        {
+          "pages": [
+            131,
+            160
+          ],
+          "targets": [
+            "A4"
+          ]
+        },
+        {
+          "pages": [
+            161,
+            190
+          ],
+          "targets": [
+            "A5"
+          ]
+        },
+        {
+          "pages": [
+            191,
+            221
+          ],
+          "targets": [
+            "A6"
+          ]
+        }
+      ],
+      "excluded_pages": [
+        {
+          "pages": [
+            1,
+            3
+          ],
+          "reason": "目录"
+        },
+        {
+          "pages": [
+            4,
+            4
+          ],
+          "reason": "讲义使用说明"
+        }
+      ]
+    }
+  ]
+}

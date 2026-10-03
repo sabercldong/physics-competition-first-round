@@ -1,0 +1,83 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+\input{style.tex}
+\hypersetup{
+  pdftitle={高中物理竞赛一轮讲义},
+  pdfsubject={高中物理竞赛一轮讲义}
+}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+  \centering
+  \vspace*{0.22\textheight}
+  {\Huge\bfseries 高中物理竞赛一轮讲义\par}
+  \vfill
+  {\color{TextGray}数学工具·力学·热学·电磁学·光学·近代物理\par}
+\end{titlepage}
+\begingroup
+\setlength{\parskip}{0pt}
+\makeatletter
+\renewcommand{\@pnumwidth}{2.6em}
+\renewcommand{\@tocrmarg}{3.6em}
+\makeatother
+\tableofcontents
+\clearpage
+\endgroup
+\mainmatter
+
+\input{generated/chapters/ch01.tex}
+\input{generated/chapters/ch02.tex}
+\input{generated/chapters/ch03.tex}
+\input{generated/chapters/ch04.tex}
+\input{generated/chapters/ch05.tex}
+\input{generated/chapters/ch06.tex}
+\input{generated/chapters/ch07.tex}
+\input{generated/chapters/ch08.tex}
+\input{generated/chapters/ch09.tex}
+\input{generated/chapters/ch10.tex}
+\input{generated/chapters/ch11.tex}
+\input{generated/chapters/ch12.tex}
+\input{generated/chapters/ch13.tex}
+\input{generated/chapters/ch14.tex}
+\input{generated/chapters/ch15.tex}
+\input{generated/chapters/ch16.tex}
+\input{generated/chapters/ch17.tex}
+\input{generated/chapters/ch18.tex}
+\input{generated/chapters/ch19.tex}
+\input{generated/chapters/ch20.tex}
+\input{generated/chapters/ch21.tex}
+\input{generated/chapters/ch22.tex}
+\input{generated/chapters/ch23.tex}
+\input{generated/chapters/ch24.tex}
+\input{generated/chapters/ch25.tex}
+\input{generated/chapters/ch26.tex}
+\input{generated/chapters/ch27.tex}
+\input{generated/chapters/ch28.tex}
+\input{generated/chapters/ch29.tex}
+\input{generated/chapters/ch30.tex}
+\input{generated/chapters/ch31.tex}
+\input{generated/chapters/ch32.tex}
+
+\appendix
+\setcounter{chapter}{4}
+\input{generated/appendices/appendix-e.tex}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{part}{第7卷　高阶选读}
+\part*{第7卷　高阶选读}
+\input{advanced/A1.tex}
+\input{advanced/A2.tex}
+\input{advanced/A3.tex}
+\input{advanced/A4.tex}
+\input{advanced/A5.tex}
+\input{advanced/A6.tex}
+
+\bookmarksetup{startatroot}
+\backmatter
+\chapter*{符号与常数索引}
+\addcontentsline{toc}{chapter}{符号与常数索引}
+本书统一采用国际单位制。矢量以粗体表示，微分记号写作 $\dd$，虚数单位记作 $\ii$。
+各章例题、图和公式均按“章号.顺序号”编号。
+\end{document}

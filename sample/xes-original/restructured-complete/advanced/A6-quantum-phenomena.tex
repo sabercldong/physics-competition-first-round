@@ -1,0 +1,331 @@
+\section{量子物理现象}
+
+\subsection{真空光场的模式与黑体辐射}
+
+在边长 $l_1,l_2,l_3$ 的周期盒中，真空四势满足波动方程和 Lorenz 规范
+\[
+ \Box A^\mu=0,\qquad \partial_\mu A^\mu=0,
+\]
+允许波矢
+\[
+ k_i=\frac{2\pi N_i}{l_i},\qquad
+ \omega=ck.
+\]
+对每个非零 $\vect k$ 只有两种相互正交的横向偏振具有物理电磁场。
+沿 $k^\mu$ 的规范模式虽满足形式方程，却给出 $\vect E=\vect B=0$，不应误称为可观测“纵光子”。
+
+把磁矢势 Fourier 展开为
+\[
+ \vect A(\vect r,t)=
+ \sum_{\vect k,r}q_{\vect k,r}(t)\,
+ \vect e_{\vect k,r}\e^{\ii\vect k\cdot\vect r},
+\qquad r=1,2.
+\]
+利用 Parseval 公式，电磁场 Hamilton 量成为独立谐振子之和
+\[
+ H=\sum_{\vect k,r}
+ \left(\frac{|p_{\vect k,r}|^2}{2m}
+ +\frac{m\omega_{\vect k}^2|q_{\vect k,r}|^2}{2}\right).
+\]
+半径为 $k$ 的波矢球计数并乘两种偏振，单位体积角频率态密度为
+\[
+ \boxed{g(\omega)=\frac{\omega^2}{\pi^2c^3}}.
+\]
+
+经典能量均分给每个模式平均能量 $k_{\rm B}T$，得到 Rayleigh--Jeans 谱
+\[
+ u_{\rm RJ}(\omega)=\frac{k_{\rm B}T\omega^2}{\pi^2c^3},
+\]
+其高频积分发散。Planck 量子化令谐振子能级为
+$E_n=n\hbar\omega$（真空零点项不影响热谱），配分函数与平均热能为
+\[
+ Z_\omega=\frac1{1-\e^{-\beta\hbar\omega}},\qquad
+ \bar E_\omega=\frac{\hbar\omega}{\e^{\beta\hbar\omega}-1}.
+\]
+因此
+\[
+ \boxed{u(\omega)=
+ \frac{\hbar\omega^3}{\pi^2c^3}
+ \frac1{\e^{\hbar\omega/(k_{\rm B}T)}-1}}.
+\]
+低频极限回到 Rayleigh--Jeans 公式，高频呈指数衰减。
+
+用
+\[
+ \int_0^\infty\frac{x^{s-1}}{\e^x-1}\,\dd x
+ =\Gamma(s)\zeta(s)
+\]
+且 $\zeta(4)=\pi^4/90$，得到
+\[
+ u=a_{\rm R}T^4,\qquad
+ a_{\rm R}=\frac{\pi^2k_{\rm B}^4}{15\hbar^3c^3},
+\]
+\[
+ j=\frac{cu}{4}=\sigma_{\rm SB}T^4,\qquad
+ \sigma_{\rm SB}=
+ \frac{\pi^2k_{\rm B}^4}{60\hbar^3c^2}.
+\]
+Bernoulli 数的母函数
+$t/(\e^t-1)=\sum B_nt^n/n!$
+还给出低频渐近展开。
+
+\begin{advtheorem}{$\pi\cot\pi z$ 的 Mittag--Leffler 展开}\label{advA6:thm:mittag-leffler}
+对 $z\notin\mathbb Z$，
+\[
+ \boxed{\pi\cot\pi z=
+ \frac1z+\sum_{n=1}^\infty
+ \left(\frac1{z-n}+\frac1{z+n}\right)}.
+\]
+从而
+\[
+ \zeta(2m)=
+ (-1)^{m+1}\frac{(2\pi)^{2m}}{2(2m)!}B_{2m}.
+\]
+\end{advtheorem}
+
+\noindent\textit{证明。}
+右端按 $\pm n$ 成对求和后局部一致收敛，并与 $\pi\cot\pi z$ 具有相同的一阶极点和留数。
+令两者之差为 $h(z)$，则 $h$ 是整函数且周期为 $1$。
+在矩形
+$[-N-\tfrac12,N+\tfrac12]\times[-N,N]$ 上，
+$\cot\pi z$ 在远离整数极点处有统一界；成对级数的尾项为 $O(N^{-1})$。
+由最大模原理，令 $N\to\infty$ 得 $h$ 为有界整函数，故为常数。
+取 $z\to\ii\infty$ 或比较 $z=1/2$ 可知常数为零。
+
+再写
+\[
+ \pi z\cot\pi z=1-2\sum_{s=1}^\infty\zeta(2s)z^{2s},
+\]
+与 Bernoulli 展开
+\[
+ \pi z\cot\pi z=
+ \sum_{s=0}^\infty
+ (-1)^s\frac{(2\pi)^{2s}B_{2s}}{(2s)!}z^{2s}
+\]
+比较系数即得第二式。$m=1$ 给出 Basel 结果
+$\zeta(2)=\pi^2/6$。
+
+\begin{advexamplebox}{充满热辐射的弹性气球}\label{advA6:ex:radiation-balloon}
+质量为 $m$ 的球形薄膜包住温度为 $T$ 的热辐射，外界为真空且无泄漏。
+薄膜弹性等效于表面张力系数为 $\alpha$ 的肥皂泡。
+
+\begin{enumerate}
+\item 求平衡半径；
+\item 若薄膜作各向同性快速径向小振动，辐射与薄膜来不及交换热量，求周期；
+\item 判断这种热平衡在与热库接触时是否稳定。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+光子气体能量密度与压强为
+\[
+ u=a_{\rm R}T^4,\qquad p=\frac u3.
+\]
+肥皂泡有内外两表面，Laplace 压强为 $4\alpha/R$，故
+\[
+ \frac{a_{\rm R}T^4}{3}=\frac{4\alpha}{R},
+\qquad
+ \boxed{R_0=\frac{12\alpha}{a_{\rm R}T^4}}.
+\]
+
+快速绝热运动中光子气体满足 $TR=\text{常量}$，所以
+$U=a_{\rm R}T^4(4\pi R^3/3)=C/R$。
+两表面的表面能为 $8\pi\alpha R^2$，
+\[
+ V_{\rm eff}(R)=\frac CR+8\pi\alpha R^2.
+\]
+平衡条件给 $C=16\pi\alpha R_0^3$，二阶导数
+\[
+ V_{\rm eff}''(R_0)=\frac{2C}{R_0^3}+16\pi\alpha
+ =48\pi\alpha.
+\]
+薄膜所有质点径向速度均为 $\dot R$，动能为 $m\dot R^2/2$，故
+\[
+ \boxed{\omega_R=\sqrt{\frac{48\pi\alpha}{m}}},
+\qquad
+ \boxed{\mathcal T=2\pi\sqrt{\frac{m}{48\pi\alpha}}}.
+\]
+
+在平衡族上 $R_0\propto T^{-4}$，总能量
+$U+8\pi\alpha R_0^2\propto T^{-8}$，因此
+$C_{\rm eff}=\dd E/\dd T<0$。孤立体系可在力学上稳定振动，
+但与无限热库作正反馈换热时热平衡不稳定。这区分了力学稳定性和热稳定性。
+\end{advsolution}
+
+\subsection{介质响应、因果性与散射}
+
+Lorentz 振子模型
+\[
+ m\ddot x+m\Gamma\dot x+m\omega_0^2x=-eE
+\]
+给出
+\[
+ \chi(\omega)=
+ \frac{\omega_p^2}{\omega_0^2-\omega^2-\ii\Gamma\omega},
+\qquad
+ \omega_p^2=\frac{n_eZe^2}{m\varepsilon_0}.
+\]
+写 $\chi=\chi_1+\ii\chi_2$，实部控制色散，虚部控制吸收。
+
+\begin{advtheorem}{Kramers--Kronig 关系}\label{advA6:thm:kramers-kronig}
+若线性响应满足因果性，$\chi(t<0)=0$，且高频足够快衰减，则
+\[
+ \boxed{\chi_1(\omega)=\frac1\pi
+ \operatorname P\!\int_{-\infty}^{\infty}
+ \frac{\chi_2(\omega')}{\omega'-\omega}\,\dd\omega'},
+\]
+\[
+ \boxed{\chi_2(\omega)=-\frac1\pi
+ \operatorname P\!\int_{-\infty}^{\infty}
+ \frac{\chi_1(\omega')}{\omega'-\omega}\,\dd\omega'}.
+\]
+\end{advtheorem}
+
+\noindent\textit{证明。}
+因果卷积
+\[
+ P(t)=\varepsilon_0\int_0^\infty\chi(\tau)E(t-\tau)\,\dd\tau
+\]
+给出
+\[
+ \chi(z)=\int_0^\infty\chi(\tau)\e^{\ii z\tau}\,\dd\tau .
+\]
+当 $\operatorname{Im}z>0$ 时指数衰减，故 $\chi(z)$ 在上半平面解析。
+对
+$\chi(z')/(z'-z)$ 沿实轴和上半平面大半圆应用 Cauchy 公式，
+高频衰减使半圆积分消失：
+\[
+ \chi(z)=\frac1{2\pi\ii}
+ \int_{-\infty}^{\infty}\frac{\chi(\omega')}{\omega'-z}\,\dd\omega'.
+\]
+令 $z=\omega+\ii0^+$，使用 Sokhotski--Plemelj 公式
+\[
+ \frac1{x-\ii0^+}=\operatorname P\frac1x+\ii\pi\delta(x),
+\]
+再分别取实部、虚部，得到两式。
+
+\begin{advexamplebox}{Lorentz 振子的因果脉冲响应}\label{advA6:ex:lorentz-laplace}
+对
+\[
+ \chi(\omega)=
+ \frac{\omega_p^2}{\omega_0^2-\omega^2-\ii\Gamma\omega}
+\]
+用 Laplace 变换求时域响应 $\chi(t)$，并检验因果性。
+\end{advexamplebox}
+\begin{advsolution}
+单位脉冲驱动的响应满足
+\[
+ \ddot\chi+\Gamma\dot\chi+\omega_0^2\chi
+ =\omega_p^2\delta(t),\qquad \chi(t<0)=0.
+\]
+单边 Laplace 变换给
+\[
+ \tilde\chi(s)=\frac{\omega_p^2}
+ {s^2+\Gamma s+\omega_0^2}.
+\]
+欠阻尼 $\Gamma<2\omega_0$ 时，令
+$\Omega=\sqrt{\omega_0^2-\Gamma^2/4}$，逆变换得
+\[
+ \boxed{\chi(t)=
+ \Theta(t)\frac{\omega_p^2}{\Omega}
+ \e^{-\Gamma t/2}\sin\Omega t}.
+\]
+它在 $t<0$ 严格为零，并在 $t=0^+$ 满足
+$\dot\chi(0^+)=\omega_p^2$。令 $s=-\ii\omega+0^+$ 便恢复给定的
+$\chi(\omega)$，其极点均在频率下半平面，因果性检查通过。
+\end{advsolution}
+
+加速电荷的 Larmor 辐射功率为
+\[
+ P_{\rm rad}=\frac{q^2a^2}{6\pi\varepsilon_0c^3}.
+\]
+Lorentz--Abraham 辐射反作用的非相对论形式
+\[
+ \vect F_{\rm rad}=m\tau\dot{\vect a},\qquad
+ \tau=\frac{q^2}{6\pi\varepsilon_0mc^3}
+\]
+只是在变化时间尺度远大于 $\tau$ 时的有效近似。
+把它当作精确三阶运动方程会出现 runaway 解或预加速；正确做法是作降阶近似
+\[
+ m\vect a\simeq\vect F_{\rm ext}+\tau\dot{\vect F}_{\rm ext},
+\]
+并只保留 $O(\tau)$。对电子 $\tau$ 约为 $6.3\times10^{-24}\,\mathrm s$。
+
+谐振电子的辐射散射截面可写为
+\[
+ \sigma(\omega)=\frac{8\pi r_e^2}{3}
+ \frac1{(\omega_0^2/\omega^2-1)^2+\omega^2\tau^2},
+\qquad
+ r_e=\frac{e^2}{4\pi\varepsilon_0mc^2}.
+\]
+高于束缚频率且仍远低于 $1/\tau$ 时趋于 Thomson 截面
+$8\pi r_e^2/3$；低频极限 $\sigma\propto\omega^4$，产生 Rayleigh 散射；
+在 $\omega\simeq\omega_0$ 附近出现共振增强。经典模型能说明形状，
+但离散原子谱和跃迁强度需要量子理论。
+
+\subsection{Stern--Gerlach 实验与自旋态}
+
+非均匀磁场对磁矩的 $z$ 分量施力
+\[
+ F_z=\mu_z\frac{\partial B_z}{\partial z}.
+\]
+碱金属原子束分成两束，说明电子自旋投影只有
+$S_z=\pm\hbar/2$。电子磁矩
+\[
+ \vect\mu_s=-g_e\frac{e}{2m}\vect S,\qquad
+ g_e\simeq2.002319\ldots
+\]
+的负号来自电子负电荷。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[>=Latex,scale=.70]
+ \begin{scope}[yshift=2.1cm]
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (O1) at (-5,0){炉};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (Z1) at (-2.8,0){SG$_z$};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (Z2) at (1.1,.55){SG$_z$};
+  \draw[->] (O1)--(Z1);
+  \draw[->] (Z1.east)--(Z2.west) node[midway,above]{$z+$};
+  \draw[dashed] (Z1.east)--(1.1,-.55) node[midway,below]{$z-$ 被挡};
+  \draw[->] (Z2.east)--(4.7,.55) node[right]{$z+$};
+  \draw[dashed] (Z2.east)--(4.7,-.15) node[right]{无 $z-$};
+  \node[left] at (-6.1,0){(a)};
+ \end{scope}
+ \begin{scope}
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (O2) at (-5,0){炉};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (Z3) at (-2.8,0){SG$_z$};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (X1) at (1.1,.55){SG$_x$};
+  \draw[->] (O2)--(Z3);
+  \draw[->] (Z3.east)--(X1.west) node[midway,above]{$z+$};
+  \draw[dashed] (Z3.east)--(1.1,-.55) node[midway,below]{$z-$ 被挡};
+  \draw[->] (X1.east)--(4.7,.95) node[right]{$x+$};
+  \draw[->] (X1.east)--(4.7,.15) node[right]{$x-$};
+  \node[left] at (-6.1,0){(b)};
+ \end{scope}
+ \begin{scope}[yshift=-2.15cm]
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (O3) at (-5,0){炉};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (Z4) at (-2.8,0){SG$_z$};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (X2) at (.2,.45){SG$_x$};
+  \node[draw,minimum width=1.3cm,minimum height=.65cm] (Z5) at (3.2,.75){SG$_z$};
+  \draw[->] (O3)--(Z4);
+  \draw[->] (Z4.east)--(X2.west) node[midway,above]{$z+$};
+  \draw[->] (X2.east)--(Z5.west) node[midway,above]{$x+$};
+  \draw[->] (Z5.east)--(5.3,1.05) node[right]{$z+$};
+  \draw[->] (Z5.east)--(5.3,.45) node[right]{$z-$};
+  \node[left] at (-6.1,0){(c)};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{序列 Stern--Gerlach 实验：选择一个方向的本征态会破坏另一方向的确定性}
+\label{advA6:fig:sequential-sg}
+\end{minipage}\end{center}
+
+图 \ref{advA6:fig:sequential-sg}(a) 表明重复测量同一分量结果确定；
+(b) 表明 $|z+\rangle$ 对 $S_x$ 是等概率叠加；
+(c) 表明选择 $x+$ 后再次测量 $S_z$ 又分成两束。
+因此态振幅必须是复数：
+\[
+ |\vect n,+\rangle=
+ \cos\frac\theta2|z+\rangle
+ +\e^{\ii\phi}\sin\frac\theta2|z-\rangle,
+\]
+概率由模方给出。相位 $\phi$ 不影响单次 $S_z$ 概率，却影响其他方向的干涉结果，
+这正是实概率模型无法表达的结构。

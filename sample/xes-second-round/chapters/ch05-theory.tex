@@ -1,0 +1,146 @@
+\section{有心力下的质点运动}
+\label{r2ch05:sec:central}
+
+天体之间的万有引力是有心力（central force）的典型例子。设两个质点的位置为 $\vect r_1,\vect r_2$，相对位矢 $\vect R=\vect r_2-\vect r_1$，$R=|\vect R|$。若相互作用是保守的，并只依赖两点间距离，则
+\begin{equation}
+ V=V(R),\qquad
+ \vect F_2=-\nabla_2V=-V'(R)\uvec e_R,\qquad
+ \vect F_1=-\vect F_2.
+ \label{r2ch05:eq:001}
+\end{equation}
+力的方向始终沿两质点连线，牛顿第三定律也自动满足。若中心质点质量远大于运动质点，或被外力固定，可把中心近似视为静止。一般二体问题同样能够化为相对运动：以约化质量 $\mu_r=m_1m_2/(m_1+m_2)$ 代替质点质量，以 $\vect R$ 代替位置矢量，仍得到同形式的有心力方程。因此固定力心是一种特殊情形，而地月、双星等体系也可通过相对运动使用有心力方法。
+
+以下先讨论质量为 $m$ 的质点在固定力心 $O$ 周围的运动，记 $\vect r=r\uvec e_r$，径向力为 $F(r)\uvec e_r$。牛顿方程在极坐标中的两个分量为
+\begin{equation}
+ m(\ddot r-r\dot\theta^2)=F(r),\qquad
+ m(r\ddot\theta+2\dot r\dot\theta)=0.
+ \label{r2ch05:eq:002}
+\end{equation}
+第二式的正号来自 $\vect a$ 的横向分量；若误写成减号，会同时破坏角动量守恒和面积速度定律。
+
+\subsection{运动平面、角动量与能量}
+\label{r2ch05:sec:invariants}
+
+有心力对力心的力矩为零，所以角动量 $\vect L=\vect r\times m\vect v$ 守恒。$\vect r$ 始终垂直于固定的 $\vect L$，运动因而限制在由初始 $\vect r_0,\vect v_0$ 决定的平面内。在该平面中
+\begin{equation}
+ L=mr^2\dot\theta,\qquad
+ h\equiv\frac Lm=r^2\dot\theta=2\frac{\dd A}{\dd t}=\text{常量}.
+ \label{r2ch05:eq:003}
+\end{equation}
+$h$ 称为比角动量，它也是面积速度的两倍。这是开普勒第二定律对任意有心力的推广，而不是平方反比力独有的结论。
+
+若 $F(r)=-\dd V/\dd r$，机械能也守恒：
+\begin{equation}
+ E=\frac m2\bigl(\dot r^2+r^2\dot\theta^2\bigr)+V(r)
+   =\frac m2\dot r^2+V_{\rm eff}(r),\qquad
+ V_{\rm eff}(r)=V(r)+\frac{mh^2}{2r^2}.
+ \label{r2ch05:eq:004}
+\end{equation}
+最后一项称为离心势垒。它并不是新的相互作用，而是角动量守恒把横向动能写成半径函数后的结果。量纲检查为 $mh^2/r^2\sim M(L^2/T)^2/L^2=ML^2/T^2$，确为能量。
+
+有心力问题常以两种方式出现。束缚问题给定某一有限位置和速度，要求轨道、转折点与周期；散射问题则让粒子从远处以速度 $v_\infty$ 和瞄准距离 $b$ 入射，要求出射方向及散射角 $\chi$。图~\ref{r2ch05:fig:001} 把两种几何画在一起。束缚轨道有近心点、远心点；散射轨道只有一个最近距离，并要求势能在无穷远具有合适的参考极限。
+\figCentralStates
+
+\subsection{有效势能与幂律力的稳定性}
+\label{r2ch05:sec:effective}
+
+利用式~\eqref{r2ch05:eq:004}，二维的轨道问题先被化成半径方向的一维运动：
+\begin{equation}
+ \frac m2\dot r^2=E-V_{\rm eff}(r),\qquad
+ \dot r=\pm\sqrt{\frac{2}{m}\,[E-V_{\rm eff}(r)]}.
+ \label{r2ch05:eq:005}
+\end{equation}
+允许区域必须满足 $E\ge V_{\rm eff}$；等号处是径向转折点。圆轨道对应 $V'_{\rm eff}(R)=0$，若同时 $V''_{\rm eff}(R)>0$，则小的径向扰动产生回复作用，圆轨道稳定。
+
+考虑幂律引力
+\begin{equation}
+ F(r)=-kr^n\quad(k>0),\qquad
+ V(r)=\begin{cases}
+ \dfrac{k}{n+1}r^{n+1},&n\ne-1,\\[1mm]
+ k\ln r,&n=-1.
+ \end{cases}
+ \label{r2ch05:eq:006}
+\end{equation}
+圆轨道条件与驻点处曲率为
+\begin{equation}
+ R=\left(\frac{mh^2}{k}\right)^{1/(n+3)},\qquad
+ V''_{\rm eff}(R)=\frac{mh^2}{R^4}(n+3).
+ \label{r2ch05:eq:007}
+\end{equation}
+因此 $n>-3$ 时圆轨道稳定，$n<-3$ 时不稳定；$n=-3$ 是临界情形。此时 $V_{\rm eff}\propto(mh^2-k)/(2r^2)$：当 $h^2=k/m$ 时有效势能处处为零，存在一族中性但不具回复力的圆运动；偏离该条件后半径向内坍缩或向外逃逸。图~\ref{r2ch05:fig:002} 中三类曲线的驻点形状直接反映上述判据。平方反比引力对应 $n=-2$，位于稳定区。
+\figPowerLawEffective
+
+设束缚运动在 $r_p,r_a$ 之间往返。由式~\eqref{r2ch05:eq:005} 与 $\dot\theta=h/r^2$ 得径向周期及从近心点到远心点的转角
+\begin{equation}
+ T_r=2\int_{r_p}^{r_a}\frac{\dd r}
+ {\sqrt{\dfrac{2}{m}[E-V_{\rm eff}(r)]}},\qquad
+ \Delta\theta_{p\to a}=\int_{r_p}^{r_a}
+ \frac{h\,\dd r}{r^2\sqrt{\dfrac{2}{m}[E-V_{\rm eff}(r)]}}.
+ \label{r2ch05:eq:008}
+\end{equation}
+积分端点处根号为零，但通常只是可积的平方根奇点。若一个完整径向周期的转角不是 $2\pi$ 的有理分数，轨道不会闭合，而会形成进动的花瓣形轨迹。
+
+散射态在无穷远取 $V(\infty)=0$，则 $E=mv_\infty^2/2$、$h=bv_\infty$。若 $r_0$ 是最近距离，入射和出射关于近心线对称，故
+\begin{equation}
+ \chi=\pi-2\int_{r_0}^{\infty}
+ \frac{bv_\infty\,\dd r}
+ {r^2\sqrt{v_\infty^2-\dfrac{2V(r)}m-\dfrac{b^2v_\infty^2}{r^2}}}.
+ \label{r2ch05:eq:009}
+\end{equation}
+平方反比力属于长程力；对更快衰减的作用，上式在经典散射中更接近通常的短程力模型。这里的 $\chi$ 是速度方向的偏转角，不应与位矢扫过的总角混同。
+
+\subsection{比耐方程}
+\label{r2ch05:sec:binet}
+
+若目标是直接求轨迹 $r(\theta)$，令 $u(\theta)=1/r$。由 $\dot\theta=h/r^2=hu^2$ 可逐步得到
+\[
+ \dot r=\frac{\dd r}{\dd\theta}\dot\theta=-h\frac{\dd u}{\dd\theta},
+ \qquad
+ \ddot r=-h^2u^2\frac{\dd^2u}{\dd\theta^2}.
+\]
+代入径向方程 $m(\ddot r-r\dot\theta^2)=F(r)$，得到比耐方程（Binet equation）
+\begin{equation}
+ \frac{\dd^2u}{\dd\theta^2}+u
+ =-\frac{F(1/u)}{mh^2u^2}.
+ \label{r2ch05:eq:010}
+\end{equation}
+反演 $u=1/r$ 的作用是把原来含 $r^{-4}$ 的几何项化成线性左端。并非所有有心力都因此变成线性方程，但平方反比力恰好会使右端成为常数。
+
+\section{平方反比引力与开普勒运动}
+\label{r2ch05:sec:kepler}
+
+固定中心质量为 $M$，定义引力参数 $\mathcal G=GM$。质点 $m$ 受到
+\begin{equation}
+ F(r)=-\frac{GMm}{r^2}=-\frac{m\mathcal G}{r^2},\qquad
+ V(r)=-\frac{GMm}{r}.
+ \label{r2ch05:eq:011}
+\end{equation}
+库仑平方反比力也可用同一套方程，只需按电荷符号决定作用是吸引还是排斥。以下 $\mathcal G>0$ 专指引力。
+
+把式~\eqref{r2ch05:eq:011} 代入比耐方程，得到 $u''+u=\mathcal G/h^2$。选取近日点方向为 $\theta=0$，解为圆锥曲线
+\begin{equation}
+ u=\frac{\mathcal G}{h^2}(1+e\cos\theta),\qquad
+ r=\frac{p}{1+e\cos\theta},\qquad
+ p=\frac{h^2}{\mathcal G}.
+ \label{r2ch05:eq:012}
+\end{equation}
+$e$ 是离心率：$0\le e<1$ 为椭圆，$e=1$ 为抛物线，$e>1$ 为双曲线。圆轨道是 $e=0$ 的椭圆特例。
+
+由能量式代入轨道解，可把轨道几何与守恒量直接相连：
+\begin{equation}
+ e=\sqrt{1+\frac{2Eh^2}{m\mathcal G^2}},\qquad
+ p=a(1-e^2),\qquad
+ E=-\frac{m\mathcal G}{2a}\quad(E<0).
+ \label{r2ch05:eq:013}
+\end{equation}
+这里 $a$ 是椭圆半长轴。对双曲线若把 $a$ 取正长度，能量写成 $E=+m\mathcal G/(2a)$，而 $p=a(e^2-1)$。这种分情形写法比在一个式子里隐藏正负号更不易出错。
+
+椭圆半短轴 $b=a\sqrt{1-e^2}$，面积为 $\pi ab$。由面积速度 $h/2$ 可得周期
+\begin{equation}
+ h=\sqrt{\mathcal Gp},\qquad
+ T=\frac{\pi ab}{h/2}=2\pi\sqrt{\frac{a^3}{\mathcal G}}.
+ \label{r2ch05:eq:014}
+\end{equation}
+这就是开普勒第三定律。量纲为 $\sqrt{L^3/(L^3T^{-2})}=T$。式中只出现半长轴而不出现离心率，意味着同一半长轴的所有开普勒椭圆具有相同周期。
+
+对二体系统，若讨论相对轨道，应将 $\mathcal G$ 替换为 $G(m_1+m_2)$；若只研究一颗质量可忽略的行星绕太阳，则近似为 $GM$。后面的双星题正是前一种情形。

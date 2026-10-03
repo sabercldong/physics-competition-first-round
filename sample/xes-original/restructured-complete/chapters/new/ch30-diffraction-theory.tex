@@ -1,0 +1,57 @@
+\section{衍射积分与傅里叶光学图像}
+
+惠更斯--菲涅耳原理（Huygens--Fresnel principle）把孔径面上的每一点看成次级波源。省略只影响整体相位和归一化的常数后，观察点 $P$ 的场可写成
+\begin{equation}
+ U(P)\simeq\frac1{\ii\lambda}\iint_{\mathcal A}
+ U(Q)\,K(\theta,\theta')\frac{e^{\ii k r}}r\dd S,
+\end{equation}
+其中 $r=|PQ|$，$K$ 是倾斜因子。这个公式不是“光线绕过障碍物”的几何规则，而是孔径面各微元复振幅的相干积分；遮挡改变积分区域，进而改变整个屏上的场。
+
+在夫琅禾费远场（Fraunhofer region），或把观察屏放在理想透镜后焦面时，远场振幅与孔径面出射场的二维傅里叶变换成正比。若入射场为 $U_{\rm in}(x,y)$、孔径透射函数为 $t(x,y)$，则
+\begin{equation}
+ U(\theta_x,\theta_y)\propto
+ \iint U_{\rm in}(x,y)t(x,y)e^{-\ii k(x\sin\theta_x+y\sin\theta_y)}\dd x\dd y.
+\end{equation}
+只有均匀平面波正入射时，$U_{\rm in}$ 才可提出积分号外。此时宽为 $a$、高为 $b$ 的矩形孔产生
+\begin{equation}
+ \frac I{I_0}=
+ \left(\frac{\sin\alpha}{\alpha}\right)^2
+ \left(\frac{\sin\beta}{\beta}\right)^2,
+ \quad
+ \alpha=\frac{\pi a\sin\theta_x}{\lambda},
+ \quad
+ \beta=\frac{\pi b\sin\theta_y}{\lambda}.
+\end{equation}
+孔径在某一方向越窄，远场在该方向展开得越宽；这是一对傅里叶共轭尺度，而不是成像系统失焦。
+
+\begin{starread}{菲涅耳波带与波带片}
+在近场计算轴上点 $P$ 的光强时，可把波面按到 $P$ 的光程每增加 $\lambda/2$ 分成一个半波带。相邻带的贡献相位近似相反，开放或遮住某些带就能控制轴上叠加。
+
+对正入射平面波和焦距 $f$，平面波带片第 $n$ 条边界的半径近似满足
+\[
+ \sqrt{f^2+r_n^2}-f=\frac{n\lambda}{2},
+ \qquad r_n^2=n\lambda f+\frac{n^2\lambda^2}{4}
+ \simeq n\lambda f.
+\]
+交替透光的振幅型波带片在 $f$ 处形成主焦点，并伴随较弱的高阶实、虚焦点；它依靠衍射聚焦，不能简单套用玻璃薄透镜的折射率公式。
+
+\begin{center}
+\begin{tikzpicture}[scale=.86,>=Latex]
+  \begin{scope}[xshift=-3.8cm]
+    \foreach \n in {2,4,6}{
+      \fill[DeepBlue!22,even odd rule] (0,0) circle ({.65*sqrt(\n)})
+        (0,0) circle ({.65*sqrt(\n-1)});}
+    \foreach \n in {1,...,6}{\draw[RuleGray](0,0)circle({.65*sqrt(\n)});}
+    \node[below] at (0,-1.85){正视图：交替透光区};
+  \end{scope}
+  \draw[very thick] (0,-1.65)--(0,1.65) node[above]{波带片};
+  \coordinate (F) at (5,0);
+  \fill[Ink] (F) circle (1.6pt) node[right]{$F$};
+  \foreach \y in {-1.379,-1.028,0,1.028,1.379}{
+    \draw[-{Latex[length=2mm]},thick,DeepBlue] (-1.3,\y)--(0,\y)--(F);
+  }
+  \draw[<->,guide] (.12,-1.48)--(4.88,-1.48) node[midway,below]{$f$};
+\end{tikzpicture}
+\figcap{振幅型波带片的区域结构与主焦点。侧视图只画开放区贡献的代表性光线，实际计算是复振幅积分。}
+\end{center}
+\end{starread}

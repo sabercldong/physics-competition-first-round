@@ -1,0 +1,536 @@
+上一讲研究了稳恒电流与磁场；本讲放开“稳恒”限制：回路运动、磁场随时间变化，或两者
+同时发生时，磁通量的变化会在回路中产生感应电动势。法拉第电磁感应定律（Faraday's law）给出数值，楞次定律（Lenz's law）
+把能量守恒写进了方向。
+
+历史上，电流产生磁场以及磁场作用于电流先被发现。由此自然产生一个反向问题：既然运动电荷能产生
+磁效应，磁场是否也能在适当条件下产生电效应？Faraday 经过长期实验确认，导体在磁场中运动可以使
+回路出现电流；随后又发现，即使导体固定，只要磁场大小或方向变化，同样可以产生电动势。前一类常称
+动生电动势，后一类常称感生电动势。两类机制的微观解释不同，却都由回路磁通量的变化统一描述。
+
+这一发现既有应用价值，也有理论意义。它使发电机成为可能，从而把水流、蒸汽轮机或其他动力装置的
+机械能转成电能；它还首次明确表明，变化磁场能在空间中产生一种不同于静电场的电场。经典电磁学中，
+电场既可由电荷产生，也可由变化磁场产生。Maxwell 后来又补上“变化电场产生磁场”，两种场便能相互
+维持并以电磁波传播，电、磁与光由此进入同一理论框架。
+
+Faraday 的实验装置可以用两个彼此绝缘、绕在同一铁环上的线圈来理解。一个线圈接电池，另一个线圈
+接检流计：接通电源的瞬间，检流计发生一次偏转；电流稳定后，偏转消失；断开电源时，检流计又向相反
+方向偏转。这说明感应效应不取决于“附近有没有电流”，而取决于磁场是否正在变化。把永久磁铁插入或
+拔出线圈，也能观察到相同规律：运动越快，磁通变化越快，感应电动势越大；磁铁停住后，即使线圈中仍
+有很强磁场，也不会维持感应电流。由这些现象抽象出来的核心量不是磁场本身，而是穿过回路的磁通量。
+
+\faradayHistoryContext
+
+\subsection{Faraday--Lenz 定律}
+
+对闭合回路 $C$ 选定正向，再用右手螺旋法则确定跨越面 $S$ 的正法向。磁通量与感应电动势为
+\begin{equation}
+  \Phi_B=\int_S\vect B\cdot\dd\vect S,
+  \qquad
+  \boxed{\mathcal E=-\frac{\dd\Phi_B}{\dd t}}.
+\end{equation}
+负号不是额外的计算规则，它表示感应电流所产生的磁效应总是阻碍原磁通的变化。若是 $N$ 匝
+线圈，各匝穿过的磁通都为 $\Phi_B$，则磁链 $\Lambda=N\Phi_B$，且 $\mathcal E=-\dd\Lambda/\dd t$。
+
+图 9.2 把同一装置的三个时刻并列出来。上排磁铁靠近线圈，磁通变化率非零，检流计偏转；中排磁铁
+停住，虽然线圈中仍有磁场，但磁通不再变化，指针回到零位；下排磁铁远离，磁通变化方向反转，因而
+电流和指针偏转方向也随之反转。这里真正决定电动势的是运动造成的磁通变化率，不是磁铁与线圈的距离本身。
+
+\movingMagnetExperimentFigure
+
+对匀强磁场中的平面回路，磁通可写为
+\begin{equation}
+  \Phi_B=BS\cos\theta.
+\end{equation}
+因此其时间导数包含三类贡献：
+\begin{equation}
+ \frac{\dd\Phi_B}{\dd t}
+ =S\cos\theta\,\frac{\dd B}{\dd t}
+ +B\cos\theta\,\frac{\dd S}{\dd t}
+ -BS\sin\theta\,\frac{\dd\theta}{\dd t}.
+\end{equation}
+第一项对应磁场大小变化，第二项对应回路面积或形状变化，第三项对应线圈转动。一般非匀强场中不能
+把 $B$ 提到积分号外，但“求总磁通的完整时间变化率”这一原则不变。若多匝线圈各匝磁通不同，应逐匝
+相加形成磁链，而不能机械地用 $N$ 乘某一匝的磁通。
+
+对固定回路，电动势是沿回路一周非静电驱动力对单位正电荷的线积分；沿正向为正，反之为负。
+对运动导线，应使用 $\oint(\vect E+\vect v_{\rm wire}\times\vect B)\cdot\dd\vect\ell$，
+其中 $\vect v_{\rm wire}$ 是导线元速度，不是载流子的总速度。这是瞬时回路的驱动量；
+磁力对载流子实际运动的总功仍为零，输出能量来自维持导线运动的机械功。
+回路正向一旦选定，曲面正法向就由右手规则确定。由于磁场
+Gauss 定律给出任意闭合面净磁通为零，只要两个曲面具有同一个边界，它们的磁通量相同，因此无需再为
+同一回路指定唯一的“计算曲面”。这保证 Faraday 定律不会因跨越面的形状不同而含糊。
+
+电动势的单位是 volt，但它与两点间静电势差并非总是同一个概念。静电场中，单位电荷从一点移到另一点
+所受电场力做功只与端点有关，沿闭合回路一周总功为零；感生电场中，沿闭合回路一周的功可以非零，
+因此不能给整条回路上的每一点分配一个全局单值电势来替代环量。电压表在具体接线下仍会给出读数，但
+在时变磁场问题中，读数还可能依赖表笔引线所围成的路径，必须把测量回路本身纳入磁通分析。
+
+磁通量可以因三种因素改变：磁场大小变化、回路面积或形状变化、回路法向与磁场夹角变化。Faraday
+定律只问总磁通量怎样变化，并不预先区分是哪一种因素造成；真正需要区分的是驱动电荷的局部力来自
+$\vect v\times\vect B$，还是来自变化磁场产生的涡旋电场。
+
+图~\ref{ch24:fig:review-fluxorientationdiagram-1}中，环路正向和法向按右手规则绑定，负号相对于这套共同约定解释。
+\par\noindent\begin{minipage}{\linewidth}
+\fluxOrientationDiagram
+\figcap{回路正向与磁通法向}\label{ch24:fig:review-fluxorientationdiagram-1}
+\end{minipage}\par\medskip
+
+“阻碍变化”要与“阻碍原磁场”区分。原磁通增大时，感应磁场与它反向；原磁通减小时，感应磁场反而
+与它同向。因此对方向题，先判断原磁通的正负和增减，再确定感应磁场，最后用右手螺旋法则找电流。
+
+负号也可由能量守恒检验。若磁铁靠近线圈时，感应电流产生的磁场反而帮助磁铁继续靠近，磁铁就会在
+没有外界做功的情况下越动越快，同时线圈中还产生电能，这将造成能量无源增加。真实情况是靠近时受到
+排斥、远离时受到吸引，外力必须克服电磁阻力做功，所做功转化为电能和 Joule 热。Lenz 定律不是一条
+与 Faraday 定律并列的独立大小公式，而是 Faraday 定律负号所表达的方向与能量约束。
+
+实际判向时可以固定四步：先选回路正向并由右手规则确定面积正法向；再写出 $\Phi_B$ 的正负；判断
+$\dd\Phi_B/\dd t$；最后由 $\mathcal E=-\dd\Phi_B/\dd t$ 判断正电动势方向。若只凭“增反减同”口诀
+而不先确定原磁场穿面的方向，在立体线圈、翻转线圈或多磁场叠加问题中很容易把方向判反。
+
+
+% EM teaching enrichment 20260927
+\paragraph{磁通为零的瞬间仍可有电动势}
+固定面积 $A$ 的单匝回路处于 $B(t)=B_0\sin\omega t$ 的垂直匀强磁场中，取场的正方向为面法向，则
+$\Phi=B_0A\sin\omega t$，$\mathcal E=-\omega B_0A\cos\omega t$。
+$t=0$ 时磁通为零而电动势大小最大；$t=\pi/(2\omega)$ 时磁通最大而电动势为零。决定感应的是变化率，不是磁通本身。
+若回路只含恒定电阻 $R$、自感可忽略，某段过程的有向通过电量为
+\[
+ \Delta q=\int I\dd t=-\frac{\Delta\Phi}{R}.
+\]
+它只取决于首末磁通；有显著自感时还要计入 $L\Delta I$，不能无条件沿用。
+
+\subsection{动生电动势与运动回路}
+
+导体以速度 $\vect v$ 在磁场中运动时，导体内电荷受到 $q\vect v\times\vect B$ 的磁力。对一段运动导线，
+动生电动势为
+\begin{equation}
+  \boxed{\mathcal E_{\rm m}=\int(\vect v\times\vect B)\cdot\dd\vect\ell}.
+\end{equation}
+长为 $\ell$ 的直棒以速率 $v$ 垂直切割匀强磁场时，$\mathcal E_{\rm m}=B\ell v$。它是棒两端的非静电力做功
+与单位电荷的比，不能简单说成“磁力对电荷做功”；能量来自维持导体运动的外力或导体的动能。
+
+对直导体棒，若 $\vect v,\vect B$ 与棒方向彼此垂直，正电荷受力方向由 $\vect v\times\vect B$ 决定，
+并在棒的一端积累；另一端留下异号电荷。开路时，电荷分离建立静电场，直到
+$q\vect E+q\vect v\times\vect B=\vect0$，此后不再有持续电流，但两端仍有电势差 $B\ell v$。
+闭合回路后，电荷能够沿外电路流动，棒相当于电源。若三者不完全垂直，只有
+$\vect v\times\vect B$ 沿棒方向的分量贡献电动势，所以一般式必须保留点积，不能总写成 $B\ell v$。
+
+以长度为 $\ell$ 的导体棒在匀强磁场中匀速滑动为例，若回路总电阻为 $R$，则
+\begin{equation}
+  I=\frac{B\ell v}{R},\qquad
+  F_B=BI\ell=\frac{B^2\ell^2}{R}v.
+\end{equation}
+Ampere 力阻碍棒的运动。维持匀速所需外力功率
+\begin{equation}
+  P_{\rm ext}=F_Bv=\frac{B^2\ell^2v^2}{R}
+\end{equation}
+恰好等于电阻热功率
+\begin{equation}
+  P_R=I^2R=\frac{B^2\ell^2v^2}{R}.
+\end{equation}
+所以磁力负责改变载流子的运动方向和建立电荷分离，真正输入系统的能量来自外力。若撤去外力，棒的
+动能会在电磁阻尼作用下转化为 Joule 热；这正是 Lenz 定律在能量上的含义。
+
+还可以直接由磁通验证。棒在平行导轨上移动距离 $\dd x=v\dd t$，回路面积增加
+$\dd S=\ell v\dd t$，于是 $|\dd\Phi_B/\dd t|=B\ell v$。Lorentz 力积分与磁通变化率给出同一结果，
+但它们强调的层次不同：前者说明棒内电荷怎样受力，后者不必追踪载流子，直接从整个回路的几何变化
+求电动势。遇到多根棒同时运动或回路形状复杂时，用完整的运动回路积分通常更稳妥。
+
+图~\ref{ch24:fig:review-motionalroddiagram-1}中，棒向右、B向纸内，正电荷磁力沿棒向上，因此环流逆时针，棒受到向左的阻力。
+\par\noindent\begin{minipage}{\linewidth}
+\motionalRodDiagram
+\figcap{运动导体棒与闭合电阻回路}\label{ch24:fig:review-motionalroddiagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{导体棒的制动：电路与运动必须联立}
+长度 $l$、质量 $m$ 的棒沿水平导轨滑动，闭合回路总电阻 $R$ 恒定、磁场 $B$ 垂直导轨面，忽略自感和摩擦。棒速 $v$ 时
+$\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
+\[
+ m\dot v=-\frac{B^2l^2}{R}v,\qquad
+ v=v_0\exp\left(-\frac{B^2l^2}{mR}t\right).
+\]
+瞬时机械损失率 $-\dd(mv^2/2)/\dd t$ 恰等于 $I^2R$，总焦耳热为初动能。
+若要求恒速，就必须有外力补偿磁阻力；磁场只是使机械功与电能交换的耦合条件，不能被当作持续供能的能源。
+
+\subsection{交流发电机}
+
+发电机是电磁感应的直接应用。最简单的交流发电机让 $N$ 匝、面积为 $A$ 的线圈在匀强磁场 $B$ 中以
+角速度 $\omega$ 转动。若 $t=0$ 时面积法向与磁场同向，磁链为
+\begin{equation}
+  \Lambda(t)=NAB\cos\omega t,
+\end{equation}
+于是
+\begin{equation}
+  \boxed{\mathcal E(t)=NAB\omega\sin\omega t
+  \equiv\mathcal E_0\sin\omega t}.
+\end{equation}
+若外电路近似纯电阻 $R$，电流 $I(t)=\mathcal E_0\sin\omega t/R$，方向每半周反转，因此称为交流。
+
+当线圈法向与 $\vect B$ 平行时，磁通量达到极值，但瞬时变化率为零，所以电动势为零；当线圈平面与
+$\vect B$ 平行、法向垂直于磁场时，磁通为零却变化最快，电动势达到峰值。这一“量为零而变化率最大”
+的关系是理解正弦、余弦相差四分之一周期的关键。若初始相位不同，只会把
+$\sin\omega t$ 改为带相位常数的正弦函数，峰值 $\mathcal E_0=NAB\omega$ 不变。
+
+若关心交流在电阻上的平均发热效果，可引入有效值
+\begin{equation}
+  \mathcal E_{\rm rms}=\frac{\mathcal E_0}{\sqrt2},
+  \qquad I_{\rm rms}=\frac{I_0}{\sqrt2}.
+\end{equation}
+于是周期平均功率仍写成 $\langle P\rangle=I_{\rm rms}^2R$。有效值不是瞬时电动势的算术平均；
+正弦电动势一周期平均为零，但平方平均不为零，仍能持续向电阻输送能量。
+
+\generatorFigureFaithful
+
+水力发电把水的重力势能经涡轮转为转轴机械能；火力与核电站先以热源产生蒸汽，再驱动涡轮。能量来源
+虽然不同，末级的电磁转换都依靠线圈与磁场的相对转动。负载接通后出现的电磁力矩总是反抗驱动转矩，
+因此发出的电功率最终来自原动机做功，而不是磁场无中生有地提供能量。
+
+交流发电机通常用两个彼此绝缘的滑环把转动线圈两端接到静止电刷，使外电路得到方向周期反转的电压。
+若改用分裂换向器，可以把线圈内部的交变电动势整流为外电路中方向不变、大小脉动的电动势。发电机与
+电动机的结构有很强的互逆性：外力驱动线圈转动时输出电能；给线圈输入电流时，Ampere 力矩又能输出
+机械运动。负载越大，电流越大，反向电磁转矩也越大，原动机必须提供更大转矩才能维持同一角速度。
+
+若回路同时运动且存在感生电场，完整形式为
+\begin{equation}
+  \boxed{\mathcal E=\oint_{C(t)}(\vect E+\vect v\times\vect B)\cdot\dd\vect\ell
+  =-\frac{\dd}{\dd t}\int_{S(t)}\vect B\cdot\dd\vect S}.
+\end{equation}
+左边第一项是变化磁场产生的感生电场，第二项是回路运动产生的动生效应；右边则把它们统一为“跟着
+回路计算的磁通变化率”。
+
+这里的时间导数不是只在固定空间区域上对 $B$ 求偏导，而是对随回路一起运动、变形的曲面求总导数。
+因此即使 $\partial\vect B/\partial t=0$，曲面边界运动仍可使磁通变化并产生动生电动势；反之，即使
+回路完全固定，$\partial\vect B/\partial t\ne0$ 也会产生感生电动势。把这两个来源分开有助于解释
+局部受力，把它们合在同一磁通定律中则更适合计算整个回路。
+
+若导体静止而磁体移动，导线中的自由电荷初始并没有随导体切割磁感线，不能用“导体内电荷的
+$q\vect v\times\vect B$”作为唯一解释；Faraday 定律仍预言回路中有电动势，说明运动或变化的磁场
+在导体所在位置建立了电场。换到随带电粒子运动的参考系，可以把低速情形下的磁力效果等价地写成
+\begin{equation}
+  \vect E'\simeq\vect v\times\vect B=-\vect v_B\times\vect B,
+\end{equation}
+其中 $\vect v_B$ 是磁场源相对粒子的速度。这种推理能给出低速方向和数量级，但电场、磁场在不同惯性系
+之间如何严格变换属于狭义相对论；因此它只能作为低速极限的物理说明，不能替代完整的 Lorentz 变换。
+
+“磁铁动、线圈不动”与“线圈动、磁铁不动”在实验中都能产生电流，但经典局部解释看起来不同：前者
+强调变化磁场产生电场，后者强调运动电荷受到磁力。相对论统一了这种差别，因为电场和磁场不是彼此
+绝对独立的实体，而是同一电磁场在不同惯性系中的分量。中学范围不需要计算完整变换，却应保留一个
+重要结论：不同参考系中的电荷、电流、场和能量须按相应变换关联，能量数值不必相同；经变换后的物理预言必须相容，不能因选择“谁在运动”而得到互相矛盾
+的实验预言。
+
+图~\ref{ch24:fig:review-movingloopdiagram-1}中，图示各点速度相同，面积与法向不变，正负的局部动生贡献沿全回路相消。
+\par\noindent\begin{minipage}{\linewidth}
+\movingLoopDiagram
+\figcap{匀强场中闭合回路的刚性平移}\label{ch24:fig:review-movingloopdiagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{从磁通相位到输入功率}
+面积 $A$、匝数 $N$ 的线圈以角速度 $\omega$ 转动，若其法向与磁场夹角为 $\omega t$，则磁链为 $NBA\cos\omega t$，电动势为 $NBA\omega\sin\omega t$。
+接纯电阻总负载 $R$ 并忽略自感后，周期平均输出为
+\[
+ \overline P=\frac{(NBA\omega)^2}{2R}.
+\]
+理想无机械损耗时，外界平均驱动力矩为 $\overline P/\omega$。线圈转到磁通最大的位置，瞬时电动势反而为零；输出电压的峰值由磁通变化最快的位置决定。加入电感后，电流不再与电动势同相，平均功率须按下一章的相位关系计算。
+
+\subsection{感生电场}
+
+导体固定而磁场随时间变化时，仍可有非零电动势。此时驱动电荷的是空间中的涡旋电场：
+\begin{equation}
+  \boxed{\oint_C\vect E\cdot\dd\vect\ell
+  =-\frac{\dd}{\dd t}\int_S\vect B\cdot\dd\vect S},
+  \qquad
+  \boxed{\nabla\times\vect E=-\frac{\partial\vect B}{\partial t}}.
+\end{equation}
+感生电场的环量不为零，因而它不能在全空间由单值电势表示。在半径 $R$ 的圆柱区域内有轴向匀强磁场
+$B(t)$ 时，由轴对称性得
+\begin{equation}
+  \boxed{E_\varphi(r)=-\frac r2\dot B\quad(r\le R)},
+  \qquad
+  \boxed{E_\varphi(r)=-\frac{R^2}{2r}\dot B\quad(r\ge R)}.
+\end{equation}
+一根径向导线上 $\vect E\perp\dd\vect\ell$，沿它没有感生电动势；但沿圆周或一般非径向路径则可能有非零线积分。
+
+静电场与感生电场的差别可以用场线图像概括。静电场线从正电荷出发、终止于负电荷，在无电荷区域的
+闭合环量为零；感生电场线则围绕变磁场区域闭合，没有能够给整个空间定义单值电势的起点和终点。
+若在空间中放入导体，导体内自由电荷会重新分布并叠加静电场，所以实际导体中的总电场可能与纯粹由
+Faraday 定律算出的涡旋场不同；但沿闭合回路的静电场环量仍为零，不会改变总感应电动势。
+
+在轴对称系统中，若半径 $r$ 的圆周内磁场处处相同，则
+$2\pi rE_\varphi=-\pi r^2\dot B$，得到内区公式。外区圆周只包围半径 $R$ 的变磁场区域，磁通量为
+$\pi R^2B$，因此出现 $E_\varphi\propto1/r$ 的外区结果。电场线是闭合圆，环量非零；它不能像静电场
+那样写成全空间单值电势的负梯度。图中沿径向的导线电压为零，并不意味着空间中没有电场，而是该路径
+处处与涡旋电场垂直。
+
+外区虽没有磁场随时间变化，仍然可以存在感生电场，这是“局部场方程”与“磁通计算”需要共同理解的
+地方。圆周本身位于 $r>R$，但它包围的任一跨越面都穿过内区变磁场，故环量不为零。不能把 Faraday
+定律误读成“只有 $\dot B\ne0$ 的点才有电场”；更准确地说，$\nabla\times\vect E$ 在变磁场区非零，
+这一涡旋结构决定了整个周围空间的电场分布。
+
+图~\ref{ch24:fig:review-vortexfielddiagram-1}中，磁场向纸内增强时，电场逆时针；半径R是内外电场公式的分界，不是电场消失的位置。
+\par\noindent\begin{minipage}{\linewidth}
+\vortexFieldDiagram
+\figcap{柱形变磁场内外的涡旋电场}\label{ch24:fig:review-vortexfielddiagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{有场区外也可以存在涡旋电场}
+轴向磁场只分布在半径 $a$ 的圆柱区域内，内部 $B(t)$ 均匀。取逆时针环路为正，$B$ 向纸外为正，由对称性
+\[
+ E_\varphi(r)=\begin{cases}
+ -\dfrac r2\dot B,&r<a,\\[3pt]
+ -\dfrac{a^2}{2r}\dot B,&r>a.
+ \end{cases}
+\]
+两式在 $a$ 处连续。外部观察点虽有 $B=0$，其环路仍包围变化磁通，所以 $E$ 不为零。
+此时把静止电荷放在圆柱外也会受到电场力；感生电场不要求那里先有导线。若加上一条闭合金属环，环内电流由环量与电路响应共同决定。
+
+\subsection{电子感应加速器}
+
+电子感应加速器（betatron）把涡旋电场用于加速电子。设电子沿半径 $r$ 的固定圆轨道运动，轨道以内
+磁场的面积平均值为 $\overline B(t)$。Faraday 定律给出圆周切向电场
+\begin{equation}
+  2\pi rE_\varphi=-\pi r^2\frac{\dd\overline B}{\dd t},
+  \qquad
+  E_\varphi=-\frac r2\frac{\dd\overline B}{\dd t}.
+\end{equation}
+以电子加速的绕行方向为正，电子电荷为 $-e$。切向方程为
+$\dd p/\dd t=er\dot{\overline B}/2$。从注入时刻 $t_0$ 积分，先保留初值：
+\begin{equation}
+ p(t)-p(t_0)=\frac{er}{2}[\overline B(t)-\overline B(t_0)].
+\end{equation}
+若注入条件满足 $p(t_0)=er\overline B(t_0)/2$，才可简化为 $p=er\overline B/2$，
+在非相对论情形下就是
+\begin{equation}
+  v=\frac{er\overline B}{2m}.
+\end{equation}
+另一方面，轨道处的轴向局部磁场 $B_{\rm orb}$ 必须提供向心力，
+$mv^2/r=evB_{\rm orb}$，即 $v=erB_{\rm orb}/m$。比较两式可得保持圆轨道半径的条件
+\begin{equation}
+  \boxed{B_{\rm orb}=\frac12\overline B}.
+\end{equation}
+更一般地，固定半径要求 $\overline B-2B_{\rm orb}$ 为常量；常用的注入匹配使常量为零，
+于是轨道处的局部磁场始终等于轨道面积平均磁场的一半。这一“二比一条件”同时保证涡旋
+电场负责加速、局部磁场负责弯转。
+
+这里要区分三个量：轨道半径 $r$，轨道处的轴向局部磁场 $B_{\rm orb}$，以及整个轨道圆面积上的平均磁场
+$\overline B$。Faraday 定律关心圆内总磁通，所以出现 $\overline B$；圆周运动的瞬时向心力只由电子
+所在位置的局部场决定，所以出现 $B_{\rm orb}$。这里下标orb指轨道，不是径向分量。若把两者混成同一个均匀场，就会得到
+$B=\overline B/2$ 的自相矛盾等式。实际 betatron 必须专门设计磁极形状，使空间分布满足平均场与轨道
+场的二比一关系，同时还要提供径向、竖直方向的聚焦稳定性。
+
+\historyfigure[0.72\linewidth]{betatron-built-in-v1.png}
+{图 9.6：电子感应加速器及其发明者克斯特。}
+
+电子感应加速器曾可把电子加速到数百 MeV；能量继续提高时，同步辐射损耗快速增加，其他大型加速器
+更有优势。此类装置后来大量用于产生 X 射线和放射治疗。它展示了感生电场并非只在导线里“等效存在”，
+而是在真空轨道上也能直接对带电粒子做功。
+
+上面的 $mv^2/r=evB_{\rm orb}$ 是非相对论写法。电子能量升高后，应把机械动量写成 $p=\gamma mv$，轨道
+关系改为 $p=erB_{\rm orb}$；Faraday 电场仍沿切向增加电子动量。随着速度接近 $c$，继续输入的能量主要增加
+$\gamma$ 而不是显著增加速度，同时圆周加速运动带来的辐射损耗迅速增强。这些效应限制了感应加速器
+可达到的能量，也说明“速度越来越大”不能在高能区继续使用 Newton 形式外推。
+
+
+% EM teaching enrichment 20260927
+\paragraph{检验一个候选磁场分布}
+设设计轨道半径为 $r_0$，轨道内轴向磁场取
+$B_z(r,t)=B_c(t)[1-\alpha r^2/r_0^2]$。其面积平均值为
+\[
+ \overline B=\frac2{r_0^2}\int_0^{r_0}B_z(r,t)r\dd r
+ =B_c(1-\alpha/2),
+\]
+而轨道处 $B_{\rm orb}=B_c(1-\alpha)$。采用零积分常量的注入匹配，要求 $\overline B=2B_{\rm orb}$，得 $\alpha=2/3$。
+这个计算只核对固定半径的加速条件，未核对径向、轴向稳定性；满足二比一关系不能自动保证粒子束聚焦。
+
+\subsection{自感、电感的暂态与磁场能量}
+
+给定线性回路中，由自身电流 $I$ 产生的磁链与电流成正比：
+\begin{equation}
+  \boxed{\Lambda=LI},
+  \qquad
+  \boxed{\mathcal E_L=-\frac{\dd(LI)}{\dd t}}.
+\end{equation}
+几何形状不变且介质线性时 $L$ 为常量，$\mathcal E_L=-L\dot I$。对长度 $l$、截面积 $A$、单位长度
+$n$ 匝的理想长螺线管，
+\begin{equation}
+  \boxed{L=\mu_0n^2Al}.
+\end{equation}
+电感不阻碍已有电流，而是阻碍电流的改变。串联 $RL$ 回路接上恒定电源 $\mathcal E_0$ 后，
+\begin{equation}
+  L\dot I+RI=\mathcal E_0,
+  \qquad
+  I(t)=\frac{\mathcal E_0}{R}\left(1-\e^{-t/\tau_L}\right),
+  \qquad \tau_L=\frac LR.
+\end{equation}
+下列螺线管公式采用真空或非磁性芯近似。电感储能与真空磁场能量密度分别为
+\begin{equation}
+  \boxed{W_L=\frac12LI^2},
+  \qquad
+  \boxed{u_B=\frac{B^2}{2\mu_0}}.
+\end{equation}
+若为无磁滞、可逆的线性介质，能量密度为 $u_B=\vect B\cdot\vect H/2$；
+在线性各向同性介质中等于 $B^2/(2\mu)$，不能无条件仍用 $\mu_0$。
+
+图~\ref{ch24:fig:review-selffieldlinesdiagram-1}中，单环和多匝线圈都有内部场与外部回流场，同向绕组的内场贡献相加。
+\par\noindent\begin{minipage}{\linewidth}
+\selfFieldLinesDiagram
+\figcap{单环与有限螺线管的自生场}\label{ch24:fig:review-selffieldlinesdiagram-1}
+\end{minipage}\par\medskip
+图中的单环电流按右手规则产生向上的轴场，场线从上侧绕回下侧；多匝同向绕组使内部磁场叠加，
+外部回流场仍存在。计算自感时，必须计算这些自生磁场穿过本回路各匝的磁链，而不是把外部场另行遗漏。
+
+自感系数的单位是 henry（H）。由 $\mathcal E_L=-L\dot I$ 可见，
+$1\,\mathrm H=1\,\mathrm{V\,s/A}$；由 $\Lambda=LI$ 又可写成
+$1\,\mathrm H=1\,\mathrm{Wb/A}$。同一回路中电流增加时，自感电动势方向与电流方向相反；电流减小时，
+自感电动势与原电流同向，试图维持它。所谓“电感阻碍电流”是不准确的：稳恒直流通过理想电感时
+$\dot I=0$，自感电动势为零；它阻碍的是电流的变化率。
+
+自感是所有闭合导体回路的普遍属性，大小由回路形状、匝数、尺寸和周围介质决定；在线性介质中与电流
+大小无关。若几何结构本身随时间变化，则 $L$ 也可能变化，必须使用完整形式
+$\mathcal E_L=-\dd(LI)/\dd t$，不能直接简写为 $-L\dot I$。
+
+对总匝数 $N=nl$ 的长螺线管，内部 $B=\mu_0NI/l$。每匝磁通为 $BA$，总磁链
+\begin{equation}
+  \Lambda=NBA=\frac{\mu_0N^2A}{l}I,
+\end{equation}
+所以
+\begin{equation}
+  L=\frac{\mu_0N^2A}{l}=\mu_0n^2Al.
+\end{equation}
+匝数加倍会使磁场贡献和磁链计数各增加一倍，因此自感按 $N^2$ 增长。
+
+接通 $RL$ 回路时，$I(0)=0$，电感两端最初承担几乎全部电源电压；随后电流按时间常量 $L/R$ 上升，
+最终趋于 $\mathcal E_0/R$，此时电流不再变化，理想电感压降趋零。断开含大电感的电路时，电感会试图
+维持原电流并产生很高反向电动势，这既可被利用，也可能造成开关打火或绝缘损坏。
+
+图 9.9 右侧把电源、开关、电阻和电感的连接关系完整画出。开关闭合后，沿图示电流方向列回路方程为
+$\mathcal E_0=RI+L\dot I$；端点 $a,b$ 的电压为 $U_{ab}=L\dot I$。因此初始瞬间 $U_{ab}=\mathcal E_0$，
+稳态时 $U_{ab}\to0$，这两端极限也能直接检查解析解是否合理。
+
+\rlInductorContext
+
+若把已经达到稳恒电流 $I_0$ 的 $RL$ 支路从电源断开，但仍让电阻与电感构成闭合回路，方程变为
+\begin{equation}
+  L\dot I+RI=0,\qquad I(t)=I_0\e^{-tR/L}.
+\end{equation}
+上升和衰减具有同一时间常量 $\tau_L=L/R$。在一个时间常量后，衰减电流剩下 $1/\e$，上升电流达到
+终值的 $1-1/\e$。初始电流不能瞬间突变，否则 $\dot I$ 无穷大，需要无限自感电动势；实际电路中的
+寄生电容、击穿和开关过程会限制电压峰值。
+
+储能式可以直接由功率推出。给电感建立电流时，外电源克服自感电动势所提供的功率为
+$P=UI=LI\dot I$，从零电流积分到 $I$：
+\begin{equation}
+  W_L=\int_0^I LI'\,\dd I'=\frac12LI^2.
+\end{equation}
+当电流减小时，这部分能量会重新流回电路或在电阻中耗散。能量并不是“藏在线圈铜线里”，而是分布在
+线圈电流建立的磁场中；对全空间积分 $B^2/(2\mu_0)$ 应与 $LI^2/2$ 相等。反过来，若某个回路磁场
+容易计算，也可先算总磁场能量，再由 $W=LI^2/2$ 反求自感。
+
+以长螺线管作检验，内部体积为 $Al$，场强 $B=\mu_0nI$，所以
+\begin{equation}
+  \int u_B\,\dd V
+  =\frac{(\mu_0nI)^2}{2\mu_0}Al
+  =\frac12(\mu_0n^2Al)I^2
+  =\frac12LI^2.
+\end{equation}
+这既验证了能量密度，也说明理想长螺线管的能量主要储存在管内近似匀强磁场区域。有限线圈还会有外部
+漏场，对应的能量同样必须计入，实际自感也会因此偏离无限长近似。
+
+图~\ref{ch24:fig:review-selfinductancediagram-1}中，内部磁场穿过每一匝，磁链要将各匝通量相加，才得到 $\Lambda=LI$。
+\par\noindent\begin{minipage}{\linewidth}
+\selfInductanceDiagram
+\figcap{螺线管的自生磁链}\label{ch24:fig:review-selfinductancediagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{开关题先取连续量，再取最终状态}
+有限端电压下电感电流连续：$I_L(0^+)=I_L(0^-)$；有限支路电流下电容电压连续：$U_C(0^+)=U_C(0^-)$。它们是从构成方程积分得到的初值条件。
+例如初始电流 $I_0$ 的线圈只经电阻 $R$ 放电，热量
+\[
+ Q_R=\int_0^\infty RI_0^2e^{-2Rt/L}\dd t=\frac12LI_0^2,
+\]
+与初磁能相符。初始端电压大小为 $RI_0$，增加 $R$ 会加快衰减并提高电压，而不是使电流在开关瞬间消失。
+理想“直接开路”不给电流出路，有限电压的简单 $RL$ 模型便不闭合，应考虑实际寄生电容或放电通道。
+
+\subsection{互感与互易性}
+
+回路 1 中的电流会在回路 2 中建立磁链，反之亦然。选定两个回路的正向后，定义
+\begin{equation}
+  \Lambda_2=M_{12}I_1,
+  \qquad
+  \Lambda_1=M_{21}I_2.
+\end{equation}
+相应的感应电动势为
+\begin{equation}
+  \mathcal E_2=-M_{12}\frac{\dd I_1}{\dd t},
+  \qquad
+  \mathcal E_1=-M_{21}\frac{\dd I_2}{\dd t},
+\end{equation}
+其中假定几何位置不变、互感为常量。若两线圈相对移动，必须保留
+$-\dd(MI)/\dd t$ 的完整形式，运动本身也会改变磁链。
+对线性、静止的回路系统，互易定理给出
+\begin{equation}
+  \boxed{M_{12}=M_{21}\equiv M}.
+\end{equation}
+$M$ 的正负取决于两回路正向的选取，但对称性不变。两回路共同产生的磁场能量为
+\begin{equation}
+  \boxed{W=\frac12L_1I_1^2+MI_1I_2+\frac12L_2I_2^2}.
+\end{equation}
+由能量必须非负还可得耦合界 $M^2\le L_1L_2$。
+
+两个线圈不必有金属接触也能互相影响：回路1电流变化，使穿过回路2的磁通变化，从而在回路2中产生
+感应电动势。互感的绝对值由两回路形状、距离、相对朝向以及介质决定；正负只反映两个回路正方向怎样
+约定。若把其中一个线圈的正方向反过来，电流和磁通的符号定义随之改变，$M$ 也反号，但实际电磁现象
+没有改变。
+
+对两根细导线闭合回路，互感还可写成 Neumann 形式
+\begin{equation}
+  M=\frac{\mu_0}{4\pi}\oint_{C_1}\!\oint_{C_2}
+  \frac{\dd\vect\ell_1\cdot\dd\vect\ell_2}{|\vect r_1-\vect r_2|}.
+\end{equation}
+交换下标 $1,2$ 后，被积式和积分区域不变，因而直观看出 $M_{12}=M_{21}$。这个对称性不是说两个
+回路中产生的磁通一定相等，而是说“回路1单位电流在回路2建立的磁链”与反向过程的比例系数相等。
+若匝数不同，磁链已经包含各匝磁通的总和，互易性仍然成立。
+
+互易性 $M_{12}=M_{21}$ 是线性静止系统的普遍结论，不要求两个线圈相同。能量中的交叉项 $MI_1I_2$
+表示两组场在空间中的重叠：同向加强时可以为正，反向削弱时可以为负，但总磁场能量必须非负，这便
+要求 $|M|\le\sqrt{L_1L_2}$。定义耦合系数 $k=M/\sqrt{L_1L_2}$ 后，总有 $|k|\le1$；理想变压器
+希望 $|k|$ 尽可能接近1，而需要隔离的电路则会尽量减小互感。
+
+能量不等式可以把耦合强弱限制得更直观。把总能量看成关于 $I_2$ 的二次式，若
+$M^2>L_1L_2$，总能找到某个 $I_2/I_1$ 使二次式为负，这与磁场能量非负矛盾。所以
+$|k|\le1$ 不是经验规定，而是能量正定性的结果。$|k|=1$ 表示两个线圈的全部磁通完全耦合；真实线圈
+通常有漏磁，故 $|k|<1$。
+
+变压器正是互感的典型应用：原线圈中的交流使铁芯磁通变化，副线圈因共享磁链而产生电动势。理想紧耦合
+情况下，电压比近似等于匝数比；实际装置还要考虑漏磁、绕组电阻、铁芯损耗与有限励磁电流。本讲只用
+互感说明“无金属接触也能传递电磁能量”的机制，具体交流电路分析还需结合阻抗和功率关系。
+
+判定互感电动势方向时仍应回到 Lenz 定律：先判断原线圈电流变化使副线圈中的磁通怎样变化，再令副线圈
+电流产生的磁场阻碍这一变化。所谓同名端标记只是把这一判向结果固定在器件符号上，不能脱离线圈绕向
+和参考电流方向孤立使用。
+绕向或端点定义改变后，符号会改变，但实际端电压与电流响应必须保持一致。
+这也是互感计算的基本自检。
+
+图~\ref{ch24:fig:review-mutualinductancediagram-1}中，两个同向电流的正法向一致，回路1的场穿过回路2，反向激励时交换源和受体。
+\par\noindent\begin{minipage}{\linewidth}
+\mutualInductanceDiagram
+\figcap{两个同轴回路的互感}\label{ch24:fig:review-mutualinductancediagram-1}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{串联耦合线圈与正负号}
+两个线圈串联后流过同一电流 $I$。若所选回路正向使互感项为正，总磁能为
+$\frac12(L_1+L_2+2M)I^2$，所以等效电感为 $L_1+L_2+2M$。
+反接一个线圈，互感项反号，等效电感为 $L_1+L_2-2M$。由 $|M|\le\sqrt{L_1L_2}$ 可检验等效电感不为负。
+例如 $L_1=L_2=L$、$M=kL$ 且 $0\le k\le1$，两种接法分别给出 $2L(1+k)$、$2L(1-k)$。反接后只在理想完全耦合 $k=1$ 的极限才为零；真实漏磁使其仍保留正电感。
+
+\input{examples-a.tex}
+\input{examples-b.tex}

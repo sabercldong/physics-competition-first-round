@@ -1,0 +1,204 @@
+% Restrained TikZ redraws for Lesson 30.
+
+\newcommand{\potentialGradientDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72,>=Latex]
+  \begin{scope}[xshift=-6.0cm]
+    \foreach \x in {-1.8,-0.9,0,0.9,1.8}{\draw[DeepBlue,thick] (\x,-1.65)--(\x,1.65);}
+    \foreach \y in {-1.15,-0.38,0.38,1.15}{\draw[->,TextGray] (-2.15,\y)--(2.15,\y);}
+    \node[TextGray] at (0,-2.1) {匀强电场};
+  \end{scope}
+  \begin{scope}
+    \fill[DeepBlue] (0,0) circle (4pt) node[below right] {$+Q$};
+    \foreach \r in {0.55,1.05,1.55}{\draw[DeepBlue,thick] (0,0) circle (\r);}
+    \foreach \a in {0,45,...,315}{\draw[->,TextGray] ({0.35*cos(\a)},{0.35*sin(\a)})--({2.05*cos(\a)},{2.05*sin(\a)});}
+    \node[TextGray] at (0,-2.1) {孤立正点电荷};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \fill[DeepBlue] (-1.15,0) circle (4pt) node[below] {$+q$};
+    \fill[Ink] (1.15,0) circle (4pt) node[below] {$-q$};
+    \foreach \h in {0.35,0.75,1.15}{
+      \draw[->,TextGray] (-0.95,{0.55*\h}) .. controls (-0.25,{1.45*\h}) and (0.25,{1.45*\h}) .. (0.95,{0.55*\h});
+      \draw[->,TextGray] (-0.95,{-0.55*\h}) .. controls (-0.25,{-1.45*\h}) and (0.25,{-1.45*\h}) .. (0.95,{-0.55*\h});
+    }
+    \draw[DeepBlue,thick,dashed] (0,-1.85)--(0,1.85) node[above] {$\varphi=0$};
+    \node[TextGray] at (0,-2.1) {等量异号点电荷};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.1\quad 三类典型电场的等势线（蓝）与电场线（灰）；两者处处正交}
+\end{center}}
+
+\newcommand{\dipoleEquipotentialDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \fill[DeepBlue] (-1.35,0) circle (4pt) node[below] {$+q$};
+  \fill[Ink] (1.35,0) circle (4pt) node[below] {$-q$};
+  \foreach \h in {0.35,0.7,1.05,1.4}{
+    \draw[DeepBlue,thick] (-1.12,{0.5*\h}) .. controls (-0.35,{1.45*\h}) and (0.35,{1.45*\h}) .. (1.12,{0.5*\h});
+    \draw[DeepBlue,thick] (-1.12,{-0.5*\h}) .. controls (-0.35,{-1.45*\h}) and (0.35,{-1.45*\h}) .. (1.12,{-0.5*\h});
+  }
+  \draw[TextGray,thick,dashed] (0,-2.4)--(0,2.4) node[above] {$\varphi=0$};
+  \draw[TextGray] (-1.35,0) circle (0.55);
+  \draw[TextGray] (1.35,0) circle (0.55);
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.2\quad 等量异号点电荷的电场线与零等势面}
+\end{center}}
+
+\newcommand{\ionizationEnergyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[x=0.54cm,y=0.12cm,>=Latex]
+  \draw[axis] (0,0)--(19.4,0) node[right] {原子序数 $Z$};
+  \draw[axis] (0,0)--(0,28) node[above] {第一电离能/eV};
+  \foreach \y in {5,10,15,20,25}{
+    \draw[TextGray,thin] (0,\y)--(18.6,\y);
+    \node[TextGray,left] at (0,\y) {\y};
+  }
+  \draw[DeepBlue,thick] plot coordinates {
+    (1,13.60) (2,24.59) (3,5.39) (4,9.32) (5,8.30) (6,11.26)
+    (7,14.53) (8,13.62) (9,17.42) (10,21.56) (11,5.14) (12,7.65)
+    (13,5.99) (14,8.15) (15,10.49) (16,10.36) (17,12.97) (18,15.76)};
+  \foreach \x/\y in {1/13.60,2/24.59,3/5.39,4/9.32,5/8.30,6/11.26,7/14.53,8/13.62,9/17.42,10/21.56,11/5.14,12/7.65,13/5.99,14/8.15,15/10.49,16/10.36,17/12.97,18/15.76}{
+    \fill[DeepBlue] (\x,\y) circle (2pt);
+  }
+  \foreach \x/\lab in {1/H,2/He,3/Li,6/C,8/O,10/Ne,11/Na,14/Si,17/Cl,18/Ar}{
+    \node[TextGray,below,rotate=55,anchor=east] at (\x,-0.3) {\lab};
+  }
+  \node[TextGray,align=left,anchor=west] at (19.9,16)
+    {稀有气体形成峰值\\碱金属形成低谷\\多数原子处于 $5$--$25\,\mathrm{eV}$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.3(a)\quad 前18号元素的第一电离能；折线连接仅用于显示周期性趋势}
+\end{center}}
+
+\newcommand{\sphereEnergyDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[curve] (O) circle (1.55);
+  \foreach \a in {0,30,...,330}{
+    \fill[DeepBlue] ({1.55*cos(\a)},{1.55*sin(\a)}) circle (1.2pt);
+  }
+  \draw[vector] (O)--(1.1,1.1) node[midway,above left] {$R$};
+  \draw[vector] (1.55,0)--++(1.4,0) node[above] {$E(R)$};
+  \draw[vector] (1.05,1.14)--++(0.95,1.02) node[right] {$p$};
+  \node[TextGray,align=left,anchor=west] at (4.1,0.35)
+    {$Q$ 均匀分布在球面\\表面电场 $E(R)=Q/(4\pi\varepsilon_0R^2)$\\静电压强 $p=\varepsilon_0E^2/2$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.3(b)\quad 均匀带电球壳的电场能量与静电压强}
+\end{center}}
+
+\newcommand{\zeroPotentialSphereDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.85,>=Latex]
+  \draw[axis] (-4.6,0)--(5.25,0) node[right] {$x$};
+  \fill[Ink] (0,0) circle (4pt) node[below] {$-q$};
+  \fill[DeepBlue] (4.2,0) circle (4pt) node[below] {$+Q$};
+  % Draw the exact Q=2q member of the Apollonius family: centre=-a/3,
+  % radius=2a/3.  It therefore encloses the smaller charge at the origin.
+  \draw[DeepBlue,thick] (-1.4,0) circle (2.8);
+  \node[TextGray] at (-1.4,3.25) {$\varphi=0$（示意取 $Q=2q$）};
+  \draw[<->] (0,-0.8)--node[fill=white,inner sep=1pt] {$a$}(4.2,-0.8);
+  \node[TextGray] at (-1.4,-3.25)
+    {当 $Q>q$ 时，零等势面包围较小的负电荷};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.4\quad 不等量异号点电荷的零等势面是 Apollonius 球面}
+\end{center}}
+
+\newcommand{\twoLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[axis] (-4.6,0)--(4.6,0) node[right] {$x$};
+  \draw[axis] (0,-2.7)--(0,2.7) node[above] {$y$};
+  \fill[DeepBlue] (1.8,0) circle (4pt) node[below] {$+\lambda$};
+  \fill[Ink] (-1.8,0) circle (4pt) node[below] {$-\lambda$};
+  \draw[TextGray,dashed] (0,-2.4)--(0,2.4) node[above right] {$\varphi=0$};
+  % Equipotentials: Apollonius circles surrounding one line charge.
+  % K=3 and K=5 members.  Every circle surrounds the corresponding
+  % line charge at x=+/-a rather than sitting between the charges.
+  \draw[DeepBlue,thick] (2.25,0) circle (1.35);
+  \draw[DeepBlue,thick] (1.95,0) circle (0.75);
+  \draw[DeepBlue,thick] (-2.25,0) circle (1.35);
+  \draw[DeepBlue,thick] (-1.95,0) circle (0.75);
+  % Field lines: circles through both line charges (only representative arcs).
+  \draw[TextGray,thick,dashed] (0,1.65) circle (2.44);
+  \draw[TextGray,thick,dashed] (0,-1.65) circle (2.44);
+  \node[TextGray] at (0,-3.2) {实线是等势线；虚线是与它们正交、并通过两导线的电场线};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.5\quad 两根异号无限长带电直线的横截面}
+\end{center}}
+
+\newcommand{\finiteLineDiagramThirty}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92,>=Latex]
+  \draw[axis] (-4.2,0)--(4.2,0) node[right] {$x$};
+  \draw[axis] (0,-2.4)--(0,2.4) node[above] {$\rho$};
+  \draw[DeepBlue,very thick] (-1.7,0)--(1.7,0);
+  \fill (0,0) circle (1.5pt) node[below] {$O$};
+  \node[below] at (-1.7,0) {$-a$}; \node[below] at (1.7,0) {$a$};
+  \coordinate (P) at (2.7,1.6);
+  \fill[DeepBlue] (P) circle (2.5pt) node[right] {$P(x,\rho)$};
+  \draw[guide] (P)--(-1.7,0) (P)--(1.7,0);
+  \node[TextGray] at (0,-2.95) {$r_++r_-=\text{常量}$ 为旋转椭球；$r_--r_+=\text{常量}$ 为旋转双曲面};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.6\quad 有限长均匀带电直线的轴对称几何}
+\end{center}}
+
+\newcommand{\repulsionDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \draw[thick] (-1.8,3.5)--(1.8,3.5);
+  \foreach \x in {-1.6,-1.2,...,1.6}{\draw[TextGray] (\x,3.5)--++(-0.18,0.18);}
+  \coordinate (O) at (0,3.5); \coordinate (A) at (-1.55,1.05); \coordinate (B) at (0,0.42);
+  \draw[curve] (O)--(A);
+  \fill[DeepBlue] (A) circle (4pt) node[below left=3pt,fill=white,inner sep=0.7pt] {$A(+q)$};
+  \fill[DeepBlue] (B) circle (4pt) node[right=4pt,fill=white,inner sep=0.7pt] {$B(+q)$};
+  \draw[guide] (O)--(B);
+  \draw[<->] (-2.25,0.42)--node[left] {$h$}(-2.25,1.05);
+  \draw[vector] (A)--++(0,-1.15) node[below right=2pt,fill=white,inner sep=0.7pt] {$m\vect g$};
+  \draw[vector] (A)--++(0.75,1.18) node[above right=2pt,fill=white,inner sep=0.7pt] {$\vect T$};
+  \draw[vector] (A)--++(-1.25,0.51) node[above left=2pt,fill=white,inner sep=0.7pt] {$\vect F_e$};
+  \node[TextGray,align=left,anchor=west] at (3.0,1.55)
+    {$B$ 最终位于 $A$ 原来的最低点\\慢速移动时可用能量关系};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.7\quad 同号小球排斥过程的始末几何}
+\end{center}}
+
+\newcommand{\bohrDiagram}{%
+\begin{center}
+  \begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[DeepBlue] (0,0) circle (5pt) node[below left=4pt,fill=white,inner sep=0.7pt] {$p(+e)$};
+  \draw[DeepBlue,thick] (0,0) circle (2.05);
+  \fill[Ink] (2.05,0) circle (4pt) node[below right=4pt,fill=white,inner sep=0.7pt] {$e^-(-e)$};
+  \draw[vector] (2.05,0)--++(0,1.45) node[above right=2pt,fill=white,inner sep=0.7pt] {$\vect v$};
+  \draw[vector] (2.05,0)--++(-1.25,0) node[pos=0.55,above=4pt,fill=white,inner sep=0.7pt] {$\vect F_e$};
+  \draw[<->] (0,-1.05)--node[fill=white,inner sep=1pt] {$r$}(2.05,-1.05);
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.8\quad Bohr 基态模型中的电子圆周运动}
+\end{center}}
+
+\newcommand{\rutherfordDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \fill[DeepBlue] (0,0) circle (5pt) node[below right] {$Ze$};
+  \draw[axis] (-4.8,0)--(4.8,0) node[right] {$x$};
+  \draw[guide] (-4.2,1.25)--(0,1.25);
+  \draw[DeepBlue,very thick,-{Latex[length=2.7mm]}]
+    (-4.2,1.25) .. controls (-1.5,1.25) and (-0.8,2.2) .. (3.4,3.0);
+  \draw[<->] (-3.4,0)--node[left] {$b$}(-3.4,1.25);
+  \draw[vector] (-4.0,1.25)--++(1.3,0) node[above] {$\vect v_\infty$};
+  \draw[guide] (1.9,2.55)--++(1.7,0);
+  \coordinate (A) at (1.9,2.55); \coordinate (B) at (3.6,2.55); \coordinate (C) at (3.4,3.0);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.25]
+    {angle=B--A--C};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 30.9\quad 库仑斥力下的双曲线散射轨迹}
+\end{center}}

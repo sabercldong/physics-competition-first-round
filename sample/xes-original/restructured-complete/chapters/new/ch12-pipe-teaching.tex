@@ -1,0 +1,31 @@
+\subsection{先决定边界约束的是位移还是声压}
+令 $x$ 从闭口端指向开口端，空气纵向位移为 $\xi(x,t)$。闭口处空气不能穿过刚性壁，故 $\xi(0,t)=0$；开口处与外界相通，理想近似下声压扰动 $p'(L,t)=0$，并不是绝对压强为零。
+对一个两端原本相距 $\dd x$ 的空气微元，实际长度增量为 $\xi_x\dd x$。质量守恒给出密度变化 $\delta\rho=-\rho_0\xi_x$，结合 $p'=c^2\delta\rho$，得到
+\[
+ p'=-\rho_0c^2\xi_x.
+\]
+因此开口的边界条件是 $\xi_x(L,t)=0$，与闭口的 $\xi=0$ 不同。对简谐驻波写 $\xi=X(x)\cos\omega t$，波动方程化为 $X''+k^2X=0$，通解为 $C\sin kx+D\cos kx$。闭口条件消去 $D$，开口条件给
+\[
+ X'(L)=Ck\cos kL=0,
+ \quad kL=\frac{(2m-1)\pi}{2}.
+\]
+再用 $\omega=ck$，就得到闭管只允许奇次谐波的频率公式。图~\ref{ch12:fig:pipe-mode} 选的是 $m=2$：$kL=3\pi/2$，故 $L=3\lambda/4$。图中的曲线是“各位置的纵向位移值”，不是空气微元走过的弯曲路径。
+
+同一驻波的声压空间因子正比于 $\cos kx$，而位移因子为 $\sin kx$。所以位移波节处为声压波腹，位移波腹处为声压波节；不能在同一位置把两者都标成波节。两端闭口给 $\sin kL=0$；两端开口可从 $X=C\cos kx$ 出发，也得到 $kL=n\pi$。零频率的整体平移不是这里讨论的声学共振模态。
+
+\begin{origexamplebox}{由连续共振长度测声速与端部修正}\label{ch12:ex:teaching-resonance-length}
+频率 $f=500\,\mathrm{Hz}$ 的音叉放在竖直细管口附近，管下部水面形成近似刚性闭端。调节水面，测得连续两个共振空气柱长度为 $L_1=0.160\,\mathrm m$、$L_2=0.500\,\mathrm m$。设两次开口端修正量相同，记为 $e$；且第一次为基模。求声速和 $e$。
+\end{origexamplebox}
+\begin{xesolution}
+开口位移腹稍在管外，所以有效长度是 $L+e$。第一、第二允许模态分别满足
+\[
+ L_1+e=\frac\lambda4,\qquad L_2+e=\frac{3\lambda}4.
+\]
+两式相减可消去不能直接量取的 $e$：$L_2-L_1=\lambda/2$。因此
+\[
+ \lambda=0.680\,\mathrm m,\qquad
+ c=f\lambda=340\,\mathrm{m/s},\qquad
+ e=\lambda/4-L_1=0.010\,\mathrm m.
+\]
+修正量为正，与位移腹在管外一致。若不知道第一次是哪一级，仍能由相邻共振间隔求 $c$，却不能唯一确定 $e$；这说明“第一次为基模”不是多余条件。
+\end{xesolution}

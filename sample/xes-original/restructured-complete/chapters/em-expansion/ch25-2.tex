@@ -1,0 +1,12 @@
+% EM structure and teaching revision 20260928
+\subsection{并联RC网络的相位与频率极限}
+例如电阻 $R$ 与电容 $C$ 并联，端电压相量为 $\widetilde U$，有
+\[
+ \widetilde I=\left(\frac1R+\ii\omega C\right)\widetilde U,
+ \quad |I|=U\sqrt{R^{-2}+\omega^2C^2},
+ \quad \arg\widetilde I-\arg\widetilde U=\arctan(\omega CR).
+\]
+电流超前电压；低频时电容支路趋于开路，结果退回 $I=U/R$；频率升高后无功支路电流增大，但电阻平均消耗仍为 $U^2/R$。
+若取 $R=1.0\,\mathrm{k}\Omega$、$C=1.0\,\mu\mathrm F$，两支路电流幅值相等发生在 $\omega RC=1$，即 $f\simeq159\,\mathrm{Hz}$，此时总电流超前电压 $45^\circ$，总电流幅值是单个支路的 $\sqrt2$ 倍，而非两倍。
+所有理想元件的低频、高频极限都是检查网络答案的有效工具，但极限下还要注意是否出现理想电源短路或无阻尼共振等使模型失去有限稳态的情形。
+

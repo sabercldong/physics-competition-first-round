@@ -1,0 +1,59 @@
+% !TEX program = xelatex
+\documentclass[UTF8,zihao=-4,oneside,openany]{ctexbook}
+
+\input{../../common-style.tex}
+\usepackage{graphicx}
+\usetikzlibrary{decorations.pathmorphing,calc,arrows.meta,patterns.meta}
+\graphicspath{{figures/}}
+
+\hypersetup{
+  pdftitle={学而思物理竞赛一轮资料重排：第一章第三节 质点与刚体的静力平衡（含补写解答与解图）},
+  pdfsubject={学而思物理竞赛一轮资料重排；正文与例题据原资料整理，解答与解图为后补},
+  pdfauthor={原资料：学而思；重排与补写解答：物理竞赛一轮资料编写组}
+}
+
+\fancyhead[R]{\small\color{TextGray}第一章\quad 静力学}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+\newtcolorbox{origexamplebox}[1]{
+  enhanced,
+  colback=white,colframe=RuleGray,
+  boxrule=0.5pt,arc=0mm,
+  title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleBlue,
+  borderline west={1.4pt}{0pt}{DeepBlue}
+}
+
+\newenvironment{xesolution}{%
+  \par\smallskip
+  \begingroup\small
+  \noindent{\bfseries\color{DeepBlue}解答}\quad
+}{%
+  \par\endgroup\medskip
+}
+
+\newcommand{\origcaption}[1]{%
+  \par\smallskip
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \smallskip
+}
+
+\input{solution-diagrams.tex}
+\input{faithful-source-diagrams.tex}
+
+\begin{document}
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\setcounter{chapter}{1}
+\setcounter{section}{2}
+
+\section{质点与刚体的静力平衡}
+\setcounter{equation}{8}
+
+\input{part-a.tex}
+\input{part-b.tex}
+\input{part-c.tex}
+\input{part-d.tex}
+
+\end{document}

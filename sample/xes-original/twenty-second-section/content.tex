@@ -1,0 +1,514 @@
+\input{theory-restored.tex}
+
+% 以下为早期压缩稿，保留在源码中仅供修订对照，不进入成品。
+\iffalse
+电流是带电粒子的宏观定向运动。金属中的自由电子、半导体中的电子与空穴、电解液中的正负离子，
+都可以成为载流子。电路分析通常不追踪每个粒子的轨迹，而用电流、电压和元件伏安特性描述整体
+行为；微观模型则进一步解释这些外部规律为什么成立，以及它们在什么条件下失效。
+
+\subsection*{电流与电流密度}
+
+若在时间 $\dd t$ 内穿过给定截面的净电荷为 $\dd Q$，电流定义为
+\begin{equation}
+  \boxed{I=\frac{\dd Q}{\dd t}}.
+\end{equation}
+电流方向约定为正电荷定向运动的方向，因此金属中电子的平均漂移方向与电流方向相反。若电流
+随时间变化，从 $t_1$ 到 $t_2$ 穿过截面的电荷为
+\begin{equation}
+  \boxed{Q=\int_{t_1}^{t_2}I(t)\dd t}.
+\end{equation}
+
+电流密度 $\vect j$ 给出单位垂直面积上电流的大小和方向，任意曲面上的总电流为
+\begin{equation}
+  \boxed{I=\int_S\vect j\cdot\dd\vect S}.
+\end{equation}
+若一种载流子的数密度为 $n$、电荷为 $q$、平均漂移速度为 $\vect v_d$，则
+\begin{equation}
+  \boxed{\vect j=nq\vect v_d}.
+\end{equation}
+对电子，$q=-e$，所以 $\vect j$ 与 $\vect v_d$ 反向。多种载流子同时存在时，对各类载流子的
+$n_sq_s\vect v_{d,s}$ 求和即可。
+
+\currentDensityDiagram
+
+局部电荷守恒写成连续性方程
+\begin{equation}
+  \boxed{\frac{\partial\rho_q}{\partial t}+\nabla\cdot\vect j=0}.
+\end{equation}
+稳恒电流中 $\partial\rho_q/\partial t=0$，故 $\nabla\cdot\vect j=0$。在没有分支的同一根导线
+中，各截面的电流相同；若不同截面电流长期不等，连接处就会持续积累电荷，不可能是稳恒状态。
+
+\subsection*{伏安特性与功率}
+
+对一个二端元件，先任意选定电压 $U$ 和电流 $I$ 的参考方向。元件的伏安关系
+$F(U,I)=0$ 描述它从端口看去的电学性质。若电流流入电压参考正端，采用被动符号约定，元件吸收
+功率
+\begin{equation}
+  \boxed{P=UI}.
+\end{equation}
+$P>0$ 表示元件吸收能量，$P<0$ 表示元件向外供能。理想电阻满足 Ohm 定律
+\begin{equation}
+  \boxed{U=IR}.
+\end{equation}
+
+Ohm 定律首先是实验规律：在温度和材料状态不变时，对同一导体测量多组 $(U,I)$，若各点落在
+过原点的直线上，$U/I$ 才能用同一个常量 $R$ 表示。若像下图一样以 $U$ 为横轴、$I$ 为纵轴，
+直线斜率为 $I/U=1/R$；若交换两轴，斜率才是 $R$。下面的肖像与邮票式电阻图案提示了这一定律
+的历史背景；真正用于判断元件是否为欧姆元件的，仍是它的伏安曲线。
+
+\ohmHistoryContextDiagram
+
+其伏安曲线是过原点的直线；灯丝、二极管、气体放电管等元件的曲线一般不是直线，不能用一个与
+工作状态无关的常数电阻概括。
+
+\ivCharacteristicDiagram
+
+\gasDischargeContextDiagram
+
+读图时要注意横轴是对数刻度的电流，纵轴是电压。在暗放电区，电流可以跨越许多数量级，而
+端电压变化相对较小；进入辉光放电区后，曲线的一部分随电流增大反而下降，出现
+$\dd U/\dd I<0$ 的负微分电阻；转入弧光放电后，电流很大而维持电压较低。曲线既不是过原点
+的直线，斜率也不是常量，所以气体放电管不能用一个与工作状态无关的 $R$ 描述。这里的实测型
+曲线正好补充了上面的示意曲线，并给出非欧姆性的具体物理情景。
+
+均匀柱形导体长 $l$、截面积 $S$、电阻率 $\rho$，其电阻为
+\begin{equation}
+  \boxed{R=\rho\frac lS},
+  \qquad \sigma=\frac1\rho.
+\end{equation}
+局部形式的 Ohm 定律为
+\begin{equation}
+  \boxed{\vect j=\sigma\vect E}.
+\end{equation}
+电阻的热功率可写为
+\begin{equation}
+  \boxed{P=UI=I^2R=\frac{U^2}{R}},
+  \qquad p_V=\vect j\cdot\vect E=\sigma E^2.
+\end{equation}
+
+\subsection*{电子漂移的经典模型}
+
+金属电子在晶格中作高速无规则运动。外场造成的定向漂移速度远小于无规则热运动速度，但大量
+电子的微小平均漂移足以形成宏观电流。用平均碰撞时间 $\tau$ 描述电子动量弛豫，Drude 模型给出
+\begin{equation}
+  m\frac{\dd\vect v_d}{\dd t}
+  =-e\vect E-\frac m\tau\vect v_d.
+\end{equation}
+稳态时
+\begin{equation}
+  \vect v_d=-\frac{e\tau}{m}\vect E,
+  \qquad
+  \vect j=-ne\vect v_d=\frac{ne^2\tau}{m}\vect E,
+\end{equation}
+所以
+\begin{equation}
+  \boxed{\sigma=\frac{ne^2\tau}{m}}.
+\end{equation}
+这个模型把晶格碰撞等复杂过程压缩为一个弛豫时间。外场太强、温度变化明显、载流子浓度随电场
+改变或碰撞规律非线性时，$\sigma$ 不再是常量，宏观 Ohm 定律便会失效。
+
+\drudeDiagram
+
+除电场驱动的漂移外，载流子还会从高浓度区域向低浓度区域扩散。若粒子数通量满足
+$\vect\Gamma=-D\nabla n$，相应扩散电流密度为 $q\vect\Gamma$。半导体和电解质中，漂移与扩散
+常常必须同时考虑。
+
+\subsection*{电阻网络与 Kirchhoff 定律}
+
+串联电阻中电流相同，总电压为各电阻电压之和，因此
+\begin{equation}
+  \boxed{R_{\rm series}=\sum_iR_i}.
+\end{equation}
+并联电阻两端电压相同，总电流为各支路电流之和，因此
+\begin{equation}
+  \boxed{\frac1{R_{\parallel}}=\sum_i\frac1{R_i}}.
+\end{equation}
+
+\resistorConnectionDiagram
+
+复杂网络的基本方程来自两条 Kirchhoff 定律：
+\begin{enumerate}[label=\arabic*.,leftmargin=2em]
+  \item \textbf{KCL：}任一节点流入电流的代数和为零，$\sum I_k=0$。它是电荷守恒在稳恒电路
+  中的表达。
+  \item \textbf{KVL：}任一闭合回路各支路电压的代数和为零，$\sum U_k=0$。静态集总电路中，
+  它对应电势为单值函数和能量守恒。
+\end{enumerate}
+
+\kirchhoffDiagram
+
+列方程时必须先选定每条支路的电流方向和每个元件的电压极性。解出的电流若为负，只表示真实
+方向与最初假设相反，并非方程错误。节点电压法可把 KVL 自动包含在节点电势差中：选一节点为
+零电势，对其余未知节点列 KCL，再由各元件伏安关系求支路电流，通常比逐回路设未知量更简洁。
+
+\fi
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 33.1【惯性维持的电流】}
+1917 年 Tolman 和 Stewart 的实验直接证明了电子在金属中参与导电。他们使一个铜环以很高的
+角速度 $\omega$ 绕对称轴匀速转动。铜环与其中电子原本共同
+运动，因而没有相对晶格的电流；让铜环突然停止后，电子因惯性继续运动并形成短暂电流。求从
+停止开始流过任一截面的总电荷量。已知环半径 $r$、电子电荷量的绝对值 $e$、电子质量 $m$、
+铜的电导率 $\sigma$，环的截面积为 $A$。
+\end{origexamplebox}
+
+\begin{xesolution}
+铜环停止的瞬间，晶格静止，电子相对晶格仍有切向初速度
+\[
+  v_0=\omega r.
+\]
+撤去维持转动的机械作用后，电子平均速度按 Drude 弛豫模型衰减：
+\[
+  m\frac{\dd v}{\dd t}=-\frac m\tau v,
+  \qquad v(t)=v_0\e^{-t/\tau}.
+\]
+一个电子在完全弛豫前相对晶格前进的总路程为
+\[
+  \ell=\int_0^\infty v(t)\dd t=v_0\tau=\omega r\tau.
+\]
+若电子数密度为 $n$，穿过任一固定截面的电荷量绝对值为
+\[
+  |Q|=neA\ell=neA\omega r\tau.
+\]
+利用 $\sigma=ne^2\tau/m$ 消去 $n,\tau$，得到
+\begin{equation}
+  \boxed{|Q|=\frac{m\sigma A\omega r}{e}}.
+\end{equation}
+电子带负电，故传统电流方向与电子惯性运动方向相反。结果与环周长无关：电子平均前进的路程
+决定穿过固定截面的净电荷，而电子数密度、电导率和截面积已经包含导体本身的信息。
+图 33.6 将停转后的两种方向并列画出：电子沿原转动方向继续漂移，截面上的传统电流则反向。
+
+\tolmanDiagram
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 33.2【暂态电流】}
+在阻值为 $R$ 的均匀柱形电阻两端，于 $t=0$ 突然加上恒定电压 $U$。用载流子的经典弛豫模型
+求电流 $I(t)$。
+\end{origexamplebox}
+
+\begin{xesolution}
+设柱长为 $l$、截面积为 $A$，电场 $E=U/l$。取传统电流方向为正，电子漂移方程对应的电流方程
+可写为
+\begin{equation}
+  \tau\frac{\dd I}{\dd t}+I=\frac UR,
+  \qquad
+  \tau=\frac{m\sigma}{ne^2}.
+\end{equation}
+突加电压前电子无平均漂移，故 $I(0)=0$。解一阶方程得
+\begin{equation}
+  \boxed{I(t)=\frac UR\left(1-\e^{-t/\tau}\right)},
+  \qquad t\ge0.
+\end{equation}
+约经过数个 $\tau$，电流才接近 Ohm 定律的稳态值 $U/R$。普通金属的 $\tau$ 极短，宏观低频
+电路中这个建立过程通常不可见；在高频、超快脉冲或高迁移率材料中，载流子惯性则可能重要。
+图 33.7 中虚线是稳态值，曲线在 $t=0$ 处从零出发并按时间常数 $\tau$ 逼近它。
+
+\transientCurrentDiagram
+\end{xesolution}
+
+\Needspace{0.3\textheight}
+\begin{origexamplebox}{例题 33.3【转动的带电环】}
+半径为 $R$ 的刚性圆环均匀带有总电荷 $Q$，绕对称轴以角速度 $\omega$ 匀速转动。求等效环电流。
+\end{origexamplebox}
+
+\begin{xesolution}
+转动周期为 $T=2\pi/\omega$。每经过一个周期，整个环上的总电荷 $Q$ 恰好通过任一固定截面一次，
+因此
+\begin{equation}
+  \boxed{I=\frac QT=\frac{Q\omega}{2\pi}}.
+\end{equation}
+若 $Q>0$，电流方向与转动方向相同；若 $Q<0$，传统电流方向与转动方向相反。也可用线电荷密度
+$\lambda=Q/(2\pi R)$ 与切向速度 $v=\omega R$ 计算：$I=\lambda v$。
+图 33.12 标出的截面用于计数每周期通过的电荷，因此半径 $R$ 在最后结果中消去。
+
+\rotatingRingDiagram
+\end{xesolution}
+
+\Needspace{0.46\textheight}
+\begin{origexamplebox}{例题 33.4【真空二极管】}
+平板真空二极管的阴极、阳极面积均为 $S$，间距为 $L$。阴极位于 $x=0$ 且电势为零，阳极位于
+$x=L$ 且电势为 $U>0$。电子从阴极以可忽略的初速度发射，稳恒电流为 $I$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 写出板间电势满足的方程；
+  \item 用 $\varphi(x)$ 表示电子速度；
+  \item 用 $I$、速度表示电子数密度；
+  \item 消去速度和数密度，写出电势的微分方程与空间电荷限制状态的边界条件；
+  \item 求伏安关系并证明 Child--Langmuir 定律 $I=KU^{3/2}$。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+\textbf{(1)} 电子数密度为 $n(x)$，体电荷密度 $\rho_q=-en$。Poisson 方程给出
+\begin{equation}
+  \frac{\dd^2\varphi}{\dd x^2}=-\frac{\rho_q}{\varepsilon_0}
+  =\frac{en}{\varepsilon_0}.
+\end{equation}
+
+\textbf{(2)} 电子从阴极由静止出发。能量守恒
+\[
+  \frac12mv^2=e\varphi,
+\]
+所以
+\begin{equation}
+  \boxed{v(x)=\sqrt{\frac{2e\varphi(x)}m}}.
+\end{equation}
+
+\textbf{(3)} 稳恒电流在各截面相同，取电流大小有
+\begin{equation}
+  I=en(x)v(x)S,
+  \qquad
+  \boxed{n(x)=\frac{I}{eSv(x)}}.
+\end{equation}
+
+\textbf{(4)} 消去 $n,v$：
+\begin{equation}
+  \frac{\dd^2\varphi}{\dd x^2}
+  =\frac{I}{\varepsilon_0S}\sqrt{\frac{m}{2e}}\,\varphi^{-1/2}.
+\end{equation}
+空间电荷限制的最大稳定电流状态下，阴极表面电场恰为零；若阴极场反向，发出的电子会被推回。
+边界条件为
+\begin{equation}
+  \varphi(0)=0,
+  \qquad \varphi'(0)=0,
+  \qquad \varphi(L)=U.
+\end{equation}
+
+\textbf{(5)} 记
+\[
+  A_0=\frac{I}{\varepsilon_0S}\sqrt{\frac{m}{2e}}.
+\]
+用 $\varphi'$ 乘微分方程并从阴极积分：
+\[
+  \frac12(\varphi')^2=2A_0\sqrt\varphi,
+  \qquad
+  \varphi'=2\sqrt{A_0}\,\varphi^{1/4}.
+\]
+再次积分得
+\[
+  \varphi(x)=\left(\frac32\sqrt{A_0}\,x\right)^{4/3}.
+\]
+代入 $\varphi(L)=U$，得到电势分布和电流：
+\begin{equation}
+  \boxed{\varphi(x)=U\left(\frac xL\right)^{4/3}},
+\end{equation}
+\begin{equation}
+  \boxed{I=\frac49\varepsilon_0S\sqrt{\frac{2e}{m}}
+  \frac{U^{3/2}}{L^2}}.
+\end{equation}
+因此
+\begin{equation}
+  \boxed{K=\frac49\frac{\varepsilon_0S}{L^2}\sqrt{\frac{2e}{m}}}.
+\end{equation}
+这一定律建立在平板近似、零初速度、充分电子发射和稳恒一维空间电荷等条件上。
+图 33.9 中电子从零电势阴极向高电势阳极运动；$\varphi\propto x^{4/3}$ 也表明板间电场
+$E=\varphi'$ 并非均匀场。
+
+\vacuumDiodeDiagram
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 33.5【导电厚球壳】}
+两个同心金属球壳的半径分别为 $a<b$，中间填充一种非线性导电材料，其电导率与局部电场大小
+成正比：$\sigma=kE$。若两球壳电势差为 $U$，求稳恒电流。
+\end{origexamplebox}
+
+\begin{xesolution}
+稳恒、球对称条件下，任意半径球面上的总电流均为 $I$，所以
+\begin{equation}
+  j(r)=\frac{I}{4\pi r^2}.
+\end{equation}
+局部伏安关系不是 $j=\sigma E$ 中的常电导率形式，而是
+\[
+  j=\sigma E=kE^2.
+\]
+因此
+\begin{equation}
+  E(r)=\sqrt{\frac{I}{4\pi k}}\frac1r.
+\end{equation}
+两球壳电势差
+\[
+  U=\int_a^bE(r)\dd r
+  =\sqrt{\frac{I}{4\pi k}}\ln\frac ba.
+\]
+解得
+\begin{equation}
+  \boxed{I=\frac{4\pi kU^2}{[\ln(b/a)]^2}}.
+\end{equation}
+电流正比于 $U^2$，这是非欧姆导电的直接表现。分母必须是对数的平方：一次对数来自电场沿半径
+积分，而电流又正比于 $E^2$。
+图 33.14 画出同一电流穿过不同半径球面的情形；球面面积随 $r^2$ 增大，故 $j\propto r^{-2}$，
+再由 $j=kE^2$ 得到 $E\propto r^{-1}$。
+
+\nonlinearShellDiagram
+\end{xesolution}
+
+\Needspace{0.48\textheight}
+\begin{origexamplebox}{例题 33.6【电离计数器】}
+电离计数器测量带电粒子穿过气体时产生的电离电荷。电场把电离产物中的电子和正离子分别引向
+阳极和阴极；若入射粒子在气体中被完全吸收，还可由总电离量估计粒子能量。最简单的电离室由
+一对平行板电极构成，密封容器中充有工作气体。板间距为 $D$、面积为 $S$，阴极电势为 $-U_0$，
+阳极接读出电路。带电粒子在距阳极 $x_0$ 处沿平行于极板的径迹产生 $N$ 对电子--离子；若粒子
+沉积能量为 $E_{\rm dep}$、气体中产生一对电子--离子所需平均能量为 $W$，则
+$N=E_{\rm dep}/W$。正离子与电子的漂移速率分别为 $v^+,v^-$，假设电荷全部被收集，忽略复合、
+电子俘获和次级电离。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 求均匀电场；
+  \item 求极板电容；
+  \item 当负载电阻很大时，求输出电压变化 $\Delta U(t)$；
+  \item 在 $v^-\gg v^+$ 时描述波形；
+  \item 若负载电阻 $R$ 不可忽略，写出输出电压的时间关系。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+取 $x$ 从阳极指向阴极，阳极 $x=0$、阴极 $x=D$。
+
+\textbf{(1)} 忽略边缘效应，
+\begin{equation}
+  \boxed{E=\frac{U_0}{D}}.
+\end{equation}
+场方向由阳极指向阴极；电子向阳极漂移，正离子向阴极漂移。
+
+\textbf{(2)} 气体介电常数近似为 $\varepsilon_0$，
+\begin{equation}
+  \boxed{C=\frac{\varepsilon_0S}{D}}.
+\end{equation}
+
+\textbf{(3)} 平行板的读出权重场为 $1/D$。每个仍在漂移的电荷产生大小为 $ev/D$ 的感应电流。
+令
+\[
+  t_- =\frac{x_0}{v^-},
+  \qquad
+  t_+ =\frac{D-x_0}{v^+}
+\]
+分别为电子到阳极、离子到阴极的时间。感应电流大小为
+\begin{equation}
+  i_{\rm ind}(t)=\frac{Ne}{D}
+  \left[v^-H(t_--t)+v^+H(t_+-t)\right],
+\end{equation}
+其中 $H$ 为阶跃函数。负载近似开路时，感应电荷全部给电容充电：
+\begin{equation}
+  \boxed{\Delta U(t)=\frac{Ne}{CD}\left[
+  v^-\min(t,t_-)+v^+\min(t,t_+)\right]}.
+\end{equation}
+当两类载流子全部到达电极，$\Delta U(\infty)=Ne/C$，与电离位置 $x_0$ 无关。
+
+\textbf{(4)} 通常 $v^-\gg v^+$，电子在短时间 $t_-$ 内形成陡峭快分量
+$Ne x_0/(CD)$；随后正离子在较长时间 $t_+$ 内形成缓慢上升分量
+$Ne(D-x_0)/(CD)$。两部分相加仍为 $Ne/C$。
+
+\textbf{(5)} 负载电阻使已形成的电压以时间常数 $\tau_c=RC$ 泄放。电路方程为
+\begin{equation}
+  \boxed{C\frac{\dd\Delta U}{\dd t}+\frac{\Delta U}{R}=i_{\rm ind}(t)}.
+\end{equation}
+取 $\Delta U(0)=0$，统一写成卷积形式
+\begin{equation}
+  \boxed{\Delta U(t)=\frac1C\int_0^t
+  i_{\rm ind}(t')\e^{-(t-t')/(RC)}\dd t'}.
+\end{equation}
+它表明每一小段新产生的感应电压都从产生时刻起指数衰减。若粒子在气体中完全损失能量
+$E_p$，且产生一对电子--离子的平均能量为 $W$，还可用 $N=E_p/W$ 反推粒子能量。
+图 33.11 把两段漂移路程直接标成 $x_0$ 与 $D-x_0$：它们分别决定快分量和慢分量的持续时间
+及最终幅度。
+
+\ionChamberDiagram
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例题 33.7【圆环电阻】}
+总电阻为 $R$ 的均匀电阻丝弯成圆环，在环上两点 $a,b$ 之间接入电源。固定 $a$，移动 $b$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 若电源保持电压 $U$，何时总发热功率最小，最小值是多少；
+  \item 若改用保持电流 $I$ 的理想恒流源，结果怎样？
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+两接点把圆环分成电阻 $R_1,R_2$ 的两段，且 $R_1+R_2=R$。两段在 $a,b$ 之间并联：
+\begin{equation}
+  R_{\rm eq}=\frac{R_1R_2}{R_1+R_2}=\frac{R_1R_2}{R}.
+\end{equation}
+
+\textbf{(1) 固定电压。}
+\[
+  P_U=\frac{U^2}{R_{\rm eq}}=\frac{U^2R}{R_1R_2}.
+\]
+在 $R_1+R_2=R$ 下，乘积 $R_1R_2$ 在 $R_1=R_2=R/2$ 时最大，故功率最小。此时 $b$ 与 $a$
+位于直径两端，
+\begin{equation}
+  \boxed{R_{\rm eq}=\frac R4},
+  \qquad
+  \boxed{P_{U,\min}=\frac{4U^2}{R}}.
+\end{equation}
+
+\textbf{(2) 固定电流。}
+\[
+  P_I=I^2R_{\rm eq}=I^2\frac{R_1R_2}{R}.
+\]
+此时要使乘积 $R_1R_2$ 尽量小，因此 $b$ 应尽量靠近 $a$。在允许两接点重合的理想模型中
+\begin{equation}
+  \boxed{P_{I,\min}=0\quad(b=a)}.
+\end{equation}
+若规定 $a,b$ 必须不同，则没有被实际取到的正最小值，只有当 $b\to a$ 时趋于零的下确界。固定
+电压与固定电流给出相反的优化方向，是因为一个最小化 $1/R_{\rm eq}$，另一个最小化
+$R_{\rm eq}$。
+图 33.12 中两条圆弧正是并联的 $R_1,R_2$；把 $b$ 移到 $a$ 的对径点，两条圆弧等长，
+对应 $R_1=R_2$。
+
+\ringResistanceDiagram
+\end{xesolution}
+
+\Needspace{0.4\textheight}
+\begin{origexamplebox}{例题 33.8【双电源供电】}
+两个电动势、内阻分别为 $\mathcal E_1,r_1$ 与 $\mathcal E_2,r_2$ 的电源同极性并联，并共同连接
+负载 $R$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 用 Kirchhoff 方程求通过负载的电流；
+  \item 小明尝试把结果变形，并从中看到了电源叠加定理和戴维南定理的影子。把结果改写成一个
+  等效电源向 $R$ 供电的形式，并说明这种变形的含义。
+\end{enumerate}
+\end{origexamplebox}
+
+\begin{xesolution}
+设负载两端电压为 $V$，负载电流 $I=V/R$。规定每个电源向上端节点输出的电流为正，则两电源
+支路电流分别为
+\[
+  I_1=\frac{\mathcal E_1-V}{r_1},
+  \qquad
+  I_2=\frac{\mathcal E_2-V}{r_2}.
+\]
+对上端节点用 KCL：
+\begin{equation}
+  \frac{\mathcal E_1-V}{r_1}+\frac{\mathcal E_2-V}{r_2}=\frac VR.
+\end{equation}
+解得
+\begin{equation}
+  \boxed{I=\frac VR
+  =\frac{\mathcal E_1r_2+\mathcal E_2r_1}
+  {r_1r_2+R(r_1+r_2)}}.
+\end{equation}
+
+每个实际电压源可改写为电流源 $\mathcal E_i/r_i$ 与 $r_i$ 并联。两个并联电流源合并后，端口
+等效为
+\begin{equation}
+  I_{\rm N}=\frac{\mathcal E_1}{r_1}+\frac{\mathcal E_2}{r_2},
+  \qquad
+  r_{\rm eq}=r_1\parallel r_2=\frac{r_1r_2}{r_1+r_2}.
+\end{equation}
+再把它变回串联电压源，等效电动势为
+\begin{equation}
+  \boxed{\mathcal E_{\rm eq}=I_{\rm N}r_{\rm eq}
+  =\frac{\mathcal E_1r_2+\mathcal E_2r_1}{r_1+r_2}},
+  \qquad
+  \boxed{r_{\rm eq}=\frac{r_1r_2}{r_1+r_2}}.
+\end{equation}
+于是
+\begin{equation}
+  \boxed{I=\frac{\mathcal E_{\rm eq}}{R+r_{\rm eq}}},
+\end{equation}
+与前面的直接解完全一致。这个改写正是电源叠加思想、Norton 等效和 Thevenin 等效的雏形。
+若两电动势差异很大，其中一支路电流可能为负，表示较高电动势电源正在给较低电动势电源充电。
+图 33.13 强调三条支路共用同一对节点，因此它们端电压均为 $V$；KCL 只需在上端节点列一次。
+
+\dualSourceDiagram
+\end{xesolution}

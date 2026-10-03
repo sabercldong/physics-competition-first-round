@@ -1,0 +1,288 @@
+\section{拍频与近频率叠加}
+
+同方向、同振幅而角频率接近的两列简谐波在固定位置可写成
+\begin{align}
+ y&=A\cos(\omega_1t+\phi_1)+A\cos(\omega_2t+\phi_2)\\
+ &=2A\cos\!\left(\frac{\Delta\omega}{2}t+\frac{\Delta\phi}{2}\right)
+ \cos\!\left(\bar\omega t+\bar\phi\right),
+\end{align}
+其中 $\Delta\omega=\omega_1-\omega_2$、$\bar\omega=(\omega_1+\omega_2)/2$。
+快速振动的包络振幅缓慢变化。相邻两次响度极大的时间间隔对应包络绝对值的周期，故拍频
+\begin{equation}
+ f_b=|f_1-f_2|.
+\end{equation}
+拍频不是第三个独立本征频率，而是线性叠加后能量或响度包络的变化频率。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.82\linewidth,height=5.0cm,axis lines=middle,
+  xlabel={$t$},ylabel={$y$},ylabel style={at={(axis description cs:-.025,.5)},anchor=east},xmin=0,xmax=12.6,ymin=-2.3,ymax=3.2,ticks=none,
+  every axis label/.style={fill=none}]
+  \addplot[DeepBlue,very thick,domain=0:12.6,samples=650]{2*cos(deg(.5*x))*cos(deg(7*x))};
+  \addplot[TextGray,dashed,domain=0:12.6,samples=180]{2*abs(cos(deg(.5*x)))};
+  \addplot[TextGray,dashed,domain=0:12.6,samples=180]{-2*abs(cos(deg(.5*x)))};
+  \draw[<->] (axis cs:0,2.55)--(axis cs:6.283185,2.55) node[midway,above] {$T_b=1/|f_1-f_2|$};
+\end{axis}
+\end{tikzpicture}
+\figcap{两近频率简谐振动叠加形成拍。虚线是振幅包络，不是介质中另一列波。}\label{ch12:fig:beats}
+\end{center}
+图~\ref{ch12:fig:beats} 中相邻两个包络极大之间就是一个拍周期，快速载波在此期间振动许多次。
+
+\begin{origexamplebox}{用拍频校准音叉}
+\label{ch12:ex:03}
+标准音叉频率为 $440\,\mathrm{Hz}$，待测音叉与它同时发声时每秒听到3次响度增强。在待测音叉上粘少量蜡后，拍频降为 $1\,\mathrm{Hz}$。求待测音叉原频率。
+\end{origexamplebox}
+\begin{xesolution}
+初始只有两个候选：
+\[
+ f=440\pm3\,\mathrm{Hz},
+\]
+即 $437\,\mathrm{Hz}$ 或 $443\,\mathrm{Hz}$。粘蜡增加振动系统的有效质量，使待测频率降低。若原来是
+$443\,\mathrm{Hz}$，降低后会接近 $440\,\mathrm{Hz}$，拍频可从3降到1；若原来是 $437\,\mathrm{Hz}$，继续降低只会使频差增大。
+因此
+\[
+ \boxed{f=443\,\mathrm{Hz}}.
+\]
+方向判断是这道题不可省略的一步；单凭初始拍频不能确定高低。
+\end{xesolution}
+
+\section{多普勒效应}
+
+声波相对介质传播。这里讨论均匀静止介质中的共线运动、声源亚声速 $|v_s|<c$，所有速度均相对介质测量。设介质中声速为 $c$，观察者以速度 $v_o$ 向声源运动，声源以速度 $v_s$ 向观察者运动，则
+\begin{equation}
+ f'=f\frac{c+v_o}{c-v_s}.
+\end{equation}
+若实际运动方向相反，应给相应速度取负号。分子来自观察者遇到波峰的速率变化，分母来自移动声源改变波长。
+对于真空光，不能套用“相对介质速度”的声学公式，应使用相对论多普勒关系。
+
+\begin{center}
+\begin{tikzpicture}[scale=.85,>=Latex]
+  \foreach \n in {1,2,3,4}{
+   \draw[TextGray] ({-.245*\n},0) circle({.7*\n});
+   \fill[TextGray] ({-.245*\n},0) circle(1pt);
+  }
+  \fill[DeepBlue] (0,0) circle(2.8pt);
+  \node[below] at (0,-.12) {$S$};
+  \fill (3.9,0) circle(2.8pt) node[right=4pt] {$O$};
+  \draw[vector] (.1,-3.3)--(1.3,-3.3) node[midway,below] {$v_s$};
+  \draw[vector] (3.8,-1.1)--(2.6,-1.1) node[midway,below] {$v_o$};
+  \draw[vector] (.3,3.1)--(1.7,3.1) node[midway,above] {$c$};
+  \draw[<->] (1.365,-.30)--(1.82,-.30);
+  \draw[guide] (1.60,-.35)--(2.6,-2.35);
+  \node[right] at (2.7,-2.45) {$\lambda_{\text{前}}=(c-v_s)/f$};
+  \draw[<->] (-3.78,-.35)--(-2.835,-.35);
+  \node[below] at (-3.3,-.45) {$\lambda_{\text{后}}$};
+  \node at (-1.5,-4.3) {圆心是历次发射位置，非当前声源位置};
+\end{tikzpicture}
+\figcap{声源和观察者相向运动的符号约定。波面相对介质以声速 $c$ 传播。}\label{ch12:fig:doppler}
+\end{center}
+图~\ref{ch12:fig:doppler}中，第 $n$ 个波面发出于 $-n/f$ 时，
+圆心为 $x=-nv_s/f$、半径为 $nc/f$。相邻前方波峰间距为
+$(c-v_s)/f$，观察者迎着波峰运动，单位时间跨过 $(c+v_o)/\lambda_{\text{前}}$ 个波峰，
+这就推出上面的频率公式。图固定了正号方向：$v_s,v_o>0$ 都使接收频率升高。
+
+\begin{origexamplebox}{迎面驶来的鸣笛列车}
+\label{ch12:ex:04}
+列车以 $20\,\mathrm{m/s}$ 接近静止观察者，汽笛本征频率 $600\,\mathrm{Hz}$，空气中声速
+$340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
+\end{origexamplebox}
+\begin{xesolution}
+观察者静止，$v_o=0$。接近时声源向观察者，
+\[
+ f_{\rm app}=600\frac{340}{340-20}
+ =\boxed{637.5\,\mathrm{Hz}}.
+\]
+驶离时 $v_s$ 取负，
+\[
+ f_{\rm rec}=600\frac{340}{340+20}
+ =\boxed{566.7\,\mathrm{Hz}}.
+\]
+接近频率高、驶离频率低，符合波面前方被压缩、后方被拉长的图像。分式分子、分母都是速度，故频率单位保持不变。
+\end{xesolution}
+
+\section{声强与声强级}
+
+声强 $I$ 是单位面积上平均能流功率，单位为 $\mathrm{W/m^2}$。点声源在均匀无耗介质中各向同性辐射时
+\begin{equation}
+ I(r)=\frac{P}{4\pi r^2}.
+\end{equation}
+声强级定义为
+\begin{equation}
+ L_I=10\log_{10}\frac I{I_0}\quad(\mathrm{dB}),
+ \qquad I_0=10^{-12}\,\mathrm{W/m^2}.
+\end{equation}
+分贝是对数比值；多个互不相干声源应先相加强度，再取对数，不能直接相加分贝数。
+
+\begin{origexamplebox}{相同声源的声强级叠加}
+\label{ch12:ex:05}
+一台机器在某点产生 $70\,\mathrm{dB}$ 的声强级。若有8台相同机器独立运行，且它们在该点的声波相位互不相关，求总声强级。
+\end{origexamplebox}
+\begin{xesolution}
+每台强度相同，非相干时总强度为 $I_{\rm tot}=8I$。因此
+\[
+ L_{\rm tot}-L_1=10\log_{10}8\approx9.03\,\mathrm{dB}.
+\]
+故
+\[
+ \boxed{L_{\rm tot}\approx79.0\,\mathrm{dB}}.
+\]
+不是 $8\times70\,\mathrm{dB}$。若只增加到两台，相同推理给出约 $3.01\,\mathrm{dB}$ 的增量。
+\end{xesolution}
+
+\input{ch12-sound-teaching.tex}
+\section{波包、相速度与群速度}
+
+把相近波数的简谐波叠加可形成局域波包。单个相位点按
+\begin{equation}
+ v_p=\frac\omega k
+\end{equation}
+传播，而窄带包络按
+\begin{equation}
+ v_g=\frac{\dd\omega}{\dd k}
+\end{equation}
+传播。无色散介质中 $\omega=ck$，二者相等；有色散时二者通常不同。若波包带宽太大或介质强吸收，单一群速度未必能完整描述包络变形。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.82\linewidth,height=4.9cm,axis lines=middle,
+  xlabel={$x$},ylabel={$y$},ylabel style={at={(axis description cs:-.025,.5)},anchor=east},xmin=-6,xmax=6,ymin=-1.5,ymax=1.7,ticks=none,
+  every axis label/.style={fill=none}]
+  \addplot[DeepBlue,very thick,domain=-6:6,samples=650]{exp(-x^2/8)*cos(deg(5*x))};
+  \addplot[TextGray,dashed,domain=-6:6,samples=220]{exp(-x^2/8)};
+  \addplot[TextGray,dashed,domain=-6:6,samples=220]{-exp(-x^2/8)};
+  \draw[vector] (axis cs:1.2,1.35)--(axis cs:3.5,1.35) node[midway,above,clearlabel]{$v_g$};
+  \draw[component] (axis cs:2.0,-.85)--(axis cs:3.4,-.85) node[midway,below,clearlabel]{$v_p$};
+\end{axis}
+\end{tikzpicture}
+\figcap{窄带波包。载波相位在包络内移动，包络和相位的速度可以不同。}\label{ch12:fig:wave-packet}
+\end{center}
+图~\ref{ch12:fig:wave-packet} 中虚线包络的位置随 $v_g$ 移动，而某个波峰按 $v_p$ 穿过包络。
+
+\begin{origexamplebox}{深水重力波的相速度与群速度}
+\label{ch12:ex:06}
+深水表面重力波满足 $kh\gg1$（$h$ 为水深），并处在重力远强于表面张力的波长范围。忽略黏性，色散关系 $\omega^2=gk$。求相速度和群速度的关系，并判断一个窄带波包中能量包络相对波峰怎样运动。
+\end{origexamplebox}
+\begin{xesolution}
+取正频率支 $\omega=\sqrt{gk}$，
+\[
+ v_p=\frac\omega k=\sqrt{\frac gk},
+ \qquad
+ v_g=\frac{\dd\omega}{\dd k}=\frac12\sqrt{\frac gk}.
+\]
+所以
+\[
+ \boxed{v_g=\frac12v_p}.
+\]
+波峰以 $v_p$ 前进，会从波包后部生成、穿过包络并在前部消失；能量包络只以一半速度传播。
+量纲上 $g/k$ 为 $L^2T^{-2}$，开方后是速度。若水深有限，色散关系改变，比例不再恒为 $1/2$。
+\end{xesolution}
+
+\input{ch12-packet-teaching.tex}
+\section{管中驻波}
+
+开口端附近声压扰动近似为零，是声压节点、空气位移腹；刚性闭口端空气位移为零，是位移节点、声压腹。
+两端开口或两端闭口的理想管长 $L$ 时
+\begin{equation}
+ f_n=\frac{nc}{2L},\qquad n=1,2,3,\ldots.
+\end{equation}
+一端闭口、一端开口时只允许奇次谐波：
+\begin{equation}
+ f_m=\frac{(2m-1)c}{4L},\qquad m=1,2,3,\ldots.
+\end{equation}
+真实开口的位移腹略在管口之外，可用端部修正增加有效长度。
+
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=.8cm,>=Latex]
+  \draw[very thick] (0,-1.2)--(0,1.2);
+  \draw[thick] (0,1.2)--(6,1.2);
+  \draw[thick] (0,-1.2)--(6,-1.2);
+  \draw[DeepBlue,very thick,domain=0:6,samples=180] plot (\x,{.85*sin(45*\x)});
+  \draw[guide] (0,0)--(6,0);
+  \node[above] at (0,1.4) {闭口};
+  \node[above] at (6,1.4) {开口};
+  \draw[<->,TextGray] (0,-1.7)--(6,-1.7) node[midway,below]{$L=3\lambda/4$};
+\end{tikzpicture}
+\figcap{一端闭口一端开口管的第二个允许位移模态。曲线表示纵向位移随位置的分布，并非空气真的沿曲线弯曲；对应 $L=3\lambda/4$。}\label{ch12:fig:pipe-mode}
+\end{center}
+图~\ref{ch12:fig:pipe-mode} 的闭口是位移节点、开口是位移腹，因而管长只能容纳奇数个四分之一波长。
+
+\begin{origexamplebox}{闭管的共振频率判别}
+\label{ch12:ex:07}
+一端闭口、一端开口的空气柱长 $L=0.85\,\mathrm m$，声速 $c=340\,\mathrm{m/s}$。求最低三个共振频率，并判断 $300\,\mathrm{Hz}$ 是否为共振频率。
+\end{origexamplebox}
+\begin{xesolution}
+基频
+\[
+ f_1=\frac c{4L}=\frac{340}{4\times0.85}=100\,\mathrm{Hz}.
+\]
+闭管只取奇数倍，故最低三项为
+\[
+ \boxed{100\,\mathrm{Hz},\quad300\,\mathrm{Hz},\quad500\,\mathrm{Hz}}.
+\]
+因此 $300\,\mathrm{Hz}$ 是第二个允许模态，而不是“二次谐波”；按全部整数倍编号时它是第三谐波。
+频率公式中 $c/L$ 的量纲为 $\mathrm{s^{-1}}$。
+\end{xesolution}
+
+\input{ch12-pipe-teaching.tex}
+\section{介质边界的反射与透射}
+
+两根张力相同而线密度不同的弦在 $x=0$ 连接。令特征阻抗 $Z_j=\sqrt{T\mu_j}$，位移振幅满足边界处位移连续和横向力连续。
+用同一时间因子，写
+$y_1=A_i e^{\ii(\omega t-k_1x)}+A_r e^{\ii(\omega t+k_1x)}$、
+$y_2=A_t e^{\ii(\omega t-k_2x)}$，实际取实部。
+$x=0$ 处位移连续要求 $A_i+A_r=A_t$，横向力连续要求
+$k_1(A_i-A_r)=k_2A_t$。因 $Tk_j=\omega Z_j$，
+第二式为 $Z_1(A_i-A_r)=Z_2A_t$。
+将 $A_t=A_i+A_r$ 代入并移项，得到 $(Z_1-Z_2)A_i=(Z_1+Z_2)A_r$，
+因此位移振幅系数为
+\begin{equation}
+ r=\frac{A_r}{A_i}=\frac{Z_1-Z_2}{Z_1+Z_2},
+ \qquad
+ t=\frac{A_t}{A_i}=\frac{2Z_1}{Z_1+Z_2}.
+\end{equation}
+功率系数为
+\begin{equation}
+ \mathcal R=r^2,
+ \qquad
+ \mathcal T=\frac{Z_2}{Z_1}t^2
+ =\frac{4Z_1Z_2}{(Z_1+Z_2)^2},
+ \qquad \mathcal R+\mathcal T=1.
+\end{equation}
+位移振幅可以大于入射振幅，仍不代表能量超过入射能量；功率还含阻抗因子。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[very thick,DeepBlue] (-4,0)--(0,0);
+  \draw[very thick,TextGray] (0,0)--(4,0);
+  \draw[vector] (-3,1.0)--(-.4,1.0) node[midway,above]{$A_i$};
+  \draw[vector] (-.4,-.9)--(-3,-.9) node[midway,below]{$A_r$};
+  \draw[vector] (.35,1.0)--(3,1.0) node[midway,above]{$A_t$};
+  \draw[guide] (0,-1.4)--(0,2.2);
+  \node[clearlabel] at (-2,2.15) {$Z_1$};
+  \node[clearlabel] at (2,2.15) {$Z_2$};
+  \node[point,label={[clearlabel]below right:连接点}] at (0,0) {};
+\end{tikzpicture}
+\figcap{弦连接点处的入射、反射与透射方向。连接点位移和横向力必须同时连续。}\label{ch12:fig:boundary}
+\end{center}
+按图~\ref{ch12:fig:boundary} 的传播方向，反射波的波数分量变号，这正是横向力边界式中出现 $A_i-A_r$ 的原因。
+
+\begin{origexamplebox}{轻弦到重弦的反射相位与能量}
+\label{ch12:ex:08}
+同一张力下两弦线密度满足 $\mu_2=4\mu_1$，波从弦1入射到弦2。求位移振幅反射、透射系数和能量反射、透射率，并判断反射是否反相。
+\end{origexamplebox}
+\begin{xesolution}
+$Z\propto\sqrt\mu$，所以 $Z_2=2Z_1$。于是
+\[
+ r=\frac{Z_1-Z_2}{Z_1+Z_2}=-\frac13,
+ \qquad
+ t=\frac{2Z_1}{Z_1+Z_2}=\frac23.
+\]
+$r<0$ 表示位移反射波反相。能量系数
+\[
+ \boxed{\mathcal R=r^2=\frac19},
+ \qquad
+ \boxed{\mathcal T=\frac{Z_2}{Z_1}t^2
+ =2\times\frac49=\frac89}.
+\]
+二者之和为1，验证无耗边界的能量守恒。若 $Z_2\to\infty$，$r\to-1$，回到固定端反射；若 $Z_2=Z_1$，反射消失。
+\end{xesolution}

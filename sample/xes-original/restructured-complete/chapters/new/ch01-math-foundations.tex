@@ -1,0 +1,524 @@
+\section{量纲、尺度估计与无量纲化}
+
+物理等式两端必须具有相同量纲。以质量、长度、时间为基本量纲，记作
+$M,L,T$。若某物理量 $Q$ 的量纲为
+\begin{equation}
+ \dimens Q=M^\alpha L^\beta T^\gamma,
+\end{equation}
+则 $\alpha,\beta,\gamma$ 只描述它随单位选择怎样缩放，并不包含数值系数。
+量纲分析能排除错误公式、确定幂律形式，却通常不能给出无量纲常数，也不能分辨具有相同量纲而物理意义不同的量。
+
+若问题含 $n$ 个有量纲变量，而它们只涉及 $r$ 个相互独立的基本量纲，则可组成 $n-r$ 个独立无量纲组合。
+把控制方程改写成这些组合的关系称为无量纲化。它不仅减少参数数目，还会显露决定不同物理区间的尺度比。
+
+\begin{origexamplebox}{单摆周期的量纲结构}
+长度为 $\ell$ 的单摆在重力场中作小振动。只用 $\ell$、重力加速度 $g$ 和摆球质量 $m$，由量纲分析确定周期的幂律形式，并说明量纲分析不能确定什么。
+\end{origexamplebox}
+\begin{xesolution}
+设 $T_0=C\ell^a g^b m^c$，其中 $C$ 无量纲。比较质量量纲先得 $c=0$；再由
+\[
+ [T_0]=T,\qquad [\ell^ag^b]=L^{a+b}T^{-2b}
+\]
+得到 $a+b=0$、$-2b=1$，故 $a=1/2$、$b=-1/2$：
+\[
+ \boxed{T_0=C\sqrt{\frac{\ell}{g}}}.
+\]
+质量不进入结果。量纲分析不能确定 $C=2\pi$，也不能判断大振幅时还会出现怎样的无量纲振幅修正。
+单位检查：$\ell/g$ 的量纲为 $T^2$，开方后确为时间。
+\end{xesolution}
+
+\begin{origexamplebox}{黏性流体中小球的终端速度}
+半径为 $R$、密度为 $\rho_s$ 的小球，在密度为 $\rho_f$、动力黏度为 $\eta$ 的静止流体中由静止释放，且 $\rho_s>\rho_f$。为判断黏性是否主导流动，定义以球直径 $2R$ 为特征长度的雷诺数
+\[
+ \mathrm{Re}=\frac{\rho_fv(2R)}{\eta}.
+\]
+当 $\mathrm{Re}\ll1$ 时，黏滞阻力方向与速度相反，大小可写成 $F_D=C\eta Rv$，其中 $C$ 是与球形几何有关的无量纲常数。
+
+(1) 先用尺度分析估计终端速度 $v_t$；
+
+(2) 若进一步采用斯托克斯阻力 $F_D=6\pi\eta Rv$，求 $v_t$ 的准确表达式；
+
+(3) 把求得的 $v_t$ 代入 $\mathrm{Re}$，写出斯托克斯阻力适用的参数条件。
+\end{origexamplebox}
+\begin{xesolution}
+先把物理过程分成两个阶段：刚释放时小球加速下落；速度增大后，向上的黏滞阻力也增大。当加速度降为零时，小球保持恒定速度，这个恒定速度才叫终端速度。
+
+图~\ref{ch01:fig:terminal-speed} 中，小球向下运动，重力向下，浮力与黏滞阻力向上。终端状态满足
+\begin{equation}
+ mg=F_b+F_D.
+\end{equation}
+小球体积为 $V=4\pi R^3/3$，所以重力减浮力为
+\[
+ mg-F_b=(\rho_s-\rho_f)Vg
+ =\frac{4\pi}{3}(\rho_s-\rho_f)R^3g.
+\]
+
+只做尺度分析时，忽略 $4\pi/3$ 以及阻力定律中的无量纲系数。用
+$F_D\sim\eta Rv_t$ 与重力减浮力平衡，得到
+\begin{equation}
+ \boxed{v_t\sim\frac{(\rho_s-\rho_f)gR^2}{\eta}}.
+\end{equation}
+符号“$\sim$”表示两边具有相同的尺度和参数依赖关系，并不表示数值严格相等。
+
+若采用准确的斯托克斯阻力，终端平衡式成为
+\[
+ \frac{4\pi}{3}(\rho_s-\rho_f)R^3g=6\pi\eta Rv_t,
+\]
+因而
+\begin{equation}
+ \boxed{v_t=\frac{2(\rho_s-\rho_f)gR^2}{9\eta}}.
+\end{equation}
+这说明量纲分析能够确定 $R^2$、$g$、密度差和黏度怎样进入结果，却不能得到数值因子 $2/9$。
+
+雷诺数不是另一条凭空给出的经验公式。惯性项的尺度为
+$\rho_fv^2/L$，黏性项的尺度为 $\eta v/L^2$，二者之比为
+\[
+ \frac{\rho_fv^2/L}{\eta v/L^2}=\frac{\rho_fvL}{\eta}.
+\]
+取小球直径 $L=2R$，就得到题设中的 $\mathrm{Re}$。它确为无量纲量；若改用半径 $R$ 作特征长度，只会相差无关紧要的常数因子 $2$。
+
+把准确的终端速度代入，终端状态的雷诺数为
+\begin{equation}
+ \mathrm{Re}_t=\frac{\rho_f v_t(2R)}{\eta}
+ =\frac{4\rho_f(\rho_s-\rho_f)gR^3}{9\eta^2}.
+\end{equation}
+所以斯托克斯解答自洽的参数条件是
+\begin{equation}
+ \boxed{\frac{4\rho_f(\rho_s-\rho_f)gR^3}{9\eta^2}\ll1}.
+\end{equation}
+题目没有给出具体数值，因此不能预先断言该条件一定成立，只能在得到参数或实验数据后检验。量纲检查还给出
+$[(\rho_s-\rho_f)gR^2/\eta]=\mathrm{m/s}$。若 $\mathrm{Re}_t$ 不再远小于 $1$，阻力不再与速度成正比，本题的模型必须更换。
+小球由静止单调加速到终端速度的过程中始终有 $0\le v\le v_t$，而雷诺数与 $v$ 成正比，
+因此终端状态的 $\mathrm{Re}_t$ 是整个下落过程中的最大值；只要 $\mathrm{Re}_t\ll1$，此前各时刻也都满足低雷诺数条件。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \fill[DeepBlue!8] (-3.2,-2.0) rectangle (3.2,2.15);
+  \draw[DeepBlue!35] (-3.2,1.55)--(3.2,1.55);
+  \shade[ball color=DeepBlue!24] (0,0) circle (.72);
+  \draw[vector] (0,-.05)--(0,-1.65) node[midway,left=5pt] {$mg$};
+  \draw[vector] (0,.05)--(0,1.65) node[midway,left=5pt] {$F_b+F_D$};
+  \draw[vector,orange!85!black] (1.35,.55)--(1.35,-1.15)
+    node[midway,right=5pt] {$v_t$};
+  \node[anchor=west] at (1.75,.55) {向下匀速};
+  \node[anchor=west,TextGray] at (-3.0,1.87) {静止流体：$\rho_f,\eta$};
+  \node[anchor=east] at (-.9,.05) {小球：$R,\rho_s$};
+\end{tikzpicture}
+\figcap{终端状态的受力图：速度向下，浮力与黏滞阻力的合力向上。}
+\label{ch01:fig:terminal-speed}
+\end{center}
+\end{xesolution}
+
+\section{点乘、投影、叉积与方向判断}
+
+\subsection{点乘与投影}
+
+两个矢量的点乘（scalar product）定义为
+\begin{equation}
+ \boxed{\vect a\cdot\vect b=ab\cos\theta
+ =a_xb_x+a_yb_y+a_zb_z},
+\end{equation}
+其中 $0\le\theta\le\pi$ 是两矢量的夹角。点乘的结果是标量：同向时为正，垂直时为零，夹角为钝角时为负。物理中它用来取“沿某方向的分量”，也用来表示功
+$W=\vect F\cdot\vect s$。点乘满足交换律，且 $\vect a\cdot\vect a=a^2$。
+
+令 $\uvec b=\vect b/b$ 是 $\vect b$ 方向的单位矢量，则 $\vect a$ 在该方向上的标量投影为
+\begin{equation}
+ a_b=\vect a\cdot\uvec b=a\cos\theta.
+\end{equation}
+$a_b$ 可以为负，它只给出带符号的分量大小。把这个大小再乘方向单位矢量，才得到矢量投影：
+\begin{equation}
+ \boxed{\proj_{\vect b}\vect a
+ =(\vect a\cdot\uvec b)\uvec b
+ =\frac{\vect a\cdot\vect b}{b^2}\vect b}.
+\end{equation}
+这里要求 $\vect b\ne\vect 0$，否则“沿 $\vect b$ 的方向”没有定义。
+
+\begin{center}
+\begin{tikzpicture}[scale=.95,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[axis] (-.3,0)--(6,0) node[right]{$\vect b$方向};
+  \draw[vector] (O)--(4.6,2.4) node[above right]{$\vect a$};
+  \draw[component] (O)--(4.6,0) node[midway,below]{$\proj_{\vect b}\vect a$};
+  \draw[guide] (4.6,2.4)--(4.6,0);
+  \draw[->,DeepBlue] (1.2,0) arc[start angle=0,end angle=27,radius=1.2];
+  \node at (1.45,.32) {$\theta$};
+  \node[point,label={[clearlabel]below left:$O$}] at (O) {};
+\end{tikzpicture}
+\figcap{矢量投影的几何意义；虚线表示从 $\vect a$ 端点向 $\vect b$ 所在直线所作的垂线。}\label{ch01:fig:projection}
+\end{center}
+图~\ref{ch01:fig:projection} 中垂足把 $\vect a$ 分成平行、垂直于 $\vect b$ 的两部分。若 $\theta<90^\circ$，投影与 $\vect b$ 同向；若 $\theta>90^\circ$，投影反向。后续的受力分解、功和通量计算都会使用这一结构。
+
+\subsection{叉积与右手定则}
+
+叉积（vector product）的结果仍是矢量，其模和方向分别为
+\begin{equation}
+ |\vect a\times\vect b|=ab\sin\theta,
+ \qquad \vect a\times\vect b\perp\vect a,
+ \quad \vect a\times\vect b\perp\vect b.
+\end{equation}
+方向必须使用右手定则判断：右手四指先指向 $\vect a$，再沿两矢量之间不超过 $180^\circ$ 的较小转角弯向 $\vect b$，此时伸直的拇指方向就是 $\vect a\times\vect b$。
+选定右手直角坐标系后，用 $\uvec i,\uvec j,\uvec k$ 分别表示沿 $x,y,z$ 轴正方向的单位矢量，
+其长度均为 $1$。叉积的顺序不能交换：
+\begin{equation}
+ \vect a\times\vect b=-\vect b\times\vect a,
+ \qquad
+ \uvec i\times\uvec j=\uvec k,
+ \quad \uvec j\times\uvec k=\uvec i,
+ \quad \uvec k\times\uvec i=\uvec j.
+\end{equation}
+同向或反向矢量的叉积为零。叉积是有向面积、力矩、角动量和洛伦兹力的共同语言。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \draw[vector] (O)--(4.2,0) node[right] {$\vect a$};
+  \draw[vector] (O)--(2.45,2.45) node[above right] {$\vect b$};
+  \draw[->,DeepBlue,thick] (1.1,0) arc[start angle=0,end angle=45,radius=1.1];
+  \node at (1.35,.48) {$\theta$};
+  \node[font=\Large,DeepBlue] at (-.48,.45) {$\boldsymbol\odot$};
+  \node[anchor=east] at (-.78,.45) {$\vect a\times\vect b$};
+  \node[anchor=west,align=left,TextGray] at (4.85,1.35)
+    {四指：$\vect a\rightarrow\vect b$\\拇指：指向纸外};
+\end{tikzpicture}
+\figcap{从纸面正面观察，$\vect a$ 逆时针转向 $\vect b$，故 $\vect a\times\vect b$ 指向纸外；圆点符号 $\odot$ 表示箭头朝向读者。}
+\label{ch01:fig:right-hand-rule}
+\end{center}
+
+\begin{origexamplebox}{力矩的坐标计算与方向}
+在 $xy$ 平面内，质点位置为 $\vect r=(2.0\,\uvec i+1.0\,\uvec j)\,\mathrm m$，受力
+$\vect F=(3.0\,\uvec i-4.0\,\uvec j)\,\mathrm N$。求力对原点的力矩，并解释正负号。
+\end{origexamplebox}
+\begin{xesolution}
+先把力矩写成基矢的叉积，使用分配律逐项计算。平行基矢的叉积为零，
+$\uvec i\times\uvec j=\uvec k$，而交换顺序后
+$\uvec j\times\uvec i=-\uvec k$，所以
+\begin{align*}
+ \vect r\times\vect F
+ &=(2\uvec i+\uvec j)\times(3\uvec i-4\uvec j)\,\mathrm{N\,m}\\
+ &=\bigl(6\uvec i\times\uvec i-8\uvec i\times\uvec j
+       +3\uvec j\times\uvec i-4\uvec j\times\uvec j\bigr)\,\mathrm{N\,m}\\
+ &=(-8-3)\uvec k\,\mathrm{N\,m}.
+\end{align*}
+一般地，把三维分量分别相乘并合并同一基矢，得到
+\[
+ \vect a\times\vect b
+ =(a_yb_z-a_zb_y)\uvec i+(a_zb_x-a_xb_z)\uvec j
+ +(a_xb_y-a_yb_x)\uvec k.
+\]
+常把这三项缩写成下面的三阶行列式。沿第一行展开时，各项符号依次为正、负、正；
+划去该项所在的行与列，剩下的二阶式按“左上乘右下，减去右上乘左下”计算。
+对本题补上两个为零的 $z$ 分量，便有
+\[
+ \vect\tau=\vect r\times\vect F
+ =\begin{vmatrix}
+ \uvec i&\uvec j&\uvec k\\2&1&0\\3&-4&0
+ \end{vmatrix}
+ =(-8-3)\uvec k\,\mathrm{N\,m}.
+\]
+故
+\[
+ \boxed{\vect\tau=-11\,\uvec k\,\mathrm{N\,m}}.
+\]
+$-\uvec k$ 指向纸内；从 $+z$ 轴正向朝原点观察，力使质点呈顺时针转动趋势。量纲为力乘力臂，即 $\mathrm{N\,m}$；它与能量虽同量纲，物理对象不同。
+\end{xesolution}
+
+\section{常用坐标系与微元}
+
+这里的“微元”是把一条很短的线、一小块曲面或一个很小的体积写成可积分的量。$\dd s$ 表示长度微元，$\dd A$ 表示面积微元，$\dd V$ 表示体积微元；它们分别具有长度、面积、体积的量纲。
+
+先约定坐标的含义：直角坐标为 $(x,y,z)$；平面极坐标 $(r,\varphi)$ 中，
+$r$ 是到平面原点的距离，$\varphi$ 是从 $+x$ 轴朝 $+y$ 轴量起的方位角。
+柱坐标 $(\rho,\varphi,z)$ 中，$\rho$ 是到 $z$ 轴的垂直距离，
+不是前面量纲分析中使用的密度；$\varphi$ 为水平投影的方位角。
+球坐标 $(r,\theta,\varphi)$ 的角度约定见下面的球面图。
+这四种坐标的线元分别为
+\begin{align}
+ \dd s^2&=\dd x^2+\dd y^2+\dd z^2,\\
+ \dd s^2&=\dd r^2+r^2\dd\varphi^2,\\
+ \dd s^2&=\dd \rho^2+\rho^2\dd\varphi^2+\dd z^2,\\
+ \dd s^2&=\dd r^2+r^2\dd\theta^2+r^2\sin^2\theta\,\dd\varphi^2.
+\end{align}
+相应面积或体积微元来自各坐标方向的尺度因子。采用图~\ref{ch01:fig:spherical} 的球坐标约定：$r$ 是点到原点的距离，$\theta$ 从 $+z$ 轴向下量，$\varphi$ 是绕 $z$ 轴、从 $+x$ 轴朝 $+y$ 轴量的方位角。
+
+在半径固定的球面上，把 $\theta$ 增加 $\dd\theta$，沿经线得到的小弧长是 $r\dd\theta$；把 $\varphi$ 增加 $\dd\varphi$，所在纬圈的半径为 $r\sin\theta$，所以另一条小弧长是 $r\sin\theta\dd\varphi$。两者相乘就是图中黄色小面片的面积：
+\begin{equation}
+ \boxed{\dd A_{r=\text{常量}}
+ =(r\dd\theta)(r\sin\theta\dd\varphi)
+ =r^2\sin\theta\,\dd\theta\,\dd\varphi}.
+\end{equation}
+$\dd A$ 是面积大小，是标量；若计算电通量或流量，需要带方向的面积矢量
+\begin{equation}
+ \dd\vect A=\uvec e_r\,\dd A,
+ \qquad
+ \dd V=\dd r\,\dd A
+ =r^2\sin\theta\,\dd r\,\dd\theta\,\dd\varphi.
+\end{equation}
+这里 $\uvec e_r$ 是球面外法线方向。$\sin\theta$ 不是额外的物理假设，而是纬圈弧长随极角缩短产生的几何因子。
+
+\begin{center}
+\begin{tikzpicture}[scale=.86,>=Latex]
+ \begin{scope}[xshift=-3.7cm]
+  \coordinate (O) at (0,0);
+  \coordinate (X) at (-2.75,-1.55);
+  \coordinate (Y) at (3.3,-1.3);
+  \coordinate (Z) at (0,3.45);
+  \coordinate (Q) at (1.05,-1.18);
+  \coordinate (P) at (1.05,2.05);
+  \draw[axis] (O)--(X) node[below left] {$x$};
+  \draw[axis] (O)--(Y) node[right] {$y$};
+  \draw[axis] (O)--(Z) node[above] {$z$};
+  \draw[guide] (O)--(Q);
+  \draw[guide] (Q)--(P);
+  \draw[vector] (O)--(P) node[above right] {$P(r,\theta,\varphi)$};
+  \node[below right] at (Q) {$P_{xy}$};
+  \draw[->,DeepBlue,thick] (0,1.08) arc[start angle=90,end angle=62,radius=1.08];
+  \node[DeepBlue] at (.35,1.50) {$\theta$};
+  \draw[->,TextGray,thick] (-.85,-.48) .. controls (-.15,-1.22) .. (.68,-.77);
+  \node[TextGray] at (-1.10,-1.30) {$\varphi$};
+  \draw[TextGray,thin] (-.90,-1.21)--(-.22,-.86);
+  \node[point,label={[clearlabel]above left:$O$}] at (O) {};
+  \node[align=center,TextGray] at (0,-2.85)
+    {$\varphi$ 的正向为 $+x\rightarrow +y$\\$\uvec i\times\uvec j=\uvec k$（右手系）};
+ \end{scope}
+ \begin{scope}[xshift=4.65cm,yshift=.05cm]
+  \coordinate (C) at (0,0);
+  \filldraw[draw=DeepBlue,fill=yellow!55]
+    (-1.75,-.52)--(1.18,-.28)--(1.55,.7)--(-1.38,.46)--cycle;
+  \draw[vector] (C)--(0,2.12) node[above] {$\dd\vect A=\uvec e_r\,\dd A$};
+  \draw[<->,TextGray] (-1.62,-.78)--(1.23,-.55)
+    node[midway,below=5pt] {$r\sin\theta\,\dd\varphi$};
+  \draw[<->,TextGray] (1.42,-.3)--(1.78,.62)
+    node[midway,right=6pt] {$r\,\dd\theta$};
+  \node[align=center] at (0,-1.72)
+    {图中黄色小面片的面积就是 $\dd A$};
+  \node[align=center,TextGray] at (0,-2.3)
+    {$\dd A=(r\,\dd\theta)(r\sin\theta\,\dd\varphi)$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{左：球坐标建立在右手直角坐标系上；右：球面面积微元的切平面放大图。}\label{ch01:fig:spherical}
+\end{center}
+图~\ref{ch01:fig:spherical} 的角度约定决定公式中的 $\sin\theta$；若把 $\theta$ 改为从赤道面量起，尺度因子的写法也必须同步改变。特别要区分 $\dd A$ 与 $\dd\vect A$：前者只有面积大小，后者还带球面外法线方向。
+
+\begin{origexamplebox}{球对称密度的总质量}
+半径为 $R$ 的球体密度为 $\rho(r)=\rho_0(1-r/R)$。求总质量，并检查结果的符号和量纲。
+\end{origexamplebox}
+\begin{xesolution}
+\textbf{先把“累加微元”写清楚。}把球体分成许多很薄的球壳，第 $j$ 层的质量近似为
+$\rho(r_j)\Delta V_j$，总质量近似为这些质量之和。
+当每层厚度趋于零时，这个和的极限称为定积分，符号 $\int$ 表示连续累加；
+上下限表示累加范围，$\dd r$ 对应逐渐变小的层厚，而不是一个额外的未知量。
+对于半径 $r$、厚度 $\Delta r$ 的球壳，
+\[
+ \Delta V=\frac{4\pi}{3}\bigl[(r+\Delta r)^3-r^3\bigr]
+ =4\pi r^2\Delta r+4\pi r(\Delta r)^2+\frac{4\pi}{3}(\Delta r)^3.
+\]
+与第一项相比，后两项在分层无限变细时不再贡献有限总量，故 $\dd V=4\pi r^2\dd r$。
+本题所需的两个累加公式也可先由有限求和得到。令 $\Delta r=R/n$、$r_j=jR/n$，利用
+\[
+ \sum_{j=1}^n j^2=\frac{n(n+1)(2n+1)}6,\qquad
+ \sum_{j=1}^n j^3=\frac{n^2(n+1)^2}4,
+\]
+分别乘以 $(R/n)^3$、$(R/n)^4$ 并令 $n\to\infty$，便得到
+\[
+ \int_0^R r^2\dd r=\frac{R^3}{3},\qquad
+ \int_0^R r^3\dd r=\frac{R^4}{4}.
+\]
+因此球壳累加已经足够完成本题，不必先掌握多重积分的一般运算。
+
+也可使用前文的球坐标体积元
+$\dd V=r^2\sin\theta\,\dd r\,\dd\theta\,\dd\varphi$。因为密度只依赖 $r$，
+两个角变量可以先积分：
+\[
+ \int_0^{2\pi}\!\dd\varphi
+ \int_0^\pi\!\sin\theta\,\dd\theta=4\pi.
+\]
+这里第一项是在长度为 $2\pi$ 的角区间上累加 $1$，结果为 $2\pi$；
+第二项等于 $[-\cos\theta]_0^\pi=-\cos\pi+\cos0=2$。
+方括号表示把上限与下限分别代入后相减；由于 $-\cos\theta$ 的变化率是
+$\sin\theta$，它的总变化就等于相应的累加量。这种“由变化率求总变化”的计算法将在积分部分系统说明。
+因此半径在 $r$ 与 $r+\dd r$ 之间的薄球壳体积是 $4\pi r^2\dd r$，总质量为
+\begin{align*}
+ M&=\int_V\rho\,\dd V
+ =4\pi\rho_0\int_0^R\left(1-\frac rR\right)r^2\dd r\\
+ &=4\pi\rho_0\left(\frac{R^3}{3}-\frac{R^3}{4}\right)
+ =\boxed{\frac{\pi}{3}\rho_0R^3}.
+\end{align*}
+被积函数在 $0\le r\le R$ 非负，所以总质量为正；$\rho_0R^3$ 的量纲为质量。
+这里的 $r^2\sin\theta$ 正是把三个坐标微元换成实际体积的几何因子；它给出薄球壳体积
+$4\pi r^2\dd r$，从而把本题的三重积分化成只对半径 $r$ 的一重积分。
+\end{xesolution}
+
+\section{泰勒展开与近似的阶}
+
+函数在 $x_0$ 附近足够光滑时，
+\begin{equation}
+ f(x_0+h)=f(x_0)+f'(x_0)h+\frac{f''(x_0)}{2!}h^2+\cdots.
+\end{equation}
+写“$h$ 很小”还不够，必须说明被舍项相对保留项小到什么阶。常用展开包括
+\begin{align}
+ \sin x&=x-\frac{x^3}{6}+\order{x^5},&
+ \cos x&=1-\frac{x^2}{2}+\order{x^4},\\
+ (1+x)^\alpha&=1+\alpha x+\frac{\alpha(\alpha-1)}2x^2+\order{x^3},&
+ \ln(1+x)&=x-\frac{x^2}{2}+\order{x^3}.
+\end{align}
+展开参数必须无量纲；不能直接声称“长度 $x$ 很小”，而应比较 $x/L$。
+
+\begin{origexamplebox}{单摆非线性修正的量级}
+单摆精确方程为 $\ddot\theta+(g/\ell)\sin\theta=0$。若最大摆角为 $\theta_0\ll1$，估计线性化所忽略项相对于恢复项的量级。
+\end{origexamplebox}
+\begin{xesolution}
+展开 $\sin\theta=\theta-\theta^3/6+\cdots$。线性恢复项是 $\theta$，首个被忽略项为 $-\theta^3/6$，二者比值的最大量级为
+\[
+ \left|\frac{-\theta^3/6}{\theta}\right|\lesssim\frac{\theta_0^2}{6}.
+\]
+因此小角近似的相对方程误差为 $\order{\theta_0^2}$。角度必须用弧度，弧度是无量纲量；若用度数直接代入展开，数值和阶数判断都会失去意义。
+\end{xesolution}
+
+\section{复数相量}
+
+\subsection{复数如何记录振幅与相位}
+虚数单位 $\ii$ 满足 $\ii^2=-1$。复数 $z=a+\ii b$ 的实部记作 $\Re z=a$，虚部记作 $\Im z=b$，
+可以用平面上的点 $(a,b)$ 表示。它的模为 $|z|=\sqrt{a^2+b^2}$；
+从实轴正向量到向量 $(a,b)$ 的角称为辐角 $\phi$，应根据象限确定，而不能只取
+$\arctan(b/a)$ 的主值。因此
+\[
+ z=|z|(\cos\phi+\ii\sin\phi)=|z|e^{\ii\phi}.
+\]
+最后一步使用欧拉公式 $e^{\ii\phi}=\cos\phi+\ii\sin\phi$。
+将指数级数中的偶次项与奇次项分别合并，因 $\ii^{2n}=(-1)^n$、
+$\ii^{2n+1}=\ii(-1)^n$，恰好得到余弦和正弦的级数，因而这不是新的物理假设。
+
+简谐量可写成复指数的实部：
+\begin{equation}
+ x(t)=A\cos(\omega t+\phi)=\Re\!\left(\widetilde x\,e^{\ii\omega t}\right),
+ \qquad \widetilde x=Ae^{\ii\phi}.
+\end{equation}
+其中 $\Re$ 表示取实部。复平面向量随时间以角速度 $\omega$ 转动，
+其在实轴上的投影才是实际位移 $x(t)$；常量 $\widetilde x$ 则称为相量，记录振幅 $A\ge0$ 和初相 $\phi$。
+相量本身不是额外的空间位移。
+
+\subsection{相量的运算}
+同频信号共有时间因子 $e^{\ii\omega t}$，因此先把相量相加，最后取实部即可：
+\[
+ x_1+x_2=\Re\!\left[(\widetilde x_1+\widetilde x_2)e^{\ii\omega t}\right].
+\]
+不同频率没有共同时间因子，不能直接当作静态相量相加。对固定相量求导，
+\[
+ \frac{\dd}{\dd t}\bigl(\widetilde x e^{\ii\omega t}\bigr)
+ =\ii\omega\widetilde x e^{\ii\omega t},\qquad
+ \int\widetilde x e^{\ii\omega t}\dd t
+ =\frac{\widetilde x}{\ii\omega}e^{\ii\omega t}+C\quad(\omega\ne0).
+\]
+所以微分对应乘 $\ii\omega$：振幅乘 $|\omega|$，当 $\omega>0$ 时相位超前 $\pi/2$；
+积分对应除 $\ii\omega$，但还必须保留积分常数 $C$。例如位移的导数是速度，
+再次求导时乘 $(\ii\omega)^2=-\omega^2$，故简谐运动满足 $\ddot x=-\omega^2x$。
+
+\begin{origexamplebox}{同频简谐量的合成}
+$x_1=A\cos\omega t$，$x_2=A\cos(\omega t+2\pi/3)$。求 $x=x_1+x_2$ 的振幅和初相。
+\end{origexamplebox}
+\begin{xesolution}
+相量为 $\widetilde x_1=A$、$\widetilde x_2=Ae^{\ii2\pi/3}$，所以
+\[
+ \widetilde x=A\left(1-\frac12+\ii\frac{\sqrt3}{2}\right)
+ =Ae^{\ii\pi/3}.
+\]
+合相量的实部、虚部分别为 $A/2$、$\sqrt3A/2$，故其模为
+$\sqrt{A^2/4+3A^2/4}=A$；它在第一象限，且正切为 $\sqrt3$，所以初相为 $\pi/3$。
+图~\ref{ch01:fig:phasor-sum} 中，两相量首尾相接得到合相量，虚线表示平移后的第二相量。
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=1]
+ \draw[axis] (-1.9,0)--(3.3,0) node[right]{$\Re$};
+ \draw[axis] (0,-.4)--(0,2.65) node[above]{$\Im$};
+ \draw[vector] (0,0)--(2.4,0) node[midway,below=5pt]{$\widetilde x_1=A$};
+ \draw[vector] (0,0)--(-1.2,2.07846) node[above left]{$\widetilde x_2$};
+ \draw[guide,->] (2.4,0)--(1.2,2.07846);
+ \draw[vector,orange!85!black] (0,0)--(1.2,2.07846) node[above right]{$\widetilde x$};
+ \draw[->,TextGray] (.75,0) arc (0:60:.75);
+ \node at (.87,.60) {$\pi/3$};
+\end{tikzpicture}
+\figcap{同频相量相加：合相量长度为 $A$，辐角为 $\pi/3$。}\label{ch01:fig:phasor-sum}
+\end{center}
+因此
+\[
+ \boxed{x=A\cos(\omega t+\pi/3)}.
+\]
+合振幅仍为 $A$，不是 $2A$。极限检查：两相量夹角为 $120^\circ$，等腰三角形的合矢量长度确为一边长。
+\end{xesolution}
+
+\section{常微分方程的物理读法}
+
+\subsection{一阶方程与初始条件}
+微分方程把未知函数与它的变化率联系起来；上方一点表示对时间求一次导数，
+两点表示二次导数，即 $\dot x=\dd x/\dd t$、$\ddot x=\dd^2x/\dd t^2$。
+“常微分”指未知量只依赖一个自变量。以常数 $a$ 的一阶线性方程为例：
+\begin{equation}
+ \dot x+ax=f(t)
+\end{equation}
+两边乘积分因子 $e^{at}$，左端由乘积求导法则变成一个完整导数：
+\[
+ e^{at}\dot x+ae^{at}x=\frac{\dd}{\dd t}(e^{at}x)=e^{at}f(t).
+\]
+从 $0$ 积分到 $t$，并使用 $x(0)=x_0$，得到
+\[
+ e^{at}x(t)-x_0=\int_0^t e^{as}f(s)\dd s,\qquad
+ \boxed{x(t)=e^{-at}\left[x_0+\int_0^t e^{as}f(s)\dd s\right]}.
+\]
+积分变量 $s$ 与上限 $t$ 必须区分。$f=0,a>0$ 时，$x=x_0e^{-at}$ 衰减；
+$a=0$ 时退化为 $x=x_0+\int_0^t f(s)\dd s$。
+
+\subsection{二阶方程、特征根与阻尼}
+弹簧振子的线性模型为 $m\ddot x+b\dot x+kx=0$。令
+$\gamma=b/(2m)$、$\omega_0=\sqrt{k/m}>0$，得到二阶常系数齐次方程
+\begin{equation}
+ \ddot x+2\gamma\dot x+\omega_0^2x=0
+\end{equation}
+试取 $x=e^{rt}$，代入并约去不为零的 $e^{rt}$，得到特征方程及其根
+\[
+ r^2+2\gamma r+\omega_0^2=0,\qquad r_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\]
+下述三种阻尼分类以 $\gamma>0$ 为前提。给定 $x(0)=x_0$、$\dot x(0)=v_0$：
+\begin{itemize}
+ \item $0<\gamma<\omega_0$：令 $\omega_d=\sqrt{\omega_0^2-\gamma^2}$。
+ 共轭复根给出
+ \[
+ x=e^{-\gamma t}\left[x_0\cos\omega_dt+
+ \frac{v_0+\gamma x_0}{\omega_d}\sin\omega_dt\right].
+ \]
+ 括号内振荡，外面的正因子衰减，这是欠阻尼。
+ \item $\gamma=\omega_0$：重根下两个独立解是 $e^{-\gamma t}$ 和
+ $te^{-\gamma t}$，代回方程即可逐一验证。代入两条初始条件得
+ \[
+ x=[x_0+(v_0+\gamma x_0)t]e^{-\gamma t},
+ \]
+ 称为临界阻尼。
+ \item $\gamma>\omega_0$：两个实根均为负，
+ \[
+ x=C_+e^{r_+t}+C_-e^{r_-t},\quad
+ C_+=\frac{v_0-r_-x_0}{r_+-r_-},\quad
+ C_-=\frac{r_+x_0-v_0}{r_+-r_-}.
+ \]
+ 这是过阻尼。它没有周期振荡，但特定初始速度仍可能使物体越过平衡点一次，不能一概称为单调返回。
+\end{itemize}
+当 $\gamma=0$ 时，根为 $\pm\ii\omega_0$，运动无衰减；当 $\gamma<0$ 时，
+模型中的速度项向系统供能，非零解通常增长，不属于上述被动阻尼衰减。
+根的实部决定振幅随时间增长还是衰减，虚部决定是否具有振荡因子。
+初始条件的个数应与方程阶数相同；只写通解而不代入初始条件，物理问题尚未求完。
+
+\begin{origexamplebox}{一阶弛豫过程}
+温度为 $T(t)$ 的小物体置于恒温环境 $T_a$ 中，满足牛顿冷却模型
+$\dot T=-k(T-T_a)$，其中 $k>0$，且 $T(0)=T_0$。求 $T(t)$，并检验长时间极限。
+\end{origexamplebox}
+\begin{xesolution}
+令温差 $\Theta=T-T_a$，因环境温度不变，方程化为 $\dot\Theta=-k\Theta$。
+乘 $e^{kt}$ 后，$\dd(e^{kt}\Theta)/\dd t=0$，说明 $e^{kt}\Theta$ 为常量；
+代入 $t=0$ 得该常量为 $T_0-T_a$。因此
+\[
+ \Theta(t)=(T_0-T_a)e^{-kt},\qquad
+ \boxed{T(t)=T_a+(T_0-T_a)e^{-kt}}.
+\]
+当 $T_0\ne T_a$ 时也可分离变量，积分为
+$\ln|\Theta(t)|-\ln|\Theta(0)|=-kt$；温差始终同号，才可化为
+$\ln[\Theta(t)/\Theta(0)]=-kt$。当 $T_0=T_a$ 时不能除以温差，
+但上面的积分因子解仍直接给出 $T(t)=T_a$。
+$k$ 的量纲为 $\mathsf T^{-1}$（例如 $\mathrm{s^{-1}}$），所以指数 $kt$ 无量纲。$t\to\infty$ 时 $T\to T_a$；若 $T_0>T_a$，温度单调下降且不会在有限时间越过环境温度，均与模型的物理含义一致。
+\end{xesolution}

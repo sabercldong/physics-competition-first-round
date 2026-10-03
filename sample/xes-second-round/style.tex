@@ -1,0 +1,139 @@
+\usepackage[a4paper,top=20mm,bottom=22mm,left=19mm,right=19mm,headheight=25pt]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{amsmath,amssymb}
+% Native Unicode math retains searchable/copyable operators and extensible
+% delimiters; legacy CMSY/CMEX fonts lacked ToUnicode tables in XeTeX output.
+\usepackage{unicode-math}
+\setmathfont{latinmodern-math.otf}
+\renewcommand{\boldsymbol}[1]{\symbfit{#1}}
+\usepackage{siunitx}
+\usepackage{booktabs,tabularx,array,multicol,longtable}
+\usepackage{enumitem}
+\usepackage{graphicx,float,caption}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{polar}
+\usetikzlibrary{arrows.meta,positioning,calc,angles,quotes,patterns,
+  decorations.pathmorphing,decorations.markings,intersections,
+  shapes.geometric,backgrounds,3d,fit,spy}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{hyperref,bookmark}
+\usepackage{xparse}
+
+\definecolor{Ink}{HTML}{202326}
+\definecolor{DeepBlue}{HTML}{294E69}
+\definecolor{Blue}{HTML}{47687D}
+\definecolor{PaleBlue}{HTML}{F3F5F6}
+\definecolor{PaleGold}{HTML}{F6F6F5}
+\definecolor{RuleGray}{HTML}{D3D7DA}
+\definecolor{TextGray}{HTML}{61686D}
+\definecolor{SoftGray}{HTML}{F6F6F6}
+\color{Ink}
+
+\sisetup{per-mode=symbol,inter-unit-product=\ensuremath{{}\cdot{}},exponent-product=\times}
+\hypersetup{
+  colorlinks=true,linkcolor=DeepBlue,urlcolor=Blue,bookmarksdepth=2,
+  pdfauthor={物理竞赛二轮资料编写组}
+}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.18em}
+\setlist{nosep,leftmargin=2em}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{1}
+\allowdisplaybreaks[2]
+\emergencystretch=2em
+
+\ctexset{
+  chapter={format=\raggedright\LARGE\bfseries\color{Ink},beforeskip=0pt,afterskip=18pt},
+  section={format=\Large\bfseries\color{DeepBlue},beforeskip=1.8ex,afterskip=1.0ex},
+  subsection={format=\large\bfseries\color{Ink},beforeskip=1.5ex,afterskip=0.8ex},
+  subsubsection={format=\normalsize\bfseries\color{Ink}}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{TextGray}高中物理竞赛二轮讲义}
+\fancyhead[R]{\small\color{TextGray}\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\color{TextGray}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{RuleGray}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\dd}{\mathop{}\!\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\vect}[1]{\symbfit{#1}}
+\newcommand{\uvec}[1]{\hat{\vect{#1}}}
+\newcommand{\order}[1]{\mathcal O\!\left(#1\right)}
+\DeclareMathOperator{\proj}{proj}
+
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\makeatletter
+\@addtoreset{equation}{chapter}
+\@addtoreset{figure}{chapter}
+\@addtoreset{table}{chapter}
+\makeatother
+
+\newcounter{workedexample}[chapter]
+\renewcommand{\theworkedexample}{\thechapter.\arabic{workedexample}}
+\NewDocumentEnvironment{examplebox}{m}{%
+  \refstepcounter{workedexample}%
+  \begin{tcolorbox}[enhanced,breakable,colback=white,colframe=RuleGray,
+    boxrule=0.5pt,arc=0mm,title={例~\theworkedexample\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.4pt}{0pt}{DeepBlue}]
+}{\end{tcolorbox}}
+
+\newcounter{practice}[chapter]
+\renewcommand{\thepractice}{\thechapter.\arabic{practice}}
+\NewDocumentEnvironment{practicebox}{m}{%
+  \refstepcounter{practice}%
+  \begin{tcolorbox}[enhanced,breakable,colback=white,colframe=RuleGray,
+    boxrule=0.5pt,arc=0mm,title={练~\thepractice\quad #1},fonttitle=\bfseries,
+    coltitle=Ink,colbacktitle=PaleGold,borderline west={1.4pt}{0pt}{TextGray}]
+}{\end{tcolorbox}}
+
+% 高阶深化卷采用 H1--H6 独立编号，不占用正文第1--28章的章号。
+\newcommand{\advancedunit}[2]{%
+  \clearpage
+  \chapter*{#1\quad #2}%
+  \addcontentsline{toc}{chapter}{#1\quad #2}%
+  \markboth{#1\quad #2}{#1\quad #2}%
+  \setcounter{section}{0}\setcounter{subsection}{0}%
+  \setcounter{equation}{0}\setcounter{figure}{0}\setcounter{table}{0}%
+  \setcounter{workedexample}{0}\setcounter{practice}{0}%
+  \renewcommand{\theequation}{#1.\arabic{equation}}%
+  \renewcommand{\thefigure}{#1.\arabic{figure}}%
+  \renewcommand{\thetable}{#1.\arabic{table}}%
+  \renewcommand{\theworkedexample}{#1.\arabic{workedexample}}%
+  \renewcommand{\thepractice}{#1.\arabic{practice}}%
+}
+
+\NewDocumentEnvironment{solution}{+b}{%
+  \par\smallskip\begingroup\small\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+
+\newtcolorbox{definitionbox}[1]{enhanced,breakable,colback=PaleGold,
+  colframe=RuleGray,boxrule=0.5pt,arc=0mm,title={#1},fonttitle=\bfseries,
+  coltitle=Ink,colbacktitle=PaleGold,borderline west={1.2pt}{0pt}{TextGray}}
+
+\newcommand{\bookcaption}[1]{%
+  \refstepcounter{figure}%
+  \par\nopagebreak[4]\smallskip
+  {\centering\small\color{TextGray}图~\thefigure：#1\par}\smallskip}
+
+\tikzset{
+  every node/.append style={fill=none,inner sep=1.1pt},
+  labelclean/.style={fill=none,inner sep=0.7pt,outer sep=1.2pt,text=Ink},
+  point/.style={circle,fill=Ink,draw=none,inner sep=1.6pt},
+  vector/.style={-{Latex[length=2.5mm]},very thick,draw=DeepBlue},
+  component/.style={-{Latex[length=2.2mm]},thick,draw=TextGray},
+  axis/.style={-{Latex[length=2mm]},thin,draw=TextGray},
+  guide/.style={densely dashed,draw=TextGray},
+  curve/.style={very thick,draw=DeepBlue},
+  ground/.style={very thick,draw=Ink},
+  spring/.style={decorate,decoration={zigzag,segment length=4pt,amplitude=2pt},thick,draw=DeepBlue}
+}

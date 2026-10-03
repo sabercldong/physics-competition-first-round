@@ -1,0 +1,22 @@
+% Contract: E=-E ex; B=+B ez; q=-e. R=D/2, X=(0,-R),Y=(R,0),Z=(0,R).
+% Path is tangent to horizontal channels. Plate apertures remain visibly open.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \x in {-3,0}{
+  \draw[very thick] (\x,-2.05)--(\x,-1.6) (\x,-1.4)--(\x,1.4) (\x,1.6)--(\x,2.05);
+ }
+ \draw[DeepBlue,thick,->] (-4.1,-1.5)--(-.45,-1.5);
+ \draw[DeepBlue,thick] (-.45,-1.5)--(0,-1.5) arc(-90:90:1.5)--(-.4,1.5);
+ \draw[DeepBlue,thick,->] (-.4,1.5)--(-4.1,1.5);
+ \draw[DeepBlue,thick,->] ({1.5*cos(-20)},{1.5*sin(-20)}) arc(-20:18:1.5);
+ \node[below right=5pt] at (0,-1.5){X};\node[right=7pt] at (1.5,0){Y};
+ \node[above right=5pt] at (0,1.5){Z};
+ \foreach \y in {-.55,.55}{\draw[->] (-.5,\y)--(-2.5,\y);}
+ \node at (-1.5,0){$\vect E$};
+ \foreach \x/\y in {.45/-.65,.85/-.65,.45/0,.85/0,.45/.65,.85/.65}{
+  \draw (\x,\y) circle(.075);\fill (\x,\y) circle(.018);
+ }
+ \node at (2.1,-.9){$\vect B$ 出纸面};
+ \draw[<->] (-3.55,-1.5)--(-3.55,1.5) node[midway,left=4pt]{$D$};
+ \draw[<->] (-3,-2.4)--(0,-2.4) node[midway,below=4pt]{$L$};
+ \node[below=5pt] at (-4.1,-1.5){$p_0$};
+\end{tikzpicture}

@@ -1,0 +1,24 @@
+% 核心结论：同一发射反射事件在运动系形成光程直角三角形。
+% 原型：纯几何对比；保留现行蓝灰风格，宽约12cm，字号10pt。
+% 草图：静止 A↑B | 运动 A↗B；下方尺寸与标题分两行，L标在右侧。
+\begin{tikzpicture}[font=\small,>=Latex]
+ \begin{scope}
+  \coordinate (A) at (1,0); \coordinate (B) at (1,2.4);
+  \draw[very thick] (.2,0)--(1.8,0) (.2,2.4)--(1.8,2.4);
+  \draw[vector] (A)--(B);
+  \node[left=8pt] at (1,1.2) {$L=c\Delta\tau/2$};
+  \node[below right=5pt] at (A) {A};\node[above right=5pt] at (B) {B};
+  \node at (1,-1.45) {钟的静止系};
+ \end{scope}
+ \begin{scope}[xshift=5.7cm]
+  \coordinate (A) at (0,0);\coordinate (B) at (1.8,2.4);\coordinate (D) at (1.8,0);
+  \draw[very thick] (-.65,0)--(.65,0) (1.15,2.4)--(2.45,2.4);
+  \draw[vector] (A)--(B);
+  \node[above left=5pt] at (.9,1.2) {$c\Delta t/2$};
+  \draw[guide] (B)--(D) (A)--(D);
+  \draw[TextGray,<->] (2.85,0)--(2.85,2.4) node[midway,right=4pt] {$L$};
+  \draw[TextGray,<->] (0,-.55)--(1.8,-.55) node[midway,below=3pt] {$v\Delta t/2$};
+  \node[below left=4pt] at (A) {A};\node[above right=4pt] at (B) {B};
+  \node at (1,-1.45) {实验室系};
+ \end{scope}
+\end{tikzpicture}

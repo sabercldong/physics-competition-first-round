@@ -1,0 +1,666 @@
+% TikZ diagrams written for the added solutions.  They expose the forces
+% and geometric quantities used in each derivation and are visually checked
+% against the independently redrawn problem figures.
+
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  soldim/.style={{Latex[length=1.4mm]}-{Latex[length=1.4mm]},draw=TextGray,line width=0.55pt},
+  solpoint/.style={circle,fill=Ink,inner sep=1.2pt},
+  % Labels must not carry a rectangular white mask: place them in open
+  % space and use anchors/leader lines to avoid the drawing instead.
+  sollabel/.style={font=\footnotesize,text=Ink,fill=none,inner sep=1pt,outer sep=1pt},
+  solpanel/.style={font=\footnotesize\bfseries,text=TextGray}
+}
+
+\newcommand{\soldiagcaption}[1]{%
+  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}解图：#1\par}\vspace{0.2em}%
+}
+
+\newcommand{\soldiagOneTen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88]
+  \node[solpanel] at (-2.3,1.65) {(a) 铰链 $C$};
+  \node[solpoint,label={[sollabel]below left:$C$}] (C) at (-2.3,0) {};
+  \draw[solbody] (C) -- ++(120:1.35);
+  \draw[solbody] (C) -- ++(0:1.35);
+  \draw[solforce] (C) -- ++(120:1.05) node[left=5pt,sollabel] {$S$};
+  \draw[solforce] (C) -- ++(0:1.10) node[above,sollabel] {$H$};
+  \draw[solforce] (C) -- ++(-90:1.20) node[below,sollabel] {$mg$};
+  \draw[solgeom] (C) -- ++(180:0.82);
+  \draw[solgeom] ($(C)+(120:0.50)$) arc[start angle=120,end angle=180,radius=0.50];
+  \node[sollabel] at (-3.03,0.30) {$60^\circ$};
+
+  \node[solpanel] at (2.15,1.65) {(b) 铰链 $D$};
+  \node[solpoint,label={[sollabel]below left=4pt:$D$}] (D) at (2.15,0) {};
+  \draw[solbody] (D) -- ++(60:1.45)
+    node[pos=.68,right=4pt,sollabel] {$DB$};
+  \draw[solbody] (D) -- ++(180:1.25);
+  \draw[solforce] (D) -- ++(180:1.10) node[above,sollabel] {$H$};
+  \draw[solforce] (D) -- ++(-30:1.15) node[right,sollabel] {$F_{\min}$};
+  \draw[solgeom] (D) -- ++(150:1.05);
+  \draw[solgeom] ($(D)+(0.35,0.61)$) -- ++(-30:0.22) -- ++(-120:0.22);
+\end{tikzpicture}
+\soldiagcaption{先由 $C$ 点平衡求出杆 $CD$ 的轴力，再在 $D$ 点取垂直于 $DB$ 的分量。}
+\end{center}}
+
+\newcommand{\soldiagOneEleven}{%
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \node[solpanel] at (-2.3,2.2) {(a) 小球受力};
+  \coordinate (O) at (-2.3,0);
+  \draw[solbody] (O) circle (.42);
+  \draw[solforce] (O)--++(102:1.65) node[above left,sollabel] {$N_1$};
+  \draw[solforce] (O)--++(-18:1.65) node[right,sollabel] {$N$};
+  \draw[solforce] (O)--++(-90:1.60) node[below,sollabel] {$mg$};
+  \node[solpanel] at (2.35,2.2) {(b) 沿下斜面投影};
+  \draw[solgeom,->] (.55,.8)--(4.15,.8) node[right,sollabel] {向上};
+  \draw[solforce] (1.1,.20)--(3.8,.20) node[midway,above=4pt,sollabel] {$N\sin\theta$};
+  \draw[solforce] (3.8,-.65)--(1.1,-.65) node[midway,below=4pt,sollabel] {$mg\sin\alpha$};
+  \node[sollabel] at (2.4,-1.55) {$N_1$ 的投影为零};
+\end{tikzpicture}
+\soldiagcaption{$N_1$ 垂直于下斜面，故沿下斜面只需平衡 $N$ 和 $mg$ 的分量。}
+\end{center}}
+
+\newcommand{\soldiagOneTwelve}{%
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \coordinate (O) at (0,0);
+  \draw[solbody] (O) circle (.35);
+  \draw[solgeom] (0,-2.25)--(0,2.25);
+  \draw[solgeom,->] (-1.55,0)--(2.45,0) node[right,sollabel] {$x$};
+  \draw[solforce] (O)--++(103:2.10) node[above left,sollabel] {$N_1$};
+  \draw[solforce] (O)--++(-38:2.10) node[below right,sollabel] {$N_2$};
+  \draw[solforce] (O)--++(-90:2.00) node[below left,sollabel] {$mg$};
+  \draw[solgeom] (90:1.25) arc[start angle=90,end angle=103,radius=1.25];
+  \draw[TextGray,thin] (96.5:1.25)--(-1.05,1.35);
+  \node[left,sollabel] at (-1.05,1.35) {$\theta_1$};
+  \draw[solgeom] (-90:.95) arc[start angle=-90,end angle=-38,radius=.95];
+  \draw[TextGray,thin] (-64:.95)--(1.55,-.58);
+  \node[right,sollabel] at (1.55,-.58) {$\theta_2$};
+\end{tikzpicture}
+\soldiagcaption{$N_1$ 与竖直向上的夹角为 $\theta_1$；$N_2$ 与竖直向下的夹角为 $\theta_2$，因为支持力分别垂直于对应斜面。}
+\end{center}}
+
+\newcommand{\soldiagOneThirteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel] at (-2.45,2.15) {(a) 接触几何};
+  \coordinate (O) at (-2.45,1.55);
+  \coordinate (A) at (-3.25,-0.85);
+  \coordinate (C) at (-2.45,0.05);
+  \fill[Ink] (O) circle (1.4pt) node[above,sollabel] {$O$};
+  \fill[Ink] (A) circle (1.4pt) node[below left,sollabel] {$A$};
+  \fill[Ink] (C) circle (1.4pt) node[right,sollabel] {$C$};
+  \draw[solbody] (O)--(A) node[midway,left,sollabel] {$d_0$};
+  \draw[solbody] (A)--(C);
+  \draw[TextGray,thin] ($(A)!.5!(C)$)--(-1.85,-.12);
+  \node[right,sollabel] at (-1.85,-.12) {$R+r$};
+  \draw[solgeom] (A)--(-1.55,-0.85);
+  \draw[solgeom] (O)--(-2.45,-1.10);
+  \draw[solgeom] ($(O)+(0,-0.55)$) arc[start angle=-90,end angle=-108.5,radius=0.55];
+  \draw[TextGray,thin] ($(O)+(-99.25:.55)$)--(-3.15,1.04);
+  \node[left,sollabel] at (-3.15,1.04) {$\theta$};
+  \draw[solgeom] ($(A)+(0.55,0)$) arc[start angle=0,end angle=48,radius=0.55];
+  \node[sollabel] at (-2.57,-0.56) {$\beta$};
+
+  \node[solpanel] at (2.15,2.15) {(b) 大球 $A$ 受力};
+  \node[solpoint,label={[sollabel]right=4pt:$A$}] (P) at (2.15,0) {};
+  \draw[solforce] (P)--++(71.5:1.45) node[above,sollabel] {$T$};
+  \draw[solforce] (P)--++(-132:1.18) node[below left,sollabel] {$N$};
+  \draw[solforce] (P)--++(180:1.05) node[above left,sollabel] {$Q$};
+  \draw[solforce] (P)--++(-90:1.30) node[below,sollabel] {$Mg$};
+  \draw[solgeom] (P)--++(180:1.25);
+  \draw[solgeom] ($(P)+(180:0.54)$)
+    arc[start angle=180,end angle=228,radius=0.54];
+  \node[sollabel] at ($(P)+(204:0.78)$) {$\beta$};
+\end{tikzpicture}
+\soldiagcaption{$\beta$ 由三球接触几何确定；两大球刚分离时令接触力 $Q=0$。}
+\end{center}}
+
+\newcommand{\soldiagOneFourteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.92]
+  \node[solpanel] at (-2.4,2.05) {(a) 切线几何};
+  \coordinate (O) at (-2.40,1.55);
+  \coordinate (C) at (-3.05,-0.55);
+  % P is the tangent point for R=.96; hence CP is perpendicular to OP.
+  \coordinate (P) at (-2.101,-0.405);
+  \draw[solbody] (C) circle (0.96);
+  \fill[Ink] (O) circle (1.4pt) node[above,sollabel] {$O$};
+  \fill[Ink] (C) circle (1.4pt) node[below left,sollabel] {$C$};
+  \fill[Ink] (P) circle (1.2pt) node[right,sollabel] {$P$};
+  \draw[solbody] (O)--(C);
+  \node[sollabel] at (-3.30,.08) {$l$};
+  \draw[solbody] (O)--(P);
+  \draw[solbody] (C)--(P) node[pos=.42,below=5pt,sollabel] {$R$};
+  \draw[solgeom] (O)--++(0,-2.45);
+  \draw[solgeom] ($(P)+(171.3:.16)$)--++(81.3:.16)--++(-8.7:.16);
+  \draw[draw=TextGray] ($(O)+(-107.2:.60)$) arc[start angle=-107.2,end angle=-90,radius=.60];
+  \draw[draw=TextGray] ($(O)+(-90:.80)$) arc[start angle=-90,end angle=-81.3,radius=.80];
+  \draw[draw=TextGray] ($(O)+(-107.2:1.10)$) arc[start angle=-107.2,end angle=-81.3,radius=1.10];
+  \node[sollabel] at (-2.90,.82) {$\theta$};
+  \node[sollabel] at (-1.92,.79) {$\psi$};
+  \draw[TextGray,thin] ($(O)+(-94.25:1.10)$)--(-3.85,.40);
+  \node[left,sollabel] at (-3.85,.40) {$\delta$};
+
+  \node[solpanel] at (2.05,2.05) {(b) 球的合力图};
+  \node[solpoint] (G) at (2.05,0) {};
+  \draw[solforce] ($(G)+(-.04,0)$)--++(72.8:1.35) node[above right,sollabel] {$S$};
+  % At P the upper-rope tension points from P to O, i.e. along the
+  % tangent, almost vertically upward in panel (a).
+  \draw[solforce] ($(G)+(.04,0)$)--++(98.7:1.13) node[above left,sollabel] {$T$};
+  \draw[solforce] (G)--++(-90:1.22) node[below,sollabel] {$m_1g$};
+  \draw[solforce] ($(G)+(.18,-.04)$)--++(-90:.82) node[right=3pt,sollabel] {$T$};
+  \draw[solgeom] (G)--++(0,1.25);
+\end{tikzpicture}
+\soldiagcaption{$\delta=\theta+\psi$ 且 $\sin\delta=R/l$；绕绳对球的作用等于两端张力的矢量和。}
+\end{center}}
+
+\newcommand{\soldiagOneFifteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78]
+  \draw[solbody] (-2,-1.55)--(-2,2.00);
+  \draw[solbody] (2,2.00)--(2,-1.55);
+  \draw[solbody] (-2.35,-1.55)--(2.35,-1.55);
+  \coordinate (A) at (-0.90,-0.45);
+  \coordinate (B) at (0.90,0.815);
+  \draw[solbody] (A) circle (1.10);
+  \draw[solbody] (B) circle (1.10);
+  \draw[solgeom] (A)--(B);
+  \draw[solgeom] (A)--++(2.00,0);
+  \draw[solgeom] ($(A)+(0:.55)$) arc[start angle=0,end angle=35.1,radius=.55];
+  \node[sollabel] at ($(A)+(17.6:.78)$) {$\beta$};
+  \draw[solforce] (-2,-0.45)--++(-0.95,0) node[left,sollabel] {$N_2$};
+  \draw[solforce] (2,0.815)--++(0.95,0) node[right,sollabel] {$N_2$};
+  \draw[soldim] (2.48,-0.45)--(2.48,0.815);
+  \node[sollabel,right] at (2.48,0) {$2r\sin\beta$};
+  \draw[solforce] (0,-0.25)--(0,-2.02) node[below,sollabel] {$Mg$};
+  \draw[TextGray,thin] (2,-1.55)--(2.72,-1.72);
+  \node[right,sollabel] at (2.72,-1.72) {倾覆边缘};
+\end{tikzpicture}
+\soldiagcaption{两侧壁受到一对等大反向水平力，形成力偶 $N_2(2r\sin\beta)$。}
+\end{center}}
+
+\newcommand{\soldiagOneSixteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72]
+  \coordinate (A) at (-3,-1.35);
+  \pgfmathsetmacro{\sone}{.52*(1+sin(25))/cos(25)}
+  \draw[solbody] (-3,-1.65)--(-3,2.05);
+  \draw[solbody] (A)--++(25:6.90);
+  \foreach \i/\lab in {0/1,1/2,2/3}{
+    \coordinate (P\lab) at ($(A)+(25:{\sone+1.04*\i})$);
+    \coordinate (C\lab) at ($(P\lab)+(115:0.52)$);
+    \draw[solbody] (C\lab) circle (0.52);
+    \draw[solforce] (P\lab)--++(115:0.92);
+    \ifnum\lab=1
+      \draw[TextGray,thin] ($(P\lab)+(115:.92)$)--(-3.30,.40);
+      \node[left,sollabel] at (-3.30,.40) {$N_1$};
+    \else
+      \node[above left,sollabel] at ($(P\lab)+(115:.92)$) {$N_{\lab}$};
+    \fi
+  }
+  \fill[Ink] (A) circle (1.2pt) node[below left,sollabel] {$A$};
+  \draw[soldim] ($(A)+(25:0.05)+(115:-0.32)$)--($(A)+(25:\sone)+(115:-0.32)$);
+  \node[sollabel] at (-2.54,-1.82) {$s_1$};
+  \draw[solgeom] ($(A)+(25:.30)$) arc[start angle=25,end angle=90,radius=.30];
+  \draw[TextGray,thin] ($(A)+(57.5:.30)$)--(-3.58,-1.06);
+  \node[left,sollabel] at (-3.58,-1.06) {$\theta$};
+  \node[sollabel] at (0.55,-0.65) {$s_2=s_1+2r$};
+  \node[sollabel] at (2.05,-0.05) {$s_3=s_1+4r$};
+\end{tikzpicture}
+\soldiagcaption{接触点沿板的位置为 $s_1,s_2,s_3$，板对各圆柱的支持力均垂直于板。}
+\end{center}}
+
+\newcommand{\soldiagOneSeventeen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \coordinate (A) at (-0.40,-1.25);
+  \coordinate (B) at ($(A)+(60:3.15)$);
+  \draw[solbody,line width=1.2pt] (A)--(B);
+  \draw[solbody] (-2.75,-1.25)--(2.55,-1.25);
+  \draw[solbody] (B).. controls ($(B)+(210:1.10)$) and (-1.15,0.63)..(-2.55,0.55);
+  \draw[solgeom] (B)--++(180:1.75);
+  \draw[solgeom] ($(A)+(0.72,0)$) arc[start angle=0,end angle=60,radius=0.72];
+  \node[sollabel] at (0.50,-0.88) {$\beta$};
+  \draw[solgeom] ($(B)+(-0.68,0)$) arc[start angle=180,end angle=210,radius=0.68];
+  \draw[TextGray,thin] ($(B)+(195:.68)$)--(-.40,1.82);
+  \node[above left,sollabel] at (-.40,1.82) {$\gamma$};
+  \draw[solgeom] ($(B)+(210:0.82)$) arc[start angle=210,end angle=240,radius=0.82];
+  \draw[TextGray,thin] ($(B)+(225:.82)$)--(1.35,.95);
+  \node[right,sollabel] at (1.35,.95) {$30^\circ$};
+  \draw[solforce] (B)--++(210:1.45) node[below left=3pt,sollabel] {$T$};
+  \coordinate (G) at ($(A)!0.5!(B)$);
+  \draw[solforce] (G)--++(-90:0.76)
+    node[pos=0.62,right=4pt,sollabel] {$4mg$};
+  \fill[Ink] (A) circle (1.3pt) node[below,sollabel] {铰链};
+  \node[sollabel] at (-1.82,0.90) {钢索切线};
+\end{tikzpicture}
+\soldiagcaption{一侧斜壁重为 $4mg$；斜壁的力矩平衡与屋面整体的竖直平衡必须同时满足。}
+\end{center}}
+
+\newcommand{\soldiagOneEighteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88]
+  \draw[solbody] (-2.65,-0.85)--(2.75,-0.85);
+  \draw[solbody,fill=white] (-1.00,-0.85) rectangle (1.00,0.55);
+  \coordinate (G) at (0,-0.15);
+  \draw[solforce] (1.00,0.12)--++(30:1.55) node[above right,sollabel] {$F$};
+  \draw[solforce] (G)--++(90:1.35) node[above,sollabel] {$N$};
+  \draw[solforce] (G)--++(-90:1.35) node[below,sollabel] {$Mg$};
+  \draw[solforce] (-0.80,-0.85)--++(180:1.25)
+    node[above left=2pt,sollabel] {$f=\mu N$};
+  \draw[solgeom] (1.00,0.12)--++(0:1.25);
+  \draw[solgeom] ($(1.00,0.12)+(0:0.68)$) arc[start angle=0,end angle=30,radius=0.68];
+  \node[sollabel] at (1.82,0.33) {$\alpha$};
+  \draw[solgeom,-{Latex[length=1.5mm]}] (1.55,-1.15)--(2.55,-1.15)
+    node[midway,below,sollabel] {匀速};
+\end{tikzpicture}
+\soldiagcaption{沿运动方向有 $F\cos\alpha=f$；拉力的竖直分量使支持力减为 $N=Mg-F\sin\alpha$。}
+\end{center}}
+
+\newcommand{\soldiagOneNineteen}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel] at (-2.20,1.70) {(a) 两接触点};
+  \coordinate (O) at (-3.55,0);
+  \draw[solbody] (O)--(-0.55,1.15);
+  \draw[solbody] (O)--(-0.55,-1.15);
+  \draw[solbody] (-1.55,0) circle (0.72);
+  \coordinate (U) at (-1.808,0.672); \coordinate (L) at (-1.808,-0.672);
+  \draw[solforce] (U)--++(-69:0.92);
+  \draw[solforce] (U)--++(201:0.88);
+  \draw[solforce] (L)--++(69:0.92);
+  \draw[solforce] (L)--++(159:0.88);
+  \node[sollabel] at (-1.25,.22) {$N$};
+  \node[sollabel] at (-1.25,-.22) {$N$};
+  \node[sollabel] at (-2.67,.63) {$\mu N$};
+  \node[sollabel] at (-2.67,-.63) {$\mu N$};
+  \draw[solgeom] (O)--(-0.65,0);
+  \draw[solgeom] ($(O)+(0.78,0)$) arc[start angle=0,end angle=21,radius=0.78];
+  \draw[TextGray,thin] ($(O)+(10.5:.78)$)--(-3.53,-.72);
+  \node[left,sollabel] at (-3.53,-.72) {$\theta/2$};
+
+  \node[solpanel] at (2.55,1.70) {(b) 沿角平分线的合力};
+  \draw[solgeom] (0.70,0)--(4.45,0);
+  \fill[Ink] (2.55,0) circle (1.2pt);
+  \draw[solforce] (2.55,0.30)--++(0:1.55)
+    node[right,sollabel] {$2N\sin(\theta/2)$};
+  \draw[solforce] (2.55,-0.30)--++(180:1.55);
+  \node[sollabel,below=3pt] at (1.78,-.30) {$2\mu N\cos(\theta/2)$};
+  \node[sollabel] at (3.45,0.70) {向外};
+  \node[sollabel] at (1.65,-1.20) {向内};
+\end{tikzpicture}
+\soldiagcaption{正压力的合力向外，极限摩擦力的合力沿角平分线指向 $O$。}
+\end{center}}
+
+\newcommand{\soldiagOneTwenty}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \coordinate (A) at (-2.7,0);
+  \coordinate (B) at (2.7,0);
+  \draw[solbody] (-2.7,-1.1)--(-2.7,2.0);
+  \draw[solbody,line width=1.15pt] (A)--(B);
+  \draw[solbody] (B)--(-2.7,1.65);
+  \fill[Ink] (A) circle (1.2pt) node[below left,sollabel] {$A$};
+  \fill[Ink] (B) circle (1.2pt) node[below right,sollabel] {$B$};
+  \coordinate (P) at (-0.90,0);
+  \fill[Ink] (P) circle (1.2pt) node[above=4pt,sollabel] {$P$};
+  \draw[solforce] (A)--++(0:1.05) node[below,sollabel] {$N$};
+  \draw[solforce] (A)--++(90:1.10) node[left,sollabel] {$f$};
+  \draw[solforce] (B)--++(163:1.32) node[above,sollabel] {$T$};
+  \draw[solforce] (0,0)--++(-90:1.05) node[below,sollabel] {$Mg$};
+  \draw[solforce] (P)--++(-90:1.05) node[below,sollabel] {$mg$};
+  \draw[solgeom] ($(B)+(-0.72,0)$) arc[start angle=180,end angle=163,radius=0.72];
+  \draw[TextGray,thin] ($(B)+(171.5:.72)$)--(2.05,-.40);
+  \node[right,sollabel] at (2.05,-.40) {$\theta$};
+  \draw[soldim] ($(A)+(0,-0.58)$)--($(P)+(0,-0.58)$);
+  \node[sollabel] at (-1.46,-0.78) {$y$};
+\end{tikzpicture}
+\soldiagcaption{附加重物放在距 $A$ 为 $y$ 处；对 $A$ 取矩可直接消去 $N$、$f$。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyOne}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86]
+  \coordinate (A) at (-2.2,-0.85);
+  \coordinate (B) at (2.05,0.95);
+  \draw[solbody] (-2.75,-0.85)--(2.75,-0.85);
+  \draw[solbody,line width=1.2pt] (A)--(B);
+  \draw[solforce] (B)--++(113:1.25) node[above,sollabel] {$F\perp$ 杆};
+  \coordinate (G) at ($(A)!0.5!(B)$);
+  \draw[solforce] (G)--++(-90:1.18) node[below,sollabel] {$mg$};
+  \draw[solforce] (A)--++(90:1.18) node[left,sollabel] {$N$};
+  \draw[solforce] (A)--++(0:1.08) node[below,sollabel] {$f$};
+  \draw[solgeom] ($(A)+(0.72,0)$) arc[start angle=0,end angle=23,radius=0.72];
+  \draw[TextGray,thin] ($(A)+(11.5:.72)$)--(-.70,-.42);
+  \node[right,sollabel] at (-.70,-.42) {$\theta$};
+\end{tikzpicture}
+\soldiagcaption{外力始终与杆垂直；地板处的 $f/N$ 随抬起角度变化。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyTwo}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel] at (-2.15,1.95) {(a) 中间结点};
+  \node[solpoint] (C) at (-2.15,0) {};
+  \draw[solforce] (C)--++(145:1.25) node[above left,sollabel] {$T$};
+  \draw[solforce] (C)--++(35:1.25) node[above right,sollabel] {$T$};
+  \draw[solforce] (C)--++(-90:1.30) node[below,sollabel] {$Mg$};
+  \draw[solgeom] (C)--++(1.45,0);
+  \node[sollabel] at (-1.45,0.25) {$\beta$};
+
+  \node[solpanel] at (2.15,1.95) {(b) 圆环 $A$};
+  \draw[solbody] (0.70,0.72)--(3.65,0.72);
+  \draw[solbody] (2.15,0.72) circle (0.20);
+  \draw[solforce] (2.15,0.62)--++(-35:1.25) node[below right,sollabel] {$T$};
+  \draw[solforce] (2.15,0.92)--++(90:0.82) node[midway,right,sollabel] {$N$};
+  \draw[solforce] (2.15,0.52)--++(-90:1.02) node[below,sollabel] {$mg$};
+  \draw[solforce] (2.15,0.76)--++(180:1.00)
+    node[above left=2pt,sollabel] {$f$};
+\end{tikzpicture}
+\soldiagcaption{结点给出 $2T\sin\beta=Mg$；圆环的支持力还要承担细线的竖直分量。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyThree}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel,align=center] at (-3.00,2.35) {(a) 绳圈在圆锥\\上的位置};
+  \coordinate (A) at (-3.00,1.60);
+  \pgfmathsetmacro{\solConeHalfAngle}{atan(1.55/2.95)}
+  \pgfmathsetmacro{\solConeRingRadius}{1.78*1.55/2.95}
+  \draw[solbody,line width=1.05pt] (-4.55,-1.35)--(A)--(-1.45,-1.35);
+  \draw[solgeom] (A)--(-3.00,-1.55) node[below,sollabel] {轴};
+  \draw[solbody,line width=1.05pt] ({-3-\solConeRingRadius},-.18)
+    arc[start angle=180,end angle=360,x radius=\solConeRingRadius,y radius=.20];
+  \draw[solgeom] ({-3-\solConeRingRadius},-.18)
+    arc[start angle=180,end angle=0,x radius=\solConeRingRadius,y radius=.20];
+  \draw[solgeom] (-3.00,-0.18)--({-3+\solConeRingRadius},-.18)
+    node[midway,above,sollabel] {$\rho$};
+  \draw[<->,draw=TextGray] (-4.28,-.18)--(-4.28,1.60)
+    node[midway,left,sollabel] {$z=\rho\cot\delta$};
+  \draw[draw=TextGray] ($(A)+(-90:.66)$)
+    arc[start angle=-90,end angle={-90+\solConeHalfAngle},radius=.66];
+  \draw[TextGray,thin] ($(A)+({-90+\solConeHalfAngle/2}:.66)$)--(-1.65,1.43);
+  \node[right,sollabel] at (-1.65,1.43) {$\delta=\alpha/2$};
+
+  \node[solpanel,align=center] at (2.10,2.35) {(b) 纬圈微元\\径向--竖直截面};
+  \coordinate (P) at (2.10,-.20);
+  \draw[solgeom] (P)--($(P)+(2.05,0)$) node[right,sollabel] {水平径向};
+  \draw[solgeom] ($(P)+(0,-1.65)$)--($(P)+(0,1.65)$);
+  \node[sollabel,right=4pt] at ($(P)+(0,1.55)$) {竖直};
+  % Numerical parameters never redefine a mathematical symbol such as delta.
+  \draw[solbody,line width=1.05pt]
+    ($(P)+({90+\solConeHalfAngle}:1.55)$)--($(P)+({-90+\solConeHalfAngle}:1.55)$);
+  \fill[Ink] (P) circle (1.3pt);
+  \draw[solforce] (P)--++(180:1.28) node[left,sollabel] {$T\,\mathrm d\varphi$};
+  \draw[solforce] (P)--++(\solConeHalfAngle:1.55) node[above right,sollabel] {$\mathrm dN$};
+  \draw[solforce] (P)--++(-90:1.20) node[below,sollabel] {$\mathrm dm\,g$};
+  \draw[solgeom] ($(P)+(0:.78)$) arc[start angle=0,end angle=\solConeHalfAngle,radius=.78];
+  \node[sollabel] at ($(P)+({\solConeHalfAngle/2}:1.03)$) {$\delta$};
+\end{tikzpicture}
+\soldiagcaption{左图先标出水平纬圈；右图把该圈微元放入径向--竖直截面，张力合力水平向内，支持力向外且向上。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyFour}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.86]
+  \coordinate (O) at (0,0);
+  \draw[solbody] (O) ++(0:1.65) arc[start angle=0,end angle=90,radius=1.65];
+  \draw[solbody] (-0.15,-0.08)--(1.82,-0.08);
+  \fill[Ink] (O) circle (1.2pt) node[below left,sollabel] {$O$};
+  \coordinate (P) at ($(O)+(48:1.65)$);
+  \fill[Ink] (P) circle (1.2pt);
+  \draw[solgeom] (O)--(P) node[midway,above left=5pt,sollabel] {$R$};
+  \draw[solgeom] (O)--++(0:1.15);
+  \draw[solgeom] ($(O)+(0:0.62)$) arc[start angle=0,end angle=48,radius=0.62];
+  \node[sollabel] at (0.85,0.20) {$\varphi$};
+  \draw[solforce] (P)--++(138:1.20) node[above left,sollabel] {$T+\mathrm dT$};
+  \draw[solforce] (P)--++(-42:1.08) node[below right,sollabel] {$T$};
+  \draw[solforce] (P)--++(48:0.95) node[above right,sollabel] {$\mathrm dN$};
+  \draw[solforce] (P)--++(-90:1.15);
+  % 重力标记单列在图下方，避免同时压住竖直力箭头和斜向张力箭头。
+  \node[sollabel] at (1.08,-0.42) {$\lambda gR\,\mathrm d\varphi$};
+  \node[sollabel] at (-1.60,0.95) {$\mathrm ds=R\,\mathrm d\varphi$};
+\end{tikzpicture}
+\soldiagcaption{微元两端张力之差平衡重力的切向分量；沿 $\varphi$ 增大方向张力增加。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyFive}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.80]
+  \draw[solbody] (0,0.45) circle (1.25);
+  \draw[solbody,line width=1.15pt] (-1.25,0.45)--(-1.25,-2.05);
+  \draw[solbody,line width=1.15pt] (1.25,0.45)--(1.25,-2.05);
+  \draw[solbody,line width=1.15pt] (-1.25,0.45) arc[start angle=180,end angle=0,radius=1.25];
+  \draw[soldim] (1.68,-2.05)--(1.68,0.45);
+  \node[sollabel,right] at (1.68,-0.80) {$h=(l-\pi R)/2$};
+  \draw[solforce] (1.25,0.38)--++(90:0.95) node[right,sollabel] {$T_0=\lambda gh$};
+  \draw[solforce] (0,1.70)--++(0.95,0) node[right,sollabel] {$T_{\max}$};
+  \draw[solgeom] (0,0.45)--(0,1.70) node[midway,left,sollabel] {$R$};
+  \node[sollabel] at (-2.65,1.45) {$T_{\max}=T_0+\lambda gR$};
+\end{tikzpicture}
+\soldiagcaption{从自由端向最高点累加下方绳段的切向重力，最高点张力最大。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentySix}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel,align=center] at (-3.05,2.65) {(a) 球面上的\\水平纬圈};
+  \coordinate (O) at (-3.05,-0.25);
+  \draw[solbody] (O) circle (1.65);
+  \draw[solgeom] (-3.05,-2.05)--(-3.05,1.72);
+  \draw[solbody,line width=1.05pt] (-4.22,.917)
+    arc[start angle=180,end angle=360,x radius=1.17,y radius=.25];
+  \draw[solgeom] (-4.22,.917)
+    arc[start angle=180,end angle=0,x radius=1.17,y radius=.25];
+  \fill[Ink] (O) circle (1.2pt) node[below left,sollabel] {$O$};
+  \draw[solgeom] (O)--(-3.05,.917) node[midway,left,sollabel] {$z$};
+  \draw[solgeom] (-3.05,.917)--(-1.88,.917) node[midway,above,sollabel] {$b$};
+  \draw[solgeom] (O)--(-1.88,.917) node[midway,below right,sollabel] {$R$};
+
+  \node[solpanel,align=center] at (1.38,2.65) {(b) 纬圈微元\\的受力};
+  \coordinate (C) at (-.05,-.55);
+  \coordinate (P) at (1.15,.65);
+  \draw[solgeom] (C)--(P) node[midway,above left,sollabel] {$R$};
+  \draw[solgeom] (C)--(1.15,-.55);
+  \node[sollabel] at (.50,-.82) {$b$};
+  \draw[solgeom] (1.15,-.55)--(P) node[midway,right=4pt,sollabel] {$z$};
+  \fill[Ink] (C) circle (1.2pt) node[below left,sollabel] {$O$};
+  \fill[Ink] (P) circle (1.2pt) node[above left=5pt,sollabel] {$P$};
+  \draw[solforce] (P)--++(45:1.18) node[above right,sollabel] {$\mathrm dN$};
+  \draw[solforce] (P)--++(180:1.18) node[left,sollabel] {$T\,\mathrm d\varphi$};
+  \draw[solforce] (P)--++(-90:1.60) node[below=4pt,sollabel] {$\dfrac{Mg}{2\pi}\,\mathrm d\varphi$};
+\end{tikzpicture}
+\soldiagcaption{左图明确绳圈是球面纬圈；右图显示支持力沿球面半径，水平分量平衡张力合力，竖直分量平衡重力。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentySeven}{%
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \def\cc{2.7}\def\xp{2.2}
+  \pgfmathsetmacro{\uu}{\xp/\cc}
+  \pgfmathsetmacro{\yp}{\cc*(cosh(\uu)-1)}
+  \pgfmathsetmacro{\slope}{sinh(\uu)}
+  \pgfmathsetmacro{\angleT}{atan(\slope)}
+  \pgfmathsetmacro{\xg}{\xp-\yp/\slope}
+  \pgfmathsetmacro{\yg}{\xp/(2*sinh(\uu))+\cc*cosh(\uu)/2-\cc}
+  \draw[axis] (-1.65,0)--(3.85,0) node[right,sollabel] {$x$};
+  \draw[axis] (0,-.65)--(0,2.35) node[above,sollabel] {$y$};
+  \draw[TextGray,thick,domain=-1.65:0,samples=41] plot (\x,{\cc*(cosh(\x/\cc)-1)});
+  \draw[curve,domain=0:2.2,samples=61] plot (\x,{\cc*(cosh(\x/\cc)-1)});
+  \fill[Ink] (0,0) circle (1.3pt) node[below left=3pt,sollabel] {$O$};
+  \coordinate (P) at (\xp,\yp);
+  \fill[Ink] (P) circle (1.3pt) node[above left=3pt,sollabel] {$P$};
+  \draw[solforce] (P)--++(\angleT:1.40) node[above right,sollabel] {$T$};
+  \coordinate (G) at (\xg,\yg);
+  \draw[solforce] (G)--(\xg,-1.10) node[below=4pt,sollabel] {$\lambda gs$};
+  \draw[solforce] (0,0)--++(180:1.40) node[below left=3pt,sollabel] {$H$};
+  \draw[solgeom] (P)--++(0:1.40);
+  \draw[solgeom] ($(P)+(0:.76)$) arc[start angle=0,end angle=\angleT,radius=.76];
+  \node[sollabel] at ($(P)+({\angleT/2}:1.05)$) {$\theta$};
+  \draw[solgeom] (P)--(\xp,-1.85) (0,-1.55)--(0,-1.85);
+  \draw[soldim] (0,-1.75)--(\xp,-1.75) node[midway,below=3pt,sollabel] {$x$};
+  \node[sollabel] at (.75,1.62) {弧长 $s$};
+  \draw[TextGray,thin] (.75,1.40)--(.65,{\cc*(cosh(.65/\cc)-1)});
+\end{tikzpicture}
+\soldiagcaption{对最低点到 $P$ 的绳段整体受力：左端受 $H$，右端受沿切线的 $T$，绳重为 $\lambda gs$。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyEight}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \coordinate (O) at (0,-1.25);
+  \coordinate (A0) at (0,1.45);
+  \def\rodlen{2.70}\def\tilt{17}
+  \coordinate (A) at ($(O)+({90-\tilt}:\rodlen)$);
+  \coordinate (L) at (-2.85,1.45);
+  \coordinate (R) at (2.85,1.45);
+  \draw[solbody] (-3.15,-1.25)--(3.15,-1.25);
+  \fill[Ink] (O) circle (1.4pt) node[below left=2pt,sollabel] {$O$};
+  \draw[solgeom] (O)--(A0);
+  \draw[solbody,line width=1.2pt] (O)--(A);
+  \fill[Ink] (A) circle (1.3pt) node[below right=5pt,sollabel] {$A$};
+  \draw[solbody] (L)--++(0,-0.42);
+  \draw[solbody] (R)--++(0,-0.42);
+  \draw[solbody,decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}]
+    (L)--(A);
+  \draw[solbody,decorate,decoration={zigzag,segment length=4pt,amplitude=2pt}]
+    (A)--(R);
+  \draw[solgeom] (L)--(R);
+  \coordinate (DimBase) at (0,2.24);
+  \draw[solgeom] (A0)--(A0|-DimBase) (A)--(A|-DimBase);
+  \draw[soldim] (A0|-DimBase)--(A|-DimBase)
+    node[midway,above=3pt,sollabel] {$x=L\sin\varphi$};
+  \draw[solgeom] ($(O)+(90:0.72)$) arc[start angle=90,end angle={90-\tilt},radius=0.72];
+  \draw[TextGray,thin] ($(O)+({90-\tilt/2}:.72)$)--(-.52,-.28);
+  \node[left,sollabel] at (-.52,-.28) {$\varphi$};
+  \coordinate (G) at ($(O)!0.5!(A)$);
+  \draw[solforce] (G)--++(-90:0.94) node[right=3pt,sollabel] {$mg$};
+  \node[sollabel] at (-1.72,1.92) {$\Delta\ell_{\rm L}\simeq+x$};
+  \node[sollabel] at (1.95,1.92) {$\Delta\ell_{\rm R}\simeq-x$};
+\end{tikzpicture}
+\soldiagcaption{杆顶水平位移为 $x$；小角度下两弹簧一伸一缩，形变量的一阶项为 $\pm x$。}
+\end{center}}
+
+\newcommand{\soldiagOneTwentyNine}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+  \node[solpanel] at (-2.15,1.80) {(a) 顶端质点 $M$};
+  \coordinate (M) at (-2.15,.25);
+  \draw[solgeom] (M)--++(235:1.15) (M)--++(305:1.15);
+  \draw[solgeom] (M)--++(90:1.18);
+  \fill[Ink] (M) circle (2.0pt) node[right=6pt,sollabel] {$M$};
+  \draw[solforce] (M)--++(125:1.20) node[above left,sollabel] {$P$};
+  \draw[solforce] (M)--++(55:1.20) node[above right,sollabel] {$P$};
+  \draw[solforce] (M)--++(-90:1.15) node[below,sollabel] {$Mg$};
+  \draw[solgeom] ($(M)+(90:.56)$) arc[start angle=90,end angle=55,radius=.56];
+  \node[sollabel] at ($(M)+(72.5:.78)$) {$\theta$};
+
+  \node[solpanel] at (2.05,1.80) {(b) 下端结点 $A$};
+  \coordinate (A) at (2.05,-.25);
+  \draw[solgeom] (A)--++(55:1.38);
+  \fill[Ink] (A) circle (2.0pt) node[below right=6pt,sollabel] {$A$};
+  \draw[solforce] (A)--++(235:1.10) node[below left,sollabel] {$P$};
+  \draw[solforce] (A)--++(0:1.12) node[right,sollabel] {$T$};
+  \draw[solforce] (A)--++(90:1.12) node[above left,sollabel] {$N_A$};
+\end{tikzpicture}
+\soldiagcaption{两个面板分别只画一个研究对象：顶端质点满足 $2P\cos\theta=Mg$；下端结点的杆力、弹簧力和支持力作用于同一点。}
+\end{center}}
+
+\newcommand{\soldiagOneThirty}{%
+\begin{center}
+\begin{tikzpicture}[scale=.92]
+  \def\rodlen{4.6}\def\xp{3.8}
+  \pgfmathsetmacro{\yp}{(\rodlen-sqrt(\rodlen^2-\xp^2))/2}
+  \coordinate (A) at (0,{\rodlen-\yp});
+  \coordinate (P) at (\xp,\yp);
+  \coordinate (G) at ($(A)!0.5!(P)$);
+  \coordinate (C) at (G|-A);
+  \draw[solbody] (0,0)--(0,4.20);
+  \draw[curve,domain=0:4.58,samples=101] plot (\x,{(\rodlen-sqrt(\rodlen^2-\x^2))/2});
+  \draw[solbody,line width=1.2pt] (A)--(P);
+  \fill[Ink] (A) circle (1.3pt) node[left,sollabel] {$A(0,Y)$};
+  \fill[Ink] (P) circle (1.3pt) node[below right,sollabel] {$P(x,y)$};
+  \fill[Ink] (G) circle (1.3pt) node[below left,sollabel] {$G$};
+  \fill[Ink] (C) circle (1.3pt) node[above right=4pt,sollabel] {$C$};
+  \draw[solgeom] (A)--($(C)+(1.25,0)$);
+  \draw[solgeom] (G)--($(C)+(0,.40)$);
+  \draw[solgeom] (P)--(C);
+  \draw[solforce] (A)--++(0:1.15) node[below,sollabel] {$N_A$};
+  \draw[solforce] (G)--++(-90:1.25) node[below,sollabel] {$mg$};
+  \draw[solforce] (P)--($(P)!0.60!(C)$) node[midway,right,sollabel] {$N_P$};
+  \node[sollabel,above] at (2.2,4.30) {三力作用线交于 $C$};
+\end{tikzpicture}
+\soldiagcaption{墙面支持力、重力和曲面法向力三条作用线必须共点。}
+\end{center}}
+
+\newcommand{\soldiagOneThirtyOne}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+  \def\Rbow{3.45}\def\rball{0.68}\def\phideg{12}
+  \pgfmathsetmacro{\aradius}{\Rbow-\rball}
+  \pgfmathsetmacro{\psideg}{-\aradius/\rball*\phideg}
+  \pgfmathsetmacro{\centerangle}{-90+\phideg}
+  \pgfmathsetmacro{\gangle}{90+\psideg}
+  \coordinate (C) at (0,1.15);
+  \coordinate (O) at ($(C)+(\centerangle:\aradius)$);
+  \coordinate (K) at ($(C)+(\centerangle:\Rbow)$);
+  \draw[solbody] ($(C)+(180:\Rbow)$) arc[start angle=180,end angle=360,radius=\Rbow];
+  \fill[Ink] (C) circle (1.3pt) node[above left=2pt,sollabel] {碗心 $C$};
+  \draw[solgeom] (C)--(0,-1.05);
+  \draw[solgeom] (C)--(O) node[pos=0.48,left=6pt,sollabel] {$a=R-r$};
+  \draw[solbody] (O) circle (\rball);
+  \fill[Ink] (O) circle (1.3pt) node[below left,sollabel] {$O$};
+  \fill[Ink] (K) circle (1.0pt);
+  \draw[solgeom] (K)--++(.48,-.14) node[right,sollabel] {接触点};
+  \draw[solgeom] ($(C)+(0,-0.66)$) arc[start angle=-90,end angle=\centerangle,radius=0.66];
+  \draw[TextGray,thin] ($(C)+(-84:.66)$)--(-.64,.38);
+  \node[left,sollabel] at (-.64,.38) {$\varphi$};
+  \coordinate (G) at ($(O)+(\gangle:0.46)$);
+  \fill[Ink] (G) circle (1.3pt) node[above right=4pt,sollabel] {$G$};
+  \draw[solbody] (O)--(G);
+  \coordinate (Hm) at ($(O)!.5!(G)$);
+  \draw[TextGray,thin] (Hm)--($(O)+(2.30,-.12)$);
+  \node[right,sollabel] at ($(O)+(2.30,-.12)$) {$OG=h$};
+  \draw[solgeom] (O)--++(90:1.18);
+  \draw[solgeom,-{Latex[length=1.7mm]}] ($(O)+(90:1.02)$)
+    arc[start angle=90,end angle=\gangle,radius=1.02];
+  \node[sollabel] at ($(O)+(66:1.32)$) {$\psi$};
+\end{tikzpicture}
+\soldiagcaption{球心与接触点沿同一半径；示意转角由无滑动关系 $\psi=-(a/r)\varphi$ 同步生成。}
+\end{center}}
+
+\newcommand{\soldiagConvexRolling}{%
+\begin{center}
+\begin{tikzpicture}[scale=1]
+  \def\Sradius{2.10}\def\rball{.65}\def\phideg{15}
+  \pgfmathsetmacro{\aradius}{\Sradius+\rball}
+  \pgfmathsetmacro{\psideg}{-\aradius/\rball*\phideg}
+  \coordinate (C) at (0,-1.8);
+  \coordinate (O) at ($(C)+({90-\phideg}:\aradius)$);
+  \coordinate (K) at ($(C)+({90-\phideg}:\Sradius)$);
+  \coordinate (G) at ($(O)+({270+\psideg}:.30)$);
+  \draw[solbody] ($(C)+(20:\Sradius)$) arc[start angle=20,end angle=160,radius=\Sradius];
+  \draw[solbody] (O) circle (\rball);
+  \draw[solgeom] (C)--($(C)+(90:3.25)$) (C)--(O);
+  \fill[Ink] (C) circle (1.4pt) node[below,sollabel] {$C$};
+  \fill[Ink] (K) circle (1.4pt);
+  \draw[TextGray,thin] (K)--(1.90,-.12) node[right,sollabel] {接触点};
+  \fill[Ink] (O) circle (1.4pt) node[right=4pt,sollabel] {$O$};
+  \fill[Ink] (G) circle (1.4pt);
+  \draw[TextGray,thin] (G)--(1.85,.60);
+  \node[right,sollabel] at (1.85,.60) {$G$};
+  \draw[solbody] (O)--(G);
+  \draw[solgeom] ($(C)+(90:1.04)$) arc[start angle=90,end angle={90-\phideg},radius=1.04];
+  \node[sollabel] at ($(C)+(82.5:1.32)$) {$\varphi$};
+  \draw[solgeom] (O)--++(90:1.24);
+  \draw[solgeom,->] ($(O)+(90:.95)$) arc[start angle=90,end angle={90+\psideg},radius=.95];
+  \node[sollabel] at ($(O)+({90+\psideg/2}:1.25)$) {$\psi$};
+  \node[sollabel,align=left] at (-1.80,.82) {$CO=S+r$\\$OG=|h|$，$h<0$};
+  \node[sollabel] at (0,-2.28) {凸面：重心须在球心下方};
+\end{tikzpicture}
+\soldiagcaption{$C$、接触点和 $O$ 共线；球心向右偏转时球顺时针转动，图示 $G$ 位于球心下侧。}
+\end{center}}

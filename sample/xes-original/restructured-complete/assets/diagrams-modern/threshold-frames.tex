@@ -1,0 +1,15 @@
+% Contract: generic two-mass final state at threshold. All lab momenta forward;
+% CM final particles at rest. Directions only; lengths not magnitudes.
+\begin{tikzpicture}[>=Latex,font=\small,y=.75cm]
+ \node[anchor=east] at (0,.8){实验室初态};
+ \fill (.7,.8) circle(2.5pt) (3.7,.8) circle(2.5pt);
+ \node[below=5pt] at (.7,.8){$a$};\node[below=5pt] at (3.7,.8){$b$ 静止};
+ \draw[DeepBlue,thick,->] (.9,.8)--(2.5,.8) node[midway,above=4pt]{$p_a$};
+ \node[anchor=east] at (0,-.9){实验室阈值末态};
+ \foreach \x in {.7,3.7}{\fill (\x,-.9) circle(2.5pt);\draw[DeepBlue,thick,->] (\x,-.9)--++(.9,0);}
+ \node[above=5pt] at (.7,-.9){$1$};\node[above=5pt] at (3.7,-.9){$2$};
+ \node at (2.2,-1.6){同一速度 $V_c$，整体运动};
+ \node[anchor=east] at (0,-2.8){质心系阈值末态};
+ \fill (.7,-2.8) circle(2.5pt) (3.7,-2.8) circle(2.5pt);
+ \node[below=5pt] at (.7,-2.8){$p_1^*=0$};\node[below=5pt] at (3.7,-2.8){$p_2^*=0$};
+\end{tikzpicture}

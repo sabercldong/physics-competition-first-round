@@ -1,0 +1,98 @@
+{
+  "source_id": "autumn_student_2020",
+  "source_sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+  "independent_visual_inventory": true,
+  "review_scope": "2026-09-05独立查看物理11—14页（印刷9—12页）原件预览，逐段检查公式和插图的教学作用。仅为来源对象登记，不升级整章验收。",
+  "pages": [
+    {
+      "physical_page":11,"printed_page":9,"classification":"teaching",
+      "inspected_render":"build/source-pages/autumn_student_2020/page-011.jpg",
+      "objects":[
+        {"id":"p01","object_type":"paragraph","source_locator":"首段：标量场论、矢量场论、张量场论、旋量场论","description":"按数学类型分类场，电磁四势及弱场引力张量","target_id":"r2ch01:sec:matter"},
+        {"id":"p02","object_type":"paragraph","source_locator":"首段中：引力波的加号与叉号偏振","description":"引力波的两个张量偏振不同于电磁矢量偏振","target_id":"r2ch01:fig:002"},
+        {"id":"p03","object_type":"paragraph","source_locator":"首段后半：真空薄膜、起伏振动、石子压弯类比","description":"真空态、膜起伏和相互作用的直观类比","target_id":"r2ch01:sec:matter","notes":"恢复类比并限定其作用；不把真空等同于真实二维膜，也不把真空态能量当作经典振动常数"},
+        {"id":"h01","object_type":"heading","source_number":"1.1.3","source_locator":"参考系，物理规律与其不变性","description":"参考系与规律模块","target_id":"r2ch01:sec:frame"},
+        {"id":"d01","object_type":"definition","source_locator":"坐标系(coordinate system)和参考系(reference system)","description":"坐标规则与观察者参考系的区别","target_id":"r2ch01:sec:frame"},
+        {"id":"p04","object_type":"paragraph","source_locator":"任意指定观察者、3+1维运动、手边胸前头顶方向、固有参考系","description":"固有参考系构造、坐标尺度与观察者运动","target_id":"r2ch01:sec:frame"},
+        {"id":"p05","object_type":"paragraph","source_locator":"物理规律本质是什么…实验量关系、状态和态变量","description":"物理规律、状态变量、广义坐标与广义速度","target_id":"r2ch01:sec:frame"},
+        {"id":"d02","object_type":"definition","source_locator":"动力学系统：给定t=0的{qα(0),qdotα(0)}预言未来状态","description":"决定论与完整初态","target_id":"r2ch01:sec:frame","notes":"补充正则条件和局部唯一性，不声称只给同数目的二阶方程便保证解唯一"},
+        {"id":"p06","object_type":"paragraph","source_locator":"事实上不光将来、过去状态也可预言","description":"经典理想模型反向演化和初值的意义","target_id":"r2ch01:sec:frame"},
+        {"id":"f01","object_type":"formula","source_locator":"独立二阶方程fi(qddotα,qdotα,qα,t)=0","description":"一般隐式二阶动力学方程","target_id":"r2ch01:sec:frame"},
+        {"id":"p07","object_type":"paragraph","source_locator":"方程数目与坐标数目、最高二阶、前后推理","description":"自由度、方程数和初始条件的匹配","target_id":"r2ch01:sec:frame"},
+        {"id":"p08","object_type":"paragraph","source_locator":"拉普拉斯妖、决定论、自由意志与预言的科学目的","description":"决定论的历史解释、限制与科学方法意义","target_id":"r2ch01:sec:frame"},
+        {"id":"p09","object_type":"paragraph","source_locator":"末句：下一个伽利略相对性原理","description":"伽利略相对性原理的引入","target_id":"r2ch01:eq:006","notes":"源仅提示课堂引入，新版补出变换和方程形式不变的含义"},
+        {"id":"fn07","object_type":"footnote","source_number":"脚注7","source_locator":"页脚：本章只讨论非相对论，相对论见后","description":"本章参考系讨论的低速经典范围","target_id":"r2ch01:sec:frame"},
+        {"id":"fn08","object_type":"footnote","source_number":"脚注8","source_locator":"页脚：耗散、时间平移、时间反演与速度反号","description":"时间平移对称性和时间反演对称性的区别","target_id":"r2ch01:sec:frame","notes":"补充固定磁场不做功但仍须检查反演外场的反例，纠正无耗散必然等价于速度偶函数的说法"}
+      ]
+    },
+    {
+      "physical_page":12,"printed_page":10,"classification":"teaching",
+      "inspected_render":"build/source-pages/autumn_student_2020/page-012.jpg",
+      "objects":[
+        {"id":"h01","object_type":"heading","source_number":"1.2","source_locator":"页首：运动的描述","description":"运动描述模块","target_id":"r2ch01:sec:kinematics"},
+        {"id":"h02","object_type":"heading","source_number":"1.2.1","source_locator":"质点的运动","description":"质点运动的基础","target_id":"r2ch01:sec:kinematics"},
+        {"id":"p01","object_type":"paragraph","source_locator":"首段：质点运动是复杂连续体运动基础；每时刻有位置","description":"运动的函数表示","target_id":"r2ch01:eq:007"},
+        {"id":"f01","object_type":"formula","source_locator":"r=r(t)","description":"位置是时间的矢量函数","target_id":"r2ch01:eq:007"},
+        {"id":"p02","object_type":"paragraph","source_locator":"使用实数矢量空间与矢量描述二维或三维空间","description":"二维、三维矢量空间和函数映射","target_id":"r2ch01:sec:kinematics"},
+        {"id":"f02","object_type":"formula","source_locator":"r∈R² or R³","description":"位置函数的二维或三维值域","target_id":"r2ch01:sec:kinematics","notes":"正文用从时间轴到二维或三维矢量空间的映射表述，并保留分量式"},
+        {"id":"p03","object_type":"paragraph","source_locator":"图右：函数与矢量分析是运动学基础；速度加速度逐次求导","description":"分析学工具与运动学导数","target_id":"r2ch01:eq:008"},
+        {"id":"f03","object_type":"formula","source_locator":"v=dr/dt=lim[r(t+Δt)−r(t)]/Δt","description":"瞬时速度极限定义","target_id":"r2ch01:eq:008"},
+        {"id":"f04","object_type":"formula","source_locator":"a=dv/dt=lim[v(t+Δt)−v(t)]/Δt","description":"瞬时加速度极限定义","target_id":"r2ch01:eq:008"},
+        {"id":"f05","object_type":"formula","source_locator":"a=d²r/dt²=lim二阶中心差分","description":"加速度的二阶差分定义","target_id":"r2ch01:sec:kinematics"},
+        {"id":"fig03","object_type":"figure","source_number":"图1.3","source_locator":"左中：位置r、速度v、加速度a和微分箭头","description":"位置空间与速度空间的切线和导数关系","target_id":"r2ch01:fig:003","notes":"改为两个并列空间，由同一显式r(u)及导数计算；r、v、a方向和相邻有限差分定义一起保留原图的教学作用"},
+        {"id":"p04","object_type":"paragraph","source_locator":"把速度共起点画出、端点曲线、速度空间与动量空间","description":"速度图的构造及其加速度切向量","target_id":"r2ch01:sec:kinematics"},
+        {"id":"p05","object_type":"paragraph","source_locator":"匀重力抛体速度图为竖直线；平方反比天体运动速度图为圆","description":"两个速度空间应用","target_id":"r2ch01:sec:kinematics","notes":"补回开普勒速度圆，不只泛称有心力可简化；给出dv/dtheta积分、圆心与半径，限定非零角动量"},
+        {"id":"d01","object_type":"definition","source_locator":"急动度jerk及j=da/dt=d³r/dt³","description":"加加速度的名称和定义","target_id":"r2ch01:eq:008"},
+        {"id":"p06","object_type":"paragraph","source_locator":"矢量函数是实数到矢量映射；具体例为抛体运动","description":"矢量函数与匀加速运动","target_id":"r2ch01:sec:kinematics"},
+        {"id":"f06","object_type":"formula","source_locator":"r=r0+v0t+gt²/2","description":"匀强重力运动矢量解","target_id":"r2ch01:sec:kinematics"},
+        {"id":"f07","object_type":"formula","source_locator":"a=d²r/dt²=g","description":"匀强重力运动的微分方程","target_id":"r2ch01:sec:kinematics"},
+        {"id":"fn09","object_type":"footnote","source_number":"脚注9","source_locator":"页脚：运动学运动方程与动力学运动方程的区别","description":"位置函数与确定位置函数的动力学方程","target_id":"r2ch01:sec:kinematics"},
+        {"id":"p07","object_type":"paragraph","source_locator":"但一般情况下…用分解思想表示矢量函数","description":"从矢量运动到标量分量的求解策略","target_id":"r2ch01:eq:009"},
+        {"id":"h03","object_type":"heading","source_number":"1.直角坐标下的分解","source_locator":"页底的小标题及续页段","description":"固定直角基矢分量法","target_id":"r2ch01:eq:009"}
+      ]
+    },
+    {
+      "physical_page":13,"printed_page":11,"classification":"teaching",
+      "inspected_render":"build/source-pages/autumn_student_2020/page-013.jpg",
+      "objects":[
+        {"id":"p01","object_type":"paragraph","source_locator":"页首续段：三个标量函数x(t),y(t),z(t)表示位置","description":"位置分量与基矢展开","target_id":"r2ch01:eq:009"},
+        {"id":"f01","object_type":"formula","source_locator":"r=(x,y,z)=xi+yj+zk","description":"位矢的数组及单位基矢形式","target_id":"r2ch01:eq:009","notes":"主式使用ex/ey/ez，邻段补齐i/j/k记法及其等价性"},
+        {"id":"p02","object_type":"paragraph","source_locator":"哈密顿与四元数历史，i/j/k是长度为1的单位矢量","description":"基矢符号历史与两套记号","target_id":"r2ch01:sec:kinematics","notes":"补回Hamilton说明；区分矢量乘法与四元数乘法"},
+        {"id":"p03","object_type":"paragraph","source_locator":"分解以后重新合成速度加速度；先求x分量","description":"分量求导与重新合成","target_id":"r2ch01:eq:009"},
+        {"id":"f02","object_type":"formula","source_locator":"v=vxi+vyj+vzk=dr/dt","description":"速度的固定基矢展开","target_id":"r2ch01:eq:009"},
+        {"id":"f03","object_type":"formula","source_locator":"a=axi+ayj+azk=d²r/dt²","description":"加速度的固定基矢展开","target_id":"r2ch01:eq:009"},
+        {"id":"f04","object_type":"formula","source_locator":"vx=dx/dt，ax=d²x/dt²","description":"x分量的导数关系","target_id":"r2ch01:eq:009"},
+        {"id":"f05","object_type":"formula","source_locator":"i·dr/dt=d(i·r)/dt；i·dv/dt=d(i·v)/dt","description":"固定方向投影与求导可交换的两个公式","target_id":"r2ch01:sec:kinematics"},
+        {"id":"proof01","object_type":"proof","source_locator":"点积的莱布尼茨法则和常矢量i导数为零","description":"投影与求导交换的理由","target_id":"r2ch01:sec:kinematics"},
+        {"id":"p04","object_type":"paragraph","source_locator":"曲线段与实数区间同胚、参数t与光滑映射","description":"参数曲线的局部几何及同胚概念","target_id":"r2ch01:sec:kinematics","notes":"补回homeomorphism并限定无自交局部正则段，不把任意整条轨迹都视为与实轴同胚"},
+        {"id":"f06","object_type":"formula","source_locator":"x=x(t), y=y(t), z=z(t)","description":"空间曲线参数方程","target_id":"r2ch01:sec:kinematics"},
+        {"id":"p05","object_type":"paragraph","source_locator":"参数方程不等于y=f(x)；t解释为时间时才为运动方程","description":"轨迹与运动的区别、同轨迹不同运动","target_id":"r2ch01:sec:kinematics"},
+        {"id":"p06","object_type":"paragraph","source_locator":"地面z=0出发、仰角phi、x沿抛向、z竖直","description":"斜抛初态与参考轴约定","target_id":"r2ch01:eq:010"},
+        {"id":"f07","object_type":"formula","source_locator":"x=v0t cosphi，z=v0t sinphi−gt²/2","description":"斜抛分量运动方程","target_id":"r2ch01:eq:010"},
+        {"id":"f08","object_type":"formula","source_locator":"消t得z=x tanphi−gx²(1+tan²phi)/(2v0²)","description":"斜抛轨迹方程","target_id":"r2ch01:eq:011","notes":"三角恒等式改写为cos²phi分母，内容等价"},
+        {"id":"fig04","object_type":"figure","source_number":"图1.4","source_locator":"右下：抛体、地面平面、x/z、v0、角度","description":"初速度与抛物线相切、落地与初始水平面一致","target_id":"r2ch01:fig:004","notes":"改为轨道平面剖面，地面在本平面的交线为x轴；修正源图角度theta与正文phi不一致，新增P/v/g关系"}
+      ]
+    },
+    {
+      "physical_page":14,"printed_page":12,"classification":"teaching",
+      "inspected_render":"build/source-pages/autumn_student_2020/page-014.jpg",
+      "objects":[
+        {"id":"h01","object_type":"heading","source_number":"2.平面极坐标系下的分解","source_locator":"页首小标题","description":"平面极坐标模块","target_id":"r2ch01:sec:polar"},
+        {"id":"d01","object_type":"definition","source_locator":"首段：极坐标、极点pole、极轴polar axis、r与theta","description":"极点极轴和两坐标的构造","target_id":"r2ch01:sec:polar"},
+        {"id":"p01","object_type":"paragraph","source_locator":"给定(r,theta)定位；r(t),theta(t)；光滑性、多周角连续","description":"极坐标运动方程、消参及角度多值","target_id":"r2ch01:sec:polar"},
+        {"id":"p02","object_type":"paragraph","source_locator":"例如抛体若取z轴为极轴","description":"竖直极轴的抛体运动表示","target_id":"r2ch01:eq:017","notes":"补回竖直极轴版本，使用theta_z并给出与水平极轴theta的转换，防止同符号混用"},
+        {"id":"f01","object_type":"formula","source_locator":"r²=(v0t+gt²/2)²=g²t⁴/4−gv0t³sinphi+v0²t²","description":"抛体到发射点距离平方的展开","target_id":"r2ch01:eq:017"},
+        {"id":"f02","object_type":"formula","source_locator":"tantheta=2v0cosphi/(2v0sinphi−gt)","description":"竖直极轴的角度时间关系","target_id":"r2ch01:eq:017","notes":"给出象限规则、z=0的除零边界，不只写正切等式"},
+        {"id":"p03","object_type":"paragraph","source_locator":"如何倾角抛出使物体距离越来越远","description":"距离单调性判据的建模","target_id":"r2ch01:eq:017"},
+        {"id":"proof01","object_type":"proof","source_locator":"dr/dt>0等价d(r²/2)/dt>0=r·v","description":"由乘积求导到径向速度判据","target_id":"r2ch01:eq:017"},
+        {"id":"f03","object_type":"formula","source_locator":"(v0+gt/2)·(v0+gt)=g²t²/2−3gv0t sinphi/2+v0²>0","description":"距离导数变为关于时间的二次式","target_id":"r2ch01:eq:017"},
+        {"id":"proof02","object_type":"proof","source_locator":"判别式<0得sinphi<2√2/3","description":"斜抛始终远离的完整判据","target_id":"r2ch01:eq:017","notes":"补充有限飞行区间内顶点位置及允许瞬时径向速度零时的等号；练1.1另给同模型完整习题解"},
+        {"id":"p04","object_type":"paragraph","source_locator":"下半：极坐标在典型追击问题中的天然优势","description":"引出四质点追逐模型","target_id":"r2ch01:sec:pursuit"},
+        {"id":"q01","object_type":"example","source_locator":"四个平面质点初始正方形，各质点等速追逐前一点，确定运动与轨迹","description":"正文中的未编号追逐例子及求解任务","target_id":"r2ch01:ex:001","notes":"将正文未编号案例明确编号为例1.1；完整解答给出r(t)、theta(t)、轨迹和相遇时间，不把原有案例算成新创题"},
+        {"id":"f04","object_type":"formula","source_locator":"速度大小|v|=√(xdot²+ydot²)=v","description":"等速追逐的直角坐标约束","target_id":"r2ch01:sec:pursuit"},
+        {"id":"f05","object_type":"formula","source_locator":"末行位矢速度夹角3π/4，点积/叉积比为−1","description":"相对夹角给出的直角坐标约束","target_id":"r2ch01:sec:pursuit","notes":"保留分量形式；纠正源把点积/叉积模写为tan，一般应为cot，此角下数值恰相同"},
+        {"id":"fig05","object_type":"figure","source_number":"图1.5","source_locator":"左下：初始正方形、瞬时正方形、速度、位矢与theta","description":"追逐轨迹与缩小旋转的正方形几何","target_id":"r2ch01:fig:006","notes":"分为轨迹和瞬时分量两图；补回瞬时正方形与CP/PQ/theta，明确速度方向与角度3π/4"}
+      ]
+    }
+  ]
+}

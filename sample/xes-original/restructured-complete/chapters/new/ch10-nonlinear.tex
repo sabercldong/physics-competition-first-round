@@ -1,0 +1,35 @@
+\section{非线性振动与摄动（选读）}\label{ch10:sec:nonlinear}
+保留势能的高阶项后，回复力不再线性，叠加原理也不能原样使用。一个保留左右对称性的例子是杜芬方程（Duffing equation）
+\[
+ \ddot x+\omega_0^2x+\varepsilon\alpha x^3=0,
+ \qquad U=\frac12m\omega_0^2x^2+\frac14m\varepsilon\alpha x^4.
+\]
+$\varepsilon$用来标记小修正阶数，要求$|\varepsilon\alpha A^2|\ll\omega_0^2$。若仍把频率固定为$\omega_0$，摄动方程会产生$t\sin\omega_0t$这样的长期项，时间稍长就失去一致性。为避免它，令$\tau=\Omega t$，$\Omega=\omega_0+\varepsilon\Omega_1+\cdots$，$x=A\cos\tau+\varepsilon x_1(\tau)+\cdots$。
+
+因为$\ddot x=\Omega^2\dd^2x/\dd\tau^2$，收集一阶项得到
+\[
+ \omega_0^2(x_1''+x_1)=2\omega_0\Omega_1 A\cos\tau-\alpha A^3\cos^3\tau.
+\]
+利用$\cos^3\tau=(3\cos\tau+\cos3\tau)/4$，右端的基频系数是$2\omega_0\Omega_1A-3\alpha A^3/4$。令它为零消去共振驱动，得到
+\[
+ \Omega_1=\frac{3\alpha A^2}{8\omega_0},\qquad
+ \boxed{\Omega\simeq\omega_0\left(1+\frac{3\varepsilon\alpha A^2}{8\omega_0^2}\right)}.
+\]
+余下$x_1''+x_1=-\alpha A^3\cos3\tau/(4\omega_0^2)$，特解为$\alpha A^3\cos3\tau/(32\omega_0^2)$。若把$A$定义为$t=0$的转向位移，还应加齐次项使$x_1(0)=0$，从而
+\[
+ x\simeq A\cos\tau+
+ \frac{\varepsilon\alpha A^3}{32\omega_0^2}(\cos3\tau-\cos\tau).
+\]
+这明确显示三次谐波。$\varepsilon\alpha>0$为硬化，振幅增大时频率升高；$\varepsilon\alpha<0$为软化，只能在平衡附近和模型有效范围讨论，不能外推到负四次势能导致的远处失稳区域。令非线性参数趋于零，以上结果恢复简谐振动。
+
+另一类现象来自参数调制，例如
+\[
+ \ddot x+\omega_0^2[1+h\cos(\Omega t)]x=0,\qquad |h|\ll1.
+\]
+外界改变的是回复系数，而不是直接加同频外力。在$\Omega=2\omega_0$附近，设$x=a(t)\cos\omega_0t+b(t)\sin\omega_0t$，$a,b$缓变，忽略其二阶时间导数。保留右端乘积中的基频项，得到
+\[
+ 2\omega_0\dot b=-\frac12h\omega_0^2a,
+ \qquad -2\omega_0\dot a=\frac12h\omega_0^2b.
+\]
+即$\dot a=-h\omega_0b/4$、$\dot b=-h\omega_0a/4$，两种包络组合有指数率$\pm h\omega_0/4$；一般初始微扰包含增长分量。这是主参数共振的近似机制。若另有弱黏性阻尼，增长须克服$\gamma$，在精确调谐的一阶近似下要求$|h|\omega_0/4>\gamma$；频率失谐也会缩小不稳定区。严格零位移、零速度仍是齐次方程的零解，不会在没有扰动时凭空起振。
+\input{ch10-nonlinear-teaching.tex}

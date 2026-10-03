@@ -1,0 +1,526 @@
+由动量定理可知，一个力学系统在某段过程中的总动量变化，等于外力在该过程中的总冲量，
+与内力无关。因此，当系统所受合外力为零时，总动量不发生变化，这就是动量守恒。它是
+动量定理的直接推论，却包含十分丰富的内容：不必知道系统内部各物体间作用力的大小和
+变化过程，也能把运动前后的总体状态联系起来。在实际问题中，动量守恒常有以下三种
+表现形式。
+
+\textbf{孤立系统}\quad 不受任何外力作用的力学系统称为孤立系统。孤立系统的总动量
+必然守恒。动量是矢量，因此在三维空间中，动量守恒可分别给出三个方向上的独立方程；
+每一时刻的三个动量分量都分别等于相应的初始分量。
+
+\textbf{分动量守恒}\quad 严格的孤立系统在现实中很少见，但若系统在某个特定方向上的
+合外力为零，则该方向上的总动量分量守恒；其他方向的动量仍可以发生变化。
+
+\textbf{碰撞瞬间的动量守恒}\quad 在冲击或碰撞的极短时间内，碰撞力远大于重力、普通
+摩擦力等外力。这些有限外力的冲量与碰撞冲量相比可以忽略，因而碰撞前后的总动量近似
+守恒。这里的“守恒”只针对碰撞持续的极短过程，不能把它延伸到碰后受外力作用的整个
+运动阶段。
+
+动量守恒虽然是动量定理的特殊情形，却能够把复杂内力全部消去，是处理多物体运动、
+碰撞、质心运动和变质量吸附问题的基本工具。
+
+\subsection{总动量守恒}
+
+自然界中的物体总与外界存在相互作用，所以一个系统能否近似看成孤立系统，取决于所研究
+问题的时间尺度和精度。例如，在某些问题中地球和月球可以近似看成孤立系统；但若太阳
+引力的影响不可忽略，就必须扩大研究系统或计入太阳的外力冲量。一旦系统可近似视为孤立
+系统，它的总动量三个分量均守恒，而与内力的形式、大小无关。换言之，“是否孤立”不是
+脱离题目精度的绝对判断，而是针对指定对象、指定过程和指定精度作出的物理近似。
+
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 3.13}
+地球和所有地球上的物体可以看成近似的孤立系统，理应满足动量守恒。然而一个人从地面
+跳起时，他的动量发生了改变。如何解释这一现象？
+\end{origexamplebox}
+
+\begin{xesolution}
+只把人作为研究对象时，他受到地面的支持力冲量，因此人的动量当然可以改变。若把“人和
+地球”作为完整系统，人与地面之间的作用力属于内力，系统总动量仍守恒。
+
+设人起跳后获得向上的动量 $p=mv$。忽略外界冲量，地球必获得大小相等、方向相反的动量：
+\[
+ mv+M_{\rm E}V_{\rm E}=0,
+ \qquad
+ V_{\rm E}=-\frac{m}{M_{\rm E}}v.
+\]
+动量交换过程见图~\ref{ch07:fig:soldiagThreeThirteen}。
+
+\soldiagThreeThirteen
+由于地球质量 $M_{\rm E}$ 极大，它的反冲速度极小，日常观察中难以觉察；但地球的反冲
+动量并不为零。人与地球之间的重力同样是系统内力，人在空中运动时总动量仍保持不变。
+\end{xesolution}
+
+\subsection{动量的分量守恒}
+
+动量是矢量。若系统在某一方向上的合外力为零，则动量定理在该方向上给出
+\[
+ \Delta P_{\parallel}=I_{\parallel}^{\rm ext}=0,
+\]
+即该方向的总动量分量守恒。判断时必须先明确研究系统和方向；“系统受到外力”并不等于
+“每个方向的动量都不守恒”。
+
+\begin{origexamplebox}{例 3.14}
+水平面上有多个物体构成的系统，它们与水平面之间均无摩擦，且始终被约束在该水平面内运动。
+除重力和水平面的支持力外，物体只受系统内部的相互作用力，不受其他外力。开始时所有物体
+均处于静止状态。证明：在此后的运动过程中，系统质心位置保持不变。
+\end{origexamplebox}
+
+\begin{xesolution}
+设各物体质量、水平坐标分别为 $m_i,x_i$，总质量为 $M=\sum_i m_i$。系统在水平方向
+不受外力，且初始总动量为零，因此
+\[
+ P_x=\sum_i m_i\dot x_i=0.
+\]
+质心水平坐标为
+\[
+ x_C=\frac{\sum_i m_ix_i}{M},
+\]
+所以
+\[
+ \dot x_C=\frac{1}{M}\sum_i m_i\dot x_i
+ =\frac{P_x}{M}=0.
+\]
+图~\ref{ch07:fig:soldiagThreeFourteen}中，水平总动量初值为零，故质心的水平速度始终为零。
+\soldiagThreeFourteen
+由此得到
+\[
+ \boxed{x_C=\text{常量}}.
+\]
+重力和支持力是竖直方向的外力，它们不影响水平方向的分动量守恒。题目所说的“质心位置”
+应理解为水平面内的质心位置；竖直坐标由平面约束保持不变。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例 3.15}
+如图，两根长度均为 $l$、质量可忽略的轻杆，一端通过质量为 $m$ 的球形铰链连接，另一端
+分别接有质量为 $m$ 和 $2m$ 的小球。将两杆并拢，铰链向上放在桌上，然后轻敲一下使两
+小球向两边滑动。两杆始终在竖直平面内，所有摩擦均忽略。建立图示坐标系，初始时铰链
+位于 $x=0$，求两杆夹角为 $90^\circ$ 以及完全展开成水平状态时，质量为 $2m$ 的小球位置。
+图~\ref{ch07:fig:probdiagThreeFifteen}中，两等长轻杆在竖直平面内张开，三个球的水平质心保持不变。
+\probdiagThreeFifteen
+\end{origexamplebox}
+
+\begin{xesolution}
+记左侧 $2m$ 小球、铰链和右侧 $m$ 小球的横坐标分别为 $x_L,x_H,x_R$。系统水平方向
+无外力，且初始静止、质心在 $x=0$，所以始终有
+\begin{equation}\label{eq:rods-com}
+ 2m x_L+m x_H+m x_R=0.
+\end{equation}
+两杆等长，铰链总在两个下端点连线的中垂线上，因此
+\begin{equation}\label{eq:rods-midpoint}
+ x_H=\frac{x_L+x_R}{2}.
+\end{equation}
+若两杆夹角为 $\theta$，两个下端点间距为
+\begin{equation}\label{eq:rods-span}
+ x_R-x_L=2l\sin\frac{\theta}{2}.
+\end{equation}
+几何关系和质心约束见图~\ref{ch07:fig:soldiagThreeFifteen}。
+
+\soldiagThreeFifteen
+把式\eqref{eq:rods-midpoint}代入式\eqref{eq:rods-com}并除以 $m/2$，得
+$5x_L+3x_R=0$，即 $x_R=-5x_L/3$。再代入式\eqref{eq:rods-span}，有
+$-8x_L/3=2l\sin(\theta/2)$，得到
+\[
+ x_L=-\frac{3l}{4}\sin\frac{\theta}{2}.
+\]
+因此，夹角为 $90^\circ$ 时
+\[
+ \boxed{x_L=-\frac{3\sqrt2}{8}l},
+\]
+完全展开成水平状态，即 $\theta=180^\circ$ 时
+\[
+ \boxed{x_L=-\frac34l}.
+\]
+负号表示质量为 $2m$ 的小球位于原点左侧。铰链并不保持在 $x=0$；由于左右端质量不同，
+它会向较轻的右侧移动，以维持系统质心不动。
+\end{xesolution}
+
+\subsection{冲击、碰撞过程中的动量守恒}
+
+碰撞时间极短时，重力等有限外力的冲量可以忽略，系统在碰撞前后的总动量近似守恒。
+碰撞结束后的后续运动则仍须按正常的动力学规律处理，不能把“碰撞瞬间守恒”无限延长到
+整个运动过程。
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例 3.16}
+质量为 $M$ 的质点 $A$ 从距水平面高 $H$ 处由静止开始自由下落。当它下落到距地面高 $h$
+处时，被一颗质量为 $m$、沿水平方向以速度 $v$ 飞行的子弹击中。碰撞时间极短，子弹最终
+停留在 $A$ 内部。求 $A$ 的落地点与未被击中时下落点之间的距离 $l$。
+图~\ref{ch07:fig:probdiagThreeSixteen}中，物体下落至高度 $h$ 时被水平子弹击中并粘合。
+\probdiagThreeSixteen
+\end{origexamplebox}
+
+\begin{xesolution}
+物体落到高度 $h$ 时，碰前竖直速度大小为
+\[
+ u=\sqrt{2g(H-h)}.
+\]
+在碰撞的极短时间内，重力冲量可以忽略。取水平向右、竖直向下为正，分别应用两方向的
+动量守恒：
+\[
+ mv=(M+m)V_x,
+ \qquad
+ Mu=(M+m)V_y.
+\]
+所以粘合体碰后速度分量为
+\[
+ V_x=\frac{mv}{M+m},
+ \qquad
+ V_y=\frac{M}{M+m}\sqrt{2g(H-h)}.
+\]
+碰撞与后续抛体运动的衔接见图~\ref{ch07:fig:soldiagThreeSixteen}。
+
+\soldiagThreeSixteen
+设碰后到落地的时间为 $T$，则
+\[
+ h=V_yT+\frac12gT^2,
+\]
+取正根
+\[
+ T=\frac{\sqrt{V_y^2+2gh}-V_y}{g}.
+\]
+未被击中时物体沿原竖直线落地，因此所求距离就是碰后的水平位移：
+\[
+ \boxed{
+ l=\frac{mv}{(M+m)g}
+ \left[
+ \sqrt{\frac{2M^2g(H-h)}{(M+m)^2}+2gh}
+ -\frac{M}{M+m}\sqrt{2g(H-h)}
+ \right]}.
+\]
+子弹嵌入说明碰撞是完全非弹性的，碰撞过程中机械能不守恒；本题只使用动量守恒确定
+碰后初速度，再用运动学求落点。
+\end{xesolution}
+
+\subsection{质心参考系}
+
+考虑由 $N$ 个质点组成的系统，第 $i$ 个质点的质量和位置分别为 $m_i$、$\vec x_i$。
+系统质心位置定义为
+\begin{equation}
+ \vec x_C=\frac{\sum_{i=1}^{N}m_i\vec x_i}{\sum_{i=1}^{N}m_i}.
+\end{equation}
+记总质量 $M=\sum_i m_i$，系统总动量为
+\begin{equation}
+ \vec P=\sum_{i=1}^{N}m_i\vec v_i
+ =\frac{\dd}{\dd t}\left(\sum_{i=1}^{N}m_i\vec x_i\right)
+ =M\frac{\dd\vec x_C}{\dd t}=M\vec v_C.
+\end{equation}
+因此，总动量也可以看成总质量与质心速度的乘积。若系统动量守恒，质心速度保持不变；
+不受外力的系统质心或者静止，或者作匀速直线运动，具体由初始质心速度决定。
+
+\begin{origexamplebox}{例 3.17}
+两个质量分别为 $m_1,m_2$ 的质点由劲度系数为 $k$、原长为 $l_0$ 的轻弹簧连接。开始时
+把弹簧拉长到 $l>l_0$ 后静止释放。在此后的运动中，弹簧上是否存在一个位置始终不变的点？
+两质点在光滑水平直线上运动，弹簧均匀且质量忽略，不受其他水平外力。
+\end{origexamplebox}
+
+\begin{xesolution}
+系统只受内力，且初始总动量为零，所以质心位置始终不变。设两个质点的位置为 $x_1,x_2$，
+则固定点就是系统质心
+\[
+ x_C=\frac{m_1x_1+m_2x_2}{m_1+m_2}.
+\]
+把它写成沿弹簧从 $m_1$ 端起的分点形式：
+\[
+ x_C=x_1+\frac{m_2}{m_1+m_2}(x_2-x_1).
+\]
+图~\ref{ch07:fig:soldiagThreeSeventeen}中，零总动量使质心固定；固定点按反质量比分割弹簧瞬时长度。
+\soldiagThreeSeventeen
+因此，在理想轻弹簧各段均匀伸缩的模型下，弹簧上确有一点始终不动。该点把弹簧的瞬时
+长度分成
+\[
+ \boxed{L_1:L_2=m_2:m_1}.
+\]
+这里“始终不变”指相对地面的位置不变。均匀无质量弹簧内部张力在同一时刻处处相同，
+各段单位原长的伸长相同，所以同一材料点占总长度的比例不变。选取原长分数为
+$m_2/(m_1+m_2)$ 的材料点，其位置恰等于 $x_C$，这才把固定质心与弹簧上的点联系起来。
+若不假定均匀形变，只能由动量守恒断言质心位置固定，不能仅凭端点运动确认同一个材料点固定。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{例 3.18}
+质量为 $M$、半径为 $R$ 的球形碗放在光滑水平面上。质量为 $m$ 的质点 $A$ 开始时位于
+碗的边缘，由静止释放。求 $A$ 在下落过程中相对地面的运动轨迹。
+图~\ref{ch07:fig:probdiagThreeEighteen}中，质点从可水平移动的半球形碗右边缘由静止释放。
+\probdiagThreeEighteen
+\end{origexamplebox}
+
+\begin{xesolution}
+在地面惯性系中，取初始碗最低点为 $O$，$x$ 轴水平向右、$y$ 轴竖直向上；碗只作水平
+平移，最低点的高度始终为零。设碗中心由 $(0,R)$ 移到 $(X,R)$，用 $\theta$ 表示从中心
+指向质点的半径与竖直向下方向的夹角。质点相对碗的水平坐标和对地高度分别为
+\[
+ x_{A/M}=R\sin\theta,
+ \qquad
+ y_A=R(1-\cos\theta).
+\]
+释放点在右边缘，初态 $X=0$、$\theta=\pi/2$。系统水平方向质心不动，因此
+\[
+ MX+m(X+R\sin\theta)=mR.
+\]
+解得碗和质点的对地横坐标
+\[
+ X=\frac{mR}{M+m}(1-\sin\theta),
+\]
+\[
+ x_A=X+R\sin\theta
+ =\frac{R}{M+m}(m+M\sin\theta).
+\]
+参数与质心约束见图~\ref{ch07:fig:soldiagThreeEighteen}。
+
+\soldiagThreeEighteen
+消去 $\theta$，得到轨迹方程
+\[
+ \boxed{
+ \left(\frac{(M+m)x_A-mR}{MR}\right)^2
+ +\left(1-\frac{y_A}{R}\right)^2=1}.
+\]
+因此，质点相对地面的轨迹不是圆弧，而是椭圆的一段；其水平半轴为 $MR/(M+m)$，竖直
+半轴为 $R$。碗质量 $M\to\infty$ 时，水平半轴趋于 $R$，轨迹才退化为近似固定圆弧。
+\end{xesolution}
+
+如果一个系统的运动变化完全由内力引起，那么系统质心的运动状态与先前相同。这一结论
+不仅适用于弹簧和可移动曲面，也适用于行星系统等更复杂的多体系统。把太阳与行星作为系统，
+在忽略外部天体引力的精度内，可近似使用总动量守恒。太阳的质量远大于各行星，因而它绕
+系统质心的运动通常较小，入门计算常把太阳近似固定；但精细计算时不能把这个近似当作严格
+事实。在质心系中 $M_\odot\vec v_\odot+\sum_i m_i\vec v_i=0$，行星动量改变时，
+太阳的动量也随之改变，太阳并非完全不动。
+
+\subsection{质量变化的情况}
+
+汽车可能不断吸收雨水，运动物体也可能吸附周围介质。首先只做代数展开：
+\begin{equation}
+ \Delta(m\vec v)=\vec v\,\Delta m+m\,\Delta\vec v
+ +\Delta m\,\Delta\vec v.
+\end{equation}
+忽略二阶小量并取连续极限，得到 $\dd(m\vec v)=\vec v\,\dd m+m\,\dd\vec v$。
+这只是乘积的微分规则，\textbf{不能一般地将变质量物体的动量变化等同于外力冲量}。
+设时间 $\dd t$ 内有质量 $\dd m>0$ 的物质以地面系速度 $\vec u_{\rm in}$ 被吸收。
+选择“物体及将要被吸收的这部分物质”为同一批物质，动量定理给出
+\[
+ m\vec v+\vec u_{\rm in}\dd m+\vec F_{\rm ext}\dd t
+ =(m+\dd m)(\vec v+\dd\vec v).
+\]
+展开、略去二阶项并除以 $\dd t$，得到
+\begin{equation}\label{eq:accretion-balance}
+ \frac{\dd(m\vec v)}{\dd t}
+ =\vec F_{\rm ext}+\vec u_{\rm in}\frac{\dd m}{\dd t}.
+\end{equation}
+只有新物质在所研究方向上原来速度为零，右侧该方向的动量通量才为零。下面先研究这类
+吸附问题，随后再推导同时包含流入和流出的通式。
+
+\begin{origexamplebox}{例 3.19}
+在雨中用恒力 $F$ 推一个初始质量为 $M$、截面积为 $S$ 的容器。一个静止在地面的同样
+容器，单位时间内水位上升 $\Delta h$。不计雨水对容器前方的阻力，水的密度为 $\rho$。
+用 $\tau$ 表示这里的一个单位时间，即静止容器在时长 $\tau$ 内水位上升 $\Delta h$。
+容器从静止开始受推力，求经过 $3\tau$ 后的速度。
+\end{origexamplebox}
+
+\begin{xesolution}
+雨水竖直下落，进入容器前的水平动量为零。雨水质量流率为
+\[
+ q=\frac{\rho S\Delta h}{\tau}.
+\]
+故运动容器在时刻 $t$ 的总质量为
+\[
+ m(t)=M+qt.
+\]
+取水平方向为正，把“容器加上已收集的雨水”作为变质量系统。外力的水平冲量全部转化为
+系统水平动量：
+\[
+ \frac{\dd}{\dd t}[m(t)v(t)]=F.
+\]
+由初始静止条件积分得
+\[
+ [M+qt]v=Ft,
+ \qquad
+ v(t)=\frac{Ft}{M+qt}.
+\]
+质量流与水平动量的关系见图~\ref{ch07:fig:soldiagThreeNineteen}。
+
+\soldiagThreeNineteen
+在一般式中代入 $t=3\tau$ 和上述质量流率，得到
+\[
+ \boxed{v(3\tau)=\frac{3F\tau}{M+3\rho S\Delta h}}.
+\]
+若要求经过任意时长 $t$，则保留一般式
+\[
+ \boxed{v(t)=\frac{Ft}{M+(\rho S\Delta h/\tau)t}}.
+\]
+雨水虽没有带来水平动量，却不断增加需要加速的质量，所以速度小于质量恒为 $M$ 时的
+$3F\tau/M$。分子 $F\tau$ 是冲量，除以质量后确为速度。若容器初速度为 $v_i$，
+积分常数改为 $Mv_i$，于是 $v(t)=(Mv_i+Ft)/(M+qt)$；不能无说明地省略初始动量。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.20}
+长度为 $l$、质量为 $m$ 的柔软绳放在水平桌面上。用手将绳的一端以恒定速度 $v$ 向上
+提起。求提起高度为 $x$（$x<l$）时手的提力。
+\end{origexamplebox}
+
+\begin{xesolution}
+绳的线密度为 $\lambda=m/l$。当竖直段长度为 $x$ 时，运动部分质量为 $\lambda x$；绳以
+速率 $v$ 从静止的桌面部分进入竖直运动部分，所以质量流率为
+\[
+ \frac{\dd m_{\rm mov}}{\dd t}=\lambda v.
+\]
+竖直运动部分的动量为
+\[
+ p=(\lambda x)v.
+\]
+由于 $\dot x=v$ 且 $v$ 恒定，
+\[
+ \frac{\dd p}{\dd t}=\lambda v^2.
+\]
+对竖直运动段列动量方程，手的提力减去该段重力等于动量增加率：
+\[
+ F-\lambda xg=\lambda v^2.
+\]
+图~\ref{ch07:fig:soldiagThreeTwenty}中，提力同时承担已提起绳段的重量，并为新进入运动段的绳元提供动量。
+\soldiagThreeTwenty
+因此
+\[
+ \boxed{F=\frac{m}{l}(gx+v^2)}.
+\]
+其中 $\lambda gx$ 用来平衡已提起绳段的重力，$\lambda v^2$ 用来把单位时间新提起的绳元
+从静止加速到速度 $v$。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{例 3.21}
+如图，一根质量为 $m$、长为 $l$ 的柔软绳自由悬垂，下端恰与秤盘接触。某时刻放开柔软
+绳上端，求台秤在任意时刻的读数以及读数的最大值。
+图~\ref{ch07:fig:probdiagThreeTwentyOne}中，柔绳上端释放后自由下落，绳元依次落到秤盘上并停止。
+\probdiagThreeTwentyOne
+\end{origexamplebox}
+
+\begin{xesolution}
+设释放后绳上端下降距离为 $x$，落到秤盘上的绳长也为 $x$；尚在运动的竖直绳段作自由
+落体，速度满足
+\[
+ v^2=2gx,
+ \qquad
+ x=\frac12gt^2
+ \quad\left(0\le t<\sqrt{\frac{2l}{g}}\right).
+\]
+线密度 $\lambda=m/l$。秤盘读数由两部分组成：已经静止在盘上的绳段重力 $\lambda xg$，
+以及单位时间使落下绳元停止所需的动量流 $\lambda v^2$。因此
+\[
+ N=\lambda xg+\lambda v^2
+ =3\lambda gx.
+\]
+两项来源见图~\ref{ch07:fig:soldiagThreeTwentyOne}。
+
+\soldiagThreeTwentyOne
+在全部绳落完之前，
+\[
+ \boxed{N(t)=\frac{3mg^2t^2}{2l}},
+ \qquad
+ 0\le t<\sqrt{\frac{2l}{g}}.
+\]
+最后一段绳刚要落到秤盘前，$x\to l$，读数达到
+\[
+ \boxed{N_{\max}=3mg}.
+\]
+理想模型中最后一段停止后，冲击过程结束，整根绳静止在秤盘上，读数回到 $mg$。因此
+$3mg$ 是落绳过程中瞬时读数的上限，而不是最终静止读数。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.22}
+在密度为 $\rho$ 的均匀介质中，一个截面积为 $S$ 的物体下落。物体能吸附所有与它相遇的
+静止介质粒子，因而质量变化不可忽略。列出物体速度和质量随时间变化的方程，并定性分析
+它的运动；不要求求解。
+\end{origexamplebox}
+
+\begin{xesolution}
+取竖直向下为正。物体在时间 $\dd t$ 内扫过体积 $Sv\dd t$，故吸附质量为
+\[
+ \dd m=\rho Sv\dd t,
+ \qquad
+ \boxed{\frac{\dd m}{\dd t}=\rho Sv}.
+\]
+介质粒子吸附前在地面参考系中静止，不携带初始动量；系统受到的外力只有重力，所以
+\[
+ \boxed{\frac{\dd(mv)}{\dd t}=mg}.
+\]
+展开得速度方程
+\[
+ \boxed{m\frac{\dd v}{\dd t}=mg-\rho Sv^2}.
+\]
+动量流关系见图~\ref{ch07:fig:soldiagThreeTwentyTwo}。
+
+\soldiagThreeTwentyTwo
+吸附静止粒子产生的 $\rho Sv^2$ 项使加速度不大于 $g$，但仅凭这一点不能断言速度总增加。
+进一步取初始质量 $m_0$、初速度为零，并令 $k=\rho S$。令 $y=v^2$，在 $v>0$ 的时段消去时间：
+\[
+ \frac{\dd y}{\dd m}=\frac{2v\dot v}{\dot m}
+ =\frac{2g}{k}-\frac{2y}{m},\qquad
+ \frac{\dd}{\dd m}(m^2y)=\frac{2g}{k}m^2.
+\]
+从 $(m_0,0)$ 积分到 $(m,y)$，得 $m^2y=2g(m^3-m_0^3)/(3k)$，故
+\[
+ v^2=\frac{2g}{3k}\left(m-\frac{m_0^3}{m^2}\right).
+\]
+代回加速度式，$a=g/3+2g(m_0/m)^3/3>0$。所以对从静止出发的这一解，质量、速度均增加，
+加速度从 $g$ 降低。当 $m$ 很大时，$v^2\sim2gm/(3k)$，速度并不趋于有限的终端值；加速度逐渐趋近
+\[
+ \boxed{a\to\frac{g}{3}}.
+\]
+这个极限补充了题设所要求的定性分析，并不是说物体作匀速运动。
+若初始已有向下速度 $v_i$，则应加上初值项
+$v^2=2gm/(3k)+m_0^2[v_i^2-2gm_0/(3k)]/m^2$。当 $kv_i^2>m_0g$ 时，初始阶段反而减速。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.23}
+球状小水滴在静止且密度均匀的雾气中下落，并吸附全部遇到的水分子。水滴始终保持球形，
+忽略空气阻力，重力加速度取恒定值 $g$。列出下落过程中水滴的质量、速度、半径所满足的
+方程，并定性分析水滴运动；不要求求解运动方程。
+\end{origexamplebox}
+
+\begin{xesolution}
+记雾气中水分子的质量密度为 $\rho_f$，液态水的密度为 $\rho_w$，水滴半径、质量、下落
+速度分别为 $r,m,v$。球形条件给出
+\[
+ \boxed{m=\frac43\pi\rho_w r^3}.
+\]
+水滴迎风截面积为 $\pi r^2$，所以吸附质量率为
+\[
+ \boxed{\frac{\dd m}{\dd t}=\rho_f\pi r^2v}.
+\]
+吸附前的雾滴静止，竖直动量方程仍为
+\[
+ \boxed{\frac{\dd(mv)}{\dd t}=mg}.
+\]
+将质量—半径关系代入质量增长方程，得到
+\[
+ \boxed{\frac{\dd r}{\dd t}=\frac{\rho_f}{4\rho_w}v}.
+\]
+展开动量方程还可写成
+\[
+ \boxed{
+ \frac{\dd v}{\dd t}
+ =g-\frac{3\rho_f}{4\rho_w r}v^2}.
+\]
+三个量之间的反馈关系见图~\ref{ch07:fig:soldiagThreeTwentyThree}。
+
+\soldiagThreeTwentyThree
+因此，在向下运动时，水滴下落越快，吸附质量越快；但速度是否增长还要看初值。
+令 $\alpha=\rho_f/(4\rho_w)$，若初始半径为 $r_0$、初速度为零，令 $y=v^2$，由
+$\dot r=\alpha v$ 和 $\dot v=g-3\alpha v^2/r$ 得到
+\[
+ \frac{\dd y}{\dd r}=\frac{2g}{\alpha}-\frac{6y}{r},\qquad
+ \frac{\dd}{\dd r}(r^6y)=\frac{2g}{\alpha}r^6.
+\]
+积分给出 $r^6y=2g(r^7-r_0^7)/(7\alpha)$，即
+\[
+ v^2=\frac{2g}{7\alpha}\left(r-\frac{r_0^7}{r^6}\right).
+\]
+代回速度方程得 $a=g/7+6g(r_0/r)^7/7>0$。所以这一初值下半径、质量和速度都增加，
+加速度从 $g$ 下降。长时间后 $v^2\propto r$，速度不会趋于有限终端值，而加速度趋近
+\[
+ \boxed{a\to\frac{g}{7}}.
+\]
+题设没有另给液态水密度，记液态水密度为常量 $\rho_w$，以便把质量与半径的关系写完整。
+若初始速度为 $v_i$，积分常数改为 $r_0^6[v_i^2-2gr_0/(7\alpha)]$；当
+$3\alpha v_i^2/r_0>g$ 时，水滴起初减速。$\alpha$ 无量纲，$gr/\alpha$ 的量纲为速度平方。
+\end{xesolution}

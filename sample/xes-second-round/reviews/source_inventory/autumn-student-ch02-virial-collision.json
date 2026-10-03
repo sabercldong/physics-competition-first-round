@@ -1,0 +1,981 @@
+{
+  "source_id": "autumn_student_2020",
+  "source_sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb",
+  "independent_visual_inventory": true,
+  "review_scope": "独立回看物理39—46页原件图文、脚注及工作文本后逐项核对，不从已有台账推断无缺失。错误原式不在学生正文重复误用，纠正依据逐项记于notes；2026-09-05。",
+  "pages": [
+    {
+      "physical_page": 39,
+      "printed_page": 37,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-039.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "footnote",
+          "source_number": "脚注8",
+          "source_locator": "页脚",
+          "description": "磁矢势、速度依赖广义势及能量函数",
+          "target_id": "r2ch02:sec:conservative",
+          "notes": "纠正负梯度错误：加入d/dt偏U偏v项，展开洛伦兹力并得到T+qPhi而非T+Ug"
+        },
+        {
+          "id": "o02",
+          "object_type": "heading",
+          "source_number": "约束力",
+          "source_locator": "上部",
+          "description": "约束力",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o03",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "标题后段",
+          "description": "宏观自由度与势函数",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "单摆三行",
+          "description": "T=ml²theta点²/2，V=mgl(1-cosθ)，H=T+V",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "广义坐标段",
+          "description": "广义坐标和广义力、摆角对应力矩",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o06",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "广义力与微分功",
+          "description": "Qtheta=-偏V偏theta和Qtheta dtheta=-dV",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "拉力与约束两段",
+          "description": "理想轻绳无伸缩储能和固定约束不做总功",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "严格区分实际功与虚功；单个物体的杆力功未必为零"
+        },
+        {
+          "id": "o08",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "两个坐标约束例",
+          "description": "轻杆三维长度约束及F(q1,q2)=0",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o09",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "微分条件",
+          "description": "偏F偏q1 dq1+偏F偏q2 dq2=0",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o10",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "无总功式",
+          "description": "Q1 dq1+Q2 dq2=0",
+          "target_id": "r2ch02:eq:019",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o11",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "拉格朗日乘子式",
+          "description": "Qi=lambda偏F偏qi，共同lambda",
+          "target_id": "r2ch02:eq:019",
+          "notes": "修正第二式Q1重复错字，说明单一非奇异约束的法向空间"
+        },
+        {
+          "id": "o12",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "约束段结尾",
+          "description": "允许位移的正交关系导出相同乘子、轻杆等反作用",
+          "target_id": "r2ch02:sec:constraints",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o13",
+          "object_type": "heading",
+          "source_number": "耗散力",
+          "source_locator": "下部",
+          "description": "耗散力与内能",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o14",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "页尾跨页段",
+          "description": "静止宏观小球内部仍有微观运动",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o15",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "U表达式",
+          "description": "内势能加相对质心动能定义内部能量",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        }
+      ]
+    },
+    {
+      "physical_page": 40,
+      "printed_page": 38,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-040.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "页首动量为零",
+          "description": "质心系sum mi vi'=0",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o02",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "抛出小球段",
+          "description": "内部状态不变时整体速度u的作用",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o03",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "p和T三式",
+          "description": "P=Mu，TC=Mu²/2=P²/(2M)",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "柯尼希能量段",
+          "description": "H=Vint+内部K+Mu²/2=U+TC",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "宏观点模型段",
+          "description": "宏观质点打包为子系统，区分动能、间势能和内能",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o06",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "耗散力段",
+          "description": "耗散力将有序机械能变为内部自由度能量",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "内能增量行",
+          "description": "-Wdiss=DeltaU非负及适用范围",
+          "target_id": "r2ch02:eq:020",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o08",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "动能增减两因素",
+          "description": "势能释放和外力输入可以抵消耗散损失",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o09",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "末个功能关系",
+          "description": "外力功率与成对耗散内力功率的功能关系",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "原式把真实负的耗散功率再减一次，已修正符号并区别正耗散率"
+        },
+        {
+          "id": "o10",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "功能原理解释",
+          "description": "功能原理与总能量守恒的观察角度",
+          "target_id": "r2ch02:sec:dissipation",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o11",
+          "object_type": "heading",
+          "source_number": "2.5*",
+          "source_locator": "下部",
+          "description": "位力定律带星内容",
+          "target_id": "r2ch02:sec:virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o12",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "位力章引言",
+          "description": "不直接对应守恒量但可用于特定系统平均",
+          "target_id": "r2ch02:sec:virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o13",
+          "object_type": "heading",
+          "source_number": "2.5.1",
+          "source_locator": "下部",
+          "description": "质点的位力",
+          "target_id": "r2ch02:sec:point-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o14",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "V与G两式",
+          "description": "位力r点F，G=r点p",
+          "target_id": "r2ch02:eq:021",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        }
+      ]
+    },
+    {
+      "physical_page": 41,
+      "printed_page": 39,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-041.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "页首I导数",
+          "description": "I=mr²/2，G=Idot",
+          "target_id": "r2ch02:eq:021",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o02",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "错误类比行",
+          "description": "V不等于Gdot的辨析",
+          "target_id": "r2ch02:sec:point-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o03",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "二阶导展开行",
+          "description": "Gdot=r点ma+mv²=V+2T",
+          "target_id": "r2ch02:sec:point-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "位力定律行",
+          "description": "V=Gdot-2T",
+          "target_id": "r2ch02:eq:022",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "布朗模型起首",
+          "description": "随机分子力、线性阻尼和测定阻尼系数",
+          "target_id": "r2ch02:sec:brownian",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o06",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "布朗位力行",
+          "description": "V=r点f-γ/2 d(r²)/dt",
+          "target_id": "r2ch02:sec:brownian",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "时间积分行",
+          "description": "位力定理的有限时间积分",
+          "target_id": "r2ch02:sec:brownian",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o08",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "积分后长段",
+          "description": "统计平均、平衡平均动能和长时边界项",
+          "target_id": "r2ch02:sec:brownian",
+          "notes": "纠正随机力零均值即与位置不相关及单轨道G有界的跳步；明示白噪声模型并解有限时均方位移"
+        },
+        {
+          "id": "o09",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "扩散三维式",
+          "description": "平均r²长时6kTt/γ、各向同性r²=3x²",
+          "target_id": "r2ch02:eq:023",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o10",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "Einstein关系",
+          "description": "D=kT/γ",
+          "target_id": "r2ch02:eq:023",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o11",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "涨落耗散解释",
+          "description": "爱因斯坦—斯莫卢霍夫斯基关系及热涨落与耗散",
+          "target_id": "r2ch02:sec:brownian",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o12",
+          "object_type": "heading",
+          "source_number": "2.5.2",
+          "source_locator": "下部",
+          "description": "质点系位力",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o13",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "系统求和式",
+          "description": "外力及每对内力的位力和等于Gdot-2T",
+          "target_id": "r2ch02:eq:024",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o14",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "求和定义",
+          "description": "系统G和总动能T",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "修正原件将T称总动量的笔误"
+        },
+        {
+          "id": "o15",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "末行成对化简",
+          "description": "rj点Fij+ri点Fji=-rij点Fij",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        }
+      ]
+    },
+    {
+      "physical_page": 42,
+      "printed_page": 40,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-042.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "页首平均段",
+          "description": "束缚平衡下G导数平均零",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o02",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "I质量分布积分",
+          "description": "sum mi ri²/2与均匀平衡密度积分",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "改为平衡平均，不声称微观每时刻严格常量"
+        },
+        {
+          "id": "o03",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "动能均分行",
+          "description": "T平均=3NkT/2=3nuRT/2",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "理想气体内力段",
+          "description": "忽略内部相互作用位力、壁力方向",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "壁面力积分",
+          "description": "sum ri点Fi=闭合积分r点(-p dS)",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o06",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "散度或锥体说明",
+          "description": "散度定理与有向锥体体积两种解释",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "外位力行",
+          "description": "外位力=-3pV",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o08",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "气体物态方程",
+          "description": "pV=nuRT",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o09",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "昂内斯段",
+          "description": "非理想气体位力展开与统计关联",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o10",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "展开行",
+          "description": "p=RT(1/v+B2/v²+B3/v³+...)",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o11",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "v与B定义",
+          "description": "摩尔体积和位力系数",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o12",
+          "object_type": "footnote",
+          "source_number": "脚注9",
+          "source_locator": "页脚",
+          "description": "第一位力系数B1=1",
+          "target_id": "r2ch02:sec:system-virial",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o13",
+          "object_type": "heading",
+          "source_number": "2.6",
+          "source_locator": "中下",
+          "description": "碰撞问题",
+          "target_id": "r2ch02:sec:collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o14",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "碰撞范围说明",
+          "description": "质点、刚体、理想约束，不直接处理连续体输运",
+          "target_id": "r2ch02:sec:collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o15",
+          "object_type": "heading",
+          "source_number": "2.6.1",
+          "source_locator": "下部",
+          "description": "二质点正碰",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o16",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "碰撞定义段",
+          "description": "短时强相互作用的唯象模型与材料层次",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o17",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "一维参数段",
+          "description": "m1m2、初速度、末速度的正碰问题",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o18",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "动量守恒行",
+          "description": "两物体碰前碰后动量相等",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o19",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "动能守恒行",
+          "description": "完全弹性限定下总动能相等",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        }
+      ]
+    },
+    {
+      "physical_page": 43,
+      "printed_page": 41,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-043.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "首段",
+          "description": "两条守恒不能覆盖非弹性材料及过程信息",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o02",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "推墙长段",
+          "description": "实际接触点功、质心伪功与内能化学能的区别",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o03",
+          "object_type": "numbered_figure",
+          "source_number": "图2.1",
+          "source_locator": "中部图",
+          "description": "相互作用力及累积冲量双图",
+          "target_id": "r2ch02:fig:001",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "图后段",
+          "description": "用有限时相互作用模型等效接触过程，可不要求质点在同一点",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "i(t)积分",
+          "description": "累积冲量定义",
+          "target_id": "r2ch02:eq:025",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o06",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "I积分",
+          "description": "总冲量I=i(tau)",
+          "target_id": "r2ch02:eq:025",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "分数冲量行",
+          "description": "i(tk)=kI",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o08",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "页尾反函数",
+          "description": "tk=i逆(kI)",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "补严格单调所需F>0，平台情况分别说明"
+        }
+      ]
+    },
+    {
+      "physical_page": 44,
+      "printed_page": 42,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-044.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "页首反函数端值",
+          "description": "i逆(0)=0，i逆(I)=tau",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o02",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "接触条件",
+          "description": "碰前两质点接近速度的符号",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o03",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "过程速度两行",
+          "description": "u1=v1-i/m1，u2=v2+i/m2",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "功率两行",
+          "description": "P1=-F u1，P2=F u2",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "功积分两行",
+          "description": "用di=Fdt将各功转为冲量积分",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o06",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "线性函数积分段",
+          "description": "端点平均乘积分区间长度",
+          "target_id": "r2ch02:eq:026",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "功端点式",
+          "description": "W1=-I(v1+v1')/2，W2=I(v2+v2')/2",
+          "target_id": "r2ch02:eq:026",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o08",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "代回动量段",
+          "description": "端点式等价于各自末动能减初动能",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o09",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "通用功积分",
+          "description": "W=积分v作用点点dI",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o10",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "接近与分离速度",
+          "description": "v=v1-v2，v'=v2'-v1'",
+          "target_id": "r2ch02:eq:027",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o11",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "总功",
+          "description": "W1+W2=I(v'-v)/2",
+          "target_id": "r2ch02:eq:027",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o12",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "恢复系数",
+          "description": "e=v'/v",
+          "target_id": "r2ch02:eq:027",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o13",
+          "object_type": "paragraph",
+          "source_number": "碰撞类别1",
+          "source_locator": "下部第一条",
+          "description": "完全非弹性、共速、最小分离冲量",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o14",
+          "object_type": "paragraph",
+          "source_number": "碰撞类别2",
+          "source_locator": "下部第二条",
+          "description": "完全弹性、接近分离速率相等、动能守恒",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o15",
+          "object_type": "paragraph",
+          "source_number": "碰撞类别3",
+          "source_locator": "下部第三条",
+          "description": "非完全非弹性、振动弹性波和内能去向",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o16",
+          "object_type": "paragraph",
+          "source_number": "碰撞类别4",
+          "source_locator": "页尾第四条",
+          "description": "超弹性与预存内能释放、动量仍守恒",
+          "target_id": "r2ch02:sec:point-collision",
+          "notes": "补爆炸初始相对速度零时恢复系数无定义，使用守恒式直接处理"
+        }
+      ]
+    },
+    {
+      "physical_page": 45,
+      "printed_page": 43,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-045.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "heading",
+          "source_number": "2.6.2",
+          "source_locator": "页首",
+          "description": "自由刚体的平面碰撞",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o02",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "首段",
+          "description": "光滑法向冲量与粗糙切向冲量",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o03",
+          "object_type": "theorem",
+          "source_number": null,
+          "source_locator": "第一结论",
+          "description": "作用点端速度平均点乘冲量得到功",
+          "target_id": "r2ch02:eq:028",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o04",
+          "object_type": "definition",
+          "source_number": null,
+          "source_locator": "速度解释段",
+          "description": "v与v'必须为固连刚体的物质接触点速度",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o05",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "k变量",
+          "description": "累计冲量i=kI",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "原件未区分变向冲量；先证明固定方向，再用对称响应矩阵推广"
+        },
+        {
+          "id": "o06",
+          "object_type": "numbered_figure",
+          "source_number": "图2.2",
+          "source_locator": "右侧",
+          "description": "两刚体碰撞公切线法线接触点及速度冲量",
+          "target_id": "r2ch02:fig:002",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o07",
+          "object_type": "formula",
+          "source_number": null,
+          "source_locator": "接触点线性插值",
+          "description": "u=k v'+(1-k)v",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o08",
+          "object_type": "proof",
+          "source_number": null,
+          "source_locator": "时间及冲量积分",
+          "description": "积分端点平均公式证明",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o09",
+          "object_type": "theorem",
+          "source_number": null,
+          "source_locator": "第二结论",
+          "description": "无摩擦弹性碰撞接近和分离法向速率相等",
+          "target_id": "r2ch02:sec:rigid-collision",
+          "notes": "纠正把法向e=1推广为有摩擦总动能必守恒；保留总冲量方向投影的总功判据"
+        },
+        {
+          "id": "o10",
+          "object_type": "heading",
+          "source_number": "2.6.3",
+          "source_locator": "下部",
+          "description": "多体碰撞",
+          "target_id": "r2ch02:sec:multiple-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        },
+        {
+          "id": "o11",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "末段",
+          "description": "逐次弹性碰撞、等质量速度交换与牛顿摆",
+          "target_id": "r2ch02:sec:multiple-collision",
+          "notes": "源对象与修订落点逐项核对；整章验收另行进行"
+        }
+      ]
+    },
+    {
+      "physical_page": 46,
+      "printed_page": 44,
+      "classification": "teaching",
+      "inspected_render": "build/source-pages/autumn_student_2020/page-046.jpg",
+      "objects": [
+        {
+          "id": "o01",
+          "object_type": "numbered_figure",
+          "source_number": "图2.3",
+          "source_locator": "页首",
+          "description": "五球牛顿摆装置与传递过程",
+          "target_id": "r2ch02:fig:003",
+          "notes": "原书图内实景用内置图像生成重创，过程采用同编号5球两时刻示意，不以装饰照片取代推导"
+        },
+        {
+          "id": "o02",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "图后首段",
+          "description": "四球带理想约束整体、接触点弹性条件与约束功",
+          "target_id": "r2ch02:sec:multiple-collision",
+          "notes": "补实际必须刚性连接而非仅相切，以及m碰4m的反弹数值与守恒验证"
+        },
+        {
+          "id": "o03",
+          "object_type": "paragraph",
+          "source_number": null,
+          "source_locator": "末段",
+          "description": "连续弹性介质极限、波传播与接触时间的模型适用性",
+          "target_id": "r2ch02:sec:multiple-collision",
+          "notes": "纠正只比较波速与碰撞速度的简单判断，用传播时间L/cs与接触时间tau比较并声明连接刚度条件"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+% Contract: common absolute Planck scale; T=4000,6000 K; peaks b/T.
+\begin{tikzpicture}
+\begin{axis}[width=.83\linewidth,height=6cm,axis lines=left,
+ xlabel={$\lambda\;(\mu\mathrm m)$},ylabel={$M_\lambda/(10^{13}\,\mathrm{W\,m^{-3}})$},
+ xmin=.15,xmax=2.5,ymin=0,ymax=11.8,xtick={.5,1,1.5,2},ytick={0,2,4,6,8,10},
+ legend style={draw=none,fill=none,at={(.97,.95)},anchor=north east},
+ every axis label/.style={fill=none}]
+ \addplot[DeepBlue,very thick,domain=.15:2.5,samples=300]{37.4177/(x^5*(exp(14387.77/(6000*x))-1))};
+ \addlegendentry{$6000\,\mathrm K$}
+ \addplot[TextGray,very thick,dashed,domain=.15:2.5,samples=300]{37.4177/(x^5*(exp(14387.77/(4000*x))-1))};
+ \addlegendentry{$4000\,\mathrm K$}
+ \draw[guide] (axis cs:.48296203365,0)--(axis cs:.48296203365,10.0053244776);
+ \draw[guide] (axis cs:.72444305047,0)--(axis cs:.72444305047,1.31757359375);
+\end{axis}
+\end{tikzpicture}

@@ -1,0 +1,795 @@
+\begingroup
+\input{advanced/layout.tex}
+\AdvancedUnit{1}{力学}
+
+\section{分析力学基础}
+
+\subsection{广义坐标、约束与拉格朗日方程}
+
+牛顿方程
+\[
+  m_i\ddot{\vect r}_i=\vect F_i,\qquad \dot{\vect p}_i=\vect F_i
+\]
+对直角坐标很直接，但在多体系统、曲线坐标和带约束系统中，它会引入大量未知约束力。
+分析力学的做法是：先用适合体系几何结构的坐标消去约束，再用标量函数统一编码动力学。
+
+设系统含有 $n$ 个质点，完整约束写成
+\begin{equation}\label{advA1:eq:constraints}
+ f^A(\vect r_1,\ldots,\vect r_n,t)=0,
+ \qquad A=1,\ldots,N .
+\end{equation}
+若它们相互独立，系统自由度为 $f=3n-N$。对应的 $f$维可运动空间称为位形空间。
+广义坐标 $q_1,\ldots,q_f$ 的选取应使映射
+\begin{equation}\label{advA1:eq:point-map}
+ \vect r_i=\vect r_i(q_1,\ldots,q_f,t)
+\end{equation}
+自动满足式\eqref{advA1:eq:constraints}。约束于是不再以附加方程出现，而是被吸收到函数\eqref{advA1:eq:point-map}的结构中。不显含时间的约束称为稳定约束；显含时间的称为非稳定约束。本节不处理无法积分为位形约束的非完整约束。
+
+\begin{advexamplebox}{刚性椭球的十二个约束}\label{advA1:ex:ellipsoid}
+六个质点固定在椭球的六个顶点 $A,A',B,B',C,C'$ 上，
+$AA'=2a,BB'=2b,CC'=2c$。用十八个直角坐标写出一组相互独立的十二个约束。
+\end{advexamplebox}
+\begin{advsolution}
+引入三条对径矢量
+\[
+ \vect u=\vect r_A-\vect r_{A'},\quad
+ \vect v=\vect r_B-\vect r_{B'},\quad
+ \vect w=\vect r_C-\vect r_{C'}.
+\]
+先要求三条对径共中点：
+\[
+ \vect r_A+\vect r_{A'}-\vect r_B-\vect r_{B'}=\vect0,
+ \quad
+ \vect r_A+\vect r_{A'}-\vect r_C-\vect r_{C'}=\vect0 .
+\]
+这是 $6$ 个标量方程。再规定对径长度和两两正交：
+\[
+ \vect u^2=4a^2,\qquad\vect v^2=4b^2,\qquad\vect w^2=4c^2,
+ \qquad
+ \vect u\!\cdot\!\vect v=\vect v\!\cdot\!\vect w
+ =\vect w\!\cdot\!\vect u=0 .
+\]
+共有 $6+3+3=12$ 个独立标量约束，因而自由度为 $18-12=6$，与一般刚体的三个平动和三个转动自由度一致。
+\end{advsolution}
+
+
+位形空间中的光滑轨道 $q_\alpha=q_\alpha(t)$ 确定了系统的运动。一般动力学量是
+$A(q_\alpha,\dot q_\alpha,t)$，沿轨道的全导数为
+\begin{equation}\label{advA1:eq:total-derivative}
+ \dot A=\sum_\alpha\frac{\partial A}{\partial q_\alpha}\dot q_\alpha
+ +\sum_\alpha\frac{\partial A}{\partial\dot q_\alpha}\ddot q_\alpha
+ +\frac{\partial A}{\partial t}.
+\end{equation}
+由式\eqref{advA1:eq:point-map}，
+\[
+ \dot{\vect r}_i=\sum_\alpha
+ \frac{\partial\vect r_i}{\partial q_\alpha}\dot q_\alpha
+ +\frac{\partial\vect r_i}{\partial t}.
+\]
+因此动能对广义速度总是二次多项式：
+\begin{align}
+ T&=T_2+T_1+T_0,\label{advA1:eq:T-decomp}\\
+ T_2&=\frac12\sum_{\alpha\beta}m_{\alpha\beta}\dot q_\alpha\dot q_\beta,
+ &m_{\alpha\beta}&=\sum_i m_i
+ \frac{\partial\vect r_i}{\partial q_\alpha}\!\cdot\!
+ \frac{\partial\vect r_i}{\partial q_\beta},\notag\\
+ T_1&=\sum_\alpha\pi_\alpha\dot q_\alpha,
+ &\pi_\alpha&=\sum_i m_i
+ \frac{\partial\vect r_i}{\partial q_\alpha}\!\cdot\!
+ \frac{\partial\vect r_i}{\partial t},\notag\\
+ T_0&=\frac12\tau,
+ &\tau&=\sum_i m_i\left(\frac{\partial\vect r_i}{\partial t}\right)^2.\notag
+\end{align}
+稳定约束且坐标变换不含时时，$T_1=T_0=0$。
+
+\begin{advdefinition}{广义机械动量}\label{advA1:def:momentum}
+\[
+ p_\alpha^{(\mathrm{mech})}=\frac{\partial T}{\partial\dot q_\alpha}
+ =\sum_\beta m_{\alpha\beta}\dot q_\beta+\pi_\alpha .
+\]
+\end{advdefinition}
+
+\begin{advdefinition}{广义力}\label{advA1:def:force}
+对虚位移 $\dd\vect r_i=\sum_\alpha
+(\partial\vect r_i/\partial q_\alpha)\dd q_\alpha$，定义
+\[
+ Q_\alpha=\sum_i\vect F_i\!\cdot\!
+ \frac{\partial\vect r_i}{\partial q_\alpha}.
+\]
+若坐标变换显含时间，实际元功还包含
+\[
+ \dd W=\sum_\alpha Q_\alpha\dd q_\alpha+h\dd t,
+ \qquad h=\sum_i\vect F_i\!\cdot\!\frac{\partial\vect r_i}{\partial t}.
+\]
+\end{advdefinition}
+
+\begin{advexamplebox}{在膨胀球面上运动的质点}\label{advA1:ex:expanding-sphere}
+质量为 $m$ 的质点被约束在 $x^2+y^2+z^2-v^2t^2=0$ 上。以球坐标角
+$\theta,\varphi$ 为广义坐标，求位矢、动能、广义动量及其全导数、广义力和元功。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ \vect r=vt(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta),
+\]
+\[
+ T=\frac m2\left[v^2+v^2t^2
+ (\dot\theta^2+\sin^2\theta\,\dot\varphi^2)\right].
+\]
+于是
+\[
+ p_\theta=mv^2t^2\dot\theta,
+ \qquad p_\varphi=mv^2t^2\sin^2\theta\,\dot\varphi,
+\]
+\[
+ \dot p_\theta=mv^2(2t\dot\theta+t^2\ddot\theta),
+\]
+\[
+ \dot p_\varphi=mv^2\!\left[
+ 2t\sin^2\theta\dot\varphi
+ +2t^2\sin\theta\cos\theta\dot\theta\dot\varphi
+ +t^2\sin^2\theta\ddot\varphi\right].
+\]
+若合力的球坐标分量为 $(F_r,F_\theta,F_\varphi)$，则
+\[
+ Q_\theta=vtF_\theta,\qquad Q_\varphi=vt\sin\theta F_\varphi,
+ \qquad h=vF_r,
+\]
+\[
+ \dd W=Q_\theta\dd\theta+Q_\varphi\dd\varphi+vF_r\dd t.
+\]
+最后一项是球面本身膨胀方向上的做功，不能误并入两个角向广义力。
+\end{advsolution}
+
+\begin{advtheorem}{拉格朗日方程的引理}\label{advA1:thm:lagrange-lemma}
+沿任一满足牛顿方程的运动，
+\begin{equation}\label{advA1:eq:lagrange-lemma}
+ \frac{\dd}{\dd t}\frac{\partial T}{\partial\dot q_\alpha}
+ -\frac{\partial T}{\partial q_\alpha}=Q_\alpha .
+\end{equation}
+\end{advtheorem}
+证明不再省略。由链式法则，
+\[
+ \frac{\partial T}{\partial\dot q_\alpha}
+ =\sum_i m_i\dot{\vect r}_i\!\cdot\!
+ \frac{\partial\vect r_i}{\partial q_\alpha}.
+\]
+对时间求全导数，并注意
+$\partial\dot{\vect r}_i/\partial q_\alpha
+=\dd(\partial\vect r_i/\partial q_\alpha)/\dd t$，得
+\[
+ \frac{\dd}{\dd t}\frac{\partial T}{\partial\dot q_\alpha}
+ =\sum_i m_i\ddot{\vect r}_i\!\cdot\!
+ \frac{\partial\vect r_i}{\partial q_\alpha}
+ +\sum_i m_i\dot{\vect r}_i\!\cdot\!
+ \frac{\partial\dot{\vect r}_i}{\partial q_\alpha}.
+\]
+第二项正是 $\partial T/\partial q_\alpha$，两式相减，再用
+$m_i\ddot{\vect r}_i=\vect F_i$ 便得式\eqref{advA1:eq:lagrange-lemma}。
+
+\begin{advexamplebox}{二维极坐标中的动力学方程}\label{advA1:ex:polar}
+由拉格朗日引理推导平面极坐标中的质点动力学方程。
+\end{advexamplebox}
+\begin{advsolution}
+$T=m(\dot r^2+r^2\dot\theta^2)/2$，而 $Q_r=F_r, Q_\theta=rF_\theta$。代入式\eqref{advA1:eq:lagrange-lemma}：
+\[
+ m(\ddot r-r\dot\theta^2)=F_r,
+ \qquad
+ m(r\ddot\theta+2\dot r\dot\theta)=F_\theta.
+\]
+第二式左边每项均为加速度；若漏掉 $r\ddot\theta$ 中的 $r$，量纲会立即失配。
+\end{advsolution}
+
+\begin{advexamplebox}{三维球坐标中的动力学方程}\label{advA1:ex:spherical}
+推导球坐标 $(r,\theta,\varphi)$ 中的三个动力学方程，并与加速度的矢量分解比较。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ T=\frac m2[\dot r^2+r^2\dot\theta^2+r^2\sin^2\theta\dot\varphi^2],
+\quad
+ (Q_r,Q_\theta,Q_\varphi)=(F_r,rF_\theta,r\sin\theta F_\varphi).
+\]
+逐个代入引理得
+\begin{align*}
+ m[\ddot r-r(\dot\theta^2+\sin^2\theta\dot\varphi^2)]&=F_r,\\
+ m[r\ddot\theta+2\dot r\dot\theta-r\sin\theta\cos\theta\dot\varphi^2]&=F_\theta,\\
+ m[r\sin\theta\ddot\varphi+2\dot r\sin\theta\dot\varphi
+ +2r\cos\theta\dot\theta\dot\varphi]&=F_\varphi.
+\end{align*}
+直接对 $\vect r=r\vect e_r$ 求两次导数，再投影到
+$(\vect e_r,\vect e_\theta,\vect e_\varphi)$，会得到完全相同的三个分量，这正是坐标协变性的具体检验。
+\end{advsolution}
+
+\begin{advexamplebox}{平移且转动的参考系}\label{advA1:ex:moving-frame}
+建立坐标变换
+\[
+ \binom{\bar x}{\bar y}=
+ \begin{pmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{pmatrix}
+ \left[\binom{x}{y}-\binom{X}{Y}\right],
+\]
+其中 $X,Y,\theta$ 均为时间函数。解释其几何意义，写出元功并推导新系中的运动方程。
+\end{advexamplebox}
+\begin{advsolution}
+这是原点位于 $\vect R=(X,Y)$、坐标轴相对惯性系转过 $\theta$ 的非惯性系。令
+$\vect\rho=(\bar x,\bar y)$，$\vect\Omega=\dot\theta\vect e_z$，则
+\[
+ \vect r=\vect R+\mathsf R(\theta)\vect\rho,
+\]
+\[
+ \dd W=\vect F'\!\cdot\!\dd\vect\rho
+ +\vect F\!\cdot\![\dot{\vect R}+\vect\Omega\times
+ \mathsf R(\theta)\vect\rho]\dd t,
+\]
+其中 $\vect F'=\mathsf R^{\mathsf T}\vect F$。两次求导得
+\[
+ m\ddot{\vect\rho}=\vect F'-m\vect a_0'
+ -2m\vect\Omega\times\dot{\vect\rho}
+ -m\dot{\vect\Omega}\times\vect\rho
+ -m\vect\Omega\times(\vect\Omega\times\vect\rho).
+\]
+右边依次是真实力、平移惯性力、科里奥利力、欧拉力和离心力。所有项都是力，量纲为 $MLT^{-2}$。
+\end{advsolution}
+
+\begin{advdefinition}{理想约束}\label{advA1:def:ideal-constraint}
+若约束 $f^A=0$ 对第 $i$ 个质点产生的约束力为
+\[
+ \vect P_i^{,A}=\lambda_A\nabla_i f^A,
+\]
+则称其为理想约束。由于
+$\sum_i\nabla_i f^A\cdot\partial\vect r_i/\partial q_\alpha=0$，它对任一允许的虚位移都不做虚功，所以其广义力恒为零。
+\end{advdefinition}
+
+\begin{advdefinition}{广义势}\label{advA1:def:generalized-potential}
+若存在 $V(q_\alpha,\dot q_\alpha,t)$ 使主动力的广义力满足
+\[
+ Q_\alpha=\frac{\dd}{\dd t}\frac{\partial V}{\partial\dot q_\alpha}
+ -\frac{\partial V}{\partial q_\alpha},
+\]
+则称相互作用可由广义势描述。若 $V$ 不含速度，就回到 $Q_\alpha=-\partial V/\partial q_\alpha$。
+\end{advdefinition}
+
+\begin{advdefinition}{拉格朗日量}\label{advA1:def:lagrangian}
+\[
+ L(q_\alpha,\dot q_\alpha,t)=T(q_\alpha,\dot q_\alpha,t)
+ -V(q_\alpha,\dot q_\alpha,t),
+ \qquad p_\alpha=\frac{\partial L}{\partial\dot q_\alpha}.
+\]
+含速势时，$p_\alpha$ 是正则动量，一般不等于机械动量。
+\end{advdefinition}
+
+\begin{advtheorem}{拉格朗日方程}\label{advA1:thm:lagrange}
+对可由广义势描述的理想约束系统，
+\begin{equation}\label{advA1:eq:lagrange}
+ \frac{\dd}{\dd t}\frac{\partial L}{\partial\dot q_\alpha}
+ -\frac{\partial L}{\partial q_\alpha}=0,
+ \qquad \alpha=1,\ldots,f .
+\end{equation}
+\end{advtheorem}
+证明只需把定义\ref{advA1:def:generalized-potential}代入引理\ref{advA1:thm:lagrange-lemma}，再将动能项和势函数项合并。这一步也说明，方程的普遍性不是额外假设，而是由牛顿方程和点变换的链式法则得到的。
+
+\begin{advexamplebox}{收短摆绳的圆锥摆}\label{advA1:ex:conical-pendulum}
+均匀重力场中，质量 $m$ 的摆球以竖直向下方向为极轴，摆角为 $\theta$、方位角为 $\varphi$。摆长以常速 $v$ 收短，$l(t)=l_0-vt$。写出 $\theta,\varphi$ 的运动方程。
+\end{advexamplebox}
+\AdvHideHeadingtrue
+\begin{advsolution}
+\noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.95]
+ \coordinate (O) at (0,1.5);\coordinate (P) at (1.3,-.5);
+ \draw[axis] (0,1.8)--(0,-1.5) node[below]{$z$};
+ \draw[guide] (0,-.5) ellipse (1.3 and .38);
+ \draw[curve] (O)--(P) node[midway,right=5pt]{$l(t)$};
+ \fill (O) circle(1.5pt) node[left]{$O$};\fill (P) circle(2.2pt) node[right=5pt]{$m$};
+ \draw[DeepBlue,->] (0,.85) arc[start angle=-90,end angle=-56.98,radius=.65];
+ \node at (.32,.70) {$\theta$};
+ \draw[TextGray,->] ({1.3*cos(220)},{-.5+.38*sin(220)}) arc[start angle=220,end angle=300,x radius=1.3,y radius=.38];
+ \node at (-.85,-1.08) {$\varphi$ 正向};
+\end{tikzpicture}
+\bookcaption{收短摆绳时的两个广义坐标}\label{advA1:fig:conical}
+\end{minipage}\end{center}\end{minipage}
+
+如图\ref{advA1:fig:conical}，
+\[
+ L=\frac m2[\dot l^2+l^2\dot\theta^2+l^2\sin^2\theta\dot\varphi^2]
+ +mgl\cos\theta .
+\]
+$l$ 是给定函数而非待求自由度。对 $\theta,\varphi$ 列方程：
+\[
+ l^2\ddot\theta+2l\dot l\dot\theta
+ -l^2\sin\theta\cos\theta\dot\varphi^2+gl\sin\theta=0,
+\]
+\[
+ \frac{\dd}{\dd t}(ml^2\sin^2\theta\dot\varphi)=0,
+ \qquad \dot l=-v.
+\]
+第二式表明绕竖直轴的角动量守恒；收绳装置可以交换能量，所以摆球的机械能一般不守恒。
+\end{advsolution}
+
+\begin{advexamplebox}{缓慢变化引力常量的开普勒问题}\label{advA1:ex:kepler-time}
+平面有心力 $F_r=-mk(t)/r^2$。忽略使 $k$ 改变的物质流、辐射等其他作用，写出运动方程并判断哪些守恒量仍然存在。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ L=\frac m2(\dot r^2+r^2\dot\varphi^2)+\frac{mk(t)}r .
+\]
+拉格朗日方程给出
+\[
+ \ddot r-r\dot\varphi^2=-\frac{k(t)}{r^2},
+ \qquad \frac{\dd}{\dd t}(mr^2\dot\varphi)=0.
+\]
+因为 $\varphi$ 仍是循环坐标，角动量严格守恒。哈密顿量
+\[
+ H=\frac m2(\dot r^2+r^2\dot\varphi^2)-\frac{mk(t)}r
+\]
+却满足
+\[
+ \dot H=-\frac{\partial L}{\partial t}=-\frac{m\dot k(t)}r,
+\]
+所以 $\dot k\ne0$ 时能量不守恒。量纲检查：$k$ 的量纲是 $L^3T^{-2}$，$mk/r$ 的量纲正是能量。
+\end{advsolution}
+
+\Needspace{12\baselineskip}
+\subsection{守恒量、对称性与罗斯约化}
+
+\begin{advdefinition}{哈密顿量}\label{advA1:def:hamiltonian}
+\begin{equation}\label{advA1:eq:H}
+ H(q,\dot q,t)=\sum_\alpha p_\alpha\dot q_\alpha-L,
+ \qquad p_\alpha=\frac{\partial L}{\partial\dot q_\alpha}.
+\end{equation}
+在稳定约束、不含时坐标变换且 $V=V(q)$ 时，$H=T+V$。一般情形下不应把哈密顿量无条件地称为机械能。
+\end{advdefinition}
+
+\begin{advtheorem}{能量积分}\label{advA1:thm:energy}
+沿真实运动，
+\begin{equation}\label{advA1:eq:Hdot}
+ \dot H=-\frac{\partial L}{\partial t}.
+\end{equation}
+因而当且仅当轨道上 $\partial L/\partial t=0$ 时，$H$ 守恒。
+\end{advtheorem}
+证明：对式\eqref{advA1:eq:H}求导，
+\[
+ \dot H=\sum_\alpha(\dot p_\alpha\dot q_\alpha+p_\alpha\ddot q_\alpha)
+ -\sum_\alpha\left(\frac{\partial L}{\partial q_\alpha}\dot q_\alpha
+ +\frac{\partial L}{\partial\dot q_\alpha}\ddot q_\alpha\right)
+ -\frac{\partial L}{\partial t}.
+\]
+用 $\dot p_\alpha=\partial L/\partial q_\alpha$ 和
+$p_\alpha=\partial L/\partial\dot q_\alpha$，前两组项逐项消去，即得式\eqref{advA1:eq:Hdot}。
+
+\begin{advexamplebox}{系数随时间同比增长的谐振子}\label{advA1:ex:scaled-oscillator}
+对 $L=(m\dot q^2-kq^2)/2$：
+(1) 作坐标标度变换使动能系数为 $1$；
+(2) 再考虑
+\[
+ L=\frac12me^{2\gamma t}\dot q^2-\frac12ke^{2\gamma t}q^2,
+ \qquad \omega^2=k/m,
+\]
+求方程、哈密顿量及其全导数；
+(3) 用 $\bar q=e^{\gamma t}q$ 找出守恒量；
+(4) 证明在 $t=1/\gamma$ 的时间尺度上，$\gamma\to0$ 时哈密顿量的变化趋于零。
+\end{advexamplebox}
+\begin{advsolution}
+(1) 取 $Q=\sqrt m\,q$，则
+$L=(\dot Q^2-\omega^2Q^2)/2$。
+
+(2) 方程与哈密顿量为
+\[
+ \ddot q+2\gamma\dot q+\omega^2q=0,
+ \qquad H=\frac m2e^{2\gamma t}(\dot q^2+\omega^2q^2),
+\]
+\[
+ \dot H=-\frac{\partial L}{\partial t}
+ =\gamma me^{2\gamma t}(\omega^2q^2-\dot q^2).
+\]
+
+(3) 代入 $q=e^{-\gamma t}\bar q$ 后
+\[
+ L=\frac m2[(\dot{\bar q}-\gamma\bar q)^2-\omega^2\bar q^2]
+\]
+不显含时间，因而
+\[
+ \mathcal E=\frac m2[\dot{\bar q}^{,2}+(\omega^2-\gamma^2)\bar q^2]
+ =H+m\gamma e^{2\gamma t}q\dot q
+\]
+守恒。
+
+(4) 当 $\gamma<\omega$ 时，
+\[
+ q=e^{-\gamma t}C\cos(\Omega t+\phi),
+ \qquad \Omega=\sqrt{\omega^2-\gamma^2}.
+\]
+代入 $H$ 可见其非常数部分的振幅为 $\mathcal O(\gamma)$，故即使取
+$t=1/\gamma$，仍有
+$|H(1/\gamma)-H(0)|\le C_1\gamma+C_2\gamma^2\to0$。这是缓变极限，不是对任意有限 $\gamma$ 的精确能量守恒。
+\end{advsolution}
+
+\begin{advtheorem}{循环坐标与动量积分}\label{advA1:thm:cyclic}
+若 $\partial L/\partial q_f=0$，则 $q_f$ 是循环坐标，且
+\[
+ p_f=\frac{\partial L}{\partial\dot q_f}=\text{常量}.
+\]
+反之，若 $p_f$ 对所有运动守恒，则拉格朗日方程给出 $\partial L/\partial q_f=0$。
+\end{advtheorem}
+
+\begin{advtheorem}{连续对称性的诺特守恒量}\label{advA1:thm:noether}
+设单参数点变换
+$\bar q_\alpha=\Lambda_\alpha(q,t,\lambda)$满足
+$\Lambda_\alpha(q,t,0)=q_\alpha$，并使拉格朗日量不变，则
+\begin{equation}\label{advA1:eq:noether-charge}
+ \mathcal Q=\sum_\alpha p_\alpha
+ \left.\frac{\partial\Lambda_\alpha}{\partial\lambda}\right|_{\lambda=0}
+\end{equation}
+是守恒量。
+\end{advtheorem}
+证明：记
+$\delta q_\alpha=(\partial\Lambda_\alpha/\partial\lambda)_0\delta\lambda$。不变性给出
+\[
+ 0=\delta L=\sum_\alpha\left(
+ \frac{\partial L}{\partial q_\alpha}\delta q_\alpha
+ +p_\alpha\frac{\dd}{\dd t}\delta q_\alpha\right)
+ =\frac{\dd}{\dd t}\sum_\alpha p_\alpha\delta q_\alpha,
+\]
+其中用了 $\dot p_\alpha=\partial L/\partial q_\alpha$。除以常数 $\delta\lambda$ 即得式\eqref{advA1:eq:noether-charge}。
+空间平移对应线动量，旋转对应角动量，时间平移对应能量。
+
+\begin{advexamplebox}{对称解绕的旋转圆筒}\label{advA1:ex:unwinding-cylinder}
+质量 $M$、半径 $R$ 的薄壁圆筒可绕定轴自由转动。两条相同轻绳对称缠绕，自由端各系质量 $m$ 的小球。初始直绳段长度为零，整体角速度为 $\omega_0$。释放后绳不打滑。（1）求每侧打开长度 $s(t)$；（2）若绳总长度为 $L$，讨论原题所问“打开后”绳相对固定在筒上的直径的夹角随时间的关系。须说明所选绳端连接模型与公式适用阶段。
+\end{advexamplebox}
+\AdvHideHeadingtrue
+\begin{advsolution}
+\noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.88]
+ \draw[very thick] (0,0) circle(1.05);
+ \draw[guide] (-1.45,0)--(1.45,0) node[right]{初始固定直径};
+ \coordinate (T) at ({1.05*cos(35)},{1.05*sin(35)});
+ \draw[curve] (T)--++({2.0*cos(125)},{2.0*sin(125)}) coordinate (P);
+ \fill (P) circle(2.5pt) node[above left]{$m$};
+ \draw[->,DeepBlue] (.45,0) arc[start angle=0,end angle=35,radius=.45];
+ \node at (.68,.19) {$\phi$};
+ \draw[<->,TextGray] ($(T)+(.08,.05)$)--($(P)+(.08,.05)$) node[midway,right]{$s$};
+ \fill (T) circle(1.8pt) node[right=4pt]{$T$};
+ \node at (0,-1.38) {另一侧与图示关于圆心对称};
+\end{tikzpicture}
+\bookcaption{圆筒上的切点、直绳段和固定直径}\label{advA1:fig:cylinder}
+\end{minipage}\end{center}\end{minipage}
+
+如图\ref{advA1:fig:cylinder}，以圆筒转角 $\theta$ 和每侧直绳长 $s$ 为坐标。图中 $\phi$ 是切点半径相对初始固定直径的方位角，直绳切线的方位角为 $\phi+\pi/2$。绳不打滑意味着
+$\phi=\theta-s/R$。两球与圆筒的总动能为
+\[
+ T=\frac12(M+2m)R^2\dot\theta^2
+ +ms^2\left(\dot\theta-\frac{\dot s}{R}\right)^2.
+\]
+$\theta$ 是循环坐标。记
+\[
+ A=(M+2m)R^2+2ms^2,\quad B=-\frac{2ms^2}{R},
+ \quad C=\frac{2ms^2}{R^2},
+\]
+则 $T=(A\dot\theta^2+2B\dot\theta\dot s+C\dot s^2)/2$。角动量和能量分别为
+\[
+ J=A\dot\theta+B\dot s=(M+2m)R^2\omega_0,
+ \quad E=\frac12(M+2m)R^2\omega_0^2.
+\]
+消去 $\dot\theta$ 后
+\[
+ E=\frac12\left(C-\frac{B^2}{A}\right)\dot s^2+\frac{J^2}{2A}.
+\]
+代入 $A,B,C,J,E$ 化简，得 $\dot s=R\omega_0$，约定 $\omega_0>0$ 并取打开分支，
+\[
+ \boxed{s(t)=R\omega_0t},\qquad \dot\theta=\omega_0,
+ \qquad \phi=\theta-s/R=0.
+\]
+所以直绳段在惯性系中方向不变。圆筒相对切点半径转过 $\theta-\phi=\omega_0t=s/R$，这是相对初态的转角；直绳与筒上随转直径的有向几何夹角则为
+$\beta=\phi+\pi/2-\theta=\pi/2-\omega_0t$（直线夹角按模 $\pi$ 理解）。若每侧可打开的长度为 $L/2$，则打开时间
+$t_*=L/(2R\omega_0)$，在这一阶段终点，累计相对转角为 $L/(2R)$，而绳与随转直径的夹角为 $\beta_*=\pi/2-L/(2R)$（模 $\pi$）。
+
+原文没有明确绳端是否固定圆筒，也未交代全部解绕后两球与绳的连接、脱离或绷紧约束。因此以上 $s(t)$ 与相对夹角公式只用于仍在解绕的阶段 $0<t<t_*$；不能不加新条件延伸到 $t>t_*$。若“打开后”指已完全离开筒面，必须先补全绳端约束，再用新的几何约束与守恒量求运动，原给定信息不足以唯一确定该阶段的夹角。
+\end{advsolution}
+
+若 $q_f$ 是循环坐标且 $p_f=c_f$，对 $\dot q_f$ 作勒让德变换得罗斯函数
+\begin{equation}\label{advA1:eq:routhian}
+ \mathcal R=L-p_f\dot q_f.
+\end{equation}
+用 $p_f=c_f$ 解出 $\dot q_f$并代回后，其余 $f-1$ 个坐标仍满足拉格朗日形式的罗斯方程。
+
+\begin{advexamplebox}{自由转动圆环上小珠的小振动}\label{advA1:ex:routh-hoop}
+\emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
+半径 $a$ 的竖直圆环可绕竖直直径无摩擦转动，圆环对该轴的转动惯量为 $I$。质量 $m$ 的小珠在环上滑动。以珠从最低点向上的角位移 $\theta$ 和环的方位角 $\varphi$ 为坐标。在绕竖直轴角动量为 $J$ 时，求最低点附近的振动频率及稳定条件。
+\end{advexamplebox}
+\AdvHideHeadingtrue
+\begin{advsolution}
+\noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \draw[axis] (0,2)--(0,-2.1) node[below]{转轴};
+ \draw[very thick] (0,0) ellipse (1.35 and 1.8);
+ \coordinate (P) at ({1.35*sin(32)},{-1.8*cos(32)});
+ \draw[guide] (0,0)--(P);\fill (0,0) circle(1.5pt) node[left]{$O$};
+ \fill (P) circle(2.4pt) node[right=5pt]{$m$};
+ \draw[DeepBlue,->] (0,-.68) arc[start angle=-90,end angle=-58,x radius=.51,y radius=.68];
+ \node at (.36,-.82) {$\theta$};
+ \draw[TextGray,->] ({.75*cos(160)},{.65+.20*sin(160)}) arc[start angle=160,end angle=20,x radius=.75,y radius=.20];
+ \node at (.90,.77) {$\varphi$};
+\end{tikzpicture}
+\bookcaption{可绕竖直直径转动的圆环与环上小珠}\label{advA1:fig:hoop}
+\end{minipage}\end{center}\end{minipage}
+
+如图\ref{advA1:fig:hoop}，
+\[
+ L=\frac12ma^2\dot\theta^2
+ +\frac12(I+ma^2\sin^2\theta)\dot\varphi^2
+ +mga\cos\theta .
+\]
+$\varphi$ 循环，
+$J=(I+ma^2\sin^2\theta)\dot\varphi$。作罗斯约化：
+\[
+ \mathcal R=\frac12ma^2\dot\theta^2+mga\cos\theta
+ -\frac{J^2}{2(I+ma^2\sin^2\theta)}.
+\]
+在 $\theta=0$ 附近保留二阶项，
+\[
+ \mathcal R=\text{常量}+\frac12ma^2\dot\theta^2
+ -\frac12ma^2\left(\frac ga-\frac{J^2}{I^2}\right)\theta^2+\order{\theta^4}.
+\]
+因而
+\[
+ \boxed{\omega^2=\frac ga-\left(\frac JI\right)^2},
+ \qquad \frac{|J|}I<\sqrt{\frac ga}.
+\]
+当等号成立时二阶恢复力消失，必须保留四阶项；超过阈值时最低点变为不稳定点。
+\end{advsolution}
+
+\subsection{小振动、傅里叶变换与周期系统}
+
+在稳定平衡点 $q_\alpha=0$ 附近，将动能和势能展开到二阶：
+\begin{equation}\label{advA1:eq:small-L}
+ L=\frac12\dot{\vect q}^{\mathsf T}\mathsf T\dot{\vect q}
+ -\frac12\vect q^{\mathsf T}\mathsf V\vect q .
+\end{equation}
+$\mathsf T$ 是正定的惯性矩阵，$\mathsf V$ 是对称的弹性矩阵。被忽略的项至少含有三个小量，可用微扰迭代逐阶修正。
+
+\begin{advdefinition}{线性变换}\label{advA1:def:linear-map}
+向量空间上满足
+$F(\lambda\vect x+\mu\vect y)=\lambda F(\vect x)+\mu F(\vect y)$
+的映射称为线性变换。
+\end{advdefinition}
+
+\begin{advtheorem}{线性变换的矩阵表示}\label{advA1:thm:linear-matrix}
+在选定基底后，每个有限维线性变换唯一对应一个矩阵 $\mathsf F$，使
+$\vect y=F(\vect x)$ 等价于 $[\vect y]=\mathsf F[\vect x]$。
+\end{advtheorem}
+证明：只需把每个基矢的像作为矩阵的一列；线性性保证它对任意向量成立，基底展开的唯一性保证矩阵唯一。
+
+\begin{advdefinition}{对称二次型}\label{advA1:def:quadratic-form}
+若 $S(\vect x,\vect y)$ 对两个变量均线性，且
+$S(\vect x,\vect y)=S(\vect y,\vect x)$，则称其为对称二次型对应的双线性型。
+\end{advdefinition}
+
+\begin{advtheorem}{二次型的对称矩阵表示}\label{advA1:thm:quadratic-matrix}
+在选定基底后，存在唯一对称矩阵 $\mathsf S$，使
+\[
+ S(\vect x,\vect y)=\vect x^{\mathsf T}\mathsf S\vect y.
+\]
+\end{advtheorem}
+证明：令 $S_{ij}=S(\vect e_i,\vect e_j)$，用双线性展开即得矩阵表示；对称性给出 $S_{ij}=S_{ji}$。
+
+\begin{advdefinition}{合同变换}\label{advA1:def:congruence}
+对非奇异矩阵 $\mathsf P$，
+\[
+ \mathsf S\longmapsto \mathsf P^{\mathsf T}\mathsf S\mathsf P
+\]
+称为对称矩阵的合同变换。它是二次型在坐标变换 $\vect q=\mathsf P\vect Q$ 下的自然变换。
+\end{advdefinition}
+
+\begin{advtheorem}{惯性矩阵与弹性矩阵的同时对角化}\label{advA1:thm:normal-modes}
+若 $\mathsf T$ 对称正定、$\mathsf V$ 对称，则存在非奇异矩阵 $\mathsf A$，使
+\begin{equation}\label{advA1:eq:sim-diag}
+ \mathsf A^{\mathsf T}\mathsf T\mathsf A=\mathsf I,
+ \qquad
+ \mathsf A^{\mathsf T}\mathsf V\mathsf A
+ =\operatorname{Diag}(\omega_1^2,\ldots,\omega_n^2).
+\end{equation}
+\end{advtheorem}
+证明：因 $\mathsf T$ 正定，存在可逆平方根 $\mathsf T^{1/2}$。矩阵
+$\mathsf K=\mathsf T^{-1/2}\mathsf V\mathsf T^{-1/2}$ 对称，因此可被正交矩阵 $\mathsf O$ 对角化。取
+$\mathsf A=\mathsf T^{-1/2}\mathsf O$，立即得式\eqref{advA1:eq:sim-diag}。令 $\vect q=\mathsf A\vect Q$，式\eqref{advA1:eq:small-L}化为
+\[
+ L=\frac12\sum_j(\dot Q_j^2-\omega_j^2Q_j^2).
+\]
+$\omega_j^2>0$ 表示稳定振动，$\omega_j^2=0$ 表示零模，$\omega_j^2<0$ 表示指数不稳定。
+
+\begin{advexamplebox}{刚体复摆的小振动}\label{advA1:ex:physical-pendulum}
+\emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
+刚体质量为 $M$，质心到水平固定轴的距离为 $a$，对该轴的转动惯量为 $I$。求竖直向下稳定位置附近的周期。
+\end{advexamplebox}
+\begin{advsolution}
+以偏角 $\theta$ 为坐标，
+\[
+ L=\frac12I\dot\theta^2+Mga\cos\theta.
+\]
+精确方程是 $I\ddot\theta+Mga\sin\theta=0$。小角度下
+\[
+ I\ddot\theta+Mga\theta=0,
+ \qquad \boxed{\omega=\sqrt{\frac{Mga}{I}}},
+ \qquad \boxed{T_0=2\pi\sqrt{\frac I{Mga}}}.
+\]
+若 $I=Ma^2$，回到长度 $a$ 的单摆；若 $a\to0$，重力恢复力矩消失，周期趋于无穷，两个极限均正确。
+\end{advsolution}
+
+\subsubsection{陀螺型速度耦合与傅科摆}
+
+考虑二维谐振子
+\[
+ T=\frac m2(\dot x^2+\dot y^2),\qquad
+ V_0=\frac k2(x^2+y^2),
+\]
+并受到速度型力
+\[
+ F_x=-m\Omega\dot y,\qquad F_y=m\Omega\dot x.
+\]
+它可由含速势
+\[
+ V_g=\frac{m\Omega}{2}(x\dot y-y\dot x)
+\]
+描述。令 $z=x+\ii y$，方程化为
+\begin{equation}\label{advA1:eq:foucault-complex}
+ \ddot z-\ii\Omega\dot z+\omega^2z=0,
+ \qquad \omega^2=k/m.
+\end{equation}
+作变换 $z=e^{\ii\Omega t/2}\zeta$，得
+\[
+ \ddot\zeta+\omega_0^2\zeta=0,
+ \qquad \omega_0^2=\omega^2+\frac{\Omega^2}{4}.
+\]
+两个圆偏振模的频率为 $\omega_0\pm\Omega/2$，线偏振叠加后的振动平面以 $\Omega/2$ 进动。对地球上的傅科摆，若将当地竖直方向的地球自转分量记为 $\Omega_E\sin\lambda$，则上式的速度耦合系数是
+$\Omega=2\Omega_E\sin\lambda$，所以进动角速度是 $\Omega_E\sin\lambda$。
+
+\begin{advtheorem}{周期函数的傅里叶级数}\label{advA1:thm:fourier-series}
+对周期 $l$ 的光滑函数，
+\[
+ f(x)=\sum_{n=-\infty}^{\infty}c_n e^{\ii2\pi nx/l},
+ \qquad c_n=\frac1l\int_0^l f(x)e^{-\ii2\pi nx/l}\dd x.
+\]
+\end{advtheorem}
+证明要点是函数 $e^{\ii2\pi nx/l}$ 在 $[0,l]$ 上正交：
+\[
+ \frac1l\int_0^l e^{\ii2\pi(n-m)x/l}\dd x=\delta_{nm}.
+\]
+将展开式两边与第 $m$ 个基函数的共轭相乘并积分，即得 $c_m$。光滑性保证系数足够快衰减并使级数按所需意义收敛。
+
+\begin{advtheorem}{平方可积函数的傅里叶变换}\label{advA1:thm:fourier-transform}
+采用对称归一化，
+\[
+ g(k)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-\ii kx}\dd x,
+ \qquad
+ f(x)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}g(k)e^{\ii kx}\dd k.
+\]
+对 $f\in L^2(\mathbb R)$，等式按 $L^2$ 意义成立。
+\end{advtheorem}
+可先在长区间 $[-L/2,L/2]$ 上作傅里叶级数，再令
+$L\to\infty$。此时离散波数间距 $\Delta k=2\pi/L\to0$，级数的黎曼和趋于积分，得到上式。更严格的表述依赖平方可积函数空间的完备性。
+
+连续/离散、周期/非周期的四种组合分别对应傅里叶变换、傅里叶级数、离散时间傅里叶变换和离散傅里叶变换。它们的共同核心都是用平移对称性的本征函数实现解耦。
+
+\subsubsection{一维单原子链}
+
+在平衡位置 $x_n^{(0)}=nl$ 上放置质量 $m$ 的质点，纵向位移为 $u_n$，最近邻弹簧常量为 $\kappa$。
+\[
+ L=\sum_n\left[\frac12m\dot u_n^2-\frac12\kappa(u_{n+1}-u_n)^2\right].
+\]
+对离散坐标作变换
+\[
+ \phi(k,t)=\sum_{n=-\infty}^{\infty}u_n(t)e^{-\ii knl},
+ \quad
+ u_n(t)=\frac l{2\pi}\int_{-\pi/l}^{\pi/l}
+ \phi(k,t)e^{\ii knl}\dd k.
+\]
+由于 $\phi(k+2\pi/l)=\phi(k)$，只需保留第一布里渊区 $[-\pi/l,\pi/l]$。代入并利用正交性，各个 $k$ 模彼此解耦，色散关系为
+\begin{equation}\label{advA1:eq:lattice-dispersion}
+ \boxed{\omega(k)=2\sqrt{\frac\kappa m}
+ \left|\sin\frac{kl}{2}\right|}.
+\end{equation}
+长波极限 $|kl|\ll1$ 下，$\omega\simeq l\sqrt{\kappa/m}|k|$，群速度趋于
+$l\sqrt{\kappa/m}$；在布里渊区边界 $k=\pm\pi/l$ 处群速度为零。
+
+\begin{advexamplebox}{用极坐标求傅科摆进动}\label{advA1:ex:foucault-polar}
+将速度耦合二维谐振子改用极坐标 $(r,\theta)$，求共转线偏振解的进动速率，并说明一般初态及静止释放时的区别。
+\end{advexamplebox}
+\begin{advsolution}
+因 $x\dot y-y\dot x=r^2\dot\theta$，
+\[
+ L=\frac m2(\dot r^2+r^2\dot\theta^2)-\frac k2r^2
+ -\frac{m\Omega}{2}r^2\dot\theta,
+ \qquad J=mr^2\left(\dot\theta-\frac\Omega2\right).
+\]
+令共转角 $\psi=\theta-\Omega t/2$，则 $J=mr^2\dot\psi$。
+在共转坐标中选取线偏振振动才有 $J=0$；除穿过原点时极角的 $\pi$ 跳变外，
+振动直线满足 $\dot\theta=\Omega/2$。
+此时用可正可负的直线坐标 $q$ 代替非负半径，得到
+\[
+ \ddot q+\omega_0^2q=0,\qquad \omega_0^2=\omega^2+\Omega^2/4.
+\]
+一般初态在共转系中形成固定椭圆，该椭圆的轴随坐标系以 $\Omega/2$ 转动。
+例如原坐标中从 $z(0)=a,\dot z(0)=0$ 静止释放，有
+\[
+ J=-\frac12m\Omega a^2\ne0,\qquad
+ z(t)=a\e^{\ii\Omega t/2}
+ \left[\cos\omega_0t-\frac{\ii\Omega}{2\omega_0}\sin\omega_0t\right].
+\]
+在 $|\Omega|\ll\omega_0$ 时椭圆很窄，才可近似称为单一振动平面进动。
+因此 $J=0$ 是特定线偏振解的条件，不能由任意“静止释放”推出。
+
+\end{advsolution}
+
+\begin{advexamplebox}{无限一维电阻网络}\label{advA1:ex:resistor-chain}
+\emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
+无限多个节点按整数 $n$ 排列，相邻节点之间接电阻 $R$，每个节点再通过电阻 $r$ 接公共地。求 $n=0$ 节点对地的等效电阻。
+\end{advexamplebox}
+\begin{advsolution}
+向 $0$ 节点注入电流 $I$，节点电势为 $V_n$。对所有 $n$，
+\[
+ \frac{V_n}{r}+\frac{2V_n-V_{n-1}-V_{n+1}}R=I\delta_{n0}.
+\]
+作离散傅里叶变换，
+\[
+ V(k)=\frac I{r^{-1}+2R^{-1}(1-\cos k)}.
+\]
+因此
+\[
+ \frac{V_0}{I}=\frac1{2\pi}\int_{-\pi}^{\pi}
+ \frac{\dd k}{r^{-1}+2R^{-1}(1-\cos k)}.
+\]
+用标准积分
+$\frac1{2\pi}\int_{-\pi}^{\pi}\dd k/(a-b\cos k)=1/\sqrt{a^2-b^2}$，得
+\[
+ \boxed{R_{\rm eq}=\frac1{\sqrt{r^{-2}+4/(rR)}}
+ =\frac r{\sqrt{1+4r/R}}}.
+\]
+$R\to\infty$ 时各节点断开，$R_{\rm eq}\to r$；$r\to\infty$ 时整个网络没有到地通路，$R_{\rm eq}\to\infty$，极限检查通过。
+\end{advsolution}
+
+\begin{advexamplebox}{六原子环的简正模}\label{advA1:ex:six-atom-ring}
+\emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
+六个质量均为 $m$ 的原子排成闭环，只考虑沿环方向的小位移 $u_j$，相邻原子之间的有效弹簧常量为 $\kappa$，$u_{j+6}=u_j$。求全部简正频率及简并度。
+\end{advexamplebox}
+\AdvHideHeadingtrue
+\begin{advsolution}
+\noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ \foreach \j in {0,...,5}{
+   \coordinate (P\j) at ({90-60*\j}:1.42);
+ }
+ \foreach \j [evaluate=\j as \k using {int(mod(\j+1,6))}] in {0,...,5}{
+   \draw[spring] (P\j)--(P\k);
+ }
+ \foreach \j in {0,...,5}{
+   \fill (P\j) circle(3pt);
+   \node at ($1.28*(P\j)$) {$u_{\j}$};
+ }
+ \draw[->,DeepBlue] (0,2.15) arc[start angle=90,end angle=25,radius=2.15];
+ \node[above right] at (2.15,1.85) {正向};
+\end{tikzpicture}
+\bookcaption{六原子环中的周期边界与最近邻耦合}\label{advA1:fig:ring}
+\end{minipage}\end{center}\end{minipage}
+
+如图\ref{advA1:fig:ring}，方程为
+\[
+ m\ddot u_j=\kappa(u_{j+1}+u_{j-1}-2u_j).
+\]
+取 $u_j=Ae^{\ii(kj-\omega t)}$，周期边界给出
+$k_n=2\pi n/6$，$n=0,\ldots,5$，而
+\[
+ \omega_n=2\sqrt{\frac\kappa m}\left|\sin\frac{k_n}{2}\right|.
+\]
+所以频谱为
+\[
+ \boxed{0\ (1),\quad \sqrt{\kappa/m}\ (2),\quad
+ \sqrt{3\kappa/m}\ (2),\quad 2\sqrt{\kappa/m}\ (1)}.
+\]
+括号中是简并度。零模对应六个原子沿环同向等量移动，弹簧不变形；$n$ 与 $6-n$ 构成反向传播的一对简并模。
+\end{advsolution}
+
+\input{advanced/A1-rigid.tex}
+\input{advanced/A1-continuum.tex}
+
+\clearpage\endgroup

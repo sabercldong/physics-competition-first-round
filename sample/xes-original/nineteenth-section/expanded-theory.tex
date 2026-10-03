@@ -1,0 +1,92 @@
+\subsection*{从做功定义电势差}
+
+电势的绝对值依赖零点选择，电势差却不依赖。若把单位正电荷从 $A$ 缓慢移到 $B$，外力做功
+等于电势能增加量，因此
+\begin{equation}
+ \varphi_B-\varphi_A=\frac{W_{\rm ext}}q=-\frac{W_{\rm field}}q.
+\end{equation}
+“缓慢”意味着过程中的动能变化可以忽略。若电荷自由运动，则应把电场力做功写进动能定理：
+\begin{equation}
+ \frac12mv_B^2-\frac12mv_A^2=q(\varphi_A-\varphi_B).
+\end{equation}
+正电荷由高电势向低电势加速，负电荷则相反；无论电荷正负，电势能降低量都转化为动能增加量。
+
+静电场保守性的局部形式为 $\nabla\times\vect E=0$。在单连通区域中，它保证线积分与路径无关，
+从而可以定义单值电势。反过来，由 $\vect E=-\nabla\varphi$ 自动得到零旋度。若存在随时间变化的
+磁场，电场环流一般不再为零，单一静电势便不能完整描述电场；本讲讨论的电势关系限定在静电场。
+
+沿一条给定方向 $s$，电场分量为
+\begin{equation}
+ E_s=-\frac{\dd\varphi}{\dd s}.
+\end{equation}
+因此电势--位置图的斜率直接给出电场。电势有极值的点满足 $\vect E=0$，但零场点未必稳定；
+还需考察电势的二阶变化。对正试探电荷，势能 $q\varphi$ 的局部极小对应稳定平衡，局部极大
+对应不稳定平衡；负电荷的判断相反。
+
+\subsection*{由电荷求电势，再由电势求电场}
+
+电势叠加是标量代数和，通常比直接叠加电场简单。对连续分布可写成
+\begin{equation}
+ \varphi(\vect r)=\frac1{4\pi\varepsilon_0}
+ \int\frac{\rho(\vect r')}{|\vect r-\vect r'|}\,\dd V'.
+\end{equation}
+若电荷分布在有限区域内且观察距离远大于分布尺度，电势可按距离反幂展开：
+\begin{equation}
+ \varphi(\vect r)=\frac1{4\pi\varepsilon_0}
+ \left(\frac Qr+\frac{\vect p\cdot\uvec r}{r^2}+\cdots\right).
+\end{equation}
+总电荷 $Q$ 非零时，最远处由单极项 $1/r$ 主导；若 $Q=0$ 而偶极矩 $\vect p$ 非零，则由
+$1/r^2$ 的偶极项主导；更高阶四极项衰减更快。这解释了为什么中性分子远场仍可能产生电作用，
+同时也说明高阶多极结构只在较近距离才明显。
+
+电势满足 Poisson 方程
+\begin{equation}
+ \boxed{\nabla^2\varphi=-\frac\rho{\varepsilon_0}},
+\end{equation}
+无电荷区域满足 Laplace 方程 $\nabla^2\varphi=0$。一维平面对称问题中它退化为
+$\dd^2\varphi/\dd x^2=-\rho/\varepsilon_0$；分段电荷分布可在各区分别积分，再用电势连续和
+法向电场跃变条件连接。
+
+\subsection*{等势面的几何信息}
+
+等势面与电场正交可以由微分直接看出。沿等势面任意切向位移 $\dd\vect l_t$，有
+\begin{equation}
+ \dd\varphi=\nabla\varphi\cdot\dd\vect l_t
+ =-\vect E\cdot\dd\vect l_t=0,
+\end{equation}
+故电场没有切向分量。若在一幅等势图上相邻曲线的电势差都为 $\Delta\varphi$，局部法向间距为
+$\Delta n$，则场强近似为 $E\approx|\Delta\varphi|/\Delta n$。等势面密集处场强大，但只有
+相邻面所代表的电势差相同，这种疏密比较才有意义。
+
+无限长线电荷是电势零点选择的典型例子。由高斯定律
+$E(r)=\lambda/(2\pi\varepsilon_0r)$，两点间电势差为
+\begin{equation}
+ \varphi(r_2)-\varphi(r_1)
+ =-\frac\lambda{2\pi\varepsilon_0}\ln\frac{r_2}{r_1}.
+\end{equation}
+当 $r_2\to\infty$ 时对数发散，所以不能把无穷远取为零；选择任意有限参考半径并不会影响电场
+或可观测的电势差。
+
+\subsection*{电荷系统能量的建立过程}
+
+把一组电荷从无穷远逐个搬到指定位置，可以得到系统势能。第一个电荷搬入时没有其他电荷，
+不需克服相互作用；第二个电荷只与第一个相互作用；继续进行，每一对电荷恰好被计算一次，于是
+得到 $\sum_{i<j}kQ_iQ_j/r_{ij}$。若改写为 $\frac12\sum_iQ_i\varphi_i^{(\rm others)}$，每一对
+会在 $i$ 与 $j$ 两项中出现两次，所以必须乘 $1/2$。
+
+连续分布的能量也可从场的观点理解。利用 $\rho=\varepsilon_0\nabla\cdot\vect E$、
+$\vect E=-\nabla\varphi$ 和分部积分，在边界项消失时有
+\begin{equation}
+ \frac12\int\rho\varphi\,\dd V
+ =\frac{\varepsilon_0}{2}\int E^2\,\dd V.
+\end{equation}
+左式把能量看作电荷之间的相互作用，右式把同一能量看作储存在整个空间的电场中。场能密度
+处处非负，但选定零点后的两个异号点电荷相互作用能可以为负；差别来自点电荷自能未包含在
+有限的相互作用能中。
+
+由能量求力时必须说明控制量。若系统的几何参数为 $x$，在电荷保持不变的孤立条件下可用
+\begin{equation}
+ F_x=-\left(\frac{\partial U}{\partial x}\right)_Q.
+\end{equation}
+若系统接在恒压电源上，电源还会交换电荷并做功，不能只对电容器场能
+$CU^2/2$ 机械求导；电容器问题中会进一步区分恒电荷与恒电压两种边界条件。

@@ -1,0 +1,516 @@
+\section{狭义相对论}
+
+\subsection{时空观与相对性原理}
+
+\begin{advtheorem}{Newton 运动定律的惯性系表述}\label{advA6:thm:newton-laws}
+\begin{enumerate}
+\item 在惯性系中，不受合外力的质点保持静止或匀速直线运动；
+\item 质点动量的变化率等于所受合外力；质量恒定、低速时写成
+$\vect F=m\vect a$；
+\item 两质点间的相互作用力等大、反向；对满足中心力模型的相互作用还共线。
+\end{enumerate}
+\end{advtheorem}
+
+\begin{advtheorem}{Einstein 狭义相对论公设}\label{advA6:thm:einstein-postulates}
+\begin{enumerate}
+\item 所有惯性系中的物理定律形式相同；
+\item 真空光速 $c$ 与光源、观察者的惯性运动状态无关。
+\end{enumerate}
+\end{advtheorem}
+
+Newton--Cartan 时空把绝对时间与三维 Euclid 空间分开；
+Minkowski 时空则把事件写成
+$x^\mu=(ct,x,y,z)$，以
+\[
+ \dd s^2=c^2\dd t^2-\dd x^2-\dd y^2-\dd z^2
+\]
+作为不变量。广义相对论进一步允许度规随位置变化，但本节只讨论平直时空。
+
+沿 $x$ 方向、速度为 $v$ 的 Lorentz 推促写成
+\[
+\begin{pmatrix}ct'\\x'\\y'\\z'\end{pmatrix}
+=
+\begin{pmatrix}
+\gamma&-\gamma\beta&0&0\\
+-\gamma\beta&\gamma&0&0\\
+0&0&1&0\\0&0&0&1
+\end{pmatrix}
+\begin{pmatrix}ct\\x\\y\\z\end{pmatrix},
+\qquad
+\beta=\frac vc,\quad \gamma=\frac1{\sqrt{1-\beta^2}}.
+\]
+任意四矢量 $A^\mu=(A^0,\vect A)$ 服从同一线性变换，伪内积
+$A^\mu B_\mu=A^0B^0-\vect A\cdot\vect B$ 不变。类时四矢量可在某一惯性系中把空间分量变为零，
+该系称为其本征系。
+
+\subsection{常见四矢量与相对论动力学}
+
+四位移、四速度与四动量为
+\[
+ \dd x^\mu=(c\dd t,\dd\vect r),\qquad
+ U^\mu=\frac{\dd x^\mu}{\dd\tau}=\gamma(c,\vect v),
+\]
+\[
+ p^\mu=mU^\mu=\left(\frac Ec,\vect p\right),\qquad
+ E^2-p^2c^2=m^2c^4,
+\]
+\[
+ \vect p=\gamma m\vect v,\qquad E=\gamma mc^2,\qquad
+ \vect v=\frac{\vect p c^2}{E}.
+\]
+四加速度与四力
+\[
+ A^\mu=\frac{\dd U^\mu}{\dd\tau},\qquad
+ K^\mu=\frac{\dd p^\mu}{\dd\tau}
+=\gamma\left(\frac{\vect F\cdot\vect v}{c},\vect F\right)
+\]
+均与 $U^\mu$ 正交。三维形式仍为
+\[
+ \vect F=\frac{\dd\vect p}{\dd t},\qquad
+ \vect F\cdot\dd\vect r=\dd E.
+\]
+把加速度分解为平行、垂直于瞬时速度的分量，
+\[
+ a_{\parallel,0}=\gamma^3a_\parallel,\qquad
+ a_{\perp,0}=\gamma^2a_\perp,
+\]
+其中下标 $0$ 表示瞬时本征惯性系。快度 $\vartheta$ 满足
+$\beta=\tanh\vartheta$、$\gamma=\cosh\vartheta$，共线速度合成变为快度相加。
+
+\begin{advexamplebox}{加速杆的收缩率、本征加速度与信号频移}\label{advA6:ex:accelerating-rod}
+本征长度为 $L$ 的杆以速度 $v$ 沿杆方向运动，随后发生缓慢纵向加速。
+地面系瞬时加速度为 $a$，且 $aL\ll c^2$。涉及有限杆时采用局部短杆近似，
+并分别说明保持刚性及频移展开所需的额外条件。
+
+\begin{enumerate}
+\item 求局部近似下地面系同时测得的杆长 $\ell\simeq L/\gamma$ 的变化率，
+并写成 $-v^{-1}\dd\ell/\dd t=\lambda\gamma^\mu(aL/c^2)^\nu$，求三个无量纲常数；
+\item 把杆视为质点，求纵向本征加速度 $a_0$、本征力 $F_0$ 与地面系量的关系；
+\item 在保持 Born 刚性的缓慢加速近似下，尾端发出本征频率 $\nu_1$ 的信号，
+求头端收到的频率 $\nu_2$。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+第一问保留杆长 $L$ 的一阶项，$v,a$ 取尾端瞬时值。
+对保持Born刚性的加速杆，使用此近似需要更强条件
+$\varepsilon=\gamma^3aL/c^2\ll1$，并要求加速度在跨杆的本征时间尺度 $L/c$ 内缓变。
+由 $\ell\simeq L/\gamma$ 和
+$\dot\gamma=\gamma^3va/c^2$，
+\[
+ \boxed{\frac{\dd\ell}{\dd t}
+ \simeq-\frac{L\gamma va}{c^2}},\qquad
+ -\frac1v\frac{\dd\ell}{\dd t}
+ \simeq\gamma\frac{aL}{c^2}\quad(v\ne0).
+\]
+所以在这个局部近似中，$\lambda=1,\mu=1,\nu=1$。这里必须区分本征长度 $L$ 与实验室同时长度 $\ell$。
+这不是有限长加速杆的精确洛伦兹收缩律。例如尾端恒定本征加速度为 $a_0$，
+在尾端瞬时静止的时刻取惯性系的 $t=0$，令 $R=c^2/a_0$，则该惯性系同时杆长精确为
+\[
+ \ell(t)=\sqrt{(R+L)^2+c^2t^2}-\sqrt{R^2+c^2t^2}.
+\]
+对 $L/R\ll1$ 展开才得到 $L/\gamma$；二阶项为
+$a_0L^2\beta^2/(2c^2\gamma)$。单凭 $aL\ll c^2$，不能在任意大的 $\gamma$ 下丢掉它。
+
+本征加速度不能只凭量纲猜出。取与杆在考察瞬间共速的惯性系，其速度参数为 $v$，
+并在这个固定的惯性系中比较相邻两个事件。由速度变换求微分，在粒子瞬时速度 $u=v$ 处有
+\[
+ \left.\frac{\partial u'}{\partial u}\right|_{u=v}
+ =\frac{1-v^2/c^2}{(1-uv/c^2)^2}\bigg|_{u=v}=\gamma^2,
+ \qquad \dd t'=\gamma(1-vu/c^2)\dd t=\dd t/\gamma.
+\]
+于是 $a_0=\dd u'/\dd t'=\gamma^3\dd u/\dd t$，即
+\[
+ \boxed{a_0=\gamma^3a}.
+\]
+又
+\[
+ F=\frac{\dd(\gamma mv)}{\dd t}
+ =m\gamma^3a=ma_0,
+\]
+故纵向三力在瞬时本征系与地面系数值相同：
+$\boxed{F=F_0}$。这并不意味着任意方向三力都不变。
+
+对第三问，在信号通过期间把尾端本征加速度 $a_0$ 视为常量。
+Born 刚性表示各点在共动测量中的距离不变，不表示各点的本征加速度相同。
+尾端 $x=0$、头端 $x=L$ 的加速度分别为 $a_0$ 和
+$a_0/(1+a_0L/c^2)$。以尾端钟读数 $T$ 作时间坐标，在这个模型中
+\[
+ \dd s^2=
+ \left(1+\frac{a_0x}{c^2}\right)^2c^2\dd T^2-\dd x^2.
+\]
+这个式子可由惯性坐标
+$ct=(c^2/a_0+x)\sinh(a_0T/c)$、
+$X=(c^2/a_0+x)\cosh(a_0T/c)-c^2/a_0$ 微分后相减得到。
+固定 $x$ 的钟因此记录 $\dd\tau_x=(1+a_0x/c^2)\dd T$。
+光满足 $\dd s^2=0$，从尾到头的坐标传播时间为
+\[
+ T_{\rm rec}-T_{\rm em}=\int_0^L\frac{\dd x}{c(1+a_0x/c^2)}
+ =\frac c{a_0}\ln(1+a_0L/c^2),
+\]
+它不依赖发射时刻。相邻两个波峰在尾端相隔 $\Delta\tau_1=\Delta T$，
+在头端相隔 $\Delta\tau_2=(1+a_0L/c^2)\Delta T$。
+频率是波峰间隔的倒数，所以
+\[
+ \boxed{\frac{\nu_2}{\nu_1}
+ =\frac1{1+a_0L/c^2}
+ \simeq1-\frac{a_0L}{c^2}}.
+\]
+头端收到红移。上式的最后一步近似还要求
+$a_0L/c^2=\gamma^3aL/c^2\ll1$；高速时，题设 $aL/c^2\ll1$ 本身并不足以保证它。
+频移比的未展开式适用于上述恒定本征加速度模型；加速度随时间变化时，
+还需其在一次传播时间内的变化足够小，才能局部使用。
+第一问使用的 $\ell=L/\gamma$ 同样是各点速度差可忽略的局部短杆表达。
+若杆各点被强行赋予相同实验室加速度，杆将不保持 Born 刚性，
+题目便需要另行给出内部变形模型。
+\end{advsolution}
+
+\begin{advexamplebox}{相对论电子束的电场加速与磁场回转}\label{advA6:ex:relativistic-accelerator}
+电子从下方入口进入两平行极板间，在匀强电场 $E$ 中沿长度 $L$ 加速，
+从 $X$ 点进入匀强磁场并沿半圆到 $Z$ 点，再在上方极板间减速离开。
+上下通道间距为 $D$，稳恒束流电流的大小为 $I>0$，电子电荷为 $-e$、质量为 $m$。
+若入口速度不可忽略，以入口动量大小 $p_0$ 为参数作答；初动能可忽略的结果取 $p_0\to0$ 极限。
+取向右为 $+x$、向上为 $+y$、出纸面为 $+z$。
+
+\begin{enumerate}
+\item 求磁感应强度以及下电场段、磁场段、上电场段中的总束流电荷量；
+\item 换到使 $X$ 点电子静止的惯性系，求 $Y,Z$ 点速度，再求三个区域中的总电荷量；
+\item 不直接套用场变换公式，利用测试电荷受力确定新系中的匀强场。
+\end{enumerate}
+
+\begin{center}
+\input{assets/diagrams-modern/accelerator-source.tex}
+\par\smallskip
+电子经下通道向右、沿半圆转回、经上通道向左。极板开孔处允许束流通过。
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+图中负电子在下通道向右加速，电场必须向左：$\vect E=-E\vect e_x$。
+在X点速度向右而磁力向上，$-e\vect v\times\vect B$ 要指向半圆圆心，故 $\vect B=B\vect e_z$ 出纸面。
+设入口 $\gamma_0=\sqrt{1+(p_0/mc)^2}$。电场做功给出
+\[
+ \gamma_X=\gamma_0+\frac{eEL}{mc^2},\quad
+ p_X=mc\sqrt{\gamma_X^2-1},\quad
+ v_X=c\sqrt{1-\gamma_X^{-2}}.
+\]
+半圆半径 $R=D/2=p_X/(eB)$，故
+\[
+ \boxed{B=\frac{2p_X}{eD}}.
+\]
+稳恒束流在某段的总电荷量等于电流乘以驻留时间。电场段中
+$\dd p/\dd t=eE$，所以
+\[
+ Q_{\rm lower}=Q_{\rm upper}=-I t_E,\qquad
+ t_E=\frac{p_X-p_0}{eE}.
+\]
+磁场段速率不变，半圆驻留时间为 $\pi D/(2v_X)$，故
+\[
+ \boxed{Q_B=-I t_B},\qquad t_B=\frac{\pi D}{2v_X}.
+\]
+负号不能省去；若只问电荷量大小，才对三式取绝对值。
+上通道电场力仍向右，与向左速度相反，恰好减速至入口的动能。
+
+取新系相对实验室沿 $+x$ 方向速度 $v_X$，则 $X$ 点静止。
+速度变换
+\[
+ u_x'=\frac{u_x-v_X}{1-u_xv_X/c^2},\qquad
+ u_y'=\frac{u_y}{\gamma_X(1-u_xv_X/c^2)}
+\]
+给出
+\[
+ \vect v_X'=0,\quad
+ \vect v_Y'=(-v_X,+v_X/\gamma_X),\quad
+ \vect v_Z'=\frac{-2v_X}{1+\beta_X^2}\,\vect e_x .
+\]
+这里 $Y$ 点实验室速度沿 $+y$，故第一式中的 $u_x=0$，
+而 $y$ 分量的正号与图中的绕行方向一致。
+
+现在真正计算换系后的三个电荷。这里“区域”指实验室装置指定的各段世界管，
+不是预先选定的一组电子。新系的同时截面与实验室截面不同，选入的电子可以不同。
+沿电子前进方向取路径微元 $\dd s>0$，局部速率为 $u$，线电荷密度为 $\lambda=-I/u$。
+实验室稳恒流的四流变换给出 $\rho'=\gamma_X(\rho-v_Xj_x/c^2)$；
+同一实验室固定体积在 $t'=\text{常量}$ 截面上有 $\dd V'=\dd V/\gamma_X$。
+于是
+\[
+ Q'=\int\left(\rho-\frac{v_Xj_x}{c^2}\right)\dd V
+ =-I\int\frac{\dd s}{u}+\frac{I v_X}{c^2}\int\dd x.
+\]
+上式用了 $j_x\dd V=\lambda u_x\dd s=-I\dd x$。
+图中下段、半圆段、上段的端点横坐标差分别为 $L,0,-L$，故
+\[
+ \boxed{Q'_{\rm lower}=-I(t_E-v_XL/c^2)},\qquad
+ \boxed{Q'_B=-It_B},
+\]
+\[
+ \boxed{Q'_{\rm upper}=-I(t_E+v_XL/c^2)}.
+\]
+$t_E>L/c$ 保证下段仍带负电；前后两段的修正相消。这也表明不能把三个电荷统一乘一个 $\gamma_X$。
+
+最后不用场变换公式，而用测试电荷的运动方程确定新场。
+对任意测试粒子，四力变换与 $\dd t'/\dd t=\gamma_X(1-v_Xu_x/c^2)$ 给出
+\[
+ F'_x=\frac{F_x-v_X(\vect F\cdot\vect u)/c^2}{1-v_Xu_x/c^2},
+ \qquad F'_y=\frac{F_y}{\gamma_X(1-v_Xu_x/c^2)}.
+\]
+电场区域内 $\vect F=q(-E,0,0)$：令测试粒子在新系静止，即 $\vect u=v_X\vect e_x$，
+得到 $\vect E'=-E\vect e_x$。再取任意非零 $u_y$，上述力变换始终给 $F'_y=0$，
+且 $F'_x=-qE$。若测试粒子还具有任意 $u_z$，同理 $F'_z=0$。
+三方向的力对测试粒子速度均不依赖，因此不能存在任何非零磁场分量，$\vect B'=0$。
+在纯磁场区域，$\vect F=qB(u_y,-u_x,0)$ 且 $\vect F\cdot\vect u=0$。
+先令 $\vect u=v_X\vect e_x$，新系粒子静止，因而
+\[
+ E'_y=F'_y/q=-\gamma_Xv_XB.
+\]
+再令测试粒子在实验室静止，原力为零；它在新系速度为 $-v_X\vect e_x$，
+于是 $0=E'_y+v_XB'_z$，给出 $B'_z=\gamma_XB$。
+从而三个区域的场为
+\[
+ \boxed{\text{两电场段： }\vect E'=-E\vect e_x,\quad\vect B'=0},
+\]
+\[
+ \boxed{\text{磁场段： }\vect E'=-\gamma_Xv_XB\vect e_y,
+ \quad\vect B'=\gamma_XB\vect e_z}.
+\]
+原来无场的外部区域仍无场。这里仅讨论理想外加场，忽略束流自场及开孔边缘场。
+在X处 $-e\vect E'$ 向上，与电子的弯转方向一致；$v_X\to0$ 时也退回原场。
+\end{advsolution}
+
+\begin{advexamplebox}{运动椭圆柱的表面四流与内部电磁场}\label{advA6:ex:elliptic-cylinder}
+在 $S_0$ 系中有无限长椭圆柱，截面半轴为 $a>b$。表面叠放
+$+\sigma_0$ 与 $-\sigma_0$ 两层电荷，负层静止，正层以速率 $u$ 沿周界流动。
+选取相对 $S_0$ 沿 $-x$ 方向运动的 $S$ 系，使椭圆在 $S$ 中成为向右运动的圆柱。
+
+\begin{enumerate}
+\item 求内部磁场与相对速度 $v$；
+\item 求 $S$ 系表面电荷密度和面电流密度随极角 $\theta$ 的关系；
+\item 不使用场变换公式求圆柱内外的电磁场；已知 $S$ 中柱内仍为匀强场、柱外无场。
+\end{enumerate}
+
+\begin{center}
+\input{assets/diagrams-modern/elliptic-current-source.tex}
+\par\smallskip
+左图正电荷逆时针流动、负电荷静止。右图的角度从圆心随动横轴量起，$\vect K$ 为实验室面电流。
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+均匀磁化 $\vect M=\sigma_0u\,\vect e_z$ 的束缚面电流
+$\vect K=\vect M\times\vect n$ 恰为大小 $\sigma_0u$ 的周向电流，
+与截面形状无关。因此
+\[
+ \boxed{\vect B_0=\mu_0\sigma_0u\,\vect e_z},\qquad
+ \vect B_{\rm out}=0.
+\]
+沿 $x$ 的 Lorentz 收缩把 $a$ 变为 $a/\gamma$。要求它等于 $b$：
+\[
+ \boxed{\gamma=\frac ab},\qquad
+ \boxed{v=c\sqrt{1-\frac{b^2}{a^2}}}.
+\]
+
+令圆截面点为 $(b\cos\theta,b\sin\theta)$，它在 $S_0$ 同时对应
+$(a\cos\theta,b\sin\theta)$。记
+\[
+ s_0(\theta)=\sqrt{a^2\sin^2\theta+b^2\cos^2\theta}.
+\]
+$S_0$ 中面电流切向分量为
+\[
+ \vect K_0=\sigma_0u
+ \frac{(-a\sin\theta,b\cos\theta)}{s_0}.
+\]
+下面写出面元因子，避免把面密度误当体密度直接变换。
+定义同一个柱面方程
+\[
+ f=\frac{x_0^2}{a^2}+\frac{y_0^2}{b^2}-1
+ =\frac{(x-vt)^2+y^2}{b^2}-1.
+\]
+表面电流的体分布是 $\vect j_0=\vect K_0|\nabla_0 f|\delta(f)$。
+因为 $\int|\nabla f|\delta(f)\dd n=1$，这个写法沿法向积分恰好返回面电流。
+在图中对应角度 $\theta$ 处，
+\[
+ |\nabla_0 f|=\frac{2s_0}{ab},\qquad |\nabla f|=\frac2b,
+ \qquad \frac{|\nabla_0f|}{|\nabla f|}=\frac{s_0}a.
+\]
+换系速度为 $-v\vect e_x$，而初始净体电荷密度为零，所以四流变换为
+$\rho=\gamma vj_{0x}/c^2$、$j_x=\gamma j_{0x}$、$j_y=j_{0y}$。
+把各体分布除以新系的 $|\nabla f|\delta(f)$，逐项得到
+\[
+ \sigma=\frac{\gamma v}{c^2}K_{0x}\frac{s_0}a,
+ \quad K_x=\gamma K_{0x}\frac{s_0}a,
+ \quad K_y=K_{0y}\frac{s_0}a.
+\]
+代入 $K_{0x}=-\sigma_0ua\sin\theta/s_0$、
+$K_{0y}=\sigma_0ub\cos\theta/s_0$ 后才有
+\[
+ \boxed{\sigma(\theta)=
+ -\frac{\sigma_0uva}{bc^2}\sin\theta},
+\]
+\[
+ \boxed{\vect K(\theta)=
+ \sigma_0u\left(
+ -\frac ab\sin\theta\,\vect e_x
+ +\frac ba\cos\theta\,\vect e_y\right)}.
+\]
+这里的 $\vect K$ 包含随整个柱面平移的对流电流。
+圆面的单位法向为 $\vect n=(\cos\theta,\sin\theta,0)$，法向速度为 $v_n=v\cos\theta$。
+直接代入可核验 $\vect K\cdot\vect n=\sigma v_n$；
+相对于移动表面的电流 $\vect K-\sigma v\vect e_x$ 才纯粹沿圆周切向。
+又 $\int_0^{2\pi}\sigma b\dd\theta=0$，每单位轴向长度的净电荷仍为零。
+
+第三问不用场变换。记 $[\vect E]=\vect E_{\rm out}-\vect E_{\rm in}$，磁场同理。
+高斯定律在很薄的跨界柱体上积分，仍给出
+$\vect n\cdot[\vect E]=\sigma/\varepsilon_0$。
+但安培--麦克斯韦定律还含移动边界扫过测量点产生的位移电流。
+把电场写成内外两部分的阶跃函数，时间导数的表面项为
+$-v_n[\vect E]\delta(n)$，旋度的表面项为 $\vect n\times[\vect B]\delta(n)$，
+故正确跳跃条件是
+\[
+ \vect n\times[\vect B]=\mu_0\vect K-\frac{v_n}{c^2}[\vect E].
+\]
+已知外场为零、内场均匀，由对任意 $\theta$ 都成立的高斯式
+\[
+ -E_x\cos\theta-E_y\sin\theta
+ =-\gamma v\mu_0\sigma_0u\sin\theta
+\]
+先读出 $E_x=0$、$E_y=\gamma vB_0$，且轴向对称性给 $E_z=0$。
+再看安培式的两个分量：
+\[
+ -B_z\sin\theta=\mu_0K_x=-\gamma B_0\sin\theta,
+\]
+\[
+ B_z\cos\theta=\mu_0K_y+\frac{v\cos\theta}{c^2}E_y
+ =B_0\cos\theta\left(\frac1\gamma+\gamma\frac{v^2}{c^2}\right)
+ =\gamma B_0\cos\theta.
+\]
+两式一致给出
+\[
+ \boxed{\vect E_{\rm in}=\gamma vB_0\,\vect e_y},\qquad
+ \boxed{\vect B_{\rm in}=\gamma B_0\,\vect e_z},
+\qquad
+ \vect E_{\rm out}=\vect B_{\rm out}=0.
+\]
+若漏掉位移电流项，第二个分量就会错误地给出 $B_z=B_0/\gamma$，与第一个分量矛盾。
+另外两条跳跃条件也应检查：磁场沿轴向，所以 $\vect n\cdot[\vect B]=0$；
+法拉第定律在移动边界上给 $\vect n\times[\vect E]=v_n[\vect B]$，
+其 $z$ 分量为 $-E_y\cos\theta=-vB_z\cos\theta$，由 $E_y=vB_z$ 满足。
+最后检查 $a\to b$ 时 $v\to0$，电场消失、磁场回到 $B_0$；
+电场尺度 $vB_0$ 的单位也正是 $\mathrm{V/m}$。
+\end{advsolution}
+
+\begingroup\tcbset{breakable/.default=false}
+\begin{advexamplebox}{GRAND 中微子反应阈能与定角电子最高能量}\label{advA6:ex:grand-neutrino}
+超高能 $\tau$ 中微子可在岩石中发生
+\[
+ \nu_\tau+n\longrightarrow\tau^-+p.
+\]
+取 $m_\tau=1777\,\mathrm{MeV}/c^2$、
+$m_p=938.2\,\mathrm{MeV}/c^2$、
+$m_n=939.6\,\mathrm{MeV}/c^2$。
+
+\begin{enumerate}
+\item 中子初始静止，求入射中微子阈能；
+\item 产生的 $\tau^-$ 经
+$\tau^-\to\nu_\tau+e^-+\bar\nu_e$ 衰变，
+$m_e=0.5110\,\mathrm{MeV}/c^2$。在与入射束成 $30^\circ$ 的方向探测电子，
+求其最大能量。先把入射能量 $E_\nu\ge E_{\nu,\rm th}$ 保留为参数，
+再讨论未限制入射能量时的上界，以及阈值处的特例。
+\end{enumerate}
+
+\begin{center}
+\includegraphics[width=.84\textwidth]{assets/generated/A6-grand-radio-array.png}
+\par\smallskip
+{\small\color{TextGray}山地射电天线阵列通过短暂大气簇射的低频脉冲寻找地球掠射中微子事件。}
+\end{center}
+\end{advexamplebox}
+\endgroup\par\nopagebreak[3]
+\begin{advsolution}
+用 Mandelstam 不变量
+\[
+ s=(p_\nu+p_n)^2=m_n^2c^4+2m_nc^2E_\nu.
+\]
+阈值时末态在质心系无相对运动，故
+$s_{\rm th}=(m_\tau+m_p)^2c^4$，于是
+\[
+ \boxed{E_{\nu,\rm th}=
+ \frac{(m_\tau+m_p)^2-m_n^2}{2m_n}c^2
+ =3.453\,\mathrm{GeV}}.
+\]
+
+第二问不能把第一问的阈值自动当作入射能量。下面统一以能量单位表示静质量，
+令 $N=m_nc^2$、$P=m_pc^2$、$M=m_\tau c^2$、$\mu=m_ec^2$，并记
+\[
+ s=N^2+2NE_\nu,\qquad
+ \Lambda=[s-(M+P)^2][s-(M-P)^2].
+\]
+$\sqrt s$ 是整个反应的质心能量。两体产生过程的能量、动量守恒给出
+\[
+ E_\tau^*=\frac{s+M^2-P^2}{2\sqrt s},\qquad
+ cp_\tau^*=\frac{\sqrt\Lambda}{2\sqrt s}.
+\]
+星号指反应质心系，而下文小标 $0$ 指 $\tau$ 的静止系，二者不能混同。
+把两个末态中微子合成四动量 $q$，其不变质量平方非负。由
+$(p_\tau-p_e)^2=q^2\ge0$ 可知，在 $\tau$ 静止系中
+\[
+ E_{e0}\le\frac{M^2+\mu^2}{2M},\qquad
+ cp_{e0,\max}=\frac{M^2-\mu^2}{2M}.
+\]
+两中微子同向时达到能谱端点。把端点电子沿 $\tau$ 在质心系中的运动方向发射，
+便得到电子在反应质心系中的最高能量
+\[
+ H=E_{e,\max}^*
+ =\frac{E_\tau^*(M^2+\mu^2)+cp_\tau^*(M^2-\mu^2)}{2M^2}.
+\]
+在仅讨论运动学允许性的意义下，产生的 $\tau$ 方向可选，故这一端点可沿任意质心方向取到；
+实际反应概率分布不改变运动学边界。
+
+实验室电子的方向固定为 $\theta=30^\circ$。总四动量与电子四动量的内积给出
+\[
+ E_e^*=\frac{(E_\nu+N)E_e-E_\nu\cos\theta\sqrt{E_e^2-\mu^2}}{\sqrt s}.
+\]
+令 $A=E_\nu+N$、$B=E_\nu\cos\theta$、$Y=\sqrt s H$。
+边界上 $AE_e-B\sqrt{E_e^2-\mu^2}=Y$。
+移项、平方解二次方程，并取满足原式的高能根：
+\[
+ \boxed{E_{e,\max}(E_\nu,\theta)=
+ \frac{AY+B\sqrt{Y^2-(A^2-B^2)\mu^2}}{A^2-B^2}}.
+\]
+对本题 $\theta=30^\circ$ 和允许的入射能量，该根可达。忽略极小的电子质量修正，式子简化为
+\[
+ \boxed{E_{e,\max}\simeq
+ \frac{s+M^2-P^2+\sqrt\Lambda}
+ {4[N+E_\nu(1-\cos\theta)]}}.
+\]
+这才是保留一般入射能量的答案。若不设 $E_\nu$ 上限，其高能极限为
+\[
+ \sup E_e\simeq\frac{N}{1-\cos30^\circ}=7.013\,\mathrm{GeV}.
+\]
+它是可趋近的上确界，不是任一有限入射能量都能达到的电子能量。
+在 $\mu=0$ 近似下，由 $\sqrt\Lambda<s-M^2-P^2$，前式严格小于
+$(N^2-P^2+2NE_\nu)/[2N+2E_\nu(1-\cos\theta)]$，
+后者又小于 $N/(1-\cos30^\circ)$；而 $E_\nu\to\infty$ 时两界合拢，故上界确实可趋近。
+
+作为校验，单独把入射能量取到阈值。此时 $p_\tau^*=0$，质心整体因子和速度为
+\[
+ \gamma_c=\frac{E_{\nu,\rm th}+m_nc^2}
+ {(m_\tau+m_p)c^2}=1.618,\qquad
+ \beta_c=\frac{E_{\nu,\rm th}}
+ {E_{\nu,\rm th}+m_nc^2}=0.7861.
+\]
+三体衰变中，当两个中微子平行且合成不变质量趋于零时，
+电子在 $\tau$ 静止系的能量最大：
+\[
+ E_e^*=\frac{m_\tau^2+m_e^2}{2m_\tau}c^2
+ =888.5\,\mathrm{MeV}.
+\]
+对给定实验室夹角 $\theta$，用不变量
+\[
+ p_\tau\cdot p_e
+ =E_\tau E_e/c^2-P_\tau p_e\cos\theta
+ =m_\tau E_e^*
+\]
+并取 $p_e=\sqrt{E_e^2/c^2-m_e^2c^2}$ 解正根。
+由于 $m_e/E_e\ll1$，数值上等价于
+\[
+ E_{e,\max}\simeq
+ \frac{E_e^*}{\gamma_c(1-\beta_c\cos30^\circ)}
+ =\boxed{1.720\,\mathrm{GeV}}.
+\]
+使用电子质量求精确根只改变末位。结果小于入射能量且满足四动量守恒。
+\end{advsolution}

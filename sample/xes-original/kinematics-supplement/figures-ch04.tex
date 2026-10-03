@@ -1,0 +1,513 @@
+% Maintained chapter-four figures. Transparent labels; all panels use explicit geometry.
+\input{data/ch04-mars-paths.tex}
+\newcommand{\ReferenceFramesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.88]
+\draw[kaxis] (-.3,0)--(7,0) node[right]{$S:x$};
+\draw[kaxis] (2,1.6)--(7,1.6) node[right]{$S':x'$};
+\coordinate (P) at (5.7,2.4);
+\draw[kguide] (2,-.6)--(2,1.6) (P)--(5.7,-.6);
+\fill (0,0) circle(1.5pt) (2,1.6) circle(1.5pt) (P) circle(1.5pt);
+\node[below left] at (0,0){$O$};\node[above left] at (2,1.6){$O'$};
+\node[above] at (P){$P$};
+\draw[<->] (0,-.65)--(2,-.65) node[midway,below]{$x_{O'}$};
+\draw[<->,DeepBlue] (0,-1.25)--(5.7,-1.25) node[midway,below]{$x$};
+\draw[<->,DeepBlue] (2,.8)--(5.7,.8) node[midway,above]{$x'$};
+\draw[vector] (2.6,2.35)--(3.9,2.35) node[midway,above]{$u$};
+\draw (5.7,0)--(5.7,.12) (5.7,1.6)--(5.7,1.72);
+\end{tikzpicture}\figcap{图2.19：同一点的两个横向投影坐标满足 $x=x_{O'}+x'$；轴的上下错开不表示额外横向距离。}\end{minipage}\end{center}}
+
+\newcommand{\AircraftWindDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.88]
+\begin{scope}
+\draw[kaxis] (0,0)--(4,0) node[right]{东};\draw[kaxis] (0,0)--(0,2.4) node[above]{北};
+\draw[vector] (0,0)--(3,0) node[midway,below]{$\vect V$};
+\draw[vector] (3,0)--(3,1.5) node[midway,right]{$\vect u$};
+\draw[vector] (0,0)--(3,1.5) node[midway,above left]{$\vect v_{\text{地}}$};
+\node at (1.7,-.85){(a) 机头正东};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\draw[kaxis] (0,0)--(3.8,0) node[right]{东};\draw[kaxis] (0,0)--(0,2.4) node[above]{北};
+\draw[vector] (0,0)--(2.598,-1.5) node[midway,below left]{$\vect V$};
+\draw[vector] (2.598,-1.5)--(2.598,0) node[midway,right]{$\vect u$};
+\draw[vector] (0,0)--(2.598,0) node[midway,above]{$\vect v_{\text{地}}$};
+\draw (.8,0) arc(0:-30:.8);\node at (1.15,-.3){$\theta$};
+\node at (1.5,-2.1){(b) 航迹正东};
+\end{scope}
+\end{tikzpicture}\figcap{例2.81解图：风速向北；两图均按 $\vect v_{\text{地}}=\vect V+\vect u$ 首尾相接。}\end{minipage}\end{center}}
+
+\newcommand{\RiverCrossingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\fill[Blue!5] (-.5,0) rectangle (3.9,3);
+\draw[thick] (-.5,0)--(3.9,0) (-.5,3)--(3.9,3);
+\coordinate (A) at (0,0);\draw[kguide] (A)--(2.25,3);
+\fill (A) circle(1.5pt);\node[below] at (A){$A$};
+\draw[vector] (A)--(0,1.6) node[midway,left]{$\vect v_1$};
+\draw[vector] (0,1.6)--(1.2,1.6) node[midway,above]{$\vect v_2$};
+\draw[vector] (A)--(1.2,1.6);
+\node[right] at (1.55,.65){$\vect v_{\text{岸}}$};\draw[thin] (1.55,.78)--(.82,1.02);
+\draw[<->] (3.5,0)--(3.5,3) node[midway,left]{$d$};
+\node at (1.7,-.8){(a) 最短时间的实际航迹};
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=.35cm]
+\coordinate (W) at (2.5,0);\coordinate (T) at (1.6,1.2);
+\draw[kaxis] (-.3,0)--(4.4,0) node[right]{$v_x$};
+\draw[kaxis] (0,-1.75)--(0,2.3) node[above]{$v_y$};
+\draw (W) circle(1.5);\draw[kguide] (W)--(T);
+\draw[vector] (0,0)--(T);\fill (W) circle(1.5pt) (T) circle(1.5pt);
+\node[below left] at (0,0){$O$};\node[below] at (W){$W$};\node[above] at (T){$T$};
+\node[above right] at (2.2,.65){$v_1$};
+\draw[<->] (0,-1.9)--(2.5,-1.9) node[midway,below]{$v_2$};
+\draw (.4,0) arc(0:36.87:.4);\node at (.67,.2){$\psi$};
+\node at (1.8,-2.65){(b) $v_1<v_2$ 的速度圆};
+\end{scope}
+\end{tikzpicture}\figcap{例2.82解图：左图出发点在岸上，航迹平行于合速度；右图 $WT\perp OT$，切线给出最小位移方向。}\end{minipage}\end{center}}
+
+\newcommand{\AircraftEqualSpeedDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\foreach \s/\shift/\txt in {1/0/东,-1/6/西}{
+\begin{scope}[xshift=\shift cm]
+\coordinate (O) at (0,0);\coordinate (G) at (0,3.6);
+\coordinate (A) at ({\s*1.74284},3.15);\coordinate (F) at ($(A)!.5!(G)$);
+\draw[vector] (O)--(A);\draw[vector] (A)--(G);\draw[vector] (O)--(G);
+\draw[kguide] (O)--(F);
+\node[below] at (O){$O$};\node[above] at (G){$G$};
+\ifnum\s>0 \node[right] at (A){$A$};\node[left] at (0,1.45){$60$};
+\else \node[left] at (A){$A$};\node[right] at (0,1.45){$60$};\fi
+\node[above] at (F){$F$};\node at ({\s*1.35},1.6){$60$};
+\draw (90:1.4) arc[start angle=90,end angle={90-\s*28.955},radius=1.4];
+\node at ({\s*.61},1.77){$\theta$};
+\node at ({\s*.9},3.9){$30$};
+\node at (0,-.65){机头北偏\txt};
+\end{scope}}
+\node at (3,2.1){正北 $\uparrow$};
+\end{tikzpicture}\figcap{例2.83解图：$OA$ 为空速，$AG$ 为风速，$OG$ 为地速；$F$ 为风速边中点，速度单位均为 $\mathrm{m/s}$。}\end{minipage}\end{center}}
+
+\newcommand{\SmokeWindDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\foreach \vv/\shift/\txt in {1/0/第一次,3/6/第二次}{
+\begin{scope}[xshift=\shift cm]
+\draw[kaxis] (-.3,0)--(3.3,0) node[right]{东};\draw[kaxis] (0,-1.6)--(0,2.6) node[above]{北};
+\draw[vector] (0,0)--(2,-1) node[midway,below left]{$\vect w$};
+\draw[vector] (2,-1)--(2,{\vv-1});
+\node[right] at (2.1,{.5*\vv-1}){$-\vect v_{\text{船}}$};
+\draw[vector] (0,0)--(2,{\vv-1});
+\node[above left] at (1,{.5*(\vv-1)+.2}){$\vect v_{\text{烟/船}}$};
+\node at (1.4,-2.1){\txt};
+\end{scope}}
+\end{tikzpicture}\figcap{例2.84解图：同一风速加上两种反向船速，分别得到向东、向东北的烟对船速度。}\end{minipage}\end{center}}
+
+\newcommand{\InterceptTriangleDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,x=.045cm,y=.045cm]
+\coordinate (A) at (0,0);\coordinate (B) at (-93.9693,34.2020);
+\coordinate (C1) at (-17.3065,34.2020);\coordinate (C2) at (79.9527,34.2020);
+\draw[thick] (A)--(B);\draw[vector] (B)--(C2);
+\draw[vector] (A)--(C1);\draw[vector] (A)--(C2);
+\foreach \p/\lab/\pos in {A/A/below,B/B/above left,C1/C_1/above,C2/C_2/above right}{\fill (\p) circle(1.6pt);\node[\pos] at (\p){$\lab$};}
+\node[left] at (-50,12){$L$};\node[above] at (30,38){敌船沿 $+x$};
+\node[left] at (-8,20){$v_2t_1$};\node[below right] at (42,17){$v_2t_2$};
+\draw (B)++(0:22) arc(0:-20:22);\node at (-64,29){$\alpha$};
+\draw (23.16018:14) arc(23.16018:160:14);\node[below] at (0,-12){$\beta_1=\angle BAC_1,\quad\beta_2=\angle BAC_2$};
+\end{tikzpicture}\figcap{例2.85解图：按文中数值例得到的两个未来交点；发射方向由各自的 $AC_i$ 决定，而不只由正弦值决定。}\end{minipage}\end{center}}
+
+\newcommand{\BombInterceptDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.92]
+\draw[kaxis] (-5,0)--(3.8,0) node[right]{$x$};
+\coordinate (B) at (-4,3);\coordinate (Q) at (-2,2.25);
+\draw[kcurve,domain=0:1,samples=60,variable=\t] plot({-4+4*\t},{3*(1-\t*\t)});
+\draw[kguide] (B)--(-4,0);\draw[vector] (B)--(-2.8,3) node[midway,above]{$v_1$};
+\draw[thick,dashed] (-2,0)--(Q) (2,0)--(Q);
+\foreach \x/\lab/\pos in {0/0/below,-2/-D/below,2/+D/below}{\fill (\x,0) circle(1.6pt);\node[\pos] at (\x,0){$\lab$};}
+\node[above left] at (B){$(-L,H)$};\fill (Q) circle(1.6pt);\node[above right] at (Q){$Q$};
+\draw[<->] (-4.65,0)--(-4.65,3) node[midway,left]{$H$};
+\draw[<->] (-4,-.8)--(0,-.8) node[midway,below]{$L$};
+\node at (1.6,3){两炮位分别讨论};
+\end{tikzpicture}\figcap{例2.86解图：蓝线是炸弹轨迹；两条虚线仅连接炮位与相遇点，不是炮弹的抛物线轨迹。}\end{minipage}\end{center}}
+
+\newcommand{\ThreeBoatsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\begin{scope}
+\draw[kguide] (0,0)--(4.8,0);
+\foreach \x/\lab in {0/A,1.8/B,3.6/C}{\fill (\x,0) circle(1.5pt);\node[below] at (\x,0){$\lab$};}
+\draw[vector] (0,0)--(.6,0);\node[above] at (.3,0){$u$};
+\draw[vector] (1.8,0)--(1.8,1.2) node[above]{$2u$};
+\draw[vector] (3.6,0)--(4.8,1.2) node[above]{$2\sqrt2u$};
+\draw[<->] (0,-.65)--(1.8,-.65) node[midway,below]{$a$};
+\draw[<->] (1.8,-.65)--(3.6,-.65) node[midway,below]{$a$};
+\node at (2,2.1){(a) $t=0$，速度同比例};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\coordinate (M) at (2.7,2.2);\coordinate (A) at (0,0);
+\draw[kguide] (A)--(2.7,0)--(M);\draw[thick,->] (M)--(A);
+\fill (M) circle(1.5pt) (A) circle(1.5pt);
+\node[above] at (M){$M(t)$};\node[left] at (A){$A(t)$};
+\node[below] at (1.35,0){$3a/2$};\node[right] at (2.7,1){$2ut$};
+\draw[vector] (A)--(0,-1.2) node[below]{$\vect v_{A/M}=(0,-2u)$};
+\node[above left] at (1.5,1.3){$\vect r_{A/M}$};
+\node at (1.5,3.05){(b) 随 $M$ 平移的坐标};
+\end{scope}
+\end{tikzpicture}\figcap{例2.87解图：$M$ 与 $A$ 的横向速度相同，$MA$ 的水平分量固定、竖直分量随时间增加。}\end{minipage}\end{center}}
+
+\newcommand{\PursuitDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1.25]
+\draw[thick] (-.3,0)--(3.5,0);
+\draw[kguide] (0,3)--(3.1,3);
+\draw[kcurve,domain=1:0,samples=100,variable=\u] plot({3*(2/3-\u+\u^3/3)},{3*(1-\u^2)});
+\coordinate (D) at (.625,2.25);\coordinate (P) at (1.1875,3);
+\draw[thick] (D)--(P);\draw[kguide] (D)--++(1.3,0);
+\draw[vector] (D)--++(.27,.36);\draw[vector] (P)--++(.5,0) node[midway,above]{$v_0$};
+\fill (D) circle(1.5pt) (P) circle(1.5pt);
+\node[left] at (D){$D$};\node[above left] at (P){$P$};
+\node[left] at (.86,2.7){$r$};
+\draw (D)++(.38,0) arc(0:53.1301:.38);\node at (1.18,2.52){$\theta$};
+\draw[vector] (0,0)--(0,.7) node[left]{$v_1$};
+\draw[vector] (0,0)--(.65,0) node[below]{$a_0$};
+\draw[<->] (-.65,0)--(-.65,3) node[midway,left]{$H$};
+\node[below left] at (0,0){$A$};\node[above right] at (2,3){命中};
+\end{tikzpicture}\figcap{例2.88解图：取 $v_1=2v_0$ 展示追击曲线；中途导弹 $D$ 的切线沿同一时刻飞机 $P$ 的视线，初始竖直、末端水平。}\end{minipage}\end{center}}
+
+\newcommand{\SlidingRodDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.88]
+\begin{scope}
+\coordinate (O) at (0,0);\coordinate (A) at (0,3.6);\coordinate (B) at (4,0);\coordinate (P) at (1.52,2.232);
+\draw[thick] (0,4.1)--(O)--(4.9,0);\draw[kcurve] (A)--(B);
+\foreach \p/\pos in {A/left,B/below,P/above right}{\fill (\p) circle(1.5pt);\node[\pos] at (\p){$\p$};}
+\draw[vector] (A)--++(0,-.8) node[midway,left]{$v_A$};\draw[vector] (B)--++(.8,0) node[above]{$v_B$};
+\draw (0,2.9) arc(-90:-41.987:.7);\node at (.42,2.7){$\theta$};
+\node[above right] at (.75,3.25){$aL$};\node[above right] at (2.7,1.4){$(1-a)L$};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\draw[kaxis] (0,0)--(3.3,0) node[right]{$x$};\draw[kaxis] (0,0)--(0,4.1) node[above]{$y$};
+\draw[kcurve,domain=0:90,samples=60] plot({.38*sqrt(28.96)*sin(\x)},{.62*sqrt(28.96)*cos(\x)});
+\coordinate (P) at (1.52,2.232);\fill (P) circle(1.5pt);
+\draw[vector] (P)--++(.342,-.62);\node[above right] at (P){$P$};
+\node[right] at (2,1.55){$\vect v_P$};
+\node[above left] at (0,3.337){$(1-a)L$};\node[below] at (2.045,0){$aL$};
+\end{scope}
+\end{tikzpicture}\figcap{例2.89解图：左图杆长固定、端点接触墙与地面；右图使用同一 $P$，速度沿四分之一椭圆的切线。}\end{minipage}\end{center}}
+
+\newcommand{\BoatTowDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.93]
+\coordinate (O) at (0,2.5);\coordinate (B) at (4,0);
+\draw[thick] (-3.8,2.3)--(-.15,2.3)--(-.15,-.4);
+\fill[Blue!5] (0,-.7) rectangle (5.3,0);\draw[thin,Blue] (0,0)--(5.3,0);
+\draw[thick] (-3.2,2.5) rectangle (-2.2,3);\draw (-3,2.4) circle(.1) (-2.4,2.4) circle(.1);
+\draw[kcurve] (-2.2,2.5)--(O)--(B);
+\fill (O) circle(1.8pt);\node[above right] at (O){$O$};
+\draw[thick] (B)--(5.1,0)--(4.9,-.4)--(4.2,-.4)--cycle;
+\fill (B) circle(1.5pt);\node[above right] at (B){$B$};
+\draw[vector] (-2.3,3.45)--(-3.4,3.45) node[midway,above]{$v$};
+\draw[vector] (4.9,-1)--(3.9,-1) node[midway,below]{$u$};
+\node[above] at (-1.2,2.5){$l_c$};\node[above right] at (1.9,1.32){$l$};
+\draw[<->] (-4.25,0)--(-4.25,2.5) node[midway,left]{$h$};
+\draw[kguide] (-4.25,0)--(0,0) (-4.25,2.5)--(-3.5,2.5);
+\draw (B)++(148:.9) arc(148:180:.9);\node at (2.82,.31){$\theta$};
+\draw[<->] (0,-.85)--(4,-.85) node[midway,below]{$x$};
+\end{tikzpicture}\figcap{例2.90解图：$O$ 表示半径忽略的定滑轮转向点；汽车侧增长 $\dot l_c=v$，船侧缩短 $\dot l=-v$。}\end{minipage}\end{center}}
+
+\newcommand{\MovingConstraintDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\draw[thick] (0,0)--(4,0)--(0,2)--cycle;
+\coordinate (P) at (2.2,.9);\draw[very thick] (P)--(2.2,3.1);
+\foreach \x in {2.06,2.34}{\draw[thick] (\x,2)--(\x,2.6);}
+\draw (1.6,2)--(2.06,2) (2.34,2)--(2.8,2);
+\fill (P) circle(1.5pt);\node[above right=3pt] at (P){$P$};
+\draw[vector] (.6,-.5)--(1.7,-.5) node[midway,below]{$v_0$};
+\draw[vector] (2.7,2.65)--(2.7,3.5) node[right]{$v$};
+\draw (3.2,0) arc(180:153.435:.8);\node at (2.95,.24){$\theta$};
+\node at (1.8,3.9){(a) 斜面与固定导向};
+\end{scope}
+\begin{scope}[xshift=7cm]
+\coordinate (C) at (0,0);\coordinate (P) at (1.2,1.6);
+\draw[thick] (-2,0)--(2,0) arc(0:180:2);
+\draw[kguide] (C)--(0,2.2) (C)--(P) (P)--(1.2,0);
+\draw[very thick] (P)--(1.2,3.2);
+\foreach \x in {1.06,1.34}{\draw[thick] (\x,2.4)--(\x,3);}
+\draw (.6,2.4)--(1.06,2.4) (1.34,2.4)--(1.8,2.4);
+\fill (P) circle(1.5pt) (C) circle(1.5pt);
+\node[below left] at (C){$C=(X,0)$};\node[above right=3pt] at (P){$P$};
+\node at (.7,.46){$R$};\node[below] at (1.2,0){$x_0$};
+\draw (0,.75) arc(90:53.1301:.75);\node at (.29,1.13){$\theta$};
+\draw[vector] (1.8,2.7)--(1.8,3.5) node[right]{$v_y$};
+\draw[vector] (.5,-.8)--(1.6,-.8) node[midway,below]{$v_0$};
+\node at (0,3.9){(b) 半圆柱与固定导向};
+\end{scope}
+\end{tikzpicture}\figcap{例2.91—2.92解图：两侧固定导向只允许杆竖直平移；接触点由同一斜面方程或圆方程确定。}\end{minipage}\end{center}}
+
+\newcommand{\RodPulleyDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (O) at (0,0);\coordinate (B) at (0,3.4);\coordinate (A) at (2.3,1.2);\coordinate (C) at (-2.2,3.4);
+\draw[very thick] (O)--(A) node[midway,below=5pt]{$R$};
+\draw[kcurve] (A)--(B)--(C)--(-2.2,.65);
+\draw[thick] (-2.55,0) rectangle (-1.85,.65);\node at (-2.2,.32){$M$};
+\draw[kguide] (O)--(B);
+\foreach \p/\pos in {O/below,B/above,C/above,A/right}{\fill (\p) circle(1.7pt);\node[\pos] at (\p){$\p$};}
+\draw[<->] (-.65,0)--(-.65,3.4) node[midway,left]{$H$};
+\draw (B)++(-90:.8) arc(-90:-43.727:.8);\node at (.42,2.4){$\alpha$};
+\draw[vector] (A)--++(-.48,.92) node[above]{$\vect v_A$};
+\draw[->,DeepBlue] (35:.75) arc(35:120:.75);\node[above] at (.3,1.2){$\omega$};
+\draw[vector] (-2.85,.6)--(-2.85,-.3) node[below]{$v_M$};
+\node[left] at (.83,2.0){$l$};
+\end{tikzpicture}\figcap{例2.93解图：零半径转向点 $B,C$ 与绳折点重合；正角速度下 $AB$ 缩短而物块下降。}\end{minipage}\end{center}}
+
+\newcommand{\EulerStepsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.87]
+\begin{scope}
+\draw[kaxis] (-.2,0)--(2,0) node[right]{$x$};\draw[kaxis] (0,-.2)--(0,2) node[above]{$y$};
+\draw[vector] (0,0)--(35:2) node[above right]{$N$};
+\draw[->] (.85,0) arc(0:35:.85);\node at (17.5:1.16){$\alpha$};
+\node[below left] at (0,0){$O$};\node at (.7,-.85){(1) 绕 $z$};\node at (.7,-1.35){从 $+z$ 端看};
+\end{scope}
+\begin{scope}[xshift=5cm]
+\draw[TextGray,thick] (-1.6,0)--(1.7,0) node[right]{$xy$};
+\draw[DeepBlue,thick] (215:1.7)--(35:1.7) node[right]{$XY$};
+\draw[kaxis] (0,0)--(90:2.1) node[above]{$z$};
+\draw[vector] (0,0)--(125:2.1) node[above left]{$Z$};
+\draw[->] (90:1.05) arc(90:125:1.05);\node at (107.5:1.45){$\beta$};
+\draw (0,0) circle(.085);\fill (0,0) circle(.02);
+\node[right] at (.12,-.4){$N$ 向外};
+\node at (0,-1.4){(2) 绕 $N$};\node at (0,-1.9){从 $+N$ 端看};
+\end{scope}
+\begin{scope}[xshift=9.8cm]
+\draw[kguide] (-.2,0)--(2,0) node[right]{$N$};
+\draw[vector] (0,0)--(35:2) node[above right]{$X$};
+\draw[vector] (0,0)--(125:1.9) node[above left]{$Y$};
+\draw[->] (.85,0) arc(0:35:.85);\node at (17.5:1.16){$\gamma$};
+\node[below left] at (0,0){$O$};\node at (.5,-.85){(3) 绕 $Z$};\node at (.5,-1.35){从 $+Z$ 端看};
+\end{scope}
+\end{tikzpicture}\figcap{图2.20：右手正转的三步欧拉角；第二图中 $XY$ 截线转过 $\beta$，其法线 $Z$ 同转过 $\beta$，二者始终垂直。}\end{minipage}\end{center}}
+
+\newcommand{\RigidMotionTypesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\foreach \dy in {0,1}{\draw[kguide,domain=0:1,samples=45,variable=\t] plot({3*\t},{\dy+.9*sin(180*\t)});}
+\draw[thick] (-.3,-.25) rectangle (.3,1.25);
+\draw[thick] (2.7,-.25) rectangle (3.3,1.25);
+\foreach \x in {0,3}{\foreach \y in {0,1}{\fill (\x,\y) circle(1.5pt);}}
+\draw[vector] (0,0)--(.6,.565);\draw[vector] (0,1)--(.6,1.565);
+\node[left] at (-.45,0){$P_1$};\node[left] at (-.45,1){$Q_1$};
+\node[right] at (3.45,0){$P_2$};\node[right] at (3.45,1){$Q_2$};
+\node at (1.5,2.4){(a) 曲线平动};
+\node at (1.5,-1){两姿态的对应边平行};
+\end{scope}
+\begin{scope}[xshift=8cm]
+\draw[kguide] (0,-1.2)--(0,1.2);
+\draw[thick] (0,-2)--(0,-1.2) node[pos=0,below]{$B$};
+\draw[kaxis] (0,1.2)--(0,2.4) node[above]{$A$};
+\draw[thick,dashed] (2,0) arc(0:180:2 and 1.2);
+\draw[thick] (-2,0) arc(180:360:2 and 1.2);
+\coordinate (P) at ({2*cos(315)},{1.2*sin(315)});
+\draw[thick] (0,0)--(P);\draw[kguide] (0,0)--(2,0);
+\draw[vector] (P)--++(.78,.468);
+\draw (.7,0) arc(0:-45:.7 and .42);
+\node at (1,-.19){$\theta$};\node at (.46,-.62){$R$};
+\fill (P) circle(1.5pt);\node[below] at (P){$P$};\node[left] at (0,0){$O$};
+\node[above right] at (2.2,-.38){$\vect v_P$};
+\node at (0,-2.7){(b) 定轴转动的圆平面投影};
+\end{scope}
+\end{tikzpicture}\figcap{图2.21—图2.22：平动可以沿曲线；定轴转动中 $OP=R$，点 $P$ 的切向速度为 $|\omega|R$。}\end{minipage}\end{center}}
+
+\newcommand{\RigidBarCasesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\begin{scope}[xscale=1.5]
+\draw[thick] (0,0)--(2.4,0);\draw[kguide] (2.4,0)--(4.8,0);
+\draw[vector] (0,0)--(0,1.2) node[above]{$v_0$};\draw[vector] (2.4,0)--(2.4,.6) node[above]{$v_0/2$};
+\foreach \x/\lab in {0/A,2.4/B,4.8/I}{\fill (\x,0) circle(1.5pt);\node[below] at (\x,0){$\lab$};}
+\fill (1.2,0) circle(1.5pt);\node[above] at (1.2,0){$G$};
+\draw[<->] (0,-.7)--(2.4,-.7) node[midway,below]{$l$};\draw[<->] (2.4,-.7)--(4.8,-.7) node[midway,below]{$l$};
+\node at (2.4,2){(1) $x_G=l/2,\ x_I=2l$};
+\end{scope}
+\begin{scope}[yshift=-4.1cm,xscale=1.5]
+\draw[thick] (0,0)--(2.4,0);\draw[vector] (0,0)--(0,1.2) node[above]{$v_0$};\draw[vector] (2.4,0)--(2.4,-1.2) node[below]{$-v_0$};
+\node[left] at (0,0){$A$};\node[right] at (2.4,0){$B$};\fill (1.2,0) circle(1.6pt);\node[above] at (1.2,0){$G=I$};
+\node at (1.2,2){(2) 等质量};
+\end{scope}
+\begin{scope}[xshift=7cm,yshift=-4.1cm]
+\draw[thick] (0,0)--(3.6,0);\draw[vector] (0,0)--(0,1.2) node[above]{$v_0$};\draw[vector] (3.6,0)--(3.6,-1.2) node[below]{$-v_0$};
+\node[left] at (0,0){$A$};\node[right] at (3.6,0){$B$};
+\fill (1.2,0) circle(1.6pt) (1.8,0) circle(1.6pt);\node[above] at (1.2,0){$G$};\node[below] at (1.8,0){$I$};
+\node at (1.8,2){(3) $m_A=2m_B$};
+\draw[<->] (0,-.65)--(1.2,-.65) node[midway,below]{$l/3$};
+\end{scope}
+\end{tikzpicture}\figcap{例2.94解图：三问分别标出实际速度、质心 $G$ 与瞬心 $I$；质量改变不改变给定速度场的瞬心。}\end{minipage}\end{center}}
+
+\newcommand{\RollingBallDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\draw[thick] (-2,0)--(4,0);\draw[thick] (0,1) circle(1);
+\fill (0,1) circle(1.5pt) (0,0) circle(1.5pt);\node[below left] at (0,1){$C$};\node[below left] at (0,0){$P$};
+\draw (0,1)--(-.707,1.707);\node[left] at (-.58,1.28){$R$};
+\draw[vector] (0,1)--(2.6,1);\node[above] at (2,1){$v_0$};
+\draw[->,DeepBlue,thick] (40:1.5)++(0,1) arc(40:145:1.5);
+\node[above] at (0,2.65){$\omega_0>0$（逆时针）};
+\draw[vector] (0,-.65)--(2.5,-.65) node[midway,below]{$v_P=v_0+R\omega_0$};
+\end{tikzpicture}\figcap{例2.95解图：接触点的平动速度和转动速度初始都向右；纯滚动要求它们相消。}\end{minipage}\end{center}}
+
+% Knife local coordinates in metres: handle end -0.15, COM 0, tip +0.10.
+\newcommand{\KnifeOutline}{%
+\draw[thick,fill=TextGray!16] (-.15,-.012) rectangle (-.045,.012);
+\draw[thick,fill=Blue!8] (-.045,-.012)--(.10,0)--(-.045,.012)--cycle;}
+
+\newcommand{\KnifeFlightDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\begin{scope}[x=2.1cm,y=2.1cm]
+\draw[thick] (5,-.1)--(5,1.1);\node[right] at (5,.7){木靶};
+\draw[kguide,domain=0:1,samples=100,variable=\t] plot({4.9*\t},{4.9*tan(30)*\t*(1-\t)});
+\foreach \t/\n in {0/1,.25/2,.5/3,.75/4,1/5}{
+\begin{scope}[shift={({4.9*\t},{4.9*tan(30)*\t*(1-\t)})},rotate={60+300*\t}]
+\KnifeOutline\fill (0,0) circle(.7pt);
+\end{scope}
+\node[above] at ({4.9*\t},{4.9*tan(30)*\t*(1-\t)+.17}){\n};}
+\draw[<->] (0,-.35)--(5,-.35) node[midway,below]{$s=5.0\,\mathrm m$};
+\node at (2.5,-.8){(a) 质心抛物线与五个等时姿态};
+\end{scope}
+\begin{scope}[xshift=2.1cm,yshift=-3.8cm]
+\begin{scope}[scale=15]\KnifeOutline\end{scope}
+\fill (0,0) circle(1.5pt);\node[below] at (0,-.25){$C$};\node[right] at (1.5,0){刀尖};
+\draw[<->] (-2.25,-.65)--(1.5,-.65) node[midway,below]{$L=25\,\mathrm{cm}$};
+\draw[<->] (0,.65)--(1.5,.65) node[midway,above]{$l=10\,\mathrm{cm}$};
+\node at (0,-1.45){(b) 长度定义（局部放大）};
+\end{scope}
+\begin{scope}[xshift=8cm,yshift=-3.8cm]
+\draw[kaxis] (-.3,0)--(2.5,0) node[right]{$x$};
+\begin{scope}[rotate=60,scale=10]\KnifeOutline\end{scope}
+\draw[vector] (0,0)--(30:2.1) node[above right]{$\vect v_C$};
+\draw (.65,0) arc(0:30:.65);\node at (15:.95){$30^\circ$};
+\draw (60:1.85) arc(60:360:1.85);\draw[->] (335:1.85) arc(335:360:1.85);
+\node[left] at (-1.85,.45){$300^\circ$};
+\node[right] at (.25,-.45){$C$};\draw[thin] (.25,-.45)--(0,0);
+\node[above] at (60:2.05){$\theta=60^\circ$};
+\node at (.3,-2.45){(c) 初姿态与最小正转角};
+\end{scope}
+\end{tikzpicture}\figcap{例2.96解图：尖端在刀轴正向；第5姿态刀尖恰达木靶，质心仍距靶 $l$，不是整段刀身穿靶。}\end{minipage}\end{center}}
+
+\newcommand{\KnifeImpactDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\begin{scope}[x=2cm,y=2cm]
+\draw[kguide] (0,0)--(5,0);\draw[thick] (5,-.15)--(5,.5);
+\begin{scope}[shift={(4.9,0)}]\KnifeOutline\end{scope}
+\fill (0,0) circle(1.5pt);\node[above] at (0,0){$C_0$};\node[above] at (4.9,.15){$C_1$};
+\draw[<->] (0,-.35)--(4.9,-.35) node[midway,below]{$d_1=s-l$};
+\node at (2.5,.65){(a) 第一把刀击中靶点 $Q$};
+\end{scope}
+\begin{scope}[xshift=5cm,yshift=-3.9cm,x=15cm,y=15cm]
+\begin{scope}[shift={(.10,0)}]\KnifeOutline\end{scope}
+\begin{scope}[shift={(-.15,0)}]\KnifeOutline\end{scope}
+\draw[thick] (.20,-.08)--(.20,.09);
+\fill (-.05,0) circle(1.4pt) (-.15,0) circle(1.4pt) (.10,0) circle(1.4pt);
+\node[above] at (-.05,.025){$P$};\node[below] at (-.15,-.015){$C_2$};\node[below] at (.10,-.015){$C_1$};\node[right] at (.20,0){$Q$};
+\draw[<->] (-.05,.065)--(.20,.065) node[midway,above]{$L$};
+\draw[<->] (-.15,-.085)--(-.05,-.085) node[midway,below]{$l$};
+\node at (-.06,-.15){(b) 接触局部放大：$C_2P=l,\ PQ=L$};
+\end{scope}
+\end{tikzpicture}\figcap{例2.96碰撞几何：两刀仅在 $P$ 接触；第一把木柄远端就是第二把刀尖，故 $C_0C_2=s-L-l$。}\end{minipage}\end{center}}
+
+\newcommand{\LightTimingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.95]
+\coordinate (A) at (-3,0);\coordinate (B) at (3,0);\coordinate (O) at (-.7,2.5);
+\draw[thick] (A)--(B);\draw[kguide] (A)--(O)--(B);
+\foreach \p/\pos in {A/below left,B/below right,O/above}{\fill (\p) circle(1.5pt);\node[\pos] at (\p){$\p$};}
+\node[above left] at (-1.95,1.2){$r_A$};\node[above right] at (1.4,1.2){$r_B$};
+\draw[vector] (-.8,-.7)--(.8,-.7) node[midway,below]{运动员};
+\node[above] at (0,0){$L=100\,\mathrm m$};
+\end{tikzpicture}\figcap{例2.102解图：观察者 $O$ 接收起点 $A$、终点 $B$ 的光信号；传播路程一般不相等。}\end{minipage}\end{center}}
+
+\newcommand{\ApparentTransverseDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (E) at (0,0);\coordinate (P1) at (0,4);\coordinate (P2) at (2,2.6);\coordinate (F) at (0,2.6);
+\draw[thick] (E)--(P1);\draw[thick] (E)--(P2);
+\draw[vector] (P1)--(P2);\draw[kguide] (F)--(P2);
+\fill (E) circle(1.6pt) (P1) circle(1.6pt) (P2) circle(1.6pt);
+\node[below] at (E){地球};\node[above] at (P1){$P_1$};\node[right] at (P2){$P_2$};
+\draw[<->] (-.9,0)--(-.9,4) node[midway,left]{$L$};
+\node[above right] at (.85,3.55){$v\Delta t$};\node[below right] at (1.15,1.4){$D_2$};
+\draw[kguide] (0,4.35)--(0,4.85) (P2)--(2,4.85);
+\draw[<->] (0,4.85)--(2,4.85) node[midway,above]{$v\sin\theta\,\Delta t$};
+\draw[<->] (-.4,2.6)--(-.4,4);\node[left,align=right] at (-1.3,3.3){接近量\\$v\cos\theta\,\Delta t$};\draw[thin] (-1.25,3.3)--(-.42,3.3);
+\draw (0,3.35) arc(-90:-34.992:.65);\node at (.3,3.1){$\theta$};
+\end{tikzpicture}\figcap{例2.103解图：横向与视线方向的位移分开标注；三角形给出 $D_2$，再对 $v\Delta t/L$ 作一阶展开。}\end{minipage}\end{center}}
+
+\newcommand{\MarsRetrogradeDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\foreach \t/\n/\dx/\dy in {-90/1/0/0,-60/2/3.5/0,-36.37/3/7/0,0/4/10.5/0,36.37/5/1.75/-4,60/6/5.25/-4,90/7/8.75/-4}{
+\begin{scope}[shift={(\dx,\dy)}]
+\draw[TextGray] (0,0) circle(.8);\draw[thick] (0,0) circle({.8*1.524});
+\fill (0,0) circle(1.3pt);\node[above] at (0,0){$S$};
+\pgfmathsetmacro{\ea}{.985609*\t-90}
+\pgfmathsetmacro{\ma}{.985609*\t*pow(1.524,-1.5)-90}
+\pgfmathsetmacro{\ex}{.8*cos(\ea)}\pgfmathsetmacro{\ey}{.8*sin(\ea)}
+\pgfmathsetmacro{\mx}{.8*1.524*cos(\ma)}\pgfmathsetmacro{\my}{.8*1.524*sin(\ma)}
+\draw[DeepBlue,dashed,thin,->] (\ex,\ey)--({\ex+1.7*(\mx-\ex)},{\ey+1.7*(\my-\ey)});
+\fill (\ex,\ey) circle(1.5pt) (\mx,\my) circle(1.5pt);
+\node[font=\scriptsize] at (\ea:.5){$E_{\n}$};
+\ifdim\t pt<0pt \node[font=\scriptsize,left] at ({\mx-.13},{\my-.16}){$M_{\n}$};
+\else \node[font=\scriptsize,right] at ({\mx+.13},{\my-.16}){$M_{\n}$};\fi
+\node[font=\footnotesize] at (0,1.7){\n：$t=\t\,\mathrm d$};
+\end{scope}}
+\node at (5.25,-6){虚线由地球经过火星，指向背景星空；各小图比例相同};
+\begin{scope}[xshift=5.25cm,yshift=-8.6cm]
+\draw[kaxis] (-3.7,0)--(3.8,0) node[right]{$t/\mathrm d$};
+\draw[kaxis] (0,-1.9)--(0,1.45) node[above]{$\lambda$};
+\MarsCoplanarPath
+\foreach \t/\n/\pos in {-90/1/above left,-60/2/above left,-36.37/3/above,0/4/below left,36.37/5/below,60/6/below right,90/7/below right}{
+\pgfmathsetmacro{\ll}{atan2(1.524*sin(.985609*\t*pow(1.524,-1.5))-sin(.985609*\t),1.524*cos(.985609*\t*pow(1.524,-1.5))-cos(.985609*\t))/12}
+\fill (\t/27,\ll) circle(1.5pt);\node[\pos] at (\t/27,\ll){\n};}
+\draw[<->] (-1.347,-1.75)--(1.347,-1.75) node[midway,below]{逆行};
+\node at (0,2.15){同平面模型：七个时刻的视经度};
+\node at (0,-2.65){第3、5点：$\dot\lambda=0$};
+\end{scope}
+\end{tikzpicture}\figcap{例2.105解图：七组位置与七个视方向一一对应；冲日取 $t=0$，第3至第5点之间视经度随时间减小。}\end{minipage}\end{center}}
+
+\newcommand{\MarsInclinedDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex]
+\draw[kaxis] (-4.4,-2.1)--(4.6,-2.1) node[right]{视经度增加};
+\draw[kaxis] (-4.4,-2.1)--(-4.4,3.05) node[above]{视纬度增加};
+\MarsInclinedPath
+\node[above] at (0,3.25){三维圆轨道示例：轨道倾角 $1.85^\circ$};
+\node at (0,-2.8){箭头表示时间先后；蓝色区间才是逆行};
+\end{tikzpicture}\figcap{回环与计算模型的区别：加入非零倾角后视纬度也会变化；蓝段按视经度减小的条件确定，不把整个回环都称为逆行。}\end{minipage}\end{center}}
+
+\newcommand{\RomerDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=1]
+\coordinate (S) at (0,0);\coordinate (J) at (5.2,0);
+\pgfmathsetmacro{\ang}{acos(1/5.2)}
+\draw[thick] (S) circle(1);\draw[TextGray] ({5.2*cos(-10)},{5.2*sin(-10)}) arc(-10:10:5.2);
+\foreach \a/\lab/\pos in {\ang/E_+/above left,-\ang/E_-/below left}{
+\coordinate (E) at (\a:1);\draw[kguide] (S)--(E);\draw[thick] (E)--(J);\fill (E) circle(1.6pt);\node[\pos] at (E){$\lab$};
+\draw[vector] (E)--++({-.65*sin(\a)},{.65*cos(\a)});}
+\fill (S) circle(1.6pt) (J) circle(1.6pt);\node[left] at (S){$S$};\node[right] at (J){$J$};
+\draw[kguide] (S)--(J);
+\draw[<->] (0,-2.25)--(5.2,-2.25) node[midway,below]{$R_J=5.2R_E$};
+\node at (2,1.65){$E_+$：距离增加，周期最长};\node at (2,-1.65){$E_-$：距离减小，周期最短};
+\begin{scope}[xshift=9cm]
+\draw (0,0) circle(.65);\fill (0,0) circle(2pt);\node[below] at (0,0){$J$};
+\fill (45:.65) circle(1.6pt);\node[above right] at (45:.65){木卫I};
+\draw[->] (50:.9) arc(50:170:.9);\node at (0,-1.2){卫星轨道放大};
+\end{scope}
+\end{tikzpicture}\figcap{例2.106解图：$SE_\pm\perp E_\pm J$，两切点为周期极值位置；木卫I单独放大，不与日心轨道混用比例。}\end{minipage}\end{center}}
+
+\newcommand{\AimLocusDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,scale=.9]
+\begin{scope}
+\draw[thick] (-.4,0)--(4.1,0);\draw[thick] (3.6,0)--(3.6,4.4);
+\coordinate (O) at (0,.6);\coordinate (Q) at (3.6,3.7);\coordinate (P) at (3.6,1.6);
+\draw[kguide] (O)--(Q);\draw[kcurve,domain=0:1,samples=70,variable=\t] plot({3.6*\t},{.6+3.1*\t-2.1*\t^2});
+\foreach \p in {O,Q,P}{\fill (\p) circle(1.5pt);}
+\node[above left=3pt] at (O){$O$};\node[right] at (Q){$Q$};\node[below left] at (3.5,1.45){$P\ (z=h)$};
+\draw[<->] (0,-.5)--(3.6,-.5) node[midway,below]{$r$};
+\draw[<->] (4.65,.6)--(4.65,3.7) node[midway,right]{$Z$};
+\draw[kguide] (0,.6)--(4.65,.6);
+\node[left] at (0,.25){$z_0$};
+\node at (1.8,5){(a) 包含 $OQ$ 的竖直截面};
+\end{scope}
+\begin{scope}[xshift=9cm]
+\draw[kaxis] (-2.4,0)--(2.6,0) node[right]{$x$};\draw[kaxis] (0,0)--(0,4.6) node[above]{$z$};
+\draw[DeepBlue,thick] (0,2.7) circle(1.5);\draw[thick] (-2.4,.7)--(2.4,.7);
+\coordinate (Q) at (1.2,3.6);\coordinate (P) at (1.2,.7);
+\draw[kguide] (Q)--(P);\fill (Q) circle(1.5pt) (P) circle(1.5pt) (0,2.7) circle(1.5pt);
+\node[above right] at (Q){$Q$};\node[below right] at (P){$P$};
+\node[right] at (2.45,.7){$h$};
+\node[left] at (-.1,2.7){$K$};
+\node at (0,5.25){(b) 正视墙面};
+\end{scope}
+\end{tikzpicture}\figcap{例2.109解图：瞄准点 $Q$ 位于以 $K$ 为圆心的墙面圆上，实际命中点 $P$ 位于水平线；两图分别说明投掷平面与墙面轨迹。}\end{minipage}\end{center}}

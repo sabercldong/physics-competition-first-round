@@ -1,0 +1,128 @@
+\subsection*{电容只由边值问题决定}
+
+电容的定义 $C=Q/U$ 不是说先给电容器一个电荷才“产生”电容。在线性介质中，把极板电荷同时
+放大若干倍，电场和电势差也按相同比例放大，所以比值 $Q/U$ 不变。电容由导体几何、相对位置
+和介质决定；若极板移动、介质插入或温度使材料响应改变，电容才会改变。
+
+平行板公式 $C=\varepsilon S/d$ 建立在 $d$ 远小于极板线度的条件下。边缘附近电场弯曲，使真实
+电容略大于理想公式。球形、圆柱形和平行板电容器看似不同，求解步骤却相同：先用对称性求
+$E$，再积分得到两极电势差，最后取 $C=Q/U$。例如同轴圆柱中
+\begin{equation}
+ E(r)=\frac{Q}{2\pi\varepsilon l r},
+ \qquad
+ U=\int_a^bE(r)\,\dd r
+ =\frac{Q}{2\pi\varepsilon l}\ln\frac ba.
+\end{equation}
+因此长度 $l$ 很大且忽略端部效应时，$C=2\pi\varepsilon l/\ln(b/a)$。
+
+多导体系统不能总用单个电容概括。取无穷远或一块参考导体为零电势，可写
+\begin{equation}
+ Q_i=\sum_j C_{ij}\varphi_j.
+\end{equation}
+对角元 $C_{ii}>0$，非对角元通常为负；所有导体同时升高相同电势时是否需要电荷，还取决于参考
+边界。倒易定理保证矩阵对称 $C_{ij}=C_{ji}$。这套关系把“谁感应谁”的问题转化为线性代数，
+也说明感应电荷并不是互不相关的经验量。
+
+\subsection*{介质极化与边界条件}
+
+极化分为两种典型机制。无永久偶极矩的原子、分子在外场中发生正负电荷中心微小分离，形成诱导
+偶极矩；具有永久偶极矩的分子原本取向无序，外场使其取向出现偏好。热运动会破坏取向，因此
+介电常数可能随温度和频率变化。线性关系 $\vect P=\varepsilon_0\chi_e\vect E$ 只是场强不太大、
+响应近似即时且各向同性时的模型。
+
+极化电荷满足
+\begin{equation}
+ \rho_b=-\nabla\cdot\vect P,
+ \qquad
+ \sigma_b=\vect P\cdot\uvec n.
+\end{equation}
+均匀极化介质内部 $\rho_b=0$，但表面仍有束缚电荷。它们产生的附加电场通常与外场反向，使介质
+内部场减弱；自由电荷和束缚电荷都产生真实电场，$\vect D$ 只是把束缚电荷的贡献重新组织后得到
+的辅助场量。
+
+在两种介质交界面上取薄柱和窄矩形回路，可得
+\begin{equation}
+ D_{2n}-D_{1n}=\sigma_f,
+ \qquad
+ E_{2t}-E_{1t}=0.
+\end{equation}
+只有自由面电荷使 $D$ 的法向分量跳变；静电场的切向分量连续。若界面没有自由电荷，
+$D_{1n}=D_{2n}$，但因介电常数不同，$E_n$ 一般不连续。电场线穿过介质界面会改变方向，满足
+\begin{equation}
+ \frac{\tan\theta_1}{\tan\theta_2}=\frac{\varepsilon_1}{\varepsilon_2},
+\end{equation}
+其中 $\theta_i$ 是电场与界面法线的夹角。
+
+\subsection*{部分填充介质的等效判断}
+
+介质板若沿电场方向分层，各层通过的自由电荷面密度相同，$D_n$ 相同，而总电压等于各层电压之和，
+所以等效为串联。以面积 $S$、总间距 $d=d_1+d_2$ 的两层介质为例，
+\begin{equation}
+ \frac1C=\frac{d_1}{\varepsilon_1S}+\frac{d_2}{\varepsilon_2S}.
+\end{equation}
+介质若横向分割极板面积，各部分电势差相同、总电荷相加，因而等效为并联：
+\begin{equation}
+ C=\frac{\varepsilon_1S_1}{d}+\frac{\varepsilon_2S_2}{d}.
+\end{equation}
+判断“串联还是并联”不应只看图形像不像电路，而应看各部分是电荷相同还是电压相同。
+
+介质插入电容器时通常受到向内部的力，因为插入会增大电容。若电容器孤立、自由电荷固定，
+场能为
+\begin{equation}
+ U_Q=\frac{Q^2}{2C},
+ \qquad
+ F_x=-\left(\frac{\partial U_Q}{\partial x}\right)_Q
+ =\frac{Q^2}{2C^2}\frac{\partial C}{\partial x}.
+\end{equation}
+当 $\partial C/\partial x>0$ 时，力指向插入加深方向。
+
+若电容器始终接在恒压电源上，单看电容器场能 $U_C=CU^2/2$ 会随 $C$ 增大，似乎给出相反方向。
+原因是电源同时输送电荷并做功。电源做功增量为 $\dd W_s=U\dd Q=U^2\dd C$，电容器与电源合在
+一起的有效势能变化为
+\begin{equation}
+ \dd(U_C-W_s)=-\frac12U^2\dd C,
+\end{equation}
+所以
+\begin{equation}
+ \boxed{F_x=\frac12U^2\frac{\partial C}{\partial x}}
+\end{equation}
+仍指向电容增大的方向。恒电荷与恒电压条件必须从题目中区分。
+
+\subsection*{充电过程中的能量去向}
+
+把未充电电容 $C$ 通过电阻接到理想电压源 $U_0$，最终电源输送电荷 $Q=CU_0$，做功
+\begin{equation}
+ W_s=U_0Q=CU_0^2.
+\end{equation}
+电容器最终储能只有 $CU_0^2/2$，另一半在电阻中转化为热：
+\begin{equation}
+ Q_R=\int_0^\infty I^2R\,\dd t=\frac12CU_0^2.
+\end{equation}
+这个“一半损耗”与电阻数值无关；改变 $R$ 只改变充电快慢，不改变始末状态的能量差。理想导线
+$R\to0$ 时，简单集总模型出现无限大初始电流，真实电路中的寄生电感、电磁辐射和有限传播速度
+会承担能量转移，不能据此断言损耗消失。
+
+串联电阻充电时
+\begin{equation}
+ U_C(t)=U_0\left(1-e^{-t/(RC)}\right),
+ \qquad
+ I(t)=\frac{U_0}{R}e^{-t/(RC)}.
+\end{equation}
+时间常数 $RC$ 的量纲为时间；经过一个时间常数，电容电压达到最终值的 $1-e^{-1}$，电流降为
+初值的 $e^{-1}$。放电过程同样由初始电荷决定，电压和电流按 $e^{-t/(RC)}$ 衰减。
+
+把能量平衡保留到任意时刻会更清楚。记 $x=t/(RC)$，则电源已经做功
+\begin{equation}
+ W_s(t)=\int_0^t U_0I\,\dd t
+ =CU_0^2(1-e^{-x}),
+\end{equation}
+电容器场能和电阻累计放热分别为
+\begin{equation}
+ U_C(t)=\frac12CU_0^2(1-e^{-x})^2,
+ \qquad
+ Q_R(t)=\int_0^t I^2R\,\dd t
+ =\frac12CU_0^2(1-e^{-2x}).
+\end{equation}
+逐项展开即可验证 $W_s(t)=U_C(t)+Q_R(t)$，所以“一半耗散”不是只在终态才成立的孤立结论，
+而是全过程能量守恒在 $t\to\infty$ 的结果。减小固定电阻会缩短充电时间，却不会改变最终的
+$Q_R$；若让电源电压分许多小级缓慢升高，或用电感实现近似可逆的能量转移，耗散才可能低于这一半。

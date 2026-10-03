@@ -1,0 +1,426 @@
+% Restrained TikZ redraws for Lesson 29.
+
+\newcommand{\matterStructureDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  % Atom
+  \begin{scope}[xshift=-6.0cm]
+    \fill[DeepBlue] (0,0) circle (3pt);
+    \draw[TextGray,rotate=18] (0,0) ellipse (1.25 and 0.48);
+    \draw[TextGray,rotate=-42] (0,0) ellipse (1.25 and 0.48);
+    \draw[TextGray,rotate=78] (0,0) ellipse (1.25 and 0.48);
+    \fill[Ink] (1.05,0.28) circle (2.2pt);
+    \node[TextGray] at (0,-1.55) {原子 $\sim10^{-10}\,\mathrm m$};
+  \end{scope}
+  % Nucleus
+  \begin{scope}[xshift=-2.0cm]
+    \foreach \x/\y in {-0.50/0.20,-0.15/0.52,0.25/0.42,0.55/0.05,0.22/-0.35,-0.28/-0.32}{
+      \fill[DeepBlue!70] (\x,\y) circle (0.28);
+      \draw[Ink] (\x,\y) circle (0.28);
+    }
+    \node[TextGray] at (0,-1.55) {原子核 $\sim10^{-14}\,\mathrm m$};
+  \end{scope}
+  % Nucleon
+  \begin{scope}[xshift=2.0cm]
+    \draw[curve,fill=PaleBlue] (0,0) circle (0.95);
+    \foreach \a in {20,80,...,320}{
+      \draw[TextGray] (0,0)--({0.68*cos(\a)},{0.68*sin(\a)});
+    }
+    \node[TextGray] at (0,-1.55) {核子 $\sim10^{-15}\,\mathrm m$};
+  \end{scope}
+  % Quark content
+  \begin{scope}[xshift=6.0cm]
+    \draw[curve,fill=PaleBlue] (0,0) circle (0.95);
+    \fill[DeepBlue] (-0.38,-0.18) circle (0.22) node[below left] {$u$};
+    \fill[Gold] (0.38,-0.18) circle (0.22) node[below right] {$u$};
+    \fill[Ink] (0,0.43) circle (0.22) node[above] {$d$};
+    \draw[TextGray] (-0.38,-0.18)--(0.38,-0.18)--(0,0.43)--cycle;
+    \node[TextGray] at (0,-1.55) {夸克尺度 $<10^{-18}\,\mathrm m$};
+  \end{scope}
+  \foreach \x in {-4.0,0,4.0}{\draw[vector] (\x-0.55,0)--(\x+0.55,0);}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.1(a)\quad 从原子到核子内部的物质层级；长度标度为数量级示意}
+\end{center}}
+
+\newcommand{\coulombDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (-2.7,0); \coordinate (B) at (2.7,0);
+  \fill[DeepBlue] (A) circle (3pt) node[below=4pt] {$q_1$};
+  \fill[DeepBlue] (B) circle (3pt) node[below=4pt] {$q_2$};
+  \draw[guide] (A)--(B);
+  \draw[<->] (-2.55,-0.75)--node[fill=white,inner sep=1pt] {$r$}(2.55,-0.75);
+  \draw[vector] (A)--++(-1.6,0) node[above] {$\vect F_{21}$};
+  \draw[vector] (B)--++(1.6,0) node[above] {$\vect F_{12}$};
+  \node[TextGray] at (0,1.0) {图示为同号电荷；异号时两力同时反向};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.1(b)\quad 点电荷间的库仑力沿两电荷连线，且满足作用力与反作用力关系}
+\end{center}}
+
+\newcommand{\coulombHistoryContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.82,>=Latex]
+  \node[inner sep=0] at (-4.4,0)
+    {\includegraphics[height=3.8cm]{coulomb-portrait-redraw.png}};
+  \node[TextGray] at (-4.4,-2.25) {Charles-Augustin de Coulomb};
+  \begin{scope}[xshift=1.2cm]
+    \node[TextGray,anchor=west] at (-2.25,1.75) {俯视};
+    \draw[thick] (-2.0,2.0)--(2.0,2.0);
+    \draw[thick] (0,2.0)--(0,0.35);
+    \draw[very thick] (-2.0,0.25)--(2.0,0.25);
+    \fill[DeepBlue] (-2.0,0.25) circle (5pt) node[below] {$q_1$};
+    \fill[DeepBlue] (2.0,0.25) circle (5pt) node[below] {$q_2$};
+    \fill[Ink] (-2.0,1.35) circle (5pt) node[left] {$Q$};
+    \draw[guide] (-2.0,1.35)--(-2.0,0.25);
+    % Q is placed tangentially to the suspended arm, so the Coulomb force
+    % produces a nonzero torque about the suspension axis.
+    \draw[vector] (-2.0,0.25)--(-2.0,-0.62) node[left] {$\vect F$};
+    \draw[<->] (0,-0.82)--node[fill=white,inner sep=1pt] {$d$}(-2.0,-0.82);
+    \draw[DeepBlue,thick,->] (0,0.75) arc[start angle=90,end angle=25,radius=0.65];
+    \node[DeepBlue] at (0.65,0.9) {$\theta$};
+    \node[TextGray,align=left,anchor=west] at (3.0,0.55)
+      {悬丝扭转\\$Fd=\kappa\theta$\\$\theta\propto r^{-2}$};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}Coulomb 与扭秤测力原理：静电力矩由悬丝的回复力矩平衡}
+\end{center}}
+
+\newcommand{\fieldLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.72,>=Latex]
+  \begin{scope}[xshift=-6.0cm]
+    \fill[DeepBlue] (-0.75,0) circle (4pt) node[below] {$+Q$};
+    \fill[DeepBlue] (0.75,0) circle (4pt) node[below] {$+Q$};
+    \draw[->,DeepBlue,thick] (-0.98,0)--(-2.35,0);
+    \draw[->,DeepBlue,thick] (0.98,0)--(2.35,0);
+    \foreach \s in {-1,1}{
+      \draw[->,DeepBlue,thick] ({0.75*\s},{0.18}) .. controls ({1.25*\s},0.65) and ({1.45*\s},1.45) .. ({1.55*\s},2.1);
+      \draw[->,DeepBlue,thick] ({0.75*\s},{-0.18}) .. controls ({1.25*\s},-0.65) and ({1.45*\s},-1.45) .. ({1.55*\s},-2.1);
+      \draw[->,DeepBlue,thick] ({0.62*\s},0.16) .. controls ({0.35*\s},0.85) and ({0.25*\s},1.55) .. ({0.18*\s},2.15);
+      \draw[->,DeepBlue,thick] ({0.62*\s},-0.16) .. controls ({0.35*\s},-0.85) and ({0.25*\s},-1.55) .. ({0.18*\s},-2.15);
+    }
+    \node[TextGray] at (0,-2.55) {等量同号电荷};
+  \end{scope}
+  \begin{scope}
+    \fill[DeepBlue] (-1.4,0) circle (4pt) node[below] {$+Q$};
+    \fill[Ink] (1.4,0) circle (4pt) node[below] {$-Q$};
+    \foreach \h in {0.28,0.62,1.0,1.45}{
+      \draw[->,DeepBlue,thick]
+        (-1.16,{0.55*\h}) .. controls (-0.35,{1.45*\h}) and (0.35,{1.45*\h}) .. (1.16,{0.55*\h});
+      \draw[->,DeepBlue,thick]
+        (-1.16,{-0.55*\h}) .. controls (-0.35,{-1.45*\h}) and (0.35,{-1.45*\h}) .. (1.16,{-0.55*\h});
+    }
+    \draw[->,DeepBlue,thick] (-1.05,0)--(1.05,0);
+    \node[TextGray] at (0,-2.55) {等量异号电荷};
+  \end{scope}
+  \begin{scope}[xshift=6.0cm]
+    \fill[DeepBlue] (0,0) circle (4pt) node[below right] {$q(t)$};
+    \draw[guide,dashed] (0,-2.1)--(0,2.1) node[above] {振动轴};
+    \draw[->,DeepBlue,thick] (0.15,0.05) .. controls (0.55,0.35) and (0.25,0.95) .. (0.95,1.30)
+      .. controls (1.55,1.60) and (1.25,2.05) .. (2.25,2.25);
+    \draw[->,DeepBlue,thick] (-0.15,0.05) .. controls (-0.55,0.35) and (-0.25,0.95) .. (-0.95,1.30)
+      .. controls (-1.55,1.60) and (-1.25,2.05) .. (-2.25,2.25);
+    \draw[->,DeepBlue,thick] (0.15,-0.05) .. controls (0.55,-0.35) and (0.25,-0.95) .. (0.95,-1.30)
+      .. controls (1.55,-1.60) and (1.25,-2.05) .. (2.25,-2.25);
+    \draw[->,DeepBlue,thick] (-0.15,-0.05) .. controls (-0.55,-0.35) and (-0.25,-0.95) .. (-0.95,-1.30)
+      .. controls (-1.55,-1.60) and (-1.25,-2.05) .. (-2.25,-2.25);
+    \node[TextGray] at (0,-2.55) {振荡电荷：场线随时间演化};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.3(a)\quad 同号、异号与振荡电荷的典型电场线；第三幅不能按静电场理解}
+\end{center}}
+
+\newcommand{\fluxDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0);
+  \coordinate (Etip) at (2.45,1.25);
+  \coordinate (Stip) at (0.7,2.15);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (-1.8,-0.85)--(1.8,-0.30)--(1.8,1.05)--(-1.8,0.50)--cycle;
+  \draw[vector] (O)--++(0.7,2.15) node[above] {$\vect S$};
+  \draw[vector] (O)--++(2.45,1.25) node[right] {$\vect E$};
+  \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=Etip--O--Stip};
+  \node[TextGray] at (0,-1.35) {$\Phi_E=\vect E\cdot\vect S=ES\cos\theta$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gaussDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \draw[DeepBlue,thick] (0,0) ellipse (2.7 and 1.75);
+  \fill[DeepBlue] (-0.45,0.15) circle (4pt) node[below right] {$q_{\rm in}$};
+  \fill[Ink] (3.9,0.65) circle (4pt) node[right] {$q_{\rm out}$};
+  \foreach \a in {10,55,...,325}{
+    \draw[->,TextGray,thin] (-0.45,0.15)--++({1.9*cos(\a)},{1.35*sin(\a)});
+  }
+  \draw[vector] (2.35,0.88)--++(0.85,0.35) node[right] {$\dd\vect S$};
+  \node[TextGray,align=left,anchor=west] at (5.0,0)
+    {闭合面的净通量只由面内净电荷决定；\\面外电荷会改变局部电场，但净通量贡献为零。};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.3(b)\quad 高斯定律中的闭合曲面}
+\end{center}}
+
+\newcommand{\gaussContextDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.78,>=Latex]
+  \node[inner sep=0] at (-6.0,0.2)
+    {\includegraphics[width=2.2cm]{gauss-portrait-redraw.png}};
+  \node[TextGray] at (-6.0,-1.65) {Gauss};
+  \begin{scope}[xshift=-2.8cm]
+    \fill[PaleBlue] (-1.15,-0.6)--(1.15,-0.25)--(0.9,0.8)--(-1.3,0.5)--cycle;
+    \draw[thick] (-1.15,-0.6)--(1.15,-0.25)--(0.9,0.8)--(-1.3,0.5)--cycle;
+    \draw[vector] (0,0)--(0.55,1.55) node[above] {$\dd\vect S$};
+    \draw[vector] (0,0)--(1.65,0.65) node[right] {$\vect E$};
+    \coordinate (Ee) at (1.65,0.65);
+    \coordinate (Oo) at (0,0);
+    \coordinate (Ss) at (0.55,1.55);
+    \draw pic[draw,"$\theta$",angle radius=6mm,angle eccentricity=1.3]
+      {angle=Ee--Oo--Ss};
+    \node[DeepBlue] at (0,-1.55) {$\dd\Phi_E=E\dd S\cos\theta$};
+  \end{scope}
+  \begin{scope}[xshift=1.2cm]
+    \draw[DeepBlue,thick,rounded corners=12pt] plot[smooth cycle] coordinates
+      {(-1.45,0.1) (-0.8,1.25) (0.7,1.1) (1.45,0.2) (0.8,-1.2) (-0.9,-1.0)};
+    \fill[Ink] (0,0) circle (3pt) node[below right] {$q$};
+    \foreach \a in {15,60,...,330}{
+      \draw[->,TextGray] ({0.25*cos(\a)},{0.25*sin(\a)})--({1.05*cos(\a)},{0.85*sin(\a)});
+    }
+    \node[DeepBlue] at (0,-1.55) {$\Phi_E=q/\varepsilon_0$};
+  \end{scope}
+  \begin{scope}[xshift=5.35cm]
+    \draw[DeepBlue,thick,rounded corners=12pt] plot[smooth cycle] coordinates
+      {(-1.35,0.1) (-0.75,1.15) (0.75,1.0) (1.4,0.15) (0.75,-1.15) (-0.8,-1.0)};
+    \fill[Ink] (-2.25,0) circle (3pt) node[below] {$q$};
+    \foreach \y in {-0.65,-0.2,0.25,0.7}{
+      \draw[->,TextGray] (-2.0,\y)--(1.0,{0.75*\y});
+    }
+    \node[DeepBlue] at (0,-1.55) {$\Phi_E=0$};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}面积元通量、面内电荷与面外电荷三种几何情形}
+\end{center}}
+
+\newcommand{\gaussDifferentialCubeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (A) at (0,0); \coordinate (B) at (3.4,0.35);
+  \coordinate (C) at (4.65,1.35); \coordinate (D) at (1.25,1.0);
+  \coordinate (E) at (0,2.55); \coordinate (F) at (3.4,2.90);
+  \coordinate (G) at (4.65,3.90); \coordinate (H) at (1.25,3.55);
+  \draw[curve] (A)--(B)--(C)--(D)--cycle;
+  \draw[curve] (E)--(F)--(G)--(H)--cycle;
+  \draw[curve] (A)--(E) (B)--(F) (C)--(G) (D)--(H);
+  \draw[axis] (A)--++(5.5,0.55);
+  \node[below] at (5.70,0.10) {$x$};
+  \draw[axis] (A)--++(1.65,1.33) node[above right] {$y$};
+  \draw[axis] (A)--++(0,4.45) node[above] {$z$};
+  \draw[vector] (B)--++(1.25,0.13);
+  \node[anchor=west,fill=white,inner sep=0.8pt] at (5.10,1.02)
+    {$E_x(x+\Delta x)$};
+  \draw[TextGray,thin] (5.10,0.91)--(4.68,0.51);
+  \draw[vector] (A)--++(-1.1,-0.11) node[below] {$E_x(x)$};
+  \draw[vector] (H)--++(0,1.15) node[left] {$E_z(z+\Delta z)$};
+  \node[TextGray,align=left,anchor=west] at (6.45,2.55)
+    {六个面的净通量相加\\保留一阶差分\\$\displaystyle \nabla\!\cdot\!\vect E=\rho/\varepsilon_0$};
+  \node[DeepBlue] at (2.0,-0.55) {$\Delta x$};
+  \node[DeepBlue,fill=white,inner sep=0.8pt] at (4.85,1.72) {$\Delta y$};
+  \node[DeepBlue] at (-0.35,1.3) {$\Delta z$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.5(a)\quad 无穷小长方体上的通量收支给出 Gauss 定律的微分形式}
+\end{center}}
+
+\newcommand{\lineFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.84,>=Latex]
+  \draw[very thick] (0,-2.2)--(0,2.2);
+  \node[left] at (0,2.0) {$\lambda$};
+  \coordinate (P) at (3.0,0);
+  \fill[DeepBlue] (P) circle (2.4pt) node[right] {$P$};
+  \draw[<->] (0,-0.45)--node[fill=white,inner sep=1pt] {$a$}(3.0,-0.45);
+  \draw[vector] (P)--++(1.5,0) node[above] {$\vect E$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\finiteLineDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (P) at (3.2,0);
+  \coordinate (T) at (0,2.3); \coordinate (D) at (0,-2.3);
+  \draw[very thick] (0,-2.3)--(0,2.3);
+  \fill[DeepBlue] (P) circle (2.4pt) node[right] {$P$};
+  \draw[<->] (0,-0.5)--node[fill=white,inner sep=1pt] {$a$}(3.2,-0.5);
+  \draw[guide] (P)--(0,2.3) (P)--(0,-2.3);
+  \draw pic[draw,"$\theta_1$",angle radius=8mm,angle eccentricity=1.35]
+    {angle=T--P--O};
+  \draw pic[draw,"$\theta_2$",angle radius=11mm,angle eccentricity=1.25]
+    {angle=O--P--D};
+  \draw[vector] (P)--++(1.35,0) node[above] {$\vect E$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.4\quad 有限长带电直线中垂线上的场点}
+\end{center}}
+
+\newcommand{\diskFieldDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.88,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (P) at (4.0,0);
+  \coordinate (T) at (0,2.1);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (O) ellipse (0.65 and 2.1);
+  \draw[DeepBlue] (O) ellipse (0.38 and 1.2);
+  \fill (O) circle (1.6pt) node[below left] {$O$};
+  \fill[DeepBlue] (P) circle (2.4pt) node[right] {$P$};
+  \draw[axis] (-0.8,0)--(5.3,0) node[right] {$x$};
+  \draw[<->] (0,-2.5)--node[below] {$a$}(4.0,-2.5);
+  \draw[guide] (P)--(0,2.1);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=T--P--O};
+  \node[left] at (-0.65,1.7) {$\sigma$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.5(b)\quad 均匀带电圆盘轴线上的场点；图中 $a$ 表示场点到圆盘的距离}
+\end{center}}
+
+\newcommand{\unequalChargeDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (-2.1,0); \coordinate (B) at (2.1,0); \coordinate (N) at (5.4,0);
+  \fill[DeepBlue] (A) circle (4pt) node[below] {$+Q$};
+  \fill[Ink] (B) circle (4pt) node[below] {$-q$};
+  \fill[DeepBlue] (N) circle (2.4pt) node[below] {$N$};
+  \draw[axis] (-3.2,0)--(6.6,0) node[right] {$x$};
+  \draw[<->] (-2.1,-0.8)--node[fill=white,inner sep=1pt] {$2a$}(2.1,-0.8);
+  \draw[<->] (2.1,0.75)--node[fill=white,inner sep=1pt] {$x_0-a$}(5.4,0.75);
+  \node[TextGray] at (1.65,1.45) {$Q>q>0$，零场点位于小电荷外侧};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.6\quad 不等量异号点电荷的零场点}
+\end{center}}
+
+\newcommand{\cavityDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (C) at (1.15,0.40); \coordinate (P) at (1.82,1.12);
+  \draw[fill=PaleBlue,draw=DeepBlue,thick] (O) circle (2.40);
+  \draw[fill=white,draw=Ink,thick] (C) circle (1.02);
+  \fill (O) circle (1.5pt) node[below left=2pt,fill=white,inner sep=0.5pt] {$O$};
+  \fill (C) circle (1.5pt) node[below=3pt,fill=white,inner sep=0.5pt] {$C$};
+  \fill[DeepBlue] (P) circle (2.2pt) node[above right=2pt,fill=white,inner sep=0.5pt] {$P$};
+  \draw[vector] (O)--(C) node[pos=0.52,below=3pt,fill=white,inner sep=0.7pt] {$\vect d$};
+  \draw[vector] (C)--(P) node[pos=0.55,right=4pt,fill=white,inner sep=0.7pt] {$\vect r'$};
+  \draw[vector] (O)--(P) node[pos=0.48,above left=3pt,fill=white,inner sep=0.7pt] {$\vect r$};
+  \node[TextGray,align=left,anchor=west] at (3.55,0.25)
+    {均匀带正电球体\\叠加同位置、同大小、带负电的球体\\以挖去偏心球形空腔};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.7\quad 球形空腔的叠加模型，$\vect r=\vect d+\vect r'$}
+\end{center}}
+
+\newcommand{\multipoleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \begin{scope}[xshift=-3.8cm]
+    \coordinate (O1) at (0,0); \coordinate (X1) at (2.7,0); \coordinate (P1) at (2.7,2.3);
+    \fill[Ink] (-0.75,0) circle (3pt) node[below] {$-q$};
+    \fill[DeepBlue] (0.75,0) circle (3pt) node[below] {$+q$};
+    \draw[<->] (-0.7,-0.75)--node[fill=white,inner sep=1pt] {$l$}(0.7,-0.75);
+    \draw[axis] (0,0)--(2.7,2.3) node[right] {$P(r,\theta)$};
+    \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+      {angle=X1--O1--P1};
+    \node[TextGray] at (0,-1.45) {电偶极子};
+  \end{scope}
+  \begin{scope}[xshift=4.0cm]
+    \coordinate (O2) at (0,0); \coordinate (X2) at (2.7,0); \coordinate (P2) at (2.6,2.3);
+    \fill[Ink] (-1.0,0) circle (3pt) node[below] {$-q$};
+    \fill[DeepBlue] (0,0) circle (3pt) node[below] {$+2q$};
+    \fill[Ink] (1.0,0) circle (3pt) node[below] {$-q$};
+    \draw[<->] (-0.95,-0.75)--node[fill=white,inner sep=1pt] {$l$}(-0.05,-0.75);
+    \draw[<->] (0.05,-0.75)--node[fill=white,inner sep=1pt] {$l$}(0.95,-0.75);
+    \draw[axis] (0,0)--(2.6,2.3) node[right] {$P(r,\theta)$};
+    \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.35]
+      {angle=X2--O2--P2};
+    \node[TextGray] at (0,-1.45) {直线电四极子};
+  \end{scope}
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.8\quad 例题 29.4 与例题 29.5 的几何关系}
+\end{center}}
+
+\newcommand{\dipoleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (X) at (3.3,0); \coordinate (P) at (3.3,2.5);
+  \fill[Ink] (-0.85,0) circle (3pt) node[below] {$-q$};
+  \fill[DeepBlue] (0.85,0) circle (3pt) node[below] {$+q$};
+  \draw[<->] (-0.8,-0.75)--node[fill=white,inner sep=1pt] {$l$}(0.8,-0.75);
+  \draw[axis] (O)--(P) node[right] {$P(r,\theta)$};
+  \draw[guide] (O)--(X);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=X--O--P};
+  \draw[vector] (-0.75,0.55)--(0.75,0.55) node[midway,above] {$\vect p$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.9\quad 电偶极矩 $\vect p$ 从负电荷指向正电荷}
+\end{center}}
+
+\newcommand{\quadrupoleDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.95,>=Latex]
+  \coordinate (O) at (0,0); \coordinate (X) at (3.3,0); \coordinate (P) at (3.1,2.5);
+  \fill[Ink] (-1.1,0) circle (3pt) node[below] {$-q$};
+  \fill[DeepBlue] (0,0) circle (3pt) node[below] {$+2q$};
+  \fill[Ink] (1.1,0) circle (3pt) node[below] {$-q$};
+  \draw[<->] (-1.05,-0.75)--node[fill=white,inner sep=1pt] {$l$}(-0.05,-0.75);
+  \draw[<->] (0.05,-0.75)--node[fill=white,inner sep=1pt] {$l$}(1.05,-0.75);
+  \draw[axis] (O)--(P) node[right] {$P(r,\theta)$};
+  \draw[guide] (O)--(X);
+  \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.35]
+    {angle=X--O--P};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.10\quad 直线电四极子的几何关系}
+\end{center}}
+
+\newcommand{\slabDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \coordinate (A) at (2.65,0.52); \coordinate (B) at (3.85,0.52); \coordinate (C) at (3.85,0.35);
+  \fill[PaleBlue] (-2.1,-1.15) rectangle (2.1,1.15);
+  \draw[DeepBlue,thick] (-2.1,-1.15) rectangle (2.1,1.15);
+  \foreach \x in {-1.7,-1.0,...,1.8}
+    \foreach \y in {-0.75,0,0.75}
+      \fill[DeepBlue] (\x,\y) circle (1.2pt);
+  \draw[axis] (-4.0,0)--(4.0,0) node[right] {$x$};
+  \node[below] at (-2.1,-1.2) {$-d$}; \node[below] at (2.1,-1.2) {$d$};
+  \fill[Ink] (0,0) circle (2.8pt) node[above] {$m,q$};
+  \draw[vector] (0,0)--++(1.35,0) node[above] {$\vect v_0$};
+  \node[TextGray] at (0,1.55) {体电荷密度 $\rho>0$};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.11\quad 仅在 $-d<x<d$ 内均匀带电的无穷大厚板}
+\end{center}}
+
+\newcommand{\electronLensDiagram}{%
+\begin{center}
+\begin{tikzpicture}[scale=0.9,>=Latex]
+  \draw[very thick] (0,-2.0)--(0,2.0) node[above] {正线电荷 $\lambda$};
+  \draw[axis] (-4.4,0)--(4.5,0) node[right] {$x$};
+  \draw[guide] (-3.8,1.05)--(3.8,1.05);
+  \draw[DeepBlue,very thick,-{Latex[length=2.5mm]}]
+    (-3.8,1.05) .. controls (-1.2,1.05) and (1.2,0.66) .. (3.8,0.35);
+  \draw[<->] (-3.1,0)--node[left] {$b$}(-3.1,1.05);
+  \draw[vector] (-3.7,1.05)--++(1.35,0) node[above] {$\vect v$};
+  \draw[guide] (2.65,0.52)--++(1.2,0);
+  \draw pic[draw,"$\alpha$",angle radius=8mm,angle eccentricity=1.3]
+    {angle=B--A--C};
+\end{tikzpicture}
+
+{\small\color{TextGray}图 29.12\quad 电子掠过正线电荷时受到指向金属线的微弱偏转}
+\end{center}}

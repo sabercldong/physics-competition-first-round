@@ -1,0 +1,531 @@
+\input{theory.tex}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 15.1【砂轮制动】}
+一个质量为 $m$、半径为 $R$ 的匀质砂轮以角速度 $\omega_0$ 旋转。在距离圆心为 $r$ 处
+有恒力 $f$ 作用，方向如图。求随后砂轮的运动。
+\brakeWheelDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:brake}中砂轮初始顺时针转动，f在圆心右侧向上，故力矩逆时针。
+取顺时针为正，匀质砂轮视为均匀圆盘，绕中心轴的转动惯量
+\[
+ I=\frac12mR^2.
+\]
+力对轴的力矩大小为 $fr$，方向与初始转动相反，所以角加速度为常量
+\[
+ \beta=-\frac{fr}{I}=-\frac{2fr}{mR^2}.
+\]
+于是制动阶段
+\[
+ \boxed{\omega(t)=\omega_0-\frac{2fr}{mR^2}t},
+ \qquad
+ \boxed{\varphi(t)=\omega_0t-\frac{fr}{mR^2}t^2}.
+\]
+砂轮在
+\[
+ \boxed{t_s=\frac{mR^2\omega_0}{2fr}}
+\]
+时停止，停止前转过的角度为
+\[
+ \boxed{\varphi_s=\frac{mR^2\omega_0^2}{4fr}}.
+\]
+若题意中的恒力在停止后仍保持原方向，砂轮会反向转动；“制动”通常只讨论首次停转之前。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{例题 15.2【两个砂轮】}
+两个匀质砂轮质量分别为 $m_1,m_2$，半径分别为 $R_1,R_2$，初始分别以角速度
+$\omega_{10},\omega_{20}$ 按图示方向旋转。$t=0$ 时两轮接触，此后接触处有恒定摩擦力
+$f$（仅在相对滑动期间取此大小，两轮轴固定且忽略其他阻力矩）。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 任意时刻二者的角速度；
+  \item 这个问题是否有类似的质点动力学问题相对应？
+\end{enumerate}
+\twoWheelsDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:two-wheels}的第一轮以顺时针为正、第二轮以逆时针为正；两接触表面初速度均向下。
+令 $u_{10}=R_1\omega_{10}$、$u_{20}=R_2\omega_{20}$，以向下为正的初始相对速度
+$s_0=u_{10}-u_{20}$。若 $s_0>0$，摩擦使第一轮减速、第二轮加速，图中力箭头对应此分支；
+$s_0<0$ 时两摩擦箭头都反向。以 $\varepsilon=\operatorname{sgn}(s_0)$ 统一记号，
+$I_i=\tfrac12m_iR_i^2$，持续滑动期间
+\[
+ \boxed{\omega_1(t)=\omega_{10}-\varepsilon\frac{fR_1}{I_1}t
+ =\omega_{10}-\varepsilon\frac{2f}{m_1R_1}t},
+\]
+\[
+ \boxed{\omega_2(t)=\omega_{20}+\varepsilon\frac{fR_2}{I_2}t
+ =\omega_{20}+\varepsilon\frac{2f}{m_2R_2}t}.
+\]
+两接触表面不再相对滑动的条件为 $R_1\omega_1=R_2\omega_2$；因此滑动终止时刻
+\[
+ \boxed{t_*=
+ \frac{|R_1\omega_{10}-R_2\omega_{20}|}
+ {f(R_1^2/I_1+R_2^2/I_2)}}.
+\]
+上述含t的式子只用于 $0\le t\le t_*$。此后两轮无其他阻力矩，维持无相对滑动所需的静摩擦为零，
+各自以最终角速度匀速转动。若初始 $s_0=0$，则 $t_*=0$，直接处于这一状态，不能强加大小f的动摩擦。
+
+它对应于两个质点在恒定相互摩擦力下相对滑动的问题。映射关系是：切向线速度
+$u_i=R_i\omega_i$ 对应质点速度，而“等效质量”
+\[
+ m_i^{\rm eff}=\frac{I_i}{R_i^2}
+\]
+对应质点质量。记 $q_i=I_i/R_i^2$，两轮切向方程为 $q_1\dot u_1=-\varepsilon f$、
+$q_2\dot u_2=\varepsilon f$，相加得 $q_1u_1+q_2u_2$ 不变。于是最终共同轮缘速度及角速度为
+\[
+ u_* =\frac{q_1u_{10}+q_2u_{20}}{q_1+q_2},\qquad
+ \omega_{1*}=\frac{u_*}{R_1},\quad \omega_{2*}=\frac{u_*}{R_2}.
+\]
+这不是说固定轴承系统的总线动量守恒，而是切向方程与两个相互作用质点的方程具有相同形式。
+共同速度位于两初始轮缘速度之间；机械能损失
+\[
+ \Delta E=\frac12\frac{q_1q_2}{q_1+q_2}(u_{10}-u_{20})^2\ge0
+\]
+可由初末转动动能相减得到，量纲为能量且 $s_0=0$ 时为零。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 15.3【滚动的台球】}
+质量为 $m$、半径为 $R$ 的匀质台球刚被击出时速度为 $v_0$，没有旋转。已知台球与地面的
+滑动摩擦因数为 $\mu$，求台球此后的运动。
+\billiardRollingDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:billiard}分别画出初态和滑动阶段，避免把 $\omega=0$ 的初态与后续转动混为一图。
+初始接触点相对地面向前滑，滑动摩擦力大小为 $f=\mu mg$、方向向后。匀质实心球
+$I=\tfrac25mR^2$。在滑动阶段
+\[
+ ma=-\mu mg,
+ \qquad I\beta=\mu mgR.
+\]
+取使球进入向前纯滚动的角速度为正，得到
+\[
+ v(t)=v_0-\mu gt,
+ \qquad
+ \omega(t)=\frac{\mu mgR}{I}t=\frac{5\mu g}{2R}t.
+\]
+当 $v=\omega R$ 时开始无滑动滚动：
+\[
+ v_0-\mu gt_* =\frac52\mu gt_*,
+ \qquad
+ \boxed{t_* =\frac{2v_0}{7\mu g}}.
+\]
+相应速度和角速度为
+\[
+ \boxed{v_* =\frac57v_0},
+ \qquad
+ \boxed{\omega_* =\frac{5v_0}{7R}}.
+\]
+若忽略滚动阻力，$t>t_*$ 后台球以这两个恒定值作无滑动滚动。滑动阶段质心前进距离为
+\[
+ \boxed{x_* =v_0t_* -\frac12\mu gt_*^2
+ =\frac{12v_0^2}{49\mu g}}.
+\]
+最终总动能为 $\tfrac12m(5v_0/7)^2+\tfrac12(2mR^2/5)[5v_0/(7R)]^2=5mv_0^2/14$，
+比初值 $mv_0^2/2$ 少 $mv_0^2/7$。损失来自接触点滑动，不能用质心路程直接乘摩擦力代表总损失。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 15.4【台球碰撞】}
+质量均为 $m$、半径均为 $R$ 的匀质白球和红球发生无摩擦正碰。碰前白球以速度 $v_0$
+向前运动，同时具有角速度 $\omega_0$，且 $v_0=\omega_0R$。红球起初静止且不自转。
+两球所在的同一水平面与球的动摩擦因数均为$\mu$，忽略滚动阻力；球间碰撞极短，可忽略该期间的地面冲量。
+球间碰撞完全弹性。求碰撞后两个
+球的运动，并判断白球是否可能再次撞到红球。
+\ballsCollisionDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:balls}标出碰前状态，取向右与顺时针为正，碰后另以t=0计时。
+球与球之间无摩擦，所以碰撞冲量沿两球心连线，不对任一球心产生力矩。因而碰撞过程中
+两球角速度不变：
+\[
+ \omega_{\mathrm W}'=\omega_0,
+ \qquad \omega_{\mathrm R}'=0.
+\]
+沿球心连线方向，这是相同质量的一维完全弹性碰撞，二球交换平动速度：
+\[
+ v_{\mathrm W}'=0,
+ \qquad v_{\mathrm R}'=v_0.
+\]
+碰后白球仍自转，接触地面的点相对地面向后滑，所以地面对白球的滑动摩擦力向前；红球只
+平动不转动，摩擦力向后。分别应用例 15.3 的滑动阶段公式：
+\[
+ v_{\mathrm W}(t)=\mu gt,
+ \qquad
+ \omega_{\mathrm W}(t)=\omega_0-\frac{5\mu g}{2R}t,
+\]
+\[
+ v_{\mathrm R}(t)=v_0-\mu gt,
+ \qquad
+ \omega_{\mathrm R}(t)=\frac{5\mu g}{2R}t.
+\]
+两球分别达到纯滚动的时刻相同：
+\[
+ t_{\mathrm W}=t_{\mathrm R}=\frac{2v_0}{7\mu g}.
+\]
+且最终纯滚动速度为
+\[
+ \boxed{v_{\mathrm W}=\frac27v_0},
+ \qquad
+ \boxed{v_{\mathrm R}=\frac57v_0}.
+\]
+在整个滑动阶段 $v_{\mathrm R}-v_{\mathrm W}=v_0-2\mu gt>0$；两球进入纯滚动后红球仍更快，
+所以间距单调增大，\boxed{\text{白球不会再次撞到红球}}。
+更明确地，滑动阶段两球心间距减去2R的净间隙为
+\[
+ d(t)=\int_0^t(v_{\mathrm R}-v_{\mathrm W})\dd t
+ =v_0t-\mu gt^2,\qquad 0\le t\le t_*.
+\]
+因此 $d(t_*)=10v_0^2/(49\mu g)>0$；之后间隙以 $3v_0/7$ 的恒定速率增大。
+当$\mu$趋零时，滑动调节时间趋无穷，但球间碰后红球前进、白球只自转，仍不会追及。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{例题 15.5【小明拍球】}
+小明把一个篮球快速旋转地拍下。落地前篮球速度大小为 $v_0$、方向竖直向下，角速度为
+$\omega_0$，转向如图。篮球视为质量 $m$、半径 $R$ 的空心球壳，与地面的滑动摩擦因数为
+$\mu$，采用法向恢复系数为1、切向库仑摩擦的理想碰撞模型；一旦切向相对速度归零，
+接触不再滑动，不考虑切向弹性回弹。求篮球弹起后的速度方向。
+\bounceSpinProblemDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:bounce-analysis}将碰前状态、接触冲量与碰后方向分开。碰撞极短，重力冲量可忽略。
+\bounceSpinDiagram
+法向恢复系数为1意味着竖直速度反向而大小不变，因此
+\[
+ v_y'=v_0 \quad\text{（竖直向上）}.
+\]
+图中的逆时针自旋使落地点相对地面向右滑，地面对球的切向冲量 $J_t$ 向左。
+先假设整个接触阶段都保持向右滑动，此时动摩擦冲量为
+\[
+ J_t=\mu J_n.
+\]
+法向冲量由竖直动量改变给出
+\[
+ J_n=m(v_0-(-v_0))=2mv_0,
+\]
+故水平速度
+\[
+ \boxed{v_x'=-\frac{J_t}{m}=-2\mu v_0}.
+\]
+于是弹起方向相对竖直线向左偏，偏角 $\alpha$ 满足
+\[
+ \boxed{\tan\alpha=\frac{|v_x'|}{v_y'}=2\mu}.
+\]
+同时空心球壳 $I=\tfrac23mR^2$，其自旋改变为
+\[
+ \omega' =\omega_0-\frac{J_tR}{I}
+ =\omega_0-\frac{3\mu v_0}{R}.
+\]
+若碰撞全程保持滑动，即
+\[
+ \omega_0R>5\mu v_0.
+\]
+则以上结果成立。这个临界条件来自碰后接触点速度
+$v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
+若 $\omega_0R\leq5\mu v_0$，摩擦足以使接触点在分离前或恰在分离时停止滑动。设所需切向
+冲量为 $J_t$，由
+\[
+ v_x'+\omega'R
+ =-\frac{J_t}{m}+\left(\omega_0-\frac{J_tR}{I}\right)R=0
+\]
+得
+\[
+ J_t=\frac{2}{5}m\omega_0R,
+ \qquad
+ v_x'=-\frac25\omega_0R.
+\]
+因此完整的弹起方向为
+\[
+ \boxed{
+ \tan\alpha=
+ \begin{cases}
+  2\mu, & \omega_0R>5\mu v_0,\\[2pt]
+  \dfrac{2\omega_0R}{5v_0}, & \omega_0R\leq5\mu v_0.
+ \end{cases}}
+\]
+两种情形都向图中摩擦冲量所指的一侧偏转；第二种情形中 $\omega'=2\omega_0/5$，
+与 $v_x'=-2\omega_0R/5$ 正好使接触点相对速度为零。
+临界点两式相同；$\mu$=0时水平冲量为零，仍竖直弹起；$\omega_0=0$ 时也无侧向偏转。
+法向动能恢复不等于总动能恢复。切向平动与转动的能量改变为
+\[
+ \Delta K_t=-J_t\omega_0R+\frac{J_t^2}{2}\left(\frac1m+\frac{R^2}{I}\right)\le0,
+\]
+在本题允许的冲量范围内非正，说明摩擦耗能与题设法向弹性条件相容。
+\end{xesolution}
+
+\Needspace{0.33\textheight}
+\begin{origexamplebox}{例题 15.6【生熟鸡蛋】}
+把不同鸡蛋放在同一个斜面上向下滚，如何利用物理方法区分生鸡蛋和熟鸡蛋？
+\eggRollingDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:egg}把两只鸡蛋放在相同坡角的两个面板中，接触位置与释放高度相同；
+用剖面区分内部凝固与内部液体。比较前还要尽量控制外形、质量、放置朝向和坡面的粗糙程度。
+熟鸡蛋内部凝固，外壳与内部近似共同转动；生鸡蛋内部液体可以相对外壳流动，不能给全部质量
+指定同一角速度。这个内部响应差异才是判断依据，而不是预先认定某一种一定先到。
+
+先用圆形、质心位于几何中心的模型解释转动惯量的影响。如果外形在滚动截面近似为圆，
+且凝固整体保持纯滚动，刚体近似给出
+\[
+ a_{\rm cooked}=\frac{g\sin\theta}{1+I/(mR^2)}.
+\]
+真实鸡蛋不是圆球，其接触半径和质心高度随姿态改变，上式只能作为圆形近似，不能精确描述
+每个瞬间。生鸡蛋还同时存在两种不同影响：内部液体未充分随壳转动时，参与转动的有效惯量可能较小；
+液体相对流动又通过黏滞作用耗散能量。两种影响不能只取其一。
+
+例如取圆形壳内液体几乎不受黏性转矩的理想极限，平动质量为总质量m，参与转动的惯量主要是
+外壳的 $I_{\rm shell}$，则可能有
+\[
+ a_{\rm liquid}\simeq\frac{g\sin\theta}{1+I_{\rm shell}/(mR^2)}.
+\]
+它反而可大于凝固整体的加速度。这不是对所有真实鸡蛋的预测，而是说明“存在黏滞耗能”
+不能单独推出“生鸡蛋一定更慢”。在较强耦合极限，液体逐渐跟随外壳，又更接近共同转动；
+真实结果还受形状和滚动姿态影响。
+
+因此，斜面实验可记录滚动时间、姿态变化以及短暂改变外壳运动后的响应，并与已知生熟样品比较；
+只给本题的条件，不能仅凭一次到达先后作无条件判别。为检验内部是否仍在运动，可另在水平桌面
+将蛋旋转，短暂按停外壳后立即松手：生蛋内部液体若仍在转，会通过黏滞作用重新带动外壳；
+熟蛋整体已停住，通常不会自行恢复转动。按住过久会让内部也停止，所以必须说明“短暂”。
+这个补充实验利用内部相对运动，不能反过来当作斜面滚动谁先到底的证明。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{例题 15.7【重滑轮】}
+两个重物挂在滑轮两端，绳与定滑轮间不相对滑动。定滑轮质量为 $M$、半径为 $R$，质量均匀
+分布。求松手时 $m_1$ 的加速度，设 $m_1>m_2$。
+\massivePulleyDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:pulley}中绳绕轮缘且连到两重物的中心吊点，支架连接固定轮轴。
+设 $m_1$ 向下、$m_2$ 向上加速度大小均为 $a$，两侧张力分别为 $T_1,T_2$：
+\[
+ m_1g-T_1=m_1a,
+ \qquad
+ T_2-m_2g=m_2a.
+\]
+均匀圆盘滑轮的转动惯量 $I=\tfrac12MR^2$。绳不打滑给出 $\beta=a/R$，滑轮转动方程为
+\[
+ (T_1-T_2)R=I\frac aR.
+\]
+联立消去两张力：
+\[
+ (m_1-m_2)g
+ =\left(m_1+m_2+\frac I{R^2}\right)a.
+\]
+因此
+\[
+ \boxed{a=\frac{(m_1-m_2)g}{m_1+m_2+M/2}},
+\]
+方向为 $m_1$ 向下。滑轮有转动惯性，所以加速度小于把滑轮视为轻滑轮时的结果。
+\end{xesolution}
+
+\Needspace{0.39\textheight}
+\begin{origexamplebox}{例题 15.8【力矩做功】}
+两个质量均为 $m$ 的质点固定在长为 $2l$ 的轻杆上，一个在最远端，另一个在中点。杆的
+另一端铰接在天花板上。初始时杆水平，由静止释放。求杆与水平呈 $\theta$ 角时：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 杆的角速度；
+  \item 1 号、2 号质点的动能；
+  \item 1 号、2 号质点重力势能的减小量；
+  \item 说明本题与力矩做功的关系。
+\end{enumerate}
+\torqueWorkDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:torque-work}中$\theta$从水平参考线向下量，取第一次下落的 $0\le\theta\le\pi/2$。
+两质点到转轴的距离分别为 $2l$ 与 $l$，系统转动惯量
+\[
+ I=m(2l)^2+ml^2=5ml^2.
+\]
+杆由水平转到向下倾斜 $\theta$ 时，两质点分别下降 $2l\sin\theta$ 与 $l\sin\theta$，
+故机械能守恒给出
+\[
+ \frac12I\omega^2=mg(2l\sin\theta)+mg(l\sin\theta)=3mgl\sin\theta.
+\]
+所以
+\[
+ \boxed{\omega=\sqrt{\frac{6g\sin\theta}{5l}}}.
+\]
+两质点动能分别为
+\[
+ \boxed{E_{k1}=\frac12m(2l\omega)^2
+ =\frac{12}{5}mgl\sin\theta},
+\]
+\[
+ \boxed{E_{k2}=\frac12m(l\omega)^2
+ =\frac35mgl\sin\theta}.
+\]
+两者重力势能减小量分别为
+\[
+ \boxed{-\Delta E_{p1}=2mgl\sin\theta},
+ \qquad
+ \boxed{-\Delta E_{p2}=mgl\sin\theta}.
+\]
+个别质点的动能增加并不等于它自己的重力势能减少，因为轻杆的内力在两质点之间传递能量；
+但对整个刚体，支点不做功，总动能增加等于总重力势能减少。
+
+从力矩做功看，重力对支点的合力矩为
+\[
+ M(\phi)=3mgl\cos\phi,
+\]
+故
+\[
+ W=\int_0^\theta M(\phi)\dd\phi
+ =3mgl\sin\theta=\Delta E_k.
+\]
+这正是转动形式的动能定理。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{例题 15.9【打击中心】}
+一根质量均匀、质量为 $m$、长度为 $L$ 的杆悬挂在天花板上。用冲量 $J$ 水平打击杆上距
+下端 $a$ 的位置，发现悬挂端没有受到冲量。求打击位置。
+\percussionDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:percussion}中O是固定铰点，杆初始静止；打击点P距悬点为 $x=L-a$。
+悬点冲量为零，杆质心获得的线动量完全来自打击冲量：
+\[
+ mv_C=J.
+\]
+对悬点取矩，悬点冲量没有力矩，角动量定理给出
+\[
+ I_O\omega=Jx,
+ \qquad I_O=\frac13mL^2.
+\]
+刚体绕悬点转动，质心速度还满足
+\[
+ v_C=\omega\frac L2.
+\]
+代入前两式：
+\[
+ \frac Jm=\frac{Jx}{I_O}\frac L2,
+\]
+从而
+\[
+ \boxed{x=\frac{2L}{3}},
+ \qquad
+ \boxed{a=L-x=\frac L3}.
+\]
+即打击点距悬点 $2L/3$（距下端 $L/3$）。该点称为打击中心；在此处横向打击，悬点瞬间
+不承受冲量。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{例题 15.10【小明的疑惑】}
+一根质量m、长度L、质量均匀分布的棍靠两端A、B的支撑点水平悬空放置。小明只分析左半根棍时，发现外力矩似乎
+不能平衡。这是怎么回事？
+\supportedRodProblemDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:rod-analysis}左图以整杆为研究对象，对称性与竖直力平衡给出两端支持力各为 $mg/2$，
+合力与对任一点的合力矩均为零。
+\supportedRodDiagram
+
+但若只截取左半杆，除了左支点支持力 $mg/2$ 与左半杆重力 $mg/2$ 之外，截面还受到右半杆
+施加的\textbf{内力和内力矩}。在本题中，中截面的水平、竖直力平衡分别给出轴力为零及
+\[
+ N_A-\frac{mg}{2}+Q=0\quad\Longrightarrow\quad Q=0.
+\]
+所以右图没有画一个实际非零的剪力箭头。两竖直外力大小相等、方向相反，但作用线不同，构成力偶。设杆长
+为 $L$，左半杆重心距左支点 $L/4$，其外力偶矩大小为
+\[
+ M_{\rm ext}=\frac{mg}{2}\frac L4=\frac{mgL}{8}.
+\]
+以逆时针为正，左支持力与左半杆重力对中截面的合外力矩为
+$-(mg/2)(L/2)+(mg/2)(L/4)=-mgL/8$。为保持静止，中截面必须提供逆时针弯矩，大小
+\[
+ \boxed{M_{\rm int}=\frac{mgL}{8}}
+\]
+的反向弯矩。
+
+疑惑来自把刚体截开后只补了截面内力，却漏掉截面内力矩。对能承受弯曲的杆件，截面相互
+作用一般包括轴力、剪力和弯矩；只有把它们全部画出，局部受力与力矩才能平衡。
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{例题 15.11【烟囱倒地】}
+把烟囱视为质量 $m$、长度 $L$ 的均匀硬杆，绕底端倾倒，杆与竖直方向夹角为 $\theta$。
+用两种模型判断哪里最容易断裂：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 烟囱内部会有垂直于烟囱的剪力，剪力最大处最先断裂；
+  \item 烟囱内部会提供弯矩，弯矩最大处最先断裂。
+\end{enumerate}
+\chimneyDiagram
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch09:fig:chimney}中 $x$ 从固定基底O沿杆向上量，研究截面P以上的一段；
+规定切向正方向 $\uvec e_t$ 为倾倒的顺时针方向，角速度、角加速度也以顺时针为正。
+线密度 $\lambda=m/L$。整杆绕底端转动惯量
+$I_O=mL^2/3$。重力矩给出角加速度
+\[
+ \beta=\frac{mg(L/2)\sin\theta}{mL^2/3}
+ =\frac{3g\sin\theta}{2L}.
+\]
+从竖直静止位置以任意小扰动启动的极限下，机械能守恒给出
+\[
+ \frac12I_O\omega^2=mg\frac L2(1-\cos\theta),
+ \qquad
+ \omega^2=\frac{3g}{L}(1-\cos\theta).
+\]
+
+在 $x$ 处截开，研究上段，长度 $s=L-x$、质量 $m_s=ms/L$，质心位于
+$r_c=(L+x)/2$。沿垂直杆方向列质心运动方程。重力的垂杆分量为
+$m_sg\sin\theta$，质心切向加速度为 $\beta r_c$。定义截面对上段的剪力为
+$-Q\uvec e_t$，Q是有符号量，图中箭头表示Q的正向。因此
+$m_sg\sin\theta-Q=m_s\beta r_c$，得
+\begin{align*}
+ Q(x)&=m_s\bigl(g\sin\theta-\beta r_c\bigr)\\
+ &=\frac{mg\sin\theta}{4L^2}(L-x)(L-3x).
+\end{align*}
+Q为正时剪力与倾倒切向相反，为负时实际方向反转；剪力\textbf{大小}是 $|Q|$。令 $y=x/L$，$|Q|$ 正比于
+$|(1-y)(1-3y)|$；在 $0\le y\le1$ 上最大值出现在 $y=0$，所以按模型一
+\[
+ \boxed{\text{基底附近最容易发生剪切断裂}}.
+\]
+
+再对上段质心取矩。重力通过上段质心，不产生力矩；截面剪力对上段质心产生力矩。为使上段
+具有顺时针角加速度$\beta$，截面还必须提供弯矩。关于上段质心G，剪力 $-Q\uvec e_t$ 的
+顺时针力矩是 $Qs/2$。定义截面弯矩的有符号量M以顺时针为正，则
+\[
+ M+Q\frac s2=I_c\beta,\qquad I_c=\frac{m_ss^2}{12}.
+\]
+移项并代入，可得
+\begin{align*}
+ M(x)&=I_c\beta-Q(x)\frac s2\\
+ &=\frac{mg\sin\theta}{8L^2}(L-x)^3
+   -\frac{mg\sin\theta}{8L^2}(L-x)^2(L-3x)\\
+ &=\frac{mg\sin\theta}{4L^2}\,x(L-x)^2.
+\end{align*}
+\end{xesolution}
+
+\begin{solutioncontinuation}
+\enlargethispage{\baselineskip}
+令 $y=x/L$，需最大化 $y(1-y)^2$：
+\[
+ \frac{\dd}{\dd y}\bigl[y(1-y)^2\bigr]
+ =(1-y)(1-3y)=0.
+\]
+非端点极值为 $y=1/3$，所以按模型二
+\[
+ \boxed{x=\frac L3\quad\text{处弯矩最大，最容易弯折断裂}}.
+\]
+对 $0<\theta<\pi$、$0<x<L$，M为正，与图中的顺时针约定一致；两端M均为零。
+Q具有力的量纲，M具有力乘长度的量纲，正负关系也满足上段转动方程。
+值得注意的是，$M(x)$ 中的 $\sin\theta$ 只改变总体大小，不改变最大位置；以上结果针对题目
+给定的理想均匀刚杆模型。
+\end{solutioncontinuation}

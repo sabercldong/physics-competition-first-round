@@ -1,0 +1,464 @@
+\section{相对论辐射、散射与综合模型}
+\noindent 本节把方向变换、能动量守恒和波相位联系起来。先明确观测量的时间口径与参考系，再列不变量，最后检查低速、无限重靶及零重力等极限；同一符号不能跨参考系沿用而省略变换。
+
+\begin{advexamplebox}{运动光源的辐射分布与星空密度}\label{advA6:ex:radiation-angle}
+\begin{enumerate}
+\item 单色点光源在自身静止系向各方向均匀辐射，发光强度为 $I_0$。
+光源相对实验室以速率 $v$ 向前匀速运动，求所测强度与方向的关系。
+\item 静止观察者看到星云中恒星的单位立体角数密度均匀。
+若观察者以速率 $v$ 匀速运动，他看到的星体数密度角分布如何变化？
+这与同一时刻测定星体实际空间位置后得到的角分布是否相同？
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+（1）先明确强度的时间约定：取 $I_0=\dd E_0/(\dd\tau\dd\Omega_0)$，
+即光源静止系每单位时间、每单位立体角辐射的能量；若给的是总功率，以下 $I_0$ 应换成总功率除以 $4\pi$。
+实验室出射方向与光源速度的夹角为 $\theta$，令
+\[
+ D=\frac1{\gamma(1-\beta\cos\theta)},\quad \beta=v/c.
+\]
+光行差关系 $\cos\theta=(\cos\theta_0+\beta)/(1+\beta\cos\theta_0)$ 给出
+$\dd\Omega=\dd\Omega_0/D^2$；每个光子的能量变为 $D$ 倍，
+同一组光源事件的实验室发射时间间隔为 $\dd t=\gamma\dd\tau$。
+所以按\emph{发射时刻}计的角功率为
+\[
+ \boxed{\frac{\dd P_{\rm em}}{\dd\Omega}=I_0\frac{D^3}{\gamma}}.
+\]
+远处固定探测器收到相邻光信号的时间还要扣除光源向它前进所节省的传播时间：
+\[
+ \dd t_{\rm arr}=\dd t(1-\beta\cos\theta)=\frac{\dd\tau}{D}.
+\]
+于是按\emph{到达时刻}计、已扣除几何距离平方衰减的观测角强度为
+\[
+ \boxed{I_{\rm obs}(\theta)=I_0D^4}.
+\]
+这两个结果的幂次不同，是时间分母不同，不是多普勒公式矛盾。
+若需要有限频宽的谱强度，还须变换频率间隔；此处单色能量已对谱线积分。
+$v\to0$ 时两式均回到 $I_0$；正前方 $D$ 大于正后方，辐射向前集中。
+
+（2）记静止系中恒星的\emph{视线}角余弦为 $\mu$，运动观察者所见为 $\mu'$。
+视线与光传播方向相反，故
+\[
+ \mu'=\frac{\mu+\beta}{1+\beta\mu},\qquad
+ \frac{\dd\Omega}{\dd\Omega'}=
+ \frac1{\gamma^2(1-\beta\mu')^2}.
+\]
+若统计同一组恒星、不另加亮度阈值，星数不因换系改变。
+静止时单位立体角恒星数为 $n_0$，则
+\[
+ \boxed{n'_{\rm apparent}(\mu')=
+ \frac{n_0}{\gamma^2(1-\beta\mu')^2}}.
+\]
+积分 $2\pi\int_{-1}^1n'_{\rm apparent}\dd\mu'=4\pi n_0$，总星数守恒；
+光行差使更多视线集中到运动前方。
+
+“实际位置角分布”还需给定恒星运动及取样方式。
+若同一组恒星全在原系静止，并在两观察者于原点相遇的事件取 $t=t'=0$，
+按新系 $t'=0$ 同时确定其坐标，则 $x'=x/\gamma,y'=y,z'=z$。
+设实际位置方向余弦为 $\eta'$，原方向余弦为 $\eta$，有
+\[
+ \eta=\frac{\gamma\eta'}{\sqrt{1+(\gamma^2-1)\eta'^2}},\qquad
+ \boxed{n'_{\rm position}(\eta')=
+ \frac{n_0\gamma}{[1+(\gamma^2-1)\eta'^2]^{3/2}}}.
+\]
+这里使用的是空间位置而非迟延到达的光线，分布关于前后对称，与所见星空的前向聚集不同。
+若恒星各有自行、按新系固定半径截取样本，或按探测亮度筛选，单凭原先的均匀角分布不能确定新的实际分布；
+必须再给速度、距离或光度信息，不能把上述特定模型推广到任意星云。
+即使恒星静止，离开这个相遇时刻后还有 $-vt'$ 的坐标平移；有限距离星云的实际角分布也会随取样时刻改变。
+\end{advsolution}
+
+\begin{advexamplebox}{经典原子寿命与同步辐射}\label{advA6:ex:synchrotron}
+\begin{enumerate}
+\item 经典氢原子中电子绕固定原子核作圆周运动。用非相对论拉莫尔辐射公式估计其坍缩寿命。
+\item 同步辐射装置中，近光速电子在偏转磁铁内改变方向并辐射。某存储环参数为：
+电子能量 $3.5\,\mathrm{GeV}$、束流 $300\,\mathrm{mA}$、周长 $432\,\mathrm m$、
+平均分配辐射的弯道单元数 $20$、偏转磁场 $1.27\,\mathrm T$。
+估算平均每个光口的辐射总功率。
+\item 辐射集中在沿瞬时切线、半顶角约 $1/\gamma$ 的光锥内。
+估算远处一个固定方向收到单个电子脉冲的持续时间。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+（1）令 $k_e=1/(4\pi\varepsilon_0)$，轨道半径为 $r$。
+圆周运动给 $a=k_e e^2/(m_er^2)$，总机械能为 $E=-k_e e^2/(2r)$。
+拉莫尔功率和能量损失方程为
+\[
+ P=\frac{2k_e e^2a^2}{3c^3}
+ =\frac{2k_e^3e^6}{3m_e^2c^3r^4},\qquad
+ \frac{k_e e^2}{2r^2}\frac{\dd r}{\dd t}=-P.
+\]
+故 $\dd r/\dd t=-4k_e^2e^4/(3m_e^2c^3r^2)$。
+从初始半径 $r_0$ 积分到0，得到经典模型的时间
+\[
+ \boxed{\tau=\frac{m_e^2c^3r_0^3}{4k_e^2e^4}}.
+\]
+题设没有给 $r_0$，所以首先保留这一参数化结果；以典型原子尺度
+$r_0=a_0=5.29\times10^{-11}\,\mathrm m$ 为例，$\tau\simeq1.56\times10^{-11}\,\mathrm s$。
+接近核心时非相对论、缓慢缩轨近似会失效，但时间积分主要来自外圈，数量级仍说明经典模型无法解释稳定原子。
+
+（2）取题给电子能量为总能量，$\gamma=E/(m_ec^2)\simeq6849$、$v\simeq c$。
+弯道曲率半径由动量和磁力确定，而不能用整个环周长除以 $2\pi$：
+\[
+ \rho=\frac{p}{eB}=\frac{\gamma m_ev}{eB}\simeq9.19\,\mathrm m.
+\]
+加速度垂直速度时，李纳辐射公式给单电子\emph{在弯道内}的瞬时功率
+\[
+ P_e=\frac{e^2\gamma^4a^2}{6\pi\varepsilon_0c^3}
+ =\frac{e^2\gamma^4v^4}{6\pi\varepsilon_0c^3\rho^2}
+ \simeq1.20\times10^{-6}\,\mathrm W.
+\]
+假定闭合平面环各弯道曲率相同、总偏转角 $2\pi$，直线段辐射忽略，
+一个电子每圈在弯道内的总时间为 $2\pi\rho/v$。
+束中电子数由电流求得 $N_e=IL/(ev)$；处于弯道的比例是 $2\pi\rho/L$。
+于是
+\[
+ P_{\rm total}=P_e\frac{IL}{ev}\frac{2\pi\rho}{L}
+ =P_e\frac{2\pi I\rho}{ev}\simeq4.33\times10^5\,\mathrm W,
+ \qquad
+ \boxed{P_0=\frac{P_{\rm total}}{20}\simeq2.17\times10^4\,\mathrm W}.
+\]
+周长在最后约去，是因为环越长时同样电流对应更多电子，但电子在弯道中所占时间比例更小。
+这是各单元总辐射平均分配的估计；实际光口受孔径、接受角和传输损耗限制，收集功率可更低。
+
+（3）取光锥的半角 $\alpha=1/\gamma$，固定观察方向位于圆弧中点的切线方向。
+电子从 $-\alpha$ 转到 $+\alpha$ 的发射时间为 $2\rho\alpha/v$。
+末次发光点沿观察方向比首次前进了 $2\rho\sin\alpha$，光程缩短，故到达时间跨度是
+\[
+ \Delta T=\frac{2\rho\alpha}{v}-\frac{2\rho\sin\alpha}{c}
+ =\frac{2\rho}{c}\left(\frac\alpha\beta-\sin\alpha\right).
+\]
+分别展开 $1/\beta\simeq1+1/(2\gamma^2)$、$\sin\alpha\simeq\alpha-\alpha^3/6$，得到
+\[
+ \boxed{\Delta T\simeq\frac{4\rho}{3c\gamma^3}
+ \simeq1.27\times10^{-19}\,\mathrm s}.
+\]
+这个系数对应“半顶角严格取 $1/\gamma$”的几何宽度；真实脉冲无硬边界，不同宽度定义的数值系数不同，
+但 $\rho/(c\gamma^3)$ 的时间尺度相同。漏掉光程变化就会误得大得多的发射时间尺度 $\rho/(c\gamma)$。
+\end{advsolution}
+
+\begin{advexamplebox}{正交连续换系后的坐标轴方向}\label{advA6:ex:successive-boosts}
+$S'$ 相对 $S$ 沿 $+x$ 以 $v_1$ 运动，$S''$ 相对 $S'$ 沿 $+y'$ 以 $v_2$ 运动。
+在 $S$ 的同一时刻测量，求 $S''$ 的 $x''$ 轴与 $x$ 轴夹角。
+分别用同步钟与测长的物理方法、直接洛伦兹变换两种方法求解。
+\end{advexamplebox}
+\begin{advsolution}
+这里的夹角指 $S$ 同时截面上坐标轴的空间朝向，不是直接把两个速度方向夹角称为坐标轴转角。
+记 $\gamma_i=(1-v_i^2/c^2)^{-1/2}$。
+
+第一种方法只用同步钟、时间膨胀和长度收缩，不先写坐标变换。
+一排随 $S'$ 沿 $x$ 移动、彼此按本系同步的钟，在 $S$ 同一时刻并不读数相同。
+取本系间距为 $L'$ 的两钟，在本系中点同时发光校准。
+$S$ 中两端离中点的初距离为 $L'/(2\gamma_1)$，前后传播时间差为
+\[
+ \frac{L'}{2\gamma_1}\left(\frac1{c-v_1}-\frac1{c+v_1}\right)
+ =\frac{\gamma_1v_1L'}{c^2}.
+\]
+运动钟走时慢 $\gamma_1$ 倍，故在 $S$ 同一时刻，前方钟比后方钟少读 $v_1L'/c^2$。
+也就是两处的本系时间差 $\Delta t'=-v_1\Delta x'/c^2$。
+$x''$ 轴在 $S'$ 中保持平行 $x'$、以 $v_2$ 向上平移，因此这两个事件的高度差为
+$\Delta y=v_2\Delta t'=-v_1v_2\Delta x'/c^2$。
+横向坐标不收缩，而 $S$ 同时测得 $\Delta x=\Delta x'/\gamma_1$，所以
+\[
+ \boxed{\tan\psi=\frac{\Delta y}{\Delta x}
+ =-\frac{\gamma_1v_1v_2}{c^2}}.
+\]
+当 $v_1,v_2>0$ 时，$x''$ 轴的正方向在 $S$ 中向右下方倾斜。
+
+第二种方法直接写两步变换：
+\[
+ t'=\gamma_1(t-v_1x/c^2),\quad y'=y,
+ \qquad y''=\gamma_2(y'-v_2t').
+\]
+在 $S$ 中取 $t=0$，$x''$ 轴上 $y''=0$ 的条件为
+$y+\gamma_1v_1v_2x/c^2=0$，立刻得到同一斜率。
+任一速度为零时夹角为零；低速时夹角为二阶小量 $-v_1v_2/c^2$。
+连续推动还可分解成一次标准推动加一个维格纳旋转，但该旋转角不应不加区分地等同于这里的同时截面轴倾角。
+\end{advsolution}
+
+\begin{advexamplebox}{载流导线、横向力与场的变换}\label{advA6:ex:wire-field-transform}
+惯性系 $S$ 中，一根沿 $x$ 的无限长直导线载有正向电流 $I$，导线在该系电中性。
+在 $y=a>0$ 处有电荷 $q$，速度为 $v_x\vect e_x$。
+\begin{enumerate}
+\item 求电荷所受的电磁力。
+\item 换到以 $u\vect e_x$ 运动的 $S'$，求同一事件处的力。
+\item 用导线的电荷、电流变换推导垂直于换系速度的电场和磁场变换。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+（1）由右手定则，在导线上方 $\vect B=B\vect e_z$，$B=\mu_0I/(2\pi a)$，而 $\vect E=0$。
+由于 $\vect e_x\times\vect e_z=-\vect e_y$，
+\[
+ \boxed{\vect F=-qv_xB\vect e_y}.
+\]
+若 $qv_x>0$，力指向导线；若为负，则背离导线。
+
+（2）把正、负载流组分各自的线密度与电流相加后，线四流变换为
+\[
+ \lambda'=\gamma_u(\lambda-uI/c^2)=-\gamma_u uI/c^2,
+ \qquad I'=\gamma_u(I-u\lambda)=\gamma_u I.
+\]
+距离 $a$ 垂直于换系方向不变。用新系高斯定律和安培定律，
+\[
+ E'_y=\frac{\lambda'}{2\pi\varepsilon_0a}=-\gamma_u uB,
+ \qquad B'_z=\frac{\mu_0I'}{2\pi a}=\gamma_u B.
+\]
+电荷速度为 $v'_x=(v_x-u)/(1-uv_x/c^2)$，故
+\begin{align*}
+ F'_y&=q(E'_y-v'_xB'_z)=-q\gamma_u B(u+v'_x)\\
+ &=-q\gamma_u B\frac{v_x(1-u^2/c^2)}{1-uv_x/c^2}
+ =\boxed{\frac{F_y}{\gamma_u(1-uv_x/c^2)}}.
+\end{align*}
+特别取 $u=v_x$，电荷在新系静止，力全部来自电场，而不再有磁力；二者描述的是同一物理作用。
+
+（3）为了得到一般变换，不能只用电中性导线的一种特例猜公式。
+再允许导线在 $S$ 中有任意线密度 $\lambda$，则
+$E_y=\lambda/(2\pi\varepsilon_0a)$、$B_z=\mu_0I/(2\pi a)$。
+把一般四流变换代入场公式，利用 $\mu_0\varepsilon_0=1/c^2$，得到
+\[
+ E'_y=\gamma_u(E_y-uB_z),\qquad
+ B'_z=\gamma_u(B_z-uE_y/c^2).
+\]
+绕 $x$ 轴转动这个装置，便得到另一组横向分量。
+线性叠加后写成矢量形式为
+\[
+ \boxed{\vect E'_\perp=\gamma_u(\vect E_\perp+\vect u\times\vect B)},\qquad
+ \boxed{\vect B'_\perp=\gamma_u(\vect B_\perp-\vect u\times\vect E/c^2)}.
+\]
+这里 $uB$ 与电场同量纲，$uE/c^2$ 与磁场同量纲；把 $u$ 换为 $-u$ 并交换两系即可得到逆变换。
+\end{advsolution}
+
+\begin{advexamplebox}{逐次放出核子的最大末速度}\label{advA6:ex:nuclear-chain-speed}
+设想一种只由质量为 $m$ 的核子构成的核物质，其结合不是放能，而是吸收能量；
+对于含两个及以上核子的核，平均每核子的结合吸能恒为 $Q>0$。
+初始有一个静止的20核子核，连续19次各放出一个核子，最后剩下一个核子。
+求这个剩余核子的最大速度与光速之比。不考虑其他粒子或辐射带走能量。
+\end{advexamplebox}
+\begin{advsolution}
+先把反常的结合能符号写进质量，而不能套用普通核的质量亏损：
+\[
+ M_j=j(m+Q/c^2)\quad(j\ge2),\qquad M_1=m.
+\]
+单个自由核子没有“每核子结合能”，故最后一步 $M_2\to m+m$ 必须单独使用 $M_1=m$。
+每次在母核自身静止系作二体衰变，能量、动量守恒给剩余子核的能量
+\[
+ E_{j-1}^{(j)}=\frac{M_j^2+M_{j-1}^2-m^2}{2M_j}c^2.
+\]
+用快度 $\xi_j\ge0$ 表示它相对母核的运动，则
+\[
+ \cosh\xi_j=\frac{E_{j-1}^{(j)}}{M_{j-1}c^2}
+ =\frac{M_j^2+M_{j-1}^2-m^2}{2M_jM_{j-1}}.
+\]
+母核若已在实验室中有快度 $\eta$，以它的实验室运动方向定义前向轴。
+在\emph{本次母核的瞬时静止系}测量剩余子核发射方向与这条轴的夹角，记为 $\chi$，
+实验室洛伦兹因子为
+\[
+ \gamma_{\rm new}=\cosh\eta\cosh\xi_j
+ +\sinh\eta\sinh\xi_j\cos\chi.
+\]
+给定母核速度时最大值在 $\chi=0$ 取得，即在每次母核静止系中，剩余核向前、放出的核子向后。
+换到最初的实验室系后，后者未必仍然向后，不能混淆这两个方向判断。
+此时 $\gamma_{\rm new}=\cosh(\eta+\xi_j)$，且关于旧快度单调增加；
+逐步归纳，最大末快度就是各次正快度之和。
+
+为把答案只写成题给参数，令 $s=m/(m+Q/c^2)$，则 $0<s<1$。
+对 $j\ge3$，代入质量得到
+\[
+ \cosh\xi_j=1+\frac{1-s^2}{2j(j-1)},\qquad
+ \cosh\xi_2=\frac1s.
+\]
+最终
+\[
+ \boxed{\frac{v_{\max}}c=
+ \tanh\left[\operatorname{arcosh}\frac1s+
+ \sum_{j=3}^{20}\operatorname{arcosh}\left(1+\frac{1-s^2}{2j(j-1)}\right)\right]}.
+\]
+有限求和就是精确的参数化结果，不需要把19次释放近似成连续火箭。
+各次二体公式均保持能量、动量守恒；快度有限时速度严格小于 $c$。
+当 $Q\to0$，$s\to1$，所有快度都趋于零，末速度也为零，符合没有可释放能量的极限。
+\end{advsolution}
+
+\begin{advexamplebox}{顶夸克对的玻尔模型估计}\label{advA6:ex:toponium-estimate}
+1995年费米实验室CDF和D0实验组发现顶夸克。按题给估计参数，
+顶夸克质量为 $m_t=175\,\mathrm{GeV}/c^2$，寿命为 $\tau=0.4\times10^{-24}\,\mathrm s$。
+顶夸克与反顶夸克之间的势能取
+$U=-4\alpha_s k/(3r)$，其中 $\alpha_s=0.12$、$k=199\,\mathrm{MeV\,fm}$。
+类比玻尔模型求基态二者间距、基态周期以及更高能级周期与基态周期的关系。
+根据寿命判断能否形成长寿命、具有清晰能级的束缚态。
+\end{advexamplebox}
+\begin{advsolution}
+两个质量相同的粒子都在运动，应使用约化质量 $\mu=m_t/2$，而不是把反夸克固定后仍用 $m_t$。
+令 $\kappa=4\alpha_s k/3=31.84\,\mathrm{MeV\,fm}$，相对圆周运动满足
+\[
+ \frac{\mu v_n^2}{r_n}=\frac\kappa{r_n^2},\qquad
+ \mu v_nr_n=n\hbar\quad(n=1,2,\ldots).
+\]
+消去 $v_n$，得到
+\[
+ r_n=\frac{n^2\hbar^2}{\mu\kappa},\qquad
+ v_n=\frac{\kappa}{n\hbar},\qquad
+ T_n=\frac{2\pi n^3\hbar^3}{\mu\kappa^2}=n^3T_1.
+\]
+这里 $r_n$ 是两粒子之间的距离，每个粒子绕质心的半径为 $r_n/2$、速率为 $v_n/2$，
+其转动周期仍为同一个 $T_n$。若把“第 $n$ 激发态”按基态之后的第 $n$ 个状态编号，
+主量子数应为 $n+1$，相应周期比为 $(n+1)^3$。
+用 $\hbar c=197.33\,\mathrm{MeV\,fm}$，数值为
+\[
+ \boxed{r_1=\frac{(197.33)^2}{87500\times31.84}\,\mathrm{fm}
+ \simeq1.40\times10^{-2}\,\mathrm{fm}},\qquad
+ \boxed{T_1\simeq1.82\times10^{-24}\,\mathrm s}.
+\]
+相对速率约为 $0.161c$，每个粒子的速率约 $0.0807c$，非相对论估计在这个粗略模型内合理。
+但单粒子寿命只有基态周期约 $0.22$ 倍；若两者独立衰变，完整夸克对的平均存活时间更短，为 $\tau/2$。
+因此不能形成这种玻尔图景下长寿命、能级清晰的原子式束缚系统。
+这一寿命判据不等于否认阈值附近的短程库仑关联或宽共振效应。
+\end{advsolution}
+
+\begin{advexamplebox}{一维有限粒子数费米气体}\label{advA6:ex:finite-fermi-gas}
+\begin{enumerate}
+\item 写出一维经典理想气体在绝热过程中边界力 $F$ 与容器长度 $L$ 的关系及绝热指数。
+\item 对长度 $L$ 的一维刚性盒内、质量为 $m$ 的非相对论粒子，写出驻波量子化条件。
+\item 零温下 $N$ 个自旋 $1/2$ 费米子从低能级依次填充，每个空间态最多容纳两个反向自旋粒子。
+求边界力与 $L$ 的精确关系，不得假定 $N\gg1$。
+\item 缓慢压缩到 $L/2$，使每个粒子保持原占据态的量子数，求过程的指数及外界做功，仍不得对 $N$ 近似。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+（1）一维气体只有一个平动自由度，$U=Nk_BT/2$、$FL=Nk_BT=2U$。
+绝热准静态过程满足 $\dd U=-F\dd L=-2U\dd L/L$，积分得 $UL^2$ 恒定，故
+\[
+ \boxed{FL^3=\text{常量},\qquad\gamma_{\rm ad}=3}.
+\]
+这是用 $F,L$ 代替三维气体 $p,V$ 的一维版本。
+
+（2）硬壁要求波函数在两端为零，盒内恰有整数个半波长：
+\[
+ k_jL=j\pi,\quad p_j=\frac{j\pi\hbar}{L},\quad
+ \varepsilon_j=\frac{j^2\pi^2\hbar^2}{2mL^2},\quad j=1,2,\ldots.
+\]
+这里 $p_j$ 是动量\emph{大小}，正弦驻波并非确定带符号动量的本征态；
+不能把 $+p_j,-p_j$ 再当成两个独立空间能级而重复计数。
+
+（3）定义 $C=\pi^2\hbar^2/(2m)$。偶数 $N=2M$ 时，每个 $j=1,\ldots,M$ 占两个粒子，
+\[
+ U_N=\frac C{L^2}\,2\sum_{j=1}^M j^2
+ =\frac C{L^2}\frac{M(M+1)(2M+1)}3.
+\]
+奇数 $N=2M+1$ 时，除上述填充外，第 $M+1$ 级占一个粒子，故
+\[
+ U_N=\frac C{L^2}\left[\frac{M(M+1)(2M+1)}3+(M+1)^2\right].
+\]
+这两式对有限 $N$ 精确，包含 $N=1$、$N=2$，没有用积分替代求和。
+将方括号或偶数式系数统一记为 $A_N$，在固定占据数下
+\[
+ \boxed{F=-\frac{\partial U_N}{\partial L}=\frac{2CA_N}{L^3}=\frac{2U_N}{L}}.
+\]
+即使温度为零，量子驻波与泡利填充也使能量和边界力非零；不能用经典 $T=0$ 代入 $FL=Nk_BT$ 去否定它。
+
+（4）量子数不变意味着 $A_N$ 不变，所以仍有 $FL^3$ 恒定、指数为3。
+长度减半使每个能级增为4倍，从而
+\[
+ \boxed{W_{\rm on}=U_N(L/2)-U_N(L)=3U_N(L)=\frac{3CA_N}{L^2}}.
+\]
+也可积分外力功 $-\int_L^{L/2}F\dd L$ 得到同一结果。
+压缩功为正，且量纲 $\hbar^2/(mL^2)$ 为能量。经典与量子指数相同源于能量的 $L^{-2}$ 标度，
+并不意味着它们具有相同的微观分布或零温能量。
+\end{advsolution}
+
+\begin{advexamplebox}{均匀磁场中的半经典量子化}\label{advA6:ex:landau-action}
+带电粒子的正则动量与机械动量不同。用半经典闭轨道量子化条件
+$\oint\vect P\cdot\dd\vect r=(n+1/2)h$，求电子在均匀磁场中的回旋运动量子化条件。
+说明哪些量离散，角动量能否取 $n\hbar$ 的任意整数倍。
+忽略自旋与相对论修正。
+\end{advexamplebox}
+\begin{advsolution}
+明确符号：机械动量 $\vect\pi=m\vect v$，正则动量为
+$\vect P=\vect\pi+q\vect A$，即 $\vect\pi=\vect P-q\vect A$。
+量子化的作用量积分必须用正则动量，不能把两者交换。
+取 $\vect B=B\vect e_z$，电子 $q=-e$，其回旋方向从 $+z$ 看为逆时针。
+半径 $R$ 的圆满足 $\pi=eBR$。沿运动方向积分，机械动量一项为
+$2\pi R\pi=2\pi eBR^2$，磁通项为
+\[
+ q\oint\vect A\cdot\dd\vect r=q\Phi=-eB\pi R^2.
+\]
+两项合并，正则作用量只有机械项的一半：
+\[
+ J=\oint\vect P\cdot\dd\vect r=\pi eBR^2
+ =\frac{2\pi E_\perp}{\omega_c},\qquad \omega_c=\frac{eB}m.
+\]
+因此
+\[
+ \boxed{E_{\perp,n}=\left(n+\frac12\right)\hbar\omega_c},\qquad
+ \boxed{R_n^2=\frac{(2n+1)\hbar}{eB}},\qquad n=0,1,\ldots.
+\]
+这是不计自旋的朗道回旋能量。沿磁场的自由动能 $p_z^2/(2m)$ 仍连续，
+总能量需再加这一项；横向轨道的导引中心位置也不是由 $n$ 唯一确定的。
+
+对题中的半经典圆轨道，绕\emph{导引中心}的机械角动量大小为
+\[
+ |L_{\rm mech}|=m\omega_cR_n^2=(2n+1)\hbar,
+\]
+因此在这个圆轨道图景中是奇数倍，不是任意整数倍，也不能漏掉 $1/2$ 零点项。
+这不等于说精确量子态绕任意固定原点的正则角动量只能取奇数倍。
+在轴对称规范中，固定原点的正则 $L_z$ 可另有整数角量子数；
+它与机械角动量不同，朗道能量又有导引中心简并，不能只给能级 $n$ 就唯一确定后一角量子数。
+半经典的半径和机械角动量应理解为回旋量的对应关系，不是电子在精确量子态中具有可同时确定的位置轨迹。
+\end{advsolution}
+
+\begin{advexamplebox}{作用量相位、费马原理与圆轨道量子化}\label{advA6:ex:action-optics}
+几何光学的费马原理为 $\delta\int_A^B n\,\dd l=0$，单色光的相位为
+$\phi=(\omega/c)\int n\,\dd l-\omega t$。
+非相对论力学的哈密顿原理为 $\delta S=0$，
+$S=\int(\vect p\cdot\vect v-E)\dd t$，$E=mv^2/2+V(\vect r)$。
+\begin{enumerate}
+\item 若物质波相位写成 $\phi=kS$，利用德布罗意关系确定 $k$。
+\item 把光线在折射率分布中的轨迹形式地类比为质量 $m$ 的经典粒子轨迹，求等效势能与折射率的关系。
+\item 对氢原子库仑势 $V=-e^2/(4\pi\varepsilon_0r)$，用光学类比推导电子圆轨道的向心力条件。
+\item 用环绕一周的相位相容性推导角动量量子化条件。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+（1）自由粒子的作用量为 $S=\vect p\cdot\vect r-Et$。
+德布罗意关系要求相位为 $(\vect p\cdot\vect r-Et)/\hbar$，故
+\[
+ \boxed{k=1/\hbar},\qquad \phi=S/\hbar.
+\]
+这里的 $k$ 是题设比例常量，量纲为作用量的倒数，不是通常有长度倒数量纲的波数。
+
+（2）要比较空间轨迹，应在\emph{固定能量}下使用简化作用量
+$W=\int\vect p\cdot\dd\vect r=\int p\,\dd l$ 的驻值原理。
+这与固定端点时间的哈密顿原理有联系，但不能在任意变分过程中强行把时间也保持不变、能量也保持不变。
+若取 $p(\vect r)=p_*n(\vect r)$，两种空间变分只差常数 $p_*$，产生相同轨迹。
+由 $p^2/(2m)+V=E$，得到
+\[
+ \boxed{V(\vect r)=E-\frac{p_*^2}{2m}n^2(\vect r)}.
+\]
+$p_*$ 是任取的正动量尺度，$E$ 可随势能零点一同平移；
+因此不是从折射率唯一确定一个绝对势能数值。
+这只是轨迹等效模型，\emph{不是}给真实光子赋予静质量 $m$，也不要求两种模型的运行时间相同。
+
+（3）圆对称折射率中，半径 $r$ 的圆光路光程为 $2\pi r n(r)$。
+对半径作小变化，圆轨道的驻值条件是
+\[
+ \frac{\dd}{\dd r}[r n(r)]=0
+ \quad\Rightarrow\quad \frac{n'}n=-\frac1r.
+\]
+由 $n\propto p=\sqrt{2m(E-V)}$，在固定 $E$ 下有
+$n'/n=-V'/[2(E-V)]$。
+联立得 $V'=2(E-V)/r=mv^2/r$，即径向力大小
+\[
+ \boxed{\frac{mv^2}{r}=\frac{\dd V}{\dd r}
+ =\frac{e^2}{4\pi\varepsilon_0r^2}}.
+\]
+因为 $V'>0$，力 $-V'\vect e_r$ 指向圆心，方向正确。
+
+（4）同一时刻绕圆一周，时间相位项相消，波函数应回到相同相位，要求
+\[
+ \Delta\phi=\frac1\hbar\oint\vect p\cdot\dd\vect r
+ =\frac{2\pi r p}{\hbar}=2\pi n,
+ \quad\Rightarrow\quad\boxed{L=rp=n\hbar}.
+\]
+对非零圆轨道取 $n=1,2,\ldots$。与上一问联立给出玻尔半径的 $n^2$ 标度，
+但这是早期圆轨道半经典模型，不应把 $L=n\hbar$ 直接当作氢原子精确三维量子力学中
+$|\vect L|=\sqrt{\ell(\ell+1)}\hbar$ 的替代式。
+费马驻值光线也不表示单光子一定沿一条经典路径传播；它是波动相位在短波极限中相干叠加所给出的几何描述。
+\end{advsolution}

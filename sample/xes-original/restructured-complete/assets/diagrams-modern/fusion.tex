@@ -1,0 +1,12 @@
+% Contract: reaction bookkeeping, not spatial particle trajectories.
+\begin{tikzpicture}[font=\small,>=Latex]
+ \node[draw,circle,minimum size=11mm] (d) at (-4,0) {$^2\mathrm H$};
+ \node at (-2.95,0) {$+$};
+ \node[draw,circle,minimum size=11mm] (t) at (-1.9,0) {$^3\mathrm H$};
+ \draw[vector] (-.95,0)--(.95,0);
+ \node[draw,circle,minimum size=13mm] (he) at (2,0) {$^4\mathrm{He}$};
+ \node at (3.15,0) {$+$};
+ \node[draw,circle,minimum size=8mm] (n) at (4.15,0) {$n$};
+ \node at (-2.95,1.1) {反应物}; \node at (3.05,1.1) {产物};
+ \node[align=center] at (0,-1.3) {$Q=(m_D+m_T-m_{\rm He}-m_n)c^2>0$\\总动能增加，静质量减少};
+\end{tikzpicture}

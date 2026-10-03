@@ -1,0 +1,41 @@
+{
+  "title": "高中物理竞赛二轮讲义",
+  "chapters": [
+    {"number": 1, "title": "运动学", "volume": "mechanics"},
+    {"number": 2, "title": "动力学", "volume": "mechanics"},
+    {"number": 3, "title": "静力学", "volume": "mechanics"},
+    {"number": 4, "title": "简谐振动", "volume": "mechanics"},
+    {"number": 5, "title": "万有引力", "volume": "mechanics"},
+    {"number": 6, "title": "刚体", "volume": "mechanics"},
+    {"number": 7, "title": "弹性体", "volume": "mechanics"},
+    {"number": 8, "title": "流体", "volume": "mechanics"},
+    {"number": 9, "title": "热力学第一定律", "volume": "thermal"},
+    {"number": 10, "title": "热力学第二定律", "volume": "thermal"},
+    {"number": 11, "title": "液体与固体的性质", "volume": "thermal"},
+    {"number": 12, "title": "相与相变", "volume": "thermal"},
+    {"number": 13, "title": "统计物理", "volume": "thermal"},
+    {"number": 14, "title": "静电场", "volume": "electromagnetism"},
+    {"number": 15, "title": "导体与介质", "volume": "electromagnetism"},
+    {"number": 16, "title": "稳恒电流", "volume": "electromagnetism"},
+    {"number": 17, "title": "静磁场", "volume": "electromagnetism"},
+    {"number": 18, "title": "电磁感应", "volume": "electromagnetism"},
+    {"number": 19, "title": "麦克斯韦方程与电磁波", "volume": "electromagnetism"},
+    {"number": 20, "title": "交流电", "volume": "electromagnetism"},
+    {"number": 21, "title": "光波与光线", "volume": "optics"},
+    {"number": 22, "title": "光学成像", "volume": "optics"},
+    {"number": 23, "title": "光学仪器", "volume": "optics"},
+    {"number": 24, "title": "光的干涉与偏振", "volume": "optics"},
+    {"number": 25, "title": "光的衍射", "volume": "optics"},
+    {"number": 26, "title": "物理光学", "volume": "optics"},
+    {"number": 27, "title": "相对论", "volume": "modern"},
+    {"number": 28, "title": "量子论", "volume": "modern"}
+  ],
+  "advanced_units": [
+    {"id": "H1", "title": "力学", "volume": "advanced", "kind": "advanced"},
+    {"id": "H2", "title": "热学", "volume": "advanced", "kind": "advanced"},
+    {"id": "H3", "title": "数学工具", "volume": "advanced", "kind": "advanced"},
+    {"id": "H4", "title": "电磁学", "volume": "advanced", "kind": "advanced"},
+    {"id": "H5", "title": "光学", "volume": "advanced", "kind": "advanced"},
+    {"id": "H6", "title": "近代物理", "volume": "advanced", "kind": "advanced"}
+  ]
+}

@@ -1,0 +1,73 @@
+\Needspace{18\baselineskip}
+\section{同题异解中的进一步结果}
+
+下列两项与主章题目采用同一模型，但旧版推导给出了主线解答之外仍有价值的推广，
+因此单独保留；主章中的基本结论不在这里重复计算。
+
+\subsection{中性导体球的极化率与非均匀场受力}
+
+第20章已经得到：半径为 $R$ 的中性导体球置于局部匀强电场
+$\vect E_0$ 中时，球外附加电势等效于球心偶极子，
+\[
+ \vect p=4\pi\varepsilon_0R^3\vect E_0.
+\]
+所以导体球的静电极化率为
+\[
+ \boxed{\alpha=4\pi\varepsilon_0R^3},
+ \qquad \vect p=\alpha\vect E_0.
+\]
+由球面感应电荷密度
+$\sigma(\theta)=3\varepsilon_0E_0\cos\theta$ 还可直接检验中性条件：
+\[
+ Q_+=\int_0^{2\pi}\!\int_0^{\pi/2}
+ 3\varepsilon_0E_0\cos\theta\,R^2\sin\theta
+ \,\dd\theta\dd\phi
+ =3\pi\varepsilon_0E_0R^2,
+ \qquad Q_-=-Q_+.
+\]
+净电荷虽然为零，正、负电荷中心的分离仍产生非零偶极矩。
+
+若外场在小球尺度内缓慢变化，把小球从无场处准静态移到场强 $E$ 处，
+建立感应偶极矩所需的相互作用能为
+\[
+ U_{\rm ind}=-\int_0^E\alpha E'\,\dd E'
+ =-\frac12\alpha E^2.
+\]
+因此低阶受力为
+\[
+ \boxed{\vect F=-\nabla U_{\rm ind}
+ =\frac12\alpha\nabla(E^2)}.
+\]
+它指向场强较大的区域。该近似要求 $R$ 远小于外场的空间变化尺度；
+若外场严格均匀，合力为零，只剩内部应力。
+
+\subsection{两等势导体球的有限间距推广}
+
+设两个等半径导体球的半径为 $R$、球心距为 $L>2R$，二者导通并保持共同电势 $V$。
+定义双球坐标参数
+\[
+ \cosh\alpha=\frac{L}{2R}.
+\]
+逐次球面反演产生两列交错的等效像电荷。把两球总电荷求和，可得组合导体的单极电容
+\[
+ \boxed{C(L)=8\pi\varepsilon_0R\sinh\alpha
+ \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\sinh(n\alpha)}}.
+\]
+当 $L\to\infty$ 时，$\alpha\to\infty$，级数由首项主导，
+\[
+ C(L)\longrightarrow 8\pi\varepsilon_0R,
+\]
+即两个相互影响可忽略的孤立球电容之和。
+
+相切极限 $L\to2R^+$ 对应 $\alpha\to0^+$，且
+\[
+ \frac{\sinh\alpha}{\sinh(n\alpha)}\longrightarrow\frac1n.
+\]
+于是
+\[
+ C(2R)=8\pi\varepsilon_0R
+ \left(1-\frac12+\frac13-\frac14+\cdots\right)
+ =\boxed{8\pi\varepsilon_0R\ln2},
+\]
+连续退回第20章相切双球的结果。这个推广同时给出了远离与相切两个极限，
+可用来检查级数的符号、量纲和单调趋势。

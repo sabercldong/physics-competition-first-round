@@ -1,0 +1,51 @@
+\subsection{小修正为什么会在长时间后变得重要}
+摄动不是把某个小项直接删去，而是在一个明确的小参数下，追踪它对主运动的首阶影响。以本节的三次回复项为例，在振幅 $A$ 附近，非线性加速度与线性加速度的比为 $|\varepsilon\alpha|A^2/\omega_0^2$。只有这个无量纲比值很小，才允许把运动看成简谐振动加小修正。
+
+如果固定原频率写 $x=x_0+\varepsilon x_1$，其中 $x_0=A\cos\omega_0t$，一阶方程会是
+\[
+ \ddot x_1+\omega_0^2x_1
+ =-\frac{3\alpha A^3}{4}\cos\omega_0t
+  -\frac{\alpha A^3}{4}\cos3\omega_0t.
+\]
+第一项恰以系统本征频率驱动修正量。验证
+\[
+ \left(\frac{\dd^2}{\dd t^2}+\omega_0^2\right)
+ [t\sin\omega_0t]=2\omega_0\cos\omega_0t,
+\]
+便知其中包含 $-3\alpha A^3t\sin\omega_0t/(8\omega_0)$。即使 $\varepsilon$ 很小，乘上足够长的时间后也可能不再小，这就是长期项。
+它不表示保守振子真的无界增长，而是说明选错了比较基准。若真实频率为 $\omega_0+\delta\omega$，则
+\[
+ A\cos[(\omega_0+\delta\omega)t]
+ \simeq A\cos\omega_0t-A\delta\omega\,t\sin\omega_0t.
+\]
+相位误差积累就产生同样形式的长期项。把频率也纳入待求量，是把这部分相位变化吸收到主运动中，而不是人为删除真实物理效应。
+
+\begin{origexamplebox}{弱硬化弹簧的频率与适用范围}\label{ch10:ex:teaching-hardening}
+质点质量为 $m$，在光滑直线上受到回复力 $F=-kx-\lambda x^3$，$k,\lambda>0$。从 $x=A$ 静止释放，且 $\lambda A^2/k\ll1$。求振动频率的首阶修正；若要求频率相对简谐值的修正不超过 $1\%$，振幅应满足什么近似条件？
+\end{origexamplebox}
+\begin{xesolution}
+由牛顿定律，$\ddot x+(k/m)x+(\lambda/m)x^3=0$，所以 $\omega_0=\sqrt{k/m}$，而本节的一阶系数对应 $\varepsilon\alpha=\lambda/m$。代入已推导的消长期项条件，得到
+\[
+ \Omega\simeq\sqrt{\frac km}\left(1+\frac{3\lambda A^2}{8k}\right),
+ \qquad T\simeq2\pi\sqrt{\frac mk}\left(1-\frac{3\lambda A^2}{8k}\right).
+\]
+周期使用 $(1+q)^{-1}\simeq1-q$，不能照抄频率的正号。回复力在较大位移处比线性弹簧更强，频率升高、周期缩短与物理判断相符。
+首阶相对修正为 $3\lambda A^2/(8k)$，故近似要求
+\[
+ A\lesssim\sqrt{\frac{0.08k}{3\lambda}}.
+\]
+该边界使 $\lambda A^2/k\lesssim0.0267$，与小参数假设一致，但这是首阶误差估计，不是包含全部高阶项的严格误差界。由 $[\lambda]=\mathrm{N/m^3}$ 可知 $k/\lambda$ 为长度平方；$A\to0$ 时恢复线性结果。
+\end{xesolution}
+
+\subsection{参数共振的能量从哪里来}
+受迫振动是外界施加随时间变化的力；参数共振则是外界改变弹簧劲度、摆长等系统参数。对 $k(t)=m\omega_0^2[1+h\cos(\Omega t)]$，瞬时机械能写作
+\[
+ E=\frac12m\dot x^2+\frac12k(t)x^2.
+\]
+对时间求导并代入 $m\ddot x+k(t)x=0$，得到
+\[
+ \dot E=\dot x[m\ddot x+k(t)x]+\frac12\dot k(t)x^2
+ =\frac12\dot k(t)x^2.
+\]
+所以能量由调节参数的外界装置提供，并未违反守恒。若在位移大时增大劲度、位移小时减小劲度，平均上可以输入能量。一次振动有两次位移绝对值极大，这提示主参数共振出现在约两倍本征频率处，但精确增长率仍须由缓变振幅方程计算。
+加入阻力 $-2m\gamma\dot x$ 后，还要减去 $2m\gamma\dot x^2$ 的耗散功率。只有平均输入克服耗散，振幅才增长；超出小振幅范围后，非线性、参数调制范围及装置反馈也会限制增长，线性指数解不能无限外推。

@@ -1,0 +1,167 @@
+\section{简谐振动的描述与判据}\label{ch10:sec:shm}
+\subsection{振幅、相位与初始条件}
+振动是物理量在平衡值附近反复变化的过程。弹簧振子的位移、交流电路中的电荷以及分子中原子的偏移，虽然所指对象不同，却可以服从相同的数学方程。最简单的周期振动是简谐振动（simple harmonic oscillation）：
+\begin{equation}\label{ch10:eq:definition}
+ Q(t)=Q_0+A\cos(\omega t+\varphi),\qquad A\geq0,\quad\omega>0.
+\end{equation}
+这里$Q_0$是平衡值，$A$是振幅，即相对平衡值的最大偏离量；$\psi=\omega t+\varphi$是相位，表示振动进行到一个周期中的哪一阶段；$\varphi$是$t=0$时的初相位。角频率$\omega$的单位为$\mathrm{rad/s}$，相位增加$2\pi$完成一次振动，故周期与频率分别为
+\[
+ T=\frac{2\pi}{\omega},\qquad f=\frac1T=\frac{\omega}{2\pi}.
+\]
+同一个位移通常在一周期内出现两次，此时运动方向相反。因此只有位移还不能完全确定状态，还需要速度，或者等价的运动方向信息。以下以平衡位置为$x=0$的质点为例，直接对位移求导：
+\begin{align}
+ x&=A\cos\psi,\label{ch10:eq:shm-x}\\
+ v=\dot x&=-A\omega\sin\psi,\label{ch10:eq:shm-v}\\
+ a=\ddot x&=-A\omega^2\cos\psi=-\omega^2x.\label{ch10:eq:shm-a}
+\end{align}
+速度振幅为$A\omega$，加速度振幅为$A\omega^2$。当$x>0$时$a<0$，当$x<0$时$a>0$，故加速度总指向平衡位置；这不是说物体总向平衡位置运动，而是说物体背离平衡位置时速率减小、接近平衡位置时速率增大。
+
+若初始条件为$x(0)=x_0$、$v(0)=v_0$，则
+\[
+ x_0=A\cos\varphi,\qquad -\frac{v_0}{\omega}=A\sin\varphi.
+\]
+平方后相加，得到
+\begin{equation}\label{ch10:eq:initial}
+ A=\sqrt{x_0^2+\frac{v_0^2}{\omega^2}},\qquad
+ \cos\varphi=\frac{x_0}{A},\quad \sin\varphi=-\frac{v_0}{A\omega}.
+\end{equation}
+用余弦确定角的候选值，再用正弦的符号选象限，便能避免只用反三角函数主值产生的歧义。也可记为
+$\varphi=\operatorname{atan2}(-v_0/\omega,x_0)$，其中$\operatorname{atan2}(Y,X)$表示由横分量$X$、纵分量$Y$确定象限的角。$A=0$对应静止，初相位无物理意义。
+
+更一般地，若已知$x/A=c$，则$\psi=\pm\arccos c+2n\pi$；若已知$-v/(A\omega)=s$，则$\psi=\arcsin s+2n\pi$或$\pi-\arcsin s+2n\pi$。两条条件应同时满足。求两个状态间的历时，要沿实际运动方向连续增加相位，不能每次把相位跳回主值区间：
+\begin{equation}\label{ch10:eq:phase-time}
+ \Delta t=\frac{\psi_2-\psi_1}{\omega}.
+\end{equation}
+例如从$x=A,v=0$到$x=0,v<0$，相位从0增加到$\pi/2$，历时$T/4$；到$x=0,v>0$则要增加到$3\pi/2$，历时$3T/4$。
+
+\subsection{复数表示为什么方便}
+把平衡值先减去，令$q=Q-Q_0$。利用欧拉公式$\mathrm e^{\ii\psi}=\cos\psi+\ii\sin\psi$，引入辅助复变量
+\[
+ \widetilde q(t)=A\mathrm e^{\ii(\omega t+\varphi)}
+ =\widetilde A\mathrm e^{\ii\omega t},\qquad
+ \widetilde A=A\mathrm e^{\ii\varphi},\qquad q=\Re\widetilde q.
+\]
+$\widetilde A$称复振幅，它的模是振幅，辐角是初相位。复数本身不意味着物体运动到一个“虚位置”；它是同时保存两个正交相位分量的计算工具。由于求导与取实部可交换，
+\[
+ \frac{\dd\widetilde q}{\dd t}=\ii\omega\widetilde q,
+ \qquad \frac{\dd^2\widetilde q}{\dd t^2}=-\omega^2\widetilde q,
+ \qquad \dot q=\Re\dot{\widetilde q}.
+\]
+于是线性微分方程中的求导可以转为乘$\ii\omega$。线性叠加同样可以先在复数域计算再取实部。但平方、乘积等非线性运算不能这样直接交换：通常
+$(\Re\widetilde q)^2\ne\Re(\widetilde q^{2})$。例如计算动能时必须使用真实速度的平方，而不是复速度平方的实部。
+
+\subsection{回复判据、能量判据与相图}
+若一个坐标的动力学方程为
+\begin{equation}\label{ch10:eq:linear-test}
+ \ddot x=-\omega_0^2x,\qquad\omega_0^2>0,
+\end{equation}
+其中$\omega_0$不随$x,t$变化，则它作简谐振动。平衡位置不在零点时，先用$x=q-q_0$表示相对平衡位置的偏移。若$\ddot x=+\lambda^2x$，则是指数型不稳定运动，不能仅凭“加速度正比于位移”判断为振动。
+
+将式\eqref{ch10:eq:linear-test}乘$\dot x$，逐项写成全导数：
+\[
+ \dot x\ddot x+\omega_0^2x\dot x=0
+ \quad\Longrightarrow\quad
+ \frac{\dd}{\dd t}\left(\frac12\dot x^2+\frac12\omega_0^2x^2\right)=0.
+\]
+结合初始条件，可写为
+\begin{equation}\label{ch10:eq:ellipse}
+ v^2+\omega_0^2x^2=\omega_0^2A^2,
+ \qquad \frac{x^2}{A^2}+\frac{v^2}{A^2\omega_0^2}=1.
+\end{equation}
+这就是位移和速度大小“此消彼长”的关系。在质量$m$、劲度系数$k=m\omega_0^2$的振子中，它等价于能量守恒：
+\begin{equation}\label{ch10:eq:energy}
+ E=\frac12mv^2+\frac12kx^2=\frac12kA^2.
+\end{equation}
+平衡点$x=0$处动能最大；两端$x=\pm A$处动能为零、势能最大。
+
+反过来，在光滑、非静止的实际动力学轨道上，若式\eqref{ch10:eq:ellipse}恒成立，在$v\ne0$的区间求导并约去$v$可得式\eqref{ch10:eq:linear-test}，再以加速度连续性延拓到转向点。也可在单调运动的一段上积分
+\[
+ \frac{\dd x}{\sqrt{A^2-x^2}}=\pm\omega_0\dd t,
+ \qquad \arcsin(x/A)=\pm\omega_0t+C,
+\]
+并在转向点接上正确的速度分支。单独一条能量等式并不允许任意安排在端点停留多久；这还需要原动力学和光滑性条件。恒定的$x=\pm A$也满足该代数等式，却不是回复力非零时的动力学解。
+
+\chTenPhaseFigure
+图\ref{ch10:fig:phase}把一个运动状态画成相平面中的一点。顶部$x=0,v>0$时点必须向右移动；右端$x=A,v=0$时加速度为负，点向下移动，故轨迹是顺时针方向。横纵轴表示不同的物理量，纸面椭圆的长短还与标度有关。用$X=x/A$、$V=v/(A\omega_0)$归一化后，轨迹才明确成为$X^2+V^2=1$的单位圆；不能仅凭一幅图外观看起来像圆就断言量纲有误。
+
+\begin{origexamplebox}{竖直弹簧的平衡位置与周期}\label{ch10:ex:vertical-spring}
+劲度系数为$k$的轻弹簧竖直悬挂，末端连接质量为$m$的小球。求平衡伸长量及小球在平衡位置附近作小振动的周期。运动过程中弹簧保持在线性弹性范围内。
+\end{origexamplebox}
+\begin{xesolution}
+以弹簧原长时球的位置为伸长量$y$的零点，向下为正。球所受重力为$+mg$，弹簧力为$-ky$，故
+\[
+ m\ddot y=mg-ky.
+\]
+平衡要求加速度为零，因此$ky_0=mg$。图\ref{ch10:fig:vertical-spring}中的$x$不是弹簧总伸长，而是相对平衡位置的位移：$x=y-y_0$。由于$y_0$为常量，$\ddot y=\ddot x$，代入得
+\[
+ m\ddot x=mg-k(y_0+x)=-kx.
+\]
+\chTenVerticalFigure
+比较回复方程，$\omega_0^2=k/m$，所以
+\[
+ \boxed{y_0=mg/k},\qquad \boxed{T=2\pi\sqrt{m/k}}.
+\]
+重力被平衡伸长抵消，并未改变线性回复系数。$m/k$的单位为秒平方，周期量纲正确。如果振幅过大使弹簧失去线性、碰到限位或连接松弛，便不能继续使用这同一方程。
+\end{xesolution}
+
+\section{稳定平衡附近的小振动}\label{ch10:sec:small}
+\subsection{先找平衡，再确定回复系数}
+严格简谐要求回复关系精确线性；小振动则是非线性系统在稳定平衡附近的近似。对一个无显含时间约束、无耗散的一自由度系统，设广义坐标为$q$，势能为$U(q)$。平衡点$q_0$满足$U'(q_0)=0$。取$\eta=q-q_0$，泰勒展开给出
+\[
+ U(q)=U(q_0)+\frac12U''(q_0)\eta^2
+ +\frac1{3!}U'''(q_0)\eta^3+\cdots.
+\]
+当$U''(q_0)>0$且振幅足够小，高阶项相对二阶项很小，势能可近似为抛物线。动能一般写作$T_{\rm kin}=\tfrac12M(q)\dot q^2$；展开$M(q)=M(q_0)+M'(q_0)\eta+\cdots$，其中$\eta\dot\eta^2$已经是三阶小量，二阶近似只留下
+\[
+ T_{\rm kin}\simeq\frac12M_0\dot\eta^2,\qquad M_0=M(q_0)>0.
+\]
+于是二阶能量为两个平方项之和，求导得
+\begin{equation}\label{ch10:eq:small-frequency}
+ M_0\ddot\eta+U''(q_0)\eta=0,
+ \qquad \omega_0=\sqrt{\frac{U''(q_0)}{M_0}}.
+\end{equation}
+$M_0$是对坐标$q$而言的惯性系数，不一定具有质量的量纲；若$q$是角度，它就是转动惯量。若$U''<0$，该平衡不稳定；若$U''=0$，必须继续检查高阶项。例如$U\propto\eta^4$可以稳定，却没有与振幅无关的非零小振动频率。
+
+\subsection{单摆：把小角度近似落到能量上}
+长$l$的单摆取偏离竖直向下方向的角$\theta$为坐标。小球速率为$l|\dot\theta|$，故
+\[
+ T_{\rm kin}=\frac12ml^2\dot\theta^2,\qquad
+ U=mgl(1-\cos\theta).
+\]
+在$\theta=0$处，$U'=mgl\sin\theta=0$，$U''=mgl>0$，所以
+\[
+ \omega_0^2=\frac{mgl}{ml^2}=\frac gl,\qquad
+ T_0=2\pi\sqrt{l/g}.
+\]
+这里的判定过程依次是：写能量、找稳定平衡、保留二阶项、比较惯性和回复系数。它对弹性约束、转动约束和复杂机构的小振动都适用。
+
+周期为什么只在小摆角下近似不变？若最大摆角为$\theta_m$，能量守恒给
+\[
+ \dot\theta^2=\frac{2g}{l}(\cos\theta-\cos\theta_m),\quad
+ T=4\sqrt{\frac l{2g}}\int_0^{\theta_m}
+ \frac{\dd\theta}{\sqrt{\cos\theta-\cos\theta_m}}.
+\]
+令$\sin(\theta/2)=s\sin u$，$s=\sin(\theta_m/2)$，可得
+\[
+ T=4\sqrt{\frac lg}\int_0^{\pi/2}\frac{\dd u}{\sqrt{1-s^2\sin^2u}}
+ =T_0\left(1+\frac{s^2}{4}+\cdots\right)
+ =T_0\left(1+\frac{\theta_m^2}{16}+\cdots\right).
+\]
+第二个等号使用$(1-z)^{-1/2}=1+z/2+\cdots$及$\int_0^{\pi/2}\sin^2u\,\dd u=\pi/4$。当$\theta_m=10^\circ=\pi/18\simeq0.1745\,\mathrm{rad}$，首项相对修正约$0.00190$，即$0.19\%$。它给出了“小”到底有多小的可检验尺度。
+
+\begin{origexamplebox}{复摆的小振动}\label{ch10:ex:physical-pendulum}
+质量为$M$、质心到水平固定转轴的距离为$a>0$的刚体可以绕该轴无摩擦转动，绕轴转动惯量为$I$。求质心位于轴下方的平衡位置附近的小振动周期。
+\end{origexamplebox}
+\begin{xesolution}
+取图\ref{ch10:fig:physical-pendulum}中向右偏转的$\theta$为正。重力对轴$O$的力矩使偏角减小，其有符号值为$-Mga\sin\theta$，因此精确转动方程是
+\[
+ I\ddot\theta=-Mga\sin\theta.
+\]
+\chTenPendulumFigure
+小角度以弧度表示，$\sin\theta\simeq\theta$，得到$I\ddot\theta+Mga\theta=0$。也可由$U=Mga(1-\cos\theta)\simeq Mga\theta^2/2$及$T_{\rm kin}=I\dot\theta^2/2$读出相同的两个系数。故
+\[
+ \boxed{\omega_0=\sqrt{Mga/I}},\qquad
+ \boxed{T=2\pi\sqrt{I/(Mga)}}.
+\]
+当所有质量集中在距轴$a$处，$I=Ma^2$，结果退化为长$a$的单摆；一般刚体还含绕质心的转动惯量，不能直接用$Ma^2$替代$I$。若$a\to0$，重力回复力矩消失，周期趋于无穷，与模型一致。
+\end{xesolution}

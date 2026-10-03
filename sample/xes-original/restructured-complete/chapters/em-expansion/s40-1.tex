@@ -1,0 +1,12 @@
+% EM structure and teaching revision 20260928
+\subsection{磁通变化的三种来源与符号流程}
+均匀磁场中的平面回路有 $\Phi=BS\cos\theta$。磁场大小、回路面积和取向都可能变化，因此
+\[
+ \mathcal E=-\frac{\dd\Phi}{\dd t}
+ =-S\cos\theta\,\dot B-B\cos\theta\,\dot S
+ +BS\sin\theta\,\dot\theta.
+\]
+这个展开要求回路仍可由一个统一面积和法向描述；一般变形回路应回到曲面积分。
+例如回路面积为 $S_0$，在恒定磁场中以 $\theta=\omega t$ 转动，则 $\mathcal E=BS_0\omega\sin\omega t$。磁通最大时电动势为零，磁通经过零值时电动势幅值最大，二者不能按“谁大谁强”判断。
+解题先任选回路绕行正向，再由右手关系确定面法向，接着写带符号磁通，最后用负导数得到沿所选绕行方向的电动势。结果为负表示实际方向与参考方向相反。楞次定律可作物理检查：感应电流的磁效应反抗磁通变化，不是无条件反抗外磁场本身。
+

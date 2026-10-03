@@ -1,0 +1,200 @@
+% Technical geometry and labels share one coordinate system per panel.
+\tikzset{solbody/.style={draw=Ink,line width=.8pt},solpath/.style={draw=Ink,line width=.8pt},
+ solforce/.style={-{Latex[length=2mm]},draw=DeepBlue,line width=.9pt},
+ solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=.8pt},
+ solgeom/.style={draw=TextGray,densely dashed,line width=.5pt},
+ sollabel/.style={font=\scriptsize,fill=none,inner sep=1.5pt},
+ solpanel/.style={font=\scriptsize\bfseries,text=TextGray},
+ spring/.style={decorate,decoration={coil,segment length=4pt,amplitude=2.5pt},draw=Ink}}
+\newcommand{\diagcaption}[2]{\refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+\newenvironment{workfig}{\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}}
+
+\newcommand{\workDerivationDiagram}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \node[solpanel] at (1.6,2.8) {(a) 轨迹与切向速度};
+ \draw[solpath,domain=0:2.7,samples=60] plot (\x,{.25*\x*\x});
+ \coordinate (A) at (.5,.0625); \coordinate (B) at (1.5,.5625);
+ \fill (A) circle (1.6pt) node[below,sollabel] {$A$};
+ \fill (B) circle (1.6pt);\node[sollabel] at (1.4,1) {$B$};
+ \draw[solforce] (A)--++(1,.25) node[below right,sollabel] {$\vec v_A$};
+ \draw[solforce] (B)--++(1,.75) node[right,sollabel] {$\vec v_B$};
+ \draw[solforce] (A)--++(0,1.3) node[left,sollabel] {$\vec a_A$};
+ \draw[TextGray] ($(A)+(14.036:.45)$) arc(14.036:90:.45);
+ \node[sollabel] at ($(A)+(53:.68)$) {$\theta$};
+ \begin{scope}[xshift=5cm]
+ \node[solpanel] at (1.2,2.8) {(b) 精确的速度矢量关系};
+ \coordinate (P) at (0,0); \coordinate (Q) at (2,.5); \coordinate (S) at (2,1.5);
+ \draw[solforce] (P)--(Q) node[midway,below,sollabel] {$\vec v_A$};
+ \draw[solforce] (P)--(S) node[midway,above left,sollabel] {$\vec v_B$};
+ \draw[solforce] (Q)--(S) node[midway,right,sollabel] {$\Delta\vec v$};
+ \node[sollabel] at (1,-.7) {$\vec v_B=\vec v_A+\Delta\vec v$};
+ \end{scope}
+\end{tikzpicture}\diagcaption{示意图}{速度沿轨迹切线；速度增量是两个速度矢量之差。}
+\label{ch08:fig:workDerivationDiagram}\end{workfig}}
+
+\newcommand{\probdiagFourOne}{%
+\begin{workfig}\begin{tikzpicture}[xscale=.82,yscale=.72]
+ \draw[solgeom](-.25,2.8)--(11.55,2.8);\draw[solgeom](-.25,0)--(11.55,0);
+ \foreach \x in {0,2.35,3.875,5.6,6.9}{\node[sollabel,above]at(\x,2.8){$A$};}
+ \node[sollabel,above right]at(8.425,2.8){$A$};\node[sollabel,above left]at(10.525,2.8){$A$};
+ \foreach \x in {0,.4,1.725,3.2,4.95,7.075,8.95}{\node[sollabel,below]at(\x,0){$B$};}
+ \draw[solpath](0,2.8)--(0,0);
+ \draw[solpath](2.35,2.8)--(.4,0);
+ \draw[solpath](3.875,2.8)--(3.2,.93)--(1.725,0);
+ \draw[solpath](5.6,2.8)--(5.1,2.075)--(5.025,1.575)--(4.675,1.4)--(4.575,1.025)--(4.15,1.025)--(3.975,.525)--(3.2,0);
+ \draw[solpath](6.9,2.8)..controls(7.2,1.8)and(5.8,.6)..(4.95,0);
+ \draw[solpath](7.075,0)--(8.25,4.1)--(8.425,2.8);
+ \draw[solpath](8.95,0)..controls(9.2,5.0)and(11.25,5.2)..(10.525,2.8);
+ \draw[<->,TextGray](11.35,0)--(11.35,2.8)node[midway,right,sollabel]{$h$};
+\end{tikzpicture}\diagcaption{题图}{七条路径的始末高度差都为 $h$。}\label{ch08:fig:probdiagFourOne}\end{workfig}}
+
+\newcommand{\soldiagFourOne}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solgeom] (-2,1.5)--(3,1.5);\draw[solgeom] (-2,-1)--(3,-1);
+ \draw[solpath] (-1.5,1.5)..controls(-1.5,-.3)and(2,.5)..(2,-1);
+ \fill (-1.5,1.5) circle(1.7pt) node[above,sollabel] {$A:y_A$};
+ \fill (2,-1) circle(1.7pt) node[below,sollabel] {$B:y_B$};
+ \draw[solforce] (-1,0)--(-1,-.8) node[left,sollabel] {$m\vec g$};
+ \draw[<->,DeepBlue] (3,-1)--(3,1.5) node[midway,right,sollabel] {$h=y_A-y_B$};
+\end{tikzpicture}\diagcaption{解图}{重力功的积分只保留竖直坐标的始末差。}\label{ch08:fig:soldiagFourOne}\end{workfig}}
+
+\newcommand{\probdiagFourTwo}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody] (-2.2,0)--(3.8,0);
+ \draw[solbody,fill=SoftGray] (-.5,0) rectangle (.5,.7);\node[sollabel] at (0,.35) {$m$};
+ \draw[solforce] (.5,.55)--++(30:2) node[right,sollabel] {$F$};
+ \draw[solgeom] (.5,.55)--(1.9,.55);
+ \draw[TextGray] (1.2,.55) arc(0:30:.7);\node[sollabel] at (1.55,.81) {$\theta$};
+ \node[sollabel,above] at (-1.5,0) {$\mu$};
+ \draw[solflow] (-.5,-.5)--(2.5,-.5) node[midway,below,sollabel] {$L$};
+\end{tikzpicture}\diagcaption{题图}{力 $F$ 向右上方，物体沿水平面向右滑动。}\label{ch08:fig:probdiagFourTwo}\end{workfig}}
+
+\newcommand{\soldiagFourTwo}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody] (-2,0)--(2.7,0);\draw[solbody,fill=SoftGray] (-.5,0) rectangle(.5,.8);
+ \draw[solforce] (.5,.6)--++(30:1.7) node[right,sollabel] {$F$};
+ \draw[solforce] (0,.8)--(0,2) node[above,sollabel] {$N$};
+ \draw[solforce] (0,.4)--(0,-1.1) node[below,sollabel] {$mg$};
+ \draw[solforce] (-.5,.15)--(-1.7,.15) node[above left,sollabel] {$f=\mu N$};
+ \draw[solflow] (1,-.55)--(2.5,-.55) node[midway,below,sollabel] {$\Delta\vec r$};
+ \node[sollabel,align=left,anchor=west] at (3.5,1) {$W_F=FL\cos\theta$\\[5pt]$W_f=-fL$\\[5pt]$W_N=W_G=0$};
+\end{tikzpicture}\diagcaption{解图}{竖直方向合力为零；各力作功须与水平位移配对。}\label{ch08:fig:soldiagFourTwo}\end{workfig}}
+
+\newcommand{\probdiagFourThree}{%
+\begin{workfig}\begin{tikzpicture}[scale=.85]
+ \coordinate(O) at (0,1.8);\coordinate(A) at (2.4,1.8);\coordinate(B) at (0,-1.4);
+ \draw[spring] (O)--(A);\draw[spring] (O)--(B);
+ \fill (O) circle(2pt) node[above left,sollabel] {$O$};\fill(A)circle(3pt)node[right,sollabel]{$A$};
+ \fill(B)circle(3pt)node[below,sollabel]{$B$};
+ \node[sollabel] at (1.2,2.15) {$l_0,\ k$};\node[sollabel] at (2.7,1.35) {$m$};
+ \draw[solgeom] (A)--(B);\node[sollabel,align=left,anchor=west] at (2.1,-.2) {虚线仅连接\!始末位置\\不表示轨迹};
+ \draw[solgeom] (-1.25,-.6)--(.3,-.6);
+ \draw[<->,TextGray] (-.8,-.6)--(-.8,1.8)node[midway,left,sollabel]{$l_0$};
+ \draw[<->,TextGray] (-.8,-1.4)--(-.8,-.6)node[midway,left,sollabel]{$l_0/n$};
+\end{tikzpicture}\diagcaption{题图}{两条弹簧线表示先后两个状态，并非同时存在两根弹簧。}\label{ch08:fig:probdiagFourThree}\end{workfig}}
+
+\newcommand{\soldiagFourThree}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solgeom] (0,1.5)--(6,1.5);\draw[solgeom] (0,-.8)--(6,-.8);
+ \fill (1,1.5)circle(2pt)node[above,sollabel]{$A$};\fill (4,-.8)circle(2pt)node[below,sollabel]{$B$};
+ \node[sollabel,align=left,anchor=west] at (1.5,2.15) {$x_A=0,\quad E_{k,A}=0$};
+ \node[sollabel,align=left,anchor=west] at (.4,.35) {$x_B=l_0/n$\\[6pt]$W_{\rm s}=-k(l_0/n)^2/2$};
+ \draw[<->,DeepBlue] (5.7,-.8)--(5.7,1.5)node[midway,right,sollabel]{$l_0(1+1/n)$};
+\end{tikzpicture}\diagcaption{解图}{高度差决定重力功，弹簧形变量的平方差决定弹力功。}\label{ch08:fig:soldiagFourThree}\end{workfig}}
+
+\newcommand{\probdiagFourFour}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody] (-3.5,0)--(4,0);\draw[solbody] (-3.3,0)--(-3.3,1.1);
+ \draw[spring] (-3.3,.4)--(-1.3,.4);
+ \draw[solbody,fill=SoftGray] (-1.3,0)rectangle(-.5,.8);\node[sollabel]at(-.9,.4){$A$};
+ \draw[solbody] (-.5,0)rectangle(.3,.8);\node[sollabel]at(-.1,.4){$B$};
+ \draw[solgeom] (1,0)--(1,1.25);\node[sollabel,above]at(1,1.25){原长连接点 $x=0$};
+ \draw[solgeom] (-1.3,0)--(-1.3,-.65);
+ \draw[<->,DeepBlue] (-1.3,-.5)--(1,-.5)node[midway,below,sollabel]{$x_1$};
+ \draw[solflow] (2,.5)--(3.4,.5)node[right,sollabel]{$+x$};
+\end{tikzpicture}\diagcaption{题图}{以 $A$ 左侧弹簧连接点为位置标志，初态为 $x=-x_1$。}\label{ch08:fig:probdiagFourFour}\end{workfig}}
+
+\newcommand{\soldiagFourFour}{%
+\begin{workfig}\begin{tikzpicture}[scale=.85]
+ \foreach \y/\a/\b in {3.2/-1.8/-1,1.6/0/.8,0/1.1/3.0}{
+ \draw[solbody](-3,\y)--(4,\y);\draw[solbody](-3,\y)--++(0,.7);
+ \draw[spring](-3,{\y+.35})--(\a,{\y+.35});
+ \draw[solbody,fill=SoftGray](\a,\y)rectangle++(.8,.7);\node[sollabel]at({\a+.4},{\y+.35}){$A$};
+ \draw[solbody](\b,\y)rectangle++(.8,.7);\node[sollabel]at({\b+.4},{\y+.35}){$B$};}
+ \draw[solgeom](0,-.5)--(0,4.15);\node[sollabel,above]at(0,4.15){$x=0$};
+ \node[sollabel,anchor=east]at(-3.4,3.55){初始压缩};
+ \node[sollabel,anchor=east]at(-3.4,1.95){原长处分离};
+ \node[sollabel,anchor=east]at(-3.4,.35){$A$ 的最右端};
+ \draw[solflow](.1,2.55)--(.7,2.55)node[midway,above,sollabel]{$V$};
+ \draw[solflow](1,2.55)--(1.6,2.55)node[midway,above,sollabel]{$V$};
+ \draw[solflow](3.1,1)--(3.9,1)node[midway,above,sollabel]{$V$};
+ \node[sollabel]at(1.5,1){$v_A=0$};
+ \draw[<->,DeepBlue](-1.8,-.5)--(0,-.5)node[midway,below,sollabel]{$x_1$};
+ \draw[<->,DeepBlue](0,-.5)--(1.1,-.5)node[midway,below,sollabel]{$x_2$};
+\end{tikzpicture}\diagcaption{解图}{三行使用同一原长基准；分离后 $B$ 匀速，$A$ 继续伸长弹簧至转折。}\label{ch08:fig:soldiagFourFour}\end{workfig}}
+
+\newcommand{\soldiagFourFive}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody,fill=SoftGray](-2,0)rectangle(3,.55);\node[sollabel]at(2.3,.27){$B,M$};
+ \draw[solbody](-.8,.55)rectangle(.2,1.25);\node[sollabel]at(-.3,.95){$A,m$};
+ \draw[solforce](-.8,.7)--(-2,.7)node[above,sollabel]{$f_A$};
+ \draw[solforce](3,.27)--(4.2,.27)node[right,sollabel]{$f_B$};
+ \draw[solflow](-1,1.8)--(2,1.8)node[midway,above,sollabel]{$s_A$};
+ \draw[solflow](-1,-.5)--(.5,-.5)node[midway,below,sollabel]{$s_B$};
+ \draw[solgeom](.5,-.5)--(.5,-1.25);\draw[solgeom](2,1.8)--(2,1.3);\draw[solgeom](2,0)--(2,-1.25);
+ \draw[<->,DeepBlue](.5,-1.2)--(2,-1.2)node[midway,below,sollabel]{$s_A-s_B$};
+\end{tikzpicture}\diagcaption{解图}{$A$ 与板接触，摩擦力等大反向；位移箭头比较同一时间内的地面位移。}\label{ch08:fig:soldiagFourFive}\end{workfig}}
+
+\newcommand{\soldiagFourSix}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \foreach \y/\len in {1.8/2.5,0/4.3}{
+ \draw[solbody](0,\y)--(5,\y);\draw[solbody,fill=SoftGray](.3,\y)rectangle(1,{\y+.6});
+ \draw[solforce](1,{\y+.3})--(2,{\y+.3})node[right,sollabel]{$F$};
+ \draw[solflow](.3,{\y-.4})--(\len,{\y-.4});}
+ \node[sollabel,anchor=east]at(-.4,2.1){火车系：$0\to u$};
+ \node[sollabel,anchor=east]at(-.4,.3){地面系：$v_0\to v_0+u$};
+ \node[sollabel,below]at(1.4,1.4){$L$};\node[sollabel,below]at(2.3,-.4){$L+v_0t$};
+\end{tikzpicture}\diagcaption{解图}{同一物体、同一时间区间，在两个惯性系中配对比较位移和动能。}\label{ch08:fig:soldiagFourSix}\end{workfig}}
+
+\newcommand{\soldiagFourSeven}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody](-2.5,0)--(3,0);\draw[solbody,fill=SoftGray](-.5,0)rectangle(.5,.8);
+ \draw[solforce](.5,.4)--(2,.4)node[right,sollabel]{$F$};
+ \draw[solforce](-.5,.4)--(-2,.4)node[left,sollabel]{$ma$};
+ \draw[solflow](-1,1.5)--(1,1.5)node[midway,above,sollabel]{火车加速度 $a$};
+ \draw[solflow](0,-.5)--(2,-.5)node[midway,below,sollabel]{$L$（$F>ma$）};
+\end{tikzpicture}\diagcaption{解图}{惯性力大小 $ma$、方向向左；图示向前位移只对应 $F>ma$ 的分支。}\label{ch08:fig:soldiagFourSeven}\end{workfig}}
+
+\newcommand{\movingPulleyDiagram}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solbody](.4,2.3)--(1.3,2.3);\draw[solbody](0,0)circle(.8);
+ % Rope: left free end, lower semicircle, right fixed end; draw after pulley.
+ \draw[DeepBlue,line width=1pt](-.8,1.4)--(-.8,0)arc(180:360:.8)--(.8,2.3);
+ \fill(.8,2.3)circle(2pt);\node[sollabel,above]at(.8,2.3){固定端};
+ \draw[solbody](0,0)--(0,-1.2);\fill(0,0)circle(2pt);\node[sollabel,above]at(0,.05){轮轴};
+ \draw[solbody,fill=SoftGray](-.35,-1.85)rectangle(.35,-1.2);\node[sollabel]at(0,-1.5){$m$};
+ \draw[solforce](-.8,1.4)--(-.8,2.35)node[left,sollabel]{$F$};
+ \draw[solforce](0,-1.85)--(0,-2.55)node[right,sollabel]{$mg$};
+ \draw[solflow](-1.65,.9)--(-1.65,1.9)node[midway,left,sollabel]{$\Delta y_e=L$};
+ \draw[solflow](1.55,-.25)--(1.55,.25)node[midway,right,sollabel]{$\Delta y_p=L/2$};
+ \node[sollabel,align=left,anchor=west]at(2.3,1.5){蓝线：绕轮缘的绳\\中线：连接轮轴与重物的挂杆};
+\end{tikzpicture}\diagcaption{原理图}{位移箭头表示同一过程的上升量，不是某段绳的长度。}\label{ch08:fig:movingPulleyDiagram}\end{workfig}}
+
+\newcommand{\soldiagFourEight}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[solflow](0,0)--(7,0)node[right,sollabel]{$r$};\fill(0,0)circle(3pt)node[below,sollabel]{固定点};
+ \fill(1.5,0)circle(2pt)node[below,sollabel]{$r_A$};\fill(5.5,0)circle(2pt)node[below,sollabel]{$r_B$};
+ \fill(3.5,0)circle(2pt)node[below,sollabel]{$r$};
+ \draw[solforce](3.5,.8)--(2.2,.8)node[midway,above,sollabel]{$\vec F$（向内）};
+ \draw[solflow](3.5,-.7)--(4.2,-.7)node[midway,below,sollabel]{$\dd r>0$};
+\end{tikzpicture}\diagcaption{解图}{图示向外的一小段位移；引力功微元为 $-(k/r)\dd r$。}\label{ch08:fig:soldiagFourEight}\end{workfig}}
+
+\newcommand{\soldiagFourNine}{%
+\begin{workfig}\begin{tikzpicture}[scale=.9]
+ \draw[fill=Blue!12,draw=none](1.4,0)--plot[domain=1.4:3.7,samples=60](\x,{1.6/(\x*\x)})--(3.7,0)--cycle;
+ \draw[solflow](0,0)--(5,0)node[right,sollabel]{$r$};\draw[solflow](0,0)--(0,3.6)node[above,sollabel]{$F=k/r^2$};
+ \draw[solpath,domain=.7:4.7,samples=80]plot(\x,{1.6/(\x*\x)});
+ \foreach \r/\name in {1.4/A,3.7/B}{\draw[solgeom](\r,0)--(\r,{1.6/(\r*\r)});\node[sollabel,below]at(\r,0){$r_\name$};}
+ \node[sollabel,align=left,anchor=west]at(2,2.2){阴影面积 $=k(1/r_A-1/r_B)$\\[5pt]图示 $r_B>r_A$，故 $W<0$};
+\end{tikzpicture}\diagcaption{解图}{阴影是力的大小对距离的积分；功的正负还须结合运动方向。}\label{ch08:fig:soldiagFourNine}\end{workfig}}

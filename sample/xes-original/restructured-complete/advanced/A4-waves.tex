@@ -1,0 +1,363 @@
+\section{电磁场、电磁波与辐射}
+
+\subsection{介质中的守恒定律与平面波}
+
+介质中的宏观 Maxwell 方程为
+\[
+ \nabla\cdot\vect D=\rho_f,
+ \qquad \nabla\times\vect H-\partial_t\vect D=\vect j_f,
+\]
+\[
+ \nabla\cdot\vect B=0,
+ \qquad \nabla\times\vect E+\partial_t\vect B=0.
+\]
+在线性、各向同性、无色散介质中
+$\vect D=\varepsilon\vect E$、
+$\vect B=\mu\vect H$。无源区内电、磁场都满足波动方程，波速
+\[
+ v=\frac1{\sqrt{\varepsilon\mu}}
+ =\frac c{\sqrt{\varepsilon_r\mu_r}}.
+\]
+
+把 $\vect E$ 点乘 Ampere--Maxwell 方程、$\vect H$ 点乘 Faraday 方程并相减，得到 Poynting 定理
+\[
+ \boxed{\partial_tw+\nabla\cdot\vect S=-\vect j_f\cdot\vect E},
+\]
+\[
+ w=\frac12(\vect D\cdot\vect E+\vect B\cdot\vect H),
+ \qquad \vect S=\vect E\times\vect H.
+\]
+均匀介质中的动量守恒可写成
+\[
+ \partial_t\vect g+\nabla\cdot\mathsf T
+ =-\rho_f\vect E-\vect j_f\times\vect B,
+\]
+\[
+ \vect g=\vect D\times\vect B,
+ \qquad
+ \mathsf T=w\mathsf1-\vect D\vect E-\vect B\vect H.
+\]
+这里采用均匀、线性、各向同性、无色散且参数不随时空改变的介质模型，$\vect g$ 是 Minkowski 动量密度，$\mathsf T$ 为动量通量张量，等于通常应力张量的负号。在真空中它退化为 $\varepsilon_0\vect E\times\vect B$。若改用 Abraham 密度 $\vect E\times\vect H/c^2$，就必须把相应介质动量交换计入右侧，不能仅替换左侧密度。
+
+平面波
+$\vect E=\vect E_0\e^{\ii(\vect k\cdot\vect r-\omega t)}$ 满足
+\[
+ \vect k\cdot\vect E_0=\vect k\cdot\vect B_0=0,
+ \qquad
+ \vect B_0=\frac1\omega\vect k\times\vect E_0,
+\]
+\[
+ \langle\vect S\rangle
+ =\frac12\sqrt{\frac\varepsilon\mu}|E_0|^2\vect e_k.
+\]
+折射率 $n=\sqrt{\varepsilon_r\mu_r}$，Snell 定律为
+$n_1\sin\theta_1=n_2\sin\theta_2$。令波阻抗
+$Z_i=\sqrt{\mu_i/\varepsilon_i}$，电场振幅的 Fresnel 反射系数为
+\[
+ r_{\rm TE}=\frac{Z_2\cos\theta_1-Z_1\cos\theta_2}
+ {Z_2\cos\theta_1+Z_1\cos\theta_2},
+\]
+\[
+ r_{\rm TM}=\frac{Z_1\cos\theta_1-Z_2\cos\theta_2}
+ {Z_1\cos\theta_1+Z_2\cos\theta_2}.
+\]
+透射振幅由切向 $\vect E,\vect H$ 连续确定；功率系数还必须乘上两侧法向能流因子，不能简单用 $|t|^2$。
+
+导电介质在 $\e^{-\ii\omega t}$ 约定下具有复介电常数
+\[
+ \varepsilon_c=\varepsilon+\frac{\ii\sigma}{\omega},
+ \qquad k^2=\omega^2\mu\varepsilon_c.
+\]
+良导体 $\sigma\gg\omega\varepsilon$ 时
+\[
+ k\simeq(1+\ii)\sqrt{\frac{\omega\mu\sigma}{2}},
+ \qquad
+ \boxed{\delta=\sqrt{\frac2{\omega\mu\sigma}}}
+\]
+是趋肤深度。
+
+\begin{advexamplebox}{黄昆方程、离子晶体极化与 Lyddane--Sachs--Teller 关系}\label{advA4:ex:huang-kun}
+黄昆先生是中国固体物理和半导体物理的重要奠基人之一。他关于晶格动力学、长光学波及声子极化激元的工作影响深远，与 Max Born 合著的《晶格动力学理论》成为这一领域的经典著作。
+
+离子晶体的一个原胞体积为 $\Omega$。正、负离子质量分别为 $M,m$，电荷为 $\pm q$，相对位移为 $x$，谐回复劲度为 $K$。电子云极化满足
+\[
+ P_e=\alpha\left(E+\frac{P}{3\varepsilon_0}\right).
+\]
+定义质量归一化坐标 $W$ 使动能密度为 $\dot W^2/2$。
+\begin{enumerate}
+ \item 求 $W$ 与 $x$ 的关系；
+ \item 推导黄昆第二方程 $P=a_{21}W+a_{22}E$；
+ \item 推导黄昆第一方程 $\ddot W=-a_{11}W+a_{12}E$，并判断 $a_{12}$ 与 $a_{21}$ 的关系；
+ \item 求静态与高频介电常数 $\varepsilon_{\rm st},\varepsilon_\infty$；
+ \item 求长波极限的纵、横光学模频率 $\omega_{\rm LO},\omega_{\rm TO}$；
+ \item 验证 Lyddane--Sachs--Teller 关系。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+约化质量
+\[
+ \mu_r=\frac{Mm}{M+m}.
+\]
+质心固定时每原胞动能为 $\mu_r\dot x^2/2$，除以体积后与
+$\dot W^2/2$ 比较，得到
+\[
+ \boxed{W=\sqrt{\frac{\mu_r}{\Omega}}x}.
+\]
+
+总极化包含离子位移项与电子项：
+\[
+ P=\frac{qx}{\Omega}+\alpha\left(E+\frac{P}{3\varepsilon_0}\right).
+\]
+令 $d=1-\alpha/(3\varepsilon_0)$，则
+\[
+ \boxed{a_{21}=\frac{q}{\sqrt{\mu_r\Omega}\,d}},
+ \qquad
+ \boxed{a_{22}=\frac\alpha d}.
+\]
+
+相对运动方程
+\[
+ \mu_r\ddot x=-Kx+q\left(E+\frac{P}{3\varepsilon_0}\right)
+\]
+化为
+\[
+ \ddot W=-\left(\frac K{\mu_r}
+ -\frac{q a_{21}}{3\varepsilon_0\sqrt{\mu_r\Omega}}\right)W
+ +\frac q{\sqrt{\mu_r\Omega}}
+ \left(1+\frac{a_{22}}{3\varepsilon_0}\right)E.
+\]
+因此
+\[
+ \boxed{a_{11}=\frac K{\mu_r}
+ -\frac{q a_{21}}{3\varepsilon_0\sqrt{\mu_r\Omega}}},
+ \qquad
+ \boxed{a_{12}=\frac q{\sqrt{\mu_r\Omega}\,d}=a_{21}}.
+\]
+末一等式体现微观可逆性。
+
+取谐振时间因子，
+\[
+ W=\frac{a_{12}}{a_{11}-\omega^2}E,
+\]
+所以
+\[
+ \varepsilon(\omega)=\varepsilon_0+a_{22}
+ +\frac{a_{12}^2}{a_{11}-\omega^2}.
+\]
+从而
+\[
+ \boxed{\varepsilon_\infty=\varepsilon_0+a_{22}},
+ \qquad
+ \boxed{\varepsilon_{\rm st}=\varepsilon_\infty+\frac{a_{12}^2}{a_{11}}}.
+\]
+
+长波横模没有宏观极化电荷，可取 $E=0$，故
+\[
+ \boxed{\omega_{\rm TO}^2=a_{11}}.
+\]
+这里的横光学模采用非迟延的长波晶格近似；若保留电磁场传播，应求声子极化激元色散，不能把其严格 $k\to0$ 极限与上述近似直接等同。
+
+纵模无自由电荷，$D=\varepsilon_0E+P=0$。结合第二方程得
+$E=-a_{21}W/\varepsilon_\infty$，代入第一方程：
+\[
+ \boxed{\omega_{\rm LO}^2=a_{11}+\frac{a_{12}^2}{\varepsilon_\infty}}.
+\]
+因此
+\[
+ \boxed{\frac{\omega_{\rm LO}^2}{\omega_{\rm TO}^2}
+ =1+\frac{a_{12}^2}{a_{11}\varepsilon_\infty}
+ =\frac{\varepsilon_{\rm st}}{\varepsilon_\infty}}.
+\]
+各 $a_{11},\omega^2$ 量纲相同，且稳定晶体要求
+$a_{11}>0$、$\varepsilon_\infty>0$，从而
+$\omega_{\rm LO}>\omega_{\rm TO}$。
+\end{advsolution}
+
+\subsection{矩形波导模式}
+
+理想导体矩形波导沿 $z$ 方向，截面 $0<x<a$、$0<y<b$。设场依赖为
+$\e^{\ii(\beta z-\omega t)}$，定义
+\[
+ k=\omega\sqrt{\mu\varepsilon},
+ \qquad k_c^2=k_x^2+k_y^2,
+ \qquad \beta^2=k^2-k_c^2.
+\]
+导体壁满足切向 $\vect E=0$、法向 $\vect B=0$；表面电荷和电流为
+$\sigma_s=-\vect n\cdot\vect D$、
+$\vect K_s=-\vect n\times\vect H$（$\vect n$ 从波导内部指向金属）。
+
+\begin{advexamplebox}{为什么不存在 $\mathrm{TE}_{00}$ 模}\label{advA4:ex:no-te00}
+证明单连通空心矩形波导不存在非零 $\mathrm{TE}_{00}$ 模，也不存在 TEM 模。
+\end{advexamplebox}
+\begin{advsolution}
+TE 模以 $H_z$ 为母函数，边界条件为 $\partial_nH_z=0$。
+$m=n=0$ 时它在截面内是常数。取 $\omega\ne0$，直接在截面使用 Faraday 定律：
+\[
+ \oint_{\partial S}\vect E_t\cdot\dd\vect l
+ =\ii\omega\mu\int_S H_z\,\dd S.
+\]
+理想导体边界上切向电场为零，故左边为零；右边为 $\ii\omega\mu abH_z$，
+所以 $H_z=0$。不能把 $k_c=0$ 直接代入含 $1/k_c^2$ 的横场公式来证明结论。
+剩余横场若存在，只能属于 TEM 情形，下面排除它。
+
+TEM 模要求 $E_z=H_z=0$，横向电场可写成二维静电势的梯度，势在整个单一导体边界上为同一常数。Laplace 方程唯一性迫使截面内势也为常数，故 $\vect E_t=0$。TEM 只有在同轴线等多连通截面中才可能存在。
+\end{advsolution}
+
+\begin{advexamplebox}{$\mathrm{TE}_{11}$ 与 $\mathrm{TM}_{11}$ 的完整场}\label{advA4:ex:waveguide-11}
+写出矩形波导 TE$_{11}$、TM$_{11}$ 的内部电磁场及壁面电荷、电流分布，并给出截止条件。
+\end{advexamplebox}
+\begin{advsolution}
+令 $k_x=\pi/a$、$k_y=\pi/b$、
+$k_c^2=k_x^2+k_y^2$。TE$_{11}$ 取
+\[
+ H_z=H_0\cos k_xx\cos k_yy.
+\]
+其横向场为
+\[
+ \boxed{\vect E_t=-\frac{\ii\omega\mu}{k_c^2}
+ \vect e_z\times\nabla_tH_z},
+ \qquad
+ \boxed{\vect H_t=\frac{\ii\beta}{k_c^2}\nabla_tH_z}.
+\]
+$E_z=0$。余弦保证壁面法向导数为零，因而切向电场为零。
+
+TM$_{11}$ 取
+\[
+ E_z=E_0\sin k_xx\sin k_yy,
+\]
+其横向场为
+\[
+ \boxed{\vect E_t=\frac{\ii\beta}{k_c^2}\nabla_tE_z},
+ \qquad
+ \boxed{\vect H_t=\frac{\ii\omega\varepsilon}{k_c^2}
+ \vect e_z\times\nabla_tE_z}.
+\]
+$H_z=0$。正弦保证导体壁上 $E_z=0$，而 $\vect E_t$ 的切向分量也为零。
+
+两模的截止角频率相同：
+\[
+ \boxed{\omega_c=\frac1{\sqrt{\mu\varepsilon}}
+ \sqrt{\left(\frac\pi a\right)^2+
+ \left(\frac\pi b\right)^2}}.
+\]
+当 $\omega<\omega_c$ 时 $\beta$ 为纯虚数，模式沿 $z$ 倏逝。各壁面把相应场代入
+$\sigma_s=-\vect n\cdot\varepsilon\vect E$、
+$\vect K_s=-\vect n\times\vect H$ 即得：TE 模虽 $E_z=0$，仍因法向横场产生交变面电荷；TM 模的纵向电场在壁上为零但法向横场和切向磁场仍分别产生面电荷与面电流。本题单一模式是有限的正弦、余弦场，在矩形四角没有由这些公式产生的发散；不能把其他尖角静场的结论直接套来。
+\end{advsolution}
+
+\subsection{推迟势与电磁辐射}
+
+Helmholtz 方程和波动方程的外向 Green 函数分别为
+\[
+ G_+(\vect r,\vect r')=\frac{\e^{\ii kR}}{4\pi R},
+ \qquad
+ G_{\rm ret}(t,\vect r;t',\vect r')
+ =\frac{\delta(t-t'-R/c)}{4\pi R},
+\]
+其中 $R=|\vect r-\vect r'|$。因果性选择推迟解，四维势为
+\[
+ A^\nu(t,\vect r)=\frac{\mu_0}{4\pi}\int
+ \frac{j^\nu(t-R/c,\vect r')}{R}\dd V'.
+\]
+
+\begin{advexamplebox}{电偶极辐射与 Larmor 公式}\label{advA4:ex:electric-dipole-radiation}
+先证明局域电流体系满足
+\[
+ \dot{\vect p}=\int\vect j\dd V,
+ \qquad \vect p=\int\rho\vect r\dd V.
+\]
+再求谐振偶极 $\vect p(t)=\vect p_0\cos\omega t$ 的远区平均能流、总功率，并推出非相对论点电荷的 Larmor 公式。
+\end{advexamplebox}
+\begin{advsolution}
+由连续性方程和分部积分，
+\[
+ \dot p_i=\int x_i\partial_t\rho\dd V
+ =-\int x_i\partial_jj_j\dd V
+ =\int j_i\dd V,
+\]
+边界项因电流局域而消失。
+
+远区 $r$ 远大于源尺度时
+\[
+ \vect A\simeq\frac{\mu_0}{4\pi r}
+ \dot{\vect p}(t-r/c).
+\]
+只保留 $1/r$ 辐射项，
+\[
+ \vect E_{\rm rad}=\frac1{4\pi\varepsilon_0c^2r}
+ \vect e_r\times(\vect e_r\times\ddot{\vect p}),
+ \qquad
+ \vect B_{\rm rad}=\frac1c\vect e_r\times\vect E_{\rm rad}.
+\]
+设 $\theta$ 是 $\vect p_0$ 与观察方向夹角，时间平均能流为
+\[
+ \boxed{\langle\vect S\rangle=
+ \frac{\omega^4p_0^2\sin^2\theta}
+ {32\pi^2\varepsilon_0c^3r^2}\vect e_r}.
+\]
+对球面积分，$\int\sin^2\theta\dd\Omega=8\pi/3$，得到
+\[
+ \boxed{\langle P\rangle=\frac{\omega^4p_0^2}
+ {12\pi\varepsilon_0c^3}}.
+\]
+一般随时间变化的偶极瞬时辐射功率为
+$P=|\ddot{\vect p}|^2/(6\pi\varepsilon_0c^3)$。点电荷
+$\vect p=q\vect r$，所以
+\[
+ \boxed{P_{\rm Larmor}=\frac{q^2a^2}{6\pi\varepsilon_0c^3}}.
+\]
+量纲为能量/时间，且 $a=0$ 时无辐射。
+\end{advsolution}
+
+\begin{advexamplebox}{双星引力辐射与啁啾质量}\label{advA4:ex:binary-chirp}
+引力波概念由 Poincar\'e 在1905年前后提出，Einstein 随后建立广义相对论中的波动理论。Hulse--Taylor 脉冲双星的轨道衰减为引力辐射提供了间接证据；LIGO 对双黑洞并合的直接探测使 Rainer Weiss、Barry C. Barish、Kip S. Thorne 获得2017年 Nobel 物理学奖。
+
+质量 $m_1,m_2$ 的双星作圆轨道运动，间距为 $R$。求四极辐射功率；再定义引力波频率 $f=\Omega/\pi$，推导 $\dot f$ 与啁啾质量的关系，并确定
+\[
+ \mathcal M=\frac{m_1^\alpha m_2^\alpha}{(m_1+m_2)^\beta}
+\]
+中的指数。
+\end{advexamplebox}
+\begin{advsolution}
+记总质量 $M=m_1+m_2$、约化质量
+$\mu=m_1m_2/M$。圆轨道满足
+\[
+ \Omega^2=\frac{GM}{R^3}.
+\]
+质量四极矩的三阶时间导数代入引力四极辐射公式，得到
+\[
+ \boxed{P_{\rm GW}=\frac{32}{5}\frac{G}{c^5}
+ \mu^2R^4\Omega^6
+ =\frac{32}{5}\frac{G^4}{c^5}
+ \frac{\mu^2M^3}{R^5}}.
+\]
+轨道机械能
+\[
+ E=-\frac{G\mu M}{2R}
+ =-\frac12\mu(GM)^{2/3}\Omega^{2/3}.
+\]
+能量平衡 $-\dd E/\dd t=P_{\rm GW}$ 给出
+\[
+ \dot\Omega=\frac{96}{5}\frac{G^{5/3}}{c^5}
+ \mu M^{2/3}\Omega^{11/3}.
+\]
+定义
+\[
+ \boxed{\mathcal M=\mu^{3/5}M^{2/5}
+ =\frac{(m_1m_2)^{3/5}}{(m_1+m_2)^{1/5}}},
+\]
+所以
+\[
+ \boxed{\alpha=\frac35,\qquad\beta=\frac15}.
+\]
+由于 $f=\Omega/\pi$，
+\[
+ \boxed{\dot f=\frac{96}{5}\pi^{8/3}
+ \left(\frac{G\mathcal M}{c^3}\right)^{5/3}f^{11/3}}.
+\]
+因此质量指数为 $\gamma=5/3$、频率指数为
+$\delta=11/3$、无量纲常数
+$\lambda=(96/5)\pi^{8/3}$。右端量纲为
+$T^{5/3}T^{-11/3}=T^{-2}$，与 $\dot f$ 一致；$P>0$ 使
+$R$ 变小、$f$ 增大，方向判断一致。
+\end{advsolution}

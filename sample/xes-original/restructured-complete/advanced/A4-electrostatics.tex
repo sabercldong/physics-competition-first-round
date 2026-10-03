@@ -1,0 +1,759 @@
+\section{静电场}
+
+\subsection{分布、电势与能量}
+
+静电场满足
+\[
+ \nabla\times\vect E=0,
+ \qquad \nabla\cdot\vect E=\frac\rho{\varepsilon_0}.
+\]
+电荷分布对区域 $\Omega$ 给出 $Q(\Omega)=\int_\Omega\rho\dd V$；更一般地，它对测试函数 $f$ 给出线性泛函
+\[
+ \varrho(f)=\int_{\mathbb R^3}\rho(\vect r)f(\vect r)\dd V.
+\]
+点值泛函 $f\mapsto f(0)$ 和导数泛函 $f\mapsto f'(0)$ 都是分布。这样的语言可以无歧义地处理点电荷和多极子。
+
+\begin{advdefinition}{点电荷与 Dirac $\delta$ 分布}\label{advA4:def:point-charge}
+位于 $\vect r_0$、电荷量为 $q$ 的点电荷定义为
+\[
+ \rho(\vect r)=q\delta^{(3)}(\vect r-\vect r_0),
+ \qquad
+ \int q\delta^{(3)}(\vect r-\vect r_0)f(\vect r)\dd V=qf(\vect r_0).
+\]
+一维中 $\delta$ 不是普通函数，而由
+$\int\delta(x-x_0)f(x)\dd x=f(x_0)$ 定义；其导数满足
+$\int\delta'(x)f(x)\dd x=-f'(0)$。
+\end{advdefinition}
+
+Lorentz 核
+\[
+ L_\epsilon(x)=\frac1\pi\frac\epsilon{x^2+\epsilon^2}
+\]
+在 $\epsilon\downarrow0$ 时收敛到 $\delta(x)$：它非负、积分为1，且任意固定远离零点的区域上质量趋于零。分部积分还给出 $L_\epsilon'\to\delta'$。
+
+\begin{advexamplebox}{Dirac $\delta$ 的四种逼近表示}\label{advA4:ex:delta-representations}
+证明分布意义下
+\[
+ \delta(x)=\lim_{\epsilon\downarrow0}\frac1{\sqrt{2\pi}\epsilon}
+ \e^{-x^2/(2\epsilon^2)}
+ =\lim_{K\to\infty}\frac{\sin Kx}{\pi x},
+\]
+并说明周期 Fourier 核和连续 Fourier 积分如何给出
+\[
+ \delta(x)=\frac1{2\pi}\int_{-\infty}^{\infty}\e^{\ii kx}\dd k.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+对 Gaussian 核令 $x=\epsilon u$，则对任意连续快速衰减的 $f$，
+\[
+ \int\frac{\e^{-x^2/(2\epsilon^2)}}{\sqrt{2\pi}\epsilon}f(x)\dd x
+ =\int\frac{\e^{-u^2/2}}{\sqrt{2\pi}}f(\epsilon u)\dd u
+ \longrightarrow f(0).
+\]
+对 sinc 核，用 Fourier 反演：
+\[
+ \int\frac{\sin Kx}{\pi x}f(x)\dd x
+ =\frac1{2\pi}\int_{-K}^{K}\!\int f(x)\e^{\ii kx}\dd x\dd k
+ \longrightarrow f(0).
+\]
+长度为 $2\pi$ 的周期区间上，Dirichlet 核
+$D_N(x)=\sum_{n=-N}^{N}\e^{\ii nx}$ 满足
+$(2\pi)^{-1}\int_{-\pi}^{\pi}D_N(x)f(x)\dd x\to f(0)$（在满足 Dirichlet 条件时取左右极限平均）。令周期趋于无穷，离散波数和变成积分，即得连续 Fourier 表示。四种表达都只在分布意义成立，不能把 $\delta(0)=\infty$ 当普通函数值参与代数运算。
+\end{advsolution}
+
+\subsection{Cartesian 多极展开}
+
+当场点满足 $r$ 大于电荷分布尺度时，平移算符给出
+\[
+ \frac1{|\vect r-\vect r'|}
+ =\sum_{n=0}^\infty\frac{(-1)^n}{n!}
+ x'_{i_1}\cdots x'_{i_n}
+ \partial_{i_1}\cdots\partial_{i_n}\frac1r.
+\]
+定义位置张量与导数张量
+\[
+ R_n(\vect r)=\underbrace{\vect r\cdots\vect r}_{n},
+ \qquad
+ T_n(\vect r)=(-1)^nr^{2n+1}
+ \underbrace{\nabla\cdots\nabla}_{n}\frac1r.
+\]
+递推式
+\[
+ T_{n+1}=(2n+1)\vect r,T_n-r^2\nabla T_n
+\]
+给出
+\[
+ T_0=1,\qquad T_1=\vect r,\qquad
+ T_2=3\vect r\vect r-r^2\mathsf1,
+\]
+\[
+ (T_3)_{abc}=15x_ax_bx_c
+ -3r^2(x_a\delta_{bc}+x_b\delta_{ca}+x_c\delta_{ab}).
+\]
+由于 $\nabla^2(1/r)=0$（$r\ne0$），$T_n$ 对任意两指标缩并均为零，是完全对称无迹张量。定义普通与无迹多极矩
+\[
+ Q_n=\int\rho(\vect r')R_n(\vect r')\dd V',
+ \qquad
+ D_n=\int\rho(\vect r')T_n(\vect r')\dd V'.
+\]
+电势可写成
+\[
+ \boxed{\varphi(\vect r)=\frac1{4\pi\varepsilon_0}
+ \sum_{n=0}^\infty\frac{(D_n,R_n(\vect r))}{n!r^{2n+1}}}.
+\]
+前几阶为总电荷 $D_0=Q$、偶极矩
+$\vect p=D_1=\int\rho\vect r\dd V$ 和四极矩
+\[
+ \mathsf D=D_2=\int\rho(3\vect r\vect r-r^2\mathsf1)\dd V.
+\]
+相应的偶极与四极电势为
+\[
+ \varphi_1=\frac{\vect p\cdot\vect r}{4\pi\varepsilon_0r^3},
+ \qquad
+ \varphi_2=\frac{\vect r\cdot\mathsf D\cdot\vect r}
+ {8\pi\varepsilon_0r^5}.
+\]
+偶极可由相反点电荷作无穷小分离得到，分布写成
+$\rho=-\vect p\cdot\nabla\delta^{(3)}(\vect r)$；四极则由两个相反偶极再分离得到，写成
+$\rho=\tfrac12Q_{ij}\partial_i\partial_j\delta^{(3)}$。在光滑外势中的相互作用能由 Taylor 展开直接给出
+\[
+ U=Q\varphi_{\rm ext}(0)+\vect p\cdot\nabla\varphi_{\rm ext}(0)
+ +\frac1{2!}Q_{ij}\partial_i\partial_j\varphi_{\rm ext}(0)+\cdots.
+\]
+
+\begin{advexamplebox}{对称无迹张量的独立分量数}\label{advA4:ex:stf-dimension}
+证明三维 $n$ 阶完全对称无迹张量有 $2n+1$ 个独立分量。
+\end{advexamplebox}
+\begin{advsolution}
+$n$ 阶完全对称张量只由指标1、2、3各出现多少次决定，因此
+\[
+ \dim S^n(\mathbb R^3)=\binom{n+2}{2}.
+\]
+取迹把 $S^n$ 映到 $S^{n-2}$。这个映射是满射：给定任意
+$B\in S^{n-2}$，先取对称化的 $\delta\odot B$，再减去有限个更高重迹项即可构造迹恰为 $B$ 的张量。因此无迹子空间是迹映射的核，秩--零化度定理给出
+\[
+ \dim\operatorname{STF}^n
+ =\binom{n+2}{2}-\binom n2
+ =\boxed{2n+1}.
+\]
+$n=1$ 得3个偶极分量，$n=2$ 得5个四极分量，也与“对称矩阵6个分量减去一个迹条件”一致。
+\end{advsolution}
+
+\begin{advtheorem}{点电偶极子的完整分布场}\label{advA4:thm:dipole-distribution-field}
+点偶极子在全空间的电场是
+\[
+ \boxed{\vect E(\vect r)=\frac1{4\pi\varepsilon_0}
+ \frac{3(\vect p\cdot\vect r)\vect r-r^2\vect p}{r^5}
+ -\frac{\vect p}{3\varepsilon_0}\delta^{(3)}(\vect r)}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 分布恒等式
+\[
+ \partial_i\partial_j\frac1r
+ =\frac{3x_ix_j-r^2\delta_{ij}}{r^5}
+ -\frac{4\pi}{3}\delta_{ij}\delta^{(3)}(\vect r)
+\]
+可通过挖去半径 $\epsilon$ 小球后分部积分两次证明；小球面项在
+$\epsilon\downarrow0$ 时留下各向同性张量
+$-(4\pi/3)\delta_{ij}f(0)$。偶极势
+$\varphi=-(4\pi\varepsilon_0)^{-1}p_j\partial_j(1/r)$，故
+$E_i=(4\pi\varepsilon_0)^{-1}p_j\partial_i\partial_j(1/r)$，代入即得。$\delta$ 项保证分布意义下
+$\nabla\cdot\vect E=-(\vect p\cdot\nabla\delta)/\varepsilon_0$。\hfill$\square$
+
+\begin{advexamplebox}{电偶极子的合力与力矩}\label{advA4:ex:dipole-force-torque}
+证明在尺度上缓变的外电场中
+\[
+ \vect F=(\vect p\cdot\nabla)\vect E,
+ \qquad \vect M=\vect p\times\vect E.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+把偶极子看成位于 $\vect r\pm\vect a/2$ 的 $\pm q$，其中 $\vect p=q\vect a$。合力
+\[
+ \vect F=q\vect E(\vect r+\vect a/2)-q\vect E(\vect r-\vect a/2)
+ =(\vect p\cdot\nabla)\vect E+O(a^2).
+\]
+两力对中心的力矩为
+\[
+ \vect M=\frac{\vect a}{2}\times q\vect E
+ +\left(-\frac{\vect a}{2}\right)\times[-q\vect E]
+ =\vect p\times\vect E.
+\]
+也可从势能 $U=-\vect p\cdot\vect E$ 得到
+$\vect F=-\nabla U$；静电场无旋时
+$\nabla(\vect p\cdot\vect E)=(\vect p\cdot\nabla)\vect E$。力矩使 $\vect p$ 转向 $\vect E$，稳定方向为同向。
+\end{advsolution}
+
+\begin{advexamplebox}{任意取向偶极子与孤立中性导体球}\label{advA4:ex:dipole-grounded-sphere}
+半径为 $R$、总电荷为零的孤立导体球外，距球心 $a>R$ 处放置偶极矩 $\vect p$，它与连心线夹角为 $\theta$。令 $\vect p=p_\parallel\vect e_r+\vect p_\perp$。求像系、势能、力和力矩，并与接地球比较。
+\end{advexamplebox}
+\begin{advsolution}
+先构造接地球的像系：令 $d=a^2-R^2$，像点位于 $b=R^2/a$，其上有
+\[
+ q'=\frac{Rp_\parallel}{a^2},\qquad
+ \vect p'=\left(\frac Ra\right)^3
+ (p_\parallel\vect e_r-\vect p_\perp).
+\]
+偶极像的总电荷为零，但像点电荷 $q'$ 一般非零。
+原题要求球不带电，故还须在球心增加
+\[
+ q_0=-q'=-\frac{Rp_\parallel}{a^2}.
+\]
+中心像只在球面上增加常势，不破坏等势边界，同时使感应总电荷为零。
+接地与孤立中性是两种边界条件，不可互换。
+
+像场在真实偶极子位置为
+\[
+ \vect E_{\rm im}=\frac1{4\pi\varepsilon_0}
+ (A p_\parallel\vect e_r+B\vect p_\perp),
+\]
+其中
+\[
+ A=\frac R{d^2}+\frac{2R^3}{d^3}-\frac R{a^4},
+ \qquad B=\frac{R^3}{d^3}.
+\]
+因感应电荷随源线性建立，势能为
+\[
+ \boxed{U=-\frac12\vect p\cdot\vect E_{\rm im}
+ =-\frac{A p_\parallel^2+B p_\perp^2}{8\pi\varepsilon_0}}.
+\]
+相对接地球，中心补偿像使 $U$ 增加 $Rp_\parallel^2/(8\pi\varepsilon_0a^4)$。
+固定偶极矩大小和空间方向求 $-\nabla U$，径向及横向分量分别为
+\[
+ F_r=-\frac1{8\pi\varepsilon_0}
+ \left[\frac{4Ra p_\parallel^2}{d^3}
+ +\frac{6R^3a(2p_\parallel^2+p_\perp^2)}{d^4}
+ -\frac{4R p_\parallel^2}{a^5}\right],
+\]
+\[
+ \vect F_\perp=\frac{(A-B)p_\parallel\vect p_\perp}
+ {4\pi\varepsilon_0a},\qquad
+ \boxed{\vect F=F_r\vect e_r+\vect F_\perp}.
+\]
+任意倾斜偶极子还受到非径向力，不能只交出 $F_r$。
+力矩可直接由 $\vect M=\vect p\times\vect E_{\rm im}$ 求出。
+若以增加 $\theta$ 为正，其分量为
+\[
+ \boxed{M_\theta=-\frac{p^2\sin2\theta}{8\pi\varepsilon_0}
+ \left[\frac R{d^2}+\frac{R^3}{d^3}-\frac R{a^4}\right]}.
+\]
+因为方括号为正，径向的 $\theta=0,\pi$ 是稳定取向。
+若题目改为接地球，则删去 $q_0$，即所有式中删去来自 $R/a^4$ 的项。
+令 $a=R+h$、$R\to\infty$，两种边界的局部极限都为
+\[
+ U\longrightarrow-\frac{2p_n^2+p_t^2}{64\pi\varepsilon_0h^3},
+\]
+其中 $p_n,p_t$ 是相对于平面的法向、切向分量。
+\end{advsolution}
+
+\subsection{电介质}
+
+极化强度 $\vect P$ 是单位体积的电偶极矩。若每单位体积有 $n$ 个相同偶极子，$\vect P=n\vect p$。
+
+\begin{advtheorem}{极化电荷}\label{advA4:thm:polarization-charge}
+分段光滑极化分布产生的电场等效于体束缚电荷与界面束缚电荷
+\[
+ \boxed{\rho_b=-\nabla\cdot\vect P},
+ \qquad
+ \boxed{\sigma_b=(\vect P_1-\vect P_2)\cdot\vect n},
+\]
+其中 $\vect n$ 从介质1指向介质2。介质外 $\vect P_2=0$ 时
+$\sigma_b=\vect P\cdot\vect n$。
+\end{advtheorem}
+\noindent\textbf{证明}\quad 偶极势叠加为
+\[
+ \varphi=\frac1{4\pi\varepsilon_0}
+ \int_V\vect P(\vect r')\cdot
+ \frac{\vect r-\vect r'}{|\vect r-\vect r'|^3}\dd V'
+ =\frac1{4\pi\varepsilon_0}\int_V
+ \vect P\cdot\nabla'\frac1{|\vect r-\vect r'|}\dd V'.
+\]
+对 $\vect r'$ 分部积分，体项为
+$-\int(\nabla'\cdot\vect P)/R$，边界项为
+$\oint(\vect P\cdot\vect n)/R$。界面两侧法向相反，合并即得跳跃式。\hfill$\square$
+
+定义
+\[
+ \vect D=\varepsilon_0\vect E+\vect P,
+ \qquad \nabla\cdot\vect D=\rho_f.
+\]
+线性各向同性介质中
+$\vect P=\varepsilon_0\chi_e\vect E$，故
+$\vect D=\varepsilon\vect E$、
+$\varepsilon=\varepsilon_0(1+\chi_e)$，场能密度为
+$w=\tfrac12\vect D\cdot\vect E$。
+
+\begin{advexamplebox}{位移极化的极化率}\label{advA4:ex:displacement-polarization}
+把分子视为电荷 $\pm Q$ 的一维谐振子，相对位移势能为 $kx^2/2$，数密度为 $n$。求自由能系数 $\alpha$ 与电极化率 $\chi_e$。
+\end{advexamplebox}
+\begin{advsolution}
+平衡时 $kx=QE$，单分子偶极矩
+$p=Qx=Q^2E/k$。所以
+\[
+ P=np=\frac{nQ^2}{k}E.
+\]
+若自由能写成 $f=f_0+\alpha P^2/2-\vect P\cdot\vect E$，极值条件为 $\alpha P=E$，因此
+\[
+ \boxed{\alpha=\frac{k}{nQ^2}},
+ \qquad
+ \boxed{\chi_e=\frac{P}{\varepsilon_0E}
+ =\frac{nQ^2}{\varepsilon_0k}}.
+\]
+$k$ 越大越难极化，$n,Q$ 越大越易极化，趋势正确。三维各向同性束缚若三个方向劲度相同，结果逐方向相同。
+\end{advsolution}
+
+\begin{advexamplebox}{取向极化与 Langevin 函数}\label{advA4:ex:orientation-polarization}
+数密度为 $n$ 的永久偶极矩 $p$ 在温度 $T$ 下达到热平衡。求极化强度的精确式和弱场极化率。
+\end{advexamplebox}
+\begin{advsolution}
+取 $\vect E$ 为极轴，单偶极能量 $U=-pE\cos\theta$。令
+$x=pE/(k_BT)$，配分函数的角部分为
+\[
+ Z_1=2\pi\int_0^\pi\e^{x\cos\theta}\sin\theta\dd\theta
+ =4\pi\frac{\sinh x}{x}.
+\]
+平均投影
+\[
+ \langle p\cos\theta\rangle
+ =p\partial_x\ln Z_1
+ =p\left(\coth x-\frac1x\right)
+ =p\mathcal L(x).
+\]
+因此
+\[
+ \boxed{P=np\mathcal L\!\left(\frac{pE}{k_BT}\right)}.
+\]
+弱场 $\mathcal L(x)=x/3+O(x^3)$，故
+\[
+ P=\frac{np^2}{3k_BT}E,\qquad
+ \boxed{\alpha=\frac{3k_BT}{np^2}},
+ \quad
+ \boxed{\chi_e=\frac{np^2}{3\varepsilon_0k_BT}}.
+\]
+强场 $x\to\infty$ 时 $P\to np$，正确体现饱和而不是无限线性增长。
+\end{advsolution}
+
+\begin{advtheorem}{Helmholtz 分解}\label{advA4:thm:helmholtz}
+设 $\vect F$ 在区域 $V$ 内足够光滑。定义
+\[
+ \Phi(\vect r)=\frac1{4\pi}\int_V
+ \frac{\nabla'\cdot\vect F(\vect r')}{|\vect r-\vect r'|}\dd V'
+ -\frac1{4\pi}\oint_{\partial V}
+ \frac{\vect F(\vect r')\cdot\dd\vect S'}{|\vect r-\vect r'|},
+\]
+\[
+ \vect A(\vect r)=\frac1{4\pi}\int_V
+ \frac{\nabla'\times\vect F(\vect r')}{|\vect r-\vect r'|}\dd V'
+ -\frac1{4\pi}\oint_{\partial V}
+ \frac{\dd\vect S'\times\vect F(\vect r')}{|\vect r-\vect r'|}.
+\]
+则
+\[
+ \boxed{\vect F=-\nabla\Phi+\nabla\times\vect A}.
+\]
+在全空间且场充分衰减时边界项消失；无旋场可写成梯度，无散场可写成旋度。
+\end{advtheorem}
+\noindent\textbf{证明}\quad 对 $G=1/(4\pi|\vect r-\vect r'|)$ 使用
+$\nabla^2G=-\delta^{(3)}(\vect r-\vect r')$ 和矢量恒等式
+\[
+ \nabla\times\nabla\times(G\vect F')
+ =\nabla[\nabla\cdot(G\vect F')]-\nabla^2(G\vect F').
+\]
+对 $\vect r'$ 分部积分，把导数从 $\vect F'$ 移到 $G$，体积分的边界项恰好产生定理中的两个曲面积分；其余体积分合并为
+$-\int_V(\nabla^2G)\vect F'\dd V'=\vect F(\vect r)$。这也说明若不规定边界行为，势并不唯一。\hfill$\square$
+
+全空间静电势与电场因而为
+\[
+ \varphi(\vect r)=\frac1{4\pi\varepsilon_0}
+ \int\frac{\rho(\vect r')}{|\vect r-\vect r'|}\dd V',
+\]
+\[
+ \vect E(\vect r)=\frac1{4\pi\varepsilon_0}
+ \int\frac{\rho(\vect r')(\vect r-\vect r')}{|\vect r-\vect r'|^3}\dd V'.
+\]
+环路积分 $\oint\vect E\cdot\dd\vect l=0$，通量满足
+$\oint\vect E\cdot\dd\vect S=Q_{\rm in}/\varepsilon_0$。点电荷穿过任意开曲面的通量为
+$q\Omega/(4\pi\varepsilon_0)$，其中
+$\Omega=\int_S\dd\vect S\cdot\vect e_r/r^2$ 是有向立体角。
+
+\begin{advexamplebox}{圆锥立体角与球坐标立体角元}\label{advA4:ex:solid-angle}
+半顶角为 $\alpha$ 的圆锥从顶点截取单位球面。求其立体角、$\alpha$ 改变时的立体角元，并推广到球坐标一般面元。
+\end{advexamplebox}
+\begin{advsolution}
+单位球面上圆锥对应 $0\le\theta\le\alpha$，故
+\[
+ \boxed{\Omega=\int_0^{2\pi}\!\int_0^\alpha
+ \sin\theta\dd\theta\dd\phi=2\pi(1-\cos\alpha)}.
+\]
+微分得
+$\dd\Omega=2\pi\sin\alpha\dd\alpha$。一般球坐标面元在半径 $r$ 的球面上为
+\[
+ \dd S=r^2\sin\theta\dd\theta\dd\phi,
+ \qquad
+ \boxed{\dd\Omega=\frac{\dd S}{r^2}
+ =\sin\theta\dd\theta\dd\phi}.
+\]
+若开曲面法向与视线夹角为 $\beta$，则
+$\dd\Omega=(\cos\beta/r^2)\dd S$。$\alpha=\pi$ 时得到 $4\pi$，全空间极限正确。
+\end{advsolution}
+
+\begin{advexamplebox}{匀强场与共轴电偶极子的电场线}\label{advA4:ex:dipole-uniform-field-lines}
+匀强电场 $E_0\vect e_z$ 中放置位于原点、偶极矩平行或反平行于 $\vect e_z$ 的点偶极子。求轴对称电场线方程。
+\end{advexamplebox}
+\begin{advsolution}
+令 $s=+1$ 表示同向，$s=-1$ 表示反向，$p>0$。总电势为
+\[
+ \varphi=-E_0r\cos\theta+s\frac{p\cos\theta}{4\pi\varepsilon_0r^2}.
+\]
+轴对称无旋场可用通量函数 $\Psi$ 表示
+\[
+ E_r=\frac1{r^2\sin\theta}\partial_\theta\Psi,
+ \qquad
+ E_\theta=-\frac1{r\sin\theta}\partial_r\Psi.
+\]
+对匀强场和偶极场分别积分，得到
+\[
+ \Psi_{\rm uni}=\frac12E_0r^2\sin^2\theta,
+ \qquad
+ \Psi_{\rm dip}=s\frac{p}{4\pi\varepsilon_0r}\sin^2\theta.
+\]
+电场线沿线 $\Psi$ 不变，因此
+\[
+ \boxed{\sin^2\theta\left(
+ \frac12E_0r^2+s\frac{p}{4\pi\varepsilon_0r}
+ \right)=C}.
+\]
+同向时两条轴上偶极场都与匀强场同向，因而轴上无零点；赤道面有半径 $r=(p/4\pi\varepsilon_0E_0)^{1/3}$ 的零场环。反向时零点在正、负两条轴上，均满足 $r=(2p/4\pi\varepsilon_0E_0)^{1/3}$。把 $p$ 置零退回平行直线，把 $E_0$ 置零得到偶极场线 $r\propto\sin^2\theta$。
+\end{advsolution}
+
+静电能可写成
+\[
+ U=\frac12\int\rho\varphi\dd V.
+\]
+若 $\rho=\rho_1+\rho_2$、$\varphi=\varphi_1+\varphi_2$，交叉项是两个体系的相互作用能。
+
+\begin{advtheorem}{Green 互易关系}\label{advA4:thm:green-reciprocity}
+对在同一边界条件下的两组静电解，若边界项为零，则
+\[
+ \boxed{\int_V\rho_1\varphi_2\dd V=
+ \int_V\rho_2\varphi_1\dd V}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad Green 第二恒等式给出
+\[
+ \int_V(\varphi_1\nabla^2\varphi_2-\varphi_2\nabla^2\varphi_1)\dd V
+ =\oint_{\partial V}(\varphi_1\partial_n\varphi_2-\varphi_2\partial_n\varphi_1)\dd S.
+\]
+共同的齐次 Dirichlet 或 Neumann 边界使右边为零；代入
+$\nabla^2\varphi_i=-\rho_i/\varepsilon_0$ 即得。\hfill$\square$
+
+\begin{advtheorem}{静电场能}\label{advA4:thm:electrostatic-energy}
+在场充分衰减或边界项消失时，
+\[
+ \boxed{\frac12\int\rho\varphi\dd V
+ =\frac{\varepsilon_0}{2}\int E^2\dd V}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 用 $\rho=-\varepsilon_0\nabla^2\varphi$ 分部积分：
+\[
+ \frac12\int\rho\varphi\dd V
+ =-\frac{\varepsilon_0}{2}\oint\varphi\nabla\varphi\cdot\dd\vect S
+ +\frac{\varepsilon_0}{2}\int|\nabla\varphi|^2\dd V.
+\]
+边界项消失且 $\vect E=-\nabla\varphi$，即得结论。场能非负，但点电荷自能发散；比较不同构型时应分离并扣除与位置无关的自能。
+
+\begin{advexamplebox}{带电线段、旋转椭球与等势面}\label{advA4:ex:spheroid}
+均匀带电线段位于 $z$ 轴 $-c<z'<c$。完成以下讨论：
+\begin{enumerate}
+ \item 证明等势面是长旋转椭球，电场线是正交的双曲线；
+ \item 求长半轴 $A$、短半轴 $B$ 的孤立导体长旋转椭球电容；
+ \item 写出其表面电荷密度；
+ \item 给出扁旋转椭球的对应结果和等效像电荷分布；
+ \item 在长轴上距中心 $l>A$ 处放点电荷 $Q$ 并把椭球接地，求椭球总感应电荷。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+记到线段两端的距离为 $r_\pm$。线电荷密度为 $\lambda$ 时
+\[
+ \varphi=\frac\lambda{4\pi\varepsilon_0}
+ \int_{-c}^{c}\frac{\dd z'}{\sqrt{\rho^2+(z-z')^2}}
+ =\frac\lambda{4\pi\varepsilon_0}
+ \ln\frac{r_++r_-+2c}{r_++r_--2c}.
+\]
+令长旋转椭球坐标
+\[
+ \xi=\frac{r_++r_-}{2c},\qquad
+ \eta=\frac{r_+-r_-}{2c},
+\]
+则 $\varphi$ 只依赖 $\xi$；$\xi=$ 常数是焦点为 $\pm c$ 的长旋转椭球，$\eta=$ 常数是与它正交的双曲面，因此后者给出电场线。
+
+导体表面 $\xi=\xi_0=A/c$，其中 $c=\sqrt{A^2-B^2}$。令
+$Q_0(\xi)=\tfrac12\ln[(\xi+1)/(\xi-1)]$，外部势为
+\[
+ \varphi(\xi)=V\frac{Q_0(\xi)}{Q_0(\xi_0)}.
+\]
+远处 $Q_0(\xi)\sim1/\xi=c/r$，与 $Q/(4\pi\varepsilon_0r)$ 比较得到
+\[
+ \boxed{C_{\rm prolate}=\frac QV
+ =\frac{4\pi\varepsilon_0c}{Q_0(A/c)}
+ =\frac{8\pi\varepsilon_0c}
+ {\ln[(A+c)/(A-c)]}}.
+\]
+用尺度因子
+$h_\xi=c\sqrt{(\xi^2-\eta^2)/(\xi^2-1)}$，表面法向场为
+\[
+ E_n=-\frac1{h_\xi}\partial_\xi\varphi
+ =\frac{V}{cQ_0(\xi_0)
+ \sqrt{(\xi_0^2-1)(\xi_0^2-\eta^2)}}.
+\]
+故
+\[
+ \boxed{\sigma(\eta)=\varepsilon_0E_n}.
+\]
+它在尖端 $|\eta|=1$ 较大，符合曲率越大电荷越集中的物理图像。
+
+扁旋转椭球取极半轴 $A$、赤道半轴 $B>A$，令
+$c=\sqrt{B^2-A^2}$。把 $c$ 作解析延拓可得
+\[
+ \boxed{C_{\rm oblate}=
+ \frac{4\pi\varepsilon_0c}{\arctan(c/A)}}.
+\]
+它可由焦盘 $s<c$ 上的等效电荷产生，盘面密度可取
+\[
+ \sigma_{\rm disk}(s)=\frac{Q}{2\pi c\sqrt{c^2-s^2}},
+ \qquad 0<s<c,
+\]
+其积分为 $Q$，所产生的等势面正是共焦扁旋转椭球。$A\to B$ 时两种电容都趋于 $4\pi\varepsilon_0A$，球极限通过。
+
+最后用互易定理。令状态1为外点电荷 $Q$ 与接地椭球，状态2为椭球保持单位电势且无外点电荷。状态2在轴上 $l$ 处的势为
+\[
+ \varphi_2(l)=\frac{Q_0(l/c)}{Q_0(A/c)}.
+\]
+互易关系给出 $Q\varphi_2(l)+Q_{\rm ind}\cdot1=0$，所以
+\[
+ \boxed{Q_{\rm ind}=-Q\frac{Q_0(l/c)}{Q_0(A/c)}
+ =-Q\frac{\ln[(l+c)/(l-c)]}{\ln[(A+c)/(A-c)]}}.
+\]
+$l\to\infty$ 时感应总电荷趋零，$l\downarrow A$ 时趋于 $-Q$，极限合理。
+\end{advsolution}
+
+\subsection{静电边值问题与格林函数}
+
+Poisson 方程与无源区的 Laplace 方程为
+\[
+ \nabla^2\varphi=-\frac\rho{\varepsilon_0},
+ \qquad \nabla^2\varphi=0.
+\]
+Dirichlet 问题给定 $\varphi|_{\partial V}$，Neumann 问题给定
+$\partial_n\varphi|_{\partial V}$；后者还须满足由 Gauss 定理得到的相容条件，并且解只确定到一个加法常数。
+
+Green 函数满足
+\[
+ \nabla'^2G(\vect r,\vect r')=-4\pi\delta^{(3)}(\vect r-\vect r').
+\]
+Dirichlet Green 函数取 $G_D=0$ 于边界，解为
+\[
+ \varphi(\vect r)=\frac1{4\pi\varepsilon_0}\int_V
+ \rho(\vect r')G_D(\vect r,\vect r')\dd V'
+ -\frac1{4\pi}\oint_{\partial V}
+ \varphi(\vect r')\partial_{n'}G_D\dd S'.
+\]
+Neumann Green 函数取常数法向导数以满足积分相容条件；选定势的加权平均后，解由体电荷项和
+$G_N\partial_n\varphi$ 的边界项给出。
+
+\begin{advtheorem}{静电 Green 函数的对称性}\label{advA4:thm:green-symmetry}
+在相同的齐次边界条件和同一规范常数约定下，
+\[
+ \boxed{G_D(\vect r,\vect r')=G_D(\vect r',\vect r)},
+ \qquad
+ \boxed{G_N(\vect r,\vect r')=G_N(\vect r',\vect r)}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 在 Green 第二恒等式中取
+$u(\vect x)=G(\vect r,\vect x)$、
+$v(\vect x)=G(\vect r',\vect x)$。体积分利用各自的 $\delta$ 源，等于
+$-4\pi G(\vect r',\vect r)+4\pi G(\vect r,\vect r')$。Dirichlet 情形边界上两函数都为零；Neumann 情形两者法向导数相同为规定常数，边界项在固定平均值规范下也相消，所以体积分为零。\hfill$\square$
+
+\begin{advexamplebox}{上半空间的 Dirichlet 与 Neumann Green 函数}\label{advA4:ex:half-space-green}
+区域为 $z>0$，源点为 $\vect r_0=(x_0,y_0,z_0)$，镜像点为
+$\vect r_0^*=(x_0,y_0,-z_0)$。求两类 Green 函数并解释像电荷法。
+\end{advexamplebox}
+\begin{advsolution}
+令 $R_-=|\vect r-\vect r_0|$、$R_+=|\vect r-\vect r_0^*|$。在平面 $z=0$ 上 $R_-=R_+$，故
+\[
+ \boxed{G_D=\frac1{R_-}-\frac1{R_+}}
+\]
+满足 $G_D=0$。它等价于在镜像点放置反号像电荷，适用于接地平面。
+
+对 Neumann 条件，平面上两个核的法向导数互为相反数，所以
+\[
+ \boxed{G_N=\frac1{R_-}+\frac1{R_+}}
+\]
+满足 $\partial_nG_N=0$，等价于同号像电荷。前者使势为奇延拓，后者使势为偶延拓。代回
+$\nabla^2G=-4\pi\delta$ 时，镜像点在区域外，不引入额外真实源。Green 函数均关于 $\vect r,\vect r_0$ 对称。
+\end{advsolution}
+
+\begin{advexamplebox}{球外区域的两类 Green 函数}\label{advA4:ex:sphere-green}
+对半径 $R$ 的球外区域 $r>R$，源点 $r_0>R$。求 Dirichlet Green 函数；给出零法向导数 Neumann Green 函数的球谐展开，并说明为什么后者不能由单个像点电荷完成。
+\end{advexamplebox}
+\begin{advsolution}
+令
+\[
+ \vect r_0^*=\frac{R^2}{r_0^2}\vect r_0.
+\]
+在球面上有
+$|\vect r-\vect r_0^*|=(R/r_0)|\vect r-\vect r_0|$，故
+\[
+ \boxed{G_D(\vect r,\vect r_0)=
+ \frac1{|\vect r-\vect r_0|}
+ -\frac{R/r_0}{|\vect r-\vect r_0^*|}}.
+\]
+第二项是位于球内的像电荷 $q^*=-(R/r_0)q$，因此不在求解区域内。
+
+对 Neumann 条件，把轴取在 $\vect r_0$ 方向。自由核在球面附近展开为
+\[
+ \frac1{|\vect r-\vect r_0|}
+ =\sum_{l=0}^\infty\frac{r^l}{r_0^{l+1}}P_l(\cos\gamma)
+ \quad (r<r_0).
+\]
+加入在区域内无奇点、在无穷远衰减的项 $a_lr^{-l-1}P_l$，令
+$\partial_rG_N|_{r=R}=0$，逐阶得到
+\[
+ a_l=\frac{l}{l+1}\frac{R^{2l+1}}{r_0^{l+1}},\qquad l\ge1.
+\]
+因此可取
+\[
+ \boxed{G_N=\frac1{|\vect r-\vect r_0|}
+ +\sum_{l=1}^\infty\frac{l}{l+1}
+ \frac{R^{2l+1}}{r^{l+1}r_0^{l+1}}P_l(\cos\gamma)}.
+\]
+单个像点的展开系数只能按固定几何比变化，不可能产生逐阶的 $l/(l+1)$，所以 Neumann 球问题通常需要连续像分布或无穷级数。
+\end{advsolution}
+
+\begin{advexamplebox}{两半球维持相反电势}\label{advA4:ex:split-sphere-potential}
+半径 $R$ 的球面上，北半球维持 $+V$、南半球维持 $-V$，赤道绝缘缝宽忽略。求球内电势。
+\end{advexamplebox}
+\begin{advsolution}
+边值只依赖 $\theta$，球内正则轴对称解为
+\[
+ \varphi(r,\theta)=\sum_{l=0}^\infty A_l
+ \left(\frac rR\right)^lP_l(\cos\theta).
+\]
+令 $u=\cos\theta$，边值 $f(u)=V\operatorname{sgn}u$ 是奇函数，所以偶数 $l$ 系数为零。由 Legendre 正交性，对奇数 $l$，
+\[
+ A_l=\frac{2l+1}{2}\int_{-1}^1f(u)P_l(u)\dd u
+ =V(2l+1)\int_0^1P_l(u)\dd u.
+\]
+利用
+$\int P_l\dd u=[P_{l+1}-P_{l-1}]/(2l+1)$，得到
+\[
+ \boxed{A_l=V[P_{l-1}(0)-P_{l+1}(0)]\quad(l\text{ 奇})}.
+\]
+故
+\[
+ \boxed{\varphi=V\sum_{n=0}^\infty
+ [P_{2n}(0)-P_{2n+2}(0)]
+ \left(\frac rR\right)^{2n+1}P_{2n+1}(\cos\theta)}.
+\]
+前两项是
+$\varphi=(3V/2)(r/R)P_1-(7V/8)(r/R)^3P_3+\cdots$。中心势为0，符合南北反对称；在任意 $r<R$ 级数绝对收敛。
+\end{advsolution}
+
+\begin{advexamplebox}{六面给定电势的立方体中心}\label{advA4:ex:cube-center-potential}
+立方体两相对面维持 $+V$，其余四面维持 $-V$，棱边窄缝忽略。求中心电势。
+\end{advexamplebox}
+\begin{advsolution}
+Dirichlet 解对边值线性。中心关于立方体的六个面完全对称，因此从任一面传到中心的调和测度相同；六个权重之和为1，所以每个面权重是 $1/6$。棱和顶点的集合面积为零，不影响调和测度。于是
+\[
+ \boxed{\varphi(0)=\frac16[2(+V)+4(-V)]=-\frac V3}.
+\]
+也可把六个“单独一面为1、其余面为0”的解相加：常数边界1的解处处为1，中心对称性迫使六个单面解在中心相等，故各为 $1/6$。这避免了不必要的三重 Fourier 级数。
+\end{advsolution}
+
+\begin{advtheorem}{球谐函数加法定理}\label{advA4:thm:spherical-addition}
+单位球面上两方向 $(\theta,\phi)$ 与 $(\theta',\phi')$ 夹角为 $\gamma$，则
+\[
+ \boxed{P_l(\cos\gamma)=\frac{4\pi}{2l+1}
+ \sum_{m=-l}^{l}Y_{lm}(\theta,\phi)Y_{lm}^*(\theta',\phi')}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 固定第二方向，右边是关于第一方向的 $l$ 阶球谐函数，并在同时旋转两方向时不变，因此只能是 $C_lP_l(\cos\gamma)$。令两方向重合并在球面上积分：正交归一性给出右边积分为
+$\sum_m1=2l+1$；而旋转对称性说明
+$\sum_m|Y_{lm}|^2$ 是常数，其球面积分为 $2l+1$，故常数为 $(2l+1)/(4\pi)$。于是 $C_l=(2l+1)/(4\pi)$ 的倒数，得到公式。\hfill$\square$
+
+\begin{advexamplebox}{接地球内的均匀带电直径}\label{advA4:ex:charged-diameter-in-sphere}
+半径 $R$ 的接地导体球内，沿 $z$ 轴直径放置总电荷 $Q$ 的均匀细线。求球内电势的一种完整表示。
+\end{advexamplebox}
+\begin{advsolution}
+线密度 $\lambda=Q/(2R)$。球内 Dirichlet Green 函数对位于
+$\vect r'=z'\vect e_z$ 的源点为
+\[
+ G_D(\vect r,\vect r')=
+ \frac1{|\vect r-\vect r'|}
+ -\frac{R/|z'|}{|\vect r-(R^2/z')\vect e_z|},
+\]
+其中 $z'=0$ 时第二项取连续极限 $1/R$。因此
+\[
+ \boxed{\varphi(\vect r)=\frac{\lambda}{4\pi\varepsilon_0}
+ \int_{-R}^{R}\left[
+ \frac1{|\vect r-z'\vect e_z|}
+ -\frac{R/|z'|}{|\vect r-(R^2/z')\vect e_z|}
+ \right]\dd z'}.
+\]
+第二项表示球外轴线上的连续像电荷分布。对任意球面点
+$|\vect r|=R$，反演恒等式
+\[
+ \left|\vect r-\frac{R^2}{z'}\vect e_z\right|
+ =\frac R{|z'|}|\vect r-z'\vect e_z|
+\]
+使方括号逐点为零，所以边界条件被精确满足。积分关于 $z'$ 对称，故势关于赤道对称；线端点的理想化会造成局部奇异，但球内离开线段处势有限且满足 Laplace 方程。
+\end{advsolution}
+
+\subsection{静电平衡与电容矩阵}
+
+设有若干导体。电势与各导体电荷量线性相关，可写成
+$\varphi_i=P_{ij}q_j$。其逆关系为
+$q_i=C_{ij}\varphi_j$，$\mathsf C=\mathsf P^{-1}$ 称电容矩阵；$C_{ii}$ 是自容，非对角项描述互容。
+
+\begin{advtheorem}{静电能是电荷的正定二次型}\label{advA4:thm:capacitance-energy}
+导体体系的静电能为
+\[
+ \boxed{U=\frac12P_{ij}q_iq_j
+ =\frac12C_{ij}\varphi_i\varphi_j\ge0},
+\]
+且
+\[
+ \varphi_i=\frac{\partial U}{\partial q_i}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 准静态地把电荷从零增加到最终值。在线性体系中，中间态 $sq_i$ 的电势为 $s\varphi_i$，所做功
+\[
+ U=\int_0^1(s\varphi_i)q_i\dd s=\frac12q_i\varphi_i.
+\]
+代入两种线性关系得到两个二次型。另一方面
+$U=(\varepsilon_0/2)\int E^2\dd V\ge0$，除所有电荷为零外严格为正，所以 $\mathsf P$（在去掉整体规范自由度后）正定。对 $q_i$ 求偏导得到导体电势。\hfill$\square$
+
+\begin{advtheorem}{电容矩阵的互易性}\label{advA4:thm:capacitance-reciprocity}
+\[
+ \boxed{P_{ij}=P_{ji},\qquad C_{ij}=C_{ji}}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 取状态1仅第 $i$ 个导体带单位电荷，状态2仅第 $j$ 个导体带单位电荷。Green 互易关系给出状态1的第 $j$ 个导体电势等于状态2的第 $i$ 个导体电势，即
+$P_{ji}=P_{ij}$。实对称可逆矩阵的逆仍对称，所以
+$C_{ij}=C_{ji}$。等价地，二次型 $U$ 的混合二阶导数可交换。\hfill$\square$
+
+
+\paragraph{参考电势、互容的符号与两导体模型。}
+以上正定性采用无穷远电势为零并保留对无穷远的场能。若只保留两导体间的理想电容 $C$，则
+\[
+ \binom{q_1}{q_2}=C\begin{pmatrix}1&-1\\-1&1\end{pmatrix}
+ \binom{\varphi_1}{\varphi_2},\qquad
+ U=\frac C2(\varphi_1-\varphi_2)^2.
+\]
+此矩阵只有半正定性，共同平移电势不改变场，故不能直接求逆；选第二导体接地后，剩余关系才是 $q_1=C\varphi_1$。矩阵非对角元通常为负，而工程上把正数 $-C_{12}$ 称互电容，必须先说明约定。
+以半径 $a<b$、长度 $L\gg b$ 的同轴圆柱为例，忽略端部，Gauss 定律给 $E(r)=q/(2\pi\varepsilon Lr)$，从而
+\[
+ \varphi_1-\varphi_2=\frac q{2\pi\varepsilon L}\ln\frac ba,
+ \qquad C=\frac{2\pi\varepsilon L}{\ln(b/a)}.
+\]
+将场能积分 $\int_a^b\varepsilon E^2(2\pi rL)\dd r/2$ 代入，恰得 $q^2/(2C)$；窄隙 $b-a\ll a$ 时又趋于平行板结果 $\varepsilon(2\pi aL)/(b-a)$。

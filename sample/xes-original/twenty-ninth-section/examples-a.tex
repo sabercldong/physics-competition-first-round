@@ -1,0 +1,344 @@
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.1【正方形循环】}
+小明制作了一个气缸，封住了一些理想气体，并让气体在 $P$--$V$ 图中完成三种顺时针循环。三种循环
+具有相同的边界压强 $P_1,P_2$ 和边界体积 $V_1,V_2$：
+
+（1）矩形循环；（2）上三角循环；（3）下三角循环；（4）比较这三种循环以及不同大小循环的效率。
+
+下图给出三种循环的形状与运行方向。设气体的定容摩尔
+热容为 $c_v$，并在所考察温区内近似不变。
+\threeCyclesDiagram
+\figcap{矩形、上三角与下三角循环。三个图使用相同的 $P_1,P_2,V_1,V_2$。}\label{fig:three-geometric-cycles}
+\end{origexamplebox}
+
+\begin{xesolution}
+记
+\begin{equation*}
+  \Delta P=P_2-P_1,\qquad \Delta V=V_2-V_1,
+  \qquad \alpha=\frac{c_v}{R}.
+\end{equation*}
+对任意过程，理想气体的温度满足 $nRT=PV$，所以
+\begin{equation*}
+  \Delta U=n c_v\Delta T=\alpha\Delta(PV),
+  \qquad Q=\Delta U+W^{\rm out}.
+\end{equation*}
+
+图\ref{fig:three-geometric-cycles}中的箭头均围出正的循环功，但各段吸热量并不相同。
+
+（1）矩形循环的净功就是矩形面积：
+\begin{equation*}
+  W_{\text{矩}}=\Delta P\,\Delta V.
+\end{equation*}
+吸热发生在左侧等容升压段与上侧等压膨胀段。两段吸热量分别为
+\begin{equation*}
+  Q_{V_1}=\alpha V_1\Delta P,
+  \qquad
+  Q_{P_2}=(\alpha+1)P_2\Delta V.
+\end{equation*}
+因此
+\begin{equation}
+  \boxed{\eta_{\text{矩}}=
+  \frac{\Delta P\Delta V}
+  {\alpha V_1\Delta P+(\alpha+1)P_2\Delta V}}.
+\end{equation}
+
+（2）上三角循环的顺时针面积为矩形的一半。它的吸热过程仍是完整的左侧等容升压段和上侧等压膨胀段；
+从右上角沿斜线回到左下角时，$P,V,T$ 都下降，同时外界对气体做功，该段为放热。因此
+\begin{equation}
+  \boxed{\eta_{\rm upper}=
+  \frac{\tfrac12\Delta P\Delta V}
+  {\alpha V_1\Delta P+(\alpha+1)P_2\Delta V}}.
+\end{equation}
+
+（3）下三角循环从左下角沿直线膨胀到右上角时吸热，其余等容降压、等压压缩两段都放热。直线段对外功
+等于梯形面积，故吸热量为
+\begin{align*}
+  Q_{\rm diag}
+  &=\alpha(P_2V_2-P_1V_1)
+    +\frac{P_1+P_2}{2}(V_2-V_1).
+\end{align*}
+于是
+\begin{equation}
+  \boxed{\eta_{\rm lower}=
+  \frac{\tfrac12\Delta P\Delta V}
+  {\alpha(P_2V_2-P_1V_1)+\tfrac12(P_1+P_2)\Delta V}}.
+\end{equation}
+
+为了比较，令矩形循环的吸热量为 $Q_{\text{矩}}$、净功为 $W_{\text{矩}}$。下三角斜边吸热量可化为
+\begin{equation*}
+  Q_{\rm diag}=Q_{\text{矩}}-\frac12W_{\text{矩}}.
+\end{equation*}
+又因为这里的矩形热机有 $0<W_{\text{矩}}<Q_{\text{矩}}$，所以
+\begin{equation*}
+  \boxed{\eta_{\text{矩}}>\eta_{\rm lower}>\eta_{\rm upper}}.
+\end{equation*}
+
+（4）循环画得“面积更大”并不自动意味着效率更高。效率只依赖无量纲比值
+$P_2/P_1$、$V_2/V_1$ 和 $c_v/R$。若把循环关于原点相似放大，使这两个比值不变，功和吸热量按同一
+比例增大，效率不变；若固定 $P_1,V_1$ 而改变 $P_2,V_2$，则必须代入上述公式具体比较。功率、每循环
+输出功和效率是三个不同概念。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.2【新式气缸】}
+小明制作了一种新式气缸，气体在其中完成下列循环：
+
+（1）两绝热、两等温循环；（2）两绝热、两等体循环；（3）两绝热、两等压循环。
+
+试用各状态点的温度、体积或压强，以最简单形式表示循环效率。取定量、定组成的理想气体，
+摩尔热容在整个温区内近似不变，所有绝热段均可逆。下图依次为卡诺、奥托和布雷顿循环。
+\standardHeatCyclesDiagram
+\figcap{三种循环的状态点与方向。均按 $1\to2\to3\to4\to1$ 运行；各曲线由同一气体的状态方程确定。}\label{fig:three-standard-cycles}
+\end{origexamplebox}
+
+\begin{xesolution}
+三种循环都用绝热段连接吸热、放热过程。绝热段本身 $Q=0$，关键是分别计算另外两段的吸、放热量。
+
+在图\ref{fig:three-standard-cycles}中，卡诺循环的 $1\to2$ 为高温等温膨胀；奥托与布雷顿循环的
+$1\to2$ 则为绝热压缩。下面的温度下标严格沿用各图的状态号。
+
+（1）两条等温线温度分别为 $T_h,T_c$。高温等温膨胀吸热，低温等温压缩放热。由两条绝热线
+$TV^{\gamma-1}=\mathrm{const}$ 有
+\[
+ T_hV_2^{\gamma-1}=T_cV_3^{\gamma-1},\qquad
+ T_hV_1^{\gamma-1}=T_cV_4^{\gamma-1}.
+\]
+相除得 $(V_2/V_1)^{\gamma-1}=(V_3/V_4)^{\gamma-1}$。
+记两边的体积比为 $r>1$，两等温段的吸、放热量大小因此为
+\begin{equation*}
+  Q_h=nRT_h\ln r,\qquad Q_c=nRT_c\ln r.
+\end{equation*}
+故 Carnot 循环效率为
+\begin{equation}
+  \boxed{\eta_{\rm C}=1-\frac{T_c}{T_h}}.
+\end{equation}
+
+（2）两条等容线位于 $V_{\min}$、$V_{\max}$，定义压缩比
+$r=V_{\max}/V_{\min}>1$。等容吸、放热量为
+\begin{equation*}
+  Q_h=n c_v(T_3-T_2),\qquad Q_c=n c_v(T_4-T_1).
+\end{equation*}
+两条绝热线给出
+\begin{equation*}
+  \frac{T_2}{T_1}=\frac{T_3}{T_4}=r^{\gamma-1},
+\end{equation*}
+分别写成 $T_2=r^{\gamma-1}T_1$ 和 $T_3=r^{\gamma-1}T_4$，相减得
+$T_3-T_2=r^{\gamma-1}(T_4-T_1)$。代入热量比并约去 $nc_v$，
+得到 $Q_c/Q_h=1/r^{\gamma-1}$，奥托循环效率为
+\begin{equation}
+  \boxed{\eta_{\rm O}=1-\frac{1}{r^{\gamma-1}}}.
+\end{equation}
+
+（3）两条等压线压强分别为 $P_h,P_l$，定义压强比 $r_p=P_h/P_l>1$。等压吸、放热量为
+\begin{equation*}
+  Q_h=n c_p(T_3-T_2),\qquad Q_c=n c_p(T_4-T_1).
+\end{equation*}
+由绝热关系 $T^\gamma/P^{\gamma-1}=\mathrm{const}$，
+\begin{equation*}
+  \frac{T_2}{T_1}=\frac{T_3}{T_4}=r_p^{(\gamma-1)/\gamma}.
+\end{equation*}
+令 $b=r_p^{(\gamma-1)/\gamma}$，则 $T_2=bT_1,T_3=bT_4$，所以
+$T_3-T_2=b(T_4-T_1)$。约去热量比中的 $nc_p$，得到布雷顿循环效率
+\begin{equation}
+  \boxed{\eta_{\rm B}=1-\frac{1}{r_p^{(\gamma-1)/\gamma}}}.
+\end{equation}
+三式的共同结构都是 $\eta=1-Q_c/Q_h$；区别在于吸、放热段受何种状态量约束。
+这里 $Q_h,Q_c$ 均为正的热量大小。效率无量纲，且在温差、压缩比或压强比
+分别趋于零、1、1时趋于零；同一气体、同一可逆绝热条件必须贯穿整个推导。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.3【变化的热容】}
+小明发现，气体在一段过程中对应的过程热容未必保持为常数。为验证这一点，他设计了一摩尔理想气体
+经历的过程
+\begin{equation*}
+  \frac{P}{P_0}+\frac{V}{V_0}=1.
+\end{equation*}
+设气体的定容摩尔热容为 $c_v$，求整个过程中摩尔过程热容随体积的变化关系。
+\end{origexamplebox}
+
+\begin{xesolution}
+过程热容定义为 $C=\delta Q/\dd T$。它是过程属性，不等同于气体本身的 $c_v$ 或 $c_p$。
+由 $P>0,V>0$，本题的物理区间为 $0<V<V_0$；两截距只是边界，不是气体可取的常温有限状态。由过程方程
+\begin{equation*}
+  P=P_0\left(1-\frac{V}{V_0}\right),
+\end{equation*}
+一摩尔理想气体的温度为
+\begin{equation*}
+  T(V)=\frac{PV}{R}
+  =\frac{P_0}{R}\left(V-\frac{V^2}{V_0}\right),
+\end{equation*}
+从而
+\begin{equation*}
+  \frac{\dd T}{\dd V}=\frac{P_0}{R}\left(1-\frac{2V}{V_0}\right).
+\end{equation*}
+
+\variableHeatCapacityDiagram
+\figcap{线性 $P(V)$ 与相应的 $T(V)$。温度抛物线的顶点严格位于两个体积截距的中间。}\label{fig:variable-heat}
+图\ref{fig:variable-heat}中左侧压强随体积线性下降，右侧温度却先升后降，这正是过程热容变号的原因。
+
+由第一定律
+\begin{equation*}
+  \delta Q=c_v\dd T+P\dd V,
+\end{equation*}
+所以
+\begin{align*}
+  C(V)
+  &=c_v+P\frac{\dd V}{\dd T}\\
+  &=c_v+R\frac{1-V/V_0}{1-2V/V_0}.
+\end{align*}
+即
+\begin{equation}
+  \boxed{C(V)=c_v+R\frac{V_0-V}{V_0-2V}}.
+\end{equation}
+在 $V=V_0/2$ 处，温度达到最大值，温度的一阶变化为零，但热量的一阶变化仍有
+$\delta Q=P\dd V=(P_0/2)\dd V\ne0$，所以以 $\delta Q/\dd T$
+定义的过程热容发散。发散不是气体储存了无穷能量，而是“用温度变化量作分母”在温度转折点失去良好
+定义。令 $z=V/V_0$、$\alpha=c_v/R>0$，则
+\[
+ \frac{C}{R}=\frac{(\alpha+1)-(2\alpha+1)z}{1-2z},\qquad
+ z_* =\frac{\alpha+1}{2\alpha+1}\in(1/2,1).
+\]
+因此 $0<z<1/2$ 时 $C>0$；$1/2<z<z_*$ 时 $C<0$；$z=z_*$ 时 $C=0$；
+$z_*<z<1$ 时 $C>0$。膨胀经过负热容区时仍吸热，却因对外做功更多而降温。
+在零点，内能减少恰好补偿膨胀功，元热量为零。$C$ 的单位始终与 $R,c_v$ 相同。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.4【恒定的热容】}
+小明猜想，可能存在一些过程使过程热容保持不变，例如常见的等容、等压、等温和绝热过程。但逐一枚举
+容易遗漏。能否得到“过程热容为常量”的统一过程方程？
+\end{origexamplebox}
+
+\begin{xesolution}
+设一摩尔、定组成理想气体沿准静态过程的摩尔过程热容为有限常量 $C$，并取常数 $c_v,c_p$。由定义与第一定律
+\begin{equation*}
+  C\dd T=c_v\dd T+P\dd V,
+\end{equation*}
+即
+\begin{equation*}
+  (C-c_v)\dd T=P\dd V.
+\end{equation*}
+又由 $RT=PV$，
+\begin{equation*}
+  R\dd T=P\dd V+V\dd P.
+\end{equation*}
+消去 $\dd T$，得到
+\begin{equation*}
+  (C-c_v)V\dd P+(C-c_p)P\dd V=0.
+\end{equation*}
+在 $C\ne c_v$ 时两边除以 $PV(C-c_v)$ 并积分：
+\begin{equation*}
+  \frac{\dd P}{P}+k\frac{\dd V}{V}=0,
+  \qquad
+  k=\frac{C-c_p}{C-c_v},
+\end{equation*}
+所以统一的过程方程是
+\begin{equation}
+  \boxed{PV^k=\mathrm{const}},
+  \qquad
+  \boxed{k=\frac{C-c_p}{C-c_v}},
+\end{equation}
+或反解为
+\begin{equation}
+  \boxed{C=c_v+\frac{R}{1-k}}.
+\end{equation}
+这就是多方过程。它包含若干重要极限：
+\begin{center}
+\small
+\begin{tabular}{c c c}
+\toprule
+过程 & 多方指数 $k$ & 过程热容 $C$\\
+\midrule
+等压 & $0$ & $c_p$\\
+等温 & $1$ & 形式上发散（$\dd T=0$）\\
+绝热 & $\gamma$ & $0$\\
+等容 & $k\to\infty$ & $c_v$\\
+\bottomrule
+\end{tabular}
+\end{center}
+特别地，$C=c_v$ 时不能除以 $C-c_v$，应回到 $(C-c_v)\dd T=P\dd V$，直接得到 $\dd V=0$。
+$k=1$ 的等温过程通常有 $\delta Q\ne0$、$\dd T=0$，并没有一个有限的过程热容，
+只能列为 $|C|\to\infty$ 的极限。因此有限恒热容过程除等容这一单列情形外，构成
+$PV^k=\mathrm{const}$ 的一整族过程；不能把“无穷大”当作与 $c_p$ 一样的有限常数。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.5【等温大气】}
+小明研究一个简化的大气模型。假设大气经过长时间热接触后处处具有相同温度 $T$，气体平均摩尔质量
+为 $\mu$。考虑气体密度随压强改变，求压强和分子数密度随高度 $h$ 的变化关系。
+\end{origexamplebox}
+
+\begin{xesolution}
+取高度 $h$ 处厚度为 $\dd h$ 的水平气层。静力平衡要求
+\begin{equation*}
+  \dd P=-\rho g\,\dd h.
+\end{equation*}
+等温理想气体满足
+\begin{equation*}
+  \rho=\frac{\mu P}{RT},
+\end{equation*}
+故
+\begin{equation*}
+  \frac{\dd P}{P}=-\frac{\mu g}{RT}\dd h.
+\end{equation*}
+取地面 $h=0$ 处压强为 $P_0$，积分得到
+\begin{equation}
+  \boxed{P(h)=P_0\exp\!\left(-\frac{\mu gh}{RT}\right)}.
+\end{equation}
+分子数密度 $n_N=P/(k_BT)$，所以
+\begin{equation}
+  \boxed{n_N(h)=n_{N0}\exp\!\left(-\frac{\mu gh}{RT}\right)}.
+\end{equation}
+
+\isothermalAtmosphereDiagram
+\figcap{等温大气的指数分布。标高 $H$ 决定压强和数密度衰减的快慢。}\label{fig:isothermal-atmosphere}
+图\ref{fig:isothermal-atmosphere}的指数关系要求温度、成分与重力加速度近似不随高度变化。
+
+定义等温标高
+\begin{equation*}
+  \boxed{H=\frac{RT}{\mu g}},
+\end{equation*}
+则压强、质量密度和分子数密度都按 $\e^{-h/H}$ 衰减。真实大气并不等温，重力加速度和气体成分也会随
+高度改变；本题给出的是最基本的指数大气模型。
+\end{xesolution}
+
+\Needspace{10\baselineskip}
+\begin{origexamplebox}{例题 20.6【毛细现象】}
+小明把一根内半径为 $R$ 的玻璃管插入水面。假设水完全润湿玻璃，表面张力系数为 $\sigma$，水的密度
+为 $\rho$。水面会上升多高？小明认为大树吸水、蒸腾也是同样机制，那么仅靠毛细作用给
+$\SI{10}{m}$ 高处供水，需要多细的管半径？
+\end{origexamplebox}
+
+\begin{xesolution}
+完全润湿时接触角 $\theta=0$。沿管内圆周，表面张力的竖直合力为
+\begin{equation*}
+  F_\sigma=2\pi R\sigma\cos\theta=2\pi R\sigma.
+\end{equation*}
+上升水柱的重力为
+\begin{equation*}
+  G=\rho g(\pi R^2h).
+\end{equation*}
+平衡时二者相等，故
+\begin{equation}
+  \boxed{h=\frac{2\sigma}{\rho gR}}.
+\end{equation}
+
+\capillaryRevisionDiagram
+\figcap{完全润湿的毛细管。弯月面中心低、壁边高，壁边表面张力沿切线向上。}\label{fig:capillary-wetting}
+图\ref{fig:capillary-wetting}的 $h$ 从外部水平水面量起。这里忽略弯月面附近体积相对长水柱的微小修正；
+接触角为零使周界张力全用于托住水柱，量纲也给出 $[\sigma/(\rho gR)]=\mathrm m$。
+
+若要求 $h=\SI{10}{m}$，则
+\begin{equation*}
+  \boxed{R=\frac{2\sigma}{\rho gh}}.
+\end{equation*}
+取室温水 $\sigma\approx\SI{0.073}{N.m^{-1}}$、$\rho\approx\SI{1.0e3}{kg.m^{-3}}$，得到
+\begin{equation*}
+  R\approx\frac{2\times0.073}{10^3\times9.8\times10}
+  \approx\SI{1.5e-6}{m}.
+\end{equation*}
+这说明微米级管道的毛细压强足以对应十米水柱。但真实树木的远距离输水并非单靠静态毛细平衡：叶片
+蒸腾在木质部水柱中产生负压，水分子的内聚力和导管结构共同维持连续水柱；毛细作用主要帮助润湿和
+稳定细小导管。
+\end{xesolution}

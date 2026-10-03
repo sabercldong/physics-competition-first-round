@@ -1,0 +1,73 @@
+%<addition:mirror-domain>
+先限定能够在墙上看到反射光点的姿态。取图示镜面位于墙左侧、$0<\theta<\pi/2$，入射光从墙向左传播；以下把 $\omega=\dot\theta$ 作为带符号角速度。若题给的是角速度大小，须先由转向确定正负。反射方向相对向右的水平线转过 $2\theta$，其单位方向矢量为 $(\cos2\theta,\sin2\theta)$。因此光要从左侧镜面返回右侧墙面，必须有
+\[
+ \cos2\theta>0,\qquad 0<\theta<\frac\pi4.
+\]
+在 $\theta=\pi/4$ 时反射光平行于墙；超过这个角度，反射光向左离开，直线延长线与墙的交点不能再解释成实际光点。这里还默认入射点位于镜面的有效长度内。
+%</addition>
+%<addition:mirror-simplify>
+这里 $d\tan\theta$ 是反射点到墙的水平距离，乘上反射方向的斜率 $\tan2\theta$ 才是竖直位移。利用
+\[
+ 1+\tan\theta\tan2\theta
+ =\frac{\cos\theta\cos2\theta+\sin\theta\sin2\theta}
+ {\cos\theta\cos2\theta}
+ =\frac1{\cos2\theta},
+\]
+也可把位置写成 $y_D=d\sec2\theta$，从而直接得到
+\[
+ v_D=2d\omega\sec2\theta\tan2\theta.
+\]
+这是下式的等价形式。在上述允许区间内，$\omega>0$ 时光点上移，$\omega<0$ 时下移；其量纲为长度乘角速度，即速度。
+%</addition>
+%<addition:plate-reference>
+参看图~\ref{ch27:fig:s42-19-15} 右侧：$O$ 是光源，$I$ 在玻璃出射光的反向延长线上，眼睛在玻璃另一侧。$S,D,L$ 分别是光源到玻璃、玻璃内部、玻璃到眼睛的轴向长度。应从眼睛收到的末段方向反推位置，不是把各段的相位光程 $n\ell$ 相加。
+%</addition>
+%<addition:rainbow-turns>
+这个偏折角可逐段相加：两次折射各使方向转过 $i-r$，球内一次反射使方向转过 $\pi-2r$，所以 $D_1=2(i-r)+(\pi-2r)$。图中不同入射高度对应不同 $i$，并非每条光都偏折相同角度。
+%</addition>
+%<addition:rainbow-angles>
+上面的代数步骤是：驻值条件给出 $2\cos i=n\cos r$，两边平方，再用 $n\sin r=\sin i$，便有
+\[
+ 4(1-\sin^2i)=n^2-\sin^2i,
+ \qquad 3\sin^2i=4-n^2.
+\]
+普通水滴满足 $1<n<2$，故驻值在非掠射的允许角域内。它对应最小偏折：在 $i=0$ 附近 $D_1'=2-4/n<0$，接近掠射时 $D_1'\to2>0$，而驻值方程在 $0<i<\pi/2$ 仅有一个解。
+
+观察到的虹半径不是 $D_1$，而是视线与反太阳方向的夹角
+\[
+ \rho=\pi-D_1=4r-2i.
+\]
+取 $n=4/3$，依次求得 $i\approx59.39^\circ$、$r\approx40.20^\circ$，于是 $D_1\approx137.97^\circ$、$\rho\approx42.03^\circ$。驻值附近入射角改变较多而出射方向改变很少，光线因此集中；实际虹的亮度与宽度还受太阳有限角宽、水滴大小及波动效应影响，并非无限亮的一条线。
+%</addition>
+%<addition:gradient-geometry>
+先把圆弧的角度与高度联系起来。以入射点为 $(0,0)$、圆心为 $(0,R)$，沿光的传播方向用参数 $\theta$ 写圆弧：
+\[
+ x=R\sin\theta,\qquad y=R(1-\cos\theta).
+\]
+微分得到 $(\dd x,\dd y)=R(\cos\theta,\sin\theta)\dd\theta$，所以 $\theta$ 同时就是切线与水平线的夹角。这便给出后面所用的 $\cos\theta=1-y/R$。水平薄层的法线竖直，斯涅尔定律中的入射角为 $\pi/2-\theta$，正弦因而变为 $\cos\theta$，不能在此误写成 $n\sin\theta$ 守恒。允许轨迹在 $0\le\theta<\pi/2$ 内；材料上限最终把高度限制到 $0\le y\le0.6R$，尚未到圆弧最高点。
+%</addition>
+%<addition:circular-ray-proof>
+关键是先解释圆轨道条件从何而来。设 $s$ 是沿光路的弧长，$\boldsymbol t=\dd\boldsymbol r/\dd s$ 为单位切向量。固定光路两端，只让中间各点有微小位移 $\delta\boldsymbol r$。光程 $\mathcal L=\int n\,\dd s$ 的一阶变化为
+\[
+ \delta\mathcal L=\int\!\left(\nabla n\cdot\delta\boldsymbol r
+       +n\boldsymbol t\cdot\frac{\dd(\delta\boldsymbol r)}{\dd s}\right)\dd s.
+\]
+第二项分部积分，端点项因两端固定而为零。任意中间位移都要满足驻值条件，故
+\[
+ \frac{\dd(n\boldsymbol t)}{\dd s}=\nabla n.
+\]
+这说明折射率梯度怎样使光线弯曲。对半径为 $r$ 的圆，$n$ 沿圆周不变，单位切向量每走弧长 $\dd s$ 就向圆心转过 $\dd s/r$，即
+\[
+ \frac{\dd\boldsymbol t}{\dd s}=-\frac{\boldsymbol e_r}{r},
+ \qquad \nabla n=\frac{\dd n}{\dd r}\boldsymbol e_r.
+\]
+因此 $-n/r=\dd n/\dd r$，整理即 $\dd(nr)/\dd r=0$。这个条件来自光线的局部弯曲规律；只说“沿圆周 $nr$ 为常量”还不足以推出它。
+%</addition>
+%<addition:circular-ray-domain>
+若 $n_0>0$，有限半径圆轨道要求折射率向外减小，即 $\alpha>0$；$\alpha=0$ 时光在均匀介质中沿直线传播，不能代入含 $1/\alpha$ 的结果。此时 $h_0\ge0$ 等价于 $n_0\ge\alpha R$，并且
+\[
+ r_0=\frac{n_0+\alpha R}{2\alpha},\qquad
+ n(h_0)=\frac{n_0+\alpha R}{2}=\alpha r_0>0.
+\]
+还应确认算出的高度处于题设线性大气模型的适用范围；若要求严格在表面上方，则需 $n_0>\alpha R$。$n$ 无量纲，$\alpha$ 的量纲为长度的倒数，所得 $h_0$ 确为长度。本题求的是恰好切向发射的圆轨道，不意味着偏离该条件后仍能绕圆传播。
+%</addition>

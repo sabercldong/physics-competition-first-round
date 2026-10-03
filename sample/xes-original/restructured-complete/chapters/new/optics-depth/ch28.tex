@@ -1,0 +1,136 @@
+%<append:平面界面与视深>
+\Needspace{8\baselineskip}\begin{origexamplebox}{水中直杆的最大表观弯折}
+\label{ch28:ex:depth-stick}
+一根直杆与水平液面成角 $\alpha$，液体对空气的折射率为 $n>1$。从近于正上方观察，采用近轴视深模型，杆在液体内的像与杆的真实方向相差 $\beta$。求使 $\beta$ 最大的 $\alpha$，并求最大弯折角。
+\end{origexamplebox}\par\nopagebreak[3]
+\begin{xesolution}
+这里求的是观察到的杆像方向，不是某一条折射光线转过的角度。图~\ref{ch28:fig:depth-stick} 中杆与液面交于 $O$，杆上一点 $P$ 的水平距离为 $x$、真实深度为 $h$。正上方的近轴观察使横向位置保持不变，而深度变为 $h'=h/n$，所以它的虚像在 $P'$。
+
+% Figure design: geometric optics; original drawing, no reference-image trace.
+% Print width <=11cm; 9-10pt labels, transparent. One vertical section.
+% Nodes O=(0,0), Q=(2.2,0), P=(2.2,-3.11127), P'=(2.2,-1.55563).
+% Example geometry n=2, tan(alpha)=sqrt(2); h/h'=2 exactly.
+% Solid OP=real rod, dashed OP'=apparent rod; vertical dimensions on right.
+% Angles: alpha at r=.65, alpha' at r=1.20, beta between rays at r=1.8.
+% Minimal figure, no decorative panels. Whitespace above water for view arrow.
+% ASCII: observer up | O----Q----water; O\P' (dashed); O\P (solid); h,h' right.
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[>=Latex,every node/.style={fill=none,font=\small,inner sep=2pt}]
+ \coordinate (O) at (0,0);\coordinate (Q) at (2.2,0);
+ \coordinate (P) at (2.2,{-2.2*sqrt(2)});
+ \coordinate (V) at (2.2,{-1.1*sqrt(2)});
+ \draw[thick] (-.6,0)--(4.45,0);
+ \node[left] at (-.6,0){液面};
+ \draw[very thick,DeepBlue] (O)--(P);
+ \draw[thick,dashed,DeepBlue] (O)--(V);
+ \draw[guide] (Q)--(P);
+ \fill (O) circle(1.3pt);\fill (P) circle(1.3pt);\fill (V) circle(1.3pt);
+ \node[above left] at (O){$O$};\node[above left] at (Q){$Q$};
+ \node[right=5pt] at (P){$P$};\node[right=5pt] at (V){$P'$};
+ \draw[->] (2.2,.4)--(2.2,1.05);
+ \node[above] at (2.2,1.12){近于正上方观察};
+ \draw (.65,0) arc[start angle=0,end angle=-54.73561,radius=.65];
+ \node at (-18:.91){$\alpha$};
+ \draw (1.2,0) arc[start angle=0,end angle=-35.26439,radius=1.2];
+ \node at (-13:1.56){$\alpha'$};
+ \draw (-35.26439:1.8) arc[start angle=-35.26439,end angle=-54.73561,radius=1.8];
+ \node at (-45:2.12){$\beta$};
+ \draw[<->] (3.2,0)--(3.2,{-2.2*sqrt(2)});
+ \node[right] at (3.2,-2.45){$h$};
+ \draw[<->] (4.05,0)--(4.05,{-1.1*sqrt(2)});
+ \node[right] at (4.05,-.78){$h'$};
+ \node[below] at (1.1,-3.65){实线为杆，虚线为杆的像，不是光线};
+\end{tikzpicture}
+\figcap{虚像 $P'$ 比 $P$ 浅，水平坐标不变。图取 $n=2$，角度关系由同一组点确定。\label{ch28:fig:depth-stick}}
+\end{minipage}\end{center}
+
+记像杆与液面的角为 $\alpha'$，则
+\[
+ \tan\alpha=\frac hx,\qquad
+ \tan\alpha'=\frac{h'}x=\frac{\tan\alpha}{n},\qquad
+ \beta=\alpha-\arctan\frac{\tan\alpha}{n}.
+\]
+对 $0<\alpha<\pi/2$ 求导时使用弧度。令 $t=\tan\alpha$，有
+\[
+ \frac{\dd\beta}{\dd\alpha}
+ =1-\frac{n(1+t^2)}{n^2+t^2}
+ =\frac{(n-1)(n-t^2)}{n^2+t^2}.
+\]
+分母为正且 $n>1$，故 $t^2<n$ 时递增，$t^2>n$ 时递减。唯一最大值发生在
+\[
+ \boxed{\alpha=\arctan\sqrt n},\qquad
+ \alpha'=\arctan\frac1{\sqrt n}=\frac\pi2-\alpha.
+\]
+由此
+\[
+ \boxed{\beta_{\max}=2\arctan\sqrt n-\frac\pi2
+ =\arcsin\frac{n-1}{n+1}}.
+\]
+当杆趋于水平或竖直时，弯折角都趋于零；当 $n\to1$ 时也趋于零。以水的 $n=4/3$ 为例，$\alpha\approx49.11^\circ$、$\beta_{\max}\approx8.21^\circ$。结论建立在近于正上方、局部近轴的观察模型上，不能用来描述任意斜视时整根杆的严格像。
+\end{xesolution}
+%</append>
+%<block:成像概念、光学器件与近轴条件>
+\subsection{成像不是画一条“代表光线”}
+一点发出的光通常占据许多方向。只有这些光线经过系统后在另一点附近会聚，或其反向延长线在另一点附近相交，才可以谈这个物点的像。只追踪一条光线不能确定像的位置；至少要取两条独立光线，并检查邻近光线是否也满足同一成像关系。
+
+所谓近轴，是相对于每个元件自身主轴而言，入射高度和倾角都足够小，使 $\sin\theta\simeq\tan\theta\simeq\theta$。它不等于“整张图画得很小”。一条相对图纸水平线倾角很小的光线，在强倾斜的曲面上仍可能大角度入射。使用球面或薄透镜公式时，既要检查光线相对于轴的角度，也要检查孔径相对于曲率半径是否足够小。
+
+本章的物距与像距采用实物、实像为正的约定。折射后出射光真实相交处为实像；出射光发散而其反向延长线相交处为虚像。前一元件的像若位于后一元件的下游，后一元件截获的是尚未会聚的光束，这个点对后一元件而言就是虚物。先判断会聚、发散和传播方向，再赋予符号，比根据“左负右正”机械代数更可靠。
+%</block>
+%<block:平面界面与视深>
+\subsection{为何视深公式只能近轴使用}
+设物点在平界面下深度 $h$ 处，物方折射率为 $n_1$，观察侧折射率为 $n_2$。选一条到达界面的光线，与法线夹角分别为 $i,r$，其界面交点离轴距离为 $\rho=h\tan i$。把出射光向后延长到轴，它与轴的交点深度为
+\[
+ h'=\frac{\rho}{\tan r}=h\frac{\tan i}{\tan r}.
+\]
+结合 $n_1\sin i=n_2\sin r$，有
+\[
+ \frac{h'}h=\frac{n_2\cos r}{n_1\cos i}
+ \simeq\frac{n_2}{n_1}\quad(i,r\ll1).
+\]
+在水下向空气看，$n_1>n_2$，所以近轴视深小于真实深度。大角度时余弦比不可略去，不同方向的光线延长后与轴的交点不同，因而不能说平界面在任意孔径下都形成一个严格的点像。
+
+对多层平行透明介质，逐层相加的是横向位移。若第 $j$ 层厚度为 $t_j$、折射率为 $n_j$，最终观察介质的折射率为 $n_o$，近轴时 $n_j\theta_j=n_o\theta_o$，故
+\[
+ \rho=\sum_jt_j\theta_j
+ =\theta_o\sum_j\frac{n_ot_j}{n_j},
+ \qquad h_{\rm app}=\sum_j\frac{n_ot_j}{n_j}.
+\]
+观察者到最外界面的距离若也计入总视距离，须另加这一段；它不是某一层介质的视厚度。全部 $n_j=n_o$ 时，视距离应回到几何距离，这是检验层数、起点和终点有没有算错的直接办法。
+%</block>
+%<block:组合系统与逐次成像>
+\subsection{中间像、虚物和无穷远像的衔接}
+两个薄透镜沿同一方向依次排列，间距为 $d$。第一镜求出的像距为 $v_1$ 时，第二镜的物距是 $u_2=d-v_1$，不是 $d+v_1$。当 $v_1>d$，第一镜单独形成的像位于第二镜之后，入射到第二镜的光尚在会聚，于是 $u_2<0$，恰好对应虚物。
+
+这个关系来自同一个轴向坐标：第一镜在 $x=0$，第二镜在 $x=d$，中间像在 $x=v_1$。因此第二镜到它的有向物距为 $d-v_1$。每一次代入前都把这一位置关系写出，能避免“中间像是实像，所以对下一镜也必是实物”的错误。
+
+若物恰在第一镜物方焦平面上，第一镜出射光平行，不能把 $v_1=\infty$ 当普通有限数计算。轴外物点高度为 $h$ 时，出射光束倾角为 $\theta=-h/f_1$。第二镜把这束平行光聚到自身后焦平面，高度
+\[
+ h'=f_2\theta=-\frac{f_2}{f_1}h.
+\]
+这里通过“位置—角度—位置”完成成像，虽然中间像在无穷远，横向倍率仍是有限的 $-f_2/f_1$。两镜间距影响有限孔径能否接收整个光束，但不改变这个理想焦平面到焦平面的近轴倍率。
+
+反射折返系统还多一步：反射之后要沿新的传播方向重新确定下一个物距。推荐先沿实际光路给元件编号，再逐次记录“当前元件—入射束会聚点—出射束会聚点”，最后才相乘各级横向倍率。屏的位置、像的位置、透镜的位置是三种不同对象，不能用同一个字母代替。
+%</block>
+%<block:眼睛、视角与放大镜>
+\subsection{角放大率的比较对象}
+放大镜产生正立放大的虚像，但“虚像高变大了多少”并不是眼睛感到放大多少的完整答案。眼睛接收的是方向范围，即物体或像对眼睛张开的视角。比较时应固定同一物体，并明确裸眼基准通常取明视距离 $D$，于是裸眼视角为 $\alpha_0\simeq h/D$。
+
+眼睛紧靠薄透镜、最终像在无穷远时，物位于前焦面，出射束视角为 $\alpha\simeq h/f$，所以 $M=\alpha/\alpha_0=D/f$。眼睛放松与物在焦面是同一个光路条件的两种表述，不能同时把物距取为任意值。
+
+若最终虚像在距离透镜约 $D$ 的近点，取 $v=-D$，成像公式给出
+\[
+ \frac1u=\frac1f+\frac1D.
+\]
+眼睛靠近透镜时 $\alpha\simeq h/u$，因此 $M=D/u=1+D/f$。两个常用公式不是互相矛盾的近似，而是对应不同调焦状态。眼睛与透镜间距离不可忽略时，近点应从眼睛量起，须先把这一距离加入几何关系后再求视角。
+
+视力分辨、角放大率和视场也不是一回事。放大率可以增加，但像的细节若已被衍射或像差模糊，继续放大只会放大模糊斑。有限镜片口径还会限制能同时看到的物体范围；判断视场需要画边缘光线，不能只看过光心的一条线。
+%</block>
+%<block:仪器分辨本领与光能探测>
+\subsection{将放大、分辨和亮度分开判断}
+用望远镜观测两个角距为 $\Delta\theta$ 的远处点源时，物镜首先把它们形成相邻的衍射斑。口径为 $D_o$ 的圆形物镜，其瑞利判据为 $\Delta\theta\gtrsim1.22\lambda/D_o$。目镜只是把已经形成的像以更大的视角交给眼睛；若两斑在物镜焦面上不能分开，仅更换更短焦距的目镜不能恢复丢失的细节。
+
+相机还需比较衍射斑和像素。焦距为 $f$ 时，艾里斑第一暗环半径约为 $1.22\lambda f/D_o$。减小孔径可以改善部分几何像差和增加景深，却会增大这个衍射尺度。由此可见“缩光圈越小越清晰”并非普遍规律，清晰度取决于像差、衍射、采样和对焦误差中哪一项占主导。
+
+最后检查能量量纲：光功率 $\Phi_e$ 的单位为瓦，照度型的辐照度 $E_e=\dd\Phi_e/\dd A$ 的单位为瓦每平方米，曝光量 $H_e=\int E_e\dd t$ 的单位为焦耳每平方米。像变大并不创造能量；在接收总功率近似不变时，同样的功率分布到更大像面积上，单位面积得到的能量反而减少。光度量还经过人眼光谱响应加权，不能把流明与瓦不加条件地互换。
+%</block>

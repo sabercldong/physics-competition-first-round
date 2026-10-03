@@ -1,0 +1,561 @@
+\newenvironment{rTwoChOneDiagramBlock}
+  {\par\addvspace{\medskipamount}\noindent\begin{minipage}{\linewidth}\centering}
+  {\end{minipage}\par\addvspace{\medskipamount}}
+
+\newcommand{\figCoordinates}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.94]
+  % 所有投影、角弧和辅助线均从同一个三维点产生。
+  \pgfmathsetmacro{\rr}{2.4}
+  \pgfmathsetmacro{\th}{48}
+  \pgfmathsetmacro{\ph}{40}
+  \pgfmathsetmacro{\xp}{\rr*sin(\th)*cos(\ph)}
+  \pgfmathsetmacro{\yp}{\rr*sin(\th)*sin(\ph)}
+  \pgfmathsetmacro{\zp}{\rr*cos(\th)}
+  \foreach \panel/\shift/\title in {1/0/直角坐标,2/4.6/柱坐标,3/9.2/球坐标}{
+    \begin{scope}[xshift=\shift cm]
+      \begin{scope}[x={(1cm,0cm)},y={(-.45cm,-.35cm)},z={(0cm,1cm)}]
+        \coordinate (O) at (0,0,0);
+        \coordinate (P) at (\xp,\yp,\zp);
+        \coordinate (H) at (\xp,\yp,0);
+        \draw[axis] (O)--(2.3,0,0) node[right]{$x$};
+        \draw[axis] (O)--(0,2,0) node[below left]{$y$};
+        \draw[axis] (O)--(0,0,2.25) node[above]{$z$};
+        \node[labelclean,above left] at (O){$O$};
+        \draw[guide] (P)--(H);
+        \node[point,label=above right:$P$] at (P){};
+        \node[labelclean,right=1.5mm] at (H){$H$};
+        \ifnum\panel=1
+          \draw[vector] (O)--(P);
+          \draw[guide] (\xp,0,0)--(H)--(0,\yp,0);
+          \draw[guide] (P)--(0,0,\zp);
+          \node[labelclean,above] at (\xp,0,0){$x_P$};
+          \node[labelclean,left] at (-.45,\yp,.18){$y_P$};
+          \node[labelclean,left] at (0,0,\zp){$z_P$};
+        \else
+          \draw[guide] (O)--(H);
+          \draw[DeepBlue,-{Latex[length=1.4mm]},domain=0:\ph,samples=30]
+            plot ({.72*cos(\x)},{.72*sin(\x)},0);
+          \ifnum\panel=2
+            \draw[vector] (O)--(H);
+            \draw[vector] (H)--(P);
+            \node[labelclean,above right] at (\xp,\yp,\zp/2){$z$};
+          \else
+            \draw[vector] (O)--(P);
+            \node[labelclean] at ({.5*\xp+.75},{.5*\yp},{.5*\zp}){$r$};
+            \draw[DeepBlue,-{Latex[length=1.4mm]},domain=0:\th,samples=35]
+              plot ({1.15*sin(\x)*cos(\ph)},{1.15*sin(\x)*sin(\ph)},{1.15*cos(\x)});
+            \node[labelclean,above right] at
+              ({1.35*sin(\th/2)*cos(\ph)},{1.35*sin(\th/2)*sin(\ph)},{1.35*cos(\th/2)}){$\theta$};
+          \fi
+        \fi
+      \end{scope}
+      \ifnum\panel>1
+        \node[labelclean] at (.55,-.82){$\varphi$};
+        \ifnum\panel=2
+          \node[labelclean] at (.1,-.47){$\rho$};
+        \fi
+      \fi
+      \node[labelclean] at (.5,-1.35){\title};
+    \end{scope}
+  }
+\end{tikzpicture}
+\bookcaption{三种坐标描述同一点 $P$；$H$ 是它在 $xy$ 平面的垂足，三组轴均按右手系作同一投影。}\label{r2ch01:fig:001}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figFieldWaves}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[font=\small]
+  \node[anchor=west] at (0,1.4){(a) 真空线偏振电磁波，同一时刻的空间分布};
+  \begin{scope}[xshift=1cm,x={(1cm,0cm)},y={(.5cm,-.5cm)},z={(0cm,1cm)}]
+    \draw[axis] (-.3,0,0)--(6.6,0,0) node[above right]{$\vect k$};
+    \draw[curve,domain=0:6,samples=140] plot (\x,0,{.7*sin(120*\x)});
+    \draw[TextGray,thick,domain=0:6,samples=140] plot (\x,{-.7*sin(120*\x)},0);
+    \foreach \t in {.3,.7,1.1,1.9,2.3,2.7,3.3,3.7,4.1,4.9,5.3,5.7}{
+      \draw[vector,thin] (\t,0,0)--(\t,0,{.7*sin(120*\t)});
+      \draw[component,thin] (\t,0,0)--(\t,{-.7*sin(120*\t)},0);
+    }
+  \end{scope}
+  \node[anchor=west,align=left] at (8.2,0){\color{DeepBlue}$\vect E\parallel z$\\\color{TextGray}$\vect B\parallel y$\\$\vect E\times\vect B\parallel\vect k$\\$E=cB$（幅值）};
+  \node[anchor=west] at (0,-1.4){(b) 圆偏振基矢与张量偏振的形式关系};
+  \node[align=center] (ev) at (1.2,-2.35){电磁矢量偏振\\$e_+,\ e_-$\\螺旋度 $\lambda=\pm1$};
+  \node[align=center] (et) at (5.6,-2.35){二阶张量积\\$e_\pm\otimes e_\pm:\ \lambda=\pm2$\\$e_+\otimes e_-,\ e_-\otimes e_+:\ \lambda=0$};
+  \node[align=center] (gw) at (10.3,-2.35){引力波\\保留横向无迹部分\\$\lambda=\pm2$};
+  \draw[axis] (ev.east)--(et.west);
+  \draw[axis] (et.east)--(gw.west);
+  \node[anchor=west] at (0,-3.45){(c) 一圈自由质点的横向形变（幅度夸大，波沿纸面法线传播）};
+  \foreach \row/\rot/\name in {0/0/$+$,1/45/$\times$}{
+    \node[anchor=east] at (1.0,{-4.45-1.45*\row}){\name};
+    \foreach \col/\phase in {0/0,1/90,2/180,3/270,4/360}{
+      \begin{scope}[shift={({1.9+2.1*\col},{-4.45-1.45*\row})},rotate=\rot]
+        \pgfmathsetmacro{\stretch}{.28*sin(\phase)}
+        \draw[guide,thin] (0,0) circle (.43);
+        \draw[curve,thin,domain=0:360,samples=70]
+          plot ({.43*(1+\stretch)*cos(\x)},{.43*(1-\stretch)*sin(\x)});
+        \foreach \q in {0,45,...,315}{
+          \fill[DeepBlue] ({.43*(1+\stretch)*cos(\q)},{.43*(1-\stretch)*sin(\q)}) circle (.025);
+        }
+      \end{scope}
+    }
+  }
+  \foreach \col/\time in {0/0,1/{T/4},2/{T/2},3/{3T/4},4/T}{
+    \node[below] at ({1.9+2.1*\col},-6.6){$\time$};
+  }
+  \draw[axis] (1.4,-6.5)--(10.9,-6.5) node[right]{$t$};
+\end{tikzpicture}
+\bookcaption{矢量波与张量波：场的方向、偏振构造和自由质点响应。}\label{r2ch01:fig:002}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figKinematicVectors}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.94]
+  % 无量纲轨迹 r(u)=(u+.1u^2,.1u^3-.6u)，两图共用 u=.8。
+  \pgfmathsetmacro{\u}{.8}
+  \pgfmathsetmacro{\px}{\u+.1*\u^2}
+  \pgfmathsetmacro{\py}{.1*\u^3-.6*\u}
+  \pgfmathsetmacro{\vx}{1+.2*\u}
+  \pgfmathsetmacro{\vy}{.3*\u^2-.6}
+  \draw[axis] (-2.4,0)--(3.4,0) node[right]{$x/\ell$};
+  \draw[axis] (0,-1.0)--(0,1.8) node[above]{$y/\ell$};
+  \draw[curve,domain=-2:2.5,samples=100] plot ({\x+.1*\x*\x},{.1*\x*\x*\x-.6*\x});
+  \coordinate (P) at (\px,\py);
+  \draw[vector,TextGray] (0,0)--(P);
+  \node[labelclean] at (-.4,-.78){$\vect r$};
+  \node[labelclean] at (.35,.35){$O$};
+  \node[point,label=below left:$P$] at (P){};
+  \draw[vector] (P)--++(\vx,\vy) node[right,labelclean]{$\vect v$};
+  \draw[component] (P)--++(.4,{1.2*\u}) node[above,labelclean]{$\vect a$};
+  \node[labelclean,above] at (.6,2.4){位置空间};
+  \begin{scope}[xshift=6.5cm,scale=1.15]
+    \draw[axis] (-.2,0)--(2.4,0) node[right]{$v_x/(\ell/\tau)$};
+    \draw[axis] (0,-1.1)--(0,1.8) node[left]{$v_y/(\ell/\tau)$};
+    \draw[curve,domain=-2:2.5,samples=100] plot ({1+.2*\x},{.3*\x*\x-.6});
+    \coordinate (V) at (\vx,\vy);
+    \node[point,label=below right:$V$] at (V){};
+    \draw[vector] (0,0)--(V) node[pos=.48,below left,labelclean]{$\vect v$};
+    \draw[component] (V)--++(.4,{1.2*\u}) node[above right,labelclean]{$\vect a$};
+    \node[labelclean,above] at (1.2,{2.4/1.15}){速度空间};
+  \end{scope}
+\end{tikzpicture}
+\bookcaption{同一次运动在两个空间的表示：$\vect v$ 沿位置轨迹切线，$\vect a$ 沿速度轨迹切线。箭头长度分别缩放。}\label{r2ch01:fig:003}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figProjectile}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.9]
+  \coordinate (ProjO) at (0,0);
+  \coordinate (ProjX) at (2,0);
+  \coordinate (ProjV) at (1.25,{1.05*1.25});
+  \draw[axis] (0,0)--(5.3,0) node[right]{$x$};
+  \draw[axis] (0,0)--(0,3.0) node[above]{$z$};
+  \draw[curve,domain=0:{1.05/.22},samples=80] plot (\x,{1.05*\x-.22*\x*\x});
+  \draw[vector] (0,0)--(ProjV) node[above,labelclean]{$\vect v_0$};
+  \draw pic[draw=DeepBlue,-{Latex[length=1.5mm]},angle radius=11mm] {angle=ProjX--ProjO--ProjV};
+  \node[labelclean] at (.7,.26){$\phi$};
+  \coordinate (P) at (2.6,{1.05*2.6-.22*2.6^2});
+  \node[point,label=above:$P(t)$] at (P){};
+  \draw[vector] (P)--++(1.15,{1.15*(1.05-.44*2.6)}) node[right,labelclean]{$\vect v$};
+  \draw[component] (P)--++(0,-1.25) node[below,labelclean]{$\vect g$};
+\end{tikzpicture}
+\bookcaption{斜抛运动的运动方程与轨迹方程对应同一条抛物线。}\label{r2ch01:fig:004}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figPursuitFour}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.85]
+\begin{scope}
+  \draw[vector] (0,0)--(1.74,0);
+  \draw[vector] (3,0)--(3,1.74);
+  \draw[vector] (3,3)--(1.26,3);
+  \draw[vector] (0,3)--(0,1.26);
+  \draw[guide] (0,0) rectangle (3,3);
+  \foreach \p in {(0,0),(3,0),(3,3),(0,3)}{\node[point] at \p{};}
+  % 四条轨迹必须分别从四个顶点出发，并由四重旋转对称得到。
+  \foreach \a in {45,135,225,315}{
+    \draw[curve,thin,domain=0:110,samples=120]
+      plot ({1.5+3/sqrt(2)*exp(-pi*\x/180)*cos(\x+\a)},
+            {1.5+3/sqrt(2)*exp(-pi*\x/180)*sin(\x+\a)});
+  }
+  \node[labelclean] at (1.5,1.5){$C$};
+  \node[labelclean] at (1.5,-.55){(a) 四条实际轨迹};
+\end{scope}
+\begin{scope}[xshift=8.1cm,yshift=1.35cm,scale=.92]
+  \coordinate (C) at (0,0);
+  \foreach \j in {0,1,2,3}{
+    \coordinate (Q\j) at ({2.1*cos(35+90*\j)},{2.1*sin(35+90*\j)});
+  }
+  \draw[guide] (Q0)--(Q1)--(Q2)--(Q3)--cycle;
+  \coordinate (P) at (Q0);
+  \coordinate (Radial) at ($(P)+({1.25*cos(35)},{1.25*sin(35)})$);
+  \coordinate (Azimuth) at ($(P)+({-1.25*sin(35)},{1.25*cos(35)})$);
+  \coordinate (XAxis) at (3,0);
+  \draw[axis] (-.3,0)--(XAxis);
+  \draw[vector,TextGray] (C)--(P);
+  \node[labelclean,above left] at ($(C)!.5!(P)$){$\vect r$};
+  \draw[vector] (P)--($(P)!.4!(Q1)$) node[above left,labelclean]{$\vect v$};
+  \draw[component] (P)--(Radial) node[right,labelclean]{$\uvec e_r$};
+  \draw[component] (P)--(Azimuth) node[above,labelclean]{$\uvec e_\theta$};
+  \draw pic[draw=DeepBlue,-{Latex[length=1.4mm]},angle radius=13mm] {angle=XAxis--C--P};
+  \node[labelclean] at (2.45,.42){$\theta$};
+  \node[point,label=below left:$C$] at (C){};
+  \node[point,label=below right:$P$] at (P){};
+  \node[point,label=above left:$Q$] at (Q1){};
+  \node[labelclean] at (.35,-2.6){(b) 某一时刻的正方形与分量方向};
+\end{scope}
+\end{tikzpicture}
+\bookcaption{首尾相追的轨迹在共同相遇点 $C$ 附近继续向内旋转；右图 $P$ 的速度沿 $PQ$，与位矢 $CP$ 夹角为 $3\pi/4$。}\label{r2ch01:fig:006}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figPolarFrame}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.90,font=\small]
+ \begin{scope}
+  \coordinate (PolarO) at (0,0);
+  \coordinate (PolarX) at (3,0);
+  \draw[axis] (0,0)--(4.4,0) node[right]{极轴};
+  \coordinate (P) at (3.0,2.0);
+  \draw[vector] (0,0)--(P) node[midway,above left]{$r$};
+  \node[point,label=below right:$P$] at (P){};
+  \draw[vector] (P)--++({1.4*3/sqrt(13)},{1.4*2/sqrt(13)}) node[right,labelclean]{$\uvec e_r$};
+  \draw[vector] (P)--++({-1.4*2/sqrt(13)},{1.4*3/sqrt(13)}) node[above,labelclean]{$\uvec e_\theta$};
+  \draw pic[draw=DeepBlue,-{Latex[length=1.6mm]},angle radius=12mm] {angle=PolarX--PolarO--P};
+  \node[labelclean] at (.9,.3){$\theta$};
+  \node at (2.2,-.65){(a) 当前位置的标架};
+ \end{scope}
+ \begin{scope}[xshift=7.2cm,yshift=.35cm]
+  \begin{scope}[rotate=33.69]
+   \coordinate (Dp) at (0,0);
+   \coordinate (Dq) at (2.1,0);
+   \coordinate (Dpp) at (2.1,1.45);
+   \draw[vector] (Dp)--(Dq);
+   \draw[vector] (Dq)--(Dpp);
+   \draw[component] (Dp)--(Dpp);
+   \node[point,label=below left:$P$] at (Dp){};
+   \node[point,label=below right:$Q$] at (Dq){};
+   \node[point,label=above:$P'$] at (Dpp){};
+   \draw pic[draw=TextGray,angle radius=3mm] {right angle=Dp--Dq--Dpp};
+  \end{scope}
+  \node[labelclean] at (1.6,.1){$\dd R=\dd r$};
+  \node[labelclean,anchor=west] at (2.4,1.8){$\dd\Theta=r\dd\theta$};
+  \draw[TextGray,thin] (2.15,1.8)--($(Dq)!.5!(Dpp)$);
+  \node[labelclean,anchor=east] at (-.15,1.4){$\dd\vect r$};
+  \node at (1.5,-1.0){(b) 放大的局部位移分解};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{极坐标标架与位移分解；(b) 只表示一阶微分关系，不按有限转角解释。}\label{r2ch01:fig:005}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figFrenet}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.88]
+  % y=.3x^2-.3x+.55；曲率中心由 f'、f'' 计算，不独立指定。
+  \pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}
+  \pgfmathsetmacro{\slope}{-.3}
+  \pgfmathsetmacro{\second}{.6}
+  \pgfmathsetmacro{\radius}{(1+\slope*\slope)^1.5/\second}
+  \pgfmathsetmacro{\cx}{(-\slope)*(1+\slope*\slope)/\second}
+  \pgfmathsetmacro{\cy}{.55+(1+\slope*\slope)/\second}
+  \pgfkeys{/pgf/fpu=false}
+  \typeout{R2GEO:FRENET=\cx,\cy,\radius}
+  \coordinate (P) at (0,.55);
+  \coordinate (C) at (\cx,\cy);
+  \draw[TextGray,thin] (C) circle (\radius);
+  \draw[guide] (P)--(C) node[pos=.76,left=2mm,labelclean]{$\rho$};
+  \draw[curve,domain=-2.5:3.2,samples=100] plot (\x,{.3*\x*\x-.3*\x+.55});
+  \draw[vector] (P)--++({1.5/sqrt(1+\slope*\slope)},{1.5*\slope/sqrt(1+\slope*\slope)}) node[right,labelclean]{$\uvec\tau$};
+  \draw[vector] (P)--++({(-\slope)/sqrt(1+\slope*\slope)},{1/sqrt(1+\slope*\slope)}) node[right=1.5mm,labelclean]{$\uvec n$};
+  \node[point,label=below left:$P$] at (P){};
+  \node[labelclean,anchor=west] at (3.1,3.5){$\uvec\beta:\ \odot$};
+  \node[point,label=right:$C$] at (C){};
+  \foreach \xx/\name in {-.55/Q,.65/R}{
+    \node[point,label=below left:$\name$] at (\xx,{.3*\xx*\xx-.3*\xx+.55}){};
+  }
+\end{tikzpicture}
+\bookcaption{曲线在点 $P$ 的弗雷内标架和密切圆；$\uvec\beta$ 垂直纸面向外。}\label{r2ch01:fig:007}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\rTwoChOneRotatedBasis}{%
+  % 正交旋转 Rz(45度) Rx(35度) 的三列；xi cross eta = zeta。
+  \pgfmathsetmacro{\xxi}{cos(45)}\pgfmathsetmacro{\yxi}{sin(45)}
+  \pgfmathsetmacro{\xeta}{-sin(45)*cos(35)}\pgfmathsetmacro{\yeta}{cos(45)*cos(35)}\pgfmathsetmacro{\etaZvalue}{sin(35)}
+  \pgfmathsetmacro{\xzeta}{sin(45)*sin(35)}\pgfmathsetmacro{\yzeta}{-cos(45)*sin(35)}\pgfmathsetmacro{\zzeta}{cos(35)}
+}
+
+\newcommand{\figRigidFrame}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.95,x={(1cm,0cm)},y={(-.45cm,-.35cm)},z={(0cm,1cm)}]
+  \rTwoChOneRotatedBasis
+  \coordinate (O) at (0,0,0);
+  \coordinate (C) at (2.8,0,1);
+  \draw[axis] (O)--(5.0,0,0) node[right]{$x$};
+  \draw[axis] (O)--(0,2.2,0) node[below left]{$y$};
+  \draw[axis] (O)--(0,0,3.6) node[above]{$z$};
+  \node[point,label=below:$O$] at (O){};
+  \node[point,label={[yshift=-1.5mm]below:$C$}] at (C){};
+  \draw[vector] (O)--(C) node[pos=.55,below right,labelclean]{$\vect r_C$};
+  \draw[vector] (C)--++({2.1*\xxi},{2.1*\yxi},0) node[right,labelclean]{$\uvec\xi$};
+  \draw[vector] (C)--++({2.1*\xeta},{2.1*\yeta},{2.1*\etaZvalue}) node[left,labelclean]{$\uvec\eta$};
+  \draw[vector] (C)--++({2.1*\xzeta},{2.1*\yzeta},{2.1*\zzeta}) node[above right,labelclean]{$\uvec\zeta$};
+  \draw[component] (C)--++(0,0,2.0) node[above left,labelclean]{$\vect\omega$};
+  \typeout{R2GEO:XI=\xxi,\yxi,0}
+  \typeout{R2GEO:ETA=\xeta,\yeta,\etaZvalue}
+  \typeout{R2GEO:ZETA=\xzeta,\yzeta,\zzeta}
+\end{tikzpicture}
+\bookcaption{刚体的基点 $C$、右手固连标架和瞬时角速度；角速度不必沿某条固连坐标轴。}\label{r2ch01:fig:008}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figFrameTransform}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.95,x={(1cm,0cm)},y={(-.45cm,-.35cm)},z={(0cm,1cm)}]
+  \rTwoChOneRotatedBasis
+  \draw[axis] (-.2,0,0)--(6.9,0,0) node[right]{$x$};
+  \draw[axis] (0,0,-.2)--(0,0,4.3) node[above]{$z$};
+  \draw[axis] (0,0,0)--(0,2.4,0) node[below left]{$y$};
+  \coordinate (C) at (2.6,0,-.6);
+  \coordinate (P) at (6.3,.3,2.65);
+  \node[point,label=below:$O$] at (0,0,0){};
+  \node[point,label=below:$C$] at (C){};
+  \node[point,label=above:$P$] at (P){};
+  \draw[vector] (0,0,0)--(C);
+  \node[labelclean] at (1.3,0,-.72){$\vect r_C$};
+  \draw[vector] (C)--(P) node[midway,below right,labelclean]{$\vect r'$};
+  \draw[component] (0,0,0)--(P) node[pos=.72,above left,labelclean]{$\vect r$};
+  \draw[axis] (C)--++({2.5*\xxi},{2.5*\yxi},0) node[right]{$\xi$};
+  \draw[axis] (C)--++({2.1*\xzeta},{2.1*\yzeta},{2.1*\zzeta}) node[below right]{$\zeta$};
+  \draw[axis] (C)--++({2.5*\xeta},{2.5*\yeta},{2.5*\etaZvalue}) node[above left]{$\eta$};
+  \draw[component] (C)--++(0,0,2.5) node[above left,labelclean]{$\vect\omega$};
+\end{tikzpicture}
+\bookcaption{定系 $O-xyz$ 与动系 $C-\xi\eta\zeta$ 中同一点的位置分解。}\label{r2ch01:fig:009}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figRollingPoints}{%
+\begin{rTwoChOneDiagramBlock}
+\begin{tikzpicture}[scale=.82,font=\small]
+ \begin{scope}
+  \draw[ground] (-3,0)--(3,0);
+  \draw[very thick] (0,1.25) circle (1.25);
+  \node[point,label=above:$O$] at (0,1.25){};
+  \coordinate (P) at (0,0);
+  \node[point] at (P){};
+  \draw[vector] (0,1.25)--++(1.3,0);
+  \node[labelclean,right] at (1.55,1.32){$\vect v_O$};
+  \draw[component] ({.68*cos(150)},{1.25+.68*sin(150)}) arc[start angle=150,end angle=-70,radius=.68];
+  \node[labelclean,left] at (-1.45,1.65){$\omega$};
+  \node[labelclean,below left] at (-.18,0){$P_1$（盘上点）};
+  \node[labelclean,below right] at (.18,0){$P_2$（地面点）};
+  \draw[vector] (P)--++(1.1,0) node[above right,labelclean]{$\vect v_{P_3}$};
+  \node[labelclean,above] at (P){$P_3$};
+  \node at (0,-.95){(a) 此刻的三种接触点};
+ \end{scope}
+ \begin{scope}[xshift=4.7cm]
+  % 圆盘半径取单位长度；曲线、圆心、半径和切向由同一转角生成。
+  \pgfmathsetmacro{\rollAngle}{70}
+  \pgfmathsetmacro{\rollU}{pi*\rollAngle/180}
+  \pgfmathsetmacro{\rollPx}{\rollU-sin(\rollAngle)}
+  \pgfmathsetmacro{\rollPy}{1-cos(\rollAngle)}
+  \coordinate (Rc) at (\rollU,1);
+  \coordinate (Rm) at (\rollPx,\rollPy);
+  \draw[axis] (-.2,0)--(7,0) node[right]{$x$};
+  \draw[axis] (0,-.15)--(0,2.7) node[above]{$y$};
+  \draw[TextGray] (Rc) circle (1);
+  \draw[curve,domain=0:360,samples=241]
+   plot ({pi*\x/180-sin(\x)},{1-cos(\x)});
+  \draw[guide] (Rc)--(Rm) node[midway,below=2mm]{$R$};
+  \node[point,label=above:$C$] at (Rc){};
+  \node[point] at (Rm){};
+  \node[labelclean] at (-.95,\rollPy){$P_1$};
+  \draw[TextGray,thin] (-.58,\rollPy)--(Rm);
+  \node[point,label=below:$P_3$] at (\rollU,0){};
+  \draw[guide] (Rc)--(\rollU,0);
+  \node[point,label=above:{$(\pi R,2R)$}] at (pi,2){};
+  \node[labelclean,below] at (2*pi,0){$2\pi R$};
+  \node at (3.3,-.95){(b) 同一盘上点的旋轮线};
+  \typeout{R2GEO:CYCLOID=\rollU,\rollPx,\rollPy}
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{接触点的身份与轨迹；(b) 的 $P_1$ 从原点出发后已离开地面，$P_3$ 仍在圆心正下方。}\label{r2ch01:fig:010}
+\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figSlopeRange}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=.82]
+  \pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}
+  \pgfmathsetmacro{\hillSlope}{.36}
+  \pgfmathsetmacro{\height}{1.55}
+  \pgfmathsetmacro{\raySlope}{1.1}
+  \pgfmathsetmacro{\bend}{.28}
+  \pgfmathsetmacro{\range}{(\raySlope+\hillSlope+sqrt((\raySlope+\hillSlope)*(\raySlope+\hillSlope)+4*\bend*\height))/(2*\bend)}
+  \pgfkeys{/pgf/fpu=false}
+  \coordinate (SlopeO) at (0,0);
+  \coordinate (SlopeX) at (4,0);
+  \coordinate (SlopeLine) at (4,{-4*\hillSlope});
+  \coordinate (Landing) at (\range,{-\hillSlope*\range});
+  \draw[axis] (-.3,0)--(7.0,0) node[right]{$x$（水平下坡）};
+  \draw[axis] (0,-.2)--(0,3.4) node[above]{$z$};
+  \draw[ground] (-.3,{.3*\hillSlope})--(6.8,{-6.8*\hillSlope});
+  \draw[very thick] (0,0)--(0,\height) node[midway,left]{$h$};
+  \node[point,label=above left:$G$] at (0,\height){};
+  \node[point,label=above right:$L$] at (Landing){};
+  \draw[curve,domain=0:\range,samples=100] plot (\x,{\height+\raySlope*\x-\bend*\x*\x});
+  \draw pic[draw=DeepBlue,-{Latex[length=1.5mm]},angle radius=15mm,angle eccentricity=1.3,"$\alpha$" labelclean] {angle=SlopeLine--SlopeO--SlopeX};
+  \draw[vector] (0,\height)--++(1.1,{1.1*\raySlope}) node[above,labelclean]{$\vect v_0$};
+  \typeout{R2GEO:SLOPELAND=\range,\hillSlope,\height,\raySlope,\bend}
+\end{tikzpicture}\bookcaption{斜坡炮击范围的竖直剖面；三维边界的水平投影为圆。}\label{r2ch01:fig:011}\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figCardioid}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=1.1]
+  \draw[axis] (-2.75,0)--(1.3,0) node[right]{极轴};
+  \draw[curve,domain=0:360,samples=180]
+    plot ({1.2*(1-cos(\x))*cos(\x)},{1.2*(1-cos(\x))*sin(\x)});
+  \node[point] at (0,0){};
+  \node[labelclean] at (.68,-.25){$O$};
+  \node[point,label=left:$P$] at (-2.4,0){};
+  \draw[guide] (0,0)--(-.9,{.9*sqrt(3)});
+  \draw[DeepBlue,-{Latex[length=1.5mm]}] (.4,0) arc[start angle=0,end angle=120,radius=.4];
+  \node[labelclean] at (.4,.7){$\theta$};
+  \node[labelclean] at (-1.2,-2.0){$r=A(1-\cos\theta),\quad OP=2A$};
+\end{tikzpicture}\bookcaption{心脏线在 $\theta=\pi$ 处离尖点最远，曲率半径也最大。}\label{r2ch01:fig:012}\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figConeRolling}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=.9,font=\small]
+  \begin{scope}
+    \node at (-1.5,2.35){(a) 两轮俯视图，$+z$ 向纸外};
+    \coordinate (O) at (-3,0);
+    \coordinate (A) at (0,0);
+    \draw[very thick] (O) circle (1.5);
+    \draw[very thick] (A) circle (1.5);
+    \draw[guide] (O)--(A);
+    \draw[DeepBlue,very thick] (A)--(1.5,0);
+    \node[point,label=above:$O$] at (O){};
+    \node[point,label=above left:$A$] at (A){};
+    \node[point,label=right:$C$] at (1.5,0){};
+    \draw[TextGray,{Latex[length=1.5mm]}-{Latex[length=1.5mm]}] (-3,-2.45)--(0,-2.45);
+    \node[below] at (-1.5,-2.5){$OA=2r$};
+    \node at (.75,-.3){$r$};
+    \node at (-3,-1.85){轮 II（固定）};
+    \node at (0,-1.85){轮 I};
+    \draw[component] (-3,0) ++(40:.65) arc[start angle=40,end angle=270,radius=.65];
+    \node at (-3,1.85){曲柄 $\omega_0$};
+    \draw[component] (0,0) ++(40:.78) arc[start angle=40,end angle=200,radius=.78];
+    \node at (.35,1.15){$2\omega_0$};
+    \draw[axis] (-4.8,-2.6)--(-4.1,-2.6) node[right]{$y$};
+    \draw[axis] (-4.8,-2.6)--(-4.8,-3.25) node[below]{$x$};
+  \end{scope}
+  \begin{scope}[xshift=5.0cm]
+    \node at (1.2,2.95){(b) 圆锥的 $yz$ 轴截面};
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (0,2.3);
+    \coordinate (C) at (2.3,0);
+    \coordinate (D) at (1.15,1.15);
+    \draw[axis] (-.4,0)--(3.0,0) node[right]{$y$};
+    \draw[axis] (0,-.3)--(0,2.7);
+    \node[right] at (.12,2.5){$z$};
+    \draw[very thick] (A)--(B)--(C)--cycle;
+    \draw[guide] (A)--(D);
+    \draw[thin] (.27,0)--(.27,.27)--(0,.27);
+    \node[point,label=below left:$A$] at (A){};
+    \node[point,label=left:$B$] at (B){};
+    \node[point,label=below:$C$] at (C){};
+    \node[point,label=above right:$D$] at (D){};
+    \node[left] at (0,1.15){$r$};
+    \node[below] at (1.15,0){$r$};
+    \node at (2.65,1.65){$+x:\ \odot$};
+    \draw[vector] (.3,-.8)--(1.85,-.8);
+    \node[below] at (1.1,-.85){$\vect\Omega_{K/I}=2\sigma\omega_0\uvec y$};
+    \node[align=center] at (1.2,-2.6){$AC$：接触母线和相对瞬时转轴\\$AD$：圆锥对称轴\\箭头画 $\sigma=+1$ 的分支};
+  \end{scope}
+\end{tikzpicture}\bookcaption{俯视图与轴截面共同确定轮上滚锥的三维关系；相对瞬时转轴沿 $AC$，不沿 $AD$。}\label{r2ch01:fig:013}\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figRodCylinder}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=.9]
+  % 取 \phi=30^\circ 作示意。由 AP=r\cot(\phi/2) 确定 A，
+  % 使斜杆严格经过圆上切点 P，而不是仅从圆的外观附近穿过。
+  \pgfmathsetmacro{\rad}{1.1}
+  \pgfmathsetmacro{\phiRod}{30}
+  \pgfmathsetmacro{\ax}{1.1-\rad/tan(\phiRod/2)}
+  \coordinate (RodA) at (\ax,0);
+  \coordinate (RodX) at ({\ax+1},0);
+  \coordinate (RodLine) at ({\ax+cos(\phiRod)},{sin(\phiRod)});
+  \coordinate (RodB) at (3.1,{(3.1-\ax)*tan(\phiRod)});
+  \draw[ground] ({\ax-.4},0)--(4,0);
+  \draw[very thick] (1.1,\rad) circle (\rad);
+  \node[point,label=below right:$O$] at (1.1,\rad){};
+  \draw[very thick] (RodA)--(RodB);
+  \node[labelclean,below] at (RodA){$A$};
+  \node[labelclean,above] at (RodB){$B$};
+  \coordinate (P) at ({1.1-\rad*sin(\phiRod)},{\rad*(1+cos(\phiRod))});
+  \node[point,label=above left:$P$] at (P){};
+  \draw[vector] (1.1,1.1)--++(1.35,0) node[right,labelclean]{$v_0$};
+  \draw pic[draw=DeepBlue,-{Latex[length=1.4mm]},angle radius=12mm,angle eccentricity=1.2,"$\phi$" labelclean] {angle=RodX--RodA--RodLine};
+  \draw[guide] (1.1,1.1)--(P);
+\end{tikzpicture}\bookcaption{圆柱同时与地面、斜杆纯滚，接触点 $P$ 的切向速度必须一致。}\label{r2ch01:fig:014}\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figTangentRod}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=.88]
+  \draw[very thick] (0,0) circle (1.55);
+  \node[point,label=below:$C$] at (0,0){};
+  \node[point] at (-1.55,0){};
+  \node[labelclean] at (-2.3,-.65){$O$};
+  \pgfmathsetmacro{\radiusRod}{1.55}
+  \pgfmathsetmacro{\angleRod}{30}
+  \pgfmathsetmacro{\distanceRod}{\radiusRod/sin(\angleRod)}
+  \pgfmathsetmacro{\lengthRod}{\radiusRod/sqrt(3)}
+  \coordinate (Q) at (\distanceRod,0);
+  \coordinate (TangentX) at (2.5,0);
+  \node[point,label=below:$O_1$] at (Q){};
+  \coordinate (B) at ({\radiusRod*sin(\angleRod)},{\radiusRod*cos(\angleRod)});
+  \draw[very thick] (Q)--(B)--++({-.65*cos(\angleRod)},{.65*sin(\angleRod)});
+  \draw[very thick] (Q)--++({\lengthRod*cos(\angleRod)},{-\lengthRod*sin(\angleRod)}) node[right,labelclean]{$D$};
+  \node[labelclean,above] at (B){$B$};
+  \draw[guide] (-1.55,0)--(4.3,0);
+  \draw[guide] (0,0)--(B);
+  \draw[component] (-1.55,0) ++(130:.55) arc[start angle=130,end angle=430,radius=.55];
+  \node[labelclean,anchor=east] at (-2.18,.55){$\omega$};
+  \draw pic[draw=DeepBlue,-{Latex[length=1.4mm]},angle radius=12mm] {angle=B--Q--TangentX};
+  \node[labelclean] at (2.38,.22){$\phi$};
+\end{tikzpicture}\bookcaption{转动圆盘推动始终与圆相切的杆，杆绕固定点 $O_1$ 转动。}\label{r2ch01:fig:015}\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figInvolute}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=.9]
+  % 一般凸卵形边界的一个实例：椭圆。绳段严格沿切线，速度严格垂直绳段。
+  \pgfmathsetmacro{\angleString}{-45}
+  \pgfmathsetmacro{\tx}{-1.7*sin(\angleString)}
+  \pgfmathsetmacro{\ty}{1.1*cos(\angleString)}
+  \pgfmathsetmacro{\normString}{sqrt(\tx*\tx+\ty*\ty)}
+  \coordinate (T) at ({1.7*cos(\angleString)},{1.1*sin(\angleString)});
+  \coordinate (P) at ($(T)+({2.2*\tx/\normString},{2.2*\ty/\normString})$);
+  \coordinate (PV) at ($(P)+({1.3*\ty/\normString},{-1.3*\tx/\normString})$);
+  \draw[curve,domain=0:360,samples=110] plot ({1.7*cos(\x)},{1.1*sin(\x)});
+  \node[point,label=below left:$Q$] at (T){};
+  \node[point,label=above:$P$] at (P){};
+  \draw[very thick] (T)--(P) node[midway,above]{$l$};
+  \draw[vector] (P)--(PV) node[right,labelclean]{$\vect v$};
+  \draw[component] (P)--($(P)!.42!(T)$);
+  \node[labelclean] at ($(P)!.55!(T)+(0,-.55)$){$F_T$};
+  \draw pic[draw=TextGray,angle radius=5mm] {right angle=T--P--PV};
+\end{tikzpicture}\bookcaption{渐开线运动中速度垂直于绷直的绳段，曲率半径等于放出的绳长。}\label{r2ch01:fig:016}\end{rTwoChOneDiagramBlock}}
+
+\newcommand{\figRocker}{%
+\begin{rTwoChOneDiagramBlock}\begin{tikzpicture}[scale=.92]
+  \coordinate (Oone) at (0,0);
+  \coordinate (C) at (0,3.0);
+  \coordinate (A) at (1.4,3.0);
+  \coordinate (O) at (2.6,1.15);
+  \coordinate (RockerVertical) at (2.6,3);
+  \draw[very thick] (Oone)--(0,4.25);
+  \draw[very thick] (O)--(A) node[midway,left=2mm,labelclean]{$r$}--(C);
+  \draw[guide] (O)--(RockerVertical);
+  \draw[fill=SoftGray] (-.25,2.65) rectangle (.25,3.35);
+  \node[point,label=below left:$O_1$] at (Oone){};
+  \node[labelclean] at (-.55,3.42){$C$};
+  \node[point,label=above:$A$] at (A){};
+  \node[point,label=below:$O$] at (O){};
+  \node[labelclean,left] at (0,3.8){$B$};
+  \draw[guide] (C)--(A) node[midway,above]{$a$};
+  \draw[guide] (-.75,0)--(Oone);
+  \draw[guide] (-.75,3)--(C);
+  \draw[TextGray,{Latex[length=1.5mm]}-{Latex[length=1.5mm]}] (-.75,0)--(-.75,3)
+    node[midway,left=2mm,labelclean]{$b$};
+  \draw[component] (O) ++(20:.62) arc[start angle=20,end angle=-200,radius=.62];
+  \node[labelclean,anchor=west] at (3.28,1.22){$\omega$};
+  \draw pic[draw=DeepBlue,-{Latex[length=1.4mm]},angle radius=12mm,angle eccentricity=1.2,"$\phi_0$" labelclean] {angle=RockerVertical--O--A};
+\end{tikzpicture}\bookcaption{曲柄—套筒—摇杆机构在摇杆竖直瞬间的几何关系。}\label{r2ch01:fig:017}\end{rTwoChOneDiagramBlock}}

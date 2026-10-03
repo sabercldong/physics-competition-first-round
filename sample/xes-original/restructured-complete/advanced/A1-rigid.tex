@@ -1,0 +1,507 @@
+\section{刚体}
+
+\subsection{质量几何与矩生成函数}
+
+对密度分布 $\rho(x,y,z)$，定义笛卡尔矩
+\begin{equation}\label{advA1:eq:cartesian-moment}
+ M_{pqr}=\iiint \rho(x,y,z)x^py^qz^r\dd V .
+\end{equation}
+零阶矩是总质量，一阶矩确定质心，二阶矩决定转动惯量张量。更高阶矩则继续编码质量分布的细节。
+
+\begin{advexamplebox}{矩的平移定理}\label{advA1:ex:moment-translation}
+设相对原点 $O$ 的矩为 $M_{pqr}$。把物体整体平移 $\vect a=(a,b,c)$ 后，证明新矩为
+\[
+ M'_{pqr}=\sum_{i=0}^{p}\sum_{j=0}^{q}\sum_{k=0}^{r}
+ \binom pi\binom qj\binom rk
+ a^{p-i}b^{q-j}c^{r-k}M_{ijk}.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+平移后同一质量元的坐标由 $(x,y,z)$ 变为 $(x+a,y+b,z+c)$，而 $\rho\dd V$ 不变。代入定义\eqref{advA1:eq:cartesian-moment}，对三个因子分别用二项式定理：
+\[
+ (x+a)^p(y+b)^q(z+c)^r
+ =\sum_{ijk}\binom pi\binom qj\binom rk
+ x^iy^jz^k a^{p-i}b^{q-j}c^{r-k}.
+\]
+逐项积分即得所证公式。对一阶矩，它给出
+$\vect M'_1=\vect M_1+M\vect a$；对二阶矩，它给出熟悉的平行轴项。
+\end{advsolution}
+
+引入矩生成函数
+\begin{equation}\label{advA1:eq:moment-generator}
+ P(s_1,s_2,s_3)=\iiint\rho(x,y,z)
+ e^{s_1x+s_2y+s_3z}\dd V .
+\end{equation}
+
+\begin{advtheorem}{笛卡尔矩的生成}\label{advA1:thm:moment-generator}
+\[
+ M_{pqr}=\left.
+ \frac{\partial^{p+q+r}P}
+ {\partial s_1^p\partial s_2^q\partial s_3^r}
+ \right|_{(0,0,0)}.
+\]
+\end{advtheorem}
+证明：在积分号内对 $s_1,s_2,s_3$ 求导，每次分别带出一个 $x,y,z$；最后令 $s_1=s_2=s_3=0$，指数因子变为 $1$，正好得到式\eqref{advA1:eq:cartesian-moment}。因而在收敛条件满足时，全部矩就是 $P$ 在原点处的多元泰勒系数。
+
+\begin{advexamplebox}{均匀正方形薄板的前四级矩}\label{advA1:ex:square-moments}
+在 $0\le x\le l, 0\le y\le l$ 上面密度 $\sigma$ 均匀分布。求总阶数 $p+q=0,1,2,3$ 的全部平面笛卡尔矩 $M_{pq}$。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ M_{pq}=\sigma\int_0^l x^p\dd x\int_0^l y^q\dd y
+ =\frac{\sigma l^{p+q+2}}{(p+1)(q+1)}.
+\]
+因此
+\begin{align*}
+ &M_{00}=\sigma l^2,\\
+ &M_{10}=M_{01}=\frac12\sigma l^3,\\
+ &M_{20}=M_{02}=\frac13\sigma l^4,
+ \qquad M_{11}=\frac14\sigma l^4,\\
+ &M_{30}=M_{03}=\frac14\sigma l^5,
+ \qquad M_{21}=M_{12}=\frac16\sigma l^5.
+\end{align*}
+单位为质量乘长度的 $p+q$ 次方，与定义相符。
+\end{advsolution}
+
+\begin{advexamplebox}{卷积与矩生成函数}\label{advA1:ex:convolution}
+定义三维卷积
+\[
+ \gamma(\vect r)=(\alpha*\beta)(\vect r)
+ =\int\alpha(\vect r')\beta(\vect r-\vect r\,')\dd^3r'.
+\]
+若三个分布的矩生成函数分别为 $P,Q,R$，矩分别为 $L,M,N$，证明 $R=PQ$，并写出 $N_{pqr}$。
+\end{advexamplebox}
+\begin{advsolution}
+对卷积作变量代换 $\vect u=\vect r-\vect r\,'$，
+\begin{align*}
+ R(\vect s)
+ &=\int\dd^3r\int\dd^3r'\,\alpha(\vect r')
+ \beta(\vect r-\vect r\,')e^{\vect s\cdot\vect r}\\
+ &=\left[\int\alpha(\vect r')e^{\vect s\cdot\vect r'}\dd^3r'\right]
+ \left[\int\beta(\vect u)e^{\vect s\cdot\vect u}\dd^3u\right]
+ =P(\vect s)Q(\vect s).
+\end{align*}
+对乘积求 $p+q+r$ 阶偏导并用多重莱布尼茨公式：
+\[
+ N_{pqr}=\sum_{i=0}^{p}\sum_{j=0}^{q}\sum_{k=0}^{r}
+ \binom pi\binom qj\binom rk
+ L_{ijk}M_{p-i,q-j,r-k}.
+\]
+这一关系与“独立随机变量之和的矩生成函数相乘”是同一个结构。
+\end{advsolution}
+
+\subsection{欧拉运动学方程}
+
+对定点转动，取初始时刻的固连正交基
+$(\vect e_1,\vect e_2,\vect e_3)$。设形变映射为 $\vect R(\vect r,t)$，并定义
+$\vect\varepsilon_i=\partial\vect R/\partial x_i$。
+
+\begin{advdefinition}{刚体}\label{advA1:def:rigid-body}
+刚体的形变映射在每一时刻都保长且保向：
+\[
+ \vect\varepsilon_i\cdot\vect\varepsilon_j=\delta_{ij},
+ \qquad (\vect\varepsilon_1\times\vect\varepsilon_2)
+ \cdot\vect\varepsilon_3=+1.
+\]
+\end{advdefinition}
+固定原点后，这种映射由特殊正交矩阵 $\mathsf A(t)\in SO(3)$ 描述：
+\[
+ \vect R=\mathsf A(t)\vect r,
+ \qquad \mathsf A^{\mathsf T}\mathsf A=\mathsf I,
+ \qquad \det\mathsf A=1.
+\]
+“保长”给出正交性，“保向”排除行列式为 $-1$ 的镜像变换。连续的刚体运动不能穿过 $\det\mathsf A=0$，因而也不能在运动中突然改变左右手性。
+
+\begin{advexamplebox}{三条坐标轴的转动矩阵}\label{advA1:ex:axis-rotations}
+写出绕 $x,y,z$ 轴主动旋转 $\theta$ 的矩阵，检验不同轴转动是否对易，并讨论能否用一组实坐标同时将所有转动对角化。
+\end{advexamplebox}
+\begin{advsolution}
+\[
+ R_x=\begin{pmatrix}1&0&0\\0&c&-s\\0&s&c\end{pmatrix},
+ \quad
+ R_y=\begin{pmatrix}c&0&s\\0&1&0\\-s&0&c\end{pmatrix},
+ \quad
+ R_z=\begin{pmatrix}c&-s&0\\s&c&0\\0&0&1\end{pmatrix},
+\]
+其中 $c=\cos\theta, s=\sin\theta$。例如对矢量 $\vect e_x$，
+$R_xR_y\vect e_x\ne R_yR_x\vect e_x$，所以一般 $R_xR_y\ne R_yR_x$。无穷小角时对易子是二阶小量，这也解释了小转角下“转角矢量近似可相加”只是一阶结论。
+
+一般实转动的本征值为 $1,e^{\pm\ii\theta}$，除 $\theta=0,\pi$ 等特例外不能在实数域对角化。更不可能用同一组基同时对角化全部 $SO(3)$ 元素，因为可同时对角化的矩阵必彼此对易。
+\end{advsolution}
+
+定义刚体坐标中的角速度矩阵
+\begin{equation}\label{advA1:eq:omega-matrix}
+ \bm{\Omega}=\mathsf{A}^{\mathsf T}\dot{\mathsf{A}}.
+\end{equation}
+
+\begin{advtheorem}{$SO(3)$ 的生成元是反对称矩阵}\label{advA1:thm:so3-generator}
+\[
+ \bm{\Omega}^{\mathsf T}=-\bm{\Omega}.
+\]
+\end{advtheorem}
+对 $\mathsf A^{\mathsf T}\mathsf A=\mathsf I$ 求导：
+$\dot{\mathsf A}^{\mathsf T}\mathsf A+\mathsf A^{\mathsf T}\dot{\mathsf A}=0$。第一项正是第二项的转置，因而得证。三维反对称矩阵只有三个独立分量，可与伪矢量 $\vect\omega=(\omega_1,\omega_2,\omega_3)$ 对应：
+\[
+ [\vect\omega]_\times=
+ \begin{pmatrix}
+ 0&-\omega_3&\omega_2\\
+ \omega_3&0&-\omega_1\\
+ -\omega_2&\omega_1&0
+ \end{pmatrix},
+ \qquad [\vect\omega]_\times\vect r=\vect\omega\times\vect r.
+\]
+所以刚体上的点在刚体坐标中满足 $\vect v=\vect\omega\times\vect r$。
+
+\begin{advexamplebox}{矩阵指数与有限转动}\label{advA1:ex:matrix-exponential}
+记 $[\vect n]_\times$ 为单位矢量 $\vect n$ 的叉乘矩阵。证明
+\[
+ R_{\vect n}(\theta)=e^{\theta[\vect n]_\times}
+ =\lim_{N\to\infty}\left(\mathsf I+
+ \frac\theta N[\vect n]_\times\right)^N,
+\]
+并得到罗德里格公式。
+\end{advexamplebox}
+\begin{advsolution}
+因 $[\vect n]_\times^2=\vect n\vect n^{\mathsf T}-\mathsf I$，且
+$[\vect n]_\times^3=-[\vect n]_\times$，指数级数的奇、偶次项可分别求和：
+\[
+ e^{\theta[\vect n]_\times}
+ =\mathsf I+\sin\theta[\vect n]_\times
+ +(1-\cos\theta)[\vect n]_\times^2.
+\]
+作用于任意 $\vect r$ 便得
+\[
+ R_{\vect n}(\theta)\vect r
+ =\vect r\cos\theta+(\vect n\times\vect r)\sin\theta
+ +\vect n(\vect n\cdot\vect r)(1-\cos\theta),
+\]
+即罗德里格公式。极限形式是矩阵指数的标准定义，表明有限转动可看成无穷多个无穷小转动的有序乘积。
+\end{advsolution}
+
+\begin{advexamplebox}{角速度矩阵与伪矢量的同变换}\label{advA1:ex:omega-transform}
+对 $\mathsf O\in SO(3)$，证明
+\[
+ [\vect\omega']_\times=\mathsf O[\vect\omega]_\times\mathsf O^{-1}
+ \quad\Longleftrightarrow\quad
+ \vect\omega'=\mathsf O\vect\omega .
+\]
+\end{advexamplebox}
+\begin{advsolution}
+对任意矢量 $\vect x$，
+\[
+ \mathsf O[\vect\omega]_\times\mathsf O^{-1}\vect x
+ =\mathsf O(\vect\omega\times\mathsf O^{-1}\vect x)
+ =(\mathsf O\vect\omega)\times\vect x.
+\]
+第二个等号用了 $\det\mathsf O=+1$ 的保向性。因为等式对所有 $\vect x$ 成立，所以两个叉乘矩阵相等。反向推理同理。若把 $SO(3)$ 放宽为包含镜反射的 $O(3)$，就会多出 $\det\mathsf O$，这正是角速度称为伪矢量的原因。
+\end{advsolution}
+
+\subsubsection{欧拉角与角速度}
+
+采用 $Z-X_1-Z_2$ 约定：先绕定系 $Z$ 轴转进动角 $\varphi$，再绕节线 $X_1$ 转章动角 $\theta$，最后绕刚体轴 $Z_2=z$ 转自转角 $\psi$。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.87]
+ \begin{scope}[shift={(0,0)}]
+  \draw[axis] (0,0)--(1.35,0) node[right]{$X$};
+  \draw[curve,->] (0,0)--(1.10,.64) node[right]{$X_1$};
+  \draw[curve,->] (0,0)--(0,1.35) node[above]{$Z_1=Z$};
+  \draw[->,TextGray] (.48,.05) arc[start angle=6,end angle=30,radius=.50];
+  \node at (.25,-1.05) {\strut(1)};
+ \end{scope}
+ \begin{scope}[shift={(5,0)}]
+  \draw[curve,->] (0,0)--(1.35,0) node[below]{$X_2=X_1$};
+  \draw[axis] (0,0)--(0,1.35) node[above]{$Z_1$};
+  \draw[curve,->] (0,0)--(.67,1.16) node[above right]{$Z_2$};
+  \draw[->,TextGray] (.05,.50) arc[start angle=84,end angle=60,radius=.50];
+  \node at (.25,-1.05) {\strut(2)};
+ \end{scope}
+ \begin{scope}[shift={(10,0)}]
+  \draw[axis] (0,0)--(1.35,0) node[right]{$X_2$};
+  \draw[curve,->] (0,0)--(1.10,.64) node[right]{$x$};
+  \draw[curve,->] (0,0)--(.30,1.32) node[above]{$z=Z_2$};
+  \draw[->,TextGray] (.48,.05) arc[start angle=6,end angle=30,radius=.50];
+  \node at (.25,-1.05) {\strut(3)};
+ \end{scope}
+ \draw[-{Latex[length=2.2mm]},TextGray,thick] (2.05,.20)--(3.60,.20);
+ \draw[-{Latex[length=2.2mm]},TextGray,thick] (7.05,.20)--(8.60,.20);
+\end{tikzpicture}
+\bookcaption{欧拉角的三步有序转动；次序改变会改变最终姿态}\label{advA1:fig:euler-steps}
+\end{minipage}\end{center}
+图\ref{advA1:fig:euler-steps}将三次转动分开画出，避免在一张三维图中混淆中间轴。由矩阵乘积的莱布尼茨求导法则，总角速度是三步瞬时角速度的矢量和。在刚体主轴系中，
+\begin{equation}\label{advA1:eq:euler-kinematic}
+ \begin{aligned}
+ \omega_1&=\dot\varphi\sin\theta\sin\psi+\dot\theta\cos\psi,\\
+ \omega_2&=\dot\varphi\sin\theta\cos\psi-\dot\theta\sin\psi,\\
+ \omega_3&=\dot\varphi\cos\theta+\dot\psi.
+ \end{aligned}
+\end{equation}
+这是欧拉运动学方程。在 $\theta=0$ 处 $\varphi$ 与 $\psi$ 的作用重合，是坐标奇点，不是刚体姿态的物理奇点。
+
+\subsection{惯量张量与欧拉动力学方程}
+
+对绕定点以角速度 $\vect\omega$ 转动的刚体，
+\[
+ T=\frac12\int\rho(\vect\omega\times\vect r)^2\dd V,
+ \qquad
+ \vect L=\int\rho\vect r\times(\vect\omega\times\vect r)\dd V.
+\]
+用三重矢积公式，
+\begin{equation}\label{advA1:eq:inertia-tensor}
+ \vect L=\mathsf I\vect\omega,
+ \quad
+ \mathsf I=\int\rho(r^2\mathsf 1-\vect r\vect r^{\mathsf T})\dd V,
+ \quad
+ T=\frac12\vect\omega\cdot\mathsf I\vect\omega.
+\end{equation}
+若二阶质量矩矩阵为 $\mathsf M=\int\rho\vect r\vect r^{\mathsf T}\dd V$，则
+$\mathsf I=\operatorname{tr}(\mathsf M)\mathsf1-\mathsf M$。
+
+\begin{advexamplebox}{绕任意轴的转动惯量}\label{advA1:ex:axis-inertia}
+刚体绕经定点的单位方向 $\vect n$ 以角速度 $\omega$ 转动。证明该轴的转动惯量为
+\[
+ I_{\vect n}=\vect n^{\mathsf T}\mathsf I\vect n.
+\]
+\end{advexamplebox}
+\begin{advsolution}
+令 $\vect\omega=\omega\vect n$，将式\eqref{advA1:eq:inertia-tensor}中的动能与定义 $T=I_{\vect n}\omega^2/2$ 比较，
+\[
+ \frac12I_{\vect n}\omega^2
+ =\frac12\omega^2\vect n^{\mathsf T}\mathsf I\vect n.
+\]
+因而得证。同时
+$\vect L\cdot\vect n=\omega\vect n^{\mathsf T}\mathsf I\vect n=I_{\vect n}\omega$，但若 $\vect n$ 不是主轴，$\vect L$ 本身不与 $\vect\omega$ 平行。
+\end{advsolution}
+
+\begin{advtheorem}{主轴定理}\label{advA1:thm:principal-axes}
+实对称惯量张量存在一组正交主轴，在该基底下
+\[
+ \mathsf I=\operatorname{Diag}(I_1,I_2,I_3).
+\]
+\end{advtheorem}
+这是实对称矩阵的谱定理。解
+$\det(\mathsf I-\lambda\mathsf1)=0$得三个实本征值；不同本征值的本征矢量自动正交，简并子空间内再作格拉姆--施密特正交化。以三个归一化本征矢量为列构造正交矩阵，即得对角化。在主轴系中
+\[
+ L_i=I_i\omega_i,
+ \qquad T=\frac12(I_1\omega_1^2+I_2\omega_2^2+I_3\omega_3^2).
+\]
+
+\begin{advtheorem}{欧拉动力学方程}\label{advA1:thm:euler-dynamics}
+在刚体主轴系中，外力矩分量为 $M_i$ 时，
+\begin{equation}\label{advA1:eq:euler-dynamics}
+ \begin{aligned}
+ I_1\dot\omega_1+(I_3-I_2)\omega_2\omega_3&=M_1,\\
+ I_2\dot\omega_2+(I_1-I_3)\omega_3\omega_1&=M_2,\\
+ I_3\dot\omega_3+(I_2-I_1)\omega_1\omega_2&=M_3.
+ \end{aligned}
+\end{equation}
+\end{advtheorem}
+证明：惯性系中 $\dd\vect L/\dd t=\vect M$。任意矢量的两系导数关系为
+\[
+ \left(\frac{\dd\vect L}{\dd t}\right)_{\rm inertial}
+ =\left(\frac{\dd\vect L}{\dd t}\right)_{\rm body}
+ +\vect\omega\times\vect L.
+\]
+在主轴系中 $\vect L=(I_1\omega_1,I_2\omega_2,I_3\omega_3)$，逐分量展开即得式\eqref{advA1:eq:euler-dynamics}。
+
+把式\eqref{advA1:eq:euler-kinematic}代入动能，就可用欧拉角写拉格朗日方程。外力矩的功率为
+\[
+ \vect M\cdot\vect\omega=M_\varphi\dot\varphi
+ +M_\theta\dot\theta+M_\psi\dot\psi,
+\]
+其中
+\[
+ M_\varphi=M_1\sin\theta\sin\psi+M_2\sin\theta\cos\psi+M_3\cos\theta,
+\]
+\[
+ M_\theta=M_1\cos\psi-M_2\sin\psi,
+ \qquad M_\psi=M_3.
+\]
+它们就是三个欧拉角对应的广义力。
+
+\subsubsection{自由非对称刚体}
+
+设 $I_1<I_2<I_3$。无外力矩时，角动量大小与动能守恒。记刚体系中的角动量分量为
+$\Pi_i=I_i\omega_i$，则轨道是
+\begin{equation}\label{advA1:eq:pi-intersection}
+ \Pi_1^2+\Pi_2^2+\Pi_3^2=L^2,
+ \qquad
+ \frac{\Pi_1^2}{2I_1}+\frac{\Pi_2^2}{2I_2}
+ +\frac{\Pi_3^2}{2I_3}=T.
+\end{equation}
+即角动量球与能量椭球的交线。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.88]
+ \begin{scope}
+  \draw[axis] (-2.3,0)--(2.4,0) node[right]{$\Pi_1$};
+  \draw[axis] (0,-2.0)--(0,2.1) node[above]{$\Pi_3$};
+  \foreach \sgn in {-1,1}{
+   \draw[curve,domain=0:360,samples=121,variable=\t] plot ({.83666*cos(\t)+.460163*sin(\t)},{\sgn*1.8*sqrt(.3+.525*cos(\t)^2)+.167332*sin(\t)});
+   \fill (0,{\sgn*1.8}) circle(1.8pt);
+   \fill ({\sgn*2},0) circle(1.8pt);
+  }
+  \node at (0,-2.42){(a) 交线投影；点为稳定主轴方向};
+ \end{scope}
+ \begin{scope}[shift={(6,0)}]
+  \draw[very thick] (0,0) ellipse (1.55 and 1.02);
+  \draw[ground] (-2,-1.02)--(2,-1.02);
+  \draw[vector] (0,0)--(0,-1.75) node[right]{$\vect L$};
+  \fill (0,-1.02) circle(2pt);
+  \draw[thin] (.10,-1.02)--(.65,-.70) node[right]{接触点};
+  \fill (0,0) circle(1.4pt) node[above]{$O$};
+  \node at (0,1.45){能量椭球};
+  \node at (0,-2.42){(b) 定平面垂直于 $\vect L$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{自由刚体的角动量交线与能量椭球纯滚动图像}\label{advA1:fig:poinsot}
+\end{minipage}\end{center}
+图\ref{advA1:fig:poinsot}(a) 是三维交线的斜投影，未画出 $\Pi_2$ 轴；投影曲线的交叉不表示三维轨道相交。绕最小和最大主轴的转动稳定，绕中间主轴的转动不稳定，后者会表现为反复翻转，即所谓中间轴定理或扎尼别科夫效应。在角速度空间，能量椭球在惯性系中沿一个与守恒 $\vect L$ 垂直的定平面纯滚动，如图\ref{advA1:fig:poinsot}(b)，这就是庞锁构造。
+
+\subsubsection{对称陀螺与章动}
+
+对 $I_1=I_2=I, I_3=I_0$ 的对称陀螺，
+\begin{equation}\label{advA1:eq:symmetric-top-T}
+ T=\frac I2(\dot\theta^2+\dot\varphi^2\sin^2\theta)
+ +\frac{I_0}{2}(\dot\psi+\dot\varphi\cos\theta)^2.
+\end{equation}
+若势能仅为 $V(\theta)$，$\varphi,\psi$ 都是循环坐标：
+\[
+ J_\varphi=I\dot\varphi\sin^2\theta+J_\psi\cos\theta,
+ \qquad
+ J_\psi=I_0(\dot\psi+\dot\varphi\cos\theta).
+\]
+同时罗斯约化两个循环坐标，
+\begin{equation}\label{advA1:eq:top-effective}
+ \mathcal R=\frac I2\dot\theta^2-V_{\rm eff}(\theta)-\frac{J_\psi^2}{2I_0},
+ \quad
+ V_{\rm eff}=\frac{(J_\varphi-J_\psi\cos\theta)^2}
+ {2I\sin^2\theta}+V(\theta).
+\end{equation}
+定义约化能 $E_\theta=E-J_\psi^2/(2I_0)$，转向点由 $E_\theta=V_{\rm eff}$ 决定，再代回
+\[
+ \dot\varphi=\frac{J_\varphi-J_\psi\cos\theta}{I\sin^2\theta},
+ \qquad
+ \dot\psi=\frac{J_\psi}{I_0}-\dot\varphi\cos\theta
+\]
+即可求进动与自转。
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1.9cm,y=1.45cm]
+ \draw[axis] (0,0)--(3.35,0) node[right]{$\theta$};
+ \draw[axis] (0,0)--(0,2.35) node[above]{$V_{\rm eff}$};
+ \draw[curve,domain=.50:2.64159,samples=101] plot (\x,{.5/(sin(\x r)^2)});
+ \draw[TextGray,thick] (.4,1)--(2.75,1) node[right]{$E_\theta$};
+ \foreach \x/\lab in {.785398/\theta_-,2.356194/\theta_+}{\draw[guide] (\x,0)--(\x,1);\fill (\x,1) circle(1.6pt);\node[below] at (\x,0){$\lab$};}
+ \fill (1.570796,.5) circle(1.7pt) node[below=4pt]{$\theta_0$};
+ \node[below] at (3.14159,0){$\pi$};
+ \node[font=\small] at (1.6,2.7){示例：$V_{\rm eff}=1/(2\sin^2\theta)$};
+\end{tikzpicture}
+\bookcaption{对称陀螺的有效势、稳定无章动点与章动转向点}\label{advA1:fig:top-effective}
+\end{minipage}\end{center}
+图\ref{advA1:fig:top-effective}中 $\theta_0$ 是有效势极小点；能量稍高时，$\theta$ 在 $\theta_-$ 与 $\theta_+$ 之间章动。
+
+\begin{advexamplebox}{无章动条件与小章动频率}\label{advA1:ex:nutation}
+对式\eqref{advA1:eq:top-effective}的一般对称陀螺，求恒定 $\theta=\theta_0$ 的条件，并求其附近小章动的频率。
+\end{advexamplebox}
+\begin{advsolution}
+无章动要求
+\[
+ V_{\rm eff}'(\theta_0)=0,
+ \qquad E=V_{\rm eff}(\theta_0)+\frac{J_\psi^2}{2I_0}.
+\]
+令 $A(\theta)=J_\varphi-J_\psi\cos\theta$，第一个条件显式写成
+\[
+ \frac1I\left[
+ \frac{A J_\psi}{\sin\theta}
+ -\frac{A^2\cos\theta}{\sin^3\theta}\right]_{\theta_0}
+ +V'(\theta_0)=0.
+\]
+令 $\theta=\theta_0+\eta$，将有效势展开到二阶：
+\[
+ I\ddot\eta+V_{\rm eff}''(\theta_0)\eta=0.
+\]
+因而
+\[
+ \boxed{\omega_{\rm nut}^2=\frac{V_{\rm eff}''(\theta_0)}I}.
+\]
+稳定无章动还要求 $V_{\rm eff}''(\theta_0)>0$；若小于零，则微小扰动指数增长。
+\end{advsolution}
+
+\begin{advexamplebox}{始终保持底边水平的等边三角板}\label{advA1:ex:triangle-top}
+均匀等边三角形薄板 $OAB$ 的质量为 $m$、边长为 $l$，绕过顶点 $O$ 的竖直轴定点转动，且 $AB$ 始终水平。
+(1) 当板以进动角速度 $\omega$ 作无章动运动时，求板中线 $OG$ 与竖直向下方向的夹角 $\phi$；
+(2) 在不施加额外竖直轴力矩的情况下，求 $\phi$ 发生微小章动的周期。
+\end{advexamplebox}
+\AdvHideHeadingtrue
+\begin{advsolution}
+\noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ \draw[axis] (0,1.9)--(0,-2.0) node[below]{竖直轴};
+ \coordinate (O) at (0,.85);
+ \coordinate (G) at (.7,-.083333);
+ \coordinate (A) at (.15,-.55);
+ \coordinate (B) at (1.95,-.55);
+ \fill[DeepBlue!7] (O)--(A)--(B)--cycle;
+ \draw[very thick] (O)--(A)--(B)--cycle;
+ \draw[guide] (O)--(0,-1.35);
+ \draw[curve] (O)--(G) node[midway,above right]{$OG$};
+ \fill (G) circle(2.3pt) node[right=4pt]{$G$};
+ \draw[->,DeepBlue] ($(O)+(0,-.48)$) arc[start angle=-90,end angle=-53,radius=.48];
+ \node at (.40,.20) {$\phi$};
+ \draw[very thick,TextGray] (A)--(B) node[midway,below=4pt]{$AB$水平};
+ \draw[->,TextGray] (-.55,.85) arc[start angle=180,end angle=20,x radius=.85,y radius=.25];
+ \node at (-.82,1.15) {$\alpha$};
+\end{tikzpicture}
+\bookcaption{等边三角板的中线、水平底边和进动角}\label{advA1:fig:triangle}
+\end{minipage}\end{center}\end{minipage}
+
+如图\ref{advA1:fig:triangle}，记板的方位角为 $\alpha$。质心到 $O$ 的距离
+\[
+ a=OG=\frac{l}{\sqrt3}.
+\]
+取过 $O$ 且平行 $AB$ 的轴、板法线和 $OG$ 为三条主轴，其主惯量为
+\[
+ I_1=\frac{3}{8}ml^2,
+ \qquad I_2=\frac{5}{12}ml^2,
+ \qquad I_3=\frac1{24}ml^2,
+ \qquad I_2-I_3=I_1.
+\]
+动能和势能为
+\[
+ T=\frac12I_1\dot\phi^2+
+ \frac12A(\phi)\dot\alpha^2,
+ \quad A(\phi)=I_2\sin^2\phi+I_3\cos^2\phi,
+ \qquad V=-mga\cos\phi.
+\]
+
+(1) 无章动时 $\dot\alpha=\omega$，$\phi$ 方程给出
+\[
+ (I_2-I_3)\omega^2\sin\phi\cos\phi-mga\sin\phi=0.
+\]
+非竖直解为
+\[
+ \boxed{\cos\phi=\frac{mga}{(I_2-I_3)\omega^2}
+ =\frac{8g}{3\sqrt3\,l\omega^2}}.
+\]
+它要求 $\omega^2\ge8g/(3\sqrt3\,l)$。
+
+(2) 章动时 $\alpha$ 不再保持严格匀速，守恒的是
+$p_\alpha=A(\phi)\dot\alpha=A(\phi_0)\omega$。罗斯函数为
+\[
+ \mathcal R=\frac12I_1\dot\phi^2+mga\cos\phi
+ -\frac{p_\alpha^2}{2A(\phi)}.
+\]
+在平衡角 $\phi_0=\phi$ 附近线性化，并用第(1)问的平衡条件化简，得
+\[
+ \Omega_{\rm nut}^2
+ =\omega^2\sin^2\phi
+ \left[1+\frac{4I_1\cos^2\phi}{A(\phi)}\right]
+ =\omega^2\sin^2\phi\,
+ \frac{10+27\cos^2\phi}{10-9\cos^2\phi}.
+\]
+因而
+\[
+ \boxed{T_{\rm nut}=\frac{2\pi}{\omega\sin\phi}
+ \sqrt{\frac{10-9\cos^2\phi}{10+27\cos^2\phi}}}.
+\]
+若误把章动过程中的 $\dot\alpha$ 仍当作外部强制的常量，会遗漏根号中的惯性耦合因子。
+\end{advsolution}

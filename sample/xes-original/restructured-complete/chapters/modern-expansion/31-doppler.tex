@@ -1,0 +1,19 @@
+\subsection{从谱线频移反求速度}
+已知光源静止系的谱线波长 $\lambda_0$，观察者测得沿视线远离的光源谱线为 $\lambda_{\rm obs}$。先取比值 $r=\lambda_{\rm obs}/\lambda_0=f_0/f_{\rm rec}$，再反解：
+\[
+ r^2=\frac{1+\beta}{1-\beta},\qquad
+ \beta=\frac{r^2-1}{r^2+1}.
+\]
+例如 $\lambda_{\rm obs}=1.50\lambda_0$ 时，$\beta=5/13\approx0.385$，而把红移 $z=r-1=0.50$ 直接当作 $v/c$ 会高估速度。$z\ll1$ 时才有 $\beta\simeq z$。
+这里把频移全部归因于狭义相对论中的相对运动；不含引力红移和宇宙膨胀的传播效应。
+
+\subsection{“横向”必须注明在哪个参考系}
+取 $S$ 为光源静止系，$S'$ 观察者沿 $+x$ 以 $v$ 运动。两系的光线角度分别记为 $\theta,\theta'$。若光源系中横向发射，即 $\theta=90^\circ$，则
+\[
+ f'=\gamma f_0,\qquad \cos\theta'=-\beta.
+\]
+若观察者系中光线横向，即 $\theta'=90^\circ$，光行差式却要求 $\cos\theta=\beta$，从而
+\[
+ f'=\gamma f_0(1-\beta^2)=\frac{f_0}{\gamma}.
+\]
+两种频移相反，是因为所选的光线方向不同。在 $\beta=0.60$ 时，前者为 $1.25f_0$、后者为 $0.80f_0$；代入同一套角度变换即可互相核对。沿视线的接近、远离公式不能直接用于这种斜向问题。

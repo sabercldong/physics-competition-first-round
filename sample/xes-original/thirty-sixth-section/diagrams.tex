@@ -1,0 +1,500 @@
+% All labels are transparent. Rectangles in circuit figures represent actual elements,
+% not label backgrounds.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.55pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.4pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.3pt},
+  xesline/.style={draw=Ink,line width=.85pt,line cap=round,line join=round},
+  xesblue/.style={draw=DeepBlue,line width=1pt,line cap=round,line join=round},
+  xesarrow/.style={-{Latex[length=2.1mm,width=1.3mm]},draw=DeepBlue,line width=.9pt},
+  grayarrow/.style={-{Latex[length=1.7mm,width=1.1mm]},draw=TextGray,line width=.65pt},
+  circuit/.style={draw=Ink,line width=.9pt,line cap=round,line join=round},
+  element/.style={draw=Ink,fill=PaleBlue,minimum width=.66cm,minimum height=.30cm,
+    inner sep=0pt,line width=.75pt},
+  nodepoint/.style={circle,fill=DeepBlue,draw=none,inner sep=1.8pt},
+  driftpath/.style={draw=DeepBlue!75,line width=.65pt}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{.3em}
+}
+
+\newcommand{\ivCharacteristicFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.2,0)}]
+    \draw[circuit] (-2.15,0)--(-.75,0);
+    \draw[circuit,fill=DeepBlue!7] (-.75,-.42) rectangle (.75,.42);
+    \draw[circuit] (.75,0)--(2.15,0);
+    \fill[white,draw=Ink,line width=.8pt] (-2.15,0) circle (2pt);
+    \fill[white,draw=Ink,line width=.8pt] (2.15,0) circle (2pt);
+    \draw[xesarrow] (-1.95,.62)--(-.95,.62);
+    \node[xeslabel,above] at (-1.45,.65) {$I$};
+    \node[xeslabel,below] at (0,-.48) {$V$};
+    \node[xeslabel,below] at (-2.15,-.12) {$+$};
+    \node[xeslabel,below] at (2.15,-.12) {$-$};
+    \node[xessmall] at (0,-1.15) {二端元件与人为规定的测试方向};
+  \end{scope}
+  \begin{scope}[shift={(3.25,0)}]
+    \draw[xesline,-{Latex[length=1.8mm]}] (-2.05,0)--(2.05,0) node[xeslabel,right] {$V$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,-1.55)--(0,1.65) node[xeslabel,above] {$I$};
+    \draw[xesblue] (-1.65,-1.22)..controls(-1.20,-1.12)and(-.92,-.72)..(-.62,-.50)
+      ..controls(-.20,-.18)and(.38,.24)..(.73,.53)
+      ..controls(1.05,.79)and(1.28,1.13)..(1.43,1.48);
+    \node[xessmall] at (0,-1.90) {伏安关系 $I=I(V)$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ohmHistoryFigure}{%
+\begin{center}
+  \includegraphics[width=.88\linewidth]{ohm-portrait-and-stamp-built-in-v1.png}
+  \par\smallskip
+  \begin{minipage}[t]{.43\linewidth}\centering\small\color{TextGray}
+    (a) Georg Simon Ohm（1789--1854）的历史肖像。
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.43\linewidth}\centering\small\color{TextGray}
+    (b) 以电阻和 $U=RI$ 为主题的纪念邮票。
+  \end{minipage}
+  \figcap{图 5.2—图 5.3：Ohm 肖像与电阻定律纪念邮票。}
+\end{center}}
+
+\newcommand{\cylindricalResistorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!8] (-2.4,-.55) rectangle (2.4,.55);
+  \draw[xesblue] (-2.4,-.55)--(2.4,-.55) (2.4,.55)--(-2.4,.55);
+  \draw[xesblue] (-2.4,0) ellipse (.26 and .55);
+  \draw[xesblue] (2.4,.55) arc[start angle=90,end angle=-90,x radius=.26,y radius=.55];
+  \draw[xesblue,dashed] (2.4,-.55) arc[start angle=-90,end angle=-270,x radius=.26,y radius=.55];
+  \draw[<->,Gold!70!black,line width=.65pt] (-2.35,.95)--(2.35,.95);
+  \node[xestiny,text=Gold!70!black] at (0,1.18) {$l$};
+  \draw[xesarrow] (-3.15,0)--(-2.48,0);
+  \node[xeslabel,above] at (-2.82,.06) {$I$};
+  \node[xeslabel] at (0,0) {$\rho$};
+  \draw[RuleGray,line width=.55pt,-{Latex[length=1.5mm]}] (-3.45,-.85)--(-2.58,-.32);
+  \node[xessmall,anchor=east] at (-3.50,-.88) {截面积 $A$};
+  \node[xeslabel,below] at (-2.40,-.65) {$+$};
+  \node[xeslabel,below] at (2.40,-.65) {$-$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ohmicIVFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesline,-{Latex[length=1.8mm]}] (-2.15,0)--(2.15,0) node[xeslabel,right] {$V$};
+  \draw[xesline,-{Latex[length=1.8mm]}] (0,-1.45)--(0,1.65) node[xeslabel,above] {$I$};
+  \draw[xesblue] (-1.65,-1.25)--(1.72,1.30);
+  \draw[RuleGray,densely dashed] (1.10,0)--(1.10,.83)--(0,.83);
+  \node[xessmall,anchor=west] at (1.18,.58) {斜率 $1/R$};
+  \node[xestiny,below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\drudeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!4] (-4.2,-1.45) rectangle (4.2,1.45);
+  \foreach \x/\y in {-3.6/1.0,-2.4/.95,-1.15/1.05,.2/.95,1.45/1.08,2.75/.92,3.70/1.10,
+                        -3.1/.05,-1.85/.15,-.55/-.02,.85/.12,2.15/.0,3.35/.15,
+                        -3.65/-.95,-2.35/-1.02,-1.0/-.90,.35/-1.05,1.65/-.92,2.95/-1.06,3.82/-.92}{
+    \fill[Gold!78] (\x,\y) circle (3.8pt);\draw[Gold!60!black,line width=.45pt] (\x,\y) circle (3.8pt);}
+  \draw[driftpath] (-4.0,-.58)..controls(-3.55,-.20)and(-3.30,.45)..(-3.05,.10)
+    ..controls(-2.70,-.30)and(-2.25,-.42)..(-2.02,.02)
+    ..controls(-1.75,.50)and(-1.18,.35)..(-.96,-.05)
+    ..controls(-.65,-.62)and(-.15,-.42)..(.10,.02)
+    ..controls(.38,.55)and(.95,.46)..(1.18,.05)
+    ..controls(1.45,-.42)and(2.0,-.52)..(2.28,-.04)
+    ..controls(2.55,.42)and(3.12,.30)..(3.95,.58);
+  \foreach \x/\y in {-3.80/-.48,-3.08/.10,-2.03/.02,-.96/-.05,.10/.02,1.18/.05,2.28/-.04,3.78/.49}{
+    \fill[DeepBlue] (\x,\y) circle (2pt);}
+  \draw[xesarrow] (-3.45,-1.82)--(-1.55,-1.82);
+  \node[xessmall,below] at (-2.50,-1.88) {电子平均漂移 $\boldsymbol v_d$};
+  \draw[xesarrow] (3.45,-1.82)--(1.55,-1.82);
+  \node[xessmall,below] at (2.50,-1.88) {电场与电流 $\boldsymbol E,\boldsymbol j$};
+  \node[xessmall] at (0,1.82) {高速无规则运动上叠加很小的定向漂移；每次碰撞近似“重置”漂移速度};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\gasDischargeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.82cm,y=.78cm]
+  \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(10.1,0) node[xessmall,right] {电流 $I$（对数标度）};
+  \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,5.55) node[xessmall,above] {电压 $U$};
+  \foreach \x/\lab in {1/{10^{-15}},3.7/{10^{-10}},6.2/{10^{-5}},8.7/{10^{0}}}{
+    \draw[RuleGray] (\x,0)--(\x,-.10);\node[xestiny,below] at (\x,-.12) {$\lab$};}
+  \foreach \y/\lab in {1/{200},2/{400},3/{600},4/{800},5/{1000}}{
+    \draw[RuleGray] (0,\y)--(-.10,\y);\node[xestiny,anchor=east] at (-.14,\y) {$\lab$};}
+  \draw[RuleGray,densely dashed] (5.72,0)--(5.72,5.15) (8.55,0)--(8.55,5.15);
+  \node[xessmall] at (2.80,5.20) {暗放电};
+  \node[xessmall] at (7.15,5.20) {辉光放电};
+  \node[xessmall] at (9.25,5.20) {电弧};
+  \draw[xesblue] (.55,.42)..controls(.95,.42)and(1.05,2.65)..(1.34,2.95)
+    ..controls(1.58,3.12)and(4.8,3.20)..(5.70,3.26)
+    ..controls(6.18,3.22)and(6.62,2.20)..(7.23,1.64)
+    ..controls(7.55,1.34)and(7.96,1.50)..(8.18,2.20)
+    ..controls(8.38,2.90)and(8.43,4.72)..(8.55,5.05);
+  \draw[Gold!85!black,line width=1.05pt] (8.55,5.05)..controls(8.67,2.40)and(8.72,.72)..(9.05,.62)
+    ..controls(9.36,.55)and(9.72,.66)..(9.92,.74);
+  \foreach \x/\y/\lab in {.58/.45/{A'},3.10/3.16/{C},5.68/3.26/{D},6.15/2.92/{E},6.85/1.95/{F},7.45/1.46/{G},8.12/2.22/{H},8.55/5.05/{I},9.08/.62/{J},9.85/.74/{K}}{
+    \fill[Ink] (\x,\y) circle (1.7pt);\node[xestiny,above=2pt] at (\x,\y) {$\lab$};}
+  \fill[Ink] (1.35,2.95) circle (1.7pt);\node[xestiny,below left=1pt] at (1.35,2.95) {$B'$};
+  \fill[Ink] (1.65,3.08) circle (1.7pt);\node[xestiny,above right=1pt] at (1.65,3.08) {$B$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\seriesParallelResistorsFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.55,0)}]
+    \draw[circuit] (-2.05,0)--(-1.35,0);
+    \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=1.05mm}] (-1.35,0)--(-.10,0);
+    \draw[circuit] (-.10,0)--(.35,0);
+    \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=1.05mm}] (.35,0)--(1.60,0);
+    \draw[circuit] (1.60,0)--(2.05,0);
+    \node[xeslabel,above] at (-.72,.18) {$R_1$};\node[xeslabel,above] at (.98,.18) {$R_2$};
+    \node[xessmall] at (0,-.72) {串联：电流相同};
+  \end{scope}
+  \begin{scope}[shift={(3.55,0)}]
+    \draw[circuit] (-2.05,0)--(-1.55,0) (-1.55,0)--(-1.55,1.0) (-1.55,0)--(-1.55,-1.0);
+    \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=1.05mm}] (-1.55,1.0)--(1.55,1.0);
+    \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=1.05mm}] (-1.55,-1.0)--(1.55,-1.0);
+    \draw[circuit] (1.55,1.0)--(1.55,0) (1.55,-1.0)--(1.55,0) (1.55,0)--(2.05,0);
+    \node[xeslabel,above] at (0,1.12) {$R_1$};\node[xeslabel,below] at (0,-1.12) {$R_2$};
+    \node[xessmall] at (0,-1.68) {并联：电压相同};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\networkTermsFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (A) at (0,2.0);\coordinate (B) at (-2.0,.62);\coordinate (C) at (-1.25,-1.72);
+  \coordinate (D) at (1.25,-1.72);\coordinate (E) at (2.0,.62);\coordinate (O) at (0,0);
+  \draw[circuit] (A)--(B)--(C)--(D)--(E)--cycle;
+  \draw[circuit] (A)--(O)--(B) (O)--(C) (O)--(D) (O)--(E);
+  \foreach \P in {A,B,C,D,E,O}{\node[nodepoint] at (\P) {};}
+  \foreach \X/\Y in {A/B,B/C,C/D,D/E,E/A,A/O,O/B,O/C,O/D,O/E}{
+    \path (\X)--(\Y) node[element,pos=.48,sloped] {};}
+  \draw[Gold!80!black,densely dashed,line width=.7pt,rounded corners=7pt]
+    (-.15,1.48)--(-.65,.58)--(0,0)--(1.05,.35)--(.85,1.20)--cycle;
+  \node[xessmall,text=Gold!70!black] at (.60,.68) {回路};
+  \draw[grayarrow] (-3.45,1.65)--(-2.05,.68);\node[xeslabel,anchor=east] at (-3.52,1.65) {节点};
+  \draw[grayarrow] (-3.45,-.25)--($(B)!.60!(C)$);\node[xeslabel,anchor=east] at (-3.52,-.25) {支路};
+  \draw[grayarrow] (3.55,1.35)--($(E)!.48!(A)$);\node[xeslabel,anchor=west] at (3.62,1.35) {元件};
+  \node[xessmall] at (0,-2.32) {节点由导线连续区域确定；两个节点之间是一条支路};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\kclKvlFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=.95cm,y=.95cm]
+  \begin{scope}[shift={(-3.9,0)}]
+    \coordinate (N1) at (0,1.85);\coordinate (N2) at (-1.70,-1.15);\coordinate (N4) at (1.70,-1.15);\coordinate (N3) at (0,-.05);
+    \draw[circuit] (N1)--(N2)--(N4)--cycle (N1)--(N3)--(N2) (N3)--(N4);
+    \foreach \P in {N1,N2,N3,N4}{\node[nodepoint] at (\P) {};}
+    \foreach \X/\Y in {N1/N2,N1/N4,N2/N4,N1/N3,N3/N2,N3/N4}{\path (\X)--(\Y) node[element,pos=.48,sloped] {};}
+    \draw[xesarrow] ($(N1)!.09!(N2)$)--($(N1)!.29!(N2)$);
+    \node[xestiny,anchor=east] at (-.47,1.18) {$i_1$};
+    \draw[xesarrow] ($(N1)!.08!(N3)$)--($(N1)!.28!(N3)$);
+    \node[xestiny,anchor=west] at (.12,1.50) {$i_2$};
+    \draw[xesarrow] ($(N1)!.09!(N4)$)--($(N1)!.29!(N4)$);
+    \node[xestiny,anchor=west] at (.47,1.18) {$i_3$};
+    \draw[xesarrow] ($(N3)!.08!(N2)$)--($(N3)!.29!(N2)$);
+    \node[xestiny,anchor=east] at (-.30,-.22) {$i_4$};
+    \draw[xesarrow] ($(N3)!.08!(N4)$)--($(N3)!.29!(N4)$);
+    \node[xestiny,anchor=west] at (.30,-.22) {$i_5$};
+    \draw[xesarrow] ($(N2)!.07!(N4)$)--($(N2)!.29!(N4)$);
+    \node[xestiny,below] at (-1.05,-1.20) {$i_6$};
+    \node[xeslabel,above] at (N1) {$N_1$};\node[xeslabel,below left] at (N2) {$N_2$};
+    \node[xeslabel,above=2pt] at (N3) {$N_3$};\node[xeslabel,below right] at (N4) {$N_4$};
+    \node[xessmall] at (0,-2.05) {KCL：先规定支路电流方向};
+  \end{scope}
+  \begin{scope}[shift={(3.9,0)}]
+    \coordinate (N1) at (0,1.85);\coordinate (N2) at (-1.70,-1.15);\coordinate (N4) at (1.70,-1.15);\coordinate (N3) at (0,-.05);
+    \draw[circuit] (N1)--(N2)--(N4)--cycle (N1)--(N3)--(N2) (N3)--(N4);
+    \foreach \P in {N1,N2,N3,N4}{\node[nodepoint] at (\P) {};}
+    \foreach \X/\Y in {N1/N2,N1/N4,N2/N4,N1/N3,N3/N2,N3/N4}{\path (\X)--(\Y) node[element,pos=.48,sloped] {};}
+    \node[xestiny,anchor=east] at (-1.13,.63) {$v_1$};
+    \node[xestiny,anchor=west] at (1.13,.63) {$v_3$};
+    \node[xestiny,anchor=west] at (.18,1.03) {$v_2$};
+    \node[xestiny,anchor=east] at (-.72,-.30) {$v_4$};
+    \node[xestiny,anchor=west] at (.72,-.30) {$v_5$};
+    \node[xestiny,below] at (0,-1.46) {$v_6$};
+    \node[xestiny] at (-.39,.88) {$+$};\node[xestiny] at (-.94,-.08) {$-$};
+    \node[xestiny] at (-.18,1.25) {$+$};\node[xestiny] at (-.18,.61) {$-$};
+    \node[xestiny] at (.39,.88) {$+$};\node[xestiny] at (.94,-.08) {$-$};
+    \node[xestiny] at (-.39,-.44) {$+$};\node[xestiny] at (-.94,-.80) {$-$};
+    \node[xestiny] at (.39,-.44) {$+$};\node[xestiny] at (.94,-.80) {$-$};
+    \node[xestiny] at (-.61,-.98) {$+$};\node[xestiny] at (.61,-.98) {$-$};
+    \draw[Gold!80!black,-{Latex[length=1.5mm]},line width=.65pt]
+      (-.66,.58) arc[start angle=120,end angle=430,radius=.20];
+    \node[xestiny,text=Gold!70!black] at (-.58,.20) {$L_1$};
+    \draw[Gold!80!black,-{Latex[length=1.5mm]},line width=.65pt]
+      (.46,.58) arc[start angle=60,end angle=-250,radius=.20];
+    \node[xestiny,text=Gold!70!black] at (.58,.20) {$L_2$};
+    \draw[Gold!80!black,-{Latex[length=1.5mm]},line width=.65pt]
+      (-.20,-.70) arc[start angle=170,end angle=-140,radius=.20];
+    \node[xestiny,text=Gold!70!black] at (0,-.78) {$L_3$};
+    \draw[Gold!80!black,-{Latex[length=1.7mm]},line width=.75pt]
+      (0,2.28) arc[start angle=90,end angle=430,x radius=2.25,y radius=2.02];
+    \node[xestiny,text=Gold!70!black] at (1.92,1.52) {$L_4$};
+    \node[xessmall] at (0,-2.05) {KVL：沿所选回路累计支路电压};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\nodeMethodFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (a) at (-2.4,1.35);\coordinate (b) at (1.25,1.35);\coordinate (c) at (1.25,-1.35);
+  \draw[circuit] (a)--(-1.25,1.35);
+  \draw[circuit,decorate,decoration={zigzag,segment length=3mm,amplitude=1.05mm}] (-1.25,1.35)--(.15,1.35);
+  \draw[circuit] (.15,1.35)--(b);
+  \draw[circuit] (b)--(1.25,.40);
+  \draw[circuit,decorate,decoration={zigzag,segment length=3mm,amplitude=1.05mm}] (1.25,.40)--(1.25,-.78);
+  \draw[circuit] (1.25,-.78)--(c)--(-2.4,-1.35);
+  \draw[circuit] (-2.4,-1.35)--(-2.4,-.34);
+  \draw[circuit] (-2.63,-.34)--(-2.17,-.34) (-2.78,.02)--(-2.02,.02);
+  \draw[circuit] (-2.4,.02)--(a);
+  \draw[circuit] (b)--(3.0,1.35)--(3.0,.34);
+  \draw[circuit] (3.0,-.34)--(3.0,-1.35)--(c);
+  \draw[circuit] (3.0,0) circle (.34);
+  \draw[xesarrow] (3.0,-.20)--(3.0,.20);
+  \foreach \P in {a,b,c}{\node[nodepoint] at (\P) {};}
+  \node[xeslabel,above] at (a) {$a$};\node[xeslabel,above] at (b) {$b$};\node[xeslabel,below] at (c) {$c$};
+  \node[xeslabel,above] at (-.55,1.48) {$R_1$};\node[xeslabel,right] at (1.42,-.18) {$R_2$};
+  \node[xeslabel,left] at (-2.82,-.15) {$E_0$};\node[xeslabel,right] at (3.40,0) {$I_0$};
+  \draw[circuit] (c)--(1.25,-1.65) (.92,-1.65)--(1.58,-1.65) (1.02,-1.82)--(1.48,-1.82) (1.12,-1.98)--(1.38,-1.98);
+  \node[xessmall] at (0,-2.42) {取 $c$ 为参考地后，只需求节点 $b$ 的电势};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\tolmanRingFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (0,0) ellipse (2.55 and 1.12);
+  \draw[xesblue,line width=.75pt] (0,0) ellipse (2.30 and .92);
+  \draw[xesline] (0,-1.55)--(0,1.55);
+  \draw[xesarrow] (-.55,1.45) arc[start angle=160,end angle=25,x radius=.65,y radius=.30];
+  \node[xeslabel,above] at (0,1.52) {$\omega$};
+  \draw[xesarrow] (2.08,.52)..controls(1.55,.85)and(.95,1.02)..(.35,1.08);
+  \node[xeslabel,above] at (1.25,.98) {$I(t)$};
+  \draw[RuleGray,dashed] (0,0)--(2.40,.37);\node[xeslabel,above] at (1.42,.27) {$r$};
+  \node[xessmall] at (0,-1.98) {晶格骤停后，电子因惯性暂时保持切向速度};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\transientCurrentFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(5.2,0) node[xeslabel,right] {$t$};
+  \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.55) node[xeslabel,above] {$I$};
+  \draw[RuleGray,densely dashed] (0,2.0)--(4.75,2.0);
+  \node[xessmall,anchor=east] at (-.12,2.0) {$U/R$};
+  \draw[xesblue] plot[domain=0:4.7,samples=80] (\x,{2*(1-exp(-\x/1.0))});
+  \draw[<->,Gold!75!black,line width=.65pt] (0,-.42)--(1.0,-.42);
+  \node[xestiny,text=Gold!70!black,below] at (.5,-.46) {$\tau$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\rotatingChargedRingFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (0,0) ellipse (2.55 and 1.03);
+  \draw[xesblue,line width=.72pt] (0,0) ellipse (2.30 and .85);
+  \draw[xesline] (0,-1.50)--(0,1.50);
+  \draw[xesarrow] (-.55,1.40) arc[start angle=160,end angle=25,x radius=.65,y radius=.30];
+  \node[xeslabel,above] at (0,1.48) {$\omega$};
+  \draw[xesarrow] (.48,1.02)..controls(1.1,.96)and(1.65,.83)..(2.15,.50);
+  \node[xeslabel,above] at (1.37,.95) {$I$};
+  \draw[RuleGray,dashed] (0,0)--(2.38,.35);\node[xeslabel,above] at (1.42,.24) {$R$};
+  \draw[grayarrow] (-3.05,.62)--(-2.34,.51);\node[xeslabel,anchor=east] at (-3.12,.62) {$Q$};
+  \node[xeslabel,below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\vacuumDiodeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.25pt] (-2.35,-.75)--(-2.35,.75) (2.35,-.75)--(2.35,.75);
+  \draw[<->,Gold!75!black,line width=.65pt] (-2.30,1.52)--(2.30,1.52);
+  \node[xestiny,text=Gold!70!black] at (0,1.76) {$L$};
+  \node[xeslabel,above] at (-2.35,.82) {阴极 $C$};\node[xeslabel,above] at (2.35,.82) {阳极 $A$};
+  \draw[xesarrow] (-1.75,0)--(1.75,0);\node[xessmall,above] at (0,.05) {电子运动};
+  \draw[grayarrow] (2.95,.45)--(2.40,.45);\node[xeslabel,anchor=west] at (3.02,.45) {$I$};
+  \draw[xesline,-{Latex[length=1.6mm]}] (-2.60,-1.05)--(2.80,-1.05) node[xeslabel,right] {$x$};
+  \node[xestiny,below] at (-2.35,-1.06) {$0$};\node[xestiny,below] at (2.35,-1.06) {$L$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\childLangmuirFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesline,-{Latex[length=1.7mm]}] (0,0)--(5.15,0) node[xeslabel,right] {$x$};
+  \draw[xesline,-{Latex[length=1.7mm]}] (0,0)--(0,2.65) node[xeslabel,above] {$\varphi$};
+  \draw[xesblue] plot[domain=0:4.7,samples=80] (\x,{2.25*(\x/4.7)^(4/3)});
+  \draw[RuleGray,densely dashed] (4.7,0)--(4.7,2.25)--(0,2.25);
+  \node[xestiny,below] at (4.7,0) {$L$};\node[xestiny,anchor=east] at (-.10,2.25) {$U$};
+  \node[xessmall,anchor=west] at (1.00,1.82) {$\varphi(x)=U(x/L)^{4/3}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\conductingShellFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!8] (0,0) circle (1.85);\fill[white] (0,0) circle (.82);
+  \draw[xesblue] (0,0) circle (1.85) (0,0) circle (.82);
+  \draw[xesline] (0,0)--(.58,-.58);\node[xeslabel,below right] at (.62,-.62) {$a$};
+  \draw[xesline] (0,0)--(0,1.85);\node[xeslabel,left] at (0,1.25) {$b$};
+  \draw[xesarrow] (1.05,.25)--(1.62,.39);\node[xessmall,anchor=west] at (1.72,.44) {$\boldsymbol j\parallel\boldsymbol E$};
+  \node[xessmall] at (0,-2.30) {$\sigma(r)=K E(r)$，电流在任意同心球面上相同};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ionChamberFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (-3.5,1.45)--(3.5,1.45) (-3.5,-1.45)--(3.5,-1.45);
+  \draw[xesline] (-3.5,1.45)--(-3.5,-1.45) (3.5,1.45)--(3.5,-1.45);
+  \node[xeslabel,above] at (-1.90,1.48) {阴极};\node[xeslabel,below] at (-1.90,-1.48) {阳极};
+  \draw[circuit] (1.90,1.45)--(1.90,2.05)--(3.15,2.05);\node[xeslabel,right] at (3.15,2.05) {$-U_0$};
+  \draw[circuit] (1.90,-1.45)--(1.90,-2.05);
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.7mm,amplitude=1.0mm}] (1.90,-2.05)--(1.90,-2.95);
+  \draw[circuit] (1.90,-2.95)--(1.90,-3.20);
+  \draw[circuit] (1.55,-3.20)--(2.25,-3.20) (1.66,-3.37)--(2.14,-3.37) (1.77,-3.54)--(2.03,-3.54);
+  \node[xeslabel,right] at (2.10,-2.50) {$R$};\draw[circuit] (1.90,-1.70)--(3.20,-1.70);
+  \node[xeslabel,right] at (3.20,-1.70) {信号};
+  \draw[xesline,-{Latex[length=1.7mm]}] (-4.65,-1.45)--(-4.65,2.05) node[xeslabel,above] {$x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3.78,-1.42)--(-3.78,1.42);
+  \node[xestiny,text=Gold!70!black,anchor=east] at (-3.92,0) {$D$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3.25,-1.40)--(-3.25,-.15);
+  \node[xestiny,text=Gold!70!black,anchor=east] at (-3.36,-.80) {$x_0$};
+  \draw[xesarrow] (-2.85,-.14)--(2.85,-.14);\node[xessmall,above] at (1.5,.75) {入射粒子径迹};
+  \foreach \x in {-2.3,-1.65,-.95,-.25,.45,1.15,1.85,2.50}{
+    \node[xestiny,text=Gold!70!black] at (\x,.02) {$+$};\node[xestiny,text=DeepBlue] at (\x,-.29) {$-$};}
+  \draw[grayarrow] (-.42,.08)--(-.42,.78);\node[xestiny,anchor=west] at (-.34,.63) {离子 $v^+$};
+  \draw[grayarrow] (.42,-.32)--(.42,-.98);\node[xestiny,anchor=west] at (.50,-.88) {电子 $v^-$};
+  \node[xessmall] at (0,2.58) {气密容器内充工作气体；电场把电子与正离子分别引向两极};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ionSignalFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesline,-{Latex[length=1.7mm]}] (0,0)--(6.1,0) node[xeslabel,right] {$t$};
+  \draw[xesline,-{Latex[length=1.7mm]}] (0,0)--(0,2.65) node[xeslabel,above] {$|\Delta U|$};
+  \draw[xesblue] (0,0)--(1.25,1.25)--(4.70,2.25);
+  \draw[RuleGray,densely dashed] (1.25,0)--(1.25,1.25) (4.70,0)--(4.70,2.25);
+  \node[xestiny,below] at (1.25,0) {$t_e=x_0/v^-$};
+  \node[xestiny,below] at (4.70,0) {$t_i=(D-x_0)/v^+$};
+  \node[xessmall] at (3.10,2.55) {电子收集完后，离子继续形成较慢斜坡};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\ringResistorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.1pt] (0,0) circle (1.55);
+  \coordinate (a) at (-1.55,0);\coordinate (b) at ({1.55*cos(-35)},{1.55*sin(-35)});
+  \node[nodepoint] at (a) {};\node[nodepoint] at (b) {};
+  \draw[circuit] (a)--(-2.65,0);\draw[circuit] (b)--($(b)+(1.0,-.70)$);
+  \draw[RuleGray,dashed] (0,0)--(a) (0,0)--(b);
+  \node[xeslabel,above left] at (a) {$a$};\node[xeslabel,below right] at (b) {$b$};
+  \node[xeslabel,below left] at (0,0) {$O$};\node[xeslabel] at (-.45,.90) {$R_1$};\node[xeslabel] at (.72,-.80) {$R_2$};
+  \node[xessmall] at (0,-2.10) {$R_1+R_2=R$，两段圆弧在端点 $a,b$ 之间并联};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dualSourceFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (L) at (-2.65,0);\coordinate (R) at (2.65,0);
+  \draw[circuit] (L)--(-1.50,0);
+  \draw[circuit,decorate,decoration={zigzag,segment length=3mm,amplitude=1.05mm}] (-1.50,0)--(1.20,0);
+  \draw[circuit] (1.20,0)--(R);
+  \node[xeslabel,above] at (0,0.25) {$R$};
+  \draw[circuit] (L)--(-2.65,-1.20)--(-.55,-1.20);
+  \draw[circuit] (-.55,-1.60)--(-.55,-.80) (-.15,-1.48)--(-.15,-.92);
+  \draw[circuit] (-.15,-1.20)--(.35,-1.20);
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=.9mm}] (.35,-1.20)--(1.70,-1.20);
+  \draw[circuit] (1.70,-1.20)--(2.65,-1.20)--(R);
+  \node[xeslabel,below] at (-.35,-1.62) {$\varepsilon_1$};\node[xeslabel,above] at (1.02,-1.03) {$r_1$};
+  \draw[circuit] (L)--(-2.65,-2.40)--(-.55,-2.40);
+  \draw[circuit] (-.55,-2.80)--(-.55,-2.00) (-.15,-2.68)--(-.15,-2.12);
+  \draw[circuit] (-.15,-2.40)--(.35,-2.40);
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=.9mm}] (.35,-2.40)--(1.70,-2.40);
+  \draw[circuit] (1.70,-2.40)--(2.65,-2.40)--(R);
+  \node[xeslabel,below] at (-.35,-2.82) {$\varepsilon_2$};\node[xeslabel,above] at (1.02,-2.23) {$r_2$};
+  \node[nodepoint] at (L) {};\node[nodepoint] at (R) {};
+  \draw[xesarrow] (-1.9,.45)--(-.85,.45);\node[xeslabel,above] at (-1.38,.48) {$I$};
+  \node[xessmall] at (0,-3.30) {两个实际电源同极性并联后向负载 $R$ 供电};
+\end{tikzpicture}
+\end{center}}
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emRotatingRingQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (0,0) ellipse (2.55 and 1.03);
+  \draw[xesblue,line width=.72pt] (0,0) ellipse (2.30 and .85);
+  \draw[xesline] (0,-1.50)--(0,1.50);
+  \draw[xesarrow] (-.55,1.40) arc[start angle=160,end angle=25,x radius=.65,y radius=.30];
+  \node[xeslabel,above] at (0,1.48) {$\omega$};
+  \draw[RuleGray,dashed] (0,0)--(2.38,.35);\node[xeslabel,above] at (1.42,.24) {$R$};
+  \draw[grayarrow] (-3.05,.62)--(-2.34,.51);\node[xeslabel,anchor=east] at (-3.12,.62) {$Q$};
+  \node[xeslabel,below left] at (0,0) {$O$};
+\end{tikzpicture}
+\end{center}}
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emConductingShellQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!8] (0,0) circle (1.85);\fill[white] (0,0) circle (.82);
+  \draw[xesblue] (0,0) circle (1.85) (0,0) circle (.82);
+  \draw[xesline] (0,0)--(.58,-.58);\node[xeslabel,below right] at (.62,-.62) {$a$};
+  \draw[xesline] (0,0)--(0,1.85);\node[xeslabel,left] at (0,1.25) {$b$};
+\end{tikzpicture}
+\end{center}}
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emIonChamberQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (-3.5,1.45)--(3.5,1.45) (-3.5,-1.45)--(3.5,-1.45);
+  \draw[xesline] (-3.5,1.45)--(-3.5,-1.45) (3.5,1.45)--(3.5,-1.45);
+  \node[xeslabel,above] at (-1.90,1.48) {阴极};\node[xeslabel,below] at (-1.90,-1.48) {阳极};
+  \draw[circuit] (1.90,1.45)--(1.90,2.05)--(3.15,2.05);\node[xeslabel,right] at (3.15,2.05) {$-U_0$};
+  \draw[circuit] (1.90,-1.45)--(1.90,-2.05);
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.7mm,amplitude=1.0mm}] (1.90,-2.05)--(1.90,-2.95);
+  \draw[circuit] (1.90,-2.95)--(1.90,-3.20);
+  \draw[circuit] (1.55,-3.20)--(2.25,-3.20) (1.66,-3.37)--(2.14,-3.37) (1.77,-3.54)--(2.03,-3.54);
+  \node[xeslabel,right] at (2.10,-2.50) {$R$};\draw[circuit] (1.90,-1.70)--(3.20,-1.70);
+  \node[xeslabel,right] at (3.20,-1.70) {信号};
+  \draw[xesline,-{Latex[length=1.7mm]}] (-4.65,-1.45)--(-4.65,2.05) node[xeslabel,above] {$x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3.78,-1.42)--(-3.78,1.42);
+  \node[xestiny,text=Gold!70!black,anchor=east] at (-3.92,0) {$D$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3.25,-1.40)--(-3.25,-.15);
+  \node[xestiny,text=Gold!70!black,anchor=east] at (-3.36,-.80) {$x_0$};
+  \draw[xesarrow] (-2.85,-.14)--(2.85,-.14);\node[xessmall,above] at (1.5,.75) {入射粒子径迹};
+  \foreach \x in {-2.3,-1.65,-.95,-.25,.45,1.15,1.85,2.50}{
+    \node[xestiny,text=Gold!70!black] at (\x,.02) {$+$};\node[xestiny,text=DeepBlue] at (\x,-.29) {$-$};}
+\end{tikzpicture}
+\end{center}}
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emRingResistorQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.1pt] (0,0) circle (1.55);
+  \coordinate (a) at (-1.55,0);\coordinate (b) at ({1.55*cos(-35)},{1.55*sin(-35)});
+  \node[nodepoint] at (a) {};\node[nodepoint] at (b) {};
+  \draw[circuit] (a)--(-2.65,0);\draw[circuit] (b)--($(b)+(1.0,-.70)$);
+  \draw[RuleGray,dashed] (0,0)--(a) (0,0)--(b);
+  \node[xeslabel,above left] at (a) {$a$};\node[xeslabel,below right] at (b) {$b$};
+  \node[xeslabel,below left] at (0,0) {$O$};\node[xeslabel] at (-.45,.90) {$R_1$};\node[xeslabel] at (.72,-.80) {$R_2$};
+\end{tikzpicture}
+\end{center}}

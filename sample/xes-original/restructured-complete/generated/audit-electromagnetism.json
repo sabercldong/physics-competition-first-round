@@ -1,0 +1,2864 @@
+{
+  "policy": {
+    "duplicate_threshold": 0.82,
+    "manual_review_threshold": 0.55
+  },
+  "chapters": [
+    {
+      "chapter": 19,
+      "old_units": [
+        "s18",
+        "s19"
+      ],
+      "new_units": [
+        "s32",
+        "s33"
+      ],
+      "counts": {
+        "old_examples": 16,
+        "new_examples": 16,
+        "old_figures": 16,
+        "new_figures": 15,
+        "old_headings": 36,
+        "new_headings": 14
+      },
+      "example_comparison": [
+        {
+          "source": "s18",
+          "title": "【统统算出来】",
+          "normalized_length": 232,
+          "best_2020_match": {
+            "ratio": 0.5103,
+            "source": "s32",
+            "title": "【统统算出来】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s18",
+          "title": "【奇妙的电场线】",
+          "normalized_length": 207,
+          "best_2020_match": {
+            "ratio": 0.5191,
+            "source": "s32",
+            "title": "【奇妙的电场线】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s18",
+          "title": "【球壳空洞】",
+          "normalized_length": 132,
+          "best_2020_match": {
+            "ratio": 0.525,
+            "source": "s32",
+            "title": "【球壳空洞】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s18",
+          "title": "【电偶极子】",
+          "normalized_length": 70,
+          "best_2020_match": {
+            "ratio": 0.6803,
+            "source": "s32",
+            "title": "【直线电四极子】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s18",
+          "title": "【直线电四极子】",
+          "normalized_length": 73,
+          "best_2020_match": {
+            "ratio": 0.8267,
+            "source": "s32",
+            "title": "【直线电四极子】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s18",
+          "title": "【无穷大厚板】",
+          "normalized_length": 102,
+          "best_2020_match": {
+            "ratio": 0.7019,
+            "source": "s32",
+            "title": "【无穷大厚板】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s18",
+          "title": "【电子透镜】",
+          "normalized_length": 118,
+          "best_2020_match": {
+            "ratio": 0.7519,
+            "source": "s32",
+            "title": "【电子透镜】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【电势算电场】",
+          "normalized_length": 90,
+          "best_2020_match": {
+            "ratio": 0.3163,
+            "source": "s33",
+            "title": "【电势算电场】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s19",
+          "title": "【均匀带电球】",
+          "normalized_length": 177,
+          "best_2020_match": {
+            "ratio": 0.6036,
+            "source": "s33",
+            "title": "【均匀带电球】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【相互作用能】",
+          "normalized_length": 80,
+          "best_2020_match": {
+            "ratio": 0.6667,
+            "source": "s33",
+            "title": "【相互作用能】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【零等势面】",
+          "normalized_length": 55,
+          "best_2020_match": {
+            "ratio": 0.7478,
+            "source": "s33",
+            "title": "【零等势面】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【无限长导线】",
+          "normalized_length": 91,
+          "best_2020_match": {
+            "ratio": 0.838,
+            "source": "s33",
+            "title": "【无限长导线】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s19",
+          "title": "【有限长导线】",
+          "normalized_length": 91,
+          "best_2020_match": {
+            "ratio": 0.5989,
+            "source": "s33",
+            "title": "【有限长导线】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【同性相斥】",
+          "normalized_length": 112,
+          "best_2020_match": {
+            "ratio": 0.7177,
+            "source": "s33",
+            "title": "【同性相斥】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【Bohr 氢原子】",
+          "normalized_length": 63,
+          "best_2020_match": {
+            "ratio": 0.6512,
+            "source": "s33",
+            "title": "【玻尔氢原子】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s19",
+          "title": "【$\\alpha$ 粒子散射】",
+          "normalized_length": 153,
+          "best_2020_match": {
+            "ratio": 0.5745,
+            "source": "s33",
+            "title": "【$\\alpha$ 粒子散射】"
+          },
+          "status": "manual_review"
+        }
+      ],
+      "old_headings": [
+        {
+          "source": "s18",
+          "text": "电场的基本性质"
+        },
+        {
+          "source": "s18",
+          "text": "物质结构与电荷"
+        },
+        {
+          "source": "s18",
+          "text": "库仑定律"
+        },
+        {
+          "source": "s18",
+          "text": "电场与电场线"
+        },
+        {
+          "source": "s18",
+          "text": "电通量与高斯定律"
+        },
+        {
+          "source": "s18",
+          "text": "电荷分布的三种连续模型"
+        },
+        {
+          "source": "s18",
+          "text": "电场线、试探电荷与粒子轨迹"
+        },
+        {
+          "source": "s18",
+          "text": "高斯定律怎样真正用于求场"
+        },
+        {
+          "source": "s18",
+          "text": "积分形式与微分形式的互补"
+        },
+        {
+          "source": "s18",
+          "text": "电荷、叠加原理与连续分布"
+        },
+        {
+          "source": "s18",
+          "text": "场线、电通量与高斯定律"
+        },
+        {
+          "source": "s18",
+          "text": "从物质结构到宏观电荷"
+        },
+        {
+          "source": "s18",
+          "text": "Coulomb定律的适用范围与场的引入"
+        },
+        {
+          "source": "s18",
+          "text": "Gauss定律的积分与微分图像"
+        },
+        {
+          "source": "s18",
+          "text": "叠加原理与模型边界"
+        },
+        {
+          "source": "s19",
+          "text": "电势能与电势"
+        },
+        {
+          "source": "s19",
+          "text": "电势与电场"
+        },
+        {
+          "source": "s19",
+          "text": "常见电荷分布的电势"
+        },
+        {
+          "source": "s19",
+          "text": "等势面"
+        },
+        {
+          "source": "s19",
+          "text": "电子伏特与微观能标"
+        },
+        {
+          "source": "s19",
+          "text": "电荷系统的静电势能"
+        },
+        {
+          "source": "s19",
+          "text": "从做功定义电势差"
+        },
+        {
+          "source": "s19",
+          "text": "由电荷求电势，再由电势求电场"
+        },
+        {
+          "source": "s19",
+          "text": "等势面的几何信息"
+        },
+        {
+          "source": "s19",
+          "text": "电荷系统能量的建立过程"
+        },
+        {
+          "source": "s19",
+          "text": "电势的叠加、梯度与等势面"
+        },
+        {
+          "source": "s19",
+          "text": "电荷系统能量与微观能标"
+        },
+        {
+          "source": "s19",
+          "text": "从电场力做功到电势"
+        },
+        {
+          "source": "s19",
+          "text": "典型分布的电势与等势面几何"
+        },
+        {
+          "source": "s19",
+          "text": "电子伏特、原子电离与气体击穿"
+        },
+        {
+          "source": "s19",
+          "text": "电荷系统能量与电场能量"
+        },
+        {
+          "source": "s19",
+          "text": "从电场积分到电势分布"
+        },
+        {
+          "source": "s19",
+          "text": "势能、外力功与电场力功"
+        },
+        {
+          "source": "s19",
+          "text": "微观能量尺度的读图方法"
+        },
+        {
+          "source": "s19",
+          "text": "连续带电体的电势积分"
+        },
+        {
+          "source": "s19",
+          "text": "Poisson方程与电势图像"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s32",
+          "text": "电场的基本性质"
+        },
+        {
+          "source": "s32",
+          "text": "物质结构和电荷"
+        },
+        {
+          "source": "s32",
+          "text": "Coulomb定律"
+        },
+        {
+          "source": "s32",
+          "text": "电场"
+        },
+        {
+          "source": "s32",
+          "text": "电场Gauss定律——积分形式"
+        },
+        {
+          "source": "s32",
+          "text": "电场Gauss定律——微分形式"
+        },
+        {
+          "source": "s33",
+          "text": "电势能与电势"
+        },
+        {
+          "source": "s33",
+          "text": "电势与电场"
+        },
+        {
+          "source": "s33",
+          "text": "叠加原理"
+        },
+        {
+          "source": "s33",
+          "text": "等势面"
+        },
+        {
+          "source": "s33",
+          "text": "电子伏特"
+        },
+        {
+          "source": "s33",
+          "text": "气体放电"
+        },
+        {
+          "source": "s33",
+          "text": "静电势能"
+        },
+        {
+          "source": "s33",
+          "text": "电场能量"
+        }
+      ],
+      "old_figures": [
+        {
+          "source": "s18",
+          "text": "有限长带电直线中垂线上的场点"
+        },
+        {
+          "source": "s18",
+          "text": "不等量异号点电荷的零场点"
+        },
+        {
+          "source": "s18",
+          "text": "球形空腔的叠加模型，$\\vect r=\\vect d+\\vect r'$"
+        },
+        {
+          "source": "s18",
+          "text": "例~\\ref{ch19:ex:s18-29-4} 与例~\\ref{ch19:ex:s18-29-5} 的几何关系"
+        },
+        {
+          "source": "s18",
+          "text": "电偶极矩 $\\vect p$ 从负电荷指向正电荷"
+        },
+        {
+          "source": "s18",
+          "text": "直线电四极子的几何关系"
+        },
+        {
+          "source": "s18",
+          "text": "仅在 $-d<x<d$ 内均匀带电的无穷大厚板"
+        },
+        {
+          "source": "s18",
+          "text": "电子掠过正线电荷时受到指向金属线的微弱偏转"
+        },
+        {
+          "source": "s19",
+          "text": "三类典型电场的等势线（蓝）与电场线（灰）；两者处处正交"
+        },
+        {
+          "source": "s19",
+          "text": "等量异号点电荷的电场线与零等势面"
+        },
+        {
+          "source": "s19",
+          "text": "不等量异号点电荷的零等势面是 Apollonius 球面"
+        },
+        {
+          "source": "s19",
+          "text": "两根异号无限长带电直线的横截面"
+        },
+        {
+          "source": "s19",
+          "text": "有限长均匀带电直线的轴对称几何"
+        },
+        {
+          "source": "s19",
+          "text": "同号小球排斥过程的始末几何"
+        },
+        {
+          "source": "s19",
+          "text": "Bohr 基态模型中的电子圆周运动"
+        },
+        {
+          "source": "s19",
+          "text": "库仑斥力下的双曲线散射轨迹"
+        }
+      ],
+      "new_figures": [
+        {
+          "source": "s32",
+          "text": "从原子、原子核到核子和夸克的结构层级。箭头表示继续放大观察，并不表示实物相互分离。"
+        },
+        {
+          "source": "s32",
+          "text": "库仑与扭秤实验的绘制。图只保留实验所需的悬丝、横杆、带电小球和刻度关系。"
+        },
+        {
+          "source": "s32",
+          "text": "三种电场线结构。(a) 异号电荷；(b) 四极电荷分布；(c) 振荡电荷的瞬时场线。箭头均表示电场方向。"
+        },
+        {
+          "source": "s32",
+          "text": "Gauss 定律的几何意义。(a) 面元的法向面积矢量；(b) 内部电荷产生非零净通量；(c) 外部电荷的穿入与穿出相抵。"
+        },
+        {
+          "source": "s32",
+          "text": "位于 $(x,y,z)$ 附近的微小长方体。每一对相对表面的外法线方向相反，图中箭头画的是相应通量项的方向。"
+        },
+        {
+          "source": "s32",
+          "text": "有限长直线的积分几何。$\\theta_1,\\theta_2$ 分别对应垂足上方和下方的端点。"
+        },
+        {
+          "source": "s32",
+          "text": "电偶极子的远场分量与典型场线。$\\boldsymbol p$ 的方向由负电荷指向正电荷。"
+        },
+        {
+          "source": "s32",
+          "text": "直线电四极子的电荷位置、远场观察方向与场线四瓣结构。"
+        },
+        {
+          "source": "s33",
+          "text": "电偶极子远场近似中的距离和角度关系。$\\boldsymbol p$ 沿 $-q$ 指向 $+q$。"
+        },
+        {
+          "source": "s33",
+          "text": "三种典型静电场中的等势面与电场线。两族曲线在每个交点处互相垂直。"
+        },
+        {
+          "source": "s33",
+          "text": "不等量异号点电荷的零电势面截面。球面包围绝对值较小的电荷。"
+        },
+        {
+          "source": "s33",
+          "text": "原子的第一电离能随原子序数的周期性变化。折线仅连接同一电子壳层周期内的代表性数据。"
+        },
+        {
+          "source": "s33",
+          "text": "大型强子对撞机环形隧道中的超导磁体和束流管结构示意。环形主隧道周长约 $26.7\\,\\mathrm{km}$。"
+        },
+        {
+          "source": "s33",
+          "text": "闪电中的分支放电通道。亮通道是空气被击穿后形成的高温等离子体。"
+        },
+        {
+          "source": "s33",
+          "text": "末态几何与 $A$ 球受力。$B$ 位于 $A$ 原来的最低位置，三力方向由实际位置唯一确定。"
+        }
+      ]
+    },
+    {
+      "chapter": 20,
+      "old_units": [
+        "s20",
+        "s21"
+      ],
+      "new_units": [
+        "s34",
+        "s35"
+      ],
+      "counts": {
+        "old_examples": 21,
+        "new_examples": 21,
+        "old_figures": 18,
+        "new_figures": 31,
+        "old_headings": 42,
+        "new_headings": 14
+      },
+      "example_comparison": [
+        {
+          "source": "s20",
+          "title": "【异号导体】",
+          "normalized_length": 96,
+          "best_2020_match": {
+            "ratio": 0.9062,
+            "source": "s34",
+            "title": "【异号导体】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s20",
+          "title": "【同号导体】",
+          "normalized_length": 108,
+          "best_2020_match": {
+            "ratio": 0.786,
+            "source": "s34",
+            "title": "【同号导体】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【凭空相吸】",
+          "normalized_length": 77,
+          "best_2020_match": {
+            "ratio": 0.6243,
+            "source": "s34",
+            "title": "【凭空相吸】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【同性相吸】",
+          "normalized_length": 75,
+          "best_2020_match": {
+            "ratio": 0.6577,
+            "source": "s34",
+            "title": "【同性相吸】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【球内屏蔽】",
+          "normalized_length": 165,
+          "best_2020_match": {
+            "ratio": 0.7342,
+            "source": "s34",
+            "title": "【球内屏蔽】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【能量】",
+          "normalized_length": 41,
+          "best_2020_match": {
+            "ratio": 0.7912,
+            "source": "s34",
+            "title": "【能量】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【电像法】",
+          "normalized_length": 100,
+          "best_2020_match": {
+            "ratio": 0.7551,
+            "source": "s34",
+            "title": "【电像法】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【半球和平面】",
+          "normalized_length": 100,
+          "best_2020_match": {
+            "ratio": 0.819,
+            "source": "s34",
+            "title": "【半球和平面】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s20",
+          "title": "【能量相关】",
+          "normalized_length": 159,
+          "best_2020_match": {
+            "ratio": 0.8227,
+            "source": "s34",
+            "title": "【能量相关】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s20",
+          "title": "【匀强电场中的导体球】",
+          "normalized_length": 46,
+          "best_2020_match": {
+            "ratio": 0.7563,
+            "source": "s34",
+            "title": "【匀强电场中的导体球】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s21",
+          "title": "【统统算出来】",
+          "normalized_length": 161,
+          "best_2020_match": {
+            "ratio": 0.2436,
+            "source": "s34",
+            "title": "【球内屏蔽】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s21",
+          "title": "【两个导体球】",
+          "normalized_length": 45,
+          "best_2020_match": {
+            "ratio": 0.6667,
+            "source": "s35",
+            "title": "【两个导体球】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s21",
+          "title": "【两个圆柱】",
+          "normalized_length": 59,
+          "best_2020_match": {
+            "ratio": 0.873,
+            "source": "s35",
+            "title": "【两个圆柱】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s21",
+          "title": "【改造电容器】",
+          "normalized_length": 147,
+          "best_2020_match": {
+            "ratio": 0.5462,
+            "source": "s35",
+            "title": "【改造电容器】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s21",
+          "title": "【奇妙的吸引力】",
+          "normalized_length": 247,
+          "best_2020_match": {
+            "ratio": 0.4271,
+            "source": "s35",
+            "title": "【奇妙的吸引力】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s21",
+          "title": "【匀强电场中的电介质球】",
+          "normalized_length": 61,
+          "best_2020_match": {
+            "ratio": 0.8197,
+            "source": "s35",
+            "title": "【匀强电场中的电介质球】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s21",
+          "title": "【能量怎么多了】",
+          "normalized_length": 73,
+          "best_2020_match": {
+            "ratio": 0.5695,
+            "source": "s35",
+            "title": "【能量怎么多了】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s21",
+          "title": "【充电过程】",
+          "normalized_length": 139,
+          "best_2020_match": {
+            "ratio": 0.5101,
+            "source": "s35",
+            "title": "【充电过程】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s21",
+          "title": "【电容充电】",
+          "normalized_length": 79,
+          "best_2020_match": {
+            "ratio": 0.6345,
+            "source": "s35",
+            "title": "【电容充电】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s21",
+          "title": "【电容串并联】",
+          "normalized_length": 46,
+          "best_2020_match": {
+            "ratio": 0.7736,
+            "source": "s35",
+            "title": "【电容串并联】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s21",
+          "title": "【超大电容】",
+          "normalized_length": 284,
+          "best_2020_match": {
+            "ratio": 0.474,
+            "source": "s35",
+            "title": "【超大电容】"
+          },
+          "status": "unique_candidate"
+        }
+      ],
+      "old_headings": [
+        {
+          "source": "s20",
+          "text": "静电平衡"
+        },
+        {
+          "source": "s20",
+          "text": "导体的静电平衡"
+        },
+        {
+          "source": "s20",
+          "text": "静电场唯一性定理"
+        },
+        {
+          "source": "s20",
+          "text": "电像法"
+        },
+        {
+          "source": "s20",
+          "text": "等离子体振荡"
+        },
+        {
+          "source": "s20",
+          "text": "导体边界上的局部规律"
+        },
+        {
+          "source": "s20",
+          "text": "空腔、有内电荷与接地"
+        },
+        {
+          "source": "s20",
+          "text": "唯一性定理的使用步骤"
+        },
+        {
+          "source": "s20",
+          "text": "像电荷能量中的二分之一"
+        },
+        {
+          "source": "s20",
+          "text": "等离子体振荡的物理尺度"
+        },
+        {
+          "source": "s20",
+          "text": "静电平衡、空腔与屏蔽"
+        },
+        {
+          "source": "s20",
+          "text": "电像法与受力、能量"
+        },
+        {
+          "source": "s20",
+          "text": "从微观移动到宏观边界条件"
+        },
+        {
+          "source": "s20",
+          "text": "感应起电的全过程"
+        },
+        {
+          "source": "s20",
+          "text": "空腔与静电屏蔽的边界"
+        },
+        {
+          "source": "s20",
+          "text": "从Laplace方程到离散电势"
+        },
+        {
+          "source": "s20",
+          "text": "球面像电荷的几何关系"
+        },
+        {
+          "source": "s20",
+          "text": "等离子体频率与电离层传播"
+        },
+        {
+          "source": "s20",
+          "text": "导体系统的电势与电荷关系"
+        },
+        {
+          "source": "s20",
+          "text": "边值题的检查清单"
+        },
+        {
+          "source": "s20",
+          "text": "数值解与物理解的对应"
+        },
+        {
+          "source": "s20",
+          "text": "场能、静电压强与机械平衡"
+        },
+        {
+          "source": "s21",
+          "text": "电介质与电容器"
+        },
+        {
+          "source": "s21",
+          "text": "孤立导体的电容"
+        },
+        {
+          "source": "s21",
+          "text": "双极电容器与典型几何"
+        },
+        {
+          "source": "s21",
+          "text": "电容器的连接"
+        },
+        {
+          "source": "s21",
+          "text": "电容储能与能量密度"
+        },
+        {
+          "source": "s21",
+          "text": "任意导体组与Green倒易定理"
+        },
+        {
+          "source": "s21",
+          "text": "电介质与相对介电常数"
+        },
+        {
+          "source": "s21",
+          "text": "介质极化与电位移"
+        },
+        {
+          "source": "s21",
+          "text": "介质边界、部分填充与受力"
+        },
+        {
+          "source": "s21",
+          "text": "充电过程中的能量去向"
+        },
+        {
+          "source": "s21",
+          "text": "从边值问题理解电容"
+        },
+        {
+          "source": "s21",
+          "text": "连接、充电和储能的完整推理"
+        },
+        {
+          "source": "s21",
+          "text": "倒易定理的三种典型用法"
+        },
+        {
+          "source": "s21",
+          "text": "从实验现象到介质极化"
+        },
+        {
+          "source": "s21",
+          "text": "线性模型的适用范围"
+        },
+        {
+          "source": "s21",
+          "text": "重点知识"
+        },
+        {
+          "source": "s21",
+          "text": "孤立导体与双极电容器"
+        },
+        {
+          "source": "s21",
+          "text": "连接与储能"
+        },
+        {
+          "source": "s21",
+          "text": "导体组的倒易关系"
+        },
+        {
+          "source": "s21",
+          "text": "电介质、极化与电位移"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s34",
+          "text": "静电平衡"
+        },
+        {
+          "source": "s34",
+          "text": "导体和绝缘体"
+        },
+        {
+          "source": "s34",
+          "text": "静电平衡"
+        },
+        {
+          "source": "s34",
+          "text": "唯一性定理"
+        },
+        {
+          "source": "s34",
+          "text": "电像法"
+        },
+        {
+          "source": "s34",
+          "text": "等离子体频率"
+        },
+        {
+          "source": "s35",
+          "text": "电介质与电容器"
+        },
+        {
+          "source": "s35",
+          "text": "孤立导体的电容"
+        },
+        {
+          "source": "s35",
+          "text": "电容器的电容"
+        },
+        {
+          "source": "s35",
+          "text": "电容的连接"
+        },
+        {
+          "source": "s35",
+          "text": "电容储能"
+        },
+        {
+          "source": "s35",
+          "text": "导体组的一般理论"
+        },
+        {
+          "source": "s35",
+          "text": "电介质与相对介电常数"
+        },
+        {
+          "source": "s35",
+          "text": "介质极化与电位移矢量"
+        }
+      ],
+      "old_figures": [
+        {
+          "source": "s20",
+          "text": "感应起电中“先断地线”的次序"
+        },
+        {
+          "source": "s20",
+          "text": "接地导体球外点电荷的像电荷"
+        },
+        {
+          "source": "s20",
+          "text": "判断表面电荷符号应先比较导体电势"
+        },
+        {
+          "source": "s20",
+          "text": "接地球壳内点电荷的像电荷位置"
+        },
+        {
+          "source": "s20",
+          "text": "两相互垂直接地平面的三像电荷构造"
+        },
+        {
+          "source": "s20",
+          "text": "接地平面上半球凸起的四电荷构造"
+        },
+        {
+          "source": "s20",
+          "text": "点电荷与接地平面的力和能量"
+        },
+        {
+          "source": "s20",
+          "text": "匀强电场中的中性导体球及其感应电荷"
+        },
+        {
+          "source": "s21",
+          "text": "任意形状的两块导体组成双极电容器"
+        },
+        {
+          "source": "s21",
+          "text": "外场作用下电介质的极化与束缚面电荷"
+        },
+        {
+          "source": "s21",
+          "text": "Green 倒易定理：导体球与球外一点的两种静电状态"
+        },
+        {
+          "source": "s21",
+          "text": "Green 倒易定理：两个任意导体的两种静电平衡状态"
+        },
+        {
+          "source": "s21",
+          "text": "保持电荷不变时，插入电介质使电势差减小、电容增大"
+        },
+        {
+          "source": "s21",
+          "text": "两个等半径相切球连成一个等势导体"
+        },
+        {
+          "source": "s21",
+          "text": "两根等半径平行圆柱导体的横截面"
+        },
+        {
+          "source": "s21",
+          "text": "部分填充介质的两种等效方式"
+        },
+        {
+          "source": "s21",
+          "text": "部分插入平行板电容器的介质板"
+        },
+        {
+          "source": "s21",
+          "text": "三电容星形连接的浮置中心节点"
+        }
+      ],
+      "new_figures": [
+        {
+          "source": "s34",
+          "text": "静电平衡状态下两个导体的电场线、等势线与感应电荷分布。电场线在导体表面垂直入射或出射。"
+        },
+        {
+          "source": "s34",
+          "text": "一个完整的静电感应带电过程。图中负电棒始终位于导体左侧，接地只发生在步骤 (c)。"
+        },
+        {
+          "source": "s34",
+          "text": "法拉第笼的示意情景图。雷电流沿外表面流动，导体材料和封闭内部保持无静电场。"
+        },
+        {
+          "source": "s34",
+          "text": "把 $A,B$ 之间连续的电势分布离散化。相邻节点间距均为 $a$，端点电势是边界条件。"
+        },
+        {
+          "source": "s34",
+          "text": "接地导体球的电像法几何。真实电荷为 $+Q$，像电荷为 $-q$，且 $Ll=R^2$。"
+        },
+        {
+          "source": "s34",
+          "text": "电离层反射实现远距离通信的示意。图中同时区分低频反射与高频穿透。"
+        },
+        {
+          "source": "s34",
+          "text": "球腔内点电荷的像位于球面之外。像电荷不在所求球腔区域内。"
+        },
+        {
+          "source": "s34",
+          "text": "两块正交接地板的三个像电荷。只有第一象限的 $+q$ 是真实电荷。"
+        },
+        {
+          "source": "s34",
+          "text": "接地平面上凸半球的三像电荷构造。粗蓝线是实际导体边界。"
+        },
+        {
+          "source": "s34",
+          "text": "匀强电场中的中性导体球。实线为电场线，虚线为等势线；球内无场，球面切向场为零。"
+        },
+        {
+          "source": "s35",
+          "text": "由两个任意形状导体构成的电容器。两极带等量异号电荷，电场线由正极指向负极。"
+        },
+        {
+          "source": "s35",
+          "text": "平行板电容器的几何参数与实际电场。右图同时画出中央匀强区和边缘场。"
+        },
+        {
+          "source": "s35",
+          "text": "同轴圆柱形电容器。电场只存在于 $a<r<b$，并沿径向分布。"
+        },
+        {
+          "source": "s35",
+          "text": "电容并联。各支路电压相同，等效电容由总电荷与端电压之比确定。"
+        },
+        {
+          "source": "s35",
+          "text": "电容串联。中间浮置导体净电荷守恒，故各电容器的电荷量大小相同。"
+        },
+        {
+          "source": "s35",
+          "text": "Green 倒易定理的一个例子。两种状态共用同一导体球和同一点 $P$。"
+        },
+        {
+          "source": "s35",
+          "text": "Green 倒易定理的另一个例子。两导体形状和位置固定，只改变各自电荷。"
+        },
+        {
+          "source": "s35",
+          "text": "插入电介质使电容增大的实验情景。插入过程中电容器与外界绝缘，$Q_0$ 不变，因此电压表读数降低。"
+        },
+        {
+          "source": "s35",
+          "text": "外场作用下电介质的极化。左图是微观偶极矩取向，右图是等效束缚面电荷及其反向极化场。"
+        },
+        {
+          "source": "s35",
+          "text": "第 1 题的平行板电容器，$S=l^2$。"
+        },
+        {
+          "source": "s35",
+          "text": "第 1 题的同心球形电容器，内、外半径分别为 $R_1,R_2$。"
+        },
+        {
+          "source": "s35",
+          "text": "第 2 题。两球相切并电连接，整个导体处于同一电势。"
+        },
+        {
+          "source": "s35",
+          "text": "解图：相切双球的像电荷序列。两列交错符号的像电荷向接触点聚集。"
+        },
+        {
+          "source": "s35",
+          "text": "第 3 题。两圆柱截面是双极坐标中的两条等坐标圆。"
+        },
+        {
+          "source": "s35",
+          "text": "第 4 题。左图按面积分区，应视为并联；右图按厚度分层，应视为串联。"
+        },
+        {
+          "source": "s35",
+          "text": "第 5 题。介质区和真空区并联，电场方向竖直，吸引力沿插入方向。"
+        },
+        {
+          "source": "s35",
+          "text": "解图：电介质球使外部场线弯曲；球内场仍为匀强场，并弱于外场。"
+        },
+        {
+          "source": "s35",
+          "text": "解图：极化可类比为微观正负电荷之间的“弹簧”被拉伸；建立同样场强时还要为极化自由度输入能量。"
+        },
+        {
+          "source": "s35",
+          "text": "解图：理想恒压源经任意正电阻给电容充电时，电源做功的一半进入电场，另一半成为焦耳热。"
+        },
+        {
+          "source": "s35",
+          "text": "第 9 题。三个电容器的内侧极板连接成一个浮置中性节点。"
+        },
+        {
+          "source": "s35",
+          "text": "解图：地球表面与高空等效层构成同心球形电容器；大气同时提供漏电电阻。"
+        }
+      ]
+    },
+    {
+      "chapter": 21,
+      "old_units": [
+        "s22",
+        "s23"
+      ],
+      "new_units": [
+        "s36",
+        "s37"
+      ],
+      "counts": {
+        "old_examples": 18,
+        "new_examples": 18,
+        "old_figures": 25,
+        "new_figures": 44,
+        "old_headings": 29,
+        "new_headings": 18
+      },
+      "example_comparison": [
+        {
+          "source": "s22",
+          "title": "【惯性维持的电流】",
+          "normalized_length": 190,
+          "best_2020_match": {
+            "ratio": 0.7775,
+            "source": "s36",
+            "title": "【惯性维持的电流】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s22",
+          "title": "【暂态电流】",
+          "normalized_length": 62,
+          "best_2020_match": {
+            "ratio": 0.7132,
+            "source": "s36",
+            "title": "【暂态电流】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s22",
+          "title": "【转动的带电环】",
+          "normalized_length": 52,
+          "best_2020_match": {
+            "ratio": 0.6565,
+            "source": "s36",
+            "title": "【转动的带电环】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s22",
+          "title": "【真空二极管】",
+          "normalized_length": 248,
+          "best_2020_match": {
+            "ratio": 0.4506,
+            "source": "s36",
+            "title": "【真空二极管】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s22",
+          "title": "【导电厚球壳】",
+          "normalized_length": 80,
+          "best_2020_match": {
+            "ratio": 0.7543,
+            "source": "s36",
+            "title": "【导电厚球壳】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s22",
+          "title": "【电离计数器】",
+          "normalized_length": 408,
+          "best_2020_match": {
+            "ratio": 0.3912,
+            "source": "s36",
+            "title": "【电离计数器】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s22",
+          "title": "【圆环电阻】",
+          "normalized_length": 148,
+          "best_2020_match": {
+            "ratio": 0.5283,
+            "source": "s36",
+            "title": "【圆环电阻】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s22",
+          "title": "【双电源供电】",
+          "normalized_length": 188,
+          "best_2020_match": {
+            "ratio": 0.5844,
+            "source": "s36",
+            "title": "【双电源供电】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【电流源】",
+          "normalized_length": 80,
+          "best_2020_match": {
+            "ratio": 0.6667,
+            "source": "s37",
+            "title": "【电流源】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【田电阻】",
+          "normalized_length": 114,
+          "best_2020_match": {
+            "ratio": 0.5946,
+            "source": "s37",
+            "title": "【田电阻】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【正四面体电阻】",
+          "normalized_length": 40,
+          "best_2020_match": {
+            "ratio": 0.7674,
+            "source": "s37",
+            "title": "【正四面体电阻】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【$N$ 边形电阻】",
+          "normalized_length": 66,
+          "best_2020_match": {
+            "ratio": 0.7068,
+            "source": "s37",
+            "title": "【$N$ 边形电阻】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【变种八边形电阻】",
+          "normalized_length": 77,
+          "best_2020_match": {
+            "ratio": 0.6207,
+            "source": "s37",
+            "title": "【变种八边形电阻】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【正方体电阻】",
+          "normalized_length": 108,
+          "best_2020_match": {
+            "ratio": 0.3247,
+            "source": "s37",
+            "title": "【正四面体电阻】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s23",
+          "title": "【无穷网络】",
+          "normalized_length": 74,
+          "best_2020_match": {
+            "ratio": 0.3697,
+            "source": "s37",
+            "title": "【无穷网络】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s23",
+          "title": "【三端无穷网络】",
+          "normalized_length": 51,
+          "best_2020_match": {
+            "ratio": 0.459,
+            "source": "s37",
+            "title": "【田电阻】"
+          },
+          "status": "unique_candidate"
+        },
+        {
+          "source": "s23",
+          "title": "【嵌套网络】",
+          "normalized_length": 89,
+          "best_2020_match": {
+            "ratio": 0.6915,
+            "source": "s37",
+            "title": "【嵌套网络】"
+          },
+          "status": "manual_review"
+        },
+        {
+          "source": "s23",
+          "title": "【分形电阻】",
+          "normalized_length": 192,
+          "best_2020_match": {
+            "ratio": 0.2912,
+            "source": "s37",
+            "title": "【分形电阻】"
+          },
+          "status": "unique_candidate"
+        }
+      ],
+      "old_headings": [
+        {
+          "source": "s22",
+          "text": "恒定电流"
+        },
+        {
+          "source": "s22",
+          "text": "电流强度与电流密度"
+        },
+        {
+          "source": "s22",
+          "text": "二端元件与伏安特性"
+        },
+        {
+          "source": "s22",
+          "text": "Ohm定律：宏观形式与局部形式"
+        },
+        {
+          "source": "s22",
+          "text": "导电的简化微观模型"
+        },
+        {
+          "source": "s22",
+          "text": "电子的无规则运动、漂移与扩散"
+        },
+        {
+          "source": "s22",
+          "text": "Ohm定律的适用范围与气体放电"
+        },
+        {
+          "source": "s22",
+          "text": "简单电阻网络"
+        },
+        {
+          "source": "s22",
+          "text": "电路网络术语"
+        },
+        {
+          "source": "s22",
+          "text": "Kirchhoff电流定律与电压定律"
+        },
+        {
+          "source": "s22",
+          "text": "节点电压法"
+        },
+        {
+          "source": "s22",
+          "text": "电流图像中容易混淆的三个时间尺度"
+        },
+        {
+          "source": "s22",
+          "text": "从端口观点理解元件"
+        },
+        {
+          "source": "s22",
+          "text": "从宏观电阻到微观电导率"
+        },
+        {
+          "source": "s22",
+          "text": "两种经典导电模型的联系"
+        },
+        {
+          "source": "s22",
+          "text": "温度、场强和载流子浓度"
+        },
+        {
+          "source": "s22",
+          "text": "网络方程为什么会有冗余"
+        },
+        {
+          "source": "s22",
+          "text": "节点电压法的列式模板"
+        },
+        {
+          "source": "s22",
+          "text": "重点知识"
+        },
+        {
+          "source": "s22",
+          "text": "电流与电流密度"
+        },
+        {
+          "source": "s22",
+          "text": "伏安特性与功率"
+        },
+        {
+          "source": "s22",
+          "text": "电子漂移的经典模型"
+        },
+        {
+          "source": "s22",
+          "text": "电阻网络与Kirchhoff定律"
+        },
+        {
+          "source": "s23",
+          "text": "复杂电阻网络"
+        },
+        {
+          "source": "s23",
+          "text": "线性叠加与等效电源"
+        },
+        {
+          "source": "s23",
+          "text": "等势点、对称性与平衡电桥"
+        },
+        {
+          "source": "s23",
+          "text": "三端网络的星形--三角形变换"
+        },
+        {
+          "source": "s23",
+          "text": "线性网络的三种等效观点"
+        },
+        {
+          "source": "s23",
+          "text": "对称、等势与网络变换"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s36",
+          "text": "恒定电流"
+        },
+        {
+          "source": "s36",
+          "text": "电流强度和电流密度"
+        },
+        {
+          "source": "s36",
+          "text": "元件的伏安特性"
+        },
+        {
+          "source": "s36",
+          "text": "Ohm定律"
+        },
+        {
+          "source": "s36",
+          "text": "导电的微观机制——简单模型"
+        },
+        {
+          "source": "s36",
+          "text": "电子的扩散和漂移"
+        },
+        {
+          "source": "s36",
+          "text": "简单电阻网络"
+        },
+        {
+          "source": "s36",
+          "text": "电阻网络定理与基本术语"
+        },
+        {
+          "source": "s36",
+          "text": "Kirchhoff电流定律（KCL）"
+        },
+        {
+          "source": "s36",
+          "text": "Kirchhoff电压定律（KVL）"
+        },
+        {
+          "source": "s36",
+          "text": "节点电压法"
+        },
+        {
+          "source": "s37",
+          "text": "复杂电阻网络"
+        },
+        {
+          "source": "s37",
+          "text": "叠加原理"
+        },
+        {
+          "source": "s37",
+          "text": "等效电源定理"
+        },
+        {
+          "source": "s37",
+          "text": "对称性"
+        },
+        {
+          "source": "s37",
+          "text": "电桥平衡"
+        },
+        {
+          "source": "s37",
+          "text": "电流分布法"
+        },
+        {
+          "source": "s37",
+          "text": "多端纯电阻网络"
+        }
+      ],
+      "old_figures": [
+        {
+          "source": "s22",
+          "text": "二端元件及其伏安特性曲线"
+        },
+        {
+          "source": "s22",
+          "text": "均匀圆柱形电阻的几何参数"
+        },
+        {
+          "source": "s22",
+          "text": "典型气体放电的电压—电流曲线；横轴按对数刻度标示"
+        },
+        {
+          "source": "s22",
+          "text": "导体内电子的高速无规则运动与微小定向漂移"
+        },
+        {
+          "source": "s22",
+          "text": "电阻的串联与并联"
+        },
+        {
+          "source": "s22",
+          "text": "电路网络中的元件、节点、支路与回路"
+        },
+        {
+          "source": "s22",
+          "text": "Kirchhoff 电流定律与电压定律"
+        },
+        {
+          "source": "s22",
+          "text": "节点电压法：先求节点电势，再由伏安特性求支路电流"
+        },
+        {
+          "source": "s22",
+          "text": "转动带电环与等效环电流"
+        },
+        {
+          "source": "s22",
+          "text": "平板真空二极管中的空间电荷限制电流"
+        },
+        {
+          "source": "s22",
+          "text": "电导率满足 $\\sigma=kE$ 的厚球壳"
+        },
+        {
+          "source": "s22",
+          "text": "两个有内阻电源并联向负载供电"
+        },
+        {
+          "source": "s23",
+          "text": "实际电压源与实际电流源的端口等效"
+        },
+        {
+          "source": "s23",
+          "text": "Thevenin 等效只保留开路电压与端口内阻"
+        },
+        {
+          "source": "s23",
+          "text": "平衡电桥的中间支路可断开，也可将两端等势点合并"
+        },
+        {
+          "source": "s23",
+          "text": "三角形连接与星形连接的端口等效"
+        },
+        {
+          "source": "s23",
+          "text": "田字格网络的节点与端点标记"
+        },
+        {
+          "source": "s23",
+          "text": "正四面体六条棱均接电阻 $R$"
+        },
+        {
+          "source": "s23",
+          "text": "$N=5$ 时的完全图电阻网络"
+        },
+        {
+          "source": "s23",
+          "text": "变种八边形：除对径点外任意两点均以 $R$ 相连"
+        },
+        {
+          "source": "s23",
+          "text": "正方体十二条棱均接电阻 $R$"
+        },
+        {
+          "source": "s23",
+          "text": "每一节含上下两个串联电阻和一只横接电阻"
+        },
+        {
+          "source": "s23",
+          "text": "三端无限方格网络及端点 $A,B,C$"
+        },
+        {
+          "source": "s23",
+          "text": "相邻内接等边三角形在三个中点处与外层相接"
+        },
+        {
+          "source": "s23",
+          "text": "谢尔宾斯基镂垫的前几阶构造"
+        }
+      ],
+      "new_figures": [
+        {
+          "source": "s36",
+          "text": "二端元件及其 $I$--$V$ 特性。标出的正、负号与箭头只是统一的测试约定。"
+        },
+        {
+          "source": "s36",
+          "text": "长度为 $l$、截面积为 $A$ 的均匀圆柱形电阻。电流方向与端电压测试方向一致。"
+        },
+        {
+          "source": "s36",
+          "text": "理想电阻的 $I$--$V$ 特性。直线斜率是电导 $1/R$。"
+        },
+        {
+          "source": "s36",
+          "text": "导体内电子的无规则运动与定向漂移。蓝色曲线表示一条示意轨迹，金色圆点表示晶格散射中心。"
+        },
+        {
+          "source": "s36",
+          "text": "气体放电的典型电压--电流曲线。横轴为对数电流标度，各区段明显不满足线性 Ohm 定律。"
+        },
+        {
+          "source": "s36",
+          "text": "电阻的串联与并联。判断连接方式的依据是节点关系，而不是图形看起来是否横排或竖排。"
+        },
+        {
+          "source": "s36",
+          "text": "电路分析中的元件、节点、支路和回路。虚线只标示所选回路，不是导线。"
+        },
+        {
+          "source": "s36",
+          "text": "左图为 KCL 的支路电流约定，右图为同一网络的支路电压和回路方向。所有字母标注均不覆盖元件。"
+        },
+        {
+          "source": "s36",
+          "text": "节点电压法示例。取 $c$ 为参考地，理想电压源固定 $a$ 点电势，只剩 $b$ 点电势未知。"
+        },
+        {
+          "source": "s36",
+          "text": "解图：铜环晶格骤停后，电子因惯性保持原切向速度；常规电流方向与电子运动方向相反。"
+        },
+        {
+          "source": "s36",
+          "text": "解图：电流以时间常数 $\\tau$ 从零趋近稳态值 $U/R$；普通电路中 $\\tau$ 极短。"
+        },
+        {
+          "source": "s36",
+          "text": "第 3 题。圆环每转一周，总电荷 $Q$ 就完整通过任一固定截面一次。"
+        },
+        {
+          "source": "s36",
+          "text": "第 4 题。电子由阴极射向阳极，图中 $I$ 表示相反方向的常规电流大小。"
+        },
+        {
+          "source": "s36",
+          "text": "解图：空间电荷限制状态下的电势曲线。阴极处切线水平，随后按 $x^{4/3}$ 增长。"
+        },
+        {
+          "source": "s36",
+          "text": "第 5 题。球对称性保证电流密度和电场均沿径向，且通过任一同心球面的电流相同。"
+        },
+        {
+          "source": "s36",
+          "text": "题图：平行板电离室。$x$ 从阳极指向阴极；电子向阳极、正离子向阴极漂移并共同形成感应信号。"
+        },
+        {
+          "source": "s36",
+          "text": "解图：忽略泄放时的信号大小。图中把常见的 $t_e<t_i$ 情形画成快速前沿加缓慢离子尾。"
+        },
+        {
+          "source": "s36",
+          "text": "题图：接点 $a,b$ 把圆环分成电阻为 $R_1,R_2$ 的两段，两段端点相同，故彼此并联。"
+        },
+        {
+          "source": "s36",
+          "text": "第 8 题。每个实际电源均由理想电动势与内阻串联构成，三条支路跨接同一对节点。"
+        },
+        {
+          "source": "s36",
+          "text": "Ohm 肖像与电阻定律纪念邮票。"
+        },
+        {
+          "source": "s37",
+          "text": "叠加原理。左图只保留电压源，右图只保留电流源；被置零的电压源短路，被置零的电流源断路。"
+        },
+        {
+          "source": "s37",
+          "text": "戴维南定理的推导。四幅图的端口方向完全一致，第三幅只保留测试源，第四幅只保留网络内部独立源。"
+        },
+        {
+          "source": "s37",
+          "text": "同一个线性有源二端网络的戴维南形式与诺顿形式。等效只保证端口外部特性相同。"
+        },
+        {
+          "source": "s37",
+          "text": "平衡电桥。$R_5$ 的上下端分别是两个分压支路的中点；平衡条件下二者等势。"
+        },
+        {
+          "source": "s37",
+          "text": "同一三端网络的三角形连接与星形连接。对应关系由端口字母决定，不应靠电阻在图中的朝向记忆。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：电压源串联内阻与电流源并联内阻的端口方向。两图对同一负载给出相同的 $U,I$。"
+        },
+        {
+          "source": "s37",
+          "text": "第 2 题。九个交点都是节点，十二个相邻节点间的线段各代表一个电阻 $R$。"
+        },
+        {
+          "source": "s37",
+          "text": "解图（1）：把 $A,C$ 的电势分别归一化为 $1,0$。同色节点等势，标注放在网格空隙内而不遮挡支路。"
+        },
+        {
+          "source": "s37",
+          "text": "解图（2）：相邻端点激励不再具有对角情形的全部对称性；图中的九个电势已经逐点满足 KCL。"
+        },
+        {
+          "source": "s37",
+          "text": "第 3 题。四个顶点、六条棱均完整画出；交叉处没有节点。"
+        },
+        {
+          "source": "s37",
+          "text": "第 4 题。图示为 $K_5$；一般情形是任意两顶点之间都有且只有一个电阻 $R$。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：固定端点 $A,B$ 后，其余 $N-2$ 点全部等势。虚线框表示把这些点视为同一电势层，而非新增导线。"
+        },
+        {
+          "source": "s37",
+          "text": "第 5 题。八边形中唯独四条直径不接电阻；任意其他两顶点之间均接一个 $R$。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：六个蓝色中间点等势，内部连线均不载流；真正参与端口电流的是六条长度为两个电阻的并联通路。"
+        },
+        {
+          "source": "s37",
+          "text": "第 6 题。实线和虚线共同构成立方体的十二条棱；虚线只表示被遮挡的三条棱。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：三种端点选择的归一化电势。每个数值紧邻顶点外侧，虚线棱与实线棱的空间关系保持一致。"
+        },
+        {
+          "source": "s37",
+          "text": "第 7 题。上下两条横向支路和每一根竖直梯档都为 $R$，网络向右无限延伸。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：虚线框内的无限尾部仍等效为 $X$。两只横向 $R$ 串在 $R\\parallel X$ 的两侧。"
+        },
+        {
+          "source": "s37",
+          "text": "第 8 题题图示意：三条横向链向右无限延伸，相邻两行在每一列以竖直电阻连接；左端为 $A,B,C$。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：三行节点的两个有效电势模式。箭头长度表示相对电势（或注入电流）分量，不是实际支路。"
+        },
+        {
+          "source": "s37",
+          "text": "第 9 题。每个新三角形的三个顶点是上一三角形的三边中点，方向逐级交替。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：把中点以内的无限嵌套部分替换成三条 $kr/2$。外层六段金属丝各为 $r/2$。"
+        },
+        {
+          "source": "s37",
+          "text": "第 10 题。前三阶图形由同一中点规则生成；白色倒三角形是被镂空的部分。"
+        },
+        {
+          "source": "s37",
+          "text": "解图：每一阶由三个缩小到 $1/2$ 的同型三端网络拼成；拓扑使等效电阻乘 $5/3$，长度缩放又使单段电阻乘 $1/2$。"
+        }
+      ]
+    },
+    {
+      "chapter": 22,
+      "old_units": [
+        "s24"
+      ],
+      "new_units": [
+        "s38"
+      ],
+      "counts": {
+        "old_examples": 17,
+        "new_examples": 17,
+        "old_figures": 0,
+        "new_figures": 0,
+        "old_headings": 14,
+        "new_headings": 14
+      },
+      "example_comparison": [
+        {
+          "source": "s24",
+          "title": "【基本计算】",
+          "normalized_length": 71,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【基本计算】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【比例关系】",
+          "normalized_length": 56,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【比例关系】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【统统算出来】",
+          "normalized_length": 100,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【统统算出来】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【磁场中的裂变产物】",
+          "normalized_length": 116,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【磁场中的裂变产物】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【自聚焦】",
+          "normalized_length": 170,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【自聚焦】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【请君入瓮】",
+          "normalized_length": 117,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【请君入瓮】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【速度选择器】",
+          "normalized_length": 46,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【速度选择器】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【漂移运动】",
+          "normalized_length": 99,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【漂移运动】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【花式漂移】",
+          "normalized_length": 109,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【花式漂移】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【交替电磁场】",
+          "normalized_length": 99,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【交替电磁场】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【Hall 效应】",
+          "normalized_length": 147,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【Hall 效应】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【Corbino】",
+          "normalized_length": 112,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【Corbino】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【磁场中的小扰动】",
+          "normalized_length": 85,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【磁场中的小扰动】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【电磁场中的小扰动】",
+          "normalized_length": 92,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【电磁场中的小扰动】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【磁场中的阻尼运动】",
+          "normalized_length": 84,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【磁场中的阻尼运动】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【电磁场中的阻尼运动】",
+          "normalized_length": 98,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【电磁场中的阻尼运动】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s24",
+          "title": "【运动电荷的轨道磁矩】",
+          "normalized_length": 151,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s38",
+            "title": "【运动电荷的轨道磁矩】"
+          },
+          "status": "probable_duplicate"
+        }
+      ],
+      "old_headings": [
+        {
+          "source": "s24",
+          "text": "洛伦兹力"
+        },
+        {
+          "source": "s24",
+          "text": "磁场与Lorentz力"
+        },
+        {
+          "source": "s24",
+          "text": "匀强磁场中的回旋与螺旋运动"
+        },
+        {
+          "source": "s24",
+          "text": "回旋加速器"
+        },
+        {
+          "source": "s24",
+          "text": "正常Zeeman效应的经典图像"
+        },
+        {
+          "source": "s24",
+          "text": "匀强横向力场中的导向中心漂移"
+        },
+        {
+          "source": "s24",
+          "text": "回旋方向与运动方程的完整解"
+        },
+        {
+          "source": "s24",
+          "text": "磁场中的角动量与轨道磁矩"
+        },
+        {
+          "source": "s24",
+          "text": "交叉电磁场、速度选择与漂移"
+        },
+        {
+          "source": "s24",
+          "text": "缓变磁场中的绝热近似"
+        },
+        {
+          "source": "s24",
+          "text": "经典公式的相对论边界"
+        },
+        {
+          "source": "s24",
+          "text": "Lorentz力与匀强磁场轨道"
+        },
+        {
+          "source": "s24",
+          "text": "漂移、选择器与Hall场"
+        },
+        {
+          "source": "s24",
+          "text": "磁矩、Zeeman效应与阻尼运动"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s38",
+          "text": "洛伦兹力"
+        },
+        {
+          "source": "s38",
+          "text": "磁场与洛伦兹力（Lorentzforce）"
+        },
+        {
+          "source": "s38",
+          "text": "匀强磁场中的回旋与螺旋运动"
+        },
+        {
+          "source": "s38",
+          "text": "回旋加速器"
+        },
+        {
+          "source": "s38",
+          "text": "正常Zeeman效应的经典图像"
+        },
+        {
+          "source": "s38",
+          "text": "匀强横向力场中的导向中心漂移"
+        },
+        {
+          "source": "s38",
+          "text": "回旋方向与运动方程的完整解"
+        },
+        {
+          "source": "s38",
+          "text": "磁场中的角动量与轨道磁矩"
+        },
+        {
+          "source": "s38",
+          "text": "交叉电磁场、速度选择与漂移"
+        },
+        {
+          "source": "s38",
+          "text": "缓变磁场中的绝热近似"
+        },
+        {
+          "source": "s38",
+          "text": "经典公式的相对论边界"
+        },
+        {
+          "source": "s38",
+          "text": "Lorentz力与匀强磁场轨道"
+        },
+        {
+          "source": "s38",
+          "text": "漂移、选择器与Hall场"
+        },
+        {
+          "source": "s38",
+          "text": "磁矩、Zeeman效应与阻尼运动"
+        }
+      ],
+      "old_figures": [],
+      "new_figures": []
+    },
+    {
+      "chapter": 23,
+      "old_units": [
+        "s25"
+      ],
+      "new_units": [
+        "s39"
+      ],
+      "counts": {
+        "old_examples": 9,
+        "new_examples": 9,
+        "old_figures": 0,
+        "new_figures": 0,
+        "old_headings": 6,
+        "new_headings": 6
+      },
+      "example_comparison": [
+        {
+          "source": "s25",
+          "title": "【长直电流线】",
+          "normalized_length": 120,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【长直电流线】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【半无限大电流面】",
+          "normalized_length": 134,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【半无限大电流面】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【电流环】",
+          "normalized_length": 60,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【电流环】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【密绕螺线管】",
+          "normalized_length": 132,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【密绕螺线管】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【电路安培力】",
+          "normalized_length": 106,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【电路安培力】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【和牛顿第三定律】",
+          "normalized_length": 238,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【和牛顿第三定律】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【电流环力矩】",
+          "normalized_length": 177,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【电流环力矩】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【电子显微镜】",
+          "normalized_length": 254,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【电子显微镜】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s25",
+          "title": "【自旋进动】",
+          "normalized_length": 298,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s39",
+            "title": "【自旋进动】"
+          },
+          "status": "probable_duplicate"
+        }
+      ],
+      "old_headings": [
+        {
+          "source": "s25",
+          "text": "安培力与安培定律"
+        },
+        {
+          "source": "s25",
+          "text": "Ampere力与载流回路的合力"
+        },
+        {
+          "source": "s25",
+          "text": "力矩、磁矩与能量"
+        },
+        {
+          "source": "s25",
+          "text": "Ampere环路定律"
+        },
+        {
+          "source": "s25",
+          "text": "Biot--Savart定律与圆电流"
+        },
+        {
+          "source": "s25",
+          "text": "磁通量与磁场Gauss定律"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s39",
+          "text": "安培力与安培定律"
+        },
+        {
+          "source": "s39",
+          "text": "Ampere力与载流回路的合力"
+        },
+        {
+          "source": "s39",
+          "text": "力矩、磁矩与能量"
+        },
+        {
+          "source": "s39",
+          "text": "Ampere环路定律"
+        },
+        {
+          "source": "s39",
+          "text": "Biot--Savart定律与圆电流"
+        },
+        {
+          "source": "s39",
+          "text": "磁通量与磁场Gauss定律"
+        }
+      ],
+      "old_figures": [],
+      "new_figures": []
+    },
+    {
+      "chapter": 24,
+      "old_units": [
+        "s26"
+      ],
+      "new_units": [
+        "s40"
+      ],
+      "counts": {
+        "old_examples": 21,
+        "new_examples": 21,
+        "old_figures": 1,
+        "new_figures": 3,
+        "old_headings": 8,
+        "new_headings": 8
+      },
+      "example_comparison": [
+        {
+          "source": "s26",
+          "title": "【大小圆环】",
+          "normalized_length": 97,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【大小圆环】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【奇怪的圆环】",
+          "normalized_length": 95,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【奇怪的圆环】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒加电阻】",
+          "normalized_length": 129,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒加电阻】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒加小棒】",
+          "normalized_length": 129,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒加小棒】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒再加小棒】",
+          "normalized_length": 159,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒再加小棒】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒加电容】",
+          "normalized_length": 108,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒加电容】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒加电感】",
+          "normalized_length": 110,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒加电感】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒加电源】",
+          "normalized_length": 113,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒加电源】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小棒大结局】",
+          "normalized_length": 161,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小棒大结局】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【小环的响应】",
+          "normalized_length": 168,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【小环的响应】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【貌似简谐振动】",
+          "normalized_length": 131,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【貌似简谐振动】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【感生电动势】",
+          "normalized_length": 112,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【感生电动势】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【这是测的啥】",
+          "normalized_length": 195,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【这是测的啥】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【这也可以测】",
+          "normalized_length": 125,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【这也可以测】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【奇妙的田字格】",
+          "normalized_length": 97,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【奇妙的田字格】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【万能的 Kirchhoff】",
+          "normalized_length": 105,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【万能的 Kirchhoff】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【自感线圈】",
+          "normalized_length": 80,
+          "best_2020_match": {
+            "ratio": 0.9875,
+            "source": "s40",
+            "title": "【自感线圈】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【互感线圈】",
+          "normalized_length": 110,
+          "best_2020_match": {
+            "ratio": 0.9909,
+            "source": "s40",
+            "title": "【互感线圈】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【RLC 回路】",
+          "normalized_length": 68,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【RLC 回路】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【电源凑热闹】",
+          "normalized_length": 74,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【电源凑热闹】"
+          },
+          "status": "probable_duplicate"
+        },
+        {
+          "source": "s26",
+          "title": "【磁悬浮列车】",
+          "normalized_length": 164,
+          "best_2020_match": {
+            "ratio": 1.0,
+            "source": "s40",
+            "title": "【磁悬浮列车】"
+          },
+          "status": "probable_duplicate"
+        }
+      ],
+      "old_headings": [
+        {
+          "source": "s26",
+          "text": "电磁感应"
+        },
+        {
+          "source": "s26",
+          "text": "Faraday--Lenz定律"
+        },
+        {
+          "source": "s26",
+          "text": "动生电动势与运动回路"
+        },
+        {
+          "source": "s26",
+          "text": "交流发电机"
+        },
+        {
+          "source": "s26",
+          "text": "感生电场"
+        },
+        {
+          "source": "s26",
+          "text": "电子感应加速器"
+        },
+        {
+          "source": "s26",
+          "text": "自感、电感的暂态与磁场能量"
+        },
+        {
+          "source": "s26",
+          "text": "互感与互易性"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s40",
+          "text": "电磁感应"
+        },
+        {
+          "source": "s40",
+          "text": "Faraday--Lenz定律"
+        },
+        {
+          "source": "s40",
+          "text": "动生电动势与运动回路"
+        },
+        {
+          "source": "s40",
+          "text": "交流发电机"
+        },
+        {
+          "source": "s40",
+          "text": "感生电场"
+        },
+        {
+          "source": "s40",
+          "text": "电子感应加速器"
+        },
+        {
+          "source": "s40",
+          "text": "自感、电感的暂态与磁场能量"
+        },
+        {
+          "source": "s40",
+          "text": "互感与互易性"
+        }
+      ],
+      "old_figures": [
+        {
+          "source": "s26",
+          "text": "磁极间转动线圈、滑环与负载；右图给出磁场、线圈面积法向和夹角。"
+        }
+      ],
+      "new_figures": [
+        {
+          "source": "s40",
+          "text": "磁铁靠近时检流计向一侧偏转；停住时回零；远离时反向偏转。实验情景绘制，方向标记为矢量叠加。"
+        },
+        {
+          "source": "s40",
+          "text": "左为绘制的环形电感实物情景；右为串联 $RL$ 回路。闭合 $S$ 后，电流沿箭头方向逐渐建立。"
+        },
+        {
+          "source": "s40",
+          "text": "磁极间转动线圈、滑环与负载；右图给出磁场、线圈面积法向和夹角。"
+        }
+      ]
+    },
+    {
+      "chapter": 26,
+      "old_units": [
+        "s27"
+      ],
+      "new_units": [
+        "s41"
+      ],
+      "counts": {
+        "old_examples": 0,
+        "new_examples": 0,
+        "old_figures": 1,
+        "new_figures": 3,
+        "old_headings": 10,
+        "new_headings": 10
+      },
+      "example_comparison": [],
+      "old_headings": [
+        {
+          "source": "s27",
+          "text": "电磁场与超导体"
+        },
+        {
+          "source": "s27",
+          "text": "位移电流：补上安培定律的缺口"
+        },
+        {
+          "source": "s27",
+          "text": "Maxwell方程组"
+        },
+        {
+          "source": "s27",
+          "text": "真空中的电磁波"
+        },
+        {
+          "source": "s27",
+          "text": "场的能量与Poynting矢量"
+        },
+        {
+          "source": "s27",
+          "text": "加速电荷的辐射"
+        },
+        {
+          "source": "s27",
+          "text": "Thomson散射截面"
+        },
+        {
+          "source": "s27",
+          "text": "超导：零电阻还不够"
+        },
+        {
+          "source": "s27",
+          "text": "理想导体与迈斯纳效应"
+        },
+        {
+          "source": "s27",
+          "text": "超导环中的磁通保持"
+        }
+      ],
+      "new_headings": [
+        {
+          "source": "s41",
+          "text": "电磁场与超导体"
+        },
+        {
+          "source": "s41",
+          "text": "位移电流：补上安培定律的缺口"
+        },
+        {
+          "source": "s41",
+          "text": "Maxwell方程组"
+        },
+        {
+          "source": "s41",
+          "text": "真空中的电磁波"
+        },
+        {
+          "source": "s41",
+          "text": "场的能量与Poynting矢量"
+        },
+        {
+          "source": "s41",
+          "text": "加速电荷的辐射"
+        },
+        {
+          "source": "s41",
+          "text": "Thomson散射截面"
+        },
+        {
+          "source": "s41",
+          "text": "超导：零电阻还不够"
+        },
+        {
+          "source": "s41",
+          "text": "理想导体与迈斯纳效应"
+        },
+        {
+          "source": "s41",
+          "text": "超导环中的磁通保持"
+        }
+      ],
+      "old_figures": [
+        {
+          "source": "s27",
+          "text": "不同年代代表性超导材料的临界温度；标出了液氦、液氢和液氮温区。"
+        }
+      ],
+      "new_figures": [
+        {
+          "source": "s41",
+          "text": "径向传导电流与随时间变化的电场共同保持球对称；只保留传导电流会产生矛盾。"
+        },
+        {
+          "source": "s41",
+          "text": "振荡电荷的远区辐射波前。场横向振动，能量沿径向向外传播。"
+        },
+        {
+          "source": "s41",
+          "text": "不同年代代表性超导材料的临界温度；标出了液氦、液氢和液氮温区。"
+        }
+      ]
+    }
+  ]
+}

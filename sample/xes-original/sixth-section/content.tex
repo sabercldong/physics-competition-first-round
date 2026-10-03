@@ -1,0 +1,376 @@
+前面曾多次强调，牛顿定律只在惯性参考系中成立。于是自然会产生一个问题：相对于惯性系
+做加速运动的非惯性参考系中，物体的运动是否就不能用类似的方式描述？严格地说，牛顿
+定律不能直接用于非惯性系；但这并不妨碍我们先在惯性系中写出运动方程，再利用已知的
+坐标变换，把它改写成相对于非惯性系的形式。这样做既保留了牛顿定律的适用条件，也能
+方便地研究车厢、电梯和转盘中的运动。
+
+考虑两个相对运动的参考系 $S$ 和 $S'$。其中 $S$ 是惯性参考系，$S'$ 相对于 $S$ 以
+加速度 $\vec a_r$ 作平动。质量为 $m$ 的质点受到真实合力 $\vec F$，相对于 $S$ 的加速度
+为 $\vec a$，相对于 $S'$ 的加速度为
+\[
+ \vec a'=\vec a-\vec a_r.
+\]
+由 $\vec F=m\vec a$ 得
+\[
+ m\vec a'=\vec F-m\vec a_r.
+\]
+因此，如果希望在 $S'$ 中仍采用“质量乘加速度等于力之和”的形式，就要引入惯性力
+\begin{equation}
+ \boxed{\vec F_i=-m\vec a_r}. \tag{2.12}
+\end{equation}
+惯性力是参考系加速带来的表观力，没有施力物体，牛顿第三定律不适用于它。对于相对
+非惯性系静止的物体，引入惯性力后，动力学问题常可转化为静力平衡问题。
+
+上述结论并不限于单个质点。若非惯性系中有多个彼此作用的质点，就对每个质量为 $m_i$
+的质点同时加入 $-m_i\vec a_r$。真实外力和质点间相互作用力仍按通常方式列出，惯性力
+只负责补偿参考系的加速运动。于是每个质点都满足
+\[
+ m_i\vec a_i'=\vec F_{\mathrm{real},i}+\vec F_{\mathrm{inert},i},
+ \qquad \vec F_{\mathrm{inert},i}=-m_i\vec a_r.
+\]
+这里 $\vec F_{\mathrm{real},i}$ 是第 $i$ 个质点所受真实合力，与惯性力分开记号。
+由于所有质点所加惯性力都与各自质量成正比，许多相对车厢或电梯保持静止的问题便可按
+平衡问题处理；但必须记住，这只是非惯性坐标中的等效写法，并没有产生新的相互作用。
+
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 2.24}
+很多时候可以近似认为地球表面是一个惯性参考系。现有一辆相对于地面以加速度 $a$ 作
+匀加速直线运动的车，车内一个质量为 $m$ 的小球被悬挂在车顶。求小球相对车厢静止时，
+悬线与竖直方向的夹角 $\theta_1$。悬线长为 $l$，轻且不可伸长；若将小球拉到竖直方向，
+相对车厢由静止释放，求另一侧最高点与竖直方向的夹角 $\theta_2$。
+全过程中车的加速度保持不变，忽略阻力及小球与车厢边界的碰撞。
+\probdiagTwoTwentyFour
+\end{origexamplebox}
+
+\Needspace{16\baselineskip}
+\begin{xesolution}
+以车为参考系。车向右加速，因此小球受到大小为 $ma$、方向向左的惯性力。平衡位置的
+受力和有效重力方向如解图所示：
+\soldiagTwoTwentyFour
+由水平、竖直方向平衡条件
+\[
+ T\sin\theta_1=ma,
+ \qquad
+ T\cos\theta_1=mg,
+\]
+得到
+\[
+ \boxed{\tan\theta_1=\frac ag}.
+\]
+有效重力大小为 $g_{\rm eff}=\sqrt{g^2+a^2}$，方向相对竖直向后偏 $\theta_1$。
+图中 $B_0$ 是竖直释放点，$B_e$ 是平衡位置，$B_2$ 是另一转折点。设摆线相对通常竖直方向
+向后偏转的角度为 $\theta$，它与有效重力的夹角为 $\theta-\theta_1$。
+沿有效重力方向向下的坐标为 $l\cos(\theta-\theta_1)$，因此以悬点为势能零点，
+与恒定有效重力对应的势能是
+\[
+ U=-mg_{\rm eff}l\cos(\theta-\theta_1).
+\]
+这是将重力和恒定惯性力共同计入的有效势能。车系中绳张力始终与相对速度垂直，不做功，
+故小球相对车厢的动能 $mv'^2/2$ 与这一势能之和保持不变。
+小球从 $\theta=0$ 处静止释放。另一侧最高点也是速度为零，能量守恒给出
+\[
+ \cos(\theta_2-\theta_1)=\cos\theta_1.
+\]
+除初始点外的另一个转折点为
+\[
+ \boxed{\theta_2=2\theta_1
+ =2\arctan\frac ag}.
+\]
+图中这两个转折位置关于 $OB_e$ 对称，但并不关于通常的竖直线对称。
+在摆动范围内张力为 $ml^{-1}v'^2+mg_{\rm eff}\cos(\theta-\theta_1)\ge mg>0$，
+所以悬线保持绷紧。$a\to0$ 时两个角均趋于零，竖直释放的小球不再偏摆。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.25}
+不计空气阻力，证明在地表附近自由下落的“电梯”中，仅受重力、彼此不相互作用且尚未碰壁的
+自由物体相对于电梯均保持静止或作匀速直线运动。思考一下：在证明过程中忽略了什么，
+得到了什么样的结论？这个电梯是一个惯性
+参考系吗？
+\probdiagTwoTwentyFive
+\end{origexamplebox}
+
+\begin{xesolution}
+在地面惯性系的近似下，电梯与其中任意自由物体都只受重力，因而
+\[
+ \vec a_{\rm E}=\vec g,
+ \qquad
+ \vec a_{\rm P}=\vec g.
+\]
+故物体相对电梯的加速度为
+\[
+ \vec a_{\rm rel}=\vec a_{\rm P}-\vec a_{\rm E}=0.
+\]
+于是它相对电梯保持静止或作匀速直线运动。在电梯系中也可以用解图理解：向上的惯性力
+$-m\vec g$ 恰好抵消向下的重力 $m\vec g$。
+\soldiagTwoTwentyFive
+这里忽略了地球自转、空气阻力以及重力随高度和水平位置的变化。尤其是重力场不完全均匀：
+相距有限的物体具有微小的相对加速度，即潮汐效应。
+
+在牛顿力学中，这个电梯相对于地面惯性系有加速度，因此不是惯性参考系；只是对足够小的
+空间和足够短的时间，均匀重力与惯性力抵消，使自由物体呈现相对匀速的运动。这个结论也是
+失重现象与等效原理的经典出发点。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.26}
+如图所示，汽车内固定有一个倾角为 $\theta$ 的斜面，斜面表面光滑，底部有一个质量为
+$m$ 的小物块。开始时系统静止，某时刻汽车突然开始向左以加速度 $a$ 作匀加速运动。
+求使物块刚好具有沿斜面向上运动趋势的临界加速度；若要求物块从静止开始真正向上滑动，
+$a$ 还应满足什么条件？
+\probdiagTwoTwentySix
+\end{origexamplebox}
+
+\begin{xesolution}
+在汽车参考系中，惯性力 $ma$ 水平向右。沿斜面方向分解重力与惯性力，受力关系如解图：
+\soldiagTwoTwentySix
+取沿斜面向上为正，则
+\[
+ ma_{\parallel}=ma\cos\theta-mg\sin\theta.
+\]
+使物块刚好具有向上运动趋势的临界条件为 $a_{\parallel}=0$，故
+\[
+ \boxed{a_{\min}=g\tan\theta}.
+\]
+在临界值处沿斜面合力为零，物块不会从静止状态自行上滑；若要真正开始向上运动，必须有
+\[
+ \boxed{a>g\tan\theta}.
+\]
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.27}
+如图所示，在光滑水平面上有一光滑斜面，倾角为 $\alpha$。一质量为 $m$ 的物体放在斜面上，
+在水平力 $F$ 推动下恰使物体 $m$ 与斜面无相对滑动。求斜面对物块弹力的大小。
+\probdiagTwoTwentySeven
+\end{origexamplebox}
+
+\begin{xesolution}
+以随斜面向右加速的参考系分析。物块相对斜面静止，受到重力、支持力和水平向左的惯性力，
+三力平衡，如解图所示：
+\soldiagTwoTwentySeven
+沿斜面方向平衡要求
+\[
+ ma\cos\alpha=mg\sin\alpha,
+ \qquad\Rightarrow\qquad a=g\tan\alpha.
+\]
+沿斜面法向平衡，或者直接在地面惯性系的竖直方向列式，得到
+\[
+ N\cos\alpha=mg.
+\]
+因此
+\[
+ \boxed{N=\frac{mg}{\cos\alpha}}.
+\]
+题设没有给出斜面质量，所以不能由现有条件求 $F$；但弹力由物块的竖直平衡唯一确定，
+不需要知道 $F$ 和斜面质量。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.28}
+如图所示，一个质量为 $M$、两边倾角分别为 $\alpha$ 和 $\beta$ 的斜面放在水平面上。
+两个斜面上分别放有质量为 $m_1$ 和 $m_2$ 的物块 $A$ 和 $B$。忽略一切摩擦，求由静止
+释放后所有物体的加速度。
+\probdiagTwoTwentyEight
+\end{origexamplebox}
+
+\begin{xesolution}
+取水平向右为正，设斜面的水平加速度为 $A=\ddot X$；令 $s_1,s_2$ 分别表示两物块相对
+斜面沿各自斜面向下的位移。坐标和正方向如解图：
+\soldiagTwoTwentyEight
+地面系中的坐标关系为（省略不影响加速度的坐标常数）
+\[
+ x_1=X-s_1\cos\alpha,\quad y_1=-s_1\sin\alpha,
+ \qquad x_2=X+s_2\cos\beta,\quad y_2=-s_2\sin\beta.
+\]
+两块分别受重力和垂直于各自斜面的支持力。以左块为例，将加速度沿左斜面向下投影，得到
+\[
+ (A-\ddot s_1\cos\alpha)(-\cos\alpha)
+ +(-\ddot s_1\sin\alpha)(-\sin\alpha)
+ =\ddot s_1-A\cos\alpha.
+\]
+支持力投影为零，重力投影为 $m_1g\sin\alpha$。右块同理，两个方程为
+\[
+ \ddot s_1-A\cos\alpha=g\sin\alpha,
+ \qquad
+ \ddot s_2+A\cos\beta=g\sin\beta.
+\]
+系统水平方向不受外力，因此
+\[
+ (M+m_1+m_2)A-m_1\ddot s_1\cos\alpha
+ +m_2\ddot s_2\cos\beta=0.
+\]
+记
+\[
+ D=M+m_1\sin^2\alpha+m_2\sin^2\beta.
+\]
+联立解得斜面的加速度
+\[
+ \boxed{A=\frac{g\left(m_1\sin\alpha\cos\alpha
+ -m_2\sin\beta\cos\beta\right)}{D}}.
+\]
+$A>0$ 表示斜面向右，$A<0$ 表示向左。两物块相对斜面的加速度分别为
+\[
+ \boxed{a_{1/\!M}=\ddot s_1=g\sin\alpha+A\cos\alpha},
+\]
+\[
+ \boxed{a_{2/\!M}=\ddot s_2=g\sin\beta-A\cos\beta}.
+\]
+它们相对地面的加速度分量为
+\[
+ \boxed{
+ a_{1x}=A-\ddot s_1\cos\alpha,
+ \qquad
+ a_{1y}=-\ddot s_1\sin\alpha},
+\]
+\[
+ \boxed{
+ a_{2x}=A+\ddot s_2\cos\beta,
+ \qquad
+ a_{2y}=-\ddot s_2\sin\beta}.
+\]
+这些式子给出了斜面和两个物块的全部对地加速度。
+若 $m_1=m_2$ 且 $\alpha=\beta$，分子相消，$A=0$，两块沿固定斜面以 $g\sin\alpha$ 下滑。
+若 $m_2\to0$，公式还原为单物块在活动斜面上的结果。两个法向力分别为
+$N_1=m_1(g\cos\alpha-A\sin\alpha)$、$N_2=m_2(g\cos\beta+A\sin\beta)$。
+例如代入后
+\[
+ N_1=\frac{m_1g[M\cos\alpha+m_2\sin\beta\sin(\alpha+\beta)]}{D}>0,
+\]
+$N_2$ 交换下标及角度可得同样结论，因此在 $M>0$、两倾角均为锐角时接触约束成立。
+\end{xesolution}
+
+\begin{origexamplebox}{例 2.29}
+一个装满水的水箱中有一个气泡。当水箱以加速度 $a$ 向前加速运动时，这个气泡将
+\underline{\hspace{3em}}（向前、向后）运动。
+\probdiagTwoTwentyNine
+\end{origexamplebox}
+
+\begin{xesolution}
+在水箱参考系中，液体受到向后的惯性力。把重力和惯性力合成，有效重力方向为“向下且
+向后”。取 $x$ 向前、$y$ 向上，则 $\vec g_{\rm eff}=(-a,-g)$。
+在液体随箱共同加速、相对流动的瞬态可忽略时，取宽 $\dd x$、横截面积 $S$ 的液体微元，
+水平平衡要求 $-S\dd p-\rho S\dd x\,a=0$，即 $\partial p/\partial x=-\rho a$。
+竖直方向同理有 $\partial p/\partial y=-\rho g$。所以
+\[
+ p=p_0-\rho ax-\rho gy.
+\]
+压强沿有效重力方向增大；在等压线上 $a\dd x+g\dd y=0$，故其斜率为 $-a/g$，
+与有效重力垂直。图中箭头及等压线体现了这一关系：
+\soldiagTwoTwentyNine
+体积为 $V$ 的气泡受到周围水的合压力
+$\vec F_b=-\rho_{\text{水}}V\vec g_{\rm eff}$；再加上气泡自身的重力和惯性力，
+驱动力为 $(\rho_{\text{气}}-\rho_{\text{水}})V\vec g_{\rm eff}$。
+气泡密度远小于水，所以它相对水箱向上且向前运动。这里只判断运动趋势，
+实际加速度和速度还受周围液体运动及阻力影响。横向选择应填
+\[
+ \boxed{\text{向前}}.
+\]
+容易混淆之处是：致密小物体趋向有效重力方向，轻气泡却因浮力而向相反方向运动。
+\end{xesolution}
+
+如果物体相对于匀速转动的参考系保持静止，那么在惯性系中它作匀速圆周运动，所需合力指向转轴，大小为
+\begin{equation}
+ F=m\omega^2r \tag{2.13}
+\end{equation}
+在转动系看来，可引入大小相同、方向沿径向向外的离心力，使相对
+静止问题写成平衡形式。
+
+\begin{origexamplebox}{例 2.30}
+一根细杆与竖直方向的夹角为 $0<\theta<\pi/2$，绕通过其固定下端 $O$ 的竖直轴，
+以恒定角速度 $\omega\ge0$ 匀速转动。杆上距 $O$ 为 $l>0$ 处套有一个质点。
+先设接触无摩擦，质点能够与杆保持相对静止，求角速度
+$\omega$。如果质点与杆之间有摩擦，且最大静摩擦因数为 $\mu$，求能够保持相对静止的角速度
+$\omega$ 的范围。
+\probdiagTwoThirty
+\end{origexamplebox}
+
+\begin{xesolution}
+先作质点到竖直转轴的水平投影。杆长段 $OP=l$ 与竖直方向成 $\theta$，故转动半径为 $r=l\sin\theta$：
+\soldiagTwoThirtyGeometry
+在随杆转动的参考系中，质点相对静止，受到
+重力、杆的支持力以及水平向外的离心力
+\[
+ F_{\rm cf}=m\omega^2l\sin\theta.
+\]
+沿杆方向的两个分量如解图所示：
+\soldiagTwoThirty
+无摩擦时沿杆方向平衡：
+\[
+ m\omega^2l\sin^2\theta=mg\cos\theta.
+\]
+因此
+\[
+ \boxed{\omega=\sqrt{\frac{g\cos\theta}{l\sin^2\theta}}}.
+\]
+
+有摩擦时，维持平衡所需摩擦力的大小为
+\[
+ |f|=m\left|g\cos\theta-\omega^2l\sin^2\theta\right|.
+\]
+重力与离心力在垂直于杆方向的合分量由支持力平衡，故
+\[
+ N=m\sin\theta\left(g+\omega^2l\cos\theta\right).
+\]
+静摩擦条件 $|f|\le\mu N$ 给出最稳妥的角速度范围表达式
+\[
+ \boxed{
+ \left|g\cos\theta-\omega^2l\sin^2\theta\right|
+ \le\mu\sin\theta\left(g+\omega^2l\cos\theta\right)}.
+\]
+取沿杆离开 $O$ 为正，所需有符号摩擦力为
+$f_s=m(g\cos\theta-\omega^2l\sin^2\theta)$：转得慢时它阻止下滑，沿杆向上；
+转得快时它阻止外滑，沿杆向下。拆开绝对值并令 $z=\omega^2\ge0$，得到
+\begin{align*}
+ zl(\sin^2\theta+\mu\sin\theta\cos\theta)&\ge g(\cos\theta-\mu\sin\theta),\\
+ zl(\sin^2\theta-\mu\sin\theta\cos\theta)&\le g(\cos\theta+\mu\sin\theta).
+\end{align*}
+第一式中 $z$ 的系数总为正，因而对任何 $\mu\ge0$ 都给出下界
+\[
+ \boxed{\omega^2\ge
+ \max\!\left\{0,
+ \frac{g(\cos\theta-\mu\sin\theta)}
+ {l(\sin^2\theta+\mu\sin\theta\cos\theta)}\right\}},
+\]
+第二式右端为正。若 $\mu<\tan\theta$，左端系数也为正，另有上界
+\[
+ \boxed{\omega^2\le
+ \frac{g(\cos\theta+\mu\sin\theta)}
+ {l(\sin^2\theta-\mu\sin\theta\cos\theta)}}.
+\]
+当 $\mu=\tan\theta$ 时第二式左端为零；当 $\mu>\tan\theta$ 时其左端非正。
+两种情况都自动满足第二式，所以只需满足前述下界，理想模型下\textbf{没有有限的角速度上界}。
+若 $\mu=0$，上下界重合为无摩擦结果；若 $\mu\ge\cot\theta$，下界为零，说明静止杆上也能靠摩擦托住质点。
+\end{xesolution}
+
+\clearpage
+\begin{origexamplebox}{例 2.31}
+航空医学研究中使用的离心机，是一个绕竖直轴转动的水平杆，杆的一端携带一个实验对象。
+如果从转动中心到实验对象的距离为 $7\,\mathrm m$，离心机要转动多快，才能使乘坐者获得
+大小为 $5g$ 的水平向心加速度？
+\end{origexamplebox}
+
+\begin{xesolution}
+离心机提供的水平向心加速度满足
+\[
+ \omega^2r=5g.
+\]
+运动关系如解图所示：
+\soldiagTwoThirtyOne
+取 $r=7\,\mathrm m$、$g=9.8\,\mathrm{m/s^2}$，得
+\[
+ \boxed{\omega=\sqrt{\frac{5g}{r}}=\sqrt7
+ \approx2.65\,\mathrm{rad/s}}.
+\]
+对应转动频率和转速为
+\[
+ f=\frac{\omega}{2\pi}\approx0.421\,\mathrm{Hz},
+ \qquad
+ \boxed{n\approx25.3\,\mathrm{r/min}},
+\]
+周期约为 $2.37\,\mathrm s$。
+
+如果实际装置把“$5g$ 过载”定义为座椅支持力对应的总表观加速度，并计入竖直重力，条件将
+改为
+\[
+ \sqrt{(\omega^2r)^2+g^2}=5g.
+\]
+这与题设明确给出的“水平向心加速度为 $5g$”是两个不同的指标。
+\end{xesolution}

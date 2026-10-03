@@ -1,0 +1,606 @@
+前面已经学习了牛顿运动定律。运动物体通常可以近似看成质点，并用给定时刻的速度描述
+它的运动状态。然而，速度相同而质量不同的物体，其运动状态并不相同。为了同时刻画质量
+和速度的影响，定义运动物体的\textbf{动量}为
+\begin{equation}
+ \vec p=m\vec v.
+\end{equation}
+日常经验也说明了质量不能被忽略：同样以约 $5\,\mathrm{m/s}$ 迎面而来，一个人和一辆
+卡车所代表的运动状态显然完全不同。动量把质量和速度同时纳入同一个物理量中。
+
+\textbf{动量是矢量。}\quad 质量是标量、速度是矢量，因此动量也是矢量，其方向与速度
+方向相同。改变速度大小或改变速度方向，都会使动量发生变化。
+
+\textbf{动量的变化。}\quad 若质点在 $t$ 时刻的动量为 $\vec p(t)$，在
+$t+\Delta t$ 时刻的动量为 $\vec p(t+\Delta t)$，则这段时间内的动量变化量为
+\begin{equation}
+ \Delta\vec p=\vec p(t+\Delta t)-\vec p(t).
+\end{equation}
+这里的减法是矢量减法；即使速率不变，只要运动方向改变，$\Delta\vec p$ 也不为零。
+
+\textbf{系统的合动量。}\quad 对于由 $N$ 个质点组成的系统，总动量定义为各质点动量
+的矢量和：
+\begin{equation}
+ \vec P=\sum_{i=1}^{N}\vec p_i=\sum_{i=1}^{N}m_i\vec v_i.
+\end{equation}
+
+质量保持不变的物体受到合外力 $\vec F$ 时，由牛顿第二定律
+\begin{equation}
+ \vec F=m\vec a=m\frac{\dd\vec v}{\dd t}
+ =\frac{\dd(m\vec v)}{\dd t}
+ =\frac{\dd\vec p}{\dd t}.
+\end{equation}
+可见，力也可以表达为动量的变化率。对恒力作用的有限时间间隔，上式可写为
+\begin{equation}
+ \vec F\,\Delta t=\Delta\vec p.
+\end{equation}
+力与作用时间的乘积称为\textbf{冲量}，通常用 $\vec I$ 表示。对于变力，应把各微小时间
+间隔内的冲量累积起来，于是一般形式的动量定理为
+\begin{equation}
+ \vec I=\int_{t_i}^{t_f}\vec F\,\dd t
+ =\Delta\vec p=\vec p_f-\vec p_i.
+\end{equation}
+动量定理是牛顿运动定律的自然推论。它不要求知道力在每一时刻造成的加速度；只要能够
+求出总冲量，就可以直接联系过程的初、末状态。对有些过程，它和逐时刻使用牛顿定律会
+得到相同结果；而在碰撞等作用力复杂、作用时间极短的问题中，动量定理能显著简化处理，
+甚至可以在不知道碰撞力随时间变化规律的情况下求出结果。
+
+\subsection{单个物体的动力学}
+
+当问题中只包含单个物体时，若过程持续时间或合力的总冲量容易确定，使用动量定理往往
+可以省去分段求速度、位移的步骤。
+
+\input{source-restoration.tex}
+
+\begin{origexamplebox}{例 3.1}
+如图，铁块压着一纸条放在水平桌面上。当以速度 $v$ 抽出纸条后，铁块掉在地上的 $P$ 点。
+若以速度 $2v$ 抽出纸条，则铁块落地点 $O$ 在何处？
+\begin{enumerate}[label=\Alph*.,leftmargin=2.2em]
+ \item 仍在 $P$ 点
+ \item $P$ 点左边
+ \item $P$ 点右边不远处
+ \item $P$ 点右边、原水平位移的两倍处
+\end{enumerate}
+图~\ref{ch07:fig:probdiagThreeOne}中，纸条从桌边抽出，铁块随后从桌边落下。
+\probdiagThreeOne
+\end{origexamplebox}
+
+\begin{xesolution}
+纸条相对铁块滑动时，铁块受到向右的滑动摩擦力。设纸条从铁块下方完全抽出所需的接触
+时间为 $\tau$，则铁块在这段时间内获得的水平冲量为
+\[
+ I_x=f\tau,
+ \qquad
+ v_x=\frac{f\tau}{m}.
+\]
+抽纸速度增大，纸条与铁块的接触时间变短，铁块得到的摩擦冲量和离开桌面时的水平速度
+都减小。桌面高度不变，铁块离开桌面后的下落时间相同，所以第二次的水平射程更小。
+图~\ref{ch07:fig:soldiagThreeOne}中，抽得越快，摩擦力作用越短，离桌速度和水平射程越小。
+\soldiagThreeOne
+因此 $O$ 在 $P$ 点左边，选择
+\[
+ \boxed{\text{B}}.
+\]
+这里比较的是冲量而不是摩擦力大小；两次滑动摩擦力可以相同，但作用时间不同。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.2}
+一个质量 $m=2\,\mathrm{kg}$ 的物体，在 $F_1=8\,\mathrm N$ 的水平力作用下从静止开始沿
+水平面运动 $t_1=5\,\mathrm s$。随后外力变为 $F_2=5\,\mathrm N$，方向不变，物体又运动
+$t_2=4\,\mathrm s$；撤去外力后，物体再经过 $t_3=6\,\mathrm s$ 停下。求物体所受的
+摩擦力。
+\end{origexamplebox}
+
+\begin{xesolution}
+取运动方向为正，设滑动摩擦力大小为 $f$。物体初、末速度都为零，所以全过程的总动量
+变化为零。各力的冲量按时间分段相加：
+\[
+ F_1t_1+F_2t_2-f(t_1+t_2+t_3)=0.
+\]
+力与时间的对应关系见图~\ref{ch07:fig:soldiagThreeTwo}。
+
+\soldiagThreeTwo
+代入数据得
+\[
+ 8\times5+5\times4-f(5+4+6)=0,
+\]
+故
+\[
+ \boxed{f=4\,\mathrm N}.
+\]
+在物体始终向右滑动的这 $15\,\mathrm s$ 内，摩擦力方向始终向左；撤去外力并不改变
+摩擦力方向。
+\end{xesolution}
+
+\subsection{多个物体的运动}
+
+若一个力学系统含有多个物体，每个物体除了受到系统外部的力，还受到其他物体施加的
+内力。对第 $i$ 个物体，有
+\begin{equation}
+ \vec F_i=\vec F_i^{\rm ext}+\sum_{j\ne i}\vec f_{ij},
+\end{equation}
+其中 $\vec f_{ij}$ 表示第 $j$ 个物体对第 $i$ 个物体的力。由牛顿第三定律
+\begin{equation}
+ \vec f_{ij}=-\vec f_{ji}.
+\end{equation}
+在一段时间 $[t_i,t_f]$ 内，对第 $i$ 个物体应用动量定理：
+\begin{equation}
+ \int_{t_i}^{t_f}\vec F_i(t)\,\dd t=\Delta\vec p_i.
+\end{equation}
+对系统内全部质点求和，内力冲量两两抵消，得到系统的动量定理
+\begin{equation}
+ \int_{t_i}^{t_f}\left(\sum_{i=1}^{N}\vec F_i^{\rm ext}(t)\right)\dd t
+ =\Delta\left(\sum_{i=1}^{N}\vec p_i\right).
+\end{equation}
+因此，系统总动量的变化只由外力的总冲量决定，与内力的具体形式无关。
+
+\Needspace{0.27\textheight}
+\begin{origexamplebox}{例 3.3}
+两个质量分别为 $m_1$ 和 $m_2$ 的物体由劲度系数为 $k$、原长为 $l_0$ 的弹簧连接，
+初始弹簧状态未知。初始时整个系统竖直放置，随后由静止释放。已知下落时间为 $t$ 时，
+质量为 $m_1$ 的物体向下速度为 $v_1$，求另一物体的速度 $v_2$。
+图~\ref{ch07:fig:probdiagThreeThree}中，弹簧初态未知的二物体系统由静止竖直下落。
+\probdiagThreeThree
+\end{origexamplebox}
+
+\begin{xesolution}
+以两物体（弹簧质量忽略）为系统，弹簧对两物体的作用力是一对内力，初始伸长量、劲度
+系数和原长都不影响系统总动量。
+取竖直向下为正，时间 $t$ 内外力总冲量只有重力冲量：
+\[
+ (m_1+m_2)gt=m_1v_1+m_2v_2.
+\]
+外力冲量与末态动量的对应关系见图~\ref{ch07:fig:soldiagThreeThree}。
+
+\soldiagThreeThree
+所以
+\[
+ \boxed{v_2=\frac{(m_1+m_2)gt-m_1v_1}{m_2}}.
+\]
+若计算结果为负，表示第二个物体此刻实际向上运动；因此这里的 $v_2$ 是以向下为正的
+速度分量，而不只是速度大小。
+\end{xesolution}
+
+\Needspace{0.31\textheight}
+\begin{origexamplebox}{例 3.4}
+如图，$A$、$B$ 两小物体被平行于斜面的轻细线相连，均静止于斜面上。以平行于斜面
+向上的恒力拉 $B$，使两物体同时由静止起以加速度 $a$ 沿斜面向上运动。经过时间 $t_1$，
+细线突然被拉断；再经过时间 $t_2$，$A$ 上滑到最高点。已知 $A$、$B$ 的质量分别为
+$m_A$ 和 $m_B$，断线后拉 $B$ 的恒力保持不变，求此时 $B$ 的速度。
+图~\ref{ch07:fig:probdiagThreeFour}中，$A$、$B$ 沿斜面上滑，经过 $t_1$ 后连接线断裂。
+\probdiagThreeFour
+\end{origexamplebox}
+
+\begin{xesolution}
+取沿斜面向上为正。把除绳张力以外、分别作用于 $A$、$B$ 的恒定合力记为 $X_A$、$X_B$。
+断线前两物体的共同加速度为 $a$，把两式相加可得
+\begin{equation}\label{eq:connected-force}
+ X_A+X_B=(m_A+m_B)a.
+\end{equation}
+断线瞬间 $A$ 的速度为 $at_1$；它在随后 $t_2$ 内减速到零，故
+\begin{equation}\label{eq:broken-force}
+ X_A t_2=m_A(0-at_1),
+ \qquad
+ X_A=-\frac{m_Aat_1}{t_2}.
+\end{equation}
+两阶段的速度变化见图~\ref{ch07:fig:soldiagThreeFour}。
+
+\soldiagThreeFour
+由式\eqref{eq:connected-force}、\eqref{eq:broken-force}得
+\[
+ X_B=(m_A+m_B)a+\frac{m_Aat_1}{t_2}.
+\]
+因此 $B$ 在断线后再运动 $t_2$ 的末速度为
+\begin{align*}
+ v_B&=at_1+\frac{X_B}{m_B}t_2\\
+ &=\boxed{\frac{m_A+m_B}{m_B}\,a(t_1+t_2)}.
+\end{align*}
+推导只使用了两段运动中非绳力保持恒定这一条件，斜面倾角、拉力和阻力的具体数值都已
+被消去。
+特别地，断线后 $a_B=X_B/m_B>a$。因此解图中 $B$ 的速度折线必须比断线前更陡；
+$A$ 的速度则由 $at_1$ 降至零。速度图只表示这一上滑阶段，不延伸到 $A$ 反向下滑以后。
+\end{xesolution}
+
+\Needspace{0.28\textheight}
+\begin{origexamplebox}{例 3.5}
+光滑水平面上，一个箱子 $A$ 的质量 $m_A=2\,\mathrm{kg}$，以初速度
+$v_0=10\,\mathrm{m/s}$ 冲向静止的箱子 $B$，$B$ 的质量 $m_B=1\,\mathrm{kg}$。碰撞后：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 如果 $A$ 的速度变为 $5\,\mathrm{m/s}$，则 $B$ 的速度为多少？
+ \item 如果 $A$、$B$ 之间涂有强力胶水，一碰就粘在一起，则合体后的速度为多少？
+\end{enumerate}
+图~\ref{ch07:fig:probdiagThreeFive}中，箱子 $A$ 在光滑面上冲向静止的箱子 $B$。
+\probdiagThreeFive
+\end{origexamplebox}
+
+\begin{xesolution}
+碰撞时间很短，系统水平方向外力冲量为零，因此两箱总动量在碰撞前后相同。
+图~\ref{ch07:fig:soldiagThreeFive}中，碰撞内力冲量相消，系统总动量由碰前原样传到碰后。
+\soldiagThreeFive
+（1）取 $A$ 初速度方向为正：
+\[
+ m_Av_0=m_Av_A+m_Bv_B.
+\]
+代入数据，
+\[
+ 2\times10=2\times5+1\times v_B,
+ \qquad
+ \boxed{v_B=10\,\mathrm{m/s}}.
+\]
+
+（2）粘合后两箱具有共同速度 $v$：
+\[
+ m_Av_0=(m_A+m_B)v,
+\]
+所以
+\[
+ \boxed{v=\frac{20}{3}\,\mathrm{m/s}}.
+\]
+两问都只用动量关系；“粘在一起”说明碰撞是完全非弹性的，并不意味着动能守恒。
+\end{xesolution}
+
+\subsection{冲击和碰撞}
+
+若始终知道力的大小和方向，动量定理与牛顿运动定律当然可以给出相同结果。但在碰撞中，
+作用时间极短，碰撞力极大且随时间的变化很复杂，逐时刻测量碰撞力十分困难；相比之下，
+碰撞前后的速度却容易确定。因此，碰撞问题通常直接研究冲量和动量变化。
+
+在碰撞或冲击的极短时间内，重力、普通摩擦力、弹簧力等有限外力的冲量与碰撞力冲量
+相比可以忽略。相互碰撞的两个物体所受冲量大小相等、方向相反。根据系统的连接和约束，
+还可以进一步确定冲量的方向以及碰撞后的瞬时速度关系。
+
+\Needspace{0.31\textheight}
+\begin{origexamplebox}{例 3.6}
+如图，三个小球 $A$、$B$、$C$ 的质量均为 $m$，放在光滑水平桌面上。三球之间用质量
+可忽略、不可伸长的绳 $AB$、$BC$ 相连，$\angle ABC=120^\circ$。现沿 $BA$ 绳方向给
+$A$ 一个瞬时冲量 $I$，求 $C$ 球获得的速度。
+图~\ref{ch07:fig:probdiagThreeSix}中，冲量 $I$ 沿 $BA$ 方向；两根绳在冲击后仍不可伸长。
+\probdiagThreeSix
+\end{origexamplebox}
+
+\begin{xesolution}
+设绳 $AB$、$BC$ 对各球传递的张力冲量大小分别为 $J_1$、$J_2$。取 $x$ 轴向右，令
+$\hat{\boldsymbol u}$ 为从 $B$ 指向 $C$ 的单位矢量，则
+$\hat{\boldsymbol x}\mathbin{\cdot}\hat{\boldsymbol u}=\cos60^\circ=1/2$。
+各球的冲量—动量关系如解图所示：
+图~\ref{ch07:fig:soldiagThreeSix}中，先对三球分别列冲量方程，再用两条绳方向上的速度约束闭合方程组。
+\soldiagThreeSix
+\[
+ m\vec v_A=-I\hat{\boldsymbol x}+J_1\hat{\boldsymbol x},
+\]
+\[
+ m\vec v_B=-J_1\hat{\boldsymbol x}+J_2\hat{\boldsymbol u},
+ \qquad
+ m\vec v_C=-J_2\hat{\boldsymbol u}.
+\]
+绳不可伸长，所以冲击后两条绳方向上的相对速度均为零：
+\[
+ (\vec v_B-\vec v_A)\mathbin{\cdot}\hat{\boldsymbol x}=0,
+ \qquad
+ (\vec v_C-\vec v_B)\mathbin{\cdot}\hat{\boldsymbol u}=0.
+\]
+代入上面的速度表达式，得到
+\[
+ I-2J_1+\frac{J_2}{2}=0,
+ \qquad
+ \frac{J_1}{2}-2J_2=0.
+\]
+从而
+\[
+ J_1=\frac{8I}{15},
+ \qquad
+ J_2=\frac{2I}{15}.
+\]
+$C$ 球沿 $CB$ 方向运动，速度大小为
+\[
+ \boxed{v_C=\frac{J_2}{m}=\frac{2I}{15m}}.
+\]
+这里不能把外冲量 $I$ 简单地在两根绳方向上作静力分解；冲量分配还必须同时满足不可
+伸长绳的速度约束。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.7}
+军训时，战士距墙的水平距离为 $s_0$，以速度 $v_0$ 起跳，再用脚蹬墙一次，使身体转为
+竖直向上的运动以继续升高。墙面与鞋底之间的摩擦因数为 $\mu$，求能使人体重心总升高
+最大的起跳角度。
+采用主动蹬墙的理想冲量模型：短暂接触使水平速度降为零，向上切向冲量可达到
+$J_f=\mu J_N$，接触期间重力冲量忽略。这里的 $\mu>0$ 是该模型的有效摩擦上限；
+若实际接触不能达到上限，须另给切向冲量或鞋底运动规律。
+\end{origexamplebox}
+
+\begin{xesolution}
+设起跳角为 $\theta$。从起跳点到墙的时间为
+\[
+ t=\frac{s_0}{v_0\cos\theta}.
+\]
+蹬墙前的水平、竖直速度分别为
+\[
+ v_x=v_0\cos\theta,
+ \qquad
+ v_y=v_0\sin\theta-\frac{gs_0}{v_0\cos\theta}.
+\]
+为使蹬墙后水平速度变为零，墙面对人的法向冲量为 $J_N=mv_x$。在题设主动蹬墙模型中，
+取向上的切向冲量 $J_f=\mu J_N$，所以离墙后的竖直速度
+\[
+ v_y'=v_y+\mu v_x.
+\]
+冲量方向和两段上升过程见图~\ref{ch07:fig:soldiagThreeSeven}。
+
+\soldiagThreeSeven
+到墙时的高度为
+\[
+ h_1=s_0\tan\theta-\frac{gs_0^2}{2v_0^2\cos^2\theta}.
+\]
+离墙后还能上升 $h_2={v_y'}^2/(2g)$。把 $v_x,v_y$ 代入并整理，得到
+\[
+ h=h_1+h_2
+ =\frac{v_0^2}{2g}(\sin\theta+\mu\cos\theta)^2-\mu s_0.
+\]
+先求不考虑到墙条件时的驻点。由于
+\[
+ \sin\theta+\mu\cos\theta
+ \le\sqrt{1+\mu^2},
+\]
+等号在 $\tan\theta=1/\mu$ 时成立。因此候选角为
+\[
+ \theta_* =\arctan\frac{1}{\mu}.
+\]
+\textbf{可行性检验。}\quad 令 $\eta=gs_0/v_0^2$。必须同时满足
+\[
+ h_1\ge0\ \Longleftrightarrow\ \sin2\theta\ge\eta,
+ \qquad
+ v_y'>0\ \Longleftrightarrow\
+ \sin\theta+\mu\cos\theta-\frac{\eta}{\cos\theta}>0.
+\]
+第一式表示到墙时尚未落地；若要求在离地后蹬墙，则改取 $h_1>0$。
+把 $\theta_*$ 代入，这两个条件分别成为
+\[
+ \eta\le\frac{2\mu}{1+\mu^2},\qquad \eta<\mu.
+\]
+只有同时成立，$\theta_*$ 才是蹬墙后最高点的最优角，且
+\[
+ h_{\max}=\frac{v_0^2}{2g}(1+\mu^2)-\mu s_0.
+\]
+
+\textbf{候选角不可行时。}\quad 用 $z=\tan\theta>0$ 把条件化为两个二次不等式：
+\[
+ \eta z^2-2z+\eta\le0,
+ \qquad
+ \eta z^2-z+\eta-\mu<0.
+\]
+若 $\eta>1$，第一次抛体的最大水平射程也不足以到墙，不存在题设运动。
+当 $0<\eta\le1$ 时，第一个不等式给出
+\[
+ z_-\le z\le z_+,
+ \qquad z_\pm=\frac{1\pm\sqrt{1-\eta^2}}{\eta}.
+\]
+第二个不等式先要求 $D=1-4\eta(\eta-\mu)>0$，再给出
+\[
+ w_-<z<w_+,\qquad w_\pm=\frac{1\pm\sqrt D}{2\eta}.
+\]
+把这两个区间与 $z>0$ 取交集，便得到完整可行区间 $\mathcal I$；交集为空时不能完成
+蹬墙后向上的运动。对非空区间，目标函数为
+\[
+ h(z)=\frac{v_0^2}{2g}\frac{(z+\mu)^2}{1+z^2}-\mu s_0,
+ \qquad
+ h'(z)=\frac{v_0^2}{g}\frac{(z+\mu)(1-\mu z)}{(1+z^2)^2}.
+\]
+它在 $z<1/\mu$ 时增加、$z>1/\mu$ 时减少。因此将 $1/\mu$ 限制在可行区间内即可：
+若它在区间内就取它；若它在区间左侧就取最小可行端点；在右侧则取最大可行端点。
+若所需端点因严格不等式被排除，只能无限逼近相应高度上限，并不存在达到上限的起跳角。
+例如 $\mu=2,\eta=0.9$ 时，候选角约 $26.6^\circ$ 的射程不够，而 $45^\circ$ 满足两项条件，
+不能仍把候选角当作答案。
+
+\textbf{“全程最高”与“蹬墙后最高”的区别。}\quad 若人在到墙前已经越过抛物线顶点，
+还应计入此前达到的高度 $v_0^2\sin^2\theta/(2g)$。全程最高值可统一写成
+\[
+ H(z)=\max\left\{h(z),\frac{v_0^2}{2g}\frac{z^2}{1+z^2}\right\}.
+\]
+若到墙前尚未到顶点，第二项虽是未走完抛物线的顶点高度，但 $v_y\ge0$ 且切向冲量向上，
+此时 $h$ 不小于第二项，故这个写法仍成立。第二项随 $z$ 单调增加，因此全程优化只须比较
+上述 $h$ 的最优值与可行区间最右端的第二项；同样保留端点可达性判断。
+这区分了“蹬墙后的总升高”与字面意义的“整个运动曾达到的最高点”。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{例 3.8}
+在光滑水平面上有两面相距为 $d$ 的平行竖直墙。一个旋转的小球撞向其中一面墙。若墙面
+光滑，弹性碰撞后小球垂直于墙的速度分量反向，平行于墙的分量不变，最终击中对面墙上的
+$A$ 点。若球与墙之间的摩擦因数为 $\mu$，仍假设碰后垂直于墙的速度大小不变、方向反向，
+证明：小球反弹后在另一面墙上的落点与 $A$ 点的距离，同小球初始位置、初速度方向均
+无关。
+主问限定碰撞期间接触点始终沿同一方向滑动，且使用库仑滑动摩擦模型；再讨论若提前
+停止滑动，上述结论是否仍成立。水平面始终光滑，球的运动取俯视图。
+图~\ref{ch07:fig:probdiagThreeEight}中，光滑墙落点为 $A$；有摩擦时落点为 $B$。
+\probdiagThreeEight
+\end{origexamplebox}
+
+\begin{xesolution}
+设碰墙前垂直、平行于墙的速度分量大小分别为 $v_n$、$v_t$。法向速度反向而大小不变，
+所以法向冲量大小为
+\[
+ J_N=2mv_n.
+\]
+若接触点在整个碰撞中保持滑动，摩擦冲量大小为
+\[
+ J_t=\mu J_N=2\mu mv_n,
+\]
+从而平行于墙的质心速度分量改变量为
+\[
+ |\Delta v_t|=\frac{J_t}{m}=2\mu v_n.
+\]
+球从一面墙飞到另一面墙的时间只由法向运动决定：
+\[
+ T=\frac{d}{v_n}.
+\]
+与光滑墙情形相比，落点沿墙方向的偏移为
+\[
+ AB=|\Delta v_t|T=2\mu v_n\frac{d}{v_n}
+ =\boxed{2\mu d}.
+\]
+图~\ref{ch07:fig:soldiagThreeEight}中，左右两部分分别表示落点偏移和接触冲量，不能把冲量箭头当作轨迹。
+\soldiagThreeEight
+初始位置和 $v_t$ 决定光滑墙情形的基准点 $A$，但附加偏移中的 $v_n$ 恰好消去，因此
+$AB$ 与初始位置、初速度方向无关。旋转决定摩擦冲量的方向，故 $B$ 位于 $A$ 的哪一侧
+由接触点的相对滑动方向决定。
+
+若滑动提前停止，设小球半径为 $R$、绕球心转动惯量为 $\mathcal J$，取沿墙向右为正，
+初始接触点相对墙的切向速度为 $w_0$。切向冲量 $J$ 对质心平动贡献 $J/m$，
+对接触点的转动速度贡献 $R^2J/\mathcal J$，故
+\[
+ w=w_0+\left(\frac1m+\frac{R^2}{\mathcal J}\right)J.
+\]
+达到无滑动所需的冲量为
+\[
+ J_{\rm stop}=-\frac{w_0}{1/m+R^2/\mathcal J}.
+\]
+在球对平墙、法向通过球心且此后能够保持无滑动的简化模型中，
+\[
+ |J|=\min\left(2\mu m v_n,\frac{|w_0|}{1/m+R^2/\mathcal J}\right),
+ \qquad AB=\frac{|J|d}{mv_n}.
+\]
+只有第一项起限制作用时，才恢复 $AB=2\mu d$；第二项起限制作用时，偏移还依赖初始
+自转和平动。切向接触弹性等更细模型不在上述库仑冲量近似内。
+\end{xesolution}
+
+\subsection{应用到流体}
+
+动量定理还可以用来处理流体或大量微观粒子对宏观物体的作用。设介质由大量静止粒子
+组成，每个粒子质量为 $m$，单位体积内有 $n$ 个粒子；截面积为 $S$ 的长条形物体以速度
+$v$ 沿轴线运动，并吸附迎面遇到的全部粒子。在很短的 $\Delta t$ 内，物体扫过体积
+$Sv\Delta t$，吸附粒子的总质量为 $nmSv\Delta t=\rho Sv\Delta t$。这些粒子由静止变为
+与物体同速，动量变化为
+\begin{equation}
+ \Delta p=(nSv\Delta t)mv=nmSv^2\Delta t
+ =\rho Sv^2\Delta t,
+\end{equation}
+其中 $\rho=nm$ 是介质密度。由动量定理和牛顿第三定律，物体受到与运动方向相反的阻力
+\begin{equation}
+ F=\frac{\Delta p}{\Delta t}=\rho Sv^2.
+\end{equation}
+可见宏观力不仅取决于介质密度、迎风面积和速度，还取决于单个粒子碰撞后的运动方式。
+
+\begin{origexamplebox}{例 3.9}
+条件与上面的模型相同，但介质粒子碰撞后以相同的相对速度反弹。求飞船受到的阻力。
+\end{origexamplebox}
+
+\begin{xesolution}
+在飞船参考系中，粒子碰前以速度 $v$ 迎面而来，弹性反弹后以同样大小的相对速度离开；
+在介质原来静止的参考系中，粒子沿飞船运动方向的末速度为 $2v$。单位时间撞上的粒子
+质量仍为 $\rho Sv$，故粒子每秒获得的动量为
+\[
+ \frac{\Delta p}{\Delta t}=(\rho Sv)(2v)=2\rho Sv^2.
+\]
+动量流和反作用力方向见图~\ref{ch07:fig:soldiagThreeNine}。
+
+\soldiagThreeNine
+所以飞船所受阻力大小为
+\[
+ \boxed{F=2\rho Sv^2}.
+\]
+弹性反弹使单个粒子的动量改变量成为完全吸附情形的两倍，因此阻力也加倍。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.10}
+若飞船外形可近似为半顶角为 $\alpha$、轴向长度为 $L$ 的圆锥，且与介质粒子的碰撞为弹性碰撞，
+求飞船受到的阻力。
+\end{origexamplebox}
+
+\begin{xesolution}
+令 $\alpha$ 为圆锥母线与轴线的夹角（半顶角），$L$ 为轴向长度，则底面半径
+\[
+ R=L\tan\alpha.
+\]
+在飞船参考系中，粒子以轴向相对速度 $v$ 撞上圆锥面并作镜面反射。把速度沿圆锥面法线
+分解。取飞船前进方向为 $+x$，入射相对速度为 $-v\hat{\boldsymbol x}$，上表面单位外法线
+的轴向分量为 $n_x=\sin\alpha$。镜面反射只使法向分量反号：
+\[
+ \vec v_{\rm out}=\vec v_{\rm in}
+ -2(\vec v_{\rm in}\cdot\hat{\boldsymbol n})\hat{\boldsymbol n}.
+\]
+由 $\vec v_{\rm in}\cdot\hat{\boldsymbol n}=-v\sin\alpha$，粒子的轴向速度改变量为
+\[
+ \Delta v_x=2v\sin^2\alpha.
+\]
+几何分解见图~\ref{ch07:fig:soldiagThreeTen}。
+
+\soldiagThreeTen
+单位时间进入圆锥投影面积 $\pi R^2$ 的介质质量为 $\rho v\pi R^2$，故轴向动量变化率为
+\[
+ F=(\rho v\pi R^2)(2v\sin^2\alpha).
+\]
+因此飞船所受阻力大小为
+\[
+ \boxed{F=2\pi\rho L^2v^2\tan^2\alpha\sin^2\alpha
+ =\frac{2\pi\rho L^2v^2\sin^4\alpha}{\cos^2\alpha}}.
+\]
+若题设把 $\alpha$ 定义为完整顶角，应在上述结果中用 $\alpha/2$ 代替 $\alpha$；若 $L$
+表示母线长，则应改用 $R=L\sin\alpha$。因此使用结论前必须先核对角度与长度的几何定义。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.11}
+一帆船在静水中顺风航行，风速为 $v_0$。假设帆面是完全弹性面，风与帆面垂直。船速
+多大时，风供给船的功率最大？
+\end{origexamplebox}
+
+\begin{xesolution}
+设船速为 $v$，则风相对帆的速度为 $u=v_0-v$。由例 3.9 的弹性反射模型，风对帆的推力为
+\[
+ F=2\rho S(v_0-v)^2.
+\]
+风对船的瞬时功率为
+\[
+ P=Fv=2\rho S\,v(v_0-v)^2.
+\]
+其变化趋势见图~\ref{ch07:fig:soldiagThreeEleven}。
+
+\soldiagThreeEleven
+求导得
+\[
+ \frac{\dd P}{\dd v}=2\rho S(v_0-v)(v_0-3v).
+\]
+在 $0<v<v_0$ 的物理区间内，内部极大值对应
+\[
+ \boxed{v=\frac{v_0}{3}}.
+\]
+这里求的是给定瞬时船速下的能量传递功率最大值；若要确定真实航行的稳定速度，还需要
+加入水阻等动力学条件。
+\end{xesolution}
+
+\begin{origexamplebox}{例 3.12}
+近代物理认为光线由光子构成，光子动量与能量满足 $E=pc$，其中 $c$ 为光速。太阳的总
+辐射功率为 $P_S$，求距离太阳中心为 $r$ 处由太阳光冲击产生的辐射压强。
+将太阳近似为各向同性点光源，接收面与入射光垂直，分别讨论完全吸收和原路完全反射。
+\end{origexamplebox}
+
+\begin{xesolution}
+假设太阳各向同性辐射，则半径 $r$ 的球面上单位面积接收的功率（辐照度）为
+\[
+ \mathcal E=\frac{P_S}{4\pi r^2}.
+\]
+在时间 $\Delta t$ 内，面积 $S$ 吸收的光能为 $\Delta E=\mathcal E S\Delta t$。由
+$p=E/c$，完全吸收时传给表面的动量为
+\[
+ \Delta p=\frac{\Delta E}{c}.
+\]
+能量流、动量流与受力的对应关系见图~\ref{ch07:fig:soldiagThreeTwelve}。
+
+\soldiagThreeTwelve
+因此太阳光产生的\textbf{辐射压强}为
+\[
+ \boxed{p_{\rm rad}=\frac{F}{S}
+ =\frac{P_S}{4\pi r^2c}}.
+\]
+完全吸收、迎光面积为 $S$ 的物体所受力为
+\[
+ \boxed{F_{\rm abs}=\frac{P_SS}{4\pi r^2c}}.
+\]
+若光沿入射方向的反方向完全反射，单个光子的动量由 $+E/c$ 变为 $-E/c$，
+表面得到的动量为 $2E/c$，因而
+\[
+ \boxed{p_{\rm refl}=\frac{P_S}{2\pi r^2c}},\qquad
+ F_{\rm refl}=p_{\rm refl}S=\frac{P_SS}{2\pi r^2c}.
+\]
+主问是单位面积的受力，即压强，所以不需要另给总接收面积。引入面积 $S$ 只是为了通过
+能量和动量逐步推导，并在需要时得到总力。量纲为
+$[P_S/(r^2c)]=\mathrm{N/m^2}$；距离加倍时压强变为四分之一。
+\end{xesolution}

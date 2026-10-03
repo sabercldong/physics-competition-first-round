@@ -1,0 +1,223 @@
+% Parameter-based technical figures, revised 2026-09-15.
+\newcommand{\stellarInteriorRevision}{\begin{center}\begin{tikzpicture}[font=\scriptsize]
+\foreach \sx/\outer/\inner/\core/\title in {0/1.7/1.19/.43/太阳,7/2.1/.68/.23/红巨星}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[orange!18](0,0)circle(\outer);\fill[yellow!18](0,0)circle(\inner);\fill[orange!70](0,0)circle(\core);
+\draw[Ink](0,0)circle(\outer);\draw[TextGray](0,0)circle(\inner);
+\pgfmathsetmacro{\midradius}{(\outer+\inner)/2}
+\pgfmathsetmacro{\cellradius}{(\outer-\inner)*.38}
+\foreach \angle in {35,95,155,215,275,335}{
+\draw[DeepBlue,thick,->] (\angle:\midradius)++(0:\cellradius)arc(0:305:\cellradius);}
+\node at(0,2.6){\title};
+\draw[TextGray](0,0)--(.25,-2.6);\node[below]at(.25,-2.6){核心};
+\draw[TextGray](20:{(\core+\inner)/2})--(2.45,-1.2);\node[anchor=west]at(2.45,-1.2){辐射区};
+\draw[TextGray](40:\midradius)--(2.45,1.25);\node[anchor=west]at(2.45,1.25){对流包层};
+\end{scope}}\end{tikzpicture}
+\par\smallskip\includegraphics[width=.63\linewidth]{figure20-3-redraw-v2.png}
+\par\small 表面对流细节：太阳的细小颗粒与红巨星的较大对流胞
+\end{center}}
+
+\renewcommand{\atmosphereProfileFaithful}{\begin{center}\begin{tikzpicture}[x=1cm,y=.065cm,font=\scriptsize]
+\foreach \lo/\hi/\col in {0/11/DeepBlue!8,11/50/orange!8,50/86/DeepBlue!5,86/100/violet!8}{\fill[\col](0,\lo)rectangle(11,\hi);}
+\draw[axis](0,0)--(0,108)node[above]{$h/\mathrm{km}$};
+\foreach \h in {0,20,40,60,80,100}{\draw(-.08,\h)--(.08,\h);\node[left]at(0,\h){$\h$};}
+\foreach \h in {11,50,86}{\draw[guide](0,\h)--(11,\h);}
+% Celsius axis: x=(t+100)/30. Altitudes and temperatures are representative.
+\draw[axis](0,0)--(7.1,0)node[right]{$t/{}^\circ\mathrm C$};
+\foreach \t in {-100,-50,0,50,100}{\draw({(\t+100)/30},1)--({(\t+100)/30},-1)node[below]{$\t$};}
+\draw[DeepBlue,thick]plot coordinates {(3.833,0)(1.45,11)(1.45,20)(1.85,32)(3.25,47)(3.25,51)(1.383,71)(.46,86)(.46,91)(.731,100)};
+\node[anchor=west]at(7.3,5.5){对流层};\node[anchor=west]at(7.3,31){平流层};
+\node[anchor=west]at(7.3,68){中间层};\node[anchor=west]at(7.3,95){热层下部};
+\node[anchor=west]at(11.4,109){$p/p_0$（约值）};
+\foreach \h/\p in {0/1,20/{5.4\!\times\!10^{-2}},50/{7.9\!\times\!10^{-4}},80/{1.05\!\times\!10^{-5}},100/{3.2\!\times\!10^{-7}}}{\node[anchor=west]at(11.4,\h){$\p$};}
+\end{tikzpicture}
+\par\medskip\includegraphics[width=.94\linewidth]{atmosphere-scenes.png}
+\par\small 云与山地\hfill 民航巡航\hfill 高空飞行器\hfill 极光
+\par\smallskip\small 下方情景不按高度比例；上方折线为代表性分层模型，实际温度随地点、季节和太阳活动改变。
+\end{center}}
+\tikzset{cyclepath/.style={DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}},revlabel/.style={font=\small,fill=none,inner sep=2pt}}
+\renewcommand{\standardHeatCyclesDiagram}{%
+\begin{center}\begin{tikzpicture}[x=1cm,y=.86cm,font=\small]
+\foreach \s/\name in {0/卡诺循环,5/奥托循环,10/布雷顿循环}{
+\begin{scope}[shift={(\s,0)}]
+\draw[axis](0,0)--(4.1,0) node[right]{$V$};\draw[axis](0,0)--(0,4.65) node[above]{$P$};
+\node at (1.8,5.1){\name};
+\ifnum\s=0
+% gamma=5/3, Th/Tc=(3/2)^(2/3), V1=.8,V2=2,V3=3,V4=1.2.
+\pgfmathsetmacro{\cold}{3.2/pow(1.5,2/3)}
+\draw[cyclepath,domain=.8:2,samples=65]plot(\x,{3.2/\x});
+\draw[cyclepath,domain=2:3,samples=65]plot(\x,{3.2*pow(2,2/3)/pow(\x,5/3)});
+\draw[cyclepath,domain=3:1.2,samples=65]plot(\x,{\cold/\x});
+\draw[cyclepath,domain=1.2:.8,samples=65]plot(\x,{3.2*pow(.8,2/3)/pow(\x,5/3)});
+\foreach \x/\y/\n/\a in {.8/4/1/left,2/1.6/2/above right,3/{\cold/3}/3/right,1.2/{\cold/1.2}/4/below left}{\fill({\x},{\y})circle(1.4pt)node[\a]{$\n$};}
+\node at (2.65,3.15){$T_h$};\draw[thin,TextGray](2.4,2.95)--(1.45,{3.2/1.45});
+\node at (2,-.65){$1\to2\to3\to4\to1$};
+\else\ifnum\s=5
+% Vmin=1,Vmax=3, gamma=1.4; lower adiabat K=1.8, upper K=4.
+\draw[cyclepath,domain=3:1,samples=65]plot(\x,{1.8/pow(\x,1.4)});
+\draw[cyclepath](1,1.8)--(1,4);
+\draw[cyclepath,domain=1:3,samples=65]plot(\x,{4/pow(\x,1.4)});
+\draw[cyclepath](3,{4/pow(3,1.4)})--(3,{1.8/pow(3,1.4)});
+\foreach \x/\y/\n/\a in {3/{1.8/pow(3,1.4)}/1/below right,1/1.8/2/left,1/4/3/above,3/{4/pow(3,1.4)}/4/above right}{\fill({\x},{\y})circle(1.4pt)node[\a]{$\n$};}
+\draw[guide](1,0)--(1,1.6);\node[below]at(1,0){$V_{\min}$};\node[below,yshift=-12pt]at(3,0){$V_{\max}$};
+\else
+% Pl=1,Ph=3,V2=.7,V3=1.5, gamma=1.4.
+\pgfmathsetmacro{\ratio}{pow(3,1/1.4)}
+\draw[cyclepath,domain={.7*\ratio}:.7,samples=65]plot(\x,{3*pow(.7/\x,1.4)});
+\draw[cyclepath](.7,3)--(1.5,3);
+\draw[cyclepath,domain=1.5:{1.5*\ratio},samples=65]plot(\x,{3*pow(1.5/\x,1.4)});
+\draw[cyclepath]({1.5*\ratio},1)--({.7*\ratio},1);
+\foreach \x/\y/\n/\a in {{.7*\ratio}/1/1/below left,.7/3/2/above left,1.5/3/3/above right,{1.5*\ratio}/1/4/right}{\fill({\x},{\y})circle(1.4pt)node[\a]{$\n$};}
+\draw[guide](0,3)--(.55,3);\node[left]at(0,3){$P_h$};\draw[guide](0,1)--(1.4,1);\node[left]at(0,1){$P_l$};
+\fi\fi\end{scope}}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\adiabaticCurvesDiagram}{\begin{center}\begin{tikzpicture}[x=1cm,y=.85cm,font=\small]
+\draw[axis](0,0)--(6,0)node[right]{$V$};\draw[axis](0,0)--(0,5.1)node[above]{$P$};
+\draw[cyclepath,domain=1:5.6,samples=90]plot(\x,{4.5/\x});
+\draw[Ink,thick,domain=1:5.6,samples=90]plot(\x,{4.5/pow(\x,1.4)});
+\fill(1,4.5)circle(1.5pt)node[above right]{共同初态};
+\node[anchor=west]at(6.6,3.4){等温：$PV=\text{常量}$};
+\node[anchor=west]at(6.6,2.2){绝热：$PV^\gamma=\text{常量}$};
+\draw[TextGray](5.3,{4.5/5.3})--(6.3,3.4);
+\draw[TextGray](5.3,{4.5/pow(5.3,1.4)})--(6.1,.35)--(6.3,2.2);
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\convectionCriterionDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[axis](0,0)--(0,4)node[above]{$h$};
+\draw[DeepBlue,thick](2,.65)ellipse(.7 and .3);\draw[DeepBlue,thick](2,3.1)ellipse(.9 and .38);
+\draw[->,DeepBlue,thick](2,1.15)--(2,2.55);\node[left]at(1.75,1.9){气团上升};
+\node at(2,.65){$T$};\node at(2,3.1){$T+\dd T_1$};
+\draw[<->](3.3,.65)--node[right]{$\dd h$}(3.3,3.1);
+\node[anchor=west,align=left]at(5,2.85){气团：$\dd T_1=-\mu g\,\dd h/c_p$\\[6pt]环境：$\dd T_2=T'(h)\,\dd h$};
+\node[anchor=west]at(5,1){继续上升须有 $\dd T_1>\dd T_2$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\variableHeatCapacityDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\begin{scope}[x=4cm,y=3cm]
+\draw[axis](0,0)--(1.2,0)node[right]{$V$};\draw[axis](0,0)--(0,1.2)node[above]{$P$};
+\draw[DeepBlue,thick](0,1)--(1,0);\draw[guide](.5,0)--(.5,.5)--(0,.5);
+\node[left]at(0,1){$P_0$};\node[below]at(1,0){$V_0$};\node[below]at(.5,0){$V_0/2$};
+\node at(.65,.8){$P=P_0(1-V/V_0)$};\end{scope}
+\begin{scope}[shift={(7,0)},x=4cm,y=3cm]
+\draw[axis](0,0)--(1.2,0)node[right]{$V$};\draw[axis](0,0)--(0,1.2)node[above]{$T$};
+\draw[DeepBlue,thick,domain=0:1,samples=70]plot(\x,{4*\x*(1-\x)});
+\draw[guide](.5,0)--(.5,1);\fill(.5,1)circle(.4pt);
+\node[above]at(.5,1){$T_{\max}=P_0V_0/(4R)$};\node[below]at(.5,0){$V_0/2$};\node[below]at(1,0){$V_0$};
+\end{scope}\end{tikzpicture}\end{center}}
+
+\newcommand{\capillaryRevisionDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\fill[DeepBlue!10](-2,-.7)rectangle(2,-1.8);
+\fill[DeepBlue!10](-.5,-1.8)--(-.5,1.6)arc(180:360:.5)--(.5,-1.8)--cycle;
+\draw[DeepBlue,thick](-2,-.7)--(-.5,-.7) (.5,-.7)--(2,-.7);
+\draw[Ink,thick](-.5,-1.8)--(-.5,2.5) (.5,-1.8)--(.5,2.5);
+\draw[DeepBlue,thick](-.5,1.6)arc(180:360:.5);
+\draw[->,DeepBlue,thick](-.5,1.6)--(-.5,2.3);\draw[->,DeepBlue,thick](.5,1.6)--(.5,2.3);
+\node[anchor=east]at(-.8,2.3){沿接触线向上};
+\draw[<->](1,-.7)--node[right]{$h$}(1,1.1);\draw[guide](.15,1.1)--(1.2,1.1);
+\draw[<->](0,-.2)--(.5,-.2);\node[above left]at(.25,-.16){$R$};
+\node[anchor=west,align=left]at(3.2,1.4){完全润湿：$\theta=0$\\[5pt]接触处液面切线平行管壁\\[5pt]周界长度：$2\pi R$};
+\node[anchor=west,align=left]at(3.2,-.7){$F_\sigma=2\pi R\sigma$\\[5pt]忽略弯月面体积修正，$R\ll h$};
+\end{tikzpicture}\end{center}}
+
+\newcommand{\bubbleRevisionDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[DeepBlue,thick](0,0)circle(1.6);\draw[DeepBlue,thick](0,0)circle(1.5);
+\draw[guide](0,0)circle(1.85);\fill(0,0)circle(1pt);
+\draw[->](0,0)--node[above left]{$R$}(45:1.6);\node at(-.5,-.5){$p_R$};
+\draw[->,thick](1.6,0)--(2.2,0)node[right]{$x>0$};\node at(-2.1,1.4){$p_0$};
+\node[anchor=west,align=left]at(3.8,1){实线：内、外两个气液界面\\[5pt]虚线：扰动后半径 $r=R+x$\\[5pt]总面积 $A_s=8\pi r^2$};
+\node[anchor=west]at(3.8,-1){液膜厚度仅为示意，不按比例};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\cycleQuestionRedraw}{\begin{center}\begin{tikzpicture}[x=1.1cm,y=.85cm,font=\small]
+\draw[axis](0,0)--(5.1,0)node[right]{$V$};\draw[axis](0,0)--(0,4.8)node[above]{$P$};
+\draw[guide](0,4)--(1,4)--(1,0) (0,1)--(4,1)--(4,0);
+\draw[cyclepath](1,4)--(1,1);\draw[cyclepath](1,1)--(4,1);
+\draw[cyclepath,domain=4:1,samples=95]plot(\x,{4/\x});
+\node[left]at(0,4){$P_1$};\node[left]at(0,1){$P_1/4$};\node[below]at(1,0){$V_1$};\node[below]at(4,0){$4V_1$};
+\foreach \x/\y/\n/\a in {1/4/a/above right,1/1/b/below left,4/1/c/right}{\fill(\x,\y)circle(1.5pt)node[\a]{$\n$};}
+\node at(3.5,3){$PV=P_1V_1$};\draw[TextGray](3.1,2.8)--(2,2);
+\end{tikzpicture}\end{center}}
+\renewcommand{\cycleExampleDiagram}{\cycleQuestionRedraw}
+\renewcommand{\straightQuestionRedraw}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[axis](0,0)--(5.7,0)node[right]{$V$};\draw[axis](0,0)--(0,4.7)node[above]{$P$};
+\draw[guide](0,4)--(1.4,4)--(1.4,0) (0,2)--(4.6,2)--(4.6,0);
+\draw[cyclepath](1.4,4)--(4.6,2);\fill(1.4,4)circle(1.5pt)node[above]{$A$};\fill(4.6,2)circle(1.5pt)node[above right]{$B$};
+\node[left]at(0,4){$P_A$};\node[left]at(0,2){$P_A/2$};\node[below]at(1.4,0){$V_A$};\node[below]at(4.6,0){$V_B$};
+\end{tikzpicture}\end{center}}
+\renewcommand{\straightProcessDiagram}{\straightQuestionRedraw}
+
+\renewcommand{\liftingPistonQuestionRedraw}{\begin{center}\begin{tikzpicture}[font=\small]
+\foreach \sx/\height/\lab/\gas in {0/1.4/初态/{p_0,T_0},5/3.8/最后密封的瞬间/{p_f,T_f}}{
+\begin{scope}[shift={(\sx,0)}]
+\fill[DeepBlue!9](-1,0)rectangle(1,\height);
+\draw[thick](-1,3.8)--(-1,0)--(1,0)--(1,3.8);
+\draw[fill=SoftGray,thick](-1,\height)rectangle(1,{\height+.18});
+\draw[thick](0,{\height+.18})--(0,{\height+.85});
+\ifnum\sx=0
+\node[above]at(0,{\height+1.35}){$F=0$};
+\else
+\draw[->,DeepBlue,thick](0,{\height+.9})--(0,{\height+1.45});
+\node[right]at(0,{\height+1.2}){$F$};
+\fi
+\node at(0,.7){$\gas$};
+\draw[thick](-1.6,-.4)--(1.6,-.4);\draw[thick](-.8,0)--(-.8,-.4) (.8,0)--(.8,-.4);
+\draw[->](0,-.32)--(0,0);\node[below]at(0,-.55){底部通大气};\node at(0,5.6){\lab};
+\end{scope}}
+\node[anchor=west,align=left]at(8,2.2){缸壁与活塞密封接触\\[5pt]缸体质量 $M$、截面积 $A$\\[5pt]终态活塞下缘位于开口};
+\end{tikzpicture}\end{center}}
+\renewcommand{\liftingPistonDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node at(0,2.6){活塞};\draw[thick,fill=SoftGray](-1.2,-.1)rectangle(1.2,.1);
+\draw[->,thick](-.6,.1)--(-.6,1.6)node[above]{$F$};\draw[->,thick](.6,-1.5)--(.6,-.1)node[midway,right]{$pA$};
+\draw[->,thick](.6,1.6)--(.6,.1)node[midway,right]{$p_0A$};
+\begin{scope}[shift={(6,0)}]\node at(0,2.6){缸体（刚离地，$N=0$）};
+\draw[thick](-1,1.6)--(-1,0)--(1,0)--(1,1.6);
+\draw[->,thick](-.5,-1.5)--(-.5,0)node[midway,left]{$p_0A$};
+\draw[->,thick](.5,1.4)--(.5,0)node[midway,left]{$p_fA$};
+\draw[->,thick](1,0)--(1,-1.5)node[right]{$Mg$};\end{scope}
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\heatTransferMapDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node[draw=DeepBlue,minimum width=2.4cm,minimum height=.8cm](sys)at(0,0){热力学系统};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](cond)at(-5,1.8){直接接触（传导）\\需要介质};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](conv)at(-5,-1.8){流体运动（对流）\\需要介质};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](rad)at(5,1.8){电磁波（辐射）\\可穿过真空};
+\node[draw=RuleGray,align=center,minimum width=3.5cm,minimum height=1.1cm](work)at(5,-1.8){边界位移（功）};
+\draw[<->,DeepBlue,thick](cond.east)--node[above=4pt,sloped]{$Q$}(sys.north west);
+\draw[<->,DeepBlue,thick](conv.east)--node[below=4pt,sloped]{$Q$}(sys.south west);
+\draw[<->,DeepBlue,thick](rad.west)--node[above=4pt,sloped]{$Q$}(sys.north east);
+\draw[<->,DeepBlue,thick](work.west)--node[below=4pt,sloped]{$W$}(sys.south east);
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\isothermalAtmosphereDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\shade[bottom color=DeepBlue!22,top color=white](0,0)rectangle(4,4.8);
+\draw[axis](-.4,0)--(-.4,5)node[above]{$h$};
+\foreach \y/\alt/\lab in {0/0/{P_0,n_{N0}},2/H/{P_0/\e,n_{N0}/\e},4/{2H}/{P_0/\e^2,n_{N0}/\e^2}}{
+\draw(-.5,\y)--(-.25,\y);\node[left]at(-.5,\y){$\alt$};\node[anchor=west]at(.3,{\y+.22}){$\lab$};}
+\node[anchor=west,align=left]at(5.3,2.5){$P(h)=P_0\e^{-h/H}$\\[8pt]$n_N(h)=n_{N0}\e^{-h/H}$\\[8pt]$H=RT/(\mu g)$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\heatCapacityRedraw}{\begin{center}\begin{tikzpicture}[x=3.2cm,y=1.05cm,font=\small]
+\draw[axis](0,0)--(3.25,0)node[right]{$T/\mathrm K$};\draw[axis](0,0)--(0,4.3)node[above]{$c_v/R$};
+\foreach \x/\t in {0/10,1/100,2/1000,3/10000}{\draw(\x,.06)--(\x,-.06)node[below]{$\t$};}
+\foreach \y/\t in {1.5/{3/2},2.5/{5/2},3.5/{7/2}}{\draw[guide](0,\y)--(3.1,\y);\node[left]at(0,\y){$\t$};}
+\draw[DeepBlue,thick,domain=0:3,samples=140]plot(\x,{1.5+1/(1+exp(min(8,max(-8,-15*(\x-.72)))))+1/(1+exp(min(8,max(-8,-15*(\x-2.25)))))});
+\node at(.35,1){平动};\node at(1.5,2){再加转动};\node at(2.65,3){再加振动};
+\node[anchor=west]at(.15,4.15){横轴为对数刻度；激发温区依分子种类而异};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\pistonWorkFaithful}{\begin{center}\begin{tikzpicture}[font=\small]
+\foreach \sx/\top/\gas in {0/1.3/V,3/1.8/{V+\dd V}}{
+\begin{scope}[shift={(\sx,0)}]\fill[DeepBlue!9](-.85,0)rectangle(.85,\top);
+\draw[thick](-.85,2.4)--(-.85,0)--(.85,0)--(.85,2.4);
+\draw[thick,fill=SoftGray](-.85,\top)rectangle(.85,{\top+.18});
+\draw[thick](0,{\top+.18})--(0,{\top+1.25});\node at(0,.6){$\gas$};\end{scope}}
+\draw[guide](3.85,1.3)--(4.25,1.3);\draw[<->](4.2,1.3)--node[right]{$\dd y$}(4.2,1.8);
+\node at(1.5,-.6){$\dd V=A\dd y$};
+\begin{scope}[shift={(6,0)},x=1.1cm,y=.8cm]
+\draw[axis](0,0)--(5.3,0)node[right]{$V$};\draw[axis](0,0)--(0,4.9)node[above]{$P$};
+\fill[PaleBlue](1,0)--plot[domain=1:4.5,samples=100](\x,{4/\x})--(4.5,0)--cycle;
+\draw[cyclepath,domain=.9:4.8,samples=100]plot(\x,{4/\x});
+\foreach \x/\s in {1/i,4.5/f}{\draw[guide](\x,0)--(\x,{4/\x});\fill(\x,{4/\x})circle(1.3pt)node[above right]{$\s$};\node[below]at(\x,0){$V_\s$};}
+\node at(2.5,-1.1){$W^{\rm out}=\int_{V_i}^{V_f}P\,\dd V$};\end{scope}
+\end{tikzpicture}\end{center}}

@@ -1,0 +1,2241 @@
+\begingroup
+\tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
+\RenewDocumentEnvironment{xesolution}{+b}{%
+  \par\nobreak\smallskip\nobreak\begingroup\small
+  \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
+  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+}{}
+\begingroup
+\renewcommand{\Needspace}[1]{\par\begingroup
+\dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
+\vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
+\vskip0pt\endgroup}
+\tcbset{breakable/.default=false}
+\chapter{静电场与电势}
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-second-section/}}
+\section{电荷、库仑定律与场的叠加}
+
+% All text annotations are transparent. No label uses a white backing rectangle.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=0.6pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=0.45pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=0.35pt},
+  xesline/.style={draw=Ink,line width=0.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1.0pt},
+  xesarrow/.style={-{Latex[length=2.15mm,width=1.35mm]},draw=DeepBlue,line width=0.9pt},
+  fieldline/.style={draw=DeepBlue,line width=0.82pt,postaction={decorate},
+    decoration={markings,mark=at position .64 with {\arrow{Latex[length=1.65mm,width=1.1mm]}}}},
+  negfield/.style={draw=DeepBlue,line width=0.82pt,postaction={decorate},
+    decoration={markings,mark=at position .36 with {\arrowreversed{Latex[length=1.65mm,width=1.1mm]}}}}
+}
+
+
+\newcommand{\matterScaleFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  
+  \node[xessmall,anchor=north west] at (.25,3.86) {尺度逐级放大};
+  % atom
+  \begin{scope}[shift={(1.55,1.85)}]
+    \draw[DeepBlue!70,line width=.7pt,rotate=18] (0,0) ellipse (1.08 and .38);
+    \draw[DeepBlue!70,line width=.7pt,rotate=-42] (0,0) ellipse (1.08 and .38);
+    \draw[DeepBlue!70,line width=.7pt,rotate=78] (0,0) ellipse (1.08 and .38);
+    \fill[Gold!80!Ink] (0,0) circle (2.8pt);
+    \foreach \p in {(1.01,.13),(-.77,.46),(-.24,-.87)}{\fill[DeepBlue] \p circle (1.8pt);}
+    \node[xeslabel] at (0,-1.45) {原子};
+    \node[xestiny] at (0,-1.83) {$\sim10^{-8}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[xesarrow] (2.75,1.86)--(3.55,1.86);
+  % nucleus
+  \begin{scope}[shift={(4.7,1.85)}]
+    \foreach \x/\y/\c in {-.32/.18/DeepBlue,.18/.32/Gold,-.12/-.3/Gold,.38/-.18/DeepBlue}{
+      \fill[\c!75] (\x,\y) circle (7pt);\draw[Ink!45,line width=.3pt] (\x,\y) circle (7pt);}
+    \node[xeslabel] at (0,-1.45) {原子核};
+    \node[xestiny] at (0,-1.83) {$10^{-13}$--$10^{-12}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[xesarrow] (5.85,1.86)--(6.65,1.86);
+  % nucleon
+  \begin{scope}[shift={(7.6,1.85)}]
+    \shade[ball color=DeepBlue!52] (0,0) circle (.63);
+    \node[xeslabel] at (0,-1.45) {质子或中子};
+    \node[xestiny] at (0,-1.83) {$\sim10^{-13}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[xesarrow] (8.65,1.86)--(9.35,1.86);
+  % quarks
+  \begin{scope}[shift={(10.2,1.85)}]
+    \fill[DeepBlue!78] (-.42,.24) circle (4pt);
+    \fill[Gold!88] (.42,.24) circle (4pt);
+    \fill[DeepBlue!78] (0,-.43) circle (4pt);
+    \draw[RuleGray,line width=.65pt,densely dashed] (-.42,.24)--(.42,.24)--(0,-.43)--cycle;
+    \node[xeslabel] at (0,-1.45) {夸克};
+    \node[xestiny] at (0,-1.83) {$<10^{-16}\,\mathrm{cm}$};
+  \end{scope}
+  \draw[RuleGray,-{Latex[length=1.6mm]},line width=.55pt] (1.0,.32)--(.75,-.2);
+  \node[xestiny,anchor=north] at (.72,-.24) {电子尺度 $<10^{-16}\,\mathrm{cm}$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\coulombHistoryFigure}{%
+\begin{center}
+\begin{minipage}{.21\linewidth}\centering
+\includegraphics[width=\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/coulomb.png}\par\small 库仑
+\end{minipage}\hfill
+\begin{minipage}{.76\linewidth}\centering
+\begin{tikzpicture}[scale=.83]
+ \draw[xesline] (-2,3.3)--(2,3.3);
+ \draw[xesline] (0,3.3)--(0,.65);
+ \draw[xesline] (-1.65,.65)--(1.65,.65);
+ \fill[Ink] (-1.65,.65) circle (3pt);\fill[DeepBlue] (1.65,.65) circle (4pt);
+ \fill[Gold] (2.3,.65) circle (4pt);\draw[xesline] (2.3,.65)--(2.3,-.5);
+ \node[xessmall,above] at (1.65,.82) {$A$};\node[xessmall,above] at (-1.65,.82) {$D$};
+ \node[xessmall,right] at (2.45,.65) {$B$};\node[xessmall,left] at (-.18,2.2) {悬丝};
+ \node[xessmall,below] at (0,-.7) {侧视：两球同高};
+ \begin{scope}[xshift=6.1cm]
+  \coordinate(O) at (0,1);\coordinate(A) at (1.8,1.55);\coordinate(D) at (-1.8,.45);\coordinate(B) at (1.9,.6);
+  \draw[RuleGray,dashed] (-2.1,1)--(2.1,1);
+  \draw[xesline] (D)--(A);\fill[Ink] (O) circle (2pt);
+  \fill[DeepBlue] (A) circle (4pt);\fill[Ink] (D) circle (3pt);\fill[Gold] (B) circle (4pt);
+  \draw[xesarrow] (A)--($(A)+(-.1,.95)$);
+  \draw[RuleGray,dotted] (B)--(A);
+  \draw[RuleGray] (.7,1) arc[start angle=0,end angle=17,radius=.7];
+  \node[xessmall] at (.96,1.13) {$\theta$};
+  \node[xessmall,below] at (O) {$O$};\node[xessmall,left] at (D) {$D$};
+  \node[xessmall,right] at ($(A)+(.1,.1)$) {$A$};\node[xessmall,right] at (B) {$B$};
+  \node[xessmall,above] at (1.7,2.55) {$\boldsymbol F_{BA}$};
+  \node[xessmall,below] at (0,-.7) {俯视：$O$ 为悬丝转轴};
+ \end{scope}
+\end{tikzpicture}\end{minipage}
+\end{center}}
+
+
+\newcommand{\fieldLineGallery}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/field-gallery.pdf}
+\end{center}}
+
+
+\newcommand{\gaussLawFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[inner sep=0pt] at (1.1,2.05) {\includegraphics[height=2.7cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/gauss.png}};
+  \node[xessmall] at (1.1,.38) {高斯};
+  % local surface element
+  \begin{scope}[shift={(4.25,2.05)}]
+    \fill[DeepBlue!8] (-1,-.42)--(.75,-.72)--(1.05,.38)--(-.7,.7)--cycle;
+    \draw[xesblue] (-1,-.42)--(.75,-.72)--(1.05,.38)--(-.7,.7)--cycle;
+    \coordinate (P) at (0,.0);
+    \fill[Ink] (P) circle (1.1pt);
+    \draw[xesarrow] (P)--(.25,1.2);
+    \draw[xesarrow] (P)--(.85,.83);
+    \node[xessmall,anchor=west] at (.29,1.12) {$\dd\boldsymbol A_i$};
+    \node[xessmall,anchor=west] at (.9,.77) {$\boldsymbol E_i$};
+    \draw[RuleGray,line width=.55pt] (.07,.36) arc[start angle=79,end angle=44,radius=.43];
+    \node[xestiny] at (.39,.74) {$\theta_i$};
+    \node[xessmall] at (0,-1.8) {(a) 面元与外法线};
+  \end{scope}
+  % enclosed charge
+  \begin{scope}[shift={(7.3,2.05)}]
+    \draw[Ink,line width=.75pt] (0,0) ellipse (1.1 and .8);
+    \foreach \a in {10,55,100,145,190,235,280,325}{
+      \draw[fieldline] (-.15,.06)--++(\a:1.55);}
+    \fill[DeepBlue] (-.15,.06) circle (5.0pt);\node[xestiny,text=white] at (-.15,.06) {$+$};
+    \node[xessmall] at (0,-1.8) {(b) 电荷在闭面内};
+  \end{scope}
+  % external charge
+  \begin{scope}[shift={(10.35,2.05)}]
+    \draw[Ink,line width=.75pt] (0,0) ellipse (1.0 and .8);
+    \fill[DeepBlue] (-1.65,.1) circle (5.0pt);\node[xestiny,text=white] at (-1.65,.1) {$+$};
+    \draw[fieldline] (-1.58,.114)--(1.25,.68);
+    \draw[fieldline] (-1.58,.1)--(1.3,.1);
+    \draw[fieldline] (-1.58,.086)--(1.25,-.48);
+    \node[xessmall] at (0,-1.8) {(c) 电荷在闭面外};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\differentialCubeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \coordinate(A) at (0,0);\coordinate(B) at (4,0);\coordinate(C) at (5.25,1.25);\coordinate(D) at (1.25,1.25);
+ \coordinate(E) at (0,3.1);\coordinate(F) at (4,3.1);\coordinate(G) at (5.25,4.35);\coordinate(H) at (1.25,4.35);
+ \fill[DeepBlue!5] (A)--(B)--(F)--(E)--cycle;
+ \fill[DeepBlue!8] (B)--(C)--(G)--(F)--cycle;
+ \fill[DeepBlue!11] (E)--(F)--(G)--(H)--cycle;
+ \draw[xesline] (A)--(B)--(C)--(G)--(H)--(E)--cycle (B)--(F)--(G) (E)--(F);
+ \draw[RuleGray,dashed] (A)--(D)--(C) (D)--(H);
+ \node[xessmall] at (1,-.32) {$\Delta x$};
+ \node[xessmall,rotate=45] at (4.9,.35) {$\Delta y$};
+ \node[xessmall] at (-.4,1.0) {$\Delta z$};
+ \draw[xesarrow,dashed] (.625,2.175)--(-1.35,2.175);
+ \node[xessmall,anchor=east,align=right] at (-1.45,2.175) {面1\\$E_x(x)$};
+ \draw[xesarrow] (4.625,2.175)--(6.15,2.175);
+ \node[xessmall,anchor=west,align=left] at (6.25,2.175) {面2\\$E_x(x+\Delta x)$};
+ \draw[xesarrow] (2,1.55)--(.8,.35);
+ \node[xessmall,anchor=east,align=right] at (-.25,.25) {面3：$E_y(y)$};
+ \draw[RuleGray] (-.1,.25)--(.67,.32);
+ \draw[xesarrow,dashed] (3.25,2.8)--(4.45,4.0);
+ \node[xessmall,anchor=west,align=left] at (5.45,4.2) {面4\\$E_y(y+\Delta y)$};
+ \draw[RuleGray] (4.5,4.03)--(5.3,4.2);
+ \draw[xesarrow,dashed] (2.625,.625)--(2.625,-.75);
+ \node[xessmall,anchor=north] at (2.625,-.82) {面5：$E_z(z)$};
+ \draw[xesarrow] (2.625,3.725)--(2.625,5.15);
+ \node[xessmall,anchor=south] at (2.625,5.22) {面6：$E_z(z+\Delta z)$};
+ \node[xessmall,anchor=east] at (-.35,-.62) {$(x,y,z)$};
+ \draw[RuleGray] (-.3,-.5)--(A);
+\end{tikzpicture}
+\end{center}}
+
+
+\newcommand{\extendedChargeFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[Ink,line width=1.1pt] (0,-2.15)--(0,2.15);
+  \coordinate (P) at (4,0);\fill[Ink] (P) circle (1.3pt);\node[xessmall,anchor=west] at (4.12,0) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);
+  \draw[DeepBlue,line width=.8pt] (0,2.15)--(P)--(0,-2.15);
+  \draw[<->,RuleGray,line width=.6pt] (0,-2.6)--(4,-2.6);\node[xessmall,below] at (2,-2.6) {$a$};
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=151.7,radius=.75];
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=208.3,radius=.75];
+  \node[xessmall] at (3.08,.34) {$\theta_1$};\node[xessmall] at (3.08,-.34) {$\theta_2$};
+  \fill[DeepBlue] (0,1.05) circle (1.6pt);\node[xestiny,anchor=east] at (-.12,1.05) {$\dd q=\lambda\dd y$};
+  \draw[xesarrow] (P)--++(1.2,-.315);\node[xessmall,anchor=north] at (5.05,-.55) {$\dd\boldsymbol E$};
+  \node[xessmall,align=left,anchor=west] at (6.0,1.3) {同一几何关系用于有限直线、\\无限长条带和圆盘轴线积分；\\不同对象只改变微元的选取。};
+  \draw[RuleGray,-{Latex[length=1.5mm]},line width=.6pt] (5.85,1.22)--(3.5,.45);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\unequalChargesFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/unequal.pdf}
+\end{center}}
+
+
+\newcommand{\cavityFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+ \fill[DeepBlue!8] (0,0) circle (2.5);\draw[xesline] (0,0) circle (2.5);
+ \fill[white] (.9,.65) circle (1);\draw[xesblue] (.9,.65) circle (1);
+ \coordinate(O) at (0,0);\coordinate(C) at (.9,.65);\coordinate(P) at (1.5,.05);
+ \foreach \p in {O,C,P}{\fill[Ink] (\p) circle (1.5pt);}
+ \node[xessmall] at (-.23,-.22) {$O$};\node[xessmall] at (.88,.93) {$C$};\node[xessmall] at (1.72,-.12) {$P$};
+ \draw[xesarrow] (O)--(C);\draw[xesarrow] (O)--(P);\draw[xesarrow] (C)--(P);
+ \node[xessmall] at (.25,.58) {$\boldsymbol a$};\node[xessmall] at (.7,-.22) {$\boldsymbol r$};\node[xessmall] at (1.62,.56) {$\boldsymbol r'$};
+ \node[xessmall,align=left,anchor=west] at (4,1) {完整均匀球：$+\rho$\\叠加的负球：$-\rho$};
+ \node[xessmall,align=left,anchor=west] at (4,-.55) {空腔内 $\boldsymbol r-\boldsymbol r'=\boldsymbol a$，\\因而叠加场为匀强场。};
+\end{tikzpicture}
+\end{center}}
+
+
+\newcommand{\dipoleFarFigure}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dipole-far.pdf}
+\end{center}}
+
+
+\newcommand{\quadrupoleFarFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Ink] (-1.5,0) circle (4pt);\node[xessmall,below=4pt] at (-1.5,0) {$-q$};
+  \fill[DeepBlue] (0,0) circle (5pt);\node[xessmall,below=5pt] at (0,0) {$+2q$};
+  \fill[Ink] (1.5,0) circle (4pt);\node[xessmall,below=4pt] at (1.5,0) {$-q$};
+  \draw[<->,RuleGray,line width=.55pt] (-1.5,-.7)--(0,-.7);\node[xessmall,below] at (-.75,-.7) {$l$};
+  \draw[<->,RuleGray,line width=.55pt] (0,-.7)--(1.5,-.7);\node[xessmall,below] at (.75,-.7) {$l$};
+  \coordinate (P) at (4.6,2.2);\fill[Ink] (P) circle (1.4pt);\node[xessmall,anchor=west] at ($(P)+(.08,0)$) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);\node[xessmall,above left] at (2.25,1.1) {$r$};
+  \draw[DeepBlue,line width=.6pt] (1.0,0) arc[start angle=0,end angle=25.6,radius=1.0];\node[xessmall] at (1.24,.28) {$\theta$};
+  \node[inner sep=0pt] at (8.55,1.25) {\includegraphics[width=4.4cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/quadrupole.pdf}};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargedSlabFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}
+    \fill[DeepBlue!10] (-1.35,-2.0) rectangle (1.35,2.0);
+    \draw[DeepBlue,line width=.9pt] (-1.35,-2)--(-1.35,2) (1.35,-2)--(1.35,2);
+    \foreach \x in {-1,-.5,0,.5,1}\foreach \y in {-1.55,-.75,.05,.85,1.65}{\node[xestiny,text=DeepBlue] at (\x,\y) {$+$};}
+    \draw[xesline,-{Latex[length=2mm]}] (-3.25,0)--(3.25,0) node[xeslabel,below left] {$x$};
+    \node[xessmall,below=3pt,fill=white,inner sep=1pt] at (-1.35,0) {$-d$};\node[xessmall,below=3pt,fill=white,inner sep=1pt] at (1.35,0) {$d$};
+    \draw[xesarrow] (0,0)--(.8,0);\node[xessmall,above] at (.45,0) {$\boldsymbol v_0$};
+    \fill[Ink] (0,0) circle (3pt);\node[xessmall,above left=3pt] at (0,0) {$-q$};
+    \node[xessmall] at (0,-2.45) {(a) 带电无限厚板};
+  \end{scope}
+  \begin{scope}[shift={(7.3,0)},xscale=1.05,yscale=.85]
+    \draw[xesline,-{Latex[length=2mm]}] (-3.2,0)--(3.2,0) node[xeslabel,below left] {$x$};
+    \draw[xesline,-{Latex[length=2mm]}] (0,-2.35)--(0,2.35) node[xeslabel,below right] {$E_x$};
+    \draw[RuleGray,densely dashed] (-1.35,-2.0)--(-1.35,2.0) (1.35,-2.0)--(1.35,2.0);
+    \draw[xesblue] (-3,-1.5)--(-1.35,-1.5)--(1.35,1.5)--(3,1.5);
+    \node[xessmall,below=2pt] at (-1.35,0) {$-d$};\node[xessmall,below=2pt] at (1.35,0) {$d$};
+    \node[xessmall,anchor=west] at (1.55,1.94) {$\rho d/\varepsilon_0$};
+    \node[xessmall] at (0,-2.78) {(b) 电场的分段线性关系};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\electronLensFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[RuleGray,densely dashed] (-4,0)--(4,0);
+  \fill[DeepBlue!12] (0,0) circle (8pt);\node[xeslabel] at (0,0) {$+$};
+  \node[xessmall,below=9pt] at (0,0) {正线电荷 $\lambda$（垂直纸面）};
+  \draw[Ink,line width=.9pt,postaction={decorate},decoration={markings,mark=at position .62 with {\arrow{Latex[length=2mm,width=1.25mm]}}}] (-4,1.55)--(4,1.55);
+  \node[xessmall,anchor=east] at (-4.08,1.55) {电子};
+  \draw[<->,RuleGray,line width=.55pt] (-2.8,0)--(-2.8,1.55);\node[xessmall,anchor=east] at (-2.88,.78) {$b$};
+  \coordinate (A) at (-1.35,1.55);
+  \draw[xesarrow] (A)--++(0,-1.0);\node[xessmall,anchor=west] at ($(A)+(0,-.5)$) {$\boldsymbol F_\perp$};
+  \draw[xesarrow] (-3.15,1.55)--(-2.15,1.55);\node[xessmall,above] at (-2.65,1.55) {$\boldsymbol v$};
+  \draw[DeepBlue,line width=1pt] (4,1.55) .. controls (4.65,1.49) and (5.15,1.36) .. (5.8,1.08);
+  \draw[RuleGray,densely dashed] (4,1.55)--(5.85,1.55);
+  \draw[DeepBlue,line width=.6pt] (4.75,1.55) arc[start angle=0,end angle=-14,radius=.75];
+  \node[xessmall] at (5.02,1.37) {$\alpha$};
+  \node[xessmall,align=left,anchor=west] at (6.35,1.0) {弱偏转近似中，计算沿未偏转直线\\的横向冲量；结果与瞄准距离 $b$ 无关。};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emFiniteLineQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[Ink,line width=1.1pt] (0,-2.15)--(0,2.15);
+  \coordinate (P) at (4,0);\fill[Ink] (P) circle (1.3pt);\node[xessmall,anchor=west] at (4.12,0) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);
+  \draw[DeepBlue,line width=.8pt] (0,2.15)--(P)--(0,-2.15);
+  \draw[<->,RuleGray,line width=.6pt] (0,-2.6)--(4,-2.6);\node[xessmall,below] at (2,-2.6) {$a$};
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=151.7,radius=.75];
+  \draw[DeepBlue,line width=.65pt] (3.25,0) arc[start angle=180,end angle=208.3,radius=.75];
+  \node[xessmall] at (3.08,.34) {$\theta_1$};\node[xessmall] at (3.08,-.34) {$\theta_2$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emQuadrupoleQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Ink] (-1.5,0) circle (4pt);\node[xessmall,below=4pt] at (-1.5,0) {$-q$};
+  \fill[DeepBlue] (0,0) circle (5pt);\node[xessmall,below=5pt] at (0,0) {$+2q$};
+  \fill[Ink] (1.5,0) circle (4pt);\node[xessmall,below=4pt] at (1.5,0) {$-q$};
+  \draw[<->,RuleGray,line width=.55pt] (-1.5,-.7)--(0,-.7);\node[xessmall,below] at (-.75,-.7) {$l$};
+  \draw[<->,RuleGray,line width=.55pt] (0,-.7)--(1.5,-.7);\node[xessmall,below] at (.75,-.7) {$l$};
+  \coordinate (P) at (4.6,2.2);\fill[Ink] (P) circle (1.4pt);\node[xessmall,anchor=west] at ($(P)+(.08,0)$) {$P$};
+  \draw[RuleGray,densely dashed] (0,0)--(P);\node[xessmall,above left] at (2.25,1.1) {$r$};
+  \draw[DeepBlue,line width=.6pt] (1.0,0) arc[start angle=0,end angle=25.6,radius=1.0];\node[xessmall] at (1.24,.28) {$\theta$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emSlabQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}
+    \fill[DeepBlue!10] (-1.35,-2.0) rectangle (1.35,2.0);
+    \draw[DeepBlue,line width=.9pt] (-1.35,-2)--(-1.35,2) (1.35,-2)--(1.35,2);
+    \foreach \x in {-1,-.5,0,.5,1}\foreach \y in {-1.55,-.75,.05,.85,1.65}{\node[xestiny,text=DeepBlue] at (\x,\y) {$+$};}
+    \draw[xesline,-{Latex[length=2mm]}] (-3.25,0)--(3.25,0) node[xeslabel,below left] {$x$};
+    \node[xessmall,below=3pt,fill=white,inner sep=1pt] at (-1.35,0) {$-d$};\node[xessmall,below=3pt,fill=white,inner sep=1pt] at (1.35,0) {$d$};
+    \draw[xesarrow] (0,0)--(.8,0);\node[xessmall,above] at (.45,0) {$\boldsymbol v_0$};
+    \fill[Ink] (0,0) circle (3pt);\node[xessmall,above left=3pt] at (0,0) {$-q$};
+    \node[xessmall] at (0,-2.45) {(a) 带电无限厚板};
+  \end{scope}
+  \end{tikzpicture}
+\end{center}}
+
+
+电磁相互作用是自然界的基本相互作用之一。我们日常接触到的摩擦力、支持力、弹力以及绝大多数化学作用，
+从微观上说都与带电粒子之间的电磁作用有关。法拉第把“场”引入物理学：电荷并不是隔着空间瞬时作用于
+另一个电荷，而是在周围空间建立电场，另一个电荷再与所在位置的电场发生作用。麦克斯韦把电与磁统一起来，
+并预言电磁波；量子力学建立以后，量子电动力学又给出了电磁相互作用的量子描述。电磁学因此既是经典
+物理的重要组成部分，也是相对论和量子理论发展的出发点之一。
+
+
+\subsection{物质结构和电荷}
+
+
+通常物质由分子组成，分子由原子组成。原子的典型尺度约为 $10^{-10}\,\mathrm m$，内部包含尺度约为
+$1$--$10\,\mathrm{fm}$（$10^{-15}$--$10^{-14}\,\mathrm m$，随核的质量数而变）的原子核和核外电子。原子核由质子与中子构成，质子和中子统称核子；核子内部还有
+夸克和胶子等更基本的自由度。图~\ref{ch19:fig:s32-1-1}把这些层级关系放在同一条尺度链上，图中的相对大小只是
+示意，尺度数字才是定量信息。
+
+\par\noindent\begin{minipage}{\linewidth}
+\matterScaleFigure
+\diagramcaption{从原子、原子核到核子和夸克的结构层级。箭头表示继续放大观察，并不表示实物相互分离。}\label{ch19:fig:s32-1-1}
+\end{minipage}\par\medskip
+
+电荷具有三条基本性质。
+
+第一，\textbf{可加性}。一个系统的总电荷等于各部分电荷的代数和。第二，\textbf{守恒性}。在孤立系统中，
+电荷既不会凭空产生，也不会凭空消失；成对产生或湮灭的正、负电荷总量相等。第三，\textbf{量子化}。
+自然界可单独观测到的物体所带电荷通常是元电荷 $e$ 的整数倍。电子带电 $-e$，质子带电 $+e$，其中
+\begin{equation}
+  \boxed{e=1.602\,176\,634\times10^{-19}\,\mathrm C}.
+\end{equation}
+夸克及反夸克的电荷可为 $\pm e/3$ 或 $\pm2e/3$，但夸克在通常条件下不会以自由粒子的形式单独出现。
+
+
+% EM teaching enrichment 20260927
+\paragraph{从电荷守恒到可测量的电子数}
+摩擦起电通常是电子转移，并非把中性物质中的电荷“创造”出来。若两个原先中性的绝缘物体只彼此交换电子，最后必有 $Q_A+Q_B=0$；若还与地面相通，就应把大地计入系统。
+例如物体带电 $-3.20\,\mathrm{nC}$，多出的电子数约为
+\[
+ N=\frac{|Q|}{e}=\frac{3.20\times10^{-9}}{1.60\times10^{-19}}=2.00\times10^{10}.
+\]
+电子数很大，所以宏观电荷密度可以连续处理；这不取消微观电荷量子化。解题先选封闭的电荷交换系统，再列守恒式，最后判断是否需要离散电子数。
+
+
+\subsection{库仑定律}
+
+
+同号电荷相斥，异号电荷相吸。真空中两个静止点电荷 $Q_1,Q_2$ 相距 $r$ 时，相互作用力的大小为
+\begin{equation}
+  \boxed{F=\frac{1}{4\pi\varepsilon_0}\frac{|Q_1Q_2|}{r^2}}.
+\end{equation}
+若保留 $Q_1Q_2$ 的正负号，则还必须同时规定径向单位矢量的方向；只写“大小”时应取绝对值。真空介电
+常量为 $\varepsilon_0$，常用的静电力常量为
+\begin{equation}
+  \boxed{\frac{1}{4\pi\varepsilon_0}
+  \approx8.99\times10^9
+  \,\mathrm{N\,m^2\,C^{-2}}}.
+\end{equation}
+
+库仑定律的直接形式要求：电荷可视为点电荷，电荷相对静止或速度远小于光速，并且周围介质可视为
+真空。若带电体的线度远小于彼此间距，就可以把其电荷集中在一点；若带电体形状、大小不可忽略，就要把
+它分割成电荷元后作矢量积分。图~\ref{ch19:fig:s32-1-2}左侧是库仑肖像，中间显示悬丝与横杆，右侧是与横杆同高的水平俯视图。固定带电球 $B$ 与活动带电球 $A$ 处在同一水平面；$O$ 是悬丝转轴，$D$ 是平衡物。$A$ 受到沿 $BA$ 的斥力，只有该力相对 $O$ 的力矩使悬丝扭转。扭丝转过的角度反映
+静电力矩，从而可以检验力随距离的平方反比关系。
+
+\par\noindent\begin{minipage}{\linewidth}
+\coulombHistoryFigure
+\diagramcaption{库仑与扭秤。活动球 $A$、固定球 $B$ 与横杆同高；俯视图的虚线为横杆零位。}\label{ch19:fig:s32-1-2}
+\end{minipage}\par\medskip
+
+静电力与万有引力都服从平方反比律，因此两体问题的轨道都可以是圆锥曲线。引力永远相吸；静电力既可
+相吸也可相斥。同号电荷散射时出现的是双曲线的另一支，这正是作用方向不同带来的几何差别。
+
+把相距无穷远处的相互作用势能取为零，两个点电荷的静电势能为
+\begin{equation}
+  \boxed{E_p=\frac{1}{4\pi\varepsilon_0}\frac{Q_1Q_2}{r}}.
+\end{equation}
+同号电荷的势能为正，异号电荷的势能为负。以两个质子为例，库仑斥力与万有引力之比为
+\begin{equation}
+  \frac{F_C}{F_G}
+  =\frac{e^2}{4\pi\varepsilon_0Gm_p^2}
+  \approx1.24\times10^{36}.
+\end{equation}
+可见在原子和分子尺度，重力通常完全可以忽略。原子核中的质子却能结合在一起，是因为短程强相互作用
+在核尺度上压倒了库仑斥力。
+
+
+% EM teaching enrichment 20260927
+\paragraph{带符号矢量式与对称位置的稳定性}
+令源电荷位于 $\boldsymbol r_i$，试探电荷位于 $\boldsymbol r$，统一写成
+\[
+ \boldsymbol F_i=kqQ_i\frac{\boldsymbol r-\boldsymbol r_i}{|\boldsymbol r-\boldsymbol r_i|^3},
+ \qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+这样位移矢量始终从源指向观察点，吸引或排斥由 $qQ_i$ 的符号给出。取两个固定正电荷 $Q$ 位于 $x=\pm a$，小正电荷 $q$ 在原点受力为零。沿轴小移 $x$ 后
+\[
+ F_x=kQq\left[\frac1{(a+x)^2}-\frac1{(a-x)^2}\right]
+ \simeq-\frac{4kQq}{a^3}x.
+\]
+轴向有回复力；但垂直轴小移 $y$ 后 $F_y\simeq2kQq y/a^3$，反而远离原点。因此“合力为零”不等于三维稳定平衡，也不能只检验一个方向。
+
+
+\subsection{电场}
+
+
+若空间中已经存在电场，把电荷量为 $q$ 的小试探电荷放在某点，它受到的电场力定义为
+\begin{equation}
+  \boxed{\boldsymbol F=q\boldsymbol E}.
+\end{equation}
+所以 $\boldsymbol E=\boldsymbol F/q$。电场是空间本身的属性，并不依赖我们是否真的放入试探电荷；试探
+电荷必须足够小，才不会显著改变原有电荷分布。一般情况下电场是位置和时间的函数
+$\boldsymbol E(x,y,z,t)$。
+
+电场线是一组有方向的曲线，曲线上每一点的切线方向与该点电场方向相同；线越密的地方通常表示场越强。
+场线只是描述矢量场的几何工具，不是带电粒子的实际轨迹，也不是空间中真实存在的“细线”。\footnote{电场线
+与流体力学中的流线相似：都用曲线的切向表示一个矢量场，但流线也不一定等同于流体质点的完整轨迹。}
+图~\ref{ch19:fig:s32-1-3}前两幅是静电场，第三幅表示电荷振荡时场的变化不能瞬时传到远处，远处场线会出现弯折并形成向外
+传播的电磁扰动。
+
+\par\noindent\begin{minipage}{\linewidth}
+\fieldLineGallery
+\diagramcaption{三种电场线结构。(a) 异号电荷；(b) 四极电荷分布；(c) 振荡电荷的瞬时场线。箭头均表示电场方向。}\label{ch19:fig:s32-1-3}
+\end{minipage}\par\medskip
+
+点电荷 $Q$ 在位置矢量 $\boldsymbol r$ 处产生的电场为
+\begin{equation}
+  \boxed{\boldsymbol E(\boldsymbol r)
+  =\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^3}\boldsymbol r
+  =\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\hat{\boldsymbol r}}.
+\end{equation}
+$Q>0$ 时场沿径向向外，$Q<0$ 时场沿径向向内。多个电荷产生的总场等于各电荷产生电场的矢量和，这就是
+电场的叠加原理。
+
+
+% EM teaching enrichment 20260927
+\paragraph{连续分布：先定电荷元，再消去分量}
+线、面、体分布分别用 $\dd q=\lambda\dd l$、$\sigma\dd S$、$\rho\dd V$，并积分
+$\dd\boldsymbol E=k\,\dd q\,\boldsymbol R/R^3$。这里 $\boldsymbol R$ 从电荷元指向观察点，不能与电荷元的位置矢量混淆。
+以半径 $a$、总电荷 $Q$ 的均匀细圆环为例，轴线上距圆心 $z$ 处的横向场两两抵消，而每个元的轴向投影含因子 $z/\sqrt{a^2+z^2}$，故
+\[
+ E_z=\int\frac{kz\,\dd q}{(a^2+z^2)^{3/2}}
+ =\frac{kQz}{(a^2+z^2)^{3/2}}.
+\]
+$z=0$ 时对称性给出零场，$z\gg a$ 时恢复点电荷场。先写“哪些分量为何相消”，可避免把矢量大小直接相加。
+
+
+% EM structure and teaching revision 20260928
+\subsection{连续带电体积分的建模步骤}
+求场时先说明源点与观察点，不要把电荷元的位置直接当成场矢量的方向。若观察点为 $\boldsymbol r$，源点为 $\boldsymbol r'$，则
+\[
+ \dd\boldsymbol E=\frac{1}{4\pi\varepsilon_0}
+ \frac{\boldsymbol r-\boldsymbol r'}{|\boldsymbol r-\boldsymbol r'|^3}\dd q.
+\]
+线、面、体分布分别选 $\dd q=\lambda\dd l$、$\sigma\dd S$、$\rho\dd V$。先用对称性消去积分后必为零的分量，再计算剩下的分量；只有对同一观察点求得的矢量才可以叠加。
+以半径 $R$、总电荷 $Q$ 的均匀圆环为例，轴上距中心 $z$ 处各电荷元的横向分量抵消，轴向分量都含投影因子 $z/\sqrt{R^2+z^2}$，于是
+\[
+ E_z=\frac{Qz}{4\pi\varepsilon_0(R^2+z^2)^{3/2}}.
+\]
+当 $|z|\gg R$ 时退回点电荷场；在中心附近 $E_z\simeq Qz/(4\pi\varepsilon_0R^3)$。若 $Q>0$，正试探电荷沿轴偏离中心后受力继续向外，负试探电荷则沿轴受到回复力。这个结论只判断轴向稳定性，不能据此认定三维空间中的稳定平衡。
+检查积分时还应核对量纲、远场主项和特殊对称点。对有限带电体，远场通常先由总电荷决定；总电荷为零时才需要进一步保留偶极或更高阶贡献。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【统统算出来】}\label{ch19:ex:s32-1-1}
+小明认为电场的高斯定理有点神奇，不是很相信高斯定理的结果，于是希望利用微积分的方式求解一些
+对称系统的电场。另外，利用微积分也可以计算一些不是无穷的系统的电场。请帮助小明计算下列均匀带电
+系统产生的电场：
+\begin{enumerate}[label=\arabic*.]
+  \item 无限长直导线外、距导线 $a$ 的一点；
+  \item 有限长直导线中点附近、距导线 $a$ 的一点，点到两端的连线与垂线所成角分别为
+  $\theta_1,\theta_2$，如图；
+  \item 无限大均匀带电平面外、距平面 $a$ 的一点；
+  \item 只有一个方向无限延伸的均匀带电平面（无限长条带）外、距平面 $a$ 的一点，两侧边缘对应的角为
+  $\theta_1,\theta_2$；
+  \item 均匀带电圆盘中轴线上、距圆盘中心 $a$ 的一点，圆盘边缘对轴线上该点的半张角为 $\theta$。
+\end{enumerate}
+直线电荷的线密度记为 $\lambda$，平面和圆盘的面密度记为 $\sigma$。
+\par\noindent\begin{minipage}{\linewidth}
+\emFiniteLineQuestion
+\figcap{有限直线的端点与观察点；长条带的截面使用同样的端点角约定。}\label{ch19:fig:em-question-1}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+五个对象都可以拆成“已经知道电场的微元”，再利用对称性消去不需要的分量。图中把有限直线画成竖直，
+$P$ 到直线的垂距为 $a$；对长条带和圆盘，仍可沿用相同的截面角度关系。
+
+\par\noindent\begin{minipage}{\linewidth}
+\extendedChargeFigure
+\diagramcaption{有限长直线的积分几何。$\theta_1,\theta_2$ 分别对应垂足上方和下方的端点。}\label{ch19:fig:s32-1-6}
+\end{minipage}\par\medskip
+
+\textbf{1. 无限长直导线。} 先直接积分。取导线沿 $y$ 轴，$P=(a,0)$，电荷元
+$\dd q=\lambda\dd y$。电场的横向分量为
+\[
+  \dd E_x=\frac{1}{4\pi\varepsilon_0}
+  \frac{\lambda a\,\dd y}{(a^2+y^2)^{3/2}}.
+\]
+上下两个电荷元的纵向分量互相抵消，所以
+\[
+  E=\frac{\lambda}{4\pi\varepsilon_0}
+  \int_{-\infty}^{\infty}\frac{a\,\dd y}{(a^2+y^2)^{3/2}}
+  =\boxed{\frac{\lambda}{2\pi\varepsilon_0a}}.
+\]
+$\lambda>0$ 时方向垂直导线向外，$\lambda<0$ 时方向向内。也可用半径 $a$、长度 $L$ 的同轴圆柱
+高斯面立即得到 $E(2\pi aL)=\lambda L/\varepsilon_0$。
+
+\textbf{2. 有限长直导线。} 规定从垂线向上、向下量得的端点角分别为 $\theta_1,\theta_2$。
+对应端点为 $y_1=a\tan\theta_1$、$y_2=-a\tan\theta_2$。沿用图~\ref{ch19:fig:s32-1-6}的坐标，
+\[
+ \dd E_x=k\lambda\frac{a\,\dd y}{(a^2+y^2)^{3/2}},\qquad
+ \dd E_y=-k\lambda\frac{y\,\dd y}{(a^2+y^2)^{3/2}},\quad k=\frac1{4\pi\varepsilon_0}.
+\]
+负号来自电荷元指向 $P$ 的纵向位移为 $-y$。令 $y=a\tan u$，则 $\dd y=a\sec^2u\dd u$，有
+\[
+ E_x=\frac{k\lambda}{a}\int_{-\theta_2}^{\theta_1}\cos u\,\dd u,
+ \qquad E_y=-\frac{k\lambda}{a}\int_{-\theta_2}^{\theta_1}\sin u\,\dd u.
+\]
+上下限代入后，垂直导线方向和平行导线方向的分量分别为
+\[
+  \boxed{E_\perp=\frac{\lambda}{4\pi\varepsilon_0a}
+  (\sin\theta_1+\sin\theta_2)},
+  \qquad
+  \boxed{E_\parallel=\frac{\lambda}{4\pi\varepsilon_0a}
+  (\cos\theta_1-\cos\theta_2)}.
+\]
+这里 $E_\parallel$ 的正方向取向上；若换用向下为正，第二式整体变号。导线关于垂足对称时
+$\theta_1=\theta_2=\theta$，平行分量为零，
+\[
+  \boxed{E=\frac{\lambda}{2\pi\varepsilon_0a}\sin\theta}.
+\]
+让两端趋向无穷远，$\theta\to\pi/2$，就回到第1问。
+
+\textbf{3. 无限大平面。} 为直接积分，以 $P$ 在平面上的垂足为圆心，将平面分成半径 $s$、宽度 $\dd s$ 的圆环。
+环电荷 $\dd q=2\pi\sigma s\dd s$，到 $P$ 的距离为 $\sqrt{a^2+s^2}$。环内横向场相消，法向分量相加：
+\[
+ E_\perp=\frac{\sigma a}{2\varepsilon_0}\int_0^\infty
+ \frac{s\,\dd s}{(a^2+s^2)^{3/2}}
+ =\frac{\sigma a}{2\varepsilon_0}
+ \left[-\frac1{\sqrt{a^2+s^2}}\right]_0^\infty
+ =\frac{\sigma}{2\varepsilon_0}\quad(a>0).
+\]
+这个结果由库仑积分独立得到，接着用高斯定律校验。取横跨平面的薄圆柱高斯面。两个端面上的场大小相等、方向分别向两侧，
+侧面通量为零。设端面面积为 $A$，则
+\[
+  2EA=\frac{\sigma A}{\varepsilon_0},
+  \qquad
+  \boxed{E=\frac{\sigma}{2\varepsilon_0}}.
+\]
+电场与距离 $a$ 无关。正电面两侧的场都背离平面，负电面两侧的场都指向平面。
+
+\textbf{4. 无限长条带。} 令条带位于 $z=0$ 平面，沿 $y$ 方向无限长；横向坐标范围为
+$-b_1\le x\le b_2$，观察点为 $(0,0,a)$。把宽度为 $\dd x$ 的窄条看成线电荷
+$\dd\lambda=\sigma\dd x$。由第1问，窄条在 $P$ 处产生
+\[
+  \dd E=\frac{\sigma\dd x}{2\pi\varepsilon_0\sqrt{a^2+x^2}}.
+\]
+令 $\theta_1=\arctan(b_1/a)$、$\theta_2=\arctan(b_2/a)$，电荷元到 $P$ 的方向正比于 $(-x,0,a)$，故
+\[
+ E_z=\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}\frac{a\,\dd x}{a^2+x^2}
+ =\frac{\sigma}{2\pi\varepsilon_0}\left[\arctan\frac xa\right]_{-b_1}^{b_2},
+\]
+\[
+ E_x=-\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}\frac{x\,\dd x}{a^2+x^2}
+ =-\frac{\sigma}{4\pi\varepsilon_0}\ln\frac{a^2+b_2^2}{a^2+b_1^2}.
+\]
+再用 $\cos\theta_i=a/\sqrt{a^2+b_i^2}$，得到
+\[
+  \boxed{E_z=\frac{\sigma}{2\pi\varepsilon_0}(\theta_1+\theta_2)},
+  \qquad
+  \boxed{E_x=\frac{\sigma}{2\pi\varepsilon_0}
+  \ln\frac{\cos\theta_2}{\cos\theta_1}}.
+\]
+对称条带有 $\theta_1=\theta_2=\theta$，横向分量消失，
+$E_z=\sigma\theta/(\pi\varepsilon_0)$。宽度趋于无穷时 $\theta\to\pi/2$，又回到无限大平面的
+$\sigma/(2\varepsilon_0)$。
+
+\textbf{5. 均匀带电圆盘。} 把半径为 $R$ 的圆盘分割成半径 $r$、宽度 $\dd r$ 的同心圆环。
+环上横向分量互相抵消，轴向分量为
+\[
+  \dd E_z=\frac{1}{4\pi\varepsilon_0}
+  \frac{a\,(\sigma 2\pi r\dd r)}{(a^2+r^2)^{3/2}}.
+\]
+从 $0$ 积分到 $R$：
+\[
+  E_z=\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{a}{\sqrt{a^2+R^2}}\right).
+\]
+因 $\cos\theta=a/\sqrt{a^2+R^2}$，所以
+\[
+  \boxed{E_z=\frac{\sigma}{2\varepsilon_0}(1-\cos\theta)}.
+\]
+当 $R\to\infty$ 时 $\theta\to\pi/2$，结果连续过渡到无限大平面；当 $a\gg R$ 时，展开后得到
+$E\approx(1/4\pi\varepsilon_0)(\sigma\pi R^2/a^2)$，即远处只看见总电荷。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【奇妙的电场线】}\label{ch19:ex:s32-1-2}
+小明发现两个点电荷的电场线很有趣，想通过作图描绘电场线的形状；可是小明希望画得准确一些。已知
+$+Q$、$-q$ 分别位于 $(-a_0,0)$、$(a_0,0)$ 处，且 $Q>q>0$。系统绕二者连线旋转对称，因此只需先画
+包含连线的平面内的电场线。回答下列问题：
+\begin{enumerate}[label=\arabic*.]
+  \item 是否有从 $+Q$ 出发的电场线延伸到无穷远？是否有从无穷远出发、终止于 $-q$ 的电场线？
+  \item 零场点在哪里？该点附近的电场线有什么特征？
+  \item 远离两个电荷处的电场具有什么特征？
+  \item 写出包含 $x$ 轴的平面内的电场线方程。
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+总电荷为 $Q-q>0$。因此 $+Q$ 发出的场线中，数量与 $q$ 对应的那一部分终止于 $-q$，其余部分必须
+延伸到无穷远；$+Q$ 足以提供全部终止于 $-q$ 的场线，所以不需要从无穷远引入场线。图中实线为场线，
+场线由下文的第一积分计算。通向无穷远与终止于 $-q$ 的场线之间存在分界结构，它趋近零场点；零场点处方向未定义，不能把它当普通连接点。
+
+\unequalChargesFigure
+
+零场点只能在两个电荷连线的外侧。由于 $Q>q$，它位于较小电荷 $-q$ 的右侧。设零场点坐标为
+$x_0>a_0$，两场反向且大小相等：
+\[
+  \frac{Q}{(x_0+a_0)^2}=\frac{q}{(x_0-a_0)^2}.
+\]
+取正平方根并整理：
+\[
+  \sqrt Q(x_0-a_0)=\sqrt q(x_0+a_0),
+  \qquad
+  \boxed{x_0=a_0\frac{\sqrt Q+\sqrt q}{\sqrt Q-\sqrt q}}.
+\]
+在零场点附近，沿 $x$ 轴从左向右穿过该点，电场由向左变为向右；垂直于 $x$ 轴的小位移则受到指向
+轴线的电场。局部展开可写成
+\[
+  \boldsymbol E\approx\kappa\left[(x-x_0)\boldsymbol e_x
+  -\frac{y}{2}\boldsymbol e_y-\frac{z}{2}\boldsymbol e_z\right],\qquad\kappa>0.
+\]
+所以它是一个鞍点，不是场线可以平滑穿过的普通点；轴线和分界面构成局部的分离结构。
+
+当 $r\gg a_0$ 时，最低阶电场只取决于总电荷：
+\[
+  \boxed{\boldsymbol E\approx\frac{1}{4\pi\varepsilon_0}
+  \frac{Q-q}{r^2}\hat{\boldsymbol r}}.
+\]
+因此远处场线近似从一个总电荷为 $Q-q$ 的正点电荷径向向外；再下一阶才看出偶极修正。
+
+最后求电场线方程。取包含 $x$ 轴的平面，令点的坐标为 $(x,y)$，到两电荷的距离分别为
+\[
+  r_1=\sqrt{(x+a_0)^2+y^2},\qquad r_2=\sqrt{(x-a_0)^2+y^2}.
+\]
+轴对称点电荷场的流函数可以取为电荷量乘以相应极角的余弦。叠加后，电场线是下式的等值线：
+\[
+  \boxed{Q\frac{x+a_0}{r_1}-q\frac{x-a_0}{r_2}=C}.
+\]
+这一第一积分可以直接核验。令 $F=Q(x+a_0)/r_1-q(x-a_0)/r_2$，
+逐项求导得到 $F_x=yE_y/k$、$F_y=-yE_x/k$。沿电场线的切向位移满足
+$(\dd x,\dd y)\parallel(E_x,E_y)$，所以
+\[
+ \dd F=F_x\dd x+F_y\dd y=\frac yk(E_y\dd x-E_x\dd y)=0.
+\]
+故 $F=C$ 确为场线方程，而不是单凭外观猜出的曲线。改变常数 $C$ 就得到图中的不同场线；绕 $x$ 轴旋转这些曲线，可得到完整的三维场线曲面。
+\end{xesolution}
+
+
+
+
+
+
+
+
+
+
+
+\section{高斯定律与对称带电体}
+
+\subsection{电场高斯定律——积分形式}
+
+
+对于面积为 $A$ 的平面，若匀强电场 $\boldsymbol E$ 与面积外法线的夹角为 $\theta$，穿过该面的电通量为
+\begin{equation}
+  \boxed{\Phi_E=EA\cos\theta\equiv\boldsymbol E\cdot\boldsymbol A}.
+\end{equation}
+其中面积矢量 $\boldsymbol A=A\boldsymbol n$ 的方向规定为法线方向。对于任意曲面，把它划分成足够小的面元，
+每个面元上电场近似不变，总通量为
+\[
+  \Phi_E=\int_S\boldsymbol E\cdot\dd\boldsymbol A.
+\]
+若 $S$ 是闭合曲面，面元方向统一取向外，高斯定律给出
+\begin{equation}
+  \boxed{\oint_S\boldsymbol E\cdot\dd\boldsymbol A
+  =\frac{Q_{\mathrm{in}}}{\varepsilon_0}}.
+\end{equation}
+闭面外的电荷虽然会改变闭面上各点的电场，却不会改变穿入、穿出闭面的净通量：每一束从外部进入的场线
+还会从另一处离开。闭面内正电荷是场线的源，负电荷是场线的汇；在无电荷区域，场线不能凭空开始或终止。
+
+\par\noindent\begin{minipage}{\linewidth}
+\gaussLawFigure
+\diagramcaption{高斯定律的几何意义。(a) 面元的法向面积矢量；(b) 内部电荷产生非零净通量；(c) 外部电荷的穿入与穿出相抵。}\label{ch19:fig:s32-1-4}
+\end{minipage}\par\medskip
+
+图~\ref{ch19:fig:s32-1-4}可以帮助理解通量，却不是高斯定律的独立证明，因为若先用点电荷的库仑场画出这些场线，
+推理本身已经使用了库仑定律。更根本地说，高斯定律是电磁场的基本规律之一；即使电荷正在运动，
+对任意时刻的电场仍有同样的积分关系。只靠“数场线”不能代替定量证明：场线条数是人为选取的，
+真正不依赖画法的量是曲面积分 $\oint\boldsymbol E\cdot\dd\boldsymbol A$。
+
+
+% EM teaching enrichment 20260927
+\paragraph{何时能由通量直接求场强}
+高斯定律总成立，但只有对称性使选定面上的场强可提出积分号时，才成为简便的求场方法。球对称选同心球面；无限长轴对称选同轴圆柱；无限均匀平面选跨面的柱形盒。
+例如半径 $a$、均匀体电荷密度 $\rho$ 的绝缘实心球，半径 $r<a$ 的高斯面只包围 $4\pi\rho r^3/3$，于是
+\[
+ E_r=\frac{\rho r}{3\varepsilon_0}\quad(r<a),\qquad
+ E_r=\frac{\rho a^3}{3\varepsilon_0r^2}\quad(r>a).
+\]
+两式在表面连续，球心为零；球内不能把总电荷全部代入 $kQ/r^2$。若给球外再放一个点电荷，闭面的总通量仍只取决于内部电荷，但面上总场已不再均匀，不能再用 $E\,4\pi r^2$ 表示通量。
+
+
+\subsection{电场高斯定律——微分形式}
+
+
+把一个有限区域分成许多很小的长方体。相邻体积元的公共面上，一个体积元的外法线恰好是另一个体积元
+外法线的反方向，所以内部公共面的通量两两抵消，只剩整个区域外边界的净通量。反过来考察图~\ref{ch19:fig:s32-1-5}中的一个
+小长方体，就能从积分形式得到局域的微分形式。
+
+\par\noindent\begin{minipage}{\linewidth}
+\differentialCubeFigure
+\diagramcaption{位于 $(x,y,z)$ 附近的微小长方体。每一对相对表面的外法线方向相反，图中箭头画的是相应通量项的方向。}\label{ch19:fig:s32-1-5}
+\end{minipage}\par\medskip
+
+以垂直于 $x$ 轴的两面为例，右面流出的通量减去左面流入的通量为
+\[
+  \bigl[E_x(x+\Delta x)-E_x(x)\bigr]\Delta y\Delta z
+  \approx\frac{\partial E_x}{\partial x}\Delta x\Delta y\Delta z.
+\]
+$y,z$ 两个方向完全类似。体积元内电荷为
+$\rho\Delta x\Delta y\Delta z$。代入高斯定律并约去体积，得到
+\begin{equation}
+  \boxed{\frac{\partial E_x}{\partial x}
+  +\frac{\partial E_y}{\partial y}
+  +\frac{\partial E_z}{\partial z}
+  =\frac{\rho}{\varepsilon_0}}
+  \qquad\text{即}\qquad
+  \boxed{\boldsymbol\nabla\cdot\boldsymbol E=\frac{\rho}{\varepsilon_0}}.
+\end{equation}
+这说明电荷密度决定电场在该点的“发散程度”。积分形式联系一个闭面与其包围的总电荷，微分形式则把
+规律落实到每一个空间点；二者是同一条物理定律的两种表述。
+
+本章随后反复使用六个核心概念：元电荷、电荷可视为点电荷的条件、库仑平方反比律、电场强度
+$\boldsymbol E=\boldsymbol F/q$、电场线以及高斯定律
+$\oint\boldsymbol E\cdot\dd\boldsymbol S=\sum Q/\varepsilon_0$。下面的例题将这些概念放入连续带电体、
+多极场、带空腔物体和带电粒子运动中。
+
+% EM teaching enrichment 20260927
+\paragraph{散度给局部电荷，边界给整体场}
+若某一区域 $\boldsymbol E=\alpha x\boldsymbol e_x+\beta y\boldsymbol e_y$，则
+$\rho=\varepsilon_0(\alpha+\beta)$。其中 $\alpha,\beta$ 的单位为 $\mathrm{V/m^2}$。
+当 $\beta=-\alpha$ 时，区域无电荷而场仍可非零。这正说明“没有场源”不等于“没有场”，外部电荷和边界仍能建立电场。
+静电问题还要满足 $\nabla\times\boldsymbol E=0$，再给定边界条件。只给散度不足以重建矢量场；后面导体问题中的唯一性定理就是把这些信息合在一起。
+
+
+
+
+% EM structure and teaching revision 20260928
+\subsection{分段高斯面与表面跳变}
+高斯面必须是闭合曲面；曲面上场强是否相等，要由电荷分布的对称性判断。以半径 $R$、体电荷密度 $\rho$ 的均匀实心球为例，半径 $r$ 的同心球面给出
+\[
+ E(r)=\begin{cases}\rho r/(3\varepsilon_0),&r<R,\\
+ \rho R^3/(3\varepsilon_0r^2),&r>R.
+ \end{cases}
+\]
+这里 $E$ 表示沿径向外的有符号分量。球内包围电荷随 $r^3$ 增加，不能把全体电荷代入球内的高斯定律。由于表面没有额外的电荷薄层，$E$ 在 $r=R$ 连续；其导数可以不连续。
+若表面另有总面电荷密度 $\sigma_s$（包含自由与束缚电荷），在界面两侧取薄柱形高斯面，令厚度趋于零，侧面的通量消失，得到
+\[
+ E_{n,\mathrm{out}}-E_{n,\mathrm{in}}=\frac{\sigma_s}{\varepsilon_0}.
+\]
+若只给定自由面电荷密度 $\sigma_f$，介质界面的条件应写为 $D_{n,\mathrm{out}}-D_{n,\mathrm{in}}=\sigma_f$，不能把 $\sigma_f$ 直接当作上式的总面电荷。切向分量则由静电场的环量为零而连续。这两条边界关系不要求整个问题球对称，因而也能用于导体表面、带电平面和分层介质的局部检查。
+不要把“闭合面净通量为零”误读为“面上处处无场”：外部电荷产生的场可以穿入又穿出同一曲面，净贡献恰好抵消。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【球壳空洞】}\label{ch19:ex:s32-1-3}
+一个绝缘球体内有一个球形空洞，不空的地方均匀带有固定的体电荷密度 $\rho$。另比较：若它换成达到静电平衡的金属且空洞内无电荷，会有什么不同？
+\begin{enumerate}[label=\arabic*.]
+  \item 小明想起来似乎万有引力那一章中也计算过类似模型。您还记得答案吗？
+  \item 这两个模型有什么区别？
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+设完整大球球心为 $O$，空洞球心为 $C$，从 $O$ 指向 $C$ 的位移为 $\boldsymbol a$。空洞内任一点
+$P$ 相对 $O,C$ 的位置矢量分别为 $\boldsymbol r,\boldsymbol r'$，于是
+$\boldsymbol r=\boldsymbol a+\boldsymbol r'$。
+
+\cavityFigure
+
+把“带空洞的均匀带电体”叠加成：一个体电荷密度为 $+\rho$ 的完整大球，再在空洞位置放一个体电荷密度
+为 $-\rho$ 的小球。均匀带电实心球内部的电场由高斯定律得到
+\[
+  \boldsymbol E_{\rm sphere}=\frac{\rho}{3\varepsilon_0}\boldsymbol r.
+\]
+因此空洞内
+\[
+  \boldsymbol E
+  =\frac{\rho}{3\varepsilon_0}\boldsymbol r
+  -\frac{\rho}{3\varepsilon_0}\boldsymbol r'
+  =\boxed{\frac{\rho}{3\varepsilon_0}\boldsymbol a}.
+\]
+结果与 $P$ 在空洞中的位置无关，空洞内是匀强电场；$\rho>0$ 时方向从大球球心指向空洞球心。
+
+引力模型的叠加步骤完全相同，但引力永远吸引。若质量密度为 $\rho_m$，空洞内引力场为
+\[
+  \boxed{\boldsymbol g=-\frac{4\pi G\rho_m}{3}\boldsymbol a}.
+\]
+负号说明方向与电荷密度为正时的电场相反。
+
+“均匀体电荷”与“处于静电平衡的金属”不能混为一谈。若物体是真正的导体，且达到静电平衡，自由电荷
+会迁移到表面，金属内部有 $\boldsymbol E=0$，不能维持非零、均匀的体电荷密度。若空洞中没有另放电荷，
+空洞内也有 $\boldsymbol E=0$。所以第一问的叠加结果适用于绝缘体中固定的均匀体电荷；金属静电平衡模型则由等势边界条件决定，不能沿用均匀体电荷假设。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【无穷大厚板】}\label{ch19:ex:s32-1-6}
+如图，一片区域在两个方向上无限大，另一个方向只有 $-d$ 到 $+d$ 内有均匀正电荷分布，体电荷密度为
+$\rho>0$。初始时，质量为 $m$、电荷为 $-q$ 的点电荷从原点以初速度 $v_0$ 向右运动，求运动周期。
+\par\noindent\begin{minipage}{\linewidth}
+\emSlabQuestion
+\figcap{厚板边界及负电荷的初始位置和速度。}\label{ch19:fig:em-question-6}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+先用关于中面镜面对称的柱形高斯面求场。厚板内、外电场分别为
+\[
+  \boxed{E_x=\frac{\rho x}{\varepsilon_0}\quad(|x|\le d)},
+  \qquad
+  \boxed{E_x=\frac{\rho d}{\varepsilon_0}\operatorname{sgn}x\quad(|x|>d)}.
+\]
+图(b)中斜线必须穿过原点，并在 $x=\pm d$ 与两侧水平线连续；这三个位置关系正是后面分段运动的依据。
+
+\chargedSlabFigure
+
+在板内，负电荷受到指向中面的回复力
+\[
+  F_x=-qE_x=-\frac{q\rho}{\varepsilon_0}x=-m\omega^2x,
+  \qquad
+  \boxed{\omega=\sqrt{\frac{q\rho}{m\varepsilon_0}}}.
+\]
+若简谐振幅 $A=v_0/\omega$ 不超过 $d$，粒子始终留在板内，周期直接为
+\[
+  \boxed{T=\frac{2\pi}{\omega}}
+  \qquad (v_0\le\omega d).
+\]
+
+若 $v_0>\omega d$，粒子会穿出厚板。在 $0\le x\le d$ 内由
+$x=(v_0/\omega)\sin\omega t$ 得到从中面运动到边界的时间
+\[
+  t_1=\frac1\omega\arcsin\frac{\omega d}{v_0},
+\]
+到达边界的速度为
+\[
+  v_d=\sqrt{v_0^2-\omega^2d^2}.
+\]
+板外回复加速度大小恒为
+\[
+  a_{\rm out}=\frac{q\rho d}{m\varepsilon_0}=\omega^2d,
+\]
+故从边界到右侧转折点的时间为
+\[
+  t_2=\frac{v_d}{\omega^2d}.
+\]
+从中面向右到右侧转折点是整个周期的四分之一，所以
+\[
+  \boxed{T=4\left[
+  \frac1\omega\arcsin\frac{\omega d}{v_0}
+  +\frac{\sqrt{v_0^2-\omega^2d^2}}{\omega^2d}
+  \right]}
+  \qquad(v_0>\omega d).
+\]
+在临界速度 $v_0=\omega d$ 处，第二项为零、反正弦为 $\pi/2$，两段答案连续接成
+$2\pi/\omega$。
+\end{xesolution}
+
+
+
+
+
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-third-section/}}
+\section{电势与场势关系}
+
+% Text annotations are transparent; no label carries an opaque backing box.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.6pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.45pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.35pt},
+  xesline/.style={draw=Ink,line width=.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1pt},
+  xesarrow/.style={-{Latex[length=2.15mm,width=1.35mm]},draw=DeepBlue,line width=.9pt},
+  fieldline/.style={draw=DeepBlue,line width=.82pt,postaction={decorate},
+    decoration={markings,mark=at position .62 with {\arrow{Latex[length=1.65mm,width=1.1mm]}}}},
+  eqline/.style={draw=RuleGray,line width=.66pt,densely dashed}
+}
+
+
+\newcommand{\equipotentialGallery}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/equipotentials.pdf}
+\end{center}}
+
+
+\newcommand{\dipolePotentialGeometry}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (C) at (0,0);\coordinate (P) at (5.3,2.35);
+  \coordinate (A) at (0,1.0);\coordinate (B) at (0,-1.0);
+  \fill[DeepBlue] (A) circle (5pt);\node[xeslabel,anchor=east] at (-.16,1) {$+q$};
+  \fill[Ink] (B) circle (5pt);\node[xeslabel,anchor=east] at (-.16,-1) {$-q$};
+  \fill[Ink] (C) circle (1.3pt);\node[xessmall,anchor=east] at (-.12,0) {$C$};
+  \fill[Ink] (P) circle (1.5pt);\node[xeslabel,anchor=west] at (5.42,2.35) {$P$};
+  \draw[DeepBlue,line width=.75pt] (A)--(P) node[xessmall,pos=.53,above] {$r_+$};
+  \draw[DeepBlue,line width=.75pt] (B)--(P) node[xessmall,pos=.53,below] {$r_-$};
+  \draw[RuleGray,densely dashed] (C)--(P) node[xessmall,pos=.52,below] {$r$};
+  \draw[<->,RuleGray,line width=.55pt] (.35,0)--(.35,1);\node[xessmall,anchor=west] at (.42,.5) {$a$};
+  \draw[<->,RuleGray,line width=.55pt] (.35,-1)--(.35,0);\node[xessmall,anchor=west] at (.42,-.5) {$a$};
+  \draw[DeepBlue,line width=.6pt] (0,1.15) arc[start angle=90,end angle=23.9,radius=1.15];
+  \node[xessmall] at (.72,.75) {$\theta$};
+  \node[xessmall,align=left,anchor=west] at (7.1,.6) {$r\gg a$ 时\\$r_- -r_+\approx2a\cos\theta$};
+  \draw[RuleGray,-{Latex[length=1.5mm]},line width=.55pt] (7.0,.55)--(4.35,1.92);
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\zeroEquipotentialFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/zero-potential.pdf}
+\end{center}}
+
+
+\newcommand{\ionizationEnergyFigure}{%
+\begin{center}
+\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/ionization.pdf}
+\end{center}}
+
+
+\newcommand{\alphaDecayFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(1.8,0)},scale=.9]
+    \foreach \x/\y/\c in {-1/.1/DeepBlue,-.65/.65/Gold,-.25/.2/Gold,.15/.72/DeepBlue,.55/.18/Gold,.9/.62/DeepBlue,-.8/-.55/Gold,-.3/-.55/DeepBlue,.2/-.35/Gold,.7/-.48/DeepBlue,0/0/DeepBlue}{\shade[ball color=\c!65] (\x,\y) circle (.28);}
+  \end{scope}
+  \draw[DeepBlue,line width=.65pt,dashed] (3.0,.28)--(5.35,1.15);
+  \draw[DeepBlue,line width=.65pt,dashed] (3.0,-.02)--(5.35,.82);
+  \begin{scope}[shift={(5.75,1.0)}]
+    \shade[ball color=Gold!70] (-.2,.18) circle (.27);\shade[ball color=DeepBlue!70] (.2,.18) circle (.27);
+    \shade[ball color=DeepBlue!70] (-.2,-.18) circle (.27);\shade[ball color=Gold!70] (.2,-.18) circle (.27);
+  \end{scope}
+  \draw[xesarrow] (5.1,.98)--(6.7,1.58);
+  \node[xessmall,anchor=west] at (6.85,1.62) {$\alpha$ 粒子（$^4\mathrm{He}$ 核）};
+  \node[xessmall,align=left,anchor=west] at (6.85,.35) {母核质量数减 4，\\核电荷数减 2。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\acceleratorTunnelFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/accelerator.png}
+\end{center}}
+
+
+\newcommand{\lightningFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/lightning.png}
+\end{center}}
+
+
+\newcommand{\potentialMethodFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(3.3,0) node[xessmall,below left] {$s$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.6) node[xessmall,below right] {$\varphi$};
+    \draw[xesblue] (.35,2.35)..controls(.8,1.65)and(1.65,.75)..(3.05,.25);
+    \node[xestiny] at (1.8,-.42) {有限带电体：可取 $\varphi(\infty)=0$};
+  \end{scope}
+  \begin{scope}[shift={(4.4,0)}]
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(3.3,0) node[xessmall,below left] {$s$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.6) node[xessmall,below right] {$\varphi$};
+    \draw[xesblue] (.28,2.35)..controls(.85,1.65)and(1.7,1.02)..(3.1,.48);
+    \draw[RuleGray,densely dashed] (.55,0)--(.55,2.1) (2.55,0)--(2.55,.62);
+    \node[xestiny] at (1.8,-.42) {无限直线：只定义电势差};
+  \end{scope}
+  \begin{scope}[shift={(8.8,0)}]
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(3.3,0) node[xessmall,below left] {$z$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,2.6) node[xessmall,below right] {$\varphi$};
+    \draw[xesblue] (0,2.25)--(3.05,.25);
+    \node[xestiny] at (1.8,-.42) {无限平面：$\varphi$ 随距离线性变化};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargedSphereEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(1.5,1.45)}]
+    \draw[Ink,line width=1pt] (0,0) circle (1.05);
+    \foreach \a in {0,30,...,330}{\node[xestiny,text=DeepBlue] at (\a:.93) {$+$};}
+    \node[xessmall] at (0,-1.48) {导体球壳：电荷在表面};
+  \end{scope}
+  \begin{scope}[shift={(5.0,1.45)}]
+    \fill[DeepBlue!7] (0,0) circle (1.05);\draw[Ink,line width=1pt] (0,0) circle (1.05);
+    \foreach \x/\y in {-0.6/0,-.3/.5,0/.15,.42/.55,.65/.05,-.5/-.48,.05/-.55,.5/-.4}{\node[xestiny,text=DeepBlue] at (\x,\y) {$+$};}
+    \node[xessmall] at (0,-1.48) {绝缘实心球：电荷在体内};
+  \end{scope}
+  \begin{scope}[shift={(7.5,.05)},xscale=.9,yscale=.8]
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(4.2,0) node[xessmall,below left] {$r$};
+    \draw[xesline,-{Latex[length=1.8mm]}] (0,0)--(0,3.55) node[xessmall,below right] {$E$};
+    \draw[RuleGray,densely dashed] (1.55,0)--(1.55,3.15);\node[xessmall,below] at (1.55,0) {$R$};
+    \draw[DeepBlue,line width=1pt] (0,0)--(1.55,2.75);
+    \draw[DeepBlue,line width=1pt] (1.55,2.75)..controls(2.15,1.5)and(3.05,.65)..(4,.35);
+    \draw[Ink,line width=.85pt] (0,0)--(1.55,0);
+    \draw[Ink,line width=.85pt] (1.55,2.75)..controls(2.15,1.5)and(3.05,.65)..(4,.35);
+    \node[xestiny,anchor=west] at (2.5,2.45) {蓝：实心球};
+    \node[xestiny,anchor=west] at (2.5,2.08) {黑：球壳};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargeAssemblyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \x/\y/\i in {0/0/1,1.7/.5/2,3.2/-.25/3,4.5/1.0/4,5.8/-.1/5,.7/2.0/6,2.4/2.2/7,4.0/2.7/8,5.7/2.1/9,7.1/1.0/10}{
+    \fill[DeepBlue!75] (\x,\y) circle (4pt);\node[xestiny,above=4pt] at (\x,\y) {$Q_{\i}$};}
+  \draw[RuleGray,densely dashed] (0,0)--(3.2,-.25) node[xessmall,pos=.52,below] {$r_{13}$};
+  \draw[RuleGray,densely dashed] (1.7,.5)--(5.7,2.1) node[xessmall,pos=.55,above] {$r_{29}$};
+  \draw[xesarrow] (8.3,1.2)--(7.25,1.05);\node[xessmall,anchor=west,align=left] at (8.45,1.2) {最后移入的电荷只与\\已经就位的电荷计一次相互作用};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\apolloniusSphereFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/apollonius-example.pdf}
+\end{center}}
+
+
+\newcommand{\twoLinesFamiliesFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-lines.pdf}
+\end{center}}
+
+
+\newcommand{\finiteRodFamiliesFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/finite-rod.pdf}
+\end{center}}
+
+
+\newcommand{\repellingSpheresFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (S) at (0,3.5);\coordinate (B) at (0,0);\coordinate (A) at ({-3.5*sin(40)},{3.5*(1-cos(40))});
+  \draw[Ink,line width=.9pt] (-.7,3.5)--(.7,3.5);\foreach \x in {-.6,-.3,0,.3,.6}{\draw[RuleGray,line width=.5pt] (\x,3.5)--++(.18,.2);}
+  \draw[Ink,line width=1pt] (S)--(A);
+  \fill[DeepBlue] (A) circle (5pt);\node[xeslabel,anchor=east] at ($(A)+(-.14,0)$) {$A$};
+  \fill[DeepBlue] (B) circle (5pt);\node[xeslabel,anchor=west] at ($(B)+(.14,0)$) {$B$};
+  \draw[RuleGray,densely dashed] (S)--(B);
+  \draw[RuleGray] (0,2.7) arc[start angle=270,end angle=230,radius=.8];
+  \node[xessmall] at (-.4,2.47) {$\theta$};
+  \node[xessmall,anchor=south east] at (-1.35,2.1) {$L$};
+  \draw[<->,RuleGray,line width=.55pt] (.65,0)--(.65,{3.5*(1-cos(40))});\node[xessmall,anchor=west] at (.73,.4) {$h$};
+  \draw[RuleGray,densely dashed] (A)--(B) node[xessmall,pos=.54,above] {$r$};
+  \draw[xesarrow] (A)--++(0,-1.15);\node[xessmall,anchor=north] at ($(A)+(0,-1.18)$) {$m\boldsymbol g$};
+  \draw[xesarrow] (A)--($(A)!.38!(S)$);\node[xessmall,anchor=south east] at (-1.5,1.75) {$\boldsymbol T$};
+  \draw[xesarrow] (A)--($(A)!-.48!(B)$);\node[xessmall,anchor=south east] at (-3.15,1.15) {$\boldsymbol F_e$};
+  \node[xessmall,align=left,anchor=west] at (2.1,1.7) {$r=2L\sin(\theta/2)$\\$h=2L\sin^2(\theta/2)$\\因此 $h=r\sin(\theta/2)$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\bohrAtomFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Gold!80!Ink] (0,0) circle (7pt);\node[xestiny,text=white] at (0,0) {$+$};
+  \draw[DeepBlue,line width=1pt] (0,0) circle (2.1);
+  \fill[Ink] (2.1,0) circle (5pt);\node[xeslabel,anchor=west] at (2.27,0) {$e^-$};
+  \draw[xesarrow] (2.1,0)--(2.1,1.15);\node[xessmall,anchor=west] at (2.25,.75) {$\boldsymbol v$};
+  \draw[xesarrow] (2.0,0)--(.85,0);\node[xessmall,above] at (1.4,0) {$\boldsymbol F_C$};
+  \draw[<->,RuleGray,line width=.55pt] (0,-.42)--(2.1,-.42);\node[xessmall,below] at (1.05,-.42) {$r$};
+  \node[xessmall,align=left,anchor=west] at (4.45,.65) {圆周运动条件：$mv^2/r=ke^2/r^2$\\总能量：$E=\frac12mv^2-ke^2/r$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\rutherfordFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/rutherford.pdf}
+\end{center}}
+
+
+% Source question conditions restored, analysis retained separately.
+\newcommand{\emRepellingQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (S) at (0,3.5);\coordinate (B) at (0,0);\coordinate (A) at ({-3.5*sin(40)},{3.5*(1-cos(40))});
+  \draw[Ink,line width=.9pt] (-.7,3.5)--(.7,3.5);\foreach \x in {-.6,-.3,0,.3,.6}{\draw[RuleGray,line width=.5pt] (\x,3.5)--++(.18,.2);}
+  \draw[Ink,line width=1pt] (S)--(A);
+  \fill[DeepBlue] (A) circle (5pt);\node[xeslabel,anchor=east] at ($(A)+(-.14,0)$) {$A$};
+  \fill[DeepBlue] (B) circle (5pt);\node[xeslabel,anchor=west] at ($(B)+(.14,0)$) {$B$};
+  \draw[RuleGray,densely dashed] (S)--(B);
+  \draw[RuleGray] (0,2.7) arc[start angle=270,end angle=230,radius=.8];
+  \node[xessmall] at (-.4,2.47) {$\theta$};
+  \node[xessmall,anchor=south east] at (-1.35,2.1) {$L$};
+  \draw[<->,RuleGray,line width=.55pt] (.65,0)--(.65,{3.5*(1-cos(40))});\node[xessmall,anchor=west] at (.73,.4) {$h$};
+  \draw[RuleGray,densely dashed] (A)--(B) node[xessmall,pos=.54,above] {$r$};
+\end{tikzpicture}
+\end{center}}
+
+
+本章前文从带电体受力的角度认识电场。物理中许多问题都可以从“力”和“能量交换”两个方面考察，电场也不
+例外：除了用各点的电场强度描述电场，还可以研究给定电荷在各点具有的能量。后一种描述引出电势能和
+电势。
+
+把电荷量为 $q$ 的试探电荷放进一个既定电场，并假定它不足以改变场源电荷的位置，试探电荷受到的力为
+$\boldsymbol F=q\boldsymbol E$。当它的位置改变时，电场力会做功。静电场中的电场力是保守力，因此可以
+定义电势能。由于电场力处处正比于 $q$，电势能也必定正比于 $q$：
+\begin{equation}
+  \boxed{E_p=q\varphi}.
+\end{equation}
+比例因子 $\varphi$ 只由场源和空间位置决定，称为该点的\textbf{电势}。它等于单位正电荷在该点具有的
+电势能。电场强度是矢量，电势是标量；二者描述的是同一个静电场。
+
+
+\subsection{电势与电场}
+
+
+在直角坐标系中，电势写成标量函数 $\varphi(x,y,z)$，试探电荷的势能为
+$E_p(x,y,z)=q\varphi(x,y,z)$。保守力分量等于势能对相应坐标导数的负值：
+\[
+  F_x=-\frac{\partial E_p}{\partial x},\qquad
+  F_y=-\frac{\partial E_p}{\partial y},\qquad
+  F_z=-\frac{\partial E_p}{\partial z}.
+\]
+再与 $F_x=qE_x,F_y=qE_y,F_z=qE_z$ 比较，得到
+\begin{equation}
+  \boxed{E_x=-\frac{\partial\varphi}{\partial x},\qquad
+  E_y=-\frac{\partial\varphi}{\partial y},\qquad
+  E_z=-\frac{\partial\varphi}{\partial z}}
+  \qquad\Longleftrightarrow\qquad
+  \boxed{\boldsymbol E=-\boldsymbol\nabla\varphi}.
+\end{equation}
+负号表示电场总是指向电势降低最快的方向。知道电势函数后，对三个坐标求偏导即可得到电场。
+
+反过来，若电场 $\boldsymbol E(x,y,z)$ 已知，电荷从 $A$ 沿任意路径运动到 $B$，电场力做功
+\[
+  W_{A\to B}=q\int_A^B\boldsymbol E\cdot\dd\boldsymbol l.
+\]
+保守力做功等于势能减少量，因此
+\begin{equation}
+  \boxed{\varphi(B)-\varphi(A)
+  =-\int_A^B\boldsymbol E\cdot\dd\boldsymbol l}.
+\end{equation}
+静电力是保守力，积分结果只取决于起点和终点，与路径无关。沿电场方向移动时
+$\boldsymbol E\cdot\dd\boldsymbol l>0$，电势降低；逆电场方向移动时电势升高。
+
+
+% EM teaching enrichment 20260927
+\paragraph{势的零点与平衡点}
+给电势加常数不改变电场，也不改变电势差。若沿一维约束轨道有
+$\varphi(x)=\varphi_0+ax^2/2$，则 $E_x=-ax$，电荷运动方程为 $m\ddot x=-qa x$。
+$qa>0$ 时小振动角频率为 $\sqrt{qa/m}$；$qa<0$ 时原点不稳定。因此稳定性取决于 $q\varphi$ 的曲率，负电荷在电势极大处反而可能具有势能极小值。本结论限于给定的一维约束，不能直接推出三维自由空间中的稳定悬浮。
+
+
+\subsection{叠加原理}
+
+
+把无穷远选为电势零点，静止点电荷 $Q$ 在距它 $r$ 处产生的电势为
+\begin{equation}
+  \boxed{\varphi(r)=\frac{1}{4\pi\varepsilon_0}\frac{Q}{r}}.
+\end{equation}
+在少数延伸到无穷远的带电系统中，这一零点选择并不可行，只能谈两个有限位置之间的电势差。对于有限的
+孤立带电体，通常都取 $\varphi(\infty)=0$。
+
+多个点电荷的电场可以矢量叠加，它们的电势则可以直接作代数和。空间中一点到各电荷 $Q_n$ 的距离为
+$r_n$ 时
+\begin{equation}
+  \boxed{\varphi=\frac{1}{4\pi\varepsilon_0}
+  \sum_n\frac{Q_n}{r_n}}.
+\end{equation}
+若电荷连续分布，把求和改为积分即可。因为标量叠加通常比矢量叠加简单，复杂带电体常采用“先求电势，
+再用 $\boldsymbol E=-\boldsymbol\nabla\varphi$ 求电场”的路线。
+
+图中的电偶极子由 $+q,-q$ 构成，两电荷到中心 $C$ 的距离均为 $a$。任意点 $P$ 到两电荷的距离分别为
+$r_+,r_-$，到中心的距离为 $r$，$\boldsymbol r$ 与偶极矩方向的夹角为 $\theta$。由叠加原理
+\[
+  \varphi(P)=\frac{q}{4\pi\varepsilon_0}
+  \left(\frac1{r_+}-\frac1{r_-}\right).
+\]
+当 $r\gg a$ 时，$r_- -r_+\approx2a\cos\theta$。定义偶极矩
+$\boldsymbol p$ 由负电荷指向正电荷，大小 $p=2qa$，则
+\begin{equation}
+  \boxed{\varphi(P)=\frac{1}{4\pi\varepsilon_0}
+  \frac{p\cos\theta}{r^2}
+  =\frac{1}{4\pi\varepsilon_0}\frac{\boldsymbol p\cdot\boldsymbol r}{r^3}}.
+\end{equation}
+
+\par\noindent\begin{minipage}{\linewidth}
+\dipolePotentialGeometry
+\diagramcaption{电偶极子远场近似中的距离和角度关系。$\boldsymbol p$ 沿 $-q$ 指向 $+q$。}
+\end{minipage}\par\medskip
+
+另一个重要例子是半径为 $R$、总电荷为 $Q$ 的均匀带电球壳。它与均匀质量球壳的引力势问题具有完全相同
+的平方反比结构。球壳外部的电势等同于把全部电荷集中在球心，内部电势处处等于表面电势：
+\begin{equation}
+  \boxed{\varphi(r)=
+  \begin{cases}
+    \dfrac{1}{4\pi\varepsilon_0}\dfrac{Q}{r},&r>R,\\[6pt]
+    \dfrac{1}{4\pi\varepsilon_0}\dfrac{Q}{R},&r<R.
+  \end{cases}}
+\end{equation}
+球壳内部电势虽不一定为零，但其空间导数为零，因此内部电场为零。
+
+
+% EM teaching enrichment 20260927
+\paragraph{先算势再求场：求导时保持什么不变}
+对均匀细圆环，轴线上电势为 $\varphi(z)=kQ/\sqrt{a^2+z^2}$，求导立即得到
+$E_z=-\dd\varphi/\dd z=kQz/(a^2+z^2)^{3/2}$，其中 $Q,a$ 保持不变。
+但只知道轴线上的电势函数，并不能直接对横坐标求导得到轴外电场；轴外场必须从完整空间函数或额外对称关系获得。
+无限长线电荷则给出
+\[
+ \varphi(r)-\varphi(r_0)=-\frac{\lambda}{2\pi\varepsilon_0}\ln\frac r{r_0}.
+\]
+令 $r_0\to\infty$ 会发散，所以应保留有限参考半径。场强是否随距离趋零，与无穷远电势积分是否收敛，是两件不同的事。
+
+
+\subsection{等势面}
+
+
+把空间中电势相同的点连接起来，得到的曲面称为等势面。它与地形图中的等高线相似，使标量函数
+$\varphi(x,y,z)$ 具有直观的几何表示。图~\ref{ch19:fig:s33-2-1}给出匀强电场、正点电荷和电偶极子的等势面截线；实线带箭头
+表示电场线，灰色虚线表示等势面在纸面内的截线。
+
+\par\noindent\begin{minipage}{\linewidth}
+\equipotentialGallery
+\diagramcaption{三种典型静电场中的等势面与电场线。两族曲线在每个交点处互相垂直。}\label{ch19:fig:s33-2-1}
+\end{minipage}\par\medskip
+
+等势面和电场线具有三条直接性质。第一，不同电势的等势面不能相交，电场线也不能在电场非零处相交；
+否则同一点会出现两个电势值或两个电场方向。第二，电场线处处垂直于等势面，因为电荷沿等势面移动时
+$\dd\varphi=0$，电场力不做功。第三，若用相同电势差画相邻等势面，等势面越密的地方场强越大，因为
+$|\boldsymbol E|$ 是电势沿法线方向的空间变化率。
+
+两个不等量异号点电荷 $+Q,-q$ 产生的电势为
+\[
+  \varphi(P)=\frac{1}{4\pi\varepsilon_0}
+  \left(\frac{Q}{r_+}-\frac{q}{r_-}\right).
+\]
+零电势面满足
+\[
+  \frac{r_+}{r_-}=\frac{Q}{q}.
+\]
+到两个定点的距离之比为常数的点构成 Apollonius 球面。因此当 $Q\ne q$ 时，零电势面是一个包围电荷
+绝对值较小者的球面；当 $Q=q$ 时，它退化为两电荷连线的中垂面。
+
+图~\ref{ch19:fig:s33-2-2} 取 $Q=2q$；圆周上 $P$ 到正、负电荷的距离分别为 $r_+,r_-$，满足 $r_+=2r_-$，故两项电势正好相消。
+
+\par\noindent\begin{minipage}{\linewidth}
+\zeroEquipotentialFigure
+\diagramcaption{不等量异号点电荷的零电势面截面。球面包围绝对值较小的电荷。}\label{ch19:fig:s33-2-2}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{等势线读数不能代替粒子轨迹}
+沿局部法线，相邻等势面差为 $\Delta\varphi$、间距为 $\Delta n$ 时，
+$E_n\simeq-\Delta\varphi/\Delta n$。必须比较相同电势差的线距；随意多画几条线不会使真实场变强。
+例如两相邻等势面差 $20\,\mathrm V$、法向间距 $2.0\,\mathrm{mm}$，局部场强约为 $10^4\,\mathrm{V/m}$。
+电荷沿等势面移动时电场不做功，但可存在垂直于速度的电场力；若没有合适约束，粒子通常不会一直留在该面上。
+
+
+% EM structure and teaching revision 20260928
+\subsection{由场求势：分段积分与参考点}
+电势差由路径积分定义。若场具有径向对称性，可写为
+\[
+ \varphi(r)-\varphi(r_0)=-\int_{r_0}^{r}E_r(s)\dd s.
+\]
+积分路径穿过不同场区时必须分段，并让同一界面的电势值衔接。半径 $R$、电荷 $Q$ 的均匀实心球取无穷远为零，球外 $\varphi=kQ/r$，球内则为
+\[
+ \varphi(r)=\varphi(R)+\int_r^R\frac{kQs}{R^3}\dd s
+ =\frac{kQ}{2R}\left(3-\frac{r^2}{R^2}\right),\qquad k=\frac1{4\pi\varepsilon_0}.
+\]
+中心电势有限；当 $Q>0$ 时它大于球面电势，而中心场强为零。若 $Q<0$，电势高低关系反向，但中心场强仍为零。这说明电势的数值与其空间变化率是不同问题；“场为零”只能推出所在连通无场区域内电势为常数。
+无限长线电荷的场按 $1/r$ 衰减，到无穷远的积分不收敛，不能仍机械地选 $\varphi(\infty)=0$。应指定有限参考半径 $r_0$，得到
+$\varphi(r)-\varphi(r_0)=-\lambda\ln(r/r_0)/(2\pi\varepsilon_0)$。绝对零点的选择不影响电势差、力和能量变化。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【电偶极子】}\label{ch19:ex:s32-1-4}
+相距 $l$ 的两个点电荷 $-q$、$+q$ 构成电偶极子。定义电偶极矩
+$\boldsymbol p=q\boldsymbol l$，方向由负电荷指向正电荷。求远处 $r\gg l$ 的电场，并研究其电场线。
+\begin{center}\begin{tikzpicture}[>=Latex,scale=.8]
+
+ \fill ( -1,0) circle(3pt) node[below]{$-q$};\fill[DeepBlue](1,0)circle(3pt)node[below]{$+q$};
+ \draw[<->](-1,-.65)--(1,-.65)node[midway,below]{$l$};
+ \draw[->,DeepBlue](0,0)--(2.1,0)node[right]{$\boldsymbol p$};
+ \fill(0,0)circle(1pt)node[below]{$O$};\draw[dashed](0,0)--(4.0,2.2)node[midway,above left]{$r$};
+ \fill(4.0,2.2)circle(1.5pt)node[right]{$P$};
+ \draw(.9,0)arc[start angle=0,end angle=28.81,radius=.9];\node at(1.18,.3){$\theta$};
+
+\end{tikzpicture}\end{center}
+\figcap{电偶极子的电荷间距与远处观察方向，电场待求。}\label{ch19:fig:em-source-thirty-second-section-4}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+把坐标原点取在两电荷中点，极轴沿 $\boldsymbol p$。观察点的位置矢量为 $\boldsymbol r$，它与
+$\boldsymbol p$ 的夹角为 $\theta$。在 $l/r$ 的一阶精度下，电势为
+\[
+  \varphi(\boldsymbol r)
+  =\frac{1}{4\pi\varepsilon_0}\frac{\boldsymbol p\cdot\hat{\boldsymbol r}}{r^2}
+  =\frac{1}{4\pi\varepsilon_0}\frac{p\cos\theta}{r^2}.
+\]
+由 $\boldsymbol E=-\boldsymbol\nabla\varphi$ 得到球坐标分量
+\[
+  E_r=-\frac{\partial\varphi}{\partial r}
+  =\frac{1}{4\pi\varepsilon_0}\frac{2p\cos\theta}{r^3},
+  \qquad
+  E_\theta=-\frac1r\frac{\partial\varphi}{\partial\theta}
+  =\frac{1}{4\pi\varepsilon_0}\frac{p\sin\theta}{r^3}.
+\]
+所以矢量形式为
+\[
+  \boxed{\boldsymbol E
+  =\frac{1}{4\pi\varepsilon_0r^3}
+  \left[3(\boldsymbol p\cdot\hat{\boldsymbol r})\hat{\boldsymbol r}-\boldsymbol p\right]}.
+\]
+场强大小和相对径向的偏角 $\beta$ 分别满足
+\[
+  \boxed{E=\frac{p}{4\pi\varepsilon_0r^3}\sqrt{1+3\cos^2\theta}},
+  \qquad
+  \tan\beta=\frac{E_\theta}{E_r}=\frac12\tan\theta.
+\]
+
+图~\ref{ch19:fig:s32-1-7} 左侧把场分解为径向和极角方向，右侧以同一偶极矩方向展示远场线族。
+
+\par\noindent\begin{minipage}{\linewidth}
+\dipoleFarFigure
+\diagramcaption{电偶极子的远场分量与典型场线。$\boldsymbol p$ 的方向由负电荷指向正电荷。}\label{ch19:fig:s32-1-7}
+\end{minipage}\par\medskip
+
+场线的切线与电场平行，故在极坐标中
+\[
+  \frac{\dd r}{r\dd\theta}=\frac{E_r}{E_\theta}=2\cot\theta.
+\]
+积分得到
+\[
+  \ln r=2\ln\sin\theta+\text{常量},
+  \qquad
+  \boxed{r=C\sin^2\theta}.
+\]
+图右侧按这个方程画出理想点偶极子的场线，偶极矩集中于原点；对左侧有限间距的真实电荷，这个近似只用于 $r\gg l$，不延伸至两电荷附近。远场按 $r^{-3}$ 衰减，比有净电荷的
+$r^{-2}$ 更快。
+\end{xesolution}
+\begin{origexamplebox}{【直线电四极子】}\label{ch19:ex:s32-1-5}
+如图，三个电荷依次为 $-q,+2q,-q$，相邻两电荷相距 $l$（两端相距 $2l$）。求距离该电四极子 $r\gg l$ 处的电场强度大小
+和方向，并求在这一近似下的电场线方程。
+\par\noindent\begin{minipage}{\linewidth}
+\emQuadrupoleQuestion
+\figcap{三个点电荷、相邻间距及远处观察方向。}\label{ch19:fig:em-question-5}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+总电荷为零，偶极矩也为零，所以远场的最低非零项是电四极项。取极轴沿电荷排列方向，观察方向与极轴
+夹角为 $\theta$。把两端电荷的距离倒数按 $l/r$ 展开到二阶：
+\[
+  \frac1{|\boldsymbol r\mp l\boldsymbol e_x|}
+  =\frac1r\left[1\pm\frac lr\cos\theta
+  +\frac{l^2}{2r^2}(3\cos^2\theta-1)+\cdots\right].
+\]
+与中心 $+2q$ 的电势相加后，零阶和一阶项都抵消，得到
+\[
+  \boxed{\varphi(r,\theta)=\frac{1}{4\pi\varepsilon_0}
+  \frac{ql^2}{r^3}(1-3\cos^2\theta)}.
+\]
+于是
+\[
+  \boxed{E_r=\frac{3ql^2}{4\pi\varepsilon_0r^4}(1-3\cos^2\theta)},
+  \qquad
+  \boxed{E_\theta=-\frac{6ql^2}{4\pi\varepsilon_0r^4}\sin\theta\cos\theta}.
+\]
+场强大小为
+\[
+  \boxed{E=\frac{3ql^2}{4\pi\varepsilon_0r^4}
+  \sqrt{1-2\cos^2\theta+5\cos^4\theta}}.
+\]
+
+图~\ref{ch19:fig:s32-1-8} 左侧的三个电荷共线，相邻间距为 $l$；观察角 $\theta$ 从这条轴量起，右侧场线由三个电荷共同产生。
+
+\par\noindent\begin{minipage}{\linewidth}
+\quadrupoleFarFigure
+\diagramcaption{直线电四极子的电荷位置、远场观察方向与场线四瓣结构。}\label{ch19:fig:s32-1-8}
+\end{minipage}\par\medskip
+
+场线方程满足
+\[
+  \frac{\dd r}{r\dd\theta}
+  =\frac{E_r}{E_\theta}
+  =-\frac{1-3\cos^2\theta}{2\sin\theta\cos\theta}.
+\]
+令 $u=\cos\theta$，积分得
+\[
+  \ln r=\frac12\ln|\cos\theta|+\ln|\sin\theta|+\text{常量},
+\]
+所以每一瓣中的场线可写为
+\[
+  \boxed{r=C|\sin\theta|\sqrt{|\cos\theta|}}.
+\]
+它具有关于轴线和中垂面的对称性。四极场按 $r^{-4}$ 衰减，比偶极场的 $r^{-3}$ 又快一阶。
+\end{xesolution}
+\begin{origexamplebox}{【电势算电场】}\label{ch19:ex:s33-2-1}
+小明发现电势和电场有非常明确的关系，并且电势是标量，应该更方便计算。请利用先求电势再求电场的方式，
+求解本章前文中诸多问题的电场。您一定会发现有的问题这样求解似乎不太正确，思考为什么以及对应的解决办法。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+基本路线是先由
+\[
+  \varphi(\boldsymbol r)=\frac{1}{4\pi\varepsilon_0}
+  \int\frac{\dd q}{|\boldsymbol r-\boldsymbol r'|}
+\]
+求标量电势，再作 $\boldsymbol E=-\boldsymbol\nabla\varphi$。困难不在求导，而在于：对无限延伸的带电体，
+把无穷远取作零电势会使电势积分发散。
+
+\potentialMethodFigure
+
+\textbf{1. 点电荷。} 对 $\varphi=kQ/r$ 直接求梯度：
+\[
+  \boldsymbol E=-\frac{\dd\varphi}{\dd r}\hat{\boldsymbol r}
+  =\boxed{\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\hat{\boldsymbol r}}.
+\]
+
+\textbf{2. 有限长直线。} 令导线沿 $y$ 轴，从 $-L_2$ 延伸到 $L_1$，线密度为 $\lambda$；观察点在
+$(a,0)$。电势为
+\[
+  \varphi(a)=\frac{\lambda}{4\pi\varepsilon_0}
+  \int_{-L_2}^{L_1}\frac{\dd y}{\sqrt{a^2+y^2}}
+  =\frac{\lambda}{4\pi\varepsilon_0}
+  \left[\operatorname{arsinh}\frac{L_1}{a}
+  +\operatorname{arsinh}\frac{L_2}{a}\right].
+\]
+对称导线 $L_1=L_2=L$ 时
+\[
+  E_\perp=-\frac{\dd\varphi}{\dd a}
+  =\frac{\lambda}{2\pi\varepsilon_0a}
+  \frac{L}{\sqrt{a^2+L^2}}
+  =\boxed{\frac{\lambda}{2\pi\varepsilon_0a}\sin\theta},
+\]
+与本章前文的矢量积分一致。非对称时不能只对 $a$ 求导就认为得到了全部电场。
+在一般观察点 $(x,y)$、$x>0$ 写成
+\[
+ \varphi(x,y)=k\lambda\left[\operatorname{arsinh}\frac{L_1-y}{x}
+ +\operatorname{arsinh}\frac{L_2+y}{x}\right].
+\]
+于是先对 $x,y$ 分别求偏导，再令 $(x,y)=(a,0)$：
+\[
+ E_x=\frac{k\lambda}{a}\left(\frac{L_1}{\sqrt{a^2+L_1^2}}+
+ \frac{L_2}{\sqrt{a^2+L_2^2}}\right),\quad
+ E_y=k\lambda\left(\frac1{\sqrt{a^2+L_1^2}}-\frac1{\sqrt{a^2+L_2^2}}\right).
+\]
+这也恢复了非对称有限导线的两个分量。
+
+\textbf{3. 无限长直线。} 若直接令 $L\to\infty$，上式中的 $\varphi$ 发散；原因是无限直线的电场只按
+$1/a$ 衰减，从有限位置积分到无穷远得到对数发散。解决办法是选择一个有限参考距离 $a_0$：
+\[
+  \boxed{\varphi(a)-\varphi(a_0)
+  =-\frac{\lambda}{2\pi\varepsilon_0}\ln\frac{a}{a_0}}.
+\]
+求导仍给出
+\[
+  \boxed{E_a=-\frac{\dd\varphi}{\dd a}
+  =\frac{\lambda}{2\pi\varepsilon_0a}}.
+\]
+所以“绝对电势发散”不妨碍有限位置间的电势差和电场有确定值。
+
+\textbf{4. 无限大平面。} 设平面在 $z=0$，则
+\[
+  \boxed{\varphi(z)-\varphi(0)=-\frac{\sigma}{2\varepsilon_0}|z|},
+\]
+从而
+\[
+  \boxed{E_z=-\frac{\dd\varphi}{\dd z}
+  =\frac{\sigma}{2\varepsilon_0}\operatorname{sgn}z}.
+\]
+这里也不能令 $\varphi(\infty)=0$，因为匀强电场的电势沿距离线性变化。
+
+\textbf{5. 均匀圆盘。} 半径为 $R$、面密度为 $\sigma$ 的圆盘，在轴线上 $z>0$ 处的电势为
+\[
+  \varphi(z)=\frac{1}{4\pi\varepsilon_0}
+  \int_0^R\frac{\sigma2\pi r\dd r}{\sqrt{z^2+r^2}}
+  =\frac{\sigma}{2\varepsilon_0}
+  \left(\sqrt{z^2+R^2}-z\right).
+\]
+因此
+\[
+  \boxed{E_z=-\frac{\dd\varphi}{\dd z}
+  =\frac{\sigma}{2\varepsilon_0}
+  \left(1-\frac{z}{\sqrt{z^2+R^2}}\right)}.
+\]
+\textbf{6. 无限长条带。} 条带位于 $z=0$，沿 $y$ 方向无限，宽度范围 $-b_1\le u\le b_2$。
+取有限参考点 $P_0=(0,0,z_0)$，$z_0>0$。窄条 $\dd\lambda=\sigma\dd u$ 是无限线电荷，因而
+\[
+ \varphi(x,z)-\varphi(0,z_0)
+ =-\frac{\sigma}{4\pi\varepsilon_0}\int_{-b_1}^{b_2}
+ \ln\frac{(x-u)^2+z^2}{u^2+z_0^2}\,\dd u.
+\]
+分母固定参考电势，且比值无量纲。对 $x,z$ 求偏导，积分中的参考项导数为零：
+\[
+ E_x=\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}
+ \frac{x-u}{(x-u)^2+z^2}\,\dd u,\qquad
+ E_z=\frac{\sigma}{2\pi\varepsilon_0}\int_{-b_1}^{b_2}
+ \frac{z}{(x-u)^2+z^2}\,\dd u.
+\]
+在 $P=(0,0,a)$ 处得到
+\[
+ E_x=\frac{\sigma}{4\pi\varepsilon_0}\ln\frac{a^2+b_1^2}{a^2+b_2^2},\qquad
+ E_z=\frac{\sigma}{2\pi\varepsilon_0}\left(\arctan\frac{b_1}{a}+\arctan\frac{b_2}{a}\right),
+\]
+与直接积分的条带结果相同；当 $b_1=b_2$ 时横向分量确为零。
+
+有限系统可以取无穷远为零点；无限直线、无限条带和无限平面则应先计算电势差，或先保留有限尺寸、求导
+得到电场后再取无限大极限。
+\end{xesolution}
+
+
+
+\section{电势应用与放电现象}
+
+\subsection{电子伏特}
+
+
+电荷量为 $q$ 的粒子从电势 $\varphi_A$ 运动到 $\varphi_B$，电场做功
+\[
+  W=q(\varphi_A-\varphi_B)=qU,
+\]
+其中 $U=\varphi_A-\varphi_B$ 是沿运动方向的电势降。电子通过 $1\,\mathrm V$ 的电势差获得的能量定义为
+$1\,\mathrm{eV}$：
+\begin{equation}
+  \boxed{1\,\mathrm{eV}=1.602\,176\,634\times10^{-19}\,\mathrm J}.
+\end{equation}
+电子伏特特别适合描述原子、原子核和高能粒子的能量。由 $k_BT=1\,\mathrm{eV}$ 可得
+\begin{equation}
+  \boxed{T\approx1.2\times10^4\,\mathrm K}.
+\end{equation}
+因此做数量级估算时，可以把“约一万开尔文”与“热运动典型能量约 $1\,\mathrm{eV}$”联系起来。
+
+中性原子中的电子被原子核的库仑吸引束缚。外来粒子若传给电子足够能量，电子就会脱离原子，原子
+成为正离子，这个最低能量称为第一电离能。图~\ref{ch19:fig:s33-2-3}显示其随原子序数的周期性：每个周期的碱金属处较低，
+稀有气体处较高；绝大多数原子的第一电离能在 $5$--$25\,\mathrm{eV}$ 的尺度内。
+
+\par\noindent\begin{minipage}{\linewidth}
+\ionizationEnergyFigure
+\diagramcaption{原子的第一电离能随原子序数的周期性变化。覆盖 $Z=1$--$108$，符号区分元素类别；空心点表示含理论或估计标识的数据。}\label{ch19:fig:s33-2-3}
+\end{minipage}\par\medskip
+
+质量数较大的原子核可能发生 $\alpha$ 衰变，放出由两个质子和两个中子组成的氦核。母核的质量数减少 4，
+核电荷数减少 2；典型 $\alpha$ 粒子能量约为 $5\,\mathrm{MeV}$。
+
+\alphaDecayFigure
+
+以 $5\,\mathrm{MeV}$ 的 $\alpha$ 粒子正碰金核为例，金的核电荷数 $Z=79$。若金核近似不动，最近距离
+$r_m$ 由动能完全转化为库仑势能确定：
+\[
+  5\,\mathrm{MeV}
+  =\frac{1}{4\pi\varepsilon_0}\frac{2\times79e^2}{r_m},
+  \qquad r_m\approx4.5\times10^{-14}\,\mathrm m.
+\]
+在如此小的距离上仍观察到平方反比散射，说明原子的正电荷集中在远小于原子尺度的原子核中。
+
+为了研究更高能量下的粒子相互作用，人们建造粒子加速器。大型电子--正电子对撞机曾把单束电子加速到
+$104.5\,\mathrm{GeV}$，使对撞质心能量达到 $209\,\mathrm{GeV}$；大型强子对撞机的设计单束质子能量达到
+$7\,\mathrm{TeV}$。把巨大能量集中在极小空间区域，可以产生并探测更重的粒子。宇宙线中还存在能量超过
+$10^{20}\,\mathrm{eV}$ 的粒子，远高于人造加速器能量。
+
+图~\ref{ch19:fig:s33-2-4} 中的蓝色磁体沿隧道弯曲排列，束流在内部真空管中传播；磁场用于约束轨道，粒子的能量由加速电场提供。
+
+\par\noindent\begin{minipage}{\linewidth}
+\acceleratorTunnelFigure
+\diagramcaption{大型强子对撞机环形隧道中的超导磁体和束流管结构示意。环形主隧道周长约 $26.7\,\mathrm{km}$。}\label{ch19:fig:s33-2-4}
+\end{minipage}\par\medskip
+
+
+% EM teaching enrichment 20260927
+\paragraph{先判能量变化，再换速度}
+电子由静止从低电势点进入高 $U$ 的电势点，$q=-e$，故
+$\Delta K=-q\Delta\varphi=eU>0$。若 $U=100\,\mathrm V$，其动能为 $100\,\mathrm{eV}$，非相对论速率为
+\[
+ v=\sqrt{\frac{2eU}{m_e}}\simeq5.93\times10^6\,\mathrm{m/s}.
+\]
+电子伏特是能量单位，不能直接代入以千克为质量单位的速度公式，须先换焦耳。若所得 $eU$ 与 $m_ec^2$ 同量级，应改用 $eU=(\gamma-1)m_ec^2$，而非继续使用 $mv^2/2$。
+
+
+\subsection{气体放电}
+
+
+气体通常近似绝缘，但过强电场会使它击穿。气体中少量自由电子先被电场加速；若电子在两次碰撞之间获得
+的能量足以激发原子，原子退激时便可能发光；碰撞能量超过电离阈值时，还可能电离原子并产生新的电子。
+超过阈值不意味着每次碰撞都电离，碰撞过程具有一定概率。电离产生的载流子足以补偿复合、扩散等损失时，
+放电才能持续。辉光放电同样包含电离，并常依靠阴极二次电子发射补充电子，不能说成“只激发、不电离”。
+辉光、弧光、火花是不同的放电状态，区别还取决于气压、电流、气体温度、电极及供电条件；弧光通常具有
+较大的持续电流和明显加热，火花则是击穿时的快速放电。图~\ref{ch19:fig:s33-2-5}中的闪电是大尺度气体击穿。
+
+\par\noindent\begin{minipage}{\linewidth}
+\lightningFigure
+\diagramcaption{闪电中的分支放电通道。亮通道是空气被击穿后形成的高温等离子体。}\label{ch19:fig:s33-2-5}
+\end{minipage}\par\medskip
+
+典型原子的电离能约为 $10\,\mathrm{eV}$。若电子与原子的碰撞截面取
+$\sigma\sim10^{-20}\,\mathrm{m^2}$，理想气体数密度为 $n=P/(k_BT)$，则平均自由程估计为
+\[
+  l\sim\frac1{n\sigma}\sim\frac{k_BT}{P\sigma}.
+\]
+在 $T=300\,\mathrm K$、$P=1\,\mathrm{atm}$ 时，$l\sim4\times10^{-6}\,\mathrm m$。若电子要在一个
+自由程内获得约 $10\,\mathrm{eV}$，所需场强量级为
+\[
+  E\sim\frac{10\,\mathrm V}{4\times10^{-6}\,\mathrm m}
+  \approx2.5\times10^6\,\mathrm{V/m}.
+\]
+真实击穿场强还受气体种类、压强、湿度、电极曲率和初始电离等因素影响，但这一估算说明为什么尖端附近
+的强局域电场容易触发放电。
+
+
+% EM teaching enrichment 20260927
+\paragraph{碰撞尺度估算的用途与限制}
+把电离所需能量记为 $W_i$，单次自由飞行的获得能量约为 $eE\ell$。条件 $eE\ell\sim W_i$ 只检验一次碰撞是否可能有效，不能独自决定能否形成自持放电。
+在固定温度、固定碰撞截面的粗略模型中 $\ell\propto1/P$，故相似的单次加速条件对应近似固定的 $E/P$。实际有限电极间隙还要能容纳足够多次增殖碰撞；气压极低时虽自由程变长，碰撞次数却减少。因此不能由该局部估算推断“气压越低必然越容易击穿”。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【零等势面】}\label{ch19:ex:s33-2-4}
+小明将两个点电荷 $+Q,-q$ 分别置于 $(a,0,0)$ 和原点。求零电势等势面的方程（以无穷远为电势零点）。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+空间点 $P(x,y,z)$ 到 $+Q$ 和 $-q$ 的距离分别为
+\[
+  r_+=\sqrt{(x-a)^2+y^2+z^2},
+  \qquad r_-=\sqrt{x^2+y^2+z^2}.
+\]
+零电势条件为
+\[
+  \frac{Q}{r_+}=\frac{q}{r_-}.
+\]
+令 $\mu=Q/q$，平方并整理：
+\[
+  \mu^2(x^2+y^2+z^2)=(x-a)^2+y^2+z^2.
+\]
+当 $\mu\ne1$ 时，配方得到球面
+\[
+  \boxed{\left(x+\frac{a}{\mu^2-1}\right)^2+y^2+z^2
+  =\left(\frac{a\mu}{|\mu^2-1|}\right)^2}.
+\]
+
+\apolloniusSphereFigure
+
+若 $Q>q$，球心在负 $x$ 轴，球面包围位于原点的较小电荷 $-q$；若 $Q<q$，则包围 $+Q$。特别地，
+$Q=q$ 时不能除以 $\mu^2-1$，原方程直接化为
+\[
+  \boxed{x=\frac a2},
+\]
+即两电荷连线的中垂面。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【无限长导线】}\label{ch19:ex:s33-2-5}
+两根无限长直导线沿 $z$ 方向，带电线密度分别为 $+\lambda$ 和 $-\lambda$，与 $xOy$ 平面的交点分别为
+$(a,0)$ 和 $(-a,0)$。求平面内任意等势线的方程及电场线方程。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+设 $P(x,y)$ 到正、负线电荷的距离为
+\[
+  r_+=\sqrt{(x-a)^2+y^2},\qquad
+  r_-=\sqrt{(x+a)^2+y^2}.
+\]
+单根无限线电荷的绝对电势发散，但一正一负两根导线的发散常数相消。取中垂面 $x=0$ 为零电势，可写成
+\[
+  \boxed{\varphi(x,y)=\frac{\lambda}{2\pi\varepsilon_0}
+  \ln\frac{r_-}{r_+}}.
+\]
+令 $C=\exp(2\pi\varepsilon_0\varphi_0/\lambda)>0$，等势线满足
+\[
+  \boxed{\frac{r_-}{r_+}=C},
+\]
+即
+\[
+  \boxed{(x+a)^2+y^2=C^2\bigl[(x-a)^2+y^2\bigr]}.
+\]
+$C\ne1$ 时是圆，$C=1$ 时退化为直线 $x=0$。
+
+电场线与等势线正交。令
+\[
+  \beta=\arg\bigl[(x-a)+\mathrm i y\bigr]
+  -\arg\bigl[(x+a)+\mathrm i y\bigr]
+\]
+为点 $P$ 看两导线所成的有向角，则 $\beta=$ 常量给出电场线。消去角度：
+\[
+  \boxed{x^2+y^2-a^2=2ay\cot\beta},
+\]
+或
+\[
+  \boxed{x^2+(y-a\cot\beta)^2=a^2\csc^2\beta}.
+\]
+这是一族通过 $(\pm a,0)$ 的圆；$y=0$ 是需单独保留的直线分支。
+为何有向角不变？令 $u=\ln(r_-/r_+)$，直接求导可得
+$\beta_x=u_y$、$\beta_y=-u_x$。而 $\boldsymbol E=-(\lambda/2\pi\varepsilon_0)\nabla u$，
+所以 $\nabla\beta\cdot\boldsymbol E=0$，沿场线 $\beta$ 不变。
+等势圆的圆心 $(c,0)$ 和半径 $R_c$ 满足 $c^2-R_c^2=a^2$；
+场线圆的圆心 $(0,d)$ 和半径 $R_d$ 满足 $R_d^2-d^2=a^2$。
+两圆相交于 $P=(x,y)$ 时，相应半径的点积为
+$ (x-c,y)\cdot(x,y-d)=x^2+y^2-cx-dy=0$，证明两族曲线正交。
+
+\twoLinesFamiliesFigure
+
+图中 $+\lambda$ 位于右侧，$-\lambda$ 位于左侧，箭头从正电荷指向负电荷；实线等势圆与虚线场线圆处处正交。三维空间中，两类截线沿 $z$ 方向平移，分别形成等势柱面和场线
+柱面。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【有限长导线】}\label{ch19:ex:s33-2-6}
+一根有限长直导线带电线密度 $\lambda$，位于 $(a,0,0)$ 到 $(-a,0,0)$ 之间。系统绕 $x$ 轴旋转对称。
+求包含 $x$ 轴的平面内任意等势线的方程及电场线方程。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+在包含导线的子午面内，以 $s=\sqrt{y^2+z^2}$ 表示点到 $x$ 轴的距离，并定义点到两个端点的距离
+\[
+  r_+=\sqrt{(x-a)^2+s^2},
+  \qquad r_-=\sqrt{(x+a)^2+s^2}.
+\]
+直接积分得到
+\[
+  \varphi(x,s)=\frac{\lambda}{4\pi\varepsilon_0}
+  \int_{-a}^{a}\frac{\dd x'}{\sqrt{(x-x')^2+s^2}}
+  =\boxed{\frac{\lambda}{4\pi\varepsilon_0}
+  \ln\frac{r_++r_-+2a}{r_++r_--2a}}.
+\]
+因此 $\varphi=$ 常量等价于
+\[
+  \boxed{r_++r_-=\text{常量}},
+\]
+在子午面内是一族以导线两端为焦点的椭圆，绕 $x$ 轴旋转后成为长旋转椭球面。
+
+引入长旋转椭圆坐标
+\[
+  \xi=\frac{r_++r_-}{2a},
+  \qquad \eta=\frac{r_--r_+}{2a}.
+\]
+由两焦点距离可反解出
+\[
+ x=a\xi\eta,\qquad s=a\sqrt{(\xi^2-1)(1-\eta^2)},\quad \xi\ge1,\quad -1\le\eta\le1.
+\]
+两条坐标切向量的点积为
+\[
+ \frac{\partial(x,s)}{\partial\xi}\cdot\frac{\partial(x,s)}{\partial\eta}
+ =a^2\xi\eta-
+ a^2\frac{\xi\sqrt{1-\eta^2}}{\sqrt{\xi^2-1}}
+ \frac{\eta\sqrt{\xi^2-1}}{\sqrt{1-\eta^2}}=0.
+\]
+因此它们正交。电势只依赖 $\xi$，场垂直于 $\xi=$ 常量的椭圆，
+沿 $\eta=$ 常量的坐标线，即
+\[
+  \boxed{r_--r_+=\text{常量}}.
+\]
+它在子午面内是一族共焦双曲线，绕轴旋转后成为双曲面。
+
+\finiteRodFamiliesFigure
+
+图中粗黑线表示 $-a\le x\le a$ 的均匀带电导线（$\lambda>0$）；实线是等势椭圆，虚线箭头从导线不同位置向外。椭圆与双曲线在每个交点正交。导线两端是共同焦点，不是椭圆或双曲线的圆心；这一位置关系是正确画图的
+关键。
+\end{xesolution}
+
+
+
+\section{静电能量与带电粒子运动}
+
+\subsection{静电势能}
+
+
+必须区分“一个试探电荷在外电场中的势能”与“构造整个带电系统所需的总静电势能”。前者是
+$E_p=q\varphi$；后者是把全部电荷从无穷远逐个搬到指定位置时，外力所做功的总和。
+
+设系统由 $N$ 个点电荷 $Q_i$ 构成，$r_{ij}$ 为 $Q_i,Q_j$ 的距离。把每一对电荷的相互作用能只计算一次，
+得到
+\begin{equation}
+  \boxed{U=\sum_{i=1}^{N}\sum_{j=1}^{i-1}
+  \frac{1}{4\pi\varepsilon_0}\frac{Q_iQ_j}{r_{ij}}
+  =\frac12\sum_{i=1}^{N}Q_i\varphi_i'}.
+\end{equation}
+$\varphi_i'$ 是除 $Q_i$ 自身以外的其他电荷在 $Q_i$ 处产生的电势。第二种写法前面的 $1/2$ 不能遗漏，
+因为直接求和 $Q_i\varphi_i'$ 会把每一对相互作用计算两次；点电荷自身的无穷大自能并不包含在式中。
+
+对总电荷为 $Q$、半径为 $R$ 的均匀带电球壳，表面电势为
+$Q/(4\pi\varepsilon_0R)$，所以
+\begin{equation}
+  \label{ch19:ref:shell-energy}\boxed{U=\frac12Q\varphi(R)
+  =\frac{1}{2}\frac{1}{4\pi\varepsilon_0}\frac{Q^2}{R}}
+  =\boxed{\frac{Q^2}{8\pi\varepsilon_0R}}.
+\end{equation}
+半径越小，静电势能越高。压缩球壳时必须克服表面电荷之间的斥力，外力所做的功就储存在静电系统中。
+
+
+% EM teaching enrichment 20260927
+\paragraph{用逐个装配核对二分之一}
+三个相同点电荷 $q$ 放在边长 $a$ 的等边三角形顶点。搬入第一个不做相互作用功，第二个需 $kq^2/a$，第三个需 $2kq^2/a$，所以总能为 $3kq^2/a$。
+若只把第三个移到无穷远、其余固定，电场对它做功 $2kq^2/a$，此处应使用第三个在既定外场中的势能 $q\varphi'$，不能再乘 $1/2$。
+“整个系统能量按电荷对计数”与“一个粒子在不变外场中的能量”是两种不同问题，辨明过程比记忆系数更可靠。
+
+
+\subsection{电场能量}
+
+
+静电能不仅可以看成电荷对之间的相互作用能，也可以看成分布在电场中的能量。真空中电场强度为 $E$ 的
+位置具有能量密度
+\begin{equation}
+  \boxed{w_E=\frac12\varepsilon_0E^2}.
+\end{equation}
+从无场状态建立电场必须输入能量。例如把原本紧贴的等量异号电荷拉开，外力做功形成电场；移动电荷时，
+场的分布和储存的能量也随之改变。
+
+均匀带电球壳内部 $E=0$，外部电场为点电荷场。球外距离 $r$ 处的能量密度是
+\[
+  w_E(r)=\frac12\varepsilon_0
+  \left(\frac{1}{4\pi\varepsilon_0}\frac{Q}{r^2}\right)^2.
+\]
+把它对球壳外部全空间积分：
+\begin{equation}
+  \boxed{U=\int_R^\infty w_E(r)\,4\pi r^2\dd r}.
+\end{equation}
+代入后得到 $U=Q^2/(8\pi\varepsilon_0R)$，与式\eqref{ch19:ref:shell-energy}完全一致。电荷对求和强调相互作用，能量密度积分
+强调能量保存在空间中的场里；后者可以推广到随时间变化的电磁场。
+
+本章使用的核心概念依次是：电势能、电势、等势面、静电系统的相互作用能以及电场能量密度。计算时必须
+同时检查电势零点是否能取在无穷远、求和是否重复计算电荷对，以及所求的是单个电荷的势能还是整个系统
+的总能量。
+
+% EM teaching enrichment 20260927
+\paragraph{总场平方中的交叉项}
+两组固定电荷产生 $\boldsymbol E_1,\boldsymbol E_2$ 时，场能含
+\[
+ \frac{\varepsilon_0}{2}(\boldsymbol E_1+\boldsymbol E_2)^2
+ =\frac{\varepsilon_0E_1^2}{2}+\frac{\varepsilon_0E_2^2}{2}
+ +\varepsilon_0\boldsymbol E_1\cdot\boldsymbol E_2.
+\]
+前两项是各自自能，交叉项给出相互作用能；它可以为负，虽然完整场能密度非负。
+移动刚性带电体而不改变自身分布时，自能不变，求能量差可只算相互作用项。点电荷模型的自能发散，不能把含自场的 $q\varphi$ 当成有限相互作用势能。
+
+
+
+
+% EM structure and teaching revision 20260928
+\subsection{组装能、相互作用能与自能}
+把若干点电荷从无穷远逐个移入，先前已放置的电荷对后来电荷做功。每对电荷只计一次，因此
+\[
+ W=\sum_{i<j}\frac{kq_iq_j}{r_{ij}}
+ =\frac12\sum_i q_i\varphi_{\mathrm{other}}(\boldsymbol r_i).
+\]
+右式的电势必须排除该点电荷自身的发散项。两个同号电荷由很远处靠近时 $W$ 增大，需要外力做正功；异号电荷靠近则相反。
+连续分布可写为 $W=\tfrac12\int\rho\varphi\dd V$。对于半径 $R$ 的均匀实心带电球，也可逐层组装：已放好的内球电荷为 $q(r)=Qr^3/R^3$，新薄壳为 $\dd q=3Qr^2\dd r/R^3$，故
+\[
+ W=\int_0^R\frac{kq(r)}r\dd q=\frac{3kQ^2}{5R}.
+\]
+这包含整个连续球的自能；若题目仅问两部分之间的相互作用能，则应减去各部分各自的自能。把各区域的场直接平方相加会漏掉交叉项。
+用于粒子运动时，先界定哪些带电体固定、哪些能运动。单粒子在固定外场中可用 $K+q\varphi=\mathrm{const}$；若场源也运动，则须把场源的动能和体系相互作用能一起计入。
+
+
+\subsection{专题例题与方法应用}
+
+\begin{origexamplebox}{【电子透镜】}\label{ch19:ex:s32-1-7}
+在电子显微镜中，一束原先通过电势差 $U_0$ 加速、具有一定能量的电子，经过一根与电子束原来方向垂直的
+绷紧带电细金属线。该线带正电，电荷线密度为 $\lambda$；金属线产生的电场相对较弱，因此电子轨道只稍受
+影响。入射电子的瞄准参数为 $b$，求电子通过带电金属线以后运动方向的偏转角。
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+取 $b>0$ 为瞄准距离的大小，并采用非相对论、细线及弱偏转近似。电子的电荷为 $-e$，进入相互作用区前，加速电势差把电势能转化为动能：
+\[
+  \frac12mv^2=eU_0.
+\]
+正线电荷的场沿径向向外，电子受力指向线电荷。弱偏转近似中，可以沿原来的水平直线计算横向冲量。
+令电子在 $x$ 方向运动，线电荷在原点垂直纸面，未偏转轨迹为 $y=b$，则 $x=vt$。
+
+\electronLensFigure
+
+线电荷场强为
+\[
+  E(r)=\frac{\lambda}{2\pi\varepsilon_0r},
+  \qquad r=\sqrt{x^2+b^2}.
+\]
+横向力的大小为
+\[
+  |F_y|=eE\frac{b}{r}
+  =\frac{e\lambda}{2\pi\varepsilon_0}
+  \frac{b}{x^2+b^2}.
+\]
+于是横向动量改变量
+\[
+  |\Delta p_y|
+  =\int_{-\infty}^{\infty}|F_y|\dd t
+  =\frac{e\lambda}{2\pi\varepsilon_0v}
+  \int_{-\infty}^{\infty}\frac{b\,\dd x}{x^2+b^2}
+  =\frac{e\lambda}{2\varepsilon_0v}.
+\]
+偏转角很小时 $\alpha\approx|\Delta p_y|/(mv)$，代入 $mv^2=2eU_0$：
+\[
+  \boxed{\alpha=\frac{e\lambda}{2\varepsilon_0mv^2}
+  =\frac{\lambda}{4\varepsilon_0U_0}}.
+\]
+在这一近似下，偏转角与电子质量、电荷量以及瞄准距离 $b$ 都无关，只由线电荷密度和加速电压决定。
+$b$ 的消失来自两个效应的抵消：靠得更近时横向力更大，但强作用区域的通过时间更短。
+
+这里把积分限延至无穷，是对有限装置中横向冲量的近似，不是说无限线电荷的对数电势在无穷远有有限值。
+若实际主要相互作用区为 $-X\le x\le X$，$X\gg b$，同一恒速近似给出
+\[
+ |\Delta p_y|=\frac{e\lambda}{\pi\varepsilon_0v}\arctan\frac Xb,
+ \qquad \alpha_X=\frac{\lambda}{2\pi\varepsilon_0U_0}\arctan\frac Xb.
+\]
+令 $X/b$ 很大才回到上面的结果。同时须满足
+$[\lambda/(2\pi\varepsilon_0U_0)]\ln(X/b)\ll1$，使纵向动能变化也远小于初始动能；
+细线半径须远小于 $b$，线长须足以近似为无限线。
+若这些条件不满足，应给定实际场区和入射条件再求轨迹，不能将该常数偏转角公式直接外推。
+\end{xesolution}
+\begin{origexamplebox}{【均匀带电球】}\label{ch19:ex:s33-2-2}
+小明给一个金属球壳均匀充电，得到一个半径为 $R$、电量为 $Q$ 的均匀带电球壳。试求：
+\begin{enumerate}[label=\arabic*.]
+  \item 空间中总的电场能量；
+  \item 必须用力压住球壳才能保证其不会四散飞走。需要多大的压强？
+  \item 若是均匀带电的绝缘实心球，答案有什么变化？
+  \item 为什么常见的是均匀带电的“金属球壳”和“绝缘球体”？
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+金属球壳与绝缘实心球的电场分布如下。黑线是球壳：内部场为零，表面外侧跃变到
+$Q/(4\pi\varepsilon_0R^2)$；蓝线是均匀带电实心球：内部场从球心开始线性增加，并在表面与外部点电荷场
+连续相接。
+
+\chargedSphereEnergyFigure
+
+\textbf{1. 金属球壳的能量。} 球外
+$E=Q/(4\pi\varepsilon_0r^2)$，球内 $E=0$，所以
+\[
+  U=\int_R^\infty\frac12\varepsilon_0E^2\,4\pi r^2\dd r
+  =\boxed{\frac{Q^2}{8\pi\varepsilon_0R}}.
+\]
+
+\textbf{2. 维持球壳的压强。} 设球壳半径发生准静态改变，电荷量保持 $Q$ 不变。电斥力对应的向外广义力
+为
+\[
+  F_R=-\frac{\dd U}{\dd R}
+  =\frac{Q^2}{8\pi\varepsilon_0R^2}.
+\]
+除以球面积 $4\pi R^2$，得到需要由材料或外界提供的向内压强
+\[
+  \boxed{p_e=\frac{F_R}{4\pi R^2}
+  =\frac{Q^2}{32\pi^2\varepsilon_0R^4}}
+  =\boxed{\frac{\sigma_s^2}{2\varepsilon_0}}
+  =\boxed{\frac12\varepsilon_0E_{\rm out}^2},
+\]
+其中 $\sigma_s=Q/(4\pi R^2)$。不能用 $\sigma_sE_{\rm out}$，因为面电荷受到的是去掉自身奇异场后的平均
+场 $(E_{\rm out}+E_{\rm in})/2=E_{\rm out}/2$。
+
+\textbf{3. 均匀带电绝缘实心球。} 球内体电荷密度
+$\rho=3Q/(4\pi R^3)$，由高斯定律
+\[
+  E(r)=\frac{Qr}{4\pi\varepsilon_0R^3}\quad(r<R),
+  \qquad
+  E(r)=\frac{Q}{4\pi\varepsilon_0r^2}\quad(r>R).
+\]
+内、外能量相加：
+\[
+  U_{\rm in}=\frac{Q^2}{40\pi\varepsilon_0R},
+  \qquad U_{\rm out}=\frac{Q^2}{8\pi\varepsilon_0R},
+\]
+故
+\[
+  \boxed{U_{\rm solid}=\frac{3Q^2}{20\pi\varepsilon_0R}
+  =\frac35\frac{1}{4\pi\varepsilon_0}\frac{Q^2}{R}}.
+\]
+绝缘球内部存在体电荷力，维持它的机械应力随半径变化，不能只用一个表面压强描述。若只问把整个球作
+相似压缩所需的平均广义压强，则
+\[
+  \bar p=-\frac{\dd U}{\dd V}
+  =\frac{3Q^2}{80\pi^2\varepsilon_0R^4}.
+\]
+
+\textbf{4. 材料区别。} 导体达到静电平衡后，内部自由电荷会迁移到外表面，因此均匀带电导体自然表现为
+“带电球壳”；绝缘体中的电荷可以被冻结在体内，才可能形成均匀体电荷分布。几何上当然也能制作绝缘空壳，
+但“均匀带电金属实心球”在静电平衡下不可能保持均匀体电荷。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【相互作用能】}\label{ch19:ex:s33-2-3}
+小明尝试构建一个由 10 个点电荷组成的体系，电荷记为 $Q_i$，$i=1,2,\ldots,10$；任意两电荷之间的
+距离为 $r_{ij}$。为了把这 10 个电荷从无穷远搬到对应位置，小明需要做功多少？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+按任意顺序逐个移入电荷。第一个电荷移入时没有其他电荷，外力做功为零；第二个电荷只与第一个发生相互
+作用；第 $i$ 个电荷移入时，只需计算它与已经就位的 $i-1$ 个电荷的作用。这样每一对电荷恰好出现一次。
+
+\chargeAssemblyFigure
+
+外力在准静态组装过程中所做的总功等于系统静电势能：
+\[
+  \boxed{W_{\rm ext}=U
+  =\frac{1}{4\pi\varepsilon_0}
+  \sum_{i=1}^{10}\sum_{j=1}^{i-1}\frac{Q_iQ_j}{r_{ij}}}.
+\]
+也可写成
+\[
+  \boxed{U=\frac12\sum_{i=1}^{10}Q_i\varphi_i'},
+  \qquad
+  \varphi_i'=\frac{1}{4\pi\varepsilon_0}
+  \sum_{j\ne i}\frac{Q_j}{r_{ij}}.
+\]
+若异号电荷使某些项为负，外力总功也可能为负，表示组装过程中静电力向外界释放能量。答案与移入顺序
+无关，因为静电力是保守力。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【同性相斥】}\label{ch19:ex:s33-2-7}
+一个可视为点电荷的小球 $A$，质量为 $m$、电量为 $+q$，用长度未知的轻绳悬挂。
+另一小球 $B$ 也带电 $+q$，初始足够远，以两球初始相互作用能为零的极限处理，$A$ 初始竖直静止。
+小明缓慢移动 $B$ 并排斥 $A$，使 $A$ 始终近似平衡；最终 $B$ 占据 $A$ 原来的最低位置，$A$ 上升 $h$。
+忽略两球尺寸变化及 $B$ 的重力功（所求手的功仅计克服静电相互作用的部分），求小明做的功和电场能量增量。
+\par\noindent\begin{minipage}{\linewidth}
+\emRepellingQuestion
+\figcap{悬点、轻绳及两球的最终位置；虚线标出原来的最低位置。}\label{ch19:fig:em-source-thirty-third-section-7}
+\end{minipage}\par\medskip
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+取初态 $B$ 在足够远处、$A$ 竖直悬挂，末态缓慢达到平衡。设绳长为 $L$，末态绳与竖直方向夹角为
+$\theta$，两球距离为 $r$。$A,B$ 都在以悬点为圆心、半径为 $L$ 的圆周上，所以
+\[
+  r=2L\sin\frac\theta2,
+  \qquad h=L(1-\cos\theta)=2L\sin^2\frac\theta2.
+\]
+因此
+\[
+  \boxed{h=r\sin\frac\theta2}.
+\]
+
+图~\ref{ch19:fig:s33-2-6} 中两段悬线位置均长 $L$，夹角为 $\theta$；$A,B$ 的连线决定电斥力方向，$h$ 是两球的高度差。
+
+\par\noindent\begin{minipage}{\linewidth}
+\repellingSpheresFigure
+\diagramcaption{末态几何与 $A$ 球受力。$B$ 位于 $A$ 原来的最低位置，三力方向由实际位置唯一确定。}\label{ch19:fig:s33-2-6}
+\end{minipage}\par\medskip
+
+沿 $A$ 球运动圆周的切向列平衡条件。电斥力
+$F_e=kq^2/r^2$，其切向分量为 $F_e\cos(\theta/2)$；重力切向分量为 $mg\sin\theta$：
+\[
+  F_e\cos\frac\theta2=mg\sin\theta
+  =2mg\sin\frac\theta2\cos\frac\theta2.
+\]
+故
+\[
+  F_e=2mg\sin\frac\theta2=\frac{2mgh}{r}.
+\]
+再代入 $F_e=kq^2/r^2$：
+\[
+  \frac{kq^2}{r}=2mgh.
+\]
+两球相互作用的电场能量从零增至
+\[
+  \boxed{\Delta U_E=\frac{kq^2}{r}=2mgh}.
+\]
+$A$ 的重力势能增加 $mgh$，绳的拉力不做功；准静态过程中小明所做功等于总势能增加：
+\[
+  \boxed{W_{\text{小明}}=\Delta U_E+\Delta U_g=3mgh}.
+\]
+答案与未知绳长 $L$ 无关，正是因为平衡条件和圆周几何把 $L,\theta,r$ 全部消去了。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【玻尔氢原子】}\label{ch19:ex:s33-2-8}
+在玻尔氢原子模型中，电子在原子核外以光速的 $1/137$ 绕原子核作圆周运动。这个氢原子的总能量是多少？
+为什么是负能量？
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+氢核带电 $+e$，电子带电 $-e$。库仑吸引力提供向心力：
+\[
+  \frac{m_ev^2}{r}=\frac{1}{4\pi\varepsilon_0}\frac{e^2}{r^2}.
+\]
+因此
+\[
+  \frac{1}{4\pi\varepsilon_0}\frac{e^2}{r}=m_ev^2.
+\]
+
+\bohrAtomFigure
+
+电子动能和电势能分别为
+\[
+  K=\frac12m_ev^2,
+  \qquad U=-\frac{1}{4\pi\varepsilon_0}\frac{e^2}{r}=-m_ev^2.
+\]
+所以总能量
+\[
+  E=K+U=-\frac12m_ev^2.
+\]
+代入 $v=c/137$：
+\[
+  \boxed{E=-\frac{m_ec^2}{2\times137^2}
+  \approx-13.6\,\mathrm{eV}}.
+\]
+同时可得轨道半径 $r\approx5.29\times10^{-11}\,\mathrm m$。总能量为负，是因为把相距无穷远、静止的
+质子和电子规定为零能量；氢原子是束缚态，要输入 $13.6\,\mathrm{eV}$ 才能把电子完全移到无穷远。
+\end{xesolution}
+
+
+
+\begin{origexamplebox}{【$\alpha$ 粒子散射】}\label{ch19:ex:s33-2-9}
+小明用一个 $\alpha$ 粒子打向带 $Z$ 个单位正电荷的金原子核。
+\begin{enumerate}[label=\arabic*.]
+  \item 若认为金原子核不动，$\alpha$ 粒子的轨迹如何随初始状态变化？
+  \item 若有很多 $\alpha$ 粒子同时入射，出射的微分散射截面是多少？
+  \item 历史上谁第一次做了这个实验？
+\end{enumerate}
+\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{xesolution}
+记 $\alpha$ 粒子电荷为 $+2e$，入射动能为 $E_k=\tfrac12mv_\infty^2$，瞄准参数为 $b$。把库仑
+排斥势写成
+\[
+  V(r)=\frac{\kappa}{r},
+  \qquad
+  \kappa=\frac{1}{4\pi\varepsilon_0}(2e)(Ze).
+\]
+
+\rutherfordFigure
+图中三条曲线使用同一 $\kappa/(2E_k)=0.7$ 和同一核位置，长度以同一个任意单位表示。
+虚线是入射与出射渐近线，$b$ 是入射渐近线到核的垂距；蓝线的 $b$ 最小，因而偏转最大。
+
+
+\textbf{1. 轨迹。} 能量与角动量守恒，角动量为 $L=mv_\infty b$。排斥平方反比力的轨迹是以原子核为
+焦点的双曲线。为补出角度关系，令 $u=1/r$，以最近点的径向为极角 $\psi=0$。
+比奈方程为 $u''+u=-m\kappa/L^2$，其对称解为
+\[
+ u=\frac{m\kappa}{L^2}(\epsilon\cos\psi-1).
+\]
+将最近点 $u'(0)=0$ 代入能量式
+$E_k=(L^2/2m)(u'^2+u^2)+\kappa u$，得到
+$\epsilon^2=1+2E_kL^2/(m\kappa^2)=1+(2E_kb/\kappa)^2$。
+两条渐近线处 $u=0$，故 $\cos\psi_\infty=1/\epsilon$。
+速度入射方向与入射位置矢量反向，因而偏转角
+$\Theta=\pi-2\psi_\infty$，有
+$\sin(\Theta/2)=1/\epsilon$。消去 $\epsilon$ 后，散射角 $\Theta$ 与瞄准参数满足
+\[
+  \boxed{b=\frac{\kappa}{2E_k}\cot\frac\Theta2},
+  \qquad
+  \boxed{\tan\frac\Theta2=\frac{\kappa}{2E_kb}}.
+\]
+$b$ 越小或入射能量越低，偏转越强；$b=0$ 时发生正碰并反向散射，最近距离
+\[
+  \boxed{r_{\min}=\frac{\kappa}{E_k}}.
+\]
+双曲线离心率为
+\[
+  \epsilon=\sqrt{1+\left(\frac{2E_kb}{\kappa}\right)^2}>1.
+\]
+
+\textbf{2. 卢瑟福微分截面。} 入射束中瞄准参数在 $b$ 到 $b+\dd b$ 的粒子占据环带面积
+$\dd\sigma=2\pi b|\dd b|$；散射到 $\Theta$ 到 $\Theta+\dd\Theta$ 的立体角为
+$\dd\Omega=2\pi\sin\Theta\dd\Theta$。令 $B_0=\kappa/(2E_k)$，则
+\[
+ \left|\frac{\dd b}{\dd\Theta}\right|=\frac{B_0}{2}\csc^2\frac\Theta2,
+ \qquad \frac{\dd\sigma}{\dd\Omega}=
+ \frac{b}{\sin\Theta}\left|\frac{\dd b}{\dd\Theta}\right|.
+\]
+代入 $b=B_0\cot(\Theta/2)$ 和 $\sin\Theta=2\sin(\Theta/2)\cos(\Theta/2)$，得到
+\[
+  \boxed{\frac{\dd\sigma}{\dd\Omega}
+  =\left(\frac{\kappa}{4E_k}\right)^2
+  \frac{1}{\sin^4(\Theta/2)}}.
+\]
+若关心散射角大于 $\Theta_0$ 的总截面，则
+\[
+  \boxed{\sigma(\Theta>\Theta_0)
+  =\pi\left(\frac{\kappa}{2E_k}\right)^2
+  \cot^2\frac{\Theta_0}{2}}.
+\]
+
+\textbf{3. 历史。} 1909 年，汉斯·盖革和恩斯特·马斯登在恩斯特·卢瑟福指导下完成金箔
+$\alpha$ 粒子散射实验；卢瑟福于 1911 年用核式原子模型解释大角散射。严格说，实际执行实验并最先
+报告结果的是盖革与马斯登，提出决定性理论解释的是卢瑟福。
+\end{xesolution}
+
+\endgroup
+
+\endgroup

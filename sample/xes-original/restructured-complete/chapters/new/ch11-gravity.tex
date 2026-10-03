@@ -1,0 +1,500 @@
+\section{有心力运动的守恒量}
+\label{ch11:sec:central}
+
+把力心固定在惯性系原点 $O$。若质点所受合力始终沿 $O$ 与质点的连线，就称它为有心力。
+先研究大小只依赖距离、且不显含时间的情形：
+\begin{equation}\label{ch11:eq:central-force}
+ \vect F=F(r)\uvec r,\qquad r=|\vect r|>0.
+\end{equation}
+这里 $F(r)$ 是有符号的径向分量：$F>0$ 向外，$F<0$ 向内。
+“沿径向”保证力矩为零；“只依赖 $r$、不显含时间”才使这里的机械能也守恒。
+例如随时间改变的径向力仍可使角动量守恒，却未必有守恒的机械能。
+真实的两颗星都会运动，暂时固定力心是质量悬殊时的近似；后面将用相对坐标解除这个限制。
+
+对原点的角动量为 $\vect L=m\vect r\times\vect v$。由于叉乘两个平行矢量为零，
+\begin{equation}
+ \frac{\dd\vect L}{\dd t}=\vect r\times\vect F=0.
+\end{equation}
+若 $\vect L\ne0$，任意时刻都有 $\vect r\cdot\vect L=0$，所以轨道在一个通过力心、垂直于
+$\vect L$ 的固定平面内。若 $L=0$，速度与位置矢量平行，运动退化为沿直线的径向运动；
+这一情形不能套用后面含 $1/L$ 或 $1/h$ 的轨道公式。
+
+在非退化轨道平面内取极坐标 $(r,\theta)$，选择 $\theta$ 的正向使角动量大小 $L>0$，记
+\begin{equation}\label{ch11:eq:h}
+ h=\frac Lm=r^2\dot\theta>0.
+\end{equation}
+$h$ 是单位质量角动量，量纲为 $\mathrm{m^2/s}$。极坐标的两个单位矢量也随时间转动，故
+\[
+ \dot{\uvec r}=\dot\theta\uvec\theta,\qquad
+ \dot{\uvec\theta}=-\dot\theta\uvec r,
+\]
+\[
+ \vect v=\dot r\uvec r+r\dot\theta\uvec\theta,\qquad
+ \vect a=(\ddot r-r\dot\theta^2)\uvec r
+ +(r\ddot\theta+2\dot r\dot\theta)\uvec\theta.
+\]
+牛顿第二定律的径向、切向分量分别是
+\begin{equation}\label{ch11:eq:polar-newton}
+ m(\ddot r-r\dot\theta^2)=F(r),\qquad
+ r\ddot\theta+2\dot r\dot\theta=0.
+\end{equation}
+将后一式乘以 $r$，左端正是 $\dd(r^2\dot\theta)/\dd t$，再次得到式\eqref{ch11:eq:h}。
+在短时间 $\dd t$ 内位置矢量扫过面积 $\dd A=\tfrac12r^2\dd\theta$，因此
+\begin{equation}\label{ch11:eq:area-law}
+ \frac{\dd A}{\dd t}=\frac12r^2\dot\theta=\frac h2.
+\end{equation}
+这就是开普勒（Kepler）第二定律的动力学来源；等面积定律适用于有心力，并非平方反比引力独有。
+
+再取势能 $U(r)$ 满足 $F(r)=-\dd U/\dd r$。两个速度分量正交，机械能为
+\begin{equation}\label{ch11:eq:energy-original}
+ E=\frac12m(\dot r^2+r^2\dot\theta^2)+U(r).
+\end{equation}
+利用式\eqref{ch11:eq:polar-newton}可得
+$\dot E=m\vect v\cdot\vect a+U'(r)\dot r=F(r)\dot r-F(r)\dot r=0$。
+对于这种没有速度相关势的模型，哈密顿量（Hamiltonian）就是上述机械能。
+给定初始位置与速度，$E$ 和 $\vect L$ 就由初态确定，以后不再改变。
+
+\subsection{束缚运动与散射}
+同一组动力学方程可以回答两类不同的问题。束缚运动关心粒子是否始终停留在有限距离范围内、
+是否稳定以及多久返回；散射则关心从远方入射的粒子经过力心附近后朝哪个方向离开。
+图\ref{ch11:fig:bound-scatter}把这两种初始条件并列画出。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.84,font=\small]
+ \begin{scope}[shift={(-3.8,0)}]
+  \draw[curve] (-1,0) ellipse (2 and 1.732);
+  \draw[curve,->,domain=45:67,samples=30] plot ({-1+2*cos(\x)},{1.732*sin(\x)});
+  \fill (0,0) circle (1.8pt) node[below left=3pt] {$O$};
+  \fill (1,0) circle (1.8pt) node[below right=3pt] {$P_0$};
+  \draw[guide] (0,0)--(1,0) node[midway,below=5pt] {$r_0$};
+  \draw[vector] (1,0)--(1,1.05) node[right=4pt] {$v_0$};
+  \node at (-.7,-2.85) {(a) 有限区域内的束缚运动};
+ \end{scope}
+ \begin{scope}[shift={(3.3,0)},scale=.78]
+  \pgfmathsetmacro{\aa}{.35}\pgfmathsetmacro{\bb}{1}
+  \pgfmathsetmacro{\cc}{sqrt(\aa*\aa+\bb*\bb)}
+  \pgfmathsetmacro{\cs}{\aa/\cc}\pgfmathsetmacro{\sn}{\bb/\cc}
+  \draw[guide] (-3.8,1)--(3.6,1);
+  \draw[curve,domain=2.0:-1.7,samples=180,variable=\u]
+   plot ({\cs*(\cc-\aa*cosh(\u))-\sn*\bb*sinh(\u)},
+         {\sn*(\cc-\aa*cosh(\u))+\cs*\bb*sinh(\u)});
+  \fill (0,0) circle (2pt) node[below left=3pt] {$O$};
+  \draw[guide] (-3.8,0)--(-2.6,0);
+  \draw[<->] (-3.25,0)--(-3.25,1) node[midway,left=4pt] {$b$};
+  \draw[vector] (-3.4,1)--(-2.1,1) node[midway,above=5pt] {$\vect v_\infty$};
+  
+  \begin{scope}[shift={(.3,-1.6)}]
+   \draw[->] (0,0)--(1.35,0) node[right] {$\vect v_\infty$};
+   \draw[->,DeepBlue] (0,0)--(-38.58:1.35) node[below right] {$\vect v'_\infty$};
+   \draw (.58,0) arc(0:-38.58:.58);
+   \node at (-19.29:.83) {$\chi$};
+  \end{scope}
+  \node at (-.2,-3.65) {(b) 远处速度方向的偏折};
+ \end{scope}
+\end{tikzpicture}
+\figcap{两类有心力问题。左图的 $r_0,v_0$ 决定初始能量与角动量；右图的 $b$ 是力心到入射渐近线的垂距。}
+\label{ch11:fig:bound-scatter}
+\end{center}
+
+在图\ref{ch11:fig:bound-scatter}(a)中，初速度垂直于半径，初始径向速度为零；
+它可能是近点或远点，却未必是圆轨道。只有径向向心条件也满足才是圆轨道。
+纯粹斥力不能在无其他约束的空间维持这样的束缚轨道；有引力也不自动保证束缚或稳定。
+在图(b)中，$b$ 称为冲量参数，也称瞄准距离；远处速度为 $v_\infty$ 时 $h=bv_\infty$。
+散射角是远处入射、出射\emph{速度}的夹角，不是两位置矢量的夹角。
+引力和斥力均可造成散射。
+
+描述远处自由入射时，通常要求力及选定的势能随 $r\to\infty$ 衰减，并检查远场渐近运动能否定义。
+“短程力”与“长程力”还涉及衰减速率及具体散射理论；平方反比引力和库仑力通常称为长程力，
+但仍能研究其经典散射，不能把“必须短程”当作这里的普遍条件。
+量子散射、光线在引力场中的偏折也延续了这一问题思路，不过其运动方程不能不加条件地照搬经典质点模型。
+
+\section{有效势能与径向稳定性}
+\label{ch11:sec:effective}
+把 $\dot\theta=h/r^2$ 代入式\eqref{ch11:eq:energy-original}，得
+\begin{equation}\label{ch11:eq:effective}
+ E=\frac12m\dot r^2+U_{\rm eff}(r),\qquad
+ U_{\rm eff}(r)=U(r)+\frac{mh^2}{2r^2}=U(r)+\frac{L^2}{2mr^2}.
+\end{equation}
+这样，二维轨道的径向变化等价于一维粒子在有效势中的运动。后一项来自横向动能，称为离心势垒；
+它不是新添的实际相互作用，改变轨道角动量也会改变这条有效势曲线。
+由径向方程同样得到 $m\ddot r=-U_{\rm eff}'(r)$。
+允许区域满足 $E\ge U_{\rm eff}$；若等号成立且 $U_{\rm eff}'\ne0$，径向速度为零并转向。
+圆轨道则必须同时满足
+\begin{equation}\label{ch11:eq:circle-condition}
+ U_{\rm eff}'(r_c)=0,\qquad E=U_{\rm eff}(r_c),\qquad \dot r=0.
+\end{equation}
+
+图\ref{ch11:fig:effective}取引力势 $U=-GMm/r$。此时
+$r_c=h^2/(GM)$、$E_c=U_{\rm eff}(r_c)=-GMm/(2r_c)$。
+令 $x=r/r_c$，便有 $U_{\rm eff}/|E_c|=x^{-2}-2x^{-1}$，纵横轴均为无量纲量。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.80\linewidth,height=6.5cm,axis lines=left,
+ xlabel={$r/r_c$},ylabel={$U_{\rm eff}/|E_c|$},xmin=.35,xmax=4.35,ymin=-1.45,ymax=2.0,
+ xtick=\empty,ytick={-1,0,1},clip=false,
+ every axis label/.style={fill=none},xlabel style={at={(axis description cs:1,-.04)},anchor=north},
+ ylabel style={at={(axis description cs:-.04,1)},anchor=south}]
+ \addplot[curve,domain=.42:4.25,samples=180]{1/x^2-2/x};
+ \addplot[guide] coordinates {(.35,0)(4.25,0)};
+ \addplot[guide] coordinates {(.35,-.5)(4.25,-.5)};
+ \draw[guide] (axis cs:.585786,-1.45)--(axis cs:.585786,-.5);
+ \draw[guide] (axis cs:3.414214,-1.45)--(axis cs:3.414214,-.5);
+ \fill[DeepBlue] (axis cs:1,-1) circle (2pt);
+ \draw[thin] (axis cs:1.1,-1.06)--(axis cs:1.65,-1.23);
+ \node[anchor=west] at (axis cs:1.7,-1.25) {稳定圆轨道};
+ \node[anchor=south] at (axis cs:2.8,-.47) {$E/|E_c|=-1/2$};
+ \node[anchor=north] at (axis cs:.585786,-1.45) {$r_-/r_c$};
+ \node[anchor=north] at (axis cs:3.414214,-1.45) {$r_+/r_c$};
+\end{axis}
+\end{tikzpicture}
+\figcap{同一角动量下的引力有效势。水平能量线与曲线的两个交点确定近点 $r_-$ 与远点 $r_+$，最低点对应圆轨道。}
+\label{ch11:fig:effective}
+\end{center}
+
+图中的束缚粒子在 $r_-$ 与 $r_+$ 之间径向往返，但同时 $\dot\theta=h/r^2$ 始终为正；
+所以粒子不是沿一条半径来回走。有效势先回答允许区和稳定性，精确的轨道形状仍需求 $r(\theta)$。
+在圆轨道附近令 $r=r_c+\xi$，小扰动满足
+\[
+ m\ddot\xi=-U_{\rm eff}''(r_c)\xi+\order{\xi^2}.
+\]
+$U_{\rm eff}''>0$ 时是径向小振动，$U_{\rm eff}''<0$ 时扰动指数增长；
+若二阶导数为零，不能立即宣布稳定，还需检查更高阶或完整方程。
+
+\subsection{幂律力的三类有效势}
+\label{ch11:sec:power}
+取 $F=-kr^n$、$k>0$，这里 $n$ 是\emph{力}的指数，而不是势的指数。积分得
+\[
+ U(r)=\frac{k}{n+1}r^{n+1}+C\quad(n\ne-1),\qquad
+ U(r)=k\ln(r/r_*)+C\quad(n=-1).
+\]
+参考长度 $r_*$ 只改变势能零点。$n\ne-3$ 时，由圆轨道条件有
+\[
+ kr_c^n=\frac{mh^2}{r_c^3},\qquad
+ r_c=\left(\frac{mh^2}{k}\right)^{1/(n+3)}.
+\]
+对有效势再求一次导数，并用圆轨道条件消去 $k$ 或 $h$：
+\begin{equation}\label{ch11:eq:power-stability}
+ U_{\rm eff}''(r_c)=knr_c^{n-1}+\frac{3mh^2}{r_c^4}
+ =\frac{mh^2}{r_c^4}(n+3).
+\end{equation}
+所以稳定圆轨道要求 $n>-3$。这不是“引力越强越稳定”：若引力在靠近力心时比 $r^{-3}$ 增长得更快，
+小的向内偏离会使引力增长超过维持原角动量所需的离心项，从而继续向内偏离。
+
+\begin{center}
+\begin{tikzpicture}[font=\small]
+ \foreach \xx/\nn/\expr in {0/-4/{.5/x^2-1/(3*x^3)},4.65/-2/{.5/x^2-1/x},9.3/1/{.5/x^2+.5*x^2}}{
+  \begin{axis}[at={(\xx cm,0)},anchor=south west,width=4.6cm,height=4.7cm,
+   axis lines=middle,xmin=.3,xmax=3.4,ymin=-1.1,ymax=2.2,ticks=none,
+   xlabel={$r$},ylabel={$U_{\rm eff}$},clip=true,
+   xlabel style={at={(axis description cs:1.02,.333333)},anchor=west},
+   ylabel style={at={(axis description cs:0,1.05)},anchor=south}]
+   \addplot[curve,domain=.42:3.2,samples=180]{\expr};
+   \ifnum\nn=-4
+    \fill (axis cs:1,.166667) circle (1.7pt);
+    \node[anchor=south west] at (axis cs:1.1,.28) {$P$：不稳定};
+   \else\ifnum\nn=-2
+    \addplot[guide] coordinates {(.612574113,-.3)(2.72075922,-.3)};
+    \fill (axis cs:1,-.5) circle (1.7pt);
+    \node[anchor=north west] at (axis cs:1.1,-.60) {$P$：稳定};
+   \else
+    \addplot[guide] coordinates {(.618,1.5)(1.618,1.5)};
+    \fill (axis cs:1,1) circle (1.7pt);
+    \node[anchor=north west] at (axis cs:1.1,.87) {$P$：稳定};
+   \fi\fi
+  \end{axis}
+ }
+ \node at (2.2,-.55) {(a) $n<-3$，取 $n=-4$};
+ \node at (6.85,-.55) {(b) $-3<n<-1$，取 $n=-2$};
+ \node at (11.5,-.55) {(c) $n>-1$，取 $n=1$};
+\end{tikzpicture}
+\figcap{三类幂律引力的有效势。各面板使用各自的无量纲单位；能量线用于显示势阱内的允许区，不表示三种系统的能量相同。}
+\label{ch11:fig:power-potentials}
+\end{center}
+
+图\ref{ch11:fig:power-potentials}(a)中圆轨道处是势垒顶而非势阱底；
+向两侧扰动可导致向力心坠落或向远处逃离。图(b)的有效势在无穷远趋于零，
+负能量的适当范围可束缚，非负能量则可通向无穷远。图(c)的势能在远处无限增大，
+有限能量运动的外侧也受到限制。$n=-1$ 的对数势同样有内侧离心势垒和远处上升的势能，
+应直接用对数式讨论，不能代入含 $1/(n+1)$ 的公式。
+
+当 $n=-3$ 时，
+\[
+ U_{\rm eff}=\frac{mh^2-k}{2r^2}+C.
+\]
+若 $mh^2=k$，有效势为常数，各个半径都可在 $\dot r=0$ 时维持圆周运动，
+但没有径向回复力；加入微小径向速度便会漂移，不是稳定势阱中的振动。
+若 $mh^2\ne k$，有效势单调，不存在圆轨道。这个临界情形应与一般幂律分开。
+
+\section{从径向运动求时间与轨道}
+\label{ch11:sec:quadrature}
+将有效势能量式解出径向速度，必须保留方向分支：
+\[
+ \dot r=\pm\sqrt{\frac2m[E-U_{\rm eff}(r)]}.
+\]
+出向段取正号、入向段取负号，转向点处连接两支。
+从 $r_a$ 到 $r_b$ 的一段运动，其时间可按沿途方向取
+\[
+ \Delta t=\int_{r_a}^{r_b}\frac{\dd r}{\dot r}.
+\]
+对于图\ref{ch11:fig:effective}中两个简单转向点之间的束缚运动，径向周期为
+\begin{equation}\label{ch11:eq:radial-period}
+ T_r=2\int_{r_-}^{r_+}\frac{\dd r}{\sqrt{2[E-U_{\rm eff}(r)]/m}}.
+\end{equation}
+因从近点到远点只占一个径向周期的一半，前面有因子2。
+端点虽使分母为零，但简单转向点附近积分形如 $\int\dd r/\sqrt{|r-r_\pm|}$，通常收敛。
+恰好圆轨道的两个端点重合，应改用小振动极限，而不是直接把积分上下限设成同一点。
+
+用 $\dot\theta=h/r^2$ 除以 $\dot r$，得到
+\begin{equation}\label{ch11:eq:angle-integral}
+ \theta_b-\theta_a=\pm\int_{r_a}^{r_b}
+ \frac{h\,\dd r}{r^2\sqrt{2[E-U_{\rm eff}(r)]/m}}.
+\end{equation}
+这里正负号也由出向/入向段决定。一般位置之间的积分端点是这两个位置，
+\emph{不是必须取转向点}。只有求近点到远点夹角、完整径向周期或散射全过程时，才按问题选择转向点及无穷远。
+例如每个径向周期内转过的方位角为
+\[
+ \Delta\theta_r=2\int_{r_-}^{r_+}
+ \frac{h\,\dd r}{r^2\sqrt{2[E-U_{\rm eff}(r)]/m}}.
+\]
+若 $\Delta\theta_r/(2\pi)$ 是有理数，径向状态和方位角可以在整数个周期后同时重复；
+若为无理数，轨道一般不闭合。径向周期和绕力心转一圈所需时间不能先验地当成同一个量。
+
+\subsection{散射角与冲量参数}
+远方取 $U(\infty)=0$，则 $E=mv_\infty^2/2$、$h=bv_\infty$。
+设散射轨道有一个最近距离 $r_m$，由 $E=U_{\rm eff}(r_m)$ 求出。
+从最近点到无穷远的方位角变化为
+\[
+ \Phi=\int_{r_m}^{\infty}
+ \frac{b\,\dd r}{r^2\sqrt{1-b^2/r^2-2U(r)/(mv_\infty^2)}}.
+\]
+不受力的直线轨道有 $\Phi=\pi/2$。对于不绕转多圈的通常单次散射，
+远处速度的偏折角为 $\chi=|2\Phi-\pi|$；引力向力心弯折、斥力背离力心弯折。
+若轨道绕力心多圈或有多个转向结构，需保留累积方位角，并按实际入出射方向取夹角，不能丢掉绕转次数。
+
+\subsection{比耐方程的换元}
+轨道形状用 $r(\theta)$ 描述比先求 $r(t),\theta(t)$ 再消去时间更直接。
+令 $u(\theta)=1/r$，以下撇号表示对 $\theta$ 求导。首先
+\[
+ \dot\theta=hu^2,\qquad
+ \frac{\dd r}{\dd\theta}=-\frac{u'}{u^2},\qquad
+ \frac{\dd^2r}{\dd\theta^2}=-\frac{u''}{u^2}+\frac{2(u')^2}{u^3}.
+\]
+由链式法则分别得到
+\[
+ \dot r=-\frac{u'}{u^2}\,hu^2=-hu',\qquad
+ \ddot r=-hu''\dot\theta=-h^2u^2u'',\qquad
+ r\dot\theta^2=h^2u^3.
+\]
+代入径向牛顿方程，整理为比耐方程（Binet equation）：
+\begin{equation}\label{ch11:eq:binet}
+ u''+u=-\frac{F(1/u)}{mh^2u^2}
+       =-\frac{mF(1/u)}{L^2u^2}.
+\end{equation}
+左边和右边的量纲均为长度的倒数。这一换元把时间消去，但不改变轨道的物理条件；
+径向退化运动 $h=0$ 仍应直接用时间方程处理。
+
+\input{ch11-time-teaching.tex}
+\section{平方反比力与万有引力二体问题}
+\label{ch11:sec:kepler}
+经典平方反比力问题是天体力学的重要起点。统一写成 $F=-m\kappa/r^2$，
+则引力的 $\kappa=GM>0$；库仑相互作用可取
+$\kappa=-Qq/(4\pi\varepsilon_0m)$，同号电荷给 $\kappa<0$。
+有些文献用 $\sqrt{GM}$ 作为引力强度参数；本章始终直接使用 $GM$，避免平方与符号混淆。
+对 $\kappa>0$，式\eqref{ch11:eq:binet}成为常系数方程
+\[
+ u''+u=\frac{\kappa}{h^2}.
+\]
+特解为常数，齐次解为正弦与余弦的组合。将两积分常数合并为振幅和初相位：
+\begin{equation}\label{ch11:eq:conic}
+ u=\frac{\kappa}{h^2}[1+e\cos(\theta-\theta_0)],\qquad
+ r=\frac{p}{1+e\cos(\theta-\theta_0)},\quad p=\frac{h^2}{\kappa}.
+\end{equation}
+$e\ge0$ 是偏心率，$p$ 为半通径，$\theta_0$ 取近点方向；$e=0$ 时是圆，近点方向不唯一。
+物理轨道只取分母为正的区域。$0<e<1$ 为椭圆，$e=1$ 为抛物线，$e>1$ 为双曲线。
+这称为开普勒问题。对斥力 $\kappa<0$，更方便把解写成
+$u=-|\kappa|/h^2+C\cos(\theta-\theta_0)$，取 $u>0$ 的双曲线支；
+不能仍把 $p=h^2/\kappa$ 当成正长度并沿用引力的全部范围。
+
+\subsection{有效势积分给出能量与偏心率}
+比耐方程容易给出圆锥曲线，却还没有把 $e$ 与初始能量联系起来。
+令比机械能 $\varepsilon=E/m$，将 $\dot r=-hu'$ 代入引力能量式：
+\[
+ \varepsilon=\tfrac12h^2(u')^2+\tfrac12h^2u^2-\kappa u.
+\]
+配方而不是省略交叉项，得
+\[
+ (u')^2+\left(u-\frac{\kappa}{h^2}\right)^2
+ =\frac{\kappa^2}{h^4}+\frac{2\varepsilon}{h^2}.
+\]
+记右边平方根为 $C$，则
+\[
+ \frac{\dd(u-\kappa/h^2)}{\sqrt{C^2-(u-\kappa/h^2)^2}}=\pm\dd\theta.
+\]
+积分并把常相位吸收进 $\theta_0$，恢复式\eqref{ch11:eq:conic}，同时得到
+\begin{equation}\label{ch11:eq:energy-eccentricity}
+ e^2=1+\frac{2\varepsilon h^2}{\kappa^2}
+     =1+\frac{2EL^2}{m^3\kappa^2}.
+\end{equation}
+因此负、零、正能量分别对应椭圆、抛物线、双曲线；这依赖引力势零点取在无穷远。
+对于椭圆，近远点之和为 $2a$，
+\[
+ r_p=\frac p{1+e}=a(1-e),\qquad
+ r_a=\frac p{1-e}=a(1+e),\qquad p=a(1-e^2).
+\]
+代回能量关系得
+\begin{equation}\label{ch11:eq:vis-viva}
+ E=-\frac{m\kappa}{2a},\qquad
+ v^2=\kappa\left(\frac2r-\frac1a\right).
+\end{equation}
+后一式称为活力公式。对于双曲线若用正的几何半实轴 $a_h=p/(e^2-1)$，
+则 $E=+m\kappa/(2a_h)$；抛物线用 $E=0$ 单独处理。
+
+于是给定初始 $r_0,v_{r0},v_{\theta0}$ 后，可以依次计算
+\[
+ h=r_0v_{\theta0},\qquad
+ \varepsilon=\tfrac12(v_{r0}^2+v_{\theta0}^2)-\frac\kappa{r_0},\qquad
+ p=\frac{h^2}{\kappa},\quad e=\sqrt{1+\frac{2\varepsilon h^2}{\kappa^2}}.
+\]
+当 $e>0$ 时，由
+$e\cos(\theta-\theta_0)=p/r_0-1$ 和
+$e\sin(\theta-\theta_0)=hv_{r0}/\kappa$ 共同确定初相位象限，
+不能只用反余弦丢掉入向与出向之别。
+
+\subsection{两颗星都运动时怎样使用上述公式}
+设两颗星质量为 $m_1,m_2$，没有外力，定义
+\[
+ M=m_1+m_2,\quad
+ \vect R=\frac{m_1\vect r_1+m_2\vect r_2}{M},\quad
+ \vect r=\vect r_1-\vect r_2,\quad \mu=\frac{m_1m_2}{M}.
+\]
+$\mu$ 称为约化质量。相加两个牛顿方程得 $M\ddot{\vect R}=0$；相减则得
+\[
+ \ddot{\vect r}=-GM\frac{\vect r}{r^3},\qquad
+ \mu\ddot{\vect r}=-Gm_1m_2\frac{\vect r}{r^3}.
+\]
+因此前述固定中心方程仍适用，但运动的是\emph{两星的相对位置}，引力参数为 $GM$。
+由 $\vect r_1=\vect R+(m_2/M)\vect r$、$\vect r_2=\vect R-(m_1/M)\vect r$，展开并相消交叉项：
+\[
+ K=\tfrac12M|\dot{\vect R}|^2+\tfrac12\mu|\dot{\vect r}|^2,\qquad
+ E_{\rm rel}=\tfrac12\mu|\dot{\vect r}|^2-\frac{Gm_1m_2}{r}.
+\]
+相对角动量为 $\vect L_{\rm rel}=\mu\vect r\times\dot{\vect r}$，故 $h=L_{\rm rel}/\mu$。
+在质心系，两颗星的轨道与相对轨道相似、比例分别为 $m_2/M$ 与 $m_1/M$，且位于质心两侧。
+只有 $m_2\ll m_1$ 时才能近似把 $GM$ 换为较大星体的 $Gm_1$。
+
+\subsection{圆轨道、逃逸速度与周期}
+圆轨道由 $mv_c^2/r=GMm/r^2$ 得
+\[
+ v_c=\sqrt{GM/r},\qquad T_c=\frac{2\pi r}{v_c}=2\pi\sqrt{r^3/(GM)}.
+\]
+若从距离 $r$ 处恰好逃到无穷远且末速为零，则初态总能量为零：
+$mv_e^2/2-GMm/r=0$，所以 $v_e=\sqrt{2GM/r}=\sqrt2v_c$。
+对椭圆不能直接用周长除以某处速度，因为速度不恒定。设短半轴为 $b_e=a\sqrt{1-e^2}$，
+用式\eqref{ch11:eq:area-law}的面积速度除去椭圆面积：
+\[
+ T=\frac{\pi ab_e}{h/2}=\frac{2\pi ab_e}{\sqrt{GMp}}
+ =2\pi\sqrt{\frac{a^3}{GM}}.
+\]
+故开普勒第三定律为
+\begin{equation}\label{ch11:eq:third-law}
+ \boxed{T^2=\frac{4\pi^2a^3}{G(m_1+m_2)}}.
+\end{equation}
+其中 $a$ 是相对椭圆的半长轴；若给某一颗星相对质心的半长轴，必须先按质量比换算。
+
+\begin{origexamplebox}{近地圆轨道和逃逸速度}\label{ch11:ex:01}
+忽略大气和地球自转，地球半径为 $R$、地表重力加速度为 $g$。求近地圆轨道速度、周期和第二宇宙速度。
+\end{origexamplebox}
+\begin{xesolution}
+地表重力满足 $mg=GMm/R^2$，消去试探物体质量得 $GM=gR^2$。
+近地圆轨道径向方程为 $mv_c^2/R=mg$，因此
+\[
+ \boxed{v_c=\sqrt{gR}},\qquad
+ \boxed{T=\frac{2\pi R}{v_c}=2\pi\sqrt{\frac Rg}}.
+\]
+恰好逃逸是能量阈值而非“重力突然消失”：途中仍受引力，动能逐渐减小。
+令初态机械能等于无穷远静止时的零能量，
+\[
+ \frac12mv_e^2-\frac{GMm}{R}=0
+ \quad\Longrightarrow\quad\boxed{v_e=\sqrt{2gR}}.
+\]
+$gR$ 的量纲为速度平方、$R/g$ 为时间平方。取 $R=6.37\times10^6\,\mathrm m$、
+$g=9.81\,\mathrm{m/s^2}$，分别约为 $7.9\,\mathrm{km/s}$、$84.4\,\mathrm{min}$ 和 $11.2\,\mathrm{km/s}$。
+这是理想近地极限；实际卫星不能贴地飞行，需避开地形与大气阻力。
+\end{xesolution}
+
+\begin{origexamplebox}{椭圆轨道远近点速度}\label{ch11:ex:02}
+卫星绕质量为 $M$ 的天体作椭圆运动，近点和远点距离分别为 $r_p,r_a$。求两点速度之比，并给出速度本身。
+\end{origexamplebox}
+\begin{xesolution}
+图\ref{ch11:fig:apsis}中力心在椭圆的焦点而非中心。两拱点有 $\dot r=0$，速度均垂直于位置矢量。
+\begin{center}
+\begin{tikzpicture}[>=Latex,scale=.78,font=\small]
+ \draw[curve] (0,0) ellipse (3 and 1.8);
+ \coordinate (S) at (2.4,0);
+ \fill (S) circle (2pt) node[above left=4pt] {$S$};
+ \fill (3,0) circle (2pt) node[below right=4pt] {$P$};
+ \fill (-3,0) circle (2pt) node[below left=4pt] {$A$};
+ \draw[vector] (3,0)--(3,1.3) node[right=4pt] {$v_p$};
+ \draw[vector] (-3,0)--(-3,-.7) node[left=4pt] {$v_a$};
+ \draw[guide] (-3,0)--(3,0);
+ \draw[<->] (2.4,-2.2)--(3,-2.2) node[midway,below=5pt] {$r_p$};
+ \draw[<->] (-3,-2.2)--(2.4,-2.2) node[midway,below=5pt] {$r_a$};
+\end{tikzpicture}
+\figcap{近点 $P$ 与远点 $A$ 的速度沿同一绕行方向。两距离之和等于椭圆长轴 $2a$。}\label{ch11:fig:apsis}
+\end{center}
+角动量守恒给出 $r_pv_p=r_av_a$，故 $v_p/v_a=r_a/r_p$。
+这还没有给出速度的绝对大小。利用两点机械能相等，
+\[
+ \tfrac12v_p^2-\frac{GM}{r_p}
+ =\tfrac12v_a^2-\frac{GM}{r_a}.
+\]
+代入 $v_a=(r_p/r_a)v_p$，在非圆情形消去 $r_a-r_p$，
+\[
+ v_p^2\frac{(r_a-r_p)(r_a+r_p)}{2r_a^2}
+ =GM\frac{r_a-r_p}{r_pr_a}.
+\]
+于是
+\[
+ \boxed{v_p=\sqrt{\frac{2GMr_a}{r_p(r_p+r_a)}}},\qquad
+ \boxed{v_a=\sqrt{\frac{2GMr_p}{r_a(r_p+r_a)}}},\qquad
+ \boxed{\frac{v_p}{v_a}=\frac{r_a}{r_p}}.
+\]
+也可把图中 $a=(r_p+r_a)/2$ 代入活力公式\eqref{ch11:eq:vis-viva}复核。
+圆轨道 $r_p=r_a=r$ 虽不能在上一步除以零，但由连续极限或向心方程都得 $v=\sqrt{GM/r}$。
+\end{xesolution}
+
+\section{轨道能量、变速与拱线进动}
+椭圆总机械能 $E=-GMm/(2a)$ 只依赖半长轴，角动量则还区分形状。
+在某点瞬时变速时，位置和势能未变，能量改变量来自动能，角动量改变量来自速度的切向分量。
+所以只给“增加多少能量”通常不足以确定一条新轨道，还要给变速方向。
+
+从半径 $r_0$ 的\emph{圆轨道}出发，若只作沿原切向的瞬时变速且不反向，则 $\dot r=0$ 仍成立。
+新速度 $v$ 满足
+\[
+ \ddot r=\frac{v^2}{r_0}-\frac{GM}{r_0^2}.
+\]
+若 $v_c<v<v_e$，该点是新椭圆近点；若 $0<v<v_c$，该点是远点；$v=v_c$ 保持圆轨道。
+$v=v_e$ 是抛物轨道、$v>v_e$ 是双曲轨道，都不再是束缚椭圆。
+若 $v=0$，则退化为径向坠落。若从一般椭圆上 $\dot r\ne0$ 的位置变速，
+仅改变切向速度不会消去径向速度，该位置不能因此成为近点或远点。
+
+\input{ch11-transfer-teaching.tex}
+\begin{starread}{近圆轨道的径向频率与拱线}
+\label{ch11:sec:precession}
+设圆轨道平均角频率为 $\Omega=h/r_c^2$，径向小振动频率
+$\kappa_r=\sqrt{U_{\rm eff}''(r_c)/m}$。每个径向周期转过
+$\Delta\theta_r\simeq2\pi\Omega/\kappa_r$。
+对于力指数为 $n$ 的幂律引力，式\eqref{ch11:eq:power-stability}给
+$\kappa_r^2=(n+3)\Omega^2$。
+平方反比引力 $n=-2$ 有 $\kappa_r=\Omega$，相邻近日点方向相同；
+各向同性谐振子 $n=1$ 则有 $\kappa_r=2\Omega$，相邻最近点相差 $\pi$，
+是同一条固定椭圆短轴上的另一端，并不是长轴持续进动。
+因此“两个频率不相等”不能直接推出拱线转动，必须检查方位角及方向的等价关系。
+
+在接近开普勒势的弱扰动中，$\kappa_r$ 接近 $\Omega$，每径向周期超过 $2\pi$ 的小角
+$\delta\varpi=2\pi(\Omega/\kappa_r-1)$ 对应平均进动速率
+$\dot\varpi=\delta\varpi/(2\pi/\kappa_r)=\Omega-\kappa_r$。
+这个公式的使用背景是近圆、近开普勒轨道，不能不加解释地套到所有幂律势。
+在通常光滑有心势的条件下，使所有束缚轨道都闭合的平方反比引力和各向同性谐振子是两个重要特例。
+\end{starread}

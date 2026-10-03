@@ -1,0 +1,190 @@
+% Historical comparison; values are approximate, not a precision dataset.
+\newcommand{\superconductivityChartFaithful}{%
+\begin{center}
+\resizebox{.98\linewidth}{!}{%
+\begin{tikzpicture}[x=.019cm,y=.62cm,>=Latex]
+\begin{scope}[shift={(0,0)}]
+\draw[axis] (0,.5)--(230,.5) node[right] {$T_c/\mathrm K$};
+\foreach \t in {0,50,100,150,200}{
+ \draw[TextGray] (\t,.5)--(\t,.65) node[above,font=\scriptsize] {$\t$};
+ \draw[TextGray!30,dotted] (\t,.45)--(\t,-20.5);
+}
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,0) {Hg (1911)};
+\draw[DeepBlue,line width=1pt] (0,0)--(4.2,0);
+\fill[DeepBlue] (4.2,0) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (7.2,0) {4.2};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-1) {Pb (1913)};
+\draw[DeepBlue,line width=1pt] (0,-1)--(7.2,-1);
+\fill[DeepBlue] (7.2,-1) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (10.2,-1) {7.2};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-2) {Nb (1930)};
+\draw[DeepBlue,line width=1pt] (0,-2)--(9.2,-2);
+\fill[DeepBlue] (9.2,-2) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (12.2,-2) {9.2};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-3) {NbN (1941)};
+\draw[DeepBlue,line width=1pt] (0,-3)--(16,-3);
+\fill[DeepBlue] (16,-3) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (19,-3) {16};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-4) {V$_3$Si (1953)};
+\draw[DeepBlue,line width=1pt] (0,-4)--(17,-4);
+\fill[DeepBlue] (17,-4) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (20,-4) {17};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-5) {Nb$_3$Sn (1954)};
+\draw[DeepBlue,line width=1pt] (0,-5)--(18,-5);
+\fill[DeepBlue] (18,-5) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (21,-5) {18};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-6) {Nb$_3$Ge (1973)};
+\draw[DeepBlue,line width=1pt] (0,-6)--(23,-6);
+\fill[DeepBlue] (23,-6) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (26,-6) {23};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-7) {CeCu$_2$Si$_2$ (1979)};
+\draw[DeepBlue,line width=1pt] (0,-7)--(0.6,-7);
+\fill[DeepBlue] (0.6,-7) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (3.6,-7) {0.6};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-8) {UBe$_{13}$ (1983)};
+\draw[DeepBlue,line width=1pt] (0,-8)--(0.9,-8);
+\fill[DeepBlue] (0.9,-8) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (3.9,-8) {0.9};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-9) {UPt$_3$ (1984)};
+\draw[DeepBlue,line width=1pt] (0,-9)--(0.5,-9);
+\fill[DeepBlue] (0.5,-9) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (3.5,-9) {0.5};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-10) {UPd$_2$Al$_3$ (1991)};
+\draw[DeepBlue,line width=1pt] (0,-10)--(2,-10);
+\fill[DeepBlue] (2,-10) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (5,-10) {2};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-11) {CeCoIn$_5$ (2001)};
+\draw[DeepBlue,line width=1pt] (0,-11)--(2.3,-11);
+\fill[DeepBlue] (2.3,-11) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (5.3,-11) {2.3};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-12) {PuCoGa$_5$ (2002)};
+\draw[DeepBlue,line width=1pt] (0,-12)--(18.5,-12);
+\fill[DeepBlue] (18.5,-12) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (21.5,-12) {18.5};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-13) {PuRhGa$_5$ (2004)};
+\draw[DeepBlue,line width=1pt] (0,-13)--(9,-13);
+\fill[DeepBlue] (9,-13) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (12,-13) {9};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-14) {LaBaCuO (1986)};
+\draw[DeepBlue,line width=1pt] (0,-14)--(30,-14);
+\fill[DeepBlue] (30,-14) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (33,-14) {30};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-15) {LaSrCuO (1987)};
+\draw[DeepBlue,line width=1pt] (0,-15)--(36,-15);
+\fill[DeepBlue] (36,-15) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (39,-15) {36};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-16) {YBaCuO (1987)};
+\draw[DeepBlue,line width=1pt] (0,-16)--(93,-16);
+\fill[DeepBlue] (93,-16) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (96,-16) {93};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-17) {BiSrCaCuO (1988)};
+\draw[DeepBlue,line width=1pt] (0,-17)--(110,-17);
+\fill[DeepBlue] (110,-17) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (113,-17) {110};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-18) {TlBaCaCuO (1988)};
+\draw[DeepBlue,line width=1pt] (0,-18)--(125,-18);
+\fill[DeepBlue] (125,-18) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (128,-18) {125};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-19) {HgBaCaCuO (1993)};
+\draw[DeepBlue,line width=1pt] (0,-19)--(133,-19);
+\fill[DeepBlue] (133,-19) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (136,-19) {133};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-20) {HgBaCaCuO，30 GPa};
+\draw[DeepBlue,line width=1pt] (0,-20)--(164,-20);
+\fill[DeepBlue] (164,-20) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (167,-20) {164};
+\end{scope}
+\begin{scope}[shift={(470,0)}]
+\draw[axis] (0,.5)--(230,.5) node[right] {$T_c/\mathrm K$};
+\foreach \t in {0,50,100,150,200}{
+ \draw[TextGray] (\t,.5)--(\t,.65) node[above,font=\scriptsize] {$\t$};
+ \draw[TextGray!30,dotted] (\t,.45)--(\t,-20.5);
+}
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,0) {HgTlBaCaCuO (1995)};
+\draw[DeepBlue,line width=1pt] (0,0)--(138,0);
+\fill[DeepBlue] (138,0) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (141,0) {138};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-1) {BKBO (1988)};
+\draw[DeepBlue,line width=1pt] (0,-1)--(30,-1);
+\fill[DeepBlue] (30,-1) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (33,-1) {30};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-2) {YPd$_2$B$_2$C (1994)};
+\draw[DeepBlue,line width=1pt] (0,-2)--(23,-2);
+\fill[DeepBlue] (23,-2) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (26,-2) {23};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-3) {MgB$_2$ (2001)};
+\draw[DeepBlue,line width=1pt] (0,-3)--(39,-3);
+\fill[DeepBlue] (39,-3) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (42,-3) {39};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-4) {Li，33 GPa (2002)};
+\draw[DeepBlue,line width=1pt] (0,-4)--(16,-4);
+\fill[DeepBlue] (16,-4) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (19,-4) {16};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-5) {K$_3$C$_{60}$ (1991)};
+\draw[DeepBlue,line width=1pt] (0,-5)--(18,-5);
+\fill[DeepBlue] (18,-5) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (21,-5) {18};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-6) {RbCsC$_{60}$ (1991)};
+\draw[DeepBlue,line width=1pt] (0,-6)--(33,-6);
+\fill[DeepBlue] (33,-6) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (36,-6) {33};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-7) {Cs$_3$C$_{60}$，1.4 GPa};
+\draw[DeepBlue,line width=1pt] (0,-7)--(38,-7);
+\fill[DeepBlue] (38,-7) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (41,-7) {38};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-8) {CNT低温报道 (2001)};
+\draw[DeepBlue,line width=1pt] (0,-8)--(0.55,-8);
+\fill[DeepBlue] (0.55,-8) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (3.55,-8) {0.55};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-9) {CNT高温报道 (2006)};
+\draw[DeepBlue,line width=1pt] (0,-9)--(12,-9);
+\fill[DeepBlue] (12,-9) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (15,-9) {12};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-10) {掺硼金刚石 (2004)};
+\draw[DeepBlue,line width=1pt] (0,-10)--(4,-10);
+\fill[DeepBlue] (4,-10) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (7,-10) {4};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-11) {LaOFeP (2006)};
+\draw[DeepBlue,line width=1pt] (0,-11)--(4,-11);
+\fill[DeepBlue] (4,-11) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (7,-11) {4};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-12) {LaOFFeAs (2008)};
+\draw[DeepBlue,line width=1pt] (0,-12)--(26,-12);
+\fill[DeepBlue] (26,-12) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (29,-12) {26};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-13) {铁基材料高温区 (2008)};
+\draw[DeepBlue,line width=1pt] (0,-13)--(43,-13);
+\fill[DeepBlue] (43,-13) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (46,-13) {43};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-14) {掺杂SrFFeAs (2009)};
+\draw[DeepBlue,line width=1pt] (0,-14)--(56,-14);
+\fill[DeepBlue] (56,-14) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (59,-14) {56};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-15) {FeSe单层报道 (2015)};
+\draw[DeepBlue,line width=1pt] (0,-15)--(109,-15);
+\fill[DeepBlue] (109,-15) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (112,-15) {109};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-16) {硫氢化物，155 GPa};
+\draw[DeepBlue,line width=1pt] (0,-16)--(203,-16);
+\fill[DeepBlue] (203,-16) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (206,-16) {203};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-17) {NbC（补充）};
+\draw[DeepBlue,line width=1pt] (0,-17)--(11,-17);
+\fill[DeepBlue] (11,-17) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (14,-17) {11};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-18) {Nb$_3$Al（补充）};
+\draw[DeepBlue,line width=1pt] (0,-18)--(18,-18);
+\fill[DeepBlue] (18,-18) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (21,-18) {18};
+\node[anchor=east,font=\scriptsize,inner sep=2pt] at (0,-19) {CaC$_6$（补充）};
+\draw[DeepBlue,line width=1pt] (0,-19)--(11.5,-19);
+\fill[DeepBlue] (11.5,-19) circle (1.8pt);
+\node[anchor=west,font=\scriptsize] at (14.5,-19) {11.5};
+\end{scope}
+\end{tikzpicture}}
+\par\smallskip{\small\color{TextGray}图 10.9：不同超导材料族的历史温区。年代与温度为约值；高压、掺杂和单层条件不能忽略，CNT与单层FeSe列的是历史报道温区，不能直接等同为常压块材零电阻温度。}
+\end{center}
+液态冷媒提供的温区约为：液氦 $4.2\,\mathrm K$、液氢 $20\,\mathrm K$、液氮 $77\,\mathrm K$、液态四氟化碳 $145\,\mathrm K$。
+铜氧化物和铁基材料的简式表示材料族，不表示未经掺杂的任意同名样品都具有图示 $T_c$。
+图中 MgB$_2$、富勒烯、重费米子、碳材料及铁基体系分布于不同温区，说明新材料的发现并不总是刷新最高温度纪录；高压硫氢化物还需与常压材料分开评价。
+}

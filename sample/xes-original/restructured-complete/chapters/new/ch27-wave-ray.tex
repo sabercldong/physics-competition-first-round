@@ -1,0 +1,216 @@
+\section{波动观点下的反射与折射}
+
+光线模型给出反射角和折射角，却不能回答反射光有多强、相位是否突变，以及为何反射率与偏振有关。
+设折射率为 $n_1$ 的非磁性介质中的平面波，以入射角 $\theta_i$ 射向折射率为 $n_2$ 的介质，折射角为 $\theta_t$。
+界面平移对称使频率和切向波矢连续，因而
+\begin{equation}
+ n_1\sin\theta_i=n_2\sin\theta_t.
+\end{equation}
+入射光、反射光和法线所在平面称入射面。电场垂直入射面的模式称 s 偏振，电场平行入射面的模式称 p 偏振。
+
+\begin{center}
+\begin{tikzpicture}[scale=.92,>=Latex]
+  \fill[DeepBlue!6] (-4,-2.55) rectangle (4,0);
+  \draw[very thick] (-4,0)--(4,0) node[right] {界面};
+  \draw[dashed,guide] (0,-2.45)--(0,2.65) node[above] {法线};
+  \coordinate (O) at (0,0);
+  \draw[->,DeepBlue,very thick] (-3.0,2.2)--(O);
+  \draw[->,curve,very thick] (O)--(3.0,2.2);
+  \draw[->,DeepBlue,very thick] (O)--(1.55,-2.30);
+  \node[above] at (-2.3,2.35) {入射};
+  \node[above] at (2.4,2.35) {反射};
+  \node[right] at (1.8,-2.3) {折射};
+  \draw[->,guide] (0,.78) arc[start angle=90,end angle=144,radius=.78];
+  \node at (-.48,.92) {$\theta_i$};
+  \draw[->,guide] (0,-.80) arc[start angle=-90,end angle=-56,radius=.80];
+  \node[left] at (-.65,-1.35) {$\theta_t$};
+  \draw[guide,thin] (-.60,-1.32)--(.22,-.62);
+  \node[left] at (-3.85,1.72) {$n_1$};
+  \node[left] at (-3.85,-1.72) {$n_2$};
+  \node[DeepBlue] at (-2.55,-.55) {$\odot\;s$：电场垂直纸面};
+  \draw[->,DeepBlue,thick] (2.15,-1.05)--(2.78,-.62);
+  \node[DeepBlue,right] at (2.12,-1.22) {$p$：电场在入射面内};
+\end{tikzpicture}
+\figcap{s、p 偏振的定义依赖入射面，而不是依赖纸张本身。图中折射光向法线偏折，对应 $n_2>n_1$。}
+\end{center}
+
+规定界面法向 $\boldsymbol N$ 指向第二介质，$\boldsymbol s$ 垂直入射面，对入射、反射、透射各束分别取
+$\boldsymbol p_j=\boldsymbol s\times\hat{\boldsymbol k}_j$。
+这一右手构造使反射 p 基的切向方向与入射 p 基相反；因此振幅系数的正负必须连同基矢理解。
+无自由面电荷、面电流且介质非磁性时，切向 $\boldsymbol E,\boldsymbol H$ 连续。用 $H=nE/Z_0$，s 分量满足
+\[
+ 1+r_s=t_s,\qquad n_1\cos\theta_i(1-r_s)=n_2\cos\theta_t\,t_s.
+\]
+消去 $t_s$，可得下列第一行。p 分量则满足
+\[
+ \cos\theta_i(1-r_p)=\cos\theta_t\,t_p,\qquad
+ n_1(1+r_p)=n_2t_p.
+\]
+第二式给 $t_p=n_1(1+r_p)/n_2$，代回第一式即得第二行。这就是菲涅尔公式（Fresnel equations）：
+\begin{align}
+ r_s&=\frac{n_1\cos\theta_i-n_2\cos\theta_t}
+ {n_1\cos\theta_i+n_2\cos\theta_t},&
+ t_s&=\frac{2n_1\cos\theta_i}
+ {n_1\cos\theta_i+n_2\cos\theta_t},\\
+ r_p&=\frac{n_2\cos\theta_i-n_1\cos\theta_t}
+ {n_2\cos\theta_i+n_1\cos\theta_t},&
+ t_p&=\frac{2n_1\cos\theta_i}
+ {n_2\cos\theta_i+n_1\cos\theta_t}.
+\end{align}
+这里 $r,t$ 是按各自 s、p 正交基定义的电场复振幅比；p 基在反射前后的指向约定会影响 $r_p$ 的符号，但不影响可观测反射率。
+对无吸收介质，能流反射率和透射率为
+\begin{equation}
+ R_{s,p}=|r_{s,p}|^2,
+ \qquad
+ T_{s,p}=\frac{n_2\cos\theta_t}{n_1\cos\theta_i}|t_{s,p}|^2,
+ \qquad R_{s,p}+T_{s,p}=1.
+\end{equation}
+透射率中不能漏掉折射率和光束投影面积因子。正入射且 $n_2>n_1$ 时，反射电场相对入射电场发生 $\pi$ 相位突变，
+这就是薄膜干涉中常说的“半波损失”；由高折射率侧向低折射率侧反射则没有这一突变。
+
+对 p 偏振，当 $r_p=0$ 时反射光消失。结合折射定律可得
+\begin{equation}
+ \theta_i+\theta_t=\frac\pi2,
+ \qquad
+ \boxed{\tan\theta_B=\frac{n_2}{n_1}}.
+\end{equation}
+$\theta_B$ 称布儒斯特角（Brewster angle）。自然光在该角附近反射后，以 s 偏振为主；气体激光器中的布儒斯特窗正利用
+这一性质降低 p 偏振的反射损耗。
+
+\section{全反射中的隐失场}
+
+当 $n_1>n_2$ 且 $\theta_i>\theta_c=\arcsin(n_2/n_1)$ 时，第二介质中不再有向法线方向传播的平面波，
+但界面下方的电磁场并不为零。取界面为 $y=0$，第二介质位于 $y<0$，切向波数为
+\[
+ k_x=k_0n_1\sin\theta_i,
+\]
+其中 $k_0=\omega/c=2\pi/\lambda_0$，$\lambda_0$ 是真空波长，统一采用时间因子 $e^{-\ii\omega t}$。由 $k_x^2+k_y^2=n_2^2k_0^2$，第二介质中的法向波数成为纯虚数：
+\begin{equation}
+ k_y=-\ii\kappa,
+ \qquad
+ \kappa=k_0\sqrt{n_1^2\sin^2\theta_i-n_2^2}.
+\end{equation}
+于是透入第二介质的场具有
+\begin{equation}
+ E_t\propto e^{\ii k_xx}e^{\kappa y},
+ \qquad
+ \delta=\frac1\kappa
+\end{equation}
+的形式，$\delta$ 是振幅衰减到 $1/e$ 的穿透深度，强度相应衰减到 $e^{-2}$。选择 $k_y=-\ii\kappa$ 是为了使 $y\to-\infty$ 时场衰减，而不是无源增长。远离临界角且折射率差不小时，$\delta$ 常与波长同量级；当 $\theta_i\to\theta_c^+$ 时，$\kappa\to0$、$\delta\to\infty$，不可概括为始终只有一个波长。
+
+\begin{center}
+\begin{tikzpicture}[scale=.90,>=Latex]
+  \fill[DeepBlue!6] (-4,-2.55) rectangle (4,0);
+  \draw[very thick] (-4,0)--(4,0);
+  \draw[dashed,guide] (0,-2.35)--(0,2.55) node[above] {法线};
+  \draw[->,DeepBlue,very thick] (-3.0,2.05)--(0,0);
+  \draw[->,curve,very thick] (0,0)--(3.0,2.05);
+  \draw[DeepBlue,very thick] plot[smooth,domain=0:-2.25,samples=80,variable=\y]
+    ({.9*exp(1.15*\y)},\y);
+  \draw[->,DeepBlue,thick] (1.5,-1.45)--(3.4,-1.45);
+  \node at (2.5,-1.8) {沿界面相位传播};
+  \node[anchor=west] at (1.3,-.45) {$|E(y)|\propto e^{\kappa y}$};
+  \node[anchor=west] at (1.3,-.90) {横向偏移表示振幅};
+  \draw[<->,guide] (-1.15,0)--(-1.15,-.87) node[midway,left] {$\delta$};
+  \node[left] at (-3.75,1.50) {$n_1$};
+  \node[left] at (-3.75,-1.60) {$n_2<n_1$};
+\end{tikzpicture}
+\figcap{全反射与法向振幅包络：低折射率介质内的实线不是光线轨迹，其横向偏移表示振幅，法向不发生正弦振荡。\label{ch27:fig:evanescent}}
+\end{center}
+
+图\ref{ch27:fig:evanescent}中 $y=-\delta$ 的振幅为界面处的 $1/e$。对于无损、无限厚第二介质，隐失场沿法向没有平均净能流，却可沿界面输运能量和相位。若在距离界面数个 $\delta$ 内放入另一块高折射率介质，
+隐失场可耦合成传播波，出现受抑全反射；从量子图像看，它与隧穿具有相同的指数衰减结构。
+
+\begin{starread}{有限光束在全反射中的微小位移}
+平面波全反射系数的模为 $1$，但相位 $\phi_{s,p}$ 随入射角变化。真实窄光束是邻近切向波数 $k_x$ 的角谱叠加，
+各分量反射后得到略有差别的相位；用驻相条件求反射光束中心，得到古斯--汉欣位移（Goos--H\"anchen shift）
+\[
+ \Delta_{\rm GH}=-\frac{\partial\phi_{s,p}}{\partial k_x}.
+\]
+它表现为反射点沿入射面方向移动，数量级通常接近波长。若进一步区分圆偏振分量，还会出现垂直入射面的
+安贝尔--费多罗夫位移（Imbert--Fedorov shift）；它与光的自旋角动量和界面处的角动量守恒有关。
+\end{starread}
+
+\section{程函方程、光线方程与费马原理}
+
+在折射率缓慢变化的介质中，把单色标量场写成
+\[
+ \Psi(\vect r)=A(\vect r)e^{\ii k_0S(\vect r)}.
+\]
+这里 $S$ 的量纲是长度，$k_0S$ 才是无量纲相位。在无损、各向同性且 $n$ 缓变的标量近似中，亥姆霍兹方程为
+$\nabla^2\Psi+k_0^2n^2\Psi=0$。代入上式并除去指数因子，逐项得到
+\[
+ \nabla^2A+2\ii k_0\nabla A\cdot\nabla S+\ii k_0A\nabla^2S
+ +k_0^2A[n^2-|\nabla S|^2]=0.
+\]
+当振幅和折射率变化尺度远大于波长时，最高阶 $k_0^2$ 项先满足零，得到程函方程（eikonal equation）
+\begin{equation}
+ |\nabla S|=n(\vect r).
+\end{equation}
+等相位面法线给出光线方向。令弧长参数为 $s$、单位切向为
+$\vect t=\nabla S/n$。沿光线求导为 $\dd/\dd s=\vect t\cdot\nabla$，再用梯度场无旋的恒等式
+\[
+ (\nabla S\cdot\nabla)\nabla S
+ =\tfrac12\nabla|\nabla S|^2=\tfrac12\nabla n^2=n\nabla n,
+\]
+便有 $\dd(n\vect t)/\dd s=(\nabla S\cdot\nabla)\nabla S/n=\nabla n$，即光线方程
+\begin{equation}
+ \boxed{\frac{\dd}{\dd s}(n\vect t)=\nabla n}.
+\end{equation}
+它的切向分量是恒等式，法向分量说明光线向折射率增大的方向弯曲。若 $n=n(y)$，沿 $x$ 方向的平移对称性给出
+\begin{equation}
+ n(y)\sin\theta=\text{常量},
+\end{equation}
+其中 $\theta$ 是光线与层面法线的夹角；这就是分层介质中的连续折射定律。
+
+同一光线方程也可由费马原理（Fermat principle）得到：固定端点之间的实际光路使光程取平稳值，
+\begin{equation}
+ \delta\int_A^B n(\vect r)\,\dd s=0.
+\end{equation}
+“平稳”不等同于“必为最短”，反射和某些多路径系统中可能取得极大值或鞍点；正确判据是一阶变分为零。
+
+\begin{origexamplebox}{梯度折射率介质中的正弦光线}
+平面分层介质的折射率在轴附近为
+\[
+ n(y)=n_0\left(1-\frac12g^2y^2\right),
+ \qquad |gy|\ll1,
+\]
+其中 $g$ 的量纲为长度的倒数。一条近轴光线从 $x=0$ 处以 $y(0)=y_0$、$y'(0)=\alpha_0$ 入射。
+求其轨迹，并说明这种介质为何能周期性会聚光束。
+
+\begin{center}
+\begin{tikzpicture}[x=.90cm,y=1.0cm,>=Latex]
+  \fill[DeepBlue!6] (0,-2.0) rectangle (9,2.0);
+  \draw[axis,->] (0,0)--(9.35,0) node[right] {$x$};
+  \draw[axis,->] (0,-2.05)--(0,2.25) node[above] {$y$};
+  \foreach \yy in {-1.5,-1,-.5,.5,1,1.5}{\draw[guide,dashed] (0,\yy)--(9,\yy);}
+  \draw[curve,very thick,->,domain=0:8.8,samples=160]
+    plot (\x,{1.22*cos(60*\x)+.20*sin(60*\x)});
+  \draw[curve,thick,densely dashed,->,domain=0:8.8,samples=160]
+    plot (\x,{.70*cos(60*\x)+.20*sin(60*\x)});
+  \node[left] at (-.15,1.22) {$y_0$};
+  \fill[DeepBlue] (1.5,.2) circle (1.5pt);
+  \node[above] at (4.5,2.02) {$n$ 在轴上最大};
+  \draw[<->,guide] (0,-2.35)--(6,-2.35) node[midway,below] {$2\pi/g$};
+\end{tikzpicture}
+\figcap{两条初始倾角相同、初始高度不同的光线在四分之一周期处相交；纵向尺度放大以辨认弯曲。空间周期为 $2\pi/g$。\label{ch27:fig:grin}}
+\end{center}
+\end{origexamplebox}
+\begin{xesolution}
+近轴时 $s\simeq x$、$\vect t\simeq(1,y')$。光线方程的 $y$ 分量给出
+\[
+ \frac{\dd}{\dd x}\left(n\frac{\dd y}{\dd x}\right)=\frac{\dd n}{\dd y}.
+\]
+保留到 $y$ 和倾角的一阶量，左边可把 $n$ 取为 $n_0$，右边
+$\dd n/\dd y=-n_0g^2y$，所以
+\[
+ y''+g^2y=0.
+\]
+结合初始条件，
+\begin{equation}
+ \boxed{y(x)=y_0\cos(gx)+\frac{\alpha_0}{g}\sin(gx)}.
+\end{equation}
+图\ref{ch27:fig:grin}中两条光线具有相同的 $\alpha_0$，在 $x=\pi/(2g)$ 处均有 $y=\alpha_0/g$，所以会聚点不必在轴上。光线以 $2\pi/g$ 为空间周期反复穿过轴附近。若入射的是平行于轴的光束，各条光线 $\alpha_0=0$ 而 $y_0$ 不同，则在
+$x=(\pi/2+j\pi)/g$ 处同时到达 $y=0$，形成周期会聚；若来自同一轴上物点，则 $y_0=0$、$\alpha_0$ 不同，在 $x=j\pi/g$ 再会聚。一般任意一束光并不自动在同一点相交，必须说明其初始位置和倾角之间的关系。$g$ 的量纲为 $\mathrm{m^{-1}}$，因此 $gx$ 无量纲，轨迹也通过量纲检查。
+若离轴过远使 $|gy|$ 不再远小于 $1$，二次折射率近似与正弦结论都会失效。
+\end{xesolution}

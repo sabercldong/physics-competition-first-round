@@ -1,0 +1,207 @@
+\section{眼睛与角放大率}
+
+前面的放大镜成像关系还可以统一为目视仪器的基准：这里正常眼明视距离记为 $D_0=L_0$，以免与口径 $D$ 混淆。光学仪器的“放大”通常指视角增大，而不是在屏上形成更大的实像。放大镜把物体放在焦点附近，
+使眼睛在较舒适状态下观察放大的虚像。最终像在无穷远时角放大率
+\begin{equation}
+ M_\infty=\frac {D_0}f;
+\end{equation}
+最终像在近点时
+\begin{equation}
+ M_{D_0}=1+\frac {D_0}f.
+\end{equation}
+两式对应不同调焦条件，不能混用。
+
+\section{近轴光线矩阵与理想成像}
+
+在近轴条件下，用列向量 $(y,p)^{\mathsf T}$ 表示一条光线，其中 $y$ 向上为正，$\theta$ 从向右光轴逆时针量为正，$p=n\theta$ 是约化倾角。这里不用 $u$，以免与物距混淆。
+折射率为 $n$ 的均匀介质中传播距离 $d$，以及通过光焦度为 $\Phi$ 的薄透镜，分别对应
+\begin{equation}
+ \mathbf T(d,n)=
+ \begin{pmatrix}1&d/n\\0&1\end{pmatrix},
+ \qquad
+ \mathbf L(\Phi)=
+ \begin{pmatrix}1&0\\-\Phi&1\end{pmatrix}.
+\end{equation}
+若透镜两侧处于相同折射率 $n$ 的介质中，像方焦距为 $f$，则 $\Phi=n/f$；只有空气中才近似为 $1/f$。各矩阵左乘光线列向量，\textbf{先经过的元件写在最右侧}。例如先传播 $d_1$、过透镜、再传播 $d_2$，总矩阵是 $\mathbf T(d_2,n)\mathbf L(\Phi)\mathbf T(d_1,n)$。一般写为
+\begin{equation}
+ \begin{pmatrix}y'\\p'\end{pmatrix}
+ =\begin{pmatrix}A&B\\C&D\end{pmatrix}
+ \begin{pmatrix}y\\p\end{pmatrix},
+ \qquad AD-BC=1.
+\end{equation}
+若固定物平面上的同一点发出不同倾角的光线，在像平面仍交于同一点，则输出高度不能依赖初始倾角，成像条件就是 $B=0$，
+横向放大率为 $A$。若平行入射光经过系统后仍保持平行，系统为无焦系统（afocal system），相应条件为 $C=0$。
+例如单薄透镜的物平面到像平面矩阵为 $\mathbf T(v,n)\mathbf L(n/f)\mathbf T(u,n)$。乘出右上元为
+\[
+ B=\frac{u+v-uv/f}{n}.
+\]
+所以 $B=0$ 恰好恢复 $1/u+1/v=1/f$；左上元 $A=1-v/f=-v/u$ 也恢复带符号倍率。$B$ 的量纲为长度，$C$ 为长度倒数，$A,D$ 无量纲，行列式为一。厚透镜和多透镜组的主平面、焦点与节点，都可从同一矩阵分解得到；这避免了每增加一个折射面就重新建立一套符号法则。
+
+\section{显微镜}
+
+复合显微镜由短焦物镜和目镜组成。物镜先形成放大的倒立实像，目镜再把中间像作为物体形成放大虚像。图\ref{ch28:fig:microscope}中，光学筒长 $L$ 定义为物镜后焦点 $F'_o$ 到目镜前焦面（中间像平面）的轴向距离，不是两个镜片之间的机械距离。物镜像距为 $v_o=f_o+L$，从薄透镜公式有 $m_o=1-v_o/f_o=-L/f_o$。目镜角放大率为 $D_0/f_e$，因此最终像在无穷远的近轴角放大率为
+\begin{equation}
+ M\simeq-\frac{L}{f_o}\frac{D_0}{f_e}.
+\end{equation}
+负号表示最终像相对原物倒立。提高几何放大率不能突破衍射分辨极限；有用放大应与物镜数值孔径相匹配。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none}]
+\draw[gray,thin,->] (-2.0000000,0.0000000)--(8.2000000,0.0000000);
+\draw[DeepBlue,thick,<->] (0.0000000,-2.1000000)--(0.0000000,2.1000000);
+\draw[DeepBlue,thick,<->] (6.2000000,-2.1000000)--(6.2000000,2.1000000);
+\node[above,fill=none,inner sep=2pt] at (0.0000000,2.2000000) {物镜};
+\node[above,fill=none,inner sep=2pt] at (6.2000000,2.2000000) {目镜};
+\draw[black,thick,->] (-1.2500000,0.0000000)--(-1.2500000,0.3000000);
+\fill (5.0000000,-1.2000000) circle (1.2pt);
+\node[below,fill=none,inner sep=2pt] at (5.0000000,-1.2000000) {};
+\draw[gray,dashed,thin] (5.0000000,-1.2000000)--(4.5000000,1.1500000);
+\node[above,fill=none,inner sep=2pt] at (4.5000000,1.2000000) {中间实像};
+\draw[gray,dashed,thin] (5.0000000,-1.5000000)--(5.0000000,1.4000000);
+\draw[DeepBlue,thick,->] (-1.2500000,0.3000000)--(0.0000000,0.6500000);
+\draw[DeepBlue,thick,->] (0.0000000,0.6500000)--(6.2000000,-1.6440000);
+\draw[DeepBlue,thick,->] (6.2000000,-1.6440000)--(8.0000000,0.1560000);
+\draw[DeepBlue,thick,->] (-1.2500000,0.3000000)--(0.0000000,-0.1500000);
+\draw[DeepBlue,thick,->] (0.0000000,-0.1500000)--(6.2000000,-1.4520000);
+\draw[DeepBlue,thick,->] (6.2000000,-1.4520000)--(8.0000000,0.3480000);
+\draw[gray,<->] (1.0000000,-1.8500000)--(5.0000000,-1.8500000);
+\node[below,fill=none,inner sep=2pt] at (3.0000000,-1.8500000) {$L$};
+\fill (1.0000000,0.0000000) circle (1.2pt);
+\node[below,fill=none,inner sep=2pt] at (1.0000000,0.0000000) {};
+\draw[gray,dashed,thin] (1.0000000,0.0000000)--(1.0000000,-0.9500000);
+\node[below,fill=none,inner sep=2pt] at (1.0000000,-1.0000000) {$F'_o$};
+\draw[gray,<->] (5.0000000,-2.5000000)--(6.2000000,-2.5000000);
+\node[below,fill=none,inner sep=2pt] at (5.6000000,-2.5000000) {$f_e$};
+\end{tikzpicture}
+\figcap{显微镜的中间像在目镜前焦面；两透镜之间不发生折转。$L$ 从物镜后焦点量到中间像平面。\label{ch28:fig:microscope}}
+\end{center}
+
+\section{望远镜}
+
+开普勒望远镜（Keplerian telescope）用正焦距物镜和正焦距目镜。远物经物镜在焦平面形成实像，
+调节为无焦系统时两透镜焦平面重合，角放大率
+\begin{equation}
+ M=-\frac{f_o}{f_e},
+\end{equation}
+镜筒长约 $f_o+f_e$。图\ref{ch28:fig:telescope}中，入射倾角 $\theta$ 对应中间像高 $f_o\theta$；此像在目镜前焦面，所以出射倾角为 $-f_o\theta/f_e$，两条出射光平行。伽利略望远镜（Galilean telescope）使用负焦距目镜，成正立虚像，镜筒更短，但视场受限。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none}]
+\draw[gray,thin,->] (-2.0000000,0.0000000)--(7.5000000,0.0000000);
+\draw[DeepBlue,thick,<->] (0.0000000,-2.1000000)--(0.0000000,2.1000000);
+\draw[DeepBlue,thick,<->] (5.5000000,-2.1000000)--(5.5000000,2.1000000);
+\node[above,fill=none,inner sep=2pt] at (0.0000000,2.2000000) {物镜};
+\node[above,fill=none,inner sep=2pt] at (5.5000000,2.2000000) {目镜};
+\fill (4.0000000,-0.4800000) circle (1.2pt);
+\node[below,fill=none,inner sep=2pt] at (4.0000000,-0.4800000) {};
+\draw[gray,dashed,thin] (4.0000000,-0.4800000)--(3.5000000,1.1500000);
+\node[above,fill=none,inner sep=2pt] at (3.5000000,1.2000000) {中间像点};
+\draw[gray,dashed,thin] (4.0000000,-1.5000000)--(4.0000000,1.4000000);
+\draw[DeepBlue,thick,->] (-1.6000000,0.8420000)--(0.0000000,0.6500000);
+\draw[DeepBlue,thick,->] (0.0000000,0.6500000)--(5.5000000,-0.9037500);
+\draw[DeepBlue,thick,->] (5.5000000,-0.9037500)--(7.3000000,-0.3277500);
+\draw[DeepBlue,thick,->] (-1.6000000,0.0420000)--(0.0000000,-0.1500000);
+\draw[DeepBlue,thick,->] (0.0000000,-0.1500000)--(5.5000000,-0.6037500);
+\draw[DeepBlue,thick,->] (5.5000000,-0.6037500)--(7.3000000,-0.0277500);
+\draw[gray,<->] (4.0000000,-2.5000000)--(5.5000000,-2.5000000);
+\node[below,fill=none,inner sep=2pt] at (4.7500000,-2.5000000) {$f_e$};
+\end{tikzpicture}
+\figcap{无焦望远镜：公共焦面处光线相交但不折转；目镜后的两条出射线严格平行。\label{ch28:fig:telescope}}
+\end{center}
+
+望远镜分辨本领取决于物镜口径而非焦距。圆孔的瑞利判据（Rayleigh criterion）为
+\begin{equation}
+ \theta_{\min}=1.22\frac\lambda D.
+\end{equation}
+增大口径既提高集光能力，也提高角分辨率；仅增大目镜倍率不会恢复物镜没有记录的细节。
+
+\begin{origexamplebox}{望远镜口径的分辨要求}
+两颗星的角距离为 $0.50''$，用波长 $550\,\mathrm{nm}$ 的光观察。按瑞利判据估算望远镜最小口径。
+\end{origexamplebox}
+\begin{xesolution}
+先把角秒换成弧度：
+\[
+ \theta=0.50\frac{\pi}{180\times3600}
+ \approx2.42\times10^{-6}\,\mathrm{rad}.
+\]
+所以
+\[
+ D_{\min}=1.22\frac\lambda\theta
+ \approx1.22\frac{550\times10^{-9}}{2.42\times10^{-6}}
+ \approx0.277\,\mathrm m.
+\]
+即 $\boxed{D_{\min}\approx28\,\mathrm{cm}}$。真实观测还会受大气视宁度、像差和信噪比限制。
+\end{xesolution}
+
+\section{光谱仪与分辨本领}
+
+棱镜或光栅把不同波长分到不同方向，准直镜把入射狭缝变成平行光，成像镜把各方向重新聚焦到探测器。
+平面光栅正入射时 $d\sin\theta_m=m\lambda$。若 $N$ 条刻线均匀相干照明，忽略像差，在非零级次 $m$ 的主极大附近，用瑞利判据得到理论分辨本领
+\begin{equation}
+ \mathcal R=\frac\lambda{\Delta\lambda}=|m|N.
+\end{equation}
+这是因为两波长的主极大角间距为 $|m|\Delta\lambda/(d\cos\theta_m)$，单条谱线主极大到第一极小的角距为 $\lambda/(Nd\cos\theta_m)$；令二者相等即可消去共同几何因子。$m=0$ 没有通常意义的角分光能力，不能作为上述分辨公式的工作级次；接近掠射时也需谨慎使用局部小角展开。狭缝宽度、像差和探测器采样会降低实际分辨率；狭缝无限变窄又会显著损失光通量。
+
+\section{辐射度学、光度学与探测器}
+
+辐射度学（radiometry）按电磁辐射携带的功率计量；光度学（photometry）还要按明视觉光谱响应 $V(\lambda)$ 加权。
+若光谱辐射通量为 $\Phi_{e,\lambda}$，光通量为
+\begin{equation}
+ \Phi_v=K_m\int_0^\infty V(\lambda)\Phi_{e,\lambda}\,\dd\lambda,
+ \qquad K_m\simeq683\,\mathrm{lm/W}.
+\end{equation}
+国际单位制用频率 $540\,\mathrm{THz}$ 的单色辐射把光视效能固定为 $683\,\mathrm{lm/W}$；其他波长即使辐射功率相同，
+视觉亮度也会因 $V(\lambda)$ 不同而改变。常用光度量为
+\begin{equation}
+ I_v=\frac{\dd\Phi_v}{\dd\Omega},\qquad
+ E_v=\frac{\dd\Phi_v}{\dd A},\qquad
+ L_v=\frac{\dd^2\Phi_v}{\dd A\cos\theta\,\dd\Omega},
+\end{equation}
+分别称发光强度、照度和亮度，单位依次为坎德拉、勒克斯和坎德拉每平方米。光电二极管、CCD/CMOS 等探测器有各自的
+光谱响应曲线；把“人眼看起来一样亮”直接当成“探测器接收功率相同”通常是错误的。
+
+\begin{starread}{三刺激值与 CIE 1931 色度图}
+人眼明视觉主要由三类视锥细胞提供长、中、短波段响应。CIE 1931 标准把光谱 $P(\lambda)$ 映射为三刺激值
+\[
+ X=\int\bar x(\lambda)P(\lambda)\,\dd\lambda,\quad
+ Y=\int\bar y(\lambda)P(\lambda)\,\dd\lambda,\quad
+ Z=\int\bar z(\lambda)P(\lambda)\,\dd\lambda,
+\]
+再用 $x=X/(X+Y+Z)$、$y=Y/(X+Y+Z)$ 表示与总亮度分离的色度。两束光相加时，三刺激值线性相加；
+在图\ref{ch28:fig:chromaticity}的色度平面上，二者混合色位于两点连线上。显示器选定三原色后，只能覆盖三原色三角形内部的颜色，并不能覆盖整个可见色域。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.70\linewidth,height=6.0cm,axis lines=left,
+  xlabel={$x$},ylabel={$y$},xmin=0,xmax=.80,ymin=0,ymax=.88,
+  xtick={0,.2,.4,.6,.8},ytick={0,.2,.4,.6,.8},
+  every axis label/.style={fill=none}]
+  \addplot[curve,very thick] coordinates{
+    (.174,.005)(.157,.018)(.124,.058)(.091,.133)(.045,.295)(.008,.538)
+    (.014,.750)(.074,.834)(.155,.806)(.230,.754)(.302,.692)(.373,.625)
+    (.444,.555)(.513,.487)(.575,.424)(.627,.373)(.666,.334)(.692,.308)
+    (.708,.292)(.719,.281)(.726,.274)(.735,.265)(.174,.005)};
+  \addplot[DeepBlue,thick] coordinates{(.64,.33)(.30,.60)(.15,.06)(.64,.33)};
+  \addplot[only marks,mark=*,mark size=1.7pt] coordinates{(.333,.333)};
+  \node[anchor=west] at (axis cs:.35,.35) {$E$};
+  \node[DeepBlue] at (axis cs:.52,.10) {RGB 色域};
+  \draw[->,thin] (axis cs:.49,.13)--(axis cs:.43,.30);
+  \node at (axis cs:.20,.66) {可见色域};
+\end{axis}
+\end{tikzpicture}
+\figcap{CIE 1931 色度示意：弯曲边界为近似光谱轨迹，两端的直线为紫线（非单色光）。E 为等能光谱白点 $(1/3,1/3)$，不等同于任意 RGB 标准的白点。\label{ch28:fig:chromaticity}}
+\end{center}
+\end{starread}
+
+\begin{starread}{光阑、光瞳、像差与展度守恒}
+孔径光阑限制轴上光束锥角，视场光阑限制可见物方范围。孔径光阑经其前方光具组成的像称入射光瞳，经其后方光具组成的像称出射光瞳；
+望远镜目镜应让出射光瞳与人眼瞳孔匹配。球差、彗差、像散、场曲、畸变和色差具有不同的孔径与视场依赖，
+不能只用“焦点不准”概括。
+
+无损系统中的微分展度
+\[
+ \dd G=n^2\cos\theta\,\dd A\,\dd\Omega
+\]
+沿光路守恒。这意味着被动光学系统不能同时把光束横截面积和发散立体角任意压缩；提高照度、扩大视场、增大口径和保持像质之间
+必然存在约束，而不是只要增加透镜片数就能全部兼得。
+\end{starread}

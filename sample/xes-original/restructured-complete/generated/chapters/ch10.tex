@@ -1,0 +1,1617 @@
+\hypersetup{bookmarksdepth=3}
+\begingroup
+\tcbset{breakable/.default=false}
+\chapter{简谐振动、阻尼、受迫振动和共振}
+
+% Chapter-local, deterministic geometry. Text nodes never have opaque fill.
+\newenvironment{chTenFigure}{\par\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}\par}
+\tikzset{chTenLabel/.style={font=\small,fill=none,inner sep=3pt},chTenArrow/.style={-{Latex[length=2mm]},DeepBlue,thick}}
+\pgfplotsset{chTenPlot/.style={axis lines=left,tick label style={font=\scriptsize},label style={font=\small,fill=none},legend style={draw=none,fill=none,font=\scriptsize},title style={font=\small},grid=none}}
+
+\newcommand{\chTenPhaseFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,every node/.style=chTenLabel]
+\draw[->](-3.4,0)--(3.4,0)node[right]{$x$};\draw[->](0,-2.3)--(0,2.35)node[above]{$v$};
+\draw[DeepBlue,thick,domain=0:360,samples=121]plot({2.6*cos(\x)},{1.55*sin(\x)});
+\draw[chTenArrow,domain=75:45,samples=16]plot({2.6*cos(\x)},{1.55*sin(\x)});
+\draw[chTenArrow,domain=245:215,samples=16]plot({2.6*cos(\x)},{1.55*sin(\x)});
+\node[below right]at(2.68,-.08){$A$};\node[below left]at(-2.68,-.08){$-A$};
+\node[above left]at(-.08,1.63){$A\omega_0$};\node[below right]at(.08,-1.63){$-A\omega_0$};
+\node at(4.1,1.1){\shortstack{$x=A\cos\psi$\\$v=-A\omega_0\sin\psi$}};
+\end{tikzpicture}
+\figcap{无阻尼相轨迹沿顺时针方向运动；在顶部$v>0$，状态点向右移动。}\label{ch10:fig:phase}
+\end{chTenFigure}}
+
+\newcommand{\chTenVerticalFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-1,0)--(6.5,0);
+\foreach \p/\h/\txt in {0/1.65/原长参照,2.5/2.4/平衡位置,5/3.05/瞬时位置}{
+ \draw[spring](\p,0)--(\p,-\h);\fill[DeepBlue](\p,-\h)circle(3pt);
+ \node[below]at(\p,-3.55){\txt};}
+\draw[guide](0,-1.65)--(6.3,-1.65);\draw[guide](2.5,-2.4)--(6.3,-2.4);
+\draw[<->](3.45,-1.65)--(3.45,-2.4)node[midway,right]{$y_0$};
+\draw[<->](6,-2.4)--(6,-3.05)node[midway,right]{$x$};
+\node[right]at(5.1,-3.1){$m$};
+\end{tikzpicture}\figcap{伸长$y=y_0+x$；辅助水平线只用于比较三个位置。}\label{ch10:fig:vertical-spring}\end{chTenFigure}}
+
+\newcommand{\chTenPendulumFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(O)at(0,0);\coordinate(C)at({2.5*sin(28)},{-2.5*cos(28)});
+\draw[guide](O)--(0,-.18) (0,-.55)--(0,-3.3);\draw[thick](O)--(C);
+\draw[DeepBlue,thick,rotate around={28:(O)}](-.48,-.7)rectangle(.48,-2.95);
+\fill(O)circle(2pt)node[above left]{$O$};\fill(C)circle(2pt)node[right]{$C$};
+\draw[chTenArrow](C)--++(0,-1.0)node[right]{$Mg$};
+\draw(0,-.5)arc(-90:-62:.5);\node[left]at(-.55,-.25){$\theta$};\draw[TextGray](-.5,-.25)--(.1,-.49);
+\draw[<->](-.78,-.415)--($(C)+(-.78,-.415)$)node[midway,left]{$a$};\node[right]at(2.1,-.7){转轴垂直纸面};
+\end{tikzpicture}\figcap{复摆绕固定轴$O$转动，$OC=a$；重力作用于质心$C$。}\label{ch10:fig:physical-pendulum}\end{chTenFigure}}
+
+\newcommand{\chTenDampingFigure}{\begin{chTenFigure}
+\begin{tikzpicture}
+\begin{axis}[chTenPlot,width=.31\linewidth,height=4.7cm,xmin=0,xmax=9,ymin=-.7,ymax=1.1,xlabel={$\omega_0t$},ylabel={$x/x_0$},title={欠阻尼：$\gamma/\omega_0=.2$}]
+\addplot[DeepBlue,thick,domain=0:9,samples=140]{exp(-.2*x)*(cos(deg(sqrt(.96)*x))+.2/sqrt(.96)*sin(deg(sqrt(.96)*x)))};\end{axis}
+\begin{axis}[chTenPlot,at={(.335\linewidth,0)},anchor=south west,width=.31\linewidth,height=4.7cm,xmin=0,xmax=9,ymin=-.7,ymax=1.1,xlabel={$\omega_0t$},title={临界：$\gamma/\omega_0=1$}]
+\addplot[DeepBlue,thick,domain=0:9,samples=100]{(1+x)*exp(-x)};\end{axis}
+\begin{axis}[chTenPlot,at={(.67\linewidth,0)},anchor=south west,width=.31\linewidth,height=4.7cm,xmin=0,xmax=9,ymin=-.7,ymax=1.1,xlabel={$\omega_0t$},title={过阻尼：$\gamma/\omega_0=2$}]
+\addplot[DeepBlue,thick,domain=0:9,samples=100]{.5*(1+2/sqrt(3))*exp((-2+sqrt(3))*x)+.5*(1-2/sqrt(3))*exp((-2-sqrt(3))*x)};\end{axis}
+\end{tikzpicture}\figcap{同一初始位移、零初速度下的三类响应；坐标标度完全相同。}\label{ch10:fig:damping-types}\end{chTenFigure}}
+
+\newcommand{\chTenEnvelopeFigure}{\begin{chTenFigure}
+\begin{tikzpicture}\begin{axis}[chTenPlot,width=.86\linewidth,height=5.4cm,xmin=0,xmax=30,ymin=-1.1,ymax=1.2,xlabel={$\omega_0t$},ylabel={$x/A_0$},legend pos=north east]
+\addplot[DeepBlue,thick,domain=0:30,samples=350]{exp(-.08*x)*cos(deg(sqrt(1-.08^2)*x))};\addlegendentry{位移}
+\addplot[TextGray,dashed,domain=0:30]{exp(-.08*x)};\addlegendentry{$\pm\mathrm e^{-\gamma t}$}
+\addplot[TextGray,dashed,domain=0:30,forget plot]{-exp(-.08*x)};
+\end{axis}\end{tikzpicture}\figcap{弱阻尼示例$\gamma/\omega_0=0.08$；虚线给振幅包络，不是另一条运动轨迹。}\label{ch10:fig:damping-envelope}\end{chTenFigure}}
+
+\newcommand{\chTenDampedPhaseFigure}{\begin{chTenFigure}
+\begin{tikzpicture}
+\begin{axis}[chTenPlot,width=.46\linewidth,height=6cm,axis equal image,xmin=-1.2,xmax=1.2,ymin=-1.2,ymax=1.2,xlabel={$x/A_0$},ylabel={$v/(A_0\omega_0)$},title={真实相轨迹：$\gamma/\omega_0=.2$}]
+\addplot[DeepBlue,thick,domain=0:28,samples=450]({exp(-.2*x)*cos(deg(sqrt(.96)*x))},{-exp(-.2*x)*(.2*cos(deg(sqrt(.96)*x))+sqrt(.96)*sin(deg(sqrt(.96)*x))});
+\addplot[DeepBlue,->,thick,domain=.5:1,samples=12]({exp(-.2*x)*cos(deg(sqrt(.96)*x))},{-exp(-.2*x)*(.2*cos(deg(sqrt(.96)*x))+sqrt(.96)*sin(deg(sqrt(.96)*x))});\end{axis}
+\begin{axis}[chTenPlot,at={(.52\linewidth,0)},anchor=south west,width=.46\linewidth,height=6cm,axis equal image,xmin=-1.2,xmax=1.2,ymin=-1.2,ymax=1.2,xlabel={$X/A_0$},ylabel={$Y/A_0$},title={扣除包络：$\gamma/\omega_0=.5$}]
+\addplot[TextGray,dashed,domain=-1:1]{-x};\addplot[DeepBlue,thick,domain=0:360,samples=180]({cos(x)},{-.5*cos(x)-sqrt(.75)*sin(x)});\end{axis}
+\end{tikzpicture}\figcap{左图螺旋收缩；右图$Y=\mathrm e^{\gamma t}v/\omega_0$，虚线为长轴方向。左右阻尼值分别标明。}\label{ch10:fig:damped-phase}\end{chTenFigure}}
+
+\newcommand{\chTenResonanceFigure}{\begin{chTenFigure}
+\begin{tikzpicture}
+\begin{axis}[chTenPlot,width=.46\linewidth,height=6cm,xmin=0,xmax=2,ymin=0,ymax=21,xlabel={$\omega/\omega_0$},ylabel={$Ak/F_0$},legend pos=north east]
+\addplot[Ink,dashdotted,thick,domain=0:2,samples=500]{1/sqrt((1-x^2)^2+(.05*x)^2)};\addlegendentry{$Q=20$}
+\addplot[DeepBlue,thick,domain=0:2,samples=350]{1/sqrt((1-x^2)^2+(.1*x)^2)};\addlegendentry{$Q=10$}
+\addplot[Blue,dashed,thick,domain=0:2,samples=220]{1/sqrt((1-x^2)^2+(.2*x)^2)};\addlegendentry{$Q=5$}
+\addplot[TextGray,densely dotted,thick,domain=0:2,samples=120]{1/sqrt((1-x^2)^2+(2*x)^2)};\addlegendentry{$Q=0.5$}\end{axis}
+\begin{axis}[chTenPlot,at={(.52\linewidth,0)},anchor=south west,width=.46\linewidth,height=6cm,xmin=0,xmax=2,ymin=0,ymax=3.3,xlabel={$\omega/\omega_0$},ylabel={$\delta$},ytick={0,1.570796,3.141593},yticklabels={$0$,$\pi/2$,$\pi$}]
+\addplot[Ink,dashdotted,thick,domain=0:2,samples=500]{rad(atan2(.05*x,1-x^2))};
+\addplot[DeepBlue,thick,domain=0:2,samples=350]{rad(atan2(.1*x,1-x^2))};
+\addplot[Blue,dashed,thick,domain=0:2,samples=220]{rad(atan2(.2*x,1-x^2))};
+\addplot[TextGray,densely dotted,thick,domain=0:2,samples=120]{rad(atan2(2*x,1-x^2))};\end{axis}
+\end{tikzpicture}\figcap{同组参数的幅频和相频曲线；较强阻尼$Q=0.5$没有正频率的位移峰。}\label{ch10:fig:resonance}\end{chTenFigure}}
+
+\newcommand{\chTenProfileFigure}{\begin{chTenFigure}
+\begin{tikzpicture}\begin{axis}[chTenPlot,width=.8\linewidth,height=5.6cm,xmin=-4,xmax=4,ymin=0,ymax=1.12,xlabel={$(z-z_0)/\Gamma$},ylabel={相对峰高},legend pos=north east]
+\addplot[DeepBlue,thick,domain=-4:4,samples=160]{1/(1+x^2)};\addlegendentry{洛伦兹型}
+\addplot[TextGray,dashed,thick,domain=-4:4,samples=160]{exp(-ln(2)*x^2)};\addlegendentry{高斯型}
+\draw[guide](axis cs:-1,0)--(axis cs:-1,.5)--(axis cs:1,.5)--(axis cs:1,0);
+\draw[<->](axis cs:-1,.18)--(axis cs:1,.18)node[midway,below,font=\small,fill=none]{全宽$2\Gamma$};
+\end{axis}\end{tikzpicture}\figcap{相同峰高、相同半高全宽时的两种线型；峰外长尾明显不同。}\label{ch10:fig:profiles}\end{chTenFigure}}
+
+\newcommand{\chTenCoupledPendulaFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(A)at(0,0);\coordinate(B)at(4,0);\coordinate(P)at({2.6*sin(18)},{-2.6*cos(18)});\coordinate(Q)at({4+2.6*sin(-12)},{-2.6*cos(-12)});
+\draw[ground](-.7,0)--(4.7,0);\draw[thick](A)--(P) (B)--(Q);\draw[spring](P)--(Q);
+\draw[guide](A)--(0,-.4) (0,-1)--(0,-3) (B)--(4,-.4) (4,-1)--(4,-3);\fill(P)circle(3pt)node[below left]{$m$};\fill(Q)circle(3pt)node[below right]{$m$};
+\node[right]at(.7,-1.45){$l$};\node[left]at(3.4,-1.45){$l$};
+\draw(0,-.7)arc(-90:-72:.7);\node[left]at(-.4,-.62){$\theta_1$};\draw[TextGray](-.38,-.62)--(.11,-.69);
+\draw(4,-.7)arc(-90:-102:.7);\node[right]at(4.4,-.62){$\theta_2$};\draw[TextGray](4.38,-.62)--(3.93,-.69);
+\draw[<->](0,.5)--(4,.5)node[midway,above]{$d$};\node[above]at(2.15,-2.15){$k_c$};
+\end{tikzpicture}\figcap{两球间弹簧实际连接在球上；图中第二个角为负，两角正向约定仍一致。}\label{ch10:fig:coupled-pendula}\end{chTenFigure}}
+
+\newcommand{\chTenCoupledMassFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-5,-.6)--(-5,.6) (5,-.6)--(5,.6);
+\draw[spring](-5,0)--(-3.2,0) (-1.8,0)--(1.8,0) (3.2,0)--(5,0);
+\draw[thick](-3.2,-.5)rectangle(-1.8,.5);\draw[thick](1.8,-.5)rectangle(3.2,.5);
+\node at(-2.5,0){$m$};\node at(2.5,0){$m$};
+\node at(-4.1,.65){$k$};\node at(0,.65){$k_c$};\node at(4.1,.65){$k$};
+\draw[guide](-2.5,-.6)--(-2.5,-1.1) (2.5,-.6)--(2.5,-1.1);
+\draw[chTenArrow](-2.5,-.85)--(-1.6,-.85)node[right]{$x_1$};\draw[chTenArrow](2.5,-.85)--(3.4,-.85)node[right]{$x_2$};
+\end{tikzpicture}\figcap{图示平衡构形；短虚线为坐标零点，箭头只规定位移正向，不表示此刻的实际位移。}\label{ch10:fig:coupled-masses}\end{chTenFigure}}
+
+\newcommand{\chTenDoublePendulumFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(O)at(0,0);\coordinate(P)at({2.2*sin(23)},{-2.2*cos(23)});\coordinate(Q)at($(P)+({2.2*sin(-18)},{-2.2*cos(-18)})$);
+\draw[guide](O)--(0,-.4) (0,-1)--(0,-2.5) (P)--++(0,-.4) ($(P)+(0,-1)$)--++(0,-1.3);\draw[thick](O)--(P)--(Q);
+\fill(O)circle(2pt)node[above]{$O$};\fill(P)circle(3pt)node[right]{$m_1=m$};\fill(Q)circle(3pt)node[below left]{$m_2=m$};
+\draw(0,-.7)arc(-90:-67:.7);\node[left]at(-.5,-.62){$\theta_1$};\draw[TextGray](-.48,-.62)--(.14,-.68);
+\draw($(P)+(0,-.7)$)arc(-90:-108:.7);\node[right]at($(P)+(.55,-.62)$){$\theta_2$};\draw[TextGray]($(P)+(.5,-.62)$)--($(P)+(-.11,-.69)$);
+\node[right]at(.78,-1.35){$l$};\node[left]at($(P)+(-.65,-1.5)$){$l$};
+\end{tikzpicture}\figcap{串接双摆。第二杆角从上球处的竖直虚线量起。}\label{ch10:fig:double-pendulum}\end{chTenFigure}}
+
+\newcommand{\chTenDoubleModesFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \dx/\sg/\txt in {0/1/低频模,5/-1/高频模}{\begin{scope}[xshift=\dx cm]
+\coordinate(O)at(0,0);\coordinate(P)at({2*sin(12)},{-2*cos(12)});\coordinate(Q)at($(P)+({2*sin(\sg*sqrt(2)*12)},{-2*cos(\sg*sqrt(2)*12)})$);
+\draw[guide](O)--(0,-3.95) (P)--++(0,-1.9);\draw[thick](O)--(P)--(Q);\fill(P)circle(3pt);\fill(Q)circle(3pt);
+\node[above]at(0,0){\txt};\node[right]at($(P)+(.15,0)$){$\theta_1$};\node[below]at($(Q)+(0,-.2)$){$\theta_2=\ifnum\sg<0-\fi\sqrt2\theta_1$};
+\draw[chTenArrow]($(O)+(0,-.65)$)arc(-90:-72:.65);
+\draw[chTenArrow]($(P)+(0,-.65)$)arc(-90:{-90+\sg*24}:.65);
+\end{scope}}
+\end{tikzpicture}\figcap{双摆的两个模态；低频同向、高频反向，下杆角振幅均较大。}\label{ch10:fig:double-modes}\end{chTenFigure}}
+
+\newcommand{\chTenRingBase}{
+\draw[TextGray](0,0)circle(1.4);
+\foreach \j in {0,...,5}{\pgfmathsetmacro{\ang}{60*\j}\fill[DeepBlue](\ang:1.4)circle(2.2pt);\ifnum\j=0\node[font=\scriptsize,fill=none]at(1.75,.23){$\j$};\else\ifnum\j=3\node[font=\scriptsize,fill=none]at(-1.75,.23){$\j$};\else\node[font=\scriptsize,fill=none]at(\ang:1.75){$\j$};\fi\fi}}
+\newcommand{\chTenBenzeneModelFigure}{\begin{chTenFigure}
+\begin{minipage}{.46\linewidth}\centering\includegraphics[width=.96\linewidth]{assets/ch10/benzene-model.png}\par\small 苯：六个碳、六个氢\end{minipage}\hfill
+\begin{minipage}{.46\linewidth}\centering\begin{tikzpicture}[every node/.style=chTenLabel]
+\chTenRingBase
+\foreach \j in {0,...,5}{\draw[chTenArrow]({60*\j}:1.4)--++({60*\j+90}:.48);}
+\node at(0,-2.25){$x_j$均沿逆时针切向};
+\end{tikzpicture}\end{minipage}
+\figcap{真实分子的立体结构与六坐标简化模型；左图淡蓝区域表示离域电子云的空间示意，不是额外原子。}\label{ch10:fig:benzene-model}\end{chTenFigure}}
+
+\newcommand{\chTenRingSymmetryFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \dx/\kind in {0/0,4.3/1,8.6/2}{\begin{scope}[xshift=\dx cm,scale=.9]
+\chTenRingBase
+\ifnum\kind=0\draw[chTenArrow](15:.85)arc(15:75:.85);\node at(0,-2.3){$C_6:60^\circ$};
+\else\ifnum\kind=1\draw[guide](30:2)--(210:2);\node at(0,-2.3){$C_2:180^\circ$};
+\else\draw[guide](-2,0)--(2,0);\node at(0,-2.3){$C'_2:180^\circ$};\fi\fi
+\end{scope}}\end{tikzpicture}\figcap{三种对称操作；后二图虚线是环面内的旋转轴，而不是粒子的运动轨迹。}\label{ch10:fig:ring-symmetry}\end{chTenFigure}}
+
+\newcommand{\chTenOneRingMode}[2]{\begin{tikzpicture}[scale=.75,every node/.style=chTenLabel]
+\chTenRingBase
+\foreach \v[count=\j from 0] in {#1}{\ifnum\v=0\else\draw[chTenArrow]({60*\j}:1.4)--++({60*\j+90}:{.58*\v});\fi}
+\node[font=\small]at(0,-2.45){#2};\end{tikzpicture}}
+\newcommand{\chTenRingModesFigure}{\begin{chTenFigure}
+\chTenOneRingMode{1,1,0,-1,-1,0}{$m\omega^2/k=1$}\hspace{.8cm}
+\chTenOneRingMode{0,1,1,0,-1,-1}{同频旋转伙伴}\par\medskip
+\chTenOneRingMode{1,-1,0,1,-1,0}{$m\omega^2/k=3$}\hspace{.8cm}
+\chTenOneRingMode{0,1,-1,0,1,-1}{同频旋转伙伴}
+\figcap{两组二重简并实振型。相邻点的箭头必须按各自切向比较，不能只按纸面左右比较。}\label{ch10:fig:ring-modes}\end{chTenFigure}}
+
+\newcommand{\chTenMonoChainFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \j in {0,...,4}{\fill[DeepBlue](2.1*\j,0)circle(4pt);\node[above]at(2.1*\j,.3){$m$};}
+\foreach \j in {0,...,3}{\draw[spring](2.1*\j+.14,0)--(2.1*\j+1.96,0);}
+\node[left]at(-.3,0){$\cdots$};\node[right]at(8.7,0){$\cdots$};
+\foreach \j/\txt in {1/{j-1},2/{j},3/{j+1}}{\draw[chTenArrow](2.1*\j,-.55)--++(.6,0)node[below]{$u_{\txt}$};}
+\draw[<->](2.1,.85)--(4.2,.85)node[midway,above]{$a$};
+\end{tikzpicture}\figcap{单原子链的平衡格距$a$及向右位移坐标。}\label{ch10:fig:mono-chain}\end{chTenFigure}}
+
+\newcommand{\chTenMonoDispersionFigure}{\begin{chTenFigure}\begin{tikzpicture}\begin{axis}[chTenPlot,width=.72\linewidth,height=5.5cm,xmin=-1.1,xmax=1.1,ymin=0,ymax=2.25,xlabel={$qa/\pi$},ylabel={$\omega/\sqrt{k/m}$},xtick={-1,0,1},ytick={0,1,2}]
+\addplot[DeepBlue,thick,domain=-1:1,samples=201]{2*abs(sin(90*x))};\addplot[TextGray,dashed,domain=-1:1]{2};
+\draw[guide](axis cs:-1,0)--(axis cs:-1,2);\draw[guide](axis cs:1,0)--(axis cs:1,2);
+\end{axis}\end{tikzpicture}\figcap{单原子链色散；两端达到截止频率，斜率降为零。}\label{ch10:fig:mono-dispersion}\end{chTenFigure}}
+
+\newcommand{\chTenDiatomicChainFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\foreach \j in {0,...,5}{\pgfmathtruncatemacro{\odd}{mod(\j,2)}\ifnum\odd=0\fill[DeepBlue](1.7*\j,0)circle(5pt);\node[above]at(1.7*\j,.35){$M$};\else\draw[DeepBlue,thick](1.7*\j,0)circle(3pt);\node[above]at(1.7*\j,.35){$m$};\fi}
+\foreach \j in {0,...,4}{\draw[spring](1.7*\j+.18,0)--(1.7*\j+1.52,0);}
+\draw[<->](3.4,1.45)--(6.8,1.45)node[midway,above]{晶胞$a$};
+\draw[<->](3.4,-1.4)--(5.1,-1.4)node[midway,below]{$a/2$};
+\draw[chTenArrow](3.4,-.55)--++(.6,0)node[midway,below]{$u_j$};\draw[chTenArrow](5.1,-.55)--++(.6,0)node[midway,below]{$v_j$};
+\draw[guide](2.55,-1)rectangle(5.95,.95);
+\end{tikzpicture}\figcap{虚框圈出同一晶胞内的一重一轻两原子；相邻距离与晶胞长度不混用。}\label{ch10:fig:diatomic-chain}\end{chTenFigure}}
+
+\newcommand{\chTenDiatomicDispersionFigure}{\begin{chTenFigure}\begin{tikzpicture}\begin{axis}[chTenPlot,width=.8\linewidth,height=6cm,xmin=-1.1,xmax=1.42,ymin=0,ymax=3.5,xlabel={$qa/\pi$},ylabel={$\omega/\sqrt{k/M}$},xtick={-1,0,1},legend pos=south east]
+\addplot[DeepBlue,thick,domain=-1:1,samples=150]{sqrt(5-sqrt(25-16*sin(90*x)^2))};\addlegendentry{声学支}
+\addplot[TextGray,thick,domain=-1:1,samples=150]{sqrt(5+sqrt(25-16*sin(90*x)^2))};\addlegendentry{光学支}
+\draw[guide](axis cs:-1,1.414214)--(axis cs:1.1,1.414214);\draw[guide](axis cs:-1,2.828427)--(axis cs:1.1,2.828427);
+\draw[<->](axis cs:1.18,1.414214)--(axis cs:1.18,2.828427)node[midway,right,font=\small,fill=none]{禁带};
+\end{axis}\end{tikzpicture}\figcap{双原子链示例$M=4m$。水平虚线对应$\sqrt{2k/M}$与$\sqrt{2k/m}$；区中心上支为$\sqrt{2k(1/M+1/m)}$。}\label{ch10:fig:diatomic-dispersion}\end{chTenFigure}}
+\newcommand{\chTenFrictionFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-.5,0)--(8,0);\draw[thick](0,0)rectangle(1.25,.8);\draw[thick](6.1,0)rectangle(7.35,.8);
+\node at(.625,.4){$A,M$};\node at(6.725,.4){$B,m$};\draw[spring](1.25,.4)--(6.1,.4);
+\draw[chTenArrow](.2,1.1)--(1.2,1.1)node[above]{$v_A$};\draw[chTenArrow](7.1,1.1)--(6.1,1.1)node[above]{$v_B$};
+\draw[<->](.625,-.55)--(6.725,-.55)node[midway,below]{$r=x_B-x_A$};
+\draw[->](8.2,.1)--++(.7,0)node[right]{$x$};
+\node[anchor=west]at(0,-1.7){第一阶段：$f_A$向左，$f_B$向右。};
+\node[anchor=west]at(0,-2.35){第二阶段：$v_A=0$，$f_A$向右；$v_B<0$，$f_B$仍向右。};
+\end{tikzpicture}\figcap{物块形状仅为识别符号，计算中按质点取中心间距；两阶段摩擦方向分别标明。}\label{ch10:fig:friction}\end{chTenFigure}}
+
+\newcommand{\chTenGovernorFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(T)at(0,2);\coordinate(B)at(0,-2);\coordinate(P)at(2,0);\coordinate(Q)at(-2,0);
+\draw[guide](0,-3.1)--(0,3.0);\draw[thick](T)--(P)--(B)--(Q)--cycle;
+\draw[thick](-.17,1.78)rectangle(.17,2.22);\draw[thick](-.22,-2.23)rectangle(.22,-1.77);
+\fill[DeepBlue](P)circle(4pt);\fill[DeepBlue](Q)circle(4pt);
+\node[below left]at(-2.13,-.1){$m$};\node[right]at(2.13,0){$m$};\node[left]at(-.35,-2){$M$};\node[above left]at(-.2,2.23){固定套筒};
+\draw[guide](.2,2)--(3.35,2) (.2,-2)--(3.35,-2);\draw[<->](3.15,-2)--(3.15,2)node[midway,right]{$y$};
+\draw[<->](0,0)--(2,0)node[midway,above]{$\rho$};
+\node[above right]at(1.12,1.1){$l$};\node[below right]at(1.12,-1.1){$l$};
+\draw[guide](-.2,2)--(-3.15,2) (-2.15,0)--(-3.15,0);
+\draw[<->](-3,0)--(-3,2)node[midway,left]{$y/2$};
+\draw[chTenArrow,domain=210:345,samples=30]plot({.75*cos(\x)},{-2.75+.2*sin(\x)});\node[right]at(.9,-2.75){$\omega$};
+\end{tikzpicture}\figcap{飞球调速器的瞬时子午截面；四根铰臂等长，球与两套筒的高度差均为$y/2$。}\label{ch10:fig:governor}\end{chTenFigure}}
+
+\newcommand{\chTenChainFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-1.2,4.5)--(6.5,4.5);\draw[ground](-1.2,0)--(6.5,0);
+\draw[spring](0,4.5)--(0,2.5);\fill(0,2.5)circle(2pt)node[left]{$P$};
+\foreach \j in {0,...,11}{\draw[DeepBlue,thick](0,{.125+.2*\j})ellipse(.085 and .125);}
+\draw[DeepBlue,thick](0,2.45)--(0,2.5);
+\draw[DeepBlue,thick](0,.19)to[out=-90,in=180](.3,.12)--(1.7,.12)to[out=0,in=-90](1.85,.25)to[out=90,in=0](1.6,.37)--(.6,.37);
+\draw[guide](.2,2.5)--(3.5,2.5);\draw[<->](3.2,0)--(3.2,2.5)node[midway,right]{$x$};\draw[<->](3.2,2.5)--(3.2,4.5)node[midway,right]{$s=H-x$};
+\draw[<->](6,0)--(6,4.5)node[midway,right]{$H$};
+\node[right]at(.45,1.5){移动部分$\lambda x$};\node[below]at(.9,-.2){地板上的静止余链};
+\draw[chTenArrow](-.75,1.05)--(-.75,2.05)node[midway,left]{$\dot x>0$};
+\end{tikzpicture}\figcap{零原长弹簧、悬垂链与地板余链；箭头示上移拾取阶段，下移时发生沉积。}\label{ch10:fig:chain}\end{chTenFigure}}
+
+\newcommand{\chTenWedgeFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.86]
+\draw[ground](-4.1,0)--(4.1,0);
+\draw[thick](-3,0)--(-3,3)--(0,0)--cycle;\draw[thick](0,0)--(3,3)--(3,0)--cycle;
+\fill[DeepBlue](-3,3)circle(3pt);\fill[DeepBlue](3,3)circle(3pt);\draw[thick,DeepBlue](-3,3)--(3,3);
+\node[above]at(0,3.15){初始杆长$L_0$};\node at(-2.1,.6){$m$};\node at(2.1,.6){$m$};
+\draw(.85,0)arc(0:45:.85);\node at(1.25,.42){$45^\circ$};
+\node at(0,-.65){初始构形：球按质点表示};
+\begin{scope}[xshift=7.3cm]
+\draw[ground](-1,0)--(4.6,0);\draw[guide](0,0)--(3,3);
+\draw[thick](.8,0)--(3.8,3)--(3.8,0)--cycle;
+\coordinate(P)at(2.65,1.85);\fill[DeepBlue](P)circle(3pt)node[below right]{$P$};
+\draw[DeepBlue,thick](-.9,1.85)--(P);\node[above]at(.2,1.95){弹性杆};
+\draw[chTenArrow](P)--++(-.7,.7);\node[left]at(1.6,2.55){$N$};
+\draw[guide](3.8,3)--(2.9,3.9) (P)--(1.75,2.75);
+\draw[<->](2.9,3.9)--(1.75,2.75)node[midway,above left]{$s$};
+\draw[guide](3,3)--(3,3.8) (3.8,3)--(3.8,3.8);\draw[chTenArrow](3,3.6)--(3.8,3.6)node[midway,above]{$X$};
+\draw[guide](3,-.2)--(3,-.8) (2.65,-.2)--(2.65,-.8);
+\draw[chTenArrow](3,-.6)--(2.65,-.6);\node[left]at(2.45,-.6){$q=X-s/\sqrt2$};
+\end{scope}\end{tikzpicture}\figcap{左图为严格$45^\circ$初始构形；右图放大右半边的运动几何，虚斜线为初始斜面。$N$垂直当前斜面。}\label{ch10:fig:wedges}\end{chTenFigure}}
+
+\newcommand{\chTenChargeMode}[2]{\begin{tikzpicture}[scale=.6,every node/.style=chTenLabel]
+\draw[TextGray](0,0)circle(1.5);
+\foreach \v[count=\j from 0] in {#1}{\fill[DeepBlue]({120*\j}:1.5)circle(3pt);\ifnum\v=0\else\draw[chTenArrow]({120*\j}:1.5)--++({120*\j+90}:{.35*\v});\fi}
+\node at(0,-2.2){#2};\end{tikzpicture}}
+\newcommand{\chTenChargesFigure}{\begin{chTenFigure}
+\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[TextGray](0,0)circle(1.7);
+\draw[DeepBlue,thick](0:1.7)--(120:1.7)--(240:1.7)--cycle;
+\foreach \j in {0,1,2}{\fill[DeepBlue]({120*\j}:1.7)circle(3pt);}
+\draw[->](0,0)--(2.5,0)node[right]{$x$};\draw[->](0,0)--(0,2.4)node[above]{$y$};
+\node at(-.38,.55){$\odot\ z$};\node[above right]at(1.7,.1){1};\node[above left]at(120:1.8){2};\node[below left]at(240:1.8){3};\node[below]at(0,-2.0){大圆正视，$z$轴朝向读者};
+\end{tikzpicture}\hspace{.4cm}
+\chTenChargeMode{1,-1,0}{$\vect a\propto(1,-1,0)$}\hspace{.2cm}
+\chTenChargeMode{1,1,-2}{$\vect a\propto(1,1,-2)$}\par
+\begin{tikzpicture}[every node/.style=chTenLabel]
+\foreach \x in {0,1.7,3.4}{\draw[DeepBlue,thick](\x,0)circle(.17);\fill(\x,0)circle(1pt);}
+\node[right]at(4,0){$z_1=z_2=z_3>0$：三球均出大圆平面};
+\end{tikzpicture}
+\figcap{平衡构形、两个大圆内振型及一个离面振型。各圆均从右侧点1起逆时针编号；切向箭头表示$a_i$。}\label{ch10:fig:charges}\end{chTenFigure}}
+
+\newcommand{\chTenSpringPendulumFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\coordinate(O)at(0,3.6);\coordinate(E)at(0,.7);\coordinate(P)at(2,-.3);
+\draw[ground](-.8,3.6)--(.8,3.6);\draw[guide](O)--(E);\draw[spring](O)--(P);\fill(P)circle(3pt)node[below right]{$P,m$};
+\draw[->](E)--(3.6,.7)node[right]{$x$};\draw[->](E)--(0,-1.2)node[below]{$y$};
+\fill(E)circle(2pt)node[left]{$E$};\node[above]at(O){$O$};
+\draw[guide](P)--(2,.7);\draw[<->](-.55,.7)--(-.55,3.6)node[midway,left]{$L$};
+\draw[<->](2.8,-.3)--(2.8,.7)node[midway,right]{$y$};\node[right]at(1.35,1.75){$r$};
+\node at(2.6,2.9){$OP^2=x^2+(L+y)^2$};
+\end{tikzpicture}\figcap{平衡点$E$与瞬时位置$P$；$y$向下为正，弹簧长度$r$从悬点$O$量起。}\label{ch10:fig:spring-pendulum}\end{chTenFigure}}
+
+% 初始装置图仅含题设；分析量与受力另见解答图。
+\newcommand{\chTenFrictionProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex]
+\draw[ground](-.5,0)--(8,0);\draw[thick](0,0)rectangle(1.25,.8);\draw[thick](6.1,0)rectangle(7.35,.8);
+\node at(.625,.4){$A,M$};\node at(6.725,.4){$B,m$};\draw[spring](1.25,.4)--(6.1,.4);
+\node[above]at(3.675,.8){$k,\ l_0$};
+\draw[guide](.625,-.1)--(.625,-.8) (6.725,-.1)--(6.725,-.8);
+\draw[<->](.625,-.6)--(6.725,-.6)node[midway,below]{$l$};\node[right]at(8,0){$\mu$};
+\end{tikzpicture}\figcap{由静止释放的初始状态；物块按质点建模，间距按两中心计。}\label{ch10:fig:friction-problem}\end{chTenFigure}}
+
+\newcommand{\chTenGovernorProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.8]
+\coordinate(T)at(0,2);\coordinate(B)at(0,-2);\coordinate(P)at(2,0);\coordinate(Q)at(-2,0);
+\draw[guide](0,-3.1)--(0,3);\draw[thick](T)--(P)--(B)--(Q)--cycle;
+\draw[thick](-.17,1.78)rectangle(.17,2.22);\draw[thick](-.22,-2.23)rectangle(.22,-1.77);
+\fill[DeepBlue](P)circle(4pt);\fill[DeepBlue](Q)circle(4pt);
+\node[left]at(-2.15,0){$m$};\node[right]at(2.15,0){$m$};
+\node[above left]at(-.2,2.23){固定套筒};\node[left]at(-.4,-2){$M$};\node[right]at(.4,-2){可沿轴滑动};
+\node[above right]at(1.12,1.1){$l$};\node[below right]at(1.12,-1.1){$l$};
+\node[above left]at(-1.12,1.1){$l$};\node[below left]at(-1.12,-1.1){$l$};
+\draw[chTenArrow,domain=210:345,samples=30]plot({.75*cos(\x)},{-2.75+.2*sin(\x)});\node[right]at(.9,-2.75){$\omega_0$};
+\end{tikzpicture}\figcap{调速器的装置截面：两球、四根等长轻杆与上、下套筒。}\label{ch10:fig:governor-problem}\end{chTenFigure}}
+
+\newcommand{\chTenChainProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.8]
+\draw[ground](-1.2,4.5)--(4.5,4.5);\draw[ground](-1.2,0)--(4.5,0);
+\draw[spring](0,4.5)--(0,2.5);\fill(0,2.5)circle(2pt);
+\foreach \j in {0,...,11}{\draw[DeepBlue,thick](0,{.125+.2*\j})ellipse(.085 and .125);}
+\draw[DeepBlue,thick](0,2.45)--(0,2.5);
+\draw[DeepBlue,thick](0,.19)to[out=-90,in=180](.3,.12)--(1.7,.12)to[out=0,in=-90](1.85,.25)to[out=90,in=0](1.6,.37)--(.6,.37);
+\node[right]at(.4,3.5){$k$，原长为零};\node[right]at(.4,1.6){线密度 $\lambda$};\node[below]at(.9,-.2){地板上的余链};
+\draw[<->](4,0)--(4,4.5)node[midway,right]{$H$};
+\end{tikzpicture}\figcap{悬于零原长弹簧下的软链，下部平放在地板上。}\label{ch10:fig:chain-problem}\end{chTenFigure}}
+
+\newcommand{\chTenWedgeProblemFigure}{\begin{chTenFigure}\begin{tikzpicture}[every node/.style=chTenLabel,>=Latex,scale=.8]
+\draw[ground](-4.1,0)--(4.1,0);
+\draw[thick](-3,0)--(-3,3)--(0,0)--cycle;\draw[thick](0,0)--(3,3)--(3,0)--cycle;
+\fill[DeepBlue](-3,3)circle(3pt);\fill[DeepBlue](3,3)circle(3pt);\draw[thick,DeepBlue](-3,3)--(3,3);
+\node[above]at(0,3.15){$L_0,\ k$};\node[above left]at(-3,3){$m$};\node[above right]at(3,3){$m$};
+\node at(-2.1,.6){$m$};\node at(2.1,.6){$m$};
+\draw(.85,0)arc(0:45:.85);\node at(1.25,.42){$45^\circ$};
+\draw(-.85,0)arc(180:135:.85);\node at(-1.25,.42){$45^\circ$};
+\end{tikzpicture}\figcap{两球在斜面顶端由静止释放，水平弹性轻杆初始处于自由长度。}\label{ch10:fig:wedges-problem}\end{chTenFigure}}
+
+\section{简谐振动的描述与判据}\label{ch10:sec:shm}
+\subsection{振幅、相位与初始条件}
+振动是物理量在平衡值附近反复变化的过程。弹簧振子的位移、交流电路中的电荷以及分子中原子的偏移，虽然所指对象不同，却可以服从相同的数学方程。最简单的周期振动是简谐振动（simple harmonic oscillation）：
+\begin{equation}\label{ch10:eq:definition}
+ Q(t)=Q_0+A\cos(\omega t+\varphi),\qquad A\geq0,\quad\omega>0.
+\end{equation}
+这里$Q_0$是平衡值，$A$是振幅，即相对平衡值的最大偏离量；$\psi=\omega t+\varphi$是相位，表示振动进行到一个周期中的哪一阶段；$\varphi$是$t=0$时的初相位。角频率$\omega$的单位为$\mathrm{rad/s}$，相位增加$2\pi$完成一次振动，故周期与频率分别为
+\[
+ T=\frac{2\pi}{\omega},\qquad f=\frac1T=\frac{\omega}{2\pi}.
+\]
+同一个位移通常在一周期内出现两次，此时运动方向相反。因此只有位移还不能完全确定状态，还需要速度，或者等价的运动方向信息。以下以平衡位置为$x=0$的质点为例，直接对位移求导：
+\begin{align}
+ x&=A\cos\psi,\label{ch10:eq:shm-x}\\
+ v=\dot x&=-A\omega\sin\psi,\label{ch10:eq:shm-v}\\
+ a=\ddot x&=-A\omega^2\cos\psi=-\omega^2x.\label{ch10:eq:shm-a}
+\end{align}
+速度振幅为$A\omega$，加速度振幅为$A\omega^2$。当$x>0$时$a<0$，当$x<0$时$a>0$，故加速度总指向平衡位置；这不是说物体总向平衡位置运动，而是说物体背离平衡位置时速率减小、接近平衡位置时速率增大。
+
+若初始条件为$x(0)=x_0$、$v(0)=v_0$，则
+\[
+ x_0=A\cos\varphi,\qquad -\frac{v_0}{\omega}=A\sin\varphi.
+\]
+平方后相加，得到
+\begin{equation}\label{ch10:eq:initial}
+ A=\sqrt{x_0^2+\frac{v_0^2}{\omega^2}},\qquad
+ \cos\varphi=\frac{x_0}{A},\quad \sin\varphi=-\frac{v_0}{A\omega}.
+\end{equation}
+用余弦确定角的候选值，再用正弦的符号选象限，便能避免只用反三角函数主值产生的歧义。也可记为
+$\varphi=\operatorname{atan2}(-v_0/\omega,x_0)$，其中$\operatorname{atan2}(Y,X)$表示由横分量$X$、纵分量$Y$确定象限的角。$A=0$对应静止，初相位无物理意义。
+
+更一般地，若已知$x/A=c$，则$\psi=\pm\arccos c+2n\pi$；若已知$-v/(A\omega)=s$，则$\psi=\arcsin s+2n\pi$或$\pi-\arcsin s+2n\pi$。两条条件应同时满足。求两个状态间的历时，要沿实际运动方向连续增加相位，不能每次把相位跳回主值区间：
+\begin{equation}\label{ch10:eq:phase-time}
+ \Delta t=\frac{\psi_2-\psi_1}{\omega}.
+\end{equation}
+例如从$x=A,v=0$到$x=0,v<0$，相位从0增加到$\pi/2$，历时$T/4$；到$x=0,v>0$则要增加到$3\pi/2$，历时$3T/4$。
+
+\subsection{复数表示为什么方便}
+把平衡值先减去，令$q=Q-Q_0$。利用欧拉公式$\mathrm e^{\ii\psi}=\cos\psi+\ii\sin\psi$，引入辅助复变量
+\[
+ \widetilde q(t)=A\mathrm e^{\ii(\omega t+\varphi)}
+ =\widetilde A\mathrm e^{\ii\omega t},\qquad
+ \widetilde A=A\mathrm e^{\ii\varphi},\qquad q=\Re\widetilde q.
+\]
+$\widetilde A$称复振幅，它的模是振幅，辐角是初相位。复数本身不意味着物体运动到一个“虚位置”；它是同时保存两个正交相位分量的计算工具。由于求导与取实部可交换，
+\[
+ \frac{\dd\widetilde q}{\dd t}=\ii\omega\widetilde q,
+ \qquad \frac{\dd^2\widetilde q}{\dd t^2}=-\omega^2\widetilde q,
+ \qquad \dot q=\Re\dot{\widetilde q}.
+\]
+于是线性微分方程中的求导可以转为乘$\ii\omega$。线性叠加同样可以先在复数域计算再取实部。但平方、乘积等非线性运算不能这样直接交换：通常
+$(\Re\widetilde q)^2\ne\Re(\widetilde q^{2})$。例如计算动能时必须使用真实速度的平方，而不是复速度平方的实部。
+
+\subsection{回复判据、能量判据与相图}
+若一个坐标的动力学方程为
+\begin{equation}\label{ch10:eq:linear-test}
+ \ddot x=-\omega_0^2x,\qquad\omega_0^2>0,
+\end{equation}
+其中$\omega_0$不随$x,t$变化，则它作简谐振动。平衡位置不在零点时，先用$x=q-q_0$表示相对平衡位置的偏移。若$\ddot x=+\lambda^2x$，则是指数型不稳定运动，不能仅凭“加速度正比于位移”判断为振动。
+
+将式\eqref{ch10:eq:linear-test}乘$\dot x$，逐项写成全导数：
+\[
+ \dot x\ddot x+\omega_0^2x\dot x=0
+ \quad\Longrightarrow\quad
+ \frac{\dd}{\dd t}\left(\frac12\dot x^2+\frac12\omega_0^2x^2\right)=0.
+\]
+结合初始条件，可写为
+\begin{equation}\label{ch10:eq:ellipse}
+ v^2+\omega_0^2x^2=\omega_0^2A^2,
+ \qquad \frac{x^2}{A^2}+\frac{v^2}{A^2\omega_0^2}=1.
+\end{equation}
+这就是位移和速度大小“此消彼长”的关系。在质量$m$、劲度系数$k=m\omega_0^2$的振子中，它等价于能量守恒：
+\begin{equation}\label{ch10:eq:energy}
+ E=\frac12mv^2+\frac12kx^2=\frac12kA^2.
+\end{equation}
+平衡点$x=0$处动能最大；两端$x=\pm A$处动能为零、势能最大。
+
+反过来，在光滑、非静止的实际动力学轨道上，若式\eqref{ch10:eq:ellipse}恒成立，在$v\ne0$的区间求导并约去$v$可得式\eqref{ch10:eq:linear-test}，再以加速度连续性延拓到转向点。也可在单调运动的一段上积分
+\[
+ \frac{\dd x}{\sqrt{A^2-x^2}}=\pm\omega_0\dd t,
+ \qquad \arcsin(x/A)=\pm\omega_0t+C,
+\]
+并在转向点接上正确的速度分支。单独一条能量等式并不允许任意安排在端点停留多久；这还需要原动力学和光滑性条件。恒定的$x=\pm A$也满足该代数等式，却不是回复力非零时的动力学解。
+
+\chTenPhaseFigure
+图\ref{ch10:fig:phase}把一个运动状态画成相平面中的一点。顶部$x=0,v>0$时点必须向右移动；右端$x=A,v=0$时加速度为负，点向下移动，故轨迹是顺时针方向。横纵轴表示不同的物理量，纸面椭圆的长短还与标度有关。用$X=x/A$、$V=v/(A\omega_0)$归一化后，轨迹才明确成为$X^2+V^2=1$的单位圆；不能仅凭一幅图外观看起来像圆就断言量纲有误。
+
+\begin{origexamplebox}{竖直弹簧的平衡位置与周期}\label{ch10:ex:vertical-spring}
+劲度系数为$k$的轻弹簧竖直悬挂，末端连接质量为$m$的小球。求平衡伸长量及小球在平衡位置附近作小振动的周期。运动过程中弹簧保持在线性弹性范围内。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+以弹簧原长时球的位置为伸长量$y$的零点，向下为正。球所受重力为$+mg$，弹簧力为$-ky$，故
+\[
+ m\ddot y=mg-ky.
+\]
+平衡要求加速度为零，因此$ky_0=mg$。图\ref{ch10:fig:vertical-spring}中的$x$不是弹簧总伸长，而是相对平衡位置的位移：$x=y-y_0$。由于$y_0$为常量，$\ddot y=\ddot x$，代入得
+\[
+ m\ddot x=mg-k(y_0+x)=-kx.
+\]
+\chTenVerticalFigure
+比较回复方程，$\omega_0^2=k/m$，所以
+\[
+ \boxed{y_0=mg/k},\qquad \boxed{T=2\pi\sqrt{m/k}}.
+\]
+重力被平衡伸长抵消，并未改变线性回复系数。$m/k$的单位为秒平方，周期量纲正确。如果振幅过大使弹簧失去线性、碰到限位或连接松弛，便不能继续使用这同一方程。
+\end{xesolution}
+
+\section{稳定平衡附近的小振动}\label{ch10:sec:small}
+\subsection{先找平衡，再确定回复系数}
+严格简谐要求回复关系精确线性；小振动则是非线性系统在稳定平衡附近的近似。对一个无显含时间约束、无耗散的一自由度系统，设广义坐标为$q$，势能为$U(q)$。平衡点$q_0$满足$U'(q_0)=0$。取$\eta=q-q_0$，泰勒展开给出
+\[
+ U(q)=U(q_0)+\frac12U''(q_0)\eta^2
+ +\frac1{3!}U'''(q_0)\eta^3+\cdots.
+\]
+当$U''(q_0)>0$且振幅足够小，高阶项相对二阶项很小，势能可近似为抛物线。动能一般写作$T_{\rm kin}=\tfrac12M(q)\dot q^2$；展开$M(q)=M(q_0)+M'(q_0)\eta+\cdots$，其中$\eta\dot\eta^2$已经是三阶小量，二阶近似只留下
+\[
+ T_{\rm kin}\simeq\frac12M_0\dot\eta^2,\qquad M_0=M(q_0)>0.
+\]
+于是二阶能量为两个平方项之和，求导得
+\begin{equation}\label{ch10:eq:small-frequency}
+ M_0\ddot\eta+U''(q_0)\eta=0,
+ \qquad \omega_0=\sqrt{\frac{U''(q_0)}{M_0}}.
+\end{equation}
+$M_0$是对坐标$q$而言的惯性系数，不一定具有质量的量纲；若$q$是角度，它就是转动惯量。若$U''<0$，该平衡不稳定；若$U''=0$，必须继续检查高阶项。例如$U\propto\eta^4$可以稳定，却没有与振幅无关的非零小振动频率。
+
+\subsection{单摆：把小角度近似落到能量上}
+长$l$的单摆取偏离竖直向下方向的角$\theta$为坐标。小球速率为$l|\dot\theta|$，故
+\[
+ T_{\rm kin}=\frac12ml^2\dot\theta^2,\qquad
+ U=mgl(1-\cos\theta).
+\]
+在$\theta=0$处，$U'=mgl\sin\theta=0$，$U''=mgl>0$，所以
+\[
+ \omega_0^2=\frac{mgl}{ml^2}=\frac gl,\qquad
+ T_0=2\pi\sqrt{l/g}.
+\]
+这里的判定过程依次是：写能量、找稳定平衡、保留二阶项、比较惯性和回复系数。它对弹性约束、转动约束和复杂机构的小振动都适用。
+
+周期为什么只在小摆角下近似不变？若最大摆角为$\theta_m$，能量守恒给
+\[
+ \dot\theta^2=\frac{2g}{l}(\cos\theta-\cos\theta_m),\quad
+ T=4\sqrt{\frac l{2g}}\int_0^{\theta_m}
+ \frac{\dd\theta}{\sqrt{\cos\theta-\cos\theta_m}}.
+\]
+令$\sin(\theta/2)=s\sin u$，$s=\sin(\theta_m/2)$，可得
+\[
+ T=4\sqrt{\frac lg}\int_0^{\pi/2}\frac{\dd u}{\sqrt{1-s^2\sin^2u}}
+ =T_0\left(1+\frac{s^2}{4}+\cdots\right)
+ =T_0\left(1+\frac{\theta_m^2}{16}+\cdots\right).
+\]
+第二个等号使用$(1-z)^{-1/2}=1+z/2+\cdots$及$\int_0^{\pi/2}\sin^2u\,\dd u=\pi/4$。当$\theta_m=10^\circ=\pi/18\simeq0.1745\,\mathrm{rad}$，首项相对修正约$0.00190$，即$0.19\%$。它给出了“小”到底有多小的可检验尺度。
+
+\begin{origexamplebox}{复摆的小振动}\label{ch10:ex:physical-pendulum}
+质量为$M$、质心到水平固定转轴的距离为$a>0$的刚体可以绕该轴无摩擦转动，绕轴转动惯量为$I$。求质心位于轴下方的平衡位置附近的小振动周期。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+取图\ref{ch10:fig:physical-pendulum}中向右偏转的$\theta$为正。重力对轴$O$的力矩使偏角减小，其有符号值为$-Mga\sin\theta$，因此精确转动方程是
+\[
+ I\ddot\theta=-Mga\sin\theta.
+\]
+\chTenPendulumFigure
+小角度以弧度表示，$\sin\theta\simeq\theta$，得到$I\ddot\theta+Mga\theta=0$。也可由$U=Mga(1-\cos\theta)\simeq Mga\theta^2/2$及$T_{\rm kin}=I\dot\theta^2/2$读出相同的两个系数。故
+\[
+ \boxed{\omega_0=\sqrt{Mga/I}},\qquad
+ \boxed{T=2\pi\sqrt{I/(Mga)}}.
+\]
+当所有质量集中在距轴$a$处，$I=Ma^2$，结果退化为长$a$的单摆；一般刚体还含绕质心的转动惯量，不能直接用$Ma^2$替代$I$。若$a\to0$，重力回复力矩消失，周期趋于无穷，与模型一致。
+\end{xesolution}
+
+\section{阻尼振动}\label{ch10:sec:damping}
+\subsection{三种阻尼情形及其通解}
+阻尼表示运动中的耗散。以下采用黏性阻力模型$F_d=-b\dot x$，其中$b>0$，单位为$\mathrm{kg/s}$。这种线性关系只适用于相应速度和介质条件，不能替代干摩擦或任意流体阻力。运动方程为
+\begin{equation}\label{ch10:eq:damping}
+ m\ddot x+b\dot x+kx=0,
+ \qquad\ddot x+2\gamma\dot x+\omega_0^2x=0,
+ \quad\gamma=\frac{b}{2m},\quad\omega_0=\sqrt{k/m}.
+\end{equation}
+这里$\gamma$和$\omega_0$都是频率量纲，但$\gamma$控制衰减，不是振荡角频率。设$x=\mathrm e^{rt}$，除去非零指数，特征方程和根为
+\[
+ r^2+2\gamma r+\omega_0^2=0,
+ \qquad r_\pm=-\gamma\pm\sqrt{\gamma^2-\omega_0^2}.
+\]
+\paragraph{欠阻尼：$0<\gamma<\omega_0$。}
+令$\omega_d=\sqrt{\omega_0^2-\gamma^2}$。共轭根$-\gamma\pm\ii\omega_d$给出两个实独立解：
+\begin{equation}\label{ch10:eq:under}
+ x=\mathrm e^{-\gamma t}(C\cos\omega_dt+D\sin\omega_dt)
+ =A_0\mathrm e^{-\gamma t}\cos(\omega_dt+\varphi).
+\end{equation}
+若$x(0)=x_0,\dot x(0)=v_0$，则$C=x_0$，由$v_0=-\gamma C+\omega_dD$得$D=(v_0+\gamma x_0)/\omega_d$。准周期$T_d=2\pi/\omega_d$大于无阻尼周期；严格说$x(t)$不再周期重复，而是振荡与衰减的乘积。
+
+\paragraph{临界阻尼：$\gamma=\omega_0$。}
+此时两个根相同，不能把两个相同的指数当成两条独立解。直接令$x=\mathrm e^{-\gamma t}y$代入方程，得到$\ddot y=0$，故
+\begin{equation}\label{ch10:eq:critical}
+ x=(C+Dt)\mathrm e^{-\omega_0t}
+ =[x_0+(v_0+\omega_0x_0)t]\mathrm e^{-\omega_0t}.
+\end{equation}
+也可在欠阻尼解中用$\sin\omega_dt/\omega_d\to t$求极限；初速度对应的正弦项系数随$\omega_d\to0$变化，不能只把正弦置零。
+
+\paragraph{过阻尼：$\gamma>\omega_0$。}
+记$\kappa=\sqrt{\gamma^2-\omega_0^2}$，则两个根均为负实数：
+\begin{equation}\label{ch10:eq:over}
+ x=C\mathrm e^{(-\gamma+\kappa)t}+D\mathrm e^{(-\gamma-\kappa)t}.
+\end{equation}
+初值给$C+D=x_0$、$\kappa(C-D)=v_0+\gamma x_0$，也可合写为
+\[
+ x=\mathrm e^{-\gamma t}\left[x_0\cosh\kappa t+
+ \frac{v_0+\gamma x_0}{\kappa}\sinh\kappa t\right].
+\]
+它没有反复过零的振荡，但初速度很大时仍可能穿过平衡位置一次；“非振荡”不能误读为“绝不越过平衡点”。
+
+\chTenDampingFigure
+图\ref{ch10:fig:damping-types}三幅图均取$x_0>0,v_0=0$，只改变$\gamma/\omega_0$。欠阻尼有过冲；临界阻尼不反复振荡；过阻尼中的慢指数使返回延迟。其慢衰减率为
+\[
+ \gamma-\sqrt{\gamma^2-\omega_0^2}
+ =\frac{\omega_0^2}{\gamma+\sqrt{\gamma^2-\omega_0^2}},
+\]
+随$\gamma$增大而减小。对于相同$m,k$、从同一偏离位置静止释放，以及用长期收敛尺度比较的情形，临界阻尼是欠阻尼与非振荡返回之间的分界，具有最快的非振荡返回特性。不能脱离初始条件、允许过冲量和“返回”的容差定义，宣称它在所有指标下都最快。临界衰减的特征时间是$1/\omega_0$量级，并非一次完整的无阻尼周期。
+
+\subsection{包络、能量与品质因数}
+欠阻尼位移被两条包络$\pm A_0\mathrm e^{-\gamma t}$限制，振幅尺度减少到$1/\mathrm e$的时间为$\tau_A=1/\gamma$。相邻同向极值相隔$T_d$，极值绝对值之比恰为$\mathrm e^{\gamma T_d}$，其对数$\gamma T_d$称对数衰减率。图\ref{ch10:fig:damping-envelope}同时画出了位移及两条包络。
+\chTenEnvelopeFigure
+机械能仍定义为$E=m\dot x^2/2+kx^2/2$，但已不守恒。将运动方程乘$\dot x$，可得精确结论
+\begin{equation}\label{ch10:eq:dissipation}
+ \frac{\dd E}{\dd t}=\dot x(m\ddot x+kx)=-b\dot x^2\leq0.
+\end{equation}
+令$\psi=\omega_dt+\varphi$，精确求导得
+\[
+ \dot x=-A_0\mathrm e^{-\gamma t}(\gamma\cos\psi+\omega_d\sin\psi),
+\]
+所以瞬时能量为
+\[
+ E(t)=\frac{mA_0^2}{2}\mathrm e^{-2\gamma t}
+ \left[(\gamma\cos\psi+\omega_d\sin\psi)^2+\omega_0^2\cos^2\psi\right].
+\]
+方括号一般随相位变化，因此不能把瞬时能量直接写成固定常数乘$\mathrm e^{-2\gamma t}$。当$\gamma/\omega_0\ll1$，一周期内包络变化很小，将慢变包络暂时固定再平均，得到
+\[
+ \overline E\simeq\frac12m\omega_0^2A^2(t),\qquad
+ \overline P_{\rm loss}\simeq\frac12b\omega_0^2A^2(t),
+ \qquad \frac{\dd\overline E}{\dd t}\simeq-2\gamma\overline E.
+\]
+这里$P_{\rm loss}>0$是损失功率的大小。于是平均能量近似按$\mathrm e^{-2\gamma t}$衰减，$\tau_E\simeq1/(2\gamma)$。品质因数（quality factor）可定义为本线性模型的参数
+\begin{equation}\label{ch10:eq:quality}
+ Q=\frac{m\omega_0}{b}=\frac{\omega_0}{2\gamma}.
+\end{equation}
+在弱阻尼下，它还有能量意义：
+\[
+ Q\simeq\frac{\omega_0\overline E}{\overline P_{\rm loss}}
+ \simeq2\pi\frac{\overline E}{|\Delta E|_{\text{一周期}}}.
+\]
+第二个比值要求一周期损耗占比较小。$Q$大表示每次振动损耗较少，而不是完全没有耗散。
+
+\subsection{阻尼相图与损耗相位}
+相图是以坐标和速度（或动量）为轴画出的状态轨迹。因为$x$和$v$都衰减，欠阻尼相轨迹沿顺时针向原点收缩，见图\ref{ch10:fig:damped-phase}左图；它不是一组互不连接的椭圆。
+\chTenDampedPhaseFigure
+为分开“包络收缩”和“相位偏离”，定义$X=\mathrm e^{\gamma t}x$、$V=\mathrm e^{\gamma t}v$，注意$V\ne\dot X$。由$X=A_0\cos\psi$及$V=-\gamma A_0\cos\psi-\omega_d A_0\sin\psi$消去相位：
+\begin{equation}\label{ch10:eq:tilted}
+ X^2+\frac{(V+\gamma X)^2}{\omega_d^2}=A_0^2.
+\end{equation}
+这条曲线含交叉项$XV$。令$Y=V/\omega_0$并利用$\omega_d^2+\gamma^2=\omega_0^2$，得
+\[
+ X^2+Y^2+2\frac\gamma{\omega_0}XY
+ =A_0^2\left(1-\frac{\gamma^2}{\omega_0^2}\right).
+\]
+在同一长度标度的$X,Y$图上，其主轴沿$Y=\pm X$；阻尼改变轴长比，而不是使这个特定归一化下的主轴角逐渐增大。若采用不同横纵标度，纸面倾角还会改变。图中的椭圆倾角不能直接当作损耗相位。
+
+速度还可写为
+\[
+ v=-\omega_0A_0\mathrm e^{-\gamma t}\sin(\psi+\eta),\qquad
+ \sin\eta=\frac\gamma{\omega_0},\quad
+ \cos\eta=\frac{\omega_d}{\omega_0},\quad0<\eta<\frac\pi2.
+\]
+因此扣除衰减包络后，速度相对位移的相位偏离无阻尼的$\pi/2$，多出$\eta$。在此欠阻尼自由衰减约定下，可称$\eta$为损耗角，并有$\sin\eta=1/(2Q)$。不同学科也用“损耗角”表示受迫响应中的材料损耗相位，定义未必相同，使用时应说明；下文用$\delta$专指位移相对外力的滞后角。
+
+\section{受迫振动、共振与谱线}\label{ch10:sec:driven}
+\subsection{暂态与稳态：从复振幅到真实位移}
+给振子施加$F(t)=F_0\cos\omega t$，其中$F_0>0,\omega>0$。线性方程为
+\begin{equation}\label{ch10:eq:forced}
+ m\ddot x+b\dot x+kx=F_0\cos\omega t.
+\end{equation}
+为什么先研究单一频率？满足通常傅里叶展开条件的周期力可以分解为常量和不同频率的正弦项，线性系统对各项的响应相加便是总响应；非周期驱动力在适当条件下可用傅里叶积分。这不是说任意力都等于一个正弦力。
+
+先将右端暂写成$F_0\mathrm e^{\ii\omega t}$，设特解$\widetilde x=\widetilde X\mathrm e^{\ii\omega t}$。求导一次、两次分别带来$\ii\omega$、$-\omega^2$，因此
+\[
+ (k-m\omega^2+\ii b\omega)\widetilde X=F_0,
+ \quad\widetilde X=\frac{F_0}{k-m\omega^2+\ii b\omega}
+ =\frac{F_0(k-m\omega^2-\ii b\omega)}{(k-m\omega^2)^2+b^2\omega^2}.
+\]
+写$\widetilde X=A\mathrm e^{-\ii\delta}$，取实部得稳态$x_s=A\cos(\omega t-\delta)$，其中
+\begin{align}
+ A&=\frac{F_0}{\sqrt{(k-m\omega^2)^2+b^2\omega^2}},\label{ch10:eq:response-A}\\
+ \cos\delta&=\frac{k-m\omega^2}{\sqrt{(k-m\omega^2)^2+b^2\omega^2}},\qquad
+ \sin\delta=\frac{b\omega}{\sqrt{(k-m\omega^2)^2+b^2\omega^2}}.\label{ch10:eq:response-phase}
+\end{align}
+对$b>0$，必须取$0<\delta<\pi$，即$\delta=\operatorname{atan2}(b\omega,k-m\omega^2)$。只写$\tan\delta=b\omega/(k-m\omega^2)$会在$\omega>\omega_0$时丢失象限；在$\omega=\omega_0$，$\delta=\pi/2$而非“无定义”。
+
+完整解为$x=x_h+x_s$，其中$x_h$是上一节相应阻尼类型的齐次解，用来满足初始位移和速度。例如欠阻尼时从静止开始施力，$x(0)=v(0)=0$，可写
+\[
+ x_h=\mathrm e^{-\gamma t}(C\cos\omega_dt+D\sin\omega_dt),\quad
+ C=-A\cos\delta,\quad
+ D=\frac{-A\omega\sin\delta+\gamma C}{\omega_d}.
+\]
+经过若干衰减时间，$x_h$才可忽略；稳态频率由外力决定，不是自由衰减频率$\omega_d$。在启动初期，两个频率的叠加还可能出现拍状变化。
+
+\subsection{幅频、相频与共振条件}
+令$r=\omega/\omega_0$，则
+\[
+ \frac{Ak}{F_0}=\frac1{\sqrt{(1-r^2)^2+r^2/Q^2}},\qquad
+ \delta=\operatorname{atan2}(r/Q,1-r^2).
+\]
+图\ref{ch10:fig:resonance}按同一组$Q$画出幅频和相频两部分。实线和虚线不仅表示不同峰高，也给出相位经过$\pi/2$的陡缓变化。
+\chTenResonanceFigure
+当$\omega\to0$，弹性项控制响应，$A\to F_0/k,\delta\to0$，振子近似随外力准静态移动。当$\omega$很高，需同时有$\omega\gg\omega_0$和$\omega\gg b/m$，惯性项才压倒其余项，此时$A\simeq F_0/(m\omega^2)$、$\delta\simeq\pi$。在$\omega=\omega_0$，弹性项与惯性项在复表示中抵消，阻尼项平衡外力，$A=F_0/(b\omega_0)=QF_0/k$。
+
+位移峰值需要最小化$A$的分母平方$D(\omega)$。求导：
+\[
+ D=m^2(\omega_0^2-\omega^2)^2+b^2\omega^2,
+ \quad D'=4m^2\omega(\omega^2-\omega_0^2+2\gamma^2).
+\]
+所以只有$0<\gamma<\omega_0/\sqrt2$时，存在正频率的位移共振峰：
+\[
+ \omega_r=\sqrt{\omega_0^2-2\gamma^2},\qquad
+ A_{\max}=\frac{F_0}{2m\gamma\sqrt{\omega_0^2-\gamma^2}}
+ =\frac{QF_0/k}{\sqrt{1-1/(4Q^2)}}.
+\]
+若$\gamma\geq\omega_0/\sqrt2$，$A$在$\omega\geq0$上的最大值位于$\omega=0$，没有非零频率的位移共振峰。弱阻尼$Q\gg1$时$\omega_r\simeq\omega_0$、$A_{\max}\simeq QF_0/k$，这给出$Q$作为共振放大倍数的近似意义。
+
+\subsection{吸收功率与无阻尼共振}
+稳态平均输入功率必须用真实力乘真实速度。因$v=-A\omega\sin(\omega t-\delta)$，展开正弦并平均，交叉项平均为零、$\overline{\cos^2\omega t}=1/2$，得到
+\begin{equation}\label{ch10:eq:power}
+ \overline P=\overline{Fv}=\frac12F_0A\omega\sin\delta
+ =\frac12b\omega^2A^2
+ =\frac{F_0^2b\omega^2}{2[(k-m\omega^2)^2+b^2\omega^2]}.
+\end{equation}
+它恰等于$\overline{bv^2}$，所以稳态没有能量逐周期累积。把分母除以$\omega^2$，可看出功率在$k/\omega-m\omega=0$即$\omega=\omega_0$处最大：
+\[
+ \overline P_{\max}=\frac{F_0^2}{2b},\qquad
+ (\omega A)_{\max}=\frac{F_0}{b}.
+\]
+因此速度振幅峰、吸收功率峰与$\delta=\pi/2$的位置一致；位移峰通常与它们不同。在$\omega_0$处，外力与速度同相，做功最有效；此时$\overline E=m\omega_0^2A^2/2$，从而$\omega_0\overline E/\overline P=Q$。
+
+如果$b=0$，不能把有阻尼的峰值公式直接用于$\omega=\omega_0$。此时没有有限振幅的周期稳态。取共振特解$x_p=Ct\sin\omega_0t$，则
+\[
+ \ddot x_p+\omega_0^2x_p=2C\omega_0\cos\omega_0t,
+ \quad C=\frac{F_0}{2m\omega_0}.
+\]
+由静止起振时$x=F_0t\sin\omega_0t/(2m\omega_0)$，包络随$t$增长；无限增长只属于无阻尼且始终线性的理想模型，实际会受耗散、非线性或结构极限限制。
+
+\subsection{线型与半高全宽}
+洛伦兹线型（Lorentzian profile）在概率论中对应柯西分布。中心为$z_0$、半宽为$\Gamma>0$的归一化形式是
+\[
+ L(z)=\frac1\pi\frac{\Gamma}{(z-z_0)^2+\Gamma^2},\qquad
+ \int_{-\infty}^{\infty}L(z)\,\dd z=1.
+\]
+积分用$u=(z-z_0)/\Gamma$化为$\pi^{-1}[\arctan u]_{-\infty}^{\infty}=1$。分子中的$\Gamma$不可遗漏，否则量纲和归一化均不对。高斯线型（Gaussian profile）为
+\[
+ G(z)=\frac1{\sqrt{2\pi}\sigma}\exp[-(z-z_0)^2/(2\sigma^2)].
+\]
+比较图\ref{ch10:fig:profiles}时，为单看形状，先各自除以峰高，并令二者半高全宽相同。洛伦兹线型在$|z-z_0|=\Gamma$时降到一半，故全宽$2\Gamma$；高斯线型则为$2\sqrt{2\ln2}\,\sigma$。洛伦兹尾部按距离平方的倒数衰减，高斯尾部衰减更快。
+\chTenProfileFigure
+一般受迫振子的$A^2(\omega)$并非严格洛伦兹函数，因为分母含$\omega^4$。只有弱阻尼、$|\Delta|=|\omega-\omega_0|\ll\omega_0$时，$\omega_0^2-\omega^2\simeq-2\omega_0\Delta$，于是
+\[
+ A^2(\omega)\simeq\frac{F_0^2}{4m^2\omega_0^2}\frac1{\Delta^2+\gamma^2}.
+\]
+半高必须说明测的是$A$、$A^2$还是功率。下题求功率峰的带宽，再说明何时可把它用于位移强度谱。
+
+\begin{origexamplebox}{共振半功率带宽}\label{ch10:ex:bandwidth}
+弱阻尼受迫振子在共振附近的两个半功率频率为$\omega_1<\omega_2$。证明$Q\simeq\omega_0/(\omega_2-\omega_1)$。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+由式\eqref{ch10:eq:power}，将功率除以峰值，得
+\[
+ \frac{\overline P}{\overline P_{\max}}
+ =\frac{b^2\omega^2}{(k-m\omega^2)^2+b^2\omega^2}.
+\]
+半功率条件是该比值等于$1/2$，交叉相乘并移项：
+\[
+ 2b^2\omega^2=(k-m\omega^2)^2+b^2\omega^2
+ \quad\Longrightarrow\quad|k-m\omega^2|=b\omega.
+\]
+低频侧$k-m\omega_1^2>0$，高频侧相反，所以分别解
+\[
+ \omega_1^2+2\gamma\omega_1-\omega_0^2=0,
+ \qquad\omega_2^2-2\gamma\omega_2-\omega_0^2=0.
+\]
+各取正根：
+\[
+ \omega_1=\sqrt{\omega_0^2+\gamma^2}-\gamma,
+ \qquad\omega_2=\sqrt{\omega_0^2+\gamma^2}+\gamma.
+\]
+因此$\Delta\omega=2\gamma=b/m$，即
+\[
+ \boxed{Q=\frac{\omega_0}{\omega_2-\omega_1}}.
+\]
+对这一线性黏性阻尼模型，\emph{吸收功率}的等式实际上是精确的。弱阻尼时两个半功率点近似为$\omega_0\pm\gamma$，且在窄峰内$\omega^2$近似不变，$\overline P\propto\omega^2A^2$才近似与$A^2$成正比；这时也可把$2\gamma$作为位移强度谱的近似半高全宽。$\gamma$和带宽都是角频率，$Q$无量纲；$b\to0^+$时峰越来越窄，但恰好$b=0$的共振需使用上一小节的增长解。
+\end{xesolution}
+
+\section{多自由度小振动与简正模（选读）}\label{ch10:sec:modes}
+\subsection{惯性矩阵和弹性矩阵从哪里来}
+一个单摆只需一个角度，但双摆需要两个角度。具有$n$个独立广义坐标的系统，在平衡构形附近令$q_i$表示第$i$个坐标的微小偏移，并组成列向量$\vect q$。在光滑势能、无耗散、约束不显含时间的条件下，平衡使一次项消失，二阶近似为
+\begin{equation}\label{ch10:eq:quadratic}
+ T_{\rm kin}=\frac12\sum_{i,j}M_{ij}\dot q_i\dot q_j
+ =\frac12\dot{\vect q}^{\mathsf T}\mathbf M\dot{\vect q},\qquad
+ U-U_0=\frac12\sum_{i,j}K_{ij}q_iq_j
+ =\frac12\vect q^{\mathsf T}\mathbf K\vect q.
+\end{equation}
+上标$\mathsf T$表示转置；$\mathbf M$是惯性矩阵，$\mathbf K$是弹性矩阵。其元素分别为动能对速度的二阶偏导和势能在平衡点的二阶偏导。混合偏导可交换，故两矩阵对称。即使最初把交叉项写成不对称系数，也可替换为对称部分，因为$\vect q^{\mathsf T}(\mathbf B-\mathbf B^{\mathsf T})\vect q=0$。
+
+例如$U=aq_1^2/2+cq_1q_2+dq_2^2/2$的矩阵是$\bigl(\begin{smallmatrix}a&c\\c&d\end{smallmatrix}\bigr)$，不是把两个非对角元都写成$2c$。求$\partial U/\partial q_i$得到$\sum_jK_{ij}q_j$，所以拉格朗日方程给出
+\begin{equation}\label{ch10:eq:matrix-motion}
+ \mathbf M\ddot{\vect q}+\mathbf K\vect q=0.
+\end{equation}
+
+对于真正独立、非奇异的物理坐标，非零广义速度应具有正动能，即$\mathbf M$正定。若出现零惯性方向，要检查是否引入了冗余坐标、忽略了必要惯量，或在该平衡点使用了奇异坐标；不能直接求逆继续套用。势能矩阵则有三种重要情况：正定保证严格局部稳定；出现负方向意味着不稳定；有零方向时需看对称性或更高阶势能。零频整体转动可以是中性运动，$U\propto q^4$也可能稳定，而$U\propto-q^4$不稳定。
+
+\subsection{两个模型：耦合摆与双摆}
+先看图\ref{ch10:fig:coupled-pendula}：两根摆长均为$l$，摆球均为$m$，固定悬点水平相距$d$，摆球间轻弹簧原长恰为$d$、劲度系数为$k_c$。两角都从各自竖直向下方向向右量为正，不以图中左右位置改变角度正向。
+\chTenCoupledPendulaFigure
+两球坐标差的水平分量为$d+l\sin\theta_2-l\sin\theta_1$，竖直分量为$l\cos\theta_1-l\cos\theta_2$，故弹簧长度
+\[
+ d'=\sqrt{(d+l\sin\theta_2-l\sin\theta_1)^2+
+ l^2(\cos\theta_1-\cos\theta_2)^2}.
+\]
+小角下$d'-d=l(\theta_2-\theta_1)+O(\theta^2)$，于是
+\begin{align*}
+ T_{\rm kin}&=\frac12ml^2(\dot\theta_1^2+\dot\theta_2^2),\\
+ U&=mgl(2-\cos\theta_1-\cos\theta_2)+\frac12k_c(d'-d)^2\\
+ &\simeq\frac12mgl(\theta_1^2+\theta_2^2)
+ +\frac12k_cl^2(\theta_2-\theta_1)^2.
+\end{align*}
+记$\epsilon=k_cl/(mg)$，得
+\[
+ \mathbf M=ml^2\begin{pmatrix}1&0\\0&1\end{pmatrix},\qquad
+ \mathbf K=mgl\begin{pmatrix}1+\epsilon&-\epsilon\\-\epsilon&1+\epsilon\end{pmatrix}.
+\]
+这里耦合出现在势能中。交换两摆不改变方程，故先试同相$\theta_1=\theta_2$与反相$\theta_1=-\theta_2$：
+\[
+ \ddot\theta_1=-\frac gl[(1+\epsilon)\theta_1-\epsilon\theta_2],
+ \quad\omega_S^2=\frac gl,
+ \qquad\omega_A^2=\frac gl(1+2\epsilon).
+\]
+同相时弹簧一阶伸长为零；反相时两端位移反向，伸长加倍。取$Q_S=(\theta_1+\theta_2)/2$、$Q_A=(\theta_1-\theta_2)/2$，直接相加、相减方程也得到两条独立简谐方程。任意初始状态是这两种模式的叠加，不必始终具有左右对称形状。
+
+同一数学结构也适用于两物块弹簧模型，见图\ref{ch10:fig:coupled-masses}。两端弹簧均为$k$，中间弹簧为$k_c$，$x_1,x_2$从各自平衡位置向右量：
+\[
+ m\ddot x_1=-(k+k_c)x_1+k_cx_2,\qquad
+ m\ddot x_2=k_cx_1-(k+k_c)x_2.
+\]
+因此同相、反相频率分别为$\sqrt{k/m}$和$\sqrt{(k+2k_c)/m}$。中间弹簧的伸长量为$x_2-x_1$，不是$x_1+x_2$。
+\chTenCoupledMassFigure
+
+再看图\ref{ch10:fig:double-pendulum}的等质量、等杆长双摆。两角均相对竖直方向，而不是第二杆相对第一杆的夹角。上球坐标$(l\sin\theta_1,-l\cos\theta_1)$，下球再加$(l\sin\theta_2,-l\cos\theta_2)$，故下球速率平方为
+\[
+ v_2^2=l^2\dot\theta_1^2+l^2\dot\theta_2^2
+ +2l^2\dot\theta_1\dot\theta_2\cos(\theta_1-\theta_2).
+\]
+\chTenDoublePendulumFigure
+将两球动能相加，重力势能相加，小角近似给
+\begin{align*}
+ T_{\rm kin}&\simeq\frac12ml^2(2\dot\theta_1^2+2\dot\theta_1\dot\theta_2+\dot\theta_2^2),\\
+ U&=mgl[2(1-\cos\theta_1)+(1-\cos\theta_2)]
+ \simeq\frac12mgl(2\theta_1^2+\theta_2^2),\\
+ \mathbf M&=ml^2\begin{pmatrix}2&1\\1&1\end{pmatrix},\qquad
+ \mathbf K=mgl\begin{pmatrix}2&0\\0&1\end{pmatrix}.
+\end{align*}
+这里势能没有交叉项，耦合却在动能中。仅把一种能量配方并不够。例如令$u=\theta_1+\theta_2/2,w=\theta_2$，则
+\[
+ T_{\rm kin}=ml^2\dot u^2+\frac14ml^2\dot w^2,
+ \quad U=mgl\left(u^2-uw+\frac34w^2\right).
+\]
+动能虽已化为平方和，势能反而出现交叉项；真正目标是用\emph{同一个}坐标变换同时对角化两者。
+
+\subsection{同时对角化、正交性和简正坐标}
+一般二次型可以逐变量配方。例如$f_{11}\ne0$时，把$q_1$换成$q_1'=q_1+\sum_{j>1}f_{1j}q_j/f_{11}$，便可将含$q_1$的项写成$f_{11}(q_1')^2/2$和其余变量的二次型；继续处理余项即可消去交叉项。零主元时需要先换坐标。这个过程叫二次型的对角化，但它未保证同时处理两个二次型。
+
+令旧坐标$\vect q=\mathbf B\vect Q$。代入式\eqref{ch10:eq:quadratic}，得到新矩阵
+\[
+ \mathbf M'=\mathbf B^{\mathsf T}\mathbf M\mathbf B,
+ \qquad\mathbf K'=\mathbf B^{\mathsf T}\mathbf K\mathbf B.
+\]
+这称合同变换，与$\mathbf B^{-1}\mathbf K\mathbf B$那种相似变换不能混淆。如何选$\mathbf B$？先设所有坐标以同频率运动，$\vect q=\vect a\cos(\omega t+\phi)$，代入动力学方程：
+\begin{equation}\label{ch10:eq:eigen}
+ (\mathbf K-\omega^2\mathbf M)\vect a=0,
+ \qquad\det(\mathbf K-\omega^2\mathbf M)=0.
+\end{equation}
+前式是广义本征值问题，后式是存在非零振幅向量的条件。但“行列式有$n$个根”还不足以保证$n$个独立本征向量，下面补上保证完备性的论证。
+
+$\mathbf M$实对称正定，故有实对称正定平方根$\mathbf M^{1/2}$和逆$\mathbf M^{-1/2}$。令$\vect u=\mathbf M^{1/2}\vect a$，广义本征方程化为
+\[
+ \underbrace{\mathbf M^{-1/2}\mathbf K\mathbf M^{-1/2}}_{\mathbf D}
+ \vect u=\lambda\vect u,\qquad\lambda=\omega^2.
+\]
+$\mathbf D$为实对称矩阵，所以存在$n$个实特征值及一组完备正交特征向量；重根子空间内也能选择正交基。令这些单位向量为$\vect u_i$，取$\vect a_i=\mathbf M^{-1/2}\vect u_i$，便有
+\[
+ \vect a_i^{\mathsf T}\mathbf M\vect a_j=\delta_{ij},\qquad
+ \vect a_i^{\mathsf T}\mathbf K\vect a_j=\lambda_j\delta_{ij}.
+\]
+这既证明存在性，也给出构造。不同频率的质量正交性还可直接验证：由$\mathbf K\vect a_j=\lambda_j\mathbf M\vect a_j$及矩阵对称性，
+\[
+ \lambda_j\vect a_i^{\mathsf T}\mathbf M\vect a_j
+ =\vect a_i^{\mathsf T}\mathbf K\vect a_j
+ =\lambda_i\vect a_i^{\mathsf T}\mathbf M\vect a_j,
+\]
+所以$\lambda_i\ne\lambda_j$时该内积为零。若不把向量归一化，可记$M_i=\vect a_i^{\mathsf T}\mathbf M\vect a_i>0$，$K_i=\lambda_iM_i$；取$\mathbf B=(\vect a_1,\ldots,\vect a_n)$后，
+\[
+ T_{\rm kin}=\frac12\sum_i M_i\dot Q_i^2,
+ \qquad U-U_0=\frac12\sum_i K_iQ_i^2,
+ \qquad M_i\ddot Q_i+K_iQ_i=0.
+\]
+$Q_i$称简正坐标，$\omega_i=\sqrt{K_i/M_i}$称简正频率；只有一个$Q_i$被激发的运动称简正模（normal mode）。$\lambda_i>0$时$Q_i=C_i\cos(\omega_it+\phi_i)$；$\lambda_i=0$时$Q_i=C_i+D_it$；$\lambda_i<0$时出现增长/衰减指数。因此“$\mathbf M$正定、$\mathbf K$对称”只保证能解耦，并不保证每个坐标都振动。
+
+初始条件也可明确投影：$Q_i(0)=\vect a_i^{\mathsf T}\mathbf M\vect q(0)/M_i$，$\dot Q_i(0)=\vect a_i^{\mathsf T}\mathbf M\dot{\vect q}(0)/M_i$。分别解每个标量方程，再用$\vect q=\sum_i\vect a_iQ_i$还原运动。原坐标通常含多个频率，并不各自简谐。
+
+\subsection{完整求出双摆的两个模态}
+在式\eqref{ch10:eq:eigen}中提出公共因子，令$\alpha=g/l$、$\lambda=\omega^2$，得到
+\[
+ \det\begin{pmatrix}2\alpha-2\lambda&-\lambda\\-\lambda&\alpha-\lambda\end{pmatrix}
+ =2(\alpha-\lambda)^2-\lambda^2=0.
+\]
+展开为$\lambda^2-4\alpha\lambda+2\alpha^2=0$，故
+\[
+ \lambda_-=(2-\sqrt2)g/l,\qquad
+ \lambda_+=(2+\sqrt2)g/l.
+\]
+第二行给$a_2/a_1=\lambda/(\alpha-\lambda)$，分别为$\sqrt2$和$-\sqrt2$。可选$\vect a_-=(1,\sqrt2)^{\mathsf T}$、$\vect a_+=(1,-\sqrt2)^{\mathsf T}$。所以同向摆动的低频模中，下杆角振幅是上杆的$\sqrt2$倍；高频模两杆反向，绝对比仍为$\sqrt2$，不是简单的等幅反相。
+
+令
+\[
+ \theta_1=Q_-+Q_+,\quad\theta_2=\sqrt2(Q_--Q_+),
+ \qquad Q_\pm=\frac{\theta_1}{2}\mp\frac{\theta_2}{2\sqrt2}.
+\]
+这里最后一式中$Q_+$取减号、$Q_-$取加号。代入可验算
+\begin{align*}
+ T_{\rm kin}&=\frac12[2(2+\sqrt2)ml^2]\dot Q_-^2
+ +\frac12[2(2-\sqrt2)ml^2]\dot Q_+^2,\\
+ U&=\frac12(4mgl)Q_-^2+\frac12(4mgl)Q_+^2.
+\end{align*}
+分别用弹性系数除惯性系数，恰好得到上面的$\lambda_\pm$，完成独立校验。图\ref{ch10:fig:double-modes}画的是各模的一个瞬时构形，杆长始终为$l$，箭头表示角运动的相对方向而不是独立平移。
+\chTenDoubleModesFigure
+
+\subsection{六原子环：从对称操作到六个模式}
+图\ref{ch10:fig:benzene-model}左为苯分子的立体模型，右为简化的六原子环。真实苯含六个碳和六个氢；在右图的简化中，每个碳氢单元只当作质量$m$的质点，被限制在固定圆环上作切向小位移$x_j$，相邻单元用有效劲度$k$耦合。它只保留六个坐标，不能代替全部分子振动。
+\chTenBenzeneModelFigure
+给六点按逆时针编号$j=0,\ldots,5$，所有$x_j$的正向均为逆时针切向，循环约定$x_{j+6}=x_j$。有效能量和方程为
+\[
+ T_{\rm kin}=\frac12m\sum_{j=0}^5\dot x_j^2,\qquad
+ U=\frac12k\sum_{j=0}^5(x_{j+1}-x_j)^2,
+ \qquad m\ddot x_j=k(x_{j+1}+x_{j-1}-2x_j).
+\]
+这里$k$定义的是相邻切向坐标差的弹性系数，不把画在弦上的普通伸缩弹簧刚度不加换算地当成$k$。
+
+对称操作的意义是使能量函数和动力学规律不变，而非要求任意时刻的实际位形都对称。图\ref{ch10:fig:ring-symmetry}依次画出绕环轴转$60^\circ$的$C_6$、绕对边中点连线转$180^\circ$的$C_2$和绕对顶点连线转$180^\circ$的$C'_2$。后两种在环面投影中表现为反射，切向正向也随之反转。以图中轴为例，其作用可写为
+\[
+ (C_6x)_j=x_{j-1},\qquad (C_2x)_j=-x_{1-j},\qquad
+ (C'_2x)_j=-x_{-j},
+\]
+下标按模6理解。每个操作只是对$\sum\dot x_j^2$、$\sum(x_{j+1}-x_j)^2$重新编号，所以能量不变；单独交换任意两点一般会改变相邻关系，因而不一定是对称操作。
+\chTenRingSymmetryFigure
+如果$x_j(t)$是一个解，对它作对称操作仍得到解且不改变频率。初始条件却可以不对称，因此一般解不必保持某种对称形状；应区分“方程的对称性”和“所选状态的对称性”，不能把一切不对称初值都等同于严格意义的自发对称性破缺。
+
+设$\mathbf C=C_6$，有$\mathbf C^6=\mathbf I$，其本征值只能是六次单位根。对任意向量$\vect a$，令$w=\mathrm e^{2\pi\ii/6}$，构造
+\[
+ \vect a^{(n)}=\sum_{s=0}^5w^{-ns}\mathbf C^s\vect a,
+ \qquad\mathbf C\vect a^{(n)}=w^n\vect a^{(n)}.
+\]
+等号由把求和指标平移一位并用$w^{6n}=1$得到；某个投影可以为零，不能把零向量当模式。由于动力学矩阵与$\mathbf C$可交换，同一频率的子空间在$\mathbf C$作用下保持不变，可在其中选择这些投影。反射操作的平方为恒等，其本征值则只能为$\pm1$。
+
+更直接地，设$x_j=A\exp[\ii(2\pi nj/6-\omega t)]$，代入每个质点的方程，约去公共因子得
+\[
+ -m\omega_n^2=k(\mathrm e^{2\pi\ii n/6}+\mathrm e^{-2\pi\ii n/6}-2),
+ \quad\omega_n^2=\frac{4k}{m}\sin^2\frac{n\pi}{6}.
+\]
+所以频率平方为$0,k/m,3k/m,4k/m$，简并度依次为1、2、2、1。$n$与$6-n$是一对共轭行波，实部和虚部给两个独立实驻波模式。零频模是整体沿环匀速转动，不是周期无穷大的普通正弦振动。
+
+也可不用先猜行波，而从两种二重轴的正负特征构造实模式。为方便分类，在对顶点轴这一类中选穿过$j=2,5$的轴，记其操作为$D_2$，于是$(D_2x)_j=-x_{4-j}$。它与上面的$C_2$轴垂直，两操作可交换。联立$C_2\vect x=\sigma\vect x$和$D_2\vect x=\tau\vect x$，其中$\sigma,\tau=\pm1$，可以选出
+\begin{center}\small
+\begin{tabular}{ccl}
+\toprule $\sigma$&$\tau$&一个代表向量\\\midrule
+$-1$&$-1$&$(1,1,1,1,1,1)$\\
+$+1$&$-1$&$(1,-1,1,-1,1,-1)$\\
+$-1$&$+1$&$(1,1,0,-1,-1,0)$\\
+$+1$&$+1$&$(1,-1,0,1,-1,0)$\\\bottomrule
+\end{tabular}\end{center}
+将第一分量代回$m\ddot x_0=k(x_1+x_5-2x_0)$：均匀向量给右端为零；交替向量给$-4kx_0$；后两个向量分别给$-kx_0$与$-3kx_0$。其余分量也须代入验证，例如后两种的静止点$j=2,5$，两邻点位移相反，合回复力确为零，因而可以一直静止。
+
+前两种向量各自也是$C_6$的本征向量，分别给本征值$+1$和$-1$。后两种经$C_6$作用却变成不成比例的新向量，仍有同一频率，故必须补入各自的简并伙伴。单凭二重轴的两个正负号，不能把每个代表态都当成独立的单重频率。
+
+用$+$、$-$、0表示相同绝对值的正、负和零位移，下列六个实向量张成全部坐标空间：
+\begin{center}\small
+\begin{tabular}{cll}
+\toprule
+$m\omega^2/k$&代表向量&独立模式数\\\midrule
+0&$(1,1,1,1,1,1)$&1\\
+1&$(1,1,0,-1,-1,0)$，$(0,1,1,0,-1,-1)$&2\\
+3&$(1,-1,0,1,-1,0)$，$(0,1,-1,0,1,-1)$&2\\
+4&$(1,-1,1,-1,1,-1)$&1\\\bottomrule
+\end{tabular}\end{center}
+这组简并向量可再正交化，但不是必须先正交才能验证模式。两种二重模的代表向量分别满足
+\[
+ \begin{aligned}
+ \vect a&=(1,1,0,-1,-1,0),&\mathbf C^2\vect a&=\mathbf C\vect a-\vect a,\\
+ \vect b&=(1,-1,0,1,-1,0),&\mathbf C^2\vect b&=-\mathbf C\vect b-\vect b.
+ \end{aligned}
+\]
+两种关系符号不同，分别对应单位根实部$1/2$与$-1/2$。图\ref{ch10:fig:ring-modes}画出两组代表态及旋转后的伙伴，箭头严格沿所在点的圆周切线；不动点明确保留。
+\chTenRingModesFigure
+交替向量经$C_6$后变号，故其$C_6$本征值为$-1$；均匀向量的本征值为$+1$。对于二重简并，某一个实向量通常会被旋转为同频子空间中的另一向量，而不是自身乘一个实数。对称操作的乘法结构及其在线性空间中的作用，分别属于群论和群表示论；上述六环是它们在分子与固体振动中的一个具体入口。
+
+\subsection{真实分子的振型与光谱}
+一个非线性的12原子分子有$3\times12=36$个位置自由度。除去3个整体平动和3个整体转动，剩30个内部振动自由度。苯的对称性使其中10对两两简并，故可分成20组基频。图\ref{ch10:fig:benzene-modes-a}至图\ref{ch10:fig:benzene-modes-d}逐组列出相应振型；每个双重组有两幅独立图，不能把30个振动自由度误数成20个。
+
+读图时，深色大圆为碳，浅色小圆为氢；平面内箭头表示一个选定相位的主要位移方向，$\odot$表示出纸面，$\otimes$表示入纸面。半个周期后所有位移同时反向。这里给出振型的定性示意，箭头不按本征矢量的分量比例绘制，不能用箭头长度计算质心位移或动能；精确振型还须由力常数矩阵求出。波数$\widetilde\nu$的单位为$\mathrm{cm^{-1}}$，与频率的关系为$\nu=c\widetilde\nu$、$\omega=2\pi\nu$；模型参数、同位素和测量条件会影响数值，不能把图上近似基频当成无误差常数。A、B表示单重，E表示二重；g、u表示相应反演对称性，进一步的光谱选择定则需结合电偶极矩或极化率变化。
+图\ref{ch10:fig:benzene-modes-a}中的点、叉可用来区分相邻原子的同向和反向离面运动；图\ref{ch10:fig:benzene-modes-b}中，$1014\,\mathrm{cm^{-1}}$一组的各原子同时向环心收拢，而$994\,\mathrm{cm^{-1}}$一组的相邻单元交替伸缩。图\ref{ch10:fig:benzene-modes-c}中$1332\,\mathrm{cm^{-1}}$一组的碳、氢切向运动相反，不能看成整个分子刚性转动。图\ref{ch10:fig:benzene-modes-d}中较高频的位移以碳氢键方向上的伸缩为主；双重组的两幅图应分别看作两个独立振动坐标。
+% Source figure 4.11, physical page 93: twenty groups, thirty panels.
+% Arrows are qualitative normal-pattern directions, not computed amplitudes.
+\newcommand{\chTenMolecule}[4]{%
+\begin{tikzpicture}[scale=.55,>=Latex]
+\foreach \j in {0,...,5}{\draw[TextGray]({60*\j}:1)--({60*(\j+1)}:1);\draw[TextGray]({60*\j}:1)--({60*\j}:1.7);}
+\foreach \j in {0,...,5}{\draw[DeepBlue,thick]({60*\j}:1)circle(.10);\draw[TextGray]({60*\j}:1.7)circle(.075);}
+\ifnum#1=0
+ \foreach \v[count=\j from 0] in {#2}{\ifnum\v=0\else
+ \node[font=\tiny,inner sep=0,fill=none]at({60*\j}:1){\ifnum\v>0$\cdot$\else$\times$\fi};\fi}
+ \foreach \v[count=\j from 0] in {#3}{\ifnum\v=0\else
+ \node[font=\tiny,inner sep=0,fill=none]at({60*\j}:1.7){\ifnum\v>0$\cdot$\else$\times$\fi};\fi}
+\else
+ \foreach \ang/\mag[count=\j from 0] in {#2}{\ifdim\mag pt=0pt\else\draw[DeepBlue,-{Latex[length=.8mm]},line width=.45pt]({60*\j}:1)++(\ang:.12)--++(\ang:{.45*max(.6,\mag)});\fi}
+ \foreach \ang/\mag[count=\j from 0] in {#3}{\ifdim\mag pt=0pt\else\draw[DeepBlue,-{Latex[length=.8mm]},line width=.45pt]({60*\j}:1.7)++(\ang:.09)--++(\ang:{.42*max(.6,\mag)});\fi}
+\fi
+\path[use as bounding box](-2.5,-2.4)rectangle(2.5,2.4);
+\end{tikzpicture}%
+}
+\newcommand{\chTenModeGroup}[2]{\begin{minipage}[t]{.47\linewidth}\centering #2\par\smallskip{\small #1}\end{minipage}}
+\newcommand{\chTenZeroVectors}{0/0,0/0,0/0,0/0,0/0,0/0}
+\begin{chTenFigure}
+\chTenModeGroup{$395\,\mathrm{cm^{-1}}\ (E_{2u})$}{
+\chTenMolecule{0}{-1,1,1,-1,1,1}{-1,1,1,-1,1,1}{}
+\chTenMolecule{0}{1,1,-1,1,1,-1}{1,1,-1,1,1,-1}{}}
+\hfill
+\chTenModeGroup{$599\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/1,240/.6,300/.6,180/1,60/.6,120/.6}{0/1,240/.6,300/.6,180/1,60/.6,120/.6}{}
+\chTenMolecule{1}{0/0,60/1,300/1,0/0,240/1,120/1}{0/0,90/1,270/1,0/0,270/1,90/1}{}}
+\par\medskip
+\chTenModeGroup{$677\,\mathrm{cm^{-1}}\ (A_{2u})$}{
+\chTenMolecule{0}{1,1,1,1,1,1}{-1,-1,-1,-1,-1,-1}{}}
+\hfill
+\chTenModeGroup{$700\,\mathrm{cm^{-1}}\ (B_{2g})$}{
+\chTenMolecule{0}{1,-1,1,-1,1,-1}{1,-1,1,-1,1,-1}{}}
+\par\medskip
+\chTenModeGroup{$838\,\mathrm{cm^{-1}}\ (E_{1g})$}{
+\chTenMolecule{0}{-1,-1,-1,1,1,1}{1,1,1,-1,-1,-1}{}
+\chTenMolecule{0}{1,1,-1,-1,-1,1}{-1,-1,1,1,1,-1}{}}
+\figcap{苯分子振型（一）：五组、八个独立模式。离面模式用圆内点、叉标示；未标箭头的方向不表示该原子永远静止。}\label{ch10:fig:benzene-modes-a}
+\end{chTenFigure}
+
+\begin{chTenFigure}
+\chTenModeGroup{$954\,\mathrm{cm^{-1}}\ (E_{2u})$}{
+\chTenMolecule{0}{-1,1,-1,-1,1,-1}{1,-1,1,1,-1,1}{}
+\chTenMolecule{0}{-1,1,1,-1,1,1}{1,-1,-1,1,-1,-1}{}}
+\hfill
+\chTenModeGroup{$981\,\mathrm{cm^{-1}}\ (B_{2g})$}{
+\chTenMolecule{0}{1,-1,1,-1,1,-1}{-1,1,-1,1,-1,1}{}}
+\par\medskip
+\chTenModeGroup{$994\,\mathrm{cm^{-1}}\ (B_{2u})$}{
+\chTenMolecule{1}{0/1,240/1,120/1,0/1,240/1,120/1}{0/1,240/1,120/1,0/1,240/1,120/1}{}}
+\hfill
+\chTenModeGroup{$1014\,\mathrm{cm^{-1}}\ (A_{1g})$}{
+\chTenMolecule{1}{180/1,240/1,300/1,0/1,60/1,120/1}{180/.6,240/.6,300/.6,0/.6,60/.6,120/.6}{}}
+\par\medskip
+\chTenModeGroup{$1048\,\mathrm{cm^{-1}}\ (E_{1u})$}{
+\chTenMolecule{1}{0/.7,0/0,0/0,0/.7,0/0,0/0}{180/1,315/1,45/1,180/1,315/1,45/1}{}
+\chTenMolecule{1}{0/0,240/.6,300/.6,0/0,240/.6,300/.6}{90/1,180/1,0/1,90/1,180/1,0/1}{}}
+\hfill
+\chTenModeGroup{$1137\,\mathrm{cm^{-1}}\ (B_{1u})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{90/1,330/1,210/1,90/1,330/1,210/1}{}}
+\figcap{苯分子振型（二）：六组、八个独立模式。不同基频的同名对称类型仍是不同模。}\label{ch10:fig:benzene-modes-b}
+\end{chTenFigure}
+
+\begin{chTenFigure}
+\chTenModeGroup{$1162\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/0,330/1,210/1,0/0,150/1,30/1}{}
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{270/1,150/1,150/1,90/1,330/1,330/1}{}}
+\hfill
+\chTenModeGroup{$1332\,\mathrm{cm^{-1}}\ (A_{2g})$}{
+\chTenMolecule{1}{270/.12,330/.12,30/.12,90/.12,150/.12,210/.12}{90/1,150/1,210/1,270/1,330/1,30/1}{}}
+\par\medskip
+\chTenModeGroup{$1376\,\mathrm{cm^{-1}}\ (B_{1u})$}{
+\chTenMolecule{1}{90/1,330/1,210/1,90/1,330/1,210/1}{0/0,0/0,0/0,0/0,0/0,0/0}{}}
+\hfill
+\chTenModeGroup{$1477\,\mathrm{cm^{-1}}\ (E_{1u})$}{
+\chTenMolecule{1}{180/.4,180/1,0/1,180/.4,180/1,0/1}{180/1,315/1,45/1,180/1,315/1,45/1}{}
+\chTenMolecule{1}{270/1,0/0,0/0,270/1,0/0,0/0}{90/1,0/0,0/0,90/1,0/0,0/0}{}}
+\par\medskip
+\chTenModeGroup{$1612\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/1,240/1,300/1,180/1,60/1,120/1}{270/1,0/0,180/1,90/1,0/0,0/1}{}
+\chTenMolecule{1}{0/0,180/1,0/1,0/0,0/1,180/1}{0/0,150/1,30/1,0/0,330/1,210/1}{}}
+\figcap{苯分子振型（三）：五组、八个独立模式。此组以平面内弯曲和环骨架形变为主。}\label{ch10:fig:benzene-modes-c}
+\end{chTenFigure}
+
+\begin{chTenFigure}
+\chTenModeGroup{$3080\,\mathrm{cm^{-1}}\ (B_{2u})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,240/1,120/1,0/1,240/1,120/1}{}}
+\hfill
+\chTenModeGroup{$3092\,\mathrm{cm^{-1}}\ (E_{2g})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/0,240/1,120/1,0/0,60/1,300/1}{}
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,240/.6,300/.6,180/1,60/.6,120/.6}{}}
+\par\medskip
+\chTenModeGroup{$3110\,\mathrm{cm^{-1}}\ (E_{1u})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/0,240/1,300/1,0/0,240/1,300/1}{}
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,0/0,0/0,0/1,0/0,0/0}{}}
+\hfill
+\chTenModeGroup{$3121\,\mathrm{cm^{-1}}\ (A_{1g})$}{
+\chTenMolecule{1}{0/0,0/0,0/0,0/0,0/0,0/0}{0/1,60/1,120/1,180/1,240/1,300/1}{}}
+\figcap{苯分子振型（四）：四组、六个独立模式，以碳氢键伸缩为主。四张图合计20组、30个模式；未画出的很小位移不可据此当成精确零。}\label{ch10:fig:benzene-modes-d}
+\end{chTenFigure}
+
+例如对称伸缩时，若分子的电偶极矩不随该坐标改变，即使外光频率相等，也未必产生电偶极红外吸收；有些模主要通过拉曼散射观察。频率相合是共振的条件之一，不是“每个模都必有同样强的红外谱线”。
+
+经验势能或微观计算给出平衡点的力常数矩阵，经质量加权对角化便得到$\omega_i$和振型。量子描述中，每个近似独立模的能级为
+\[
+ E_{n_i}=\left(n_i+\frac12\right)\hbar\omega_i,\qquad n_i=0,1,2,\ldots.
+\]
+相邻能级相差$\hbar\omega_i$，故允许的单量子跃迁满足$h\nu=\hbar\omega_i$，即$\nu=\omega_i/(2\pi)$。这把经典简正频率与分子光谱联系起来；非谐性还会改变能级间隔并引入组合频率等现象。
+
+\section{非线性振动与摄动（选读）}\label{ch10:sec:nonlinear}
+保留势能的高阶项后，回复力不再线性，叠加原理也不能原样使用。一个保留左右对称性的例子是杜芬方程（Duffing equation）
+\[
+ \ddot x+\omega_0^2x+\varepsilon\alpha x^3=0,
+ \qquad U=\frac12m\omega_0^2x^2+\frac14m\varepsilon\alpha x^4.
+\]
+$\varepsilon$用来标记小修正阶数，要求$|\varepsilon\alpha A^2|\ll\omega_0^2$。若仍把频率固定为$\omega_0$，摄动方程会产生$t\sin\omega_0t$这样的长期项，时间稍长就失去一致性。为避免它，令$\tau=\Omega t$，$\Omega=\omega_0+\varepsilon\Omega_1+\cdots$，$x=A\cos\tau+\varepsilon x_1(\tau)+\cdots$。
+
+因为$\ddot x=\Omega^2\dd^2x/\dd\tau^2$，收集一阶项得到
+\[
+ \omega_0^2(x_1''+x_1)=2\omega_0\Omega_1 A\cos\tau-\alpha A^3\cos^3\tau.
+\]
+利用$\cos^3\tau=(3\cos\tau+\cos3\tau)/4$，右端的基频系数是$2\omega_0\Omega_1A-3\alpha A^3/4$。令它为零消去共振驱动，得到
+\[
+ \Omega_1=\frac{3\alpha A^2}{8\omega_0},\qquad
+ \boxed{\Omega\simeq\omega_0\left(1+\frac{3\varepsilon\alpha A^2}{8\omega_0^2}\right)}.
+\]
+余下$x_1''+x_1=-\alpha A^3\cos3\tau/(4\omega_0^2)$，特解为$\alpha A^3\cos3\tau/(32\omega_0^2)$。若把$A$定义为$t=0$的转向位移，还应加齐次项使$x_1(0)=0$，从而
+\[
+ x\simeq A\cos\tau+
+ \frac{\varepsilon\alpha A^3}{32\omega_0^2}(\cos3\tau-\cos\tau).
+\]
+这明确显示三次谐波。$\varepsilon\alpha>0$为硬化，振幅增大时频率升高；$\varepsilon\alpha<0$为软化，只能在平衡附近和模型有效范围讨论，不能外推到负四次势能导致的远处失稳区域。令非线性参数趋于零，以上结果恢复简谐振动。
+
+另一类现象来自参数调制，例如
+\[
+ \ddot x+\omega_0^2[1+h\cos(\Omega t)]x=0,\qquad |h|\ll1.
+\]
+外界改变的是回复系数，而不是直接加同频外力。在$\Omega=2\omega_0$附近，设$x=a(t)\cos\omega_0t+b(t)\sin\omega_0t$，$a,b$缓变，忽略其二阶时间导数。保留右端乘积中的基频项，得到
+\[
+ 2\omega_0\dot b=-\frac12h\omega_0^2a,
+ \qquad -2\omega_0\dot a=\frac12h\omega_0^2b.
+\]
+即$\dot a=-h\omega_0b/4$、$\dot b=-h\omega_0a/4$，两种包络组合有指数率$\pm h\omega_0/4$；一般初始微扰包含增长分量。这是主参数共振的近似机制。若另有弱黏性阻尼，增长须克服$\gamma$，在精确调谐的一阶近似下要求$|h|\omega_0/4>\gamma$；频率失谐也会缩小不稳定区。严格零位移、零速度仍是齐次方程的零解，不会在没有扰动时凭空起振。
+\subsection{小修正为什么会在长时间后变得重要}
+摄动不是把某个小项直接删去，而是在一个明确的小参数下，追踪它对主运动的首阶影响。以本节的三次回复项为例，在振幅 $A$ 附近，非线性加速度与线性加速度的比为 $|\varepsilon\alpha|A^2/\omega_0^2$。只有这个无量纲比值很小，才允许把运动看成简谐振动加小修正。
+
+如果固定原频率写 $x=x_0+\varepsilon x_1$，其中 $x_0=A\cos\omega_0t$，一阶方程会是
+\[
+ \ddot x_1+\omega_0^2x_1
+ =-\frac{3\alpha A^3}{4}\cos\omega_0t
+  -\frac{\alpha A^3}{4}\cos3\omega_0t.
+\]
+第一项恰以系统本征频率驱动修正量。验证
+\[
+ \left(\frac{\dd^2}{\dd t^2}+\omega_0^2\right)
+ [t\sin\omega_0t]=2\omega_0\cos\omega_0t,
+\]
+便知其中包含 $-3\alpha A^3t\sin\omega_0t/(8\omega_0)$。即使 $\varepsilon$ 很小，乘上足够长的时间后也可能不再小，这就是长期项。
+它不表示保守振子真的无界增长，而是说明选错了比较基准。若真实频率为 $\omega_0+\delta\omega$，则
+\[
+ A\cos[(\omega_0+\delta\omega)t]
+ \simeq A\cos\omega_0t-A\delta\omega\,t\sin\omega_0t.
+\]
+相位误差积累就产生同样形式的长期项。把频率也纳入待求量，是把这部分相位变化吸收到主运动中，而不是人为删除真实物理效应。
+
+\begin{origexamplebox}{弱硬化弹簧的频率与适用范围}\label{ch10:ex:teaching-hardening}
+质点质量为 $m$，在光滑直线上受到回复力 $F=-kx-\lambda x^3$，$k,\lambda>0$。从 $x=A$ 静止释放，且 $\lambda A^2/k\ll1$。求振动频率的首阶修正；若要求频率相对简谐值的修正不超过 $1\%$，振幅应满足什么近似条件？
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+由牛顿定律，$\ddot x+(k/m)x+(\lambda/m)x^3=0$，所以 $\omega_0=\sqrt{k/m}$，而本节的一阶系数对应 $\varepsilon\alpha=\lambda/m$。代入已推导的消长期项条件，得到
+\[
+ \Omega\simeq\sqrt{\frac km}\left(1+\frac{3\lambda A^2}{8k}\right),
+ \qquad T\simeq2\pi\sqrt{\frac mk}\left(1-\frac{3\lambda A^2}{8k}\right).
+\]
+周期使用 $(1+q)^{-1}\simeq1-q$，不能照抄频率的正号。回复力在较大位移处比线性弹簧更强，频率升高、周期缩短与物理判断相符。
+首阶相对修正为 $3\lambda A^2/(8k)$，故近似要求
+\[
+ A\lesssim\sqrt{\frac{0.08k}{3\lambda}}.
+\]
+该边界使 $\lambda A^2/k\lesssim0.0267$，与小参数假设一致，但这是首阶误差估计，不是包含全部高阶项的严格误差界。由 $[\lambda]=\mathrm{N/m^3}$ 可知 $k/\lambda$ 为长度平方；$A\to0$ 时恢复线性结果。
+\end{xesolution}
+
+\subsection{参数共振的能量从哪里来}
+受迫振动是外界施加随时间变化的力；参数共振则是外界改变弹簧劲度、摆长等系统参数。对 $k(t)=m\omega_0^2[1+h\cos(\Omega t)]$，瞬时机械能写作
+\[
+ E=\frac12m\dot x^2+\frac12k(t)x^2.
+\]
+对时间求导并代入 $m\ddot x+k(t)x=0$，得到
+\[
+ \dot E=\dot x[m\ddot x+k(t)x]+\frac12\dot k(t)x^2
+ =\frac12\dot k(t)x^2.
+\]
+所以能量由调节参数的外界装置提供，并未违反守恒。若在位移大时增大劲度、位移小时减小劲度，平均上可以输入能量。一次振动有两次位移绝对值极大，这提示主参数共振出现在约两倍本征频率处，但精确增长率仍须由缓变振幅方程计算。
+加入阻力 $-2m\gamma\dot x$ 后，还要减去 $2m\gamma\dot x^2$ 的耗散功率。只有平均输入克服耗散，振幅才增长；超出小振幅范围后，非线性、参数调制范围及装置反馈也会限制增长，线性指数解不能无限外推。
+
+
+\section{格波、声学支与光学支（选读）}\label{ch10:sec:lattice}
+\subsection{由原子小振动理解固体中的波}
+晶体中的原子实携带主要质量，在平衡格点附近通过相互作用共同运动。把相互作用在平衡附近线性化，就得到很多耦合振子；一个位置的扰动可以传到相邻位置。相位有组织的长波运动体现为宏观声波，多种模式按热统计规律被占据则体现为热运动。并非每个原子都是一个独立振子，真正独立的是简正模。
+
+声速与热导率都受晶格影响，但二者不能简单互相推出：声速与弹性和密度有关，热导率还取决于热容、散射和平均自由程，金属中电子常有重要贡献。例如金刚石兼有较高声速和热导率，而晶体方向、温度、纯度及缺陷会改变数值和排序。讨论典型量级时，固体声速约$10^3$—$10^4\,\mathrm{m/s}$；热导率则跨越很宽范围，不能据“声速更大”断言“一定更导热”。
+
+量子化的晶格简正模称声子（phonon）。爱因斯坦固体模型先用同频量子振子解释经典热容失效，德拜模型进一步考虑低频声学模及其频率分布。下文先用经典力学求出这些模式；量子占据和统计平均在热学及近代物理中继续使用。
+
+\subsection{单原子链：运动方程、色散与截止}
+图\ref{ch10:fig:mono-chain}中，相邻平衡位置相距$a$，各质量为$m$，相邻弹簧劲度为$k$。$u_j$表示第$j$个原子从自身平衡位置沿链向右的位移，不是它的绝对位置。右、左弹簧的伸长分别为$u_{j+1}-u_j$、$u_j-u_{j-1}$，所以
+\begin{equation}\label{ch10:eq:mono-motion}
+ m\ddot u_j=k(u_{j+1}+u_{j-1}-2u_j).
+\end{equation}
+\chTenMonoChainFigure
+平移一个格距后方程不变，故设相邻原子的复振幅相差相位$qa$：
+\[
+ u_j=\Re\{A\mathrm e^{\ii(qja-\omega t)}\}.
+\]
+$q$是一维波矢，单位为$\mathrm{m^{-1}}$；这里取$-\omega t$约定，所以$q>0$的长波沿右方传播。代入方程，约去公共指数：
+\[
+ -m\omega^2=k(\mathrm e^{\ii qa}+\mathrm e^{-\ii qa}-2)
+ =-4k\sin^2(qa/2),
+\]
+从而色散关系为
+\begin{equation}\label{ch10:eq:mono-dispersion}
+ \omega(q)=2\sqrt{k/m}\,|\sin(qa/2)|.
+\end{equation}
+因为$j$是整数，$q$与$q+2\pi/a$给完全相同的格点位移。只需取一个不重复区间，例如$-\pi/a<q\leq\pi/a$，称第一布里渊区（Brillouin zone）。图\ref{ch10:fig:mono-dispersion}标出区中心和两端；两端代表相同的格点相位关系，不应算成两种独立状态。
+\chTenMonoDispersionFigure
+最大频率$\omega_c=2\sqrt{k/m}$称截止频率。为了说明“截止”不是凭图猜测，可改设振幅比为$\lambda$，$u_j\propto\lambda^j\mathrm e^{-\ii\omega t}$，则
+\[
+ \lambda+\lambda^{-1}=2-\frac{m\omega^2}{k}.
+\]
+在允许频带内可取$|\lambda|=1$，即传播型相位因子。当$\omega>\omega_c$，两根为负实数且互为倒数，其中一根绝对值小于1。半无限链受边界策动时，可选向内部衰减的根，产生交替符号的倏逝响应；不能在整个无限链中接受另一侧无界增长的解作为有限能量体波。恰在截止点$\lambda=-1$，相邻原子反相、群速度为零，仍是允许的边界模，不是“根本不存在振动”。
+
+\subsection{长波、短波与传播速度}
+在$q>0$的第一布里渊区内，相速度和群速度分别为
+\[
+ v_p=\frac\omega q=\frac{2\sqrt{k/m}\sin(qa/2)}q,
+ \qquad v_g=\frac{\dd\omega}{\dd q}=a\sqrt{k/m}\cos(qa/2).
+\]
+相速度描述相位面的运动，群速度描述窄带波包包络的传播，在此无耗散链模型中也与能量传播有关。长波$|qa|\ll1$时，$\sin(qa/2)\simeq qa/2$，故$\omega\simeq a\sqrt{k/m}|q|$，二者大小都趋于$c=a\sqrt{k/m}$。连续近似中，单位长度质量$\rho_1=m/a$、轴向刚度$C_1=ka$，恰有$c=\sqrt{C_1/\rho_1}$，与连续弹性波一致。
+
+短波极限$|q|a=\pi$对应最短独立波长$2a$，相邻粒子反相，$v_g=0$。若在扩展区间继续增加$q$，色散曲线斜率可以反号；此时波包传播方向应看$\dd\omega/\dd q$，不能只看$q$符号。区边界并非通常晶体学中称为$\Gamma$的点；$\Gamma$通常表示区中心$q=0$。
+
+\subsection{双原子链：一个晶胞内有两个坐标}
+图\ref{ch10:fig:diatomic-chain}中质量$M,m$交替排列，假设$M\geq m$。每条最近邻弹簧劲度为$k$，\emph{晶胞长度}定义为$a$，相邻原子间距则为$a/2$。设第$j$胞中重、轻原子的位移分别为$u_j,v_j$，则
+\begin{align}
+ M\ddot u_j&=k(v_j+v_{j-1}-2u_j),\label{ch10:eq:diatomic-M}\\
+ m\ddot v_j&=k(u_j+u_{j+1}-2v_j).\label{ch10:eq:diatomic-m}
+\end{align}
+\chTenDiatomicChainFigure
+取$u_j=A\mathrm e^{\ii(qja-\omega t)}$、$v_j=B\mathrm e^{\ii(qja-\omega t)}$的实部；晶胞内部的位置相位并入复振幅$B$，不能再重复加一次。代入得
+\[
+ \begin{pmatrix}
+ 2k-M\omega^2&-k(1+\mathrm e^{-\ii qa})\\
+ -k(1+\mathrm e^{\ii qa})&2k-m\omega^2
+ \end{pmatrix}\begin{pmatrix}A\\B\end{pmatrix}=0.
+\]
+行列式为零，使用$(1+\mathrm e^{\ii qa})(1+\mathrm e^{-\ii qa})=4\cos^2(qa/2)$，得
+\[
+ Mm\omega^4-2k(M+m)\omega^2+4k^2\sin^2(qa/2)=0.
+\]
+这是关于$\omega^2$的二次方程，两根为
+\begin{equation}\label{ch10:eq:diatomic-dispersion}
+ \omega_\pm^2=k\left(\frac1M+\frac1m\right)
+ \pm k\sqrt{\left(\frac1M+\frac1m\right)^2-
+ \frac4{Mm}\sin^2\frac{qa}{2}}.
+\end{equation}
+负号支为声学支，正号支为光学支。式中根号项与前项同为$\mathrm{s^{-2}}$，最外层结果是频率平方，不能漏掉最后开方。
+
+\subsection{两支的端点、带隙及轻质量极限}
+在$q=0$，下支$\omega_-=0$且$A=B$，整个晶体平移；上支
+$\omega_+^2=2k(1/M+1/m)$，第一行给$MA+mB=0$，两原子反向且胞内质心不动。在区边界$qa=\pi$，耦合矩阵非对角元为零，故下支$\omega_-^2=2k/M$时只有重原子运动，上支$\omega_+^2=2k/m$时只有轻原子运动。图\ref{ch10:fig:diatomic-dispersion}把这些端点与带隙一并标出。
+\chTenDiatomicDispersionFigure
+当$M>m$，$\sqrt{2k/M}<\omega<\sqrt{2k/m}$之间没有无限周期链的传播型体模，称频率禁带；边界受迫问题仍可有倏逝响应。当$M=m$时禁带闭合，两条支在缩小的布里渊区边界相接，实质上是单原子链色散折叠后的表示，并非多出新的物理自由度。
+
+令$\beta=m/M\ll1$。低频支中轻原子的惯性可忽略，它近似始终位于两侧重原子位移的平均位置，相当于两根$k$弹簧串联成$k/2$，故
+\[
+ \omega_-\simeq\sqrt{2k/M}\,|\sin(qa/2)|.
+\]
+高频支主要由轻原子振动，展开精确根式到$\beta$一阶，得
+\[
+ \omega_+^2\simeq\frac{2k}{m}\left[1+\beta\cos^2(qa/2)\right],
+ \qquad\omega_+\simeq\sqrt{2k/m}\sqrt{1+\beta\cos^2(qa/2)}.
+\]
+低频的长波波速更一般地为$c=a\sqrt{k/[2(M+m)]}$；$m\ll M$时恢复刚才的串联模型。高频$q=0$时相邻晶胞同相但胞内两原子反向，因此“晶胞之间没有相位差”并不等于“没有内部振动”。在两种原子带相反有效电荷的晶体中，该运动可与光场耦合，这说明“光学支”的名称；并非所有晶体的每一光学模都有相同红外活性。
+
+声学支的低频模和日常声音相连，光学支则是多原子晶胞内部振动的延续。每个允许$q$对应两个独立模；$N$个晶胞在周期边界条件下总计$2N$个自由度，恰与$2N$个原子的一维坐标数相等。
+
+\subsection{声子频带与电子能带的联系和区别}
+色散的“带”首先是经典周期结构允许的模式频率集合。把每个格波量子化后，一个模每增加一个声子，能量增加$\hbar\omega(q)$；在热平衡中各模的占据不同，其总能量和温度依赖决定晶格热容等性质。热传导还需考虑这些激发被缺陷、边界和其他激发散射的过程，单靠无耗散谐链并不能给出真实材料的有限热导率。
+
+周期势中的电子也有由波矢标记的允许能量带和禁带，但它来自电子波动方程，不能把格波的$\omega(q)$直接当成电子能量。电子服从费米统计，声子作为集体激发服从玻色统计且数目通常不守恒。电子在振动晶格中运动，二者的耦合既影响输运和能量交换，也构成进一步讨论电子—声子相互作用的基础。共同点是周期性组织了本征模式；粒子性质、动力学方程和占据规律仍须分别处理。
+
+
+\Needspace{18\baselineskip}
+\section{综合问题：振动系统的建模}
+
+\begin{origexamplebox}{摩擦面上的两物块与弹簧}\label{ch10:ex:friction}
+质量分别为 $M=3.6\,\mathrm{kg}$ 和 $m=1.8\,\mathrm{kg}$ 的物块 $A,B$，连接在原长
+$l_0=0.30\,\mathrm m$、劲度系数 $k=24\,\mathrm{N/m}$ 的弹簧两端。两物块与水平面间的动、静摩擦因数均取
+$\mu=0.30$，$g=10\,\mathrm{m/s^2}$。开始时弹簧长 $l=1.20\,\mathrm m$，系统由静止释放。
+求两物块相碰前瞬间的速度和从释放到相碰的时间。物块尺寸忽略，碰撞发生在弹簧长度降为零时。
+
+初始装置见图~\ref{ch10:fig:friction-problem}。
+\chTenFrictionProblemFigure
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+取水平向右为正，图\ref{ch10:fig:friction}中$A$在左、$B$在右，$r=x_B-x_A$。初始弹力$k(l-l_0)=21.6\,\mathrm N$，大于两者最大静摩擦力$10.8\,\mathrm N$、$5.4\,\mathrm N$，故释放后$A$向右、$B$向左。
+\chTenFrictionFigure
+第一阶段两者均滑动。摩擦力对$A$向左、对$B$向右；有符号弹力用$k(r-l_0)$表示，即使弹簧后来压缩也适用：
+\[
+ M\ddot x_A=k(r-l_0)-\mu Mg,\qquad
+ m\ddot x_B=-k(r-l_0)+\mu mg.
+\]
+令
+\[
+ \omega^2=k\left(\frac1M+\frac1m\right)=20\,\mathrm{s^{-2}}.
+\]
+由两物块方程相减，得到
+\[
+ \ddot r+\omega^2\left(r-l_0-\frac{2\mu g}{\omega^2}\right)=0.
+\]
+两运动方程相加，质心加速度为
+\[
+ \dot V=\frac{\mu g(m-M)}{M+m}=-1.00\,\mathrm{m/s^2},
+ \qquad V=-(1.00\,\mathrm{m/s^2})t.
+\]
+相对运动平衡值为$r_e=l_0+2\mu g/\omega^2=0.60\,\mathrm m$。由$r(0)=1.20\,\mathrm m,\dot r(0)=0$得到（下式长度数值以米计）
+\[
+ r=0.60+0.60\cos\omega t,\qquad
+ \dot r=-0.60\omega\sin\omega t.
+\]
+所以
+\[
+ v_A=V-\frac{m}{M+m}\dot r
+ =-(1.00\,\mathrm{m/s^2})t+(0.20\,\mathrm m)\omega\sin\theta,
+ \qquad \theta=\omega t.
+\]
+$A$ 先于碰撞停下；首次非零停下时刻由
+\[
+ \theta_1=4\sin\theta_1
+\]
+确定。零根是释放瞬间，必须排除；函数$\theta-4\sin\theta$在$2.4$与$2.5$间变号，且此区间单调，二分迭代得到$\theta_1=2.47458$。于是
+\[
+ t_1=0.55333\,\mathrm s,\qquad
+ r_1=0.12860\,\mathrm m,\qquad
+ \dot r_1=-1.6600\,\mathrm{m/s}.
+\]
+
+此时$r_1>0$，尚未相碰，$v_B=\dot r_1<0$。第二阶段弹簧对$A$向左，静摩擦力应向右，不再是第一阶段的方向。到相碰为止弹簧最大压缩力不超过 $kl_0=7.2\,\mathrm N$，
+小于 $\mu Mg=10.8\,\mathrm N$，故静摩擦足以使 $A$ 保持静止。$B$ 单独向左运动，满足
+\[
+ \ddot r+\omega_B^2(r-r_B)=0,\qquad
+ \omega_B=\sqrt{\frac{k}{m}},\qquad
+ r_B=l_0+\frac{\mu mg}{k}=0.525\,\mathrm m.
+\]
+令第二阶段时间为 $\tau$，则
+\[
+ r=r_B+(r_1-r_B)\cos\omega_B\tau
+ +\frac{\dot r_1}{\omega_B}\sin\omega_B\tau.
+\]
+取$r=0$的最小正根，得$\tau=0.09282\,\mathrm s$。对上式逐项求导，
+\[
+ v_B=-(r_1-r_B)\omega_B\sin\omega_B\tau+\dot r_1\cos\omega_B\tau,
+\]
+得到碰撞前
+\[
+ \boxed{v_A=0},\qquad
+ \boxed{v_B=-1.0843\,\mathrm{m/s}},\qquad
+ \boxed{t=t_1+\tau=0.64615\,\mathrm s}.
+\]
+负号表示向左。能量校验可由两物块位移求摩擦功：$A$滑动路程约$0.20405\,\mathrm m$，$B$至相碰的总路程约$0.99595\,\mathrm m$。初始弹性势能$9.72\,\mathrm J$等于末态弹性能$1.08\,\mathrm J$、$B$动能约$1.05816\,\mathrm J$与摩擦损耗约$7.58184\,\mathrm J$之和。若忽略$A$中途停下及静摩擦阶段，便会把相对运动按同一方程错误外推。
+\end{xesolution}
+
+\begin{origexamplebox}{飞球调速器的小振动}\label{ch10:ex:governor}
+两个质量均为 $m$ 的小球由四根长为 $l$ 的轻杆连接上、下套筒；上套筒固定，下套筒质量为 $M$，可沿竖直轴无摩擦滑动。
+装置绕轴以恒定角速度 $\omega_0$ 转动，忽略杆与套筒的转动惯量。求：（1）平衡时两套筒距离；
+（2）在该平衡位置附近的竖直小振动角频率；（3）若轴改为自由转动、总角动量守恒，小振动角频率如何改变？
+
+初始装置见图~\ref{ch10:fig:governor-problem}。
+\chTenGovernorProblemFigure
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+图\ref{ch10:fig:governor}画通过两球与转轴的瞬时竖直截面。每球位于两套筒中间高度，离转轴半径为$\rho$。取向下的套筒间距为$y$，由直角三角形得
+\[
+ \rho=\sqrt{l^2-\frac{y^2}{4}}.
+\]
+\chTenGovernorFigure
+由$\rho^2+y^2/4=l^2$求导，得$\dot\rho=-y\dot y/(4\rho)$；每球的竖直速度为$\dot y/2$。两球在子午面内的径向、竖直动能加上下套筒动能为
+\[
+ T_y=m\left(\dot\rho^2+\frac14\dot y^2\right)+\frac12M\dot y^2
+ =\frac12\left(M+\frac m2+\frac{my^2}{8\rho^2}\right)\dot y^2.
+\]
+利用$4\rho^2+y^2=4l^2$，化为
+\[
+ T_y=\frac12\left(M+\frac{ml^2}{2\rho^2}\right)\dot y^2.
+\]
+恒角速度由外部驱动维持时，两球转动动能为 $m\rho^2\omega_0^2$，重力势能为
+$-(M+m)gy$。约化拉格朗日量为$T_y+m\rho^2\omega_0^2-U_g$，因此用于$y$运动的有效势能为
+\[
+ U_\omega=-(M+m)gy-m\omega_0^2(l^2-y^2/4).
+\]
+以$U_\omega'=0$求平衡，等价于
+\[
+ -\frac12m\omega_0^2y_0+(M+m)g=0,\qquad
+ \boxed{y_0=\frac{2(M+m)g}{m\omega_0^2}}.
+\]
+存在该构形还要求$0<y_0<2l$，即$\omega_0^2>(M+m)g/(ml)$。记
+\[
+ \rho_0^2=l^2-\frac{y_0^2}{4},\qquad
+ M_{\rm eff}=M+\frac{ml^2}{2\rho_0^2},
+\]
+由$U_\omega''=m\omega_0^2/2$读出回复系数。令$y=y_0+\eta$，变惯性引起的$\dot\eta^2$项为二阶，线性方程只保留平衡处惯性：$M_{\rm eff}\ddot\eta+(m\omega_0^2/2)\eta=0$，所以
+\[
+ \boxed{\Omega_{\omega}=\omega_0
+ \sqrt{\frac{m}{2M_{\rm eff}}}}.
+\]
+
+轴自由时，总角动量 $J=2m\rho^2\omega$ 守恒。消去循环坐标后，有效势能多出
+$J^2/(4m\rho^2)$，即$U_J=-(M+m)gy+J^2/(4m\rho^2)$。令$D=\rho^2=l^2-y^2/4$，逐次求导得
+\[
+ U_J'=-(M+m)g+\frac{J^2y}{8mD^2},\qquad
+ U_J''=\frac{J^2}{8mD^2}\left(1+\frac{y^2}{D}\right).
+\]
+比较同一平衡构形、平衡角速度同为$\omega_0$时，$J=2mD_0\omega_0$，一阶平衡条件仍相同，而二阶曲率为
+\[
+ \frac{m\omega_0^2}{2}\left(1+\frac{y_0^2}{\rho_0^2}\right),
+\]
+故
+\[
+ \boxed{\Omega_J=\omega_0
+ \sqrt{\frac{m}{2M_{\rm eff}}
+ \left(1+\frac{y_0^2}{\rho_0^2}\right)}}.
+\]
+套筒向下运动会减小$\rho$，角动量守恒使转速增大，因此自由轴情形附加回复更强。两结果根号内均无量纲。自由轴时可用$T_y+U_J$守恒；恒速驱动时装置可能与驱动机构交换功，不能混用能量条件。
+\end{xesolution}
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{落链与零原长弹簧}\label{ch10:ex:chain}
+原长为零、劲度系数为 $k$ 的弹簧悬挂线密度为 $\lambda$ 的长软链；链的下部平放在地板上。
+天花板与地板距离为 $H$，重力加速度为 $g$。（1）求平衡时弹簧长和悬垂链长；（2）把悬垂链长从平衡值改变
+$\delta_0$ 后静止释放，求小振动角频率；（3）计及链节在地板处非弹性拾取、沉积造成的能量损失，求弱衰减下的振幅包络。
+初始装置见图~\ref{ch10:fig:chain-problem}。
+\chTenChainProblemFigure
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+图\ref{ch10:fig:chain}中$x$是悬垂链长，也是连接点离地高度，向上增加；弹簧长为$H-x$。$\dot x>0$时拾取地板上的静链，$\dot x<0$时运动链沉积。假设链足够长，地板上始终有静止余链，链节不反弹。
+\chTenChainFigure
+平衡时
+\[
+ k(H-x_0)=\lambda gx_0,\qquad
+ \boxed{x_0=\frac{kH}{k+\lambda g}},\qquad
+ \boxed{s_0=H-x_0=\frac{\lambda gH}{k+\lambda g}}.
+\]
+以地板为重力势能零面，悬垂链的重心在$x/2$，故
+\[
+ U(x)=\frac12k(H-x)^2+\frac12\lambda gx^2
+ =U(x_0)+\frac12(k+\lambda g)(x-x_0)^2.
+\]
+上移时，进入移动部分的链节初速度为零，动量平衡为$\dd(\lambda x\dot x)/\dd t=k(H-x)-\lambda gx$，即
+\[
+ \lambda x\ddot x=-(k+\lambda g)(x-x_0)-\lambda\dot x^2\quad(\dot x>0).
+\]
+下移时，离开移动部分的链节带走动量，质量流项抵消求导中的$\lambda\dot x^2$，得到
+\[
+ \lambda x\ddot x=-(k+\lambda g)(x-x_0)\quad(\dot x<0).
+\]
+取$q=x-x_0$。小振动线性阶中，$\dot q^2$和$q\ddot q$为二阶，两式共同化为$\lambda x_0\ddot q+(k+\lambda g)q=0$。运动质量近似为$\lambda x_0$，故
+\[
+ \boxed{\omega=\sqrt{\frac{k+\lambda g}{\lambda x_0}}
+ =\frac{k+\lambda g}{\sqrt{\lambda kH}}}.
+\]
+
+地板处单位时间转入或转出运动部分的链质量为$\lambda|\dot q|$；完全非弹性的速度改变每次损失
+$\tfrac12\lambda|\dot q|^3\dd t$。令一个周期内 $q=A\cos\omega t$，则
+\[
+ \Delta E=-\frac12\lambda A^3\omega^2
+ \int_0^{2\pi}|\sin u|^3\dd u
+ =-\frac43\lambda A^3\omega^2.
+\]
+这里$\int_0^{2\pi}|\sin u|^3\dd u=4\int_0^{\pi/2}\sin^3u\dd u$，令$z=\cos u$，后一积分为$\int_0^1(1-z^2)\dd z=2/3$。损耗率也可通过对$E=\lambda x\dot x^2/2+U$求导、分别代入两条分段方程验证为$\dot E=-\lambda|\dot x|^3/2$。
+又振动能$E-U(x_0)\simeq\tfrac12\lambda x_0\omega^2A^2$、$T=2\pi/\omega$，故$\lambda x_0\omega^2A\dot A\simeq\Delta E/T$，平均化得到
+\[
+ \frac{\dd A}{\dd t}=-\frac{2\omega}{3\pi x_0}A^2.
+\]
+积分$\dd(1/A)/\dd t=2\omega/(3\pi x_0)$，若以$\delta_0>0$表示初始偏离的大小，则
+\[
+ \boxed{A(t)=\frac{\delta_0}
+ {1+\dfrac{2\omega\delta_0}{3\pi x_0}t}}.
+\]
+若$\delta_0$带符号，公式中改用$|\delta_0|$。包络按反比例式而非指数衰减，因为耗散率与$|\dot q|^3$成正比。要求$A\ll x_0$、$A\ll H-x_0$且每周期包络变化很小，连接点不到地板或天花板，余链未被提完。$\lambda g$与$k$同为$\mathrm{N/m}$，所得$\omega$为频率量纲。
+\end{xesolution}
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{弹性轻杆连接的两球与可分离斜劈}\label{ch10:ex:wedges}
+两个完全相同的 $45^\circ$ 斜劈质量均为 $m$，放在光滑水平面上；两个质量均为 $m$ 的小球分别从两斜面的最高点静止释放。
+两球由水平弹性轻杆连接，杆的自由长度为 $L_0$、劲度系数为 $k$，初始恰为自由长度。斜劈可以彼此分离，
+球与斜面光滑接触。释放瞬间不计为一次“达到极小”；已知支持力第二次达到极小时两球恰好到达地面。
+求支持力第二次达到极大时弹性杆的长度。
+
+初始装置见图~\ref{ch10:fig:wedges-problem}。
+\chTenWedgeProblemFigure
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+图\ref{ch10:fig:wedges}两侧的斜面均严格为$45^\circ$。只看右半边，令斜劈向外位移为$X$，球沿斜面向左下滑$s$，并定义球相对初始位置的水平位移
+\[
+ q=X-s\cos45^\circ.
+\]
+\chTenWedgeFigure
+杆长为$L=L_0+2q$。每劈速度为$\dot X=\dot q+\dot s/\sqrt2$，每球水平速度为$\dot q$、向下速度为$\dot s/\sqrt2$。把两劈和两球的动能相加，得到
+\[
+ T=m(\dot q+\dot s/\sqrt2)^2+m(\dot q^2+\dot s^2/2).
+\]
+杆形变为$2q$，两球下降均为$s/\sqrt2$，因此整理后
+\[
+ T=m\left(2\dot q^2+\sqrt2\dot q\dot s+\dot s^2\right),\qquad
+ U=2kq^2-\sqrt2mgs.
+\]
+分别对$q,s$用拉格朗日方程，得到
+\[
+ 4m\ddot q+\sqrt2m\ddot s+4kq=0,\qquad
+ \sqrt2m\ddot q+2m\ddot s-\sqrt2mg=0.
+\]
+第二式给$\ddot s=(g-\ddot q)/\sqrt2$，代入第一式消去$s$：
+\[
+ 3\ddot q+\frac{4k}{m}q+g=0.
+\]
+令
+\[
+ \omega=\sqrt{\frac{4k}{3m}},\qquad A=\frac{mg}{4k},
+\]
+利用 $q(0)=\dot q(0)=0$ 得
+\[
+ q=A(\cos\omega t-1),\qquad
+ L=L_0+\frac{mg}{2k}(\cos\omega t-1).
+\]
+右球的竖直向上方程为$N/\sqrt2-mg=-m\ddot s/\sqrt2$，其中杆力水平，不贡献竖直分量。故
+\[
+ N=\sqrt2mg-m\ddot s=\frac m{\sqrt2}(g+\ddot q),
+ \qquad\ddot q=-\frac g3\cos\omega t.
+\]
+代入得到单侧支持力
+\[
+ N=\frac{mg}{\sqrt2}\left(1-\frac13\cos\omega t\right).
+\]
+释放后不把 $t=0$ 计作一次“达到极小”，则第二次极大在 $\omega t=3\pi$，早于第二次极小
+$\omega t=4\pi$；题给落地条件保证上述接触解在该时刻仍有效。此时 $\cos\omega t=-1$，所以
+\[
+ \boxed{L=L_0-\frac{mg}{k}}.
+\]
+全过程$N>0$，没有因负支持力提前脱离；$mg/k$是长度量纲。物理上还需$L_0>mg/k$，否则杆先缩到零长，模型失效。将两条拉格朗日方程分别乘$\dot q,\dot s$相加，可验$\dd(T+U)/\dd t=0$，斜劈运动已计入总动能，整个系统机械能守恒。
+\end{xesolution}
+
+\begin{origexamplebox}{球面上三个等量点电荷的简正模}\label{ch10:ex:charges}
+三个质量均为 $m$、电荷量均为 $Q$ 的点电荷被限制在半径为 $R$ 的球面上，只能沿切平面运动，
+相互作用为 $KQ^2/r^2$，其中 $K$ 为库仑常量。（1）描述稳定平衡构形；（2）数出转动和振动自由度；
+（3）求小振动的不同角频率及简并度。
+
+作为计数参照，非线性三原子水分子共有9个位置坐标，扣除整体平动3个、转动3个，剩3个内部振动：键角弯曲、两氢氧键对称伸缩和反对称伸缩。两种伸缩频率通常较接近，弯曲频率较低。本题同样要区分内部形变和整体转动。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+令$d_{ij}=|\vect r_i-\vect r_j|$，由$|\vect r_i|=R$得
+\[
+ \sum_{i<j}d_{ij}^2=9R^2-|\vect r_1+\vect r_2+\vect r_3|^2\leq9R^2.
+\]
+函数$z^{-1/2}$在$z>0$严格凸，故
+\[
+ \sum_{i<j}\frac1{d_{ij}}\geq
+ \frac3{\sqrt{\tfrac13\sum d_{ij}^2}}\geq\frac{\sqrt3}{R}.
+\]
+两步取等要求三边相等且$\sum_i\vect r_i=0$，因此三个电荷位于某一大圆上，夹角均为$120^\circ$，形成边长$\sqrt3R$的正三角形。这证明全局最低势能，而非仅凭“三对距离尽可能大”猜测。图\ref{ch10:fig:charges}取大圆为$xy$平面。
+\chTenChargesFigure
+每个电荷有两个切向自由度，共6个；球面限制了整体平移，整体构形在三维空间有3个转动自由度，
+余下3个为振动自由度。
+
+取平衡方位角$\phi_i=0,2\pi/3,4\pi/3$，沿大圆的小角位移为$a_i$，垂直大圆的无量纲位移为$z_i$。球面坐标可写为
+\[
+ \frac{\vect r_i}{R}=(\sqrt{1-z_i^2}\cos(\phi_i+a_i),
+ \sqrt{1-z_i^2}\sin(\phi_i+a_i),z_i).
+\]
+对一对电荷记$\Delta=\phi_i-\phi_j$、$\delta=a_i-a_j$，点积展开为
+\[
+ c_{ij}=\frac{\vect r_i\cdot\vect r_j}{R^2}
+ =-\frac12-\sin\Delta\,\delta+\frac14\delta^2
+ +\frac14(z_i^2+z_j^2)+z_iz_j+O(3).
+\]
+设$c_{ij}=-1/2+\epsilon_{ij}$，则
+\[
+ \frac R{d_{ij}}=[2(1-c_{ij})]^{-1/2}
+ =\frac1{\sqrt3}\left(1+\frac{\epsilon_{ij}}3+\frac{\epsilon_{ij}^2}{6}\right)+O(3).
+\]
+二阶$\delta^2$系数为$[1/12+\sin^2\Delta/6]/\sqrt3=5/(24\sqrt3)$。三对相加，一次项相消，势能
+\[
+ U=\sum_{i<j}\frac{KQ^2}{|\vect r_i-\vect r_j|}
+\]
+展开到二阶为
+\[
+ U=\frac{KQ^2}{R}\left[\sqrt3+\frac12\vect a^{\mathsf T}\mathbf H_a\vect a
+ +\frac12\vect z^{\mathsf T}\mathbf H_z\vect z\right]+O(3),
+\]
+\[
+ \mathbf H_a=\frac5{12\sqrt3}\begin{pmatrix}2&-1&-1\\-1&2&-1\\-1&-1&2\end{pmatrix},\quad
+ \mathbf H_z=\frac1{3\sqrt3}\begin{pmatrix}1&1&1\\1&1&1\\1&1&1\end{pmatrix}.
+\]
+这些矩阵已提出$KQ^2/R$，其元素和本征值均无量纲。$\mathbf H_a(1,1,1)^{\mathsf T}=0$对应绕$z$轴整体转动；在$\sum a_i=0$的子空间，$\mathbf H_a\vect a=5\vect a/(4\sqrt3)$，可选$(1,-1,0)$、$(1,1,-2)$两个独立振型。$\mathbf H_z(1,1,1)^{\mathsf T}=(1,1,1)^{\mathsf T}/\sqrt3$，对应三球同向离开大圆；$\sum z_i=0$的两个零模则是绕平面内轴整体转动。因此非零本征值为
+\[
+ \lambda_1=\frac{\sqrt3}{3}\quad(1\text{重}),\qquad
+ \lambda_2=\frac{5\sqrt3}{12}\quad(2\text{重}).
+\]
+而二阶动能为 $\tfrac12mR^2\sum_i(\dot a_i^2+\dot z_i^2)$。故三个振动模的频率为
+\[
+ \boxed{\omega_1^2=\frac{KQ^2}{mR^3}\frac{\sqrt3}{3}}\quad(1\text{重}),
+ \qquad
+ \boxed{\omega_2^2=\frac{KQ^2}{mR^3}\frac{5\sqrt3}{12}}\quad(2\text{重}).
+\]
+共3个零模与3个振动模，和自由度计数一致，非零二阶系数为正，故除整体取向外稳定。量纲检查：$KQ^2/R^3$是力除以长度，再除质量为$\mathrm{s^{-2}}$；电荷趋零时回复作用消失，频率也趋零。
+\end{xesolution}
+
+\Needspace{16\baselineskip}
+\begin{origexamplebox}{弹簧摆势能的三阶展开与内共振}\label{ch10:ex:spring-pendulum}
+原长为 $l_0$、劲度系数为 $k$ 的轻弹簧悬挂质量为 $m$ 的小球。以平衡位置为原点，$x$ 为水平位移，
+$y$ 为竖直向下位移。把势能写到三阶小量
+\[
+ V=\frac12m(\omega_1^2x^2+\omega_2^2y^2)
+ +ax^3+bx^2y+cxy^2+dy^3,
+\]
+求全部系数，并讨论最低阶非线性耦合产生的内共振条件。
+\end{origexamplebox}
+\Needspace{6\baselineskip}\begin{xesolution}
+平衡长度
+\[
+ L=l_0+\frac{mg}{k}.
+\]
+图\ref{ch10:fig:spring-pendulum}中球到悬点距离为$r=\sqrt{x^2+(L+y)^2}$。势能（略去常量）为
+\[
+ V=\frac12k(r-l_0)^2-mgy.
+\]
+\chTenSpringPendulumFigure
+当$|x|,|y|\ll L$，先提出正的$L+y$，逐阶展开：
+\[
+ r=(L+y)\sqrt{1+\frac{x^2}{(L+y)^2}}
+ =L+y+\frac{x^2}{2(L+y)}+O(4).
+\]
+再对$1/(L+y)$用几何级数，得
+\[
+ r=L+y+\frac{x^2}{2L}-\frac{x^2y}{2L^2}+O(4)
+\]
+$O(4)$表示$x,y$总次数至少4，相应$L$的幂补足量纲。令$e=L-l_0=mg/k$，平方并保留至三阶：
+\[
+ (r-l_0)^2=e^2+2ey+y^2+\frac eLx^2
+ +\left(\frac1L-\frac e{L^2}\right)x^2y+O(4).
+\]
+乘$k/2$、减$mgy$后，线性项因$ke=mg$消失，利用$L-e=l_0$得到
+\[
+ V=\frac12\frac{mg}{L}x^2+\frac12ky^2
+ +\frac{kl_0}{2L^2}x^2y+O(4).
+\]
+因此
+\[
+ \boxed{\omega_1^2=\frac gL},\qquad
+ \boxed{\omega_2^2=\frac km},
+\]
+\[
+ \boxed{a=c=d=0},\qquad
+ \boxed{b=\frac{kl_0}{2L^2}}.
+\]
+$x\to-x$的对称性排除了$x^3,xy^2$；$x=0$时竖直弹簧恰好线性，故无$y^3$。$b$单位为能量/长度三次方。由$F_x=-\partial V/\partial x,F_y=-\partial V/\partial y$得
+\[
+ m\ddot x+\frac{mg}{L}x+2bxy=0,\qquad
+ m\ddot y+ky+bx^2=0.
+\]
+若先取$x\simeq A\cos\omega_1t$，则$x^2=A^2(1+\cos2\omega_1t)/2$，所以$x^2y$项使竖直模受到平均偏移作用及频率约$2\omega_1$的驱动，同时$2byx$使水平模受到竖直振动的参数调制；
+最低阶强内共振条件为
+\[
+ \boxed{\omega_2\simeq2\omega_1},\qquad
+ \frac{k}{m}\simeq\frac{4g}{L}.
+\]
+结合$L=l_0+mg/k$，精确线性频率比为2时有$kl_0=3mg$。远离该条件时，三阶项主要造成小的频率修正和高次谐波；接近共振时，两模可显著交换能量，但没有外界无限供能。将两方程乘对应速度相加，可验在所保留阶数内$\dd(T+V)/\dd t=0$。特别地$l_0=0$时$b=0$，这一阶的耦合消失，不能只看频率关系便断言相同机制仍存在。
+\end{xesolution}
+
+\endgroup
+
+\hypersetup{bookmarksdepth=2}

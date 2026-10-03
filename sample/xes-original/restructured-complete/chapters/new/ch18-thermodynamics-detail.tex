@@ -1,0 +1,93 @@
+\section{分子通量、压强与统计假设}
+
+\subsection{穿过小孔的分子并不是无偏样本}
+
+设数密度为 $n_N=N/V$，取孔面法线为 $z$ 轴。速度 $v_z>0$ 的分子在时间 $\dd t$ 内，
+只有位于厚度 $v_z\dd t$ 内的部分能够到达面积 $\dd A$。因此单位面积、单位时间的穿越数为
+\[J=n_N\int_{v_z>0}v_z F(\boldsymbol v)\,\dd^3v
+=n_N\sqrt{\frac{k_BT}{2\pi m}}=\frac14 n_N\bar v.\]
+第一步中的 $v_z$ 权重说明较快且较接近法向运动的分子更容易穿孔；不能直接用容器内的速率密度代表逸出束的速率密度。
+几何上，对于各向同性分布，前半球上的平均通量因子是
+\[\frac1{4\pi}\int_0^{2\pi}\dd\phi\int_0^{\pi/2}\cos\theta\sin\theta\dd\theta=\frac14.\]
+小孔逸出公式适用于孔尺度小于平均自由程、孔外回流可忽略的分子流模型。
+
+分子在壁面弹性反射时，每次传递法向动量 $2mv_z$。将其乘碰撞通量并积分，得到
+\[p=2mn_N\int_{v_z>0}v_z^2F\,\dd^3v
+=mn_N\langle v_z^2\rangle
+=\frac13mn_N\langle v^2\rangle=\frac23n_N\langle\varepsilon_k\rangle.\]
+结合 $\langle\varepsilon_k\rangle=3k_BT/2$，就恢复 $p=n_Nk_BT$。
+对各向同性光子气，速率固定为 $c$、单光子动量大小为 $\varepsilon/c$，同样的角积分给出
+数通量 $J_\gamma=n_\gamma c/4$、能量通量 $j_E=uc/4$ 和压强 $p=u/3$，其中 $u$ 为能量密度。
+平行光束不满足各向同性条件，不能直接套用 $p=u/3$。
+
+\subsection{动力学与概率描述之间的条件}
+
+单个微观态按确定性方程运动，不等于我们知道其初始条件。统计描述来自微观初态的不完全信息以及宏观分辨率的限制，
+也可包括外界随机作用。系综是系统副本的概率集合；时间平均与系综平均是否相等，还需要动力学条件，不能由定义保证。
+对于存在混沌的多自由度系统，初态和外界扰动的微小误差可能迅速放大；但不是所有多自由度运动都必然混沌。
+理想的时间反演会让经典轨迹倒走，实际实验中反转误差和环境扰动使这一过程极难实现。
+量子衰变则提供不同的随机模型：在恒定衰变率 $\lambda$ 近似下，生存概率满足
+$\dd P/\dd t=-\lambda P$，所以 $P(t)=e^{-\lambda t}$。
+若初始有 $N_0$ 个独立粒子，未衰变数均值为 $N_0P(t)$、方差为 $N_0P(t)[1-P(t)]$。
+平均规律是指数衰减，不表示每个样本在每一时刻的粒子数都正好等于均值。
+孤立系统细粒化吉布斯熵在哈密顿演化下保持不变；宏观熵增涉及粗粒化和特殊初始条件。
+
+在稀薄气体的玻尔兹曼方程中，分子混沌假设把碰撞前两粒子分布近似为单粒子分布的乘积。
+记一次碰撞前后乘积分别为 $b=f_1f_2$、$a=f'_1f'_2$。微观碰撞的正反对称性允许把
+$H=\int f\ln f\,\dd^3r\dd^3v$ 的碰撞贡献整理成
+\[\frac{\dd H}{\dd t}=-\frac14\int B\,(a-b)\ln\frac ab\,\dd\Lambda\le0.\]
+这里 $B\ge0$ 是碰撞权重，$\dd\Lambda$ 表示对位置、两入射速度及散射方向积分；边界不向外输运熵。
+因对数单调，$(a-b)(\ln a-\ln b)\ge0$，所以符号确定。该结果称为H定理，不能脱离稀薄气体和碰撞前无关联近似来理解。
+平衡时所有允许碰撞满足 $f_1f_2=f'_1f'_2$，即 $\ln f_1+\ln f_2$ 在碰撞中守恒。
+对普通弹性气体，它由粒子数、动量和能量这些碰撞不变量组成；在气体静止参考系中得到 $f\propto e^{-mv^2/(2k_BT)}$。
+
+\section{从配分函数连接功、热与熵}
+
+\subsection{连续相空间平均与非二次能量项}
+
+若系统近似独立，$H=\sum_ih_i$，经典正则权重可分解。
+这里的近独立可来自忽略相互作用，也可来自用平均场代替其他粒子的作用；后一种做法还要满足平均场的自洽条件，不能保证强关联系统适用。
+单个自由度在连续情形的平均为
+\[\langle A\rangle=
+\frac{\int A(q,p)e^{-\beta h(q,p)}\,\dd q\dd p}
+{\int e^{-\beta h(q,p)}\,\dd q\dd p}.\]
+相空间测度的共同常数在平均值比式中抵消；计算绝对熵时则须保留它，例如以普朗克常数规定相空间单元。
+能量均分的分部积分具体为
+\[\int x\frac{\partial H}{\partial x}e^{-\beta H}\dd x
+=-\frac1\beta\int x\,\partial_x(e^{-\beta H})\dd x
+=\frac1\beta\int e^{-\beta H}\dd x,\]
+最后一步要求边界项 $xe^{-\beta H}$ 消失。其他坐标积分后除以配分函数，即得前面的均分恒等式。
+
+二次项之外不能机械分配 $k_BT/2$。例如在 $z\ge0$ 的均匀重力场中，势能为 $mgz$，
+\[Z_z=\int_0^\infty e^{-\beta mgz}\dd z=\frac1{\beta mg},
+\qquad \langle mgz\rangle=-\partial_\beta\ln Z_z=k_BT.\]
+离散的两能级系统应使用求和；谐振子的经典势能和动能各为二次项，才各贡献 $k_BT/2$。
+对于大小固定为 $d$ 的经典偶极子，在场强 $\mathcal E$ 中势能为 $-d\mathcal E\cos\theta$。
+令 $x=\beta d\mathcal E$，其取向配分积分为
+\[Z_{\rm rot}=2\pi\int_0^\pi e^{x\cos\theta}\sin\theta\dd\theta
+=4\pi\frac{\sinh x}{x}.\]
+对 $x$ 求对数导数得到 $\langle\cos\theta\rangle=\coth x-1/x$，从而
+$\langle U_{\rm rot}\rangle=-d\mathcal E(\coth x-1/x)$。弱场时 $\coth x-1/x\simeq x/3$，
+强场时趋于1，分别对应小偏向和接近完全取向。这里没有理由直接使用一个二次项的均分值。
+
+\subsection{能级变化与布居变化}
+
+系统平均能量为 $U=\sum_iP_iE_i$，所以
+\begin{equation}
+ \dd U=\sum_iP_i\dd E_i+\sum_iE_i\dd P_i.
+\end{equation}
+第一项是在概率不变时外参量改变能级的贡献，第二项是在能级给定时布居改变的贡献。
+在弱耦合、准静态、仅有相应外参量功的热力学描述中，取外界对系统做功为正，
+\[\delta W_{\rm on}=\sum_iP_i\dd E_i,\qquad
+\delta Q=\sum_iE_i\dd P_i,\qquad \dd U=\delta W_{\rm on}+\delta Q.\]
+若外参量为体积，$p=-\sum_iP_i\partial E_i/\partial V$，便得到 $\delta W_{\rm on}=-p\dd V$。
+对于连续相空间，只需在固定的相空间测度下将上述求和换成积分。
+
+正则概率满足 $\ln P_i=-\beta E_i-\ln Z$，因此
+\[S=-k_B\sum_iP_i\ln P_i=k_B\ln Z+\frac UT.\]
+又因 $\sum_i\dd P_i=0$，沿平衡态序列
+\[\dd S=-k_B\sum_i(\ln P_i+1)\dd P_i
+=k_B\beta\sum_iE_i\dd P_i=\frac{\delta Q_{\rm rev}}T.\]
+从而 $F=U-TS=-k_BT\ln Z$，并与 $\dd F=-S\dd T-p\dd V$ 相容（固定粒子数）。
+不可逆实际过程一般满足熵不等式，不能把任意传热都写成 $T\dd S$。
+“绝热”仅表示不传热；快速改变外参量仍可能改变微观布居。只有满足相应绝热演化条件时才可进一步谈布居保持。

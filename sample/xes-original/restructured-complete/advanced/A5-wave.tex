@@ -1,0 +1,657 @@
+\section{波动光学}
+
+\subsection{标量波、复振幅与傍轴近似}
+
+标量波满足
+\[
+ \left(\frac1{c^2}\frac{\partial^2}{\partial t^2}-\nabla^2\right)
+ A(\vect r,t)=0.
+\]
+在直角、柱和球坐标中，典型外行波分别为
+\[
+\begin{aligned}
+ A_{\rm p}&=A_0\cos(\omega t-\vect k\cdot\vect r+\varphi),\\
+ A_{\rm c}&=\frac{A_0}{\sqrt{\rho}}\cos(\omega t-k\rho+\varphi),\\
+ A_{\rm s}&=\frac{A_0}{r}\cos(\omega t-kr+\varphi),
+\end{aligned}
+\qquad \frac{\omega}{|k|}=c.
+\]
+上式柱面波是 $k\rho\gg1$ 时的远场渐近式，严格的单频径向解为 Hankel 函数 $H_0^{(1)}(k\rho)$；球面式在离开源点处是严格外行解。柱面波和球面波的幅度衰减分别保证单位长度圆柱面、球面上的平均能流守恒。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[>=Latex,scale=.72]
+ \begin{scope}[xshift=-4.7cm]
+  \foreach \y in {-.9,-.3,.3,.9}{\draw[DeepBlue,thick] (-1.45,\y)--(1.45,\y);}
+  \foreach \x in {-1.0,0,1.0}{\draw[->,Gold!85!black] (\x,-1.15)--(\x,1.45);}
+  \node at (0,-1.55){平面波};
+ \end{scope}
+ \begin{scope}
+  \foreach \r in {.35,.72,1.1,1.48}{\draw[DeepBlue,thick] (25:\r) arc[start angle=25,end angle=155,radius=\r];}
+  \foreach \a in {35,65,95,125,150}{\draw[->,Gold!85!black] (0,0)--(\a:1.75);}
+  \draw[RuleGray] (-.22,-.2)--(.22,.2);
+  \node at (0,-1.55){柱面波截面};
+ \end{scope}
+ \begin{scope}[xshift=4.7cm]
+  \foreach \r in {.38,.76,1.14,1.52}{\draw[DeepBlue,thick] (0,0) circle (\r);}
+  \foreach \a in {20,80,145,210,275,335}{\draw[->,Gold!85!black] (0,0)--(\a:1.82);}
+  \fill (0,0) circle(1.2pt);
+  \node at (0,-1.95){球面波截面};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{平面波、柱面波和球面波的波前与传播方向}
+\label{advA5:fig:three-waves}
+\end{minipage}\end{center}
+
+统一采用光学符号约定
+\[
+ A(\vect r,t)=A(\vect r)\e^{-\ii\omega t},\qquad
+ A(\vect r)=|A|\e^{\ii\phi(\vect r)},\qquad
+ \vect k=\nabla\phi.
+\]
+单色场的空间部分满足 Helmholtz 方程
+\[
+ \boxed{(\nabla^2+k^2)A(\vect r)=0},\qquad k=\omega/c.
+\]
+真空或线性无源介质中的标势、矢势以及电磁场各分量都可归入这一标量框架，
+但偏振问题仍需保留矢量方向。
+
+取主传播轴为 $z$，傍轴平面波写成
+\[
+ A(x,y,z)=A_0\e^{\ii kz}
+ \e^{\ii k(\theta_xx+\theta_yy)},\qquad
+ |\theta_x|,|\theta_y|\ll1.
+\]
+物平面 $z=-L$ 上 $(X,Y)$ 点发出的球面波传播到像平面 $(x,y,0)$ 时，
+\[
+\begin{aligned}
+ R&=\sqrt{L^2+(x-X)^2+(y-Y)^2}\\
+ &\simeq L+\frac{(x-X)^2+(y-Y)^2}{2L},
+\end{aligned}
+\]
+所以
+\[
+ A(x,y)\propto
+ \e^{\ii k(x^2+y^2)/(2L)}
+ \e^{-\ii k(Xx+Yy)/L}.
+\]
+图 \ref{advA5:fig:spherical-plane-approx} 中虚线是局部切平面；
+图中 $X,Y,x,y$ 的位置与公式保持同一符号约定。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[>=Latex,scale=.76]
+ \draw[->] (-5,0)--(5.4,0) node[right]{$z$};
+ \draw[thick] (-4,-1.6)--(-4,1.8) node[above]{物平面};
+ \draw[thick] (3.8,-1.6)--(3.8,1.8) node[above]{像平面};
+ \coordinate (S) at (-4,.8);
+ \coordinate (P) at (3.8,.42);
+ \fill (S) circle(1.3pt) node[left]{$(X,Y)$};
+ \fill (P) circle(1.3pt) node[right]{$(x,y)$};
+ \draw[DeepBlue,thick,->] (S)--(P) node[midway,above]{$R$};
+ \draw[DeepBlue!65] (S) ++(-65:1.5) arc[start angle=-65,end angle=65,radius=1.5];
+ \draw[DeepBlue!65] (S) ++(-42:3.0) arc[start angle=-42,end angle=42,radius=3.0];
+ \draw[DeepBlue!55,dashed] (2.82,-1.15)--(3.05,1.55)
+   node[above left,text=TextGray,xshift=-6pt]{局部切波前};
+ \draw[<->] (-4,-1.95)--(3.8,-1.95) node[midway,below]{$L$};
+ \draw[Gold!80!black] (-3.15,.8) arc[start angle=0,end angle=-3,radius=.85];
+ \node[Gold!70!black] at (-3.0,.57) {$\theta$};
+\end{tikzpicture}
+\bookcaption{球面波在像平面附近的傍轴展开与局部平面波近似}
+\label{advA5:fig:spherical-plane-approx}
+\end{minipage}\end{center}
+
+当观测孔径半径为 $\rho$ 时，若
+\[
+ \rho^2\ll\lambda L,
+\]
+二次相位在孔径内可以忽略，得到远场平面波近似。若不满足此式，
+保留二次相位即为 Fresnel 传播；这不是“误差项”，而是近场衍射和散焦的主要来源。
+
+\subsection{相干与多光束干涉}
+
+两复振幅叠加为 $A=A_1+A_2$，探测器测得时间平均光强
+\[
+ I=I_1+I_2+2\sqrt{I_1I_2}\,
+ \operatorname{Re}\gamma_{12},
+\qquad
+ \gamma_{12}=
+ \frac{\langle A_1^*A_2\rangle}
+ {\sqrt{\langle|A_1|^2\rangle\langle|A_2|^2\rangle}}.
+\]
+$|\gamma|=1$ 为完全相干，$|\gamma|=0$ 为完全不相干。扩展光源限制空间相干性，
+典型相干角量级为 $\Delta\theta\sim\lambda/b$；有限谱宽限制时间相干性，
+相干长度量级为 $L_c\sim\lambda^2/\Delta\lambda$。
+
+\begin{advexamplebox}{两界面的 Stokes 关系与等效反射、透射}\label{advA5:ex:multibeam}
+三层无吸收介质有两个平行界面。正向通过第 $i$ 个界面的振幅反射、透射系数为
+$r_i,t_i$，反向为 $r_i',t_i'$；层内单程相位为 $\delta$。
+
+\begin{enumerate}
+\item 从能流守恒和时间反演说明 Stokes 关系的正确复数形式；
+\item 求整个双界面的等效振幅反射系数与透射系数。
+\end{enumerate}
+\end{advexamplebox}
+\begin{advsolution}
+若先把行波振幅按单位能流归一化，无吸收界面的散射矩阵
+\[
+ S_i=\begin{pmatrix}r_i&t_i'\\ t_i&r_i'\end{pmatrix}
+\]
+满足 $S_i^\dagger S_i=I$。互易、时间反演对称时还可取 $S_i=S_i^{\mathsf T}$。
+因此一般的复数 Stokes 关系是
+\[
+ |r_i|^2+|t_i|^2=1,\qquad
+ r_i^*t_i'+t_i^*r_i'=0.
+\]
+只有在系数可同时取实数并采用特定相位规范时，才化成
+$r_i+r_i'=0$、$t_it_i'+r_i^2=1$。这修正了直接把“实系数关系”用于任意复系数的错误。
+
+从第一界面反射后的各束构成几何级数：
+\[
+ r=r_1+t_1t_1'r_2\e^{2\ii\delta}
+ \sum_{m=0}^{\infty}(r_1'r_2\e^{2\ii\delta})^m.
+\]
+故
+\[
+ r=r_1+\frac{t_1t_1'r_2\e^{2\ii\delta}}
+ {1-r_1'r_2\e^{2\ii\delta}},
+\qquad
+ t=\frac{t_1t_2\e^{\ii\delta}}
+ {1-r_1'r_2\e^{2\ii\delta}}.
+\]
+若采用实系数相位规范 $r_1'=-r_1$、$t_1t_1'=1-r_1^2$，
+便化为
+\[
+ \boxed{r=\frac{r_1+r_2\e^{2\ii\delta}}
+ {1+r_1r_2\e^{2\ii\delta}}},
+ \qquad
+ \boxed{t=\frac{t_1t_2\e^{\ii\delta}}
+ {1+r_1r_2\e^{2\ii\delta}}}.
+\]
+$r_2=0$ 时退化为单界面 $r=r_1$；相位平均后交叉项消失，回到非相干多次反射。
+\end{advsolution}
+
+\begin{advexamplebox}{周期双层介质的允许带与禁带}\label{advA5:ex:photonic-crystal}
+折射率 $n_1,n_2$、厚度 $d_1,d_2$ 的两层介质周期交错。
+分析哪些频率的正入射光可以传播，哪些频率落入禁带。
+\end{advexamplebox}
+\begin{advsolution}
+一周期 $\Lambda=d_1+d_2$ 的特征矩阵为 $M=M_2M_1$。对非磁介质正入射，
+令相位厚度 $\delta_j=k_0n_jd_j$，光学导纳 $\eta_j=n_j$，单层矩阵
+\[
+ M_j=
+ \begin{pmatrix}
+ \cos\delta_j&\ii\sin\delta_j/\eta_j\\
+ \ii\eta_j\sin\delta_j&\cos\delta_j
+ \end{pmatrix}.
+\]
+Bloch 条件要求本征值为 $\e^{\pm\ii K\Lambda}$，且 $\det M=1$，故
+\[
+ \boxed{\cos K\Lambda=
+ \cos\delta_1\cos\delta_2
+ -\frac12\left(\frac{\eta_1}{\eta_2}
+ +\frac{\eta_2}{\eta_1}\right)
+ \sin\delta_1\sin\delta_2}.
+\]
+当右端绝对值不超过 $1$ 时 $K$ 为实数，是允许带；超过 $1$ 时
+$K$ 有非零虚部，场随周期数指数衰减，是禁带。四分之一波堆
+$n_1d_1=n_2d_2=\lambda_0/4$ 在中心波长处右端
+$=-(n_1/n_2+n_2/n_1)/2<-1$（只要 $n_1\ne n_2$），所以形成反射禁带。
+$n_1=n_2$ 时右端化为 $\cos(\delta_1+\delta_2)$，禁带消失，极限正确。
+\end{advsolution}
+
+\subsection{衍射、路径积分与光栅}
+
+\begin{advtheorem}{Kirchhoff 衍射积分}\label{advA5:thm:kirchhoff}
+设 $A$ 在体积 $V$ 内满足 Helmholtz 方程，Green 函数
+$G(\vect r,\vect r')=\e^{\ii kR}/R$，$R=|\vect r-\vect r'|$。
+若边界由孔径面和远处闭合面组成，则
+\[
+ A(\vect r)=\frac1{4\pi}\iint_{\partial V}
+ \left(G\frac{\partial A}{\partial n'}
+ -A\frac{\partial G}{\partial n'}\right)\dd S'.
+\]
+在 Kirchhoff 边界近似下，孔径 $S$ 上可写成
+\[
+ \boxed{A(\vect r)\simeq\frac1{\ii\lambda}
+ \iint_S A(\vect r')\frac{\e^{\ii kR}}{R}
+ \frac{\cos\theta+\cos\theta'}2\,\dd S'}.
+\]
+\end{advtheorem}
+
+\noindent\textit{证明。}
+对 $A$ 与 $G$ 应用 Green 第二恒等式：
+\[
+ \iiint_V(A\nabla'^2G-G\nabla'^2A)\dd V'
+ =\iint_{\partial V}\left(
+ A\frac{\partial G}{\partial n'}
+ -G\frac{\partial A}{\partial n'}\right)\dd S'.
+\]
+$G$ 满足 $(\nabla'^2+k^2)G=-4\pi\delta(\vect r-\vect r')$，
+$A$ 满足齐次 Helmholtz 方程，代入后左端给出 $-4\pi A(\vect r)$，
+移项即得第一式。远处半球在 Sommerfeld 辐射条件下无贡献。
+在孔径上把 $A$ 和法向导数取为无屏时的值，在遮挡部分取零；
+对 $G$ 的法向导数保留主导的 $\ii k\cos\theta/R$ 项，
+整理得到倾斜因子 $(\cos\theta+\cos\theta')/2$。这也说明 Kirchhoff 边界条件是近似，
+不能同时作为严格的 Dirichlet 与 Neumann 条件。
+
+在透镜后焦面观察且忽略缓变倾斜因子时，得到 Fraunhofer 公式
+\[
+ \boxed{A(\theta_x,\theta_y)=
+ \frac{\e^{\ii kf}}{\ii\lambda f}
+ \iint A(x',y')\e^{-\ii k(\theta_xx'+\theta_yy')}
+ \dd x'\dd y'}.
+\]
+因此远场衍射花样是孔径复振幅的二维 Fourier 变换。
+
+\begin{advtheorem}{光传播的路径积分表述}\label{advA5:thm:path-integral}
+在高频标量近似下，传播核可形式地写为
+\[
+ K(B,A)=\frac1{\mathcal N}\int_{\gamma:A\to B}
+ \exp\!\left[\ii k_0\int_\gamma n(\vect r)\,\dd s\right]
+ \mathcal D\gamma .
+\]
+短波极限 $k_0\to\infty$ 中，主要贡献来自光程驻值路径，即费马光线。
+\end{advtheorem}
+
+\noindent\textit{证明思路。}
+把传播距离分成许多薄层，在每一层使用 Fresnel 核
+\[
+ K(\vect r_{j+1},\vect r_j)\propto
+ \exp\!\left[\ii k_0n_j
+ \left(\Delta z+\frac{|\Delta\vect r_\perp|^2}{2\Delta z}\right)\right],
+\]
+并对所有中间横向位置积分。令层数趋于无穷，就得到对路径的泛函积分。
+当 $k_0$ 很大时，非驻相邻路径的相位快速转动而相消；驻相条件
+$\delta\int n\,\dd s=0$ 正是费马原理。对驻值路径作二次展开，
+高斯积分给出几何扩散振幅和 Maslov 相位，说明“只剩一条光线”只是领头阶近似。
+
+\begin{advexamplebox}{2020级联双缝的中心光强与谱选择}\label{advA5:ex:cascade-slits}
+单缝 $P_0$ 后依次放置 $P_1,\ldots,P_{2020}$ 共 $2020$ 个等间距双缝面，
+相邻面间距 $L$，每个双缝间距 $D$，末端屏中心为 $O$。
+所有缝均等宽，双缝关于主轴对称，满足傍轴条件。$P_0$ 到 $P_1$ 距离为 $L_0$，最后双缝到屏距离为 $L_1$。若把这些双缝全换成同宽、位于轴上的单缝，$O$ 点光强为 $I_0$。比较不同波长时取相同的参考强度 $I_0$，即比较相对增强因子 $I_O/I_0$。本题只比较理想传播模型的相对光强；实际多次遮挡会使绝对透射功率很小。
+
+\begin{enumerate}
+\item 求双缝级联时 $O$ 点光强；
+\item 取 $L_0=L=L_1=5\,\mathrm{cm}$、$D=0.4\,\mathrm{mm}$，
+求可见光中使中心光强最大的波长；
+\item 求中心光强不小于最大值一半的波长范围；
+\item 说明白光下条纹的颜色、间距和级次。
+\end{enumerate}
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+% Design: 13cm source reconstruction, real slit gaps; omitted intermediate planes explicit.
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-5,-1.1)--(-5,-.06) (-5,.06)--(-5,1.1)node[above]{$P_0$};
+ \foreach \x/\t in {-3/P_1,-1/P_2,2/P_{2020}}{
+  \draw[thick](\x,-1.1)--(\x,-.45) (\x,-.31)--(\x,.31) (\x,.45)--(\x,1.1)node[above]{$\t$};
+ }
+ \draw[thick](4,-1.1)--(4,1.1)node[above]{$P$};
+ \fill(4,0)circle(1.4pt)node[right]{$O$};
+ \draw[DeepBlue!60](-5,0)--(-3,.38)--(-1,-.38);
+ \draw[DeepBlue!60](-5,0)--(-3,-.38)--(-1,.38);
+ \draw[DeepBlue!60](2,-.38)--(4,0) (2,.38)--(4,0);
+ \node at(.5,0){$\cdots$};
+ \foreach \a/\b/\lab in {-5/-3/L_0,-3/-1/L,2/4/L_1}{
+  \draw[<->](\a,-1.45)--(\b,-1.45)node[midway,below]{$\lab$};}
+ \draw[<->](-3.5,-.38)--(-3.5,.38)node[midway,left]{$D$};
+\end{tikzpicture}
+\figcap{原题的单缝、等间距双缝序列与观察屏。双缝面上画出两个分开的狭缝，省略号表示未逐一画出的中间面。\label{advA5:fig:cascade-source}}
+\end{minipage}\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+在相邻双缝面之间，同侧传播距离为 $L$，交叉传播距离在傍轴下为
+$L+D^2/(2L)$。略去公共相位，单步传播矩阵为
+\[
+ T=\begin{pmatrix}1&\e^{\ii\delta}\\
+ \e^{\ii\delta}&1\end{pmatrix},\qquad
+ \delta=\frac{2\pi}{\lambda}\frac{D^2}{2L}.
+\]
+入射与中心读出都对应对称本征向量 $(1,1)^{\mathsf T}$，
+其本征值为 $1+\e^{\ii\delta}
+=2\e^{\ii\delta/2}\cos(\delta/2)$。
+与全改单缝的振幅比较，第一处分束和末端合束再给出一个因子 $2$，
+故
+\[
+ \frac{A_O}{A_{O,0}}
+ =2^{2020}\e^{\ii\Phi}
+ \cos^{2019}\!\frac{\delta}{2},
+\]
+\[
+ \boxed{\frac{I_O}{I_0}
+ =4^{2020}
+ \cos^{4038}\!\left(\frac{\pi D^2}{2\lambda L}\right)}.
+\]
+
+数值上
+\[
+ \Delta\ell=\frac{D^2}{2L}=1.6000\,\mu\mathrm m.
+\]
+最大值要求 $\Delta\ell/\lambda=m$ 为整数。按可见范围约
+$380$--$780\,\mathrm{nm}$，有
+\[
+ \boxed{\lambda=533.33\,\mathrm{nm}\ (m=3)},\qquad
+ \boxed{\lambda=400.00\,\mathrm{nm}\ (m=4)}.
+\]
+若采用不同的可见光边界约定，边界附近的 $400\,\mathrm{nm}$ 是否计入应随约定说明。
+
+半高条件为
+\[
+ \left|\cos\frac{\pi\Delta\ell}{\lambda}\right|
+ \ge 2^{-1/4038}.
+\]
+令
+$q=\arccos(2^{-1/4038})=0.018528\ldots$，每个整数 $m$ 周围满足
+\[
+ \left|\frac{\pi\Delta\ell}{\lambda}-m\pi\right|\le q.
+\]
+于是两段可见范围近似为
+\[
+ \boxed{532.29\text{--}534.38\,\mathrm{nm}},\qquad
+ \boxed{399.41\text{--}400.59\,\mathrm{nm}}.
+\]
+\textbf{谱选择与空间条纹应分开。}最后一组双缝的两出射振幅始终相等。屏上纵坐标为 $y$ 时，末段光程差为 $Dy/L_1$，所以忽略单缝衍射包络的变化，有
+\[
+ \frac{I(y,\lambda)}{I_0(\lambda)}=
+ 4^{2020}\cos^{4038}\!\left(\frac{\pi\Delta\ell}{\lambda}\right)
+ \cos^2\!\left(\frac{\pi Dy}{\lambda L_1}\right).
+\]
+第一个因子选择窄波段，第二个因子给出普通双缝空间条纹：
+\[
+ y_k=k\frac{\lambda L_1}{D},\qquad
+ \Delta y_{533}=66.667\,\mu\mathrm m,\quad
+ \Delta y_{400}=50.000\,\mu\mathrm m.
+\]
+绿光的第 $3j$ 级与紫光的第 $4j$ 级在 $y=200j\,\mu\mathrm m$ 处重合。白光经级联后主要留下这两个窄波段；各自形成相应间距的亮暗纹，重合处颜色叠加，其余处随两分量比例改变颜色。中心的实际颜色、相对亮度还取决于入射谱和 $I_0(\lambda)$，不能只由几何量确定。有限谱宽会使远处条纹逐渐模糊。级联幂次使\emph{谱峰}变窄，并不把最后双缝的单色空间因子变成同样的高次幂。
+\end{advsolution}
+
+对周期为 $d$、缝宽 $a$、缝数 $N$ 的矩形光栅，
+\[
+ I(\theta)=I_1
+ \left(\frac{\sin\alpha}{\alpha}\right)^2
+ \left(\frac{\sin N\beta}{\sin\beta}\right)^2,
+\quad
+ \alpha=\frac{\pi a}{\lambda}\sin\theta,\quad
+ \beta=\frac{\pi d}{\lambda}\sin\theta.
+\]
+主极大满足 $d\sin\theta_j=j\lambda$，强度随 $N^2$ 增长，
+相邻零点给出的角宽约为
+$2\lambda/(Nd\cos\theta_j)$。
+
+\begin{advexamplebox}{用 Fresnel 双棱镜阵列模拟光栅}\label{advA5:ex:biprism-grating}
+实验室只有狭缝、对称双凸薄透镜（两面曲率半径 $R=30\,\mathrm{cm}$、折射率 $n_0=1.5$）和许多薄 Fresnel 双棱镜（单侧劈角 $\alpha=30'$、折射率 $n=1.005$）。拟在 $\lambda=500\,\mathrm{nm}$ 时获得一级角位置 $\theta_1=30^\circ$，且后焦面主极大两侧第一零点间宽度不大于 $0.1\,\mathrm{mm}$。按原题要求讨论至少需要多少个双棱镜以及各仪器的放置方法，并检查所需近似和器材条件。
+\begin{center}
+\begin{tikzpicture}[scale=.8]
+ \draw[thick](-4,-1.2)--(-4,1.2)node[above]{狭缝 $S$};
+ \foreach \x in {-1.8,-1.4,-1}{\filldraw[fill=DeepBlue!10](\x,-1)--(\x+.2,0)--(\x,1)--(\x-.1,0)--cycle;}
+ \node at(-1.4,1.5){双棱镜组};
+ \filldraw[thick,fill=DeepBlue!8](1,-1.3)..controls(.7,-.65)and(.7,.65)..(1,1.3)..controls(1.3,.65)and(1.3,-.65)..cycle;
+ \node at(1,1.65){透镜 $L$};
+ \draw[thick](4,-1.3)--(4,1.3)node[above]{屏};
+ \draw[guide](-4.3,0)--(4.3,0);
+ \node at(0,-1.8){器件顺序示意；棱脊横移量与间距尚须确定};
+\end{tikzpicture}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+\textbf{先区分题目所给条件与理想阵列模型。}
+透镜焦距 $f=R/[2(n_0-1)]=0.300\,\mathrm m$；单侧小劈角的偏折量为
+$\delta=(n-1)\alpha=4.363\times10^{-5}\,\mathrm{rad}$。
+原扫描确为 $30^\circ$，与“全程傍轴”的高精度使用并不相容。以下先给出原题形式近轴模型中的构造，再说明它不能证明原器材条件下的全局最小数目。
+
+若等效透射场由 $N$ 个等宽、等幅、等相位的平移单元组成，周期为 $d$，则近轴阵列因子为
+\[
+ \left|\sum_{j=0}^{N-1}e^{-ikjd\theta}\right|^2
+ =\frac{\sin^2(Nkd\theta/2)}{\sin^2(kd\theta/2)}.
+\]
+一级主峰位置与两侧第一零点间的宽度给出
+\[
+ d=\frac{\lambda}{\theta_1}=0.9549\,\mu\mathrm m,
+ \qquad w=\frac{2f\lambda}{Nd}=\frac{2f\theta_1}{N},
+ \qquad \boxed{N\ge3142}.
+\]
+这里 $\theta_1$ 以弧度代入。$N$ 是场单元数，尚不是棱镜数。
+
+\textbf{一个有明确附加条件的 $N-1$ 片方案。}
+将 $N-1$ 片薄双棱镜等效贴合于同一横截面，棱脊横移至
+\[
+ b_j=(j-N/2)d\quad(j=1,\ldots,N-1),
+ \qquad a=\frac{d}{2\delta}=10.94\,\mathrm{mm},
+\]
+其中 $a$ 为狭缝到该截面的距离。另须有公共孔径选出总宽 $Nd$ 的 $N$ 个等宽区段，并在这些区段上可近似等幅照明。薄相位模型给出
+\[
+ \Phi(y)=\frac{ky^2}{2a}-k\delta\sum_{j=1}^{N-1}|y-b_j|.
+\]
+第 $q=0,\ldots,N-1$ 个区段的中心为 $c_q=[q-(N-1)/2]d$。因该区间内绝对值之和的斜率为 $2q-(N-1)$，配方得
+\[
+ \Phi(y)=\frac{k(y-c_q)^2}{2a}+C,
+\]
+各段常数 $C$ 相同：两相邻段在公共边界上连续，且边界距两段中心均为 $d/2$。故各区段确为同一场分布的平移，透镜后焦面得到“单元包络乘阵列因子”。透镜放在阵列后，屏置于后焦面；其有效口径还须接收所需全部单元。
+在这一限定构型内，每片双棱镜只增加一个相位折点，要产生 $N$ 个区段至少需 $N-1$ 片，因此形式近轴结果为
+\[
+ \boxed{N-1=3141\ \text{片（限定构型及公共孔径假设下）}}.
+\]
+同轴重叠而不横移的任意多片双棱镜仍仅给两段相位，不能按片数声称形成 $2^n$ 束。
+
+\textbf{为什么这不是原题无条件的唯一数值答案。}
+原器材清单没有规定公共孔径、可否贴合及横移、照明均匀性和大角度成像规律，因而上述方案有明确的附加条件。若保留精确的 $30^\circ$，并指定平面屏坐标 $Y=f\tan\theta$，则
+\[
+ d=\frac{\lambda}{\sin\theta_1}=1.000\,\mu\mathrm m,
+ \quad w\simeq\frac{2f\lambda}{Nd\cos^3\theta_1},
+ \quad N\ge4619.
+\]
+此数值仅是指定大角度屏映射下的理想阵列要求，不能继续直接套用前述近轴棱镜构造。原题若要有可实现且唯一的“最少片数”，必须补足这些条件；不能混用精确光栅角与 $Y=f\theta$ 给出混合近似的束数结论。
+\end{advsolution}
+
+Fresnel 波带法把波前按到观察点的光程差每增加 $\lambda/2$ 分带。
+在傍轴球面上，带状面元面积的增加恰好补偿传播距离变化，使相邻半波带振幅近似相等、相位相反。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=.9]
+ \begin{scope}
+  \draw[thick,domain=-40:40,variable=\t]plot({-3+2*cos(\t)},{2*sin(\t)});
+  \coordinate(P)at(2,0);\fill(P)circle(1.6pt)node[right]{$P$};
+  \foreach \t in {-35,-20,-7,7,20,35}{\draw[DeepBlue!70]({-3+2*cos(\t)},{2*sin(\t)})--(P);}
+  \node at(0,-1.8){同一球面上的面元至 $P$};
+ \end{scope}
+ \begin{scope}[xshift=6cm]
+  \foreach \m in {1,...,6}{\draw[DeepBlue] (0,0)circle({.62*sqrt(\m)});}
+  \draw[Gold!80!black,->](0,0)--({.62*sqrt(4)*cos(35)},{.62*sqrt(4)*sin(35)})node[above right]{$r_4$};
+  \node at(0,-1.8){近轴半波带：$r_m\propto\sqrt m$};
+ \end{scope}
+\end{tikzpicture}
+\bookcaption{Fresnel 波带与圆孔半波带的几何关系}
+\label{advA5:fig:fresnel-zones}
+\end{minipage}\end{center}
+
+若把每个半波带的复振幅首尾相接，离散求和在复平面上来回折返；
+对于直边衍射的一维二次相位积分，连续累积振幅形成 Cornu 螺旋；圆孔环带的面积权重不同，不把两种几何的积分曲线等同。图
+\ref{advA5:fig:phasor-sum} 同时显示这两种合成方法。
+
+\begin{center}\begin{minipage}{\linewidth}\centering
+\centering
+\begin{tikzpicture}[scale=1]
+\begin{scope}\draw[axis](-.3,0)--(2.7,0)node[right]{$\operatorname{Re}A$};\draw[axis](0,-.3)--(0,2)node[above]{$\operatorname{Im}A$};
+\draw[DeepBlue,->](0.000000,0.000000)--(1.163562,1.570739);
+\draw[DeepBlue,->](1.163562,1.570739)--(1.074157,0.755514);
+\draw[DeepBlue,->](1.074157,0.755514)--(1.114611,1.383667);
+\draw[DeepBlue,->](1.114611,1.383667)--(1.090363,0.853532);
+\draw[DeepBlue,->](1.090363,0.853532)--(1.106948,1.320797);
+\draw[DeepBlue,->](1.106948,1.320797)--(1.094692,0.898263);
+\draw[Gold!80!black,very thick,->](0,0)--(1.094692,0.898263)node[right]{$\sum A_m$};\node at(1,-.8){相邻半周期分组};\end{scope}
+\begin{scope}[xshift=6cm]\draw[axis](-2,0)--(2,0);\draw[axis](0,-2)--(0,2);\draw[DeepBlue,thick]plot coordinates {(-1.332586,-1.091889) (-1.326154,-1.037393) (-1.307278,-0.985865) (-1.277074,-0.940047) (-1.237228,-0.902309) (-1.189888,-0.874542) (-1.137532,-0.858078) (-1.082825,-0.853647) (-1.028482,-0.861363) (-0.977129,-0.880748) (-0.931180,-0.910780) (-0.892734,-0.949963) (-0.863487,-0.996418) (-0.844671,-1.047991) (-0.837025,-1.102356) (-0.840777,-1.157129) (-0.855662,-1.209977) (-0.880957,-1.258709) (-0.915525,-1.301368) (-0.957890,-1.336299) (-1.006309,-1.362200) (-1.058851,-1.378157) (-1.113489,-1.383665) (-1.168173,-1.378622) (-1.220915,-1.363318) (-1.269857,-1.338401) (-1.313330,-1.304839) (-1.349907,-1.263867) (-1.378436,-1.216934) (-1.398069,-1.165636) (-1.408273,-1.111665) (-1.408830,-1.056738) (-1.399829,-1.002550) (-1.381645,-0.950715) (-1.354913,-0.902724) (-1.320495,-0.859907) (-1.279441,-0.823401) (-1.232949,-0.794131) (-1.182323,-0.772791) (-1.128929,-0.759843) (-1.074157,-0.755514) (-1.019381,-0.759807) (-0.965925,-0.772512) (-0.915030,-0.793223) (-0.867835,-0.821364) (-0.825347,-0.856210) (-0.788431,-0.896914) (-0.757797,-0.942535) (-0.733992,-0.992065) (-0.717404,-1.044457) (-0.708257,-1.098646) (-0.706621,-1.153579) (-0.712419,-1.208231) (-0.725442,-1.261626) (-0.745356,-1.312852) (-0.771724,-1.361076) (-0.804016,-1.405553) (-0.841628,-1.445633) (-0.883900,-1.480766) (-0.930125,-1.510506) (-0.979575,-1.534511) (-1.031503,-1.552537) (-1.085169,-1.564441) (-1.139840,-1.570169) (-1.194811,-1.569755) (-1.249405,-1.563312) (-1.302987,-1.551021) (-1.354968,-1.533129) (-1.404811,-1.509933) (-1.452031,-1.481778) (-1.496200,-1.449042) (-1.536948,-1.412134) (-1.573963,-1.371482) (-1.606989,-1.327526) (-1.635823,-1.280713) (-1.660318,-1.231489) (-1.680375,-1.180295) (-1.695939,-1.127561) (-1.707001,-1.073701) (-1.713589,-1.019113) (-1.715765,-0.964170) (-1.713625,-0.909226) (-1.707287,-0.854605) (-1.696895,-0.800609) (-1.682611,-0.747508) (-1.664612,-0.695548) (-1.643087,-0.644947) (-1.618234,-0.595893) (-1.590257,-0.548551) (-1.559362,-0.503059) (-1.525757,-0.459530) (-1.489647,-0.418054) (-1.451235,-0.378700) (-1.410718,-0.341516) (-1.368287,-0.306531) (-1.324126,-0.273757) (-1.278410,-0.243188) (-1.231304,-0.214807) (-1.182964,-0.188582) (-1.133537,-0.164468) (-1.083157,-0.142411) (-1.031950,-0.122350) (-0.980030,-0.104212) (-0.927501,-0.087920) (-0.874458,-0.073391) (-0.820984,-0.060534) (-0.767154,-0.049258) (-0.713034,-0.039465) (-0.658682,-0.031057) (-0.604147,-0.023932) (-0.549470,-0.017986) (-0.494687,-0.013115) (-0.439826,-0.009213) (-0.384911,-0.006173) (-0.329959,-0.003887) (-0.274983,-0.002250) (-0.219995,-0.001152) (-0.164999,-0.000486) (-0.110000,-0.000144) (-0.055000,-0.000018) (0.000000,0.000000) (0.055000,0.000018) (0.110000,0.000144) (0.164999,0.000486) (0.219995,0.001152) (0.274983,0.002250) (0.329959,0.003887) (0.384911,0.006173) (0.439826,0.009213) (0.494687,0.013115) (0.549470,0.017986) (0.604147,0.023932) (0.658682,0.031057) (0.713034,0.039465) (0.767154,0.049258) (0.820984,0.060534) (0.874458,0.073391) (0.927501,0.087920) (0.980030,0.104212) (1.031950,0.122350) (1.083157,0.142411) (1.133537,0.164468) (1.182964,0.188582) (1.231304,0.214807) (1.278410,0.243188) (1.324126,0.273757) (1.368287,0.306531) (1.410718,0.341516) (1.451235,0.378700) (1.489647,0.418054) (1.525757,0.459530) (1.559362,0.503059) (1.590257,0.548551) (1.618234,0.595893) (1.643087,0.644947) (1.664612,0.695548) (1.682611,0.747508) (1.696895,0.800609) (1.707287,0.854605) (1.713625,0.909226) (1.715765,0.964170) (1.713589,1.019113) (1.707001,1.073701) (1.695939,1.127561) (1.680375,1.180295) (1.660318,1.231489) (1.635823,1.280713) (1.606989,1.327526) (1.573963,1.371482) (1.536948,1.412134) (1.496200,1.449042) (1.452031,1.481778) (1.404811,1.509933) (1.354968,1.533129) (1.302987,1.551021) (1.249405,1.563312) (1.194811,1.569755) (1.139840,1.570169) (1.085169,1.564441) (1.031503,1.552537) (0.979575,1.534511) (0.930125,1.510506) (0.883900,1.480766) (0.841628,1.445633) (0.804016,1.405553) (0.771724,1.361076) (0.745356,1.312852) (0.725442,1.261626) (0.712419,1.208231) (0.706621,1.153579) (0.708257,1.098646) (0.717404,1.044457) (0.733992,0.992065) (0.757797,0.942535) (0.788431,0.896914) (0.825347,0.856210) (0.867835,0.821364) (0.915030,0.793223) (0.965925,0.772512) (1.019381,0.759807) (1.074157,0.755514) (1.128929,0.759843) (1.182323,0.772791) (1.232949,0.794131) (1.279441,0.823401) (1.320495,0.859907) (1.354913,0.902724) (1.381645,0.950715) (1.399829,1.002550) (1.408830,1.056738) (1.408273,1.111665) (1.398069,1.165636) (1.378436,1.216934) (1.349907,1.263867) (1.313330,1.304839) (1.269857,1.338401) (1.220915,1.363318) (1.168173,1.378622) (1.113489,1.383665) (1.058851,1.378157) (1.006309,1.362200) (0.957890,1.336299) (0.915525,1.301368) (0.880957,1.258709) (0.855662,1.209977) (0.840777,1.157129) (0.837025,1.102356) (0.844671,1.047991) (0.863487,0.996418) (0.892734,0.949963) (0.931180,0.910780) (0.977129,0.880748) (1.028482,0.861363) (1.082825,0.853647) (1.137532,0.858078) (1.189888,0.874542) (1.237228,0.902309) (1.277074,0.940047) (1.307278,0.985865) (1.326154,1.037393) (1.332586,1.091889)};
+\draw[Gold!80!black,very thick,->](-1.573963,-1.371482)--(0.712419,1.208231)node[pos=.55,above left=4pt]{$A$};\fill(-1.573963,-1.371482)circle(1.5pt)(0.712419,1.208231)circle(1.5pt);\node at(0,-2.35){直边衍射的 Fresnel 积分};\end{scope}\end{tikzpicture}
+\bookcaption{离散半波带合成与连续复振幅积分}
+\label{advA5:fig:phasor-sum}
+\end{minipage}\end{center}
+
+\begin{advexamplebox}{阶梯折射率相位光栅的后焦面分布}\label{advA5:ex:gradient-grating}
+光栅由 $2N$ 个宽度为 $a$、厚度为 $d$ 的透明条带组成。每一条带内部
+$\dd n/\dd y=0$，相邻条带折射率增加 $\alpha a$。
+波数为 $k$ 的平面波正入射，随后通过焦距 $F$ 的透镜。
+求后焦面坐标 $Y$ 上的光强因子，并判断何时花样关于焦点对称。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \foreach \i in {0,...,7}{\pgfmathtruncatemacro{\shade}{8+5*\i}\filldraw[fill=DeepBlue!\shade,draw=RuleGray](0,{-1.2+.3*\i})rectangle(.5,{-1.2+.3*(\i+1)});}
+ \draw[axis](0,-1.4)--(0,1.7)node[above]{$y$};
+ \foreach \h in {-.9,0,.9}{\draw[DeepBlue,->](-1.6,\h)--(-.15,\h);}
+ \filldraw[thick,fill=DeepBlue!8](2.5,-1.4)..controls(2.3,-0.7)and(2.3,0.7)..(2.5,1.4)..controls(2.7,0.7)and(2.7,-0.7)..cycle;
+ \draw[thick](5,-1.5)--(5,1.5)node[above]{后焦面};
+ \draw[guide,DeepBlue](.55,.9)--(2.5,.9)--(5,0);
+ \draw[guide,DeepBlue](.55,-.9)--(2.5,-.9)--(5,0);
+ \draw[<->](.75,-1.2)--(.75,-.9)node[right]{$a$};
+ \draw[<->](0,-1.7)--(.5,-1.7)node[midway,below]{$d$};
+ \node at(2.5,2.2){条带沿 $y$ 并列；虚线仅示透镜轴上聚焦};
+\end{tikzpicture}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+令后焦面的横向空间频率
+$q=kY/F$。第 $m$ 条带（$m=-N,\ldots,N-1$）的附加相位为
+$kd(n_0+m\alpha a)$。略去公共相位后，
+\[
+\begin{aligned}
+ A(Y)&\propto
+ \sum_{m=-N}^{N-1}
+ \int_{ma}^{(m+1)a}
+ \e^{\ii kd\alpha am}\e^{-\ii qy}\,\dd y\\
+ &\propto
+ \sinc\!\left(\frac{qa}{2}\right)
+ \sum_{m=-N}^{N-1}\e^{\ii m\xi},
+\end{aligned}
+\]
+其中
+\[
+ \xi=kd\alpha a-qa.
+\]
+有限几何级数给出
+\[
+ \boxed{I(Y)=I_c
+ \sinc^2\!\left(\frac{kYa}{2F}\right)
+ \frac{\sin^2(N\xi)}{\sin^2(\xi/2)}}.
+\]
+第一因子是单条带包络，第二因子是 $2N$ 条带结构因子。
+当每条折射率台阶带来的相位增量为半周的整数倍
+\[
+ \boxed{kd\alpha a=\pi\ell,\qquad \ell\in\mathbb Z}
+\]
+时，利用结构因子 $G(\xi)=\sin^2(N\xi)/\sin^2(\xi/2)$ 的偶性和 $2\pi$ 周期性，可得 $G(\pi\ell-qa)=G(\pi\ell+qa)$，故整个花样关于焦点对称。奇数半周与整周的峰位不同，但都具有该对称性。一般相位台阶使主峰偏向
+$Y_0=F d\alpha$（模倒易周期），即形成闪耀光栅。
+令 $\alpha=0$ 可恢复普通 $2N$ 缝光栅，量纲和极限均正确。
+\end{advsolution}
+
+\subsection{偏振密度矩阵}
+
+在固定横截面上把 Jones 振幅写成
+$\vect A=(A_x,A_y)^{\mathsf T}$。部分相干光用相干矩阵
+\[
+ P=\langle\vect A\vect A^\dagger\rangle
+ =\begin{pmatrix}
+ \langle|A_x|^2\rangle&\langle A_xA_y^*\rangle\\
+ \langle A_yA_x^*\rangle&\langle|A_y|^2\rangle
+ \end{pmatrix}
+\]
+描述；它是 Hermitian 半正定矩阵，$\operatorname{tr}P=I$。
+纯偏振态满足 $\det P=0$；完全非偏振光满足 $P=(I/2)I_2$；
+一般部分偏振光可分解为一个纯偏振分量与一个非偏振分量。
+
+线偏振角为 $\theta$ 时
+\[
+ P=I\begin{pmatrix}
+ \cos^2\theta&\sin\theta\cos\theta\\
+ \sin\theta\cos\theta&\sin^2\theta
+ \end{pmatrix}.
+\]
+左右圆偏振分别对应 Jones 向量
+$\frac1{\sqrt2}(1,\pm\ii)^{\mathsf T}$。偏振片方向
+$\vect e_\theta=(\cos\theta,\sin\theta)$ 的出射振幅为
+$A_\theta=\vect e_\theta^\dagger\vect A$；波片则在快慢轴间引入相位延迟
+$\delta$：
+\[
+ J_{\rm ret}=
+ \begin{pmatrix}\e^{\ii\delta}&0\\0&1\end{pmatrix}.
+\]
+$\delta=\pi$ 为半波片，$\delta=\pi/2$ 为四分之一波片。
+
+\subsection{晶体光学}
+
+各向异性线性介质满足
+\[
+ \vect D=\boldsymbol\varepsilon\vect E.
+\]
+
+\begin{advtheorem}{无耗散介质的介电张量对称性}\label{advA5:thm:epsilon-symmetric}
+在无色散或准静态、无耗散的可逆线性介质中，若电场能密度是状态函数，则
+\[
+ \boxed{\boldsymbol\varepsilon^{\mathsf T}
+ =\boldsymbol\varepsilon}.
+\]
+\end{advtheorem}
+
+\noindent\textit{证明。}
+从零场准静态建立电场，单位体积外界所做功为
+\[
+ u(\vect E)=\int_{\vect 0}^{\vect E}\vect D(\vect E')\cdot\dd\vect E'.
+\]
+若 $\vect D=\boldsymbol\varepsilon\vect E$ 且能量与建立路径无关，
+则 $D_i=\partial u/\partial E_i$。所以
+\[
+ \varepsilon_{ij}=\frac{\partial D_i}{\partial E_j}
+ =\frac{\partial^2u}{\partial E_j\partial E_i}
+ =\frac{\partial^2u}{\partial E_i\partial E_j}
+ =\varepsilon_{ji}.
+\]
+若存在吸收，频域介电张量可为复数；正确条件改为互易性和 Hermitian/反 Hermitian 部分分别控制储能与耗散，
+不能简单照搬实对称结论。
+
+实对称介电张量可正交对角化为
+$\operatorname{diag}(\varepsilon_x,\varepsilon_y,\varepsilon_z)$。
+三者相等为各向同性晶体；两者相等为单轴晶体；三者互异为双轴晶体。
+相位法线方向 $\hat{\vect p}=\vect k/k$ 与能流方向
+$\hat{\vect r}\parallel\vect S$ 一般不重合，所以相速度和射线速度需分别讨论。
+
+\begin{advtheorem}{Fresnel 相速度面与射线速度面}\label{advA5:thm:fresnel-crystal}
+在主轴坐标中令
+$v_i=1/\sqrt{\mu\varepsilon_i}$。平面波的相速度 $v_p$ 与法线方向余弦
+$p_i$ 满足
+\[
+ \boxed{
+ \frac{p_x^2}{v_p^2-v_x^2}
+ +\frac{p_y^2}{v_p^2-v_y^2}
+ +\frac{p_z^2}{v_p^2-v_z^2}=0}.
+\]
+射线速度 $v_r$ 与能流方向余弦 $r_i$ 满足对偶式
+\[
+ \boxed{
+ \frac{r_x^2}{v_r^{-2}-v_x^{-2}}
+ +\frac{r_y^2}{v_r^{-2}-v_y^{-2}}
+ +\frac{r_z^2}{v_r^{-2}-v_z^{-2}}=0}.
+\]
+\end{advtheorem}
+
+\noindent\textit{证明。}
+对 $\e^{\ii(\vect k\cdot\vect r-\omega t)}$ 代入 Maxwell 方程，
+\[
+ \vect k\times(\vect k\times\vect E)
+ +\omega^2\mu\boldsymbol\varepsilon\vect E=0.
+\]
+写成分量并令 $v_p=\omega/k$：
+\[
+ \left(\varepsilon_i-\frac1{\mu v_p^2}\right)E_i
+ +\frac{p_i}{\mu v_p^2}(\hat{\vect p}\cdot\vect E)=0.
+\]
+消去 $E_i$，要求非零解的行列式为零，整理即得第一式。
+能流方向与波矢法线面互为 Legendre 对偶；用群速度
+$\vect v_g=\nabla_{\vect k}\omega$ 求相速度面的法向，
+再消去 $p_i$ 得第二式。
+
+对单轴晶体，取 $v_x=v_y=v_o$、$v_z=v_e$。一支为寻常光
+$v_{po}=v_o$，电场垂直主截面；另一支为非寻常光
+\[
+ \boxed{v_{pe}^2=v_o^2\cos^2\theta+v_e^2\sin^2\theta},
+\]
+其中 $\theta$ 为波法线 $\vect k$ 与光轴的夹角；其 $\vect k$ 与能流一般不平行。界面折射时，频率和切向波矢连续；
+因此应先在相速度面上求允许 $\vect k$，再由曲面的法向求射线方向，
+不能把各向同性 Snell 定律直接套给能流方向。

@@ -1,0 +1,94 @@
+% All annotations are transparent: labels never carry an opaque rectangular mask.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=0.6pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=0.5pt},
+  xesline/.style={draw=Ink,line width=0.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1.05pt},
+  xesarrow/.style={-{Latex[length=2.2mm,width=1.4mm]},draw=DeepBlue,line width=0.9pt},
+  forcearrow/.style={-{Latex[length=2.3mm,width=1.5mm]},draw=DeepBlue,line width=1.0pt}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-0.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{0.3em}
+}
+
+\newcommand{\phaseDiagramWater}{%
+\begin{center}
+\begin{tikzpicture}[x=1.03cm,y=0.73cm]
+  \draw[xesline,-{Latex[length=2mm]}] (0,0)--(8.7,0) node[xeslabel,below left=1pt] {$T$};
+  \draw[xesline,-{Latex[length=2mm]}] (0,0)--(0,6.2) node[xeslabel,below right=1pt] {$p$};
+  \coordinate (A) at (2.55,1.55);
+  \coordinate (C) at (7.05,4.35);
+  \draw[xesblue] (0.25,0.35) .. controls (0.95,0.7) and (1.75,1.15) .. (A);
+  \draw[xesblue] (A) .. controls (4.0,1.9) and (5.65,3.0) .. (C);
+  \draw[xesblue] (A) .. controls (2.25,3.15) and (1.92,4.75) .. (1.7,5.9);
+  \fill[DeepBlue] (A) circle (1.4pt) (C) circle (1.4pt);
+  \node[xeslabel,anchor=south east] at ($(A)+(-0.08,0.05)$) {$A$};
+  \node[xeslabel,anchor=south west] at ($(C)+(0.08,0.04)$) {$C$};
+  \node[xessmall,align=center] at (1.35,3.35) {固态};
+  \node[xessmall,align=center] at (4.1,3.8) {液态};
+  \node[xessmall,align=center] at (5.55,1.15) {气态};
+  \node[xessmall] at (4.75,3.25) {汽化曲线};
+  \node[xessmall] at (.5,-.75) {升华曲线};
+  \draw[RuleGray,->] (.5,-.5)--(.85,.67);
+  \node[xessmall,rotate=79] at (2.8,4.65) {熔化曲线};
+  \draw[RuleGray,densely dashed] (A)--(2.55,0) node[xessmall,below,align=center] {$0.01\,{}^{\circ}\mathrm C$};
+  \draw[RuleGray,densely dashed] (A)--(0,1.55) node[xessmall,left] {$611.73\,\mathrm{Pa}$};
+  \draw[RuleGray,densely dashed] (C)--(7.05,0) node[xessmall,below] {$374\,{}^{\circ}\mathrm C$};
+  \draw[RuleGray,densely dashed] (C)--(0,4.35) node[xessmall,left,align=right] {$2.2\times10^7\,\mathrm{Pa}$};
+  \node[xessmall,anchor=south] at (7.05,4.95) {临界点};
+  \node[xessmall,anchor=west] at (2.72,1.18) {三相点};
+
+  % microscopic phase sketches, placed away from the curves
+  \begin{scope}[shift={(8.0,1.1)},scale=0.58]
+    \draw[RuleGray,rounded corners=2pt] (-0.75,-0.75) rectangle (0.75,0.75);
+    \foreach \x in {-0.48,0,0.48}\foreach \y in {-0.48,0,0.48}{\fill[DeepBlue!70] (\x,\y) circle (1.1pt);}
+    \node[xessmall] at (0,-1.05) {固};
+  \end{scope}
+  \begin{scope}[shift={(8.0,2.45)},scale=0.58]
+    \draw[RuleGray,rounded corners=2pt] (-0.75,-0.75) rectangle (0.75,0.75);
+    \foreach \p in {(-.5,-.35),(-.05,-.48),(.42,-.25),(-.4,.15),(.08,.06),(.5,.3),(-.15,.48)}{\fill[DeepBlue!70] \p circle (1.1pt);}
+    \node[xessmall] at (0,-1.05) {液};
+  \end{scope}
+  \begin{scope}[shift={(8.0,3.8)},scale=0.58]
+    \draw[RuleGray,rounded corners=2pt] (-0.75,-0.75) rectangle (0.75,0.75);
+    \foreach \p in {(-.53,-.48),(.48,-.31),(-.18,.08),(.45,.5),(-.5,.43)}{\fill[DeepBlue!70] \p circle (1.1pt);}
+    \node[xessmall] at (0,-1.05) {气};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+
+
+
+
+\newcommand{\criticalApparatusFigure}{%
+\begin{center}
+\includegraphics[width=.83\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/ch17/critical-cell.png}\par\smallskip
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \foreach \dx in {0,4,8}{
+    \draw[Ink,line width=1pt,rounded corners=7pt] (\dx,0) rectangle +(2.5,3.35);
+    \draw[RuleGray,line width=2.2pt] (\dx+.28,.25)--(\dx+.28,3.1);
+  }
+  % below critical: two visibly separated phases
+  \fill[DeepBlue!12] (.08,.08) rectangle (2.42,1.48);
+  \draw[DeepBlue,line width=1.1pt] (.08,1.48)--(2.42,1.48);
+  \foreach \p in {(.45,.45),(.82,.72),(1.18,.38),(1.62,.72),(2.05,.42),(.55,1.05),(1.45,1.08),(2.1,1.1)}{\fill[DeepBlue!65] \p circle (1.2pt);}
+  \foreach \p in {(.65,2.1),(1.75,2.65),(2.05,2.0)}{\fill[DeepBlue!50] \p circle (1.0pt);}
+  \node[xessmall,align=center] at (1.25,-.48) {$T<T_c$\\清晰气液界面};
+  % critical opalescence: fluctuating cloudy density
+  \foreach \p/\r in {(4.45,.45)/.18,(4.8,1.0)/.25,(5.35,.62)/.3,(5.9,1.25)/.22,(4.55,1.75)/.35,(5.25,1.65)/.2,(5.8,2.1)/.32,(4.85,2.55)/.28,(5.65,2.85)/.22}{
+    \shade[inner color=DeepBlue!28,outer color=white] \p circle (\r);
+  }
+  \draw[DeepBlue!60,densely dotted] (4.15,1.5) .. controls (4.8,1.7) and (5.5,1.25) .. (6.35,1.55);
+  \node[xessmall,align=center] at (5.25,-.48) {$T\approx T_c$\\临界乳光};
+  % above critical: uniform supercritical fluid
+  \fill[DeepBlue!8] (8.08,.08) rectangle (10.42,3.19);
+  \foreach \p in {(8.45,.45),(8.85,.85),(9.35,.42),(9.9,.75),(8.55,1.35),(9.15,1.55),(9.8,1.25),(8.7,2.1),(9.35,2.25),(10,2.05),(8.45,2.75),(9.05,2.95),(9.75,2.7)}{\fill[DeepBlue!45] \p circle (1.05pt);}
+  \node[xessmall,align=center] at (9.25,-.48) {$T>T_c,\ p>p_c$\\均匀超临界流体};
+\end{tikzpicture}
+\end{center}}
+
+\input{diagrams-revised.tex}

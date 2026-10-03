@@ -1,0 +1,1954 @@
+\hypersetup{bookmarksdepth=3}
+\begingroup
+\tcbset{breakable/.default=false}
+\chapter{角动量与刚体动力学}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/sixteenth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/sixteenth-section/assets/}}
+\section{角动量、力矩与参考点}
+% Chapter-local deterministic geometry. All text nodes have transparent fill.
+\newcommand{\crossProductDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(A)at(3.5,0);\coordinate(B)at(1.2,1.8);
+ \fill[PaleBlue](O)--(A)--($(A)+(B)$)--(B)--cycle;
+ \draw[TextGray](A)--($(A)+(B)$)--(B);
+ \draw[vector](O)--(A)node[below]{$\vect a$};
+ \draw[vector](O)--(B)node[above left]{$\vect b$};
+ \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]{angle=A--O--B};
+ \node[DeepBlue,font=\Large]at(2.5,.8){$\odot$};
+ \node[above]at(2.5,1.15){$\vect a\times\vect b$};
+ \node[anchor=west,align=left]at(5.3,1){四指：$\vect a\longrightarrow\vect b$\\[5pt]拇指：出纸面};
+\end{tikzpicture}\figcap{外积的面积与右手方向}\label{ch09:fig:cross}\end{minipage}\end{center}}
+
+\newcommand{\particleAngularMomentumDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(P)at(3,1.4);\coordinate(V)at(5.3,1.4);
+ \coordinate(R)at($(P)+(1.8,.84)$);
+ \draw[vector](O)--(P)node[pos=.43,above left]{$\vect r$};
+ \draw[vector](P)--(V)node[right]{$\vect p=m\vect v$};
+ \draw[guide](P)--(R)node[above]{$\vect r$ 的平移线};
+ \draw pic[draw,"$\varphi$",angle radius=12mm,angle eccentricity=1.3]{angle=V--P--R};
+ \fill(O)circle(1.5pt)node[below]{$O$};\fill(P)circle(2pt)node[below=4pt]{$P$};
+ \node[DeepBlue,font=\Large]at(.5,1.3){$\otimes$};\node[left]at(.2,1.3){$\vect L_O$};
+ \node[anchor=west,align=left]at(7,1.2){$L_z=-yp_x<0$\\[5pt]角动量入纸面};
+\end{tikzpicture}\figcap{夹角从同向平移后的两矢量之间量取}\label{ch09:fig:particle}\end{minipage}\end{center}}
+
+\newcommand{\apsidesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\aa{3.4}\def\bb{2.3}\pgfmathsetmacro{\cc}{sqrt(\aa^2-\bb^2)}
+ \coordinate(F)at(\cc,0);\coordinate(P)at(\aa,0);\coordinate(A)at(-\aa,0);
+ \draw[curve](0,0)ellipse[x radius=\aa,y radius=\bb];
+ \fill(F)circle(2.5pt)node[above left=3pt]{$M$};
+ \fill(P)circle(2pt)node[right=3pt]{近点};\fill(A)circle(2pt)node[left=3pt]{远点};
+ \draw[vector](P)--++(0,1.4)node[above]{$\vect v_{\rm p}$};
+ \draw[vector](A)--++(0,-.65)node[left=4pt]{$\vect v_{\rm a}$};
+ \draw[guide](F)--(\cc,-3.5)(P)--(\aa,-2.85)(A)--(-\aa,-3.5);
+ \draw[<->](\cc,-2.7)--(\aa,-2.7)node[midway,below=3pt]{$r_{\rm p}$};
+ \draw[<->](-\aa,-3.35)--(\cc,-3.35)node[midway,below]{$r_{\rm a}$};
+ \node[anchor=west,align=left]at(4.7,-.2){两点均有 $\vect r\perp\vect v$\\[6pt]$r_{\rm p}v_{\rm p}=r_{\rm a}v_{\rm a}$\\[6pt]速度箭头仅表示方向};
+\end{tikzpicture}\figcap{同一椭圆轨道的两个回归点}\label{ch09:fig:apsides}\end{minipage}\end{center}}
+
+\newcommand{\keplerContextDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\aa{4}\def\bb{2.4}\pgfmathsetmacro{\cc}{sqrt(\aa^2-\bb^2)}
+ \coordinate(F)at(\cc,0);\coordinate(P)at(\aa,0);\coordinate(A)at(-\aa,0);
+ \draw[curve](0,0)ellipse[x radius=\aa,y radius=\bb];
+ \fill[DeepBlue](F)circle(3pt)node[above left=3pt]{太阳};
+ \fill(P)circle(2pt)node[right=3pt]{近日点};\fill(A)circle(2pt)node[left=3pt]{远日点};
+ \draw[vector](P)--++(0,1.35)node[above]{$v_{\rm near}$};
+ \draw[vector](A)--++(0,-.65)node[left=4pt]{$v_{\rm far}$};
+ \draw[guide](F)--(\cc,-3.55)(P)--(\aa,-2.9)(A)--(-\aa,-3.55);
+ \draw[<->](\cc,-2.8)--(\aa,-2.8)node[midway,below=3pt]{$r_{\rm near}$};
+ \draw[<->](-\aa,-3.4)--(\cc,-3.4)node[midway,below]{$r_{\rm far}$};
+ \node[align=center]at(0,.5){$r_{\rm near}=a-c$\\[7pt]$r_{\rm far}=a+c$};
+\end{tikzpicture}\figcap{日心距离均从同一个焦点量起；速度箭头不按速率比例绘制}\label{ch09:fig:kepler}\end{minipage}\end{center}}
+
+\newcommand{\momentsContextDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \xx/\mode in {0/0,4/1,8/2}{
+  \begin{scope}[shift={(\xx,0)}]
+   \ifnum\mode=2\fill[PaleBlue](-.8,-.35)rectangle(.8,.65);\fi
+   \draw[thick](-.8,-.35)--(-.8,.65) (.8,-.35)--(.8,.65);
+   \draw[thick](0,.65)ellipse(.8 and .25);
+   \draw[thick](-.8,-.35)arc[start angle=180,end angle=360,x radius=.8,y radius=.25];
+   \draw[guide](-.8,-.35)arc[start angle=180,end angle=0,x radius=.8,y radius=.25];
+   \ifnum\mode=1\draw[thick](0,.65)ellipse(.4 and .125);\fi
+   \draw[axis](0,-.7)--(0,1.3);
+   \ifnum\mode=1
+    \draw[->](0,.65)--(.8,.65)node[right]{$R_2$};
+    \draw[->](0,.65)--(-.4,.65);
+    \draw[TextGray](-.4,.65)--(-.85,1.05)node[above left]{$R_1$};
+   \else\draw[->](0,.65)--(.8,.65)node[right]{$R$};\fi
+   \ifnum\mode=0\node at(0,-1.15){薄壁圆筒};\node at(0,-1.85){$I=MR^2$};\fi
+   \ifnum\mode=1
+    \node at(0,-1.15){厚壁圆筒};\node at(0,-1.85){$I=\dfrac{M(R_1^2+R_2^2)}2$};\fi
+   \ifnum\mode=2\node at(0,-1.15){实心圆柱};\node at(0,-1.85){$I=\dfrac12MR^2$};\fi
+  \end{scope}}
+ \begin{scope}[shift={(12,0)}]
+  \draw[curve](-1,.15)--(1,.15);\draw[axis](0,-.35)--(0,1.2);
+  \draw[guide](-1,.1)--(-1,-.65)(1,.1)--(1,-.65);
+  \draw[<->](-1,-.55)--(1,-.55)node[midway,below]{$L$};
+  \node at(0,-1.15){细杆绕中心};\node at(0,-1.85){$I=\dfrac1{12}ML^2$};
+ \end{scope}
+ \begin{scope}[shift={(0,-4.8)}]
+  \draw[curve](-1,.15)--(1,.15);\draw[axis](-1,-.3)--(-1,1.2);
+  \draw[guide](-1,.1)--(-1,-.65)(1,.1)--(1,-.65);
+  \draw[<->](-1,-.55)--(1,-.55)node[midway,below]{$L$};
+  \node at(0,-1.25){细杆绕端点};\node at(0,-2){$I=\dfrac13ML^2$};
+ \end{scope}
+ \begin{scope}[shift={(4,-4.8)}]
+  \draw[fill=PaleBlue,thick](-1,-.1)--(.55,-.1)--(1,.65)--(-.55,.65)--cycle;
+  \draw[axis](0,-.5)--(0,1.35);
+  \node[below]at(-.25,-.2){$a$};\node[right]at(.85,.25){$b$};
+  \node at(0,-1.25){矩形薄板，轴垂直板面};\node at(0,-2){$I=\dfrac{M(a^2+b^2)}{12}$};
+ \end{scope}
+ \foreach \xx/\mode in {8/0,12/1}{
+  \begin{scope}[shift={(\xx,-4.8)}]
+   \ifnum\mode=0\fill[PaleBlue](0,.25)circle(.72);\fi
+   \draw[thick](0,.25)circle(.72);\draw[guide](0,.25)ellipse(.72 and .20);
+   \draw[axis](0,-.7)--(0,1.4);\draw[->](0,.25)--(.72,.25)node[right]{$R$};
+   \ifnum\mode=0\node at(0,-1.25){均匀实心球};\node at(0,-2){$I=\dfrac25MR^2$};
+   \else\node at(0,-1.25){均匀薄球壳};\node at(0,-2){$I=\dfrac23MR^2$};\fi
+  \end{scope}}
+\end{tikzpicture}\figcap{八种均匀刚体及其指定转轴；圆柱、圆筒均绕中心轴}\label{ch09:fig:inertia}\end{minipage}\end{center}}
+
+\newcommand{\gyroDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(C)at(1.7,2.4);\coordinate(Z)at(0,3.6);
+ \draw[thick](-.7,0)--(.7,0);\draw[guide](O)--(Z)node[above]{$z$};
+ \begin{scope}[shift={(C)},rotate=54.6888]
+  \draw[fill=PaleBlue,thick](0,0)ellipse(.22 and .8);
+ \end{scope}
+ \draw[curve](O)--($(O)!1.26!(C)$);
+ \draw[vector]($(O)!.85!(C)$)--($(O)!1.45!(C)$)node[above]{$\vect L$};
+ \draw[vector](C)--++(0,-1.15)node[right=3pt]{$M\vect g$};
+ \draw[vector](O)--++(-.28,.9)node[left]{$\vect n$};
+ \fill(O)circle(2pt)node[below]{$O$};\fill(C)circle(1.5pt);\draw[thin,TextGray](C)--(2.55,2.75)node[above right]{$C$};
+ \node[right]at(1.12,1.2){$r$};
+ \draw pic[draw,"$\theta$",angle radius=10mm,angle eccentricity=1.3]{angle=C--O--Z};
+ \node[DeepBlue,font=\Large]at(-1.25,1.6){$\otimes$};\node[above]at(-1.25,1.9){$\vect\tau$};
+ \node[below,align=center]at(1,-.4){侧视：$\vect r$、重力在纸面内\\力矩入纸面};
+ \begin{scope}[shift={(7,0)}]
+  \coordinate(K)at(0,0);\coordinate(I)at({1.6*cos(35)},{2.7+.42*sin(35)});
+  \coordinate(J)at({1.6*cos(70)},{2.7+.42*sin(70)});
+  \draw[guide](K)--(0,3.4);\draw[TextGray](K)--(-1.6,2.7)(K)--(1.6,2.7);
+  \draw[guide](0,2.7)ellipse(1.6 and .42);
+  \draw[vector](K)--(I)node[pos=.55,right=3pt]{$\vect L_i$};
+  \draw[vector](K)--(J)node[pos=.65,left=3pt]{$\vect L_f$};
+  \draw[vector](I)--(J)node[midway,above=4pt]{$\Delta\vect L$};
+  \draw[->,DeepBlue](1.85,2.7)arc[start angle=0,end angle=125,x radius=1.85,y radius=.55];
+  \node[above]at(-1.2,3.3){$\omega_p$};
+  \node[below,align=center]at(0,-.4){矢量端点的轨迹\\$\Delta\vect L=\vect L_f-\vect L_i$};
+ \end{scope}
+\end{tikzpicture}\figcap{陀螺受力与进动时的角动量矢量差}\label{ch09:fig:gyro}\end{minipage}\end{center}}
+
+\newcommand{\areaVelocityDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(A)at(4,.25);\coordinate(B)at(3.7,1.65);
+ \fill[PaleBlue](O)--(A)--(B)--cycle;
+ \draw[vector](O)--(A)node[midway,below=3pt]{$\vect r$};
+ \draw[vector](O)--(B)node[midway,above=4pt]{$\vect r+\dd\vect r$};
+ \draw[vector](A)--(B)node[midway,right=7pt]{$\dd\vect r=\vect v\dd t$};
+ \fill(O)circle(1.5pt)node[left]{$O$};\node[DeepBlue,font=\Large]at(2.7,.7){$\odot$};
+ \node[anchor=west,align=left]at(6,.8){$\dd\vect S$ 沿出纸面方向\\[5pt]$\dd S=\tfrac12|\vect r\times\dd\vect r|$};
+\end{tikzpicture}\figcap{面积微元与法向；小位移为便于识别而放大}\label{ch09:fig:area}\end{minipage}\end{center}}
+
+\newcommand{\sphereBandDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\rr{1.8}\def\th{55}
+ \coordinate(O)at(0,0);\coordinate(P)at({\rr*sin(\th)},{\rr*cos(\th)});\coordinate(Z)at(0,2.8);
+ \draw[thick](O)circle(\rr);\draw[axis](0,-2.1)--(Z)node[above]{$z$};
+ \draw[DeepBlue]({-\rr*sin(52)},{\rr*cos(52)})--({\rr*sin(52)},{\rr*cos(52)});
+ \draw[DeepBlue]({-\rr*sin(59)},{\rr*cos(59)})--({\rr*sin(59)},{\rr*cos(59)});
+ \draw[guide](O)--(P)node[midway,below right]{$R$};
+ \draw[guide](P)--({\rr*sin(\th)},2.3);
+ \draw[<->](0,2.2)--({\rr*sin(\th)},2.2)node[midway,above=3pt]{$R\sin\theta$};
+ \draw pic[draw,"$\theta$",angle radius=5.5mm,angle eccentricity=1.25]{angle=P--O--Z};
+ \fill(P)circle(1.5pt)node[below right=8pt]{$P$};\node[below left]at(O){$O$};
+ \draw[DeepBlue,line width=2pt]({\rr*sin(52)},{\rr*cos(52)})arc[start angle=38,end angle=31,radius=\rr];
+ \draw[TextGray](P)--(2.4,1.55)node[right]{$R\dd\theta$（沿球面）};
+ \node[anchor=west,align=left]at(3.3,-.3){球带面积：\\[5pt]$\dd A=(2\pi R\sin\theta)(R\dd\theta)$\\[8pt]球带质量：$\dd m=\sigma\dd A$};
+\end{tikzpicture}\figcap{窄球带的轴截面；球带绕z轴一周，周长为$2\pi R\sin\theta$}\label{ch09:fig:sphere-band}\end{minipage}\end{center}}
+
+\newcommand{\conicalPendulumDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,3);\coordinate(P)at(2,0);\coordinate(V)at(0,0);
+ \draw[thick](-.7,3)--(.7,3);\draw[guide](O)--(V);
+ \draw[curve](O)--(P)node[pos=.55,left=4pt]{$l$};
+ \draw[vector](P)--($(P)!.4!(O)$)node[pos=.5,right=3pt]{$\vect T$};
+ \draw[vector](P)--++(0,-1.2)node[right]{$m\vect g$};
+ \fill(O)circle(1.5pt)node[above left=4pt]{$O$};\fill(P)circle(2pt)node[below left]{$P$};
+ \draw[vector](O)--++(1.5,1)node[right]{$\vect L_O$};
+ \draw[vector](-1,3.1)--++(0,1)node[above]{$\vect\omega$};
+ \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.4]{angle=V--O--P};
+ \draw[<->](0,-.4)--(2,-.4)node[midway,below]{$r=l\sin\theta$};
+ \node[DeepBlue,font=\Large]at(2.65,.1){$\otimes$};\node[right]at(3,.1){$\vect v$};
+ \node[anchor=west,align=left]at(4.4,2){$+x$ 向右，$+z$ 向上\\[5pt]$+y$ 入纸面\\[8pt]$\vect L_O\perp OP$};
+\end{tikzpicture}\figcap{圆锥摆的同一瞬时位置、速度、受力与角动量}\label{ch09:fig:conical}\end{minipage}\end{center}}
+
+\newcommand{\dumbbellGroundDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(A)at(0,0);\coordinate(B)at(3,2);\coordinate(H)at(4,0);
+ \draw[thick](-1,0)--(4.5,0);\foreach\x in{-.8,-.4,...,4.4}{\draw[TextGray](\x,0)--++(-.13,-.15);}
+ \draw[curve](A)--(B)node[midway,above left=3pt]{$2l$};
+ \fill(A)circle(2.5pt)node[below=8pt]{$A,m$};\fill(B)circle(2.5pt)node[right=4pt]{$B,m$};
+ \draw[vector](B)--++(0,-1.2)node[right]{$\vect v_0$};
+ \draw[vector](-.6,1.8)--(-.6,.6)node[left]{$\vect v_0$};
+ \draw pic[draw,"$\theta$",angle radius=11mm,angle eccentricity=1.3]{angle=H--A--B};
+ \node[anchor=west,align=left]at(5,1.1){碰前：整体竖直平动\\[6pt]碰后：A粘住固定};
+\end{tikzpicture}\figcap{哑铃下端A与地面的短时粘着碰撞}\label{ch09:fig:dumbbell-ground}\end{minipage}\end{center}}
+
+\newcommand{\dumbbellCollisionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[curve](0,0)--(2.5,0)(2.5,1.7)--(5,1.7);
+ \foreach\x/\y/\n in{0/0/A,2.5/0/B,2.5/1.7/C,5/1.7/D}{\fill(\x,\y)circle(2.5pt)node[above right=3pt]{$\n$};}
+ \draw[guide](2.5,.12)--(2.5,1.58);
+ \draw[vector](1,-.5)--(1,.8)node[left]{$v_0$};
+ \node[below]at(1.85,-.15){$2l$};\node[below]at(4,1.6){$2l$};
+ \node[anchor=west,align=left]at(6,.7){碰撞前：B向C接近\\[5pt]BC垂直于两杆\\[5pt]每个端点质量均为m};
+\end{tikzpicture}\figcap{两哑铃的碰前位置与碰撞线}\label{ch09:fig:dumbbell-collision}\end{minipage}\end{center}}
+
+\newcommand{\seesawDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\s/\leftname/\rightname/\vl/\vr in{0/A/B/u_A/v_B,7/B/C/v_B/v_C}{
+  \begin{scope}[xshift=\s cm]
+   \draw[curve](-2,0)--(2,0);\draw[thick](-.4,-.6)--(0,0)--(.4,-.6)--cycle;
+   \fill(-2,0)circle(2.4pt)node[below=4pt]{$m_{\leftname}$};
+   \fill(2,0)circle(2.4pt)node[below=4pt]{$m_{\rightname}$};
+   \draw[vector](-2,1.9)--(-2,.45)node[midway,left]{$\vl$};
+   \draw[vector](2,.15)--(2,1.6)node[midway,right]{$\vr$};
+   \draw[guide](-2,-.9)--(2,-.9);\node[below]at(0,-.9){等臂、近水平的冲击位置};
+  \end{scope}}
+ \draw[->,TextGray](3,1)--(4,1);\node[above,align=center]at(3.5,1.1){随后\\等高落回};
+\end{tikzpicture}\figcap{两次理想弹射的过程图；中间箭头不是空间飞行轨迹}\label{ch09:fig:seesaw}\end{minipage}\end{center}}
+
+\newcommand{\funnelDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(V)at(0,4.1);
+ \coordinate(P)at({3/sqrt(3)},3);
+ \draw[curve]({-3.8/sqrt(3)},3.8)--(O)--({3.8/sqrt(3)},3.8);
+ \draw[guide](O)--(V);\fill(O)circle(1.5pt)node[below]{$O$};
+ \fill(P)circle(2.4pt)node[right=4pt]{$P,m$};
+ \draw[vector](P)--++({-1.15*cos(30)},{1.15*sin(30)})node[left=3pt]{$\vect N$};
+ \draw[vector](P)--++(0,-1.1)node[right=3pt]{$m\vect g$};
+ \draw[guide](0,3)--(P);
+ \draw[<->](0,2.65)--({3/sqrt(3)},2.65)node[midway,below=3pt]{$r$};
+ \draw[guide](O)--(-2.8,0)(0,3)--(-2.8,3);
+ \draw[<->](-2.65,0)--(-2.65,3)node[midway,left]{$h$};
+ \draw pic[draw,"$\theta$",angle radius=10mm,angle eccentricity=1.3]{angle=P--O--V};
+ \node[DeepBlue,font=\Large]at(2.7,3.3){$\otimes$};\node[right]at(3.05,3.3){$\vect v_\varphi$};
+ \node[anchor=west,align=left]at(3.9,1.6){轴截面内不画切向速度箭头\\[6pt]$\theta=30^\circ$，$r=h\tan\theta$};
+\end{tikzpicture}\figcap{圆锥漏斗轴截面、接触受力与入纸面的圆周速度}\label{ch09:fig:funnel}\end{minipage}\end{center}}
+
+
+在运动学中，角速度和角加速度描述转动怎样进行；在动力学中，还需要知道转动状态怎样受力而改变。
+地球的自转、收拢双臂的滑冰者和高速旋转的陀螺，都涉及这一问题。相应的物理量是角动量，
+改变角动量的是力矩。零外力矩保证角动量不变，却不保证任意刚体的角速度方向都不变。
+
+\subsection{外积与转动方向}
+内积把两个矢量联系成标量，适合描述投影、功和功率；外积又称叉积，适合描述有方向的转动。
+对非零矢量 $\vect a,\vect b$，取它们同起点时的夹角 $0\le\theta\le\pi$，有
+\begin{equation}
+ |\vect a\times\vect b|=ab\sin\theta.
+\end{equation}
+其大小是以两矢量为邻边的平行四边形面积，方向垂直于该平面。右手四指沿小于或等于
+$180^\circ$ 的转角从 $\vect a$ 弯向 $\vect b$，拇指所指就是外积方向。平行或反平行时
+外积为零，不再给零矢量指定方向。图~\ref{ch09:fig:cross}中从向右的 $\vect a$ 转到右上的
+$\vect b$ 为逆时针，故外积出纸面，以 $\odot$ 表示；$\otimes$ 表示入纸面。
+\crossProductDiagram
+外积满足反交换律和分配律，但一般不满足结合律：
+\begin{align}
+ \vect a\times\vect b&=-\vect b\times\vect a,\qquad \vect a\times\vect a=\vect0,\\
+ (\vect a+\vect b)\times\vect c&=\vect a\times\vect c+\vect b\times\vect c,\\
+ (\vect a\times\vect b)\times\vect c&=(\vect a\cdot\vect c)\vect b-(\vect b\cdot\vect c)\vect a,\\
+ \vect a\times(\vect b\times\vect c)&=(\vect a\cdot\vect c)\vect b-(\vect a\cdot\vect b)\vect c.
+\end{align}
+在右手直角坐标系中，分量计算为
+\begin{equation}
+ \vect a\times\vect b=
+ (a_yb_z-a_zb_y,\ a_zb_x-a_xb_z,\ a_xb_y-a_yb_x).
+\end{equation}
+例如纸面为 $xy$ 平面，向右、向上分别为正方向，$+z$ 就是出纸面。这个约定下
+$(\vect r\times\vect p)_z=xp_y-yp_x$，正值对应逆时针趋势，负值对应顺时针趋势。
+这是右手定则的代数形式，不能在一道题中途更换正方向。
+
+位置、速度、动量属于极矢量，角速度、力矩和角动量属于轴矢量。以空间反演为例，
+极矢量 $\vect r,\vect p$ 都变号，而 $(-\vect r)\times(-\vect p)=\vect r\times\vect p$ 不变。
+因此外积的变换性质不同于普通位置矢量；例如轴矢量与极矢量的外积
+$\vect v=\vect\omega\times\vect r$ 仍是极矢量。
+
+\subsection{角动量、力矩与参考点}
+先在一个惯性系内取固定点 $O$。质量恒定为 $m$ 的质点位置为 $\vect r=\overrightarrow{OP}$，
+速度为 $\vect v$，动量为 $\vect p=m\vect v$。定义
+\begin{equation}
+ \vect L_O=\vect r\times\vect p,\qquad L_O=mrv\sin\varphi=p\,d,
+\end{equation}
+其中 $\varphi$ 是 $\vect r$ 与 $\vect v$ 的夹角，$d$ 是 $O$ 到动量作用线的垂距，
+不是 $O$ 到质点的距离。图~\ref{ch09:fig:particle}把 $\vect r$ 平移到 $P$ 再量角，
+两矢量的夹角为锐角；$p_y=0,y>0$，故 $L_z=-yp_x<0$，角动量入纸面。
+\particleAngularMomentumDiagram
+若质点沿过 $O$ 的直线径向运动，则 $d=0$、$L_O=0$；若以恒定速度沿不经过 $O$ 的直线运动，
+$d$ 不变，角动量也不变。角动量必须附带参考点，同一动量对不同点的角动量一般不同。
+
+由于 $O$ 固定，$\dd\vect r/\dd t=\vect v$。对定义求导，并利用牛顿第二定律：
+\begin{align}
+ \frac{\dd\vect L_O}{\dd t}
+ &=\frac{\dd\vect r}{\dd t}\times m\vect v+
+   \vect r\times\frac{\dd(m\vect v)}{\dd t}\\
+ &=\vect v\times m\vect v+\vect r\times\vect F
+ =\vect r\times\vect F.
+\end{align}
+第一项为零，因为两个矢量平行。定义对同一点的力矩 $\vect M_O=\vect r\times\vect F$，得
+\begin{equation}
+ \boxed{\frac{\dd\vect L_O}{\dd t}=\vect M_O}.\label{ch09:eq:angular-law}
+\end{equation}
+力矩大小是力乘以相应垂直力臂，平行于 $\vect r$ 的力分量不贡献力矩。合力非零，合力矩仍可为零。
+角动量单位为 $\mathrm{kg\,m^2/s}$，力矩单位为 $\mathrm{N\,m}=\mathrm{kg\,m^2/s^2}$，
+二者相差一个时间因子。积分形式为
+\begin{equation}
+ \vect L_O(t_2)-\vect L_O(t_1)=\int_{t_1}^{t_2}\vect M_O\,\dd t.
+\end{equation}
+右侧称为冲量矩。碰撞时外力瞬时很大不一定破坏近似守恒，但必须确认该外力的冲量矩可忽略，
+或其作用线通过所取矩心；不能仅凭“时间短”就一概使用角动量守恒。
+
+\subsection{质点系、质心分解及移动矩心}
+对质量不变的质点系，设总质量为 $M$，总动量为 $\vect P$，质心位置、速度分别为
+$\vect R_C,\vect V_C$。令 $\vect r_i=\vect R_C+\vect r_i'$、
+$\vect v_i=\vect V_C+\vect v_i'$。质心定义给出
+\begin{equation}
+ \sum_i m_i\vect r_i'=\vect0,\qquad
+ \sum_i m_i\vect v_i'=\frac{\dd}{\dd t}\sum_i m_i\vect r_i'=\vect0.
+\end{equation}
+逐项展开角动量求和，而不是把混合项略去：
+\begin{align}
+ \vect L_O&=\sum_i m_i(\vect R_C+\vect r_i')\times(\vect V_C+\vect v_i')\\
+ &=M\vect R_C\times\vect V_C
+ +\vect R_C\times\sum_i m_i\vect v_i'
+ +\left(\sum_i m_i\vect r_i'\right)\times\vect V_C
+ +\sum_i m_i\vect r_i'\times\vect v_i'\\
+ &=\boxed{M\vect R_C\times\vect V_C+\vect L_C}.
+\end{align}
+第一项称轨道角动量，第二项是相对质心的内部角动量。以地球为例，对太阳取矩时，
+公转与自转分别对应这两项。此分解不要求系统是刚体：粒子团、爆炸碎片和可形变物体同样适用。
+
+设 $\vect F_{ij}$ 是 $j$ 对 $i$ 的内力，若 $\vect F_{ji}=-\vect F_{ij}$ 且内力沿两质点连线，
+则一对内力的力矩和为
+\begin{equation}
+ \vect r_i\times\vect F_{ij}+\vect r_j\times\vect F_{ji}
+ =(\vect r_i-\vect r_j)\times\vect F_{ij}=\vect0.
+\end{equation}
+因此总角动量的变化只由合外力矩决定。若其全部分量为零，则角动量矢量守恒；
+若只有某一固定方向的力矩分量为零，则只能断定那个方向的角动量分量守恒。
+轨道角动量的变化率是 $\vect R_C\times\vect F_{\rm ext}$，即把合外力作用于质心后
+对 $O$ 的力矩；自转角动量的变化率是各外力对质心的合力矩。两项相加才是各外力对O的总力矩，
+不能把总力矩全部算进轨道部分。
+
+\textbf{换固定矩心。}若 $O,O'$ 都固定在同一惯性系中，$\vect a=\overrightarrow{OO'}$，则
+\begin{align}
+ \vect L_{O'}&=\vect L_O-\vect a\times\vect P,\\
+ \vect M_{O'}&=\vect M_O-\vect a\times\vect F_{\rm ext}.
+\end{align}
+总动量为零时角动量与固定参考点选择无关；合外力为零时外力矩与固定参考点选择无关。
+一般情形两者均随矩心改变。选支点是为消去支点力矩，并不意味着其他外力矩自动为零。
+
+\textbf{矩心移动。}若 $O$ 以速度 $\vect v_O$ 移动，仍用惯性系中的绝对速度定义
+$\vect L_O^{\rm abs}=\sum_i(\vect r_i-\vect R_O)\times m_i\vect v_i$，则
+\begin{equation}
+ \frac{\dd\vect L_O^{\rm abs}}{\dd t}
+ =\sum_i(\vect v_i-\vect v_O)\times m_i\vect v_i+\vect M_O
+ =\vect M_O-\vect v_O\times\vect P.
+\end{equation}
+所以即使矩心匀速运动，也不能不加条件地沿用固定点公式。
+若改用相对速度定义 $\vect L_O^{\rm rel}$，并让参考轴只平移、不旋转，则
+\begin{equation}
+ \frac{\dd\vect L_O^{\rm rel}}{\dd t}
+ =\vect M_O-\left[\sum_i m_i(\vect r_i-\vect R_O)\right]\times\vect a_O.
+\end{equation}
+两种公式对应不同的角动量定义，不应混用。特别取 $O=C$ 时，括号中的量为零。
+在只随质心平移的坐标系里，也可把每个质点的惯性力写成 $-m_i\vect a_C$，其对质心的合力矩
+\begin{equation}
+ \sum_i\vect r_i'\times(-m_i\vect a_C)
+ =-\left(\sum_i m_i\vect r_i'\right)\times\vect a_C=\vect0.
+\end{equation}
+这才是质心即使加速，仍有 $\dd\vect L_C/\dd t=\vect M_C^{\rm ext}$ 的原因。
+
+\section{角动量守恒与有心力运动}
+力始终沿质点与固定力心的连线，称为有心力。它对力心的力矩为零，角动量守恒；
+若 $\vect L\ne\vect0$，$\vect r,\vect v$ 始终垂直于固定的 $\vect L$，轨迹处于一个固定平面。
+$L=0$ 对应径向运动，应单独处理。平面极坐标中取沿运动的方位角 $\varphi$，有
+\begin{equation}
+ \vect v=\dot r\,\uvec e_r+r\dot\varphi\,\uvec e_\varphi,
+ \qquad L=mr^2\dot\varphi.
+\end{equation}
+窄扇形面积为 $\dd A=\tfrac12r^2\dd\varphi$，故面积速度
+\begin{equation}
+ \frac{\dd A}{\dd t}=\frac12r^2\dot\varphi=\frac{L}{2m}.
+\end{equation}
+这对任何固定中心力成立，不只适用于平方反比引力；面积矢量的直接推导见后面的面积速度例题。
+
+质点到力心的距离达到极值的位置称回归点，此时 $\dot r=0$，速度只有横向分量。
+若有两个回归点 $r_1,r_2$，便有 $r_1v_1=r_2v_2$；回归点不是合力为零的点。
+图~\ref{ch09:fig:apsides}中两处速度都与日心连线垂直，近点半径小，速率反而大。
+\apsidesDiagram
+若中心力又是保守力，势能为 $U(r)$，把速度分解代入机械能：
+\begin{align}
+ E&=\frac12m\dot r^2+\frac12mr^2\dot\varphi^2+U(r)\\
+ &=\frac12m\dot r^2+U_{\rm eff}(r),
+ \qquad U_{\rm eff}(r)=U(r)+\frac{L^2}{2mr^2}.
+\end{align}
+有效势中的第二项不是新增的真实相互作用，而是角动量约束在径向方程中的体现。
+可达范围必须有 $E\ge U_{\rm eff}$，回归点满足等号。圆轨道还要求
+$U'_{\rm eff}(r_0)=0$；若 $U''_{\rm eff}(r_0)>0$，小径向扰动稳定，负值则不稳定，
+二阶导数为零时不能仅凭二阶判据下结论。能量给速度大小，角动量把横向速度与半径联系起来，二者不能互相替代。
+
+以 $M\gg m$ 的万有引力为例，$U=-GMm/r$。在回归点代入 $v=L/(mr)$，令 $u=1/r$：
+\begin{equation}
+ \frac{L^2}{2m}u^2-GMm\,u-E=0,
+ \quad
+ u_\pm=\frac{GMm^2}{L^2}
+ \left(1\pm\sqrt{1+\frac{2EL^2}{G^2M^2m^3}}\right).
+\end{equation}
+这里已假定 $L\ne0$。允许能量须满足判别式非负：
+$E\ge E_{\min}=-G^2M^2m^3/(2L^2)$。
+当 $E_{\min}<E<0$ 时，两根均正，对应椭圆的近、远日点；$E=E_{\min}$ 时重根对应圆轨道。
+$E=0$ 时一个根为零，即远端趋向无穷远；$E>0$ 时仅一个根为正，只存在一个有限距离的回归点。
+图~\ref{ch09:fig:kepler}专画束缚椭圆情形，太阳位于焦点而非中心，两个半径都从太阳量起。
+\keplerContextDiagram
+
+\subsection{中心力轨道方程与开普勒定律}
+进一步把时间消去，可以直接求轨道形状。设 $h=L/m=r^2\dot\varphi\ne0$，令 $u=1/r$，
+撇号在本小节表示对 $\varphi$ 求导。由 $\dot\varphi=hu^2$，
+\begin{equation}
+ \dot r=-\frac{u'}{u^2}\dot\varphi=-hu',\qquad
+ \ddot r=-h u''\dot\varphi=-h^2u^2u'',\qquad
+ r\dot\varphi^2=h^2u^3.
+\end{equation}
+把它们代入径向牛顿方程 $m(\ddot r-r\dot\varphi^2)=F(r)$，得到比内方程（Binet equation）
+\begin{equation}
+ u''+u=-\frac{F(1/u)}{mh^2u^2}.
+\end{equation}
+引力 $F=-GMmu^2$ 使右侧成为常量 $GM/h^2$，故
+\begin{equation}
+ u=\frac{GM}{h^2}+A\cos\varphi+B\sin\varphi
+ =\frac1p[1+e\cos(\varphi-\varphi_0)],
+ \quad p=\frac{h^2}{GM},\quad e=p\sqrt{A^2+B^2}.
+\end{equation}
+其中 $p$ 称半通径，$e\ge0$ 是离心率，$\varphi_0$ 给出近点方位；于是
+$r=p/[1+e\cos(\varphi-\varphi_0)]$。$0\le e<1$ 是椭圆，$e=1$ 是抛物线，
+$e>1$ 是双曲线，圆是 $e=0$ 的特殊情形。各类均须限制 $r>0$ 的方位范围。
+椭圆半长轴 $a$、半短轴 $b$、焦距 $c$ 满足
+$c=ae=\sqrt{a^2-b^2}$，$p=a(1-e^2)=b^2/a$。
+
+对椭圆，$r_{\rm p}=a(1-e)$、$r_{\rm a}=a(1+e)$。
+把近点半径及 $L^2=GMm^2p$ 代入能量，逐步化简得
+\begin{align}
+ E&=\frac{GMm\,a(1-e^2)}{2a^2(1-e)^2}-\frac{GMm}{a(1-e)}\\
+ &=\frac{GMm}{2a(1-e)}[(1+e)-2]
+ =-\frac{GMm}{2a}.
+\end{align}
+一周扫过面积为 $\pi ab$，面积速度为 $h/2$，所以
+\begin{equation}
+ T=\frac{2\pi ab}{h},\qquad
+ T^2=\frac{4\pi^2a^2b^2}{GMp}=\frac{4\pi^2a^3}{GM}.
+\end{equation}
+这分别给出轨道能量与开普勒第三定律。$a$ 是半长轴，不是近点距离；同一中心天体周围的
+椭圆轨道满足 $T^2\propto a^3$，与面积速度恒定一起把几何、时间与动力学联系起来。
+
+\section{转动惯量、移轴定理与进动}
+刚体各质元相对位置不变，绕固定轴转动时有共同角速度。对轴向角动量，有
+\begin{equation}
+ L_{\rm axis}=I_{\rm axis}\omega,\qquad
+ I_{\rm axis}=\sum_i m_i r_{i\perp}^2=\int r_\perp^2\dd m.
+\end{equation}
+$r_\perp$ 是到轴的垂距。仅当该轴是相应的主惯量轴时，才可把整个角动量写成
+$\vect L=I\vect\omega$；一般情况下还有垂直于该轴的角动量分量。
+在三维中可写 $\vect L_C=\mathbf I_C\vect\omega$，$\mathbf I_C$ 称惯量张量，
+其作用不一定只是乘一个数，也可能改变方向。后面用两质点刚体具体说明。
+
+图~\ref{ch09:fig:inertia}列出八种均匀物体及指定转轴。薄圆筒的质量全在半径R处，故为 $MR^2$；
+实心圆柱的一部分质量更靠近轴，故为 $MR^2/2$。形状、尺寸含义和轴位置必须同时核对。
+\momentsContextDiagram
+例如边长 $a,b$ 的矩形薄板，取过中心且垂直板面的轴。面密度为 $M/(ab)$，有
+\begin{align}
+ I&=\frac{M}{ab}\int_{-a/2}^{a/2}\int_{-b/2}^{b/2}(x^2+y^2)\,\dd y\,\dd x\\
+ &=\frac{M}{ab}\left(b\frac{a^3}{12}+a\frac{b^3}{12}\right)
+ =\frac{M(a^2+b^2)}{12}.
+\end{align}
+量纲为质量乘长度平方，$b\to0$ 时回到细杆过中心垂轴的结果。
+
+设目标轴与过质心的轴平行，轴间距为d。质元到质心轴的横向矢量为 $\vect\rho_i$，
+到目标轴的横向矢量为 $\vect\rho_i+\vect d$。展开平方得到平行轴定理：
+\begin{align}
+ I&=\sum_i m_i|\vect\rho_i+\vect d|^2\\
+ &=I_C+2\vect d\cdot\sum_i m_i\vect\rho_i+Md^2
+ =\boxed{I_C+Md^2}.
+\end{align}
+中间项由质心定义消失。这解释了同一细杆绕端点的惯量从 $ML^2/12$ 增加到 $ML^2/3$。
+两轴必须平行；复合体各部分先移到同一轴再相加，挖孔则减去被移除部分关于同一轴的惯量。
+
+若所有质元在同一薄平面内，x、y轴在板面内且互相垂直，z轴过同一点垂直板面，则
+\begin{equation}
+ I_z=\int(x^2+y^2)\dd m=\int x^2\dd m+\int y^2\dd m=I_y+I_x.
+\end{equation}
+这就是垂直轴定理。它不要求原点必须是质心，但要求三轴共点、两两垂直及物体为平面薄片，
+不能直接套用于有厚度的三维物体。
+
+\subsection{角动量守恒与陀螺进动}
+系统总角动量守恒，不要求每个部分的角动量分别守恒。收拢双臂使转动惯量减小，
+在外力矩可忽略且绕同一主轴的条件下，$I\omega=L$ 不变而转速增加。
+此时 $E_k=L^2/(2I)$ 反而增加，能量来自肌肉做功；角动量守恒不等于机械能守恒。
+图~\ref{ch09:fig:cosmic}的飓风与天体吸积结构说明旋转在不同尺度都很常见。
+分析它们仍要检查外力矩、摩擦、角动量输运及物质交换，不能仅凭旋涡外形断言整个系统严格守恒。
+\historyfigure[0.78\linewidth]{cosmic-angular-momentum-redraw.png}{飓风与天体吸积结构中的旋转\label{ch09:fig:cosmic}}
+
+图~\ref{ch09:fig:gyro}中，对称陀螺固定支点为O，质心为C，$OC=r$，质量为M；
+自转轴对竖直方向的倾角为$\theta$，高速自转角速度为 $\omega_0$。若自转角动量占主导，
+$L\simeq I_0\omega_0$ 沿自转轴。重力对O的力矩大小 $Mgr\sin\theta$，垂直于
+$\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对O的力矩。
+\gyroDiagram
+稳定进动时$\theta$近似不变，$\vect L$ 的端点沿水平圆周移动，圆半径为 $L\sin\theta$。
+两根等长矢量 $\vect L_i,\vect L_f$ 的差连接其端点，若转过小方位角 $\dd\phi$，
+\begin{equation}
+ |\dd\vect L|=L\sin\theta\,\dd\phi,
+ \qquad \left|\frac{\dd\vect L}{\dd t}\right|=L\sin\theta\,\omega_p.
+\end{equation}
+与重力矩相等，且 $\sin\theta\ne0$，得到
+\begin{equation}
+ Mgr\sin\theta=I_0\omega_0\sin\theta\,\omega_p,
+ \qquad \boxed{\omega_p=\frac{Mgr}{I_0\omega_0}}.
+\end{equation}
+进动主要改变L的方向。上述式子忽略了进动本身对角动量的贡献，并要求自转足够快、倾角稳定、
+支点固定；自转较慢时可能出现明显章动，即倾角随时间振荡。$\theta$=0时轴没有可辨认的绕竖直进动圆，
+不能用约去零因子的步骤推断可观测的进动。式中r始终是支点到质心的距离，不是陀螺轮体半径。
+
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{【统统算出来】}\label{ch09:ex:s16-14-1}
+已知 $\overrightarrow{AB}=(1,1,1)$，$\overrightarrow{AC}=(1,1,0)$，求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item $\overrightarrow{AB}\times\overrightarrow{AC}$；
+  \item $\overrightarrow{AB}\cdot\overrightarrow{AC}$；
+  \item $\overrightarrow{AB}$ 与 $\overrightarrow{AC}$ 夹角的正弦；
+  \item $\overrightarrow{AB}$ 与 $\overrightarrow{AC}$ 夹角的余弦；
+  \item 验证 $\sin^2\theta+\cos^2\theta=1$。
+\end{enumerate}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+记 $\vect a=(1,1,1)$、$\vect b=(1,1,0)$。直接按分量计算：
+\[
+ \vect a\times\vect b
+ =\begin{vmatrix}
+   \vect i&\vect j&\vect k\\
+   1&1&1\\
+   1&1&0
+  \end{vmatrix}
+ =\boxed{(-1,1,0)}.
+\]
+而
+\[
+ \vect a\cdot\vect b=1+1+0=\boxed2,
+ \qquad
+ |\vect a|=\sqrt3,\quad |\vect b|=\sqrt2.
+\]
+由内、外积的几何意义，
+\[
+ \sin\theta=\frac{|\vect a\times\vect b|}{|\vect a||\vect b|}
+ =\frac{\sqrt2}{\sqrt6}=\boxed{\frac1{\sqrt3}},
+\]
+\[
+ \cos\theta=\frac{\vect a\cdot\vect b}{|\vect a||\vect b|}
+ =\frac2{\sqrt6}=\boxed{\sqrt{\frac23}}.
+\]
+最后
+\[
+ \sin^2\theta+\cos^2\theta=\frac13+\frac23=1,
+\]
+验证完毕。由于内积为正，夹角是锐角；因此这里的正弦、余弦均取正值。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{【面积速度】}\label{ch09:ex:s16-14-2}
+学习角动量之前，小明定义了“面积速度”：在参考点看来，一个质点与参考点的连线在运动
+过程中会扫过一定面积。按照右手螺旋方向把面积定义为面积矢量 $\vect S$，面积速度矢量即
+单位时间内扫过的面积矢量。试说明面积速度矢量与角动量的关系。
+\areaVelocityDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+在短时间 $\dd t$ 内，质点位移为 $\dd\vect r=\vect v\dd t$。
+图~\ref{ch09:fig:area}中窄三角形的有向面积为
+\[
+ \dd\vect S=\frac12\vect r\times\dd\vect r
+ =\frac12\vect r\times\vect v\,\dd t.
+\]
+所以面积速度矢量
+\[
+ \boxed{\frac{\dd\vect S}{\dd t}
+ =\frac12\vect r\times\vect v
+ =\frac{\vect L}{2m}}.
+\]
+面积速度与角动量方向相同，大小相差常数 $2m$。于是，有心力作用下角动量守恒等价于
+面积速度恒定，这正是开普勒第二定律的几何本质。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{【继续算出来】}\label{ch09:ex:s16-14-3}
+小明研究刚体的角动量，需要先计算转动惯量。以下刚体质量均匀分布，质量均为 $m$。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 长为 $l$ 的细杆绕其中垂线的转动惯量；
+  \item 半径为 $R$ 的圆盘绕一条直径的转动惯量；
+  \item 半径为 $R$ 的空心球壳绕一条直径的转动惯量；
+  \item 半径为 $R$ 的实心球体绕一条直径的转动惯量。
+\end{enumerate}
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+四问都从 $I=\int r_\perp^2\dd m$ 出发；$r_\perp$ 必须是到所求转轴的垂距，而不一定是到原点的距离。
+
+\textbf{(1) 细杆。}\quad 取杆中点为原点，线密度 $\lambda=m/l$：
+\[
+ I=\lambda\int_{-l/2}^{l/2}x^2\dd x
+ =\frac ml\left[\frac{x^3}{3}\right]_{-l/2}^{l/2}
+ =\frac ml\frac{l^3}{12}=\boxed{\frac1{12}ml^2}.
+\]
+
+\textbf{(2) 圆盘。}\quad 先算垂直盘面过圆心轴的转动惯量。面密度
+$\sigma=m/(\pi R^2)$，半径为 $r$ 的圆环质量 $\dd m=2\pi r\sigma\dd r$，故
+\[
+ I_z=\int_0^Rr^2(2\pi r\sigma\dd r)=\frac12mR^2.
+\]
+对平面薄片使用垂直轴定理 $I_z=I_x+I_y$，又由对称性 $I_x=I_y$，所以绕直径
+\[
+ \boxed{I_x=\frac14mR^2}.
+\]
+
+\textbf{(3) 空心球壳。}\quad 这里指厚度可忽略的均匀薄球壳。取z为所求直径轴，
+极角$\theta$从正z方向量起。图~\ref{ch09:fig:sphere-band}中球带的环半径为 $R\sin\theta$，
+沿球面的带宽为 $R\dd\theta$，二者相乘再乘 $2\pi$ 得球带面积；它不是投影到水平面后的面积。
+\sphereBandDiagram
+面密度 $\sigma=m/(4\pi R^2)$，因而
+\[
+ \dd m=2\pi R^2\sigma\sin\theta\dd\theta,
+ \qquad r_\perp=R\sin\theta.
+\]
+于是
+\[
+ I=2\pi\sigma R^4\int_0^\pi\sin^3\theta\dd\theta.
+\]
+令 $u=\cos\theta$，$\dd u=-\sin\theta\dd\theta$，上下限由1变为−1：
+\[
+ \int_0^\pi\sin^3\theta\dd\theta
+ =\int_{-1}^{1}(1-u^2)\dd u
+ =\left[u-\frac{u^3}{3}\right]_{-1}^{1}=\frac43.
+\]
+代入面密度，$I=2\pi[m/(4\pi R^2)]R^4(4/3)=\boxed{2mR^2/3}$。
+
+\textbf{(4) 实心球。}\quad 把球体看成半径为 $r$、厚度 $\dd r$ 的球壳。设体密度
+$\rho=3m/(4\pi R^3)$，球壳质量为 $\dd m=4\pi r^2\rho\dd r$，其转动惯量为
+$\dd I=(2/3)r^2\dd m$，故
+\[
+ I=\frac{8\pi\rho}{3}\int_0^Rr^4\dd r
+ =\frac{8\pi\rho R^5}{15}
+ =\boxed{\frac25mR^2}.
+\]
+四个结果都有质量乘长度平方的量纲；同质量、同外半径下，实心球的质量更靠近轴，
+其惯量小于薄球壳，$2/5<2/3$ 与几何分布一致。
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{【小明的疑惑】}\label{ch09:ex:s16-14-4}
+质量为 $m$ 的质点被长为 $l$ 的绳子拉着，在水平面内做圆周运动，绳子与竖直方向夹角
+$\theta$。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 小球的速度大小为多大？
+  \item 小球旋转的角速度 $\vect\omega$ 的大小和方向？
+  \item 相对于悬挂点，小球角动量 $\vect L$ 的方向？
+  \item 角动量与角速度似乎不在同一方向上，这样对吗？
+  \item 验证这个运动是否满足角动量定理。
+\end{enumerate}
+\conicalPendulumDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取 $0<\theta<\pi/2$，绳不可伸长且小球可视为质点。图~\ref{ch09:fig:conical}中圆周半径
+$r=l\sin\theta$。绳的张力 $T$ 的竖直分量平衡重力，水平分量提供向心力：
+\[
+ T\cos\theta=mg,
+ \qquad
+ T\sin\theta=\frac{mv^2}{l\sin\theta}.
+\]
+相除得
+\[
+ \boxed{v=\sqrt{gl\,\frac{\sin^2\theta}{\cos\theta}}}.
+\]
+小球绕竖直轴转动，故
+\[
+ \boxed{\omega=\frac{v}{l\sin\theta}
+ =\sqrt{\frac{g}{l\cos\theta}}},
+\]
+$\vect\omega$ 沿竖直轴，方向由圆周运动方向按右手螺旋法则确定。
+
+再看相对于悬点 $O$ 的角动量。与图一致，取 $+x$ 向右、$+z$ 向上、$+y$ 入纸面，
+小球此刻在O的右下方，速度沿 $+y$，因此 $\vect\omega$ 向上。此时
+\[
+ \vect r=(l\sin\theta,0,-l\cos\theta),\qquad
+ \vect v=(0,v,0).
+\]
+所以
+\[
+ \boxed{\vect L=m\vect r\times\vect v
+ =(mlv\cos\theta,0,mlv\sin\theta)}.
+\]
+$\vect L$ 与绳、竖直轴共面，且垂直于绳；它一般并不与竖直的 $\vect\omega$ 平行。
+这并不矛盾：只有绕对称主轴定轴转动时才能简单写成 $\vect L=I\vect\omega$，质点作圆锥摆
+并不满足该条件。
+
+最后验证角动量定理。张力沿 $\vect r$，对悬点力矩为零；只有重力产生力矩：
+\[
+ \vect M_O=\vect r\times m\vect g=(0,mgl\sin\theta,0).
+\]
+上面的 $\vect L$ 随小球以角速度 $\omega$ 绕竖直轴转动。其水平分量大小为
+$L_h=mlv\cos\theta$，因而
+\[
+ \left|\frac{\dd\vect L}{\dd t}\right|
+ =\omega L_h
+ =\frac{v}{l\sin\theta}(mlv\cos\theta)
+ =\frac{mv^2\cos\theta}{\sin\theta}
+ =mgl\sin\theta,
+\]
+其方向为 $+y$：绕 $+z$ 转动使L的正x水平分量转向 $+y$。
+也可直接用 $\dot{\vect L}=\vect\omega\times\vect L$
+得到 $(0,\omega mlv\cos\theta,0)$，故大小和方向都与 $\vect M_O$ 一致。
+当$\theta$趋于零时v趋于零，轨道缩为一点；角速度公式的有限极限不代表静止点仍有可见的圆周轨迹。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{【哑铃落地】}\label{ch09:ex:s16-14-5}
+两端各为质量m质点的哑铃由长 $2l$ 的轻杆连接，以速度 $v_0$ 竖直向下纯平动，杆与地面
+夹角为 $0\le\theta\le\pi/2$。下端A首先碰到沙地，并在极短碰撞中粘住、固定在该点；
+另一端B不同时碰地。忽略碰撞期间重力冲量。用角动量方法求碰后瞬间角速度、B的速度及机械能损失。
+这也是把碰撞与能量方法用于哑铃落地模型的另一种解法。
+\dumbbellGroundDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:dumbbell-ground}标出了A、B及碰前速度。对固定接触点A取矩，
+沙地冲量的力矩为零，故碰撞前后关于A的角动量守恒。取顺时针为正，B的动量产生正角动量。
+$\theta$=0的情形应理解为A先接触的极限；若两端同时接触，则是另一种约束，不能套本解。
+
+碰前上端 $B$ 的动量为 $m\vect v_0$，下端 $A$ 相对自身无力臂，所以
+\[
+ L_A^-=m v_0(2l\cos\theta).
+\]
+碰后哑铃绕 $A$ 转动，转动惯量只有上端质点贡献：
+\[
+ I_A=m(2l)^2=4ml^2.
+\]
+因此
+\[
+ m v_0(2l\cos\theta)=4ml^2\omega,
+ \qquad
+ \boxed{\omega=\frac{v_0\cos\theta}{2l}}.
+\]
+碰后瞬间上端速度大小为
+\[
+ \boxed{v_B'=2l\omega=v_0\cos\theta},
+\]
+方向垂直于杆。碰撞损失的机械能为
+\[
+ \Delta E
+ =mv_0^2-\frac12I_A\omega^2
+ =\boxed{mv_0^2\left(1-\frac12\cos^2\theta\right)}.
+\]
+这里不能对整个哑铃应用线动量守恒，因为沙地给出的外冲量不可忽略；但以碰撞点取矩后，
+该冲量的力矩冲量为零，角动量守恒恰好可用。
+\end{xesolution}
+
+\Needspace{0.40\textheight}
+\begin{origexamplebox}{【哑铃的碰撞】}\label{ch09:ex:s16-14-6}
+两个相同哑铃进行完全弹性碰撞：一个初始静止，另一个以速度 $v_0$ 撞来。左侧哑铃的右端
+重物与右侧哑铃的左端重物发生对心正碰，且碰撞线垂直于两根轻杆。每个端点重物的质量均为
+$m$。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 碰后四个重物的运动速度；
+  \item 计算接触两端点的恢复系数。
+\end{enumerate}
+\dumbbellCollisionDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+令每根杆长为 $2l$。只讨论沿碰撞线方向的速度；图~\ref{ch09:fig:dumbbell-collision}画的是碰撞前，
+运动哑铃纯平动，四个端点依次记为
+$A,B,C,D$，其中 $B,C$ 接触。设碰撞冲量大小为 $J$，方向使 $B$ 减速、$C$ 加速。
+
+对左哑铃，总质量 $2m$，质心速度改变量为 $-J/(2m)$；关于质心的角冲量为 $-Jl$，而
+$I_{\rm c}=2ml^2$，故角速度改变量为 $-J/(2ml)$。于是
+\[
+ v_A'=v_0,\qquad v_B'=v_0-\frac{J}{m}.
+\]
+同理对右哑铃，
+\[
+ v_C'=\frac{J}{m},\qquad v_D'=0.
+\]
+这组结果清楚地显示：冲量只改变两个接触端点的瞬时速度，远端点在碰后瞬间仍保持原速度。
+
+完全弹性碰撞还要求系统动能守恒：
+\[
+ \frac12m(v_0^2+v_0^2)
+ =\frac12m\left[v_0^2+\left(v_0-\frac Jm\right)^2
+ +\left(\frac Jm\right)^2+0^2\right].
+\]
+除去无碰撞的 $J=0$ 解，得到 $J=mv_0$，因而
+\[
+ \boxed{v_A'=v_0,\quad v_B'=0,\quad v_C'=v_0,\quad v_D'=0}.
+\]
+接触点的接近速度为 $v_B-v_C=v_0$，分离速度为 $v_C'-v_B'=v_0$，所以
+\[
+ \boxed{e=\frac{v_C'-v_B'}{v_B-v_C}=1}.
+\]
+这也与题设“完全弹性碰撞”一致。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{【跷跷板跳高】}\label{ch09:ex:s16-14-7}
+小明想跳得更高，以便扣篮。他把两个轻质、等臂跷跷板顺次放在篮球场上。A 同学质量
+$90\,\mathrm{kg}$，B 同学质量 $80\,\mathrm{kg}$，小明质量 $60\,\mathrm{kg}$。A 从
+$50\,\mathrm{cm}$ 高处落在第一块跷跷板上，把 B 弹起；B 随后落在第二块跷跷板上，把
+小明弹起。所有碰撞均为弹性碰撞。按短时、等臂的理想冲击模型，只计算各人的竖直运动：
+跷跷板在碰撞位置近于水平，B两次接触点等高，忽略转移到第二装置所需的水平运动对竖直运动的影响，
+两次弹射后人与板均可分离。小明相对于起跳位置的重心能上升多高？
+\seesawDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+A 落到跷跷板时的速率为
+\[
+ u_A=\sqrt{2gh_0},\qquad h_0=0.50\,\mathrm m.
+\]
+图~\ref{ch09:fig:seesaw}用两个面板表示两次冲击，面板间的箭头只表示过程先后，不是飞行轨迹。
+设第一次接触中板给A、B的竖直向上冲量大小分别为 $J_A,J_B$。对轻质板的固定支点取冲量矩，
+等臂且板的转动惯量忽略，故 $J_A=J_B=J$。令A碰后向下速度为 $u_A'$、B向上速度为 $v_B$：
+\[
+ m_A(u_A'-u_A)=-J,\qquad m_Bv_B=J.
+\]
+消去J得 $m_Au_A=m_Au_A'+m_Bv_B$。完全弹性的理想传递还给出
+\[
+ \frac12m_Au_A^2=\frac12m_Au_A'^2+\frac12m_Bv_B^2.
+\]
+由第一式 $m_A(u_A-u_A')=m_Bv_B$，代入第二式并除去无传递的零解，得到
+$u_A+u_A'=v_B$。再与动量形式的关系联立，第一次弹射速度为
+\[
+ v_B=\frac{2m_A}{m_A+m_B}u_A.
+\]
+B 上升后再落回同一高度，撞击第二块跷跷板前速率仍为 $v_B$。第二次弹性碰撞后，小明的
+起跳速度为
+\[
+ v_C=\frac{2m_B}{m_B+m_C}v_B
+ =\frac{2m_B}{m_B+m_C}\frac{2m_A}{m_A+m_B}u_A.
+\]
+故小明相对于起跳位置的上升高度
+\begin{align*}
+ h&=\frac{v_C^2}{2g}
+ =h_0\left(
+ \frac{2m_A}{m_A+m_B}
+ \frac{2m_B}{m_B+m_C}
+ \right)^2\\
+ &=0.50\left(\frac{180}{170}\cdot\frac{160}{140}\right)^2\mathrm m
+ \approx\boxed{0.732\,\mathrm m}.
+\end{align*}
+结果是在题设理想传递与等高条件下的重心上升量。轻板两端的瞬时几何约束不意味着A、B分离后的
+自由速度相等；正是冲量关系与弹性条件共同给出结果。若B第二次落点低于第一次起跳点 $\Delta h$，
+应把第二次入射速率改为 $\sqrt{v_B^2+2g\Delta h}$，不能仍用 $v_B$。
+式中速度与 $\sqrt{gh_0}$ 同量纲，全部质量同比放大时高度不变；实际耗散、板质量和主动蹬跳须另建模型。
+\end{xesolution}
+
+\Needspace{0.44\textheight}
+\begin{origexamplebox}{【漏斗与黄豆】}\label{ch09:ex:s16-14-8}
+一个光滑漏斗内部为圆锥面，轴截面是正三角形。小明把一粒黄豆放在漏斗内，给它合适的
+水平初速度 $v_0$，黄豆在漏斗中作匀速圆周运动。
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 黄豆转圈位置与圆心的距离为多大？
+  \item 若把初速度加倍，且黄豆不会飞出或漏下，最高、最低分别能达到多高？
+  \item 若把初速度减半，且黄豆不会飞出或漏下，最高、最低分别能达到多高？
+\end{enumerate}
+\funnelDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:funnel}以O为圆锥顶点，h竖直向上量；P处的初速度垂直轴截面，不能沿半径。
+圆锥轴截面是正三角形，所以母线与竖直轴夹角 $\theta=30^\circ$，半径与高度满足
+$r=h\tan\theta=h/\sqrt3$。
+
+\textbf{(1)} 黄豆作水平匀速圆周运动。支持力 $N$ 的竖直分量平衡重力，水平分量提供向心力：
+\[
+ N\sin\theta=mg,
+ \qquad
+ N\cos\theta=\frac{mv_0^2}{r_0}.
+\]
+所以
+\[
+ \frac{v_0^2}{r_0}=g\cot\theta,
+ \qquad r_0=\frac{v_0^2\tan\theta}{g}=\boxed{\frac{v_0^2}{\sqrt3g}},
+ \qquad
+ h_0=r_0\cot\theta=\boxed{\frac{v_0^2}{g}}.
+\]
+
+\textbf{(2)(3)} 改变初速度后，黄豆不再作定高圆周运动，但关于圆锥轴的角动量和机械能仍守恒。
+令新初速度为 $u=kv_0$，其中加倍时 $k=2$，减半时 $k=1/2$。初态位于 $r_0$，在最高、
+最低回归点处径向速度为零。轴向角动量守恒给出
+\[
+ mur_0=mvr,
+ \qquad v=\frac{ur_0}{r}.
+\]
+机械能守恒，且 $h=\sqrt3r$：
+\[
+ \frac12mu^2+mg\sqrt3r_0
+ =\frac12m\frac{u^2r_0^2}{r^2}+mg\sqrt3r.
+\]
+令 $x=r/r_0$，再用原匀速圆周条件 $v_0^2=\sqrt3gr_0=gh_0$，把能量等式除以 $mv_0^2$：
+\[
+ \frac{k^2}{2}+1=\frac{k^2}{2x^2}+x.
+\]
+乘以 $2x^2$ 并移项，化为
+\[
+ 2x^3-(k^2+2)x^2+k^2
+ =(x-1)\bigl(2x^2-k^2x-k^2\bigr)=0.
+\]
+$x=1$ 是改变速度的瞬间所在回归点，另一个正根为
+\[
+ x_* =\frac{k^2+k\sqrt{k^2+8}}{4}.
+\]
+因高度与半径成正比，$h_*=x_*h_0$。
+
+当 $k=2$ 时，$x_*=1+\sqrt3>1$，初始位置是最低点：
+\[
+ \boxed{h_{\min}=h_0=\frac{v_0^2}{g}},
+ \qquad
+ \boxed{h_{\max}=(1+\sqrt3)h_0
+ =\frac{(1+\sqrt3)v_0^2}{g}}.
+\]
+\end{xesolution}
+
+\begin{solutioncontinuation}
+当 $k=1/2$ 时，$x_*=(1+\sqrt{33})/16<1$，初始位置是最高点：
+\[
+ \boxed{h_{\max}=h_0=\frac{v_0^2}{g}},
+ \qquad
+ \boxed{h_{\min}=\frac{1+\sqrt{33}}{16}h_0
+ =\frac{(1+\sqrt{33})v_0^2}{16g}}.
+\]
+图中的 $h$ 是从圆锥顶点所在水平面量起的竖直高度；两种结论都需要满足题设“不飞出、
+不漏下”的边界条件。若k=1，方程化为 $(x-1)^2(2x+1)=0$，唯一正回归半径仍为 $r_0$，
+恢复原匀速圆周；这也是对全部系数的检验。各高度都与 $v_0^2/g$ 同量纲。
+光滑圆锥面的法向方程还给出 $N=m(g\sin\theta+v_\varphi^2\cos\theta/r)>0$，
+说明在r为正的这段运动中无需负支持力；实际漏斗的口缘与底孔仍须按题设检查。
+\end{solutioncontinuation}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/seventeenth-section/}}
+\section{刚体的运动描述}
+% Chapter-local figures. Text remains transparent; geometric coordinates are shared.
+\newcommand{\eulerDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}
+  \coordinate(O)at(0,0);\draw[guide](O)circle(1.25);
+  \draw[axis](-.6,0)--(1.6,0)node[right]{$x$};\draw[axis](0,-.6)--(0,1.6)node[above]{$y$};
+  \draw[vector](O)--(35:1.65)node[above right]{$N$};
+  \draw[->,DeepBlue](.7,0)arc[start angle=0,end angle=35,radius=.7];\node at(18:1){$\alpha$};
+  \node[DeepBlue,font=\large]at(O){$\odot$};\node[below left=4pt]at(O){$z$};
+  \node at(0,2.25){(1) 绕z正转$\alpha$};\node[align=center]at(0,-1.8){沿$-z$方向看向原点\\$z$朝向读者};
+ \end{scope}
+ \begin{scope}[xshift=4.7cm]
+  \coordinate(O)at(0,0);\draw[TextGray](-1.2,0)--(1.2,0)node[right]{$xy$};
+  \draw[DeepBlue](145:1.25)--(-35:1.25)node[right]{$XY$};
+  \draw[axis](O)--(0,1.7)node[above]{$z$};\draw[vector](O)--(55:1.7)node[above right]{$Z$};
+  \draw[->,DeepBlue](90:.65)arc[start angle=90,end angle=55,radius=.65];\node at(72.5:1){$\beta$};
+  \node[DeepBlue,font=\large]at(O){$\otimes$};\node[below left=4pt]at(O){$N$};
+  \node at(0,2.25){(2) 绕N正转$\beta$};\node[align=center]at(0,-1.8){沿$+N$方向看\\$N$指向纸内};
+ \end{scope}
+ \begin{scope}[xshift=9.4cm]
+  \coordinate(O)at(0,0);\draw[guide](O)circle(1.25);
+  \draw[guide](-1.3,0)--(1.6,0)node[right]{$N$};
+  \draw[vector](O)--(35:1.65)node[above right]{$X$};\draw[vector](O)--(125:1.65)node[above left]{$Y$};
+  \draw[->,DeepBlue](.7,0)arc[start angle=0,end angle=35,radius=.7];\node at(18:1){$\gamma$};
+  \node[DeepBlue,font=\large]at(O){$\odot$};\node[below left=4pt]at(O){$Z$};
+  \node at(0,2.25){(3) 绕Z正转$\gamma$};\node[align=center]at(0,-1.8){沿$-Z$方向看向原点\\$Z$朝向读者};
+ \end{scope}
+\end{tikzpicture}\figcap{欧拉角的三步定义与各面板视向}\label{ch09:fig:euler}\end{minipage}\end{center}}
+
+\newcommand{\rollingKinematicsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\rr{1.1}\coordinate(C)at(0,\rr);
+ \draw[thick](-1.8,0)--(2.4,0);\draw[curve](C)circle(\rr);
+ \fill(C)circle(1.5pt)node[below left]{$C$};\draw[vector](C)--++(1.9,0)node[right]{$\vect v_C$};
+ \draw[->,DeepBlue]($(C)+(155:1.38)$)arc[start angle=155,end angle=-25,radius=1.38];
+ \node[left]at(-1.4,2){$\omega$};\node[below]at(0,-.2){平动与顺时针转动};
+ \begin{scope}[xshift=6.8cm]
+  \coordinate(C)at(0,\rr);\coordinate(P)at(0,0);\coordinate(Top)at(0,2.2);
+  \coordinate(Q)at({\rr*cos(145)},{\rr+\rr*sin(145)});
+  \coordinate(S)at({\rr*cos(315)},{\rr+\rr*sin(315)});
+  \draw[thick](-1.8,0)--(3,0);\draw[curve](C)circle(\rr);
+  \foreach\p in{Q,Top,S}{\draw[guide](P)--(\p);\fill(\p)circle(1.5pt);}
+  \fill(P)circle(2pt)node[below=4pt]{$P$};\fill(C)circle(1.5pt)node[left]{$C$};
+  \node[left=4pt]at(Q){$Q$};\node[above=7pt]at(Top){$P'$};
+  \draw[TextGray](S)--(1.45,.72)node[right]{$S$};
+  \draw[vector](C)--++(.66,0)node[above]{$\vect v_C$};
+  \draw[vector](Top)--++(1.32,0)node[right]{$\vect v_{P'}$};
+  \draw[vector](Q)--++({.6*(\rr+\rr*sin(145))},{-.6*\rr*cos(145)});
+  \draw[TextGray](-.38,2)--(-1.1,2.6)node[above left]{$\vect v_Q$};
+  \draw[vector](S)--++({.6*(\rr+\rr*sin(315))},{-.6*\rr*cos(315)})node[below right=5pt]{$\vect v_S$};
+ \end{scope}
+\end{tikzpicture}\figcap{固定水平面纯滚动；右图所有速度使用同一比例且垂直于从P出发的连线}\label{ch09:fig:rolling}\end{minipage}\end{center}}
+
+\newcommand{\nonparallelAngularDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(A)at(1.25,1.7);\coordinate(B)at(-1.25,-1.7);\coordinate(Z)at(0,2.7);
+ \draw[axis](-2,0)--(2.3,0)node[right]{$x$};\draw[axis](0,-2.1)--(Z)node[above]{$z$};
+ \draw[curve](B)--(A);\fill(A)circle(2.5pt)node[above=5pt]{$A,m$};\fill(B)circle(2.5pt)node[below=5pt]{$B,m$};
+ \fill(O)circle(1.5pt)node[below right=4pt]{$O$};
+ \draw[vector](-.32,.1)--(-.32,2.3)node[left]{$\vect\omega$};
+ \draw[vector](O)--(-1.7,1.25)node[above left]{$\vect L_O$};
+ \node[DeepBlue,font=\Large]at(1.75,1.5){$\otimes$};\node[right]at(2.05,1.5){$\vect v_A$};
+ \node[DeepBlue,font=\Large]at(-1.75,-1.45){$\odot$};\node[left]at(-2.05,-1.45){$\vect v_B$};
+ \node[right=3pt]at(.55,.75){$l$};
+ \draw pic[draw,"$\alpha$",angle radius=9mm,angle eccentricity=1.3]{angle=A--O--Z};
+ \node[anchor=west,align=left]at(4,.2){$+y$入纸面\\[6pt]$\vect L_O\perp AB$\\[6pt]$\vect L_O$一般不平行于$\vect\omega$};
+\end{tikzpicture}\figcap{两质点斜杆绕竖直轴转动，轴向角动量不等于整个角动量}\label{ch09:fig:nonparallel}\end{minipage}\end{center}}
+
+\newcommand{\inclineRollingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\tt{25}\def\rr{.82}\coordinate(A)at(0,{5.4*tan(\tt)});\coordinate(B)at(5.4,0);
+ \coordinate(P)at(2.8,{2.6*tan(\tt)});\coordinate(C)at($(P)+({\rr*sin(\tt)},{\rr*cos(\tt)})$);
+ \draw[thick](0,0)--(A)--(B)--cycle;\draw[curve](C)circle(\rr);
+ \draw[guide](P)--(C);
+ \draw[vector](P)--++({-1.05*cos(\tt)},{1.05*sin(\tt)})node[above=9pt]{$\vect f$};
+ \draw[vector](P)--++({1.9*sin(\tt)},{1.9*cos(\tt)})node[above right=5pt]{$\vect N$};
+ \draw[vector](C)--++({1.7*cos(\tt)},{-1.7*sin(\tt)})node[right=5pt]{$\vect a_C$};
+ \draw[vector](C)--++(0,-1.1)node[below right=5pt]{$M\vect g$};
+ \draw[->,DeepBlue]($(C)+(160:1.05)$)arc[start angle=160,end angle=95,radius=1.05];
+ \node[above left=4pt]at($(C)+(150:1.15)$){$\beta$};
+ \fill(C)circle(1.5pt)node[above left=2pt]{$C$};\fill(P)circle(1.5pt)node[below left=4pt]{$P$};
+ \coordinate(H)at(4.3,0);\draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]{angle=A--B--H};
+ \begin{scope}[shift={(8,1.8)}]
+  \draw[thick](0,0)circle(.55);\draw[guide](0,0)ellipse(.55 and .17);
+  \node at(0,-.95){实心球};\node at(0,-1.65){$I=\frac25MR^2$};
+ \end{scope}
+ \begin{scope}[shift={(10.7,1.8)}]
+  \fill[PaleBlue](0,-.58)rectangle(.65,.58);
+  \draw[fill=PaleBlue,thick](.65,0)ellipse(.28 and .58);
+  \fill[PaleBlue](0,-.58)rectangle(.65,.58);
+  \draw[thick](0,-.58)--(.65,-.58)(0,.58)--(.65,.58);
+  \draw[fill=PaleBlue,thick](0,0)ellipse(.28 and .58);
+  \node at(.15,-.95){实心圆柱};\node at(.15,-1.65){$I=\frac12MR^2$};
+ \end{scope}
+ \begin{scope}[shift={(13.4,1.8)}]
+  \draw[guide](.65,0)ellipse(.28 and .58);
+  \draw[thick](.65,-.58)arc[start angle=-90,end angle=90,x radius=.28,y radius=.58];
+  \draw[thick](0,-.58)--(.65,-.58)(0,.58)--(.65,.58);
+  \draw[fill=white,thick](0,0)ellipse(.28 and .58);
+  \draw[thick](0,0)ellipse(.23 and .51);
+  \node at(.15,-.95){薄壁圆筒};\node at(.15,-1.65){$I=MR^2$};
+ \end{scope}
+\end{tikzpicture}\figcap{圆形刚体沿斜面纯滚动；右侧分辨三种不同质量分布的刚体}\label{ch09:fig:incline}\end{minipage}\end{center}}
+
+\newcommand{\brakeWheelDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(P)at(1,0);\draw[curve](O)circle(1.5);
+ \draw[->,DeepBlue] (130:1.8)arc[start angle=130,end angle=-25,radius=1.8];\node[above]at(0,1.9){$\omega_0$（顺时针）};
+ \draw[vector](P)--++(0,1.1)node[left=5pt]{$\vect f$};
+ \draw[thick](O)--(225:1.5)node[midway,above left=5pt]{$R$};
+ \draw[guide](O)--(0,-.4)(P)--(1,-.4);\draw[<->](0,-.3)--(1,-.3)node[midway,below]{$r$};
+ \fill(O)circle(1.5pt)node[above left]{$O$};\fill(P)circle(1.5pt)node[right]{$P$};
+ \node[anchor=west,align=left]at(3,0){力矩逆时针\\[6pt]与初始转动相反};
+\end{tikzpicture}\figcap{固定轴砂轮的制动力矩}\label{ch09:fig:brake}\end{minipage}\end{center}}
+
+\newcommand{\twoWheelsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\ra{1.45}\def\rb{1.15}\coordinate(Ca)at(0,0);\coordinate(Cb)at(2.6,0);\coordinate(P)at(1.45,0);
+ \draw[curve](Ca)circle(\ra);\draw[curve](Cb)circle(\rb);
+ \node[align=center]at(Ca){$m_1$\\$R_1$};\node[align=center]at(Cb){$m_2$\\$R_2$};
+ \draw[->,DeepBlue]($(Ca)+(155:1.7)$)arc[start angle=155,end angle=40,radius=1.7];
+ \draw[->,DeepBlue]($(Cb)+(25:1.4)$)arc[start angle=25,end angle=140,radius=1.4];
+ \node[above]at(-.5,1.9){$\omega_{10}$};\node[above]at(3.1,1.6){$\omega_{20}$};
+ \fill(P)circle(2pt);\draw[TextGray](P)--(1.45,-1.6)node[below]{$P$};
+ \draw[guide](P)--(5,0);\node[above]at(5.7,1.6){接触处放大，$u_{10}>u_{20}$};
+ \draw[thick](5.7,-1.1)--(5.7,1.1);
+ \draw[vector](5.4,0)--(5.4,.85)node[left]{$\vect f_1$};
+ \draw[vector](6,0)--(6,-.85)node[right]{$\vect f_2$};
+ \draw[->,TextGray](4.7,.3)--(4.7,-.5)node[left]{$u_1$};
+ \draw[->,TextGray](6.7,.3)--(6.7,-.5)node[right]{$u_2$};
+\end{tikzpicture}\figcap{两个固定轴砂轮的接触与摩擦；另一相对速度分支的力方向反转}\label{ch09:fig:two-wheels}\end{minipage}\end{center}}
+
+\newcommand{\billiardRollingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\s in{0,5.5}{\draw[thick](\s-1.4,0)--(\s+2.1,0);\draw[curve](\s,.85)circle(.85);}
+ \draw[vector](0,.85)--(1.7,.85)node[right]{$v_0$};\node at(0,2.35){初态：$\omega=0$};
+ \draw[vector](5.5,.85)--(7.2,.85)node[right]{$v(t)$};
+ \draw[vector](5.5,0)--(4.3,0)node[below=4pt]{$f=\mu mg$};
+ \draw[->,DeepBlue](5.5,.85)++(145:1.05)arc[start angle=145,end angle=20,radius=1.05];
+ \node at(5.5,2.35){滑动阶段：$\omega(t)>0$};
+\end{tikzpicture}\figcap{台球初态与摩擦建立转动的后续状态}\label{ch09:fig:billiard}\end{minipage}\end{center}}
+
+\newcommand{\ballsCollisionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-1.7,0)--(4,0);\draw[curve](0,1)circle(1);\draw[curve](2,1)circle(1);
+ \node[below,align=center]at(0,-.25){白球\\$m,R$};\node[below,align=center]at(2,-.25){红球\\$m,R$};
+ \draw[vector](0,1)--(.75,1)node[pos=.45,above=4pt]{$v_0$};
+ \draw[->,DeepBlue](0,1)++(140:1.2)arc[start angle=140,end angle=45,radius=1.2];
+ \node[above]at(-.8,2.1){$\omega_0$};\node[align=center]at(2,1){静止\\不自转};
+ \node[anchor=west,align=left]at(4.5,1){碰撞前\\[6pt]白球：$v_0=\omega_0R$};
+\end{tikzpicture}\figcap{相同台球无摩擦正碰的初始状态}\label{ch09:fig:balls}\end{minipage}\end{center}}
+
+\newcommand{\bounceSpinDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-1.7,0)--(1.7,0);\coordinate(Ca)at(0,1.7);\draw[curve](Ca)circle(.8);
+ \draw[vector](Ca)--++(0,-1.1)node[right=3pt]{$v_0$};
+ \draw[->,DeepBlue]($(Ca)+(20:1.02)$)arc[start angle=20,end angle=150,radius=1.02];\node[above]at(0,2.8){$\omega_0$};
+ \node at(0,-.55){碰前：竖直下落并自旋};
+ \begin{scope}[xshift=5.2cm]
+  \draw[thick](-1.7,0)--(2,0);\draw[curve](0,.8)circle(.8);\coordinate(P)at(0,0);
+  \draw[vector](P)--(-1.3,0)node[below=5pt]{$\vect J_t$};
+  \draw[vector](P)--(0,1.25)node[right=3pt]{$\vect J_n$};
+  \fill(P)circle(1.6pt)node[below right=3pt]{$P$};
+  \node[above]at(0,2.1){接触冲量图};\node at(0,-.75){球与地面相切于P};
+ \end{scope}
+ \begin{scope}[xshift=9.9cm]
+  \coordinate(O)at(0,.7);\draw[guide](O)--(0,2.4);\draw[vector](O)--(-.85,2.15)node[above left]{$\vect v'$};
+  \coordinate(V)at(0,2.4);\coordinate(W)at(-.85,2.15);
+  \draw pic[draw,"$\alpha$",angle radius=8mm,angle eccentricity=1.35]{angle=V--O--W};
+  \node at(0,-.55){弹起方向向左偏};
+ \end{scope}
+\end{tikzpicture}\figcap{旋转篮球的碰前、接触和碰后三个不同阶段}\label{ch09:fig:bounce-analysis}\end{minipage}\end{center}}
+
+\newcommand{\eggRollingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\s/\mode in{0/0,6.6/1}{
+  \begin{scope}[xshift=\s cm]
+   \def\tt{22}\coordinate(P)at(2,1.1);
+   \coordinate(C)at($(P)+({.78*sin(\tt)},{.78*cos(\tt)})$);
+   \draw[thick]($(P)+({-2*cos(\tt)},{2*sin(\tt)})$)--($(P)+({2.8*cos(\tt)},{-2.8*sin(\tt)})$);
+   \begin{scope}[shift={(C)},rotate=-22]
+    \draw[fill=PaleBlue,thick](0,0)ellipse(.58 and .78);
+    \ifnum\mode=0\draw[fill=DeepBlue!12,thick](0,0)ellipse(.36 and .51);
+    \else\draw[DeepBlue](0,-.1)ellipse(.35 and .43);\draw[TextGray](-.32,.1)..controls(-.12,.24)and(.06,-.02)..(.32,.12);\fi
+   \end{scope}
+   \fill(P)circle(1.3pt)node[below left=3pt]{$P$};
+   \draw[guide]($(C)+(-1.3,0)$)--($(C)+(1.3,0)$);
+   \draw[vector]($(C)+(.9,.2)$)--++({1.1*cos(\tt)},{-1.1*sin(\tt)})node[right]{$\vect v_C$};
+   \draw[->,DeepBlue]($(C)+(150:1.05)$)arc[start angle=150,end angle=65,radius=1.05];
+   \node[above]at($(C)+(0,1.2)$){向右下滚时外壳顺时针转};
+   \ifnum\mode=0\node[align=center]at(2,-.45){熟鸡蛋\\整体近似共同转动};
+   \else\node[align=center]at(2,-.45){生鸡蛋\\内部液体可相对外壳运动};\fi
+  \end{scope}}
+\end{tikzpicture}\figcap{相同释放高度的两种内部结构；剖面仅用于区分凝固与液体}\label{ch09:fig:egg}\end{minipage}\end{center}}
+
+\newcommand{\massivePulleyDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,2.5);\def\rr{.8}
+ \draw[thick](-1.8,4)--(1.8,4);\draw[thick](0,4)--(O);\draw[curve](O)circle(\rr);
+ \fill(O)circle(2pt)node[right=4pt]{$O$};
+ \draw[TextGray](-.6,3.03)--(-1.2,2.9)node[left]{$M,R$};
+ \draw[thick](-.8,.65)--(-.8,2.5)arc[start angle=180,end angle=0,radius=.8]--(.8,1.05);
+ \draw[thick](-1.1,0)rectangle(-.5,.65);\node at(-.8,.325){$m_1$};
+ \draw[thick](.5,.4)rectangle(1.1,1.05);\node at(.8,.725){$m_2$};
+ \draw[vector](-1.55,1.1)--(-1.55,.1)node[left]{$\vect a_1$};
+ \draw[vector](1.55,.4)--(1.55,1.4)node[right]{$\vect a_2$};
+ \node[anchor=west,align=left]at(3,2.1){轴O固定\\[6pt]绳不伸长、与轮缘不滑\\[6pt]$a=\beta R$};
+\end{tikzpicture}\figcap{重滑轮的轮轴、绳路和两端加速度}\label{ch09:fig:pulley}\end{minipage}\end{center}}
+
+\newcommand{\torqueWorkDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,2.7);\coordinate(H)at(4.7,2.7);\coordinate(P)at(4,.4);\coordinate(C)at($(O)!.5!(P)$);
+ \draw[thick](-.8,2.7)--(.8,2.7);\draw[guide](O)--(H);
+ \draw[curve](O)--(P);\fill(O)circle(1.8pt)node[above left]{$O$};
+ \fill(C)circle(2.5pt)node[below left=4pt]{$m_2=m$};\fill(P)circle(2.5pt)node[right=4pt]{$m_1=m$};
+ \node[below left=5pt]at($(O)!.25!(P)$){$l$};\node[above right=3pt]at($(O)!.75!(P)$){$l$};
+ \draw pic[draw,"$\theta$",angle radius=13mm,angle eccentricity=1.3]{angle=P--O--H};
+\end{tikzpicture}\figcap{轻杆从水平位置向下转过$\theta$，两质点分别下降$2l\sin\theta$和$l\sin\theta$}\label{ch09:fig:torque-work}\end{minipage}\end{center}}
+
+\newcommand{\percussionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,3.8);\coordinate(P)at(0,1.3);\coordinate(B)at(0,0);
+ \draw[thick](-.8,3.8)--(.8,3.8);\draw[curve](O)--(B);
+ \fill(O)circle(2pt)node[above right]{$O$};\fill(P)circle(1.6pt)node[below right=4pt]{$P$};
+ \draw[vector](-2.2,1.3)--(P)node[pos=.28,above]{$\vect J$};
+ \draw[guide](O)--(1.3,3.8)(B)--(1.3,0);
+ \draw[guide](O)--(-.8,3.8)(B)--(-.8,0);
+ \draw[<->](-.65,1.3)--(-.65,3.8)node[midway,left=4pt]{$x=L-a$};
+ \draw[<->](-.65,0)--(-.65,1.3)node[midway,left=4pt]{$a$};
+ \draw[<->](1.2,0)--(1.2,3.8)node[midway,right]{$L$};
+ \node[anchor=west]at(3,1.9){支点冲量为零时求P的位置};
+\end{tikzpicture}\figcap{固定铰点细杆的打击位置与长度定义}\label{ch09:fig:percussion}\end{minipage}\end{center}}
+
+\newcommand{\supportedRodDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[curve](0,1)--(4,1);\foreach\x in{0,4}{\draw[thick](\x-.3,.45)--(\x,1)--(\x+.3,.45)--cycle;}
+ \draw[vector](0,1)--(0,2)node[above]{$N_A=mg/2$};\draw[vector](4,1)--(4,2)node[above]{$N_B=mg/2$};
+ \draw[vector](2,1)--(2,-.05)node[below]{$mg$};\node[above]at(2,1.1){$C$};
+ \node[below]at(0,.4){$A$};\node[below]at(4,.4){$B$};\node at(2,2.65){整杆};
+ \begin{scope}[xshift=7cm]
+  \draw[curve](0,1)--(2,1);\draw[thick](-.3,.45)--(0,1)--(.3,.45)--cycle;
+  \draw[vector](0,1)--(0,2)node[above]{$N_A$};\draw[vector](1,1)--(1,-.05)node[below]{$mg/2$};
+  \draw[guide](2,.4)--(2,1.6);\node[above]at(2,1.75){中截面C};
+  \draw[->,DeepBlue](2,1)++(-65:.55)arc[start angle=-65,end angle=200,radius=.55];
+  \node[right]at(2.8,.9){$M_{\rm int}$};\node[right]at(2.8,.35){$Q=0$};
+  \draw[<->](0,-.7)--(1,-.7)node[midway,below]{$L/4$};\draw[<->](1,-.7)--(2,-.7)node[midway,below]{$L/4$};
+  \node at(1,2.65){左半杆};
+ \end{scope}
+\end{tikzpicture}\figcap{端点支撑杆的整体与左半杆；中截面仅有非零弯矩}\label{ch09:fig:rod-analysis}\end{minipage}\end{center}}
+
+\newcommand{\chimneyDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\tt{32}\def\ll{4.5}\def\xx{1.45}
+ \coordinate(O)at(0,0);\coordinate(T)at({\ll*sin(\tt)},{\ll*cos(\tt)});
+ \coordinate(P)at({\xx*sin(\tt)},{\xx*cos(\tt)});\coordinate(G)at($(P)!.5!(T)$);\coordinate(V)at(0,4.5);
+ \draw[guide](O)--(V);\draw[curve,line width=1.4pt](O)--(T);
+ \fill(O)circle(2pt)node[below]{$O$};\fill(P)circle(1.5pt)node[below right=4pt]{$P$};\fill(G)circle(1.5pt)node[right=4pt]{$G$};
+ \draw[vector](P)--++({-1.3*cos(\tt)},{1.3*sin(\tt)})node[above left]{$-Q\uvec e_t$};
+ \draw[vector](G)--++(0,-.85)node[right=5pt]{$m_s\vect g$};
+ \draw[->,DeepBlue]($(P)+(80:.65)$)arc[start angle=80,end angle=-110,radius=.65];
+ \node[right=4pt]at($(P)+(2,-.2)$){$M$（正向）};
+ \draw[TextGray]($(P)+(1.85,-.2)$)--($(P)+(.65,0)$);
+ \draw[->,TextGray](3.4,2.6)--++({.8*cos(\tt)},{-.8*sin(\tt)})node[right]{$\uvec e_t$};
+ \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]{angle=T--O--V};
+ \draw[<->]($(O)+(1,-.63)$)--($(P)+(1,-.63)$)node[midway,below right]{$x$};
+ \draw[<->]($(P)+(-.6,.38)$)--($(T)+(-.6,.38)$)node[midway,above left]{$s$};
+ \node[anchor=west,align=left]at(5,2.4){研究P以上一段\\[6pt]G为该段质心\\[6pt]$\beta$、M以顺时针为正\\[6pt]Q为有符号量};
+\end{tikzpicture}\figcap{烟囱上段的剪力、弯矩、重力与统一方向约定}\label{ch09:fig:chimney}\end{minipage}\end{center}}
+
+
+\newcommand{\bounceSpinProblemDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-1.7,0)--(1.7,0);\coordinate(Ca)at(0,1.7);\draw[curve](Ca)circle(.8);
+ \draw[vector](Ca)--++(0,-1.1)node[right=3pt]{$v_0$};
+ \draw[->,DeepBlue]($(Ca)+(20:1.02)$)arc[start angle=20,end angle=150,radius=1.02];
+ \node[above]at(0,2.8){$\omega_0$};\node[right]at(1.2,1.7){$m,R$};
+\end{tikzpicture}\figcap{篮球落地前的平动与自旋方向}\label{ch09:fig:bounce}\end{minipage}\end{center}}
+
+\newcommand{\supportedRodProblemDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[curve](0,1)--(6,1);\foreach\x in{0,6}{\draw[thick](\x-.3,.45)--(\x,1)--(\x+.3,.45)--cycle;}
+ \node[below]at(0,.4){$A$};\node[below]at(6,.4){$B$};\node[above]at(3,1.08){均匀杆，质量 $m$};
+ \draw[<->](0,-.45)--(6,-.45)node[midway,below]{$L$};
+\end{tikzpicture}\figcap{均匀杆由两端支点水平支撑}\label{ch09:fig:rod}\end{minipage}\end{center}}
+
+
+刚体是忽略形变的理想质点系：任意两质点之间的距离在运动中保持不变。真实固体受力后都会
+发生形变，只有形变相对物体尺度很小、且对所研究运动的影响可忽略时，才采用刚体模型。
+它不是“绝对坚硬”的真实材料；局部压缩、弹性波、内部振动及断裂需要另行考虑。
+
+\subsection{位置、姿态与自由度}
+质心的三个坐标只确定位置，不确定朝向。例如一本书可以质心不动而转动。自由三维刚体需要
+三个位置参数和三个姿态参数，共六个构型自由度。固定一点后剩三个转动自由度；固定一条轴后
+剩一个；平面运动有两个平移和一个转动自由度。无滑动接触还在速度层面增加约束，不能重复计数。
+
+欧拉角（Euler angles）是一组描述姿态的坐标。取原点都在质心的两组右手轴：xyz的方向
+保持相对惯性系不变，XYZ与刚体固连。前者若随质心加速平移，其原点并非惯性系中的固定点，
+“方向固定”不等于“整个坐标系是惯性系”。采用 $z$--$N$--$Z$ 转动约定：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.4em]
+ \item 绕z转$\alpha$，把x转到节线N；N是xy与XY平面的交线，取向由转动约定给出。
+ \item 绕N按右手规则转$\beta$，把z转到Z。
+ \item 绕Z转$\gamma$，把N转到固连轴X。
+\end{enumerate}
+图~\ref{ch09:fig:euler}把三次转动分开画；第二面板N指向纸内，因而正$\beta$在该观察方向下是顺时针。
+三面板的视向不同，不能把它们的纸面左右直接当成同一组三维坐标。
+\eulerDiagram
+通常约定 $0\le\alpha,\gamma<2\pi$、$0\le\beta\le\pi$。
+当$\beta$为0或$\pi$时，两平面重合，节线不唯一，$\alpha$与$\gamma$不能独立确定；这是坐标退化，不是刚体失去姿态。
+因此欧拉角只在排除退化并固定角度范围后局部唯一。位置和姿态确定\textbf{构型}；要确定
+动力学状态，还须给质心速度和角速度，或等价的广义速度。
+
+有限转动一般不可交换，先绕一轴再绕另一轴与倒序结果不同。无穷小转动在一阶近似下才可按
+矢量相加。故实际角速度应为
+\begin{equation}
+ \vect\omega=\dot\alpha\,\uvec e_z+\dot\beta\,\uvec e_N+\dot\gamma\,\uvec e_Z,
+\end{equation}
+右侧三根轴不通常互相垂直，应投影到同一组轴再求分量；三个角的导数不是三个固定直角分量。
+定轴或平面运动只需一个角$\varphi$时，才可直接以有符号量写 $\omega=\dot\varphi$、$\beta=\ddot\varphi$。
+
+\subsection{刚体速度、加速度与瞬心}
+平动中$\omega$=0，各点速度相同，任一固连线段始终平行于自身；定轴转动中固连轴不动，
+各点绕该轴作圆周运动；平面平行运动则包含质心平动及绕质心的转动，车轮和滑杆是常见模型。
+对刚体任意两点A、B，有
+\begin{equation}
+ \vect v_B=\vect v_A+\vect\omega\times\overrightarrow{AB}.\label{ch09:eq:rigid-velocity}
+\end{equation}
+与 $\overrightarrow{AB}$ 点乘，可得
+$(\vect v_B-\vect v_A)\cdot\overrightarrow{AB}=0$，即相对速度在连线方向上的分量为零。
+这也等于对固定长度条件 $\overrightarrow{AB}\cdot\overrightarrow{AB}=\text{常量}$ 求导。
+
+平面运动且$\omega$不为零时，速度场可等效为绕瞬时速度为零的点P转动。若已知两点速度方向，
+过两点作各自速度的垂线，其非平行交点给出瞬心；平行等速的特殊情形应回到速度方程判断，
+不能强求一个有限交点。瞬心可以位于刚体之外的延伸速度场中，不一定是实际材料点。
+对非零速度纯平动，$\omega$=0，不存在有限距离的瞬时静止点。
+
+图~\ref{ch09:fig:rolling}中车轮向右纯滚，接触地面的P瞬时静止，故任一点Q满足
+$\vect v_Q=\vect\omega\times\overrightarrow{PQ}$。
+速度必须垂直PQ，且 $v_Q/\omega=PQ$。顶点 $P'$ 到P的距离为2R，故顶点速率为质心速率的两倍。
+\rollingKinematicsDiagram
+瞬心不是一个始终固定的铰点。下一时刻轮缘接触地面的是另一个材料点，所以不能把整个过程
+当成绕同一P的定轴转动。对同一对材料点，式~\eqref{ch09:eq:rigid-velocity}求导给出
+\begin{equation}
+ \vect a_B=\vect a_A+\vect\beta\times\overrightarrow{AB}
+ +\vect\omega\times(\vect\omega\times\overrightarrow{AB}).
+\end{equation}
+第二项是切向项，第三项是法向项。P瞬时速度为零，不代表其加速度为零。
+例如水平面上以恒定质心速度纯滚的圆轮，接地点材料点有竖直向上的加速度 $\omega^2R$。
+因此瞬心法可用于速度，不能未经推导就用 $\sum M_P=I_P\beta$ 代替质心动力学方程。
+
+\section{刚体动力学与纯滚动}
+将各质元速度相加，利用相对质心速度的质量加权和为零，得到
+\begin{equation}
+ \vect P=M\vect v_C,\qquad \sum\vect F_{\rm ext}=M\vect a_C.
+\end{equation}
+同一外力无论作用在何处，对质心加速度的贡献相同；但对转动的作用由其作用线决定。
+角动量则为 $\vect L_O=\overrightarrow{OC}\times M\vect v_C+\vect L_C$。
+前一节已说明 $\vect L_C$ 不一定与 $\vect\omega$ 平行，图~\ref{ch09:fig:nonparallel}给出具体反例。
+\nonparallelAngularDiagram
+设轻杆两端各质量m，质心O到各端距离l，杆与竖直轴夹角$\alpha$。图中 $+x$ 向右、$+z$ 向上，
+为右手系，$+y$ 指向纸内。若 $\vect\omega=(0,0,\omega)$，上端A满足
+\begin{equation}
+ \vect r_A=(l\sin\alpha,0,l\cos\alpha),\qquad
+ \vect v_A=(0,\omega l\sin\alpha,0).
+\end{equation}
+下端B的位置、速度均相反，所以两端对O的角动量相同，求和为
+\begin{equation}
+ \vect L_O=2m\vect r_A\times\vect v_A
+ =2ml^2\omega(-\sin\alpha\cos\alpha,0,\sin^2\alpha).
+\end{equation}
+当 $0<\alpha<\pi/2$，它既有负x分量又有正z分量，不与竖直角速度同向。
+其轴向分量仍是 $L_z=(2ml^2\sin^2\alpha)\omega=I_z\omega$。
+这说明标量轴向关系可以正确，而向量式 $\vect L=I\vect\omega$ 却不成立。
+
+一般关系为 $\vect L_C=\mathbf I_C\vect\omega$。仅沿主惯量轴转动时，角动量与角速度
+平行，才能用一个标量惯量描述整个向量关系；球对称物体每个过中心方向都是主轴。
+一般自由三维转动即使外力矩为零，L保持固定，刚体的轴仍可能摆动。
+
+对平面刚体，最常用的方程组是
+\begin{equation}
+ \sum F_x=Ma_{Cx},\qquad \sum F_y=Ma_{Cy},\qquad \sum M_C=I_C\beta.
+\end{equation}
+最后一式只取垂直运动平面的分量，转轴、力矩和$\beta$使用同一正方向。若物体确绕惯性系中的固定轴
+转动，也可用关于该轴的惯量写 $\sum M=I\beta$。对任意运动点则须使用前一节的参考点变换式，
+不能因为某点瞬时静止就视为始终固定。摩擦、支持力通常是联立方程的未知量，不应先凭直觉定值。
+
+\subsection{斜面纯滚动与摩擦判据}
+设质量M、外半径R、绕质心轴惯量I的圆形刚体从静止沿倾角$\theta$的固定斜面下滚，
+无外加驱动转矩。沿坡向下及顺时针为正，先假设静摩擦沿坡向上。
+图~\ref{ch09:fig:incline}中P为接触点，$CP=R$ 且CP垂直斜面；N沿CP，重力通过C。
+\inclineRollingDiagram
+法向没有质心加速度，切向和转动方程分别为
+\begin{equation}
+ N=Mg\cos\theta,\qquad Mg\sin\theta-f=Ma_C,\qquad fR=I\beta.
+\end{equation}
+若不滑动，$a_C=\beta R$，因此 $f=Ia_C/R^2$，代回切向方程：
+\begin{equation}
+ Mg\sin\theta=(M+I/R^2)a_C,
+ \qquad \boxed{a_C=\frac{g\sin\theta}{1+I/(MR^2)}}.
+\end{equation}
+继而求出实际所需的静摩擦
+\begin{equation}
+ f=\frac{I}{I+MR^2}Mg\sin\theta,\qquad
+ \boxed{\mu_s\ge\frac fN=\frac{I}{I+MR^2}\tan\theta}.
+\end{equation}
+只有满足不等式，纯滚动假设才自洽。否则改用动摩擦 $\mu_kN$，并撤去 $a_C=\beta R$，
+分别求平动与转动，直到接触点相对速度归零后再判断能否维持纯滚动。
+
+令 $\kappa=I/(MR^2)$，图中实心球、实心圆柱、薄壁圆筒分别有
+$\kappa=2/5,1/2,1$，相应加速度为 $5g\sin\theta/7,2g\sin\theta/3,g\sin\theta/2$。
+在同一坡面、相同质心沿坡路程、同样从静止出发且均不滑时，实心球先到，薄壁圆筒后到。
+总质量与绝对尺寸从比值中约去，决定先后的是质量分布。
+
+静摩擦方向并非永远向上坡：加外转矩、改变作用力位置或让接触面运动，都可能使其反向或为零。
+应先判断没有摩擦时接触点的相对滑动趋势，再用方程的正负校验。固定面上纯滚时
+$P_f=\vect f\cdot\vect v_P=0$，但摩擦仍同时改变平动和转动动能；这两部分的功率相加为零。
+运动传送带上的接触点对地速度不为零，静摩擦对物体可以做非零功。
+
+\section{刚体的功、能量与碰撞}
+任一质元速度分解为 $\vect v_i=\vect v_C+\vect\omega\times\vect r_i'$。
+平方并求和，混合项含 $\sum_i m_i\vect r_i'=0$，因此
+\begin{equation}
+ E_k=\frac12Mv_C^2+\frac12\sum_i m_i|\vect\omega\times\vect r_i'|^2.
+\end{equation}
+平面刚体的角速度沿同一法向，第二项成为 $I_C\omega^2/2$；一般三维情形为
+$\vect\omega\cdot\mathbf I_C\vect\omega/2$。不能把一般三维运动也一律套单个I。
+
+外力作用点速度不同，应先逐力计算功率。利用标量三重积恒等式，
+\begin{align}
+ P&=\sum_i\vect F_i\cdot(\vect v_C+\vect\omega\times\vect r_i')\\
+ &=\left(\sum_i\vect F_i\right)\cdot\vect v_C+
+ \left(\sum_i\vect r_i'\times\vect F_i\right)\cdot\vect\omega\\
+ &=\vect F_{\rm ext}\cdot\vect v_C+\vect M_C\cdot\vect\omega.
+\end{align}
+第一项给质心平动动能变化率，第二项给转动动能变化率。同一外力可同时参与两部分，
+不能在计算功率时任意把作用点搬到质心。理想刚性约束的成对内力不对整体做净功，
+但能在部分物体之间传递能量；若含主动内部驱动或可变形自由度，需另计相应功和储能。
+
+绕固定轴转动，作用点的切向位移为 $r_\perp\dd\varphi$，故
+\begin{equation}
+ \dd W=M_{\rm axis}\dd\varphi,\qquad P=M_{\rm axis}\omega,
+ \qquad W=\int_{\varphi_1}^{\varphi_2}M_{\rm axis}(\varphi)\dd\varphi=\Delta E_k.
+\end{equation}
+恒力矩且I不变才对应恒角加速度；力臂随姿态改变时应积分，不能简单用初始力矩乘总转角。
+对纯滚动下坡，也可令势能减少等于两部分动能之和；它与动力学结果相符，且说明把物体当作
+仅平动的质点会高估下坡速度和加速度。
+
+\subsection{碰撞、打击与截面内力}
+短时碰撞应同时考虑线冲量和冲量矩，对固定矩心O有
+\begin{equation}
+ M(\vect v_C^+-\vect v_C^-)=\vect J_{\rm ext},\qquad
+ \vect L_O^+-\vect L_O^-=\int\vect M_O^{\rm ext}\dd t.
+\end{equation}
+若只有某一接触冲量J，对质心还有
+$\Delta\vect L_C=\overrightarrow{CP}\times\vect J$；平面情况下可再写成I乘角速度改变量。
+选择固定支点或碰撞点取矩，常能消去该处冲量矩，但不一定能消去其余外冲量矩。
+打击中心就是平动与转动响应恰好配合，使固定支点不需提供冲量的打击位置；并非简单的几何中点。
+
+碰撞通常伴随形变、声、热，动量或角动量守恒不保证动能守恒。仅有法向恢复系数等于1时，
+还须查看切向摩擦是否耗能，不能直接宣称全部动能不变。
+生鸡蛋内部液体引入相对流动自由度，不是单一角速度刚体；既要考虑流体参与转动的程度，
+也要考虑耗散，后面的生熟鸡蛋题说明这一模型边界。
+
+刚体假设各点距离不变，不意味着内部作用为零。杆或烟囱靠轴力、剪力和弯矩维持整体运动。
+分析方法是先用整体方程求运动，再在待考察位置截开，对其中一段补齐截面相互作用，分别列力
+与力矩方程。具体题里某项可以为零；只有实际非零的内力分布才用于比较断裂位置。
+能量法适合连接状态、求角速度，动力学适合求瞬时反力及加速度，两者配合并以量纲、方向和
+极限情况相互校验，不能仅靠整体能量判断哪个截面最危险。
+
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{【砂轮制动】}\label{ch09:ex:s17-15-1}
+一个质量为 $m$、半径为 $R$ 的匀质砂轮以角速度 $\omega_0$ 旋转。在距离圆心为 $r$ 处
+有恒力 $f$ 作用，方向如图。求随后砂轮的运动。
+\brakeWheelDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:brake}中砂轮初始顺时针转动，f在圆心右侧向上，故力矩逆时针。
+取顺时针为正，匀质砂轮视为均匀圆盘，绕中心轴的转动惯量
+\[
+ I=\frac12mR^2.
+\]
+力对轴的力矩大小为 $fr$，方向与初始转动相反，所以角加速度为常量
+\[
+ \beta=-\frac{fr}{I}=-\frac{2fr}{mR^2}.
+\]
+于是制动阶段
+\[
+ \boxed{\omega(t)=\omega_0-\frac{2fr}{mR^2}t},
+ \qquad
+ \boxed{\varphi(t)=\omega_0t-\frac{fr}{mR^2}t^2}.
+\]
+砂轮在
+\[
+ \boxed{t_s=\frac{mR^2\omega_0}{2fr}}
+\]
+时停止，停止前转过的角度为
+\[
+ \boxed{\varphi_s=\frac{mR^2\omega_0^2}{4fr}}.
+\]
+若题意中的恒力在停止后仍保持原方向，砂轮会反向转动；“制动”通常只讨论首次停转之前。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{【两个砂轮】}\label{ch09:ex:s17-15-2}
+两个匀质砂轮质量分别为 $m_1,m_2$，半径分别为 $R_1,R_2$，初始分别以角速度
+$\omega_{10},\omega_{20}$ 按图示方向旋转。$t=0$ 时两轮接触，此后接触处有恒定摩擦力
+$f$（仅在相对滑动期间取此大小，两轮轴固定且忽略其他阻力矩）。求：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 任意时刻二者的角速度；
+  \item 这个问题是否有类似的质点动力学问题相对应？
+\end{enumerate}
+\twoWheelsDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:two-wheels}的第一轮以顺时针为正、第二轮以逆时针为正；两接触表面初速度均向下。
+令 $u_{10}=R_1\omega_{10}$、$u_{20}=R_2\omega_{20}$，以向下为正的初始相对速度
+$s_0=u_{10}-u_{20}$。若 $s_0>0$，摩擦使第一轮减速、第二轮加速，图中力箭头对应此分支；
+$s_0<0$ 时两摩擦箭头都反向。以 $\varepsilon=\operatorname{sgn}(s_0)$ 统一记号，
+$I_i=\tfrac12m_iR_i^2$，持续滑动期间
+\[
+ \boxed{\omega_1(t)=\omega_{10}-\varepsilon\frac{fR_1}{I_1}t
+ =\omega_{10}-\varepsilon\frac{2f}{m_1R_1}t},
+\]
+\[
+ \boxed{\omega_2(t)=\omega_{20}+\varepsilon\frac{fR_2}{I_2}t
+ =\omega_{20}+\varepsilon\frac{2f}{m_2R_2}t}.
+\]
+两接触表面不再相对滑动的条件为 $R_1\omega_1=R_2\omega_2$；因此滑动终止时刻
+\[
+ \boxed{t_*=
+ \frac{|R_1\omega_{10}-R_2\omega_{20}|}
+ {f(R_1^2/I_1+R_2^2/I_2)}}.
+\]
+上述含t的式子只用于 $0\le t\le t_*$。此后两轮无其他阻力矩，维持无相对滑动所需的静摩擦为零，
+各自以最终角速度匀速转动。若初始 $s_0=0$，则 $t_*=0$，直接处于这一状态，不能强加大小f的动摩擦。
+
+它对应于两个质点在恒定相互摩擦力下相对滑动的问题。映射关系是：切向线速度
+$u_i=R_i\omega_i$ 对应质点速度，而“等效质量”
+\[
+ m_i^{\rm eff}=\frac{I_i}{R_i^2}
+\]
+对应质点质量。记 $q_i=I_i/R_i^2$，两轮切向方程为 $q_1\dot u_1=-\varepsilon f$、
+$q_2\dot u_2=\varepsilon f$，相加得 $q_1u_1+q_2u_2$ 不变。于是最终共同轮缘速度及角速度为
+\[
+ u_* =\frac{q_1u_{10}+q_2u_{20}}{q_1+q_2},\qquad
+ \omega_{1*}=\frac{u_*}{R_1},\quad \omega_{2*}=\frac{u_*}{R_2}.
+\]
+这不是说固定轴承系统的总线动量守恒，而是切向方程与两个相互作用质点的方程具有相同形式。
+共同速度位于两初始轮缘速度之间；机械能损失
+\[
+ \Delta E=\frac12\frac{q_1q_2}{q_1+q_2}(u_{10}-u_{20})^2\ge0
+\]
+可由初末转动动能相减得到，量纲为能量且 $s_0=0$ 时为零。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{【滚动的台球】}\label{ch09:ex:s17-15-3}
+质量为 $m$、半径为 $R$ 的匀质台球刚被击出时速度为 $v_0$，没有旋转。已知台球与地面的
+滑动摩擦因数为 $\mu$，求台球此后的运动。
+\billiardRollingDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:billiard}分别画出初态和滑动阶段，避免把 $\omega=0$ 的初态与后续转动混为一图。
+初始接触点相对地面向前滑，滑动摩擦力大小为 $f=\mu mg$、方向向后。匀质实心球
+$I=\tfrac25mR^2$。在滑动阶段
+\[
+ ma=-\mu mg,
+ \qquad I\beta=\mu mgR.
+\]
+取使球进入向前纯滚动的角速度为正，得到
+\[
+ v(t)=v_0-\mu gt,
+ \qquad
+ \omega(t)=\frac{\mu mgR}{I}t=\frac{5\mu g}{2R}t.
+\]
+当 $v=\omega R$ 时开始无滑动滚动：
+\[
+ v_0-\mu gt_* =\frac52\mu gt_*,
+ \qquad
+ \boxed{t_* =\frac{2v_0}{7\mu g}}.
+\]
+相应速度和角速度为
+\[
+ \boxed{v_* =\frac57v_0},
+ \qquad
+ \boxed{\omega_* =\frac{5v_0}{7R}}.
+\]
+若忽略滚动阻力，$t>t_*$ 后台球以这两个恒定值作无滑动滚动。滑动阶段质心前进距离为
+\[
+ \boxed{x_* =v_0t_* -\frac12\mu gt_*^2
+ =\frac{12v_0^2}{49\mu g}}.
+\]
+最终总动能为 $\tfrac12m(5v_0/7)^2+\tfrac12(2mR^2/5)[5v_0/(7R)]^2=5mv_0^2/14$，
+比初值 $mv_0^2/2$ 少 $mv_0^2/7$。损失来自接触点滑动，不能用质心路程直接乘摩擦力代表总损失。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{【台球碰撞】}\label{ch09:ex:s17-15-4}
+质量均为 $m$、半径均为 $R$ 的匀质白球和红球发生无摩擦正碰。碰前白球以速度 $v_0$
+向前运动，同时具有角速度 $\omega_0$，且 $v_0=\omega_0R$。红球起初静止且不自转。
+两球所在的同一水平面与球的动摩擦因数均为$\mu$，忽略滚动阻力；球间碰撞极短，可忽略该期间的地面冲量。
+球间碰撞完全弹性。求碰撞后两个
+球的运动，并判断白球是否可能再次撞到红球。
+\ballsCollisionDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:balls}标出碰前状态，取向右与顺时针为正，碰后另以t=0计时。
+球与球之间无摩擦，所以碰撞冲量沿两球心连线，不对任一球心产生力矩。因而碰撞过程中
+两球角速度不变：
+\[
+ \omega_{\mathrm W}'=\omega_0,
+ \qquad \omega_{\mathrm R}'=0.
+\]
+沿球心连线方向，这是相同质量的一维完全弹性碰撞，二球交换平动速度：
+\[
+ v_{\mathrm W}'=0,
+ \qquad v_{\mathrm R}'=v_0.
+\]
+碰后白球仍自转，接触地面的点相对地面向后滑，所以地面对白球的滑动摩擦力向前；红球只
+平动不转动，摩擦力向后。分别应用例~\ref{ch09:ex:s17-15-3} 的滑动阶段公式：
+\[
+ v_{\mathrm W}(t)=\mu gt,
+ \qquad
+ \omega_{\mathrm W}(t)=\omega_0-\frac{5\mu g}{2R}t,
+\]
+\[
+ v_{\mathrm R}(t)=v_0-\mu gt,
+ \qquad
+ \omega_{\mathrm R}(t)=\frac{5\mu g}{2R}t.
+\]
+两球分别达到纯滚动的时刻相同：
+\[
+ t_{\mathrm W}=t_{\mathrm R}=\frac{2v_0}{7\mu g}.
+\]
+且最终纯滚动速度为
+\[
+ \boxed{v_{\mathrm W}=\frac27v_0},
+ \qquad
+ \boxed{v_{\mathrm R}=\frac57v_0}.
+\]
+在整个滑动阶段 $v_{\mathrm R}-v_{\mathrm W}=v_0-2\mu gt>0$；两球进入纯滚动后红球仍更快，
+所以间距单调增大，\boxed{\text{白球不会再次撞到红球}}。
+更明确地，滑动阶段两球心间距减去2R的净间隙为
+\[
+ d(t)=\int_0^t(v_{\mathrm R}-v_{\mathrm W})\dd t
+ =v_0t-\mu gt^2,\qquad 0\le t\le t_*.
+\]
+因此 $d(t_*)=10v_0^2/(49\mu g)>0$；之后间隙以 $3v_0/7$ 的恒定速率增大。
+当$\mu$趋零时，滑动调节时间趋无穷，但球间碰后红球前进、白球只自转，仍不会追及。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{【小明拍球】}\label{ch09:ex:s17-15-5}
+小明把一个篮球快速旋转地拍下。落地前篮球速度大小为 $v_0$、方向竖直向下，角速度为
+$\omega_0$，转向如图。篮球视为质量 $m$、半径 $R$ 的空心球壳，与地面的滑动摩擦因数为
+$\mu$，采用法向恢复系数为1、切向库仑摩擦的理想碰撞模型；一旦切向相对速度归零，
+接触不再滑动，不考虑切向弹性回弹。求篮球弹起后的速度方向。
+\bounceSpinProblemDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:bounce-analysis}将碰前状态、接触冲量与碰后方向分开。碰撞极短，重力冲量可忽略。
+\bounceSpinDiagram
+法向恢复系数为1意味着竖直速度反向而大小不变，因此
+\[
+ v_y'=v_0 \quad\text{（竖直向上）}.
+\]
+图中的逆时针自旋使落地点相对地面向右滑，地面对球的切向冲量 $J_t$ 向左。
+先假设整个接触阶段都保持向右滑动，此时动摩擦冲量为
+\[
+ J_t=\mu J_n.
+\]
+法向冲量由竖直动量改变给出
+\[
+ J_n=m(v_0-(-v_0))=2mv_0,
+\]
+故水平速度
+\[
+ \boxed{v_x'=-\frac{J_t}{m}=-2\mu v_0}.
+\]
+于是弹起方向相对竖直线向左偏，偏角 $\alpha$ 满足
+\[
+ \boxed{\tan\alpha=\frac{|v_x'|}{v_y'}=2\mu}.
+\]
+同时空心球壳 $I=\tfrac23mR^2$，其自旋改变为
+\[
+ \omega' =\omega_0-\frac{J_tR}{I}
+ =\omega_0-\frac{3\mu v_0}{R}.
+\]
+若碰撞全程保持滑动，即
+\[
+ \omega_0R>5\mu v_0.
+\]
+则以上结果成立。这个临界条件来自碰后接触点速度
+$v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
+若 $\omega_0R\leq5\mu v_0$，摩擦足以使接触点在分离前或恰在分离时停止滑动。设所需切向
+冲量为 $J_t$，由
+\[
+ v_x'+\omega'R
+ =-\frac{J_t}{m}+\left(\omega_0-\frac{J_tR}{I}\right)R=0
+\]
+得
+\[
+ J_t=\frac{2}{5}m\omega_0R,
+ \qquad
+ v_x'=-\frac25\omega_0R.
+\]
+因此完整的弹起方向为
+\[
+ \boxed{
+ \tan\alpha=
+ \begin{cases}
+  2\mu, & \omega_0R>5\mu v_0,\\[2pt]
+  \dfrac{2\omega_0R}{5v_0}, & \omega_0R\leq5\mu v_0.
+ \end{cases}}
+\]
+两种情形都向图中摩擦冲量所指的一侧偏转；第二种情形中 $\omega'=2\omega_0/5$，
+与 $v_x'=-2\omega_0R/5$ 正好使接触点相对速度为零。
+临界点两式相同；$\mu$=0时水平冲量为零，仍竖直弹起；$\omega_0=0$ 时也无侧向偏转。
+法向动能恢复不等于总动能恢复。切向平动与转动的能量改变为
+\[
+ \Delta K_t=-J_t\omega_0R+\frac{J_t^2}{2}\left(\frac1m+\frac{R^2}{I}\right)\le0,
+\]
+在本题允许的冲量范围内非正，说明摩擦耗能与题设法向弹性条件相容。
+\end{xesolution}
+
+\Needspace{0.33\textheight}
+\begin{origexamplebox}{【生熟鸡蛋】}\label{ch09:ex:s17-15-6}
+把不同鸡蛋放在同一个斜面上向下滚，如何利用物理方法区分生鸡蛋和熟鸡蛋？
+\eggRollingDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:egg}把两只鸡蛋放在相同坡角的两个面板中，接触位置与释放高度相同；
+用剖面区分内部凝固与内部液体。比较前还要尽量控制外形、质量、放置朝向和坡面的粗糙程度。
+熟鸡蛋内部凝固，外壳与内部近似共同转动；生鸡蛋内部液体可以相对外壳流动，不能给全部质量
+指定同一角速度。这个内部响应差异才是判断依据，而不是预先认定某一种一定先到。
+
+先用圆形、质心位于几何中心的模型解释转动惯量的影响。如果外形在滚动截面近似为圆，
+且凝固整体保持纯滚动，刚体近似给出
+\[
+ a_{\rm cooked}=\frac{g\sin\theta}{1+I/(mR^2)}.
+\]
+真实鸡蛋不是圆球，其接触半径和质心高度随姿态改变，上式只能作为圆形近似，不能精确描述
+每个瞬间。生鸡蛋还同时存在两种不同影响：内部液体未充分随壳转动时，参与转动的有效惯量可能较小；
+液体相对流动又通过黏滞作用耗散能量。两种影响不能只取其一。
+
+例如取圆形壳内液体几乎不受黏性转矩的理想极限，平动质量为总质量m，参与转动的惯量主要是
+外壳的 $I_{\rm shell}$，则可能有
+\[
+ a_{\rm liquid}\simeq\frac{g\sin\theta}{1+I_{\rm shell}/(mR^2)}.
+\]
+它反而可大于凝固整体的加速度。这不是对所有真实鸡蛋的预测，而是说明“存在黏滞耗能”
+不能单独推出“生鸡蛋一定更慢”。在较强耦合极限，液体逐渐跟随外壳，又更接近共同转动；
+真实结果还受形状和滚动姿态影响。
+
+因此，斜面实验可记录滚动时间、姿态变化以及短暂改变外壳运动后的响应，并与已知生熟样品比较；
+只给本题的条件，不能仅凭一次到达先后作无条件判别。为检验内部是否仍在运动，可另在水平桌面
+将蛋旋转，短暂按停外壳后立即松手：生蛋内部液体若仍在转，会通过黏滞作用重新带动外壳；
+熟蛋整体已停住，通常不会自行恢复转动。按住过久会让内部也停止，所以必须说明“短暂”。
+这个补充实验利用内部相对运动，不能反过来当作斜面滚动谁先到底的证明。
+\end{xesolution}
+
+\Needspace{0.35\textheight}
+\begin{origexamplebox}{【重滑轮】}\label{ch09:ex:s17-15-7}
+两个重物挂在滑轮两端，绳与定滑轮间不相对滑动。定滑轮质量为 $M$、半径为 $R$，质量均匀
+分布。求松手时 $m_1$ 的加速度，设 $m_1>m_2$。
+\massivePulleyDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:pulley}中绳绕轮缘且连到两重物的中心吊点，支架连接固定轮轴。
+设 $m_1$ 向下、$m_2$ 向上加速度大小均为 $a$，两侧张力分别为 $T_1,T_2$：
+\[
+ m_1g-T_1=m_1a,
+ \qquad
+ T_2-m_2g=m_2a.
+\]
+均匀圆盘滑轮的转动惯量 $I=\tfrac12MR^2$。绳不打滑给出 $\beta=a/R$，滑轮转动方程为
+\[
+ (T_1-T_2)R=I\frac aR.
+\]
+联立消去两张力：
+\[
+ (m_1-m_2)g
+ =\left(m_1+m_2+\frac I{R^2}\right)a.
+\]
+因此
+\[
+ \boxed{a=\frac{(m_1-m_2)g}{m_1+m_2+M/2}},
+\]
+方向为 $m_1$ 向下。滑轮有转动惯性，所以加速度小于把滑轮视为轻滑轮时的结果。
+\end{xesolution}
+
+\Needspace{0.39\textheight}
+\begin{origexamplebox}{【力矩做功】}\label{ch09:ex:s17-15-8}
+两个质量均为 $m$ 的质点固定在长为 $2l$ 的轻杆上，一个在最远端，另一个在中点。杆的
+另一端铰接在天花板上。初始时杆水平，由静止释放。求杆与水平呈 $\theta$ 角时：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 杆的角速度；
+  \item 1 号、2 号质点的动能；
+  \item 1 号、2 号质点重力势能的减小量；
+  \item 说明本题与力矩做功的关系。
+\end{enumerate}
+\torqueWorkDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:torque-work}中$\theta$从水平参考线向下量，取第一次下落的 $0\le\theta\le\pi/2$。
+两质点到转轴的距离分别为 $2l$ 与 $l$，系统转动惯量
+\[
+ I=m(2l)^2+ml^2=5ml^2.
+\]
+杆由水平转到向下倾斜 $\theta$ 时，两质点分别下降 $2l\sin\theta$ 与 $l\sin\theta$，
+故机械能守恒给出
+\[
+ \frac12I\omega^2=mg(2l\sin\theta)+mg(l\sin\theta)=3mgl\sin\theta.
+\]
+所以
+\[
+ \boxed{\omega=\sqrt{\frac{6g\sin\theta}{5l}}}.
+\]
+两质点动能分别为
+\[
+ \boxed{E_{k1}=\frac12m(2l\omega)^2
+ =\frac{12}{5}mgl\sin\theta},
+\]
+\[
+ \boxed{E_{k2}=\frac12m(l\omega)^2
+ =\frac35mgl\sin\theta}.
+\]
+两者重力势能减小量分别为
+\[
+ \boxed{-\Delta E_{p1}=2mgl\sin\theta},
+ \qquad
+ \boxed{-\Delta E_{p2}=mgl\sin\theta}.
+\]
+个别质点的动能增加并不等于它自己的重力势能减少，因为轻杆的内力在两质点之间传递能量；
+但对整个刚体，支点不做功，总动能增加等于总重力势能减少。
+
+从力矩做功看，重力对支点的合力矩为
+\[
+ M(\phi)=3mgl\cos\phi,
+\]
+故
+\[
+ W=\int_0^\theta M(\phi)\dd\phi
+ =3mgl\sin\theta=\Delta E_k.
+\]
+这正是转动形式的动能定理。
+\end{xesolution}
+
+\Needspace{0.37\textheight}
+\begin{origexamplebox}{【打击中心】}\label{ch09:ex:s17-15-9}
+一根质量均匀、质量为 $m$、长度为 $L$ 的杆悬挂在天花板上。用冲量 $J$ 水平打击杆上距
+下端 $a$ 的位置，发现悬挂端没有受到冲量。求打击位置。
+\percussionDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:percussion}中O是固定铰点，杆初始静止；打击点P距悬点为 $x=L-a$。
+悬点冲量为零，杆质心获得的线动量完全来自打击冲量：
+\[
+ mv_C=J.
+\]
+对悬点取矩，悬点冲量没有力矩，角动量定理给出
+\[
+ I_O\omega=Jx,
+ \qquad I_O=\frac13mL^2.
+\]
+刚体绕悬点转动，质心速度还满足
+\[
+ v_C=\omega\frac L2.
+\]
+代入前两式：
+\[
+ \frac Jm=\frac{Jx}{I_O}\frac L2,
+\]
+从而
+\[
+ \boxed{x=\frac{2L}{3}},
+ \qquad
+ \boxed{a=L-x=\frac L3}.
+\]
+即打击点距悬点 $2L/3$（距下端 $L/3$）。该点称为打击中心；在此处横向打击，悬点瞬间
+不承受冲量。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{【小明的疑惑】}\label{ch09:ex:s17-15-10}
+一根质量m、长度L、质量均匀分布的棍靠两端A、B的支撑点水平悬空放置。小明只分析左半根棍时，发现外力矩似乎
+不能平衡。这是怎么回事？
+\supportedRodProblemDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:rod-analysis}左图以整杆为研究对象，对称性与竖直力平衡给出两端支持力各为 $mg/2$，
+合力与对任一点的合力矩均为零。
+\supportedRodDiagram
+
+但若只截取左半杆，除了左支点支持力 $mg/2$ 与左半杆重力 $mg/2$ 之外，截面还受到右半杆
+施加的\textbf{内力和内力矩}。在本题中，中截面的水平、竖直力平衡分别给出轴力为零及
+\[
+ N_A-\frac{mg}{2}+Q=0\quad\Longrightarrow\quad Q=0.
+\]
+所以右图没有画一个实际非零的剪力箭头。两竖直外力大小相等、方向相反，但作用线不同，构成力偶。设杆长
+为 $L$，左半杆重心距左支点 $L/4$，其外力偶矩大小为
+\[
+ M_{\rm ext}=\frac{mg}{2}\frac L4=\frac{mgL}{8}.
+\]
+以逆时针为正，左支持力与左半杆重力对中截面的合外力矩为
+$-(mg/2)(L/2)+(mg/2)(L/4)=-mgL/8$。为保持静止，中截面必须提供逆时针弯矩，大小
+\[
+ \boxed{M_{\rm int}=\frac{mgL}{8}}
+\]
+的反向弯矩。
+
+疑惑来自把刚体截开后只补了截面内力，却漏掉截面内力矩。对能承受弯曲的杆件，截面相互
+作用一般包括轴力、剪力和弯矩；只有把它们全部画出，局部受力与力矩才能平衡。
+\end{xesolution}
+
+\Needspace{0.42\textheight}
+\begin{origexamplebox}{【烟囱倒地】}\label{ch09:ex:s17-15-11}
+把烟囱视为质量 $m$、长度 $L$ 的均匀硬杆，绕底端倾倒，杆与竖直方向夹角为 $\theta$。
+用两种模型判断哪里最容易断裂：
+\begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
+  \item 烟囱内部会有垂直于烟囱的剪力，剪力最大处最先断裂；
+  \item 烟囱内部会提供弯矩，弯矩最大处最先断裂。
+\end{enumerate}
+\chimneyDiagram
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+图~\ref{ch09:fig:chimney}中 $x$ 从固定基底O沿杆向上量，研究截面P以上的一段；
+规定切向正方向 $\uvec e_t$ 为倾倒的顺时针方向，角速度、角加速度也以顺时针为正。
+线密度 $\lambda=m/L$。整杆绕底端转动惯量
+$I_O=mL^2/3$。重力矩给出角加速度
+\[
+ \beta=\frac{mg(L/2)\sin\theta}{mL^2/3}
+ =\frac{3g\sin\theta}{2L}.
+\]
+从竖直静止位置以任意小扰动启动的极限下，机械能守恒给出
+\[
+ \frac12I_O\omega^2=mg\frac L2(1-\cos\theta),
+ \qquad
+ \omega^2=\frac{3g}{L}(1-\cos\theta).
+\]
+
+在 $x$ 处截开，研究上段，长度 $s=L-x$、质量 $m_s=ms/L$，质心位于
+$r_c=(L+x)/2$。沿垂直杆方向列质心运动方程。重力的垂杆分量为
+$m_sg\sin\theta$，质心切向加速度为 $\beta r_c$。定义截面对上段的剪力为
+$-Q\uvec e_t$，Q是有符号量，图中箭头表示Q的正向。因此
+$m_sg\sin\theta-Q=m_s\beta r_c$，得
+\begin{align*}
+ Q(x)&=m_s\bigl(g\sin\theta-\beta r_c\bigr)\\
+ &=\frac{mg\sin\theta}{4L^2}(L-x)(L-3x).
+\end{align*}
+Q为正时剪力与倾倒切向相反，为负时实际方向反转；剪力\textbf{大小}是 $|Q|$。令 $y=x/L$，$|Q|$ 正比于
+$|(1-y)(1-3y)|$；在 $0\le y\le1$ 上最大值出现在 $y=0$，所以按模型一
+\[
+ \boxed{\text{基底附近最容易发生剪切断裂}}.
+\]
+
+再对上段质心取矩。重力通过上段质心，不产生力矩；截面剪力对上段质心产生力矩。为使上段
+具有顺时针角加速度$\beta$，截面还必须提供弯矩。关于上段质心G，剪力 $-Q\uvec e_t$ 的
+顺时针力矩是 $Qs/2$。定义截面弯矩的有符号量M以顺时针为正，则
+\[
+ M+Q\frac s2=I_c\beta,\qquad I_c=\frac{m_ss^2}{12}.
+\]
+移项并代入，可得
+\begin{align*}
+ M(x)&=I_c\beta-Q(x)\frac s2\\
+ &=\frac{mg\sin\theta}{8L^2}(L-x)^3
+   -\frac{mg\sin\theta}{8L^2}(L-x)^2(L-3x)\\
+ &=\frac{mg\sin\theta}{4L^2}\,x(L-x)^2.
+\end{align*}
+\end{xesolution}
+
+\begin{solutioncontinuation}
+\enlargethispage{\baselineskip}
+令 $y=x/L$，需最大化 $y(1-y)^2$：
+\[
+ \frac{\dd}{\dd y}\bigl[y(1-y)^2\bigr]
+ =(1-y)(1-3y)=0.
+\]
+非端点极值为 $y=1/3$，所以按模型二
+\[
+ \boxed{x=\frac L3\quad\text{处弯矩最大，最容易弯折断裂}}.
+\]
+对 $0<\theta<\pi$、$0<x<L$，M为正，与图中的顺时针约定一致；两端M均为零。
+Q具有力的量纲，M具有力乘长度的量纲，正负关系也满足上段转动方程。
+值得注意的是，$M(x)$ 中的 $\sin\theta$ 只改变总体大小，不改变最大位置；以上结果针对题目
+给定的理想均匀刚杆模型。
+\end{solutioncontinuation}
+}
+
+\endgroup
+
+\hypersetup{bookmarksdepth=2}

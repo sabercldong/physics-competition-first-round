@@ -1,0 +1,253 @@
+% 图契约：光路由界面、成像和反射定律确定；标签不覆盖图线。
+% 光学纯几何，印刷宽度<=14.5cm，标签>=8pt；透明标签，克制配色。
+% 草图：光源 -> 分束元件 -> 两条相干光路 -> 共同观察区。
+% 实线是真实光路，虚线是延长线/法线；尺寸在光路外侧。
+\newcommand{\InterferencePhenomenaPanel}{%
+\begin{center}\begin{tikzpicture}
+ \shade[left color=violet,right color=blue] (0,0) rectangle (2,.55);
+ \shade[left color=blue,right color=green!65!black] (2,0) rectangle (4,.55);
+ \shade[left color=green!65!black,right color=yellow] (4,0) rectangle (6,.55);
+ \shade[left color=yellow,right color=red] (6,0) rectangle (9,.55);
+ \draw[->] (0,-.35)--(9.5,-.35) node[right]{$\lambda_0$};
+ \foreach \x/\v in {0/380,2/470,4/560,6/650,9/780}{\draw(\x,-.29)--(\x,-.42)node[below]{$\v$};}
+ \node[above] at (4.5,.65){可见光连续谱（单位：$\mathrm{nm}$）};
+\end{tikzpicture}\figcap{图 21.2：薄膜颜色取决于反射增强的波段；可见光谱连续，并非只有七条离散谱线。}\end{center}}
+
+\newcommand{\YoungPanel}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \coordinate(S)at(-3,0);\coordinate(A)at(0,.65);\coordinate(B)at(0,-.65);\coordinate(P)at(5,1.45);
+ \fill(S)circle(1.5pt)node[left]{$S$};
+ \draw[very thick](0,-1.8)--(0,-.76) (0,-.54)--(0,.54) (0,.76)--(0,1.8);
+ \draw[very thick](5,-1.8)--(5,2.1);\fill(P)circle(1.5pt)node[above left]{$P(L,y)$};
+ \draw[DeepBlue,thick](S)--(A)--(P) (S)--(B)--(P);
+ \node[above left]at(A){$S_1$};\node[below left]at(B){$S_2$};
+ \draw[guide](-3.2,0)--(5.4,0);\node[below right]at(5,0){$O$};
+ \draw[<->](-.45,-.65)--(-.45,.65)node[midway,left]{$d$};
+ \draw[<->](0,-2.1)--(5,-2.1)node[midway,below]{$L$};
+ \draw[<->](5.65,0)--(5.65,1.45)node[midway,right]{$y$};
+ \node at(2.8,1.45){$r_1$};\node at(2.8,.22){$r_2$};
+ \draw[guide](0,0)--(P);
+ \draw[TextGray](1,0)arc(0:16.173:1);\node at(.65,.52){$\theta$};
+ \draw[TextGray,thin](.85,.48)--(1.08,.15);
+ \begin{scope}[shift={(0,-4.3)}]
+  \draw[very thick](0,-.9)--(0,-.5) (0,-.3)--(0,.3) (0,.5)--(0,.9);
+  \foreach \r in {.45,.85,1.25,1.65}{
+   \draw[DeepBlue!75] (0,.4) ++(-65:\r) arc[start angle=-65,end angle=65,radius=\r];
+   \draw[Blue!70] (0,-.4) ++(-65:\r) arc[start angle=-65,end angle=65,radius=\r];}
+  \node[anchor=west,align=left]at(2.3,0){两个次级波面叠加\\实线弧表示同相位波面};
+ \end{scope}
+\end{tikzpicture}\figcap{图 21.3：双缝的相干照明、屏上距离与次级波面。$S$ 是初级狭缝；下图显示双缝后相互重叠的波面。}\end{center}}
+
+\newcommand{\YoungPatternPanel}{%
+\begin{center}\begin{tikzpicture}[x=.9cm,y=1cm]
+ \foreach \x in {-5,-4.5,...,-1}{\fill[DeepBlue!80](\x,0)rectangle+(0.17,.8);}
+ \node[below,align=center]at(-3,-.25){单色光\\等间距明暗条纹};
+ \fill[black!75](.3,0)rectangle(6.1,.8);
+ \fill[white](3.08,0)rectangle(3.32,.8);
+ \foreach \s in {-1,1}{
+  \fill[blue!80!white]({3.2+\s*.65-.08},0)rectangle+(.16,.8);
+  \fill[green!80!white]({3.2+\s*.95-.08},0)rectangle+(.16,.8);
+  \fill[red!85!white]({3.2+\s*1.25-.08},0)rectangle+(.16,.8);}
+ \node[below,align=center]at(3.2,-.25){白光零级白纹\\同一级：紫蓝在内，红在外};
+\end{tikzpicture}\figcap{图 21.4：单色光与白光双缝图样。右图只展开零级和两侧第一级的颜色次序，宽谱高阶条纹很快相互重叠。}\end{center}}
+
+\newcommand{\FilmPhenomenaPanel}{%
+\historyfigure{thin-film-scenes-20260923.png}{图 21.5：左侧泡膜和右侧油膜的彩纹。膜厚与观察方向改变上下表面反射光的相位差。}}
+
+\newcommand{\ThinFilmDiagram}{%
+% A=(-1,.6), D=1.5, r=20deg, n=1.5；B,C,E由同一组参数确定。
+\begin{center}\begin{tikzpicture}[>=Latex]
+ \pgfmathsetmacro{\rr}{20}\pgfmathsetmacro{\ia}{asin(1.5*sin(\rr))}
+ \coordinate(A)at(-1,.6);\coordinate(B)at({-1+1.5*tan(\rr)},-.9);
+ \coordinate(C)at({-1+3*tan(\rr)},.6);
+ \pgfmathsetmacro{\ae}{3*tan(\rr)*sin(\ia)}
+ \coordinate(E)at({-1+\ae*sin(\ia)},{.6+\ae*cos(\ia)});
+ \fill[Blue!10](-2,-.9)rectangle(3,.6);\draw[very thick](-2,.6)--(3,.6) (-2,-.9)--(3,-.9);
+ \draw[DeepBlue,thick]({-1-2*sin(\ia)},{.6+2*cos(\ia)})--(A)--(B)--(C);
+ \draw[DeepBlue,thick,->](A)--({-1+2.4*sin(\ia)},{.6+2.4*cos(\ia)});
+ \draw[Blue,thick,->](C)--({-1+3*tan(\rr)+2.4*sin(\ia)},{.6+2.4*cos(\ia)});
+ \draw[guide](A)--(-1,2.35) (A)--(-1,-1.15);\draw[guide](E)--(C);
+ \draw[TextGray](-1,1.23)arc[start angle=90,end angle={90+\ia},radius=.63];
+ \node at(-1.26,1.7){$i$};
+ \draw[TextGray](-1,.05)arc[start angle=-90,end angle={-90+\rr},radius=.55];
+ \node at(-.89,-.05){$r$};
+ \node[above left]at(A){$A$};\node[below]at(B){$B$};\node[below right]at(C){$C$};
+ \node[above left]at(E){$E$};\node at(1.9,-.16){$n$};
+ \draw[<->](3.35,-.9)--(3.35,.6)node[midway,right]{$D$};
+ \node[anchor=west,align=left]at(2.4,2.1){$CE\perp AE$\\共同出射波面};
+\end{tikzpicture}\figcap{图 21.6：在共同波面 $CE$ 比较相位。两路分别走 $AE$ 与 $ABC$，传播光程差为 $n(AB+BC)-AE$；两束出射光平行。}\end{center}}
+
+\newcommand{\MichelsonDiagram}{%
+% 分光面正斜率：+x反射到+y，-x反射到-y；镜面就是折返点。
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[very thick](-.65,-.65)--(.65,.65);\node[below right]at(.55,-.4){分光镜 $M$};
+ \draw[very thick](4,-.75)--(4,.75);\node[right]at(4,.8){$M_1$};
+ \draw[very thick](-.75,3.4)--(.75,3.4);\node[right]at(.8,3.4){$M_2$};
+ \draw[thick](-.4,1.15)--(.4,1.95) (-.47,1.22)--(.33,2.02);
+ \node[anchor=west]at(.65,1.75){补偿板 $P$};
+ \draw[DeepBlue,very thick](-3,0)--(4,0) (0,-2)--(0,3.4);
+ \draw[->,DeepBlue](-2.4,0)--(-1.4,0);
+ \draw[->,DeepBlue](1,0)--(2.2,0);\draw[->,DeepBlue](3.2,.13)--(2.3,.13);
+ \draw[->,DeepBlue](0,.65)--(0,1.1);\draw[->,DeepBlue](.13,2.95)--(.13,2.25);
+ \draw[->,DeepBlue](0,-1)--(0,-1.7);
+ \node[left]at(-3,0){光源};\node[below]at(0,-2.2){探测器};
+ \node[anchor=west,align=left]at(1.6,2.6){端镜移动 $x$\\往返光程变化 $2x$};
+\end{tikzpicture}\figcap{图 21.7：迈克耳孙干涉仪。往返光路共线，短箭头表示往返方向；薄板近似下未画玻璃内的微小侧移。}\end{center}}
+
+\newcommand{\MovingLloydPanel}{%
+\begin{center}\begin{tikzpicture}[scale=.83,>=Latex]
+ \begin{scope}
+  \coordinate(S)at(-2,0);\coordinate(T)at(-2,.8);\coordinate(P)at(3,-1.2);
+  \draw[very thick](0,-1.6)--(0,-.5) (0,-.3)--(0,.3) (0,.5)--(0,1.6);
+  \draw[very thick](3,-1.6)--(3,1.2);\draw[guide](-2.3,0)--(3.3,0);
+  \draw[->,DeepBlue](S)--(T);\fill(T)circle(1.5pt)node[above]{$S_{\rm new}$};
+  \draw[Blue,thick](T)--(0,.4)--(P) (T)--(0,-.4)--(P);
+  \fill(P)circle(1.5pt)node[right]{$P_0$};\node[left]at(S){$S$};
+  \node[below,align=center]at(.5,-1.95){源上移，零光程差点下移};
+ \end{scope}
+ \begin{scope}[shift={(0,-5.1)}]
+  \coordinate(S)at(0,.45);\coordinate(V)at(0,-.45);
+  \draw[guide](-.2,0)--(6,0);\draw[line width=1.8pt](1.2,0)--(3.3,0);
+  \draw[very thick](6,-.65)--(6,2.25);\fill(S)circle(1.5pt)node[above left]{$S$};
+  \fill(V)circle(1.3pt)node[below left]{$S'$};
+  \foreach \x in {1.2,3.3}{\pgfmathsetmacro{\yy}{6*.45/\x-.45}
+   \draw[DeepBlue,thick](S)--(\x,0)--(6,\yy);\draw[guide](V)--(\x,0);}
+  \draw[Blue,thick](S)--(6,1.05);\draw[<->](-.5,0)--(-.5,.45)node[midway,left]{$d$};
+  \draw[<->](0,-.9)--(1.2,-.9)node[midway,below]{$b$};
+  \draw[<->](1.2,-.9)--(3.3,-.9)node[midway,below]{$l$};
+  \draw[<->](0,-1.6)--(6,-1.6)node[midway,below]{$L$};
+  \draw[DeepBlue,line width=2pt](6,{6*.45/3.3-.45})--(6,{6*.45/1.2-.45});
+  \node[anchor=west]at(6.25,1.35){重叠区};
+ \end{scope}
+\end{tikzpicture}\figcap{图 21.8：上图为移动光源；下图为有限长劳埃德镜。只有粗线段是真实镜面，经过镜面两端的边界光线限定重叠区。}\end{center}}
+
+\newcommand{\WedgeInterferenceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \fill[Blue!10](0,0)--(0,2.8)--(1.4,2.8)--cycle;\draw[thick](0,0)--(0,2.8)--(1.4,2.8)--cycle;
+ \draw[axis](-.3,0)--(2,0)node[below right]{$x$};\draw[axis](0,-.3)--(0,3.4)node[above]{$y$};
+ \draw[very thick](2,-.1)--(2,-.06) (2,.06)--(2,.28) (2,.42)--(2,1.23) (2,1.37)--(2,2.43) (2,2.57)--(2,3);
+ \draw[<->](3.3,-.1)--(3.3,3.0);\fill(5.6,1.4)circle(1.5pt)node[right]{$F$};
+ \foreach \yy in {0,.35,1.3,2.5}{
+  \draw[DeepBlue,thick](-1.6,\yy)--(3.3,\yy)--(5.6,1.4);}
+ \draw[<->](0,3.08)--(1.4,3.08)node[midway,above]{$h$};
+ \draw[<->](0,-.55)--(.65,-.55)node[midway,below]{$x_y$};
+ \draw[guide](.65,1.3)--(.65,-.6);\node[left]at(-1.55,1.9){平行光};
+ \node[below]at(2,-.85){开缝挡板};\node[below]at(3.6,-.45){理想透镜};
+ \draw[TextGray](0,.7)arc[start angle=90,end angle=63.435,radius=.7];\node at(.29,.93){$\theta$};
+ \begin{scope}[shift={(8,1)}]
+  \draw[guide](.35,.3)--(.35,1.8)--(1.25,1.8);
+  \draw[guide](.35,.3)--(.65,.3)--(.65,.8)--(.95,.8)--(.95,1.3)--(1.25,1.3)--(1.25,1.8);
+  \foreach \x/\y in {0/0,0/1.5,.3/0,.3/.5,.6/.5,.6/1,.9/1,.9/1.5}{
+   \draw[TextGray!60](\x,\y)--({\x+.35},{\y+.3});}
+  \draw[thick](0,0)--(0,1.5)--(.9,1.5);
+  \draw[thick](0,0)--(.3,0)--(.3,.5)--(.6,.5)--(.6,1)--(.9,1)--(.9,1.5);
+  \draw[DeepBlue,->](-.7,.25)--(.3,.25)--(1.4,.25);
+  \draw[DeepBlue,->](-.7,.75)--(.6,.75)--(1.4,.75);
+  \node[below,align=center]at(.4,-.35){台阶沿 $z$ 延伸\\小面垂直于光线};
+ \end{scope}
+\end{tikzpicture}\figcap{劈尖与台阶模型。斜线给出厚度包络 $x_y=y\tan\theta$；右图说明微小台阶如何保持直线传播。$h$ 沿 $x$ 方向量取。}\label{fig:wedge}\end{center}}
+
+\newcommand{\PlaneWaveDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[very thick](2,-1.8)--(2,1.8);\coordinate(P)at(2,0);
+ \draw[guide](-2.6,0)--(2.5,0);\node[below]at(-1.7,-.1){屏法线};
+ \draw[DeepBlue,thick,->](-2,{-4*tan(25)})--(P);
+ \draw[Blue,thick,->](-2,{4*tan(20)})--(P);
+ \draw(1.2,0)arc[start angle=180,end angle=205,radius=.8];
+ \draw(1,0)arc[start angle=180,end angle=160,radius=1];
+ \node at(.76,-.43){$\alpha$};\node at(.65,.4){$\beta$};
+ \node[right]at(P){$P$};\node[above]at(2,1.9){$+y$};
+ \node[anchor=west,align=left]at(3,.65){$k_{1y}=k\sin\alpha$\\$k_{2y}=-k\sin\beta$};
+ \node[anchor=west]at(3,-.8){$\Delta y=\lambda/(\sin\alpha+\sin\beta)$};
+\end{tikzpicture}\figcap{图 21.9：两波矢在屏面方向的分量符号相反。条纹间距由相位梯度决定，不是两条示意光线之间的距离。}\end{center}}
+
+\newcommand{\BiprismDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[thick,fill=Blue!8](0,0)--(0,1.5)--(.45,0)--(0,-1.5)--cycle;
+ \draw[guide](-3.4,0)--(6.5,0);\fill(-3,0)circle(1.5pt)node[left]{$S$};
+ \draw[very thick](6,-1.6)--(6,1.6);
+ \foreach \s in {-1,1}{
+  \draw[DeepBlue,thick](-3,0)--(0,{\s*.3})--(.352960321,{\s*.323465596})--(6,{\s*.041448685});
+  \draw[guide](-3,{\s*.490914661})--(.352960321,{\s*.323465596});
+  \fill(-3,{\s*.490914661})circle(1.2pt);}
+ \node[left]at(-3,.62){$S_1'$};\node[left]at(-3,-.62){$S_2'$};
+ \draw[<->](-3,-1.9)--(0,-1.9)node[midway,below]{$L_1$};
+ \draw[<->](0,-1.9)--(6,-1.9)node[midway,below]{$L_2$};
+ \draw[thin](0,0)--(.45,0);
+ \draw[thin](0,1.05)arc(-90:-73.3:.45);\node[left]at(0,1.12){$\alpha$};
+ \draw[thin](.16,-.75)--(1.1,-1.05)node[right]{$n$};
+ \draw[fill=Blue!8](1.4,.02)rectangle(1.56,.65);
+ \draw[thin](1.48,.65)--(2.3,1.1)node[right]{膜 $n',t$};
+ \node[above,align=center]at(2.5,1.85){上、下棱镜使光偏向公共底面\\出射线反向延长确定虚源};
+\end{tikzpicture}\figcap{图 21.10：菲涅耳双棱镜。上、下两半在公共底面相接；光线在界面折转，虚线与出射线共线。膜仅遮住上半束，忽略其横向位移而计入相位延迟；虚源公式采用薄棱镜近轴近似。}\end{center}}
+
+\newcommand{\DoubleMirrorDiagram}{%
+% alpha=12deg,R=2,L=5；两镜方向-51,-39deg；几何角度夸大。
+\begin{center}\begin{tikzpicture}[scale=.85,>=Latex]
+ \coordinate(O)at(0,0);\coordinate(S)at(0,2);
+ \coordinate(Vone)at({-2*cos(12)},{2*sin(12)});\coordinate(Vtwo)at({-2*cos(12)},{-2*sin(12)});
+ \draw[very thick](-1.4,{1.4*tan(51)})--(O)--(1.65,{-1.65*tan(39)});
+ \draw[guide](-1.96,0)--(5.4,0);\draw[very thick](5,-1.7)--(5,2.2);
+ \draw[DeepBlue,line width=2pt](5,{-5*tan(12)})--(5,{5*tan(12)});
+ \foreach \V in {Vone,Vtwo}{\draw[guide](\V)--(O);}
+ \draw[guide](O)--(5,{-5*tan(12)}) (O)--(5,{5*tan(12)});
+ \coordinate(A)at(-.254342226,.314086491);\coordinate(B)at(.343717036,-.278336567);
+ \draw[DeepBlue,thick](S)--(A)--(5,0) (S)--(B)--(5,0);
+ \draw[guide](Vone)--(A) (Vtwo)--(B);
+ \fill(S)circle(1.5pt)node[above]{$S$};\fill(O)circle(1.2pt)node[below left]{$O$};
+ \fill(Vone)circle(1.2pt)node[left]{$S_1'$};\fill(Vtwo)circle(1.2pt)node[left]{$S_2'$};
+ \node[left]at(-1.75,1.5){$M_1$};\node[below]at(1.45,-1.3){$M_2$};
+ \draw[<->](5.45,{-5*tan(12)})--(5.45,{5*tan(12)})node[midway,right]{$W$};
+ \draw[<->](0,-2)--(5,-2)node[midway,below]{$L$};
+ \draw[<->]({-2*cos(12)},-2.7)--(5,-2.7)node[midway,below]{$L+R\cos\alpha$};
+ \node[anchor=west]at(.65,2.75){$OS=R$，小夹角 $\alpha$ 已夸大};
+\end{tikzpicture}\figcap{图 21.11：双面镜的两条反射光路在屏上重合。两虚源都在镜后，屏距从虚源平面量起；经过 $O$ 的边界射线限定 $W$。}\end{center}}
+
+\newcommand{\BilletSourceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.7,>=Latex]
+ \draw[guide](-3.2,0)--(8.3,0);\fill(-3,0)circle(1.5pt)node[left]{$S$};
+ \foreach \s in {-1,1}{
+  \draw[very thick](0,{\s*.3})--(0,{\s*1.8});\draw[thin](-.12,{\s*.3})--(.12,{\s*.3});
+  \foreach \h in {.3,1.8}{\draw[DeepBlue,thick](-3,0)--(0,{\s*\h})--(4,{\s*.7})--(8,{\s*(1.4-\h)});}
+  \fill(4,{\s*.7})circle(1.5pt);}
+ \draw[very thick](8,-1.9)--(8,1.9);\draw[Blue,line width=2pt](8,-.4)--(8,.4);
+ \node[above]at(4,.7){$S_1'$};\node[below]at(4,-.7){$S_2'$};
+ \draw[<->](-.5,-.3)--(-.5,.3)node[midway,left]{$\delta$};
+ \draw[<->](4.8,-.7)--(4.8,.7)node[midway,right]{$d$};
+ \draw[<->](8.6,-.4)--(8.6,.4)node[midway,right]{$D$};
+ \draw[<->](-3,-2.1)--(0,-2.1)node[midway,below]{$l_1$};
+ \draw[<->](0,-2.1)--(4,-2.1)node[midway,below]{$l_2$};
+ \draw[<->](4,-2.1)--(8,-2.1)node[midway,below]{$L-l_2$};
+\end{tikzpicture}\figcap{例 21.8 解图：比耶对切透镜、两实像源与公共照明区。竖线是薄透镜所在平面，切口之间留有间隙。}\label{fig:billet}\end{center}}
+\newcommand{\MeslinSourceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[guide](-3.2,0)--(6,0);\fill(-3,0)circle(1.5pt)node[left]{$S$};
+ \draw[very thick](0,0)--(0,1.5) (2,-1.5)--(2,0);
+ \draw[DeepBlue,thick](-3,0)--(0,1.2)--(3,0)--(5,-.8);
+ \draw[Blue,thick](-3,0)--(2,-1.2)--({29/7},0)--(5,.48);
+ \draw[very thick]({25/7},-1.2)--({25/7},1.2);\fill(3,0)circle(1.5pt);\fill({29/7},0)circle(1.5pt);
+ \node[above left]at(3,0){$S_1'$};\node[above right]at({29/7},0){$S_2'$};
+ \node[above]at({25/7},1.3){中点屏};\node[below]at(1,-1.7){两半沿轴错开};
+ \draw[<->](3,-1.5)--({29/7},-1.5)node[midway,below]{$a$};
+ \begin{scope}[shift={(7.4,0)}]
+  \foreach \r in {.4,.7,1.0}{\draw[DeepBlue](180:\r)arc[start angle=180,end angle=360,radius=\r];}
+  \draw[guide](-1.1,0)--(1.1,0);\node[above]at(0,.2){屏的正视图};
+ \end{scope}
+\end{tikzpicture}\figcap{例 21.9 解图：梅斯林装置的两像都在光轴上，屏置于两像之间。重叠光只占一侧半屏，条纹为同心半圆弧；轴向间隔已夸大。}\label{fig:meslin}\end{center}}
+
+\newcommand{\NewtonRingsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.92,>=Latex]
+ \begin{scope}
+  \draw[very thick](-2.5,0)--(2.5,0);
+  \draw[very thick,domain=-2.2:2.2,samples=101]plot(\x,{4-sqrt(16-\x*\x)});
+  \draw[thick](-2.2,{4-sqrt(16-2.2*2.2)})--(-2.2,1.1)--(2.2,1.1)--(2.2,{4-sqrt(16-2.2*2.2)});
+  \fill(0,0)circle(1.3pt)node[below left]{$O$};
+  \draw[<->](1.8,0)--(1.8,{4-sqrt(16-1.8*1.8)})node[midway,right=4pt]{$t(r)$};
+  \draw[<->](0,-.65)--(1.8,-.65)node[midway,below]{$r$};
+  \node[above]at(0,1.15){平凸透镜};\node[below]at(-1.1,-1.15){底板（透明玻璃特例）};
+ \end{scope}
+ \begin{scope}[shift={(6,0)}]
+  \foreach \m in {1,...,7}{\draw[DeepBlue](0,0)circle({.55*sqrt(\m)});}
+  \fill(0,0)circle(.06);\node[below]at(0,-1.65){暗环满足 $r_m^2=m\lambda R$};
+ \end{scope}
+\end{tikzpicture}\figcap{牛顿环的接触几何与暗环半径。球面在 $O$ 与平板相切，$t(r)$ 两端分别落在平板和球面；环半径按平方级次生成。}\label{fig:newton}\end{center}}

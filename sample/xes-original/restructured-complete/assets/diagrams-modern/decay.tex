@@ -1,0 +1,13 @@
+% Contract: lambda2=2lambda1, N2 peak (ln2,1/4), legend outside curves.
+\begin{tikzpicture}
+\begin{axis}[width=.8\linewidth,height=5.4cm,axis lines=left,
+ xlabel={$\lambda_1t$},ylabel={$N/N_{10}$},xmin=0,xmax=5,ymin=0,ymax=1.08,
+ xtick={.693147,2,4},xticklabels={$\ln2$,$2$,$4$},ytick={.25,.5,1},
+ legend style={draw=none,fill=none,at={(.96,.94)},anchor=north east},
+ every axis label/.style={fill=none}]
+ \addplot[DeepBlue,very thick,domain=0:5,samples=200]{exp(-x)}; \addlegendentry{母核 $N_1$}
+ \addplot[TextGray,very thick,dashed,domain=0:5,samples=200]{exp(-x)-exp(-2*x)}; \addlegendentry{子核 $N_2$}
+ \draw[guide] (axis cs:.693147,0)--(axis cs:.693147,.25)--(axis cs:0,.25);
+ \addplot[only marks,mark=*,DeepBlue,forget plot] coordinates {(.693147,.25)};
+\end{axis}
+\end{tikzpicture}

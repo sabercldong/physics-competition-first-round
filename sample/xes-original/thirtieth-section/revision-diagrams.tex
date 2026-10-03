@@ -1,0 +1,124 @@
+% Shared coordinates for mechanical contact and thermodynamic paths.
+\tikzset{revcycle/.style={DeepBlue,thick,postaction={decorate},decoration={markings,mark=at position .55 with {\arrow{Latex}}}}}
+\newcommand{\pistonStageRevision}[4]{\begin{scope}[shift={(#1,0)}]
+\pgfmathsetmacro{\pinY}{-2+.4*cos(#2)+sqrt(1.5*1.5-.4*.4*sin(#2)*sin(#2))}
+\coordinate(pin)at(0,\pinY);\coordinate(crank)at({.4*sin(#2)},{-2+.4*cos(#2)});
+\fill[DeepBlue!7](-.62,\pinY+.12)rectangle(.62,.75);
+\draw[thick](-.62,-1.2)--(-.62,.75) (.62,-1.2)--(.62,.75) (-.25,.75)--(.25,.75);
+\ifnum#4=1 \draw[thick](-.62,.55)--(-.25,.4);\else\draw[thick](-.62,.75)--(-.25,.75);\fi
+\ifnum#4=5 \draw[thick](.25,.4)--(.62,.55);\else\draw[thick](.25,.75)--(.62,.75);\fi
+\draw[thick,fill=SoftGray](-.62,\pinY-.06)rectangle(.62,\pinY+.12);
+\draw[thick](pin)--(crank)--(0,-2);\draw[thick](0,-2)circle(.4);\fill(pin)circle(1.2pt)(crank)circle(1.2pt)(0,-2)circle(1.2pt);
+\draw[thick](0,1.03)--(0,.59);\draw[thick](-.09,.64)--(.09,.64);
+\ifnum#4=3 \draw[orange!85!black,thick](-.14,.52)--(.05,.38)--(-.06,.24)--(.13,.12);\fi
+\ifnum#4=1 \draw[->,DeepBlue,thick](-1.05,.95)--(-.45,.95)--(-.45,.62);\fi
+\ifnum#4=5 \draw[->,DeepBlue,thick](.45,.62)--(.45,.95)--(1.05,.95);\fi
+\ifnum#4=3\else
+\ifnum#4=2 \draw[->](.87,-.8)--(.87,-.1);\else
+\ifnum#4=5 \draw[->](.87,-.8)--(.87,-.1);\else\draw[->](.87,-.1)--(.87,-.8);\fi\fi\fi
+\node[font=\small]at(0,-2.8){#3};\end{scope}}
+\renewcommand{\ottoCycleFigure}{\begin{center}\begin{tikzpicture}[font=\small]
+\pistonStageRevision{0}{90}{进气（口开）}{1}
+\pistonStageRevision{2.65}{270}{压缩}{2}
+\pistonStageRevision{5.3}{0}{点火}{3}
+\pistonStageRevision{7.95}{90}{做功}{4}
+\pistonStageRevision{10.6}{270}{排气（口开）}{5}
+\node[anchor=west]at(6.5,1.45){火花塞};\draw[TextGray](6.35,1.42)--(5.3,1.03);
+\node[font=\scriptsize]at(5.3,-3.35){相同缸径、曲柄半径与连杆长度；同一位置可属于不同冲程}
+;\end{tikzpicture}
+\par\medskip\begin{tikzpicture}[x=1.6cm,y=.9cm,font=\small]
+\pgfmathsetmacro{\pa}{1.8*pow(1.2/3,1.4)}\pgfmathsetmacro{\pd}{4*pow(1.2/3,1.4)}
+\draw[axis](0,0)--(4,0)node[right]{$V$};\draw[axis](0,0)--(0,4.8)node[above]{$P$};
+\draw[revcycle,domain=3:1.2,samples=90]plot(\x,{1.8*pow(1.2/\x,1.4)});
+\draw[revcycle](1.2,1.8)--(1.2,4);
+\draw[revcycle,domain=1.2:3,samples=90]plot(\x,{4*pow(1.2/\x,1.4)});
+\draw[revcycle](3,\pd)--(3,\pa);
+\draw[guide](1.2,0)--(1.2,1.65) (3,0)--(3,\pa);
+\draw[TextGray,dashed,->](1.2,\pa)--(2.5,\pa);\draw[TextGray,->](2.4,\pa-.12)--(1.6,\pa-.12);
+\foreach \x/\y/\n/\a in {3/\pa/A/below right,1.2/1.8/B/left,1.2/4/C/above,3/\pd/D/above right,1.2/\pa/O/left}{\fill(\x,\y)circle(1.2pt)node[\a]{$\n$};}
+\node[below]at(1.2,0){$V_2$};\node[below]at(3,0){$V_1$};
+\node[anchor=west,align=left]at(4.6,3.2){蓝线：封闭空气标准循环\\[6pt]$A\to B$、$C\to D$：绝热\\[6pt]$B\to C$：等容吸热 $Q_h$\\[6pt]$D\to A$：等容放热 $Q_c$};
+\node[anchor=west,align=left,font=\scriptsize]at(4.6,.65){灰色往返线仅提示真实进、排气\\不是蓝色闭式循环的一部分};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\carnotCycleFigure}{\begin{center}\begin{tikzpicture}[x=1.45cm,y=1cm,font=\small]
+\pgfmathsetmacro{\cold}{4/pow(1.5,2/3)}
+\draw[axis](0,0)--(4.4,0)node[right]{$V$};\draw[axis](0,0)--(0,4.9)node[above]{$P$};
+\draw[TextGray,domain=.9:4.15,samples=100]plot(\x,{4/\x});
+\draw[TextGray,domain=.9:4.15,samples=100]plot(\x,{\cold/\x});
+\draw[revcycle,domain=1:2.4,samples=85]plot(\x,{4/\x});
+\draw[revcycle,domain=2.4:3.6,samples=85]plot(\x,{4*pow(2.4,2/3)/pow(\x,5/3)});
+\draw[revcycle,domain=3.6:1.5,samples=85]plot(\x,{\cold/\x});
+\draw[revcycle,domain=1.5:1,samples=85]plot(\x,{4/pow(\x,5/3)});
+\foreach \x/\y/\n/\a in {1/4/1/above left,2.4/{4/2.4}/2/above right,3.6/{\cold/3.6}/3/below,1.5/{\cold/1.5}/4/below left}{\fill(\x,\y)circle(1.4pt)node[\a]{$\n$};}
+\node[anchor=west,align=left]at(5,3.4){高温等温：$PV=nRT_1$\\[5pt]$1\to2$ 吸热 $Q_1$};
+\node[anchor=west,align=left]at(5,1.6){低温等温：$PV=nRT_2$\\[5pt]$3\to4$ 放热 $Q_2$};
+\draw[TextGray](4.1,{4/4.1})--(4.55,3.4)--(4.8,3.4);
+\draw[TextGray](4.1,{\cold/4.1})--(4.65,1.6)--(4.8,1.6);
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\heatdevicepanel}[5]{\begin{scope}[shift={(#1,0)}]
+\draw[thermobody,fill=SoftGray](-1.4,2.15)rectangle(1.4,2.62);\draw[thermobody,fill=SoftGray](-1.4,-2.62)rectangle(1.4,-2.15);
+\node[thermolabel]at(0,2.38){高温热库 $T_h$};\node[thermolabel]at(0,-2.38){低温热库 $T_c$};
+\draw[thermobody](-.66,-.65)rectangle(.66,.65);\node[thermolabel,align=center,text width=1.1cm]at(0,0){#2};#3 #4 #5\end{scope}}
+\renewcommand{\foundersPortraitFigure}{\begin{center}\includegraphics[width=.96\linewidth]{thermodynamics-founders.png}\par\smallskip
+\makebox[.31\linewidth]{萨迪·卡诺}\makebox[.31\linewidth]{开尔文}\makebox[.31\linewidth]{鲁道夫·克劳修斯}\end{center}}
+\renewcommand{\boltzmannMemorialFigure}{\begin{center}\begin{tikzpicture}
+\node[inner sep=0]at(0,0){\includegraphics[width=6.2cm]{boltzmann-memorial.png}};
+\node[font=\large]at(0,2.32){$S=k_B\ln\Omega$};\end{tikzpicture}\end{center}}
+
+\renewcommand{\entropyPathFigure}{\begin{center}\begin{tikzpicture}[font=\small]
+\draw[axis](0,0)--(5,0)node[right]{$V$};\draw[axis](0,0)--(0,4.8)node[above]{$P$};
+\draw[revcycle](1,1.6)--(1,4);\draw[revcycle,domain=1:4,samples=90]plot(\x,{4/\x});
+\foreach \x/\y/\n/\a in {1/1.6/A/left,1/4/B/above,4/1/C/right}{\fill(\x,\y)circle(1.5pt)node[\a]{$\n$};}
+\node[anchor=west,align=left]at(6,3.45){$A:(V_0,T_0)$\\[5pt]$B:(V_0,T)$\\[5pt]$C:(V,T)$};
+\node[anchor=west,align=left]at(6,1.25){$A\to B$：等容\\[5pt]$B\to C$：等温，$PV=nRT$};
+\end{tikzpicture}\par\smallskip
+$\displaystyle\Delta S=n c_v\ln\frac{T}{T_0}+nR\ln\frac{V}{V_0}$
+\end{center}}
+
+\renewcommand{\carnotProofDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node[draw,minimum width=3cm,minimum height=.6cm](H)at(0,2){高温热库 $T_1$};
+\node[draw,minimum width=2.2cm,minimum height=.8cm](E)at(0,0){可逆热机};
+\node[draw,minimum width=3cm,minimum height=.6cm](C)at(0,-2){低温热库 $T_2$};
+\draw[thermoarrow](H)--node[right]{$Q_1$}(E);\draw[thermoarrow](E)--node[right]{$Q_2$}(C);
+\draw[thermoarrow](E.east)--(3.1,0);\node[above]at(2.2,.15){$W$};
+\node[anchor=west,align=left]at(4,0){$W=Q_1-Q_2$\\[8pt]$Q_1/T_1=Q_2/T_2$\\[8pt]$\eta=1-T_2/T_1$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\irreversibleProcessesDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\foreach \sx/\phase in {0/0,5/1}{\begin{scope}[shift={(\sx,0)}]
+\ifnum\phase=0 \fill[PaleBlue](-1.6,-1)rectangle(0,1);\draw[thick](0,-1)--(0,1);\node at(-.8,0){气体};\node at(.8,0){真空};
+\else\fill[PaleBlue](-1.6,-1)rectangle(1.6,1);\draw[guide](0,-1)--(0,1);\node at(.8,0){气体};\fi
+\draw[thick](-1.6,-1)rectangle(1.6,1);\end{scope}}
+\draw[->,DeepBlue,thick](1.85,0)--(3.15,0)node[midway,above]{撤去隔板};
+\node at(2.5,-1.55){绝热自由膨胀：$Q=W=0$，$\Delta S=nR\ln(V_f/V_i)>0$};
+\draw[thick](9,-1)rectangle(10.5,1);\draw[thick](11.3,-1)rectangle(12.8,1);
+\node at(9.75,0){$T_h$};\node at(12.05,0){$T_c$};\draw[thermoarrow](10.6,0)--(11.2,0);
+\node[align=center]at(10.9,-1.6){两恒温热库间传热\\$\Delta S=Q(1/T_c-1/T_h)>0$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\threeBodiesDiagram}{\begin{center}\begin{tikzpicture}[font=\small]
+\node[draw,minimum width=2.7cm,minimum height=.7cm](Y)at(0,2.2){供热体 $Y$};
+\node[draw,minimum width=2.7cm,minimum height=.7cm](X)at(6,2.2){目标体 $X$};
+\node[draw,minimum width=2.7cm,minimum height=.7cm](E)at(0,0){可逆热机};
+\node[draw,minimum width=2.7cm,minimum height=.7cm](P)at(6,0){可逆热泵};
+\node[draw,minimum width=3cm,minimum height=.7cm](Z)at(3,-2.4){低温体 $Z$};
+\draw[thermoarrow](Y)--node[left]{$-c\dd Y$}(E);\draw[thermoarrow](P)--node[right]{$c\dd X$}(X);
+\draw[thermoarrow](E.east)--node[above]{$\delta W$}(P.west);
+\draw[thermoarrow](E.south)--(0,-2.4)--(Z.west);
+\draw[thermoarrow](Z.east)--(6,-2.4)--(P.south);
+\node[left,align=right]at(-.1,-1.3){热机向 $Z$ 放热};\node[right,align=left]at(6.1,-1.3){热泵从 $Z$ 吸热};
+\node at(3,-3.4){初态 $(X,Y,Z)=(300,300,100)\,\mathrm K$；极限末态 $(400,150,150)\,\mathrm K$};
+\end{tikzpicture}\end{center}}
+
+\renewcommand{\surfaceEngineDiagram}{\begin{center}\begin{tikzpicture}[x=1.5cm,y=.9cm,font=\small]
+\draw[axis](0,0)--(3.35,0)node[right]{$A$};\draw[axis](0,0)--(0,4.9)node[above]{$\sigma$};
+\fill[PaleBlue](.8,1)--(1.4,1)--plot[domain=1.4:2.8,samples=70](\x,{5-pow(2.8/\x,2)})--(1.6,4)--plot[domain=1.6:.8,samples=70](\x,{5-pow(1.6/\x,2)})--cycle;
+\draw[revcycle](.8,1)--(1.4,1);\draw[revcycle,domain=1.4:2.8,samples=70]plot(\x,{5-pow(2.8/\x,2)});
+\draw[revcycle](2.8,4)--(1.6,4);\draw[revcycle,domain=1.6:.8,samples=70]plot(\x,{5-pow(1.6/\x,2)});
+\foreach \x/\y/\n/\a in {.8/1/1/left,1.4/1/2/below right,2.8/4/3/right,1.6/4/4/above left}{\fill(\x,\y)circle(1.4pt)node[\a]{$\n$};}
+\node[left]at(0,1){$\sigma_h$};\node[left]at(0,4){$\sigma_c$};
+\node[anchor=west,align=left]at(4.2,3.4){$\sigma(T)=\sigma_*-aT^2$\\[6pt]等熵线：$AT=\text{常量}$\\[6pt]$1\to2$：高温扩面\\[6pt]$3\to4$：低温缩面};
+\node[anchor=west]at(4.2,1){$W_{\rm out}=-\oint\sigma\dd A>0$};
+\end{tikzpicture}\end{center}}

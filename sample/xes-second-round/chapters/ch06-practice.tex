@@ -1,0 +1,275 @@
+\section{配套习题：刚体}
+\label{r2ch06:sec:practice}
+
+\begin{practicebox}{地月潮汐交换角动量}
+地月系统因潮汐摩擦缓慢演化。设地球、月球质量分别为 $M_e,M_m$，地月距离为 $r$；地球自转角速度和月球公转角速度分别为 $\omega_e,\omega_m$。忽略月球尺寸、地轴倾角和地球绕质心的轨道运动，地球自转惯量为 $I_e$。
+
+(a) 证明
+\[
+ \dot r=-\frac{2\sqrt r\,I_e}{M_m\sqrt{GM_e}}\,\dot\omega_e.
+\]
+(b) 求系统机械能变化率并讨论符号。
+\label{r2ch06:pr:001}
+\begin{solution}
+图~\ref{r2ch06:fig:003} 中潮汐内力矩把角动量从地球自转传给月球公转，但对孤立的地月系统不产生外力矩。圆轨道满足
+$\omega_m^2r^3=GM_e$，月球轨道角动量为
+$L_m=M_mr^2\omega_m=M_m\sqrt{GM_er}$。因此
+\begin{equation}
+ L=I_e\omega_e+M_m\sqrt{GM_er}=\text{常量},
+ \qquad
+ I_e\dot\omega_e+\frac{M_m\sqrt{GM_e}}{2\sqrt r}\dot r=0.
+ \label{r2ch06:eq:020}
+\end{equation}
+整理即得
+\begin{equation}
+ \boxed{\dot r=-\frac{2\sqrt r\,I_e}{M_m\sqrt{GM_e}}\dot\omega_e}.
+ \label{r2ch06:eq:021}
+\end{equation}
+地球自转变慢时 $\dot\omega_e<0$，故 $\dot r>0$：月球逐渐远离地球。
+
+体系机械能是地球自转能与月球圆轨道机械能之和：
+\[
+ E=\frac12I_e\omega_e^2-\frac{GM_eM_m}{2r}.
+\]
+求导并使用式~\eqref{r2ch06:eq:021}，
+\begin{equation}
+ \boxed{\dot E=I_e\omega_e\dot\omega_e
+ +\frac{GM_eM_m}{2r^2}\dot r
+ =I_e(\omega_e-\omega_m)\dot\omega_e}.
+ \label{r2ch06:eq:022}
+\end{equation}
+当前 $\omega_e>\omega_m$ 且 $\dot\omega_e<0$，故 $\dot E<0$。减少的机械能转化为潮汐形变中的内能。若 $\omega_e<\omega_m$，潮汐力矩方向反转，使 $\dot\omega_e>0$，乘积仍不大于零；同步状态 $\omega_e=\omega_m$ 是耗散趋向的极限。式~\eqref{r2ch06:eq:022} 的量纲为转动惯量乘角速度平方除以时间，即功率。
+\rTwoChSixEarthMoon
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{绕运动瞬心取矩为何会失效}
+平面刚体的瞬心相对刚体画出本体极迹，故刚体对瞬心的转动惯量 $I(t)$ 一般不是常量。记角速度为 $\omega$、对瞬心的角动量为 $L=I\omega$，外力对瞬心的合力矩为 $M$。
+
+(a) 给出 $M,I,\omega$ 的动力学关系；
+(b) 证明一般 $M\ne\dot L$ 并解释原因；
+(c) 令 $E=I\omega^2/2$，证明 $M\omega=\dot E$，说明动能定理为何仍成立。
+\label{r2ch06:pr:002}
+\begin{solution}
+图~\ref{r2ch06:fig:004} 中瞬心 $Q$ 只是“此刻速度为零的位置”，并非固定的物质点。刚体此刻的速度场是 $\vect v=\vect\omega\times\vect\rho_Q$，所以外力功率仍可对 $Q$ 取矩：$\mathcal P=M\omega$。另一方面
+\begin{equation}
+ \dot E=\frac{\dd}{\dd t}\left(\frac12I\omega^2\right)
+ =I\omega\dot\omega+\frac12\dot I\omega^2.
+ \label{r2ch06:eq:023}
+\end{equation}
+由功率定理 $M\omega=\dot E$，在 $\omega\ne0$ 时得到
+\begin{equation}
+ \boxed{M=I\dot\omega+\frac12\dot I\,\omega}.
+ \label{r2ch06:eq:024}
+\end{equation}
+零角速度处可由连续性理解同一关系。可是
+\begin{equation}
+ \dot L=\frac{\dd}{\dd t}(I\omega)
+ =I\dot\omega+\dot I\omega,\qquad
+ \boxed{M-\dot L=-\frac12\dot I\omega}.
+ \label{r2ch06:eq:025}
+\end{equation}
+因此只有 $\dot I=0$ 等特殊情形才有 $M=\dot L$。错误的根源是把运动的几何瞬心当成固定轴，漏掉了式~\eqref{r2ch06:eq:012} 中的运输项。功率关系却只使用每个质点在该瞬间的真实速度，瞬心速度场确为纯转动，所以
+\begin{equation}
+ \boxed{M\omega=\dot E}
+ \label{r2ch06:eq:026}
+\end{equation}
+始终成立。若 $I$ 为常量，式~\eqref{r2ch06:eq:024} 同时退化成 $M=I\dot\omega$，与熟悉的定轴转动一致。
+\figInstantPole
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{铰接棒槌的稳定圆锥转动}
+棒槌状刚体在 $O$ 点与竖直转轴 $AB$ 铰接，并以恒定角速度 $\Omega$ 绕轴稳定转动。质量为 $m$，质心为 $C$，$OC=r$。取过质心的主轴：$y$ 沿 $OC$，$x$ 沿环绕竖直轴的切向，$z$ 位于 $OC$ 与竖直轴组成的平面内；相应主转动惯量为 $J_{xx},J_{yy},J_{zz}$。$OC$ 与竖直向下方向夹角为 $\theta$。
+
+有人用“质心离心力与重力对 $O$ 的力矩平衡”得到
+$\cos\theta=g/(\Omega^2r)$。补全这个计算，说明它成立的条件，并给出一般结果。
+\label{r2ch06:pr:003}
+\begin{solution}
+图~\ref{r2ch06:fig:005} 明确区分竖直轴、$OC$ 和三条主轴。朴素计算在随轴转动的参考系中把全部质量集中到 $C$：离心力大小为 $m\Omega^2r\sin\theta$，它和重力对 $O$ 的力矩分别为
+\begin{equation}
+ M_{\rm cf}=m\Omega^2r^2\sin\theta\cos\theta,\qquad
+ M_g=mgr\sin\theta.
+ \label{r2ch06:eq:027}
+\end{equation}
+令两者相等并取 $\sin\theta\ne0$，确实得到 $\cos\theta=g/(\Omega^2r)$。
+
+一般刚体不能用一个质点代替。以 $O$ 为定点，平行轴定理给
+\[
+ I_y^{(O)}=J_{yy},\qquad
+ I_z^{(O)}=J_{zz}+mr^2,\qquad
+ I_x^{(O)}=J_{xx}+mr^2.
+\]
+在图示主轴系中，竖直角速度在 $y,z$ 方向的分量分别为
+$-\Omega\cos\theta$ 与 $\Omega\sin\theta$。稳态时角动量随刚体以 $\Omega$ 绕竖直轴转动，或等价地把这些分量代入欧拉方程~\eqref{r2ch06:eq:019} 的 $x$ 分量，得到
+\begin{equation}
+ mgr\sin\theta
+ =\Omega^2\bigl(I_z^{(O)}-I_y^{(O)}\bigr)
+ \sin\theta\cos\theta,\qquad
+ \boxed{\cos\theta=\frac{mgr}
+ {\Omega^2(mr^2+J_{zz}-J_{yy})}}.
+ \label{r2ch06:eq:028}
+\end{equation}
+所以朴素结果成立的条件是 $J_{zz}=J_{yy}$；点质量模型只是其中一个特例。非竖直稳态还要求右式绝对值不大于 $1$，且分母符号允许相应方向的 $\cos\theta$。$J_{xx}$ 不进入稳态角度，但会影响偏离稳态后的章动和稳定性，不能据此认为它对整个运动无关。
+\figSteadyTop
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{硬币纯滚动的圆周轨道}
+一枚半径为 $r$ 的均匀薄硬币在水平桌面上纯滚动，硬币中心沿半径为 $R$ 的圆周以速率 $v$ 运动。硬币顶部向圆心方向倾斜一个小角 $\varphi$。求 $\varphi$ 应满足的关系。
+\label{r2ch06:pr:004}
+\begin{solution}
+图~\ref{r2ch06:fig:006}(a) 用横截面定义内倾角，(b) 用俯视图定义中心轨道，避免把硬币半径 $r$ 与轨道半径 $R$ 混为一条线。令轨道角速度 $\Omega=v/R$，硬币对称轴为 $\uvec n$。均匀薄圆盘关于对称轴和直径的转动惯量分别为
+$I_3=mr^2/2$、$I_1=mr^2/4$。
+
+角速度可分成绕竖直轴的进动 $\Omega\uvec z$ 和绕 $\uvec n$ 的自转。纯滚动条件使角速度在 $\uvec n$ 方向的总分量为 $-v/r$。因此
+\begin{equation}
+ \vect L_C=I_1\Omega\uvec z
+ +\left(-I_3\frac vr-I_1\Omega\sin\varphi\right)\uvec n.
+ \label{r2ch06:eq:029}
+\end{equation}
+稳态时 $\uvec n$ 以 $\Omega$ 绕竖直轴转动。将 $\dd\vect L_C/\dd t$ 与接触力对质心的力矩相等，得到一般关系
+\begin{equation}
+ g\tan\varphi
+ =\frac{v^2}{R}\left(1+\frac{I_3}{mr^2}\right)
+ +\frac{I_1}{mr^2}\frac{rv^2}{R^2}\sin\varphi.
+ \label{r2ch06:eq:030}
+\end{equation}
+代入均匀薄圆盘的惯量，
+\begin{equation}
+ g\tan\varphi=\frac{3v^2}{2R}+\frac{rv^2}{4R^2}\sin\varphi.
+ \label{r2ch06:eq:031}
+\end{equation}
+在 $\varphi\ll1$ 下保留一阶量，
+\begin{equation}
+ \boxed{\displaystyle
+ \varphi\simeq\frac{3v^2/(2R)}{g-rv^2/(4R^2)}};
+ \qquad R\gg r\ \text{时}\quad
+ \boxed{\varphi\simeq\frac{3v^2}{2gR}}.
+ \label{r2ch06:eq:032}
+\end{equation}
+内倾角随 $v^2/R$ 增大，方向与向心加速度一致。若桌面摩擦不足以提供所需接触力，纯滚动稳态本身不会实现；式~\eqref{r2ch06:eq:032} 不能单独保证不打滑。
+\figRollingCoin
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{任意初始平动和转动的台球}
+半径为 $a$、质量为 $m$ 的均匀实心台球在水平桌面上被击出，质心初速度 $\vect v_0$ 平行桌面，初角速度 $\vect\omega_0$ 方向任意。滑动摩擦系数为常量 $\mu$。讨论台球之后的运动。
+\label{r2ch06:pr:005}
+\begin{solution}
+令 $\uvec k$ 竖直向上。图~\ref{r2ch06:fig:007} 中接触点相对桌面的滑动速度为
+\begin{equation}
+ \vect u=\vect v-a\vect\omega\times\uvec k,\qquad
+ \vect f=-\mu mg\frac{\vect u}{u}.
+ \label{r2ch06:eq:033}
+\end{equation}
+竖直自转分量 $\omega_k=\vect\omega\cdot\uvec k$ 不进入 $\vect u$，接触摩擦对竖直轴也没有力矩，所以 $\omega_k$ 始终不变。滑动阶段
+\[
+ m\dot{\vect v}=\vect f,\qquad
+ I\dot{\vect\omega}=(-a\uvec k)\times\vect f,\qquad
+ I=\frac25ma^2.
+\]
+由此得到
+\begin{equation}
+ \dot{\vect u}=-\mu g\left(1+\frac{ma^2}{I}\right)\frac{\vect u}{u}
+ =-\frac72\mu g\frac{\vect u}{u}.
+ \label{r2ch06:eq:034}
+\end{equation}
+所以 $\vect u$ 的方向固定、大小匀速减小；摩擦方向在整个滑动阶段不变。若 $u_0\ne0$，进入纯滚动所需时间为
+\begin{equation}
+ \boxed{t_* =\frac{u_0}{\mu g(1+ma^2/I)}
+ =\frac{2u_0}{7\mu g}},\qquad
+ \vect u_0=\vect v_0-a\vect\omega_0\times\uvec k.
+ \label{r2ch06:eq:035}
+\end{equation}
+在 $0<t<t_*$ 内，质心受方向恒定的加速度，轨迹一般是抛物线段；只有 $\vect u_0\parallel\vect v_0$ 时才是直线。积分运动方程得滚动开始时
+\begin{equation}
+ \boxed{\vect v_* =\vect v_0-\frac27\vect u_0},
+ \qquad
+ \boxed{\vect\omega_* =\vect\omega_0
+ +\frac{5}{7a}\uvec k\times\vect u_0}.
+ \label{r2ch06:eq:036}
+\end{equation}
+直接代回可验证 $\vect v_*-a\vect\omega_*\times\uvec k=0$。此后若忽略滚动阻力，摩擦降为零，$\vect v_*,\vect\omega_*$ 保持不变；初始若 $u_0=0$，台球从一开始就在纯滚动。速度改变量与角速度改变量同时来自同一摩擦冲量，因此动量和角动量核验必须成对进行。
+\figBilliardSlip
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{质心位于焦点的非均匀椭圆板}
+椭圆薄板半长轴、半短轴分别为 $A,B$，焦距参数 $C=\sqrt{A^2-B^2}$。希望通过非均匀面密度使质心恰在一个焦点 $F$。
+
+(a) 以 $F$ 为极点，$\varphi=0$ 指向最近顶点，令面密度只依赖 $\varphi$。构造一种可行密度，求总质量 $m$ 及绕 $F$ 的转动惯量 $J$，并用 $m,A,B$ 表示 $J$；
+
+(b) 将 $m,A,B,C$ 视为已知。板从焦点在上的倒立位置由静止释放，始终在水平地面上纯滚动，求到达焦点在下的正立位置时的角速度和支持力；
+
+(c) 求中间长轴水平瞬间的支持力和摩擦力。
+\label{r2ch06:pr:006}
+\begin{solution}
+图~\ref{r2ch06:fig:008}(a) 中椭圆边界相对焦点的极径为
+\[
+ R(\varphi)=\frac{p}{1+e\cos\varphi},\qquad
+ e=\frac CA,\qquad p=\frac{B^2}{A}.
+\]
+质心位于 $F$ 要求 $\int\vect r\,\dd m=0$。取
+\begin{equation}
+ \boxed{\sigma(\varphi)=\sigma_0(1+e\cos\varphi)^3},
+ \label{r2ch06:eq:037}
+\end{equation}
+则一级矩的角向被积函数正比于
+$\sigma R^3\uvec e_r=\sigma_0p^3\uvec e_r$，积分一周为零；且 $e<1$ 保证密度处处为正。质量和绕 $F$ 的转动惯量分别为
+\begin{equation}
+ \begin{aligned}
+ m&=\frac12\int_0^{2\pi}\sigma R^2\,\dd\varphi
+ =\pi\sigma_0p^2,\\
+ J&=\frac14\int_0^{2\pi}\sigma R^4\,\dd\varphi
+ =\frac{\pi\sigma_0p^4}{2\sqrt{1-e^2}}
+ =\boxed{\frac{mB^3}{2A}}.
+ \end{aligned}
+ \label{r2ch06:eq:038}
+\end{equation}
+这里使用了 $\int_0^{2\pi}\dd\varphi/(1+e\cos\varphi)=2\pi/\sqrt{1-e^2}$。$J$ 的量纲是 $mB^2$，与结果一致。
+
+图~\ref{r2ch06:fig:008}(b) 把倒立、水平、正立三个时刻分开。倒立和正立时焦点高度分别为 $A+C$、$A-C$，下降量为 $2C$。正立瞬时接触点到 $F$ 的距离为 $A-C$，由机械能守恒
+\begin{equation}
+ 2mgC=\frac12\bigl[J+m(A-C)^2\bigr]\omega_u^2,\qquad
+ \boxed{\omega_u^2=\frac{4mgC}{J+m(A-C)^2}}.
+ \label{r2ch06:eq:039}
+\end{equation}
+为求支持力，令 $\theta$ 为长轴从正立位置转过的角度。椭圆中心高度及焦点高度为
+\[
+ h(\theta)=\sqrt{A^2\cos^2\theta+B^2\sin^2\theta},\qquad
+ y_F=h(\theta)-C\cos\theta.
+\]
+在 $\theta=0$，$y_F'=0$、$y_F''=C(A-C)/A$，且由对称性 $\ddot\theta=0$。所以
+\begin{equation}
+ \boxed{N_u=mg+m\frac{C(A-C)}A\,\omega_u^2}.
+ \label{r2ch06:eq:040}
+\end{equation}
+支持力大于 $mg$，因为质心正经过轨迹最低点并具有向上的法向加速度。
+
+长轴水平时 $\theta=\pi/2$，焦点高度为 $B$，接触点到焦点的距离为 $A$。由能量守恒
+\begin{equation}
+ \boxed{\omega_h^2=\frac{2mg(A+C-B)}{J+mA^2}}.
+ \label{r2ch06:eq:041}
+\end{equation}
+记 $K=J+mA^2$。纯滚动约束下 $T=K(\theta)\dot\theta^2/2$，在水平位置
+$K'=2mCA^2/B$、$y_F'=C$。拉格朗日方程给出
+\begin{equation}
+ \boxed{\alpha_h=\ddot\theta
+ =-\frac{mC}{K}\left(g+\frac{A^2}{B}\omega_h^2\right)}.
+ \label{r2ch06:eq:042}
+\end{equation}
+取实际滚动方向为水平正向，在该瞬间
+$a_x=-C\omega_h^2-B\alpha_h$、
+$a_y=C^2\omega_h^2/B+C\alpha_h$。于是地面对板的摩擦力和支持力为
+\begin{equation}
+ \boxed{f=mC\frac{mBg-J\omega_h^2}{J+mA^2}},
+ \qquad
+ \boxed{N=mg+\frac{mC^2}{J+mA^2}
+ \left(\frac{J\omega_h^2}{B}-mg\right)}.
+ \label{r2ch06:eq:043}
+\end{equation}
+$f$ 是带符号结果；若括号为负，实际摩擦方向与所取正向相反。纯滚动还要求 $N>0$ 且 $|f|\le\mu_sN$，否则题设的无滑动运动无法维持。
+\figEllipseRoll
+\end{solution}
+\end{practicebox}

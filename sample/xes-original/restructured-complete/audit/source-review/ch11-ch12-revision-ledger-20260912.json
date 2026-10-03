@@ -1,0 +1,654 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-12",
+  "scope": "一轮现行第11、12章。本台账按逐源页独立教学主题、源题、源图组登记；不把图组数宣称为每个子图数，也不把主题登记宣称为逐字文本相同比较。",
+  "sources": {
+    "notes": {
+      "id": "r2-mechanics-notes",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛学生版讲义.pdf",
+      "sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb"
+    },
+    "exercises": {
+      "id": "r2-mechanics-exercises",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛习题.pdf",
+      "sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba"
+    }
+  },
+  "pages": [
+    {
+      "id": "notes:p99:teaching",
+      "source": "notes",
+      "physical_page": 99,
+      "printed_page": 97,
+      "chapter": 11,
+      "topic": "有心力、固定力心、位移与极坐标加速度、力矩和角动量；L=0退化条件",
+      "targets": [
+        "ch11:eq:central-force",
+        "ch11:eq:h",
+        "ch11:eq:polar-newton"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p100:teaching",
+      "source": "notes",
+      "physical_page": 100,
+      "printed_page": 98,
+      "chapter": 11,
+      "topic": "面积速度、机械能、束缚与散射、冲量参数、有效势降维",
+      "targets": [
+        "ch11:eq:area-law",
+        "ch11:eq:energy-original",
+        "ch11:fig:bound-scatter",
+        "ch11:eq:effective"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p101:teaching",
+      "source": "notes",
+      "physical_page": 101,
+      "printed_page": 99,
+      "chapter": 11,
+      "topic": "幂律力稳定性、三类有效势、特殊指数、径向周期和拱点积分",
+      "targets": [
+        "ch11:sec:power",
+        "ch11:eq:power-stability",
+        "ch11:fig:power-potentials",
+        "ch11:eq:radial-period"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p102:teaching",
+      "source": "notes",
+      "physical_page": 102,
+      "printed_page": 100,
+      "chapter": 11,
+      "topic": "正负径向积分支、一般散射、u=1/r及两次时间导数、比耐方程",
+      "targets": [
+        "ch11:sec:quadrature",
+        "ch11:eq:angle-integral",
+        "ch11:eq:binet"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p103:teaching",
+      "source": "notes",
+      "physical_page": 103,
+      "printed_page": 101,
+      "chapter": 11,
+      "topic": "平方反比引力/斥力、开普勒圆锥曲线、有效势积分配方第二解法",
+      "targets": [
+        "ch11:sec:kepler",
+        "ch11:eq:conic",
+        "ch11:eq:energy-eccentricity"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p104:teaching",
+      "source": "notes",
+      "physical_page": 104,
+      "printed_page": 102,
+      "chapter": 11,
+      "topic": "初值到轨道根数、初相位象限、能量和半长轴、双体约化及面积推出第三定律",
+      "targets": [
+        "ch11:eq:energy-eccentricity",
+        "ch11:eq:vis-viva",
+        "ch11:eq:third-law"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p111:teaching",
+      "source": "notes",
+      "physical_page": 111,
+      "printed_page": 109,
+      "chapter": 12,
+      "topic": "材料形变类型、物质坐标、位移、泰勒梯度与刚体平移/小转动",
+      "targets": [
+        "ch12:eq:displacement",
+        "ch12:eq:gradient",
+        "ch12:eq:strain"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p112:teaching",
+      "source": "notes",
+      "physical_page": 112,
+      "printed_page": 110,
+      "chapter": 12,
+      "topic": "应变矩阵、正应变及工程剪应变、取向截面和应力线性映射",
+      "targets": [
+        "ch12:eq:strain",
+        "ch12:eq:shear-angle",
+        "ch12:fig:strain",
+        "ch12:eq:traction"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p113:teaching",
+      "source": "notes",
+      "physical_page": 113,
+      "printed_page": 111,
+      "chapter": 12,
+      "topic": "面力分量、力矩推出应力对称性、弹性系数81→36→21→2和能量条件",
+      "targets": [
+        "ch12:fig:stress",
+        "ch12:eq:traction",
+        "ch12:eq:lame"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p114:teaching",
+      "source": "notes",
+      "physical_page": 114,
+      "printed_page": 112,
+      "chapter": 12,
+      "topic": "拉梅常数、剪切/体积/杨氏模量、泊松比和常数互换推导",
+      "targets": [
+        "ch12:eq:lame",
+        "ch12:eq:bulk",
+        "ch12:fig:moduli",
+        "ch12:eq:young"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p115:teaching",
+      "source": "notes",
+      "physical_page": 115,
+      "printed_page": 113,
+      "chapter": 12,
+      "topic": "棒的自然微元、位移差与应变、两端应力差、纵波PDE及动能",
+      "targets": [
+        "ch12:fig:rod-element",
+        "ch12:eq:rod-wave",
+        "ch12:eq:rod-energy"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p116:teaching",
+      "source": "notes",
+      "physical_page": 116,
+      "printed_page": 114,
+      "chapter": 12,
+      "topic": "棒的势能密度、张紧弦两个横向自由度、切线和张力展开",
+      "targets": [
+        "ch12:eq:rod-energy",
+        "ch12:fig:string-element",
+        "ch12:eq:string-wave"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p117:teaching",
+      "source": "notes",
+      "physical_page": 117,
+      "printed_page": 115,
+      "chapter": 12,
+      "topic": "弦长增量及能量、膜边界方向、线元/法向叉积及格林公式",
+      "targets": [
+        "ch12:eq:string-energy",
+        "ch12:fig:membrane",
+        "ch12:eq:membrane-force"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p118:teaching",
+      "source": "notes",
+      "physical_page": 118,
+      "printed_page": 116,
+      "chapter": 12,
+      "topic": "薄膜面积元和能量、二维波动、应力散度到三维运动方程",
+      "targets": [
+        "ch12:eq:membrane-energy",
+        "ch12:eq:membrane-wave",
+        "ch12:eq:stress-div",
+        "ch12:eq:navier"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p119:teaching",
+      "source": "notes",
+      "physical_page": 119,
+      "printed_page": 117,
+      "chapter": 12,
+      "topic": "三维弹性能密度、体积/偏应变稳定性；波动方程及一维一般解",
+      "targets": [
+        "ch12:eq:elastic-energy",
+        "ch12:eq:navier",
+        "ch12:eq:dalembert"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p120:teaching",
+      "source": "notes",
+      "physical_page": 120,
+      "printed_page": 118,
+      "chapter": 12,
+      "topic": "特征坐标、达朗贝尔解、初始条件积分、线/圆/椭圆偏振",
+      "targets": [
+        "ch12:eq:dalembert",
+        "ch12:fig:travel-standing",
+        "ch12:fig:polarization"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p121:teaching",
+      "source": "notes",
+      "physical_page": 121,
+      "printed_page": 119,
+      "chapter": 12,
+      "topic": "平面弹性波代入、纵横投影、三种偏振、无旋/无散与速度",
+      "targets": [
+        "ch12:eq:body-speeds",
+        "ch12:fig:polarization"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p122:teaching",
+      "source": "notes",
+      "physical_page": 122,
+      "printed_page": 120,
+      "chapter": 12,
+      "topic": "杆波与体波区别、P/S波地核、流体声速、绝热模量、理想气体及牛顿/拉普拉斯",
+      "targets": [
+        "ch12:eq:body-speeds",
+        "ch12:eq:sound-speed"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p40:teaching",
+      "source": "exercises",
+      "physical_page": 40,
+      "printed_page": "5/21",
+      "chapter": 11,
+      "topic": "第十讲1、2题：哈雷彗星全部条件及方向问题；双星对称失质量",
+      "targets": [
+        "ch11:ex:03",
+        "ch11:fig:halley",
+        "ch11:ex:04"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p41:teaching",
+      "source": "exercises",
+      "physical_page": 41,
+      "printed_page": "6/21",
+      "chapter": 11,
+      "topic": "第十讲3、4题：LRL矢量证明；尘埃碰撞/引力散射和大小比较",
+      "targets": [
+        "ch11:ex:05",
+        "ch11:ex:06"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p42:teaching",
+      "source": "exercises",
+      "physical_page": 42,
+      "printed_page": "7/21",
+      "chapter": 11,
+      "topic": "第十讲5题：附加kr斥力下的弱扰动近日点进动",
+      "targets": [
+        "ch11:ex:07"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p43:teaching",
+      "source": "exercises",
+      "physical_page": 43,
+      "printed_page": "8/21",
+      "chapter": 11,
+      "topic": "第十讲6题：弱线性阻力能量、角动量及偏心率长期演化",
+      "targets": [
+        "ch11:ex:08"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p49:teaching",
+      "source": "exercises",
+      "physical_page": 49,
+      "printed_page": "14/21",
+      "chapter": 12,
+      "topic": "第十二讲1、2题：旋转弹性绳的长度和能量；点质量反射与透射",
+      "targets": [
+        "ch12:ex:09",
+        "ch12:ex:10"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p50:teaching",
+      "source": "exercises",
+      "physical_page": 50,
+      "printed_page": "15/21",
+      "chapter": 12,
+      "topic": "第十二讲3题：圆膜径向波方程、波速、振幅随半径衰减",
+      "targets": [
+        "ch12:ex:11"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p51:teaching",
+      "source": "exercises",
+      "physical_page": 51,
+      "printed_page": "16/21",
+      "chapter": 12,
+      "topic": "第十二讲4、5题：音叉三模态；一根连续绳上移动的两种材料情形",
+      "targets": [
+        "ch12:ex:12",
+        "ch12:ex:13"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p52:teaching",
+      "source": "exercises",
+      "physical_page": 52,
+      "printed_page": "17/21",
+      "chapter": 12,
+      "topic": "第十二讲6题：门轴粘滑重复频率；说明释放幅度条件并参数化",
+      "targets": [
+        "ch12:ex:14"
+      ],
+      "status": "mapped"
+    }
+  ],
+  "source_figures": [
+    {
+      "id": "notes:p100:figure:5.1",
+      "source": "notes",
+      "physical_page": 100,
+      "source_number": "5.1",
+      "chapter": 11,
+      "target": "ch11:fig:bound-scatter",
+      "physical_purpose": "束缚/散射两个面板及初始几何",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p101:figure:5.2",
+      "source": "notes",
+      "physical_page": 101,
+      "source_number": "5.2",
+      "chapter": 11,
+      "target": "ch11:fig:power-potentials",
+      "physical_purpose": "三类幂律有效势，不以单个引力势替代",
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p40:figure:第十讲1题图",
+      "source": "exercises",
+      "physical_page": 40,
+      "source_number": "第十讲1题图",
+      "chapter": 11,
+      "target": "ch11:fig:halley",
+      "physical_purpose": "近日点与72度位置、同一椭圆切向速度",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p112:figure:7.1",
+      "source": "notes",
+      "physical_page": 112,
+      "source_number": "7.1",
+      "chapter": 12,
+      "target": "ch12:fig:strain",
+      "physical_purpose": "取向微元、正应变与剪应变三个面板",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p113:figure:7.2",
+      "source": "notes",
+      "physical_page": 113,
+      "source_number": "7.2",
+      "chapter": 12,
+      "target": "ch12:fig:stress",
+      "physical_purpose": "截面法向、面力及法/切分量",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p114:figure:7.3",
+      "source": "notes",
+      "physical_page": 114,
+      "source_number": "7.3",
+      "chapter": 12,
+      "target": "ch12:fig:moduli",
+      "physical_purpose": "剪切、体压缩、单轴拉伸横缩",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p115:figure:7.4",
+      "source": "notes",
+      "physical_page": 115,
+      "source_number": "7.4",
+      "chapter": 12,
+      "target": "ch12:fig:rod-element",
+      "physical_purpose": "同一物质微元初末位置、两端应力",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p116:figure:7.5",
+      "source": "notes",
+      "physical_page": 116,
+      "source_number": "7.5",
+      "chapter": 12,
+      "target": "ch12:fig:string-element",
+      "physical_purpose": "双横向位移、切向张力",
+      "status": "mapped"
+    },
+    {
+      "id": "notes:p117:figure:7.6",
+      "source": "notes",
+      "physical_page": 117,
+      "source_number": "7.6",
+      "chapter": 12,
+      "target": "ch12:fig:membrane",
+      "physical_purpose": "曲面、边界、切向线元、法向、外向膜力",
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p49:figure:第十二讲1题图",
+      "source": "exercises",
+      "physical_page": 49,
+      "source_number": "第十二讲1题图",
+      "chapter": 12,
+      "target": "ch12:fig:rotating-rope",
+      "physical_purpose": "转轴、自由端、角速度，另加微元受力图",
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p49:figure:第十二讲2题图",
+      "source": "exercises",
+      "physical_page": 49,
+      "source_number": "第十二讲2题图",
+      "chapter": 12,
+      "target": "ch12:fig:point-mass",
+      "physical_purpose": "同频两侧总位移、连续连接和斜率跳变",
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p51:figure:第十二讲4题图",
+      "source": "exercises",
+      "physical_page": 51,
+      "source_number": "第十二讲4题图",
+      "chapter": 12,
+      "target": "ch12:fig:fork",
+      "physical_purpose": "叉股末端连接、滑轮相切、配重及三模态",
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p51:figure:第十二讲5题图",
+      "source": "exercises",
+      "physical_page": 51,
+      "source_number": "第十二讲5题图",
+      "chapter": 12,
+      "target": "ch12:fig:rope-branches",
+      "physical_purpose": "两悬点、连续绳的初末态；几何与推导一致",
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:p52:figure:第十二讲6题图",
+      "source": "exercises",
+      "physical_page": 52,
+      "source_number": "第十二讲6题图",
+      "chapter": 12,
+      "target": "ch12:fig:hinge",
+      "physical_purpose": "支承、直轴、截面相对扭转角与表面剪切角",
+      "status": "mapped"
+    }
+  ],
+  "source_exercises": [
+    {
+      "id": "exercises:lecture10:q1",
+      "chapter": 11,
+      "source_number": 1,
+      "target": "ch11:ex:03",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture10:q2",
+      "chapter": 11,
+      "source_number": 2,
+      "target": "ch11:ex:04",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture10:q3",
+      "chapter": 11,
+      "source_number": 3,
+      "target": "ch11:ex:05",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture10:q4",
+      "chapter": 11,
+      "source_number": 4,
+      "target": "ch11:ex:06",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture10:q5",
+      "chapter": 11,
+      "source_number": 5,
+      "target": "ch11:ex:07",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture10:q6",
+      "chapter": 11,
+      "source_number": 6,
+      "target": "ch11:ex:08",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture12:q1",
+      "chapter": 12,
+      "source_number": 1,
+      "target": "ch12:ex:09",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture12:q2",
+      "chapter": 12,
+      "source_number": 2,
+      "target": "ch12:ex:10",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture12:q3",
+      "chapter": 12,
+      "source_number": 3,
+      "target": "ch12:ex:11",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture12:q4",
+      "chapter": 12,
+      "source_number": 4,
+      "target": "ch12:ex:12",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture12:q5",
+      "chapter": 12,
+      "source_number": 5,
+      "target": "ch12:ex:13",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    },
+    {
+      "id": "exercises:lecture12:q6",
+      "chapter": 12,
+      "source_number": 6,
+      "target": "ch12:ex:14",
+      "status": "mapped",
+      "solution": "adjacent xesolution; checked in build release report"
+    }
+  ],
+  "retained_bridge_examples": {
+    "ch11": [
+      "ch11:ex:01",
+      "ch11:ex:02"
+    ],
+    "ch12": [
+      "ch12:ex:01",
+      "ch12:ex:02",
+      "ch12:ex:03",
+      "ch12:ex:04",
+      "ch12:ex:05",
+      "ch12:ex:06",
+      "ch12:ex:07",
+      "ch12:ex:08"
+    ]
+  },
+  "boundary_correction": {
+    "source": "notes",
+    "chapter11_correct_range": [
+      99,
+      104
+    ],
+    "not_part_of_this_acceptance": [
+      105,
+      110
+    ],
+    "belongs_to_topic": "刚体",
+    "action": "登记为第9章相关范围待独立核验；本次不删除、不默认为验收通过。"
+  },
+  "known_source_corrections": [
+    "极坐标切向加速度中的2倍交叉项；幂律n=-1势能参考长度；n=-3单独讨论。",
+    "中心力保守条件、长程散射条件和积分分支澄清。",
+    "体纵横波投影符号、正压强对应负体应变、声速历史数值改为同温比较。"
+  ],
+  "model_clarifications": [
+    "音叉使用弱端位移下通常横向共振模型；不再以位移不为零推出波腹。",
+    "连续零原长弹性绳保留总材料顺应性，明确无滑动驱动与两侧张力可不同；原两独立绳解作为另加条件的分支保留。",
+    "门轴重力仅作为接触载荷；重复频率含释放后剩余扭转参数，不由载荷虚构转动惯量。"
+  ]
+}

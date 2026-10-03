@@ -1,0 +1,702 @@
+\section{配套习题：静力学}
+
+\begin{practicebox}{两圆柱靠墙平衡}
+半径为 $R$ 的均匀圆柱 $A$ 静止在水平地面上并与竖直墙面接触。质量相同、半径为 $r$ 的较细圆柱 $B$ 放在 $A$ 上方并与墙面接触。$A$ 与地面、两圆柱之间的静摩擦因数分别为 $0.2,0.3$。求 $B$ 与墙面之间的静摩擦因数以及 $r/R$ 应满足的条件。
+\label{r2ch03:pr:001}
+\begin{solution}
+题中没有给出 $A$ 与墙面的摩擦因数。通常的标准模型是把这一接触视作光滑接触；墙面对 $A$ 只有水平支持力。先按这个模型求解，最后说明若该处也粗糙为什么答案会改变。
+
+图~\ref{r2ch03:fig:017} 把四个接触关系同时画出：$A$ 与地面、墙面都相切，$B$ 与墙面相切且与 $A$ 外切。特别地，两圆心的水平距离是 $R-r$，竖直距离由勾股关系确定为 $2\sqrt{Rr}$。
+\figTwoCylindersWall
+
+令
+\[
+ q=\sqrt{\frac rR},\qquad
+ \cos\alpha=\frac{R-r}{R+r}=\frac{1-q^2}{1+q^2},\qquad
+ \sin\alpha=\frac{2\sqrt{Rr}}{R+r}=\frac{2q}{1+q^2}.
+\]
+设 $B$ 在墙面处的摩擦力向上，大小为 $t$。$B$ 的转动平衡要求圆柱间切向力也为 $t$；$A$ 的转动平衡又要求地面摩擦力为 $t$。这里共有三处非零切向力，并没有把光滑的 $A$—墙接触算入。再列两圆柱的平衡方程，得到
+\[
+ \frac{t}{N_{AB}}=\frac{\cos\alpha}{1+\sin\alpha}
+ =\frac{1-q}{1+q}.
+\]
+由 $B$ 的竖直、水平平衡及 $A$ 的竖直平衡，
+\[
+ N_{AB}=\frac{mg(1+q)}2,\quad
+ t=\frac{mg(1-q)}2,\quad
+ N_{B{\rm w}}=t,\quad
+ N_{\rm floor}=\frac{mg(3+q)}2.
+\]
+在使各处所需摩擦最小的平衡分支中，$A$—墙支持力为零；这与接触的单边条件相容。三处粗糙接触的摩擦条件依次为
+\[
+ \frac{1-q}{3+q}\le0.2,\qquad
+ \frac{1-q}{1+q}\le0.3,\qquad
+ \mu_{B{\rm w}}\ge\frac{t}{N_{B{\rm w}}}=1.
+\]
+第一式给 $q\ge1/3$，第二式更强，给 $q\ge7/13$。结合“较细圆柱” $0<r<R$，
+\[
+ \boxed{\frac{49}{169}\le\frac rR<1,\qquad \mu_{B{\rm w}}\ge1}.
+\]
+等号对应圆柱间摩擦达到极限；各式的力学量纲均为力或无量纲比值。
+
+如果 $A$—墙接触也粗糙，就必须另给它的摩擦因数 $\mu_{A{\rm w}}$，上面的数值结论不再由原条件唯一决定。为使这点可计算，令 $n_A$ 为该处水平支持力、$w_A$ 为该处向上的有符号摩擦力，并把所有力除以 $mg$。任取满足接触单边条件的 $t,n_A$，其余反力由
+\[
+ \begin{aligned}
+ n&=\frac{1-(1+\cos\alpha)t}{\sin\alpha},&
+ n_B&=n\cos\alpha-t\sin\alpha,& f&=n_B+n_A,\\
+ w_A&=t-n_B-n_A,& n_g&=2-t-w_A.&&
+ \end{aligned}
+\]
+确定。完整可行条件为
+\[
+ \begin{gathered}
+ n,n_B,n_A,n_g\ge0,\qquad |t|\le0.3n,\qquad |f|\le0.2n_g,\\
+ |t|\le\mu_{B{\rm w}}n_B,\qquad |w_A|\le\mu_{A{\rm w}}n_A .
+ \end{gathered}
+\]
+给定 $\mu_{A{\rm w}}$ 后，在这个二维可行域中求 $\mu_{B{\rm w}}$ 的下确界即可；若令 $\mu_{A{\rm w}}=0$，便还原上面的光滑分支和答案。这样既不暗中假定未给的摩擦因数，也保留了题目通常采用的标准解。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{桁架中杆 $3$—$4$ 的内力}
+图示平面桁架由无重杆铰接而成，铰点 $9$ 可无摩擦地水平移动，铰点 $8$ 与地面铰接。节点 $1$ 受竖直载荷 $P$，节点 $3$ 受竖直载荷 $P/2$。求杆 $3$—$4$ 的内力。
+\label{r2ch03:pr:002}
+\begin{solution}
+先作结构计数。图~\ref{r2ch03:fig:018} 的结点数、杆件数与支座反力数满足
+\[
+ m+r>2j,
+\]
+因此它是超静定桁架。对全部结点写 $\sum F_x=\sum F_y=0$ 后，方程秩比未知杆力总数少；杆 $3$—$4$ 的内力仍含至少一个自应力参数。换言之，可以在不改变所有结点外力平衡的前提下，给若干菱形杆组叠加一组自平衡轴力，而其中包括杆 $3$—$4$。
+
+所以，仅凭题给几何和载荷不能得到唯一的 $N_{34}$：
+\[
+ \boxed{N_{34}\ \text{静力学上不唯一}}.
+\]
+还须给出各杆的 $EA/L$、装配初应变或删去冗余杆件，利用变形协调条件才能确定。图中取截面并不能消除这种结构不定性；这正是超静定与“方程写得不够多”之间的本质区别。
+\figTrussCut
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{圆环与空间斜杆的最小摩擦}
+半径为 $R$ 的圆环直立于地面 $P$ 点，$AP$ 垂直于环平面且 $AP=3R/2$。细杆一端以光滑铰链铰在 $A$，杆身搁在环上 $B$ 点，且 $OB$ 与竖直方向夹角 $\pi/3$。求可平衡的最小摩擦因数。
+\label{r2ch03:pr:003}
+\begin{solution}
+题图只给出了几何，却没有给圆环、细杆的质量、质心位置，也未说明哪一接触面粗糙。图~\ref{r2ch03:fig:019} 中，地面所需摩擦等于系统全部水平外力的合量，而法向力等于全部竖直外力的合量；这两者显然随杆重与环重之比及杆重心位置改变。
+
+例如令环质量趋于无穷大而杆质量有限，则法向力可任意大而所需水平力有限，最小摩擦因数趋于零；反之让环质量趋于零，所得比值一般为有限非零量。这两个极限具有相同的题给几何，却给出不同答案。因此原条件不能唯一决定数值：
+\[
+ \boxed{\mu_{\min}\ \text{无法由现有条件唯一确定}}.
+\]
+若补给各物体质量和重心，正确做法是先对杆绕 $A$ 取矩求 $B$ 点接触力，再对“杆+环”整体列
+$\mu_{\min}=|\vect F_{\parallel}|/N_P$。这里没有用臆造的质量假设替代题设。
+\figHoopRodSupport
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{带内部小球的方箱倾覆}
+质量为 $m$ 的正方形箱边长 $2l$，质心在几何中心。箱内地板右端以劲度系数 $k$、原长 $l$ 的水平弹性轻绳牵住一质量为 $m$ 的小球；天花板中心以长 $l$ 的不可伸长轻绳悬挂另一质量为 $m$ 的小球。在左上角向右施力并缓慢增大 $F$。讨论箱底可在水平面上自由平移以及箱底被静摩擦锁住两种情形，求发生倾覆的临界力。
+\label{r2ch03:pr:004}
+\begin{solution}
+题目若不说明箱底能否提供水平约束，答案并不唯一。图~\ref{r2ch03:fig:020} 先表示箱底光滑、箱可自由平移的模型；“缓慢增大”表示箱的加速度在内部振动的一个周期内变化很小，因而两个小球在箱参考系中始终近似处于瞬时平衡。
+\figBoxTip
+
+设箱向右的加速度为 $a$。摆球的悬线沿有效重力 $(-a,-g)$ 的反方向，故
+\[
+ \tan\theta=\frac ag,\qquad
+ x_p=-\frac{la}{\sqrt{g^2+a^2}},\qquad
+ y_p=2l-\frac{lg}{\sqrt{g^2+a^2}}.
+\]
+这里 $(x_p,y_p)$ 以箱底中心为原点。地板球在弹性绳拉力与惯性力之间平衡；在尚未碰到左壁时
+\[
+ k(-x_s)=ma,\qquad x_s=-\frac{ma}{k}.
+\]
+对“箱和两球”整体列水平方向动力学方程，地面光滑给 $F=3ma$。临界时地面合支持力移到右下角 $C$。在随箱平动的参考系中，对三个质量分别附加向左的惯性力 $ma$，绕 $C$ 取矩：
+\[
+ 2lF=m l(g+a)+mg(l-x_s)
+ +m\bigl[g(l-x_p)+ay_p\bigr].
+\]
+括号中的摆球项可直接化成 $ml(g+2a)$；这也可由摆球所受重力与惯性力的合力沿悬线通过悬点看出。引入无量纲参数
+\[
+ \kappa=\frac{kl}{mg}.
+\]
+在地板球尚未碰左壁的分支，代入 $F=3ma$ 和 $x_s=-ma/k$，得到
+\[
+ 6a=3g+3a+\frac{mg}{kl}a,\qquad
+ \frac{a_c}{g}=\frac{3\kappa}{3\kappa-1}.
+\]
+这个解必须同时满足 $x_s\ge-l$，即 $a_c/g\le\kappa$；化简得 $\kappa\ge4/3$。因此本分支的临界力为
+\[
+ \boxed{F_c=\frac{9\kappa}{3\kappa-1}mg},
+ \qquad \kappa\ge\frac43.
+\]
+
+若 $0\le\kappa<4/3$，地板球先在 $a=\kappa g$ 时到达左壁。此后 $x_s=-l$，左壁补足使小球随箱加速所需的水平作用力。重新取矩得
+\[
+ 6mal=ml(g+a)+2mgl+ml(g+2a),
+\]
+所以 $a_c=4g/3$，
+\[
+ \boxed{F_c=4mg},\qquad 0\le\kappa\le\frac43.
+\]
+两式在 $\kappa=4/3$ 连续；$F_c$ 的量纲都是力。刚度很大时第一式趋于 $3mg$，而不是静止箱模型的 $3mg/2$，因为自由平移时还必须计入三个质量的惯性力矩。
+
+若箱底有足够大的静摩擦使箱在倾覆前完全不平移，则 $a=0$，两球都在中心线上。此时绕 $C$ 取矩为
+\[
+ 2lF_c=3mgl,\qquad \boxed{F_c=\frac32mg}.
+\]
+还需有 $F_c\le3\mu_smg$，即 $\mu_s\ge1/2$；否则应使用含地面摩擦力和箱加速度的过渡模型。这样，$k$ 是否进入答案以及临界力的不同，来自明确的水平约束条件，而不是计算矛盾。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{圆孔中的倒置圆锥}
+水平桌面开一半径为 $r$ 的圆孔，插入半顶角为 $\alpha$、高为 $h$ 的均匀实心圆锥，圆锥尖端向下，忽略摩擦。讨论平衡位置及稳定性。
+\label{r2ch03:pr:005}
+\begin{solution}
+轴线竖直且与孔心重合时，圆孔边缘的轴对称支持力合力竖直，通过圆锥质心，因而是平衡位置。圆锥从顶点起的截面半径为 $z\tan\alpha$，故孔平面位于
+\[
+ z_P=r\cot\alpha .
+\]
+均匀实心圆锥质心距顶点 $z_C=3h/4$。微小倾斜后，接触合力趋向孔缘最低处；二阶势能判据等价于比较质心和支持圆平面的高度。于是
+\[
+ \boxed{\begin{cases}
+ r\cot\alpha>3h/4,&\text{质心在孔面下方，稳定},\\
+ r\cot\alpha=3h/4,&\text{中性临界},\\
+ r\cot\alpha<3h/4,&\text{质心在孔面上方，不稳定}.
+ \end{cases}}
+\]
+此外必须有 $0<r<h\tan\alpha$，否则孔缘不能与圆锥侧面形成题设接触。图~\ref{r2ch03:fig:021} 把锥顶作为共同的高度零点：孔面为 $z_P=r\cot\alpha$，质心为 $z_C=3h/4$，因而图中的上下关系与上述不等式直接一一对应。
+\figConeInHole
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{农用平板车的释放、碰撞与滑停}
+两车轮半径为 $r$、质量均为 $m$；平板长 $l$、质量 $2m$，质心在车轴；两把手视为长 $2l$、质量均为 $m$ 的均匀细杆，且把手前端与平板前端对齐。平板、把手和车轴固连，车轮辐条和车轴质量忽略。\\
+(a) 车轮中心被卡住而车轮可自由转动，把手由水平静止释放，求把手触地前的角速度。\\
+(b) 触地前撤去平移卡具并锁死轮轴，碰后立即解锁；把手末端竖直方向不反弹。把手—地面和车轮—地面的摩擦因数均为 $\mu$。求此后车轴直到静止的位移。
+\label{r2ch03:pr:006}
+\begin{solution}
+设触地时车架相对水平转过 $\varphi$。因把手前端位于车轴前方 $l/2$，把手末端位于车轴后方 $3l/2$，图~\ref{r2ch03:fig:022} 给出
+\[
+ \sin\varphi=\frac{2r}{3l},\qquad
+ \overline{OH}=\frac{3l}{2}.
+\]
+平板对车轴的转动惯量为 $ml^2/6$；每根把手的质心距车轴 $l/2$，故
+\[
+ I_h=\frac1{12}m(2l)^2+m\left(\frac l2\right)^2
+ =\frac7{12}ml^2,\qquad
+ I_f=\frac16ml^2+2I_h=\frac43ml^2.
+\]
+把手质心各下降 $(l/2)\sin\varphi=r/3$。释放阶段车轮未和车架锁死，不参与 $I_f$，能量守恒给
+\[
+ \frac12I_f\omega_-^2=2mg\frac r3,\qquad
+ \boxed{\omega_-=\frac{\sqrt{gr}}{l}}.
+\]
+
+碰前锁死轮轴时，两轮可视为薄环，总转动惯量为 $2mr^2$。锁止冲量对车轴力矩为零，所以锁止后的共同角速度为
+\[
+ \Omega=\frac{I_f}{I_f+2mr^2}\,\omega_-
+ =\frac{2l^2}{2l^2+3r^2}\frac{\sqrt{gr}}{l}.
+\]
+碰撞不能使用机械能守恒。把手末端和轮—地接触点碰前均向前滑；在两处都保持滑动的分支中，总竖直冲量由质心竖直动量变化给出
+\[
+ J_y=ml\Omega\cos\varphi,\qquad J_x=-\mu J_y.
+\]
+末端竖直速度碰后为零，而车轴高度受轮面约束不变，因此车架碰后角速度为零。总质量为 $6m$，其质心相对车轴的竖直坐标为 $-r/9$。水平方向冲量定理于是给出车轴初速
+\[
+ \boxed{V_0=\Omega\left(\frac r9-\frac{\mu l\cos\varphi}{6}\right)
+ =\frac{\Omega r}{9}\bigl(1-\mu\cot\varphi\bigr)}.
+\]
+若 $\mu\ge\tan\varphi$，地面足以在碰撞中使水平接触同时粘着，故 $V_0=0$、车轴不发生随后位移。以下讨论 $0<\mu<\tan\varphi$ 且两处法向冲量均非负的通常分支；若某法向冲量算得为负，应删除相应接触并按单侧约束重列冲量方程。
+
+解锁后车架不再转动。对竖直力和车轴矩取平衡，把手末端与两轮处的总支持力分别为
+\[
+ N_H=\frac23mg,\qquad N_W=\frac{16}{3}mg.
+\]
+第一阶段把手和车轮都向前滑，故车轴减速度为 $\mu g$；两薄环受轮地摩擦而加速自转，满足
+\[
+ \dot V=-\mu g,\qquad r\dot\omega_w=\frac83\mu g.
+\]
+由 $V=r\omega_w$ 得开始纯滚的时刻、速度与位移
+\[
+ t_1=\frac{3V_0}{11\mu g},\qquad
+ V_1=\frac8{11}V_0,\qquad
+ X_1=\frac{57}{242}\frac{V_0^2}{\mu g}.
+\]
+此后把手仍滑动，而轮地摩擦改向前以减小车轮角速度。设两轮所受静摩擦合力为 $F_W$，则
+\[
+ 6m\dot V=F_W-\mu N_H,\qquad
+ \dot V=-\frac{F_W}{2m},
+\]
+所以 $F_W=\mu mg/6$，未超过静摩擦上限，且 $\dot V=-\mu g/12$。第二阶段位移
+\[
+ X_2=\frac{V_1^2}{2(\mu g/12)}
+ =\frac{384}{121}\frac{V_0^2}{\mu g}.
+\]
+因此
+\[
+ \boxed{X=X_1+X_2=\frac{825}{242}\frac{V_0^2}{\mu g}},
+ \qquad 0<\mu<\tan\varphi .
+\]
+当 $\mu=0$ 时没有耗散，车轴不会在有限距离内停下；上述结果在量纲上为长度，并在 $\mu\to\tan\varphi^-$ 时连续趋于零。
+\figFarmCart
+\end{solution}
+\end{practicebox}
+
+\section{配套习题：动力学综合}
+
+\begin{practicebox}{双螺旋线螺丝下落}
+质量 $M$、半径 $R$、单螺旋螺距 $H$、总长 $L$ 的匀质对称等距双螺旋线螺丝，竖直扣在固定螺母中并作螺旋下落。求光滑时单位长度螺丝所受支持力；再讨论摩擦因数为 $\mu$ 时的结果。
+\label{r2ch03:pr:007}
+\begin{solution}
+令螺旋切线与水平面的夹角为 $\alpha$，
+\[
+ \tan\alpha=\frac{H}{2\pi R},\qquad \lambda=\frac ML.
+\]
+光滑时每一微元沿切向的加速度是 $a_t=g\sin\alpha$，法平面内还需提供圆柱螺旋的曲率加速度。螺旋曲率
+$\kappa=R/(R^2+(H/2\pi)^2)=\cos^2\alpha/R$，故单位长度接触力的两个正交分量为
+\[
+ n_b=\lambda g\cos\alpha,\qquad
+ n_n=\lambda v^2\kappa,
+\]
+从而
+\[
+ \boxed{n=\lambda\sqrt{g^2\cos^2\alpha+v^4\kappa^2}}.
+\]
+对称双螺旋使两支的水平合力抵消，但每支局部支持力不能省略。图~\ref{r2ch03:fig:023} 标出螺距和半径。
+
+有滑动摩擦时，摩擦线密度为 $\mu n$ 并逆相对速度，切向方程成为
+\[
+ \lambda\dot v=\lambda g\sin\alpha-\mu n.
+\]
+联立上一式即得 $v(t)$ 和支持力；若右端在 $v=0$ 时已非正，即
+$\tan\alpha\le\mu$，则螺丝可静止而不自行下落。力密度量纲均为 $\mathrm N\,\mathrm m^{-1}$。
+\figDoubleHelix
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{薄壁筒放绳与对称小球}
+半径为 $R$、质量为 $M=\gamma m$ 的薄壁筒外绕两条对称的不可伸长轻绳，绳端各接质量 $m/2$ 的小球，另一端固定在筒上相对的 $Q,Q'$ 两点。系统初始以角速度大小 $\Omega_0$ 自转，释放小球后绳逐渐打开。求单支绳已打开长度为 $xR$ 时的长度变化率。绳完全打开后长 $XR$；当绳与直线 $QQ'$ 的夹角为 $\theta$ 时，$\theta$ 仍在减小，求 $\dot\theta$。若 $\theta=0$ 时筒的角速度恰降为零，用积分表示全过程时间，并对 $X=1$ 给出数值。
+\label{r2ch03:pr:008}
+\begin{solution}
+运动在垂直于筒轴的平面内，重力不参与；两支完全对称，只需写一支的几何，再把小球总质量记为 $m$。图~\ref{r2ch03:fig:024}(a) 中，$x$ 是无量纲打开长度，$q$ 是筒的转角。取初始筒角速度 $\dot q(0)=-\Omega_0$，使 $x$ 随时间增加。绳与筒相切，切点的极角为 $q+q_0+X-x$，所以球的位置可写成
+\[
+ \frac{\vect r}{R}=\uvec e_r+x\uvec e_t,\qquad
+ \frac{\dot{\vect r}}{R}=\dot q\,\uvec e_t
+      +x(\dot x-\dot q)\uvec e_r.
+\]
+第二式同时检验了相切条件：自由绳段沿 $\uvec e_t$，而打开造成的瞬时速度沿 $\uvec e_r$。
+\figCylinderBalls
+
+令 $A=\gamma+1$。两球与薄壁筒的总动能、关于筒轴的角动量分别为
+\[
+ \frac{2T}{mR^2}=A\dot q^{\,2}+x^2(\dot x-\dot q)^2,
+\qquad
+ \frac{L_z}{mR^2}=(A+x^2)\dot q-x^2\dot x.
+\]
+初态有 $T_0=mR^2A\Omega_0^2/2$、$L_z=-mR^2A\Omega_0$。联立两个守恒式，除去未释放的静止分支，得到
+\[
+ \boxed{\dot x=\Omega_0},\qquad
+ \boxed{\dot q=-\Omega_0\frac{A-x^2}{A+x^2}},\qquad 0\le x\le X.
+\]
+因此实际绳长 $s=xR$ 的变化率恒为
+\[
+ \boxed{\dot s=R\Omega_0},\qquad t_1=\frac{X}{\Omega_0}.
+\]
+
+绳完全离开筒面后，图~\ref{r2ch03:fig:024}(b) 中每个小球的位置为
+$\vect r/R=\uvec e_r(q)+X\uvec e_r(q+\theta)$；刚离开时 $\theta=\pi/2$，随后减小。记
+\[
+ D=A+X^2+2X\cos\theta,\qquad
+ B=X^2+X\cos\theta .
+\]
+此阶段
+\[
+ \frac{2T}{mR^2}=D\dot q^{\,2}+2B\dot q\dot\theta+X^2\dot\theta^2,
+ \qquad D\dot q+B\dot\theta=-A\Omega_0.
+\]
+将角动量式代入能量式消去 $\dot q$，并取 $\dot\theta<0$ 的分支，得到
+\[
+ \boxed{\dot\theta=-\Omega_0
+ \sqrt{\frac{A(X+2\cos\theta)}{X(A-\cos^2\theta)}}},
+ \qquad
+ \dot q=\frac{-A\Omega_0-B\dot\theta}{D}.
+\]
+在 $\theta=\pi/2$ 时有 $\dot\theta=-\Omega_0$，并与第一阶段的端点速度连续。
+
+条件 $\dot q(0)=0$ 给
+\[
+ A(A-1)=X(X+1)^2(X+2).
+\]
+右端等于 $(X+1)^2[(X+1)^2-1]$，且 $A>0$，故
+\[
+ \boxed{A=(X+1)^2},\qquad \boxed{\gamma=X^2+2X}.
+\]
+第二阶段时间以及总时间为
+\[
+ t_2=\frac{\sqrt X}{\Omega_0(X+1)}
+ \int_0^{\pi/2}\sqrt{\frac{(X+1)^2-\cos^2\theta}
+ {X+2\cos\theta}}\,\dd\theta,
+ \qquad \boxed{t=t_1+t_2}.
+\]
+当 $X=1$ 时，数值积分为 $\Omega_0t_2=1.01494743$，所以
+\[
+ \boxed{\gamma=3},\qquad
+ \boxed{t\approx\frac{2.01494743}{\Omega_0}}.
+\]
+积分根号内无量纲，故时间量纲由 $1/\Omega_0$ 给出。
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{卷盘水龙带展开}
+长 $L$、质量 $M$ 的灭火水龙带卷成半径 $R$ 的卷盘（$L\gg R$），以初速度 $v_0$ 滚出，自由端固定在地面。考虑重力势能下降、忽略耗散，求卷半径变为 $r$ 时固定端的拉力，并以积分表示完全展开所需时间。
+\label{r2ch03:pr:009}
+\begin{solution}
+设线密度 $\lambda=M/L$，水带厚度均匀，则卷内剩余长度
+$\ell(r)=Lr^2/R^2$。令 $x$ 为已展开并静止在地面上的长度，定义
+\[
+ u=1-\frac{x}{L}=\frac{\ell}{L}=\frac{r^2}{R^2}.
+\]
+图~\ref{r2ch03:fig:025} 中固定端在左，卷盘向右运动。由于 $L\gg R$，卷心水平位移与展开长度之差是 $R/L$ 阶小量，因而可取 $v=\dot x$。接地处瞬时静止，故 $v=r\omega$。把静止直段与运动卷盘分开，卷盘质量和转动惯量为
+\[
+ M_r=Mu,\qquad I(r)=\frac12M_r r^2.
+\]
+运动部分的动能为
+\[
+ K=\frac12M_rv^2+\frac12I\omega^2=\frac34Muv^2.
+\]
+卷盘质心高度为 $r=R\sqrt u$，所以 $U=M_rgr=MgR u^{3/2}$。忽略卷心缓慢下降的竖直动能（它相对水平动能为 $(R/L)^2$ 阶），能量守恒给出
+\[
+ \frac34Muv^2+MgR u^{3/2}=\frac34Mv_0^2+MgR,
+\]
+因而
+\[
+ \boxed{v^2(u)=\frac{v_0^2+\frac43gR(1-u^{3/2})}{u}}.
+\]
+以 $F>0$ 表示固定端对水带施向左的力。已展开水带静止，全体的水平动量是 $P_x=Muv$，故 $\dot P_x=-F$。利用 $\dot u=-v/L$ 并对 $v^2(u)$ 求导，
+\[
+ F=-\frac{\dd(Muv)}{\dd t}
+ =\frac ML\left(v^2+\frac u2\frac{\dd v^2}{\dd u}\right).
+\]
+代入速度式并用 $u=r^2/R^2$，得
+\[
+ \boxed{F(r)=\frac{M}{L}\left[
+ \frac{v_0^2+\frac43gR}{2(r/R)^2}-\frac53gr
+ \right]}.
+\]
+若方括号为负，表示约束力的实际方向与预设的向左相反。
+
+由 $\dd x=-L\,\dd u$，再令 $\Lambda=v_0/\sqrt{gR}$，完全展开的时间为
+\begin{align*}
+ t&=\int_0^L\frac{\dd x}{v}
+ =\frac{L}{\sqrt{gR}}\int_0^1
+ \frac{\sqrt u\,\dd u}{\sqrt{\Lambda^2+\frac43(1-u^{3/2})}}\\
+ &=\boxed{\frac{L}{\sqrt{gR}}
+ \left(\sqrt{\Lambda^2+\frac43}-\Lambda\right)}.
+\end{align*}
+第二步令 $y=u^{3/2}$ 即可直接积分。当 $v_0\gg\sqrt{gR}$ 时，根式展开给出 $t\sim2L/(3v_0)$，回到忽略重力的极限。固定端不动，约束力的功率为零，但它仍改变总动量；因此不能把变质量卷盘当成单一定质量质点套用 $F=Ma$。
+\figHoseUnroll
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{三体衰变的运动学允许区}
+(a) 静止的质量非零母粒子衰变成三个等质量子粒子。以等边三角形内一点到三边的距离表示三者动能 $T_1,T_2,T_3$，求经典运动学允许区。\\
+(b) 求静止电子偶素衰变为三个光子时的能量允许区。
+\label{r2ch03:pr:010}
+\begin{solution}
+设总释放动能为 $Q$。经典等质量情形有
+\[
+ T_1+T_2+T_3=Q,\qquad
+ \vect p_1+\vect p_2+\vect p_3=0,\qquad
+ p_i=\sqrt{2mT_i}.
+\]
+三个动量必须能组成三角形，所以
+\[
+ p_i\le p_j+p_k\quad(i=1,2,3).
+\]
+边界对应三动量共线。平方并化简可写成
+\[
+ (T_j+T_k-T_i)^2\le4T_jT_k .
+\]
+在 Dalitz 三角形中三条等号曲线围成图~\ref{r2ch03:fig:026} 的中心允许区。
+
+三个光子满足 $E_1+E_2+E_3=E_0$ 且 $p_i=E_i/c$，三角形条件简化为
+\[
+ \boxed{0\le E_i\le\frac{E_0}{2},\qquad \sum_iE_i=E_0}.
+\]
+在固定 $E_1+E_2+E_3=E_0$ 的三元能量图中，三条 $E_i=E_0/2$ 各连接原三角形的两个边中点，所以允许区是图~\ref{r2ch03:fig:026}(b) 的中心倒三角形，不是六边形。其三个顶点为 $(E_0/2,E_0/2,0)$ 及其循环置换；边界对应三光子方向退化为共线。
+\figThreeBodyRegion
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{小圆柱从大圆柱顶端滚下并开始滑动}
+质量为 $m$、半径为 $r$ 的均匀实心圆柱从半径为 $R$ 的固定圆柱顶端由静止滚下，在偏角 $\theta_1$ 处开始相对滑动。求滑动前后小圆柱自转角速度与 $\theta$ 的关系。
+\label{r2ch03:pr:011}
+\begin{solution}
+记 $d=R+r$。纯滚阶段由能量和 $I=mr^2/2$，
+\[
+ v^2=\frac{4gd}{3}(1-\cos\theta),\qquad
+ \boxed{\omega(\theta)=\frac1r
+ \sqrt{\frac{4gd}{3}(1-\cos\theta)}}.
+\]
+切向摩擦和法向力为
+\[
+ f=\frac13mg\sin\theta,\qquad
+ N=\frac13mg(7\cos\theta-4).
+\]
+因此 $\theta_1$ 满足
+\[
+ \boxed{\sin\theta_1=\mu(7\cos\theta_1-4)}
+\]
+（按实际摩擦方向取正），且接触要求 $N\ge0$。图~\ref{r2ch03:fig:027} 中 $OC=R+r$，因此切向和法向方程均应沿 $OC$ 所确定的局部基底列写。
+
+滑动后令 $y(\theta)=v^2$，动摩擦因数由 $\theta_1$ 的临界条件确定。平动方程化为
+\[
+ y'-2\mu y=2gd(\sin\theta-\mu\cos\theta),\qquad
+ y(\theta_1)=\frac{4gd}{3}(1-\cos\theta_1).
+\]
+由积分因子得到 $y(\theta)$。转动方程给
+\[
+ \boxed{\omega(\theta)=\omega(\theta_1)
+ +\frac{2\mu d}{r}\int_{\theta_1}^{\theta}
+ \frac{g\cos u-y(u)/d}{\sqrt{y(u)}}\,\dd u}.
+\]
+积分上限不能越过 $N=0$ 的脱离点。该表达连续接上纯滚结果，并同时检查了摩擦方向与接触条件。
+\figSmallCylinderOnLarge
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{两铰杆连接三等质量小球}
+三个质量均为 $m$ 的小球 $A,B,C$ 用两根长均为 $l$ 的轻质刚杆 $AB,BC$ 铰接。无重力、无摩擦，初始三球共线，$A$ 球突然获得垂直于杆的速度 $v$。求随后 $A,C$ 的最短距离。
+\label{r2ch03:pr:012}
+\begin{solution}
+图~\ref{r2ch03:fig:028} 中以两杆夹角 $\phi$ 和夹角平分线方向 $\psi$ 为广义坐标，去掉质心平动后
+\[
+ T=\frac{ml^2}{12}(2+\cos\phi)\dot\phi^2
+ +\frac{ml^2}{3}(2-\cos\phi)\dot\psi^2,
+\]
+\[
+ L=\frac{2ml^2}{3}(2-\cos\phi)\dot\psi=\text{常量}.
+\]
+初态 $\phi=\pi$，由速度约束得
+$\dot\phi_0=-v/l,\ \dot\psi_0=-v/(2l)$，所以内能
+$E=mv^2/3$、$|L|=mlv$。消去循环坐标 $\psi$，转折点 $\dot\phi=0$ 满足
+\[
+ E=\frac{L^2}{2I(\phi)},\qquad
+ I(\phi)=\frac{2ml^2}{3}(2-\cos\phi),
+\]
+故 $\cos\phi_{\min}=-1/4$。端点距离
+$d_{AC}=2l\sin(\phi/2)$，于是
+\[
+ \boxed{d_{\min}=l\sqrt{\frac52}}.
+\]
+结果小于初始 $2l$ 而大于零，符合两杆不可伸缩的几何极限。
+\figThreeBallLink
+\end{solution}
+\end{practicebox}
+
+\section{配套习题：分析力学基础}
+
+\begin{practicebox}{三脚架的地面作用力}
+三根长均为 $L$ 的匀质杆组成三脚架，杆重为 $P_1,P_2,P_3$，顶点悬挂重物 $G$。顶点离地高 $h$，三杆水平投影方向角为 $\alpha_1,\alpha_2,\alpha_3$。求各杆受到的地面作用力。
+\label{r2ch03:pr:013}
+\begin{solution}
+令 $\rho=\sqrt{L^2-h^2}$，从顶点水平投影指向第 $i$ 个脚点的单位矢量
+$\vect e_i=(\cos\alpha_i,\sin\alpha_i,0)$。设顶铰对第 $i$ 根杆的力为
+\[
+ \vect T_i=\frac{P_i}{2}\uvec e_z+\lambda_i(-\rho\vect e_i+h\uvec e_z).
+\]
+此形式正是杆绕脚点的力矩平衡；每根杆的重力作用在中点。顶节点平衡给
+\begin{equation*}
+ \sum_i\lambda_i\cos\alpha_i=0,\quad
+ \sum_i\lambda_i\sin\alpha_i=0,\quad
+ \sum_i\lambda_i=-\frac{G+\frac12(P_1+P_2+P_3)}h .
+\end{equation*}
+令
+\[
+ \Delta=\sin(\alpha_3-\alpha_2)+\sin(\alpha_1-\alpha_3)
+       +\sin(\alpha_2-\alpha_1),\qquad
+ W=G+\frac12(P_1+P_2+P_3).
+\]
+当 $\Delta\ne0$ 时，用克拉默法则解上面的 $3\times3$ 线性方程组，得到
+\[
+ \lambda_1=-\frac Wh\frac{\sin(\alpha_3-\alpha_2)}{\Delta},\quad
+ \lambda_2=-\frac Wh\frac{\sin(\alpha_1-\alpha_3)}{\Delta},\quad
+ \lambda_3=-\frac Wh\frac{\sin(\alpha_2-\alpha_1)}{\Delta}.
+\]
+地面对第 $i$ 根杆的作用力为
+\[
+ \boxed{\vect R_i=\lambda_i\rho\vect e_i+
+ \left(\frac{P_i}{2}-\lambda_i h\right)\uvec e_z}.
+\]
+图~\ref{r2ch03:fig:029}(a) 中 $YO=h$，每根杆长均为 $L$；因此在图~\ref{r2ch03:fig:029}(b) 的水平投影中，$OA=OB=OC=\rho$，三条射线相对 $x$ 轴的方向角分别是 $\alpha_i$。若这三方向使系数矩阵行列式为零，说明几何退化、反力不能由该三脚架结构唯一承担。
+\figTripod
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{小圆环在大圆环内纯滚}
+大薄壁圆环半径 $R$、质量 $m/3$，小薄壁圆环半径 $R/3$、质量 $m$。大环中心固定但可绕轴转动，两环始终纯滚。小环从两圆心等高处由静止释放。以两圆心连线偏离向下竖直的角为 $\theta$、大环转角为 $\phi$：\\
+(a) 写拉格朗日量与方程；(b) 写守恒量；(c) 求小环到最低点时两环角速度。
+\label{r2ch03:pr:014}
+\begin{solution}
+图~\ref{r2ch03:fig:030} 中小环自转角速度由内侧纯滚条件
+\[
+ \omega_s=3\dot\phi-2\dot\theta.
+\]
+故
+\[
+ L=\frac{2mR^2}{9}\dot\theta^2
+ +\frac{mR^2}{18}(3\dot\phi-2\dot\theta)^2
+ +\frac{mR^2}{6}\dot\phi^2
+ +\frac{2mgR}{3}\cos\theta .
+\]
+对 $\theta,\phi$ 分别代入式~\eqref{r2ch03:eq:028} 即得两条拉格朗日方程。$\phi$ 是循环坐标，初态静止使
+\[
+ p_\phi=0\quad\Longrightarrow\quad
+ \dot\phi=\frac12\dot\theta .
+\]
+又因 $L$ 不显含时间，总能量守恒。小环质心下降 $2R/3$，在底端
+\[
+ \frac{5}{18}mR^2\dot\theta^2=\frac23mgR,
+\]
+所以
+\[
+ \boxed{\dot\theta=\sqrt{\frac{12g}{5R}},\qquad
+ \dot\phi=\sqrt{\frac{3g}{5R}},\qquad
+ \omega_s=-\sqrt{\frac{3g}{5R}}}.
+\]
+负号表示小环自转方向与 $\theta$ 的正向相反。
+\figRollingHoops
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{缓慢移动陡壁势阱的绝热不变量}
+一维势阱由两个很陡的壁构成，
+$V=F(-x)+F(l+ut+x)$，其中 $u$ 很小。质量为 $m$ 的粒子在两壁间弹性反射，初速为 $v_0$。证明：\\
+(a) $\dd E/\dd t=\partial H/\partial t$；\\
+(b) 相空间封闭轨道面积 $S=\lambda ET$，求 $\lambda$；\\
+(c) 缓慢移动时 $S$ 为常量。
+\label{r2ch03:pr:015}
+\begin{solution}
+哈密顿量 $H=p^2/(2m)+V(x,t)$。沿正则方程，
+\[
+ \frac{\dd H}{\dd t}
+ =\frac{\partial H}{\partial x}\dot x+
+ \frac{\partial H}{\partial p}\dot p+
+ \frac{\partial H}{\partial t}
+ =\frac{\partial H}{\partial t}.
+\]
+把陡壁极限视为宽度 $L(t)$ 的方阱，图~\ref{r2ch03:fig:031} 中定能轨道由
+$p=\pm\sqrt{2mE}$ 两条线组成，故
+\[
+ S=\oint p\,\dd x=2L\sqrt{2mE}.
+\]
+往返周期 $T=2L/\sqrt{2E/m}$，所以
+\[
+ \boxed{S=2ET,\qquad \lambda=2}.
+\]
+一周期内移动量 $uT\ll L$。粒子每次撞移动壁的能量变化与壁位移成一阶小量；对一周期平均可得
+$\Delta S=O[(uT/L)^2]$，因此在绝热极限
+\[
+ \boxed{S=\oint p\,\dd x=\text{常量}},\qquad
+ E\,L^2=\text{常量}.
+\]
+\figMovingWell
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{小虫沿悬挂杆缓慢爬行}
+质量 $M$、长 $L$ 的均匀细杆上端可在竖直面内无摩擦摆动。质量 $m=M/3$ 的小虫以相对杆速率 $v$ 缓慢向下爬。初始杆偏离竖直小角 $\theta_0$，小虫在悬点。求小虫爬行距离 $s$ 时的角频率，以及到达杆端时的摆幅。
+\label{r2ch03:pr:016}
+\begin{solution}
+图~\ref{r2ch03:fig:032} 中小角振动的转动惯量和恢复系数为
+\[
+ I(s)=\frac13ML^2+ms^2,\qquad
+ K(s)=Mg\frac L2+mgs .
+\]
+故瞬时角频率
+\[
+ \boxed{\omega(s)=
+ \sqrt{\frac{MgL/2+mgs}{ML^2/3+ms^2}}}.
+\]
+“缓慢”意味着参数在一个周期内变化很小，振动作用量
+$J=E/\omega=\frac12I\omega A^2$ 绝热不变。初态
+$I_0=ML^2/3,\ \omega_0^2=3g/(2L)$；末态
+$I_1=2ML^2/3,\ \omega_1^2=5g/(4L)$。于是
+\[
+ \boxed{A_1=\theta_0
+ \sqrt{\frac{I_0\omega_0}{I_1\omega_1}}
+ =\frac{\theta_0}{\sqrt2}\left(\frac65\right)^{1/4}}.
+\]
+若 $v$ 不满足 $v\ll L\omega$，作用量不再守恒，必须直接求解变系数方程。
+\figInsectRod
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{两个可极化原子的范德瓦尔斯作用}
+两个相同惰性气体原子的核相距 $R$。每个原子的核外负电中心质量为 $m$、相对原子核位移为 $x_i$，回复力为 $-kx_i$，原子核电荷为 $+q$，且 $|x_i|\ll R$。零温谐振子零点能为 $\hbar\omega/2$。求两原子体系相对两个孤立原子的能量差，并判断作用是吸引还是排斥。
+\label{r2ch03:pr:017}
+\begin{solution}
+图~\ref{r2ch03:fig:033} 中把四对库仑作用展开到 $x_i/R$ 的二阶，除去与位移无关的常量，得到
+\[
+ V=\frac k2(x_1^2+x_2^2)-\lambda x_1x_2,\qquad
+ \lambda=\frac{2q^2}{4\pi\varepsilon_0R^3}.
+\]
+取简正坐标 $x_\pm=(x_1\pm x_2)/\sqrt2$，两频率为
+\[
+ \omega_\pm=\sqrt{\frac{k\mp\lambda}{m}}
+ =\omega_0\sqrt{1\mp\frac{\lambda}{k}},
+ \qquad \omega_0=\sqrt{\frac km}.
+\]
+零点能差
+\[
+ \Delta E=\frac{\hbar}{2}(\omega_++\omega_-)-\hbar\omega_0.
+\]
+用 $\sqrt{1\pm\epsilon}=1\pm\epsilon/2-\epsilon^2/8+\cdots$，
+\[
+ \boxed{\Delta E=
+ -\frac{\hbar\omega_0}{8}\left(\frac{\lambda}{k}\right)^2
++O(R^{-9})
+=-\frac{\hbar\omega_0q^4}
+{2(4\pi\varepsilon_0)^2k^2R^6}+O(R^{-9})}.
+\]
+能量随 $R$ 减小而降低，所以 $F_R=-\dd(\Delta E)/\dd R<0$，为吸引作用。
+\figPolarizedAtoms
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{二维材料中的准粒子}
+二维材料中准粒子电量为 $q$、有效质量为 $m$，色散关系
+\[
+ K(p)=\frac{p^2}{2m}+cp,\qquad c>0.
+\]
+(a) 由动能定理证明 $\vect v=\partial K/\partial\vect p$，求速度范围；(b) 证明它等于物质波群速度；(c) 垂直磁场 $B$ 中求定能圆周运动周期；(d) 改加沿 $x$ 的匀强电场，给出轨迹切线斜率。
+\label{r2ch03:pr:018}
+\begin{solution}
+动能定理 $\dd K=\vect v\cdot\dd\vect p$ 对任意 $\dd\vect p$ 成立，故
+\[
+ \boxed{\vect v=\nabla_{\vect p}K=
+ \left(\frac pm+c\right)\hat{\vect p}},\qquad v\ge c.
+\]
+物质波满足 $E=\hbar\omega,\ \vect p=\hbar\vect k$，所以
+$\vect v_g=\nabla_{\vect k}\omega=\nabla_{\vect p}E=\vect v$。
+
+磁场中 $\dot{\vect p}=q\vect v\times\vect B$，其功率为零，故 $p$ 和 $v$ 均恒定；$\vect p$ 只转向。角速度
+$\Omega=|q|Bv/p$，因此
+\[
+ \boxed{T_B=\frac{2\pi p}{|q|B(p/m+c)}},\qquad
+ p=m\left(\sqrt{c^2+\frac{2K}{m}}-c\right).
+\]
+
+沿 $x$ 的电场取势能 $-qEx$。$p_y$ 守恒，总能量
+$H=K(p)-qEx$ 守恒。定义
+\[
+ P(x)=m\left[\sqrt{c^2+\frac{2(H+qEx)}m}-c\right],
+\]
+则 $p_x=\pm\sqrt{P(x)^2-p_y^2}$。速度与动量同向，轨迹斜率为
+\[
+ \boxed{\frac{\dd y}{\dd x}=\frac{v_y}{v_x}
+ =\frac{p_y}{\pm\sqrt{P(x)^2-p_y^2}}}.
+\]
+根号为零处是 $x$ 方向转折点；这同时给出了允许运动区。
+\end{solution}
+\end{practicebox}

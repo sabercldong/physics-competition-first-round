@@ -1,0 +1,421 @@
+% Labels are deliberately transparent: no white boxes may cover geometry.
+\tikzset{
+  xeslabel/.style={font=\small,text=Ink,fill=none,inner sep=.55pt},
+  xessmall/.style={font=\footnotesize,text=TextGray,fill=none,inner sep=.4pt},
+  xestiny/.style={font=\scriptsize,text=TextGray,fill=none,inner sep=.3pt},
+  xesline/.style={draw=Ink,line width=.85pt},
+  xesblue/.style={draw=DeepBlue,line width=1pt},
+  xesarrow/.style={-{Latex[length=2.1mm,width=1.3mm]},draw=DeepBlue,line width=.9pt},
+  fieldline/.style={draw=DeepBlue,line width=.82pt,postaction={decorate},
+    decoration={markings,mark=at position .57 with {\arrow{Latex[length=1.65mm,width=1.05mm]}}}},
+  circuit/.style={draw=Ink,line width=.9pt,line cap=round,line join=round}
+}
+
+\newcommand{\diagramcaption}[1]{%
+  \par\vspace{-.25em}
+  \begin{center}\small\color{TextGray}#1\end{center}
+  \vspace{.3em}
+}
+
+\newcommand{\capacitorFieldFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/capacitor-pair.pdf}
+\end{center}}
+
+
+\newcommand{\parallelPlateFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  % geometry panel
+  \begin{scope}[shift={(-4.45,0)}]
+    \fill[Gold!18] (-1.5,-1.25)--(-.72,-.85)--(-.72,1.25)--(-1.5,.85)--cycle;
+    \draw[xesblue] (-1.5,-1.25)--(-.72,-.85)--(-.72,1.25)--(-1.5,.85)--cycle;
+    \fill[DeepBlue!10] (.4,-1.25)--(1.18,-.85)--(1.18,1.25)--(.4,.85)--cycle;
+    \draw[xesblue] (.4,-1.25)--(1.18,-.85)--(1.18,1.25)--(.4,.85)--cycle;
+    \node[xeslabel,anchor=east] at (-1.58,.65) {$+Q$};
+    \node[xeslabel,anchor=west] at (1.26,.65) {$-Q$};
+    \draw[<->,Gold!80!black,line width=.65pt] (-.68,-1.55)--(.37,-1.55);
+    \node[xestiny,text=Gold!70!black] at (-.15,-1.8) {$d$};
+    \node[xessmall] at (0,1.65) {面积 $A$，板间距 $d$};
+  \end{scope}
+  \node[inner sep=0pt] at (3,0) {\includegraphics[width=6.7cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/plate-edges.pdf}};
+
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\coaxialCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.0,0)}]
+    \fill[DeepBlue!9] (-1.45,-1.55) rectangle (1.45,1.25);
+    \draw[xesblue] (-1.45,-1.55)--(-1.45,1.25) (1.45,-1.55)--(1.45,1.25);
+    \draw[xesblue] (0,1.25) ellipse (1.45 and .42);
+    \draw[xesblue] (-1.45,-1.55) arc[start angle=180,end angle=360,x radius=1.45,y radius=.42];
+    \fill[Gold!28] (-.62,-1.55) rectangle (.62,1.25);
+    \draw[Gold!80!black,line width=.9pt] (-.62,-1.55)--(-.62,1.25) (.62,-1.55)--(.62,1.25);
+    \draw[Gold!80!black,line width=.9pt] (0,1.25) ellipse (.62 and .2);
+    \node[xessmall] at (0,-2.1) {同轴圆柱，长度 $h$};
+    \draw[<->,Gold!75!black,line width=.6pt] (1.8,-1.55)--(1.8,1.25);
+    \node[xestiny,text=Gold!70!black,anchor=west] at (1.95,-.15) {$h$};
+  \end{scope}
+  \begin{scope}[shift={(3.2,0)}]
+    \fill[DeepBlue!8] (0,0) circle (1.65);
+    
+    \fill[Gold!26] (0,0) circle (.56);
+    \draw[xesblue] (0,0) circle (1.65);
+    \draw[Gold!80!black,line width=.9pt] (0,0) circle (.56);
+    \foreach \a in {15,45,...,345}{\draw[fieldline] (\a:.62)--(\a:1.55);}
+    \draw[Ink,line width=.55pt] (0,0)--(-.56,0);\node[xestiny,above] at (-.28,.05) {$a$};
+    \draw[Ink,line width=.55pt] (0,0)--(1.65,0);\node[xestiny,below] at (1.12,-.04) {$b$};
+    \node[xessmall] at (0,-2.1) {横截面：$a<r<b$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\capacitorParallelFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[circuit] (-3,-1.7)--(-3,1.7)--(-1.0,1.7);
+  \draw[circuit] (1.0,1.7)--(3,1.7)--(3,-1.7);
+  \draw[circuit] (-3,0)--(-1.0,0) (1.0,0)--(3,0);
+  \draw[circuit] (-3,-1.7)--(-.45,-1.7) (.45,-1.7)--(3,-1.7);
+  \draw[circuit,line width=1.4pt] (-1.0,1.42)--(-1.0,1.98) (1.0,1.42)--(1.0,1.98);
+  \draw[circuit,line width=1.4pt] (-1.0,-.28)--(-1.0,.28) (1.0,-.28)--(1.0,.28);
+  \draw[circuit,line width=1.4pt] (-.45,-2.08)--(-.45,-1.32) (.45,-1.94)--(.45,-1.46);
+  \node[xeslabel,above] at (0,1.98) {$C_1$};
+  \node[xeslabel,above] at (0,.28) {$C_2$};
+  \node[xeslabel,below] at (0,-2.08) {$U$};
+  \node[xessmall] at (0,1.15) {$Q_1=C_1U$};
+  \node[xessmall] at (0,-.58) {$Q_2=C_2U$};
+  \node[xessmall,align=left,anchor=west] at (4.0,.35) {两端电压相同\\总电荷相加};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\capacitorSeriesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[circuit] (-3,-1.45)--(-3,1.45)--(-1.55,1.45);
+  \draw[circuit] (-.75,1.45)--(.75,1.45);
+  \draw[circuit] (1.55,1.45)--(3,1.45)--(3,-1.45);
+  \draw[circuit] (-3,-1.45)--(-.45,-1.45) (.45,-1.45)--(3,-1.45);
+  \draw[circuit,line width=1.4pt] (-1.55,1.17)--(-1.55,1.73) (-.75,1.17)--(-.75,1.73);
+  \draw[circuit,line width=1.4pt] (.75,1.17)--(.75,1.73) (1.55,1.17)--(1.55,1.73);
+  \draw[circuit,line width=1.4pt] (-.45,-1.83)--(-.45,-1.07) (.45,-1.69)--(.45,-1.21);
+  \node[xeslabel,above] at (-1.15,1.76) {$C_1$};
+  \node[xeslabel,above] at (1.15,1.76) {$C_2$};
+  \node[xeslabel,below] at (0,-1.87) {$U$};
+  \node[xessmall,align=center] at (0,.55) {中间导体净电荷为零\\两电容电荷量均为 $Q$};
+  \node[xessmall] at (0,-.45) {$U=Q/C_1+Q/C_2$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\greenSphereFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[Gold!16] (-1.3,0) circle (1.25);\draw[xesblue] (-1.3,0) circle (1.25);
+  \fill[Ink] (3.35,0) circle (2.2pt);\node[xeslabel,above=4pt] at (3.35,0) {$P$};
+  \fill[Ink] (-1.3,0) circle (1.7pt);
+  \draw[xesline] (-1.3,0)--(3.35,0);
+  \node[xeslabel,above] at (1.0,0) {$r$};
+  \node[xessmall,align=left,anchor=west] at (4.25,.35) {状态 A：球带单位电荷\\状态 B：$P$ 点放电荷 $q$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\greenTwoConductorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!10] (-2.6,0) ellipse (1.3 and .95);\draw[xesblue] (-2.6,0) ellipse (1.3 and .95);
+  \fill[Gold!16] (2.4,.1) ellipse (1.05 and 1.18);\draw[xesblue] (2.4,.1) ellipse (1.05 and 1.18);
+  \node[xeslabel,align=center] at (-2.6,0) {$Q_1$\\$\varphi_1$};
+  \node[xeslabel,align=center] at (2.4,.1) {$Q_2$\\$\varphi_2$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-1.15,0)--(1.2,0);
+  \node[xessmall,text=Gold!70!black,above] at (0,.05) {静电感应耦合};
+  \node[xessmall] at (0,-1.55) {另一状态用 $Q'_i,\varphi'_i$ 表示，几何形状保持不变};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dielectricMeterFigure}{%
+\begin{center}
+\includegraphics[width=.93\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-meter.png}
+\end{center}}
+
+
+\newcommand{\polarizationFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.6,0)}]
+    \draw[xesblue] (-2.1,-1.45) rectangle (2.1,1.45);
+    \foreach \x in {-1.45,0,1.45}{\foreach \y in {-0.85,0,.85}{
+      \fill[DeepBlue!20] (\x-.24,\y) ellipse (.38 and .2);
+      \fill[Gold!35] (\x+.24,\y) ellipse (.38 and .2);
+      \node[xestiny,text=Ink] at (\x-.28,\y) {$-$};
+      \node[xestiny,text=Ink] at (\x+.28,\y) {$+$};}}
+    \draw[xesarrow] (-1.8,1.9)--(1.8,1.9);
+    \node[xessmall,above] at (0,1.93) {$\boldsymbol E_0$};
+    \node[xessmall] at (0,-1.8) {微观：偶极矩沿外场排列};
+  \end{scope}
+  \begin{scope}[shift={(3.6,0)}]
+    \draw[xesblue] (-2.1,-1.45) rectangle (2.1,1.45);
+    \foreach \y in {-1.1,-.55,0,.55,1.1}{
+      \node[xestiny,text=Ink] at (-1.82,\y) {$-$};
+      \node[xestiny,text=Ink] at (1.82,\y) {$+$};
+      \draw[-{Latex[length=1.65mm]},Gold!80!black,line width=.72pt] (1.35,\y)--(-1.35,\y);}
+    \node[xessmall,text=Gold!70!black] at (0,.28) {$\boldsymbol E_p$};
+    \node[xessmall] at (0,-1.8) {宏观：束缚面电荷产生反向极化场};
+    \node[xestiny,anchor=east] at (-2.25,0) {$-\sigma_p$};
+    \node[xestiny,anchor=west] at (2.25,0) {$+\sigma_p$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\exampleParallelFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.25pt] (-3,.75)--(3,.75);
+  \draw[xesblue,line width=1.25pt] (-3,-.75)--(3,-.75);
+  \draw[<->,Gold!75!black,line width=.65pt] (3.35,-.75)--(3.35,.75);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (3.52,0) {$d$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3,-1.18)--(3,-1.18);
+  \node[xestiny,text=Gold!70!black] at (0,-1.42) {$l$};
+  \node[xessmall] at (0,1.15) {$S=l^2$};
+  \foreach \x in {-2.5,-1.5,...,2.5}{\draw[fieldline] (\x,.62)--(\x,-.62);}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\exampleSphericalFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  
+  \fill[Gold!16] (0,0) circle (.9);
+  \draw[xesblue] (0,0) circle (1.7);
+  \draw[Gold!80!black,line width=.9pt] (0,0) circle (.9);
+  \draw[xesline] (0,0)--(.9,0) node[xestiny,pos=.62,above] {$R_1$};
+  \draw[xesline] (0,0)--(1.7,0) node[xestiny,pos=.82,below] {$R_2$};
+  \foreach \a in {15,45,...,345}{\draw[fieldline] (\a:.97)--(\a:1.62);}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\touchingSpheresFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!7] (-1.25,0) circle (1.25);\draw[xesblue] (-1.25,0) circle (1.25);
+  \fill[DeepBlue!7] (1.25,0) circle (1.25);\draw[xesblue] (1.25,0) circle (1.25);
+  \draw[xesline] (1.25,0)--(2.13,.88);
+  \node[xeslabel,above] at (1.72,.48) {$R$};
+  \node[xessmall] at (0,-1.65) {两球接触并处于同一电势 $V$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\touchingSphereImagesFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue] (-1.55,0) circle (1.55);\draw[xesblue] (1.55,0) circle (1.55);
+  \draw[RuleGray,densely dashed,line width=.55pt] (-3.2,0)--(3.2,0);
+  \foreach \x/\sgn in {-1.55/DeepBlue,-.78/Ink,-.52/DeepBlue,-.39/Ink,
+                         1.55/DeepBlue,.78/Ink,.52/DeepBlue,.39/Ink}{
+    \fill[\sgn] (\x,0) circle (3.1pt);}
+  % 接触点附近的像电荷十分密集；用错层引线避免 q_2,q_3,q_4 互相覆盖。
+  \node[xestiny,above=3pt] at (-1.55,0) {$q_1$};
+  \draw[RuleGray,line width=.45pt] (-.78,-.05)--(-.90,-.34)
+    node[xestiny,below] {$q_2$};
+  \draw[RuleGray,line width=.45pt] (-.52,.05)--(-.70,.38)
+    node[xestiny,above] {$q_3$};
+  \draw[RuleGray,line width=.45pt] (-.39,-.05)--(-.48,-.64)
+    node[xestiny,below] {$q_4$};
+  \node[xestiny,above=3pt] at (1.55,0) {$q_1$};
+  \draw[RuleGray,line width=.45pt] (.78,-.05)--(.90,-.34)
+    node[xestiny,below] {$q_2$};
+  \draw[RuleGray,line width=.45pt] (.52,.05)--(.70,.38)
+    node[xestiny,above] {$q_3$};
+  \draw[RuleGray,line width=.45pt] (.39,-.05)--(.48,-.64)
+    node[xestiny,below] {$q_4$};
+  \node[xessmall] at (0,-1.95) {$x_n=R/n,\quad q_n=4\pi\varepsilon_0RV\,(-1)^{n-1}/n$};
+  \node[xessmall] at (0,-2.43) {两侧电荷序列都向接触点聚集};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\twoCylindersFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-cylinders.pdf}
+\end{center}}
+
+
+\newcommand{\modifiedCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.5,0)}]
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,-.9) rectangle (0,.9);
+    \draw[RuleGray,line width=.55pt] (0,-.9)--(0,.9);
+    \node[xessmall] at (-1,0) {$\varepsilon_r$};\node[xessmall] at (1,0) {真空};
+    \node[xessmall] at (0,-1.42) {(a) 占一半面积：两个电容并联};
+  \end{scope}
+  \begin{scope}[shift={(3.5,0)}]
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,0) rectangle (2,.9);
+    \draw[RuleGray,line width=.55pt] (-2,0)--(2,0);
+    \node[xessmall] at (0,.45) {$\varepsilon_r$};\node[xessmall] at (0,-.48) {真空};
+    \node[xessmall] at (0,-1.42) {(b) 占一半厚度：两个电容串联};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dielectricInsertionFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (-4,1)--(4,1) (-4,-1)--(4,-1);
+  \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-4,-.9) rectangle (1.0,.9);
+  \draw[Gold!80!black,line width=.75pt] (1.0,-.9)--(1.0,.9);
+  \draw[<->,Gold!75!black,line width=.65pt] (-4,1.38)--(1.0,1.38);
+  \node[xestiny,text=Gold!70!black] at (-1.5,1.62) {$x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (1.0,1.38)--(4,1.38);
+  \node[xestiny,text=Gold!70!black] at (2.5,1.62) {$a-x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (4.35,-1)--(4.35,1);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (4.5,0) {$d$};
+  \draw[xesarrow] (.6,0)--(1.75,0);\node[xessmall,above] at (1.18,.05) {$F$};
+  \node[xessmall] at (-1.5,0) {$\varepsilon_r$};
+  \node[xessmall] at (0,-1.48) {极板宽度为 $b$，总面积 $S=ab$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\yCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (O) at (0,0);
+  \draw[circuit] (O)--(0,.62);
+  \draw[circuit,line width=1.35pt] (-.34,.62)--(.34,.62) (-.34,1.02)--(.34,1.02);
+  \draw[circuit] (0,1.02)--(0,1.85);
+  \node[xeslabel,anchor=west] at (.45,.82) {$C_1$};\node[xeslabel,above] at (0,1.85) {$\varphi_1$};
+  \begin{scope}[rotate=120]
+    \draw[circuit] (0,0)--(0,.72);
+    \draw[circuit,line width=1.35pt] (-.34,.72)--(.34,.72) (-.34,1.12)--(.34,1.12);
+    \draw[circuit] (0,1.12)--(0,1.95);
+  \end{scope}
+  \node[xeslabel] at (-1.85,-1.18) {$\varphi_2$};\node[xeslabel] at (-1.00,-1.02) {$C_2$};
+  \begin{scope}[rotate=-120]
+    \draw[circuit] (0,0)--(0,.72);
+    \draw[circuit,line width=1.35pt] (-.34,.72)--(.34,.72) (-.34,1.12)--(.34,1.12);
+    \draw[circuit] (0,1.12)--(0,1.95);
+  \end{scope}
+  \node[xeslabel] at (1.85,-1.18) {$\varphi_3$};\node[xeslabel] at (1.00,-1.02) {$C_3$};
+  \fill[DeepBlue] (O) circle (2.3pt);\node[xessmall,anchor=west] at (.18,.12) {浮置中性节点，电势 $V$};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\dielectricSphereFieldFigure}{%
+\begin{center}
+\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-sphere.pdf}
+\end{center}}
+
+
+\newcommand{\polarizationEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \begin{scope}[shift={(-3.3,0)}]
+    \draw[xesblue] (-1.7,-1.0) rectangle (1.7,1.0);
+    \foreach \x in {-1.15,0,1.15}{\draw[decorate,decoration={zigzag,segment length=3pt,amplitude=2pt},Gold!75!black,line width=.7pt] (\x-.35,0)--(\x+.35,0);}
+    \foreach \x in {-1.15,0,1.15}{\node[xestiny] at (\x-.48,0) {$-$};\node[xestiny] at (\x+.48,0) {$+$};}
+    \node[xessmall] at (0,-1.38) {无外场：微观“弹簧”未拉伸};
+  \end{scope}
+  \begin{scope}[shift={(3.3,0)}]
+    \draw[xesblue] (-1.7,-1.0) rectangle (1.7,1.0);
+    \foreach \x in {-1.15,0,1.15}{\draw[decorate,decoration={zigzag,segment length=3pt,amplitude=2pt},Gold!75!black,line width=.7pt] (\x-.55,0)--(\x+.55,0);}
+    \foreach \x in {-1.15,0,1.15}{\node[xestiny] at (\x-.7,0) {$-$};\node[xestiny] at (\x+.7,0) {$+$};}
+    \draw[xesarrow] (-1.45,.68)--(1.45,.68);\node[xessmall,above] at (0,.71) {$\boldsymbol E$};
+    \node[xessmall] at (0,-1.38) {有外场：极化自由度也储存能量};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\chargingEnergyFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \node[draw=DeepBlue,line width=.9pt,rounded corners=2pt,minimum width=2.3cm,minimum height=1.0cm,text=Ink,fill=DeepBlue!6] (S) at (-3.6,0) {电源 $C\mathcal E^2$};
+  \node[draw=DeepBlue,line width=.9pt,rounded corners=2pt,minimum width=2.4cm,minimum height=1.0cm,text=Ink,fill=DeepBlue!6] (C) at (0,1.15) {电容场能 $\tfrac12C\mathcal E^2$};
+  \node[draw=Gold!80!black,line width=.9pt,rounded corners=2pt,minimum width=2.4cm,minimum height=1.0cm,text=Ink,fill=Gold!12] (H) at (0,-1.15) {焦耳热 $\tfrac12C\mathcal E^2$};
+  \draw[xesarrow] (S.east)--(C.west);\draw[-{Latex[length=2.1mm]},Gold!80!black,line width=.9pt] (S.east)--(H.west);
+  \node[xessmall,align=left,anchor=west] at (2.1,.25) {$R>0$ 时分配比例与 $R$ 无关；\\$R\to0^+$ 只使过程更快。};
+\end{tikzpicture}
+\end{center}}
+
+\newcommand{\earthCapacitorFigure}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[DeepBlue!16] (0,0) circle (2.05);\draw[xesblue] (0,0) circle (2.05);
+  \draw[Gold!80!black,line width=3.3pt,opacity=.7] (0,0) circle (2.34);
+  \node[xessmall] at (0,0) {地球};
+  \node[xestiny] at (0,-.45) {半径 $R_\oplus$，电荷 $-Q$};
+  \draw[<->,Gold!75!black,line width=.65pt] (2.05,0)--(2.34,0);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (2.48,0) {$d=5\,\mathrm{km}$};
+  \node[xessmall,anchor=west] at (3.35,.62) {等效大气上边界：$+Q$};
+  \draw[RuleGray,-{Latex[length=1.5mm]},line width=.55pt] (3.2,.55)--(2.25,.35);
+  \node[xessmall,anchor=west] at (3.35,-.35) {$C=4\pi\varepsilon_0\dfrac{R_\oplus(R_\oplus+d)}{d}$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emParallelQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.25pt] (-3,.75)--(3,.75);
+  \draw[xesblue,line width=1.25pt] (-3,-.75)--(3,-.75);
+  \draw[<->,Gold!75!black,line width=.65pt] (3.35,-.75)--(3.35,.75);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (3.52,0) {$d$};
+  \draw[<->,Gold!75!black,line width=.65pt] (-3,-1.18)--(3,-1.18);
+  \node[xestiny,text=Gold!70!black] at (0,-1.42) {$l$};
+  \node[xessmall] at (0,1.15) {$S=l^2$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emSphericalQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  
+  \fill[Gold!16] (0,0) circle (.9);
+  \draw[xesblue] (0,0) circle (1.7);
+  \draw[Gold!80!black,line width=.9pt] (0,0) circle (.9);
+  \draw[xesline] (0,0)--(.9,0) node[xestiny,pos=.62,above] {$R_1$};
+  \draw[xesline] (0,0)--(1.7,0) node[xestiny,pos=.82,below] {$R_2$};
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emModifiedQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \path[use as bounding box] (-5.55,-1.7) rectangle (5.55,1.15);
+  \begin{scope}[shift={(-3.5,0)}]
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,-.9) rectangle (0,.9);
+    \draw[RuleGray,line width=.55pt] (0,-.9)--(0,.9);
+    \node[xessmall] at (-1,0) {$\varepsilon_r$};\node[xessmall] at (1,0) {真空};
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \node[xessmall] at (0,-1.42) {(a) 占一半面积};
+  \end{scope}
+  \begin{scope}[shift={(3.5,0)}]
+    \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-2,0) rectangle (2,.9);
+    \draw[RuleGray,line width=.55pt] (-2,0)--(2,0);
+    \node[xessmall] at (0,.45) {$\varepsilon_r$};\node[xessmall] at (0,-.48) {真空};
+    \draw[xesblue,line width=1.1pt] (-2,1)--(2,1) (-2,-1)--(2,-1);
+    \node[xessmall] at (0,-1.42) {(b) 占一半厚度};
+  \end{scope}
+\end{tikzpicture}
+\end{center}}
+
+% Pure question geometry; analysis figure retained separately.
+\newcommand{\emInsertionQuestion}{%
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \draw[xesblue,line width=1.2pt] (-4,1)--(4,1) (-4,-1)--(4,-1);
+  \fill[Gold!22,pattern=north east lines,pattern color=Gold!70!black] (-4,-.9) rectangle (1.0,.9);
+  \draw[Gold!80!black,line width=.75pt] (1.0,-.9)--(1.0,.9);
+  \draw[<->,Gold!75!black,line width=.65pt] (-4,1.38)--(1.0,1.38);
+  \node[xestiny,text=Gold!70!black] at (-1.5,1.62) {$x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (1.0,1.38)--(4,1.38);
+  \node[xestiny,text=Gold!70!black] at (2.5,1.62) {$a-x$};
+  \draw[<->,Gold!75!black,line width=.65pt] (4.35,-1)--(4.35,1);
+  \node[xestiny,text=Gold!70!black,anchor=west] at (4.5,0) {$d$};
+  \node[xessmall] at (-1.5,0) {$\varepsilon_r$};
+  \node[xessmall] at (0,-1.48) {极板宽度为 $b$，总面积 $S=ab$};
+\end{tikzpicture}
+\end{center}}

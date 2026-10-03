@@ -1,0 +1,421 @@
+\section{静磁场}
+
+\subsection{电流分布、矢势与磁能}
+
+稳恒电流满足 $\nabla\cdot\vect j=0$，静磁场方程为
+\[
+ \nabla\times\vect B=\mu_0\vect j,
+ \qquad \nabla\cdot\vect B=0.
+\]
+因此可引入矢势
+\[
+ \boxed{\vect A(\vect r)=\frac{\mu_0}{4\pi}
+ \int\frac{\vect j(\vect r')}{|\vect r-\vect r'|}\dd V'},
+ \qquad \vect B=\nabla\times\vect A,
+\]
+即 Biot--Savart 公式
+\[
+ \vect B=\frac{\mu_0}{4\pi}\int
+ \frac{\vect j(\vect r')\times(\vect r-\vect r')}
+ {|\vect r-\vect r'|^3}\dd V'.
+\]
+对线电流，$\vect j\dd V$ 替换为 $I\dd\vect l$。积分形式为
+\[
+ \oint\vect B\cdot\dd\vect S=0,
+ \qquad \oint\vect B\cdot\dd\vect l=\mu_0I_{\rm enc},
+ \qquad \int_S\vect B\cdot\dd\vect S=\oint_{\partial S}\vect A\cdot\dd\vect l.
+\]
+
+\begin{advexamplebox}{Biot--Savart 矢势的 Coulomb 规范}\label{advA4:ex:coulomb-gauge}
+证明在稳恒局域电流条件下，上述 $\vect A$ 自动满足
+$\nabla\cdot\vect A=0$。
+\end{advexamplebox}
+\begin{advsolution}
+利用 $\nabla(1/R)=-\nabla'(1/R)$，
+\[
+ \nabla\cdot\vect A
+ =\frac{\mu_0}{4\pi}\int\vect j'\cdot\nabla\frac1R\dd V'
+ =-\frac{\mu_0}{4\pi}\int\vect j'\cdot\nabla'\frac1R\dd V'.
+\]
+把被积式写成
+\[
+ \vect j'\cdot\nabla'\frac1R
+ =\nabla'\cdot\frac{\vect j'}R-\frac{\nabla'\cdot\vect j'}R.
+\]
+第二项因稳恒连续性 $\nabla'\cdot\vect j'=0$ 消失；第一项化为无穷远边界通量，局域电流使其为零。因此
+\[
+ \boxed{\nabla\cdot\vect A=0}.
+\]
+若电流穿过所选有限区域边界，边界项不能任意丢弃；应把回流路径一并计入。
+\end{advsolution}
+
+静磁能为
+\[
+ U_B=\frac12\int\vect j\cdot\vect A\dd V.
+\]
+
+\begin{advtheorem}{静磁 Green 互易关系}\label{advA4:thm:magnetic-reciprocity}
+两组局域稳恒电流及其 Coulomb 规范矢势满足
+\[
+ \boxed{\int\vect j_1\cdot\vect A_2\dd V
+ =\int\vect j_2\cdot\vect A_1\dd V}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 代入积分核，
+\[
+ \int\vect j_1(\vect r)\cdot\vect A_2(\vect r)\dd V
+ =\frac{\mu_0}{4\pi}\iint
+ \frac{\vect j_1(\vect r)\cdot\vect j_2(\vect r')}
+ {|\vect r-\vect r'|}\dd V\dd V'.
+\]
+交换 $\vect r,\vect r'$ 及下标1、2，积分不变，即得结论。\hfill$\square$
+
+\begin{advtheorem}{磁场能}\label{advA4:thm:magnetic-energy}
+局域稳恒电流的能量也可写成
+\[
+ \boxed{\frac12\int\vect j\cdot\vect A\dd V
+ =\frac1{2\mu_0}\int B^2\dd V}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 由 $\vect j=\mu_0^{-1}\nabla\times\vect B$ 和
+\[
+ \nabla\cdot(\vect A\times\vect B)
+ =\vect B\cdot\nabla\times\vect A-
+ \vect A\cdot\nabla\times\vect B
+\]
+得到
+\[
+ \int\vect j\cdot\vect A\dd V
+ =\frac1{\mu_0}\int B^2\dd V
+ -\frac1{\mu_0}\oint(\vect A\times\vect B)\cdot\dd\vect S.
+\]
+局域场在无穷远的边界项消失，乘以 $1/2$ 即得。\hfill$\square$
+
+\begin{advexamplebox}{线圈系统的电感矩阵}\label{advA4:ex:inductance-matrix}
+证明线性介质中 $N$ 个线圈的磁能为
+\[
+ U_B=\frac12\sum_{i,j}L_{ij}I_iI_j,
+\]
+其中穿过线圈 $i$ 的磁链 $\Phi_i=\sum_jL_{ij}I_j$，并证明
+$L_{ij}=L_{ji}$。说明固定电流求机械力时为什么使用磁共能。
+\end{advexamplebox}
+\begin{advsolution}
+把总电流写成 $\vect j=\sum_iI_i\vect j_i^{(1)}$，矢势也线性叠加。于是
+\[
+ U_B=\frac12\sum_{i,j}I_iI_j
+ \int\vect j_i^{(1)}\cdot\vect A_j^{(1)}\dd V
+ \equiv\frac12\sum_{i,j}L_{ij}I_iI_j.
+\]
+对细线圈，$\int\vect j_i^{(1)}\cdot\vect A_j^{(1)}\dd V
+=\oint_i\vect A_j^{(1)}\cdot\dd\vect l=\Phi_{i\leftarrow j}/I_j$，故
+$\Phi_i=\partial U_B/\partial I_i=\sum_jL_{ij}I_j$。定理\ref{advA4:thm:magnetic-reciprocity}立即给出
+$L_{ij}=L_{ji}$。
+
+若外电源固定 $I_i$，构型改变时电源还会做功
+$\sum_iI_i\dd\Phi_i$。Legendre 变换后的机械势为
+\[
+ V_{\rm mech}=U_B-\sum_iI_i\Phi_i=-U_B
+\]
+（线性体系），所以广义力
+$Q_\alpha=\partial U_B/\partial q_\alpha|_I$。若超导回路固定磁链，则直接在固定 $\Phi$ 下用场能，两个条件不能混用。
+\end{advsolution}
+
+\subsection{磁多极矩}
+
+远区矢势可按
+$1/|\vect r-\vect r'|$ 展开。零阶项含
+$\int\vect j\dd V=0$；其证明是对任意常矢量 $\vect c$ 写
+\[
+ \vect c\cdot\int\vect j\dd V
+ =\int\nabla\cdot[(\vect c\cdot\vect r)\vect j]\dd V=0.
+\]
+一阶矩张量为
+\[
+ M_{ij}=\int x_i j_j\dd V.
+\]
+
+\begin{advtheorem}{稳恒电流的一阶矩反对称}\label{advA4:thm:moment-antisymmetric}
+\[
+ \boxed{M_{ij}+M_{ji}=0}.
+\]
+因而可用磁偶极矩
+\[
+ \boxed{\vect m=\frac12\int\vect r\times\vect j\dd V}
+\]
+完全表示它。
+\end{advtheorem}
+\noindent\textbf{证明}\quad 对局域电流积分
+\[
+ \partial_k(x_ix_jj_k)=x_jj_i+x_ij_j+x_ix_j\partial_kj_k.
+\]
+最后一项由 $\nabla\cdot\vect j=0$ 消失；左边体积分化为无穷远边界通量并为零，故
+$\int(x_jj_i+x_ij_j)\dd V=0$。反对称二阶张量在三维与矢量对偶，正是所列 $\vect m$。\hfill$\square$
+
+远区矢势和磁场为
+\[
+ \vect A=\frac{\mu_0}{4\pi}\frac{\vect m\times\vect r}{r^3},
+ \qquad (r\ne0).
+\]
+
+\begin{advtheorem}{点磁偶极子的完整分布场}\label{advA4:thm:magnetic-dipole-field}
+\[
+ \boxed{\vect B(\vect r)=\frac{\mu_0}{4\pi}
+ \frac{3(\vect m\cdot\vect r)\vect r-r^2\vect m}{r^5}
+ +\frac{2\mu_0}{3}\vect m\,\delta^{(3)}(\vect r)}.
+\]
+\end{advtheorem}
+\noindent\textbf{证明}\quad 由
+$\vect A=-(\mu_0/4\pi)\vect m\times\nabla(1/r)$ 计算旋度，并使用分布 Hessian
+\[
+ \partial_i\partial_j\frac1r
+ =\frac{3x_ix_j-r^2\delta_{ij}}{r^5}
+ -\frac{4\pi}{3}\delta_{ij}\delta^{(3)}(\vect r).
+\]
+两个缩并项组合后，$\delta$ 系数为 $2\mu_0/3$。该项保证
+$\nabla\cdot\vect B=0$ 在原点也成立。\hfill$\square$
+
+外场缓变时
+\[
+ \vect M=\vect m\times\vect B,
+ \qquad \vect F=\nabla(\vect m\cdot\vect B),
+\]
+可由小电流环或势能 $U=-\vect m\cdot\vect B$ 推得。
+
+\begin{advexamplebox}{可伸缩超导螺线管}\label{advA4:ex:superconducting-solenoid}
+轻质软螺线管截面积恒为 $S$、匝数 $N$、初长 $l$、初始电流 $I$。两端各接质量 $m$ 的质点，初态静止，释放后求长度 $x(t)$ 和电流 $i(t)$，忽略边缘效应。
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+ \draw[thick] (-3,0) circle(.32) node {$m$};
+ \draw[thick] (3,0) circle(.32) node {$m$};
+ \draw[thick] (-2.68,0) -- (-2.35,0);
+ \draw[thick,decorate,decoration={coil,segment length=5.5pt,amplitude=5pt}]
+   (-2.35,0)--(2.35,0);
+ \draw[thick] (2.35,0)--(2.68,0);
+ \draw[<->] (-2.35,-.72)--(2.35,-.72) node[midway,fill=none,below] {$x(t)$};
+ \draw[->,DeepBlue] (-3.45,0)--(-3.9,0) node[left] {$+q_L$};
+ \draw[->,DeepBlue] (3.45,0)--(3.9,0) node[right] {$+q_R$};
+ \node[above] at (0,.48) {$N$ 匝，截面积 $S$};
+\node at(0,-1.5){箭头规定两端向外位移的正向，非实际速度};
+\end{tikzpicture}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+长螺线管自感
+\[
+ L(x)=\frac{\mu_0N^2S}{x}.
+\]
+超导回路磁链守恒：
+\[
+ L(x)i(t)=L(l)I
+ \quad\Longrightarrow\quad
+ \boxed{i(t)=I\frac{x(t)}l}.
+\]
+固定磁链下的磁能
+\[
+ U_B=\frac12L(x)i^2
+ =\frac{\mu_0N^2SI^2}{2l^2}x\equiv ax.
+\]
+两质点关于质心对称运动，各自速度大小 $|\dot x|/2$，总动能
+$K=m\dot x^2/4$。能量守恒
+\[
+ \frac m4\dot x^2+ax=al
+\]
+或约化质量方程 $(m/2)\ddot x=-a$ 给出
+\[
+ \boxed{x(t)=l-\frac{\mu_0N^2SI^2}{2ml^2}t^2},
+\]
+\[
+ \boxed{i(t)=I\left(1-\frac{\mu_0N^2SI^2}{2ml^3}t^2\right)}.
+\]
+此式适用于 $0\le t\le t_c$，其中
+$t_c=\sqrt{2ml^3/(\mu_0N^2SI^2)}$。磁能减少恰等于两质点动能；$x\downarrow0$ 时理想模型的长螺线管近似失效，不能继续外推。
+\end{advsolution}
+
+\subsection{磁介质与磁标势}
+
+磁化强度 $\vect M$ 等效为束缚电流
+\[
+ \vect j_M=\nabla\times\vect M,
+ \qquad \vect K_M=\vect M\times\vect n.
+\]
+也可在无自由电流的单连通区域引入磁标势
+\[
+ \vect H=-\nabla\psi_M,\qquad
+ \vect B=\mu_0(\vect H+\vect M),
+\]
+等效磁荷为
+$\rho_M=-\nabla\cdot\vect M$、
+$\sigma_M=(\vect M_1-\vect M_2)\cdot\vect n$。含自由电流时
+\[
+ \vect H=\frac1{4\pi}\int
+ \frac{\vect j_f(\vect r')\times(\vect r-\vect r')}{R^3}\dd V'
+ -\nabla\psi_M.
+\]
+线性各向同性介质取
+$\vect M=\chi_m\vect H$、
+$\vect B=\mu\vect H$，能量密度为
+$w=\tfrac12\vect B\cdot\vect H$。
+
+\begin{advexamplebox}{均匀磁化球的内外磁场}\label{advA4:ex:uniform-magnetized-sphere}
+半径 $R$ 的球体具有均匀磁化强度 $\vect M=M\vect e_z$。求内外 $\vect H,\vect B$。
+\end{advexamplebox}
+\begin{advsolution}
+体磁荷 $-\nabla\cdot\vect M=0$，表面磁荷
+$\sigma_M=M\cos\theta$。轴对称标势取
+\[
+ \psi_{\rm in}=Ar\cos\theta,\qquad
+ \psi_{\rm out}=\frac{B\cos\theta}{r^2}.
+\]
+切向 $H$ 连续，法向满足
+$H_{n,\rm out}-H_{n,\rm in}=\sigma_M$。代入得到
+\[
+ \boxed{\vect H_{\rm in}=-\frac13\vect M},
+ \qquad
+ \boxed{\vect B_{\rm in}=\frac{2\mu_0}{3}\vect M}.
+\]
+球外等效于位于球心的磁偶极子
+\[
+ \vect m=\frac{4\pi R^3}{3}\vect M,
+\]
+所以
+\[
+ \boxed{\vect B_{\rm out}=\frac{\mu_0}{4\pi r^3}
+ [3(\vect m\cdot\vect e_r)\vect e_r-\vect m]}.
+\]
+在 $r=R$ 检查 $B_n$ 连续、$H_t$ 连续，边界条件满足。
+\end{advsolution}
+
+\begin{advexamplebox}{自由电流圈的磁偶极层与磁标势}\label{advA4:ex:current-loop-scalar-potential}
+证明载流 $I$ 的闭合线圈在不穿过线圈的区域可由磁标势描述，并等效于跨任意张面 $S$ 的磁偶极层。
+\end{advexamplebox}
+\begin{advsolution}
+张面法线与正电流方向满足右手关系，其有向立体角定义为
+\[
+ \Omega(\vect r)=\int_S
+ \frac{(\vect r-\vect r')\cdot\dd\vect S'}{|\vect r-\vect r'|^3}.
+\]
+对场点求梯度并用 Stokes 定理，可得
+\[
+ -\nabla\left(\frac I{4\pi}\Omega\right)
+ =\frac I{4\pi}\oint_{\partial S}
+ \frac{\dd\vect l'\times(\vect r-\vect r')}{R^3}
+ =\vect H.
+\]
+因此
+\[
+ \boxed{\psi_H=\frac I{4\pi}\Omega},
+ \qquad \vect B=-\mu_0\nabla\psi_H.
+\]
+按正法线方向穿过割面，$\Omega$ 从 $-2\pi$ 跳到 $+2\pi$，故选定支上的 $\psi_H$ 跳变 $+I$；沿正向闭合回路跟踪连续支，势累计下降 $I$，与环路积分
+$\oint\vect H\cdot\dd\vect l=I$。面上单位面积磁偶极矩取
+$I\vect n$ 就产生同一势，所以线圈等效于磁偶极层。标势是多值的，只有在割去张面后的单连通区域内才能单值使用。
+\end{advsolution}
+
+\subsection{静磁边值问题}
+
+无自由电流区域内 $\vect H=-\nabla\psi$ 且 $\nabla^2\psi=0$。理想超导体完全抗磁，内部 $\vect B=0$，表面给出
+$\partial_n\psi=0$ 的 Neumann 条件。
+
+\begin{advexamplebox}{反向平行电流、二维磁偶极与超导圆柱}\label{advA4:ex:parallel-currents-cylinder}
+两条无限长 $z$ 向导线位于 $x=\pm d/2$，载流分别为 $+I,-I$。求磁标势；取 $p=Id$、$d\to0$ 的二维偶极极限。再把该偶极置于半径 $R$ 的超导圆柱轴线上，求柱内平衡场。
+\end{advexamplebox}
+\begin{advsolution}
+在不跨过割线的区域，单根 $+I$ 导线的标势是
+$-I\arg(z-z_0)/(2\pi)$。因此成对电流给出单值势
+\[
+ \boxed{\psi=-\frac I{2\pi}
+ [\arg(x-d/2+\ii y)-\arg(x+d/2+\ii y)]}.
+\]
+小 $d$ 展开得到
+\[
+ \boxed{\psi_0=-\frac p{2\pi}\frac y{x^2+y^2}
+ =-\frac p{2\pi r}\sin\phi}.
+\]
+超导边界要求 $\partial_r\psi|_{R}=0$。加入在圆柱内正则的 $l=1$ 调和项，
+\[
+ \boxed{\psi=-\frac p{2\pi}\left(\frac{\sin\phi}{r}
+ +\frac{r\sin\phi}{R^2}\right)}.
+\]
+于是 $\vect H=-\nabla\psi$，直角坐标分量为
+\[
+ H_x=-\frac{pxy}{\pi r^4},
+ \qquad
+ H_y=\frac p{2\pi}\left(\frac{x^2-y^2}{r^4}+\frac1{R^2}\right),
+ \qquad \vect B=\mu_0\vect H.
+\]
+在 $r=R$ 直接计算 $H_r=0$；$R\to\infty$ 时附加均匀场消失，退回自由空间偶极。
+\end{advsolution}
+
+\begin{advexamplebox}{圆柱面电流与三圆柱相交体}\label{advA4:ex:steinmetz-currents}
+无限薄圆柱面半径为 $R$，分别载
+$\vect K=i_0\vect e_\phi$ 与
+$\vect K=i_0\cos\phi\,\vect e_z$，求内外磁场。
+
+三个互相垂直、半径均为 $R$ 的圆柱公共区域组成三圆柱相交体。其三类边界面上分别给定
+\[
+ \vect K_1=-i_0\cos\phi_y\vect e_x,\quad
+ \vect K_2=i_0\cos\phi_x\vect e_y,\quad
+ \vect K_3=i_0\vect e_{\phi_z}.
+\]
+证明电流连续并求远场。
+
+\begin{center}
+\begin{tikzpicture}[scale=.9]
+ \draw[axis](-2,-1)--(2.4,1.2)node[right]{$x$};
+ \draw[axis](2,-1)--(-2.4,1.2)node[left]{$y$};
+ \draw[axis](0,-1.5)--(0,2.1)node[above]{$z$};
+ \draw[DeepBlue] (0,0)ellipse(1.8 and .9);
+ \draw[vector,Gold!80!black](.7,.8)--(-.3,.3);\node[anchor=west]at(.8,1.55){$\vect K_1\parallel-\vect e_x$};\draw[guide](.8,1.4)--(.2,.55);
+ \draw[vector,DeepBlue](-.7,.8)--(-1.7,1.3)node[above]{$\vect K_2\parallel\vect e_y$};
+ \draw[vector,TextGray](1.8,0)--(1.8,.65)node[right]{$\vect K_3$ 切向};
+ \node at(0,-2){局部方向示意，非三圆柱相交体的投影边界};
+\end{tikzpicture}
+\end{center}
+\end{advexamplebox}
+\begin{advsolution}
+环形面电流正是均匀磁化 $\vect M=i_0\vect e_z$ 的束缚面电流
+$\vect K=\vect M\times\vect n$，所以
+\[
+ \boxed{\vect B_{\rm in}=\mu_0i_0\vect e_z,\qquad
+ \vect B_{\rm out}=0}.
+\]
+对 $K_z=i_0\cos\phi$，取 $A_z$：
+\[
+ A_{z,\rm in}=ar\cos\phi,\qquad
+ A_{z,\rm out}=\frac b r\cos\phi.
+\]
+$B_r$ 连续和
+$B_{\phi,\rm out}-B_{\phi,\rm in}=\mu_0K_z$ 给出
+$a=\mu_0i_0/2$、$b=aR^2$。于是
+\[
+ \boxed{\vect B_{\rm in}=-\frac{\mu_0i_0}{2}\vect e_y},
+\]
+\[
+ \boxed{B_{r,\rm out}=-\frac{\mu_0i_0R^2}{2r^2}\sin\phi,\quad
+ B_{\phi,\rm out}=\frac{\mu_0i_0R^2}{2r^2}\cos\phi}.
+\]
+
+三圆柱相交体的关键是三组电流并非彼此拼凑。取整个体积均匀磁化
+$\vect M=i_0\vect e_z$，则任意边界面上
+$\vect K=\vect M\times\vect n$。在沿 $x$ 的圆柱面，
+$\vect n=\cos\phi_y\vect e_y+\sin\phi_y\vect e_z$，得到
+$\vect K_1=-i_0\cos\phi_y\vect e_x$；沿 $y$、$z$ 的圆柱面同理恰得 $\vect K_2,\vect K_3$。因此接缝两侧是同一个连续面流的限制，电荷不在接缝堆积，连续性自动满足。
+
+远场只保留总磁偶极矩
+\[
+ \vect m=\int\vect M\dd V=i_0V_S\vect e_z.
+\]
+三个正交圆柱公共区域的体积为
+$V_S=8(2-\sqrt2)R^3$，故
+\[
+ \boxed{\vect m=8(2-\sqrt2)i_0R^3\vect e_z},
+\]
+\[
+ \boxed{\vect B(\vect r)\sim\frac{\mu_0}{4\pi r^3}
+ [3(\vect m\cdot\vect e_r)\vect e_r-\vect m]}
+ \qquad(r\gg R).
+\]
+图中只示三类面流的局部方向，不把椭圆当作三圆柱相交体的边界。各面电流均由同一公式
+$\vect M\times\vect n$ 决定，所以方向关系不是装饰性示意，而直接参与连续性证明。
+\end{advsolution}

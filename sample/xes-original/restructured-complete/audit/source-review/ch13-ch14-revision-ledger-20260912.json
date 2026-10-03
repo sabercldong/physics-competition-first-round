@@ -1,0 +1,786 @@
+{
+  "scope": "第13、14章修订；源页教学主题+逐题+逐图对象核对，不是逐字逐句计数",
+  "sources": {
+    "kinematics": {
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/资料.pdf",
+      "sha256": "3c3a992be8d4e24124561b5642abc55136edda735b2efeb4780943c4302b4784"
+    },
+    "notes": {
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛学生版讲义.pdf",
+      "sha256": "b982d7bb5b525ddad8f12d25d43c8abafba6530f3cf3112e1263b1df9df20edb"
+    },
+    "exercises": {
+      "path": "/Users/dongxingxi/Downloads/学而思资料/二轮/2020秋季高二物理竞赛习题.pdf",
+      "sha256": "cca3ac2af463c2792e3165f821c95472e029aad317ebb5a606e0640a9aa56cba"
+    },
+    "thermal": {
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/【2020寒】兴趣一阶-热学.pdf",
+      "sha256": "74fbc798a37434371504dd3b177bc9505692150ed9bd4642b6f2ed74e76389f0"
+    }
+  },
+  "pages": [
+    {
+      "id": "kinematics:page:78",
+      "source": "kinematics",
+      "physical_page": 78,
+      "printed_page": null,
+      "teaching_topics": "流体、定常流、速度场、可压缩性",
+      "targets": [
+        "ch13:sec:flow-intro"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "kinematics:page:79",
+      "source": "kinematics",
+      "physical_page": 79,
+      "printed_page": null,
+      "teaching_topics": "流线性质、流线管、体积流率、例2.97",
+      "targets": [
+        "ch13:sec:flow-intro"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "kinematics:page:80",
+      "source": "kinematics",
+      "physical_page": 80,
+      "printed_page": null,
+      "teaching_topics": "等截面稳定流、下落水束、质量连续性",
+      "targets": [
+        "ch13:sec:flow-intro"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "kinematics:page:81",
+      "source": "kinematics",
+      "physical_page": 81,
+      "printed_page": null,
+      "teaching_topics": "可压缩连续性、等截面自由落体液柱",
+      "targets": [
+        "ch13:sec:flow-intro"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:page:123",
+      "source": "notes",
+      "physical_page": 123,
+      "printed_page": 121,
+      "teaching_topics": "质元映射与欧拉速度场、流线微分方程、流线管、不可压缩条件",
+      "targets": [
+        "ch13:sec:material",
+        "ch13:sec:flow-intro"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:page:124",
+      "source": "notes",
+      "physical_page": 124,
+      "printed_page": 122,
+      "teaching_topics": "随体连续性、热流耦合、速度梯度的平动/转动/形变分解",
+      "targets": [
+        "ch13:sec:material",
+        "ch13:sec:bernoulli"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:page:125",
+      "source": "notes",
+      "physical_page": 125,
+      "printed_page": 123,
+      "teaching_topics": "应力、压强各向同性、压力合力、浮力积分、静力平衡及偏应力",
+      "targets": [
+        "ch13:sec:statics",
+        "ch13:sec:surface"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:page:126",
+      "source": "notes",
+      "physical_page": 126,
+      "printed_page": 124,
+      "teaching_topics": "欧拉方程、压力做功图、沿流线导出伯努利方程",
+      "targets": [
+        "ch13:sec:bernoulli"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:page:127",
+      "source": "notes",
+      "physical_page": 127,
+      "printed_page": 125,
+      "teaching_topics": "内能与焓、可压缩伯努利条件、牛顿黏滞与两种黏度",
+      "targets": [
+        "ch13:sec:bernoulli",
+        "ch13:sec:viscosity"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "notes:page:128",
+      "source": "notes",
+      "physical_page": 128,
+      "printed_page": 126,
+      "teaching_topics": "应力对称性、黏性应力散度、纳维—斯托克斯方程及讨论",
+      "targets": [
+        "ch13:sec:surface"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:page:53",
+      "source": "exercises",
+      "physical_page": 53,
+      "printed_page": null,
+      "teaching_topics": "两液柱振动；竖直同轴圆筒流三问",
+      "targets": [
+        "ch13:ex:coupled-hg",
+        "ch13:ex:couette"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:page:54",
+      "source": "exercises",
+      "physical_page": 54,
+      "printed_page": null,
+      "teaching_topics": "半圆柱机库风力、速度势及压力积分",
+      "targets": [
+        "ch13:ex:hangar"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:page:55",
+      "source": "exercises",
+      "physical_page": 55,
+      "printed_page": null,
+      "teaching_topics": "漏斗排液及黏性；浅水波岸坡与俯视轨迹",
+      "targets": [
+        "ch13:ex:funnel",
+        "ch13:ex:shore"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "exercises:page:56",
+      "source": "exercises",
+      "physical_page": 56,
+      "printed_page": null,
+      "teaching_topics": "直角水管稳定偏角",
+      "targets": [
+        "ch13:ex:hose"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:5",
+      "source": "thermal",
+      "physical_page": 5,
+      "printed_page": 279,
+      "teaching_topics": "热物理导言、历史、分子运动论与实验证据",
+      "targets": [
+        "ch14:sec:molecules"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:6",
+      "source": "thermal",
+      "physical_page": 6,
+      "printed_page": 280,
+      "teaching_topics": "分子成像、分子特征、热运动、温度",
+      "targets": [
+        "ch14:sec:molecules",
+        "ch14:sec:temperature"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:7",
+      "source": "thermal",
+      "physical_page": 7,
+      "printed_page": 281,
+      "teaching_topics": "测温前后、温标、热平衡、熔点与沸点",
+      "targets": [
+        "ch14:sec:temperature"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:8",
+      "source": "thermal",
+      "physical_page": 8,
+      "printed_page": 282,
+      "teaching_topics": "热膨胀、非对称势阱、膨胀系数表",
+      "targets": [
+        "ch14:sec:expansion"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:9",
+      "source": "thermal",
+      "physical_page": 9,
+      "printed_page": 283,
+      "teaching_topics": "线膨胀、工程应用与因瓦合金、气体模型适用条件",
+      "targets": [
+        "ch14:sec:expansion",
+        "ch14:sec:ideal-gas"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:10",
+      "source": "thermal",
+      "physical_page": 10,
+      "printed_page": 284,
+      "teaching_topics": "固定物质量状态关系、气体密度、分压、传统气压计",
+      "targets": [
+        "ch14:sec:ideal-gas",
+        "ch14:sec:mixtures"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:11",
+      "source": "thermal",
+      "physical_page": 11,
+      "printed_page": 285,
+      "teaching_topics": "瑞利仪器叉形端面、误差控制、气体密度差推导",
+      "targets": [
+        "ch14:sec:mixtures"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:12",
+      "source": "thermal",
+      "physical_page": 12,
+      "printed_page": 286,
+      "teaching_topics": "氩气比例与性质、容器及碰壁、动量统计",
+      "targets": [
+        "ch14:sec:mixtures",
+        "ch14:sec:pressure"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:13",
+      "source": "thermal",
+      "physical_page": 13,
+      "printed_page": 287,
+      "teaching_topics": "压强微观式、均分与常数关系；例19.1、19.2",
+      "targets": [
+        "ch14:sec:pressure"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:14",
+      "source": "thermal",
+      "physical_page": 14,
+      "printed_page": 288,
+      "teaching_topics": "润湿三问、温度计、托里拆利题上半",
+      "targets": [
+        "ch14:ex:s28-19-3",
+        "ch14:ex:s28-19-4",
+        "ch14:ex:s28-19-5"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:15",
+      "source": "thermal",
+      "physical_page": 15,
+      "printed_page": 289,
+      "teaching_topics": "托里拆利末句、加热气体三问与双题图、砂粒题上半",
+      "targets": [
+        "ch14:ex:s28-19-5",
+        "ch14:ex:s28-19-6",
+        "ch14:ex:s28-19-7"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:16",
+      "source": "thermal",
+      "physical_page": 16,
+      "printed_page": 290,
+      "teaching_topics": "砂粒题末半、汞柱溢出及题图、U形管题",
+      "targets": [
+        "ch14:ex:s28-19-7",
+        "ch14:ex:s28-19-8",
+        "ch14:ex:s28-19-9"
+      ],
+      "status": "mapped"
+    },
+    {
+      "id": "thermal:page:17",
+      "source": "thermal",
+      "physical_page": 17,
+      "printed_page": 291,
+      "teaching_topics": "L形管题、一维原子链",
+      "targets": [
+        "ch14:ex:s28-19-10",
+        "ch14:ex:s28-19-11"
+      ],
+      "status": "mapped"
+    }
+  ],
+  "source_figures": [
+    {
+      "id": "kinematics:figure:2.23",
+      "source": "kinematics",
+      "physical_page": 79,
+      "source_number": "2.23",
+      "target": "ch13:fig:k10-2-23",
+      "status": "mapped",
+      "physical_role": "球外流线不相交，局部相切"
+    },
+    {
+      "id": "kinematics:figure:2.24",
+      "source": "kinematics",
+      "physical_page": 79,
+      "source_number": "2.24",
+      "target": "ch13:fig:k10-2-24",
+      "status": "mapped",
+      "physical_role": "闭合截线、横截面、三维弯曲流线管"
+    },
+    {
+      "id": "kinematics:figure:ex2.97",
+      "source": "kinematics",
+      "physical_page": 79,
+      "source_number": "ex2.97",
+      "target": "ch13:fig:k10-ex-2-97",
+      "status": "mapped",
+      "physical_role": "扩张管面积与速度"
+    },
+    {
+      "id": "kinematics:figure:ex2.98",
+      "source": "kinematics",
+      "physical_page": 80,
+      "source_number": "ex2.98",
+      "target": "ch13:fig:k10-ex-2-98",
+      "status": "mapped",
+      "physical_role": "等截面直管"
+    },
+    {
+      "id": "kinematics:figure:ex2.99",
+      "source": "kinematics",
+      "physical_page": 80,
+      "source_number": "ex2.99",
+      "target": "ch13:fig:k10-ex-2-99",
+      "status": "mapped",
+      "physical_role": "同一高度的水束面积、速度及位移"
+    },
+    {
+      "id": "kinematics:figure:ex2.100",
+      "source": "kinematics",
+      "physical_page": 81,
+      "source_number": "ex2.100",
+      "target": "ch13:fig:k10-ex-2-100",
+      "status": "mapped",
+      "physical_role": "两截面密度、面积与速度"
+    },
+    {
+      "id": "notes:figure:8.1",
+      "source": "notes",
+      "physical_page": 123,
+      "source_number": "8.1",
+      "target": "ch13:fig:k10-2-24",
+      "status": "merged",
+      "physical_role": "横截线与各点局部切向速度；与资料图2.24合并"
+    },
+    {
+      "id": "notes:figure:8.2",
+      "source": "notes",
+      "physical_page": 126,
+      "source_number": "8.2",
+      "target": "ch13:fig:bernoulli",
+      "status": "mapped",
+      "physical_role": "压力、面积、位移和共同高度基准"
+    },
+    {
+      "id": "notes:figure:8.3",
+      "source": "notes",
+      "physical_page": 127,
+      "source_number": "8.3",
+      "target": "ch13:fig:shear",
+      "status": "mapped",
+      "physical_role": "流层间距、速度梯度和黏性力"
+    },
+    {
+      "id": "exercises:figure:q1",
+      "source": "exercises",
+      "physical_page": 53,
+      "source_number": "q1",
+      "target": "ch13:fig:coupled-hg",
+      "status": "mapped",
+      "physical_role": "两根连续水银柱、封闭气体、各段长度"
+    },
+    {
+      "id": "exercises:figure:q3",
+      "source": "exercises",
+      "physical_page": 54,
+      "source_number": "q3",
+      "target": "ch13:fig:hangar",
+      "status": "mapped",
+      "physical_role": "来流、半圆柱、门口停滞点和积分角"
+    },
+    {
+      "id": "exercises:figure:q4",
+      "source": "exercises",
+      "physical_page": 55,
+      "source_number": "q4",
+      "target": "ch13:fig:funnel",
+      "status": "mapped",
+      "physical_role": "漏斗水面与有限开口"
+    },
+    {
+      "id": "exercises:figure:q5",
+      "source": "exercises",
+      "physical_page": 55,
+      "source_number": "q5",
+      "target": "ch13:fig:shore",
+      "status": "mapped",
+      "physical_role": "岸坡剖面与俯视射线两个子图"
+    },
+    {
+      "id": "exercises:figure:q6",
+      "source": "exercises",
+      "physical_page": 56,
+      "source_number": "q6",
+      "target": "ch13:fig:hose",
+      "status": "mapped",
+      "physical_role": "等长正交管、转轴及水流"
+    },
+    {
+      "id": "thermal:figure:19.1",
+      "source": "thermal",
+      "physical_page": 6,
+      "source_number": "19.1",
+      "target": "ch14:fig:s28-19-1",
+      "status": "mapped",
+      "physical_role": "两种分子成像外观；创作示意不充当实验证据"
+    },
+    {
+      "id": "thermal:figure:19.2",
+      "source": "thermal",
+      "physical_page": 7,
+      "source_number": "19.2",
+      "target": "ch14:fig:s28-19-2",
+      "status": "mapped",
+      "physical_role": "测温前后两场景；内置图像生成工具创作"
+    },
+    {
+      "id": "thermal:figure:19.3",
+      "source": "thermal",
+      "physical_page": 8,
+      "source_number": "19.3",
+      "target": "ch14:fig:s28-19-3",
+      "status": "mapped",
+      "physical_role": "非对称势阱及能量升高的转折点"
+    },
+    {
+      "id": "thermal:figure:19.4",
+      "source": "thermal",
+      "physical_page": 10,
+      "source_number": "19.4",
+      "target": "ch14:fig:s28-19-4",
+      "status": "mapped",
+      "physical_role": "传统气压计密封、连通与高度"
+    },
+    {
+      "id": "thermal:figure:19.5",
+      "source": "thermal",
+      "physical_page": 11,
+      "source_number": "19.5",
+      "target": "ch14:fig:s28-19-5",
+      "status": "mapped",
+      "physical_role": "瑞利仪器同形叉端、气路与汞路"
+    },
+    {
+      "id": "thermal:figure:19.6",
+      "source": "thermal",
+      "physical_page": 12,
+      "source_number": "19.6",
+      "target": "ch14:fig:s28-19-6",
+      "status": "mapped",
+      "physical_role": "立方容器和弹性反射两个子图"
+    },
+    {
+      "id": "thermal:figure:ex19.6",
+      "source": "thermal",
+      "physical_page": 15,
+      "source_number": "ex19.6",
+      "target": "ch14:fig:heated-apparatus",
+      "status": "mapped",
+      "physical_role": "两限位件及待解pV双子图"
+    },
+    {
+      "id": "thermal:figure:19.7",
+      "source": "thermal",
+      "physical_page": 16,
+      "source_number": "19.7",
+      "target": "ch14:fig:s28-19-7",
+      "status": "mapped",
+      "physical_role": "活塞卡环及铁砂接触"
+    },
+    {
+      "id": "thermal:figure:19.8",
+      "source": "thermal",
+      "physical_page": 16,
+      "source_number": "19.8",
+      "target": "ch14:fig:s28-19-8",
+      "status": "mapped",
+      "physical_role": "汞柱/封闭气体/管长比例"
+    }
+  ],
+  "source_exercises": [
+    {
+      "id": "kinematics:example:2.97",
+      "source": "kinematics",
+      "physical_page": 79,
+      "source_number": "2.97",
+      "target": "ch13:ex:k10-2-97",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "kinematics:example:2.98",
+      "source": "kinematics",
+      "physical_page": 80,
+      "source_number": "2.98",
+      "target": "ch13:ex:k10-2-98",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "kinematics:example:2.99",
+      "source": "kinematics",
+      "physical_page": 80,
+      "source_number": "2.99",
+      "target": "ch13:ex:k10-2-99",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "kinematics:example:2.100",
+      "source": "kinematics",
+      "physical_page": 81,
+      "source_number": "2.100",
+      "target": "ch13:ex:k10-2-100",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "kinematics:example:2.101",
+      "source": "kinematics",
+      "physical_page": 81,
+      "source_number": "2.101",
+      "target": "ch13:ex:k10-2-101",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "exercises:example:1",
+      "source": "exercises",
+      "physical_page": 53,
+      "source_number": "1",
+      "target": "ch13:ex:coupled-hg",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "exercises:example:2",
+      "source": "exercises",
+      "physical_page": 53,
+      "source_number": "2",
+      "target": "ch13:ex:couette",
+      "status": "mapped",
+      "notes": "竖直方向重力项和三问均保留"
+    },
+    {
+      "id": "exercises:example:3",
+      "source": "exercises",
+      "physical_page": 54,
+      "source_number": "3",
+      "target": "ch13:ex:hangar",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "exercises:example:4",
+      "source": "exercises",
+      "physical_page": 55,
+      "source_number": "4",
+      "target": "ch13:ex:funnel",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "exercises:example:5",
+      "source": "exercises",
+      "physical_page": 55,
+      "source_number": "5",
+      "target": "ch13:ex:shore",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "exercises:example:6",
+      "source": "exercises",
+      "physical_page": 56,
+      "source_number": "6",
+      "target": "ch13:ex:hose",
+      "status": "mapped",
+      "notes": "源件“内径2 cm²”修正为截面积"
+    },
+    {
+      "id": "thermal:example:19.1",
+      "source": "thermal",
+      "physical_page": 13,
+      "source_number": "19.1",
+      "target": "ch14:ex:s28-19-1",
+      "status": "mapped",
+      "notes": "人体材料模型与实际生理现象分开；原问题保留并纠正解说"
+    },
+    {
+      "id": "thermal:example:19.2",
+      "source": "thermal",
+      "physical_page": 13,
+      "source_number": "19.2",
+      "target": "ch14:ex:s28-19-2",
+      "status": "mapped",
+      "notes": "人体材料模型与实际生理现象分开；原问题保留并纠正解说"
+    },
+    {
+      "id": "thermal:example:19.3",
+      "source": "thermal",
+      "physical_page": 14,
+      "source_number": "19.3",
+      "target": "ch14:ex:s28-19-3",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "thermal:example:19.4",
+      "source": "thermal",
+      "physical_page": 14,
+      "source_number": "19.4",
+      "target": "ch14:ex:s28-19-4",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "thermal:example:19.5",
+      "source": "thermal",
+      "physical_page": 14,
+      "source_number": "19.5",
+      "target": "ch14:ex:s28-19-5",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "thermal:example:19.6",
+      "source": "thermal",
+      "physical_page": 15,
+      "source_number": "19.6",
+      "target": "ch14:ex:s28-19-6",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "thermal:example:19.7",
+      "source": "thermal",
+      "physical_page": 15,
+      "source_number": "19.7",
+      "target": "ch14:ex:s28-19-7",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "thermal:example:19.8",
+      "source": "thermal",
+      "physical_page": 16,
+      "source_number": "19.8",
+      "target": "ch14:ex:s28-19-8",
+      "status": "mapped",
+      "notes": ""
+    },
+    {
+      "id": "thermal:example:19.9",
+      "source": "thermal",
+      "physical_page": 16,
+      "source_number": "19.9",
+      "target": "ch14:ex:s28-19-9",
+      "status": "mapped",
+      "notes": "沿用此前用户明确授权的条件重构，非声称与含糊源题逐字一致"
+    },
+    {
+      "id": "thermal:example:19.10",
+      "source": "thermal",
+      "physical_page": 17,
+      "source_number": "19.10",
+      "target": "ch14:ex:s28-19-10",
+      "status": "mapped",
+      "notes": "沿用此前用户明确授权的条件重构，非声称与含糊源题逐字一致"
+    },
+    {
+      "id": "thermal:example:19.11",
+      "source": "thermal",
+      "physical_page": 17,
+      "source_number": "19.11",
+      "target": "ch14:ex:s28-19-11",
+      "status": "mapped",
+      "notes": "统计平均系数7/48；保留转折点中点估算并说明7/72不是统计平均"
+    }
+  ],
+  "boundary_exclusions": [
+    {
+      "source": "kinematics",
+      "physical_page": 82,
+      "reason": "下一单元"
+    },
+    {
+      "source": "thermal",
+      "physical_page": 18,
+      "reason": "空白页"
+    },
+    {
+      "source": "thermal",
+      "physical_page": 19,
+      "reason": "下一讲"
+    }
+  ],
+  "preserved_bridge_examples": [
+    "ch13:ex:outlet",
+    "ch13:ex:jet-plate",
+    "ch13:ex:settling"
+  ],
+  "source_absent_figures": [
+    {
+      "source": "thermal",
+      "physical_page": 16,
+      "source_number": "19.9",
+      "notes": "题称如图，但本PDF无附图；新增封闭U管图"
+    },
+    {
+      "source": "thermal",
+      "physical_page": 17,
+      "source_number": "19.10",
+      "notes": "题称如图，但本PDF无附图；新增L管初态及四阶段图"
+    }
+  ],
+  "generated_sha256": {
+    "ch13": "e156c7ac26f480c1e5891ed86e7d666e5a7b1769eeb01e69c02b505a666d973b",
+    "ch14": "acb4ba075c50359ff92ab24f8f6678d7434aafec6392bb51ab06334264753408"
+  }
+}

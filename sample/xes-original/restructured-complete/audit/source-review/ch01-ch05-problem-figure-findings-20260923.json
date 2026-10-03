@@ -1,0 +1,178 @@
+{
+  "date": "2026-09-23",
+  "mode": "read-only",
+  "acceptance_passed": false,
+  "teaching_content_modified": false,
+  "formal_pdf_modified": false,
+  "report": "/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/audit/第1—5章原题图与解答专项检查_20260923.md",
+  "formal_pdf_check": [
+    {
+      "key": "ch01",
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第01章_数学工具：量纲、矢量、坐标、导数和积分.pdf",
+      "unchanged": true,
+      "sha256": "64468ae04c420a8087afd38c9b1289af538936918f9b89071a125220ee82fa94"
+    },
+    {
+      "key": "ch02",
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第02章_质点运动的描述.pdf",
+      "unchanged": true,
+      "sha256": "c09c30e16e6117bad1d21e71aeb0ab3c4e639dde3bdcd98ba0989e70de065ad4"
+    },
+    {
+      "key": "ch03",
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第03章_合运动、抛体、圆周与一般曲线运动.pdf",
+      "unchanged": true,
+      "sha256": "ed360896f791b4fff004e2bc3f0733ed364567187008baa2001006084000dae3"
+    },
+    {
+      "key": "ch04",
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第04章_相对运动、约束和刚体运动学.pdf",
+      "unchanged": true,
+      "sha256": "f163e2b88a0e6769696128c62f9e4274fd90f31c9119b00556a73752807fbcd7"
+    },
+    {
+      "key": "ch05",
+      "path": "/Users/dongxingxi/Documents/物理竞赛一轮资料/output/pdf/高中物理竞赛一轮讲义_第05章_力、受力分析与静力平衡.pdf",
+      "unchanged": true,
+      "sha256": "05397284dea11f8ef87ea596f1593bd5d3ef3ce5655042b057af7308d83f7c5b"
+    }
+  ],
+  "source_snapshot": [
+    {
+      "key": "source-kinematics",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/资料.pdf",
+      "pages": 87,
+      "sha256": "3c3a992be8d4e24124561b5642abc55136edda735b2efeb4780943c4302b4784",
+      "bookmarks": 88
+    },
+    {
+      "key": "source-math",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/19春假兴趣2-微积分在物理学中的应用.pdf",
+      "pages": 24,
+      "sha256": "e482e0671ec481c2d2660069e6816260e46092685b906aba5a239d98ddaa070b",
+      "bookmarks": 25
+    },
+    {
+      "key": "source-statics",
+      "path": "/Users/dongxingxi/Downloads/学而思资料/一轮/19春假兴趣1-力学.pdf",
+      "pages": 84,
+      "sha256": "d65916a3602e25534bc75262c2aa6c61d2c9bf5a2d3968f30baf264ad582d561",
+      "bookmarks": 86
+    }
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "priority": "高优先级",
+      "title": "例5.12的角度定义被改，答案不再对应原题",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 33
+    },
+    {
+      "id": "F02",
+      "priority": "高优先级",
+      "title": "例2.7的选项C被换成另一条曲线",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 56
+    },
+    {
+      "id": "F03",
+      "priority": "高优先级",
+      "title": "例3.48把回折轨迹换成了单值峰形曲线",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 65
+    },
+    {
+      "id": "F04",
+      "priority": "中优先级",
+      "title": "例2.3的衰减振荡初态被改",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 74
+    },
+    {
+      "id": "F05",
+      "priority": "中优先级",
+      "title": "例2.2双曲线绘图模型的渐近线错位",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 83
+    },
+    {
+      "id": "F06",
+      "priority": "中优先级",
+      "title": "题图与解图的职能混用",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 94
+    },
+    {
+      "id": "F07",
+      "priority": "中优先级",
+      "title": "例1.16的k被尺寸线穿过",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 113
+    },
+    {
+      "id": "F08",
+      "priority": "中优先级",
+      "title": "例1.34的微元公式与dx相撞",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 121
+    },
+    {
+      "id": "F09",
+      "priority": "中优先级",
+      "title": "例1.27(d)使用了尚未解释的热学参数",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 132
+    },
+    {
+      "id": "F10",
+      "priority": "中优先级",
+      "title": "新增基础工具有“符号先用后讲”",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 138
+    },
+    {
+      "id": "F11",
+      "priority": "中优先级",
+      "title": "例1.6链式法则证明漏了零增量分支",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 146
+    },
+    {
+      "id": "F12",
+      "priority": "中优先级",
+      "title": "例3.20的相交时刻推导省略",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 159
+    },
+    {
+      "id": "F13",
+      "priority": "低优先级",
+      "title": "例5.21的极值结论缺中间一步",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 175
+    },
+    {
+      "id": "F14",
+      "priority": "低优先级",
+      "title": "例5.29的图文表述不一致",
+      "status": "open",
+      "source": "2026-09-23 read-only review",
+      "report_line": 185
+    }
+  ],
+  "limit": "Presence counts, thumbnail screening and structural checks are not a proof of complete semantic or pixel-level correctness."
+}

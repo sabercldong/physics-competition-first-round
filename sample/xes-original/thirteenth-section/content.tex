@@ -1,0 +1,197 @@
+机械能守恒是有条件的，能量守恒则讨论系统中所有形式的能量。摩擦、非弹性碰撞或物体的塑性形变
+会使宏观机械能减少，但这部分能量并没有消失，而是转入物体的内能、形变能、声能等其他形式。
+
+能量并不只有动能和势能。物体的无规则热运动、电磁场、光辐射等也与能量有关；不同的能量形式可以在相互作用中转化。
+例如摩擦使运动减慢并使接触体温度升高，电动机把电能转化为机械能，发光过程又可以把内部能量转化为辐射能。
+这些形式不能各自孤立看待：研究一种形式减少了多少，还要追踪它传到哪个物体、变成哪种形式。
+
+能量概念的适用范围也不限于具有确定位置、确定速度的经典质点。光没有静止质量，却能传递能量；微观系统即使不能
+按经典轨道描述，也仍然可以讨论它与外界交换的能量。物理研究依靠可观测的相互作用，能量传递是把不同现象联系起来的重要线索，
+但不应把“能量”与物体的质量或某一个可见运动简单等同。
+
+人们对能量的认识并不是一次完成的。在研究热、机械运动以及新的微观现象时，曾对能量是否守恒提出过疑问。
+面对表面上不相等的初末能量，不能仅凭一句“守恒”结束讨论，而要检验测量误差、系统边界，以及是否遗漏了热、辐射或其他携能对象。
+将这些独立测得的能量传递纳入比较，才构成对守恒关系的实验检验。能量守恒有广泛的实验依据；本章在经典力学的适用范围内，
+把它用于明确选定的系统，而不是用它替代对具体过程和相互作用的分析。
+
+\subsection{先选系统，再写能量守恒关系}
+
+“能量守恒”必须对一个明确的系统而言。同一个过程，选取的系统边界不同，方程中的“外力做功”和
+“系统内部的能量转化”也不同。对一个无质量穿过边界的封闭系统，取“外界传入系统”为正，可写成
+\begin{equation}
+  \Delta E_{\rm sys}=W_{\rm ext}+Q,
+  \label{eq:general-energy-account}
+\end{equation}
+其中 $W_{\rm ext}$ 是外界通过宏观功传入的能量，$Q$ 是由于温差传入的能量。在通常的短时间力学过程中，
+若热传递可忽略，可取 $Q=0$。
+
+对孤立系统，$W_{\rm ext}=Q=0$，于是
+\begin{equation}
+  \boxed{\Delta E_{\rm sys}=0}.
+  \label{eq:isolated-energy}
+\end{equation}
+这里的 $E_{\rm sys}$ 不只是动能加势能，而是系统的总能量。在本章可用的层次上，常写为
+\begin{equation}
+  E_{\rm sys}=K+U+E_{\rm int}+E_{\rm other}.
+  \label{eq:energy-components}
+\end{equation}
+其中 $K$ 是宏观动能，$U$ 是保守相互作用所对应的势能，$E_{\rm int}$ 可包括与无规则热运动、塑性形变等相关的内部能量。
+
+图~\ref{ch08:fig:energy-forms} 表示孤立系统中能量形式可以改变，而总能量保持不变；箭头只是转化示例，不表示转化只能单向发生。
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[node distance=11mm and 24mm]
+  \node[draw=RuleGray,fill=PaleBlue,minimum width=25mm,minimum height=9mm] (mech) {机械能 $K+U$};
+  \node[draw=RuleGray,fill=SoftGray,minimum width=23mm,minimum height=9mm,right=of mech] (int) {内能 $E_{\rm int}$};
+  \node[draw=RuleGray,fill=SoftGray,minimum width=23mm,minimum height=9mm,right=of int] (other) {其他形式};
+  \draw[-{Latex[length=2.2mm]},thick,draw=DeepBlue] (mech)--node[above,font=\scriptsize,fill=none]{摩擦、形变}(int);
+  \draw[-{Latex[length=2.2mm]},thick,draw=TextGray] (int)--node[above,font=\small]{转化}(other);
+  \node[below=7mm of int,font=\small\color{TextGray}] {总量不变，分项可改变};
+\end{tikzpicture}
+\refstepcounter{figure}\par\smallskip{\scriptsize\color{TextGray}图~\thefigure\quad 孤立系统内部的能量转化示例。\par}
+\label{ch08:fig:energy-forms}
+\end{minipage}\end{center}
+
+\subsection{“机械能损失”不等于“能量损失”}
+
+若把已选定的保守力全部纳入势能，机械能定义为
+\[
+  E_{\rm mech}=K+U.
+\]
+对只有这些保守力做功的过程，$\Delta E_{\rm mech}=0$。若有滑动摩擦、流体阻力等非保守作用，则一般有
+\begin{equation}
+  \Delta E_{\rm mech}=W_{\rm nc}.
+  \label{eq:mechanical-energy-change}
+\end{equation}
+式 \eqref{eq:mechanical-energy-change} 描述机械能的变化，而不是说总能量减少了 $|W_{\rm nc}|$。
+
+摩擦问题尤其需要先说清系统。若只选滑块为系统，地面对它的摩擦是外力；若选“滑块+地面”为系统，
+这一接触作用变成内部作用，宏观机械能的减少对应系统内能的增加。不知道材料细节时，通常只能确定两接触体
+内能增量的总和，不能凭空判定热量如何在两者之间分配。
+
+\Needspace{14\baselineskip}
+\begin{origexamplebox}{例 4.21　粗糙水平面上的停车距离}
+质量为 $m$ 的滑块以速度 $v_0$ 沿粗糙水平面滑动，动摩擦因数为 $\mu_k$。求滑块停下前的距离，
+并分别用“滑块”和“滑块+地面”为系统说明能量变化。
+\end{origexamplebox}
+
+\begin{xesolution}
+滑块竖直方向平衡，所以 $N=mg$，滑动摩擦力大小为 $f_k=\mu_kmg$。设停车距离为 $s$。
+
+若只选滑块为系统，摩擦力是外力，由动能定理
+\[
+  0-\frac12mv_0^2=-\mu_kmgs,
+\]
+因而
+\[
+  \boxed{s=\frac{v_0^2}{2\mu_kg}}.
+\]
+若改选“滑块+地面”为系统，摩擦成为内部作用。忽略对外散热和声音携带的能量，总能量守恒给出
+\[
+  \frac12mv_0^2=\Delta E_{\rm int},
+\]
+即
+\[
+  \boxed{\Delta E_{\rm int}=\mu_kmgs=\frac12mv_0^2}.
+\]
+两种写法对同一过程的描述完全一致，只是系统边界不同。
+\end{xesolution}
+
+\subsection{含摩擦的弹簧系统：别忘了分段和启动条件}
+
+\begin{origexamplebox}{例 4.22　弹簧能否把物块送到原长位置}
+水平粗糙面上，质量为 $m$ 的物块与劲度系数为 $k$ 的水平弹簧相连。弹簧原长位置记为 $O$。
+以物块左侧弹簧连接点为位置标志，先从原长位置 $O$ 向右拉到 $x=a>0$ 处由静止释放。
+已知最大静摩擦因数为 $\mu_s$，动摩擦因数为 $\mu_k$，$\mu_s\ge\mu_k\ge0$。
+求物块能够启动、到达 $O$ 点和通过 $O$ 点的条件。
+
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=0.9,every node/.style={font=\scriptsize,fill=none}]
+  \draw[thick] (-3.2,-0.8)--(3.4,-0.8);
+  \foreach \x in {-3.0,-2.6,...,3.2}{\draw[thin,TextGray] (\x,-0.8)--++(-0.18,-0.18);}
+  \draw[thick] (-3.0,0.15)--(-3.0,-0.8);
+  \draw[decorate,decoration={coil,aspect=0.45,segment length=3.5mm,amplitude=2.2mm},thick]
+    (-3.0,-0.3)--(1.8,-0.3);
+  \draw[fill=PaleBlue,thick] (1.8,-0.8) rectangle (2.8,0.2);
+  \node at (2.3,-.3) {$m$};
+  \draw[guide] (0,-.8)--(0,-1.4) node[below]{$O:x=0$};
+  \draw[guide] (1.8,-.8)--(1.8,-1.4);
+  \draw[<->] (0,-1.2)--(1.8,-1.2) node[midway,above]{$a$};
+  \draw[-{Latex}] (1.8,.7)--(.8,.7) node[midway,above] {释放后向左};
+\end{tikzpicture}
+\refstepcounter{figure}\par\smallskip{\scriptsize\color{TextGray}图~\thefigure\quad 物块底面与粗糙面接触；$a$ 从同一个连接点的原长位置量起。\par}
+\label{ch08:fig:rough-spring}
+\end{minipage}\end{center}
+\end{origexamplebox}
+
+\begin{xesolution}
+图~\ref{ch08:fig:rough-spring} 中弹簧向左拉，启动前静摩擦力向右。释放瞬间弹簧力大小为 $ka$。
+若 $ka\le\mu_smg$，静摩擦可以平衡它，物块可保持静止；不依赖额外扰动而启动的条件为
+\begin{equation}
+  \boxed{ka>\mu_smg}.
+  \label{eq:spring-start}
+\end{equation}
+启动后，从 $x=a$ 向左运动到某一位置 $x$ 时，摩擦力所做的功为 $-\mu_kmg(a-x)$。对“物块+弹簧”写机械能变化关系，
+\[
+  \frac12mv^2+\frac12kx^2
+  =\frac12ka^2-\mu_kmg(a-x).
+\]
+整理任一中间位置的速度：
+\[
+ mv^2=(a-x)\bigl[k(a+x)-2\mu_kmg\bigr].
+\]
+从 $a$ 到 $0$ 的途中，第一因子非负，第二因子的最小值出现在 $x=0$。
+所以只要原点处的能量条件满足，途中不会先停下；不能只检查末态而不管过程可达性。
+在 $O$ 点有 $x=0$，因而
+\begin{equation}
+  \frac12mv_O^2=\frac12ka^2-\mu_kmga.
+  \label{eq:spring-at-origin}
+\end{equation}
+式 \eqref{eq:spring-at-origin} 右边非负时，物块才能到达 $O$；严格为正时才能以非零速度通过。因此
+\[
+  \boxed{a\ge\frac{2\mu_kmg}{k}\quad\text{可到达 }O},
+\]
+\[
+  \boxed{a>\frac{2\mu_kmg}{k}\quad\text{可通过 }O}.
+\]
+完整答案必须同时满足启动条件 \eqref{eq:spring-start}。这也说明为什么不能把“摩擦因数”只记成一个统一的 $\mu$：
+启动由 $\mu_s$ 控制，滑动阶段的能量损失则由 $\mu_k$ 控制。
+\end{xesolution}
+
+\Needspace{16\baselineskip}
+\subsection{非弹性碰撞：动量守恒，动能不守恒}
+
+\begin{origexamplebox}{例 4.23　子弹射入木块}
+质量为 $m$ 的子弹以速度 $u$ 水平射入质量为 $M$ 的静止木块并留在其中。碰撞时间极短，
+可忽略水平外力冲量。求共同速度以及碰撞中增加的内能。
+\end{origexamplebox}
+
+\begin{xesolution}
+以“子弹+木块”为系统。碰撞时间内水平外力冲量可忽略，所以水平动量守恒。设碰后共同速度为 $v$，
+\[
+  m u=(M+m)v,\qquad \boxed{v=\frac{m}{M+m}u}.
+\]
+将共同速度代入碰撞前后的宏观动能差，逐项化简：
+\begin{align*}
+  \Delta E_{\rm int}
+  &=\frac12mu^2-\frac12(M+m)v^2\\
+  &=\frac12mu^2-\frac12(M+m)
+    \left(\frac{m}{M+m}u\right)^2\\
+  &=\boxed{\frac12\frac{mM}{m+M}u^2}.
+\end{align*}
+在忽略碰撞期间对外散热和声音携能的近似下，这一动能减少量转化为子弹与木块的内能和永久形变能。
+不能在这一碰撞中同时强行使用“动量守恒”和“动能守恒”。
+\end{xesolution}
+
+\subsection{一个可执行的解题次序}\nopagebreak[4]
+
+处理能量转化问题时，可以按以下顺序检查：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+  \item 用一句话写清系统包含哪些物体，以及初、末状态。
+  \item 判断哪些相互作用纳入势能，不要把同一个保守力同时既写成功又写成势能变化。
+  \item 列出跨过系统边界的功、热和其他能量传递。
+  \item 若有摩擦、碰撞或形变，明确机械能减少后转入了哪一项，不要简写成“能量消失”。
+  \item 最后检查结果的符号、量纲和极限情形。
+\end{enumerate}
+\nopagebreak[4]
+能量方法的优势是跨越中间过程，直接联系两个状态；它的代价是通常不直接给出时间、轨迹和力的瞬时值。
+竞赛题中若既问速度又问支持力或时间，常见的组合是：先用能量法求状态量，再用牛顿定律或冲量定理求局部过程量。

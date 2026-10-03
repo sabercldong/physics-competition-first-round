@@ -1,0 +1,284 @@
+% Chapter-local figures. Text remains transparent; geometric coordinates are shared.
+\newcommand{\eulerDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}
+  \coordinate(O)at(0,0);\draw[guide](O)circle(1.25);
+  \draw[axis](-.6,0)--(1.6,0)node[right]{$x$};\draw[axis](0,-.6)--(0,1.6)node[above]{$y$};
+  \draw[vector](O)--(35:1.65)node[above right]{$N$};
+  \draw[->,DeepBlue](.7,0)arc[start angle=0,end angle=35,radius=.7];\node at(18:1){$\alpha$};
+  \node[DeepBlue,font=\large]at(O){$\odot$};\node[below left=4pt]at(O){$z$};
+  \node at(0,2.25){(1) 绕z正转$\alpha$};\node[align=center]at(0,-1.8){沿$-z$方向看向原点\\$z$朝向读者};
+ \end{scope}
+ \begin{scope}[xshift=4.7cm]
+  \coordinate(O)at(0,0);\draw[TextGray](-1.2,0)--(1.2,0)node[right]{$xy$};
+  \draw[DeepBlue](145:1.25)--(-35:1.25)node[right]{$XY$};
+  \draw[axis](O)--(0,1.7)node[above]{$z$};\draw[vector](O)--(55:1.7)node[above right]{$Z$};
+  \draw[->,DeepBlue](90:.65)arc[start angle=90,end angle=55,radius=.65];\node at(72.5:1){$\beta$};
+  \node[DeepBlue,font=\large]at(O){$\otimes$};\node[below left=4pt]at(O){$N$};
+  \node at(0,2.25){(2) 绕N正转$\beta$};\node[align=center]at(0,-1.8){沿$+N$方向看\\$N$指向纸内};
+ \end{scope}
+ \begin{scope}[xshift=9.4cm]
+  \coordinate(O)at(0,0);\draw[guide](O)circle(1.25);
+  \draw[guide](-1.3,0)--(1.6,0)node[right]{$N$};
+  \draw[vector](O)--(35:1.65)node[above right]{$X$};\draw[vector](O)--(125:1.65)node[above left]{$Y$};
+  \draw[->,DeepBlue](.7,0)arc[start angle=0,end angle=35,radius=.7];\node at(18:1){$\gamma$};
+  \node[DeepBlue,font=\large]at(O){$\odot$};\node[below left=4pt]at(O){$Z$};
+  \node at(0,2.25){(3) 绕Z正转$\gamma$};\node[align=center]at(0,-1.8){沿$-Z$方向看向原点\\$Z$朝向读者};
+ \end{scope}
+\end{tikzpicture}\figcap{欧拉角的三步定义与各面板视向}\label{ch09:fig:euler}\end{minipage}\end{center}}
+
+\newcommand{\rollingKinematicsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\rr{1.1}\coordinate(C)at(0,\rr);
+ \draw[thick](-1.8,0)--(2.4,0);\draw[curve](C)circle(\rr);
+ \fill(C)circle(1.5pt)node[below left]{$C$};\draw[vector](C)--++(1.9,0)node[right]{$\vect v_C$};
+ \draw[->,DeepBlue]($(C)+(155:1.38)$)arc[start angle=155,end angle=-25,radius=1.38];
+ \node[left]at(-1.4,2){$\omega$};\node[below]at(0,-.2){平动与顺时针转动};
+ \begin{scope}[xshift=6.8cm]
+  \coordinate(C)at(0,\rr);\coordinate(P)at(0,0);\coordinate(Top)at(0,2.2);
+  \coordinate(Q)at({\rr*cos(145)},{\rr+\rr*sin(145)});
+  \coordinate(S)at({\rr*cos(315)},{\rr+\rr*sin(315)});
+  \draw[thick](-1.8,0)--(3,0);\draw[curve](C)circle(\rr);
+  \foreach\p in{Q,Top,S}{\draw[guide](P)--(\p);\fill(\p)circle(1.5pt);}
+  \fill(P)circle(2pt)node[below=4pt]{$P$};\fill(C)circle(1.5pt)node[left]{$C$};
+  \node[left=4pt]at(Q){$Q$};\node[above=7pt]at(Top){$P'$};
+  \draw[TextGray](S)--(1.45,.72)node[right]{$S$};
+  \draw[vector](C)--++(.66,0)node[above]{$\vect v_C$};
+  \draw[vector](Top)--++(1.32,0)node[right]{$\vect v_{P'}$};
+  \draw[vector](Q)--++({.6*(\rr+\rr*sin(145))},{-.6*\rr*cos(145)});
+  \draw[TextGray](-.38,2)--(-1.1,2.6)node[above left]{$\vect v_Q$};
+  \draw[vector](S)--++({.6*(\rr+\rr*sin(315))},{-.6*\rr*cos(315)})node[below right=5pt]{$\vect v_S$};
+ \end{scope}
+\end{tikzpicture}\figcap{固定水平面纯滚动；右图所有速度使用同一比例且垂直于从P出发的连线}\label{ch09:fig:rolling}\end{minipage}\end{center}}
+
+\newcommand{\nonparallelAngularDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(A)at(1.25,1.7);\coordinate(B)at(-1.25,-1.7);\coordinate(Z)at(0,2.7);
+ \draw[axis](-2,0)--(2.3,0)node[right]{$x$};\draw[axis](0,-2.1)--(Z)node[above]{$z$};
+ \draw[curve](B)--(A);\fill(A)circle(2.5pt)node[above=5pt]{$A,m$};\fill(B)circle(2.5pt)node[below=5pt]{$B,m$};
+ \fill(O)circle(1.5pt)node[below right=4pt]{$O$};
+ \draw[vector](-.32,.1)--(-.32,2.3)node[left]{$\vect\omega$};
+ \draw[vector](O)--(-1.7,1.25)node[above left]{$\vect L_O$};
+ \node[DeepBlue,font=\Large]at(1.75,1.5){$\otimes$};\node[right]at(2.05,1.5){$\vect v_A$};
+ \node[DeepBlue,font=\Large]at(-1.75,-1.45){$\odot$};\node[left]at(-2.05,-1.45){$\vect v_B$};
+ \node[right=3pt]at(.55,.75){$l$};
+ \draw pic[draw,"$\alpha$",angle radius=9mm,angle eccentricity=1.3]{angle=A--O--Z};
+ \node[anchor=west,align=left]at(4,.2){$+y$入纸面\\[6pt]$\vect L_O\perp AB$\\[6pt]$\vect L_O$一般不平行于$\vect\omega$};
+\end{tikzpicture}\figcap{两质点斜杆绕竖直轴转动，轴向角动量不等于整个角动量}\label{ch09:fig:nonparallel}\end{minipage}\end{center}}
+
+\newcommand{\inclineRollingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\tt{25}\def\rr{.82}\coordinate(A)at(0,{5.4*tan(\tt)});\coordinate(B)at(5.4,0);
+ \coordinate(P)at(2.8,{2.6*tan(\tt)});\coordinate(C)at($(P)+({\rr*sin(\tt)},{\rr*cos(\tt)})$);
+ \draw[thick](0,0)--(A)--(B)--cycle;\draw[curve](C)circle(\rr);
+ \draw[guide](P)--(C);
+ \draw[vector](P)--++({-1.05*cos(\tt)},{1.05*sin(\tt)})node[above=9pt]{$\vect f$};
+ \draw[vector](P)--++({1.9*sin(\tt)},{1.9*cos(\tt)})node[above right=5pt]{$\vect N$};
+ \draw[vector](C)--++({1.7*cos(\tt)},{-1.7*sin(\tt)})node[right=5pt]{$\vect a_C$};
+ \draw[vector](C)--++(0,-1.1)node[below right=5pt]{$M\vect g$};
+ \draw[->,DeepBlue]($(C)+(160:1.05)$)arc[start angle=160,end angle=95,radius=1.05];
+ \node[above left=4pt]at($(C)+(150:1.15)$){$\beta$};
+ \fill(C)circle(1.5pt)node[above left=2pt]{$C$};\fill(P)circle(1.5pt)node[below left=4pt]{$P$};
+ \coordinate(H)at(4.3,0);\draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]{angle=A--B--H};
+ \begin{scope}[shift={(8,1.8)}]
+  \draw[thick](0,0)circle(.55);\draw[guide](0,0)ellipse(.55 and .17);
+  \node at(0,-.95){实心球};\node at(0,-1.65){$I=\frac25MR^2$};
+ \end{scope}
+ \begin{scope}[shift={(10.7,1.8)}]
+  \fill[PaleBlue](0,-.58)rectangle(.65,.58);
+  \draw[fill=PaleBlue,thick](.65,0)ellipse(.28 and .58);
+  \fill[PaleBlue](0,-.58)rectangle(.65,.58);
+  \draw[thick](0,-.58)--(.65,-.58)(0,.58)--(.65,.58);
+  \draw[fill=PaleBlue,thick](0,0)ellipse(.28 and .58);
+  \node at(.15,-.95){实心圆柱};\node at(.15,-1.65){$I=\frac12MR^2$};
+ \end{scope}
+ \begin{scope}[shift={(13.4,1.8)}]
+  \draw[guide](.65,0)ellipse(.28 and .58);
+  \draw[thick](.65,-.58)arc[start angle=-90,end angle=90,x radius=.28,y radius=.58];
+  \draw[thick](0,-.58)--(.65,-.58)(0,.58)--(.65,.58);
+  \draw[fill=white,thick](0,0)ellipse(.28 and .58);
+  \draw[thick](0,0)ellipse(.23 and .51);
+  \node at(.15,-.95){薄壁圆筒};\node at(.15,-1.65){$I=MR^2$};
+ \end{scope}
+\end{tikzpicture}\figcap{圆形刚体沿斜面纯滚动；右侧分辨三种不同质量分布的刚体}\label{ch09:fig:incline}\end{minipage}\end{center}}
+
+\newcommand{\brakeWheelDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(P)at(1,0);\draw[curve](O)circle(1.5);
+ \draw[->,DeepBlue] (130:1.8)arc[start angle=130,end angle=-25,radius=1.8];\node[above]at(0,1.9){$\omega_0$（顺时针）};
+ \draw[vector](P)--++(0,1.1)node[left=5pt]{$\vect f$};
+ \draw[thick](O)--(225:1.5)node[midway,above left=5pt]{$R$};
+ \draw[guide](O)--(0,-.4)(P)--(1,-.4);\draw[<->](0,-.3)--(1,-.3)node[midway,below]{$r$};
+ \fill(O)circle(1.5pt)node[above left]{$O$};\fill(P)circle(1.5pt)node[right]{$P$};
+ \node[anchor=west,align=left]at(3,0){力矩逆时针\\[6pt]与初始转动相反};
+\end{tikzpicture}\figcap{固定轴砂轮的制动力矩}\label{ch09:fig:brake}\end{minipage}\end{center}}
+
+\newcommand{\twoWheelsDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\ra{1.45}\def\rb{1.15}\coordinate(Ca)at(0,0);\coordinate(Cb)at(2.6,0);\coordinate(P)at(1.45,0);
+ \draw[curve](Ca)circle(\ra);\draw[curve](Cb)circle(\rb);
+ \node[align=center]at(Ca){$m_1$\\$R_1$};\node[align=center]at(Cb){$m_2$\\$R_2$};
+ \draw[->,DeepBlue]($(Ca)+(155:1.7)$)arc[start angle=155,end angle=40,radius=1.7];
+ \draw[->,DeepBlue]($(Cb)+(25:1.4)$)arc[start angle=25,end angle=140,radius=1.4];
+ \node[above]at(-.5,1.9){$\omega_{10}$};\node[above]at(3.1,1.6){$\omega_{20}$};
+ \fill(P)circle(2pt);\draw[TextGray](P)--(1.45,-1.6)node[below]{$P$};
+ \draw[guide](P)--(5,0);\node[above]at(5.7,1.6){接触处放大，$u_{10}>u_{20}$};
+ \draw[thick](5.7,-1.1)--(5.7,1.1);
+ \draw[vector](5.4,0)--(5.4,.85)node[left]{$\vect f_1$};
+ \draw[vector](6,0)--(6,-.85)node[right]{$\vect f_2$};
+ \draw[->,TextGray](4.7,.3)--(4.7,-.5)node[left]{$u_1$};
+ \draw[->,TextGray](6.7,.3)--(6.7,-.5)node[right]{$u_2$};
+\end{tikzpicture}\figcap{两个固定轴砂轮的接触与摩擦；另一相对速度分支的力方向反转}\label{ch09:fig:two-wheels}\end{minipage}\end{center}}
+
+\newcommand{\billiardRollingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\s in{0,5.5}{\draw[thick](\s-1.4,0)--(\s+2.1,0);\draw[curve](\s,.85)circle(.85);}
+ \draw[vector](0,.85)--(1.7,.85)node[right]{$v_0$};\node at(0,2.35){初态：$\omega=0$};
+ \draw[vector](5.5,.85)--(7.2,.85)node[right]{$v(t)$};
+ \draw[vector](5.5,0)--(4.3,0)node[below=4pt]{$f=\mu mg$};
+ \draw[->,DeepBlue](5.5,.85)++(145:1.05)arc[start angle=145,end angle=20,radius=1.05];
+ \node at(5.5,2.35){滑动阶段：$\omega(t)>0$};
+\end{tikzpicture}\figcap{台球初态与摩擦建立转动的后续状态}\label{ch09:fig:billiard}\end{minipage}\end{center}}
+
+\newcommand{\ballsCollisionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-1.7,0)--(4,0);\draw[curve](0,1)circle(1);\draw[curve](2,1)circle(1);
+ \node[below,align=center]at(0,-.25){白球\\$m,R$};\node[below,align=center]at(2,-.25){红球\\$m,R$};
+ \draw[vector](0,1)--(.75,1)node[pos=.45,above=4pt]{$v_0$};
+ \draw[->,DeepBlue](0,1)++(140:1.2)arc[start angle=140,end angle=45,radius=1.2];
+ \node[above]at(-.8,2.1){$\omega_0$};\node[align=center]at(2,1){静止\\不自转};
+ \node[anchor=west,align=left]at(4.5,1){碰撞前\\[6pt]白球：$v_0=\omega_0R$};
+\end{tikzpicture}\figcap{相同台球无摩擦正碰的初始状态}\label{ch09:fig:balls}\end{minipage}\end{center}}
+
+\newcommand{\bounceSpinDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-1.7,0)--(1.7,0);\coordinate(Ca)at(0,1.7);\draw[curve](Ca)circle(.8);
+ \draw[vector](Ca)--++(0,-1.1)node[right=3pt]{$v_0$};
+ \draw[->,DeepBlue]($(Ca)+(20:1.02)$)arc[start angle=20,end angle=150,radius=1.02];\node[above]at(0,2.8){$\omega_0$};
+ \node at(0,-.55){碰前：竖直下落并自旋};
+ \begin{scope}[xshift=5.2cm]
+  \draw[thick](-1.7,0)--(2,0);\draw[curve](0,.8)circle(.8);\coordinate(P)at(0,0);
+  \draw[vector](P)--(-1.3,0)node[below=5pt]{$\vect J_t$};
+  \draw[vector](P)--(0,1.25)node[right=3pt]{$\vect J_n$};
+  \fill(P)circle(1.6pt)node[below right=3pt]{$P$};
+  \node[above]at(0,2.1){接触冲量图};\node at(0,-.75){球与地面相切于P};
+ \end{scope}
+ \begin{scope}[xshift=9.9cm]
+  \coordinate(O)at(0,.7);\draw[guide](O)--(0,2.4);\draw[vector](O)--(-.85,2.15)node[above left]{$\vect v'$};
+  \coordinate(V)at(0,2.4);\coordinate(W)at(-.85,2.15);
+  \draw pic[draw,"$\alpha$",angle radius=8mm,angle eccentricity=1.35]{angle=V--O--W};
+  \node at(0,-.55){弹起方向向左偏};
+ \end{scope}
+\end{tikzpicture}\figcap{旋转篮球的碰前、接触和碰后三个不同阶段}\label{ch09:fig:bounce-analysis}\end{minipage}\end{center}}
+
+\newcommand{\eggRollingDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\s/\mode in{0/0,6.6/1}{
+  \begin{scope}[xshift=\s cm]
+   \def\tt{22}\coordinate(P)at(2,1.1);
+   \coordinate(C)at($(P)+({.78*sin(\tt)},{.78*cos(\tt)})$);
+   \draw[thick]($(P)+({-2*cos(\tt)},{2*sin(\tt)})$)--($(P)+({2.8*cos(\tt)},{-2.8*sin(\tt)})$);
+   \begin{scope}[shift={(C)},rotate=-22]
+    \draw[fill=PaleBlue,thick](0,0)ellipse(.58 and .78);
+    \ifnum\mode=0\draw[fill=DeepBlue!12,thick](0,0)ellipse(.36 and .51);
+    \else\draw[DeepBlue](0,-.1)ellipse(.35 and .43);\draw[TextGray](-.32,.1)..controls(-.12,.24)and(.06,-.02)..(.32,.12);\fi
+   \end{scope}
+   \fill(P)circle(1.3pt)node[below left=3pt]{$P$};
+   \draw[guide]($(C)+(-1.3,0)$)--($(C)+(1.3,0)$);
+   \draw[vector]($(C)+(.9,.2)$)--++({1.1*cos(\tt)},{-1.1*sin(\tt)})node[right]{$\vect v_C$};
+   \draw[->,DeepBlue]($(C)+(150:1.05)$)arc[start angle=150,end angle=65,radius=1.05];
+   \node[above]at($(C)+(0,1.2)$){向右下滚时外壳顺时针转};
+   \ifnum\mode=0\node[align=center]at(2,-.45){熟鸡蛋\\整体近似共同转动};
+   \else\node[align=center]at(2,-.45){生鸡蛋\\内部液体可相对外壳运动};\fi
+  \end{scope}}
+\end{tikzpicture}\figcap{相同释放高度的两种内部结构；剖面仅用于区分凝固与液体}\label{ch09:fig:egg}\end{minipage}\end{center}}
+
+\newcommand{\massivePulleyDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,2.5);\def\rr{.8}
+ \draw[thick](-1.8,4)--(1.8,4);\draw[thick](0,4)--(O);\draw[curve](O)circle(\rr);
+ \fill(O)circle(2pt)node[right=4pt]{$O$};
+ \draw[TextGray](-.6,3.03)--(-1.2,2.9)node[left]{$M,R$};
+ \draw[thick](-.8,.65)--(-.8,2.5)arc[start angle=180,end angle=0,radius=.8]--(.8,1.05);
+ \draw[thick](-1.1,0)rectangle(-.5,.65);\node at(-.8,.325){$m_1$};
+ \draw[thick](.5,.4)rectangle(1.1,1.05);\node at(.8,.725){$m_2$};
+ \draw[vector](-1.55,1.1)--(-1.55,.1)node[left]{$\vect a_1$};
+ \draw[vector](1.55,.4)--(1.55,1.4)node[right]{$\vect a_2$};
+ \node[anchor=west,align=left]at(3,2.1){轴O固定\\[6pt]绳不伸长、与轮缘不滑\\[6pt]$a=\beta R$};
+\end{tikzpicture}\figcap{重滑轮的轮轴、绳路和两端加速度}\label{ch09:fig:pulley}\end{minipage}\end{center}}
+
+\newcommand{\torqueWorkDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,2.7);\coordinate(H)at(4.7,2.7);\coordinate(P)at(4,.4);\coordinate(C)at($(O)!.5!(P)$);
+ \draw[thick](-.8,2.7)--(.8,2.7);\draw[guide](O)--(H);
+ \draw[curve](O)--(P);\fill(O)circle(1.8pt)node[above left]{$O$};
+ \fill(C)circle(2.5pt)node[below left=4pt]{$m_2=m$};\fill(P)circle(2.5pt)node[right=4pt]{$m_1=m$};
+ \node[below left=5pt]at($(O)!.25!(P)$){$l$};\node[above right=3pt]at($(O)!.75!(P)$){$l$};
+ \draw pic[draw,"$\theta$",angle radius=13mm,angle eccentricity=1.3]{angle=P--O--H};
+\end{tikzpicture}\figcap{轻杆从水平位置向下转过$\theta$，两质点分别下降$2l\sin\theta$和$l\sin\theta$}\label{ch09:fig:torque-work}\end{minipage}\end{center}}
+
+\newcommand{\percussionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,3.8);\coordinate(P)at(0,1.3);\coordinate(B)at(0,0);
+ \draw[thick](-.8,3.8)--(.8,3.8);\draw[curve](O)--(B);
+ \fill(O)circle(2pt)node[above right]{$O$};\fill(P)circle(1.6pt)node[below right=4pt]{$P$};
+ \draw[vector](-2.2,1.3)--(P)node[pos=.28,above]{$\vect J$};
+ \draw[guide](O)--(1.3,3.8)(B)--(1.3,0);
+ \draw[guide](O)--(-.8,3.8)(B)--(-.8,0);
+ \draw[<->](-.65,1.3)--(-.65,3.8)node[midway,left=4pt]{$x=L-a$};
+ \draw[<->](-.65,0)--(-.65,1.3)node[midway,left=4pt]{$a$};
+ \draw[<->](1.2,0)--(1.2,3.8)node[midway,right]{$L$};
+ \node[anchor=west]at(3,1.9){支点冲量为零时求P的位置};
+\end{tikzpicture}\figcap{固定铰点细杆的打击位置与长度定义}\label{ch09:fig:percussion}\end{minipage}\end{center}}
+
+\newcommand{\supportedRodDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[curve](0,1)--(4,1);\foreach\x in{0,4}{\draw[thick](\x-.3,.45)--(\x,1)--(\x+.3,.45)--cycle;}
+ \draw[vector](0,1)--(0,2)node[above]{$N_A=mg/2$};\draw[vector](4,1)--(4,2)node[above]{$N_B=mg/2$};
+ \draw[vector](2,1)--(2,-.05)node[below]{$mg$};\node[above]at(2,1.1){$C$};
+ \node[below]at(0,.4){$A$};\node[below]at(4,.4){$B$};\node at(2,2.65){整杆};
+ \begin{scope}[xshift=7cm]
+  \draw[curve](0,1)--(2,1);\draw[thick](-.3,.45)--(0,1)--(.3,.45)--cycle;
+  \draw[vector](0,1)--(0,2)node[above]{$N_A$};\draw[vector](1,1)--(1,-.05)node[below]{$mg/2$};
+  \draw[guide](2,.4)--(2,1.6);\node[above]at(2,1.75){中截面C};
+  \draw[->,DeepBlue](2,1)++(-65:.55)arc[start angle=-65,end angle=200,radius=.55];
+  \node[right]at(2.8,.9){$M_{\rm int}$};\node[right]at(2.8,.35){$Q=0$};
+  \draw[<->](0,-.7)--(1,-.7)node[midway,below]{$L/4$};\draw[<->](1,-.7)--(2,-.7)node[midway,below]{$L/4$};
+  \node at(1,2.65){左半杆};
+ \end{scope}
+\end{tikzpicture}\figcap{端点支撑杆的整体与左半杆；中截面仅有非零弯矩}\label{ch09:fig:rod-analysis}\end{minipage}\end{center}}
+
+\newcommand{\chimneyDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\tt{32}\def\ll{4.5}\def\xx{1.45}
+ \coordinate(O)at(0,0);\coordinate(T)at({\ll*sin(\tt)},{\ll*cos(\tt)});
+ \coordinate(P)at({\xx*sin(\tt)},{\xx*cos(\tt)});\coordinate(G)at($(P)!.5!(T)$);\coordinate(V)at(0,4.5);
+ \draw[guide](O)--(V);\draw[curve,line width=1.4pt](O)--(T);
+ \fill(O)circle(2pt)node[below]{$O$};\fill(P)circle(1.5pt)node[below right=4pt]{$P$};\fill(G)circle(1.5pt)node[right=4pt]{$G$};
+ \draw[vector](P)--++({-1.3*cos(\tt)},{1.3*sin(\tt)})node[above left]{$-Q\uvec e_t$};
+ \draw[vector](G)--++(0,-.85)node[right=5pt]{$m_s\vect g$};
+ \draw[->,DeepBlue]($(P)+(80:.65)$)arc[start angle=80,end angle=-110,radius=.65];
+ \node[right=4pt]at($(P)+(2,-.2)$){$M$（正向）};
+ \draw[TextGray]($(P)+(1.85,-.2)$)--($(P)+(.65,0)$);
+ \draw[->,TextGray](3.4,2.6)--++({.8*cos(\tt)},{-.8*sin(\tt)})node[right]{$\uvec e_t$};
+ \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]{angle=T--O--V};
+ \draw[<->]($(O)+(1,-.63)$)--($(P)+(1,-.63)$)node[midway,below right]{$x$};
+ \draw[<->]($(P)+(-.6,.38)$)--($(T)+(-.6,.38)$)node[midway,above left]{$s$};
+ \node[anchor=west,align=left]at(5,2.4){研究P以上一段\\[6pt]G为该段质心\\[6pt]$\beta$、M以顺时针为正\\[6pt]Q为有符号量};
+\end{tikzpicture}\figcap{烟囱上段的剪力、弯矩、重力与统一方向约定}\label{ch09:fig:chimney}\end{minipage}\end{center}}
+
+
+\newcommand{\bounceSpinProblemDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick](-1.7,0)--(1.7,0);\coordinate(Ca)at(0,1.7);\draw[curve](Ca)circle(.8);
+ \draw[vector](Ca)--++(0,-1.1)node[right=3pt]{$v_0$};
+ \draw[->,DeepBlue]($(Ca)+(20:1.02)$)arc[start angle=20,end angle=150,radius=1.02];
+ \node[above]at(0,2.8){$\omega_0$};\node[right]at(1.2,1.7){$m,R$};
+\end{tikzpicture}\figcap{篮球落地前的平动与自旋方向}\label{ch09:fig:bounce}\end{minipage}\end{center}}
+
+\newcommand{\supportedRodProblemDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[curve](0,1)--(6,1);\foreach\x in{0,6}{\draw[thick](\x-.3,.45)--(\x,1)--(\x+.3,.45)--cycle;}
+ \node[below]at(0,.4){$A$};\node[below]at(6,.4){$B$};\node[above]at(3,1.08){均匀杆，质量 $m$};
+ \draw[<->](0,-.45)--(6,-.45)node[midway,below]{$L$};
+\end{tikzpicture}\figcap{均匀杆由两端支点水平支撑}\label{ch09:fig:rod}\end{minipage}\end{center}}

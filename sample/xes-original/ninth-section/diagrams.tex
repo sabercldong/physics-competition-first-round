@@ -1,0 +1,102 @@
+% Original problem figures and added solution diagrams for Section 3.3.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+\input{../momentum-common-diagrams.tex}
+
+\newcommand{\soldiagThreeTwentyFour}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRain
+\diagcaption{解图}{雨水只增加质量，不带入水平动量；外力使系统水平动量按 $Ft$ 增长。}\label{ch07:fig:soldiagThreeTwentyFour}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyFive}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumPickup
+\diagcaption{解图}{提力既承担运动绳段的重量，也为新进入运动段的绳元提供动量。}\label{ch07:fig:soldiagThreeTwentyFive}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeTwentySix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumFallingRope
+\diagcaption{题图}{柔绳上端释放后下落，绳元依次落到秤盘上并停止。}\label{ch07:fig:probdiagThreeTwentySix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentySix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRopeLoad
+\diagcaption{解图}{秤盘既承受已落绳段的重量，也连续吸收下落绳元的动量。}\label{ch07:fig:soldiagThreeTwentySix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentySeven}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumAccretion
+\diagcaption{解图}{静止介质被吸收后要加速到 $v$，故出现随 $v^2$ 增长的动量流项。}\label{ch07:fig:soldiagThreeTwentySeven}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyEight}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumDroplet
+\diagcaption{解图}{半径、迎风面积和质量共同增长，速度必须与它们联立求解。}\label{ch07:fig:soldiagThreeTwentyEight}\end{minipage}\end{center}}
+
+\newcommand{\rocketMicroDiagram}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.77]
+ \node[solpanel] at (-2.8,1.5) {喷气前}; \node[solpanel] at (2.6,1.5) {喷气后};
+ \draw[solbody,fill=SoftGray] (-4,-.35) rectangle (-2,.35);
+ \node[sollabel] at (-3,0) {$M$};
+ \draw[solflow] (-2,0)--(-.7,0) node[midway,above=4pt,sollabel] {$v$};
+ \draw[solbody,fill=SoftGray] (1.4,-.35) rectangle (3.4,.35);
+ \node[sollabel] at (2.4,0) {$M+\Delta M$};
+ \draw[solflow] (3.4,0)--(4.7,0) node[midway,above=4pt,sollabel] {$v+\Delta v$};
+ \foreach \x in {-.2,.2,.6}{\fill[TextGray] (\x,0) circle (2pt);}
+ \node[sollabel] at (.2,.75) {燃气 $-\Delta M$};
+ \draw[solflow] (.65,-.95)--(-.65,-.95) node[midway,below=4pt,sollabel] {$-u$：相对火箭};
+ \node[sollabel] at (.2,-1.8) {燃气对地速度为 $v-u$，可以向左、为零或向右};
+\end{tikzpicture}
+\diagcaption{示意图}{在地面系中，喷出燃气的速度是 $v-u$；$\Delta M<0$。}\label{ch07:fig:rocketMicroDiagram}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeTwentyNine}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[xscale=.82,yscale=.70]
+  \draw[axis] (0,0)--(5.6,0) node[right,sollabel] {火箭质量};
+  \draw[axis] (0,0)--(0,3.8) node[above,sollabel] {火箭速度};
+  \draw[solgeom] (4.45,0)--(4.45,1.15)--(0,1.15);
+  \fill[Ink] (4.45,1.15) circle (2.2pt);
+  \node[sollabel,below] at (4.45,0) {$M$};
+  \node[sollabel,left] at (0,1.15) {$v$};
+  \node[sollabel,above right] at (4.45,1.15) {当前状态};
+\end{tikzpicture}
+\diagcaption{题图}{曲线应从当前状态 $(M,v)$ 出发，并标明燃烧过程的方向。}\label{ch07:fig:probdiagThreeTwentyNine}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyNine}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \draw[axis] (0,0)--(5.2,0) node[right,sollabel] {$\mathcal M$};
+ \draw[axis] (0,0)--(0,3.7) node[above,sollabel] {$V$};
+ \draw[curve,domain=.6:4.4,samples=80] plot ({\x},{1+ln(4.4/\x)});
+ \draw[curve,-{Latex[length=2mm]},domain=3.4:2.4,samples=20] plot ({\x},{1+ln(4.4/\x)});
+ \draw[solgeom] (0,1)--(4.4,1)--(4.4,0);
+ \node[sollabel,left=4pt] at (0,1) {$v$}; \node[sollabel,below=4pt] at (4.4,0) {$M$};
+ \node[sollabel,anchor=west] at (2.5,3.2) {$V=v+u\ln(M/\mathcal M)$};
+ \node[sollabel,anchor=west] at (2.5,2.6) {燃烧方向：沿曲线向左上方};
+\end{tikzpicture}
+\diagcaption{解图}{横轴质量减小时，火箭沿对数曲线向左上方运动。}\label{ch07:fig:soldiagThreeTwentyNine}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeThirty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \draw[axis] (0,0)--(5.8,0) node[right,sollabel] {$\mathcal M$};
+ \draw[axis] (0,0)--(0,3.8) node[above,sollabel] {$u/\mathcal M$};
+ \path[fill=Blue!12] (1.5,0)--plot[domain=1.5:4.6,samples=50] (\x,{2.1/\x})--(4.6,0)--cycle;
+ \draw[curve,domain=.6:5.1,samples=80] plot (\x,{2.1/\x});
+ \draw[solgeom] (1.5,0)--(1.5,1.4) (4.6,0)--(4.6,{2.1/4.6});
+ \node[sollabel,below=4pt] at (1.5,0) {$M$}; \node[sollabel,below=4pt] at (4.6,0) {$M_0$};
+ \node[sollabel] (L) at (3.8,2.5) {阴影面积 $u\ln(M_0/M)$};
+ \draw[TextGray] (L.south)--(3,.4);
+ \draw[solflow] (4.6,-.65)--(1.5,-.65) node[midway,below=4pt,sollabel] {质量减少的方向};
+\end{tikzpicture}
+\diagcaption{解图}{对 $\dd v=-u\,\dd M/M$ 积分，速度增量等于 $u/M$ 曲线下对应的面积。}\label{ch07:fig:soldiagThreeThirty}\end{minipage}\end{center}}

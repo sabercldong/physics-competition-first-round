@@ -1,0 +1,771 @@
+\newcommand{\CoordinateSystemsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+  \begin{scope}[xshift=-3.2cm]
+    \draw[kaxis] (-2,0)--(2.2,0) node[right,clearlabel]{$x$};
+    \draw[kaxis] (0,-1.7)--(0,1.9) node[above,clearlabel]{$y$};
+    \coordinate (P) at (1.35,1.15);\node[point,label={[clearlabel]above:$P(x,y)$}] at (P) {};
+    \draw[kguide] (P)--(1.35,0) (P)--(0,1.15);
+    \node[below left] at (0,0){$O$};
+  \end{scope}
+  \begin{scope}[xshift=3.2cm]
+    \draw[kaxis] (0,0)--(2.3,0) node[right,clearlabel]{$N$};
+    \draw[kaxis] (0,0)--(0,1.9);
+    \coordinate (P) at (1.45,1.25);\draw[vector] (0,0)--(P) node[midway,clearlabel,above left]{$r$};
+    \node[point,label={[clearlabel]above:$P(r,\theta)$}] at (P) {};
+    \draw[->,TextGray] (.65,0) arc[start angle=0,end angle=41,radius=.65];
+    \node[clearlabel] at (.82,.28){$\theta$};
+    \node[below left] at (0,0){$O$};
+  \end{scope}
+\end{tikzpicture}\figcap{图2.5：平面直角坐标系与平面极坐标系。}\end{center}}
+
+\newcommand{\PathChoicesDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \coordinate (A) at (0,0);\coordinate (B) at (8,1.5);
+ \draw[kcurve] (A)--(B) node[pos=.72,above=3pt]{$P_1$};
+ \draw[kcurve] (A)..controls (1,2.9) and (5.9,3.0)..(B) node[pos=.46,above=3pt]{$P_2$};
+ \draw[kcurve] (A)..controls (1.3,1.4) and (2.1,1.65)..(3.2,.25)
+ ..controls (5,-1.0) and (7.7,0)..(B);
+ \draw[kcurve] (A)..controls (-2.5,4) and (3.6,4.3)..(3.0,-.1)
+ ..controls (2.8,-1.8) and (8.9,-1.1)..(B);
+ \draw[kcurve] (A)..controls (3.6,-2.4) and (8.8,-2.0)..(B);
+ \node at (5,.3){$P_3$};\node at (.8,3.35){$P_4$};\node at (5.5,-1.85){$P_5$};
+ \node[point,label=below left:$A$] at (A){};\node[point,label=above right:$B$] at (B){};
+\end{tikzpicture}
+\figcap{图2.6：五条路径 $P_1,\ldots,P_5$ 均从 $A$ 到 $B$；路径不同，位移相同。}
+\end{minipage}\end{center}}
+
+\newcommand{\DisplacementFanDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=.95,>=Latex]
+ \coordinate (A) at (0,0);
+ \foreach \i in {1,...,10}{
+  \pgfmathsetmacro{\xx}{.95*\i}\pgfmathsetmacro{\yy}{.8*\xx-.06*\xx*\xx}
+  \draw[DeepBlue!60,->,thin] (A)--(\xx,\yy);
+ }
+ \draw[kcurve,domain=0:9.75,samples=100] plot (\x,{.8*\x-.06*\x*\x});
+ \foreach \i in {1,...,10}{
+  \pgfmathsetmacro{\xx}{.95*\i}\pgfmathsetmacro{\yy}{.8*\xx-.06*\xx*\xx}
+  \node[point] at (\xx,\yy){};\node[above=5pt,font=\small] at (\xx,\yy){$B_{\i}$};
+ }
+ \node[point,label=below left:$A$] at (A){};
+\end{tikzpicture}
+\figcap{图2.7：粗曲线是实际路径；从 $A$ 指向各 $B_i$ 的直箭头是对应位移。}
+\end{minipage}\end{center}}
+
+\newcommand{\VectorOperationsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+  \begin{scope}[xshift=-4.4cm]
+    \draw[vector] (0,0)--(1.5,.35) node[midway,clearlabel,below]{$\vect A$};
+    \draw[vector] (1.5,.35)--(2.15,1.55) node[midway,clearlabel,right]{$\vect B$};
+    \draw[vector] (0,0)--(2.15,1.55) node[midway,clearlabel,above left]{$\vect A+\vect B$};
+  \end{scope}
+  \begin{scope}
+    \draw[vector] (0,0)--(1.55,.4) node[midway,clearlabel,below]{$\vect A$};
+    \draw[vector] (0,0)--(.55,1.55) node[midway,clearlabel,left]{$\vect B$};
+    \draw[vector] (.55,1.55)--(1.55,.4) node[midway,clearlabel,above right]{$\vect A-\vect B$};
+  \end{scope}
+  \begin{scope}[xshift=4.4cm]
+    \draw[vector] (0,0)--(1.7,.35) node[midway,clearlabel,below]{$\vect A$};
+    \draw[vector] (0,0)--(.75,1.45) node[midway,clearlabel,left]{$\vect B$};
+    \draw[->,TextGray] (.65,.13) arc[start angle=12,end angle=63,radius=.67];
+    \node[clearlabel] at (.9,.75){$\theta$};
+    \node[clearlabel,below] at (.85,-.55){$\vect A\cdot\vect B=AB\cos\theta$};
+  \end{scope}
+\end{tikzpicture}\figcap{图2.8：矢量加法、减法与内积。}\end{center}}
+
+\newcommand{\VectorComponentsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+  \draw[kaxis] (-.4,0)--(4.4,0) node[right,clearlabel]{$x$};
+  \draw[kaxis] (0,-.35)--(0,3.0) node[above,clearlabel]{$y$};
+  \coordinate (P) at (3.4,2.2);\draw[vector] (0,0)--(P) node[midway,clearlabel,above left]{$\vect A$};
+  \draw[kguide] (P)--(3.4,0) node[clearlabel,below]{$A_x$};
+  \draw[kguide] (P)--(0,2.2) node[clearlabel,left]{$A_y$};
+\end{tikzpicture}\figcap{图2.9：矢量平移到原点后，终点坐标就是矢量分量。}\end{center}}
+
+\newcommand{\CurveVelocityDiagram}{%
+\begin{center}\begin{minipage}{.95\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \draw[kcurve,domain=-3:3,samples=100] plot (\x,{.09*\x^3-.55*\x});
+ \foreach \xx in {-2.3,-.9,.8,2.2}{
+  \pgfmathsetmacro{\yy}{.09*\xx^3-.55*\xx}
+  \pgfmathsetmacro{\slope}{.27*(\xx)*(\xx)-.55}\pgfmathsetmacro{\dx}{1/sqrt(1+(\slope)*(\slope))}
+  \node[point] at (\xx,\yy){};\draw[vector] (\xx,\yy)--++(\dx,{\slope*\dx});
+ }
+\end{tikzpicture}
+\figcap{图2.10：每个速度箭头都从所在位置出发，并沿该点的轨迹切线。}
+\end{minipage}\end{center}}
+
+\newcommand{\AccelerationVectorDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+  \coordinate (O) at (0,0);\coordinate (A) at (2.3,1.6);\coordinate (B) at (3.2,.75);
+  \draw[vector] (O)--(A) node[midway,clearlabel,above left]{$\vect v(t)$};
+  \draw[vector] (O)--(B) node[midway,clearlabel,below=7pt]{$\vect v(t+\Delta t)$};
+  \draw[vector] (A)--(B) node[midway,clearlabel,above right]{$\Delta\vect v$};
+  \node[clearlabel,right] at (3.65,1.2){$\displaystyle \vect a=\lim_{\Delta t\to0}\frac{\Delta\vect v}{\Delta t}$};
+\end{tikzpicture}\figcap{图2.11：速度矢量首端重合，终端之差给出 $\Delta\vect v$。}\end{center}}
+
+\newcommand{\RescueRouteDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \coordinate (A) at (-2.8,2.3);\coordinate (C) at (.2,0);\coordinate (B) at (1.7,-1.9);
+ \coordinate (U) at (.2,1.4);\coordinate (D) at (.2,-1.4);
+ \draw[thick] (-3.5,0)--(3.6,0) node[right]{岸线};
+ \draw[kguide] (A)--(-2.8,0) (B)--(1.7,0) (U)--(D);
+ \draw[vector] (A)--(C) node[pos=.35,above right=2pt]{$v_1$};
+ \draw[vector] (C)--(B) node[pos=.45,above right=2pt]{$v_2$};
+ \draw pic[draw=TextGray,angle radius=7mm] {angle=U--C--A};
+ \draw pic[draw=TextGray,angle radius=7mm] {angle=D--C--B};
+ \node at (-.24,1.03){$\theta_1$};\node at (.55,-1.1){$\theta_2$};
+ \draw[<->,TextGray] (-3.3,0)--(-3.3,2.3) node[midway,left]{$d_1$};
+ \draw[<->,TextGray] (2.15,0)--(2.15,-1.9) node[midway,right]{$d_2$};
+ \draw[<->,TextGray] (-2.8,-2.5)--(.2,-2.5) node[midway,below]{$x$};
+ \draw[<->,TextGray] (.2,-2.5)--(1.7,-2.5) node[midway,below]{$L-x$};
+ \node[point,label=above left:$A$] at (A){};\node[point,label=below right:$B$] at (B){};
+ \node[point,label=above right:$C$] at (C){};
+\end{tikzpicture}
+\figcap{例2.31：入水点为 $C$；$\theta_1,\theta_2$ 从岸线法线量起，两垂足间距为 $L$。}
+\end{minipage}\end{center}}
+
+\newcommand{\FootballInterceptionDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=1.1,>=Latex]
+ \coordinate (A) at (0,0);\coordinate (B) at (4,2);\coordinate (C) at (5,0);\coordinate (X) at (6,0);
+ \draw[kaxis] (A)--(X) node[right]{$X$};
+ \draw[thick] (A)--(B) node[midway,above left]{$d$};\draw[kguide] (B)--(C);
+ \draw[vector] (B)--($(B)!.43!(C)$) node[midway,right=5pt]{$\vect v_p$};
+ \draw[vector] (A)--(1.25,0) node[midway,below=4pt]{$\vect v$};
+ \draw pic[draw=TextGray,angle radius=8mm] {angle=X--A--B};\node at (1.03,.27){$\theta$};
+ \draw pic[draw=TextGray,angle radius=4mm] {right angle=A--B--C};
+ \foreach \p/\pos in {A/below left,B/above,C/below}\node[point,label=\pos:$\p$] at (\p){};
+\end{tikzpicture}
+\figcap{例2.29：最低奔跑速率对应 $BC\perp AB$；队员速度沿 $BC$，球的速度沿 $AC$。}
+\end{minipage}\end{center}}
+
+\newcommand{\TwoParticlesMinimumDistanceDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+  \coordinate (P) at (-3.7,-.75);\coordinate (Q) at (2.25,-.75);\coordinate (R) at (-.3,2.25);
+  \draw[very thick] (P)--(Q);
+  \draw[kguide] (Q)--(R);
+  \draw[vector] (-3.25,-.75)--(-1.8,-.75) node[midway,clearlabel,above]{$\vect v_1$};
+  \draw[vector] (1.93,-.38)--(.95,.78) node[midway,clearlabel,right]{$\vect v_2$};
+  \draw pic[draw=TextGray,->,angle radius=8mm,"$\alpha$"{clearlabel}] {angle=R--Q--P};
+  \draw[<->,TextGray] (P)--(Q) node[midway,clearlabel,below=3pt]{$l$};
+  \node[point,label={[clearlabel]left:$A,P$}] at (P) {};
+  \node[point,label={[clearlabel]right:$B,Q$}] at (Q) {};
+  \node[clearlabel,above] at (R){$R$};
+\end{tikzpicture}\figcap{例2.30：初始连线为 $PQ$；$A$ 沿 $PQ$，$B$ 沿 $QR$，最近距离由相对速度直线确定。}\end{center}}
+
+\newcommand{\ProjectileVectorsDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \begin{scope}[xshift=-3.6cm]
+  \coordinate (O) at (0,0);\coordinate (A) at (2,3);\coordinate (B) at (2,-1);
+  \draw[vector] (O)--(A) node[midway,above left]{$\vect v_0$};
+  \draw[vector] (A)--(B) node[midway,right=3pt]{$\vect g t$};
+  \draw[vector] (O)--(B) node[midway,below left]{$\vect v$};
+  \node[below] at (1,-1.45){(a) 速度三角形};
+ \end{scope}
+ \begin{scope}[xshift=3cm]
+  \coordinate (O) at (0,0);\coordinate (A) at (2,3);\coordinate (B) at (2,1);\coordinate (C) at (2,-1);
+  \draw[vector] (O)--(A) node[midway,above left]{$\vect v_0t$};
+  \draw[vector] (A)--(B) node[midway,right=4pt]{$\tfrac12\vect g t^2$};
+  \draw[vector] (O)--(B) node[pos=.6,below right=3pt]{$\vect r$};
+  \draw[TextGray,dashed,->] (B)--(C);
+  \draw[TextGray,dashed,->] (O)--(C) node[midway,below left]{$t\vect v$};
+  \node[right=4pt,align=left,font=\small] at (2,-.2){再接一段\\$\tfrac12\vect g t^2$};
+  \node[below] at (1,-1.45){(b) 位移及辅助三角形};
+ \end{scope}
+\end{tikzpicture}
+\figcap{图2.12：此刻速度向下、位移仍向上；右图加入虚线段后，外侧三角形才与左图相似。}
+\end{minipage}\end{center}}
+
+\newcommand{\TennisServeDiagram}{%
+\begin{center}\begin{minipage}{.95\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \draw[thick] (-.15,0)--(6.7,0);\draw[thick] (4,0)--(4,1.2);
+ \draw[<->,TextGray] (4.25,0)--(4.25,1.2) node[midway,right=2pt]{$h$};
+ \draw[kguide] (0,0)--(0,3) (6,0)--(6,.3);
+ \draw[kcurve,->,domain=0:5.6,samples=90] plot(\x,{3-3*\x*\x/31.36});
+ \draw[vector] (0,3)--(1.3,3) node[midway,above]{$v_0$};
+ \draw[<->,TextGray] (-.5,0)--(-.5,3) node[midway,left]{$H$};
+ \draw[<->,TextGray] (0,-.75)--(4,-.75) node[midway,below]{$L$};
+ \draw[<->,TextGray] (4,-.75)--(6,-.75) node[midway,below]{$l$};
+ \node[above left] at (0,3){$A$};\node[below=3pt] at (4,0){球网};\node[below=3pt] at (6,0){发球线};
+\end{tikzpicture}
+\figcap{例2.32：合法轨迹从 $A$ 水平出发，从球网上方通过，并落在发球线之前。}
+\end{minipage}\end{center}}
+
+\newcommand{\HorizontalThrowImpactDiagram}{%
+\begin{center}\begin{minipage}{.95\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \coordinate (A) at (0,2);\coordinate (B) at (4,0);\coordinate (V) at (5.1,-1.1);\coordinate (X) at (5.3,0);
+ \draw[thick] (-.2,0)--(4.35,0);\draw[kguide] (A)--(0,0) (B)--(X);
+ \draw[kcurve,dashed,domain=0:4,samples=80] plot(\x,{2-\x*\x/8});
+ \draw[vector] (A)--(1.3,2) node[midway,above]{$\vect v_0$};
+ \draw[vector] (B)--(V) node[right=4pt]{$\vect v$};
+ \draw pic[draw=TextGray,angle radius=6mm] {angle=V--B--X};
+ \node[right] at (4.7,-.21){$45^\circ$};
+ \draw[<->,TextGray] (-.5,0)--(-.5,2) node[midway,left]{$h$};
+ \node[point] at (A){};\node[point] at (B){};
+\end{tikzpicture}
+\figcap{例2.33：轨迹在抛出点水平，在落地点的切线与水平线成 $45^\circ$。}
+\end{minipage}\end{center}}
+
+\newcommand{\ProjectileRangeDiagram}{%
+\begin{center}\begin{minipage}{.95\linewidth}\centering
+\begin{tikzpicture}[scale=.95,>=Latex]
+ \coordinate (A) at (0,0);\coordinate (B) at (7.2,0);\coordinate (V) at (52:1.5);
+ \draw[thick] (-.4,0)--(7.6,0);
+ \draw[kcurve,->,domain=0:7.2,samples=100] plot(\x,{tan(52)*\x*(1-\x/7.2)});
+ \draw[vector] (A)--(V) node[above left]{$v_0$};
+ \draw pic[draw=TextGray,angle radius=7mm] {angle=B--A--V};\node at (.97,.39){$\theta$};
+ \draw[<->,TextGray] (0,-.55)--(7.2,-.55) node[midway,below]{$S$};
+\end{tikzpicture}
+\figcap{例2.34：斜抛轨迹先升后降，回到出发高度时的水平距离为射程 $S$。}
+\end{minipage}\end{center}}
+
+\newcommand{\ComplementaryProjectileDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \coordinate (A) at (0,0);\coordinate (B) at (6.4,0);
+ \draw[thick] (-.3,0)--(6.8,0);
+ \foreach \ang in {22,68}{\draw[kcurve,dashed,domain=0:6.4,samples=100] plot(\x,{tan(\ang)*\x*(1-\x/6.4)});
+ \draw[vector] (A)--(\ang:1.3);}
+ \draw[TextGray] (.7,0) arc[start angle=0,end angle=22,radius=.7];
+ \draw[TextGray] (1.1,0) arc[start angle=0,end angle=68,radius=1.1];
+ \node at (1.39,.95){$\theta_1$};\node at (1.55,.22){$\theta_2$};
+ \node[above] at (3.2,4){高弧线};\node[above] at (3.2,.7){低弧线};
+ \node[below] at (3.2,-.4){$\theta_1+\theta_2=\pi/2$，两次初速率相同};
+\end{tikzpicture}
+\figcap{例2.35：互余抛射角对应同一落点；高弧线飞行时间更长。}
+\end{minipage}\end{center}}
+
+\newcommand{\ObstacleClearanceDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \pgfmathsetmacro{\uu}{(sqrt(25+2.25)+1.5)/5}
+ \pgfmathsetmacro{\kk}{(5*\uu-1.5)/25}
+ \draw[thick] (-.3,0)--(5.9,0) (5,0)--(5,1.5);
+ \draw[kcurve,dashed,->,domain=0:5,samples=90] plot(\x,{\uu*\x-\kk*\x*\x});
+ \draw[vector] (0,0)--({1.25/sqrt(1+\uu^2)},{1.25*\uu/sqrt(1+\uu^2)}) node[above left]{$v_0$};
+ \draw[TextGray] (.7,0) arc[start angle=0,end angle={atan(\uu)},radius=.7];
+ \node at (.95,.42){$\theta$};\node[below left] at (0,0){$A$};
+ \draw[<->,TextGray] (0,-.55)--(5,-.55) node[midway,below]{$L$};
+ \draw[<->,TextGray] (5.5,0)--(5.5,1.5) node[midway,right]{$H$};
+\end{tikzpicture}
+\figcap{例2.36：临界轨迹经过障碍顶端；严格越过时须留出正的高度余量。}
+\end{minipage}\end{center}}
+
+\newcommand{\ProjectileReachabilityDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[width=.90\linewidth,height=7cm,axis lines=middle,xlabel={$x$},ylabel={$y$},
+ xmin=0,xmax=7.2,ymin=-1,ymax=3.7,ticks=none,clip=true]
+ \path[fill=Blue!7] (axis cs:0,-1)--plot[domain=0:6.6,samples=100]
+ (axis cs:\x,{3-\x*\x/12})--(axis cs:6.6,-1)--cycle;
+ \foreach \ang in {20,35,50,65,78}{
+  \addplot[Blue!75,thick,domain=0:6.6,samples=140]{x*tan(\ang)-x*x/(12*cos(\ang)^2)};
+ }
+ \addplot[DeepBlue,very thick,domain=0:6.6,samples=100]{3-x*x/12};
+ \node at (axis cs:5.7,2.8){不可达区};
+ \node at (axis cs:3.9,-.5){可达区};
+ \node at (axis cs:2.35,3.35){分界线};
+ \draw[TextGray] (axis cs:2.35,3.08)--(axis cs:2.35,2.54);
+\end{axis}
+\end{tikzpicture}
+\figcap{例2.37：同一初速率的各条轨迹均在包络线下方，且分别与它相切。}
+\end{minipage}\end{center}}
+
+\newcommand{\HillsideTargetDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \coordinate (C) at (0,0);\coordinate (T) at (5,1.5);\coordinate (X) at (5.8,0);
+ \draw[thick] (C)--(X) (C)--(5.6,1.68);
+ \draw[kcurve,dashed,->,domain=0:5,samples=100] plot(\x,{tan(55)*\x-(5*tan(55)-1.5)*\x*\x/25});
+ \draw[vector] (C)--(55:1.3) node[above left]{$v_0$};
+ \draw[TextGray] (.75,0) arc[start angle=0,end angle={atan(.3)},radius=.75];
+ \draw[TextGray] (1.3,0) arc[start angle=0,end angle=55,radius=1.3];
+ \node at (.99,.10){$\alpha$};\node at (1.48,.75){$\beta$};
+ \draw[kguide] (T)--(5,0);
+ \draw[<->,TextGray] (0,-.55)--(5,-.55) node[midway,below]{$L$};
+ \node[point,label=below left:$C$] at (C){};\node[point,label=above right:$T$] at (T){};
+\end{tikzpicture}
+\figcap{例2.39：目标坐标为 $(L,L\tan\alpha)$；炮弹初速度沿轨迹起点的切线。}
+\end{minipage}\end{center}}
+
+\newcommand{\HorizontalAtObstacleDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex]
+ \draw[thick] (-.3,0)--(6.5,0) (5,0)--(5,2);
+ \draw[kcurve,dashed,domain=0:5,samples=100] plot(\x,{2-2*(\x-5)^2/25});
+ \draw[vector] (0,0)--({1.3/sqrt(1.64)},{1.04/sqrt(1.64)}) node[above left]{$v_0$};
+ \draw[vector] (5,2)--(6.3,2) node[midway,above]{$v_T$};
+ \draw[TextGray] (.7,0) arc[start angle=0,end angle={atan(.8)},radius=.7];
+ \node at (1.02,.31){$\theta$};
+ \draw[<->,TextGray] (0,-.55)--(5,-.55) node[midway,below]{$L$};
+ \draw[<->,TextGray] (5.5,0)--(5.5,2) node[midway,right]{$H$};
+ \node[below left] at (0,0){$A$};\node[above left] at (5,2){$T$};
+\end{tikzpicture}
+\figcap{例2.40：轨迹在障碍顶端 $T$ 达到最高点，此处速度为水平方向。}
+\end{minipage}\end{center}}
+
+\newcommand{\InclinedPlaneNormalImpactDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.95,>=Latex]
+ \pgfmathsetmacro{\thetaLaunch}{20+atan(1/(2*tan(20)))}
+ \pgfmathsetmacro{\uu}{tan(\thetaLaunch)}
+ \pgfmathsetmacro{\kk}{(\uu-tan(20))/4.5}
+ \coordinate (A) at (0,0);\coordinate (P) at (4.5,{4.5*tan(20)});
+ \coordinate (B) at (5.6,{5.6*tan(20)});\coordinate (V) at ($(P)+(-70:1.2)$);
+ \draw[thick] (A)--(5.9,0) (A)--(B)--(5.6,0);
+ \draw[kcurve,dashed,domain=0:4.5,samples=100] plot(\x,{\uu*\x-\kk*\x*\x});
+ \draw[vector] (A)--(\thetaLaunch:1.3) node[above left]{$v_0$};
+ \draw[vector] (P)--(V) node[right=3pt]{$v_P$};
+ \draw pic[draw=TextGray,angle radius=4mm] {right angle=A--P--V};
+ \draw[TextGray] (.7,0) arc[start angle=0,end angle=20,radius=.7];
+ \draw[TextGray] (1.3,0) arc[start angle=0,end angle=\thetaLaunch,radius=1.3];
+ \node at (.96,.14){$\alpha$};\node at (1.42,.9){$\theta$};
+ \node[point,label=above right:$P$] at (P){};
+\end{tikzpicture}
+\figcap{例2.41：碰撞点 $P$ 在斜面上；轨迹末端切线与斜面垂直。}
+\end{minipage}\end{center}}
+
+\newcommand{\StairBounceDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=1,>=Latex]
+ \pgfmathsetmacro{\hh}{1/(1-.45^2)}\pgfmathsetmacro{\xa}{1.4-1.8/1.45}
+ \draw[very thick] (-.1,3)--(2.3,3)--(2.3,2)--(4.1,2)--(4.1,1)--(5.9,1)--(5.9,0)--(7.8,0);
+ \draw[kcurve,domain=0:1,samples=70] plot({\xa+(1.4-\xa)*\x},{3+\hh-\hh*\x*\x});
+ \foreach \n in {0,1,2}{
+  \draw[kcurve,domain=0:1,samples=90] plot({1.4+1.8*\n+1.8*\x},{3-\n+2*.45/(1-.45)*\x-(1+.45)/(1-.45)*\x*\x});
+ }
+ \foreach \n in {0,1,2,3}{\node[point,label=below:{$C_{\n}$}] at ({1.4+1.8*\n},{3-\n}){};}
+ \draw[vector] (\xa,{3+\hh})--++(1.1,0) node[midway,above]{$v_0$};
+ \node[above left] at (\xa,{3+\hh}){$A$};
+ \draw[<->,TextGray] (-.45,3)--(-.45,{3+\hh}) node[midway,left]{$H$};
+ \draw[<->,TextGray] (3.2,3.55)--(5,3.55) node[midway,above]{$d$};
+ \draw[<->,TextGray] (7.4,0)--(7.4,1) node[midway,right]{$l$};
+\end{tikzpicture}
+\figcap{例2.43：$A$ 在首个碰撞台面上方；各 $C_i$ 均在水平踏面上，反弹段可平移重合。}
+\end{minipage}\end{center}}
+
+\newcommand{\SphereClearanceDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=1.2,>=Latex]
+ \foreach \q/\shift/\lab in {.577350269/-2.8/{临界：先与球面相切},.70/2.8/{可行：到球顶前不接触}}{
+  \begin{scope}[xshift=\shift cm]
+   \pgfmathsetmacro{\ddist}{(\q+sqrt(\q*\q+32/3))/(8/3)}
+   \draw[thick] (-2.05,0)--(1.3,0);
+   \draw[thick] (0,1) circle (1);
+   \draw[kguide] (0,0)--(0,2);
+   \draw[kcurve,domain=-\ddist:0,samples=120] plot(\x,{2-\q*\x-4*\x*\x/3});
+   \pgfmathsetmacro{\sl}{-\q+8*\ddist/3}
+   \draw[vector] (-\ddist,0)--++({.65/sqrt(1+\sl^2)},{.65*\sl/sqrt(1+\sl^2)});
+   \draw[vector] (0,2)--++({.7/sqrt(1+\q^2)},{-.7*\q/sqrt(1+\q^2)});
+   \node[above right] at (.58,2.02){$\vect v_T$};
+   \node[point,label=above left:$T$] at (0,2){};
+   \node[point,label=below:$O$] at (0,1){};
+   \draw[<->,TextGray] (-\ddist,-.4)--(0,-.4) node[midway,below]{$d$};
+   \node[font=\small,align=center] at (-.4,-1.05){\lab};
+   \ifdim\q pt<.6pt
+    \node[point,label=left:$P$] at (-.8660254,1.5){};
+   \fi
+  \end{scope}
+ }
+\end{tikzpicture}
+\figcap{例2.45：两条轨迹均在下降时到达球顶 $T$；左图的提前切点 $P$ 决定速度下界。}
+\end{minipage}\end{center}}
+
+\newcommand{\CirclePositionDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[very thick] (0,0) circle (2);
+ \coordinate (O) at (0,0);\coordinate (N) at (2,0);\coordinate (P) at (52:2);
+ \draw[very thick] (O)--(N) node[midway,clearlabel,below]{$R$};
+ \draw[very thick] (O)--(P);
+ \draw[->,TextGray] (.75,0) arc[start angle=0,end angle=52,radius=.75];
+ \node[clearlabel] at (1,.43){$\theta$};
+ \node[point,label={[clearlabel]below left:$O$}] at (O) {};
+ \node[point,label={[clearlabel]right:$N$}] at (N) {};
+ \node[point,label={[clearlabel]above right:$P$}] at (P) {};
+\end{tikzpicture}\figcap{图2.13：角位置 $\theta$ 由固定射线 $ON$ 转到半径 $OP$ 的有向角确定；逆时针为正。}\end{center}}
+
+\newcommand{\AngularSignDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.75,>=Latex]
+ \begin{scope}[xshift=-2.4cm]
+  \draw[very thick] (0,0) circle (1.25);\draw[DeepBlue,very thick,->] (1.45,-.2) arc[start angle=-8,end angle=95,radius=1.45];
+  \node[clearlabel,below] at (0,-1.65){$\omega>0$（逆时针）};
+ \end{scope}
+ \begin{scope}[xshift=2.4cm]
+  \draw[very thick] (0,0) circle (1.25);\draw[Blue,very thick,->] (-1.45,-.2) arc[start angle=188,end angle=85,radius=1.45];
+  \node[clearlabel,below] at (0,-1.65){$\omega<0$（顺时针）};
+ \end{scope}
+\end{tikzpicture}\figcap{图2.14：角速度的符号只表示转动方向，不表示快慢。}\end{center}}
+
+\newcommand{\CentripetalDerivationDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=1,>=Latex]
+ \begin{scope}[xshift=-3.5cm]
+  \draw[thick] (0,0) circle (1.7);
+  \coordinate (A) at (110:1.7);\coordinate (B) at (70:1.7);
+  \draw[TextGray] (0,0)--(A) (0,0)--(B);
+  \draw[vector] (A)--++(20:1.2) node[pos=.85,above=3pt]{$\vect v_A$};
+  \draw[vector] (B)--++(-20:1.2) node[right=3pt]{$\vect v_B$};
+  \draw[TextGray] (70:.65) arc[start angle=70,end angle=110,radius=.65];
+  \node at (0,1.22){$|\Delta\theta|$};
+  \node[point,label=above left:$A$] at (A){};
+  \node[point] at (B){};\node[above right] at ($(B)+(.12,.17)$){$B$};
+  \node[below] at (0,-2){(a) 同一圆周上的两速度};
+ \end{scope}
+ \begin{scope}[xshift=2.4cm]
+  \coordinate (S) at (0,0);\coordinate (P) at (20:2.5);\coordinate (Q) at (-20:2.5);
+  \draw[vector] (S)--(P) node[midway,above left]{$\vect v_A$};
+  \draw[vector] (S)--(Q) node[midway,below left]{$\vect v_B$};
+  \draw[vector] (P)--(Q) node[midway,right=4pt]{$\Delta\vect v$};
+  \draw[TextGray] (-20:.8) arc[start angle=-20,end angle=20,radius=.8];
+  \node[right] at (.85,0){$|\Delta\theta|$};
+  \node[left] at (S){$S$};\node[above] at (P){$P$};\node[below] at (Q){$Q$};
+  \node[below] at (1.1,-2){(b) 平移后作矢量差};
+ \end{scope}
+\end{tikzpicture}
+\figcap{图2.15：右图保持左图两速度的方向；$\Delta\vect v$ 由旧速度终点指向新速度终点。}
+\end{minipage}\end{center}}
+
+\newcommand{\RadialCollisionBase}[1]{%
+\begin{tikzpicture}[scale=.75,>=Latex]
+ \draw[very thick] (0,0) circle (2);\coordinate (P) at (0,2);\coordinate (A) at (25:2);\coordinate (B) at (0,.72);
+ \node[point,label={[clearlabel]below left:$O$}] at (0,0) {};
+ \node[point,label={[clearlabel]above:$P$}] at (P) {};
+ \node[point,label={[clearlabel]below left:$A$}] at (A) {};
+ \node[point,label={[clearlabel]right:$B$}] at (B) {};
+ \draw[kguide] (0,0)--(P);
+ \node[clearlabel,left,xshift=-2pt] at (0,.35){$R$};
+ \draw[vector] (B)--(0,1.60) node[midway,clearlabel,right,xshift=3pt]{$#1$};
+ \draw[DeepBlue,very thick,->] (4:2.25) arc[start angle=4,end angle=55,radius=2.25];
+ \node[right] at (2.42,1.28){$\omega$};
+\end{tikzpicture}}
+
+\newcommand{\RadialUniformCollisionDiagram}{%
+\begin{center}\RadialCollisionBase{\vect v_B}
+\figcap{例2.47：$B$ 以恒定速度沿射线 $OP$ 运动，故与圆周质点 $A$ 的相撞点只能是 $P$。}\end{center}}
+
+\newcommand{\RadialAcceleratedCollisionDiagram}{%
+\begin{center}\RadialCollisionBase{\vect a_B}
+\figcap{例2.48：$B$ 从 $O$ 由静止沿 $OP$ 匀加速；几何相撞点仍只能是 $P$，但到达时间条件改变。}\end{center}}
+
+\newcommand{\SameCirclePursuitDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+  \draw[very thick] (0,0) circle (2.25);
+  \coordinate (O) at (0,0);\coordinate (P) at (90:2.25);\coordinate (Q) at (135:2.25);
+  \draw[very thick] (O)--(P);\draw[kguide] (O)--(Q);
+  \draw[DeepBlue,very thick,->] (125:2.5) arc[start angle=125,end angle=175,radius=2.5]
+    node[midway,clearlabel,left]{$\omega_1$};
+  \draw[Blue,very thick,->] (-2.5,-.55) arc[start angle=192,end angle=230,radius=2.5]
+    node[midway,clearlabel,left]{$\omega_2$};
+  \draw pic[draw=TextGray,->,angle radius=8mm,"$\theta$"{clearlabel}] {angle=P--O--Q};
+  \node[point] at (Q) {};\node[left] at ($(Q)+(-.7,.32)$){$Q$};
+  \node[point,label={[clearlabel]above:$P$}] at (P) {};
+  \node[point,label={[clearlabel]below right:$O$}] at (O) {};
+\end{tikzpicture}\figcap{例2.49：两质点从同一点出发沿同一圆周逆时针运动，第二次相遇位置相对 $OP$ 转过角 $\theta$。}\end{center}}
+
+\newcommand{\ConcentricCollinearityDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+  \draw[very thick] (0,0) circle (1.35);\draw[very thick] (0,0) circle (2.35);
+  \coordinate (O) at (0,0);\coordinate (A) at (28:1.35);\coordinate (B) at (28:2.35);
+  \draw[kguide] (O)--(B);
+  \draw[vector] (A)--++(118:1.05) node[midway,clearlabel,right]{$\vect v_A$};
+  \draw[vector] (B)--++(118:.82);
+  \node at (2.12,2.17){$\vect v_B$};
+  \draw[TextGray] (O)--(145:1.35) node[midway,clearlabel,above=3pt]{$R_1$};
+  \draw[TextGray] (O)--(225:2.35);
+  \node at (-1.75,-.65){$R_2$};
+  \node[point] at (O) {};\node at (.25,-.30){$O$};
+  \node[point,label={[clearlabel]right:$A$}] at (A) {};
+  \node[point,label={[clearlabel]below right:$B$}] at (B) {};
+\end{tikzpicture}\figcap{例2.50：$A,B$ 分别在半径 $R_1,R_2$ 的同心圆上；题目要求两点与圆心再次共线。}\end{center}}
+
+\newcommand{\ProjectileCircleCollisionDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=1,>=Latex]
+ \draw[TextGray,dashed] (3,0) arc[start angle=0,end angle=180,x radius=3,y radius=.75];
+ \draw[thick] (-3,0) arc[start angle=180,end angle=360,x radius=3,y radius=.75];
+ \coordinate (O) at (0,0);\coordinate (A) at (3,0);\coordinate (S) at (0,3);
+ \draw[kguide] (O)--(A) (O)--(S);
+ \draw[vector] (S)--(1.25,3) node[midway,above]{$v_0$};
+ \draw[kcurve,dashed,->,domain=0:3,samples=90] plot(\x,{3-\x*\x/3});
+ \draw[Blue,->,thick] (3.3,0) arc[start angle=0,end angle=52,x radius=3.3,y radius=.83];
+ \node[above right] at (2.6,.7){$\omega$};
+ \draw[<->,TextGray] (-.45,0)--(-.45,3) node[midway,left]{$H$};
+ \node[below] at (1.5,0){$R$};
+ \node[point,label=below left:$O$] at (O){};
+ \node[point,label=right:$A$] at (A){};
+ \node[point,label=above left:{$S\;(B\text{的初始位置})$}] at (S){};
+\end{tikzpicture}
+\figcap{例2.51：$S$ 在圆心 $O$ 正上方；抛体从 $S$ 水平出发，在圆周上与整周返回的质点相遇。}
+\end{minipage}\end{center}}
+
+\newcommand{\AccelerationVelocityAngleDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.95,>=Latex]
+ \draw[thick] (0,0) circle (2.0);\coordinate (P) at (35:2);
+ \coordinate (V) at ($(P)+(125:1.4)$);\coordinate (A) at ($(P)+(170:1.4)$);
+ \draw[kguide] (0,0)--(P) node[pos=.4,below right]{$R$};
+ \draw[vector] (P)--(V) node[above right]{$\vect v$};
+ \draw[vector] (P)--(A) node[above left]{$\vect a$};
+ \draw pic[draw=TextGray,angle radius=7mm] {angle=V--P--A};
+ % The circumference crosses this narrow wedge. Show its label separately,
+ % retaining the physical vectors and the main angle arc without a mask.
+ \begin{scope}[shift={(4.7,1.3)}]
+ \draw[vector] (0,0)--(125:1.6) node[above right]{$\vect v$};
+ \draw[vector] (0,0)--(170:1.6) node[above left]{$\vect a$};
+ \draw[TextGray] (125:.6) arc(125:170:.6);
+ \node at (147.5:.95){$\theta$};
+ \node[below] at (-.5,-.4){夹角放大};
+ \end{scope}
+ \node[point,label=below left:$O$] at (0,0){};\node[point] at (P){};
+\end{tikzpicture}
+\figcap{例2.59：右侧单独放大速度与加速度的夹角 $\theta$；该角取值在 $0$ 与 $\pi$ 之间。}
+\end{minipage}\end{center}}
+
+\newcommand{\ConcentricSightDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \pgfmathsetmacro{\ax}{1.5^2/2.8}\pgfmathsetmacro{\ay}{sqrt(1.5^2-\ax^2)}
+ \coordinate (O) at (0,0);\coordinate (B) at (2.8,0);\coordinate (A) at (\ax,\ay);
+ \draw[thick] (O) circle (1.5) (O) circle (2.8);
+ \draw[thick] (O)--(B) (B)--(A);\draw[kguide] (O)--(A);
+ \draw pic[draw=TextGray,angle radius=4mm] {right angle=O--A--B};
+ \draw pic[draw=TextGray,angle radius=8mm] {angle=A--B--O};
+ \node at (1.75,.27){$\theta$};
+ \draw[TextGray] (O)--(145:1.5) node[midway,below left]{$R_1$};
+ \draw[TextGray] (O)--(230:2.8) node[pos=.78,below right=4pt]{$R_2$};
+ \node[point,label=below:$O$] at (O){};\node[point,label=right:$B$] at (B){};
+ \node[point,label=above:$A$] at (A){};
+\end{tikzpicture}
+\figcap{例2.52：$A$ 为从 $B$ 引向内圆的切点，因而 $OA\perp AB$。}
+\end{minipage}\end{center}}
+
+\newcommand{\RacetrackDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.72,>=Latex]
+ \draw[very thick] (-2.4,-2.4)--(-2.4,0) arc[start angle=180,end angle=0,radius=2.4]--(2.4,-2.4);
+ \draw[very thick] (-1.4,-2.4)--(-1.4,0) arc[start angle=180,end angle=0,radius=1.4]--(1.4,-2.4);
+ \draw[->,DeepBlue,very thick] (-1.4,-1.9)--(-1.4,-.85);
+ \draw[->,Blue,very thick] (-2.4,-1.9)--(-2.4,-.85);
+ \draw[<->,TextGray] (0,0)--(0,1.4) node[midway,clearlabel,right]{$R_1$};
+ \draw[<->,TextGray] (0,0)--(135:2.4) node[pos=.85,clearlabel,above right=3pt]{$R_2$};
+ \node[clearlabel,below] at (0,-2.75){内、外路线均为半圆弯道};
+\end{tikzpicture}\figcap{例2.57解图：外道允许更高速度，但半圆弧也更长。}\end{center}}
+
+\newcommand{\FixedCoordinatesDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+ \draw[kaxis] (-.5,0)--(6.4,0) node[right,clearlabel]{$x$};
+ \draw[kaxis] (0,-.4)--(0,4.2) node[above,clearlabel]{$y$};
+ \draw[kcurve] plot[smooth] coordinates{(.5,.5)(1.4,2.8)(2.8,3.4)(4.1,2.0)(5.7,3.2)};
+ \coordinate (A) at (1.4,2.8);\coordinate (B) at (4.1,2.0);
+ \node[point,label={[clearlabel]above left:$A$}] at (A) {};
+ \node[point,label={[clearlabel]below right:$B$}] at (B) {};
+ \draw[kguide] (A)--(1.4,0) node[clearlabel,below]{$x(t_1)$};\draw[kguide] (A)--(0,2.8) node[clearlabel,left]{$y(t_1)$};
+ \draw[kguide] (B)--(4.1,0) node[clearlabel,below]{$x(t_2)$};\draw[kguide] (B)--(0,2) node[clearlabel,left]{$y(t_2)$};
+\end{tikzpicture}\figcap{图2.16：分量运动方程 $x(t),y(t)$ 在每个时刻唯一确定曲线上的位置。}\end{center}}
+
+\newcommand{\ParametricEllipseDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.85,>=Latex]
+ \draw[kaxis] (-3.8,0)--(3.9,0) node[right]{$x$};\draw[kaxis] (0,-2.3)--(0,2.5) node[above]{$y$};
+ \draw[kcurve] (0,0) ellipse (3 and 1.65);
+ \draw[vector,domain=10:40,samples=25] plot({3*cos(\x)},{1.65*sin(\x)});
+ \node[point,label=below right:{$t=0$}] at (3,0){};
+ \draw[<->,TextGray] (0,-.3)--(3,-.3) node[midway,below]{$a$};
+ \draw[<->,TextGray] (.3,0)--(.3,1.65) node[midway,right]{$b$};
+\end{tikzpicture}
+\figcap{例2.61：闭合椭圆的半轴为 $a,b$；短箭头表示 $\omega>0$ 时的运动方向。}
+\end{minipage}\end{center}}
+
+\newcommand{\CycloidDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.72,>=Latex]
+ \draw[very thick] (-.4,0)--(10,0);
+ \draw[kaxis] (0,0)--(10.2,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,0)--(0,3.4) node[above,clearlabel]{$y$};
+ \draw[kcurve,domain=0:6.283,samples=120] plot ({1.35*(\x-sin(\x r))},{1.35*(1-cos(\x r))});
+ \draw[very thick] (0,1.35) circle (1.35);\node[point,label={[clearlabel]below left:$P$}] at (0,0) {};
+ \draw[vector] (0,1.35)--(1.1,1.35) node[pos=.22,clearlabel,above=3pt]{$v$};
+\end{tikzpicture}\figcap{例2.62：无滑动滚动圆周点的摆线。尖点处圆周点与地面瞬时相对静止。}\end{center}}
+
+\newcommand{\HelixDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.76,>=Latex,
+  x={(1cm,0cm)},y={(-.50cm,-.28cm)},z={(0cm,.80cm)}]
+ \draw[kaxis] (0,0,0)--(3.1,0,0) node[right,clearlabel]{$x$};
+ \draw[kaxis] (0,0,0)--(0,2.7,0) node[below left,clearlabel]{$y$};
+ \draw[kaxis] (0,0,0)--(0,0,5.2) node[above,clearlabel]{$z$};
+ \draw[TextGray,dashed,domain=0:360,samples=90] plot ({1.4*cos(\x)},{1.4*sin(\x)},0);
+ \draw[TextGray,dashed,domain=0:360,samples=90] plot ({1.4*cos(\x)},{1.4*sin(\x)},4.4);
+ \foreach \a in {0,90,180,270}{\draw[TextGray!65] ({1.4*cos(\a)},{1.4*sin(\a)},0)--({1.4*cos(\a)},{1.4*sin(\a)},4.4);}
+ \draw[kcurve,->,domain=0:720,samples=220]
+   plot ({1.4*cos(\x)},{1.4*sin(\x)},{.0061*\x});
+ \draw[<->,TextGray] (0,0,-.75)--(1.4,0,-.75) node[midway,clearlabel,below]{$R$};
+ \draw[<->,TextGray] (1.72,0,0)--(1.72,0,2.2) node[midway,clearlabel,right]{$2\pi v/\omega$};
+ \node[clearlabel,right,align=left] at (2.15,0,3.8){水平投影为圆\\竖直方向匀速上升};
+\end{tikzpicture}\figcap{例2.63解图：$xy$ 投影是圆，$z$ 坐标匀速增加，合成轨迹为圆柱螺旋线。}\end{center}}
+
+\newcommand{\CircleComponentsDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+  \draw[kaxis] (-3.1,0)--(3.25,0) node[right,clearlabel]{$x$};
+  \draw[kaxis] (0,-3.0)--(0,3.15) node[above,clearlabel]{$y$};
+  \draw[very thick] (0,0) circle (2.25);
+  \coordinate (O) at (0,0);\coordinate (P) at (38:2.25);
+  \draw[very thick] (O)--(P) node[midway,clearlabel,below right]{$R$};
+  \draw[kguide] (P)--(P|-O) node[clearlabel,below]{$x$};
+  \draw[kguide] (P)--(P-|O) node[clearlabel,left]{$y$};
+  \draw[vector] (P)--++(128:1.25) node[midway,clearlabel,right]{$\vect v$};
+  \draw[vector] (P)--++(218:1.15) node[midway,clearlabel,above left]{$\vect a$};
+  \node[point,label={[clearlabel]below left:$O$}] at (O) {};
+  \node[point,label={[clearlabel]above right:$P$}] at (P) {};
+\end{tikzpicture}\figcap{例2.64：圆周运动的位置投影为 $x,y$；速度沿切线，加速度沿半径指向圆心。}\end{center}}
+
+\newcommand{\RollingContactDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.8,>=Latex]
+  \draw[very thick] (-3.7,0)--(3.7,0);
+  \draw[very thick] (0,1.55) circle (1.55);
+  \coordinate (O) at (0,1.55);\coordinate (P) at (0,0);
+  \draw[vector] (O)--++(1.45,0) node[midway,clearlabel,above]{$\vect v_O$};
+  \draw[vector] (P)--++(-1.45,0) node[midway,clearlabel,below=2pt]{$\vect v_{P/O}$};
+  \draw[vector] (P)--++(1.45,0);
+  \node at (1.7,.3){$\vect v_O$};
+  \draw[DeepBlue,very thick,->] ({1.85*cos(30)},{1.55+1.85*sin(30)}) arc[start angle=30,end angle=-20,radius=1.85];
+  \node[clearlabel,right] at (2.05,1.15){$\omega=v/R$};
+  \draw[very thick] (O)--(P) node[midway,clearlabel,right]{$R$};
+  \node[point] at (P) {};\node[below=4pt] at (P){$P$};
+  \node[point,label={[clearlabel]above left:$O$}] at (O) {};
+  \node[clearlabel] at (0,-1.1){$\vect v_P=\vect0$};
+\end{tikzpicture}\figcap{例2.65：接地点 $P$ 的平动速度与绕圆心转动速度大小相等、方向相反。}\end{center}}
+
+\newcommand{\ArchimedeanSpiralDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.64,>=Latex]
+  \begin{scope}[xshift=-5.7cm]
+    \coordinate (O) at (0,0);\coordinate (P) at (38:2.5);
+    \node[point,label={[clearlabel]below left:$O$}] at (O) {};
+    \draw[kaxis] (O)--(3,0) node[right]{$N$};
+    \draw[vector] (O)--(P) node[midway,above left=3pt]{$r=vt$};
+    \node[point,label=above:$P$] at (P){};
+    \draw[TextGray] (.9,0) arc[start angle=0,end angle=38,radius=.9];
+    \node at (1.35,.32){$\theta$};
+    \node[clearlabel,below] at (1,-1.0){$\theta=\omega t$};
+  \end{scope}
+  \begin{scope}[xshift=2.7cm]
+    \draw[kaxis] (-4.3,0)--(4.5,0) node[right,clearlabel]{$x$};
+    \draw[kaxis] (0,-4.0)--(0,4.2) node[above,clearlabel]{$y$};
+    \draw[kcurve,->,domain=0:18.3,samples=180] plot ({.21*\x*cos(\x r)},{.21*\x*sin(\x r)});
+    \node[point] at (0,0){};\node at (.3,-.35){$O$};
+    \node[clearlabel,below] at (0,-4.55){$r=(v/\omega)\theta$};
+  \end{scope}
+\end{tikzpicture}\figcap{例2.66：左图在一个时刻确定 $P$ 的极坐标；右图以 $O$ 为极点，连续描出 $r\propto\theta$ 的螺线。}\end{center}}
+
+\newcommand{\NaturalCoordinatesDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=1.25,>=Latex]
+ \draw[kcurve,domain=-2.7:2.7,samples=120] plot(\x,{.15*\x^3-.6*\x});
+ \coordinate (P) at (-1.4,.4284);\coordinate (Q) at (-.2,.1188);
+ \pgfmathsetmacro{\ang}{atan(.282)}
+ \draw[vector] (P)--++(\ang:1.5) node[above=5pt]{$\vect v(t),\ \vect e_t$};
+ \draw[vector] (Q)--++({atan(-.582)}:1.25) node[below right=2pt]{$\vect v(t+\Delta t)$};
+ \draw[vector] (P)--++({\ang-90}:1.15) node[below right]{$a_n,\ \vect e_n$};
+ \draw[vector] (P)--++({\ang+180}:.8) node[above left=3pt]{$a_t<0$};
+ \node[point,label=above left:$P$] at (P){};\node[point] at (Q){};\node[above=5pt] at (Q){$Q$};
+\end{tikzpicture}
+\figcap{切向沿速度，法向指向 $P$ 处曲线的凹侧；图中切向加速度取减速情形。}
+\label{fig:k06-natural-frame}\end{minipage}\end{center}}
+
+\newcommand{\VelocityIncrementNaturalDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.82,>=Latex]
+  \coordinate (A) at (-4.0,0);\coordinate (B) at (0,0);\coordinate (C) at (2.25,2.7);
+  \coordinate (D) at (2.25,0);\coordinate (E) at (4.1,0);
+  \draw[vector] (A)--(B) node[midway,clearlabel,below]{$\vect v(t)$};
+  \draw[vector] (B)--(C);\node at (.2,1.2){$\vect a\,\Delta t$};
+  \draw[vector] (A)--(C) node[midway,clearlabel,above left]{$\vect v(t+\Delta t)$};
+  \draw[kguide] (C)--(D);
+  \draw[kguide] (B)--(D);
+  \draw[<->,TextGray] (B)--(D) node[midway,clearlabel,below=3pt]{$a\cos\alpha\,\Delta t$};
+  \draw[<->,TextGray] (D)--(C) node[midway,clearlabel,right=3pt]{$a\sin\alpha\,\Delta t$};
+  \draw pic[draw=TextGray,->,angle radius=7mm] {angle=E--B--C};
+  \node[clearlabel] at ($(B)+(1.1,.45)$){$\alpha$};
+  \draw pic[draw=TextGray,->,angle radius=10mm] {angle=B--A--C};
+  \node at (-2.45,.34){$\Delta\theta$};
+  \node[clearlabel,below left] at (A){$A$};\node[clearlabel,below left] at (B){$B$};
+  \node[clearlabel,above] at (C){$C$};\node[clearlabel,below right] at (D){$D$};
+\end{tikzpicture}\figcap{图2.17：速度三角形把 $\vect a\Delta t$ 分解为平行、垂直于原速度的两部分，分别决定速率变化和方向转角。}\end{center}}
+
+\newcommand{\OsculatingCircleDiagram}{%
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=1,>=Latex]
+ \draw[TextGray,thick] (0,{5/3}) circle ({5/3});
+ \draw[kcurve,domain=-2.4:2.4,samples=100] plot(\x,{.3*\x*\x});
+ \draw[thick] (-2.5,0)--(2.5,0) node[right]{$S$};
+ \draw[TextGray,->] (0,0)--(0,{5/3}) node[midway,right=4pt]{$\rho$};
+ \draw[TextGray] (.18,0)--(.18,.18)--(0,.18);
+ \node[point,label=below:$P$] at (0,0){};
+ \node[point,label=above left:$O$] at (0,{5/3}){};
+\end{tikzpicture}
+\figcap{图2.18：圆与曲线在 $P$ 处共切线 $S$、共曲率；半径 $PO$ 垂直于 $S$。}
+\end{minipage}\end{center}}
+
+\input{data/folded-curvature.tex}
+\newcommand{\FourCurvaturesDiagram}{%
+\begin{center}\begin{minipage}{.98\linewidth}\centering
+\begin{tikzpicture}[scale=1.15,>=Latex]
+ \FoldedCurveCircles
+ \draw[kcurve] \FoldedCurvePath;
+ \FoldedCurvePoints
+\end{tikzpicture}
+\figcap{例2.69：题图的回折曲线与对应密切圆；大圆仅显示局部圆弧。}
+\par\medskip
+\begin{tikzpicture}[>=Latex]
+\FoldedCurveTipZoom
+\end{tikzpicture}
+\par\smallskip {\small $P_3$ 邻域放大十倍：灰色小圆为此处的密切圆。}
+\end{minipage}\end{center}}
+
+\newcommand{\ProjectileCurvatureDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
+  \begin{scope}[xshift=-3.4cm]
+    \draw[kcurve,->,domain=-2:2,samples=70] plot (\x,{1.75-.48*\x*\x});
+    \coordinate (U) at (-.9,{1.75-.48*.9*.9});
+    \draw[vector] (U)--++({atan(.864)}:1.15) node[midway,clearlabel,above left]{$\vect v$};
+    \draw[vector] (U)--++(0,-1.2) node[midway,clearlabel,right]{$\vect g$};
+    \node[clearlabel,below] at (0,-1.35){上升：$\vect g\cdot\vect v<0$};
+  \end{scope}
+  \begin{scope}[xshift=3.4cm]
+    \draw[kcurve,->,domain=-2:2,samples=70] plot (\x,{1.75-.48*\x*\x});
+    \coordinate (D) at (.9,{1.75-.48*.9*.9});
+    \draw[vector] (D)--++({-atan(.864)}:1.15) node[midway,clearlabel,above right]{$\vect v$};
+    \draw[vector] (D)--++(0,-1.2) node[midway,clearlabel,left]{$\vect g$};
+    \node[clearlabel,below] at (0,-1.35){下降：$\vect g\cdot\vect v>0$};
+  \end{scope}
+  \begin{scope}[yshift=-3.8cm]
+    \draw[kaxis] (-2.4,0)--(2.4,0) node[right,clearlabel]{$x$};
+    \draw[kaxis] (0,-.3)--(0,1.7) node[above,clearlabel]{$y$};
+    \draw[kcurve,domain=-1.7:1.7,samples=70] plot (\x,{.45*\x*\x});
+    \draw[TextGray] (0,{1/.9}) circle ({1/.9});
+    \node[point,label={[clearlabel]below right:$x=0$}] at (0,0) {};
+    \draw[<->,TextGray] (0,0)--(0,{1/.9}) node[midway,clearlabel,right]{$\rho(0)$};
+  \end{scope}
+\end{tikzpicture}\figcap{例2.68：上升、下降阶段的速度—重力夹角决定速率增减；下图在抛物线顶点画出密切圆。}\end{center}}
+
+\newcommand{\EllipseCurvatureDiagram}{%
+\begin{center}\begin{tikzpicture}[scale=.74,>=Latex]
+  \draw[kaxis] (-4.0,0)--(4.0,0) node[right,clearlabel]{$x$};
+  \draw[kaxis] (0,-2.6)--(0,2.6) node[above,clearlabel]{$y$};
+  \draw[very thick] (0,0) ellipse (3.25 and 1.65);
+  \coordinate (A) at (3.25,0);\coordinate (B) at (0,1.65);
+  \draw[TextGray] ({3.25-1.65*1.65/3.25},0) circle ({1.65*1.65/3.25});
+  \begin{scope}
+    \clip (-4.0,-2.55) rectangle (4.0,2.55);
+    \draw[TextGray] (0,{1.65-3.25*3.25/1.65}) circle ({3.25*3.25/1.65});
+  \end{scope}
+  \draw[<->,TextGray] (0,-2.05)--(3.25,-2.05) node[midway,clearlabel,below]{$a$};
+  \draw[<->,TextGray] (.25,0)--(.25,1.65) node[midway,clearlabel,right]{$b$};
+  \node[point] at (A) {};\node[below right=4pt] at (A){$A$};
+  \node[point,label={[clearlabel]above:$B$}] at (B) {};
+  \draw[TextGray] (2.62,.78)--(3.28,1.45);
+  \node[clearlabel,above] at (3.15,1.52){$\rho_A=b^2/a$};
+  \draw[TextGray] (-1.45,1.86)--(-2.25,2.18);
+  \node[clearlabel,left] at (-2.18,2.20){$\rho_B=a^2/b$};
+\end{tikzpicture}\figcap{例2.70：椭圆长轴端 $A$ 的密切圆较小，短轴端 $B$ 的密切圆较大。}\end{center}}

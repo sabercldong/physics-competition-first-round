@@ -1,0 +1,239 @@
+\section{张紧薄膜的二维波动（选读）}
+
+膜的两个空间自变量为 $x,y$，横向位移只有一个分量 $z(x,y,t)$。
+设参考面密度为 $\mu_s$，各向同性的单位长度张力为 $\sigma_s$。
+$\sigma_s$ 的单位为 $\mathrm{N/m}$，不同于弦张力 $T$ 的 $\mathrm N$，
+也不同于三维应力的 $\mathrm{N/m^2}$。这一模型取预张力恒定、小斜率，忽略弯曲刚度。
+
+取膜上一块区域 $D$，从 $+z$ 方向看，其边界按逆时针方向绕行。
+图\ref{ch12:fig:membrane}中的边界线元与向上单位法向到一阶为
+\[
+ \dd\vect r=(\dd x,\dd y,z_x\dd x+z_y\dd y),\qquad
+ \vect n\simeq(-z_x,-z_y,1).
+\]
+周围膜对这块膜的力沿膜面、垂直边界，并指向区域外，所以
+\[
+ \dd\vect F=\sigma_s\,\dd\vect r\times\vect n
+ =\sigma_s(\dd y,-\dd x,z_x\dd y-z_y\dd x)+O(|\nabla z|^2).
+\]
+检验方向：在区域右边界，边界线元沿 $+y$，而 $\dd\vect r\times\vect n$ 的水平分量沿 $+x$，
+确实朝外，不能把叉积次序颠倒。环绕闭曲线时 $\oint\dd x=\oint\dd y=0$，
+故一阶水平合力消失。竖直合力用格林公式变成
+\begin{align}
+ F_z&=\sigma_s\oint_{\partial D}(z_x\dd y-z_y\dd x)\\
+ &=\sigma_s\iint_D(z_{xx}+z_{yy})\dd x\dd y.
+ \label{ch12:eq:membrane-force}
+\end{align}
+这里所用公式为 $\oint(P\dd x+Q\dd y)=\iint(Q_x-P_y)\dd x\dd y$，
+取 $P=-z_y,Q=z_x$。将任意区域的质量乘以加速度，与合力相等，就得到局部方程
+\begin{equation}
+ z_{tt}=\frac{\sigma_s}{\mu_s}(z_{xx}+z_{yy}),\qquad
+ c_{\rm membrane}=\sqrt{\frac{\sigma_s}{\mu_s}}.
+ \label{ch12:eq:membrane-wave}
+\end{equation}
+
+\begin{center}
+\begin{tikzpicture}[x={(1cm,0cm)},y={(-.45cm,-.80cm)},z={(0cm,1cm)},>=Latex]
+ \draw[axis] (0,0,0)--(5.1,0,0) node[right] {$x$};
+ \draw[axis] (0,0,0)--(0,4.3,0) node[below left] {$y$};
+ \draw[axis] (0,0,0)--(0,0,2.4) node[above] {$z$};
+ \foreach \q in {0,1,2,3}{
+  \draw[TextGray!45,domain=0:4,samples=45,variable=\s]
+    plot({\s},{\q},{.12*\s+.07*\q+.045*\s*\q});
+ }
+ \foreach \q in {0,1,2,3,4}{
+  \draw[TextGray!45,domain=0:3,samples=40,variable=\s]
+    plot({\q},{\s},{.12*\q+.07*\s+.045*\q*\s});
+ }
+ \draw[DeepBlue,thick] (1,1,.235)--(3,1,.565)--(3,2,.77)--(1,2,.35)--cycle;
+ \draw[vector] (3,1.25,.61625)--(3,1.8,.729);
+ \coordinate(P) at(3,1.5,.6675);
+ \draw[vector] (P)--++({1.25*(1+.205*.205)},{-1.25*.1875*.205},{1.25*.1875});
+ \draw[vector,TextGray] (P)--++(-.1875,-.205,1);
+ \node[right=4pt] at (4.4,1.5,.93) {$\dd\vect F$};
+ \node[above=4pt] at (2.8125,1.295,1.75) {$\vect n$};
+ \draw[thin,TextGray] (3.04,1.78,.733)--(3.9,3.2,.50);
+ \node[below right=3pt] at (3.9,3.2,.50) {$\dd\vect r$};
+ \draw[thin,TextGray] (1.5,1.55,.393125)--(.1,2.8,.45);
+ \node[left=4pt] at (.1,2.8,.45) {$D$};
+\end{tikzpicture}
+\figcap{右手坐标系中的膜面及有向边界。曲面网格、边界、切线、法向和外向膜力均由同一曲面 $z=0.12x+0.07y+0.045xy$ 生成。}
+\label{ch12:fig:membrane}
+\end{center}
+
+面积元由两个切向量的叉积求得：
+$\dd S=\sqrt{1+z_x^2+z_y^2}\dd x\dd y$。
+在小斜率近似下，面积增加为
+$\dd S-\dd x\dd y\simeq(z_x^2+z_y^2)\dd x\dd y/2$。
+恒定单位长度张力所对应的势能增加等于 $\sigma_s$ 乘以面积增加，
+故单位参考面积的能量为
+\begin{equation}
+ \mathcal E_s=\frac12\mu_s z_t^2+\frac12\sigma_s(z_x^2+z_y^2).
+ \label{ch12:eq:membrane-energy}
+\end{equation}
+这里常数平面面积的能量可以选为零，并不意味着可以省略形变面积的变化。
+
+无限均匀膜上的平面简谐波可写为
+$z=\operatorname{Re}\{A e^{\ii(\omega t-k_xx-k_yy)}\}$，
+代入波动方程给出
+$\omega^2=c_{\rm membrane}^2(k_x^2+k_y^2)$。
+频率决定 $|\vect k|$，$k_x:k_y$ 及其符号决定传播方向，
+复数 $A$ 的模和幅角分别决定振幅与初相位；这些是不同的自由度。
+
+矩形膜的边长为 $a,b$，四边固定时试取
+$z=X(x)Y(y)\cos(\omega t+\phi)$。边界要求 $X(0)=X(a)=Y(0)=Y(b)=0$，
+因此 $X\propto\sin(m\pi x/a)$、$Y\propto\sin(n\pi y/b)$，代回方程得到
+\begin{equation}
+ z_{mn}\propto\sin\frac{m\pi x}{a}\sin\frac{n\pi y}{b}\cos(\omega_{mn}t+\phi),
+ \quad
+ \omega_{mn}=\pi\sqrt{\frac{\sigma_s}{\mu_s}}
+ \sqrt{\frac{m^2}{a^2}+\frac{n^2}{b^2}}.
+ \label{ch12:eq:membrane-modes}
+\end{equation}
+$m,n$ 均为正整数。不同的空间方向各带一个模态指标，若 $a=b$，
+交换 $m,n$ 不改变频率，可能出现简并。圆膜需用极坐标和贝塞尔函数
+（Bessel functions）；允许频率由形状与边界共同决定，而不是只由材料决定。
+
+\section{三维弹性体与纵横体波（选读）}
+
+\subsection{从应力散度到运动方程}
+
+对任意物质体积 $D$，外向面力合力的第 $i$ 分量为
+\[
+ F_i=\oint_{\partial D}\sigma_{ij}n_j\dd S
+ =\iiint_D\frac{\partial\sigma_{ij}}{\partial x_j}\dd V.
+\]
+第二步对每个分量使用高斯定理。若体积力密度为 $f_i$，单位 $\mathrm{N/m^3}$，
+牛顿第二定律给出
+\begin{equation}
+ \rho u_{i,tt}=\partial_j\sigma_{ij}+f_i.
+ \label{ch12:eq:stress-div}
+\end{equation}
+小形变时，在这一阶精度内可将参考坐标导数与空间坐标导数等同。
+均匀各向同性介质中，代入式\eqref{ch12:eq:lame}，逐项求导：
+\[
+ \partial_j\sigma_{ij}
+ =\lambda_e\partial_i(\partial_k u_k)
+   +G\partial_j(\partial_i u_j+\partial_j u_i)
+ =(\lambda_e+G)\partial_i(\nabla\cdot\vect u)+G\nabla^2u_i.
+\]
+无体积力时得到纳维—柯西方程（Navier--Cauchy equation）
+\begin{equation}
+ \rho\vect u_{tt}=(\lambda_e+G)\nabla(\nabla\cdot\vect u)+G\nabla^2\vect u
+ =(\lambda_e+2G)\nabla(\nabla\cdot\vect u)-G\nabla\times(\nabla\times\vect u).
+ \label{ch12:eq:navier}
+\end{equation}
+末式用到 $\nabla^2\vect u=\nabla(\nabla\cdot\vect u)-\nabla\times(\nabla\times\vect u)$。
+为看清耦合，第一分量完全展开为
+\[
+ \rho u_{x,tt}=(\lambda_e+2G)u_{x,xx}
+ +G(u_{x,yy}+u_{x,zz})
+ +(\lambda_e+G)(u_{y,xy}+u_{z,xz});
+\]
+另外两式由 $x,y,z$ 循环替换得到。横向二阶导数不能从展开式中漏去。
+
+\subsection{三维能量密度}
+
+从零应变沿直线路径增加到 $\boldsymbol\varepsilon$，应力随路径参数也线性增加，
+所以单位体积弹性能为
+\begin{equation}
+ w_{\rm el}=\frac12\sum_{i,j}\sigma_{ij}\varepsilon_{ij}
+ =\frac{\lambda_e}{2}(\operatorname{tr}\boldsymbol\varepsilon)^2
+   +G\sum_{i,j}\varepsilon_{ij}^2.
+ \label{ch12:eq:elastic-energy}
+\end{equation}
+双重求和中的 $\varepsilon_{xy}^2$ 与 $\varepsilon_{yx}^2$ 都要计入；
+纯剪切时便得到 $w_{\rm el}=G\gamma_{xy}^2/2$，与 $\tau=G\gamma_{xy}$ 的做功一致。
+加上动能密度 $\rho|\vect u_t|^2/2$ 就得到总机械能密度。
+把应变分成体积部分和无迹部分，还可写成
+\[
+ w_{\rm el}=\frac K2(\operatorname{tr}\boldsymbol\varepsilon)^2
+ +G\left|\boldsymbol\varepsilon-\frac13
+ (\operatorname{tr}\boldsymbol\varepsilon)\mathsf I\right|^2,
+\]
+清楚显示 $K>0,G>0$ 是稳定性条件。
+
+\subsection{平面波的三种偏振与不同波速}
+
+取平面波 $\vect u=\vect A e^{\ii(\vect k\cdot\vect r-\omega t)}$ 的实部。
+代入式\eqref{ch12:eq:navier}得到
+\[
+ \rho\omega^2\vect A=(\lambda_e+G)\vect k(\vect k\cdot\vect A)+Gk^2\vect A.
+\]
+将振幅唯一分成
+$\vect A_P=(\vect A\cdot\hat{\vect k})\hat{\vect k}$ 与
+$\vect A_S=\vect A-\vect A_P$。
+前者与 $\vect k$ 平行，满足 $\vect k\times\vect A_P=0$；
+后者与 $\vect k$ 垂直，满足 $\vect k\cdot\vect A_S=0$。
+分别投影原式：
+\begin{equation}
+ c_P^2=\frac{\omega_P^2}{k^2}=\frac{\lambda_e+2G}{\rho}
+      =\frac{K+4G/3}{\rho},\qquad
+ c_S^2=\frac{\omega_S^2}{k^2}=\frac G\rho.
+ \label{ch12:eq:body-speeds}
+\end{equation}
+一个传播方向对应一种纵偏振、两种互相独立的横偏振，如图\ref{ch12:fig:polarization}。
+对一般波场，在适当边界条件下可作无旋与无散的赫尔姆霍兹分解；
+对运动方程分别取散度与旋度，也得到
+$(\nabla\cdot\vect u)_{tt}=c_P^2\nabla^2(\nabla\cdot\vect u)$、
+$(\nabla\times\vect u)_{tt}=c_S^2\nabla^2(\nabla\times\vect u)$。
+因此上述结论不只是某一个特殊方向的平面波巧合。
+
+\begin{center}
+\begin{tikzpicture}[>=Latex]
+ \foreach \q/\name in {0/纵偏振,4.5/横偏振一,9/横偏振二}{
+ \begin{scope}[shift={(\q,0)}]
+  \draw[axis] (0,0)--(2.7,0) node[right] {$\vect k$};
+  \node at (1.2,-1) {\name};
+ \end{scope}}
+ \draw[<->,DeepBlue,very thick] (.6,.5)--(1.9,.5) node[midway,above] {$\vect A_P$};
+ \draw[<->,DeepBlue,very thick] (5.7,-.6)--(5.7,.9) node[above] {$\vect A_{S1}$};
+ \draw[DeepBlue,thick] (10.2,.4) circle(.16);
+ \fill[DeepBlue] (10.2,.4) circle(1.6pt);
+ \node[above] at (10.2,.75) {$\vect A_{S2}$：出入纸面};
+\end{tikzpicture}
+\figcap{沿同一方向传播的三种独立体波偏振。箭头与点圆符号表示材料点振动方向，不是另外的传播方向。}
+\label{ch12:fig:polarization}
+\end{center}
+
+细杆纵波的 $\sqrt{Y/\rho}$ 不能替换为体纵波的 $c_P$：
+前者侧面可以横向收缩，后者平面纵波伴随的横向约束使有效纵向模量为 $\lambda_e+2G$。
+稳定各向同性材料满足 $c_P>c_S$。地震中先到达的压缩体波称P波（primary wave），
+较慢的剪切体波称S波（secondary wave）。液态外核不能传递剪切体波；
+这处边界称古登堡不连续面（Gutenberg discontinuity），核幔边界深约 $2900\,\mathrm{km}$，波的折射、反射和模式转换为认识地球内部提供依据。
+S波在边界可转换为能穿过液体的压缩波，不能将“液体不传S波”说成“所有S波能量均原样反射”。
+
+\section{流体中的声波与绝热声速}
+
+静态流体不能维持剪切应力，在无黏理想流体模型中 $G=0$，只剩压缩纵波。
+设平衡密度为 $\rho_0$，小纵位移为 $u(x,t)$。质量守恒给出
+$\delta\rho=-\rho_0 u_x$：伸长区域密度减小。
+小压强变化为
+$\delta p=(\partial p/\partial\rho)_{\rm process}\delta\rho=-K u_x$。
+两端压强差形成力 $-\partial_x\delta p$，所以
+\[
+ \rho_0u_{tt}=-\partial_x\delta p=K u_{xx},\qquad
+ c^2=\frac K{\rho_0}=\left(\frac{\partial p}{\partial\rho}\right)_{\rm process}.
+\]
+这里“过程”必须说明，否则 $K$ 不唯一。普通空气中声波的压缩、稀疏较快，
+在一周期内、一个波长尺度上来不及通过热传导抹平温度差；忽略热耗散时取局部可逆绝热过程。
+它不是说气体温度不变，而是每一物质微元与邻域的净换热可忽略。
+
+理想气体满足 $pV^\gamma=\text{常量}$，其中 $\gamma=C_p/C_V$。
+对固定质量微元求微分：
+$\dd p/p=-\gamma\,\dd V/V$，于是
+\begin{equation}
+ K_s=-V\left(\frac{\partial p}{\partial V}\right)_s=\gamma p,\qquad
+ c=\sqrt{\frac{\gamma p}{\rho_0}}
+  =\sqrt{\frac{\gamma RT_0}{M_{\rm mol}}}.
+ \label{ch12:eq:sound-speed}
+\end{equation}
+最后一步用 $pV=nRT_0$ 与 $\rho_0=nM_{\rm mol}/V$，
+$M_{\rm mol}$ 为摩尔质量而不是单个分子质量。若使用单分子质量 $m_0$，
+则应写 $c=\sqrt{\gamma k_{\rm B}T_0/m_0}$。
+
+牛顿（Newton）采用等温压缩关系，会得到 $K_T=p$；
+拉普拉斯（Laplace）的绝热修正使预测声速乘以 $\sqrt\gamma$。
+例如 $T_0=293\,\mathrm K$、$M_{\rm mol}=0.029\,\mathrm{kg/mol}$、$\gamma=1.4$ 时，
+等温模型给出约 $290\,\mathrm{m/s}$，绝热模型给出约 $343\,\mathrm{m/s}$。
+这是在同一温度、同一气体参数下的比较，不能拿不同条件的历史近似数值混作精确测量。

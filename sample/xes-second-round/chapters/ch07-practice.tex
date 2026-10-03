@@ -1,0 +1,204 @@
+\section{配套习题：弹性体}
+\label{r2ch07:sec:practice}
+
+\begin{practicebox}{绕端点旋转的均匀弹性绳}
+如图，一根自由长度为 $L_0$、质量为 $M$、整体劲度系数为 $k$ 的均匀弹性绳，以角速度 $\omega$ 绕过绳端且垂直于绳的轴匀速转动，忽略重力。求稳定状态下的绳长、弹性势能和动能。
+\label{r2ch07:pr:001}
+\begin{solution}
+图~\ref{r2ch07:fig:008} 中用材料坐标 $X\in[0,L_0]$ 标记未形变绳上的点，以 $r(X)$ 表示稳定时该点到转轴的距离。自由绳整体伸长 $\Delta L$ 时张力为 $k\Delta L$，所以原长为 $\dd X$ 的微元劲度为 $kL_0/\dd X$，局部张力为
+$T(X)=kL_0[r'(X)-1]$。
+
+对材料微元作径向平衡，内外端张力差提供向心力：
+\[
+ \frac{\dd T}{\dd X}=-\frac{M}{L_0}\omega^2r.
+\]
+令
+\begin{equation}
+ a=\omega\sqrt{\frac Mk},\qquad q=\frac a{L_0},\qquad
+ r''+q^2r=0,\qquad r(0)=0,\quad r'(L_0)=1.
+ \label{r2ch07:eq:026}
+\end{equation}
+末端条件来自自由端 $T(L_0)=0$。解为
+\[
+ r(X)=\frac{\sin(qX)}{q\cos a},\qquad
+ r'(X)=\frac{\cos(qX)}{\cos a}.
+\]
+因此稳定绳长为
+\begin{equation}
+ \boxed{L=r(L_0)=L_0\frac{\tan a}{a}},
+ \qquad 0\le a<\frac\pi2.
+ \label{r2ch07:eq:027}
+\end{equation}
+$a<\pi/2$ 保证 $r'>0$ 且张力处处非负；越过该点时线性模型给不出从端点单调向外的稳定构形。
+
+势能按每个原长微元积分，动能按质量微元积分：
+\begin{equation}
+ \begin{aligned}
+ U&=\frac{kL_0}{2}\int_0^{L_0}[r'(X)-1]^2\,\dd X
+ =\frac{kL_0^2}{2}\left(1+\frac{1}{2\cos^2a}
+ -\frac{3\tan a}{2a}\right),\\
+ K&=\frac12\frac{M}{L_0}\omega^2\int_0^{L_0}r^2(X)\,\dd X
+ =\frac{kL_0^2}{4\cos^2a}\left(1-\frac{\sin2a}{2a}\right).
+ \end{aligned}
+ \label{r2ch07:eq:028}
+\end{equation}
+当 $a\ll1$ 时，$L\simeq L_0(1+a^2/3)$，$K\simeq M\omega^2L_0^2/6$，正好退化为长度 $L_0$、绕端点转动的均匀细杆动能；$U$ 从 $a^4$ 阶开始，符合小伸长的二次势能规律。
+\figRotatingRope
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{弦上点质量的反射与透射}
+无限长弦的线密度为 $\mu$、张力为 $T$。从负 $x$ 方向传来行波
+$y_i=A\cos(\omega t-kx)$；在 $x=0$ 处固定一质量为 $m$ 的质点。
+
+(a) 用 $\omega$ 表示 $k$；
+(b) 求能量反射率和透射率。
+\label{r2ch07:pr:002}
+\begin{solution}
+弦波速为 $c=\sqrt{T/\mu}$，故
+\begin{equation}
+ k=\frac\omega c=\omega\sqrt{\frac\mu T},\qquad
+ \alpha=\frac{m\omega}{2\sqrt{T\mu}}.
+ \label{r2ch07:eq:029}
+\end{equation}
+如图~\ref{r2ch07:fig:009}，用复振幅写左侧入射、反射波和右侧透射波：
+\[
+ y_-=(Ae^{-ikx}+Be^{ikx})e^{i\omega t},\qquad
+ y_+=Ce^{i(\omega t-kx)}.
+\]
+质点与弦不脱离给出位移连续 $A+B=C$。质点所受竖直合力为
+$T[y_x(0^+)-y_x(0^-)]$，牛顿第二定律给出
+\begin{equation}
+ -m\omega^2C=-2ikTB,\qquad
+ \frac BA=\frac{-i\alpha}{1+i\alpha},\qquad
+ \frac CA=\frac1{1+i\alpha}.
+ \label{r2ch07:eq:030}
+\end{equation}
+两侧弦的 $T,\mu$ 相同，平均能流都正比于振幅平方，故
+\begin{equation}
+ \boxed{\mathcal R=\frac{|B|^2}{|A|^2}=\frac{\alpha^2}{1+\alpha^2}},
+ \qquad
+ \boxed{\mathcal T=\frac{|C|^2}{|A|^2}=\frac1{1+\alpha^2}},
+ \qquad \mathcal R+\mathcal T=1.
+ \label{r2ch07:eq:031}
+\end{equation}
+$m\to0$ 或 $\omega\to0$ 时 $\mathcal T\to1$；$m\omega\to\infty$ 时质点近似固定端，$\mathcal R\to1$。和为 $1$ 也验证了无耗散模型的能量守恒。
+\figPointScatter
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{张紧鼓膜上的轴对称行波}
+面密度为 $\mu_s$、张力系数为 $\Sigma$ 的张紧鼓膜上传播由中心向外的轴对称波，横位移猜作
+\[
+ z(r,t)=A(r)\cos(\omega t-kr).
+\]
+猜想 $\omega/k$ 和 $A(r)$ 的形式，并用牛顿第二定律说明为什么这个表达式只在 $kr\gg1$ 的环形微元上近似成立。
+\label{r2ch07:pr:003}
+\begin{solution}
+取半径 $r$、宽度 $\dd r$ 的环形微元，质量为 $2\pi r\mu_s\dd r$。内、外圆周张力竖直分量之差，再加同一圆周上切向变化带来的几何项，得到轴对称膜波方程
+\begin{equation}
+ z_{tt}=c^2\left(z_{rr}+\frac1r z_r\right),\qquad
+ c=\sqrt{\frac\Sigma{\mu_s}}.
+ \label{r2ch07:eq:032}
+\end{equation}
+图~\ref{r2ch07:fig:010} 显示同一能流穿过的圆周长度正比于 $r$；平均能流又正比于振幅平方，所以先由能量守恒猜得 $A(r)\propto r^{-1/2}$。令复形式
+$z=C r^{-1/2}e^{i(\omega t-kr)}$，直接求导得
+\begin{equation}
+ z_{rr}+\frac1r z_r=\left(-k^2+\frac1{4r^2}\right)z,\qquad
+ \omega^2=c^2\left(k^2-\frac1{4r^2}\right).
+ \label{r2ch07:eq:033}
+\end{equation}
+常数 $\omega,k$ 不可能使后一关系对所有 $r$ 精确成立；只有 $kr\gg1$ 时 $1/(4r^2)$ 相对 $k^2$ 可忽略。于是
+\[
+ \boxed{\frac\omega k\simeq\sqrt{\frac\Sigma{\mu_s}}},\qquad
+ \boxed{A(r)\propto\frac1{\sqrt r}}.
+\]
+中心附近必须改用在 $r=0$ 有限的贝塞尔函数解；$r^{-1/2}$ 发散正是远场近似不能延伸到波源的信号。
+\figRadialMembrane
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{音叉驱动弦线的共振配重}
+一根线密度为 $0.15\,\mathrm{g/cm}$ 的弦线，一端接频率 $50\,\mathrm{Hz}$ 的音叉，另一端跨过光滑滑轮悬挂配重。水平弦长 $l=1\,\mathrm m$。
+
+(a) 共振时音叉端应视为波节还是波腹？
+(b) 弦上分别出现一个、两个、三个波腹时，配重质量是多少？
+\label{r2ch07:pr:004}
+\begin{solution}
+图~\ref{r2ch07:fig:011} 中音叉主动带动弦端横向振动，理想化为波腹；滑轮处横位移受约束，视为波节。因此若有 $n$ 个波腹，边界条件是
+\begin{equation}
+ k_nl=\frac{(2n-1)\pi}{2},\qquad
+ \lambda_n=\frac{4l}{2n-1},\qquad
+ v_n=f\lambda_n.
+ \label{r2ch07:eq:034}
+\end{equation}
+线密度换算为 $\mu=0.015\,\mathrm{kg/m}$。由 $v=\sqrt{T/\mu}$、$T=mg$，
+\begin{equation}
+ \boxed{m_n=\frac{16\mu f^2l^2}{g(2n-1)^2}},\qquad
+ (m_1,m_2,m_3)\simeq(61.2,,6.80,,2.45)\,\mathrm{kg}
+ \label{r2ch07:eq:035}
+\end{equation}
+其中数值取 $g=9.8\,\mathrm{m/s^2}$。质量按奇数平方反比下降；若把音叉端误作波节，会得到整数半波长谱，与实际驱动端的位移边界不符。
+\figSonometer
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{悬绳上的杂技演员}
+两个水平悬挂点坐标为 $(-4l,0)$ 与 $(4l,0)$，取竖直向下为 $y$ 正方向。重为 $G$ 的杂技演员初始静止在 $(0,3l)$，随后准静态地沿水平方向移动 $3l$。求末位置和演员所做的功：
+
+(a) 绳不可伸长；
+(b) 滑轮两侧可视为相同的零原长胡克弹性绳段。
+\label{r2ch07:pr:005}
+\begin{solution}
+图~\ref{r2ch07:fig:012} 把初末构形画在同一坐标系内。不可伸长时总绳长由初态确定为 $10l$。末态 $x=3l$，令 $Y=y/l$，则
+\begin{equation}
+ \sqrt{49+Y^2}+\sqrt{1+Y^2}=10
+ \quad\Longrightarrow\quad Y=\frac{12}{5}.
+ \label{r2ch07:eq:036}
+\end{equation}
+所以末位置为 $(3l,12l/5)$。准静态过程中始末动能均为零，理想约束不耗散；演员上升 $3l/5$，故
+\begin{equation}
+ \boxed{W_a=\frac35Gl}.
+ \label{r2ch07:eq:037}
+\end{equation}
+
+零原长模型中，每一支绳对演员的力矢量等于该支端到端位移矢量乘同一劲度系数 $k$。两锚点的水平坐标相反，合弹力为 $(-2kx,-2ky)$。竖直平衡给
+\begin{equation}
+ 2ky=G,\qquad y=3l\ \Longrightarrow\ k=\frac{G}{6l}.
+ \label{r2ch07:eq:038}
+\end{equation}
+因此水平移动时高度始终为 $3l$，末位置是 $(3l,3l)$。演员克服水平回复力 $2kx$ 所做的功为
+\begin{equation}
+ \boxed{W_b=\int_0^{3l}2kx\,\dd x=9kl^2=\frac32Gl}.
+ \label{r2ch07:eq:039}
+\end{equation}
+这也等于两支弹性绳势能之和的增加；重力势能不变。若两侧不是相同零原长弹性支，结论将依赖各自的原长和劲度，题设必须另给材料参数。
+\figAcrobat
+\end{solution}
+\end{practicebox}
+
+\begin{practicebox}{门轴承的粘滑自激振动}
+把门轴承视为半径 $R=1\,\mathrm{cm}$、高 $h=1\,\mathrm{cm}$ 的实心圆柱。门对支撑面的压力为 $N=100\,\mathrm N$，摩擦系数 $\mu=0.3$，木材剪变模量 $G=0.5\,\mathrm{GPa}$。门运动带动圆柱顶端以恒定角速度 $\omega$ 转动；底面在静摩擦粘着和快速滑动之间切换，忽略滑动所需时间。求自激振动的重复角频率与 $\omega$ 的关系。
+\label{r2ch07:pr:006}
+\begin{solution}
+图~\ref{r2ch07:fig:013} 中底面粘着时，顶、底相对扭角 $\varphi=\omega t$。半径 $r$ 处剪应变为 $r\varphi/h$，剪应力为 $Gr\varphi/h$。积分截面上的弹性力矩，并把均匀接触压强 $p=N/(\pi R^2)$ 的库仑摩擦力矩积分，得
+\begin{equation}
+ M_{\rm el}=\frac{GJ_p}{h}\varphi
+ =\frac{G\pi R^4}{2h}\varphi,\qquad
+ M_{\rm f,max}=\int_0^R\mu p(2\pi r\,\dd r)r
+ =\frac23\mu NR.
+ \label{r2ch07:eq:040}
+\end{equation}
+达到摩擦极限时快速滑移并释放大部分扭转。理想化每次滑移后重新从近零扭角开始，则粘着时间、临界扭角和重复角频率为
+\begin{equation}
+ \varphi_c=\frac{4\mu Nh}{3\pi GR^3},\qquad
+ \Delta t=\frac{\varphi_c}{\omega},\qquad
+ \boxed{\Omega_{\rm stick\text{-}slip}=\frac{2\pi}{\Delta t}
+ =\frac{3\pi^2GR^3}{2\mu Nh}\,\omega
+ \simeq2.47\times10^4\omega}.
+ \label{r2ch07:eq:041}
+\end{equation}
+这里的 $\Omega_{\rm stick\text{-}slip}$ 是锯齿式粘滑循环的重复角频率，并非小振幅简谐振子的固有角频率。系数无量纲：$GR^3/(Nh)$ 的单位为 $(\mathrm{N/m^2})\mathrm m^3/(\mathrm N\,\mathrm m)=1$。实际声音还会受动摩擦、滑移持续时间和轴承阻尼影响。
+\figDoorBearing
+\end{solution}
+\end{practicebox}

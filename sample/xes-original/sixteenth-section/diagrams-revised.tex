@@ -1,0 +1,233 @@
+% Chapter-local deterministic geometry. All text nodes have transparent fill.
+\newcommand{\crossProductDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(A)at(3.5,0);\coordinate(B)at(1.2,1.8);
+ \fill[PaleBlue](O)--(A)--($(A)+(B)$)--(B)--cycle;
+ \draw[TextGray](A)--($(A)+(B)$)--(B);
+ \draw[vector](O)--(A)node[below]{$\vect a$};
+ \draw[vector](O)--(B)node[above left]{$\vect b$};
+ \draw pic[draw,"$\theta$",angle radius=8mm,angle eccentricity=1.3]{angle=A--O--B};
+ \node[DeepBlue,font=\Large]at(2.5,.8){$\odot$};
+ \node[above]at(2.5,1.15){$\vect a\times\vect b$};
+ \node[anchor=west,align=left]at(5.3,1){四指：$\vect a\longrightarrow\vect b$\\[5pt]拇指：出纸面};
+\end{tikzpicture}\figcap{外积的面积与右手方向}\label{ch09:fig:cross}\end{minipage}\end{center}}
+
+\newcommand{\particleAngularMomentumDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(P)at(3,1.4);\coordinate(V)at(5.3,1.4);
+ \coordinate(R)at($(P)+(1.8,.84)$);
+ \draw[vector](O)--(P)node[pos=.43,above left]{$\vect r$};
+ \draw[vector](P)--(V)node[right]{$\vect p=m\vect v$};
+ \draw[guide](P)--(R)node[above]{$\vect r$ 的平移线};
+ \draw pic[draw,"$\varphi$",angle radius=12mm,angle eccentricity=1.3]{angle=V--P--R};
+ \fill(O)circle(1.5pt)node[below]{$O$};\fill(P)circle(2pt)node[below=4pt]{$P$};
+ \node[DeepBlue,font=\Large]at(.5,1.3){$\otimes$};\node[left]at(.2,1.3){$\vect L_O$};
+ \node[anchor=west,align=left]at(7,1.2){$L_z=-yp_x<0$\\[5pt]角动量入纸面};
+\end{tikzpicture}\figcap{夹角从同向平移后的两矢量之间量取}\label{ch09:fig:particle}\end{minipage}\end{center}}
+
+\newcommand{\apsidesDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\aa{3.4}\def\bb{2.3}\pgfmathsetmacro{\cc}{sqrt(\aa^2-\bb^2)}
+ \coordinate(F)at(\cc,0);\coordinate(P)at(\aa,0);\coordinate(A)at(-\aa,0);
+ \draw[curve](0,0)ellipse[x radius=\aa,y radius=\bb];
+ \fill(F)circle(2.5pt)node[above left=3pt]{$M$};
+ \fill(P)circle(2pt)node[right=3pt]{近点};\fill(A)circle(2pt)node[left=3pt]{远点};
+ \draw[vector](P)--++(0,1.4)node[above]{$\vect v_{\rm p}$};
+ \draw[vector](A)--++(0,-.65)node[left=4pt]{$\vect v_{\rm a}$};
+ \draw[guide](F)--(\cc,-3.5)(P)--(\aa,-2.85)(A)--(-\aa,-3.5);
+ \draw[<->](\cc,-2.7)--(\aa,-2.7)node[midway,below=3pt]{$r_{\rm p}$};
+ \draw[<->](-\aa,-3.35)--(\cc,-3.35)node[midway,below]{$r_{\rm a}$};
+ \node[anchor=west,align=left]at(4.7,-.2){两点均有 $\vect r\perp\vect v$\\[6pt]$r_{\rm p}v_{\rm p}=r_{\rm a}v_{\rm a}$\\[6pt]速度箭头仅表示方向};
+\end{tikzpicture}\figcap{同一椭圆轨道的两个回归点}\label{ch09:fig:apsides}\end{minipage}\end{center}}
+
+\newcommand{\keplerContextDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\aa{4}\def\bb{2.4}\pgfmathsetmacro{\cc}{sqrt(\aa^2-\bb^2)}
+ \coordinate(F)at(\cc,0);\coordinate(P)at(\aa,0);\coordinate(A)at(-\aa,0);
+ \draw[curve](0,0)ellipse[x radius=\aa,y radius=\bb];
+ \fill[DeepBlue](F)circle(3pt)node[above left=3pt]{太阳};
+ \fill(P)circle(2pt)node[right=3pt]{近日点};\fill(A)circle(2pt)node[left=3pt]{远日点};
+ \draw[vector](P)--++(0,1.35)node[above]{$v_{\rm near}$};
+ \draw[vector](A)--++(0,-.65)node[left=4pt]{$v_{\rm far}$};
+ \draw[guide](F)--(\cc,-3.55)(P)--(\aa,-2.9)(A)--(-\aa,-3.55);
+ \draw[<->](\cc,-2.8)--(\aa,-2.8)node[midway,below=3pt]{$r_{\rm near}$};
+ \draw[<->](-\aa,-3.4)--(\cc,-3.4)node[midway,below]{$r_{\rm far}$};
+ \node[align=center]at(0,.5){$r_{\rm near}=a-c$\\[7pt]$r_{\rm far}=a+c$};
+\end{tikzpicture}\figcap{日心距离均从同一个焦点量起；速度箭头不按速率比例绘制}\label{ch09:fig:kepler}\end{minipage}\end{center}}
+
+\newcommand{\momentsContextDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \xx/\mode in {0/0,4/1,8/2}{
+  \begin{scope}[shift={(\xx,0)}]
+   \ifnum\mode=2\fill[PaleBlue](-.8,-.35)rectangle(.8,.65);\fi
+   \draw[thick](-.8,-.35)--(-.8,.65) (.8,-.35)--(.8,.65);
+   \draw[thick](0,.65)ellipse(.8 and .25);
+   \draw[thick](-.8,-.35)arc[start angle=180,end angle=360,x radius=.8,y radius=.25];
+   \draw[guide](-.8,-.35)arc[start angle=180,end angle=0,x radius=.8,y radius=.25];
+   \ifnum\mode=1\draw[thick](0,.65)ellipse(.4 and .125);\fi
+   \draw[axis](0,-.7)--(0,1.3);
+   \ifnum\mode=1
+    \draw[->](0,.65)--(.8,.65)node[right]{$R_2$};
+    \draw[->](0,.65)--(-.4,.65);
+    \draw[TextGray](-.4,.65)--(-.85,1.05)node[above left]{$R_1$};
+   \else\draw[->](0,.65)--(.8,.65)node[right]{$R$};\fi
+   \ifnum\mode=0\node at(0,-1.15){薄壁圆筒};\node at(0,-1.85){$I=MR^2$};\fi
+   \ifnum\mode=1
+    \node at(0,-1.15){厚壁圆筒};\node at(0,-1.85){$I=\dfrac{M(R_1^2+R_2^2)}2$};\fi
+   \ifnum\mode=2\node at(0,-1.15){实心圆柱};\node at(0,-1.85){$I=\dfrac12MR^2$};\fi
+  \end{scope}}
+ \begin{scope}[shift={(12,0)}]
+  \draw[curve](-1,.15)--(1,.15);\draw[axis](0,-.35)--(0,1.2);
+  \draw[guide](-1,.1)--(-1,-.65)(1,.1)--(1,-.65);
+  \draw[<->](-1,-.55)--(1,-.55)node[midway,below]{$L$};
+  \node at(0,-1.15){细杆绕中心};\node at(0,-1.85){$I=\dfrac1{12}ML^2$};
+ \end{scope}
+ \begin{scope}[shift={(0,-4.8)}]
+  \draw[curve](-1,.15)--(1,.15);\draw[axis](-1,-.3)--(-1,1.2);
+  \draw[guide](-1,.1)--(-1,-.65)(1,.1)--(1,-.65);
+  \draw[<->](-1,-.55)--(1,-.55)node[midway,below]{$L$};
+  \node at(0,-1.25){细杆绕端点};\node at(0,-2){$I=\dfrac13ML^2$};
+ \end{scope}
+ \begin{scope}[shift={(4,-4.8)}]
+  \draw[fill=PaleBlue,thick](-1,-.1)--(.55,-.1)--(1,.65)--(-.55,.65)--cycle;
+  \draw[axis](0,-.5)--(0,1.35);
+  \node[below]at(-.25,-.2){$a$};\node[right]at(.85,.25){$b$};
+  \node at(0,-1.25){矩形薄板，轴垂直板面};\node at(0,-2){$I=\dfrac{M(a^2+b^2)}{12}$};
+ \end{scope}
+ \foreach \xx/\mode in {8/0,12/1}{
+  \begin{scope}[shift={(\xx,-4.8)}]
+   \ifnum\mode=0\fill[PaleBlue](0,.25)circle(.72);\fi
+   \draw[thick](0,.25)circle(.72);\draw[guide](0,.25)ellipse(.72 and .20);
+   \draw[axis](0,-.7)--(0,1.4);\draw[->](0,.25)--(.72,.25)node[right]{$R$};
+   \ifnum\mode=0\node at(0,-1.25){均匀实心球};\node at(0,-2){$I=\dfrac25MR^2$};
+   \else\node at(0,-1.25){均匀薄球壳};\node at(0,-2){$I=\dfrac23MR^2$};\fi
+  \end{scope}}
+\end{tikzpicture}\figcap{八种均匀刚体及其指定转轴；圆柱、圆筒均绕中心轴}\label{ch09:fig:inertia}\end{minipage}\end{center}}
+
+\newcommand{\gyroDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(C)at(1.7,2.4);\coordinate(Z)at(0,3.6);
+ \draw[thick](-.7,0)--(.7,0);\draw[guide](O)--(Z)node[above]{$z$};
+ \begin{scope}[shift={(C)},rotate=54.6888]
+  \draw[fill=PaleBlue,thick](0,0)ellipse(.22 and .8);
+ \end{scope}
+ \draw[curve](O)--($(O)!1.26!(C)$);
+ \draw[vector]($(O)!.85!(C)$)--($(O)!1.45!(C)$)node[above]{$\vect L$};
+ \draw[vector](C)--++(0,-1.15)node[right=3pt]{$M\vect g$};
+ \draw[vector](O)--++(-.28,.9)node[left]{$\vect n$};
+ \fill(O)circle(2pt)node[below]{$O$};\fill(C)circle(1.5pt);\draw[thin,TextGray](C)--(2.55,2.75)node[above right]{$C$};
+ \node[right]at(1.12,1.2){$r$};
+ \draw pic[draw,"$\theta$",angle radius=10mm,angle eccentricity=1.3]{angle=C--O--Z};
+ \node[DeepBlue,font=\Large]at(-1.25,1.6){$\otimes$};\node[above]at(-1.25,1.9){$\vect\tau$};
+ \node[below,align=center]at(1,-.4){侧视：$\vect r$、重力在纸面内\\力矩入纸面};
+ \begin{scope}[shift={(7,0)}]
+  \coordinate(K)at(0,0);\coordinate(I)at({1.6*cos(35)},{2.7+.42*sin(35)});
+  \coordinate(J)at({1.6*cos(70)},{2.7+.42*sin(70)});
+  \draw[guide](K)--(0,3.4);\draw[TextGray](K)--(-1.6,2.7)(K)--(1.6,2.7);
+  \draw[guide](0,2.7)ellipse(1.6 and .42);
+  \draw[vector](K)--(I)node[pos=.55,right=3pt]{$\vect L_i$};
+  \draw[vector](K)--(J)node[pos=.65,left=3pt]{$\vect L_f$};
+  \draw[vector](I)--(J)node[midway,above=4pt]{$\Delta\vect L$};
+  \draw[->,DeepBlue](1.85,2.7)arc[start angle=0,end angle=125,x radius=1.85,y radius=.55];
+  \node[above]at(-1.2,3.3){$\omega_p$};
+  \node[below,align=center]at(0,-.4){矢量端点的轨迹\\$\Delta\vect L=\vect L_f-\vect L_i$};
+ \end{scope}
+\end{tikzpicture}\figcap{陀螺受力与进动时的角动量矢量差}\label{ch09:fig:gyro}\end{minipage}\end{center}}
+
+\newcommand{\areaVelocityDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(A)at(4,.25);\coordinate(B)at(3.7,1.65);
+ \fill[PaleBlue](O)--(A)--(B)--cycle;
+ \draw[vector](O)--(A)node[midway,below=3pt]{$\vect r$};
+ \draw[vector](O)--(B)node[midway,above=4pt]{$\vect r+\dd\vect r$};
+ \draw[vector](A)--(B)node[midway,right=7pt]{$\dd\vect r=\vect v\dd t$};
+ \fill(O)circle(1.5pt)node[left]{$O$};\node[DeepBlue,font=\Large]at(2.7,.7){$\odot$};
+ \node[anchor=west,align=left]at(6,.8){$\dd\vect S$ 沿出纸面方向\\[5pt]$\dd S=\tfrac12|\vect r\times\dd\vect r|$};
+\end{tikzpicture}\figcap{面积微元与法向；小位移为便于识别而放大}\label{ch09:fig:area}\end{minipage}\end{center}}
+
+\newcommand{\sphereBandDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \def\rr{1.8}\def\th{55}
+ \coordinate(O)at(0,0);\coordinate(P)at({\rr*sin(\th)},{\rr*cos(\th)});\coordinate(Z)at(0,2.8);
+ \draw[thick](O)circle(\rr);\draw[axis](0,-2.1)--(Z)node[above]{$z$};
+ \draw[DeepBlue]({-\rr*sin(52)},{\rr*cos(52)})--({\rr*sin(52)},{\rr*cos(52)});
+ \draw[DeepBlue]({-\rr*sin(59)},{\rr*cos(59)})--({\rr*sin(59)},{\rr*cos(59)});
+ \draw[guide](O)--(P)node[midway,below right]{$R$};
+ \draw[guide](P)--({\rr*sin(\th)},2.3);
+ \draw[<->](0,2.2)--({\rr*sin(\th)},2.2)node[midway,above=3pt]{$R\sin\theta$};
+ \draw pic[draw,"$\theta$",angle radius=5.5mm,angle eccentricity=1.25]{angle=P--O--Z};
+ \fill(P)circle(1.5pt)node[below right=8pt]{$P$};\node[below left]at(O){$O$};
+ \draw[DeepBlue,line width=2pt]({\rr*sin(52)},{\rr*cos(52)})arc[start angle=38,end angle=31,radius=\rr];
+ \draw[TextGray](P)--(2.4,1.55)node[right]{$R\dd\theta$（沿球面）};
+ \node[anchor=west,align=left]at(3.3,-.3){球带面积：\\[5pt]$\dd A=(2\pi R\sin\theta)(R\dd\theta)$\\[8pt]球带质量：$\dd m=\sigma\dd A$};
+\end{tikzpicture}\figcap{窄球带的轴截面；球带绕z轴一周，周长为$2\pi R\sin\theta$}\label{ch09:fig:sphere-band}\end{minipage}\end{center}}
+
+\newcommand{\conicalPendulumDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,3);\coordinate(P)at(2,0);\coordinate(V)at(0,0);
+ \draw[thick](-.7,3)--(.7,3);\draw[guide](O)--(V);
+ \draw[curve](O)--(P)node[pos=.55,left=4pt]{$l$};
+ \draw[vector](P)--($(P)!.4!(O)$)node[pos=.5,right=3pt]{$\vect T$};
+ \draw[vector](P)--++(0,-1.2)node[right]{$m\vect g$};
+ \fill(O)circle(1.5pt)node[above left=4pt]{$O$};\fill(P)circle(2pt)node[below left]{$P$};
+ \draw[vector](O)--++(1.5,1)node[right]{$\vect L_O$};
+ \draw[vector](-1,3.1)--++(0,1)node[above]{$\vect\omega$};
+ \draw pic[draw,"$\theta$",angle radius=9mm,angle eccentricity=1.4]{angle=V--O--P};
+ \draw[<->](0,-.4)--(2,-.4)node[midway,below]{$r=l\sin\theta$};
+ \node[DeepBlue,font=\Large]at(2.65,.1){$\otimes$};\node[right]at(3,.1){$\vect v$};
+ \node[anchor=west,align=left]at(4.4,2){$+x$ 向右，$+z$ 向上\\[5pt]$+y$ 入纸面\\[8pt]$\vect L_O\perp OP$};
+\end{tikzpicture}\figcap{圆锥摆的同一瞬时位置、速度、受力与角动量}\label{ch09:fig:conical}\end{minipage}\end{center}}
+
+\newcommand{\dumbbellGroundDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(A)at(0,0);\coordinate(B)at(3,2);\coordinate(H)at(4,0);
+ \draw[thick](-1,0)--(4.5,0);\foreach\x in{-.8,-.4,...,4.4}{\draw[TextGray](\x,0)--++(-.13,-.15);}
+ \draw[curve](A)--(B)node[midway,above left=3pt]{$2l$};
+ \fill(A)circle(2.5pt)node[below=8pt]{$A,m$};\fill(B)circle(2.5pt)node[right=4pt]{$B,m$};
+ \draw[vector](B)--++(0,-1.2)node[right]{$\vect v_0$};
+ \draw[vector](-.6,1.8)--(-.6,.6)node[left]{$\vect v_0$};
+ \draw pic[draw,"$\theta$",angle radius=11mm,angle eccentricity=1.3]{angle=H--A--B};
+ \node[anchor=west,align=left]at(5,1.1){碰前：整体竖直平动\\[6pt]碰后：A粘住固定};
+\end{tikzpicture}\figcap{哑铃下端A与地面的短时粘着碰撞}\label{ch09:fig:dumbbell-ground}\end{minipage}\end{center}}
+
+\newcommand{\dumbbellCollisionDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[curve](0,0)--(2.5,0)(2.5,1.7)--(5,1.7);
+ \foreach\x/\y/\n in{0/0/A,2.5/0/B,2.5/1.7/C,5/1.7/D}{\fill(\x,\y)circle(2.5pt)node[above right=3pt]{$\n$};}
+ \draw[guide](2.5,.12)--(2.5,1.58);
+ \draw[vector](1,-.5)--(1,.8)node[left]{$v_0$};
+ \node[below]at(1.85,-.15){$2l$};\node[below]at(4,1.6){$2l$};
+ \node[anchor=west,align=left]at(6,.7){碰撞前：B向C接近\\[5pt]BC垂直于两杆\\[5pt]每个端点质量均为m};
+\end{tikzpicture}\figcap{两哑铃的碰前位置与碰撞线}\label{ch09:fig:dumbbell-collision}\end{minipage}\end{center}}
+
+\newcommand{\seesawDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\s/\leftname/\rightname/\vl/\vr in{0/A/B/u_A/v_B,7/B/C/v_B/v_C}{
+  \begin{scope}[xshift=\s cm]
+   \draw[curve](-2,0)--(2,0);\draw[thick](-.4,-.6)--(0,0)--(.4,-.6)--cycle;
+   \fill(-2,0)circle(2.4pt)node[below=4pt]{$m_{\leftname}$};
+   \fill(2,0)circle(2.4pt)node[below=4pt]{$m_{\rightname}$};
+   \draw[vector](-2,1.9)--(-2,.45)node[midway,left]{$\vl$};
+   \draw[vector](2,.15)--(2,1.6)node[midway,right]{$\vr$};
+   \draw[guide](-2,-.9)--(2,-.9);\node[below]at(0,-.9){等臂、近水平的冲击位置};
+  \end{scope}}
+ \draw[->,TextGray](3,1)--(4,1);\node[above,align=center]at(3.5,1.1){随后\\等高落回};
+\end{tikzpicture}\figcap{两次理想弹射的过程图；中间箭头不是空间飞行轨迹}\label{ch09:fig:seesaw}\end{minipage}\end{center}}
+
+\newcommand{\funnelDiagram}{%
+\begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate(O)at(0,0);\coordinate(V)at(0,4.1);
+ \coordinate(P)at({3/sqrt(3)},3);
+ \draw[curve]({-3.8/sqrt(3)},3.8)--(O)--({3.8/sqrt(3)},3.8);
+ \draw[guide](O)--(V);\fill(O)circle(1.5pt)node[below]{$O$};
+ \fill(P)circle(2.4pt)node[right=4pt]{$P,m$};
+ \draw[vector](P)--++({-1.15*cos(30)},{1.15*sin(30)})node[left=3pt]{$\vect N$};
+ \draw[vector](P)--++(0,-1.1)node[right=3pt]{$m\vect g$};
+ \draw[guide](0,3)--(P);
+ \draw[<->](0,2.65)--({3/sqrt(3)},2.65)node[midway,below=3pt]{$r$};
+ \draw[guide](O)--(-2.8,0)(0,3)--(-2.8,3);
+ \draw[<->](-2.65,0)--(-2.65,3)node[midway,left]{$h$};
+ \draw pic[draw,"$\theta$",angle radius=10mm,angle eccentricity=1.3]{angle=P--O--V};
+ \node[DeepBlue,font=\Large]at(2.7,3.3){$\otimes$};\node[right]at(3.05,3.3){$\vect v_\varphi$};
+ \node[anchor=west,align=left]at(3.9,1.6){轴截面内不画切向速度箭头\\[6pt]$\theta=30^\circ$，$r=h\tan\theta$};
+\end{tikzpicture}\figcap{圆锥漏斗轴截面、接触受力与入纸面的圆周速度}\label{ch09:fig:funnel}\end{minipage}\end{center}}

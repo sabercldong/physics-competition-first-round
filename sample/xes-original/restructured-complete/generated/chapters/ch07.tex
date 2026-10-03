@@ -1,0 +1,2944 @@
+\begingroup
+\tcbset{breakable/.default=false}
+\chapter{动量、变质量系统与碰撞}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/seventh-section/}}
+\section{动量定理}
+% Original problem figures and added solution diagrams for Section 3.1.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solimpulse/.style={-{Latex[length=2.4mm]},draw=DeepBlue,line width=1.25pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+
+\newcommand{\probdiagThreeOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \draw[solbody] (-2.8,1.2)--(0,1.2)--(0,-1.2)--(3,-1.2);
+ \draw[DeepBlue,line width=1pt] (-1.8,1.22)--(.9,1.22);
+ \draw[solbody,fill=SoftGray] (-.82,1.24) rectangle (-.08,1.85);
+ \node[sollabel] at (-.45,1.55) {铁块};
+ \draw[solflow] (.3,1.65)--(1.5,1.65) node[midway,above=3pt,sollabel] {$v$：抽纸速度};
+ \node[sollabel] at (1.4,.96) {纸条};
+ \draw[solbody,fill=SoftGray] (1.65,-1.2) rectangle (2.35,-.62);
+ \node[sollabel] at (2,-.35) {$P$};
+\end{tikzpicture}
+\diagcaption{题图}{纸条从桌边抽出，铁块随后从桌边落下。}\label{ch07:fig:probdiagThreeOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \draw[solbody] (-1.1,2.2)--(0,2.2)--(0,0);
+ \draw[axis] (0,0)--(6.7,0) node[right,sollabel] {$x$};
+ \draw[curve,domain=0:1,samples=60] plot ({3*\x},{2.2*(1-\x*\x)});
+ \draw[TextGray,line width=.9pt,domain=0:1,samples=60] plot ({5.5*\x},{2.2*(1-\x*\x)});
+ \draw[solflow] (0,2.2)--(1.3,2.2) node[midway,above=4pt,sollabel] {$v_x$};
+ \node[sollabel,below=4pt] at (3,0) {$O$：抽速 $2v$};
+ \node[sollabel,below=4pt] at (5.5,0) {$P$：抽速 $v$};
+ \node[sollabel] at (3.1,3.05) {$I_f=f\tau$；接触时间较短，离桌速度较小};
+\end{tikzpicture}
+\diagcaption{解图}{抽得越快，摩擦力作用越短，离桌速度和水平射程越小。}\label{ch07:fig:soldiagThreeOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwo}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[x=.42cm,y=.25cm]
+  \draw[axis] (0,-5.5)--(0,9.7) node[above,sollabel] {$F/\mathrm N$};
+  \draw[axis] (0,0)--(16.5,0) node[right,sollabel] {$t/\mathrm s$};
+  \draw[curve] (0,8)--(5,8)--(5,5)--(9,5)--(9,0)--(15,0);
+  \draw[draw=TextGray,line width=.9pt] (0,-4)--(15,-4);
+  \draw[solgeom] (5,.5)--(5,8.5) (9,.5)--(9,5.5);
+  \foreach \x in {5,9,15}{\draw[solgeom] (\x,-4.5)--(\x,-1.7);}
+  \foreach \x/\lab in {5/5,9/9,15/15}{\draw (\x,.25)--(\x,-.25) node[below,sollabel] {\lab};}
+  \node[sollabel] at (2.5,8.8) {$F_1=8$}; \node[sollabel] at (7,5.8) {$F_2=5$};
+  \node[sollabel] at (12,-4.8) {$f=4$（向左）};
+\end{tikzpicture}
+\diagcaption{解图}{应用力的正冲量面积等于摩擦力的负冲量面积。}\label{ch07:fig:soldiagThreeTwo}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeThree}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody,fill=white] (-.48,1.55) rectangle (.48,2.25); \node[sollabel] at (0,1.90) {$m_1$};
+  \draw[decorate,decoration={coil,segment length=4pt,amplitude=3pt},line width=.75pt] (0,1.55)--(0,-.55);
+  \draw[solbody,fill=white] (-.48,-1.25) rectangle (.48,-.55); \node[sollabel] at (0,-.90) {$m_2$};
+  \draw[solforce] (1.0,1.9)--++(0,-.9) node[below,sollabel] {$v_1$};
+  \node[sollabel] at (-1.25,.5) {$k,\ l_0$};
+\end{tikzpicture}
+\diagcaption{题图}{弹簧初态未知的二物体系统由静止竖直下落。}\label{ch07:fig:probdiagThreeThree}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeThree}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+  \draw[solbody,rounded corners=1.5pt] (-1.45,-1.2) rectangle (1.45,1.25);
+  \node[sollabel] at (0,.55) {$m_1+m_2+$ 弹簧};
+  \draw[solimpulse] (0,.15)--++(0,-1.65) node[below,sollabel] {$(m_1+m_2)gt$};
+  \node[sollabel,align=left] at (3.9,.2) {$P_f=m_1v_1+m_2v_2$\\（向下为正）};
+  \node[sollabel] at (2.05,.2) {$\Longrightarrow$};
+\end{tikzpicture}
+\diagcaption{解图}{把弹簧力纳入系统内部，只保留重力的外冲量。}\label{ch07:fig:soldiagThreeThree}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeFour}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \begin{scope}[rotate=25]
+  \draw[solbody] (-3,0)--(3.2,0);
+  \draw[solbody,fill=SoftGray] (-2.2,0) rectangle (-1.25,.7);
+  \draw[solbody,fill=SoftGray] (.35,0) rectangle (1.3,.7);
+  \draw[DeepBlue] (-1.25,.35)--(.35,.35);
+  \node[sollabel,rotate=0] at (-1.725,.35) {$A$};
+  \node[sollabel,rotate=0] at (.825,.35) {$B$};
+  \draw[solforce] (1.3,.35)--(2.8,.35) node[midway,above=4pt,sollabel] {$F$};
+ \end{scope}
+\end{tikzpicture}
+\diagcaption{题图}{$A$、$B$ 沿斜面上滑，经过 $t_1$ 后连接线断裂。}\label{ch07:fig:probdiagThreeFour}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFour}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=.53cm]
+ \draw[axis] (0,0)--(5.7,0) node[right,sollabel] {$t$};
+ \draw[axis] (0,0)--(0,8) node[above,sollabel] {$v$};
+ % Illustrative ratio m_A=m_B and t_2=t_1; all slopes share these parameters.
+ \draw[curve] (0,0)--(2,2);
+ \draw[curve] (2,2)--(4,0);
+ \draw[TextGray,line width=.9pt] (2,2)--(4,8);
+ \draw[solgeom] (0,2)--(2,2)--(2,0) (4,0)--(4,8);
+ \node[sollabel,left=4pt] at (0,2) {$at_1$};
+ \node[sollabel,below=4pt] at (2,0) {$t_1$};
+ \node[sollabel,below=4pt] at (4,0) {$t_1+t_2$};
+ \node[sollabel,anchor=west] at (4.15,7.3) {$B$：$a_B>a$};
+ \node[sollabel,anchor=west] at (4.15,1.2) {$A$：减速至零};
+\end{tikzpicture}
+\diagcaption{解图}{断线后 $B$ 的斜率增大；图取 $m_A=m_B,\ t_2=t_1$ 显示相同定性关系。}\label{ch07:fig:soldiagThreeFour}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeFive}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.74]
+  \draw[solbody] (-3.0,-.85)--(3.15,-.85);
+  \draw[solbody,fill=white] (-2.15,-.84) rectangle (-1.3,-.12); \node[sollabel] at (-1.72,-.48) {$A$};
+  \draw[solbody,fill=white] (1.35,-.84) rectangle (2.20,-.12); \node[sollabel] at (1.78,-.48) {$B$};
+  \draw[solforce] (-1.30,-.48)--++(1.25,0) node[right,sollabel] {$v_0$};
+  \node[sollabel] at (-1.72,-1.15) {$m_A=2\,\mathrm{kg}$};
+  \node[sollabel] at (1.78,-1.15) {$m_B=1\,\mathrm{kg}$};
+\end{tikzpicture}
+\diagcaption{题图}{箱子 $A$ 在光滑面上冲向静止的箱子 $B$。}\label{ch07:fig:probdiagThreeFive}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFive}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \node[solpanel] at (-2.4,1.6) {碰前};
+ \node[solpanel] at (2.4,1.6) {碰后};
+ \draw[solbody,fill=SoftGray] (-3.5,-.35) rectangle (-2.6,.35);
+ \draw[solbody,fill=SoftGray] (-1.8,-.35) rectangle (-.9,.35);
+ \node[sollabel] at (-3.05,0) {$A$}; \node[sollabel] at (-1.35,0) {$B$};
+ \draw[solbody,fill=SoftGray] (1,-.35) rectangle (1.9,.35);
+ \draw[solbody,fill=SoftGray] (2.6,-.35) rectangle (3.5,.35);
+ \node[sollabel] at (1.45,0) {$A$}; \node[sollabel] at (3.05,0) {$B$};
+ \draw[solimpulse] (-3.5,.85)--(-.9,.85) node[midway,above=3pt,sollabel] {$P_i=m_Av_0$};
+ \draw[solimpulse] (1,.85)--(3.6,.85) node[midway,above=3pt,sollabel] {$P_f=P_i$};
+ \node[sollabel] at (0,-1.05) {以上箭头表示系统总动量；$I_x^{\rm ext}=0$};
+\end{tikzpicture}
+\diagcaption{解图}{碰撞内力冲量相消，系统总动量由碰前原样传到碰后。}\label{ch07:fig:soldiagThreeFive}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeSix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \coordinate (A) at (-2.4,.8); \coordinate (B) at (0,.8);
+ \coordinate (C) at ($(B)+(-60:2.4)$);
+ \draw[solbody] (A)--(B)--(C); \draw[solgeom] (B)--++(1.8,0);
+ \draw[TextGray] ($(B)+(0:.65)$) arc (0:-60:.65);
+ \draw[TextGray] ($(B)+(180:.5)$) arc (180:300:.5);
+ \foreach \p in {A,B,C}{\fill[Ink] (\p) circle (2.5pt);}
+ \node[sollabel,above=7pt] at (A) {$A$}; \node[sollabel,above=7pt] at (B) {$B$};
+ \node[sollabel,below=6pt] at (C) {$C$};
+ \node[sollabel] at (.95,.34) {$60^\circ$}; \node[sollabel] at (-.8,.05) {$120^\circ$};
+ \draw[solimpulse] (A)--++(-1.1,0) node[midway,above=4pt,sollabel] {$I$};
+\end{tikzpicture}
+\diagcaption{题图}{冲量 $I$ 沿 $BA$ 方向；两根绳在冲击后仍不可伸长。}\label{ch07:fig:probdiagThreeSix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \coordinate (A) at (-2.7,1); \coordinate (B) at (0,1);
+ \coordinate (C) at ($(B)+(-60:2.7)$);
+ \draw[solgeom] (A)--(B)--(C);
+ \foreach \p in {A,B,C}{\fill[Ink] (\p) circle (2.4pt);}
+ \node[sollabel,below=8pt] at (A) {$A$}; \node[sollabel,above=7pt] at (B) {$B$};
+ \node[sollabel,below=7pt] at (C) {$C$};
+ \draw[solimpulse] (A)--++(-1.05,0) node[midway,above=4pt,sollabel] {$I$};
+ \draw[solimpulse] (A)--++(.95,0) node[midway,above=4pt,sollabel] {$J_1$};
+ \draw[solimpulse] (B)--++(-.95,0) node[midway,above=4pt,sollabel] {$J_1$};
+ \draw[solimpulse] (B)--++(-60:1) node[midway,right=5pt,sollabel] {$J_2$};
+ \draw[solimpulse] (C)--++(120:1) node[midway,right=5pt,sollabel] {$J_2$};
+ \draw[solflow] (2.4,.7)--++(-60:.85) node[right=4pt,sollabel] {$\hat{\boldsymbol u}$};
+ \draw[solflow] (2.4,.7)--++(.95,0) node[right=3pt,sollabel] {$+x$};
+\end{tikzpicture}
+\diagcaption{解图}{先对三球分别列冲量方程，再用两条绳方向上的速度约束闭合方程组。}\label{ch07:fig:soldiagThreeSix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSeven}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ % g=1, v0=2, theta=45 degrees, wall at s0=2.5 in drawing units.
+ \coordinate (Q) at (2.5,.9375);
+ \draw[solbody] (-.3,0)--(2.5,0)--(2.5,2.8);
+ \draw[curve,domain=0:2.5,samples=60] plot ({\x},{\x-\x*\x/4});
+ \draw[solflow] (0,0)--(45:1.1) node[above left=3pt,sollabel] {$v_0$};
+ \draw[TextGray] (.5,0) arc (0:45:.5); \node[sollabel] at (.85,.22) {$\theta$};
+ \draw[<->,TextGray] (0,-.45)--(2.5,-.45) node[midway,below=3pt,sollabel] {$s_0$};
+ \fill[Ink] (Q) circle (2pt) node[below left=5pt,sollabel] {$Q$};
+ \draw[solflow] (2.5,1.05)--(2.5,2.3);
+ \node[sollabel,anchor=west] at (2.7,2.25) {蹬后竖直上升};
+ \begin{scope}[shift={(5.2,1.2)}]
+  \fill[Ink] (0,0) circle (2.5pt);
+  \draw[solimpulse] (0,0)--(-1.1,0) node[midway,below=4pt,sollabel] {$J_N$};
+  \draw[solimpulse] (0,0)--(0,1.2) node[right=4pt,sollabel] {$J_f$};
+  \node[sollabel] at (0,-1.1) {接触冲量，单独画出};
+ \end{scope}
+\end{tikzpicture}
+\diagcaption{解图}{法向冲量消去水平速度，最大向上摩擦冲量继续增加竖直速度。}\label{ch07:fig:soldiagThreeSeven}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeEight}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (O) at (-.5,1.4); \coordinate (S) at (-2,-.4);
+ \coordinate (A) at ({-.5+2.8*1.5/1.8},-1.4);
+ \coordinate (B) at ({-.5+2.8*1.5/1.8+.7},-1.4);
+ \draw[solbody] (-3,1.4)--(3.1,1.4) (-3,-1.4)--(3.1,-1.4);
+ \draw[TextGray,line width=.8pt] (S)--(O)--(A);
+ \draw[curve] (O)--(B);
+ \draw[solflow] (S)--($(S)!.45!(O)$) node[midway,above left=3pt,sollabel] {$\vec v$};
+ \draw[solgeom] (O)--(-.5,-1.4);
+ \foreach \p in {O,S,A,B}{\fill[Ink] (\p) circle (2pt);}
+ \node[sollabel,above=5pt] at (O) {$O$}; \node[sollabel,left=5pt] at (S) {$S$};
+ \node[sollabel,below=5pt] at (A) {$A$}; \node[sollabel,below=5pt] at (B) {$B$};
+ \draw[<->,TextGray] (-3.35,-1.4)--(-3.35,1.4) node[midway,left=4pt,sollabel] {$d$};
+ \node[sollabel] at (0,2.35) {俯视；本图取摩擦冲量向右};
+\end{tikzpicture}
+\diagcaption{题图}{光滑墙落点为 $A$；有摩擦时落点为 $B$。}\label{ch07:fig:probdiagThreeEight}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeEight}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (O) at (-1,1.2); \coordinate (A) at (.2,-1.2); \coordinate (B) at (1.4,-1.2);
+ \draw[solbody] (-2,1.2)--(2,1.2) (-2,-1.2)--(2,-1.2);
+ \draw[TextGray] (O)--(A); \draw[curve] (O)--(B);
+ \node[sollabel,above=5pt] at (O) {$O$};
+ \node[sollabel,below left=5pt] at (A) {$A$}; \node[sollabel,below right=5pt] at (B) {$B$};
+ \draw[solgeom] (A)--(.2,-1.9) (B)--(1.4,-1.9);
+ \draw[<->,DeepBlue] (.2,-1.8)--(1.4,-1.8) node[midway,below=4pt,sollabel] {$AB=|\Delta v_t|d/v_n$};
+ \begin{scope}[shift={(4,0)}]
+  \fill[Ink] (0,.6) circle (2pt);
+  \draw[solimpulse] (0,.6)--(0,-.55) node[midway,left=4pt,sollabel] {$J_N$};
+  \draw[solimpulse] (0,.6)--(1.2,.6) node[midway,above=4pt,sollabel] {$J_t$};
+  \node[sollabel,align=center] at (.35,-1.25) {持续滑动时\\$J_t=\mu J_N$};
+ \end{scope}
+\end{tikzpicture}
+\diagcaption{解图}{左右两部分分别表示落点偏移和接触冲量，不能把冲量箭头当作轨迹。}\label{ch07:fig:soldiagThreeEight}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeNine}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \draw[solbody,fill=SoftGray] (1.2,-1.1) rectangle (1.9,1.1);
+ \draw[solflow] (-2.5,.5)--(1.2,.5) node[pos=.35,above=4pt,sollabel] {$v_{\rm in}=v$};
+ \draw[solflow] (1.2,-.5)--(-2.5,-.5) node[pos=.65,below=4pt,sollabel] {$v_{\rm out}=-v$};
+ \node[sollabel] at (-.1,1.75) {飞船系：碰前、碰后路线分行示意};
+ \draw[solforce] (1.6,-1.6)--(3,-1.6) node[midway,below=4pt,sollabel] {$F=2\rho Sv^2$};
+ \node[sollabel] at (2.55,.45) {迎流面};
+\end{tikzpicture}
+\diagcaption{解图}{飞船系中的入射与原路反弹分别列示；飞船所受反作用力沿来流方向。}\label{ch07:fig:soldiagThreeNine}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (T) at (-1,0);
+ \fill[SoftGray] (-4,1.2)--(T)--(-4,-1.2)--cycle;
+ \draw[solgeom] (-4,-1.2) arc (-90:90:.25 and 1.2);
+ \draw[solbody] (-4,1.2) arc (90:270:.25 and 1.2);
+ \draw[solbody] (-4,1.2)--(T)--(-4,-1.2);
+ \draw[solgeom] (-4.4,0)--(-.65,0);
+ \foreach \y in {-.7,.7}{\draw[solflow] (-.1,\y)--({-1-abs(\y)/.4},\y);}
+ \draw[<->,TextGray] (-4,-1.65)--(-1,-1.65) node[midway,below=4pt,sollabel] {$L$};
+ \draw[<->,TextGray] (-4.55,0)--(-4.55,1.2) node[midway,left=3pt,sollabel] {$R$};
+ \node[solpanel] at (-2.5,2.6) {空间外形：平行来流};
+ \begin{scope}[shift={(1.4,0)}]
+  \pgfmathsetmacro{\ang}{atan(.4)}
+  \coordinate (P) at (3,0); \coordinate (Q) at (1.2,.72);
+  \draw[solbody] (0,1.2)--(P)--(0,-1.2);
+  \draw[solgeom] (-.2,0)--(3.5,0);
+  \draw[solflow] (3.3,.72)--(Q) node[pos=.35,above=4pt,sollabel] {$\vec v_{\rm in}$};
+  \draw[solflow] (Q)--++({180-2*\ang}:1.4) node[above left=3pt,sollabel] {$\vec v_{\rm out}$};
+  \draw[solgeom,->] (Q)--++({90-\ang}:1.15) node[above right=3pt,sollabel] {$\hat{\boldsymbol n}$};
+  \draw[TextGray] (2.35,0) arc (180:{180-\ang}:.65);
+  \node[sollabel] at (2.15,.15) {$\alpha$};
+  \node[sollabel] at (1.5,-1.7) {$R=L\tan\alpha$};
+ \end{scope}
+ \node[solpanel] at (2.9,2.6) {轴截面：法向分量反向};
+\end{tikzpicture}
+\diagcaption{解图}{左图说明 $L$、$R$ 与来流的空间关系；右图取包含轴线和碰撞点的截面，显示镜面反射。}\label{ch07:fig:soldiagThreeTen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeEleven}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[x=5.3cm,y=5.7cm]
+  \draw[axis] (0,0)--(1.13,0) node[right,sollabel] {$v/v_0$};
+  \draw[axis] (0,0)--(0,.19) node[above,sollabel] {$P/(2\rho Sv_0^3)$};
+  \draw[curve,domain=0:1,samples=70,smooth,variable=\x] plot ({\x},{\x*(1-\x)^2});
+  \draw[solgeom] (1/3,0)--(1/3,4/27);
+  \fill[DeepBlue] (1/3,4/27) circle (.55pt);
+  \node[sollabel,below] at (1/3,0) {$1/3$};
+  \node[sollabel,above right] at (1/3,4/27) {最大功率};
+  \node[sollabel,below] at (1,0) {$1$};
+\end{tikzpicture}
+\diagcaption{解图}{无量纲功率 $x(1-x)^2$ 在 $x=v/v_0=1/3$ 处取得最大值。}\label{ch07:fig:soldiagThreeEleven}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwelve}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \coordinate (O) at (-1.4,0); \coordinate (S) at (1.4,0);
+ \draw[solgeom] (O) circle (2.8);
+ \draw[solbody,fill=SoftGray] (O) circle (.45);
+ \node[sollabel] at (-1.4,0) {太阳};
+ \foreach \a in {-18,0,18}{\draw[solflow] ($(O)+(\a:.5)$)--($(O)+(\a:2.8)$);}
+ \draw[solbody,line width=1.3pt] (1.4,-.4)--(1.4,.4);
+ \draw[solforce] (1.4,0)--(2.65,0) node[midway,above=4pt,sollabel] {$F$};
+ \node[sollabel,anchor=west] at (1.65,-.7) {小接收面 $S$，正入射};
+ \draw[solgeom] (-1.4,-.5)--(-1.4,-1.4) (1.4,-.4)--(1.4,-1.4);
+ \draw[<->,TextGray] (-1.4,-1.35)--(1.4,-1.35) node[midway,below=4pt,sollabel] {$r$};
+ \node[sollabel] at (-1.3,3.3) {虚线球面的面积 $4\pi r^2$};
+\end{tikzpicture}
+\diagcaption{解图}{距离从太阳中心量起，接收面中心落在半径 $r$ 的球面上。}\label{ch07:fig:soldiagThreeTwelve}\end{minipage}\end{center}}
+
+
+前面已经学习了牛顿运动定律。运动物体通常可以近似看成质点，并用给定时刻的速度描述
+它的运动状态。然而，速度相同而质量不同的物体，其运动状态并不相同。为了同时刻画质量
+和速度的影响，定义运动物体的\textbf{动量}为
+\begin{equation}
+ \vec p=m\vec v.
+\end{equation}
+日常经验也说明了质量不能被忽略：同样以约 $5\,\mathrm{m/s}$ 迎面而来，一个人和一辆
+卡车所代表的运动状态显然完全不同。动量把质量和速度同时纳入同一个物理量中。
+
+\textbf{动量是矢量。}\quad 质量是标量、速度是矢量，因此动量也是矢量，其方向与速度
+方向相同。改变速度大小或改变速度方向，都会使动量发生变化。
+
+\textbf{动量的变化。}\quad 若质点在 $t$ 时刻的动量为 $\vec p(t)$，在
+$t+\Delta t$ 时刻的动量为 $\vec p(t+\Delta t)$，则这段时间内的动量变化量为
+\begin{equation}
+ \Delta\vec p=\vec p(t+\Delta t)-\vec p(t).
+\end{equation}
+这里的减法是矢量减法；即使速率不变，只要运动方向改变，$\Delta\vec p$ 也不为零。
+
+\textbf{系统的合动量。}\quad 对于由 $N$ 个质点组成的系统，总动量定义为各质点动量
+的矢量和：
+\begin{equation}
+ \vec P=\sum_{i=1}^{N}\vec p_i=\sum_{i=1}^{N}m_i\vec v_i.
+\end{equation}
+
+质量保持不变的物体受到合外力 $\vec F$ 时，由牛顿第二定律
+\begin{equation}
+ \vec F=m\vec a=m\frac{\dd\vec v}{\dd t}
+ =\frac{\dd(m\vec v)}{\dd t}
+ =\frac{\dd\vec p}{\dd t}.
+\end{equation}
+可见，力也可以表达为动量的变化率。对恒力作用的有限时间间隔，上式可写为
+\begin{equation}
+ \vec F\,\Delta t=\Delta\vec p.
+\end{equation}
+力与作用时间的乘积称为\textbf{冲量}，通常用 $\vec I$ 表示。对于变力，应把各微小时间
+间隔内的冲量累积起来，于是一般形式的动量定理为
+\begin{equation}
+ \vec I=\int_{t_i}^{t_f}\vec F\,\dd t
+ =\Delta\vec p=\vec p_f-\vec p_i.
+\end{equation}
+动量定理是牛顿运动定律的自然推论。它不要求知道力在每一时刻造成的加速度；只要能够
+求出总冲量，就可以直接联系过程的初、末状态。对有些过程，它和逐时刻使用牛顿定律会
+得到相同结果；而在碰撞等作用力复杂、作用时间极短的问题中，动量定理能显著简化处理，
+甚至可以在不知道碰撞力随时间变化规律的情况下求出结果。
+
+\subsection{单个物体的动力学}
+
+当问题中只包含单个物体时，若过程持续时间或合力的总冲量容易确定，使用动量定理往往
+可以省去分段求速度、位移的步骤。
+
+\subsubsection*{冲量把短暂作用与动量变化联系起来}
+
+牛顿第二定律写成 $\dd\vec p/\dd t=\vec F$ 后，在 $t_1$ 到 $t_2$ 上积分得
+\begin{equation}
+ \Delta\vec p=\vec p_2-\vec p_1
+ =\int_{t_1}^{t_2}\vec F\,\dd t\equiv\vec J.
+\end{equation}
+冲量是力对时间的累积，方向由矢量积分决定；在 $F$--$t$ 图上，每个分量的冲量等于相应的
+有向面积。碰撞力可能很大且随时间快速变化，但只要碰撞前后的动量可测，便无需知道力的每个
+瞬时值。平均力 $\bar{\vec F}=\vec J/\Delta t$ 只保证总冲量相同，并不表示真实力恒定。
+
+对质点系逐个应用动量定理并相加，成对内力因第三定律消去：
+\begin{equation}
+ \vec P_2-\vec P_1=\int_{t_1}^{t_2}\vec F_{\rm ext}\,\dd t.
+\end{equation}
+碰撞、爆炸等短过程里，重力等有限外力的冲量常比接触冲量小得多，可以在这一时间尺度上
+忽略；这不是说外力不存在，而是做了量级比较。若某方向外冲量不可忽略，只有其余方向的动量
+分量可能守恒。把过程时间无限放大或把很小的外力累积很久，原近似就会失效。
+
+连续介质问题可用“单位时间通过控制面的动量”理解。质量流率为 $\dot m=\rho Av$ 的稳定射流，
+若速度由 $\vec v_1$ 变为 $\vec v_2$，维持该变化所需合力为
+\begin{equation}
+ \vec F=\dot m(\vec v_2-\vec v_1).
+\end{equation}
+管壁所受力方向与此相反。弯管、喷嘴、雨滴落入车厢和水柱冲击挡板看似不同，本质都是在选定
+时间内统计流入、流出和留在系统内的动量。画清控制面和速度方向，比死记某个压力公式可靠。
+
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-1}
+如图，铁块压着一纸条放在水平桌面上。当以速度 $v$ 抽出纸条后，铁块掉在地上的 $P$ 点。
+若以速度 $2v$ 抽出纸条，则铁块落地点 $O$ 在何处？
+\begin{enumerate}[label=\Alph*.,leftmargin=2.2em]
+ \item 仍在 $P$ 点
+ \item $P$ 点左边
+ \item $P$ 点右边不远处
+ \item $P$ 点右边、原水平位移的两倍处
+\end{enumerate}
+图~\ref{ch07:fig:probdiagThreeOne}中，纸条从桌边抽出，铁块随后从桌边落下。
+\probdiagThreeOne
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+纸条相对铁块滑动时，铁块受到向右的滑动摩擦力。设纸条从铁块下方完全抽出所需的接触
+时间为 $\tau$，则铁块在这段时间内获得的水平冲量为
+\[
+ I_x=f\tau,
+ \qquad
+ v_x=\frac{f\tau}{m}.
+\]
+抽纸速度增大，纸条与铁块的接触时间变短，铁块得到的摩擦冲量和离开桌面时的水平速度
+都减小。桌面高度不变，铁块离开桌面后的下落时间相同，所以第二次的水平射程更小。
+图~\ref{ch07:fig:soldiagThreeOne}中，抽得越快，摩擦力作用越短，离桌速度和水平射程越小。
+\soldiagThreeOne
+因此 $O$ 在 $P$ 点左边，选择
+\[
+ \boxed{\text{B}}.
+\]
+这里比较的是冲量而不是摩擦力大小；两次滑动摩擦力可以相同，但作用时间不同。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-2}
+一个质量 $m=2\,\mathrm{kg}$ 的物体，在 $F_1=8\,\mathrm N$ 的水平力作用下从静止开始沿
+水平面运动 $t_1=5\,\mathrm s$。随后外力变为 $F_2=5\,\mathrm N$，方向不变，物体又运动
+$t_2=4\,\mathrm s$；撤去外力后，物体再经过 $t_3=6\,\mathrm s$ 停下。求物体所受的
+摩擦力。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取运动方向为正，设滑动摩擦力大小为 $f$。物体初、末速度都为零，所以全过程的总动量
+变化为零。各力的冲量按时间分段相加：
+\[
+ F_1t_1+F_2t_2-f(t_1+t_2+t_3)=0.
+\]
+力与时间的对应关系见图~\ref{ch07:fig:soldiagThreeTwo}。
+
+\soldiagThreeTwo
+代入数据得
+\[
+ 8\times5+5\times4-f(5+4+6)=0,
+\]
+故
+\[
+ \boxed{f=4\,\mathrm N}.
+\]
+在物体始终向右滑动的这 $15\,\mathrm s$ 内，摩擦力方向始终向左；撤去外力并不改变
+摩擦力方向。
+\end{xesolution}
+
+\subsection{多个物体的运动}
+
+若一个力学系统含有多个物体，每个物体除了受到系统外部的力，还受到其他物体施加的
+内力。对第 $i$ 个物体，有
+\begin{equation}
+ \vec F_i=\vec F_i^{\rm ext}+\sum_{j\ne i}\vec f_{ij},
+\end{equation}
+其中 $\vec f_{ij}$ 表示第 $j$ 个物体对第 $i$ 个物体的力。由牛顿第三定律
+\begin{equation}
+ \vec f_{ij}=-\vec f_{ji}.
+\end{equation}
+在一段时间 $[t_i,t_f]$ 内，对第 $i$ 个物体应用动量定理：
+\begin{equation}
+ \int_{t_i}^{t_f}\vec F_i(t)\,\dd t=\Delta\vec p_i.
+\end{equation}
+对系统内全部质点求和，内力冲量两两抵消，得到系统的动量定理
+\begin{equation}
+ \int_{t_i}^{t_f}\left(\sum_{i=1}^{N}\vec F_i^{\rm ext}(t)\right)\dd t
+ =\Delta\left(\sum_{i=1}^{N}\vec p_i\right).
+\end{equation}
+因此，系统总动量的变化只由外力的总冲量决定，与内力的具体形式无关。
+
+\Needspace{0.27\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-3}
+两个质量分别为 $m_1$ 和 $m_2$ 的物体由劲度系数为 $k$、原长为 $l_0$ 的弹簧连接，
+初始弹簧状态未知。初始时整个系统竖直放置，随后由静止释放。已知下落时间为 $t$ 时，
+质量为 $m_1$ 的物体向下速度为 $v_1$，求另一物体的速度 $v_2$。
+图~\ref{ch07:fig:probdiagThreeThree}中，弹簧初态未知的二物体系统由静止竖直下落。
+\probdiagThreeThree
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+以两物体（弹簧质量忽略）为系统，弹簧对两物体的作用力是一对内力，初始伸长量、劲度
+系数和原长都不影响系统总动量。
+取竖直向下为正，时间 $t$ 内外力总冲量只有重力冲量：
+\[
+ (m_1+m_2)gt=m_1v_1+m_2v_2.
+\]
+外力冲量与末态动量的对应关系见图~\ref{ch07:fig:soldiagThreeThree}。
+
+\soldiagThreeThree
+所以
+\[
+ \boxed{v_2=\frac{(m_1+m_2)gt-m_1v_1}{m_2}}.
+\]
+若计算结果为负，表示第二个物体此刻实际向上运动；因此这里的 $v_2$ 是以向下为正的
+速度分量，而不只是速度大小。
+\end{xesolution}
+
+\Needspace{0.31\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-4}
+如图，$A$、$B$ 两小物体被平行于斜面的轻细线相连，均静止于斜面上。以平行于斜面
+向上的恒力拉 $B$，使两物体同时由静止起以加速度 $a$ 沿斜面向上运动。经过时间 $t_1$，
+细线突然被拉断；再经过时间 $t_2$，$A$ 上滑到最高点。已知 $A$、$B$ 的质量分别为
+$m_A$ 和 $m_B$，断线后拉 $B$ 的恒力保持不变，求此时 $B$ 的速度。
+图~\ref{ch07:fig:probdiagThreeFour}中，$A$、$B$ 沿斜面上滑，经过 $t_1$ 后连接线断裂。
+\probdiagThreeFour
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取沿斜面向上为正。把除绳张力以外、分别作用于 $A$、$B$ 的恒定合力记为 $X_A$、$X_B$。
+断线前两物体的共同加速度为 $a$，把两式相加可得
+\begin{equation}\label{ch07:eq:connected-force}
+ X_A+X_B=(m_A+m_B)a.
+\end{equation}
+断线瞬间 $A$ 的速度为 $at_1$；它在随后 $t_2$ 内减速到零，故
+\begin{equation}\label{ch07:eq:broken-force}
+ X_A t_2=m_A(0-at_1),
+ \qquad
+ X_A=-\frac{m_Aat_1}{t_2}.
+\end{equation}
+两阶段的速度变化见图~\ref{ch07:fig:soldiagThreeFour}。
+
+\soldiagThreeFour
+由式\eqref{ch07:eq:connected-force}、\eqref{ch07:eq:broken-force}得
+\[
+ X_B=(m_A+m_B)a+\frac{m_Aat_1}{t_2}.
+\]
+因此 $B$ 在断线后再运动 $t_2$ 的末速度为
+\begin{align*}
+ v_B&=at_1+\frac{X_B}{m_B}t_2\\
+ &=\boxed{\frac{m_A+m_B}{m_B}\,a(t_1+t_2)}.
+\end{align*}
+推导只使用了两段运动中非绳力保持恒定这一条件，斜面倾角、拉力和阻力的具体数值都已
+被消去。
+特别地，断线后 $a_B=X_B/m_B>a$。因此解图中 $B$ 的速度折线必须比断线前更陡；
+$A$ 的速度则由 $at_1$ 降至零。速度图只表示这一上滑阶段，不延伸到 $A$ 反向下滑以后。
+\end{xesolution}
+
+\Needspace{0.28\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-5}
+光滑水平面上，一个箱子 $A$ 的质量 $m_A=2\,\mathrm{kg}$，以初速度
+$v_0=10\,\mathrm{m/s}$ 冲向静止的箱子 $B$，$B$ 的质量 $m_B=1\,\mathrm{kg}$。碰撞后：
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 如果 $A$ 的速度变为 $5\,\mathrm{m/s}$，则 $B$ 的速度为多少？
+ \item 如果 $A$、$B$ 之间涂有强力胶水，一碰就粘在一起，则合体后的速度为多少？
+\end{enumerate}
+图~\ref{ch07:fig:probdiagThreeFive}中，箱子 $A$ 在光滑面上冲向静止的箱子 $B$。
+\probdiagThreeFive
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+碰撞时间很短，系统水平方向外力冲量为零，因此两箱总动量在碰撞前后相同。
+图~\ref{ch07:fig:soldiagThreeFive}中，碰撞内力冲量相消，系统总动量由碰前原样传到碰后。
+\soldiagThreeFive
+（1）取 $A$ 初速度方向为正：
+\[
+ m_Av_0=m_Av_A+m_Bv_B.
+\]
+代入数据，
+\[
+ 2\times10=2\times5+1\times v_B,
+ \qquad
+ \boxed{v_B=10\,\mathrm{m/s}}.
+\]
+
+（2）粘合后两箱具有共同速度 $v$：
+\[
+ m_Av_0=(m_A+m_B)v,
+\]
+所以
+\[
+ \boxed{v=\frac{20}{3}\,\mathrm{m/s}}.
+\]
+两问都只用动量关系；“粘在一起”说明碰撞是完全非弹性的，并不意味着动能守恒。
+\end{xesolution}
+
+\subsection{冲击和碰撞}
+
+若始终知道力的大小和方向，动量定理与牛顿运动定律当然可以给出相同结果。但在碰撞中，
+作用时间极短，碰撞力极大且随时间的变化很复杂，逐时刻测量碰撞力十分困难；相比之下，
+碰撞前后的速度却容易确定。因此，碰撞问题通常直接研究冲量和动量变化。
+
+在碰撞或冲击的极短时间内，重力、普通摩擦力、弹簧力等有限外力的冲量与碰撞力冲量
+相比可以忽略。相互碰撞的两个物体所受冲量大小相等、方向相反。根据系统的连接和约束，
+还可以进一步确定冲量的方向以及碰撞后的瞬时速度关系。
+
+\Needspace{0.31\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-6}
+如图，三个小球 $A$、$B$、$C$ 的质量均为 $m$，放在光滑水平桌面上。三球之间用质量
+可忽略、不可伸长的绳 $AB$、$BC$ 相连，$\angle ABC=120^\circ$。现沿 $BA$ 绳方向给
+$A$ 一个瞬时冲量 $I$，求 $C$ 球获得的速度。
+图~\ref{ch07:fig:probdiagThreeSix}中，冲量 $I$ 沿 $BA$ 方向；两根绳在冲击后仍不可伸长。
+\probdiagThreeSix
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设绳 $AB$、$BC$ 对各球传递的张力冲量大小分别为 $J_1$、$J_2$。取 $x$ 轴向右，令
+$\hat{\boldsymbol u}$ 为从 $B$ 指向 $C$ 的单位矢量，则
+$\hat{\boldsymbol x}\mathbin{\cdot}\hat{\boldsymbol u}=\cos60^\circ=1/2$。
+各球的冲量—动量关系如解图所示：
+图~\ref{ch07:fig:soldiagThreeSix}中，先对三球分别列冲量方程，再用两条绳方向上的速度约束闭合方程组。
+\soldiagThreeSix
+\[
+ m\vec v_A=-I\hat{\boldsymbol x}+J_1\hat{\boldsymbol x},
+\]
+\[
+ m\vec v_B=-J_1\hat{\boldsymbol x}+J_2\hat{\boldsymbol u},
+ \qquad
+ m\vec v_C=-J_2\hat{\boldsymbol u}.
+\]
+绳不可伸长，所以冲击后两条绳方向上的相对速度均为零：
+\[
+ (\vec v_B-\vec v_A)\mathbin{\cdot}\hat{\boldsymbol x}=0,
+ \qquad
+ (\vec v_C-\vec v_B)\mathbin{\cdot}\hat{\boldsymbol u}=0.
+\]
+代入上面的速度表达式，得到
+\[
+ I-2J_1+\frac{J_2}{2}=0,
+ \qquad
+ \frac{J_1}{2}-2J_2=0.
+\]
+从而
+\[
+ J_1=\frac{8I}{15},
+ \qquad
+ J_2=\frac{2I}{15}.
+\]
+$C$ 球沿 $CB$ 方向运动，速度大小为
+\[
+ \boxed{v_C=\frac{J_2}{m}=\frac{2I}{15m}}.
+\]
+这里不能把外冲量 $I$ 简单地在两根绳方向上作静力分解；冲量分配还必须同时满足不可
+伸长绳的速度约束。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-7}
+军训时，战士距墙的水平距离为 $s_0$，以速度 $v_0$ 起跳，再用脚蹬墙一次，使身体转为
+竖直向上的运动以继续升高。墙面与鞋底之间的摩擦因数为 $\mu$，求能使人体重心总升高
+最大的起跳角度。
+采用主动蹬墙的理想冲量模型：短暂接触使水平速度降为零，向上切向冲量可达到
+$J_f=\mu J_N$，接触期间重力冲量忽略。这里的 $\mu>0$ 是该模型的有效摩擦上限；
+若实际接触不能达到上限，须另给切向冲量或鞋底运动规律。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设起跳角为 $\theta$。从起跳点到墙的时间为
+\[
+ t=\frac{s_0}{v_0\cos\theta}.
+\]
+蹬墙前的水平、竖直速度分别为
+\[
+ v_x=v_0\cos\theta,
+ \qquad
+ v_y=v_0\sin\theta-\frac{gs_0}{v_0\cos\theta}.
+\]
+为使蹬墙后水平速度变为零，墙面对人的法向冲量为 $J_N=mv_x$。在题设主动蹬墙模型中，
+取向上的切向冲量 $J_f=\mu J_N$，所以离墙后的竖直速度
+\[
+ v_y'=v_y+\mu v_x.
+\]
+冲量方向和两段上升过程见图~\ref{ch07:fig:soldiagThreeSeven}。
+
+\soldiagThreeSeven
+到墙时的高度为
+\[
+ h_1=s_0\tan\theta-\frac{gs_0^2}{2v_0^2\cos^2\theta}.
+\]
+离墙后还能上升 $h_2={v_y'}^2/(2g)$。把 $v_x,v_y$ 代入并整理，得到
+\[
+ h=h_1+h_2
+ =\frac{v_0^2}{2g}(\sin\theta+\mu\cos\theta)^2-\mu s_0.
+\]
+先求不考虑到墙条件时的驻点。由于
+\[
+ \sin\theta+\mu\cos\theta
+ \le\sqrt{1+\mu^2},
+\]
+等号在 $\tan\theta=1/\mu$ 时成立。因此候选角为
+\[
+ \theta_* =\arctan\frac{1}{\mu}.
+\]
+\textbf{可行性检验。}\quad 令 $\eta=gs_0/v_0^2$。必须同时满足
+\[
+ h_1\ge0\ \Longleftrightarrow\ \sin2\theta\ge\eta,
+ \qquad
+ v_y'>0\ \Longleftrightarrow\
+ \sin\theta+\mu\cos\theta-\frac{\eta}{\cos\theta}>0.
+\]
+第一式表示到墙时尚未落地；若要求在离地后蹬墙，则改取 $h_1>0$。
+把 $\theta_*$ 代入，这两个条件分别成为
+\[
+ \eta\le\frac{2\mu}{1+\mu^2},\qquad \eta<\mu.
+\]
+只有同时成立，$\theta_*$ 才是蹬墙后最高点的最优角，且
+\[
+ h_{\max}=\frac{v_0^2}{2g}(1+\mu^2)-\mu s_0.
+\]
+
+\textbf{候选角不可行时。}\quad 用 $z=\tan\theta>0$ 把条件化为两个二次不等式：
+\[
+ \eta z^2-2z+\eta\le0,
+ \qquad
+ \eta z^2-z+\eta-\mu<0.
+\]
+若 $\eta>1$，第一次抛体的最大水平射程也不足以到墙，不存在题设运动。
+当 $0<\eta\le1$ 时，第一个不等式给出
+\[
+ z_-\le z\le z_+,
+ \qquad z_\pm=\frac{1\pm\sqrt{1-\eta^2}}{\eta}.
+\]
+第二个不等式先要求 $D=1-4\eta(\eta-\mu)>0$，再给出
+\[
+ w_-<z<w_+,\qquad w_\pm=\frac{1\pm\sqrt D}{2\eta}.
+\]
+把这两个区间与 $z>0$ 取交集，便得到完整可行区间 $\mathcal I$；交集为空时不能完成
+蹬墙后向上的运动。对非空区间，目标函数为
+\[
+ h(z)=\frac{v_0^2}{2g}\frac{(z+\mu)^2}{1+z^2}-\mu s_0,
+ \qquad
+ h'(z)=\frac{v_0^2}{g}\frac{(z+\mu)(1-\mu z)}{(1+z^2)^2}.
+\]
+它在 $z<1/\mu$ 时增加、$z>1/\mu$ 时减少。因此将 $1/\mu$ 限制在可行区间内即可：
+若它在区间内就取它；若它在区间左侧就取最小可行端点；在右侧则取最大可行端点。
+若所需端点因严格不等式被排除，只能无限逼近相应高度上限，并不存在达到上限的起跳角。
+例如 $\mu=2,\eta=0.9$ 时，候选角约 $26.6^\circ$ 的射程不够，而 $45^\circ$ 满足两项条件，
+不能仍把候选角当作答案。
+
+\textbf{“全程最高”与“蹬墙后最高”的区别。}\quad 若人在到墙前已经越过抛物线顶点，
+还应计入此前达到的高度 $v_0^2\sin^2\theta/(2g)$。全程最高值可统一写成
+\[
+ H(z)=\max\left\{h(z),\frac{v_0^2}{2g}\frac{z^2}{1+z^2}\right\}.
+\]
+若到墙前尚未到顶点，第二项虽是未走完抛物线的顶点高度，但 $v_y\ge0$ 且切向冲量向上，
+此时 $h$ 不小于第二项，故这个写法仍成立。第二项随 $z$ 单调增加，因此全程优化只须比较
+上述 $h$ 的最优值与可行区间最右端的第二项；同样保留端点可达性判断。
+这区分了“蹬墙后的总升高”与字面意义的“整个运动曾达到的最高点”。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-8}
+在光滑水平面上有两面相距为 $d$ 的平行竖直墙。一个旋转的小球撞向其中一面墙。若墙面
+光滑，弹性碰撞后小球垂直于墙的速度分量反向，平行于墙的分量不变，最终击中对面墙上的
+$A$ 点。若球与墙之间的摩擦因数为 $\mu$，仍假设碰后垂直于墙的速度大小不变、方向反向，
+证明：小球反弹后在另一面墙上的落点与 $A$ 点的距离，同小球初始位置、初速度方向均
+无关。
+主问限定碰撞期间接触点始终沿同一方向滑动，且使用库仑滑动摩擦模型；再讨论若提前
+停止滑动，上述结论是否仍成立。水平面始终光滑，球的运动取俯视图。
+图~\ref{ch07:fig:probdiagThreeEight}中，光滑墙落点为 $A$；有摩擦时落点为 $B$。
+\probdiagThreeEight
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设碰墙前垂直、平行于墙的速度分量大小分别为 $v_n$、$v_t$。法向速度反向而大小不变，
+所以法向冲量大小为
+\[
+ J_N=2mv_n.
+\]
+若接触点在整个碰撞中保持滑动，摩擦冲量大小为
+\[
+ J_t=\mu J_N=2\mu mv_n,
+\]
+从而平行于墙的质心速度分量改变量为
+\[
+ |\Delta v_t|=\frac{J_t}{m}=2\mu v_n.
+\]
+球从一面墙飞到另一面墙的时间只由法向运动决定：
+\[
+ T=\frac{d}{v_n}.
+\]
+与光滑墙情形相比，落点沿墙方向的偏移为
+\[
+ AB=|\Delta v_t|T=2\mu v_n\frac{d}{v_n}
+ =\boxed{2\mu d}.
+\]
+图~\ref{ch07:fig:soldiagThreeEight}中，左右两部分分别表示落点偏移和接触冲量，不能把冲量箭头当作轨迹。
+\soldiagThreeEight
+初始位置和 $v_t$ 决定光滑墙情形的基准点 $A$，但附加偏移中的 $v_n$ 恰好消去，因此
+$AB$ 与初始位置、初速度方向无关。旋转决定摩擦冲量的方向，故 $B$ 位于 $A$ 的哪一侧
+由接触点的相对滑动方向决定。
+
+若滑动提前停止，设小球半径为 $R$、绕球心转动惯量为 $\mathcal J$，取沿墙向右为正，
+初始接触点相对墙的切向速度为 $w_0$。切向冲量 $J$ 对质心平动贡献 $J/m$，
+对接触点的转动速度贡献 $R^2J/\mathcal J$，故
+\[
+ w=w_0+\left(\frac1m+\frac{R^2}{\mathcal J}\right)J.
+\]
+达到无滑动所需的冲量为
+\[
+ J_{\rm stop}=-\frac{w_0}{1/m+R^2/\mathcal J}.
+\]
+在球对平墙、法向通过球心且此后能够保持无滑动的简化模型中，
+\[
+ |J|=\min\left(2\mu m v_n,\frac{|w_0|}{1/m+R^2/\mathcal J}\right),
+ \qquad AB=\frac{|J|d}{mv_n}.
+\]
+只有第一项起限制作用时，才恢复 $AB=2\mu d$；第二项起限制作用时，偏移还依赖初始
+自转和平动。切向接触弹性等更细模型不在上述库仑冲量近似内。
+\end{xesolution}
+
+\subsection{应用到流体}
+
+动量定理还可以用来处理流体或大量微观粒子对宏观物体的作用。设介质由大量静止粒子
+组成，每个粒子质量为 $m$，单位体积内有 $n$ 个粒子；截面积为 $S$ 的长条形物体以速度
+$v$ 沿轴线运动，并吸附迎面遇到的全部粒子。在很短的 $\Delta t$ 内，物体扫过体积
+$Sv\Delta t$，吸附粒子的总质量为 $nmSv\Delta t=\rho Sv\Delta t$。这些粒子由静止变为
+与物体同速，动量变化为
+\begin{equation}
+ \Delta p=(nSv\Delta t)mv=nmSv^2\Delta t
+ =\rho Sv^2\Delta t,
+\end{equation}
+其中 $\rho=nm$ 是介质密度。由动量定理和牛顿第三定律，物体受到与运动方向相反的阻力
+\begin{equation}
+ F=\frac{\Delta p}{\Delta t}=\rho Sv^2.
+\end{equation}
+可见宏观力不仅取决于介质密度、迎风面积和速度，还取决于单个粒子碰撞后的运动方式。
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-9}
+条件与上面的模型相同，但介质粒子碰撞后以相同的相对速度反弹。求飞船受到的阻力。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+在飞船参考系中，粒子碰前以速度 $v$ 迎面而来，弹性反弹后以同样大小的相对速度离开；
+在介质原来静止的参考系中，粒子沿飞船运动方向的末速度为 $2v$。单位时间撞上的粒子
+质量仍为 $\rho Sv$，故粒子每秒获得的动量为
+\[
+ \frac{\Delta p}{\Delta t}=(\rho Sv)(2v)=2\rho Sv^2.
+\]
+动量流和反作用力方向见图~\ref{ch07:fig:soldiagThreeNine}。
+
+\soldiagThreeNine
+所以飞船所受阻力大小为
+\[
+ \boxed{F=2\rho Sv^2}.
+\]
+弹性反弹使单个粒子的动量改变量成为完全吸附情形的两倍，因此阻力也加倍。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-10}
+若飞船外形可近似为半顶角为 $\alpha$、轴向长度为 $L$ 的圆锥，且与介质粒子的碰撞为弹性碰撞，
+求飞船受到的阻力。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+令 $\alpha$ 为圆锥母线与轴线的夹角（半顶角），$L$ 为轴向长度，则底面半径
+\[
+ R=L\tan\alpha.
+\]
+在飞船参考系中，粒子以轴向相对速度 $v$ 撞上圆锥面并作镜面反射。把速度沿圆锥面法线
+分解。取飞船前进方向为 $+x$，入射相对速度为 $-v\hat{\boldsymbol x}$，上表面单位外法线
+的轴向分量为 $n_x=\sin\alpha$。镜面反射只使法向分量反号：
+\[
+ \vec v_{\rm out}=\vec v_{\rm in}
+ -2(\vec v_{\rm in}\cdot\hat{\boldsymbol n})\hat{\boldsymbol n}.
+\]
+由 $\vec v_{\rm in}\cdot\hat{\boldsymbol n}=-v\sin\alpha$，粒子的轴向速度改变量为
+\[
+ \Delta v_x=2v\sin^2\alpha.
+\]
+几何分解见图~\ref{ch07:fig:soldiagThreeTen}。
+
+\soldiagThreeTen
+单位时间进入圆锥投影面积 $\pi R^2$ 的介质质量为 $\rho v\pi R^2$，故轴向动量变化率为
+\[
+ F=(\rho v\pi R^2)(2v\sin^2\alpha).
+\]
+因此飞船所受阻力大小为
+\[
+ \boxed{F=2\pi\rho L^2v^2\tan^2\alpha\sin^2\alpha
+ =\frac{2\pi\rho L^2v^2\sin^4\alpha}{\cos^2\alpha}}.
+\]
+若题设把 $\alpha$ 定义为完整顶角，应在上述结果中用 $\alpha/2$ 代替 $\alpha$；若 $L$
+表示母线长，则应改用 $R=L\sin\alpha$。因此使用结论前必须先核对角度与长度的几何定义。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-11}
+一帆船在静水中顺风航行，风速为 $v_0$。假设帆面是完全弹性面，风与帆面垂直。船速
+多大时，风供给船的功率最大？
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设船速为 $v$，则风相对帆的速度为 $u=v_0-v$。由例~\ref{ch07:ex:s07-3-9} 的弹性反射模型，风对帆的推力为
+\[
+ F=2\rho S(v_0-v)^2.
+\]
+风对船的瞬时功率为
+\[
+ P=Fv=2\rho S\,v(v_0-v)^2.
+\]
+其变化趋势见图~\ref{ch07:fig:soldiagThreeEleven}。
+
+\soldiagThreeEleven
+求导得
+\[
+ \frac{\dd P}{\dd v}=2\rho S(v_0-v)(v_0-3v).
+\]
+在 $0<v<v_0$ 的物理区间内，内部极大值对应
+\[
+ \boxed{v=\frac{v_0}{3}}.
+\]
+这里求的是给定瞬时船速下的能量传递功率最大值；若要确定真实航行的稳定速度，还需要
+加入水阻等动力学条件。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s07-3-12}
+近代物理认为光线由光子构成，光子动量与能量满足 $E=pc$，其中 $c$ 为光速。太阳的总
+辐射功率为 $P_S$，求距离太阳中心为 $r$ 处由太阳光冲击产生的辐射压强。
+将太阳近似为各向同性点光源，接收面与入射光垂直，分别讨论完全吸收和原路完全反射。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+假设太阳各向同性辐射，则半径 $r$ 的球面上单位面积接收的功率（辐照度）为
+\[
+ \mathcal E=\frac{P_S}{4\pi r^2}.
+\]
+在时间 $\Delta t$ 内，面积 $S$ 吸收的光能为 $\Delta E=\mathcal E S\Delta t$。由
+$p=E/c$，完全吸收时传给表面的动量为
+\[
+ \Delta p=\frac{\Delta E}{c}.
+\]
+能量流、动量流与受力的对应关系见图~\ref{ch07:fig:soldiagThreeTwelve}。
+
+\soldiagThreeTwelve
+因此太阳光产生的\textbf{辐射压强}为
+\[
+ \boxed{p_{\rm rad}=\frac{F}{S}
+ =\frac{P_S}{4\pi r^2c}}.
+\]
+完全吸收、迎光面积为 $S$ 的物体所受力为
+\[
+ \boxed{F_{\rm abs}=\frac{P_SS}{4\pi r^2c}}.
+\]
+若光沿入射方向的反方向完全反射，单个光子的动量由 $+E/c$ 变为 $-E/c$，
+表面得到的动量为 $2E/c$，因而
+\[
+ \boxed{p_{\rm refl}=\frac{P_S}{2\pi r^2c}},\qquad
+ F_{\rm refl}=p_{\rm refl}S=\frac{P_SS}{2\pi r^2c}.
+\]
+主问是单位面积的受力，即压强，所以不需要另给总接收面积。引入面积 $S$ 只是为了通过
+能量和动量逐步推导，并在需要时得到总力。量纲为
+$[P_S/(r^2c)]=\mathrm{N/m^2}$；距离加倍时压强变为四分之一。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eighth-section/}}
+\section{动量守恒}
+% Original problem figures and added solution diagrams for Section 3.2.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solimpulse/.style={-{Latex[length=2.4mm]},draw=DeepBlue,line width=1.25pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+% Shared geometry for repeated momentum problems. Captions remain at call sites.
+\newcommand{\momentumRain}{%
+\begin{tikzpicture}[scale=.78]
+  \fill[Blue!8] (-1.2,-.65) rectangle (1.2,-.12);
+  \draw[solbody] (-1.2,.7)--(-1.2,-.65)--(1.2,-.65)--(1.2,.7);
+  \foreach \x in {-.9,-.45,0,.45,.9}{\draw[solflow] (\x,1.55)--(\x,.86);}
+  \node[sollabel] at (0,2.05) {$q=\rho S\Delta h/\tau$，雨水水平速度为零};
+  \node[sollabel] at (0,-1.15) {$m(t)=M+qt$};
+  \draw[solforce] (1.2,-.38)--(2.55,-.38) node[midway,below=3pt,sollabel] {$F$};
+  \draw[solflow] (1.6,.52)--(2.8,.52) node[midway,above=3pt,sollabel] {$v$};
+\end{tikzpicture}}
+
+\newcommand{\momentumPickup}{%
+\begin{tikzpicture}[scale=.8]
+  \draw[solbody] (-2,0)--(2.5,0);
+  \draw[DeepBlue,line width=1.2pt] (-1.8,0)--(-.15,0)
+    .. controls (-.05,0) and (0,.05) .. (0,.15)--(0,2.4);
+  \fill[Ink] (0,2.4) circle (2pt);
+  \draw[solforce] (0,2.4)--(0,3.3) node[left=3pt,sollabel] {$F$};
+  \draw[solforce] (-.65,1.65)--(-.65,.7) node[midway,left=3pt,sollabel] {$\lambda xg$};
+  \draw[solflow] (.65,1.1)--(.65,2.1) node[midway,right=3pt,sollabel] {$v$};
+  \draw[solgeom] (0,2.4)--(1.8,2.4);
+  \draw[<->,draw=TextGray] (1.8,0)--(1.8,2.4) node[midway,right=3pt,sollabel] {$x$};
+  \node[sollabel] at (-1.0,-.38) {静止绳段};
+  \node[sollabel] at (0,-.95) {$\dot m_{\rm mov}=\lambda v$，新增动量率 $\lambda v^2$};
+\end{tikzpicture}}
+
+\newcommand{\momentumFallingRope}{%
+\begin{tikzpicture}[scale=.78]
+  \draw[solbody] (-.45,3)--(.45,3);
+  \foreach \x in {-.4,-.2,0,.2,.4}{\draw[TextGray] (\x,3)--++(.12,.14);}
+  \draw[solgeom] (0,3)--(0,2.1);
+  \draw[DeepBlue,line width=1.1pt] (0,2.1)--(0,.28)
+    .. controls (0,.08) and (-.15,.08) .. (-.3,.08);
+  \draw[DeepBlue,line width=1.1pt,domain=-.3:1.6,samples=120]
+    plot ({\x},{.08+.08*sin((\x+.3)*720)});
+  \draw[solbody] (-.75,0)--(1.9,0);
+  \draw[solgeom] (-.7,3)--(0,3) (-.7,2.1)--(0,2.1);
+  \draw[<->,draw=TextGray] (-.7,2.1)--(-.7,3) node[midway,left=3pt,sollabel] {$x$};
+  \draw[solflow] (.55,1.8)--(.55,.9) node[midway,right=3pt,sollabel] {$v$};
+  \node[sollabel,anchor=west] at (.65,2.8) {虚线：上端已下降的距离};
+  \node[sollabel,anchor=west] at (1.15,1.5) {$l-x$：仍在下落的绳长};
+  \node[sollabel] at (.4,-.4) {秤盘；堆积绳段长度为 $x$};
+\end{tikzpicture}}
+
+\newcommand{\momentumRopeLoad}{%
+\begin{tikzpicture}[scale=.78]
+  \draw[DeepBlue,line width=1.1pt] (0,2)--(0,.28)
+    .. controls (0,.08) and (-.15,.08) .. (-.3,.08);
+  \draw[DeepBlue,line width=1.1pt,domain=-.3:1.8,samples=120]
+    plot ({\x},{.08+.08*sin((\x+.3)*720)});
+  \draw[solbody] (-.65,0)--(2.05,0);
+  \draw[solflow] (.55,1.7)--(.55,.85) node[midway,right=3pt,sollabel] {$v$};
+  \draw[solforce] (.45,0)--(.45,-1.0) node[below=3pt,sollabel] {$\lambda xg$};
+  \draw[solforce] (1.6,0)--(1.6,-1.0) node[below=3pt,sollabel] {$\lambda v^2$};
+  \node[sollabel,anchor=west,align=left] at (2.7,1.15)
+    {秤盘承受的向下作用\\$N=\lambda xg+\lambda v^2$\\第二项来自使绳元停止};
+\end{tikzpicture}}
+
+\newcommand{\momentumAccretion}{%
+\begin{tikzpicture}[scale=.8]
+  \draw[solbody,fill=SoftGray] (-.8,0) rectangle (.8,.9);
+  \draw[solforce] (-.2,.45)--(-.2,-.85) node[below=3pt,sollabel] {$mg$};
+  \draw[solflow] (1.25,.7)--(1.25,-.25) node[midway,right=3pt,sollabel] {$v$};
+  \foreach \x in {-1.3,-.85,-.4,.05,.5,.95,1.4}{\fill[TextGray] (\x,-1.55) circle (1.5pt);}
+  \node[sollabel] at (0,-1.95) {地面系中静止的介质};
+  \draw[<->,TextGray] (-.8,1.3)--(.8,1.3) node[midway,above=3pt,sollabel] {截面积 $S$};
+  \node[sollabel,anchor=west,align=left] at (2.3,.8)
+    {$\dot m=\rho Sv$\\$\dd(mv)/\dd t=mg$\\$m\dot v=mg-\rho Sv^2$};
+\end{tikzpicture}}
+
+\newcommand{\momentumDroplet}{%
+\begin{tikzpicture}[scale=.8]
+  \draw[solbody,fill=Blue!8] (0,.5) circle (.7);
+  \fill[Ink] (0,.5) circle (1.5pt);
+  \draw[solgeom] (0,.5)--(.7,.5) node[midway,above=4pt,sollabel] {$r$};
+  \draw[solforce] (0,.5)--(0,-1.0) node[below=3pt,sollabel] {$mg$};
+  \draw[solflow] (1.25,.75)--(1.25,-.25) node[midway,right=3pt,sollabel] {$v$};
+  \foreach \x in {-1.3,-.85,-.4,.05,.5,.95,1.4}{\fill[TextGray] (\x,-1.65) circle (1.5pt);}
+  \node[sollabel] at (0,-2.05) {地面系中静止的雾滴};
+  \node[sollabel,anchor=west,align=left] at (2.3,.8)
+    {$S=\pi r^2$\\$\dot m=\rho_f\pi r^2v$\\$\dot r=\rho_f v/(4\rho_w)$};
+\end{tikzpicture}}
+
+
+\newcommand{\soldiagThreeThirteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.76]
+  \draw[solbody] (-2.8,-.75)--(2.8,-.75);
+  \fill[TextGray!28,draw=Ink] (0,-.75) ellipse (2.1 and .48);
+  \fill[Ink] (0,-.18) circle (2.8pt);
+  \draw[solimpulse] (0,-.12)--++(0,1.35) node[above,sollabel] {$p=mv$};
+  \draw[solimpulse] (0,-.78)--++(0,-.75) node[below,sollabel] {$P_{\rm E}=-p$};
+  \node[sollabel] at (1.1,-.75) {地球};
+  \node[sollabel,align=left] at (3.9,.45) {$mv+M_{\rm E}V_{\rm E}=0$\\内力交换动量};
+\end{tikzpicture}
+\diagcaption{解图}{人获得向上动量时，地球获得大小相等、方向相反的反冲动量。}\label{ch07:fig:soldiagThreeThirteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFourteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \draw[solbody] (-3.2,0)--(3.2,0);
+ \foreach \x/\m in {-2.25/1,-.75/2,.75/3,2.25/4}{
+  \draw[solbody,fill=SoftGray] (\x,.25) circle (.25);
+  \node[sollabel] at (\x,.85) {$m_{\m}$};}
+ \node[sollabel] at (0,1.6) {$\sum_i m_i\dot x_i=0\ \Longrightarrow\ \dot x_C=0$};
+ \node[sollabel] at (0,-.45) {各球仅在水平面内运动};
+\end{tikzpicture}
+\diagcaption{解图}{水平总动量初值为零，故质心的水平速度始终为零。}\label{ch07:fig:soldiagThreeFourteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \pgfmathsetmacro{\ell}{3} \pgfmathsetmacro{\half}{40}
+ \pgfmathsetmacro{\span}{2*\ell*sin(\half)}
+ \pgfmathsetmacro{\xL}{-3*\span/8} \pgfmathsetmacro{\xH}{\span/8}
+ \pgfmathsetmacro{\xR}{5*\span/8} \pgfmathsetmacro{\yH}{\ell*cos(\half)}
+ \coordinate (L) at (\xL,0); \coordinate (H) at (\xH,\yH); \coordinate (R) at (\xR,0);
+ \draw[axis] (-2.1,0)--(3.15,0) node[right,sollabel] {$x$};
+ \draw[solbody] (L)--(H)--(R);
+ \foreach \p in {L,H,R}{\fill[Ink] (\p) circle (2.5pt);}
+ \node[sollabel,below left=6pt] at (L) {$L,2m$}; \node[sollabel,below right=6pt] at (R) {$R,m$};
+ \node[sollabel,above=6pt] at (H) {$H,m$};
+ \node[sollabel,left=7pt] at ($(L)!.5!(H)$) {$l$};
+ \node[sollabel,right=7pt] at ($(R)!.5!(H)$) {$l$};
+ \draw[solgeom] (H)--(\xH,0);
+ \draw[TextGray] ($(H)+(-130:.65)$) arc (-130:-50:.65);
+ \node[sollabel] at ({\xH+.35},{\yH-.95}) {$\theta$};
+ \fill[DeepBlue] (0,{\yH/4}) circle (2pt) node[left=7pt,sollabel] {$C$};
+ \draw[solgeom] (0,0)--(0,{\yH/4});
+ \node[sollabel,below=6pt] at (0,0) {$O$};
+ \draw[solgeom] (L)--(\xL,-.9) (R)--(\xR,-.9);
+ \draw[<->,TextGray] (\xL,-.85)--(\xR,-.85) node[midway,below=4pt,sollabel] {$2l\sin(\theta/2)$};
+ \node[sollabel] at (.5,-1.6) {$x_C=0$；$C$ 的高度随杆张开而改变};
+\end{tikzpicture}
+\diagcaption{题图}{两等长轻杆在竖直平面内张开，三个球的水平质心保持不变。}\label{ch07:fig:probdiagThreeFifteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \pgfmathsetmacro{\ell}{3} \pgfmathsetmacro{\half}{40}
+ \pgfmathsetmacro{\span}{2*\ell*sin(\half)}
+ \pgfmathsetmacro{\xL}{-3*\span/8} \pgfmathsetmacro{\xH}{\span/8}
+ \pgfmathsetmacro{\xR}{5*\span/8} \pgfmathsetmacro{\yH}{\ell*cos(\half)}
+ \coordinate (L) at (\xL,0); \coordinate (H) at (\xH,\yH); \coordinate (R) at (\xR,0);
+ \draw[axis] (-2.1,0)--(3.15,0) node[right,sollabel] {$x$};
+ \draw[solbody] (L)--(H)--(R);
+ \foreach \p in {L,H,R}{\fill[Ink] (\p) circle (2.5pt);}
+ \node[sollabel,below left=6pt] at (L) {$L,2m$}; \node[sollabel,below right=6pt] at (R) {$R,m$};
+ \node[sollabel,above=6pt] at (H) {$H,m$};
+ \node[sollabel,left=7pt] at ($(L)!.5!(H)$) {$l$};
+ \node[sollabel,right=7pt] at ($(R)!.5!(H)$) {$l$};
+ \draw[solgeom] (H)--(\xH,0);
+ \draw[TextGray] ($(H)+(-130:.65)$) arc (-130:-50:.65);
+ \node[sollabel] at ({\xH+.35},{\yH-.95}) {$\theta$};
+ \fill[DeepBlue] (0,{\yH/4}) circle (2pt) node[left=7pt,sollabel] {$C$};
+ \draw[solgeom] (0,0)--(0,{\yH/4});
+ \node[sollabel,below=6pt] at (0,0) {$O$};
+ \draw[solgeom] (L)--(\xL,-.9) (R)--(\xR,-.9);
+ \draw[<->,TextGray] (\xL,-.85)--(\xR,-.85) node[midway,below=4pt,sollabel] {$2l\sin(\theta/2)$};
+ \node[sollabel] at (.5,-1.6) {$x_C=0$；$C$ 的高度随杆张开而改变};
+\end{tikzpicture}
+\diagcaption{解图}{等长杆给出 $x_H=(x_L+x_R)/2$，质心约束给出 $2x_L+x_H+x_R=0$。}\label{ch07:fig:soldiagThreeFifteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.73]
+  \draw[solbody] (-2.5,-1.55)--(2.75,-1.55);
+  \foreach \x in {-2.35,-2.0,...,2.6}{\draw[TextGray,line width=.35pt] (\x,-1.55)--++(-.15,-.18);}
+  \draw[solgeom] (.35,-1.55)--(.35,2.25);
+  \draw[solbody,fill=white] (.10,1.95) rectangle (.60,2.35); \node[sollabel,left=6pt] at (.1,2.15) {$M$};
+  \draw[solbody,fill=white] (.10,.10) rectangle (.60,.50);
+  \draw[solflow] (-2.25,.30)--(.05,.30) node[midway,above,sollabel] {$m,\ v$};
+  \draw[<->,draw=TextGray] (1.05,-1.55)--(1.05,2.15) node[midway,right,sollabel] {$H$};
+  \draw[<->,draw=TextGray] (1.72,-1.55)--(1.72,.30) node[midway,right,sollabel] {$h$};
+\end{tikzpicture}
+\diagcaption{题图}{物体下落至高度 $h$ 时被水平子弹击中并粘合。}\label{ch07:fig:probdiagThreeSixteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \node[solpanel] at (-2.5,3) {碰前动量};
+ \fill[Ink] (-2.3,1.6) circle (2.5pt);
+ \draw[solimpulse] (-3.8,1.6)--(-2.3,1.6) node[midway,above=5pt,sollabel] {$mv$};
+ \draw[solimpulse] (-2.3,1.6)--(-2.3,.35) node[midway,left=5pt,sollabel] {$Mu$};
+ \node[solpanel] at (2.4,3) {碰后：$V_x>0,\ V_y>0$（向下）};
+ \coordinate (Q) at (.3,2.2);
+ \draw[curve,domain=0:1,samples=70] plot ({.3+2.8*\x},{2.2-.9*\x-1.3*\x*\x});
+ \draw[solflow] (Q)--(1.42,2.2) node[midway,above=5pt,sollabel] {$V_x$};
+ \draw[solflow] (Q)--(.3,1.84) node[left=6pt,sollabel] {$V_y$};
+ \draw[solgeom] (Q)--(.3,0);
+ \draw[solbody] (-.1,0)--(3.7,0);
+ \draw[<->,DeepBlue] (.3,-.45)--(3.1,-.45) node[midway,below=4pt,sollabel] {$l=V_xT$};
+ \fill[Ink] (3.1,0) circle (2pt);
+\end{tikzpicture}
+\diagcaption{解图}{碰撞用二维动量守恒求 $V_x,V_y$，随后再用抛体运动求落点。}\label{ch07:fig:soldiagThreeSixteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeSeventeen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \coordinate (C) at (.5,0);
+ \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt},line width=.8pt] (-2.5,0)--(2.5,0);
+ \fill[Ink] (-2.5,0) circle (2.5pt); \fill[Ink] (2.5,0) circle (2.5pt);
+ \node[sollabel] at (-2.5,.7) {$m_1$}; \node[sollabel] at (2.5,.7) {$m_2$};
+ \draw[solgeom] (C)--(.5,.6); \node[sollabel] at (.5,1) {$C$：固定材料点};
+ \draw[solgeom] (-2.5,-.2)--(-2.5,-.8) (C)--(.5,-.8) (2.5,-.2)--(2.5,-.8);
+ \draw[<->,TextGray] (-2.5,-.65)--(.5,-.65) node[midway,below=4pt,sollabel] {$L_1$};
+ \draw[<->,TextGray] (.5,-.65)--(2.5,-.65) node[midway,below=4pt,sollabel] {$L_2$};
+ \node[sollabel] at (0,-1.4) {$m_1L_1=m_2L_2$};
+\end{tikzpicture}
+\diagcaption{解图}{零总动量使质心固定；固定点按反质量比分割弹簧瞬时长度。}\label{ch07:fig:soldiagThreeSeventeen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  % Draw the bowl as a closed rigid body, not just as an isolated circular arc.
+  \path[fill=SoftGray]
+    (-2.65,1.10)--(-2.65,-1.35)--(2.65,-1.35)--(2.65,1.10)--
+    (1.95,1.10) arc[start angle=0,end angle=-180,radius=1.95]--cycle;
+  \draw[solbody] (-2.65,1.10)--(-2.65,-1.35)--(2.65,-1.35)--(2.65,1.10);
+  \draw[solbody] (-2.65,1.10)--(-1.95,1.10) (1.95,1.10)--(2.65,1.10);
+  \draw[solbody] (-1.95,1.10) arc[start angle=180,end angle=360,radius=1.95];
+  \draw[solbody] (-3.05,-1.35)--(3.05,-1.35);
+  \foreach \x in {-2.9,-2.5,...,2.9}{\draw[TextGray,line width=.35pt] (\x,-1.35)--++(-.14,-.14);}
+  \fill[Ink] (1.95,1.10) circle (4pt) node[above=7pt,sollabel] {$m$};
+  \node[sollabel] at (2.16,.72) {$A$}; \node[sollabel] at (2.18,-.94) {$M$};
+  % The endpoint lies on the inner circular wall, so this segment is visibly a radius.
+  \draw[solgeom] (0,1.10)--({-1.95/sqrt(2)},{1.10-1.95/sqrt(2)}) node[midway,above left=4pt,sollabel] {$R$};
+  \fill[Ink] (0,1.10) circle (1.7pt);
+\end{tikzpicture}
+\diagcaption{题图}{质点从可水平移动的半球形碗右边缘由静止释放。}\label{ch07:fig:probdiagThreeEighteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.92]
+ % Example mass ratio M=m. Circle and trajectory share R, theta and X.
+ \pgfmathsetmacro{\rad}{2} \pgfmathsetmacro{\ang}{35}
+ \pgfmathsetmacro{\X}{\rad/2*(1-sin(\ang))}
+ \coordinate (C) at (\X,\rad);
+ \coordinate (A) at ({\X+\rad*sin(\ang)},{\rad*(1-cos(\ang))});
+ \draw[axis] (-2.4,0)--(3.1,0) node[right,sollabel] {$x$};
+ \draw[axis] (0,-.45)--(0,3.1) node[above,sollabel] {$y$};
+ \draw[solgeom] (-2,2) arc (180:360:2);
+ \draw[solbody] ({\X-2},2) arc (180:360:2);
+ \draw[curve,domain=90:35,samples=70] plot ({1+sin(\x)},{2*(1-cos(\x))});
+ \draw[solgeom] (C)--(A) (C)--(\X,0);
+ \draw[TextGray] ($(C)+(-90:.5)$) arc (-90:-55:.5);
+ \node[sollabel] at ({\X+.25},1.25) {$\theta$};
+ \node[sollabel,left=6pt] at ($(C)!.6!(A)$) {$R$};
+ \fill[Ink] (A) circle (2.5pt) node[right=7pt,sollabel] {$A$};
+ \fill[Ink] (2,2) circle (2pt) node[above right=5pt,sollabel] {$A_0$};
+ \node[sollabel,below left=5pt] at (0,0) {$O$};
+ \draw[solgeom] (0,2)--(0,2.6) (C)--(\X,2.6);
+ \draw[<->,TextGray] (0,2.5)--(\X,2.5) node[midway,above=4pt,sollabel] {$X$};
+ \node[sollabel] at (.2,-.9) {虚线为初始碗；实线为当前碗；蓝线为对地轨迹};
+\end{tikzpicture}
+\diagcaption{解图}{圆心、接触点和轨迹使用同一组参数；图取 $M=m$，一般关系见推导。}\label{ch07:fig:soldiagThreeEighteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeNineteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRain
+\diagcaption{解图}{雨水只增加质量，不带入水平动量；外力使总水平动量按 $Ft$ 增长。}\label{ch07:fig:soldiagThreeNineteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwenty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumPickup
+\diagcaption{解图}{提力同时承担已提起绳段的重量，并为新进入运动段的绳元提供动量。}\label{ch07:fig:soldiagThreeTwenty}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeTwentyOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumFallingRope
+\diagcaption{题图}{柔绳上端释放后自由下落，绳元依次落到秤盘上并停止。}\label{ch07:fig:probdiagThreeTwentyOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyOne}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRopeLoad
+\diagcaption{解图}{秤盘既承受已落绳段的重量，也要连续吸收下落绳元的动量。}\label{ch07:fig:soldiagThreeTwentyOne}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyTwo}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumAccretion
+\diagcaption{解图}{静止介质进入运动物体时要被加速，形成随 $v^2$ 增长的动量流项。}\label{ch07:fig:soldiagThreeTwentyTwo}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyThree}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumDroplet
+\diagcaption{解图}{半径增长扩大迎风面积，质量增长又改变速度；三者通过动量流彼此耦合。}\label{ch07:fig:soldiagThreeTwentyThree}\end{minipage}\end{center}}
+
+
+由动量定理可知，一个力学系统在某段过程中的总动量变化，等于外力在该过程中的总冲量，
+与内力无关。因此，当系统所受合外力为零时，总动量不发生变化，这就是动量守恒。它是
+动量定理的直接推论，却包含十分丰富的内容：不必知道系统内部各物体间作用力的大小和
+变化过程，也能把运动前后的总体状态联系起来。在实际问题中，动量守恒常有以下三种
+表现形式。
+
+\textbf{孤立系统}\quad 不受任何外力作用的力学系统称为孤立系统。孤立系统的总动量
+必然守恒。动量是矢量，因此在三维空间中，动量守恒可分别给出三个方向上的独立方程；
+每一时刻的三个动量分量都分别等于相应的初始分量。
+
+\textbf{分动量守恒}\quad 严格的孤立系统在现实中很少见，但若系统在某个特定方向上的
+合外力为零，则该方向上的总动量分量守恒；其他方向的动量仍可以发生变化。
+
+\textbf{碰撞瞬间的动量守恒}\quad 在冲击或碰撞的极短时间内，碰撞力远大于重力、普通
+摩擦力等外力。这些有限外力的冲量与碰撞冲量相比可以忽略，因而碰撞前后的总动量近似
+守恒。这里的“守恒”只针对碰撞持续的极短过程，不能把它延伸到碰后受外力作用的整个
+运动阶段。
+
+动量守恒虽然是动量定理的特殊情形，却能够把复杂内力全部消去，是处理多物体运动、
+碰撞、质心运动和变质量吸附问题的基本工具。
+
+\subsection{总动量守恒}
+
+自然界中的物体总与外界存在相互作用，所以一个系统能否近似看成孤立系统，取决于所研究
+问题的时间尺度和精度。例如，在某些问题中地球和月球可以近似看成孤立系统；但若太阳
+引力的影响不可忽略，就必须扩大研究系统或计入太阳的外力冲量。一旦系统可近似视为孤立
+系统，它的总动量三个分量均守恒，而与内力的形式、大小无关。换言之，“是否孤立”不是
+脱离题目精度的绝对判断，而是针对指定对象、指定过程和指定精度作出的物理近似。
+
+\subsubsection*{守恒条件、碰撞与质心系}
+
+系统某方向的合外力始终为零，该方向的总动量才在整个过程中保持不变。若仅知道某段时间的
+总外冲量为零，只能直接推出这段时间起点与终点的动量相等，中间可以变化。例如物块在光滑
+水平面内碰撞，水平方向无外力；竖直方向虽有支持力，但支持力可与重力抵消，不能因为存在
+支持力就断言竖直动量不守恒。列式前必须明确系统边界、方向及所研究的时间段。
+
+动能定义为 $K=mv^2/2$；它是标量，不是动量的另一个名称。一维碰撞通常还需要恢复系数
+\begin{equation}
+ e=\frac{\text{分离相对速度}}{\text{接近相对速度}}
+ =\frac{v_2-v_1}{u_1-u_2},\qquad 0\leq e\leq1,
+\end{equation}
+与动量守恒共同确定碰后速度。$e=1$ 为完全弹性碰撞，系统动能也守恒；$e=0$ 时两物体具有相同
+末速度，是完全非弹性碰撞。一般碰撞中动能减少量转化为形变、内能和声能，不能把动能不守恒
+误说成能量不守恒。
+
+质心速度 $\vec V_C=\vec P/M$。把每个质点速度分解成 $\vec v_i=\vec V_C+\vec v_i'$，其中
+$\vec v_i'$ 是相对质心的速度。由定义
+\[
+ \sum_i m_i\vec v_i'=\sum_i m_i\vec v_i-M\vec V_C=0.
+\]
+逐项展开速度平方，系统动能为
+\[
+ T=\sum_i\frac12m_i(V_C^2+2\vec V_C\cdot\vec v_i'+{v_i'}^2)
+ =\frac12MV_C^2+\vec V_C\cdot\sum_i m_i\vec v_i'+\sum_i\frac12m_i{v_i'}^2.
+\]
+中间交叉项为零，故
+\begin{equation}
+ T=\frac12MV_C^2+\sum_i\frac12m_i{v_i'}^2.
+\end{equation}
+第一项是整体平动动能，第二项是质心系中的相对运动动能。无外力时 $\vec V_C$ 不变，碰撞只会
+重新分配或耗散第二项。这个分解能直接给出：在总动量一定时，所有部分共同以质心速度运动时
+总动能最小；完全非弹性碰撞的动能损失因此最大。
+
+爆炸与非弹性碰撞的能量转化方向不同，但不意味着一般非弹性碰撞能够严格逆演。
+若爆炸时间很短，可忽略外冲量，总动量仍守恒，但内部储存的化学能或弹性
+势能会使动能增加。解题时先在方便的惯性系中写动量关系，再用相对速度或能量条件闭合；在质心
+系中各碎片总动量始终为零，几何关系通常最清楚。
+
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-13}
+地球和所有地球上的物体可以看成近似的孤立系统，理应满足动量守恒。然而一个人从地面
+跳起时，他的动量发生了改变。如何解释这一现象？
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+只把人作为研究对象时，他受到地面的支持力冲量，因此人的动量当然可以改变。若把“人和
+地球”作为完整系统，人与地面之间的作用力属于内力，系统总动量仍守恒。
+
+设人起跳后获得向上的动量 $p=mv$。忽略外界冲量，地球必获得大小相等、方向相反的动量：
+\[
+ mv+M_{\rm E}V_{\rm E}=0,
+ \qquad
+ V_{\rm E}=-\frac{m}{M_{\rm E}}v.
+\]
+动量交换过程见图~\ref{ch07:fig:soldiagThreeThirteen}。
+
+\soldiagThreeThirteen
+由于地球质量 $M_{\rm E}$ 极大，它的反冲速度极小，日常观察中难以觉察；但地球的反冲
+动量并不为零。人与地球之间的重力同样是系统内力，人在空中运动时总动量仍保持不变。
+\end{xesolution}
+
+\subsection{动量的分量守恒}
+
+动量是矢量。若系统在某一方向上的合外力为零，则动量定理在该方向上给出
+\[
+ \Delta P_{\parallel}=I_{\parallel}^{\rm ext}=0,
+\]
+即该方向的总动量分量守恒。判断时必须先明确研究系统和方向；“系统受到外力”并不等于
+“每个方向的动量都不守恒”。
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-14}
+水平面上有多个物体构成的系统，它们与水平面之间均无摩擦，且始终被约束在该水平面内运动。
+除重力和水平面的支持力外，物体只受系统内部的相互作用力，不受其他外力。开始时所有物体
+均处于静止状态。证明：在此后的运动过程中，系统质心位置保持不变。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设各物体质量、水平坐标分别为 $m_i,x_i$，总质量为 $M=\sum_i m_i$。系统在水平方向
+不受外力，且初始总动量为零，因此
+\[
+ P_x=\sum_i m_i\dot x_i=0.
+\]
+质心水平坐标为
+\[
+ x_C=\frac{\sum_i m_ix_i}{M},
+\]
+所以
+\[
+ \dot x_C=\frac{1}{M}\sum_i m_i\dot x_i
+ =\frac{P_x}{M}=0.
+\]
+图~\ref{ch07:fig:soldiagThreeFourteen}中，水平总动量初值为零，故质心的水平速度始终为零。
+\soldiagThreeFourteen
+由此得到
+\[
+ \boxed{x_C=\text{常量}}.
+\]
+重力和支持力是竖直方向的外力，它们不影响水平方向的分动量守恒。题目所说的“质心位置”
+应理解为水平面内的质心位置；竖直坐标由平面约束保持不变。
+\end{xesolution}
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-15}
+如图，两根长度均为 $l$、质量可忽略的轻杆，一端通过质量为 $m$ 的球形铰链连接，另一端
+分别接有质量为 $m$ 和 $2m$ 的小球。将两杆并拢，铰链向上放在桌上，然后轻敲一下使两
+小球向两边滑动。两杆始终在竖直平面内，所有摩擦均忽略。建立图示坐标系，初始时铰链
+位于 $x=0$，求两杆夹角为 $90^\circ$ 以及完全展开成水平状态时，质量为 $2m$ 的小球位置。
+图~\ref{ch07:fig:probdiagThreeFifteen}中，两等长轻杆在竖直平面内张开，三个球的水平质心保持不变。
+\probdiagThreeFifteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+记左侧 $2m$ 小球、铰链和右侧 $m$ 小球的横坐标分别为 $x_L,x_H,x_R$。系统水平方向
+无外力，且初始静止、质心在 $x=0$，所以始终有
+\begin{equation}\label{ch07:eq:rods-com}
+ 2m x_L+m x_H+m x_R=0.
+\end{equation}
+两杆等长，铰链总在两个下端点连线的中垂线上，因此
+\begin{equation}\label{ch07:eq:rods-midpoint}
+ x_H=\frac{x_L+x_R}{2}.
+\end{equation}
+若两杆夹角为 $\theta$，两个下端点间距为
+\begin{equation}\label{ch07:eq:rods-span}
+ x_R-x_L=2l\sin\frac{\theta}{2}.
+\end{equation}
+几何关系和质心约束见图~\ref{ch07:fig:soldiagThreeFifteen}。
+
+\soldiagThreeFifteen
+把式\eqref{ch07:eq:rods-midpoint}代入式\eqref{ch07:eq:rods-com}并除以 $m/2$，得
+$5x_L+3x_R=0$，即 $x_R=-5x_L/3$。再代入式\eqref{ch07:eq:rods-span}，有
+$-8x_L/3=2l\sin(\theta/2)$，得到
+\[
+ x_L=-\frac{3l}{4}\sin\frac{\theta}{2}.
+\]
+因此，夹角为 $90^\circ$ 时
+\[
+ \boxed{x_L=-\frac{3\sqrt2}{8}l},
+\]
+完全展开成水平状态，即 $\theta=180^\circ$ 时
+\[
+ \boxed{x_L=-\frac34l}.
+\]
+负号表示质量为 $2m$ 的小球位于原点左侧。铰链并不保持在 $x=0$；由于左右端质量不同，
+它会向较轻的右侧移动，以维持系统质心不动。
+\end{xesolution}
+
+\subsection{冲击、碰撞过程中的动量守恒}
+
+碰撞时间极短时，重力等有限外力的冲量可以忽略，系统在碰撞前后的总动量近似守恒。
+碰撞结束后的后续运动则仍须按正常的动力学规律处理，不能把“碰撞瞬间守恒”无限延长到
+整个运动过程。
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-16}
+质量为 $M$ 的质点 $A$ 从距水平面高 $H$ 处由静止开始自由下落。当它下落到距地面高 $h$
+处时，被一颗质量为 $m$、沿水平方向以速度 $v$ 飞行的子弹击中。碰撞时间极短，子弹最终
+停留在 $A$ 内部。求 $A$ 的落地点与未被击中时下落点之间的距离 $l$。
+图~\ref{ch07:fig:probdiagThreeSixteen}中，物体下落至高度 $h$ 时被水平子弹击中并粘合。
+\probdiagThreeSixteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+物体落到高度 $h$ 时，碰前竖直速度大小为
+\[
+ u=\sqrt{2g(H-h)}.
+\]
+在碰撞的极短时间内，重力冲量可以忽略。取水平向右、竖直向下为正，分别应用两方向的
+动量守恒：
+\[
+ mv=(M+m)V_x,
+ \qquad
+ Mu=(M+m)V_y.
+\]
+所以粘合体碰后速度分量为
+\[
+ V_x=\frac{mv}{M+m},
+ \qquad
+ V_y=\frac{M}{M+m}\sqrt{2g(H-h)}.
+\]
+碰撞与后续抛体运动的衔接见图~\ref{ch07:fig:soldiagThreeSixteen}。
+
+\soldiagThreeSixteen
+设碰后到落地的时间为 $T$，则
+\[
+ h=V_yT+\frac12gT^2,
+\]
+取正根
+\[
+ T=\frac{\sqrt{V_y^2+2gh}-V_y}{g}.
+\]
+未被击中时物体沿原竖直线落地，因此所求距离就是碰后的水平位移：
+\[
+ \boxed{
+ l=\frac{mv}{(M+m)g}
+ \left[
+ \sqrt{\frac{2M^2g(H-h)}{(M+m)^2}+2gh}
+ -\frac{M}{M+m}\sqrt{2g(H-h)}
+ \right]}.
+\]
+子弹嵌入说明碰撞是完全非弹性的，碰撞过程中机械能不守恒；本题只使用动量守恒确定
+碰后初速度，再用运动学求落点。
+\end{xesolution}
+
+\section{质心系与动量分解}
+
+考虑由 $N$ 个质点组成的系统，第 $i$ 个质点的质量和位置分别为 $m_i$、$\vec x_i$。
+系统质心位置定义为
+\begin{equation}
+ \vec x_C=\frac{\sum_{i=1}^{N}m_i\vec x_i}{\sum_{i=1}^{N}m_i}.
+\end{equation}
+记总质量 $M=\sum_i m_i$，系统总动量为
+\begin{equation}
+ \vec P=\sum_{i=1}^{N}m_i\vec v_i
+ =\frac{\dd}{\dd t}\left(\sum_{i=1}^{N}m_i\vec x_i\right)
+ =M\frac{\dd\vec x_C}{\dd t}=M\vec v_C.
+\end{equation}
+因此，总动量也可以看成总质量与质心速度的乘积。若系统动量守恒，质心速度保持不变；
+不受外力的系统质心或者静止，或者作匀速直线运动，具体由初始质心速度决定。
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-17}
+两个质量分别为 $m_1,m_2$ 的质点由劲度系数为 $k$、原长为 $l_0$ 的轻弹簧连接。开始时
+把弹簧拉长到 $l>l_0$ 后静止释放。在此后的运动中，弹簧上是否存在一个位置始终不变的点？
+两质点在光滑水平直线上运动，弹簧均匀且质量忽略，不受其他水平外力。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+系统只受内力，且初始总动量为零，所以质心位置始终不变。设两个质点的位置为 $x_1,x_2$，
+则固定点就是系统质心
+\[
+ x_C=\frac{m_1x_1+m_2x_2}{m_1+m_2}.
+\]
+把它写成沿弹簧从 $m_1$ 端起的分点形式：
+\[
+ x_C=x_1+\frac{m_2}{m_1+m_2}(x_2-x_1).
+\]
+图~\ref{ch07:fig:soldiagThreeSeventeen}中，零总动量使质心固定；固定点按反质量比分割弹簧瞬时长度。
+\soldiagThreeSeventeen
+因此，在理想轻弹簧各段均匀伸缩的模型下，弹簧上确有一点始终不动。该点把弹簧的瞬时
+长度分成
+\[
+ \boxed{L_1:L_2=m_2:m_1}.
+\]
+这里“始终不变”指相对地面的位置不变。均匀无质量弹簧内部张力在同一时刻处处相同，
+各段单位原长的伸长相同，所以同一材料点占总长度的比例不变。选取原长分数为
+$m_2/(m_1+m_2)$ 的材料点，其位置恰等于 $x_C$，这才把固定质心与弹簧上的点联系起来。
+若不假定均匀形变，只能由动量守恒断言质心位置固定，不能仅凭端点运动确认同一个材料点固定。
+\end{xesolution}
+
+\Needspace{0.36\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-18}
+质量为 $M$、半径为 $R$ 的球形碗放在光滑水平面上。质量为 $m$ 的质点 $A$ 开始时位于
+碗的边缘，由静止释放。求 $A$ 在下落过程中相对地面的运动轨迹。
+图~\ref{ch07:fig:probdiagThreeEighteen}中，质点从可水平移动的半球形碗右边缘由静止释放。
+\probdiagThreeEighteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+在地面惯性系中，取初始碗最低点为 $O$，$x$ 轴水平向右、$y$ 轴竖直向上；碗只作水平
+平移，最低点的高度始终为零。设碗中心由 $(0,R)$ 移到 $(X,R)$，用 $\theta$ 表示从中心
+指向质点的半径与竖直向下方向的夹角。质点相对碗的水平坐标和对地高度分别为
+\[
+ x_{A/M}=R\sin\theta,
+ \qquad
+ y_A=R(1-\cos\theta).
+\]
+释放点在右边缘，初态 $X=0$、$\theta=\pi/2$。系统水平方向质心不动，因此
+\[
+ MX+m(X+R\sin\theta)=mR.
+\]
+解得碗和质点的对地横坐标
+\[
+ X=\frac{mR}{M+m}(1-\sin\theta),
+\]
+\[
+ x_A=X+R\sin\theta
+ =\frac{R}{M+m}(m+M\sin\theta).
+\]
+参数与质心约束见图~\ref{ch07:fig:soldiagThreeEighteen}。
+
+\soldiagThreeEighteen
+消去 $\theta$，得到轨迹方程
+\[
+ \boxed{
+ \left(\frac{(M+m)x_A-mR}{MR}\right)^2
+ +\left(1-\frac{y_A}{R}\right)^2=1}.
+\]
+因此，质点相对地面的轨迹不是圆弧，而是椭圆的一段；其水平半轴为 $MR/(M+m)$，竖直
+半轴为 $R$。碗质量 $M\to\infty$ 时，水平半轴趋于 $R$，轨迹才退化为近似固定圆弧。
+\end{xesolution}
+
+如果一个系统的运动变化完全由内力引起，那么系统质心的运动状态与先前相同。这一结论
+不仅适用于弹簧和可移动曲面，也适用于行星系统等更复杂的多体系统。把太阳与行星作为系统，
+在忽略外部天体引力的精度内，可近似使用总动量守恒。太阳的质量远大于各行星，因而它绕
+系统质心的运动通常较小，入门计算常把太阳近似固定；但精细计算时不能把这个近似当作严格
+事实。在质心系中 $M_\odot\vec v_\odot+\sum_i m_i\vec v_i=0$，行星动量改变时，
+太阳的动量也随之改变，太阳并非完全不动。
+
+\subsection{从封闭系统看质量交换}
+
+汽车可能不断吸收雨水，运动物体也可能吸附周围介质。首先只做代数展开：
+\begin{equation}
+ \Delta(m\vec v)=\vec v\,\Delta m+m\,\Delta\vec v
+ +\Delta m\,\Delta\vec v.
+\end{equation}
+忽略二阶小量并取连续极限，得到 $\dd(m\vec v)=\vec v\,\dd m+m\,\dd\vec v$。
+这只是乘积的微分规则，\textbf{不能一般地将变质量物体的动量变化等同于外力冲量}。
+设时间 $\dd t$ 内有质量 $\dd m>0$ 的物质以地面系速度 $\vec u_{\rm in}$ 被吸收。
+选择“物体及将要被吸收的这部分物质”为同一批物质，动量定理给出
+\[
+ m\vec v+\vec u_{\rm in}\dd m+\vec F_{\rm ext}\dd t
+ =(m+\dd m)(\vec v+\dd\vec v).
+\]
+展开、略去二阶项并除以 $\dd t$，得到
+\begin{equation}\label{ch07:eq:accretion-balance}
+ \frac{\dd(m\vec v)}{\dd t}
+ =\vec F_{\rm ext}+\vec u_{\rm in}\frac{\dd m}{\dd t}.
+\end{equation}
+只有新物质在所研究方向上原来速度为零，右侧该方向的动量通量才为零。下面先研究这类
+吸附问题，随后再推导同时包含流入和流出的通式。
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-19}
+在雨中用恒力 $F$ 推一个初始质量为 $M$、截面积为 $S$ 的容器。一个静止在地面的同样
+容器，单位时间内水位上升 $\Delta h$。不计雨水对容器前方的阻力，水的密度为 $\rho$。
+用 $\tau$ 表示这里的一个单位时间，即静止容器在时长 $\tau$ 内水位上升 $\Delta h$。
+容器从静止开始受推力，求经过 $3\tau$ 后的速度。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+雨水竖直下落，进入容器前的水平动量为零。雨水质量流率为
+\[
+ q=\frac{\rho S\Delta h}{\tau}.
+\]
+故运动容器在时刻 $t$ 的总质量为
+\[
+ m(t)=M+qt.
+\]
+取水平方向为正，把“容器加上已收集的雨水”作为变质量系统。外力的水平冲量全部转化为
+系统水平动量：
+\[
+ \frac{\dd}{\dd t}[m(t)v(t)]=F.
+\]
+由初始静止条件积分得
+\[
+ [M+qt]v=Ft,
+ \qquad
+ v(t)=\frac{Ft}{M+qt}.
+\]
+质量流与水平动量的关系见图~\ref{ch07:fig:soldiagThreeNineteen}。
+
+\soldiagThreeNineteen
+在一般式中代入 $t=3\tau$ 和上述质量流率，得到
+\[
+ \boxed{v(3\tau)=\frac{3F\tau}{M+3\rho S\Delta h}}.
+\]
+若要求经过任意时长 $t$，则保留一般式
+\[
+ \boxed{v(t)=\frac{Ft}{M+(\rho S\Delta h/\tau)t}}.
+\]
+雨水虽没有带来水平动量，却不断增加需要加速的质量，所以速度小于质量恒为 $M$ 时的
+$3F\tau/M$。分子 $F\tau$ 是冲量，除以质量后确为速度。若容器初速度为 $v_i$，
+积分常数改为 $Mv_i$，于是 $v(t)=(Mv_i+Ft)/(M+qt)$；不能无说明地省略初始动量。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-20}
+长度为 $l$、质量为 $m$ 的柔软绳放在水平桌面上。用手将绳的一端以恒定速度 $v$ 向上
+提起。求提起高度为 $x$（$x<l$）时手的提力。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+绳的线密度为 $\lambda=m/l$。当竖直段长度为 $x$ 时，运动部分质量为 $\lambda x$；绳以
+速率 $v$ 从静止的桌面部分进入竖直运动部分，所以质量流率为
+\[
+ \frac{\dd m_{\rm mov}}{\dd t}=\lambda v.
+\]
+竖直运动部分的动量为
+\[
+ p=(\lambda x)v.
+\]
+由于 $\dot x=v$ 且 $v$ 恒定，
+\[
+ \frac{\dd p}{\dd t}=\lambda v^2.
+\]
+对竖直运动段列动量方程，手的提力减去该段重力等于动量增加率：
+\[
+ F-\lambda xg=\lambda v^2.
+\]
+图~\ref{ch07:fig:soldiagThreeTwenty}中，提力同时承担已提起绳段的重量，并为新进入运动段的绳元提供动量。
+\soldiagThreeTwenty
+因此
+\[
+ \boxed{F=\frac{m}{l}(gx+v^2)}.
+\]
+其中 $\lambda gx$ 用来平衡已提起绳段的重力，$\lambda v^2$ 用来把单位时间新提起的绳元
+从静止加速到速度 $v$。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-21}
+如图，一根质量为 $m$、长为 $l$ 的柔软绳自由悬垂，下端恰与秤盘接触。某时刻放开柔软
+绳上端，求台秤在任意时刻的读数以及读数的最大值。
+图~\ref{ch07:fig:probdiagThreeTwentyOne}中，柔绳上端释放后自由下落，绳元依次落到秤盘上并停止。
+\probdiagThreeTwentyOne
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设释放后绳上端下降距离为 $x$，落到秤盘上的绳长也为 $x$；尚在运动的竖直绳段作自由
+落体，速度满足
+\[
+ v^2=2gx,
+ \qquad
+ x=\frac12gt^2
+ \quad\left(0\le t<\sqrt{\frac{2l}{g}}\right).
+\]
+线密度 $\lambda=m/l$。秤盘读数由两部分组成：已经静止在盘上的绳段重力 $\lambda xg$，
+以及单位时间使落下绳元停止所需的动量流 $\lambda v^2$。因此
+\[
+ N=\lambda xg+\lambda v^2
+ =3\lambda gx.
+\]
+两项来源见图~\ref{ch07:fig:soldiagThreeTwentyOne}。
+
+\soldiagThreeTwentyOne
+在全部绳落完之前，
+\[
+ \boxed{N(t)=\frac{3mg^2t^2}{2l}},
+ \qquad
+ 0\le t<\sqrt{\frac{2l}{g}}.
+\]
+最后一段绳刚要落到秤盘前，$x\to l$，读数达到
+\[
+ \boxed{N_{\max}=3mg}.
+\]
+理想模型中最后一段停止后，冲击过程结束，整根绳静止在秤盘上，读数回到 $mg$。因此
+$3mg$ 是落绳过程中瞬时读数的上限，而不是最终静止读数。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-22}
+在密度为 $\rho$ 的均匀介质中，一个截面积为 $S$ 的物体下落。物体能吸附所有与它相遇的
+静止介质粒子，因而质量变化不可忽略。列出物体速度和质量随时间变化的方程，并定性分析
+它的运动；不要求求解。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取竖直向下为正。物体在时间 $\dd t$ 内扫过体积 $Sv\dd t$，故吸附质量为
+\[
+ \dd m=\rho Sv\dd t,
+ \qquad
+ \boxed{\frac{\dd m}{\dd t}=\rho Sv}.
+\]
+介质粒子吸附前在地面参考系中静止，不携带初始动量；系统受到的外力只有重力，所以
+\[
+ \boxed{\frac{\dd(mv)}{\dd t}=mg}.
+\]
+展开得速度方程
+\[
+ \boxed{m\frac{\dd v}{\dd t}=mg-\rho Sv^2}.
+\]
+动量流关系见图~\ref{ch07:fig:soldiagThreeTwentyTwo}。
+
+\soldiagThreeTwentyTwo
+吸附静止粒子产生的 $\rho Sv^2$ 项使加速度不大于 $g$，但仅凭这一点不能断言速度总增加。
+进一步取初始质量 $m_0$、初速度为零，并令 $k=\rho S$。令 $y=v^2$，在 $v>0$ 的时段消去时间：
+\[
+ \frac{\dd y}{\dd m}=\frac{2v\dot v}{\dot m}
+ =\frac{2g}{k}-\frac{2y}{m},\qquad
+ \frac{\dd}{\dd m}(m^2y)=\frac{2g}{k}m^2.
+\]
+从 $(m_0,0)$ 积分到 $(m,y)$，得 $m^2y=2g(m^3-m_0^3)/(3k)$，故
+\[
+ v^2=\frac{2g}{3k}\left(m-\frac{m_0^3}{m^2}\right).
+\]
+代回加速度式，$a=g/3+2g(m_0/m)^3/3>0$。所以对从静止出发的这一解，质量、速度均增加，
+加速度从 $g$ 降低。当 $m$ 很大时，$v^2\sim2gm/(3k)$，速度并不趋于有限的终端值；加速度逐渐趋近
+\[
+ \boxed{a\to\frac{g}{3}}.
+\]
+这个极限补充了题设所要求的定性分析，并不是说物体作匀速运动。
+若初始已有向下速度 $v_i$，则应加上初值项
+$v^2=2gm/(3k)+m_0^2[v_i^2-2gm_0/(3k)]/m^2$。当 $kv_i^2>m_0g$ 时，初始阶段反而减速。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s08-3-23}
+球状小水滴在静止且密度均匀的雾气中下落，并吸附全部遇到的水分子。水滴始终保持球形，
+忽略空气阻力，重力加速度取恒定值 $g$。列出下落过程中水滴的质量、速度、半径所满足的
+方程，并定性分析水滴运动；不要求求解运动方程。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+记雾气中水分子的质量密度为 $\rho_f$，液态水的密度为 $\rho_w$，水滴半径、质量、下落
+速度分别为 $r,m,v$。球形条件给出
+\[
+ \boxed{m=\frac43\pi\rho_w r^3}.
+\]
+水滴迎风截面积为 $\pi r^2$，所以吸附质量率为
+\[
+ \boxed{\frac{\dd m}{\dd t}=\rho_f\pi r^2v}.
+\]
+吸附前的雾滴静止，竖直动量方程仍为
+\[
+ \boxed{\frac{\dd(mv)}{\dd t}=mg}.
+\]
+将质量—半径关系代入质量增长方程，得到
+\[
+ \boxed{\frac{\dd r}{\dd t}=\frac{\rho_f}{4\rho_w}v}.
+\]
+展开动量方程还可写成
+\[
+ \boxed{
+ \frac{\dd v}{\dd t}
+ =g-\frac{3\rho_f}{4\rho_w r}v^2}.
+\]
+三个量之间的反馈关系见图~\ref{ch07:fig:soldiagThreeTwentyThree}。
+
+\soldiagThreeTwentyThree
+因此，在向下运动时，水滴下落越快，吸附质量越快；但速度是否增长还要看初值。
+令 $\alpha=\rho_f/(4\rho_w)$，若初始半径为 $r_0$、初速度为零，令 $y=v^2$，由
+$\dot r=\alpha v$ 和 $\dot v=g-3\alpha v^2/r$ 得到
+\[
+ \frac{\dd y}{\dd r}=\frac{2g}{\alpha}-\frac{6y}{r},\qquad
+ \frac{\dd}{\dd r}(r^6y)=\frac{2g}{\alpha}r^6.
+\]
+积分给出 $r^6y=2g(r^7-r_0^7)/(7\alpha)$，即
+\[
+ v^2=\frac{2g}{7\alpha}\left(r-\frac{r_0^7}{r^6}\right).
+\]
+代回速度方程得 $a=g/7+6g(r_0/r)^7/7>0$。所以这一初值下半径、质量和速度都增加，
+加速度从 $g$ 下降。长时间后 $v^2\propto r$，速度不会趋于有限终端值，而加速度趋近
+\[
+ \boxed{a\to\frac{g}{7}}.
+\]
+题设没有另给液态水密度，记液态水密度为常量 $\rho_w$，以便把质量与半径的关系写完整。
+若初始速度为 $v_i$，积分常数改为 $r_0^6[v_i^2-2gr_0/(7\alpha)]$；当
+$3\alpha v_i^2/r_0>g$ 时，水滴起初减速。$\alpha$ 无量纲，$gr/\alpha$ 的量纲为速度平方。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/ninth-section/}}
+\section{变质量系统}
+% Original problem figures and added solution diagrams for Section 3.3.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+% Shared geometry for repeated momentum problems. Captions remain at call sites.
+\newcommand{\momentumRain}{%
+\begin{tikzpicture}[scale=.78]
+  \fill[Blue!8] (-1.2,-.65) rectangle (1.2,-.12);
+  \draw[solbody] (-1.2,.7)--(-1.2,-.65)--(1.2,-.65)--(1.2,.7);
+  \foreach \x in {-.9,-.45,0,.45,.9}{\draw[solflow] (\x,1.55)--(\x,.86);}
+  \node[sollabel] at (0,2.05) {$q=\rho S\Delta h/\tau$，雨水水平速度为零};
+  \node[sollabel] at (0,-1.15) {$m(t)=M+qt$};
+  \draw[solforce] (1.2,-.38)--(2.55,-.38) node[midway,below=3pt,sollabel] {$F$};
+  \draw[solflow] (1.6,.52)--(2.8,.52) node[midway,above=3pt,sollabel] {$v$};
+\end{tikzpicture}}
+
+\newcommand{\momentumPickup}{%
+\begin{tikzpicture}[scale=.8]
+  \draw[solbody] (-2,0)--(2.5,0);
+  \draw[DeepBlue,line width=1.2pt] (-1.8,0)--(-.15,0)
+    .. controls (-.05,0) and (0,.05) .. (0,.15)--(0,2.4);
+  \fill[Ink] (0,2.4) circle (2pt);
+  \draw[solforce] (0,2.4)--(0,3.3) node[left=3pt,sollabel] {$F$};
+  \draw[solforce] (-.65,1.65)--(-.65,.7) node[midway,left=3pt,sollabel] {$\lambda xg$};
+  \draw[solflow] (.65,1.1)--(.65,2.1) node[midway,right=3pt,sollabel] {$v$};
+  \draw[solgeom] (0,2.4)--(1.8,2.4);
+  \draw[<->,draw=TextGray] (1.8,0)--(1.8,2.4) node[midway,right=3pt,sollabel] {$x$};
+  \node[sollabel] at (-1.0,-.38) {静止绳段};
+  \node[sollabel] at (0,-.95) {$\dot m_{\rm mov}=\lambda v$，新增动量率 $\lambda v^2$};
+\end{tikzpicture}}
+
+\newcommand{\momentumFallingRope}{%
+\begin{tikzpicture}[scale=.78]
+  \draw[solbody] (-.45,3)--(.45,3);
+  \foreach \x in {-.4,-.2,0,.2,.4}{\draw[TextGray] (\x,3)--++(.12,.14);}
+  \draw[solgeom] (0,3)--(0,2.1);
+  \draw[DeepBlue,line width=1.1pt] (0,2.1)--(0,.28)
+    .. controls (0,.08) and (-.15,.08) .. (-.3,.08);
+  \draw[DeepBlue,line width=1.1pt,domain=-.3:1.6,samples=120]
+    plot ({\x},{.08+.08*sin((\x+.3)*720)});
+  \draw[solbody] (-.75,0)--(1.9,0);
+  \draw[solgeom] (-.7,3)--(0,3) (-.7,2.1)--(0,2.1);
+  \draw[<->,draw=TextGray] (-.7,2.1)--(-.7,3) node[midway,left=3pt,sollabel] {$x$};
+  \draw[solflow] (.55,1.8)--(.55,.9) node[midway,right=3pt,sollabel] {$v$};
+  \node[sollabel,anchor=west] at (.65,2.8) {虚线：上端已下降的距离};
+  \node[sollabel,anchor=west] at (1.15,1.5) {$l-x$：仍在下落的绳长};
+  \node[sollabel] at (.4,-.4) {秤盘；堆积绳段长度为 $x$};
+\end{tikzpicture}}
+
+\newcommand{\momentumRopeLoad}{%
+\begin{tikzpicture}[scale=.78]
+  \draw[DeepBlue,line width=1.1pt] (0,2)--(0,.28)
+    .. controls (0,.08) and (-.15,.08) .. (-.3,.08);
+  \draw[DeepBlue,line width=1.1pt,domain=-.3:1.8,samples=120]
+    plot ({\x},{.08+.08*sin((\x+.3)*720)});
+  \draw[solbody] (-.65,0)--(2.05,0);
+  \draw[solflow] (.55,1.7)--(.55,.85) node[midway,right=3pt,sollabel] {$v$};
+  \draw[solforce] (.45,0)--(.45,-1.0) node[below=3pt,sollabel] {$\lambda xg$};
+  \draw[solforce] (1.6,0)--(1.6,-1.0) node[below=3pt,sollabel] {$\lambda v^2$};
+  \node[sollabel,anchor=west,align=left] at (2.7,1.15)
+    {秤盘承受的向下作用\\$N=\lambda xg+\lambda v^2$\\第二项来自使绳元停止};
+\end{tikzpicture}}
+
+\newcommand{\momentumAccretion}{%
+\begin{tikzpicture}[scale=.8]
+  \draw[solbody,fill=SoftGray] (-.8,0) rectangle (.8,.9);
+  \draw[solforce] (-.2,.45)--(-.2,-.85) node[below=3pt,sollabel] {$mg$};
+  \draw[solflow] (1.25,.7)--(1.25,-.25) node[midway,right=3pt,sollabel] {$v$};
+  \foreach \x in {-1.3,-.85,-.4,.05,.5,.95,1.4}{\fill[TextGray] (\x,-1.55) circle (1.5pt);}
+  \node[sollabel] at (0,-1.95) {地面系中静止的介质};
+  \draw[<->,TextGray] (-.8,1.3)--(.8,1.3) node[midway,above=3pt,sollabel] {截面积 $S$};
+  \node[sollabel,anchor=west,align=left] at (2.3,.8)
+    {$\dot m=\rho Sv$\\$\dd(mv)/\dd t=mg$\\$m\dot v=mg-\rho Sv^2$};
+\end{tikzpicture}}
+
+\newcommand{\momentumDroplet}{%
+\begin{tikzpicture}[scale=.8]
+  \draw[solbody,fill=Blue!8] (0,.5) circle (.7);
+  \fill[Ink] (0,.5) circle (1.5pt);
+  \draw[solgeom] (0,.5)--(.7,.5) node[midway,above=4pt,sollabel] {$r$};
+  \draw[solforce] (0,.5)--(0,-1.0) node[below=3pt,sollabel] {$mg$};
+  \draw[solflow] (1.25,.75)--(1.25,-.25) node[midway,right=3pt,sollabel] {$v$};
+  \foreach \x in {-1.3,-.85,-.4,.05,.5,.95,1.4}{\fill[TextGray] (\x,-1.65) circle (1.5pt);}
+  \node[sollabel] at (0,-2.05) {地面系中静止的雾滴};
+  \node[sollabel,anchor=west,align=left] at (2.3,.8)
+    {$S=\pi r^2$\\$\dot m=\rho_f\pi r^2v$\\$\dot r=\rho_f v/(4\rho_w)$};
+\end{tikzpicture}}
+
+
+\newcommand{\soldiagThreeTwentyFour}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRain
+\diagcaption{解图}{雨水只增加质量，不带入水平动量；外力使系统水平动量按 $Ft$ 增长。}\label{ch07:fig:soldiagThreeTwentyFour}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyFive}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumPickup
+\diagcaption{解图}{提力既承担运动绳段的重量，也为新进入运动段的绳元提供动量。}\label{ch07:fig:soldiagThreeTwentyFive}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeTwentySix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumFallingRope
+\diagcaption{题图}{柔绳上端释放后下落，绳元依次落到秤盘上并停止。}\label{ch07:fig:probdiagThreeTwentySix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentySix}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumRopeLoad
+\diagcaption{解图}{秤盘既承受已落绳段的重量，也连续吸收下落绳元的动量。}\label{ch07:fig:soldiagThreeTwentySix}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentySeven}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumAccretion
+\diagcaption{解图}{静止介质被吸收后要加速到 $v$，故出现随 $v^2$ 增长的动量流项。}\label{ch07:fig:soldiagThreeTwentySeven}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyEight}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\momentumDroplet
+\diagcaption{解图}{半径、迎风面积和质量共同增长，速度必须与它们联立求解。}\label{ch07:fig:soldiagThreeTwentyEight}\end{minipage}\end{center}}
+
+\newcommand{\rocketMicroDiagram}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.77]
+ \node[solpanel] at (-2.8,1.5) {喷气前}; \node[solpanel] at (2.6,1.5) {喷气后};
+ \draw[solbody,fill=SoftGray] (-4,-.35) rectangle (-2,.35);
+ \node[sollabel] at (-3,0) {$M$};
+ \draw[solflow] (-2,0)--(-.7,0) node[midway,above=4pt,sollabel] {$v$};
+ \draw[solbody,fill=SoftGray] (1.4,-.35) rectangle (3.4,.35);
+ \node[sollabel] at (2.4,0) {$M+\Delta M$};
+ \draw[solflow] (3.4,0)--(4.7,0) node[midway,above=4pt,sollabel] {$v+\Delta v$};
+ \foreach \x in {-.2,.2,.6}{\fill[TextGray] (\x,0) circle (2pt);}
+ \node[sollabel] at (.2,.75) {燃气 $-\Delta M$};
+ \draw[solflow] (.65,-.95)--(-.65,-.95) node[midway,below=4pt,sollabel] {$-u$：相对火箭};
+ \node[sollabel] at (.2,-1.8) {燃气对地速度为 $v-u$，可以向左、为零或向右};
+\end{tikzpicture}
+\diagcaption{示意图}{在地面系中，喷出燃气的速度是 $v-u$；$\Delta M<0$。}\label{ch07:fig:rocketMicroDiagram}\end{minipage}\end{center}}
+
+\newcommand{\probdiagThreeTwentyNine}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[xscale=.82,yscale=.70]
+  \draw[axis] (0,0)--(5.6,0) node[right,sollabel] {火箭质量};
+  \draw[axis] (0,0)--(0,3.8) node[above,sollabel] {火箭速度};
+  \draw[solgeom] (4.45,0)--(4.45,1.15)--(0,1.15);
+  \fill[Ink] (4.45,1.15) circle (2.2pt);
+  \node[sollabel,below] at (4.45,0) {$M$};
+  \node[sollabel,left] at (0,1.15) {$v$};
+  \node[sollabel,above right] at (4.45,1.15) {当前状态};
+\end{tikzpicture}
+\diagcaption{题图}{曲线应从当前状态 $(M,v)$ 出发，并标明燃烧过程的方向。}\label{ch07:fig:probdiagThreeTwentyNine}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeTwentyNine}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \draw[axis] (0,0)--(5.2,0) node[right,sollabel] {$\mathcal M$};
+ \draw[axis] (0,0)--(0,3.7) node[above,sollabel] {$V$};
+ \draw[curve,domain=.6:4.4,samples=80] plot ({\x},{1+ln(4.4/\x)});
+ \draw[curve,-{Latex[length=2mm]},domain=3.4:2.4,samples=20] plot ({\x},{1+ln(4.4/\x)});
+ \draw[solgeom] (0,1)--(4.4,1)--(4.4,0);
+ \node[sollabel,left=4pt] at (0,1) {$v$}; \node[sollabel,below=4pt] at (4.4,0) {$M$};
+ \node[sollabel,anchor=west] at (2.5,3.2) {$V=v+u\ln(M/\mathcal M)$};
+ \node[sollabel,anchor=west] at (2.5,2.6) {燃烧方向：沿曲线向左上方};
+\end{tikzpicture}
+\diagcaption{解图}{横轴质量减小时，火箭沿对数曲线向左上方运动。}\label{ch07:fig:soldiagThreeTwentyNine}\end{minipage}\end{center}}
+
+\newcommand{\soldiagThreeThirty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.82]
+ \draw[axis] (0,0)--(5.8,0) node[right,sollabel] {$\mathcal M$};
+ \draw[axis] (0,0)--(0,3.8) node[above,sollabel] {$u/\mathcal M$};
+ \path[fill=Blue!12] (1.5,0)--plot[domain=1.5:4.6,samples=50] (\x,{2.1/\x})--(4.6,0)--cycle;
+ \draw[curve,domain=.6:5.1,samples=80] plot (\x,{2.1/\x});
+ \draw[solgeom] (1.5,0)--(1.5,1.4) (4.6,0)--(4.6,{2.1/4.6});
+ \node[sollabel,below=4pt] at (1.5,0) {$M$}; \node[sollabel,below=4pt] at (4.6,0) {$M_0$};
+ \node[sollabel] (L) at (3.8,2.5) {阴影面积 $u\ln(M_0/M)$};
+ \draw[TextGray] (L.south)--(3,.4);
+ \draw[solflow] (4.6,-.65)--(1.5,-.65) node[midway,below=4pt,sollabel] {质量减少的方向};
+\end{tikzpicture}
+\diagcaption{解图}{对 $\dd v=-u\,\dd M/M$ 积分，速度增量等于 $u/M$ 曲线下对应的面积。}\label{ch07:fig:soldiagThreeThirty}\end{minipage}\end{center}}
+
+
+一辆行驶的汽车会不断消耗汽油，飞行中的飞机或火箭也有同样的特点：运动过程中，
+研究对象的质量不断变化。处理这类问题时，必须同时计入速度变化和质量变化带来的
+动量变化。变质量并不意味着动量定理失效；真正需要重新说明的是研究系统的边界——哪一
+部分物质在当前时刻属于研究对象，哪些物质正从边界流入或流出，以及它们穿过边界前后的
+速度分别是多少。
+
+先只对主体动量作代数展开，不把它等同于外力冲量：
+\begin{equation}
+ \Delta\vec p=\Delta(m\vec v)
+ =\Delta m\,\vec v+m\,\Delta\vec v+\Delta m\,\Delta\vec v.
+\end{equation}
+略去二阶小量并取连续极限，得到严格的微分关系
+\[
+ \dd\vec p=\vec v\,\dd m+m\,\dd\vec v.
+\]
+应用这一关系时还要注意：新进入系统或刚离开系统的物质，未必具有研究对象本身的速度。
+这些物质所带入或带走的动量，正是变质量问题中容易遗漏的一项。
+
+\subsubsection*{变质量系统的边界与动量通量}
+
+火箭、落链和接雨小车的研究对象会随时间增减质量，不能直接把 $\vec F=m\vec a$ 中的
+$m$ 换成 $m(t)$。动量定理适用于同一批物质；若研究对象在两个时刻包含的物质不同，
+就要把跨越边界所带的动量单独记入。
+
+设主体质量为 $m$、速度为 $\vec v$，时间 $\dd t$ 内吸收质量 $\dd m_{\rm in}>0$，
+排出质量 $\dd m_{\rm out}>0$。流入、流出物质在同一个惯性系中的速度分别为
+$\vec u_{\rm in},\vec u_{\rm out}$，主体质量改变
+$\dd m=\dd m_{\rm in}-\dd m_{\rm out}$。把主体及这次交换的物质选为同一批物质：
+\[
+ m\vec v+\vec u_{\rm in}\dd m_{\rm in}+\vec F_{\rm ext}\dd t
+ =(m+\dd m)(\vec v+\dd\vec v)+\vec u_{\rm out}\dd m_{\rm out}.
+\]
+这里 $\vec F_{\rm ext}$ 是连续极限下作用于主体的外力；微小交换质量所受有限外力的冲量
+为二阶小量。展开、略去二阶项并除以 $\dd t$，得到
+\begin{equation}\label{ch07:eq:mass-flux-balance}
+ \frac{\dd(m\vec v)}{\dd t}
+ =\vec F_{\rm ext}+\dot m_{\rm in}\vec u_{\rm in}
+ -\dot m_{\rm out}\vec u_{\rm out}.
+\end{equation}
+左侧是主体动量增加率，右侧依次为外力、流入动量率、流出动量率。展开左侧乘积，得
+\begin{equation}\label{ch07:eq:mass-acceleration}
+ m\frac{\dd\vec v}{\dd t}
+ =\vec F_{\rm ext}+\dot m_{\rm in}(\vec u_{\rm in}-\vec v)
+ -\dot m_{\rm out}(\vec u_{\rm out}-\vec v).
+\end{equation}
+只有一股交换流时，也可用有符号的 $\dot m$（流入为正、流出为负）和相对主体速度
+$\vec u_{\rm rel}=\vec u-\vec v$ 写成 $m\dot{\vec v}=\vec F_{\rm ext}+\vec u_{\rm rel}\dot m$。
+不能把这个相对速度与前一式的惯性系绝对速度混用。动量通量的量纲为
+$\mathrm{kg/s}\times\mathrm{m/s}=\mathrm N$，与外力一致。
+
+理想火箭在无外力的一维运动中，以相对火箭大小为 $u$ 的速度向后喷气，满足
+\begin{equation}
+ m\,\dd v=-u\,\dd m,
+ \qquad
+ v-v_0=u\ln\frac{m_0}{m}.
+\end{equation}
+速度增量取决于质量比而不是燃料质量的简单差值。若有重力或阻力，还要把它们在燃烧时间内的
+冲量计入；若喷气速度相对地面给出，必须先换成相对火箭速度。
+火箭自身不是固定物质系统，即使无外力，其自身动量也不必守恒；守恒的是火箭加燃气的总动量。
+
+链条落到秤盘、雨水落入车厢等问题还包含“捕获并加速新质量”的作用。流入物质在进入系统前
+已有速度，主体必须提供冲量把它变为共同速度，于是支持力或阻力中出现 $\dot m\Delta v$ 项。
+柔链问题还应区分移动段、静止段和弯折区，弯折区虽很短，却承担改变动量方向的有限合力。
+检验答案时可看两个极限：质量流率趋于零时应回到定质量问题；相对流速趋于零时，动量通量项
+也应消失。最后一种情形只说明无需额外改变主体速度，主体总动量仍可随它包含的质量改变。
+
+
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-24}
+在雨中用恒力 $F$ 推一个质量为 $M$、开口截面积为 $S$ 的容器。若一个静止在地面的
+同样容器中，单位时间内水位上升 $\Delta h$，不考虑雨水对容器前方的阻力，水的密度
+为 $\rho$，求在 $3$ 个单位时间后容器的速度。
+容器初始静止；一个单位时间记为时长 $\tau$，所求时刻就是 $t=3\tau$。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设水平方向为推力方向。由时长 $\tau$ 内落入的水体积 $S\Delta h$，求得质量流率
+\[
+ q=\frac{\rho S\Delta h}{\tau}.
+\]
+雨滴落入前没有水平速度，所以它们带入系统的水平动量为零。经过时间 $t$，容器及其中
+雨水的总质量为 $M+qt$；恒力的冲量为 $Ft$。由水平动量定理，
+\[
+ (M+qt)v=Ft,
+\]
+故
+\[
+ v(t)=\frac{Ft}{M+(\rho S\Delta h/\tau)t}.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentyFour}中，雨水只增加质量，不带入水平动量；外力使系统水平动量按 $Ft$ 增长。
+\soldiagThreeTwentyFour
+代入 $t=3\tau$，得到
+\[
+ \boxed{v=\frac{3F\tau}{M+3\rho S\Delta h}}.
+\]
+若初速度为 $v_i$，应保留初始动量，把分子改为 $Mv_i+Ft$。单位检验：$q$ 是质量/时间，
+$Ft$ 是冲量，故结果为速度。不能直接写 $F=(M+qt)a$，因为还需要将新进入的雨水加速；
+展开正确的动量式可得 $(M+qt)\dot v=F-qv$。当 $q\to0$ 时回到 $v=Ft/M$。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-25}
+一根质量为 $m$、长度为 $l$ 的柔软绳子放在水平桌面上。用手捏住绳的一端，以恒定速度
+$v$ 竖直向上提绳。当这一端离桌面的高度为 $x<l$ 时，求手的拉力大小。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+绳的线密度为
+\[
+ \lambda=\frac{m}{l}.
+\]
+高度为 $x$ 时，竖直运动绳段的质量是 $\lambda x$，其速度保持为 $v$。在时间
+$\dd t$ 内，又有长度 $v\dd t$、质量 $\lambda v\dd t$ 的绳元由静止转为以速度 $v$
+向上运动，因此单位时间增加的向上动量为 $\lambda v^2$。
+
+对竖直运动部分列动量方程：
+\[
+ F-\lambda xg=\lambda v^2.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentyFive}中，提力既承担运动绳段的重量，也为新进入运动段的绳元提供动量。
+\soldiagThreeTwentyFive
+所以
+\[
+ \boxed{F=\lambda xg+\lambda v^2
+ =\frac{m}{l}\left(xg+v^2\right)}.
+\]
+第一项承担已提起绳段的重量，第二项用来连续加速刚离开桌面的绳元。该结论采用理想柔绳、
+转折区域很小且绳元离桌后立即获得速度 $v$ 的模型。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-26}
+如图，一根质量为 $m$、长度为 $l$ 的均匀柔绳竖直悬挂，下端刚好与台秤秤盘接触。
+释放绳的上端，求从释放开始台秤示数随时间的变化，并求台秤的最大示数。
+图~\ref{ch07:fig:probdiagThreeTwentySix}中，柔绳上端释放后下落，绳元依次落到秤盘上并停止。
+\probdiagThreeTwentySix
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设绳的线密度为 $\lambda=m/l$，释放后经过时间 $t$，绳的上端下落距离为 $x$。理想模型
+中尚未落到秤盘上的绳段作自由落体，因而
+\[
+ x=\frac12gt^2,\qquad v=gt,\qquad v^2=2gx.
+\]
+秤盘的受力来源有两部分：
+\[
+ \underbrace{\lambda xg}_{\text{已停在盘上的绳重}}
+ \quad\text{和}\quad
+ \underbrace{\lambda v^2}_{\text{使下落绳元停止的动量流}}.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentySix}中，秤盘既承受已落绳段的重量，也连续吸收下落绳元的动量。
+\soldiagThreeTwentySix
+所以在整根绳尚未全部落下时，
+\[
+ N=\lambda xg+\lambda v^2
+ =3\lambda gx
+ =\frac32\lambda g^2t^2.
+\]
+上端落到秤盘所需时间为
+\[
+ t_0=\sqrt{\frac{2l}{g}}.
+\]
+因此理想化的示数为
+\[
+ \boxed{
+ N(t)=
+ \begin{cases}
+ \dfrac{3m g^2}{2l}\,t^2,
+   &0\le t<\sqrt{\dfrac{2l}{g}},\\[6pt]
+ mg,&t>\sqrt{\dfrac{2l}{g}}.
+ \end{cases}}
+\]
+在全部落下前的一瞬间，
+\[
+ \boxed{N_{\max}=3mg}.
+\]
+随后动量流消失，稳定示数为 $mg$。理想模型在 $t=t_0$ 处给出突变；真实柔绳因弯曲、
+碰撞持续时间和秤的响应时间有限，峰值会被平滑。
+\end{xesolution}
+
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-27}
+一个截面积为 $S$ 的物体在密度均匀、密度为 $\rho$ 的介质中竖直下落。物体会把前方
+遇到的介质全部吸收，忽略其他阻力。写出物体速度 $v$ 和质量 $m$ 随时间变化的方程，
+并定性说明其运动规律。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取竖直向下为正。时间 $\dd t$ 内物体扫过体积 $Sv\dd t$，吸收的静止介质质量为
+\[
+ \dd m=\rho Sv\,\dd t,
+ \qquad
+ \boxed{\dot m=\rho Sv}.
+\]
+被吸收介质在地面系中初始动量为零，因此“物体加上刚吸收的介质”的动量变化只由重力
+产生：
+\[
+ \frac{\dd(mv)}{\dd t}=mg.
+\]
+展开后得到
+\[
+ \boxed{m\dot v=mg-\rho Sv^2}.
+\]
+\Needspace{10\baselineskip}
+图~\ref{ch07:fig:soldiagThreeTwentySeven}中，静止介质被吸收后要加速到 $v$，故出现随 $v^2$ 增长的动量流项。
+\soldiagThreeTwentySeven
+右端第二项不是通常意义上的阻力，而是把静止介质加速到速度 $v$ 所需要的动量流。若
+初始时物体由静止释放，质量为 $m_0$，令 $k=\rho S$，消去时间：
+\[
+ \frac{\dd(v^2)}{\dd m}+\frac{2}{m}v^2=\frac{2g}{k}.
+\]
+用积分因子 $m^2$ 将左侧合为乘积的导数：
+\[
+ \frac{\dd}{\dd m}(m^2v^2)=\frac{2g}{k}m^2,
+ \qquad m^2v^2=\frac{2g}{3k}(m^3-m_0^3).
+\]
+除以 $m^2$，得
+\[
+ v^2=\frac{2g}{3k}
+ \left(m-\frac{m_0^3}{m^2}\right).
+\]
+因此 $m$、$v$ 均随时间增大，但加速度
+\[
+ \dot v=g-\frac{k}{m}v^2=\frac g3+\frac{2g}{3}\left(\frac{m_0}{m}\right)^3
+\]
+逐渐减小，并趋近于 $g/3$；速度并不趋于常量。
+若初速度不为零，质量式与速度式仍成立，但单调性须重新检查；初始条件
+$\rho S v_i^2>m_0g$ 会使物体先减速，不能把从静止出发的结论直接推广。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-28}
+一个球形小水滴在均匀的雾中下落。设雾的质量密度均匀，水滴会吸收所遇到的全部小水滴，
+忽略空气阻力，重力加速度 $g$ 为常量。写出大水滴的质量、速度和半径随时间变化的方程，
+并定性说明其运动规律。
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设雾的质量密度为 $\rho_f$，水的密度为 $\rho_w$，大水滴半径为 $r$。则
+\[
+ m=\frac43\pi\rho_w r^3,
+ \qquad
+ \dot m=\rho_f\pi r^2v.
+\]
+由第一式求导并与第二式比较：
+\[
+ 4\pi\rho_w r^2\dot r=\rho_f\pi r^2v,
+ \qquad
+ \boxed{\dot r=\frac{\rho_f}{4\rho_w}v}.
+\]
+雾滴在被吸收前近似静止，故动量方程仍为
+\[
+ \frac{\dd(mv)}{\dd t}=mg,
+\]
+即
+\[
+ \boxed{\dot v
+ =g-\frac{\dot m}{m}v
+ =g-\frac{3\rho_f}{4\rho_w r}v^2}.
+\]
+\Needspace{10\baselineskip}
+图~\ref{ch07:fig:soldiagThreeTwentyEight}中，半径、迎风面积和质量共同增长，速度必须与它们联立求解。
+\soldiagThreeTwentyEight
+若水滴由静止开始、初始半径为 $r_0$，令
+$\alpha=\rho_f/(4\rho_w)$，令 $y=v^2$，由 $\dot r=\alpha v$ 消去时间，得
+\[
+ \frac{\dd y}{\dd r}+\frac{6}{r}y=\frac{2g}{\alpha}.
+\]
+乘以积分因子 $r^6$ 并积分：
+\[
+ \frac{\dd}{\dd r}(r^6y)=\frac{2g}{\alpha}r^6,
+ \qquad r^6y=\frac{2g}{7\alpha}(r^7-r_0^7).
+\]
+因此
+\[
+ v^2=\frac{2g}{7\alpha}
+ \left(r-\frac{r_0^7}{r^6}\right).
+\]
+代回原方程可得 $\dot v=g/7+6g(r_0/r)^7/7>0$。所以对这一静止初值，
+$r$、$m$ 和 $v$ 都不断增大；随着吸收过程进行，加速度由初始的 $g$ 逐渐减小，
+并趋近于 $g/7$。半径增大使迎风面积增大，吸收增强；质量增长又改变速度，三者必须联立
+考虑。
+若初始速度为 $v_i$，当 $3\alpha v_i^2/r_0>g$ 时会先减速。这里用 $\alpha$ 表示密度比，
+不与加速度符号 $a$ 混用；$gr/\alpha$ 的量纲为速度平方。
+\end{xesolution}
+
+火箭依靠从尾部喷出燃料燃烧产生的高温高压气体而获得巨大推力。实际升空过程十分复杂，
+为简化分析，下面只研究火箭沿直线飞行的理想模型。忽略重力和其他外力，设火箭喷出的
+燃气相对火箭向后速度大小为 $u$。在极短时间 $\Delta t$ 内，喷气前火箭的质量和速度为 $M,v$；
+喷气后为 $M+\Delta M,v+\Delta v$，其中 $\Delta M<0$。喷出燃气的质量为
+$-\Delta M$，在地面参考系中的速度为 $v-u$。
+图~\ref{ch07:fig:rocketMicroDiagram}中，在地面系中，喷出燃气的速度是 $v-u$；$\Delta M<0$。
+\rocketMicroDiagram
+由喷气前后的总动量守恒，
+\[
+ Mv=(M+\Delta M)(v+\Delta v)-\Delta M(v-u).
+\]
+展开并消去 $Mv$：
+\[
+ M\Delta v+u\Delta M+\Delta M\Delta v=0.
+\]
+略去二阶小量 $\Delta M\Delta v$，得到
+\begin{equation}
+ \label{ch07:eq:rocket-micro}
+ \Delta v=-u\frac{\Delta M}{M}.
+\end{equation}
+因为 $\Delta M<0$，所以 $\Delta v>0$：火箭向后喷出质量，自身向前加速。在连续极限下，
+式 \eqref{ch07:eq:rocket-micro} 可写成
+\[
+ \dd v=-u\frac{\dd M}{M}.
+\]
+
+\Needspace{0.34\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-29}
+一枚火箭在某时刻的质量为 $M$、速度为 $v$，燃气相对火箭的喷出速度大小为 $u$。
+忽略重力，请根据式 \eqref{ch07:eq:rocket-micro}，在下面坐标系中定性画出此后火箭速度与质量的关系。
+图~\ref{ch07:fig:probdiagThreeTwentyNine}中，曲线应从当前状态 $(M,v)$ 出发，并标明燃烧过程的方向。
+\probdiagThreeTwentyNine
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设此后某时刻火箭的剩余质量为 $\mathcal M$、速度为 $V$。由
+\[
+ \dd V=-u\frac{\dd\mathcal M}{\mathcal M}
+\]
+从当前状态 $(M,v)$ 积分到 $(\mathcal M,V)$：
+\[
+ V-v=-u\int_M^{\mathcal M}\frac{\dd m}{m}
+ =u\ln\frac{M}{\mathcal M}.
+\]
+因此
+\[
+ \boxed{V(\mathcal M)=v+u\ln\frac{M}{\mathcal M}},
+ \qquad 0<\mathcal M\le M.
+\]
+图~\ref{ch07:fig:soldiagThreeTwentyNine}中，横轴质量减小时，火箭沿对数曲线向左上方运动。
+\soldiagThreeTwentyNine
+曲线经过 $(M,v)$，并满足
+\[
+ \frac{\dd V}{\dd\mathcal M}=-\frac{u}{\mathcal M}<0,
+ \qquad
+ \frac{\dd^2V}{\dd\mathcal M^2}
+ =\frac{u}{\mathcal M^2}>0.
+\]
+所以按“横轴质量、纵轴速度”作图时，曲线单调下降，且斜率随质量增大逐渐变平（曲线
+开口向上）；实际燃烧过程的方向是沿曲线向左上方运动，即质量减小、速度增大。
+$\mathcal M\to0$ 时速度发散只是理想模型的数学
+外推，真实火箭不可能把结构质量全部喷掉。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s09-3-30}
+一枚单级火箭的初始质量为 $M_0$，燃料燃烧完毕后的质量为 $M$。燃气相对火箭的喷出速度
+大小恒为 $u$，火箭由静止开始运动，忽略重力和其他阻力。证明火箭的末速度为
+\[
+ v=u\ln\frac{M_0}{M}.
+\]
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+由式 \eqref{ch07:eq:rocket-micro} 的连续形式，
+\[
+ \dd v=-u\frac{\dd M}{M}.
+\]
+火箭由静止开始，质量由 $M_0$ 减少到 $M$。对整个燃烧过程积分：
+\[
+ \int_0^v\dd v
+ =-u\int_{M_0}^{M}\frac{\dd M}{M}.
+\]
+图~\ref{ch07:fig:soldiagThreeThirty}中，对 $\dd v=-u\,\dd M/M$ 积分，速度增量等于 $u/M$ 曲线下对应的面积。
+\soldiagThreeThirty
+于是
+\[
+ v=-u\left(\ln M-\ln M_0\right),
+\]
+即
+\[
+ \boxed{v=u\ln\frac{M_0}{M}}.
+\]
+这就是理想火箭方程。若定义质量比 $R=M_0/M$，则速度增量为
+$\Delta v=u\ln R$：提高喷气速度 $u$ 能线性提高速度增量，而增大质量比的收益只有
+对数增长。证明成立的条件是喷气相对速度恒定，并忽略重力、空气阻力等外力。
+\end{xesolution}
+}
+
+{
+\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twelfth-section/}}
+\section{碰撞}
+% Problem figures and added solution diagrams for Section 4.3.
+\tikzset{
+  solbody/.style={draw=Ink,line width=0.8pt},
+  solforce/.style={-{Latex[length=2.0mm]},draw=DeepBlue,line width=0.9pt},
+  solgeom/.style={draw=TextGray,densely dashed,line width=0.55pt},
+  solflow/.style={-{Latex[length=1.8mm]},draw=Blue,line width=0.75pt},
+  sollabel/.style={font=\scriptsize,fill=none,inner sep=1pt},
+  solpanel/.style={font=\scriptsize\bfseries,text=TextGray},
+  solpath/.style={draw=Ink,line width=.75pt}
+}
+\newcommand{\diagcaption}[2]{%
+ \refstepcounter{figure}\par\nopagebreak[4]\smallskip
+ {\centering\scriptsize\color{TextGray}图~\thefigure\quad #2\par}\smallskip}
+
+\newcommand{\probdiagFourFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody] (-4.1,-.70)--(4.1,-.70);
+  \draw[solbody,fill=SoftGray] (-3.15,-.70) rectangle (-2.20,.20);
+  \draw[solbody,fill=SoftGray] (2.20,-.70) rectangle (3.15,.20);
+  \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt},line width=.75pt]
+    (-2.20,-.25)--(2.20,-.25);
+  \node[sollabel] at (-2.68,.75) {$m_1$};
+  \node[sollabel] at (2.68,.75) {$m_2$};
+  \draw[<->,draw=DeepBlue] (-2.20,-1.05)--(2.20,-1.05)
+    node[midway,below,sollabel] {$r=l<l_0$};
+  \draw[solflow] (-2.70,1.10)--(-1.70,1.10) node[midway,above,sollabel] {$v_1$};
+  \draw[solflow] (2.25,1.10)--(3.25,1.10) node[midway,above,sollabel] {$v_2$};
+\end{tikzpicture}
+\diagcaption{题意图}{弹簧只改变两物体的相对运动；整体质心速度保持不变。}\label{ch07:fig:probdiagFourFifteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourFifteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.85]
+ \draw[axis] (0,0)--(6.6,0) node[right,sollabel] {$r$};
+ \draw[axis] (0,0)--(0,2.7) node[above,sollabel] {能量};
+ \draw[curve,domain=.6:5.4,samples=80] plot ({\x},{.35*(\x-3)^2});
+ \draw[TextGray,line width=.8pt] (.45,1.12)--(5.75,1.12);
+ \draw[solgeom] (1.21115,0)--(1.21115,1.12) (4.78885,0)--(4.78885,1.12);
+ \node[sollabel,above=4pt] at (5.7,1.12) {$E_{\rm rel}$};
+ \node[sollabel] at (3,2.45) {$U(r)=\frac12k(r-l_0)^2$};
+ \node[sollabel,below=4pt] at (1.21115,0) {$r_{\min}$};
+ \node[sollabel,below=4pt] at (3,0) {$l_0$};
+ \node[sollabel,below=4pt] at (4.78885,0) {$r_{\max}$};
+\end{tikzpicture}
+\diagcaption{解图}{相对势能关于原长位置对称，同一相对能量给出最近与最远两个转折点。}\label{ch07:fig:soldiagFourFifteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody] (-1.75,-1.75)--(1.75,-1.75);
+  \foreach \x in {-1.55,-1.25,...,1.55}{\draw[draw=TextGray,line width=.45pt] (\x,-1.75)--++(-.25,-.22);}
+  \draw[solbody,fill=SoftGray] (-.55,-1.75) rectangle (.55,-.85);
+  \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt},line width=.75pt]
+    (0,-.85)--(0,1.10);
+  \draw[solbody,fill=SoftGray] (-.55,1.10) rectangle (.55,2.00);
+  \node[sollabel,right] at (.65,1.55) {$A,m_1$};
+  \node[sollabel,right] at (.65,-1.30) {$B,m_2$};
+  \draw[<->,draw=DeepBlue] (-.95,-.85)--(-.95,1.10) node[midway,left,sollabel] {$l<l_0$};
+\end{tikzpicture}
+\diagcaption{题意图}{在 $B$ 尚未离地的阶段，下端固定，只有上方物体 $A$ 运动。}\label{ch07:fig:probdiagFourSixteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourSixteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \node[solpanel] at (0,2.6) {下物块 $B$ 的临界受力图};
+ \draw[solbody,fill=SoftGray] (-.4,-.35) rectangle (.4,.35);
+ \draw[solbody] (-1.2,-.35)--(1.2,-.35);
+ \draw[solforce] (0,0)--(0,1.7) node[above=4pt,sollabel] {$T=k(x-l_0)$};
+ \draw[solforce] (0,0)--(0,-1.7) node[below=4pt,sollabel] {$m_2g$};
+ \node[sollabel,right=5pt] at (.4,0) {$B$};
+ \node[sollabel,anchor=west,align=left] at (2,1)
+   {临界时 $N=0$\\$T=m_2g$\\$x_{\rm c}=l_0+m_2g/k$};
+\end{tikzpicture}
+\diagcaption{解图}{离地瞬间只保留弹力和重力；支持力降为零。}\label{ch07:fig:soldiagFourSixteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourSeventeen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \draw[solbody] (-4.4,-.42)--(4.4,-.42);
+  \shade[ball color=PaleBlue] (-2.25,0) circle (.42);
+  \shade[ball color=SoftGray] (1.65,0) circle (.42);
+  \node[sollabel,above] at (-2.25,.55) {$A,m_A$};
+  \node[sollabel,above] at (1.65,.55) {$B,m_B$};
+  \draw[solflow] (-1.72,0)--(-.50,0) node[midway,above,sollabel] {$v_0$};
+  \node[sollabel] at (1.65,-.02) {$0$};
+\end{tikzpicture}
+\diagcaption{题意图}{一维完全弹性碰撞同时满足动量守恒和动能守恒。}\label{ch07:fig:probdiagFourSeventeen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourSeventeen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.72]
+  \node[solpanel] at (-2.60,1.10) {碰前};
+  \draw[solflow] (-3.75,0)--(-1.45,0) node[midway,above,sollabel] {$v_0$};
+  \node[solpanel] at (2.15,1.10) {碰后（$m_A>m_B$）};
+  \draw[solflow] (.45,.25)--(1.55,.25) node[midway,above,sollabel] {$v_A$};
+  \draw[solflow] (.45,-.45)--(3.60,-.45) node[midway,below,sollabel] {$v_B$};
+\end{tikzpicture}
+\diagcaption{解图}{非平凡碰撞后两速度都向右要求 $m_A>m_B$，且被撞球 $B$ 的速度更大。}\label{ch07:fig:soldiagFourSeventeen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.9]
+ \coordinate (A) at (0,0); \coordinate (B) at (.64,.48);
+ \draw[solgeom] (-2.4,0)--(1.9,0);
+ \draw[solbody,fill=SoftGray] (A) circle (.4);
+ \draw[solbody,fill=SoftGray] (B) circle (.4);
+ \draw[solgeom] (A)--(B);
+ \node[sollabel,below=15pt] at (A) {$A$}; \node[sollabel,above=15pt] at (B) {$B$};
+ \draw[solflow] (-2.1,0)--(-.5,0) node[midway,above=5pt,sollabel] {$\vec v_0$};
+ \node[sollabel] at (.2,1.6) {俯视：接触瞬间；圆心连线为法线};
+\end{tikzpicture}
+\diagcaption{题意图}{等质量小球在光滑平面内发生极短的完全弹性碰撞。}\label{ch07:fig:probdiagFourEighteen}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourEighteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ % Use the same laboratory directions as the contact figure: n=(.8,.6).
+ \coordinate (O) at (0,1.92); \coordinate (A) at (1.44,0); \coordinate (B) at (4,1.92);
+ \draw[solforce] (O)--(A) node[midway,below left=5pt,sollabel] {$\vec v_A$};
+ \draw[solforce] (A)--(B) node[midway,below right=5pt,sollabel] {$\vec v_B$};
+ \draw[solforce] (O)--(B) node[midway,above=5pt,sollabel] {$\vec v_0$};
+ \draw[TextGray] (1.26,.24)--(1.5,.42)--(1.68,.18);
+ \node[sollabel,anchor=west,align=left] at (4.8,1)
+  {动量：首尾相接\\动能：交叉项为零\\两非零速度互相垂直};
+\end{tikzpicture}
+\diagcaption{解图}{沿用接触图的方向：$\vec v_0$ 向右，$\vec v_B$ 沿圆心连线，$\vec v_A\perp\vec v_B$。}\label{ch07:fig:soldiagFourEighteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourNineteen}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.8]
+ \begin{scope}[rotate=20]
+  \draw[solbody] (-3,0)--(3,0);
+  \draw[solbody,fill=SoftGray] (1.1,0) rectangle (2,.65);
+  \draw[solgeom] (-2.2,0) rectangle (-1.3,.65);
+  \draw[solgeom] (-1.75,.8)--(-1.75,1.55) (1.55,.8)--(1.55,1.55);
+  \draw[<->,TextGray] (-1.75,1.45)--(1.55,1.45) node[midway,above=4pt,sollabel] {$L$};
+  \draw[solforce] (1.55,.325)--(2.85,.325) node[above right=5pt,sollabel] {$f$};
+  \draw[solflow] (.8,.75)--(-.4,.75) node[midway,above=4pt,sollabel] {下滑};
+ \end{scope}
+ \coordinate (Q) at ({-3*cos(20)},{-3*sin(20)});
+ \draw[TextGray] (Q)--++(1.1,0);
+ \draw[TextGray] ($(Q)+(.7,0)$) arc (0:20:.7);
+ \node[sollabel] at ($(Q)+(1.1,.23)$) {$\theta$};
+\end{tikzpicture}
+\diagcaption{题意图}{沿斜面方向，重力分力做正功，滑动摩擦力做负功。}\label{ch07:fig:probdiagFourNineteen}\end{minipage}\end{center}}
+
+\newcommand{\probdiagFourTwenty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.78]
+ \draw[solbody] (-3.8,0)--(3.8,0) (-3.6,0)--(-3.6,1.4);
+ \draw[solgeom] (-.45,0) rectangle (.45,.8);
+ \draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt}] (-3.6,.4)--(1.55,.4);
+ \draw[solbody,fill=SoftGray] (1.55,0) rectangle (2.45,.8);
+ \draw[solgeom] (0,-.65)--(0,1.15) (2,-.65)--(2,1.15);
+ \draw[<->,TextGray] (0,-.5)--(2,-.5) node[midway,below=4pt,sollabel] {$a$};
+ \node[sollabel,above=5pt,anchor=south east] at (0,1.15) {$O$：自然长度时的中心};
+ \draw[solflow] (2.6,1.65)--(1.4,1.65) node[midway,above=5pt,sollabel] {释放后向左};
+\end{tikzpicture}
+\diagcaption{题图}{弹簧在 $O$ 点为自然长度；物块从相对 $O$ 向右位移 $a$ 的位置由静止释放。}\label{ch07:fig:probdiagFourTwenty}\end{minipage}\end{center}}
+
+\newcommand{\soldiagFourTwenty}{%
+\begin{center}\begin{minipage}{.97\linewidth}\centering
+\begin{tikzpicture}[scale=.67]
+  \node[solpanel] at (-3.55,1.55) {运动中};
+  \draw[axis] (-5.0,0)--(-2.15,0) node[right,sollabel] {$x$};
+  \draw[solbody,fill=SoftGray] (-3.75,-.35) rectangle (-3.05,.35);
+  \draw[solforce] (-3.40,.65)--(-4.45,.65) node[left,sollabel] {$F_s$};
+  \draw[solforce] (-3.40,-.65)--(-2.35,-.65) node[right,sollabel] {$f_k$};
+  \node[sollabel] at (-3.40,-1.02) {向左运动、$x>0$};
+  \node[solpanel] at (1.95,1.55) {停止后（图示 $x>0$）};
+  \draw[axis] (.35,0)--(3.85,0) node[right,sollabel] {$x$};
+  \draw[solbody,fill=SoftGray] (1.60,-.35) rectangle (2.30,.35);
+  \draw[solforce] (1.95,.65)--(.90,.65) node[left,sollabel] {$F_s$};
+  \draw[solforce] (1.95,-.65)--(3.00,-.65) node[right,sollabel] {$f_s$};
+  \node[sollabel] at (1.95,-1.02) {$f_s$ 按平衡需要取值};
+\end{tikzpicture}
+\diagcaption{解图}{滑动摩擦反向于速度；静摩擦则反向于物体停止位置处的弹簧力。}\label{ch07:fig:soldiagFourTwenty}\end{minipage}\end{center}}
+
+
+动量关系之外，碰撞与弹簧问题还需要能量关系。这里先给出所需的基本定义；功和能量的
+系统讨论在后续章节展开。质点的动能为 $E_k=mv^2/2$，力在位移上的功为
+$W=\int\vec F\cdot\dd\vec r$。将 $m\dot{\vec v}=\vec F$ 与速度点乘并对时间积分，
+得到 $\Delta E_k=W$。如果一类力的功只取决于起终点，就称为保守力，并定义其势能变化
+$\Delta E_p=-W$；于是只受保守力时，$E_k+E_p$ 不变。近地面重力势能可写成 $mgy$，
+理想弹簧势能为 $k(\ell-l_0)^2/2$，零点分别取 $y=0$ 和自然长度。
+
+现在考察由多个质点构成的力学系统。
+系统内每个质点除受外力外，还会受到其他质点施加的、满足牛顿第三定律的内力。作用力与
+反作用力的矢量和为零，所以内力不能改变系统总动量；但两力作用点的位移通常不同，它们的
+功并不必然相互抵消，因此内力完全可能改变系统的总动能。这正是动量问题与能量问题在处理
+内力时的重要区别。
+
+内力做功有两种性质截然不同的情形。若质点间的内力是保守力，内力功只与质点间的相对位置
+有关；系统动能的减少会以内部势能的形式储存在相对位置中，并可在以后的运动中重新释放为
+各质点的动能。若内力像滑动摩擦力一样，其功与相对运动的具体过程有关，那么机械能会转化
+为内能等形式，在单纯的力学过程中不能自行完整地转回宏观动能。这里所谓“机械能损失”并不
+是能量从自然界消失，而是能量形式发生了转化。
+
+当系统的内力和外力均为保守力时，可把系统总机械能定义为所有质点的动能、外力对应的势能
+以及系统内部质点之间的势能之和：
+\[
+ E=\sum_i E_{k,i}+E_{p,\text{外}}+E_{p,\text{内}},
+\]
+在势能没有显含时间、且无其他外部能量输入的模型中，运动过程中 $E$ 保持不变。
+
+\begin{origexamplebox}{}\label{ch07:ex:s12-4-15}
+光滑水平面上有一根无质量的弹簧，劲度系数为 $k$，原长为 $l_0$。它的两端分别连接质量
+为 $m_1,m_2$ 的两个物体。
+\begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
+ \item 初始时刻两物体的速度均为零，相距 $l<l_0$。求释放以后两物体之间的最大距离。
+ \item 取向右为正方向，若初始时刻两物体的速度分别为 $v_1,v_2$，求此后运动过程中
+ 两物体的最近和最远距离。
+\end{enumerate}
+图~\ref{ch07:fig:probdiagFourFifteen}中，弹簧只改变两物体的相对运动；整体质心速度保持不变。
+\probdiagFourFifteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+记两物体之间的距离为 $r=x_2-x_1$，总质量和约化质量分别为
+\[
+ M=m_1+m_2,
+ \qquad
+ \mu_r=\frac{m_1m_2}{m_1+m_2}.
+\]
+质心速度
+\[
+ V=\frac{m_1v_1+m_2v_2}{M}
+\]
+保持不变。由 $\dot r=\dot x_2-\dot x_1$ 和质心速度的定义，先解出
+\[
+ \dot x_1=V-\frac{m_2}{M}\dot r,\qquad
+ \dot x_2=V+\frac{m_1}{M}\dot r.
+\]
+代入两物体动能，交叉项系数 $-m_1m_2/M+m_2m_1/M=0$；相对速度平方项系数为
+$(m_1m_2^2+m_2m_1^2)/(2M^2)=\mu_r/2$。因此
+\[
+ \frac12m_1\dot x_1^2+\frac12m_2\dot x_2^2
+ =\frac12MV^2+\frac12\mu_r\dot r^{\,2},
+\]
+系统机械能可分成不变的质心平动能和相对运动能：
+\[
+ E=\frac12MV^2+\frac12\mu_r\dot r^{\,2}
+   +\frac12k(r-l_0)^2.
+\]
+
+\textbf{(1)} 初始相对速度为零，弹簧的初始压缩量为
+$\delta=l_0-l$。在最大距离处相对速度再次为零，因而
+\[
+ \frac12k(l-l_0)^2=\frac12k(r_{\max}-l_0)^2.
+\]
+除初始转折点 $r=l$ 外，另一转折点位于原长位置的对侧：
+\[
+ \boxed{r_{\max}=2l_0-l}.
+\]
+
+\textbf{(2)} 初始相对速度为 $\dot r_0=v_2-v_1$。相对运动的总能量为
+\[
+ E_{\rm rel}
+ =\frac12\mu_r(v_2-v_1)^2+\frac12k(l-l_0)^2.
+\]
+最近和最远距离都是相对运动的转折点，满足 $\dot r=0$。令
+\[
+ A=\sqrt{(l-l_0)^2+\frac{\mu_r}{k}(v_2-v_1)^2},
+\]
+则
+\[
+ \boxed{r_{\min}=l_0-A},
+ \qquad
+ \boxed{r_{\max}=l_0+A}.
+\]
+图~\ref{ch07:fig:soldiagFourFifteen}中，相对势能关于原长位置对称，同一相对能量给出最近与最远两个转折点。
+\soldiagFourFifteen
+两物体的共同平动速度只改变质心运动，不改变它们之间的距离；所以结果只含相对速度
+$v_2-v_1$。上式默认 $A\le l_0$ 且物体可视为质点；若模型中物体不能相互穿越，而计算
+得到 $A>l_0$，则在弹簧长度降为零以前已发生接触，最近距离须由接触条件另行确定。
+\end{xesolution}
+
+\Needspace{0.32\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s12-4-16}
+质量分别为 $m_1,m_2$ 的两个物体 $A,B$ 用原长为 $l_0$、劲度系数为 $k$ 的轻弹簧连接。
+初始时刻 $A$ 放在 $B$ 的上方且均静止，将弹簧压缩至 $l<l_0$。求系统释放以后 $B$
+能够离开地面的条件。
+图~\ref{ch07:fig:probdiagFourSixteen}中，在 $B$ 尚未离地的阶段，下端固定，只有上方物体 $A$ 运动。
+\probdiagFourSixteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+在 $B$ 尚未离地时，它受地面约束而保持静止，弹簧下端等效固定。设某时刻弹簧长度为
+$x$，上方物体 $A$ 的速率为 $u$。以 $B$ 所在高度为重力势能零点，机械能守恒给出
+\[
+ \frac12m_1u^2+m_1gx+\frac12k(x-l_0)^2
+ =m_1gl+\frac12k(l-l_0)^2.
+\]
+物体 $A$ 到达最高点时 $u=0$。去掉代表初始位置的根 $x=l$，另一转折位置为
+\[
+ x_{\max}=2l_0-l-\frac{2m_1g}{k}.
+\]
+
+当弹簧已经伸长时，它对 $B$ 的拉力向上。$B$ 刚要离地的临界条件是地面支持力
+$N=0$，即
+\[
+ k(x-l_0)=m_2g,
+ \qquad
+ x_{\rm c}=l_0+\frac{m_2g}{k}.
+\]
+图~\ref{ch07:fig:soldiagFourSixteen}中，离地瞬间只保留弹力和重力；支持力降为零。
+\soldiagFourSixteen
+要使 $B$ 真正获得离地速度，$A$ 在其上升过程中必须越过这一临界位置，故
+\[
+ x_{\max}>x_{\rm c}.
+\]
+代入两式并整理，得到
+\[
+ \boxed{k(l_0-l)>(2m_1+m_2)g}.
+\]
+等号只表示 $A$ 恰在最高点时使 $N$ 瞬间降为零；随后弹簧拉力立即减小，$B$ 不会真正
+上升。因此若“离开地面”要求产生向上的运动，应取严格不等号。
+\end{xesolution}
+
+\Needspace{0.30\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s12-4-17}
+在光滑平面上有两个球 $A,B$，质量分别为 $m_A,m_B$。开始时刻 $B$ 球静止，$A$ 球以
+速度 $v_0$ 撞向 $B$。如果碰撞之后两球运动速度均与 $A$ 的初速度方向相同，且碰撞过程
+极短、无机械能损失，求碰后两球的速度。
+图~\ref{ch07:fig:probdiagFourSeventeen}中，一维完全弹性碰撞同时满足动量守恒和动能守恒。
+\probdiagFourSeventeen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+取 $A$ 的初速度方向为正，设碰后速度分别为 $v_A,v_B$。碰撞时间极短，外力冲量可忽略，
+故动量守恒；又因无机械能损失，动能守恒：
+\[
+ m_Av_0=m_Av_A+m_Bv_B,
+\]
+\[
+ \frac12m_Av_0^2
+ =\frac12m_Av_A^2+\frac12m_Bv_B^2.
+\]
+由动量式写成 $m_A(v_0-v_A)=m_Bv_B$，动能式则可因式分解为
+\[
+ m_A(v_0-v_A)(v_0+v_A)=m_Bv_B^2.
+\]
+排除“没有发生速度交换”的平凡情形后，两式相除得到
+\[
+ v_0+v_A=v_B.
+\]
+再与动量式联立，得到一维完全弹性碰撞公式
+\[
+ \boxed{v_A=\frac{m_A-m_B}{m_A+m_B}v_0},
+ \qquad
+ \boxed{v_B=\frac{2m_A}{m_A+m_B}v_0}.
+\]
+图~\ref{ch07:fig:soldiagFourSeventeen}中，非平凡碰撞后两速度都向右要求 $m_A>m_B$，且被撞球 $B$ 的速度更大。
+\soldiagFourSeventeen
+题设要求两球碰后都沿正方向运动，因此必须有 $m_A>m_B$；若 $m_A=m_B$，则 $A$ 停止、
+$B$ 以 $v_0$ 前进，不能说 $A$ 的速度仍具有原方向。
+\end{xesolution}
+
+\Needspace{0.29\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s12-4-18}
+光滑平面上有两个质量相同的球 $A,B$。$A$ 球以某一初速度 $\vec v_0$ 撞向静止的 $B$，
+碰撞时间极短且无机械能损失。求证：无论 $A$ 球以何种方式弹开，$B$ 球的速度方向总与
+$A$ 球弹开的方向垂直。
+图~\ref{ch07:fig:probdiagFourEighteen}中，等质量小球在光滑平面内发生极短的完全弹性碰撞。
+\probdiagFourEighteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+设两球质量均为 $m$，碰后速度分别为 $\vec v_A,\vec v_B$。在平面内必须使用矢量动量
+守恒：
+\begin{equation}\label{ch07:eq:equal-ball-momentum}
+ \vec v_0=\vec v_A+\vec v_B.
+\end{equation}
+动能守恒给出
+\begin{equation}\label{ch07:eq:equal-ball-energy}
+ v_0^2=v_A^2+v_B^2.
+\end{equation}
+对式\eqref{ch07:eq:equal-ball-momentum}两边取矢量自身的点积：
+\[
+ v_0^2=v_A^2+v_B^2+2\vec v_A\cdot\vec v_B.
+\]
+与式\eqref{ch07:eq:equal-ball-energy}比较，得到
+\[
+ \vec v_A\cdot\vec v_B=0.
+\]
+因此在两球碰后速度均不为零的非退化碰撞中
+\[
+ \boxed{\vec v_A\perp\vec v_B}.
+\]
+图~\ref{ch07:fig:soldiagFourEighteen}沿用接触图的方向：$\vec v_0$ 向右，$\vec v_B$ 沿两球圆心连线指向右上方，$\vec v_A$ 指向右下方。将 $\vec v_A$ 与 $\vec v_B$ 首尾相接，合矢量就是 $\vec v_0$；动能关系使两条直角边互相垂直。
+\soldiagFourEighteen
+这也说明三条速度矢量构成以 $\vec v_0$ 为斜边的直角三角形。若其中一球碰后静止，则零
+速度没有确定方向，应把它看作上述结论的退化极限。
+\end{xesolution}
+
+\subsection{机械能的损失：摩擦}
+
+当物体所受的力中含有非保守力时，机械能不再守恒。对于单个质点从 $A$ 到 $B$ 的运动，
+把外力分成保守力和非保守力，由动能定理得
+\begin{equation}
+ \frac12mv_B^2-\frac12mv_A^2=W_C+W_{NC},
+\end{equation}
+其中 $W_C,W_{NC}$ 分别表示保守力和非保守力的功。保守力做功等于势能的减少量：
+\begin{equation}
+ W_C=-E_p(B)+E_p(A).
+\end{equation}
+代入并整理可得
+\begin{equation}\label{ch07:eq:nonconservative-work}
+ W_{NC}
+ =\left(\frac12mv_B^2+E_p(B)\right)
+  -\left(\frac12mv_A^2+E_p(A)\right)
+ =E(B)-E(A).
+\end{equation}
+也就是说，\textbf{非保守力的功等于系统机械能的变化量}。摩擦力通常做负功，使机械能
+减小；其他非保守力也可能做正功，使物体的机械能增加。
+
+\Needspace{0.28\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s12-4-19}
+在一个物体沿粗糙斜面下滑的过程中验证式\eqref{ch07:eq:nonconservative-work}。物体由静止出发，沿动摩擦因数为
+$\mu$、倾角为 $\theta$ 的粗糙斜面下滑。求沿斜面下滑距离为 $L$ 时的速度。
+图~\ref{ch07:fig:probdiagFourNineteen}中，沿斜面方向，重力分力做正功，滑动摩擦力做负功。
+\probdiagFourNineteen
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+物体下降的竖直高度为 $L\sin\theta$，支持力为 $N=mg\cos\theta$，滑动摩擦力的功为
+\[
+ W_{NC}=W_f=-\mu mg\cos\theta\,L.
+\]
+取末位置为重力势能零点，则初、末机械能分别为
+\[
+ E_A=mgL\sin\theta,
+ \qquad
+ E_B=\frac12mv^2.
+\]
+代入式\eqref{ch07:eq:nonconservative-work}：
+\[
+ -\mu mgL\cos\theta
+ =\frac12mv^2-mgL\sin\theta.
+\]
+因此
+\[
+ \boxed{v=\sqrt{2gL(\sin\theta-\mu\cos\theta)}}.
+\]
+物体若要由静止开始下滑且不断加速，须有 $\sin\theta>\mu\cos\theta$；若还要精确判断
+能否启动，应另用静摩擦因数检验初始临界条件。
+\end{xesolution}
+
+\Needspace{0.38\textheight}
+\begin{origexamplebox}{}\label{ch07:ex:s12-4-20}
+如图所示，一轻弹簧一端固定在墙上，另一端连接一小物块。小物块放在摩擦因数为 $\mu$
+的水平面上；弹簧处于自然状态时，小物块中心位于 $O$ 点。现用手将小物块从 $O$ 向右移动距离 $a>0$，
+然后由静止释放，发现小物块开始向左移动。取最大静摩擦因数与滑动摩擦因数均为 $\mu$。
+判断下列说法是否正确：
+\begin{enumerate}[label=\Alph*.,leftmargin=2.2em]
+ \item 小物块可能停在 $O$ 点；
+ \item 小物块停止以后所受的摩擦力必不为零；
+ \item 小物块无论停在 $O$ 点左边还是右边，停前所受摩擦力的方向和停止后所受摩擦力的
+ 方向，两者既可能相同也可能相反；
+ \item 小物块在通过 $O$ 点后向右运动直到最远处的过程中，速度的大小总是减小；小物块
+ 由右边最远处回到 $O$ 点的过程中，速度大小总是增加。
+\end{enumerate}
+图~\ref{ch07:fig:probdiagFourTwenty}中，虚线物块表示弹簧自然长度时的位置；标注 $a$ 量取的是两个位置的中心间距。
+\probdiagFourTwenty
+\end{origexamplebox}
+
+\Needspace{6\baselineskip}\begin{xesolution}
+令 $x$ 为物块相对 $O$ 点的坐标，向右为正，并记
+\[
+ d=\frac{\mu mg}{k}.
+\]
+物块开始向左移动说明初始弹簧力足以克服最大静摩擦力；在题目用同一摩擦因数描述时，
+至少有 $ka>\mu mg$。
+
+\textbf{A．正确。}\quad 从 $x=a$ 向左运动到 $O$ 的过程中，滑动摩擦力做功
+$-\mu mga$。若物块恰好在 $O$ 停下，则
+\[
+ \frac12ka^2-\mu mga=0,
+\]
+非零解为
+\[
+ a=2d=\frac{2\mu mg}{k}.
+\]
+此时 $O$ 点弹簧力为零，静摩擦力也可为零，物块能够停在该处。
+
+\textbf{B．错误。}\quad A 项已经给出反例：物块停在 $O$ 点时，所需静摩擦力为零。
+
+\textbf{C．正确。}\quad 物块从 $x=a$ 向左运动后的第一个停止位置 $x_1$ 满足
+\[
+ \frac12ka^2-\mu mg(a-x_1)=\frac12kx_1^2,
+\]
+除去初始位置，得到
+\[
+ x_1=2d-a.
+\]
+若 $d<a<2d$，则 $0<x_1<d$：物块停在 $O$ 点右侧，停前、停后的摩擦力均向右，两者
+同向。若 $2d<a<3d$，则 $-d<x_1<0$：物块停在左侧，停前摩擦力向右，停后静摩擦力
+向左，两者反向。
+
+若 $a>3d$，物块到达 $x_1<-d$ 后还会反向。下一停止位置由同样的功—能关系得到
+\[
+ x_2=a-4d.
+\]
+当 $3d<a<4d$ 时，物块停在左侧且停前向右运动，停前、停后的摩擦力均向左，两者同向；
+当 $4d<a<5d$ 时，物块停在右侧且停前向右运动，停前摩擦力向左、停后静摩擦力向右，
+两者反向。因此，无论最后停在 $O$ 点左侧还是右侧，同向和反向都确有可能。
+
+\textbf{D．错误。}\quad 物块从 $O$ 向右运动时，弹簧力与滑动摩擦力都向左，速度确实
+一直减小。若物块能从右侧最远点返回，向左运动时弹簧力向左、摩擦力向右：在 $x>d$
+时合力向左，速率增加；进入 $0<x<d$ 后合力向右，速率反而减小，并非直到 $O$ 都增加。
+图~\ref{ch07:fig:soldiagFourTwenty}中，滑动摩擦反向于速度；静摩擦则反向于物体停止位置处的弹簧力。
+\soldiagFourTwenty
+所以正确选项为
+\[
+ \boxed{\text{A、C}}.
+\]
+本题中“摩擦力反向”不是由位置本身决定的：滑动时它反向于速度，静止后则按维持平衡所
+需的方向和大小取值。
+\end{xesolution}
+
+对于更复杂过程中机械能怎样变化，也可以沿用“先区分保守力与非保守力，再考察各段功和
+能量变化”的方法逐段分析。
+
+\subsection{碰撞阶段、能量损失与摩擦生热}
+
+碰撞过程持续时间很短，通常先用动量守恒联系碰撞前后，再用恢复系数或能量条件描述材料性质。
+完全弹性碰撞同时守恒动量和动能；完全非弹性碰撞只表示碰后没有相对速度，并不意味着系统能量
+消失。对质量 $m_1,m_2$ 的一维完全非弹性碰撞，动能损失为
+\begin{equation*}
+ \Delta K_{\rm loss}=\frac12\mu(u_1-u_2)^2,
+ \qquad \mu=\frac{m_1m_2}{m_1+m_2},
+\end{equation*}
+可见损失只由碰前相对速度和约化质量决定。若碰撞后还有弹簧压缩、物块爬升或摆动，应把
+“碰撞瞬间”和“碰后运动”分成两个阶段，分别使用适合的守恒关系。
+
+滑动摩擦把宏观机械能转化为接触物体的内能。两个接触面相对滑动距离为 $s_{\rm rel}$ 时，产生的
+热量为
+\begin{equation*}
+ Q=f_k s_{\rm rel}.
+\end{equation*}
+这里必须使用相对路程，而不是任一物体对地路程。若研究对象只取其中一个物体，摩擦功可以为正
+也可以为负；若把两个物体及接触面一起纳入系统，摩擦内力总功等于机械能减少量的负值，而内能
+增加量为正。区分“单个物体的摩擦功”和“系统的摩擦生热”，可以避免传送带、叠块等问题中常见的
+符号错误。
+}
+
+\endgroup
