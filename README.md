@@ -6,8 +6,8 @@
 
 全书1342页，含32章、附录E及高阶A1—A6，共765道例题。每题均有题图和解答内部的可编辑TikZ配图，解答结合图中的变量、方向、区域或边界展开推导。
 
-- [下载终审版PDF](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-final/高中物理竞赛一轮讲义_终审版_20261024.pdf)
-- [下载可编辑源码与TikZ](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-final/一轮讲义_可编辑源码与TikZ_终审版_20261024.zip)
+- [下载终审版PDF](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-final/physics-competition-first-round-final-20261024.pdf)
+- [下载可编辑源码与TikZ](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-final/physics-competition-first-round-sources-tikz-20261024.zip)
 - [查看发布版本与附件](https://github.com/sabercldong/physics-competition-first-round/releases/tag/v2026.10.24-final)
 - [终审与验收报告](audit/final_review_20261024/修订与验收报告.md) · [编译说明](audit/final_review_20261024/编译与修订说明.md)
 
