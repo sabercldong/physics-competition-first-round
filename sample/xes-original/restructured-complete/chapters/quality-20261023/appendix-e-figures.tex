@@ -1,0 +1,187 @@
+% Editable, problem-specific diagrams for the electromagnetic appendix.
+\tikzset{resistor/.style={thick,decorate,decoration={zigzag,segment length=5pt,amplitude=2pt}}}
+\newcommand{\QAENamed}[3]{\begin{qualityfigure}\begingroup
+  \renewcommand{\figcap}[1]{}\renewcommand{\label}[1]{}#1\endgroup
+  \figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\QAESources}{\begin{tikzpicture}[>=Latex,scale=.74,font=\small]
+ \begin{scope}[xshift=-6cm]
+  \draw[very thick] (0,-1.3)--(0,1.3);\node[above] at (0,1.3) {$\lambda$};
+  \draw[guide] (0,0)--(1.7,0);\fill (1.7,0) circle(2pt) node[right] {$P$};
+  \node[below] at (.85,0) {$a$};\node at (.8,-1.9) {无限直线};
+ \end{scope}
+ \begin{scope}[xshift=-2.6cm]
+  \draw[very thick] (0,-.8)--(0,1.4);\coordinate(P) at(1.7,0);\coordinate(O) at(0,0);
+  \draw[guide] (P)--(0,1.4) (P)--(0,-.8) (P)--(O);
+  \node[left] at (0,1.4) {$T_1$};\node[left] at (0,-.8) {$T_2$};
+  \node at(1.1,.3){$\theta_1$};\node at(1.05,-.25){$\theta_2$};
+  \fill(P) circle(2pt) node[right] {$P$};\node[below] at(.8,0) {$a$};
+  \node at (.7,-1.9) {有限直线：两端张角};
+ \end{scope}
+ \begin{scope}[xshift=1.4cm]
+  \fill[PaleBlue] (-.8,-.4)--(.7,-.8)--(1.6,.2)--(.1,.6)--cycle;
+  \draw[guide] (.4,-.1)--(.4,1.4);\node[left]at(.4,.75){$a$};\fill(.4,1.4) circle(2pt) node[right] {$P$};
+  \node at(.4,-1.2) {$\sigma$};\node at(.4,-1.9) {无限平面／有限宽条带};
+ \end{scope}
+ \begin{scope}[xshift=6.0cm]
+  \draw[fill=PaleBlue] (0,0) ellipse(.5 and 1.15);\draw[axis](0,0)--(2.1,0);
+  \draw[guide](0,1.15)--(1.65,0);\fill(1.65,0) circle(2pt) node[above] {$P$};
+  \node[below] at(.9,0) {$a$};\node[left] at(0,.8) {$R$};\node at(.7,-1.9) {圆盘轴线};
+ \end{scope}
+\end{tikzpicture}}
+\newcommand{\QAEStrip}{\begin{tikzpicture}[>=Latex,scale=.85,font=\small]
+ \begin{scope}[xshift=-3.8cm]
+  \draw[axis](-2,0)--(2.1,0) node[right] {$x$};\draw[very thick](-1.3,0)--(1.8,0);
+  \fill[PaleBlue] (.8,-.13) rectangle(1,.13);\node[below]at(.9,-.15){$\dd x$};
+  \coordinate(P)at(0,1.8);\draw[guide](-1.3,0)--(P)--(1.8,0) (0,0)--(P);
+  \fill(P) circle(2pt) node[above] {$P$};\node[left]at(0,.55){$a$};
+  \node at(.48,1.06){$\theta_1$};\node at(-.4,1.1){$\theta_2$};
+  \draw[vector](P)--(-.4,2.55) node[left]{$\dd\vect E$};
+  \node[below,align=center]at(0,-.65){条带沿纸外方向无限延伸\\每条线元 $\dd\lambda=\sigma\dd x$};
+ \end{scope}
+ \begin{scope}[xshift=3.7cm]
+  \fill[PaleBlue](-1.6,-.15)rectangle(1.6,.15);\draw[guide](-.9,-1)--(.9,-1)--(.9,1)--(-.9,1)--cycle;
+  \draw[vector](0,.15)--(0,1.65)node[right]{$\vect E_+$};
+  \draw[vector](0,-.15)--(0,-1.65)node[right]{$\vect E_-$};
+  \node at(0,-2.15){跨平面的柱形高斯面：两个端面通量};
+ \end{scope}
+\end{tikzpicture}}
+\newcommand{\QAEZeroField}{\begin{tikzpicture}[>=Latex,scale=.8,font=\small]
+ \draw[axis](-3.8,0)--(5.3,0)node[right]{$x$};
+ \fill[DeepBlue](-2,0)circle(3pt)node[below]{$+Q$};\fill[Gold](0,0)circle(3pt)node[below]{$-q$};
+ \fill(3,0)circle(1.8pt)node[below right]{$x_0$};
+ \draw[vector](3.05,0)--(4.5,0)node[above]{$\delta E_x>0$};\draw[vector](2.95,0)--(1.6,0);
+ \draw[vector](3,1.4)--(3,.25);\draw[vector](3,-1.4)--(3,-.25);
+ \draw[guide](-2,1.9)--(3,1.9) (0,1.35)--(3,1.35);
+ \node[above]at(.4,1.9){$x_0+a$};\node[above]at(1.4,1.35){$x_0-a$};
+ \node[below,align=center]at(0,-2){轴向扰动离开零场点，横向扰动趋向轴线\\箭头表示零场点邻域的场，非两电荷之间的全局场线};
+\end{tikzpicture}}
+\newcommand{\QAECavityVectors}{\begin{tikzpicture}[>=Latex,scale=.9]
+ \draw[fill=PaleBlue](0,0)circle(1.8);\draw[fill=white](.65,.2)circle(.8);
+ \coordinate(O)at(0,0);\coordinate(C)at(.65,.2);\coordinate(P)at(.9,.8);
+ \draw[vector](O)--(C)node[midway,below]{$\vect d$};\draw[vector](C)--(P)node[right]{$\vect r'$};
+ \draw[vector](O)--(P)node[midway,left]{$\vect r$};
+ \foreach\p in {O,C,P}{\fill(\p)circle(1.5pt)node[below right]{$\p$};}
+ \node[align=left,anchor=west]at(2.5,.4){完整大球：$+\rho$\\补偿小球：$-\rho$\\$\vect r-\vect r'=\vect d$};
+\end{tikzpicture}}
+\newcommand{\QAEDipoleComponents}{\begin{tikzpicture}[>=Latex,scale=.9]
+ \draw[axis](-1,0)--(3.8,0)node[right]{$\vect p$};\coordinate(O)at(0,0);\coordinate(P)at(2.2,1.5);
+ \draw[guide](O)--(P)node[midway,above left]{$r$};\node[below]at(O){$O$};\fill(P)circle(2pt)node[above]{$P$};
+ \draw[vector](P)--++(1.1,.75)node[right]{$E_r$};\draw[vector](P)--++(-.6,.88)node[above]{$E_\theta$};
+ \draw (0.65,0) arc(0:34.3:.65)node[midway,right]{$\theta$};
+ \node[below,align=center]at(1,-1){极角由 $\vect p$ 向场点量起\\$E_r,E_\theta$ 的正基矢按极坐标定义};
+\end{tikzpicture}}
+\newcommand{\QAEPotentialPlot}{\begin{tikzpicture}[>=Latex,scale=.75,font=\small]
+ \begin{scope}[xshift=-4cm]
+  \draw[axis](0,-1.4)--(0,1.5)node[above]{$\varphi$};\draw[axis](0,0)--(3.2,0)node[right]{$r/r_0$};
+  \draw[DeepBlue,thick,domain=.3:3,samples=60]plot(\x,{-ln(\x)});\draw[guide](1,0)--(1,-.2)node[below]{$1$};
+  \node[below]at(1.6,-1.9){直线电荷：$\varphi\propto-\ln(r/r_0)$};
+ \end{scope}
+ \begin{scope}[xshift=3cm]
+  \draw[axis](-2,0)--(2.3,0)node[right]{$z$};\draw[axis](0,-1.7)--(0,1.4)node[above]{$\varphi$};
+  \draw[DeepBlue,thick](-1.6,-1.3)--(0,0)--(1.6,-1.3);
+  \node[below]at(0,-1.9){面电荷：$\varphi\propto-|z|$};
+ \end{scope}
+\end{tikzpicture}}
+\newcommand{\QAECapacitors}[1]{\begin{tikzpicture}[>=Latex,scale=.76,font=\small]
+ \begin{scope}[xshift=-5cm]
+  \draw[very thick](-1.1,.65)--(1.1,.65) (-1.1,-.65)--(1.1,-.65);
+  \node[above]at(0,.65){$+Q,\ S=l^2$};\node[below]at(0,-.65){$-Q$};\draw[<->](1.4,-.65)--(1.4,.65)node[midway,right]{$d$};
+  \ifnum#1=1 \draw[vector](0,.45)--(0,-.45)node[right]{$E$};\fi
+ \end{scope}
+ \begin{scope}
+  \draw(0,0)circle(.7);\draw(0,0)circle(1.3);\draw[guide](0,0)--(1.3,0);
+  \node[above]at(.45,0){$R_1$};\node[below]at(1,0){$R_2$};\node[left]at(-.7,0){$+Q$};\node[above]at(0,1.3){$-Q$};
+  \ifnum#1=1\draw[vector](.78,-.6)--(1.03,-.8)node[right]{$E(r)$};\fi
+ \end{scope}
+ \begin{scope}[xshift=5cm]
+  \draw(0,0)circle(.55);\draw(0,0)circle(1.25);\draw[guide](0,0)--(1.25,0);
+  \node[above]at(.3,0){$a$};\node[below]at(.95,0){$b$};\node[above,align=center]at(0,1.3){同轴柱横截面\\轴向长度 $l$};
+  \ifnum#1=1\draw[vector](0,-.65)--(0,-1.15)node[right]{$E(r)$};\fi
+ \end{scope}
+\end{tikzpicture}}
+\newcommand{\QAESplitQuestion}{\begin{tikzpicture}[>=Latex,scale=.8]
+ \foreach\h in {-3.5,3.5}{\draw[very thick](\h-1.6,1)--(\h+1.6,1) (\h-1.6,-1)--(\h+1.6,-1);}
+ \fill[PaleBlue](-5.1,-.95)rectangle(-3.5,.95);\draw[guide](-3.5,-1)--(-3.5,1);
+ \node at(-4.3,0){$\varepsilon_r$};\node at(-2.7,0){真空};\node at(-3.5,-1.5){各占面积 $S/2$};
+ \fill[PaleBlue](1.9,0)rectangle(5.1,.95);\node at(3.5,.5){$\varepsilon_r$};\node at(3.5,-.5){真空};
+ \draw[<->](5.4,0)--(5.4,1)node[midway,right]{$d/2$};\node at(3.5,-1.5){各层面积 $S$};
+\end{tikzpicture}}
+\newcommand{\QAEInsertQuestion}{\begin{tikzpicture}[>=Latex,scale=.82]
+ \draw[very thick](-3.3,.7)--(3.3,.7) (-3.3,-.7)--(3.3,-.7);
+ \fill[PaleBlue](-3.3,-.65)rectangle(-.3,.65);\node at(-1.8,0){$\varepsilon_r$};\node at(1.4,0){真空};
+ \draw[<->](-3.3,-1.1)--(-.3,-1.1)node[midway,below]{$x$};\draw[<->](-.3,-1.1)--(3.3,-1.1)node[midway,below]{$a-x$};
+ \draw[<->](3.6,-.7)--(3.6,.7)node[midway,right]{$d$};\node[above]at(0,1.1){垂直纸面宽度 $b$};
+\end{tikzpicture}}
+\newcommand{\QAERCQuestion}{\begin{tikzpicture}[>=Latex,scale=.8]
+ \draw(-3,0)--(-2.3,0);\draw[very thick](-2.3,-.5)--(-2.3,.5);\draw(-1.95,-.3)--(-1.95,.3);
+ \draw(-1.95,0)--(-.7,0);\draw[resistor](-.7,0)--(1.1,0)node[midway,above]{$R$};
+ \draw(1.1,0)--(2,0);\draw[very thick](2,-.5)--(2,.5) (2.4,-.5)--(2.4,.5);
+ \draw(2.4,0)--(3,0)--(3,-1.4)--(-3,-1.4)--(-3,0);
+ \node[below]at(-2.15,-.55){$\mathcal E$};\node[above]at(2.2,.6){$C,\ Q(0)=0$};
+\end{tikzpicture}}
+\newcommand{\QAEEarthQuestion}{\begin{tikzpicture}[>=Latex,scale=.8]
+ \fill[SoftGray](0,0)circle(1.4);\draw(0,0)circle(1.4);\draw[DeepBlue](0,0)circle(2);
+ \draw[->](0,0)--(1.4,0)node[midway,below]{$R_\oplus$};\draw[<->](1.4,0)--(2,0)node[midway,above]{$h$};
+ \node at(0,.55){地球 $-Q$};\node[above]at(0,2){等效外壳 $+Q$};
+ \node[anchor=west,align=left]at(2.8,.3){薄层 $h\ll R_\oplus$\\空气电阻率 $\rho$ 均匀\\$h$ 在图中放大};
+\end{tikzpicture}}
+\newcommand{\QAEVacuumQuestion}{\begin{tikzpicture}[>=Latex,scale=.85]
+ \draw[very thick](-3,-1)--(-3,1) (3,-1)--(3,1);
+ \node[above]at(-3,1){阴极 $0$};\node[above]at(3,1){阳极 $U>0$};
+ \draw[axis](-3,-1.5)--(3.8,-1.5)node[right]{$x$};\node[below]at(-3,-1.5){$0$};\node[below]at(3,-1.5){$L$};
+ \draw[vector](-1,0)--(1.3,0)node[midway,above]{$e^-,\ v$};\node at(0,-2.2){电极面积 $S$；忽略初始速率与边缘效应};
+\end{tikzpicture}}
+\newcommand{\QAEIonQuestion}{\begin{tikzpicture}[>=Latex,scale=.85]
+ \draw[very thick](-3,-1)--(-3,1) (3,-1)--(3,1);
+ \node[above]at(-3,1){阳极：读出};\node[above]at(3,1){阴极：$-U_0$};
+ \draw[guide](-1,-1)--(-1,1);\node[above]at(-1,1){$N$ 对};
+ \draw[vector](-1,.35)--(-2.4,.35)node[midway,above]{$v^-$};\draw[vector](-1,-.35)--(1,-.35)node[midway,below]{$v^+$};
+ \draw[<->](-3,-1.5)--(-1,-1.5)node[midway,below]{$x_0$};\draw[<->](-1,-1.5)--(3,-1.5)node[midway,below]{$D-x_0$};
+ \draw[axis](-3,1.7)--(3.6,1.7)node[right]{$x$};
+\end{tikzpicture}}
+\newcommand{\QAERingQuestion}{\begin{tikzpicture}[>=Latex,scale=.85]
+ \draw[thick](0,0)circle(1.3);\fill(-1.3,0)circle(2pt)node[left]{$a$};\fill(.65,1.126)circle(2pt)node[above right]{$b$};
+ \draw[->](.92,.92)arc(45:20:1.3);\node[anchor=west,align=left]at(2,.3){均匀电阻丝：总电阻 $R$\\固定 $a$，沿环移动 $b$\\电源仅接于 $a,b$};
+\end{tikzpicture}}
+\newcommand{\QAECube}{\begin{tikzpicture}[scale=.85,font=\small]
+ \coordinate(A)at(-2,-1.2);\coordinate(B)at(.8,-1.2);\coordinate(C)at(.8,1.2);\coordinate(D)at(-2,1.2);
+ \coordinate(E)at(-.8,-.3);\coordinate(F)at(2,-.3);\coordinate(G)at(2,2.1);\coordinate(H)at(-.8,2.1);
+ \foreach\u/\v in {A/B,B/C,C/D,D/A,E/F,F/G,G/H,H/E,A/E,B/F,C/G,D/H}{\draw[resistor](\u)--(\v);}
+ \foreach\u/\pos in {A/below left,B/below,C/above left,D/left,E/below right,F/right,G/above right,H/above}{\fill(\u)circle(1.6pt)node[\pos]{$\u$};}
+ \node[anchor=west,align=left]at(3,.4){每条棱均为 $R$\\三组端口：$AB,AC,AG$\\交叉处无黑点则不相连};
+\end{tikzpicture}}
+\newcommand{\QAELadder}[1]{\begin{tikzpicture}[scale=.85,>=Latex]
+ \node[left]at(0,1){$a$};\node[left]at(0,-1){$b$};
+ \foreach\i in {0,1,2}{\foreach\y in {-1,1}{\draw[resistor](2*\i,\y)--(2*\i+1.4,\y);\draw(2*\i+1.4,\y)--(2*\i+2,\y);}\draw[resistor](2*\i+1.4,-1)--(2*\i+1.4,1);}
+ \draw[dotted,thick](6,1)--(6.8,1) (6,-1)--(6.8,-1);
+ \ifnum#1=1\draw[dashed,DeepBlue](1.9,-1.5)rectangle(7,1.5);\node[above,DeepBlue]at(4.4,1.5){尾部仍为 $X$};\fi
+ \node[below]at(3.3,-1.8){每只电阻均为 $R$；端口前没有横接电阻};
+\end{tikzpicture}}
+\newcommand{\QAEThreeRail}[1]{\begin{tikzpicture}[scale=.85,font=\small]
+ \foreach\y/\n in {1.5/A,0/B,-1.5/C}{\node[left]at(0,\y){$\n$};}
+ \foreach\i in {0,1,2}{\foreach\y in {-1.5,0,1.5}{\draw[resistor](2*\i,\y)--(2*\i+1.4,\y);\draw(2*\i+1.4,\y)--(2*\i+2,\y);}\draw[resistor](2*\i+1.4,-1.5)--(2*\i+1.4,0);\draw[resistor](2*\i+1.4,0)--(2*\i+1.4,1.5);}
+ \foreach\y in {-1.5,0,1.5}{\draw[dotted,thick](6,\y)--(6.8,\y);}
+ \ifnum#1=1\draw[dashed,DeepBlue](1.9,-2)rectangle(7,2);\node[above,DeepBlue]at(4.3,2){三端尾部：$p,p,q$};\fi
+ \node[below]at(3,-2.3){一节含三只水平电阻和两只竖直电阻，均为 $R$};
+\end{tikzpicture}}
+\newcommand{\QAEThreeReduction}{\begin{tikzpicture}[>=Latex,scale=.85]
+ \coordinate(A)at(-1,1.4);\coordinate(B)at(1.5,0);\coordinate(C)at(-1,-1.4);
+ \draw[resistor](A)--(B)node[midway,above right]{$p/R$};\draw[resistor](B)--(C)node[midway,below right]{$p/R$};\draw[resistor](C)--(A)node[midway,left]{$q/R$};
+ \foreach\n in {A,B,C}{\fill(\n)circle(2pt)node[above left]{$\n$};}
+ \node[anchor=west,align=left]at(3,.4){标注量是电导\\$AB,BC$：$p/R$\\$AC$：$q/R$\\第三端口悬空，仍参与分流};
+\end{tikzpicture}}
+\newcommand{\QAESierpinskiPart}[1]{%
+ \ifnum#1=0
+  \filldraw[fill=PaleBlue,draw=DeepBlue] (0,0)--(2,0)--(1,1.7320508)--cycle;
+ \else
+  \pgfmathtruncatemacro{\QAENextDepth}{#1-1}
+  \begin{scope}[scale=.5]\QAESierpinskiPart{\QAENextDepth}\end{scope}
+  \begin{scope}[shift={(1,0)},scale=.5]\QAESierpinskiPart{\QAENextDepth}\end{scope}
+  \begin{scope}[shift={(.5,.8660254)},scale=.5]\QAESierpinskiPart{\QAENextDepth}\end{scope}
+ \fi}
+\newcommand{\QAESierpinski}{\begin{tikzpicture}[scale=1.15,font=\small]
+ \foreach\n in {0,1,2}{\begin{scope}[xshift=3.2*\n cm]
+  \QAESierpinskiPart{\n}
+  \node[below]at(1,-.3){第 $\n$ 阶：$3^{\n}$ 个小三角形};
+ \end{scope}}
+\end{tikzpicture}}

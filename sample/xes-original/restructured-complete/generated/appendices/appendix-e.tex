@@ -1,4 +1,8 @@
+% AppendixQuality20261023
+\begingroup\tcbset{breakable/.default=false}
 \chapter{电磁学补充专题}
+\input{chapters/quality-20261023/appendix-e-figures.tex}
+
 
 本附录补充第19—26章的电磁学专题与例题，重点讨论连续电荷分布、电势、电容器、恒定电流和复杂电阻网络。各题配有完整解答与图示，可结合正文选读。
 
@@ -8,7 +12,7 @@
 
 \begingroup
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eighteenth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eighteenth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/eighteenth-section/}{../../../sample/xes-original/eighteenth-section/assets/}}
 
 % Restrained TikZ redraws for Lesson 29.
 
@@ -442,13 +446,13 @@
 利用积分或高斯定律计算下列均匀带电系统产生的电场：
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
   \item 无限长直导线外距导线 $a$ 处，线电荷密度为 $\lambda$；
-  \item 有限长直导线中垂线外距中点 $a$ 处，两端对中垂线所张角分别为 $\theta_1,\theta_2$；
+  \item 有限长直导线所在直线外、距垂足 $a$ 处（垂足在线段内），两端相对过垂足法线的张角分别为 $\theta_1,\theta_2$；
   \item 无限大均匀带电平面外，面电荷密度为 $\sigma$；
-  \item 仅一个方向无限延伸的均匀带电条带外距条带 $a$ 处，两侧边缘所张角为
+  \item 仅一个方向无限延伸的均匀带电条带所在平面外距平面 $a$ 处（垂足在条带内），两侧边缘所张角为
   $\theta_1,\theta_2$；
   \item 半径为 $R$、面电荷密度为 $\sigma$ 的圆盘轴线上，距圆盘中心 $a$ 处。
 \end{enumerate}
-\finiteLineDiagram
+\QAENamed{\QAESources}{直线、平面、条带与圆盘的题设几何；场点与电荷均不重合，距离为正。}{quality:appE:q1}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -464,9 +468,9 @@
   \boxed{E=\frac{\lambda}{2\pi\varepsilon_0a}}.
 \]
 当 $\lambda>0$ 时方向背离导线，$\lambda<0$ 时方向指向导线。
-\lineFieldDiagram
+\QAENamed{\lineFieldDiagram}{同轴高斯面只在侧面产生通量。}{quality:appE:a1-line}
 
-\textbf{(2) 有限长直导线。}以中垂线指向场点为法向正方向，沿导线取坐标 $x$，电荷元
+\textbf{(2) 有限长直导线。}以过垂足指向场点的法线为法向正方向，沿导线取坐标 $x$，电荷元
 $\dd q=\lambda\dd x$ 到场点的距离为 $r=\sqrt{a^2+x^2}$。它产生的场元为
 \[
   \dd E=\frac{k\lambda\dd x}{a^2+x^2}.
@@ -480,7 +484,7 @@ $\dd q=\lambda\dd x$ 到场点的距离为 $r=\sqrt{a^2+x^2}$。它产生的场�
   \boxed{E_\parallel=\frac{k\lambda}{a}
   (\cos\theta_1-\cos\theta_2)}.
 \]
-$E_\parallel$ 的正方向取向张角为 $\theta_1$ 的一端；若线段关于中垂线对称，
+$E_\parallel$ 的正方向取向张角为 $\theta_1$ 的一端；若线段关于过垂足的法线对称，
 $\theta_1=\theta_2=\theta$，则切向分量抵消，
 \[
   \boxed{E=\frac{2k\lambda}{a}\sin\theta}.
@@ -528,7 +532,10 @@ $\dd q=2\pi\sigma s\dd s$。圆环在轴线场点处的横向分量相消，轴�
 \[
   \boxed{E_x=\frac{\sigma}{2\varepsilon_0}(1-\cos\theta)}.
 \]
-\diskFieldDiagram
+\QAENamed{\diskFieldDiagram}{圆盘分割为同心圆环，各环横向分量相消。}{quality:appE:a1-disk}
+
+\QAENamed{\QAEStrip}{条带的线元分割与无限平面的双端面高斯面。}{quality:appE:a1}
+图~\ref{quality:appE:a1}左图用 $x=a\tan\theta$ 将条带线元换成角度；每条线元的水平场沿场点到线元方向的反向，因此积分后水平分量含对数而非角度和。右图两个端面都要计入通量。图~\ref{quality:appE:a1-line}与图~\ref{quality:appE:a1-disk}分别对应同轴高斯法和同心环积分法。
 \end{xesolution}
 
 \begin{origexamplebox}{【奇妙的电场线】}\label{appE:ex:s18-29-2}
@@ -540,7 +547,7 @@ $\dd q=2\pi\sigma s\dd s$。圆环在轴线场点处的横向分量相消，轴�
   \item 无穷远处的电场有什么特征？
   \item 写出电场线方程的一种隐式表示。
 \end{enumerate}
-\unequalChargeDiagram
+\QAENamed{\unequalChargeDiagram}{不等量异号电荷位于同一轴线上，$Q>q>0$；场线数仅表示通量比例。}{quality:appE:q2}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -579,6 +586,10 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   Q\cos\theta_+-q\cos\theta_-=C'.
 \]
 这是一种隐式方程；绕 $x$ 轴旋转即可得到三维电场线族。
+
+\QAENamed{\QAEZeroField}{零场点两侧的轴向场与垂直扰动方向；只画零场点邻域的线性结构。}{quality:appE:a2}
+
+图~\ref{quality:appE:a2}中较小负电荷距 $x_0$ 更近，才能与较大的正电荷抵消。令 $A=\partial E_x/\partial x|_{x_0}>0$，无源邻域的轴对称性和 $\nabla\cdot\vect E=0$ 给出横向线性系数 $-A/2$，从而得到图示鞍形方向。电荷之间并不存在这样的零场点。
 \end{xesolution}
 
 \begin{origexamplebox}{【球壳空洞】}\label{appE:ex:s18-29-3}
@@ -587,7 +598,7 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   \item 求空腔内的电场；
   \item 分析它与万有引力中同类模型的联系，并讨论题目若把球体称为“金属球体”会有什么问题。
 \end{enumerate}
-\cavityDiagram
+\QAENamed{\cavityDiagram}{均匀带电绝缘球中的偏心球形空腔；空腔完全处于大球内。}{quality:appE:q3}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -604,7 +615,7 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   -\frac{\rho}{3\varepsilon_0}\vect r'
   =\boxed{\frac{\rho}{3\varepsilon_0}\vect d}.
 \]
-所以空腔内电场是匀强电场，方向由大球球心指向空腔球心。
+所以空腔内电场是匀强电场，当 $\rho>0$ 时方向由大球球心指向空腔球心。
 
 万有引力也服从平方反比定律，均匀球形空腔可用完全相同的叠加方法计算，只需把电学常量与
 质量密度替换为引力常量与质量密度；引力只有吸引，最终场方向相应改变。
@@ -612,12 +623,16 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 若把球体称为“金属球体”并同时规定内部均匀体电荷密度，这在静电平衡下不成立。导体内
 自由电荷会重新分布，导体材料内部电场必须为零。因此上述答案适用于均匀体电荷被冻结的
 绝缘球体；若确为处于静电平衡的导体，必须按导体边界条件重新求解。
+
+\QAENamed{\QAECavityVectors}{带正、负密度的两个完整球叠加；$\vect r=\vect d+\vect r'$。}{quality:appE:a3}
+
+图~\ref{quality:appE:a3}的两条位置矢量都终止于同一 $P$，相减后只剩与 $P$ 无关的 $\vect d$，这正是空腔内场均匀的原因。若 $\rho<0$，方向随密度符号反转；万有引力对应 $\vect g=-4\pi G\rho_m\vect d/3$。
 \end{xesolution}
 
 \begin{origexamplebox}{【电偶极子】}\label{appE:ex:s18-29-4}
 一正一负两个点电荷的电荷量分别为 $+q$、$-q$，间距为 $l$。求 $r\gg l$ 处电场强度的
 大小和方向，并求在该近似下的电场线方程。
-\dipoleDiagram
+\QAENamed{\dipoleDiagram}{两个等量异号点电荷与远场位置；偶极矩方向由负电荷指向正电荷。}{quality:appE:q4}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -651,6 +666,10 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   \boxed{r=C\sin^2\theta},
 \]
 其中 $C>0$ 标记不同的电场线。
+
+\QAENamed{\QAEDipoleComponents}{远场中的径向、极角方向及电场分量；图示第一象限。}{quality:appE:a4}
+
+图~\ref{quality:appE:a4}中 $\theta$ 沿从正极轴转向 $P$ 的方向增大，故 $E_\theta$ 的正方向是逆时针的局部切向。把 $E_r,E_\theta$ 按这两条正交基矢合成，才能得到空间方向。$r=C\sin^2\theta$ 只在理想偶极或远场有效，曲线向 $r\sim l$ 延伸的部分不再代表实际两电荷的近场。
 \end{xesolution}
 
 \endgroup
@@ -661,7 +680,7 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 
 \begingroup
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/nineteenth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/nineteenth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/nineteenth-section/}{../../../sample/xes-original/nineteenth-section/assets/}}
 
 % Restrained TikZ redraws for Lesson 30.
 
@@ -872,6 +891,8 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 \begin{origexamplebox}{【电势算电场】}\label{appE:ex:s19-30-1}
 利用“先求电势，再求电场”的方法，重新计算上一讲中的典型带电系统：点电荷系、有限带电体
 和无限长或无限大的电荷分布。分析哪些情况下不能取无穷远为零电势，并给出处理方法。
+
+\QAENamed{\QAESources}{有限带电体与无限分布的比较；先确定几何和有限参考点，再求电势差。}{quality:appE:q5}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -924,6 +945,10 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 \]
 它同样不能用无穷远作为零电势。对非局域电荷分布，正确做法是选定有限参考点，始终只计算
 电势差；若多个无限分布组合后总场在远处衰减足够快，也可先把组合视为整体再选零点。
+
+\QAENamed{\QAEPotentialPlot}{正电荷密度时的电势形状；两图的纵向正尺度分别为 $\lambda/(2\pi\varepsilon_0)$、$\sigma/(2\varepsilon_0)$。}{quality:appE:a5}
+
+图~\ref{quality:appE:a5}中对数和绝对值曲线在远处均不趋于有限常数，所以不能给它们硬加“无穷远零电势”。求导会消去有限参考点带来的常数，电场不随零点选择而变。平面 $z=0$ 处电势连续、法向导数跳变，与面电荷边界相符。
 \end{xesolution}
 
 \endgroup
@@ -934,7 +959,7 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 
 \begingroup
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-first-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-first-section/assets/}}
+\graphicspath{{../../../sample/xes-original/twenty-first-section/}{../../../sample/xes-original/twenty-first-section/assets/}}
 
 % Restrained TikZ redraws for Lesson 32.
 
@@ -1163,7 +1188,7 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   \draw[<->] (-3.8,-1.22)--node[fill=white,inner sep=1pt] {$x$}(0.6,-1.22);
   \draw[<->] (0.6,-1.22)--node[fill=white,inner sep=1pt] {$a-x$}(3.8,-1.22);
   \draw[<->] (4.15,-0.8)--node[right] {$d$}(4.15,0.8);
-  \draw[vector] (0.55,0)--(-1.1,0) node[midway,above] {$\vect F$};
+  \draw[vector] (0.55,0)--(2.2,0) node[midway,above] {$\vect F$};
   \node[TextGray] at (0,-1.95) {介质进入越深，等效电容越大，电场把介质继续拉入};
 \end{tikzpicture}
 
@@ -1252,7 +1277,7 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
     {内半径 $R_\oplus$\\外半径 $R_\oplus+h$\\大气同时提供电容与漏电电阻};
 \end{tikzpicture}
 
-\figcap{开尔文的大气球形电容器模型}\label{appE:fig:s21-legacy-15}
+\figcap{理想化的大气球形电容器模型}\label{appE:fig:s21-legacy-15}
 \end{center}}
 
 
@@ -1261,8 +1286,10 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
   \item 面积 $S=l^2$、间距 $d$ 的平行板电容器，$l\gg d$；
   \item 内、外半径为 $R_1,R_2$ 的同心球形电容器，$R_1<R_2$；
-  \item 内、外半径为 $a,b$、长度为 $l$ 的同轴圆柱形电容器，$l\gg b-a$。
+  \item 内、外半径为 $a,b$、长度为 $l$ 的同轴圆柱形电容器，$l\gg b$。
 \end{enumerate}
+
+\QAENamed{\QAECapacitors{0}}{平行板、同心球与同轴圆柱三种电容器的尺寸；后两图均为中心横截面。}{quality:appE:q6}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1309,15 +1336,23 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   \boxed{C_{\rm cyl}=\frac{2\pi\varepsilon_0l}{\ln(b/a)}}.
 \end{equation}
 三种推导中的近似只用于忽略开口或极板边缘的非均匀场；在理想同心球中不存在边缘近似。
+
+\QAENamed{\QAECapacitors{1}}{积分路径沿两极间的场线；同心球与同轴柱使用不同的高斯面积。}{quality:appE:a6}
+
+图~\ref{quality:appE:a6}内外电极之间分别使用平面、球面和柱面对称性。球面面积随 $r^2$ 增长，柱面面积随 $r$ 增长，因而径向积分一个给倒数差、一个给对数；不能仅凭外形把两式套换。
 \end{xesolution}
 
 \begin{origexamplebox}{【改造电容器】}\label{appE:ex:s21-32-4}
 平行板电容器的极板面积为 $S$、间距为 $d$。
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
-  \item 沿面积方向，在左半边完全填入相对介电常数为 $\varepsilon_r$ 的介质；
+  \item 沿面积方向，在左半边完全填入相对介电常数为 $\varepsilon_r>1$ 的介质；
   \item 沿厚度方向，在上半层填入相对介电常数为 $\varepsilon_r$ 的介质。
 \end{enumerate}
 分别求改造后的电容，并判断增减。
+
+忽略边缘效应对总电容的修正，介质为均匀线性电介质。
+
+\QAENamed{\QAESplitQuestion}{半面积填充与半厚度填充；蓝色表示介质，白色表示真空。}{quality:appE:q7}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1350,11 +1385,13 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
 \]
 所以相同介质量按面积并排放置，增容更明显。
 
-\splitDielectricDiagram
+\QAENamed{\splitDielectricDiagram}{两区域等电压形成并联，两层等法向电位移形成串联；$\varepsilon=\varepsilon_r\varepsilon_0$。}{quality:appE:a7}
+
+图~\ref{quality:appE:a7}左图沿面积切开，两块介质都连接同一对电极；右图沿厚度切开，中间界面没有自由面电荷，故两层法向 $D$ 相同。这些边界条件分别决定并联和串联，而不是按介质块数判断。
 \end{xesolution}
 
 \begin{origexamplebox}{【奇妙的吸引力】}\label{appE:ex:s21-32-5}
-小明又需要你的帮助了。他把一块相对介电常数为 $\varepsilon_r$ 的电介质插入平行板电容器中。
+小明又需要你的帮助了。他把一块相对介电常数为 $\varepsilon_r>1$ 的电介质插入平行板电容器中。
 极板面积为 $S=ab$、间距为 $d$，介质厚度等于板间距，并沿边长 $a$ 的方向插入深度 $x$。
 电介质会受到继续向电容器内部运动的吸引力；这个力从微观上怎样产生并不容易直接看清，请利用虚功法
 把它算出来。
@@ -1362,10 +1399,14 @@ $\theta_+$、$\theta_-$，二者的极轴都取沿 $+x$ 方向。由轴对称电
   \item 电容器电荷 $Q$ 保持不变，用介质内电场 $E$ 表示吸入力；
   \item 电容器接在恒压电源上，用介质内电场 $E$ 表示吸入力。
 \end{enumerate}
+
+忽略边缘效应对总电容的修正，介质为均匀线性电介质。
+
+\QAENamed{\QAEInsertQuestion}{介质沿 $+x$ 方向进入，插入长度 $0<x<a$；图中尚未给出受力。}{quality:appE:q8}
 \end{origexamplebox}
 
 \begin{xesolution}
-忽略边缘场，已填充区域与真空区域相当于并联：
+在薄间隙、介质前缘远离极板两端的内部插入区间，忽略边缘效应对总电容的高阶修正，已填充区域与真空区域相当于并联：
 \begin{equation}
   C(x)=\frac{\varepsilon_0b}{d}\,[a+(\varepsilon_r-1)x],
   \qquad
@@ -1396,16 +1437,20 @@ $\dd(CU^2/2)-U\dd Q=-U^2\dd C/2$，所以
 两式形式相同，是因为题目要求用各自状态下的 $E$ 表示；固定 $Q$ 时 $E$ 随 $x$ 改变，固定
 $U$ 时 $E$ 不变。力都把介质拉入电容器，因为介质进入会增大电容。
 
-\dielectricPullDiagram
+\QAENamed{\dielectricPullDiagram}{吸引力指向插入深度增加方向；固定电压时须连同电源功计算。}{quality:appE:a8}
+
+图~\ref{quality:appE:a8}的箭头沿介质右端向电容器内部，即 $x$ 增大方向。力来自插入前缘附近的非均匀边缘场；忽略边缘场对总电容的高阶修正，并不意味着可以在微观受力分析中删去边缘场。虚功法用 $C'(x)$ 保留了该作用的整体效果。
 \end{xesolution}
 
 \begin{origexamplebox}{【充电过程】}\label{appE:ex:s21-32-8}
-用电动势为 $\mathcal E$ 的理想电源给电容 $C$ 充电。
+用电动势为 $\mathcal E$ 的理想电源给初始未充电的电容 $C$ 充电。
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
   \item 电路中串联电阻 $R$，充电完成前电源做功和电阻发热各为多少；
   \item 令 $R$ 趋于零，两个结果怎样变化；
   \item 若理想电路中完全没有电阻，应如何理解？
 \end{enumerate}
+
+\QAENamed{\QAERCQuestion}{初始未充电的电容器与串联电阻、电源；讨论闭合后的过程。}{quality:appE:q9}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1433,11 +1478,13 @@ $C\mathcal E^2/2$，与 $R$ 的数值无关。这是先对有限 $R$ 完成积�
 $\mathcal E$；微小电阻或辐射最终耗散那一半能量。因而“零电阻”只能作为 $R\to0^+$ 的极限，
 不能把所有寄生参数同时删掉后仍期待同样的稳态充电过程。
 
-\chargingDiagram
+\QAENamed{\chargingDiagram}{有限电阻充电的三项能量账；先积分，再取电阻趋零极限。}{quality:appE:a9}
+
+图~\ref{quality:appE:a9}将电源功拆成电场储能与焦耳热。初始未充电是两项各占一半的前提；若电容预先有电压，必须重新计算搬运的电荷和初末储能，不能仍套用这个数值。
 \end{xesolution}
 
 \begin{origexamplebox}{【超大电容】}\label{appE:ex:s21-32-11}
-物理学家开尔文最先把地球和大气层构造为一个电容器模型：地球表面是其中一个极板，带负电荷；
+考虑地球与大气的理想化电容器模型：地球表面是其中一个极板，带负电荷；
 高空的大气等效为另一个极板，带正电荷。把地球表面和高空 $h=\SI{5}{km}$ 处的大气层近似为
 同心球形电容器。取地球半径
 $R_\oplus=\SI{6.4e6}{m}$，地球带电量绝对值 $Q=\SI{5e5}{C}$，空气电阻率
@@ -1449,6 +1496,8 @@ $\rho=\SI{3e13}{\ohm.m}$。
   \item 求 $RC$ 放电时间常数；
   \item 若每次雷电平均向地面补充 $\SI{25}{C}$ 电荷，维持该电荷量每天约需多少次雷电？
 \end{enumerate}
+
+\QAENamed{\QAEEarthQuestion}{地表与等效大气外壳的同心球模型；图中的大气层厚度已放大。}{quality:appE:q10}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1463,7 +1512,7 @@ $\rho=\SI{3e13}{\ohm.m}$。
 
 \textbf{(2) 地表场与能量。}地表外侧
 \[
-  E(R)=\frac{Q}{4\pi\varepsilon_0R^2}approx\SI{1.10e2}{V.m^{-1}}.
+  E(R)=\frac{Q}{4\pi\varepsilon_0R^2}\approx\SI{1.10e2}{V.m^{-1}}.
 \]
 故
 \begin{equation}
@@ -1498,7 +1547,9 @@ $\dd R_{\rm el}=\rho\dd r/(4\pi r^2)$，所以
 \end{equation}
 这是题设参数下的数量级模型；真实全球电路的电荷分布、天气电导率和雷暴补充机制更复杂。
 
-\atmosphereCapacitorDiagram
+\QAENamed{\QAEEarthQuestion}{同一球壳面积 $4\pi r^2$ 分别进入场、电容和漏电电阻，形成几何因子的抵消。}{quality:appE:a10}
+
+图~\ref{quality:appE:a10}中的径向薄壳具有面积 $4\pi r^2$。电阻积分类似串联薄层，电势积分也沿相同半径进行，故 $R_{\rm el}C=\rho\varepsilon_0$ 与球壳的两端半径无关；这要求电阻率在整个壳层内均匀。
 \end{xesolution}
 
 \endgroup
@@ -1509,7 +1560,7 @@ $\dd R_{\rm el}=\rho\dd r/(4\pi r^2)$，所以
 
 \begingroup
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-second-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-second-section/assets/}}
+\graphicspath{{../../../sample/xes-original/twenty-second-section/}{../../../sample/xes-original/twenty-second-section/assets/}}
 
 % Restrained TikZ redraws for Lesson 33.
 
@@ -1880,6 +1931,8 @@ $x=L$ 且电势为 $U>0$。电子从阴极以可忽略的初速度发射，稳�
   \item 消去速度和数密度，写出电势的微分方程与空间电荷限制状态的边界条件；
   \item 求伏安关系并证明查尔德--朗缪尔定律 $I=KU^{3/2}$。
 \end{enumerate}
+
+\QAENamed{\QAEVacuumQuestion}{阴极、阳极、电势边界与电子运动方向；约定电流大小为正。}{quality:appE:q11}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1945,10 +1998,12 @@ $x=L$ 且电势为 $U>0$。电子从阴极以可忽略的初速度发射，稳�
   \boxed{K=\frac49\frac{\varepsilon_0S}{L^2}\sqrt{\frac{2e}{m}}}.
 \end{equation}
 这一定律建立在平板近似、零初速度、充分电子发射和稳恒一维空间电荷等条件上。
-图~\ref{appE:fig:s22-33-9} 中电子从零电势阴极向高电势阳极运动；$\varphi\propto x^{4/3}$ 也表明板间电场
-$E=\varphi'$ 并非均匀场。
+图~\ref{quality:appE:a11} 中电子从零电势阴极向高电势阳极运动；$\varphi\propto x^{4/3}$ 也表明板间电场
+$E_x=-\varphi'$、$|\vect E|=\varphi'$ 并非均匀场。
 
-\vacuumDiodeDiagram\label{appE:fig:s22-33-9}
+\QAENamed{\vacuumDiodeDiagram}{电子向高电势端加速；电势为非线性分布，电场指向阴极。}{quality:appE:a11}
+
+图~\ref{quality:appE:a11}中电子速率沿 $+x$ 增大，电势也随 $x$ 增大，但 $E_x=-\varphi'<0$，负电荷所受电力仍沿 $+x$。必须区分电场方向、电子速度方向和电流的大小。
 \end{xesolution}
 
 \begin{origexamplebox}{【电离计数器】}\label{appE:ex:s22-33-6}
@@ -1966,6 +2021,10 @@ $N=E_{\rm dep}/W$。正离子与电子的漂移速率分别为 $v^+,v^-$，假�
   \item 在 $v^-\gg v^+$ 时描述波形；
   \item 若负载电阻 $R$ 不可忽略，写出输出电压的时间关系。
 \end{enumerate}
+
+采用小信号近似，阳极初始电势为零，脉冲幅值 $\Delta U=-\delta V_{\rm anode}$；要求 $|\delta V_{\rm anode}|\ll U_0$，从而可将漂移速率视为常量。
+
+\QAENamed{\QAEIonQuestion}{平行板电离室中电子与离子的两段漂移距离及读出电极。}{quality:appE:q12}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -2001,7 +2060,7 @@ $N=E_{\rm dep}/W$。正离子与电子的漂移速率分别为 $v^+,v^-$，假�
 \end{equation}
 当两类载流子全部到达电极，$\Delta U(\infty)=Ne/C$，与电离位置 $x_0$ 无关。
 
-\textbf{(4)} 通常 $v^-\gg v^+$，电子在短时间 $t_-$ 内形成陡峭快分量
+\textbf{(4)} 当电离位置不紧靠阴极且 $t_-\ll t_+$ 时，电子在短时间 $t_-$ 内形成陡峭快分量
 $Ne x_0/(CD)$；随后正离子在较长时间 $t_+$ 内形成缓慢上升分量
 $Ne(D-x_0)/(CD)$。两部分相加仍为 $Ne/C$。
 
@@ -2016,10 +2075,12 @@ $Ne(D-x_0)/(CD)$。两部分相加仍为 $Ne/C$。
 \end{equation}
 它表明每一小段新产生的感应电压都从产生时刻起指数衰减。若粒子在气体中完全损失能量
 $E_p$，且产生一对电子--离子的平均能量为 $W$，还可用 $N=E_p/W$ 反推粒子能量。
-图~\ref{appE:fig:s22-33-11} 把两段漂移路程直接标成 $x_0$ 与 $D-x_0$：它们分别决定快分量和慢分量的持续时间
+图~\ref{quality:appE:a12} 把两段漂移路程直接标成 $x_0$ 与 $D-x_0$：它们分别决定快分量和慢分量的持续时间
 及最终幅度。
 
-\ionChamberDiagram\label{appE:fig:s22-33-11}
+\QAENamed{\ionChamberDiagram}{电子与正离子的漂移分别形成快、慢脉冲分量；输出取负电压脉冲的正幅值。}{quality:appE:a12}
+
+图~\ref{quality:appE:a12}中电子向阳极、正离子向阴极的漂移对负电压脉冲幅值均作正贡献。只有两类载流子全部到达后，路径长度之和才为 $D$，于是开路总幅值与 $x_0$ 无关；有限负载下较早形成的分量已泄放，峰值通常重新依赖位置。
 \end{xesolution}
 
 \begin{origexamplebox}{【圆环电阻】}\label{appE:ex:s22-33-7}
@@ -2028,6 +2089,8 @@ $E_p$，且产生一对电子--离子的平均能量为 $W$，还可用 $N=E_p/W
   \item 若电源保持电压 $U$，何时总发热功率最小，最小值是多少；
   \item 若改用保持电流 $I$ 的理想恒流源，结果怎样？
 \end{enumerate}
+
+\QAENamed{\QAERingQuestion}{圆环的两个电源接点；接点间不另接短路导线。}{quality:appE:q13}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -2059,10 +2122,12 @@ $E_p$，且产生一对电子--离子的平均能量为 $W$，还可用 $N=E_p/W
 若规定 $a,b$ 必须不同，则没有被实际取到的正最小值，只有当 $b\to a$ 时趋于零的下确界。固定
 电压与固定电流给出相反的优化方向，是因为一个最小化 $1/R_{\rm eq}$，另一个最小化
 $R_{\rm eq}$。
-图~\ref{appE:fig:s22-33-12} 中两条圆弧正是并联的 $R_1,R_2$；把 $b$ 移到 $a$ 的对径点，两条圆弧等长，
+图~\ref{quality:appE:a13} 中两条圆弧正是并联的 $R_1,R_2$；把 $b$ 移到 $a$ 的对径点，两条圆弧等长，
 对应 $R_1=R_2$。
 
-\ringResistanceDiagram\label{appE:fig:s22-33-12}
+\QAENamed{\ringResistanceDiagram}{两段圆弧是同端口并联支路；优化变量满足 $R_1+R_2=R$。}{quality:appE:a13}
+
+图~\ref{quality:appE:a13}中的两个支路共用 $a,b$，即使两支路沿不同圆弧也仍是并联。恒流和恒压分别约束电源的不同量，所以同一个 $R_{\rm eq}$ 的极大值在两种优化中具有相反的作用。
 \end{xesolution}
 
 \endgroup
@@ -2073,7 +2138,7 @@ $R_{\rm eq}$。
 
 \begingroup
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-third-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-third-section/assets/}}
+\graphicspath{{../../../sample/xes-original/twenty-third-section/}{../../../sample/xes-original/twenty-third-section/assets/}}
 
 \tikzset{
   resistor/.style={thick,decorate,decoration={zigzag,segment length=4.2pt,amplitude=1.8pt}},
@@ -2337,6 +2402,8 @@ $R_{\rm eq}$。
   \item 面对角线两端；
   \item 体对角线两端。
 \end{enumerate}
+
+\QAENamed{\QAECube}{正方体的十二条电阻棱与八个节点；三种待求端口共用该编号。}{quality:appE:q14}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -2351,7 +2418,7 @@ $7R/12$，故
 \end{equation}
 
 \textbf{(2) 面对角。}
-以包含两端点的面对角平面作对称，四个中间节点成两个等势组。节点方程给出
+交换端点 $A,C$ 的垂直平分镜面使电势变为 $V_A-V$；$B,D,F,H$ 均位于该镜面上，故都为 $V_A/2$，而 $E,G$ 分别保留。节点方程给出
 \begin{equation}
   \boxed{R_{\rm face}=\frac34R}.
 \end{equation}
@@ -2365,15 +2432,19 @@ $7R/12$，故
 \begin{equation}
   \boxed{R_{\rm body}=\frac56R}.
 \end{equation}
-三个结果满足“端点在图上的最短距离越远，等效电阻越大”。图~\ref{appE:fig:s23-34-9} 用实线画出全部十二条棱；
+三个结果满足“端点在图上的最短距离越远，等效电阻越大”。图~\ref{quality:appE:a14} 用实线画出全部十二条棱；
 透视图中的交叉不增加节点。
 
-\cubeDiagram\label{appE:fig:s23-34-9}
+\QAENamed{\QAECube}{按图中节点写基尔霍夫电流定律；表中的电势依次对应三组端口。}{quality:appE:a14}
+
+图~\ref{quality:appE:a14}的八节点在每种端口选择下均满足相同邻接关系。令 $V_{\rm out}=0$、注入电流为 $I_0$，以 $I_0R$ 归一化电势 $u_i=V_i/(I_0R)$；流入端满足 $3u_A-\sum_{j\sim A}u_j=1$，其余非流出节点满足 $3u_i-\sum_{j\sim i}u_j=0$。例如 $AB$ 端口有 $3u_A-u_B-u_D-u_E=1$、$3u_C-u_B-u_D-u_G=0$。解该七元线性方程组得到：\par\begin{center}\begin{tabular}{c|cccccccc}端口 & $u_A$ & $u_B$ & $u_C$ & $u_D$ & $u_E$ & $u_F$ & $u_G$ & $u_H$\\\hline $AB$ & $7/12$&$0$&$5/24$&$3/8$&$3/8$&$5/24$&$1/4$&$1/3$\\ $AC$ & $3/4$&$3/8$&$0$&$3/8$&$1/2$&$3/8$&$1/4$&$3/8$\\ $AG$ & $5/6$&$1/2$&$1/3$&$1/2$&$1/2$&$1/3$&$0$&$1/3$\end{tabular}\end{center}注入端的 $u_A$ 就是 $R_{\rm eq}/R$；逐行代回节点式，可独立复核三个答案。
 \end{xesolution}
 
 \begin{origexamplebox}{【无穷网络】}\label{appE:ex:s23-34-7}
-无限梯形网络如图~\ref{appE:fig:s23-34-10}，每只电阻均为 $R$。每一节的上、下支路各串联一只 $R$，随后用一只
+无限梯形网络如图~\ref{quality:appE:q15}，每只电阻均为 $R$。每一节的上、下支路各串联一只 $R$，随后用一只
 $R$ 横接两支路。求最左端 $a,b$ 间的等效电阻。
+
+\QAENamed{\QAELadder{0}}{连接完整的二端梯形网络；横接电阻位于每一节两只串联电阻之后。}{quality:appE:q15}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -2390,20 +2461,24 @@ $R$ 横接两支路。求最左端 $a,b$ 间的等效电阻。
 \begin{equation}
   \boxed{X=(1+\sqrt3)R}.
 \end{equation}
-图~\ref{appE:fig:s23-34-10} 中切去第一节后留下的虚线部分，与切去前的整张图在拓扑和每只电阻值上完全相同；
+图~\ref{quality:appE:a15} 中切去第一节后留下的虚线部分，与切去前的整张图在拓扑和每只电阻值上完全相同；
 这正是方程中再次出现 $X$ 的原因。
 
-\ladderDiagram\label{appE:fig:s23-34-10}
+\QAENamed{\QAELadder{1}}{虚线尾部与原网络相同；第一节之后的横接 $R$ 与尾部 $X$ 并联。}{quality:appE:a15}
+
+图~\ref{quality:appE:a15}的虚线框从第一只横接电阻之后开始，故它与该横接电阻是并联关系，端口最前面的两只 $R$ 才是串联。有限节开路截断从 $X_1=3R$ 出发，以 $X_{n+1}=2R+RX_n/(R+X_n)$ 递推，单调下降且有下界 $2R$，所以极限存在并选择正文的正根。
 \end{xesolution}
 
 \begin{origexamplebox}{【三端无穷网络】}\label{appE:ex:s23-34-8}
-图~\ref{appE:fig:s23-34-11} 的三端无限方格网络中，每只电阻均为 $R$。求 $A,C$ 间和 $A,B$ 间的等效电阻。
+图~\ref{quality:appE:q16} 的三端无限方格网络中，每只电阻均为 $R$。求 $A,C$ 间和 $A,B$ 间的等效电阻。
+
+\QAENamed{\QAEThreeRail{0}}{连接完整的三端无限条带；左端三个端口之间没有直接的竖直电阻。}{quality:appE:q16}
 \end{origexamplebox}
 
 \begin{xesolution}
 先把三端无限尾部等效成一个三角形电导网络。以 $1/R$ 为电导单位，由上下反射对称性，设尾部
-$AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边再添一列三只纵向电阻和三只
-横向电阻后，网络应与原网络相同。
+$AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边再添一列三只水平电阻和两只
+竖直电阻后，网络应与原网络相同。
 
 对新增的三个内部节点作消元，端口等效电导变换为
 \begin{equation}
@@ -2420,10 +2495,12 @@ $AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边�
   \boxed{R_{AB}=\left(1+\frac{\sqrt5+\sqrt{21}}4\right)R}.
 \end{equation}
 数值上 $R_{AC}\approx3.236R$，$R_{AB}\approx2.705R$。相邻端点的等效电阻较小，符合电流可在
-较短路径间分流的直觉。图~\ref{appE:fig:s23-34-11} 把尾部的三个端口都保留下来，所以不能像二端梯形网络那样只设
+较短路径间分流的直觉。图~\ref{quality:appE:a16} 把尾部的三个端口都保留下来，所以不能像二端梯形网络那样只设
 一个未知电阻；这里必须用两个独立参数 $p,q$ 描述三端口。
 
-\threeRailDiagram\label{appE:fig:s23-34-11}
+\QAENamed{\QAEThreeRail{1}\par\QAEThreeReduction}{三端尾部及其等效三角形；$p/R,q/R$ 均为电导，不能误当电阻。}{quality:appE:a16}
+
+图~\ref{quality:appE:a16}保留尾部的三个端口。还可把三端电导矩阵按上下反射分解：反对称电势型 $(1,0,-1)$ 的特征电导为 $\lambda_1=p+2q$，对称型 $(1,-2,1)$ 的为 $\lambda_2=3p$。一节的两根竖直电阻分别给两模增加 $1,3$，三根水平电阻再各串联单位电阻，故 $\lambda_1=(\lambda_1+1)/(\lambda_1+2)$、$\lambda_2=(\lambda_2+3)/(\lambda_2+4)$。取正根可得 $\lambda_1=(\sqrt5-1)/2$、$\lambda_2=(\sqrt{21}-3)/2$，以及 $p=(\sqrt{21}-3)/6$、$q=(3\sqrt5-\sqrt{21})/12$。端口电流分解到两模后，$R_{AC}/R=2/\lambda_1$，$R_{AB}/R=1/(2\lambda_1)+3/(2\lambda_2)$，从而得到上述两个根式。
 \end{xesolution}
 
 \begin{origexamplebox}{【分形电阻】}\label{appE:ex:s23-34-10}
@@ -2435,6 +2512,8 @@ $AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边�
   \item 若保留下来的所有边均由单位长度电阻为 $\rho_\ell$ 的金属丝构成，求 $A,B$ 间等效电阻；
   \item 讨论这些结果所反映的分形性质。
 \end{enumerate}
+
+\QAENamed{\QAESierpinski}{谢尔宾斯基网络的有限阶构造；各阶均采用相同的单位长度电阻。}{quality:appE:q17}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -2463,7 +2542,7 @@ $AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边�
 记第 $n$ 阶有限网络两顶点间电阻为 $X_n$。第 $n+1$ 阶由三个第 $n$ 阶副本组成，每个副本的
 线性尺度减半，所以若单位长度电阻不变，其全部电阻同时乘 $1/2$。由于三端对称，一个副本若两端
 等效电阻为 $X_n$，其等效三角形每边电阻为 $3X_n/2$；缩小后每边为 $3X_n/4$。把三个这样的
-三角形按图~\ref{appE:fig:s23-34-13} 连接，对中点节点列 KCL，得到新网络的两端电阻为单个三角形边电阻的 $10/9$，
+三角形按图~\ref{quality:appE:a17} 连接，对中点节点列 KCL，得到新网络的两端电阻为单个三角形边电阻的 $10/9$，
 于是
 \begin{equation}
   X_{n+1}=\frac{10}{9}\cdot\frac{3X_n}{4}=\frac56X_n.
@@ -2479,11 +2558,12 @@ $AB,BC$ 两边的等效电导均为 $p$，$AC$ 边电导为 $q$。在它左边�
 \end{equation}
 
 \textbf{(4) 讨论。}
-面积趋零而内部边界总长发散，表明“占据面积”与“边界复杂度”可以朝相反方向演化；网络总导电
-能力则因并联通道数的增长快于单段电阻因缩短而产生的变化，最终等效电阻趋零。图~\ref{appE:fig:s23-34-13} 的前三阶
+面积趋零而内部边界总长发散，表明“占据面积”与“边界复杂度”可以朝相反方向演化；网络电阻的递推则由拓扑因子与长度缩放共同决定，本题每步乘 $5/6$，最终等效电阻趋零。图~\ref{quality:appE:a17} 的前三阶
 同时显示：每一步都复制三个半尺度副本，这正是三组几何级数与电阻递推的共同来源。
 
-\sierpinskiDiagram\label{appE:fig:s23-34-13}
+\QAENamed{\QAESierpinski}{三个半尺度副本组成下一阶；相同单位长度电阻意味着每个副本电阻同时缩小一半。}{quality:appE:a17}
+
+图~\ref{quality:appE:a17}每一步都把三个半尺度副本连接成新网络。若小段电阻不随尺度缩短，同样拓扑的递推因子会是 $5/3$；本题固定单位长度电阻，另有长度因子 $1/2$，乘积才为 $5/6$。结论描述这一特定导线模型，不能推广到不同电阻缩放规则的分形材料。
 \end{xesolution}
 
 \endgroup
@@ -2562,3 +2642,5 @@ $\sigma(\theta)=3\varepsilon_0E_0\cos\theta$ 还可直接检验中性条件：
 连续退回第20章相切双球的结果。这个推广同时给出了远离与相切两个极限，
 可用来检查级数的符号、量纲和单调趋势。
 
+
+\endgroup

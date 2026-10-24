@@ -1,3 +1,5 @@
+% EMOpticsQuality20261023
+% QualityRevision20261023
 % ModernLayout
 \begingroup
 \hypersetup{bookmarksdepth=3}
@@ -71,26 +73,37 @@ $\sigma=2\pi^5k_B^4/(15h^3c^2)$。温度四次方既来自谱中的三次幂，�
 \begin{origexamplebox}{恒星表面温度与辐出度}
 把一颗恒星表面近似为黑体，其单位波长间隔的辐射谱峰值在 $500\,\mathrm{nm}$。用
 $b=2.898\times10^{-3}\,\mathrm{m\,K}$、$\sigma=5.67\times10^{-8}\,\mathrm{W\,m^{-2}K^{-4}}$，求表面温度和单位面积总辐射功率。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (0,0)--(4.8,0) node[right]{$\lambda$};\draw[->] (0,0)--(0,2) node[above]{单位波长谱};
+\draw[DeepBlue,thick] (0.15,.05)..controls(.45,.2)and(.55,1.65)..(.9,1.65)..controls(1.5,1.65)and(1.8,.55)..(4.4,.12);
+\draw[dashed] (.9,0)--(.9,1.65);\node[below] at (.9,0){$500\,\mathrm{nm}$};\node[above] at (3.1,1.3){黑体近似，$T$ 待求};
+
+\end{tikzpicture}
+\figcap{题图：给定单位波长谱的峰值位置；纵轴只示意形状，不代表额外的强度测量。\label{ch32:quality:q1}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
-% Contract: common absolute 普朗克 scale; T=4000,6000 K; peaks b/T.
+% Contract: common absolute 普朗克 scale; T=4000,5796 K; peaks b/T.
 \begin{tikzpicture}
 \begin{axis}[width=.83\linewidth,height=6cm,axis lines=left,
  xlabel={$\lambda\;(\mu\mathrm m)$},ylabel={$M_\lambda/(10^{13}\,\mathrm{W\,m^{-3}})$},
  xmin=.15,xmax=2.5,ymin=0,ymax=11.8,xtick={.5,1,1.5,2},ytick={0,2,4,6,8,10},
  legend style={draw=none,fill=none,at={(.97,.95)},anchor=north east},
  every axis label/.style={fill=none}]
- \addplot[DeepBlue,very thick,domain=.15:2.5,samples=300]{37.4177/(x^5*(exp(14387.77/(6000*x))-1))};
- \addlegendentry{$6000\,\mathrm K$}
+ \addplot[DeepBlue,very thick,domain=.15:2.5,samples=300]{37.4177/(x^5*(exp(14387.77/(5796*x))-1))};
+ \addlegendentry{$5796\,\mathrm K$}
  \addplot[TextGray,very thick,dashed,domain=.15:2.5,samples=300]{37.4177/(x^5*(exp(14387.77/(4000*x))-1))};
  \addlegendentry{$4000\,\mathrm K$}
- \draw[guide] (axis cs:.48296203365,0)--(axis cs:.48296203365,10.0053244776);
+ \draw[guide] (axis cs:.4999606953,0)--(axis cs:.4999606953,8.41620919);
  \draw[guide] (axis cs:.72444305047,0)--(axis cs:.72444305047,1.31757359375);
 \end{axis}
 \end{tikzpicture}
 
-\figcap{黑体单色辐出度随温度的变化：升温后总面积增大，峰值向短波移动。}\label{ch32:fig:blackbody}
+\figcap{本题主曲线为 $5796\,\mathrm K$，谱峰在 $500\,\mathrm{nm}$；$4000\,\mathrm K$ 虚线仅作同绝对刻度的对照。\label{ch32:fig:blackbody}}
 \end{minipage}\end{center}
 
 
@@ -126,6 +139,19 @@ $b=2.898\times10^{-3}\,\mathrm{m\,K}$、$\sigma=5.67\times10^{-8}\,\mathrm{W\,m^
 
 \begin{origexamplebox}{光电效应截止电压}
 金属逸出功 $W=2.2\,\mathrm{eV}$，用波长 $400\,\mathrm{nm}$ 的单色光照射。求光电子最大动能和截止电压。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[very thick] (0,-.7)--(0,1) (4,-.7)--(4,1);
+\node[below] at (0,-.7){阴极 K};\node[below] at (4,-.7){收集极 A};
+\draw[DeepBlue,->] (-1.2,1.6)--(0,.5) node[pos=.15,left]{入射光};
+\draw[->] (.4,.2)--(2,.2) node[midway,above]{$e^-$};
+\node[above] at (2,1.1){反向截止电压 $U_s$ 待求};
+
+\end{tikzpicture}
+\figcap{题图：单色光照射阴极，反向电压阻碍光电子抵达收集极；给定 $W$ 与入射波长。\label{ch32:quality:q2}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \ModernAnswerLabel\quad 使用 $hc\simeq1240\,\mathrm{eV\,nm}$：
@@ -157,7 +183,7 @@ $1\,\mathrm{eV}=e\times1\,\mathrm V$，因此
  \draw[->] (2.4,1.55)--(1.1,1.55) node[midway,above=4pt]{$\vect F=-e\vect E$};
 \end{tikzpicture}
 
-\figcap{截止电压的电势约定。K接较高电势，A接较低电势；图示电场和受力方向相反。}\label{ch32:fig:photoelectric-apparatus}
+\figcap{截止电压的电势约定。K接较高电势，A接较低电势；图示电场和受力方向相反。\label{ch32:fig:photoelectric-apparatus}}
 \end{minipage}\end{center}
 如图~\ref{ch32:fig:photoelectric-apparatus}，电子向右时电场力向左，故减速。
 从K到A电势降低 $U_s$，电子电势能却增加 $eU_s$；
@@ -170,6 +196,17 @@ $1\,\mathrm{eV}=e\times1\,\mathrm V$，因此
 \begin{origexamplebox}{由截止电压数据求普朗克常数}
 同一种金属在频率 $f_1=6.0\times10^{14}\,\mathrm{Hz}$ 时截止电压为 $0.50\,\mathrm V$，
 在 $f_2=8.0\times10^{14}\,\mathrm{Hz}$ 时为 $1.33\,\mathrm V$。估算 $h$、阈频和逸出功。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (0,0)--(4.5,0) node[right]{$f/(10^{14}\,\mathrm{Hz})$};\draw[->] (0,0)--(0,2) node[above]{$U_s/\mathrm V$};
+\fill[DeepBlue] (1.5,.5) circle (2pt) node[left]{$(6.0,.50)$};\fill[DeepBlue] (3,1.33) circle (2pt) node[right]{$(8.0,1.33)$};
+\node[below] at (2,-.55){同一种金属的两次测量，横轴按示意比例};
+
+\end{tikzpicture}
+\figcap{题图：两组已知频率与截止电压，阈频和拟合直线尚未给出。\label{ch32:quality:q3}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -184,7 +221,7 @@ $1\,\mathrm{eV}=e\times1\,\mathrm V$，因此
   \draw[guide] (axis cs:8,0)--(axis cs:8,1.33);
 \end{axis}
 \end{tikzpicture}
-\figcap{截止电压对频率的直线关系 $U_s=(h/e)f-W/e$。斜率决定普朗克常数，横截距决定阈频。}\label{ch32:fig:photoelectric-line}
+\figcap{截止电压对频率的直线关系 $U_s=(h/e)f-W/e$。斜率决定普朗克常数，横截距决定阈频。\label{ch32:fig:photoelectric-line}}
 \end{minipage}\end{center}
 图~\ref{ch32:fig:photoelectric-line} 标出的两测量点用于本题的斜率计算，不能用连线在纵轴上的截距误认逸出功本身。
 
@@ -231,6 +268,16 @@ $\boxed{W\approx1.99\,\mathrm{eV}}$。两组数据的斜率单位为 $\mathrm{V\
 \begin{origexamplebox}{九十度康普顿散射}
 波长 $\lambda=0.0710\,\mathrm{nm}$ 的X射线被近似静止的自由电子散射，光子偏转 $90^\circ$。
 取电子康普顿波长 $h/(m_ec)=0.002426\,\mathrm{nm}$，求散射光波长及散射前后光子能量。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[DeepBlue,thick,->] (-2,0)--(0,0) node[midway,above]{$\gamma,\lambda$};\draw[DeepBlue,thick,->] (0,0)--(0,1.8) node[midway,right]{$\gamma',\lambda'$};
+\fill (0,0) circle (2pt) node[below]{$e^-\text{ 初始静止}$};\draw[dashed] (0,0)--(2,0);\node at (.5,.45){$90^\circ$};
+
+\end{tikzpicture}
+\figcap{题图：入射光子与散射光子的夹角为 $90^\circ$，电子初始静止。\label{ch32:quality:q4}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -248,7 +295,7 @@ $\boxed{W\approx1.99\,\mathrm{eV}}$。两组数据的斜率单位为 $\mathrm{V\
  \node[align=center] at (-2,-1.1) {电子初始静止\\散射点为 $O$};
 \end{tikzpicture}
 
-\figcap{康普顿散射中的动量矢量方向，箭长不表示动量大小。散射角 $\theta$ 是入射与散射光子方向的夹角。}\label{ch32:fig:compton}
+\figcap{康普顿散射中的动量矢量方向，箭长不表示动量大小。散射角 $\theta$ 是入射与散射光子方向的夹角。\label{ch32:fig:compton}}
 \end{minipage}\end{center}
 图~\ref{ch32:fig:compton} 对应本题的 $90^\circ$ 散射：散射光子向上带走动量，反冲电子便必须具有向下的动量分量，同时保有向右的动量分量。电子箭头的方向由 $\vect p_e=\vect p-\vect p'$ 决定，而不是任意画出。
 
@@ -297,8 +344,30 @@ $\theta=90^\circ$ 时 $1-\cos\theta=1$，故
 
 \begin{origexamplebox}{电子经电势差加速后的波长}
 电子从静止经电势差 $U$ 加速，且 $eU\ll m_ec^2$。求德布罗意波长，并说明何时需相对论修正。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[very thick] (0,-1)--(0,1) (3,-1)--(3,1);
+\fill (-.6,0) circle (1.8pt) node[below]{$e^-,\ v_0=0$};\draw[DeepBlue,->] (.2,0)--(2.7,0);
+\draw[<->] (0,-1.4)--(3,-1.4) node[midway,below]{加速电势差大小 $U$};\node[above] at (1.5,1.2){动能增加 $eU$};
+
+\end{tikzpicture}
+\figcap{题图：电子从静止跨过加速电势差，$U$ 是使电子动能增加的电压大小。\label{ch32:quality:q5}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[very thick] (0,-1)--(0,1) (3,-1)--(3,1);
+\fill (-.6,0) circle (1.8pt) node[below]{$e^-,\ v_0=0$};\draw[DeepBlue,->] (.2,0)--(2.7,0);
+\draw[<->] (0,-1.4)--(3,-1.4) node[midway,below]{加速电势差大小 $U$};\node[above] at (1.5,1.2){动能增加 $eU$};
+
+\end{tikzpicture}
+\figcap{解图：把电势差转为电子动能，再按低能或相对论关系求动量。\label{ch32:quality:a5}}
+\end{minipage}\end{center}
+
 \ModernAnswerLabel\quad 非相对论能量关系 $eU=p^2/(2m_e)$ 给出
 \[
  \boxed{\lambda=\frac h{\sqrt{2m_eeU}}}.
@@ -313,6 +382,8 @@ $\theta=90^\circ$ 时 $1-\cos\theta=1$，故
  \lambda=\frac{h}{\sqrt{2m_eeU}\sqrt{1+eU/(2m_ec^2)}}.
 \]
 当 $eU/(m_ec^2)\to0$ 时第二个根式趋于1，回到前面的低压公式。低压近似的适用条件来自能量尺度比较，而不是只看电压数值是否“很大”。
+
+图~\ref{ch32:quality:a5} 中，加速区只确定获得的动能 $eU$；先用适用的能量与动量关系得到 $p$，再用 $\lambda=h/p$，波长并不直接等于 $hc/(eU)$。
 \end{xesolution}
 
 \begingroup\tcbset{breakable/.default=true}\begin{starread}{薛定谔方程与自旋}
@@ -350,6 +421,18 @@ $n=0$ 只给处处为零的函数，不能归一化，所以基态能量不为�
  \lambda(\mathrm{nm})\approx\frac{1.227}{\sqrt{U(\mathrm V)}}.
 \]
 求电子波长和一级布拉格角。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \y in {0,-.5,-1}{\draw[thick] (-1,\y)--(3.5,\y);}
+\draw[DeepBlue,->] (-1,1)--(.5,0);\draw[DeepBlue,->] (.5,0)--(2,1);
+\draw[<->] (3,0)--(3,-.5) node[midway,right]{$d=.200\,\mathrm{nm}$};\node at (-.1,.18){$\theta_B$};
+\node[above] at (1,1.4){电子经 $54.0\,\mathrm V$ 加速};
+
+\end{tikzpicture}
+\figcap{题图：晶面间距 $d$ 与电子束相对晶面的布拉格角 $\theta_B$。\label{ch32:quality:q6}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -373,7 +456,7 @@ $n=0$ 只给处处为零的函数，不能归一化，所以基态能量不为�
  \node[above] at (2.35,2.9) {出射方向};
 \end{tikzpicture}
 
-\figcap{晶面间距为 $d$ 的布拉格衍射几何。相邻晶面反射波程差为 $2d\sin\theta$。}\label{ch32:fig:electron-diffraction}
+\figcap{晶面间距为 $d$ 的布拉格衍射几何。相邻晶面反射波程差为 $2d\sin\theta$。\label{ch32:fig:electron-diffraction}}
 \end{minipage}\end{center}
 图~\ref{ch32:fig:electron-diffraction} 中 $\theta$ 是电子束与晶面的掠射角，而不是与晶面法线的夹角。两束平行波分别在上层的 $A$ 和下层的 $B$ 处散射。
 从 $A$ 向下层入射线、出射线作垂线，垂足分别为 $C,D$。$AC$ 是入射等相位面的截线，$AD$ 用来比较出射相位；下层波多走的路程正是 $CB+BD$。
@@ -435,6 +518,16 @@ $\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$�
 
 \begin{origexamplebox}{氢原子的电离与谱线}
 处于 $n=3$ 能级的氢原子跃迁到 $n=2$。（1）求光子能量；（2）从 $n=3$ 状态电离至少需要多少能量？
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,0)--(3,0) node[right]{$n=2$};\draw[thick] (0,1)--(3,1) node[right]{$n=3$};\draw[dashed] (0,2)--(3,2) node[right]{$n\to\infty$，电离限};
+\draw[DeepBlue,->] (1,1)--(1,.1);\draw[->] (2,1)--(2,1.9);\node[left] at (0,1){初态};
+
+\end{tikzpicture}
+\figcap{题图：从 $n=3$ 向 $n=2$ 跃迁与从同一初态电离是两种不同能量差；能级高度仅示意。\label{ch32:quality:q7}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \ModernAnswerLabel\quad \[
@@ -467,7 +560,7 @@ $\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$�
  \node[left=6pt,align=right] at (4,-.7){吸能电离\\$1.51\,\mathrm{eV}$};
 \end{tikzpicture}
 
-\figcap{从同一 $n=3$ 能级出发的两个不同过程，能级高度按能量绘制。}\label{ch32:fig:hydrogen-two-processes}
+\figcap{从同一 $n=3$ 能级出发的两个不同过程，能级高度按能量绘制。\label{ch32:fig:hydrogen-two-processes}}
 \end{minipage}\end{center}
 图~\ref{ch32:fig:hydrogen-two-processes} 左箭头向下，原子的能量减少，
 光子获得正能量 $E_3-E_2$；右箭头向上，原子需要吸收正能量 $0-E_3$。
@@ -492,6 +585,16 @@ $\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$�
 
 \begin{origexamplebox}{巴耳末系最长波长与系限}
 取里德伯常数 $R_H=1.097\times10^7\,\mathrm{m^{-1}}$。求氢原子巴耳末系（终态 $n_f=2$）的最长波长和短波极限。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,0)--(3,0) node[right]{$n_f=2$};\draw[thick] (0,1)--(3,1) node[right]{$n=3$};\draw[thick] (0,1.5)--(3,1.5) node[right]{$n=4$};\draw[dashed] (0,2)--(3,2) node[right]{$n\to\infty$};
+\draw[DeepBlue,->] (.6,1)--(.6,.08);\draw[DeepBlue,->] (1.4,1.5)--(1.4,.08);\draw[DeepBlue,->] (2.2,2)--(2.2,.08);
+
+\end{tikzpicture}
+\figcap{题图：巴耳末系所有跃迁共有终态 $n_f=2$，初态从3逐渐增加到电离限。\label{ch32:quality:q8}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -515,7 +618,7 @@ $\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$�
  \node at (2.4,.9) {纵轴断开};
 \end{tikzpicture}
 
-\figcap{氢原子能级与巴耳末系。纵轴在基态与第一激发态之间断开；上部各能级按能量比例绘制，越靠近电离极限，间隔越小。}\label{ch32:fig:hydrogen-levels}
+\figcap{氢原子能级与巴耳末系。纵轴在基态与第一激发态之间断开；上部各能级按能量比例绘制，越靠近电离极限，间隔越小。\label{ch32:fig:hydrogen-levels}}
 \end{minipage}\end{center}
 
 
@@ -533,6 +636,10 @@ $\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$�
 \end{xesolution}
 
 
+
+\begingroup\tcbset{breakable/.default=false}
+\input{chapters/quality-20261023/ch32-laser.tex}
+\endgroup
 
 \section{原子核、结合能与核反应}
 
@@ -576,6 +683,17 @@ $\sin\theta<1$，一级衍射允许。加速电压远小于 $511\,\mathrm{kV}$�
 \begin{origexamplebox}{由平均结合能估算裂变能}
 粗略取 $^{235}\mathrm U$ 的平均每核子结合能为 $7.6\,\mathrm{MeV}$，裂变产物平均为
 $8.5\,\mathrm{MeV}$。忽略裂变中子与产物间的细小差别，估算一次裂变释放的能量，并换算为焦耳。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,0) circle (.65);\node at (0,0){$^{235}\mathrm U$};\draw[->] (.9,0)--(2,0);
+\draw[thick] (2.7,.4) circle (.45);\draw[thick] (3.4,-.4) circle (.45);\node[right] at (4,0){总核子数仍近似235};
+\node[below] at (0,-1){$\bar b_i=7.6\,\mathrm{MeV}$};\node[below] at (3,-1){$\bar b_f=8.5\,\mathrm{MeV}$};
+
+\end{tikzpicture}
+\figcap{题图：仅按平均每核子结合能粗估裂变，按题设忽略中子与各产物的细小差别。\label{ch32:quality:q9}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -593,7 +711,7 @@ $8.5\,\mathrm{MeV}$。忽略裂变中子与产物间的细小差别，估算一�
 \end{axis}
 \end{tikzpicture}
 
-\figcap{平均每核子结合能的典型趋势。轻核聚变和重核裂变都可向更高结合能方向释放能量。}\label{ch32:fig:binding-curve}
+\figcap{平均每核子结合能的典型趋势。轻核聚变和重核裂变都可向更高结合能方向释放能量。\label{ch32:fig:binding-curve}}
 \end{minipage}\end{center}
 图~\ref{ch32:fig:binding-curve} 中箭头只指示反应趋向，不表示精确核素之间的能量差；折线为典型趋势，不能代替核质量表。本题用题给的反应前后平均结合能之差，乘参与反应的核子数估算释放能量。
 
@@ -616,6 +734,17 @@ $8.5\,\mathrm{MeV}$。忽略裂变中子与产物间的细小差别，估算一�
 反应 $^2\mathrm H+{}^3\mathrm H\to{}^4\mathrm{He}+n$ 中，氘、氚、氦的中性原子质量以及中子的质量依次为
 $2.014102\,\mathrm u$、$3.016049\,\mathrm u$、$4.002603\,\mathrm u$、$1.008665\,\mathrm u$。
 取 $1\,\mathrm u\,c^2=931.5\,\mathrm{MeV}$，求Q值。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\node at (0,0){$^2\mathrm H$};\node at (1.3,0){$+\ {}^3\mathrm H$};\draw[->] (2.2,0)--(3.1,0);\node at (4,0){$^4\mathrm{He}+n$};
+\node[below,align=center] at (1,-.35){中性氘、氚原子\\质量按题给};\node[below,align=center] at (4,-.35){中性氦原子与中子\\质量按题给};
+\node[above] at (2,1){左右核子数5、电荷数2相等};
+
+\end{tikzpicture}
+\figcap{题图：氘氚聚变前后粒子及守恒量，质量表采用题给中性原子质量。\label{ch32:quality:q10}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -632,7 +761,7 @@ $2.014102\,\mathrm u$、$3.016049\,\mathrm u$、$4.002603\,\mathrm u$、$1.00866
  \node[align=center] at (0,-1.3) {$Q=(m_D+m_T-m_{\rm He}-m_n)c^2>0$\\总动能增加，静质量减少};
 \end{tikzpicture}
 
-\figcap{氘氚聚变的质量--能量收支。核子数和电荷数在反应前后分别守恒。}\label{ch32:fig:fusion-q}
+\figcap{氘氚聚变的质量--能量收支。核子数和电荷数在反应前后分别守恒。\label{ch32:fig:fusion-q}}
 \end{minipage}\end{center}
 图~\ref{ch32:fig:fusion-q} 把反应物和产物分列两侧，下面计算先用质量差判断 $Q$ 值符号，再核验两个守恒数。
 
@@ -666,8 +795,30 @@ $Q>0$，静质量减少量转化为产物动能。核子数 $2+3=4+1$、电荷�
 
 \begin{origexamplebox}{经过三个半衰期的剩余量}
 某样品半衰期为 $T_{1/2}$。经过 $3T_{1/2}$ 后，未衰变核数和活度分别为初值的多少？
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (0,0)--(5,0) node[right]{$t$};\foreach \x/\lab in {0/0,1.4/1,2.8/2,4.2/3}{\draw (\x,-.1)--(\x,.1);\node[below] at (\x,-.2){$\lab T_{1/2}$};}
+\node[above] at (2.1,.7){同一核素：每段长度均为一个半衰期};
+
+\end{tikzpicture}
+\figcap{题图：从初态起依次经历三个相等的半衰期，核数比例待求。\label{ch32:quality:q11}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (0,0)--(5,0) node[right]{$t/T_{1/2}$};\draw[->] (0,0)--(0,2.3) node[above]{$N/N_0$};
+\draw[DeepBlue,thick,domain=0:3.4,samples=80] plot ({1.3*\x},{2*exp(-ln(2)*\x)});
+\foreach \x/\v/\lab in {0/2/1,1.3/1/{1/2},2.6/.5/{1/4},3.9/.25/{1/8}}{\fill[DeepBlue] (\x,\v) circle (1.5pt);\node[right] at (\x,\v+.15){$\lab$};}
+\draw[dashed] (3.9,0)--(3.9,.25);\node[below] at (3.9,0){3};
+
+\end{tikzpicture}
+\figcap{解图：单核素的指数衰减曲线及整数半衰期处的剩余比例。\label{ch32:quality:a11}}
+\end{minipage}\end{center}
+
 \ModernAnswerLabel\quad 每经过一个半衰期剩余一半，故
 \[
  \boxed{\frac N{N_0}=2^{-3}=\frac18}.
@@ -677,6 +828,8 @@ $Q>0$，静质量减少量转化为产物动能。核子数 $2+3=4+1$、电荷�
  \boxed{\frac{\mathcal A}{\mathcal A_0}=\frac18}.
 \]
 若衰变产物也有放射性，总测得活度还要加上子核贡献，不能只用单指数。
+
+图~\ref{ch32:quality:a11} 中，三个相等时间段各乘同一因子 $1/2$，所以末点是 $N_0/8$；同一核素的活度曲线与核数曲线成固定比例，而不是相差一个新的衰减常数。
 \end{xesolution}
 
 
@@ -702,6 +855,19 @@ $\beta$ 衰变中的电子或正电子是在相互作用中产生的，不是从
 \begin{origexamplebox}{母核--子核衰变链的峰值}
 母核1以衰变常数 $\lambda_1$ 变成放射性子核2，子核2再以 $\lambda_2=2\lambda_1$ 衰变为稳定核。
 初始有 $N_{10}$ 个母核且无子核。求 $N_2(t)$、子核数达到最大值的时刻和最大值。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\node[draw,minimum width=1.2cm,minimum height=.7cm] (a) at (0,0){母核1};
+\node[draw,minimum width=1.2cm,minimum height=.7cm] (b) at (2.7,0){子核2};
+\node[draw,minimum width=1.2cm,minimum height=.7cm] (c) at (5.4,0){稳定核};
+\draw[->] (a)--(b) node[midway,above]{$\lambda_1$};\draw[->] (b)--(c) node[midway,above]{$\lambda_2=2\lambda_1$};
+\node[below] at (0,-.6){$N_1(0)=N_{10}$};\node[below] at (2.7,-.6){$N_2(0)=0$};
+
+\end{tikzpicture}
+\figcap{题图：每次母核衰变产生一个子核，子核同时以自己的衰变常数损失。\label{ch32:quality:q12}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 \begin{xesolution}
 \begin{center}\begin{minipage}{\linewidth}\centering\raggedright\ModernAnswerLabel\par\smallskip\centering
@@ -719,7 +885,7 @@ $\beta$ 衰变中的电子或正电子是在相互作用中产生的，不是从
 \end{axis}
 \end{tikzpicture}
 
-\figcap{$\lambda_2=2\lambda_1$ 时母核与子核数目的变化。子核先积累，达到峰值后再衰减。}\label{ch32:fig:decay-chain}
+\figcap{$\lambda_2=2\lambda_1$ 时母核与子核数目的变化。子核先积累，达到峰值后再衰减。\label{ch32:fig:decay-chain}}
 \end{minipage}\end{center}
 
 
@@ -775,4 +941,5 @@ $t=0$ 与 $t\to\infty$ 时 $N_2$ 都为零，峰值位于中间，和图~\ref{ch
 
 
 \hypersetup{bookmarksdepth=2}
+
 \endgroup

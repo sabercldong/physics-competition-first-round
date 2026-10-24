@@ -1,0 +1,223 @@
+% Editable, problem-specific TikZ additions for chapter 18.
+\newcommand{\StatRegions}[3]{%
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \pgfmathsetmacro{\sx}{5*(1-#1)}
+  \draw[ground] (0,0) rectangle (5,1.65);
+  \draw[guide] (\sx,0)--(\sx,1.65);
+  \foreach \p in {(.35,.35),(.8,1.1),(1.4,.6),(2.2,1.3),(2.8,.4),(3.4,.9),(4.5,.65)}
+    \fill[DeepBlue] \p circle (1.6pt);
+  \node[above] at ({\sx/2},1.65) {#2};
+  \node[above] at ({(5+\sx)/2},1.65) {#3};
+  \node[below,TextGray,font=\footnotesize] at (2.5,0) {虚线是几何分区，粒子可自由穿过};
+\end{tikzpicture}}
+
+\newcommand{\StatQAsymmetric}{%
+\begin{qualityfigure}\StatRegions{.2}{$4V/5$}{$V/5$}
+\figcap{总数为 $N$ 的粒子在两区域间交换；右区粒子数记为 $n$。圆点只示意位置。}\label{quality:18:q1}
+\end{qualityfigure}}
+\newcommand{\StatAAsymmetric}{%
+图~\ref{quality:18:a1}把每个粒子的去向拆成两个互斥结果；右支的概率由题图~\ref{quality:18:q1}的体积比给出。将 $N$ 个独立指示变量相加，才得到 $n$ 的二项分布。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+  \node[draw,rounded corners=2pt] (o) at (0,0) {任取粒子 $i$};
+  \node[draw] (l) at (5,1) {大区：$X_i=0$};
+  \node[draw] (r) at (5,-1) {小区：$X_i=1$};
+  \draw[->] (o)--node[above,sloped] {$1-q=4/5$}(l);
+  \draw[->] (o)--node[below,sloped] {$q=1/5$}(r);
+  \node[below] at (2.5,-1.7) {$n=\sum_{i=1}^N X_i,\quad \operatorname{Var}(n)=\sum_iq(1-q)$};
+\end{tikzpicture}
+\figcap{从几何概率到粒子数统计；独立的是各粒子的指标，两个区域的总数互相关联。}\label{quality:18:a1}
+\end{qualityfigure}}
+
+\newcommand{\StatQBinomial}{%
+\begin{qualityfigure}\StatRegions{.5}{左半区}{右半区}
+\figcap{每个粒子在左右半区的概率均为 $1/2$；本题的 $n$ 统计左侧。}\label{quality:18:q2}
+\end{qualityfigure}}
+\newcommand{\StatABinomial}{%
+图~\ref{quality:18:a2}将 $N=4$ 时的六个不同微观结果归入同一个宏观粒子数 $n=2$。这说明先数哪些粒子在左区，再给每种独立结果乘 $2^{-N}$；宏观态并不等概率。
+\begin{qualityfigure}\begin{tikzpicture}[x=1cm,y=.65cm]
+  \foreach \s [count=\j] in {1100,1010,1001,0110,0101,0011}{
+    \node[draw,font=\ttfamily] at ({mod(\j-1,3)*2},{-floor((\j-1)/3)}) {\s};
+  }
+  \node[anchor=west,align=left] at (5.2,-.5) {$N=4,\ n=2$\\$\Omega=\binom42=6$};
+  \node[below,TextGray] at (2,-1.6) {$1$ 表示在左，$0$ 表示在右；位序标记不同粒子};
+\end{tikzpicture}
+\figcap{一个宏观态包含多个微观状态的有限粒子示例。}\label{quality:18:a2}
+\end{qualityfigure}}
+
+\newcommand{\StatQTwoLevels}{%
+\begin{qualityfigure}\begin{tikzpicture}
+  \draw[axis] (0,-.3)--(0,2.5) node[above] {$E$};
+  \draw[very thick] (.5,0)--(3.5,0) node[right] {$0$};
+  \draw[very thick] (.5,1.7)--(3.5,1.7) node[right] {$\varepsilon$};
+  \draw[<->] (1,-.02)--node[right] {$\varepsilon$}(1,1.7);
+  \node[align=left] at (6,1) {$N$ 个独立粒子\\热库温度 $T$\\每个能级非简并};
+\end{tikzpicture}
+\figcap{单个粒子的两个能级；零点取在基态。}\label{quality:18:q3}
+\end{qualityfigure}}
+\newcommand{\StatATwoLevels}{%
+题图~\ref{quality:18:q3}只允许占据两个能级，因此高温极限是等概率，而非不断打开新的能级。图~\ref{quality:18:a3}分别检验能量的饱和值与热容的两端极限；热容非负还可用能量方差验证。
+\begin{qualityfigure}\begin{tikzpicture}\begin{axis}[
+ width=.72\linewidth,height=4.7cm,axis lines=left,xmin=0,xmax=4,ymin=0,ymax=.55,
+ xlabel={$t=k_BT/\varepsilon$},ylabel={无量纲能量、热容},
+ legend style={at={(.98,.3)},anchor=east,draw=none,font=\footnotesize}]
+ \addplot[DeepBlue,thick,domain=.04:4,samples=150]{1/(exp(1/x)+1)};
+ \addlegendentry{$U/(N\varepsilon)$}
+ \addplot[TextGray,dashed,thick,domain=.04:4,samples=150]{exp(1/x)/(x^2*(exp(1/x)+1)^2)};
+ \addlegendentry{$C/(Nk_B)$}
+ \draw[guide] (axis cs:0,.5)--(axis cs:4,.5);
+\end{axis}\end{tikzpicture}
+\figcap{二能级系统：能量趋于 $N\varepsilon/2$，热容先升后降。}\label{quality:18:a3}
+\end{qualityfigure}}
+
+\newcommand{\StatQLadder}{%
+\begin{qualityfigure}\begin{tikzpicture}[y=.55cm]
+ \draw[axis] (0,-.5)--(0,5) node[above] {$E$};
+ \foreach \j in {0,1,2,3}{\draw[thick] (.5,\j)--(3,\j) node[right] {$E_{\j}=\j\varepsilon$};}
+ \node at (1.75,4) {$\vdots$};
+ \draw[<->] (5,1)--node[right] {$\varepsilon$}(5,2);
+\end{tikzpicture}
+\figcap{非简并等间隔能级向上无限延伸，不能用二能级系统的高温饱和结论。}\label{quality:18:q4}
+\end{qualityfigure}}
+\newcommand{\StatALadder}{%
+图~\ref{quality:18:q4}中每升高一层，未归一化权重都乘同一个 $q$，因此可求几何级数。图~\ref{quality:18:a4}表明 $U/(k_BT)\to1$，但 $U-k_BT\to-\varepsilon/2$；相对误差趋零不意味着绝对差趋零。
+\begin{qualityfigure}\begin{tikzpicture}\begin{axis}[
+ width=.7\linewidth,height=4.6cm,axis lines=left,xmin=0,xmax=4,ymin=0,ymax=4,
+ xlabel={$t=k_BT/\varepsilon$},ylabel={$U/\varepsilon$},
+ legend style={at={(.05,.95)},anchor=north west,draw=none,font=\footnotesize}]
+ \addplot[DeepBlue,thick,domain=.04:4,samples=120]{1/(exp(1/x)-1)};\addlegendentry{精确结果}
+ \addplot[TextGray,dashed,domain=0:4]{x};\addlegendentry{$k_BT/\varepsilon$}
+ \addplot[TextGray,dotted,domain=.5:4]{x-.5};\addlegendentry{$k_BT/\varepsilon-1/2$}
+\end{axis}\end{tikzpicture}
+\figcap{等间隔无限能级的平均能量及高温渐近线。}\label{quality:18:a4}
+\end{qualityfigure}}
+
+\newcommand{\StatQDegeneracy}{%
+\begin{qualityfigure}\begin{tikzpicture}
+ \draw[thick] (0,0)--(1.5,0) node[right] {$E=0,\ g_g=1$};
+ \foreach \x in {0,1.7,3.4}{\draw[thick] (\x,1.6)--+(1.1,0);}
+ \node[right] at (4.7,1.6) {$E=\varepsilon,\ g_e=3$};
+ \draw[<->] (-.4,0)--node[left] {$\varepsilon$}(-.4,1.6);
+\end{tikzpicture}
+\figcap{上方三条短线处在同一能量，只是三个不同微观状态。}\label{quality:18:q5}
+\end{qualityfigure}}
+\newcommand{\StatADegeneracy}{%
+图~\ref{quality:18:q5}的上层有三个可加的权重。图~\ref{quality:18:a5}比较的是能级总概率，不是单个状态的概率，因而 $P_e>P_g$ 与正温度热平衡并不矛盾。
+\begin{qualityfigure}\begin{tikzpicture}\begin{axis}[
+ width=.7\linewidth,height=4.5cm,axis lines=left,xmin=0,xmax=4,ymin=0,ymax=1,
+ xlabel={$t=k_BT/\varepsilon$},ylabel={能级总概率},
+ legend style={at={(.95,.95)},anchor=north east,draw=none,font=\footnotesize}]
+ \addplot[DeepBlue,thick,domain=.03:4,samples=130]{3/(exp(1/x)+3)};\addlegendentry{$P_e$}
+ \addplot[TextGray,dashed,domain=.03:4,samples=130]{exp(1/x)/(exp(1/x)+3)};\addlegendentry{$P_g$}
+ \draw[guide] (axis cs:.910239,0)--(axis cs:.910239,.5);
+ \node[below,font=\footnotesize] at (axis cs:.910239,0) {$1/\ln3$};
+\end{axis}\end{tikzpicture}
+\figcap{两组总布居在 $k_BT/\varepsilon=1/\ln3$ 时相等。}\label{quality:18:a5}
+\end{qualityfigure}}
+
+\newcommand{\StatQSpeeds}{%
+\begin{qualityfigure}\begin{tikzpicture}
+ \draw[ground] (0,0) rectangle (6,1.8);
+ \foreach \x/\y/\dx/\dy in {.6/.5/.7/.2,1.8/1.2/-.4/-.5,3/.5/.5/.6,4.4/1.3/-.8/.1,5.4/.5/-.2/-.3}{
+  \fill (\x,\y) circle (1.5pt);\draw[->,DeepBlue] (\x,\y)--+({\dx},{\dy});}
+ \node[above] at (3,1.8) {$\mathrm{N_2},\quad M=28.0\,\mathrm{g/mol},\quad T=300\,\mathrm K$};
+\end{tikzpicture}
+\figcap{容器中分子速度大小、方向各不相同；所求是速率平方的平均再开方。}\label{quality:18:q6}
+\end{qualityfigure}}
+\newcommand{\StatASpeeds}{%
+图~\ref{quality:18:a6}使用 $u=v/\sqrt{k_BT/m}$，竖线对应 $u_{\rm rms}=\sqrt3$。它不是曲线峰值，更不是气体的宏观流速；静止平衡气体的平均速度矢量为零，均方速率仍非零。
+\begin{qualityfigure}\begin{tikzpicture}\begin{axis}[
+ width=.68\linewidth,height=4.3cm,axis lines=left,xmin=0,xmax=4.5,ymin=0,ymax=.75,
+ xlabel={$u=v/\sqrt{k_BT/m}$},ylabel={$f_u(u)$}]
+ \addplot[DeepBlue,thick,domain=0:4.5,samples=120]{sqrt(2/pi)*x^2*exp(-x^2/2)};
+ \draw[guide] (axis cs:1.73205,0)--(axis cs:1.73205,.7);
+ \node[anchor=west] at (axis cs:1.85,.66) {$u_{\rm rms}=\sqrt3$};
+\end{axis}\end{tikzpicture}
+\figcap{方均根速率在麦克斯韦分布中的位置。}\label{quality:18:a6}
+\end{qualityfigure}}
+
+\newcommand{\StatTailPlot}[1]{%
+\begin{tikzpicture}\begin{axis}[
+ width=.66\linewidth,height=4cm,axis lines=left,xmin=0,xmax=4,ymin=0,ymax=1,
+ xlabel={$x=v\sqrt{m/(2k_BT)}$},ylabel={$f_x(x)$},xtick={0,2},xticklabels={$0$,$x_0$}]
+ \ifnum#1=1\relax
+  \addplot[draw=none,fill=DeepBlue!20,domain=2:4,samples=80]{4/sqrt(pi)*x^2*exp(-x^2)}\closedcycle;
+ \fi
+ \addplot[DeepBlue,thick,domain=0:4,samples=120]{4/sqrt(pi)*x^2*exp(-x^2)};
+ \draw[guide] (axis cs:2,0)--(axis cs:2,.7);
+\end{axis}\end{tikzpicture}}
+\newcommand{\StatQTail}{%
+\begin{qualityfigure}\StatTailPlot{0}
+\figcap{给定速率阈值的位置；绘图用 $x_0=2$ 示意，推导中保留任意 $x_0\ge0$。}\label{quality:18:q7}
+\end{qualityfigure}}
+\newcommand{\StatATail}{%
+图~\ref{quality:18:a7}的阴影面积才是越阈概率，边界处的曲线高度是概率密度，二者不可混淆。分部积分保留的第一项给出大 $x_0$ 时的主项，余误差函数给出尾部修正。
+\begin{qualityfigure}\StatTailPlot{1}
+\figcap{阴影表示 $\int_{x_0}^{\infty} f_x(x)\dd x$；图示截到 $x=4$，解析积分上限仍为无穷。}\label{quality:18:a7}
+\end{qualityfigure}}
+
+\newcommand{\StatQMixing}{%
+\begin{qualityfigure}\begin{tikzpicture}
+ \draw[ground] (0,0) rectangle (7,1.6);\draw[thick] (3.5,0)--(3.5,1.6);
+ \foreach \p in {(.7,.5),(1.8,1.1),(2.7,.6)}{\fill[DeepBlue] \p circle (2pt);}
+ \foreach \p in {(4.2,.5),(5.3,1.1),(6.2,.6)}{\draw[thick] \p circle (2pt);}
+ \node[above] at (1.75,1.6) {$1\,\mathrm{mol},V,T,p$};
+ \node[above] at (5.25,1.6) {$1\,\mathrm{mol},V,T,p$};
+ \node[below] at (3.5,0) {撤去中间隔板；两种点型表示不同组分};
+\end{tikzpicture}
+\figcap{等温、等压的两种不同气体；同种气体的对照情形须取消点型区别。}\label{quality:18:q8}
+\end{qualityfigure}}
+\newcommand{\StatAMixing}{%
+图~\ref{quality:18:a8}分别跟踪每种可分辨组分的可达体积。实际混合不是可逆过程，但熵是状态函数，可用每种组分等温可逆膨胀的辅助路径计算相同的初末态熵差。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \foreach \y/\name in {1.4/A,0/B}{
+  \draw (0,\y) rectangle +(2,.8);\draw (4,\y) rectangle +(4,.8);
+  \node at (1,{\y+.4}) {$V$};\node at (6,{\y+.4}) {$2V$};
+  \draw[->] (2.2,{\y+.4})--node[above] {$\name$}(3.8,{\y+.4});}
+ \node[below] at (4,-.3) {$\Delta S_A=\Delta S_B=R\ln2$；组分可同时占据同一空间};
+\end{tikzpicture}
+\figcap{按组分建立辅助计算路径；两行不是混合后的两个实体隔间。}\label{quality:18:a8}
+\end{qualityfigure}}
+
+\newcommand{\StatQFluctuation}{%
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \fill[SoftGray] (-1,-.5) rectangle (7,2.3);
+ \draw[thick] (0,0) rectangle (3.3,1.6);
+ \node[align=center] at (1.65,.8) {系统：固定 $N,V$\\瞬时能量 $E$};
+ \draw[<->,thick,DeepBlue] (3.5,.8)--(5,.8);
+ \node[align=center] at (5.7,1.25) {热库\\温度 $T$};
+ \node[below] at (1.65,-.1) {不交换粒子；可以交换能量};
+\end{tikzpicture}
+\figcap{正则系综的边界条件；$U=\langle E\rangle$ 固定不等于每一时刻的 $E$ 固定。}\label{quality:18:q9}
+\end{qualityfigure}}
+\newcommand{\StatAFluctuation}{%
+题图~\ref{quality:18:q9}的能量交换允许非零方差。图~\ref{quality:18:a9}用对数坐标显示相对涨落的斜率为 $-1/2$；绝对标准差则正比于 $\sqrt N$，不能说两种涨落都随 $N$ 增大而减小。
+\begin{qualityfigure}\begin{tikzpicture}\begin{loglogaxis}[
+ width=.66\linewidth,height=4.2cm,xlabel={$N$},ylabel={$\sigma_E/U$},xmin=1,xmax=1000000,ymin=.0005,ymax=1]
+ \addplot[DeepBlue,thick,domain=1:1000000,samples=60]{sqrt(2/(3*x))};
+\end{loglogaxis}\end{tikzpicture}
+\figcap{经典单原子理想气体的精确相对能量标准差。}\label{quality:18:a9}
+\end{qualityfigure}}
+
+\newcommand{\StatQEffusion}{%
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \draw[ground] (0,0)--(0,2)--(4,2)--(4,1.2) (4,.8)--(4,0)--(0,0);
+ \foreach \p in {(.5,.5),(1,1.5),(1.8,.7),(2.7,1.5),(3.2,.5)}{\fill \p circle (1.5pt);}
+ \draw[vector] (3.2,1)--(5.3,1) node[right] {$+z$};
+ \draw[<->] (4.25,.8)--node[right,font=\footnotesize] {$d$}(4.25,1.2);
+ \node[above] at (2,2) {刚性绝热壁；内部 $N,T$};
+ \node[align=center] at (6.3,1.8) {孔外真空\\$d\ll\lambda_{\rm mfp}$};
+\end{tikzpicture}
+\figcap{小孔分子流模型；$z$ 取向外法线，$\lambda_{\rm mfp}$ 为平均自由程。}\label{quality:18:q10}
+\end{qualityfigure}}
+\newcommand{\StatAEffusion}{%
+图~\ref{quality:18:a10}中的取样层厚度是 $v_z\dd t$，所以法向速率较大的分子在穿孔样本中权重更大。用这一权重算出 $2k_BT$ 后，再对图~\ref{quality:18:q10}的开放系统记能量账，才得到冷却律。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \fill[DeepBlue!12] (0,0) rectangle (3,1.8);
+ \draw[guide] (0,0)--(0,1.8);\draw[thick] (3,-.2)--(3,2);
+ \draw[vector] (1,.9)--(4.6,.9) node[right] {$v_z>0$};
+ \draw[<->] (0,-.45)--node[below] {$v_z\dd t$}(3,-.45);
+ \node[above] at (3,2) {孔面 $\dd A$};
+ \node[align=left] at (7,1) {$\overline E_{\rm out}=2k_BT$\\$\dd N<0$\\$\dd U=2k_BT\dd N<0$};
+\end{tikzpicture}
+\figcap{能在 $\dd t$ 内到达孔面的分子取样层；流出粒子数为 $-\dd N$。}\label{quality:18:a10}
+\end{qualityfigure}}

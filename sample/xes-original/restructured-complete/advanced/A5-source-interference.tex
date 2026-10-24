@@ -1,8 +1,21 @@
+% AdvancedOpticsQuality20261023
 \section{干涉应用：镀膜、测距与曲面条纹}
 以下四题讨论增透膜、干涉测距与曲面条纹。涉及反射相位、视场边界和测量误差的假设在解答中分别说明。
 
 \begin{advexamplebox}{半球形砷化镓发光器件的增透膜}\label{advA5:ex:source-ar}
 砷化镓发光器件制成半球形，发光区位于球心，真空波长为 $930\,\mathrm{nm}$。砷化镓折射率 $n_1=3.4$，外部空气折射率 $n_2=1$。求未镀膜时的表面反射率；若在半球面镀一层均匀增透膜，求消除该波长反射所需的膜折射率与最小厚度。忽略吸收，发光区视为点源。
+
+球半径远大于膜厚和波长，采用局部平面膜近似。
+
+\QAOFrame{\begin{tikzpicture}[>=Latex,font=\small]
+ \fill[DeepBlue!5](-2,0)arc(180:0:2)--cycle;
+ \draw[thick](-2,0)arc(180:0:2);\draw[thick](-2.2,0)arc(180:0:2.2);
+ \draw(-2.6,0)--(2.8,0);\fill(0,0)circle(2pt)node[below]{$O$（发光区）};
+ \foreach \a in {35,90,145}{\draw[DeepBlue,->,thick](0,0)--(\a:2.7);}
+ \node at(-.5,.85){$n_1$};\node at(2.5,2){$n_2$};
+ \draw(50:2.1)--(2.4,2.6)--(3.9,2.6)node[right]{膜：$n_f,t$};
+ \draw[thin](2,0)--(2,-.8) (2.2,0)--(2.2,-.8);\draw[->](1.4,-.5)--(2,-.5);\draw[->](2.8,-.5)--(2.2,-.5);\node[below]at(2.1,-.8){$t$};
+\end{tikzpicture}}{球心点源与同心半球薄膜；膜厚为放大的示意量。}{quality:A5:q12}
 \end{advexamplebox}
 \begin{advsolution}
 球心发出的每条光线均沿局部法线入射，故整个半球面都可用正入射公式。
@@ -35,12 +48,18 @@
  \boxed{t_{\min}=\frac{930}{4\sqrt{3.4}}\,\mathrm{nm}=126.09\,\mathrm{nm}}.
 \]
 一般厚度为 $(2k+1)\lambda_0/(4n_f)$。这里两次反射均从高折射率一侧射向低折射率一侧，反射相位相同；相消来自膜内往返相位。
+
+图~\ref{advA5:fig:source-ar}中球心到每个界面交点的连线都沿法线，才可把平面膜正入射公式逐点用于半球面。膜厚须远小于球半径，使局部平面膜近似成立；偏离设计波长或把点源移离球心后，零反射条件一般不再同时成立。
 \end{advsolution}
 
 \begin{advexamplebox}{迈克尔逊干涉仪的环数、分辨率与量程}\label{advA5:ex:source-michelson}
 用 $\lambda=632.8\,\mathrm{nm}$ 的 He--Ne 激光照明迈克尔逊干涉仪。望远镜固定视场内原有20个亮环，移动一臂的反射镜后，亮环向中央收拢，共吞入20环，视场内还剩10个亮环。求原来中心亮斑的级次及后来第五亮环的角半径。
 
-再用此仪器测长。激光谱线宽度 $\Delta\lambda=10^{-3}\,\mathrm{nm}$，条纹读数可分辨 $1/8$ 条纹，求测长分辨率并讨论量程。（原文“一臂透镜”按调节光程差的反射镜理解。）
+再用此仪器测长。激光谱线宽度 $\Delta\lambda=10^{-3}\,\mathrm{nm}$，条纹读数可分辨 $1/8$ 条纹，求测长分辨率并讨论量程。
+
+分别讨论视场边界恰落亮环与仅给定视场内环数两种计数含义。
+
+\QAOFrame{\QAOMichelsonQuestion}{等倾干涉的两个等效镜面与同一视场内的吞环计数；虚线表示等效延长段。}{quality:A5:q13}
 \end{advexamplebox}
 \begin{advsolution}
 设两臂等效几何长度差为 $d>0$，等倾干涉光程差为 $2d\cos\theta$。中心级次 $m=2d/\lambda$，第 $j$ 个非中心亮环满足 $m\cos\theta_j=m-j$。收拢吞环表明 $d$ 减小，故 $m_1=m_0-20$。
@@ -92,6 +111,8 @@
  \boxed{|d|_{\rm err}\lesssim\frac{\lambda^2}{16\Delta\lambda}=2.5027\,\mathrm{cm}}.
 \]
 线宽本身不等于中心波长标定误差，二者不可无条件替换。
+
+图~\ref{advA5:fig:source-michelson}中的固定视场边界决定环数的取整。镜移使中心级次连续改变，吞入20环只给出级次变化，严格唯一的整数答案还需要初末中心亮、视场边界亮等附加约定。大于40度的结果必须使用余弦精确关系。
 \end{advsolution}
 
 \begin{advexamplebox}{半球凸起附近的条纹间距与对比度}\label{advA5:ex:source-bump}
@@ -100,6 +121,29 @@
  \gamma=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}.
 \]
 按局部平面波及电场平方强度模型计算，说明所用反射偏振模型。
+
+\QAOFrame{\begin{tikzpicture}[>=Latex,font=\small,scale=.9]
+ \fill[gray!8](-1.8,0)arc(180:0:1.8)--cycle;
+ \draw[thick](-1.8,0)arc(180:0:1.8);
+ \draw[->](-2.2,0)--(3.3,0)node[right]{$x$};\draw[->](0,0)--(0,2.7)node[above]{$z$};
+ \coordinate(P)at(1.63135,.76071);\coordinate(Q)at(2.53787,0);
+ \draw[gray,dashed](0,0)--(2.15,1.0026);
+ \draw[DeepBlue,->,thick](1.63135,2.6)--(P);
+ \draw[DeepBlue,->,thick](P)--(Q);
+ \draw[DeepBlue,->,thick](2.53787,2.6)--(Q);
+ \fill(P)circle(1.5pt);\draw[thin](P)--(1.95,1.12);\node[above]at(1.95,1.12){$P$};\fill(Q)circle(1.5pt)node[below]{$Q$};
+ \node[below left]at(0,0){$O$};\node at(.7,.55){$R$};
+ \draw(.75,0)arc(0:25:.75);\node at(1,.18){$\theta$};
+ \node[left]at(1.6,2.3){$\boldsymbol E\parallel y$};
+ \draw[<->](0,-.65)--(2.53787,-.65)node[midway,below]{$\rho$};
+ \begin{scope}[xshift=7cm,yshift=.5cm]
+  \draw[->](-1.4,0)--(1.8,0)node[right]{$x$};\draw[->](0,-1.3)--(0,1.8)node[above]{$y,\boldsymbol E_i$};
+  \draw[gray](0,0)circle(.6);\draw[dashed](0,0)circle(1.3);
+  \draw[DeepBlue,->](0,0)--(40:1.3)node[above right]{$Q_\phi$};
+  \draw(.8,0)arc(0:40:.8);\node at(1,.3){$\phi$};
+  \node[below]at(0,-1.6){俯视：同一半径，不同方位};
+ \end{scope}
+\end{tikzpicture}}{球面反射点 $P$、平面观察点 $Q$ 与俯视方位角；只示几何，不给条纹公式。}{quality:A5:q14}
 \end{advexamplebox}
 \AdvHideHeadingtrue
 \begin{advsolution}
@@ -169,10 +213,14 @@ $I_{r,z}$ 是穿过水平面的法向能流；反射光束自身截面上的强�
 若另采用 $r_s=r_p$ 的简化反射模型，绝对值内则为 $\cos^2\phi+C\sin^2\phi$。原文仅规定几何光学反射，不能据此唯一确定两偏振分量的相对相位。一般材料还须使用实际振幅反射系数。
 
 原图方位 $\phi=0$ 时，$\gamma_0=2\sqrt q/(1+q)$；由于扩束，即使无吸收也通常小于1。靠近凸起边缘的几何光学极限为 $\sqrt3/2$，远离凸起时趋于0。若另人为设两束等强，应将上式的前因子改成1，并明确这是忽略扩束的近似。
+
+图~\ref{advA5:fig:source-bump}的 $P\to Q$ 方向决定径向波矢 $k\sin2\theta$，它与入射波在平面内的零切向波矢之差，给出局部条纹间距。俯视图中的 $\phi$ 只改变偏振投影；扩束引起的强度比仍由相同 $\rho$ 的环带面积比计算。
 \end{advsolution}
 
 \begin{advexamplebox}{相互垂直的圆柱面所产生的干涉条纹}\label{advA5:ex:source-cylinders}
 两相向凸圆柱面的半径分别为 $R_1,R_2$，轴线互相垂直，在原点 $O$ 处相切。竖直平行光向下入射，观察两相向表面反射光形成的等厚干涉。求条纹形状与级次的关系。约定下圆柱轴沿 $x$，半径为 $R_1$；上圆柱轴沿 $y$，半径为 $R_2$。两表面间为空气，按普通透明材料两反射光中只有一次半波损失计算。
+
+\QAOFrame{\QAOCylindersQuestion}{两个正交截面中不同的曲率；相切点为原点，箭头表示竖直入射光。}{quality:A5:q15}
 \end{advexamplebox}
 \AdvHideHeadingtrue
 \begin{advsolution}
@@ -218,7 +266,7 @@ $I_{r,z}$ 是穿过水平面的法向能流；反射光束自身截面上的强�
 \figcap{上：原题两相向圆柱面的透视关系，箭头为入射光；下：正交截面及条纹俯视图。两项曲率共同增加气隙厚度。\label{advA5:fig:source-cylinders}}
 \end{minipage}\end{center}\end{minipage}
 
-原资料写作“反射与入射光发生干涉”，但没有给出两束在观察面重合的光路。本题明确采用两相向表面反射形成的空气膜等厚干涉模型；这是对模型的补充限定。
+按题设比较两相向表面的反射光，采用空气膜等厚干涉模型；两束反射光必须在同一观察区域叠加。
 
 取相切点为 $z=0$，两相向表面的高度分别为
 \[
@@ -238,4 +286,6 @@ $I_{r,z}$ 是穿过水平面的法向能流；反射光束自身截面上的强�
 第 $m\ge1$ 级暗纹的半轴为 $\sqrt{m\lambda R_2}$ 与 $\sqrt{m\lambda R_1}$，轴比固定为 $\sqrt{R_2/R_1}$；相邻暗纹半轴平方之差为 $\lambda R_2$ 与 $\lambda R_1$。两半径相等时退化为圆环。
 
 椭圆是近轴近似。根式给出精确几何膜厚；较大孔径时，还须计算局部折射角和实际反射光路，不能仅把近轴膜厚换成根式而继续使用 $2t$。若夹层折射率为 $n$，右端改为相应级次乘 $\lambda/n$；若两次反射相位相同，则明暗条件互换。原题未给出材料，以上明暗级次依赖题干中明示的普通空气膜假设。
+
+图~\ref{advA5:fig:source-cylinders}的两个正交截面中，曲率分别来自不同表面；膜厚是上表面减下表面，故两项都为正。椭圆长轴沿半径较大的一侧，半轴平方随级次等差，提供了图形方向和系数的直接核对。
 \end{advsolution}

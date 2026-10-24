@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{局域规范对称性与电磁场}
 
 电磁场可以从“带电物质场的局域相位对称性”出发统一引入。考虑复 Klein--Gordon 标量场 $\phi(\vect r,t)$，把 $\phi$ 与 $\bar\phi$ 在变分时视为独立变量，取
@@ -20,8 +21,32 @@ $\phi=A\e^{-\ii\omega t+\ii\vect k\cdot\vect r}$，得到
 
 \begin{advexamplebox}{Klein--Gordon 平面波的能量与动量密度}\label{advA4:ex:kg-energy-momentum}
 认为 $\bar\phi=\phi^*$。求平面波解的能量密度和动量密度，并检查它们与单粒子 $E,\vect p$ 的比例关系。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+\draw[->] (-.4,0)--(3,0) node[right]{$x$};\draw[->] (0,-.4)--(0,2) node[above]{$y$};
+\draw[DeepBlue,thick,domain=0:2.8,samples=70] plot(\x,{.4*sin(360*\x)});
+\draw[->] (.4,1.1)--(2.5,1.1) node[midway,above]{$\boldsymbol k$};\node[below] at (1.3,-.6){$\phi=Ae^{\mathrm i(\boldsymbol k\cdot\boldsymbol r-\omega t)}$};
+
+\end{tikzpicture}
+\figcap{题图：Klein--Gordon平面波的传播方向和复相位；曲线仅表示某时刻的实部。}\label{advA4:quality:A4-gauge:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+\draw[->] (-.4,0)--(3,0) node[right]{$x$};\draw[->] (0,-.4)--(0,2) node[above]{$y$};
+\draw[DeepBlue,thick,domain=0:2.8,samples=70] plot(\x,{.4*sin(360*\x)});
+\draw[->] (.4,1.1)--(2.5,1.1) node[midway,above]{$\boldsymbol k$};\node[below] at (1.3,-.6){$\phi=Ae^{\mathrm i(\boldsymbol k\cdot\boldsymbol r-\omega t)}$};
+
+\end{tikzpicture}
+\figcap{解图：Klein--Gordon平面波的传播方向和复相位；曲线仅表示某时刻的实部。}\label{advA4:quality:A4-gauge:a1}
+\end{minipage}\end{center}
+
 共轭正则动量为
 \[
  \pi_\phi=\frac{\partial\mathcal L}{\partial\dot\phi}
@@ -51,6 +76,8 @@ $\hbar^2\omega^2=\hbar^2c^2k^2+m^2c^4$，得到
  =\frac{\vect p}{E}.
 \]
 这说明 $|A|^2$ 决定物质量的密度因子，而每份物质的能量、动量之比正确。静止极限 $k=0$ 给出零动量密度；超相对论极限 $\hbar kc\gg mc^2$ 给出 $|\vect g|/u\to1/c$。本节场归一化含 $1/m$，不把固定振幅时 $m=0$ 代入密度公式。
+
+图~\ref{advA4:quality:A4-gauge:a1} 中，波矢方向给出空间导数 $\nabla\phi=\mathrm i\boldsymbol k\phi$，时间导数给出 $-\mathrm i\omega\phi$；能量与动量密度的比例必须用同一个振幅归一化。
 \end{advsolution}
 
 \subsection{从全局相位到局域相位}

@@ -1,3 +1,5 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -5,9 +7,11 @@
 \vskip0pt plus-\dimen0\vskip\dimen0\penalty9999\vskip-\dimen0
 \vskip0pt\endgroup}
 \chapter{相变与表面现象}
+\input{chapters/quality-20261023/thermal/ch17.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-first-section/}}
+\graphicspath{{../../../sample/xes-original/thirty-first-section/}}
 
 % All annotations are transparent: labels never carry an opaque rectangular mask.
 \tikzset{
@@ -69,7 +73,7 @@
 
 \newcommand{\criticalApparatusFigure}{%
 \begin{center}\begin{minipage}{\linewidth}\centering
-\includegraphics[width=.83\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/ch17/critical-cell.png}\par\smallskip
+\includegraphics[width=.83\linewidth]{../../../sample/xes-original/restructured-complete/assets/ch17/critical-cell.png}\par\smallskip
 \begin{tikzpicture}[x=1cm,y=1cm]
   \foreach \dx in {0,4,8}{
     \draw[Ink,line width=1pt,rounded corners=7pt] (\dx,0) rectangle +(2.5,3.35);
@@ -156,7 +160,7 @@ xlabel={$v'$},ylabel={$p'$},ylabel style={at={(axis description cs:0,1)},anchor=
 \end{axis}\end{tikzpicture}\end{minipage}\end{center}}
 
 \newcommand{\contrailFigure}{%
-\begin{center}\begin{minipage}{\linewidth}\centering\includegraphics[width=.88\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/ch17/contrail.png}\end{minipage}\end{center}}
+\begin{center}\begin{minipage}{\linewidth}\centering\includegraphics[width=.88\linewidth]{../../../sample/xes-original/restructured-complete/assets/ch17/contrail.png}\end{minipage}\end{center}}
 
 \newcommand{\mercuryTubeFigure}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[x=.17cm,y=.17cm]
@@ -382,9 +386,13 @@ $v_g=RT/(Mp)$，其中 $M$ 是摩尔质量，则
 \Needspace{180pt}
 \begin{origexamplebox}{湿空气等温压缩的凝结起点}\label{ch17:ex:teaching-condensation}
 温度 $T$ 下，体积为 $V_0$ 的密闭容器内有理想干空气和水蒸气，初始无液水。干空气分压为 $p_{a0}$，水蒸气分压为 $\phi p_s(T)$，其中 $0<\phi<1$。缓慢等温压缩至 $V=V_0/r$、$r\ge1$。假定气液平衡及时建立，忽略液水体积及空气在液水中的溶解，求开始凝结时的 $r$、总压强和凝结的水的物质的量。
+
+\ThQCondensation
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThACondensation
+
 凝结前两种气体各自的物质的量不变，分压都随压缩倍数增长：$p_a=rp_{a0}$、$p_v=r\phi p_s$。达到饱和的条件为 $r\phi=1$，故临界压缩倍数为 $r_*=1/\phi$。
 凝结后，水分子从气相转入液相，不能继续对气相水蒸气单独使用定量气体的玻意耳关系。于是
 \[
@@ -406,9 +414,13 @@ $v_g=RT/(Mp)$，其中 $M$ 是摩尔质量，则
 \Needspace{180pt}
 \begin{origexamplebox}{减压到一半时的沸点}\label{ch17:ex:teaching-boiling}
 某纯液体在外压 $p_1$ 下的沸点为 $T_1=360\,\mathrm K$。在所讨论温区内，汽化摩尔潜热近似为 $L_m=40.0\,\mathrm{kJ/mol}$，蒸气服从理想气体关系，液相比体积可忽略。求外压降为 $p_1/2$ 时的沸点，取 $R=8.314\,\mathrm{J/(mol\,K)}$。
+
+\ThQBoiling
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThABoiling
+
 将摩尔潜热直接代入共存线积分式，不能再乘一次摩尔质量：
 \[
  \ln\frac{p_2}{p_1}=\frac{L_m}{R}\left(\frac1{T_1}-\frac1{T_2}\right).
@@ -515,7 +527,6 @@ $T_1=0.85T_c,T_2=0.90T_c,T_c,T_3=1.08T_c,T_4=1.16T_c,T_5=1.24T_c$。
   \label{ch17:eq:s31-22-3}
 \end{equation}
 
-\Needspace{18\baselineskip}
 \par\noindent\begin{minipage}{\linewidth}
 \criticalPointFigure
 \diagramcaption{临界点的两种表示。(a) 临界等温线的水平拐点；(b) $p$--$T$ 相图中气液共存线止于临界点。}\label{ch17:fig:s31-22-3}
@@ -689,6 +700,8 @@ $h$ 是有符号的液面高度差。润湿时 $\theta<90^\circ$，$h>0$，液�
 一端封闭的均匀管子内有空气和水银蒸气，被 $10\,\mathrm{cm}$ 长的水银柱封闭（不论管子如何放置）。
 当管子水平放置时，空气柱稳定长度为 $17\,\mathrm{cm}$；管子竖直放置时，空气柱稳定长度为
 $20\,\mathrm{cm}$。两次均在同一温度下达到平衡。若大气压强为 $76\,\mathrm{cmHg}$，求水银蒸气的饱和蒸气压。
+
+\ThQMercury
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -725,9 +738,13 @@ $76-10=66\,\mathrm{cmHg}$，空气分压为 $66-p_s$。两种放置方式与各�
 在 $80.2\,{}^{\circ}\mathrm C$ 和 $1\,\mathrm{atm}$ 下，液体苯（$\mathrm{C_6H_6}$）蒸发为苯蒸气。
 已知在此条件下苯的汽化热 $L=94.4\,\mathrm{cal/g}$，苯蒸气符合理想气体物态方程，且蒸气体积远大于
 液体体积。求内能的改变。
+
+\ThQVaporization
 \end{origexamplebox}
 
 \begin{xesolution}
+\ThAVaporization
+
 取质量为 $m$ 的苯为系统。等压汽化过程中系统吸收的热量是 $Q=mL$。热力学第一定律给出
 \[
   Q=\Delta U+W,
@@ -767,6 +784,8 @@ $R=1.987\,\mathrm{cal/(mol\,K)}$，得到
   \item 若继续作等温压缩，使体积变为 $V/2$，汽缸中气体的总压强；
   \item 若继续作等温膨胀，使体积变为 $4V$，汽缸中气体的总压强。
 \end{enumerate}
+
+\ThQWetExpansion
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -885,6 +904,8 @@ $100\,{}^{\circ}\mathrm C$ 的空气。现将其中一个容器浸在 $0\,{}^{\c
 仍维持在 $100\,{}^{\circ}\mathrm C$。忽略凝结水所占体积，并采用普通气体的扩散平衡近似，
 不考虑细管内温差引起的热扩散效应。问系统的压强改变为多大？每一容器中的相对湿度为多少？已知
 $0\,{}^{\circ}\mathrm C$ 时水的饱和蒸气压为 $4.6\,\mathrm{mmHg}$。
+
+\ThQTwoVessels
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -966,6 +987,8 @@ $4.6\,\mathrm{mmHg}$，故
   饱和蒸气压与温度的关系；
   \item 找出水蒸气开始凝结的条件。
 \end{enumerate}
+
+\ThQCloud
 \end{origexamplebox}
 
 \begin{xesolution}

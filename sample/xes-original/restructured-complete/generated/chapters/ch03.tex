@@ -1,9 +1,12 @@
+% MechanicsNumberedSolutionFigures20261023-v1
+% MechanicsQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{合运动、抛体、圆周与一般曲线运动}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{运动的合成与分解}
 \newcommand{\CoordinateSystemsDiagram}{%
 \begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
@@ -306,12 +309,17 @@ A(3,4),\ B(5,0),\ C(-3,2),\ D(2,-5),\ E(-3,-2),\ F(0,3),\ G(-1,0),\ H(0,-3).
 \KQuestionAW
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch03:k03-2-22}。
+
 横坐标决定左右，纵坐标决定上下；坐标为零表示点在相应坐标轴上。图中 $A,C,E,D$ 分别位于第一、第二、第三、第四象限，$B,G$ 在 $x$ 轴上，$F,H$ 在 $y$ 轴上。
-\begin{center}\begin{tikzpicture}[scale=.52]
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}[scale=.52]
 \draw[kaxis] (-5.8,0)--(5.8,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,-5.8)--(0,5.8) node[above,clearlabel]{$y$};
 \draw[step=1,RuleGray!65,thin] (-5,-5) grid (5,5);
 \foreach \name/\x/\y/\pos in {A/3/4/above,B/5/0/above,C/-3/2/above,D/2/-5/below,E/-3/-2/below,F/0/3/right,G/-1/0/below,H/0/-3/right}{\node[point,label={[clearlabel]\pos:$\name$}] at (\x,\y) {};}
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch03:k03-2-22}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 
@@ -324,15 +332,20 @@ A(5,\pi/3),\ B(2,\pi/3),\ C(5,\pi/2),\ D(4,\pi),\ E(4,3\pi/2),\ F(3,0).
 \KQuestionAX
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch03:k03-2-23}。
+
 先约定从正 $x$ 轴逆时针量角，再按角度画射线，沿射线量取半径。
 $A,B$ 都在 $60^\circ$ 射线上，距原点分别为 $5,2$。
 $C$ 的极角为 $\pi/2=90^\circ$，在正 $y$ 轴；$E$ 的极角为 $3\pi/2=270^\circ$，在负 $y$ 轴。
 $D$ 在负 $x$ 轴，$F$ 在正 $x$ 轴。也可用 $y_C=5\sin(\pi/2)=5$ 检查 $C$ 的上下位置。
-\begin{center}\begin{tikzpicture}[scale=.55]
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}[scale=.55]
 \draw[kaxis] (-5.8,0)--(5.8,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,-5.8)--(0,5.8) node[above,clearlabel]{$y$};
 \foreach \r in {1,...,5}{\draw[RuleGray] (0,0) circle (\r);}
 \foreach \name/\r/\a/\pos in {A/5/60/above,B/2/60/above,C/5/90/right,D/4/180/above,E/4/270/left,F/3/0/above}{\node[point,label={[clearlabel]\pos:$\name$}] at (\a:\r) {};}
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch03:k03-2-23}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 \subsection{位移、矢量及其分量}
@@ -390,24 +403,57 @@ $D$ 在负 $x$ 轴，$F$ 在正 $x$ 轴。也可用 $y_C=5\sin(\pi/2)=5$ 检查 
 
 \begin{origexamplebox}{三个时刻的位移关系}\label{ch03:ex:k03-2-24}
 质点在 $t_1,t_2,t_3$ 时刻依次位于 $A,B,C$。画出 $t_1\to t_2$、$t_2\to t_3$ 和 $t_1\to t_3$ 的位移，并说明结论。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate (A) at (0,0);\coordinate (B) at (2.5,2);\coordinate (C) at (5,.5);
+\foreach \p/\t in {A/A(t_1),B/B(t_2),C/C(t_3)}{\fill (\p) circle(2pt) node[above]{$\t$};}
+\draw[dashed] (A)..controls(.5,2.5)and(1.5,3)..(B)..controls(4,3)and(3,-.5)..(C);
+\end{tikzpicture}
+\figcap{三个时刻的位置与真实路径}\label{mech:03:24:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch03:k03-2-24}。
+
 三个位移分别为 $\overrightarrow{AB}$、$\overrightarrow{BC}$、$\overrightarrow{AC}$。按矢量首尾相接法，
 \[
   \boxed{\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}}.
 \]
 这说明分段位移的矢量和等于全过程位移，与中间经过何种轨迹无关。
-\begin{center}\begin{tikzpicture}[scale=.8]
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}[scale=.8]
 \coordinate (A) at (-2.4,-.7);\coordinate (B) at (.2,1.2);\coordinate (C) at (2.8,.2);
 \node[point,label={[clearlabel]left:$A$}] at (A) {};\node[point,label={[clearlabel]above:$B$}] at (B) {};\node[point,label={[clearlabel]right:$C$}] at (C) {};
 \draw[vector] (A)--(B);\draw[vector] (B)--(C);\draw[Blue,very thick,->] (A)--(C);
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch03:k03-2-24}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 \begin{origexamplebox}{由两个累计位移求分段位移}\label{ch03:ex:k03-2-25}
 已知质点在 $t_1\to t_2$ 的位移为 $\vect D_1$，在 $t_1\to t_3$ 的位移为 $\vect D_2$，求 $t_2\to t_3$ 的位移。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate (A) at (0,0);\coordinate (B) at (2.5,2);\coordinate (C) at (5,.5);
+\foreach \p/\t in {A/A(t_1),B/B(t_2),C/C(t_3)}{\fill (\p) circle(2pt) node[above]{$\t$};}
+\draw[dashed] (A)..controls(.5,2.5)and(1.5,3)..(B)..controls(4,3)and(3,-.5)..(C);\draw[->,DeepBlue,thick] (A)--(B) node[midway,above left]{$\vect D_1$};\draw[->,DeepBlue,thick] (A)--(C) node[midway,below]{$\vect D_2$};
+\end{tikzpicture}
+\figcap{累计位移共用起点，分段位移连接终点}\label{mech:03:25:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate (A) at (0,0);\coordinate (B) at (2.5,2);\coordinate (C) at (5,.5);
+\foreach \p/\t in {A/A(t_1),B/B(t_2),C/C(t_3)}{\fill (\p) circle(2pt) node[above]{$\t$};}
+\draw[dashed] (A)..controls(.5,2.5)and(1.5,3)..(B)..controls(4,3)and(3,-.5)..(C);\draw[->,DeepBlue,thick] (A)--(B) node[midway,above left]{$\vect D_1$};\draw[->,DeepBlue,thick] (A)--(C) node[midway,below]{$\vect D_2$};\draw[->,Gold,thick] (B)--(C) node[midway,above right]{$\vect D_{23}$};
+\end{tikzpicture}
+\figcap{累计位移共用起点，分段位移连接终点（解答用辅助图）}\label{mech:03:25:a}
+\end{qualityfigure}
+图~\ref{mech:03:25:a}中，$A$ 是两个累计位移的共同起点；从 $B$ 指向 $C$ 才是待求分段位移，因此应作矢量差 $\vect D_2-\vect D_1$。
+
 由全过程等于分段之和，$\vect D_2=\vect D_1+\vect D_{23}$，故
 \[
   \boxed{\vect D_{23}=\vect D_2-\vect D_1}.
@@ -417,8 +463,31 @@ $D$ 在负 $x$ 轴，$F$ 在正 $x$ 轴。也可用 $y_C=5\sin(\pi/2)=5$ 检查 
 
 \begin{origexamplebox}{坐标与位移相加}\label{ch03:ex:k03-2-26}
 质点初始坐标为 $(2,3)\,\mathrm m$，随后位移为 $(4,5)\,\mathrm m$，求最终位置。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(4.3,0) node[right]{$x$};\draw[->] (0,0)--(0,5) node[above]{$y$};
+\coordinate (A) at (1.2,1.8);\coordinate (B) at (3.6,4.8);
+\fill (A) circle(2pt) node[left]{$A(2,3)$};
+\draw[->,DeepBlue,thick] (A)--(B) node[midway,right]{$\Delta\vect r=(4,5)\,\mathrm m$};
+\node[below left] at (0,0){$O$};\fill (B) circle(2pt) node[above]{$B$};
+\end{tikzpicture}
+\figcap{初始位置、位移与最终位置}\label{mech:03:26:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(4.3,0) node[right]{$x$};\draw[->] (0,0)--(0,5) node[above]{$y$};
+\coordinate (A) at (1.2,1.8);\coordinate (B) at (3.6,4.8);
+\fill (A) circle(2pt) node[left]{$A(2,3)$};
+\draw[->,DeepBlue,thick] (A)--(B) node[midway,right]{$\Delta\vect r=(4,5)\,\mathrm m$};
+\node[below left] at (0,0){$O$};\fill (B) circle(2pt) node[above]{$B(6,8)$};\draw[->,Gold] (0,0)--(A) node[midway,left]{$\vect r_1$};\draw[->,Gold] (0,0)--(B) node[pos=.70,above left=10pt]{$\vect r_2$};\draw[dashed] (B)--(3.6,0) node[below]{$6$};\draw[dashed] (B)--(0,4.8) node[left]{$8$};
+\end{tikzpicture}
+\figcap{初始位置、位移与最终位置（解答用辅助图）}\label{mech:03:26:a}
+\end{qualityfigure}
+图~\ref{mech:03:26:a}中，$O\!A$ 是初始位置矢量，$A\!B$ 是随后位移，二者首尾相接得到 $O\!B$；横、纵坐标须分别相加。
+
 \[
 \vect r_2=\vect r_1+\Delta\vect r=(2,3)+(4,5)=(6,8)\,\mathrm m.
 \]
@@ -447,8 +516,33 @@ $D$ 在负 $x$ 轴，$F$ 在正 $x$ 轴。也可用 $y_C=5\sin(\pi/2)=5$ 检查 
 
 \begin{origexamplebox}{飞机紧急改航}\label{ch03:ex:k03-2-27}
 飞机以 $800\,\mathrm{km/h}$ 沿北偏东 $53^\circ$ 飞行 $1\,\mathrm h$ 后，需在 $0.5\,\mathrm h$ 内到达出发机场正东 $1000\,\mathrm{km}$ 的机场 $B$。求改航后的速度大小和方向。取 $\sin53^\circ=4/5$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6,0) node[right]{东 $x$};\draw[->] (0,0)--(0,3.8) node[above]{北 $y$};
+\coordinate (P) at (3.2,2.4);\coordinate (B) at (5,0);
+\fill (0,0) circle(2pt) node[below left]{$O$};\fill (P) circle(2pt) node[above]{$P$};\fill (B) circle(2pt) node[below]{$B$};
+\draw[->,DeepBlue,thick] (0,0)--(P) node[midway,above left]{$800\,\mathrm{km}$};
+\draw (0,.8) arc(90:36.87:.8) node[midway,above]{$53^\circ$};
+\draw[<->] (0,-.7)--(5,-.7) node[midway,below]{$1000\,\mathrm{km}$};\draw[dashed] (P)--(B) node[midway,right]{改航};
+\end{tikzpicture}
+\figcap{改航前后的端点与东西、南北分量}\label{mech:03:27:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6,0) node[right]{东 $x$};\draw[->] (0,0)--(0,3.8) node[above]{北 $y$};
+\coordinate (P) at (3.2,2.4);\coordinate (B) at (5,0);
+\fill (0,0) circle(2pt) node[below left]{$O$};\fill (P) circle(2pt) node[above]{$P$};\fill (B) circle(2pt) node[below]{$B$};
+\draw[->,DeepBlue,thick] (0,0)--(P) node[midway,above left]{$800\,\mathrm{km}$};
+\draw (0,.8) arc(90:36.87:.8) node[midway,above]{$53^\circ$};
+\draw[<->] (0,-.7)--(5,-.7) node[midway,below]{$1000\,\mathrm{km}$};\draw[->,Gold,thick] (P)--(B) node[midway,right]{$\Delta\vect r$};\draw[dashed] (P)--(3.2,0) node[below]{$640$};\node[left] at (0,2.4){$480$};\draw[dashed] (0,2.4)--(P);
+\end{tikzpicture}
+\figcap{改航前后的端点与东西、南北分量（解答用辅助图）}\label{mech:03:27:a}
+\end{qualityfigure}
+图~\ref{mech:03:27:a}中，$P$ 是改航点，$B$ 是目标；$\overrightarrow{PB}$ 的东向分量是 $1000-640$，北向分量是 $0-480$。不能把从 $O$ 到 $B$ 的总位移除以最后半小时。
+
 取东为 $x$ 正向、北为 $y$ 正向。“北偏东 $53^\circ$”的分量为
 \[
 \vect v_1=(800\sin53^\circ,800\cos53^\circ)=(640,480)\,\mathrm{km/h}.
@@ -467,6 +561,8 @@ $D$ 在负 $x$ 轴，$F$ 在正 $x$ 轴。也可用 $y_C=5\sin(\pi/2)=5$ 检查 
 \KQuestionBC
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch03:k03-2-28}。
+
 如图，$A$ 为潜艇，$B$ 为发射时敌船的位置，$H$ 为 $A$ 到航线的垂足。
 鱼雷沿 $AH$ 走距离 $L$，飞行时间 $t=L/u$。这段时间敌船沿 $BH$ 前进
 $vt=vL/u$，所以发射时必须有 $BH=vL/u$。由直角三角形 $ABH$，
@@ -475,7 +571,8 @@ $vt=vL/u$，所以发射时必须有 $BH=vL/u$。由直角三角形 $ABH$，
   \boxed{\theta=\arctan\frac vu}.
 \]
 图中 $u$ 与 $v$ 必须分别对应鱼雷和船的地面速度；交换二者会得到互为倒数的错误结果。
-\begin{center}\begin{tikzpicture}[scale=.92,>=Latex]
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}[scale=.92,>=Latex]
 \coordinate (A) at (0,-1.5);\coordinate (B) at (-2,1.8);\coordinate (H) at (0,1.8);
 \draw[very thick] (-3,1.8)--(2.3,1.8) node[right,clearlabel]{$MN$};
 \draw[thick] (A)--(H);
@@ -491,7 +588,9 @@ $vt=vL/u$，所以发射时必须有 $BH=vL/u$。由直角三角形 $ABH$，
 \draw[->,TextGray] (0,-.63) arc[start angle=90,end angle=121.22,radius=.87];
 \node[clearlabel] (th) at (-1.45,-.95){$\theta$};
 \draw[TextGray,thin] (th.east)--(-.23,-.66);
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch03:k03-2-28}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 \begin{origexamplebox}{足球抢断条件}\label{ch03:ex:k03-2-29}
@@ -500,6 +599,8 @@ $vt=vL/u$，所以发射时必须有 $BH=vL/u$。由直角三角形 $ABH$，
 \KQuestionBD
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k03-ex-2-29}。
+
 若在距 $A$ 为 $r\ge0$ 的点相遇，球用时 $r/v$；队员路程由余弦定理为
 \[
 \ell_p=\sqrt{d^2+r^2-2dr\cos\theta}.
@@ -535,6 +636,8 @@ $BC=d\tan\theta$，两段距离之比为 $\sin\theta$，再次得到 $v_p/v=\sin
 \KQuestionBE
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k03-ex-2-30}。
+
 取 $P\to Q$ 为 $x$ 正向。初始相对位置 $\vect r_0=(l,0)$，相对速度
 \[
 \vect u=\vect v_B-\vect v_A=(-v_2\cos\alpha-v_1,\ v_2\sin\alpha).
@@ -574,6 +677,8 @@ $D-(v_1+v_2\cos\alpha)^2=v_2^2\sin^2\alpha$，得到
 \KQuestionBF
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k03-ex-2-31}。
+
 设入水点 $C$ 到 $A$ 的垂足沿岸距离为 $x$。总时间
 \RescueRouteDiagram
 \[
@@ -618,7 +723,7 @@ $\sin\theta_2=(L-x)/\sqrt{d_2^2+(L-x)^2}$。代入导数方程即得
 \end{equation}
 加速度方向是速度矢量终点移动的方向，不一定与质点位置变化方向相同。
 
-在固定直角坐标系中，$\vect a=(\ddot x,\ddot y)=(\dot v_x,\dot v_y)$。若加速度为常矢量，各分量都是一维匀变速运动；若加速度方向随时间变化，则即使大小不变，也不能直接套用常加速度的位移公式。判断质点是“加速”还是“减速”要看 $\vect a$ 在 $\vect v$ 方向上的投影：$\vect a\cdot\vect v>0$ 时速率增加，$<0$ 时速率减小，等于零时加速度只改变方向。
+在固定直角坐标系中，$\vect a=(\ddot x,\ddot y)=(\dot v_x,\dot v_y)$。若加速度为常矢量，各分量都是一维匀变速运动；若加速度方向随时间变化，则即使大小不变，也不能直接套用常加速度的位移公式。当 $\vect v\ne\vect0$ 时，判断质点是“加速”还是“减速”要看 $\vect a$ 在 $\vect v$ 方向上的投影：由 $\dd v/\dd t=(\vect a\cdot\vect v)/v$，内积大于零时速率增加，小于零时速率减小，等于零时瞬时速率变化率为零，非零加速度只有法向分量。在瞬时静止处速度方向未定，不能根据内积为零断言“只改变方向”；例如由静止做匀加速直线运动，初始内积虽为零，随后速率仍增加。
 
 速度空间的图形有助于避免把加速度画错。把不同时刻的速度箭头都从同一点画出，箭头终点会形成一条“速度轨迹”；加速度方向就是这个终点运动的切线方向。它与质点在真实空间中的轨迹是两种不同的图，不能因为真实轨迹向右弯，就未经计算断定加速度一定向右。
 
@@ -642,7 +747,7 @@ $\sin\theta_2=(L-x)/\sqrt{d_2^2+(L-x)^2}$。代入导数方程即得
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{抛体运动}
 \newcommand{\ProjectileVectorsDiagram}{%
 \begin{center}\begin{minipage}{.98\linewidth}\centering
@@ -1120,6 +1225,8 @@ v_y(t)&=v_0\sin\theta-gt,&y(t)&=v_0\sin\theta\,t-\frac12gt^2.
 \KQuestionBG
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-32}。
+
 令 $k=g/(2v_0^2)$，则球的高度为 $y=H-kx^2$。越过 $x=L$ 处球网要求
 \[
  k<\frac{H-h}{L^2};
@@ -1148,6 +1255,8 @@ v_y(t)&=v_0\sin\theta-gt,&y(t)&=v_0\sin\theta\,t-\frac12gt^2.
 \KQuestionBH
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-33}。
+
 落地时竖直分速度大小 $v_y=\sqrt{2gh}$，水平分速度始终为 $v_0$。速度与水平面成 $45^\circ$，故 $v_0=v_y$：
 \[
  \boxed{v_0=\sqrt{2gh}}.
@@ -1167,6 +1276,8 @@ v_y(t)&=v_0\sin\theta-gt,&y(t)&=v_0\sin\theta\,t-\frac12gt^2.
 \KQuestionBI
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-34}。
+
 除 $t=0$ 外，由 $y(t)=0$ 得飞行时间 $T=2v_0\sin\theta/g$，于是
 \[
  S=v_0\cos\theta\,T
@@ -1185,6 +1296,8 @@ v_y(t)&=v_0\sin\theta-gt,&y(t)&=v_0\sin\theta\,t-\frac12gt^2.
 \KQuestionBJ
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-35}。
+
 $\sin2\theta_2=\sin(\pi-2\theta_1)=\sin2\theta_1$，故射程相同。又
 \[
 t_1=\frac{2v_0\sin\theta_1}{g},\qquad
@@ -1205,6 +1318,8 @@ t_2=\frac{2v_0\cos\theta_1}{g},
 \KQuestionBK
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-36}。
+
 令 $u=\tan\theta$。轨迹通过临界点 $(L,H)$ 时
 \[
 H=Lu-\frac{gL^2}{2v_0^2}(1+u^2),
@@ -1241,6 +1356,8 @@ u=\frac{H+\sqrt{H^2+L^2}}{L}.
 \KQuestionBL
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-37}。
+
 把轨迹写成 $u=\tan\theta$ 的二次式：
 \[
 y=xu-\frac{gx^2}{2v_0^2}(1+u^2).
@@ -1267,8 +1384,31 @@ $x=0$ 必须单独处理：竖直上抛的最高高度是 $v_0^2/(2g)$，正好�
 
 \begin{origexamplebox}{铅球的最佳出手角}\label{ch03:ex:k04-2-38}
 运动员能使铅球以最大速率 $v_0$ 从离地 $H$ 处出手。求最大水平射程对应的出手角；当 $v_0=12.37\,\mathrm{m/s}$、$H=1.5\,\mathrm m$ 时，求角度与成绩。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.5,-1)--(6,-1) node[right]{地面};
+\coordinate (O) at (0,1);\coordinate (P) at (5,-1);
+\fill (O) circle(2pt) node[left]{$O$};\fill (P) circle(2pt) node[below]{$P$};
+\draw[<->] (-.4,-1)--(-.4,1) node[midway,left]{$H$};
+\draw[dashed] (O)--(5,1);\draw[->,DeepBlue,thick] (O)--(1.3,2) node[right]{$v_0$};\draw (1,1) arc(0:37.57:1) node[midway,right]{$\theta$};\draw[DeepBlue,domain=0:5,samples=60] plot(\x,{1+.8*\x-.24*\x*\x});
+\end{tikzpicture}
+\figcap{从高于地面的出手点射向落点}\label{mech:03:38:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.5,-1)--(6,-1) node[right]{地面};
+\coordinate (O) at (0,1);\coordinate (P) at (5,-1);
+\fill (O) circle(2pt) node[left]{$O$};\fill (P) circle(2pt) node[below]{$P$};
+\draw[<->] (-.4,-1)--(-.4,1) node[midway,left]{$H$};
+\draw[dashed] (O)--(5,1);\draw[->,DeepBlue,thick] (O)--(1.3,2) node[right]{$v_0$};\draw (1,1) arc(0:37.57:1) node[midway,right]{$\theta$};\draw[DeepBlue,domain=0:5,samples=60] plot(\x,{1+.8*\x-.24*\x*\x});\draw[<->,Gold] (0,-1.6)--(5,-1.6) node[midway,below]{$R$};\draw[->] (0,1)--(0,2.7) node[above]{$y$};\node[above right] at (5,-1){$(R,-H)$};
+\end{tikzpicture}
+\figcap{从高于地面的出手点射向落点（解答用辅助图）}\label{mech:03:38:a}
+\end{qualityfigure}
+图~\ref{mech:03:38:a}中，以出手点 $O$ 为坐标原点，地面是 $y=-H$，落点 $P$ 的坐标为 $(R,-H)$。把这一边界代入轨迹方程，才可对出手角优化。
+
 落地时间为
 \[
 T=\frac{v_0\sin\theta+\sqrt{v_0^2\sin^2\theta+2gH}}{g},
@@ -1304,6 +1444,8 @@ $u_{\rm opt}=v_0^2/(gR_{\max})$。分别求出 $R_{\max}$ 和 $u_{\rm opt}$，�
 \KQuestionBN
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-39}。
+
 目标坐标为 $(L,L\tan\alpha)$。代入轨迹方程：
 \[
 L\tan\alpha=L\tan\beta-
@@ -1344,6 +1486,8 @@ L\tan\alpha=L\tan\beta-
 \KQuestionBO
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-40}。
+
 障碍物顶端即轨迹最高点。最高点条件给出
 \[
 H=\frac{v_0^2\sin^2\theta}{2g},\qquad
@@ -1367,6 +1511,8 @@ L=\frac{v_0^2\sin\theta\cos\theta}{g}.
 \KQuestionBP
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-41}。
+
 以抛出点为原点，水平向右为 $x$ 轴、竖直向上为 $y$ 轴。
 图示构型取 $0<\alpha<\pi/2$、$\alpha<\theta<\pi/2$，即物体先进入斜面上方的空间。
 抛体的位置为
@@ -1408,8 +1554,31 @@ $1/(2\tan\alpha)<\cot\alpha$，所得 $\theta-\alpha<\pi/2-\alpha$，
 
 \begin{origexamplebox}{轰炸机瞄准镜}\label{ch03:ex:k04-2-42}
 轰炸机在离地高度 $H$ 处以速率 $v$ 水平匀速飞行。设计瞄准镜，使飞行员在目标位于十字线正中时投弹即可命中。求瞄准镜轴线与竖直线的夹角。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.5,-1)--(6,-1) node[right]{地面};
+\coordinate (O) at (0,1);\coordinate (P) at (5,-1);
+\fill (O) circle(2pt) node[left]{$O$};\fill (P) circle(2pt) node[below]{$P$};
+\draw[<->] (-.4,-1)--(-.4,1) node[midway,left]{$H$};
+\draw[dashed] (O)--(5,1);\draw[->,DeepBlue,thick] (O)--(1.7,1) node[above]{$v$};\draw[dashed] (O)--(P);\draw[dashed] (O)--(0,-1);\draw (0,.3) arc(-90:-21.8:.7) node[midway,below right]{$\phi$};
+\end{tikzpicture}
+\figcap{投弹点、竖直线与目标视线}\label{mech:03:42:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.5,-1)--(6,-1) node[right]{地面};
+\coordinate (O) at (0,1);\coordinate (P) at (5,-1);
+\fill (O) circle(2pt) node[left]{$O$};\fill (P) circle(2pt) node[below]{$P$};
+\draw[<->] (-.4,-1)--(-.4,1) node[midway,left]{$H$};
+\draw[dashed] (O)--(5,1);\draw[->,DeepBlue,thick] (O)--(1.7,1) node[above]{$v$};\draw[dashed] (O)--(P);\draw[dashed] (O)--(0,-1);\draw (0,.3) arc(-90:-21.8:.7) node[midway,below right]{$\phi$};\draw[Gold,thick,domain=0:5,samples=50] plot(\x,{1-2*\x*\x/25});\draw[<->] (0,-1.6)--(5,-1.6) node[midway,below]{$D=vt$};
+\end{tikzpicture}
+\figcap{投弹点、竖直线与目标视线（解答用辅助图）}\label{mech:03:42:a}
+\end{qualityfigure}
+图~\ref{mech:03:42:a}中，$OP$ 是投弹瞬间的瞄准线，$H$ 是竖直落差，$D$ 是水平超前距离；夹角 $\phi$ 从竖直线量起，因此用 $\tan\phi=D/H$。
+
 炸弹下落时间 $t=\sqrt{2H/g}$，在此期间水平前进
 \[
 D=vt=v\sqrt{\frac{2H}{g}}.
@@ -1427,6 +1596,8 @@ D=vt=v\sqrt{\frac{2H}{g}}.
 \KQuestionBR
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-43}。
+
 设每次碰撞前竖直分速度大小为 $V$，则碰撞后向上为 $eV$。下一碰撞点比前一点低 $l$，由竖直运动的速度—位移关系
 \[
 V^2=e^2V^2+2gl,
@@ -1451,9 +1622,32 @@ T=\frac{(1+e)V}{g}.
 \end{xesolution}
 
 \begin{origexamplebox}{反弹轨迹的面积和}\label{ch03:ex:k04-2-44}
-小球从距水平地面 $h$ 高处，以水平速度 $\sqrt{2gh}$ 抛出。每次落地反弹时水平速度不变，竖直速度反向且按固定比率 $e$ 减小。若从第一次反弹开始，各段轨迹与地面所围面积之和为 $\frac{8}{21}h^2$，求 $e$。提示：一次从地面出发又落回地面的斜抛轨迹所围面积，等于其最大高度与射程乘积的 $2/3$。
+小球从距水平地面 $h$ 高处，以水平速度 $\sqrt{2gh}$ 抛出。每次落地反弹时水平速度不变，竖直速度反向且按固定比率 $e$ 减小，其中 $0<e<1$。若从第一次反弹开始，各段轨迹与地面所围面积之和为 $\frac{8}{21}h^2$，求 $e$。提示：一次从地面出发又落回地面的斜抛轨迹所围面积，等于其最大高度与射程乘积的 $2/3$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\begin{scope}[y=2cm]\draw[thick](-.5,0)--(6.4,0);\fill(0,1)circle(2pt);\draw[<->](-.4,0)--(-.4,1)node[midway,left]{$h$};
+\draw[->,DeepBlue](0,1)--(1.2,1)node[right]{$\sqrt{2gh}$};
+\draw[DeepBlue,domain=0:2,samples=40]plot(\x,{1-\x*\x/4});
+\draw[DeepBlue,domain=2:4.4,samples=40]plot(\x,{.25*(\x-2)*(4.4-\x)});
+\draw[DeepBlue,domain=4.4:5.84,samples=40]plot(\x,{.25*(\x-4.4)*(5.84-\x)});\end{scope}
+\end{tikzpicture}
+\figcap{反弹后的抛物线弓形面积}\label{mech:03:44:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\begin{scope}[y=2cm]\fill[PaleBlue,domain=2:4.4,samples=40](2,0)--plot(\x,{.25*(\x-2)*(4.4-\x)})--cycle;\draw[thick](-.5,0)--(6.4,0);\fill(0,1)circle(2pt);\draw[<->](-.4,0)--(-.4,1)node[midway,left]{$h$};
+\draw[->,DeepBlue](0,1)--(1.2,1)node[right]{$\sqrt{2gh}$};
+\draw[DeepBlue,domain=0:2,samples=40]plot(\x,{1-\x*\x/4});
+\draw[DeepBlue,domain=2:4.4,samples=40]plot(\x,{.25*(\x-2)*(4.4-\x)});
+\draw[DeepBlue,domain=4.4:5.84,samples=40]plot(\x,{.25*(\x-4.4)*(5.84-\x)});\draw[<->,Gold](2,-.3)--(4.4,-.3)node[midway,below]{$S_n$};\draw[<->,Gold](3.2,0)--(3.2,.36)node[midway,right]{$H_n$};\node at(3.2,.85){$A_n=\frac23H_nS_n$};\end{scope}
+\end{tikzpicture}
+\figcap{反弹后的抛物线弓形面积（解答用辅助图）}\label{mech:03:44:a}
+\end{qualityfigure}
+图~\ref{mech:03:44:a}中，阴影从某次反弹点起、到下一次落地点止，对应高度 $H_n$ 与射程 $S_n$；题目从第一次反弹开始计面积，故级数下标从 $n=1$ 起。
+
 第一次落地前竖直速度大小为 $\sqrt{2gh}$。第 $n$ 次反弹后的竖直初速度为 $e^n\sqrt{2gh}$，故最大高度 $H_n=e^{2n}h$；水平速度为 $\sqrt{2gh}$，飞行时间 $2e^n\sqrt{2h/g}$，射程 $S_n=4e^nh$。于是第 $n$ 个面积
 \[
 A_n=\frac23H_nS_n=\frac83h^2e^{3n}.
@@ -1476,6 +1670,8 @@ A_n=\frac23H_nS_n=\frac83h^2e^{3n}.
 \KQuestionBT
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k04-ex-2-45}。
+
 \textbf{先判断命中时的速度方向。}
 物体不可能上升着从球体内部穿到球顶；但既可以在球顶水平掠过，也可以在下降时命中。
 因此不能预先令球顶的竖直速度为零。下面把这两类运动统一处理。
@@ -1594,7 +1790,7 @@ $\sqrt{gR}$ 具有速度量纲，$d_*\propto R$、$\theta_*$ 与尺度无关；�
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{圆周运动}
 \newcommand{\CirclePositionDiagram}{%
 \begin{center}\begin{tikzpicture}[scale=.9,>=Latex]
@@ -1953,8 +2149,27 @@ $\sqrt{gR}$ 具有速度量纲，$d_*\propto R$、$\theta_*$ 与尺度无关；�
 
 \begin{origexamplebox}{转速、角速度与线速度}\label{ch03:ex:k05-2-46}
 质点沿半径 $r=10\,\mathrm{cm}$ 的圆周匀速运动，每分钟转 $30$ 圈。求角速度、线速度和周期。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$r$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\node[align=center] at (0,-2.2){$r=10\,\mathrm{cm}$\\每分钟 $30$ 圈};
+\end{tikzpicture}
+\figcap{圆轨道半径、转动周期和切向速度}\label{mech:03:46:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$r$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\node[align=center] at (0,-2.2){$r=10\,\mathrm{cm}$\\每分钟 $30$ 圈};\node at(3,-1.5){$v=\omega r$};
+\end{tikzpicture}
+\figcap{圆轨道半径、转动周期和切向速度（解答用辅助图）}\label{mech:03:46:a}
+\end{qualityfigure}
+图~\ref{mech:03:46:a}中，半径 $OP=r$，速度沿 $P$ 点切线；一周路程为 $2\pi r$，每秒转数是 $f$，故 $v=2\pi rf$、$|\omega|=2\pi f$。
+
 频率 $f=30/60=0.5\,\mathrm{Hz}$，所以
 \[
  \boxed{|\omega|=2\pi f=\pi\,\mathrm{rad/s}},\qquad
@@ -1971,6 +2186,8 @@ $\sqrt{gR}$ 具有速度量纲，$d_*\propto R$、$\theta_*$ 与尺度无关；�
 \KQuestionBV
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-47}。
+
 $B$ 只经过圆周上的 $P$ 点，到达时间为 $R/v$。$A$ 从 $P$ 出发后第 $n$ 次回到 $P$ 的时间为 $2\pi n/|\omega|$，其中 $n=1,2,\ldots$。令两者相等：
 \RadialUniformCollisionDiagram
 \[
@@ -1985,6 +2202,8 @@ $B$ 只经过圆周上的 $P$ 点，到达时间为 $R/v$。$A$ 从 $P$ 出发�
 \KQuestionBW
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-48}。
+
 $B$ 到达 $P$ 时 $R=at^2/2$。相撞时间仍须为 $t_n=2\pi n/|\omega|$，所以
 \[
  \boxed{a_n=\frac{2R}{t_n^2}=\frac{R\omega^2}{2\pi^2n^2}},
@@ -2001,6 +2220,8 @@ $B$ 到达 $P$ 时 $R=at^2/2$。相撞时间仍须为 $t_n=2\pi n/|\omega|$，�
 \KQuestionBX
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-49}。
+
 快者相对慢者多转一周时再次相遇：
 \[
  (\omega_2-\omega_1)t=2\pi,
@@ -2023,6 +2244,8 @@ $B$ 到达 $P$ 时 $R=at^2/2$。相撞时间仍须为 $t_n=2\pi n/|\omega|$，�
 \KQuestionBY
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-50}。
+
 两点和圆心共线等价于角位置之差为 $k\pi$。令
 \[
 \omega_A=\frac{v_A}{R_1},\qquad \omega_B=\frac{v_B}{R_2}
@@ -2042,6 +2265,8 @@ $B$ 到达 $P$ 时 $R=at^2/2$。相撞时间仍须为 $t_n=2\pi n/|\omega|$，�
 \KQuestionBZ
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-51}。
+
 $B$ 下落到圆所在水平面的时间为 $t=\sqrt{2H/g}$。它要到达圆周，须有
 \[
  v_0t=R.
@@ -2062,6 +2287,8 @@ $A,B$ 分别在半径 $R_1,R_2$ 的同心圆轨道上同向运动，$R_1<R_2$，
 \KQuestionCA
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-52}。
+
 夹角最大时，从 $B$ 引向内圆的视线 $BA$ 与内圆相切，所以 $OA\perp BA$。在直角三角形 $OAB$ 中
 \ConcentricSightDiagram
 \[
@@ -2077,9 +2304,28 @@ $A,B$ 分别在半径 $R_1,R_2$ 的同心圆轨道上同向运动，$R_1<R_2$，
 \end{xesolution}
 
 \begin{origexamplebox}{经典自转电子模型的矛盾}\label{ch03:ex:k05-2-53}
-20世纪早期，实验表明电子具有一种类似“绕自身轴转动”的内禀性质。当时有人尝试用经典小球的自转来理解这一现象：把电子看成半径 $r_e\simeq3\times10^{-15}\,\mathrm m$ 的小球，并要求自转满足 $\omega R^2\simeq10^{-5}\,\mathrm{m^2/s}$。指出这个经典模型的致命缺陷。
+20世纪早期，实验表明电子具有一种类似“绕自身轴转动”的内禀性质。当时有人尝试用经典小球的自转来理解这一现象：把电子看成半径 $R=r_e\simeq3\times10^{-15}\,\mathrm m$ 的小球，并要求自转满足 $\omega R^2\simeq10^{-5}\,\mathrm{m^2/s}$。指出这个经典模型的致命缺陷。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[->,Gold] (-.5,1.65) arc(105:40:1.72);\node at (3,.3){$R=r_e$};\node at (3,-.5){$\omega R^2\simeq10^{-5}$};
+\end{tikzpicture}
+\figcap{经典自转模型中表面点的速度}\label{mech:03:53:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[->,Gold] (-.5,1.65) arc(105:40:1.72);\node at (3,.3){$R=r_e$};\node at (3,-.5){$\omega R^2\simeq10^{-5}$};\node at(3,-1.5){$v=\omega R$};
+\end{tikzpicture}
+\figcap{经典自转模型中表面点的速度（解答用辅助图）}\label{mech:03:53:a}
+\end{qualityfigure}
+图~\ref{mech:03:53:a}中，表面点 $P$ 到轴心的距离为 $R=r_e$，故切向速率是 $\omega R$；把题给 $\omega R^2$ 除以同一个 $R$ 后再与光速比较。
+
 模型中电子表面线速度为
 \[
  v=\omega R=\frac{\omega R^2}{R}
@@ -2119,8 +2365,27 @@ $A,B$ 分别在半径 $R_1,R_2$ 的同心圆轨道上同向运动，$R_1<R_2$，
 \begin{origexamplebox}{向心加速度的两个反算}\label{ch03:ex:k05-2-54}
 （1）质点以 $v=10\,\mathrm{m/s}$ 在半径 $R=10\,\mathrm m$ 的圆轨道上匀速运动，求加速度大小。\par
 （2）半径 $R=10\,\mathrm m$，向心加速度 $a_r=10\,\mathrm{m/s^2}$，求频率。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};
+\end{tikzpicture}
+\figcap{切向速度与指向圆心的加速度}\label{mech:03:54:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[->,Gold,very thick] (1.4,0)--(.4,0) node[midway,above]{$a_r$};\node at (3,-1.5){$v=\omega R$};
+\end{tikzpicture}
+\figcap{切向速度与指向圆心的加速度（解答用辅助图）}\label{mech:03:54:a}
+\end{qualityfigure}
+图~\ref{mech:03:54:a}中，$OP=R$，$\vect v$ 与半径垂直，向心加速度沿 $PO$ 指向圆心。匀速只说明速率不变，速度方向仍在改变，所以 $a_r=v^2/R=\omega^2R$。
+
 （1）
 \[
 \boxed{a_r=\frac{v^2}{R}=10\,\mathrm{m/s^2}}.
@@ -2133,8 +2398,27 @@ $A,B$ 分别在半径 $R_1,R_2$ 的同心圆轨道上同向运动，$R_1<R_2$，
 
 \begin{origexamplebox}{开普勒型周期律对应的加速度}\label{ch03:ex:k05-2-55}
 若多个质点绕共同圆心匀速运动，并满足 $T^2/R^3=C$，其中 $C$ 为常量，求向心加速度与半径的关系。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P_1$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R_1$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[dashed] (0,0) circle(2.2);\draw (0,0)--(-1.8,1.265) node[midway,above]{$R_2$};\fill (-1.8,1.265) circle(2pt) node[above left]{$P_2$};\node[align=left] at (4,.2){$T_1^2/R_1^3=C$\\$T_2^2/R_2^3=C$};
+\end{tikzpicture}
+\figcap{同心轨道满足同一个周期律常量}\label{mech:03:55:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P_1$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R_1$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[dashed] (0,0) circle(2.2);\draw (0,0)--(-1.8,1.265) node[midway,above]{$R_2$};\fill (-1.8,1.265) circle(2pt) node[above left]{$P_2$};\node[align=left] at (4,.2){$T_1^2/R_1^3=C$\\$T_2^2/R_2^3=C$};\draw[->,Gold,very thick] (1.4,0)--(.4,0) node[midway,above]{$a_r$};\node at (3,-1.5){$v=\omega R$};
+\end{tikzpicture}
+\figcap{同心轨道满足同一个周期律常量（解答用辅助图）}\label{mech:03:55:a}
+\end{qualityfigure}
+图~\ref{mech:03:55:a}中，两个轨道均以 $O$ 为圆心，但各自的周期随半径变化。对任一轨道先写 $a_r=(2\pi/T)^2R$，再把该轨道的 $T^2=CR^3$ 代入。
+
 \[
 a_r=\frac{4\pi^2R}{T^2}
 =\boxed{\frac{4\pi^2}{CR^2}}.
@@ -2144,8 +2428,27 @@ a_r=\frac{4\pi^2R}{T^2}
 
 \begin{origexamplebox}{周期相同的同心转动}\label{ch03:ex:k05-2-56}
 若多个质点绕共同圆心匀速运动，周期 $T$ 与各自轨道半径 $R$ 无关，求向心加速度与半径的关系。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P_1$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R_1$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[dashed] (0,0) circle(2.2);\draw (0,0)--(-1.8,1.265) node[midway,above]{$R_2$};\fill (-1.8,1.265) circle(2pt) node[above left]{$P_2$};\node[align=left] at (4,.2){$T_1=T_2=T$\\半径不同，周期相同};
+\end{tikzpicture}
+\figcap{半径不同而周期相同的同心轨道}\label{mech:03:56:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P_1$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R_1$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[dashed] (0,0) circle(2.2);\draw (0,0)--(-1.8,1.265) node[midway,above]{$R_2$};\fill (-1.8,1.265) circle(2pt) node[above left]{$P_2$};\node[align=left] at (4,.2){$T_1=T_2=T$\\半径不同，周期相同};\draw[->,Gold,very thick] (1.4,0)--(.4,0) node[midway,above]{$a_r$};\node at (3,-1.5){$v=\omega R$};
+\end{tikzpicture}
+\figcap{半径不同而周期相同的同心轨道（解答用辅助图）}\label{mech:03:56:a}
+\end{qualityfigure}
+图~\ref{mech:03:56:a}中，两个轨道在同一周期内各转一周，故角速度大小均为 $2\pi/T$；向心加速度箭头指向 $O$，其大小由 $\omega^2R$ 决定。
+
 周期相同意味着角速度的大小相同，即 $|\omega|=2\pi/T$；转动方向可以不同。故
 \[
  \boxed{a_r=\frac{4\pi^2}{T^2}R\propto R}.
@@ -2162,6 +2465,8 @@ a_r=\frac{4\pi^2R}{T^2}
 \KQuestionCF
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-57}。
+
 先看半圆弧。由 $v^2/R\le a$，加上不能超过最高速率的限制，弯道所用速率为
 \[
  u(R)=\min\{v_0,\sqrt{aR}\}.
@@ -2238,8 +2543,27 @@ $a_\theta$ 是沿角度增加方向的有符号切向分量，$a_r$ 是指向圆
 
 \begin{origexamplebox}{圆周边缘达到声速}\label{ch03:ex:k05-2-58}
 质点在半径 $R=11\,\mathrm m$ 的圆周上运动，$t=0$ 时 $\omega_0=0$，角加速度 $\beta=1\,\mathrm{rad/s^2}$。求边缘速度达到声速 $340\,\mathrm{m/s}$ 所需时间。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[->,Gold] (-.5,1.7) arc(105:40:1.8);\node at (3,-.5){$\omega_0=0,\ \beta>0$};
+\end{tikzpicture}
+\figcap{角加速度引起边缘切向速率增长}\label{mech:03:58:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$R$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};\draw[->,Gold] (-.5,1.7) arc(105:40:1.8);\node at (3,-.5){$\omega_0=0,\ \beta>0$};\draw[->,Gold,very thick](2,0)--(2,1)node[right]{$a_t$};\node at(3,-1.5){$a_t=R\beta$};
+\end{tikzpicture}
+\figcap{角加速度引起边缘切向速率增长（解答用辅助图）}\label{mech:03:58:a}
+\end{qualityfigure}
+图~\ref{mech:03:58:a}中，点 $P$ 的速率沿切线，$v=R\omega$；题给的 $\beta$ 控制角速度变化，先求 $\omega=\beta t$，再由线速度达到声速确定时间。
+
 \[
 v=R\omega=R\beta t,
 \]
@@ -2257,6 +2581,8 @@ v=R\omega=R\beta t,
 \KQuestionCH
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k05-ex-2-59}。
+
 把加速度沿切向和指向圆心的法向分解。若图示加速度的法向分量指向圆心，则
 \[
 a_t=a\cos\theta=\frac{\dd v}{\dd t},
@@ -2282,7 +2608,7 @@ $\theta=90^\circ$ 时 $v=v_0$；$\theta<90^\circ$ 时加速，$\theta>90^\circ$ 
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{平面内的一般曲线运动}
 \newcommand{\FixedCoordinatesDiagram}{%
 \begin{center}\begin{tikzpicture}[scale=.78,>=Latex]
@@ -2682,17 +3008,22 @@ $\theta=90^\circ$ 时 $v=v_0$；$\theta<90^\circ$ 时加速，$\theta>90^\circ$ 
 \KQuestionCI
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch03:k06-2-60}。
+
 平方相加消去 $t$：
 \[
  \boxed{x^2+y^2=A^2}.
 \]
 轨迹是以原点为圆心、半径 $A$ 的圆。$t=0$ 时在 $(A,0)$；若 $\omega>0$，随后 $y$ 增大，故逆时针运动。
-\begin{center}\begin{tikzpicture}[scale=.65]
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}[scale=.65]
 \draw[kaxis] (-2.5,0)--(2.5,0) node[right,clearlabel]{$x$};\draw[kaxis] (0,-2.5)--(0,2.5) node[above,clearlabel]{$y$};
 \draw[kcurve] (0,0) circle (2);
 \draw[vector] (10:2) arc[start angle=10,end angle=40,radius=2];
 \node[point,label={[clearlabel]below right:$t=0$}] at (2,0) {};
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch03:k06-2-60}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 
@@ -2702,6 +3033,8 @@ $\theta=90^\circ$ 时 $v=v_0$；$\theta<90^\circ$ 时加速，$\theta>90^\circ$ 
 \KQuestionCJ
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-61}。
+
 \[
  \left(\frac xa\right)^2+\left(\frac yb\right)^2
  =\cos^2\omega t+\sin^2\omega t=1,
@@ -2721,6 +3054,8 @@ $\theta=90^\circ$ 时 $v=v_0$；$\theta<90^\circ$ 时加速，$\theta>90^\circ$ 
 \KQuestionCK
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-62}。
+
 无滑动条件给出圆转过的角度 $\phi=vt/R$。圆心坐标为 $(vt,R)$；从圆心指向 $P$ 的半径由竖直向下顺时针转过 $\phi$，分量为 $(-R\sin\phi,-R\cos\phi)$。相加得
 \CycloidDiagram
 \[
@@ -2742,6 +3077,8 @@ x(t)=R\cos\omega t,\qquad y(t)=R\sin\omega t,
 \KQuestionCL
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-63}。
+
 $x^2+y^2=R^2$，说明质点始终在半径 $R$ 的圆柱面上；同时 $z$ 随时间匀速增加。每当 $\omega t$ 增加 $2\pi$，质点转一周而高度增加
 \HelixDiagram
 \[
@@ -2774,6 +3111,8 @@ $x^2+y^2=R^2$，说明质点始终在半径 $R$ 的圆柱面上；同时 $z$ 随
 \KQuestionCM
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-64}。
+
 逐次求导：
 \begin{align*}
 v_x&=-R\omega\sin\omega t,&v_y&=R\omega\cos\omega t,\\
@@ -2794,6 +3133,8 @@ a_x&=-R\omega^2\cos\omega t,&a_y&=-R\omega^2\sin\omega t.
 \KQuestionCN
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-65}。
+
 质点速度等于圆心平动速度与绕圆心转动速度的矢量和。圆向右滚动时角速度大小 $\omega=v/R$、方向为顺时针。接地点的转动速度水平向左，大小
 \[
 \omega R=v,
@@ -2813,6 +3154,8 @@ a_x&=-R\omega^2\cos\omega t,&a_y&=-R\omega^2\sin\omega t.
 \KQuestionCO
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-66}。
+
 消去 $t$：
 \[
  \boxed{r=\frac v\omega\theta}.
@@ -2828,8 +3171,29 @@ a_x&=-R\omega^2\cos\omega t,&a_y&=-R\omega^2\sin\omega t.
 \begin{origexamplebox}{对数螺线的等角性质}\label{ch03:ex:k06-2-67}
 平面极坐标中质点满足 $r=r_0e^\theta$、$\theta=\omega t$，其中 $r_0>0,\omega>0$。
 证明速度与从极点指向质点的径向射线夹角恒定，并求该角。可用 $e^{x+\Delta x}\simeq e^x(1+\Delta x)$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.2,0)--(4,0) node[right]{$x$};\draw[->] (0,-.2)--(0,3.3) node[above]{$y$};
+\draw[DeepBlue,thick,domain=-1:1.1,samples=80] plot({exp(\x)*cos(\x*180/pi)},{exp(\x)*sin(\x*180/pi)});
+\coordinate (P) at (1.55,1.36);\fill (P) circle(2pt) node[left]{$P$};
+\draw[dashed] (0,0)--(P) node[midway,above left]{$r$};\node[below left] at (0,0){$O$};\draw[->,DeepBlue] (P)--(1.64,2.73) node[right]{$\vect v$};
+\end{tikzpicture}
+\figcap{对数螺线上径向与横向速度分解}\label{mech:03:67:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.2,0)--(4,0) node[right]{$x$};\draw[->] (0,-.2)--(0,3.3) node[above]{$y$};
+\draw[DeepBlue,thick,domain=-1:1.1,samples=80] plot({exp(\x)*cos(\x*180/pi)},{exp(\x)*sin(\x*180/pi)});
+\coordinate (P) at (1.55,1.36);\fill (P) circle(2pt) node[left]{$P$};
+\draw[dashed] (0,0)--(P) node[midway,above left]{$r$};\node[below left] at (0,0){$O$};\draw[->,Gold] (P)--(2.68,2.35) node[right]{$v_r$};\draw[->,Gold] (P)--(.56,2.49) node[left]{$v_\theta$};\draw[->,DeepBlue,very thick] (P)--(1.69,3.48) node[above]{$\vect v$};\node at (3.3,3){$v_r=v_\theta$};
+\end{tikzpicture}
+\figcap{对数螺线上径向与横向速度分解（解答用辅助图）}\label{mech:03:67:a}
+\end{qualityfigure}
+图~\ref{mech:03:67:a}中，$\vect v_r$ 沿向外径向，$\vect v_\theta$ 垂直于径向且沿逆时针方向；两分量相等，合速度位于两者之间，由直角速度三角形确定夹角。
+
 极坐标速度的径向、横向分量分别是
 \[
 v_r=\dot r=\frac{\dd r}{\dd\theta}\dot\theta=r\omega,
@@ -2939,6 +3303,8 @@ $|\dd\varphi|=\dd s/\rho$，故曲率 $1/\rho=|\dd\varphi/\dd s|$。
 \KQuestionCQ
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-68}。
+
 重力加速度竖直向下。上升时速度有向上分量，故 $\vect a\cdot\vect v<0$，夹角为钝角，速率减小；下降时 $\vect a\cdot\vect v>0$，夹角为锐角，速率增加。
 
 
@@ -2960,6 +3326,8 @@ $|\dd\varphi|=\dd s/\rho$，故曲率 $1/\rho=|\dd\varphi/\dd s|$。
 \KQuestionCR
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-69}。
+
 先沿题图从左向右上读到 $P_3$，再沿曲线向左下回折至 $P_4$：
 $P_4$ 位于 $P_3$ 左下方，不能把这段回折曲线当成单值函数 $y(x)$ 的下降支。
 作密切圆时先在各点画切线，圆心必须在该点法线上，并处在曲线局部凹向的一侧。
@@ -2988,6 +3356,8 @@ $P_3$ 位于急剧转弯处，半径很小；$P_4$ 附近切线近乎竖直，�
 \KQuestionCS
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch03:fig:k06-ex-2-70}。
+
 取参数方程 $x=a\cos t$、$y=b\sin t$。参数曲线的曲率半径为
 \[
 \rho=\frac{(\dot x^2+\dot y^2)^{3/2}}{|\dot x\ddot y-\dot y\ddot x|}
@@ -3005,8 +3375,27 @@ $P_3$ 位于急剧转弯处，半径很小；$P_4$ 附近切线近乎竖直，�
 
 \begin{origexamplebox}{加速度与速度成正比的减速}\label{ch03:ex:k06-2-71}
 质点沿直线运动，取初速度方向为正向，$t=0$ 时速度为 $v_0>0$，此后加速度满足 $a=-kv$，$k>0$。求完全停止所需时间和总路程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};\fill (1,0) circle(2pt) node[below]{$P$};
+\draw[->,DeepBlue,thick] (1,.5)--(2.6,.5) node[right]{$v>0$};
+\draw[->,Gold,thick] (2.6,1.3)--(1,1.3) node[midway,above]{$a<0$};
+\end{tikzpicture}
+\figcap{一次阻力下的速度方向和衰减曲线}\label{mech:03:71:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};\fill (1,0) circle(2pt) node[below]{$P$};
+\draw[->,DeepBlue,thick] (1,.5)--(2.6,.5) node[right]{$v>0$};
+\draw[->,Gold,thick] (2.6,1.3)--(1,1.3) node[midway,above]{$a<0$};\begin{scope}[xshift=3.8cm,yshift=.8cm,x=.55cm,y=.9cm]\draw[->] (0,0)--(4,0) node[right]{$t$};\draw[->] (0,0)--(0,1.5) node[above]{$v/v_0$};\draw[DeepBlue,thick,domain=0:3.5,samples=50] plot(\x,{exp(-\x)});\end{scope}
+\end{tikzpicture}
+\figcap{一次阻力下的速度方向和衰减曲线（解答用辅助图）}\label{mech:03:71:a}
+\end{qualityfigure}
+图~\ref{mech:03:71:a}中，正向速度与负向加速度反向，右侧衰减曲线在任意有限时间都位于时间轴上方；总路程要由曲线下的无穷区间面积判断。
+
 负号表示加速度与正向运动的速度相反，速率不断减小，而不是说质点已反向运动。
 由加速度定义，
 \[
@@ -3045,8 +3434,27 @@ $t_{\rm tol}=k^{-1}\ln(v_0/v_{\rm tol})$，是有限的。
 
 \begin{origexamplebox}{加速度与速度平方成正比的减速}\label{ch03:ex:k06-2-72}
 质点沿直线运动，取初速度方向为正向，$t=0$ 时速度为 $v_0>0$，此后加速度满足 $a=-\beta v^2$，$\beta>0$。求速度随时间的关系。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};\fill (1,0) circle(2pt) node[below]{$P$};
+\draw[->,DeepBlue,thick] (1,.5)--(2.6,.5) node[right]{$v>0$};
+\draw[->,Gold,thick] (2.6,1.3)--(1,1.3) node[midway,above]{$a<0$};
+\end{tikzpicture}
+\figcap{平方阻力下的正速度与长时尾部}\label{mech:03:72:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};\fill (1,0) circle(2pt) node[below]{$P$};
+\draw[->,DeepBlue,thick] (1,.5)--(2.6,.5) node[right]{$v>0$};
+\draw[->,Gold,thick] (2.6,1.3)--(1,1.3) node[midway,above]{$a<0$};\begin{scope}[xshift=3.8cm,yshift=.8cm,x=.55cm,y=.9cm]\draw[->] (0,0)--(4,0) node[right]{$t$};\draw[->] (0,0)--(0,1.5) node[above]{$v/v_0$};\draw[DeepBlue,thick,domain=0:3.5,samples=50] plot(\x,{1/(1+\x)});\end{scope}
+\end{tikzpicture}
+\figcap{平方阻力下的正速度与长时尾部（解答用辅助图）}\label{mech:03:72:a}
+\end{qualityfigure}
+图~\ref{mech:03:72:a}中，速度始终沿正向，加速度反向；右侧曲线的 $1/t$ 尾部与指数尾部不同，不能仅凭速度趋零便断言总路程有限。
+
 分离变量：
 \[
 \frac{\dd v}{v^2}=-\beta\,\dd t.

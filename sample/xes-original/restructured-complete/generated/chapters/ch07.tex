@@ -1,9 +1,12 @@
+% MechanicsNumberedSolutionFigures20261023-v1
+% MechanicsQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{动量、变质量系统与碰撞}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/seventh-section/}}
+\graphicspath{{../../../sample/xes-original/seventh-section/}}
 \section{动量定理}
 % Original problem figures and added solution diagrams for Section 3.1.
 \tikzset{
@@ -430,9 +433,20 @@ $t+\Delta t$ 时刻的动量为 $\vec p(t+\Delta t)$，则这段时间内的动�
 水平面运动 $t_1=5\,\mathrm s$。随后外力变为 $F_2=5\,\mathrm N$，方向不变，物体又运动
 $t_2=4\,\mathrm s$；撤去外力后，物体再经过 $t_3=6\,\mathrm s$ 停下。求物体所受的
 摩擦力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(6.8,0)node[right]{$t/\mathrm s$};\draw[->](0,0)--(0,2.8)node[above]{$F/\mathrm N$};
+\draw[DeepBlue,very thick](0,2.4)--(2,2.4)--(2,1.5)--(3.6,1.5)--(3.6,0)--(6,0);
+\foreach\x/\t in {0/0,2/5,3.6/9,6/15}{\draw(\x,.08)--(\x,-.08)node[below]{$\t$};}
+\node[left]at(0,2.4){$8$};\node[left]at(0,1.5){$5$};\node at(4.8,1.4){末速度为零};
+\end{tikzpicture}
+\figcap{两段推力和撤力阶段的时间边界}\label{mech:07:2:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:2:q}中，横轴把全过程分成 $5,4,6\,\mathrm s$ 三段。摩擦力在三个运动阶段都作负冲量，外加推力则仅在前两段存在。
+
 取运动方向为正，设滑动摩擦力大小为 $f$。物体初、末速度都为零，所以全过程的总动量
 变化为零。各力的冲量按时间分段相加：
 \[
@@ -475,7 +489,7 @@ $t_2=4\,\mathrm s$；撤去外力后，物体再经过 $t_3=6\,\mathrm s$ 停下
 \end{equation}
 因此，系统总动量的变化只由外力的总冲量决定，与内力的具体形式无关。
 
-\Needspace{0.27\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-3}
 两个质量分别为 $m_1$ 和 $m_2$ 的物体由劲度系数为 $k$、原长为 $l_0$ 的弹簧连接，
 初始弹簧状态未知。初始时整个系统竖直放置，随后由静止释放。已知下落时间为 $t$ 时，
@@ -502,7 +516,7 @@ $t_2=4\,\mathrm s$；撤去外力后，物体再经过 $t_3=6\,\mathrm s$ 停下
 速度分量，而不只是速度大小。
 \end{xesolution}
 
-\Needspace{0.31\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-4}
 如图，$A$、$B$ 两小物体被平行于斜面的轻细线相连，均静止于斜面上。以平行于斜面
 向上的恒力拉 $B$，使两物体同时由静止起以加速度 $a$ 沿斜面向上运动。经过时间 $t_1$，
@@ -542,7 +556,7 @@ $m_A$ 和 $m_B$，断线后拉 $B$ 的恒力保持不变，求此时 $B$ 的速�
 $A$ 的速度则由 $at_1$ 降至零。速度图只表示这一上滑阶段，不延伸到 $A$ 反向下滑以后。
 \end{xesolution}
 
-\Needspace{0.28\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-5}
 光滑水平面上，一个箱子 $A$ 的质量 $m_A=2\,\mathrm{kg}$，以初速度
 $v_0=10\,\mathrm{m/s}$ 冲向静止的箱子 $B$，$B$ 的质量 $m_B=1\,\mathrm{kg}$。碰撞后：
@@ -590,7 +604,7 @@ $v_0=10\,\mathrm{m/s}$ 冲向静止的箱子 $B$，$B$ 的质量 $m_B=1\,\mathrm
 相比可以忽略。相互碰撞的两个物体所受冲量大小相等、方向相反。根据系统的连接和约束，
 还可以进一步确定冲量的方向以及碰撞后的瞬时速度关系。
 
-\Needspace{0.31\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-6}
 如图，三个小球 $A$、$B$、$C$ 的质量均为 $m$，放在光滑水平桌面上。三球之间用质量
 可忽略、不可伸长的绳 $AB$、$BC$ 相连，$\angle ABC=120^\circ$。现沿 $BA$ 绳方向给
@@ -647,9 +661,19 @@ $C$ 球沿 $CB$ 方向运动，速度大小为
 采用主动蹬墙的理想冲量模型：短暂接触使水平速度降为零，向上切向冲量可达到
 $J_f=\mu J_N$，接触期间重力冲量忽略。这里的 $\mu>0$ 是该模型的有效摩擦上限；
 若实际接触不能达到上限，须另给切向冲量或鞋底运动规律。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-.2,0)--(5,0);\draw[very thick](4,0)--(4,3.6)node[above]{竖直墙};
+\fill(0,0)circle(2pt)node[below]{$O$};\draw[->,DeepBlue,thick](0,0)--(1.7,1.2)node[above]{$v_0$};\draw(.8,0)arc(0:35:.8)node[midway,right]{$\theta$};
+\draw[<->](0,-.7)--(4,-.7)node[midway,below]{$s_0$};\fill(4,1.7)circle(2pt)node[left]{$P$};\draw[->,Gold](3.6,1.7)--(3.6,3)node[left]{$J_f$};\draw[->,Gold](4,1.7)--(2.8,1.7)node[below]{$J_N$};
+\end{tikzpicture}
+\figcap{到墙前的飞行与蹬墙冲量方向}\label{mech:07:7:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:7:q}中，从 $O$ 到墙上接触点 $P$ 的水平距离为 $s_0$；墙的法向冲量向左消除水平速度，向上的切向冲量增加竖直速度。
+
 设起跳角为 $\theta$。从起跳点到墙的时间为
 \[
  t=\frac{s_0}{v_0\cos\theta}.
@@ -743,7 +767,7 @@ $J_f=\mu J_N$，接触期间重力冲量忽略。这里的 $\mu>0$ 是该模型�
 这区分了“蹬墙后的总升高”与字面意义的“整个运动曾达到的最高点”。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-8}
 在光滑水平面上有两面相距为 $d$ 的平行竖直墙。一个旋转的小球撞向其中一面墙。若墙面
 光滑，弹性碰撞后小球垂直于墙的速度分量反向，平行于墙的分量不变，最终击中对面墙上的
@@ -822,10 +846,20 @@ $Sv\Delta t$，吸附粒子的总质量为 $nmSv\Delta t=\rho Sv\Delta t$。这�
 可见宏观力不仅取决于介质密度、迎风面积和速度，还取决于单个粒子碰撞后的运动方式。
 
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-9}
-条件与上面的模型相同，但介质粒子碰撞后以相同的相对速度反弹。求飞船受到的阻力。
+飞船以速率 $v$ 穿过在地面系静止、密度为 $\rho$ 的稀薄粒子介质，迎风平面面积为 $S$。粒子与飞船作正碰，碰后以相同的相对速率原路反弹，忽略单次碰撞对飞船速率的改变。求飞船受到的阻力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-1,-1.5)--(6,-1.5)node[right]{$x$};\draw[->,Gold](.2,2.2)--(1.8,2.2)node[right]{$v$（飞船）};
+\foreach\yy in {-.7,0,.7}{\fill(5,\yy)circle(1.5pt);\draw[->,DeepBlue](4.6,\yy)--(3.6,\yy);}
+\node[align=center]at(4.4,1.6){船体系入射粒子\\相对速度 $-v$};\draw[very thick](.2,-1)--(.2,1);\node[right]at(.2,0){迎风面积 $S$};
+\end{tikzpicture}
+\figcap{飞船参考系中粒子迎面入射平面}\label{mech:07:9:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:9:q}中，粒子的入射方向相对飞船向后，图中箭头表示船体系中的速度；弹性原路反弹后应先变回介质原来静止的参考系，再求每粒子的动量变化。
+
 在飞船参考系中，粒子碰前以速度 $v$ 迎面而来，弹性反弹后以同样大小的相对速度离开；
 在介质原来静止的参考系中，粒子沿飞船运动方向的末速度为 $2v$。单位时间撞上的粒子
 质量仍为 $\rho Sv$，故粒子每秒获得的动量为
@@ -843,11 +877,21 @@ $Sv\Delta t$，吸附粒子的总质量为 $nmSv\Delta t=\rho Sv\Delta t$。这�
 \end{xesolution}
 
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-10}
-若飞船外形可近似为半顶角为 $\alpha$、轴向长度为 $L$ 的圆锥，且与介质粒子的碰撞为弹性碰撞，
+若飞船外形可近似为半顶角为 $\alpha$、轴向长度为 $L$ 的圆锥，在密度为 $\rho$ 的静止介质中以速率 $v$ 沿轴向前进，锥面光滑且粒子作弹性镜面反射，
 求飞船受到的阻力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-1,-1.5)--(6,-1.5)node[right]{$x$};\draw[->,Gold](.2,2.2)--(1.8,2.2)node[right]{$v$（飞船）};
+\foreach\yy in {-.7,0,.7}{\fill(5,\yy)circle(1.5pt);\draw[->,DeepBlue](4.6,\yy)--(3.6,\yy);}
+\node[align=center]at(4.4,1.6){船体系入射粒子\\相对速度 $-v$};\draw[very thick](2,0)--(0,1)--(0,-1)--cycle;\draw[dashed](0,0)--(2,0);\draw(1.2,0)arc(180:153.435:.8)node[midway,left]{$\alpha$};\draw[<->](0,-2.2)--(2,-2.2)node[midway,below]{$L$};
+\end{tikzpicture}
+\figcap{圆锥的轴向长度与半顶角}\label{mech:07:10:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:10:q}中，$L$ 沿轴线量取，半顶角 $\alpha$ 在母线与轴线之间。粒子在光滑锥面作镜面反射，动量改变量先沿局部法线计算，再投影到轴向。
+
 令 $\alpha$ 为圆锥母线与轴线的夹角（半顶角），$L$ 为轴向长度，则底面半径
 \[
  R=L\tan\alpha.
@@ -882,9 +926,18 @@ $Sv\Delta t$，吸附粒子的总质量为 $nmSv\Delta t=\rho Sv\Delta t$。这�
 \begin{origexamplebox}{}\label{ch07:ex:s07-3-11}
 一帆船在静水中顺风航行，风速为 $v_0$。假设帆面是完全弹性面，风与帆面垂直。船速
 多大时，风供给船的功率最大？
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-.5,0)--(6,0);\draw[thick](1,.4)--(3,.4)--(2.6,0)--(1.4,0)--cycle;\draw[very thick](2,.4)--(2,2.6);
+\draw[->,DeepBlue](0,1.6)--(1.5,1.6)node[midway,above]{$v_0$};\draw[->,Gold](3.2,.5)--(4.8,.5)node[above]{$v$};\node at(3.7,2.2){帆面垂直来风};\node at(2,-.7){静水；风与船同向};
+\end{tikzpicture}
+\figcap{同向的风速、船速与帆面}\label{mech:07:11:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:11:q}中，风和船同向，碰帆前的相对速率应为 $v_0-v$，而传给船的地面系功率是推力乘船速 $v$。两种速度不可混用。
+
 设船速为 $v$，则风相对帆的速度为 $u=v_0-v$。由例~\ref{ch07:ex:s07-3-9} 的弹性反射模型，风对帆的推力为
 \[
  F=2\rho S(v_0-v)^2.
@@ -912,9 +965,19 @@ $Sv\Delta t$，吸附粒子的总质量为 $nmSv\Delta t=\rho Sv\Delta t$。这�
 近代物理认为光线由光子构成，光子动量与能量满足 $E=pc$，其中 $c$ 为光速。太阳的总
 辐射功率为 $P_S$，求距离太阳中心为 $r$ 处由太阳光冲击产生的辐射压强。
 将太阳近似为各向同性点光源，接收面与入射光垂直，分别讨论完全吸收和原路完全反射。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue](0,0)circle(3.5);\fill(0,0)circle(4pt)node[below left]{太阳 $P_S$};
+\draw[dashed](0,0)--(3.5,0)node[midway,below]{$r$};\draw[very thick](3.5,-.8)--(3.5,.8)node[right]{接收面 $S$};
+\draw[->,Gold](.4,.12)--(3.3,.12);\draw[->,Gold](.3,.4)--(2.6,1.2);\draw[->,Gold](.3,-.4)--(2.6,-1.2);\node at(2,-2.2){各向同性辐射；接收面与入射光垂直};
+\end{tikzpicture}
+\figcap{各向同性辐射球面与法向接收面}\label{mech:07:12:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:12:q}中，同一总功率通过半径 $r$ 的球面分摊，接收面 $S$ 与径向入射垂直；吸收与反射的区别进入光子沿该法线的动量改变量。
+
 假设太阳各向同性辐射，则半径 $r$ 的球面上单位面积接收的功率（辐照度）为
 \[
  \mathcal E=\frac{P_S}{4\pi r^2}.
@@ -949,7 +1012,7 @@ $[P_S/(r^2c)]=\mathrm{N/m^2}$；距离加倍时压强变为四分之一。
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eighth-section/}}
+\graphicspath{{../../../sample/xes-original/eighth-section/}}
 \section{动量守恒}
 % Original problem figures and added solution diagrams for Section 3.2.
 \tikzset{
@@ -1325,9 +1388,19 @@ $\vec v_i'$ 是相对质心的速度。由定义
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-13}
 地球和所有地球上的物体可以看成近似的孤立系统，理应满足动量守恒。然而一个人从地面
 跳起时，他的动量发生了改变。如何解释这一现象？
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-2,0)..controls(-1,.3)and(1,.3)..(2,0);\node at(0,-.8){地球 $M_E$};
+\fill(0,1.5)circle(.15);\draw(0,1.35)--(0,.7)(0,1.1)--(-.3,.9)(0,1.1)--(.3,.9)(0,.7)--(-.3,.4)(0,.7)--(.3,.4);\node[right]at(.6,1.3){人 $m$};
+\draw[->,Gold](1.5,.7)--(1.5,1.9)node[right]{$v$};\draw[dashed](-2.5,-1.2)rectangle(2.5,2.3);\node at(0,2.7){研究系统：人和地球};
+\end{tikzpicture}
+\figcap{人和地球的系统边界}\label{mech:07:13:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:13:q}中，虚线把人和地球同时包括在系统内。地面给人的支持力在单独研究人时是外力，在这个完整系统内则属于内力。
+
 只把人作为研究对象时，他受到地面的支持力冲量，因此人的动量当然可以改变。若把“人和
 地球”作为完整系统，人与地面之间的作用力属于内力，系统总动量仍守恒。
 
@@ -1353,13 +1426,24 @@ $\vec v_i'$ 是相对质心的速度。由定义
 即该方向的总动量分量守恒。判断时必须先明确研究系统和方向；“系统受到外力”并不等于
 “每个方向的动量都不守恒”。
 
+
+\input{chapters/quality-20261023/ch07-components.tex}
+
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-14}
 水平面上有多个物体构成的系统，它们与水平面之间均无摩擦，且始终被约束在该水平面内运动。
 除重力和水平面的支持力外，物体只受系统内部的相互作用力，不受其他外力。开始时所有物体
 均处于静止状态。证明：在此后的运动过程中，系统质心位置保持不变。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-.5,0)--(6,0);\fill(1,.15)circle(3pt)node[above]{$m_1$};\fill(4.5,.15)circle(3pt)node[above]{$m_2$};\node at(2.7,-.7){水平面光滑};\draw[->,Gold](1,.7)--(2.3,.7)node[above]{$\vec F_{12}$};\draw[->,Gold](4.5,.7)--(3.2,.7)node[above]{$\vec F_{21}$};\node at(3,1.7){所有初速度为零；仅有水平内力};
+\end{tikzpicture}
+\figcap{光滑平面内仅有系统内力的质点组}\label{mech:07:14:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:14:q}中，相互作用箭头成对出现，水平方向的总外力为零；所有初速度为零使初始总动量也为零，二者共同决定质心运动。
+
 设各物体质量、水平坐标分别为 $m_i,x_i$，总质量为 $M=\sum_i m_i$。系统在水平方向
 不受外力，且初始总动量为零，因此
 \[
@@ -1384,7 +1468,7 @@ $\vec v_i'$ 是相对质心的速度。由定义
 应理解为水平面内的质心位置；竖直坐标由平面约束保持不变。
 \end{xesolution}
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-15}
 如图，两根长度均为 $l$、质量可忽略的轻杆，一端通过质量为 $m$ 的球形铰链连接，另一端
 分别接有质量为 $m$ 和 $2m$ 的小球。将两杆并拢，铰链向上放在桌上，然后轻敲一下使两
@@ -1435,7 +1519,7 @@ $-8x_L/3=2l\sin(\theta/2)$，得到
 碰撞结束后的后续运动则仍须按正常的动力学规律处理，不能把“碰撞瞬间守恒”无限延长到
 整个运动过程。
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-16}
 质量为 $M$ 的质点 $A$ 从距水平面高 $H$ 处由静止开始自由下落。当它下落到距地面高 $h$
 处时，被一颗质量为 $m$、沿水平方向以速度 $v$ 飞行的子弹击中。碰撞时间极短，子弹最终
@@ -1506,9 +1590,17 @@ $-8x_L/3=2l\sin(\theta/2)$，得到
 两个质量分别为 $m_1,m_2$ 的质点由劲度系数为 $k$、原长为 $l_0$ 的轻弹簧连接。开始时
 把弹簧拉长到 $l>l_0$ 后静止释放。在此后的运动中，弹簧上是否存在一个位置始终不变的点？
 两质点在光滑水平直线上运动，弹簧均匀且质量忽略，不受其他水平外力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-.5,0)--(6,0);\fill(1,.15)circle(3pt)node[above]{$m_1$};\fill(4.5,.15)circle(3pt)node[above]{$m_2$};\node at(2.7,-.7){水平面光滑};\draw[decorate,decoration={coil,aspect=.5,segment length=5pt,amplitude=3pt}](1.1,.15)--(4.4,.15)node[midway,above=7pt]{$k,l_0$};\draw[<->](1,-1.3)--(4.5,-1.3)node[midway,below]{$l>l_0$（初始静止）};
+\end{tikzpicture}
+\figcap{两端质量、弹簧原长与初始伸长}\label{mech:07:17:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:17:q}中，两端质量决定质心在瞬时弹簧长度上的分点比例；在均匀理想弹簧作仿射伸缩的模型中，同一材料分点才可始终对应这处固定空间位置。
+
 系统只受内力，且初始总动量为零，所以质心位置始终不变。设两个质点的位置为 $x_1,x_2$，
 则固定点就是系统质心
 \[
@@ -1531,7 +1623,7 @@ $m_2/(m_1+m_2)$ 的材料点，其位置恰等于 $x_C$，这才把固定质心�
 若不假定均匀形变，只能由动量守恒断言质心位置固定，不能仅凭端点运动确认同一个材料点固定。
 \end{xesolution}
 
-\Needspace{0.36\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-18}
 质量为 $M$、半径为 $R$ 的球形碗放在光滑水平面上。质量为 $m$ 的质点 $A$ 开始时位于
 碗的边缘，由静止释放。求 $A$ 在下落过程中相对地面的运动轨迹。
@@ -1608,9 +1700,19 @@ $m_2/(m_1+m_2)$ 的材料点，其位置恰等于 $x_C$，这才把固定质心�
 容器，单位时间内水位上升 $\Delta h$。不计雨水对容器前方的阻力，水的密度为 $\rho$。
 用 $\tau$ 表示这里的一个单位时间，即静止容器在时长 $\tau$ 内水位上升 $\Delta h$。
 容器从静止开始受推力，求经过 $3\tau$ 后的速度。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,1.8)--(0,0)--(3,0)--(3,1.8);\fill[PaleBlue](.05,.05)rectangle(2.95,.8);\draw[thick](-.5,-.2)--(6,-.2);
+\foreach\x in {.4,1.2,2,2.8}{\draw[->,DeepBlue](\x,3)--(\x,2);}
+\draw[->,Gold](3.2,.8)--(4.7,.8)node[right]{$F$};\node at(1.5,1.2){$M,S$};\node at(1.5,3.5){雨水密度 $\rho$};
+\end{tikzpicture}
+\figcap{竖直入雨的容器与水平推力}\label{mech:07:19:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:19:q}中，雨滴进入前没有水平速度，因此它们没有带入水平动量；容器内水量却不断增加，左侧必须对整个 $m(t)v(t)$ 求导。
+
 雨水竖直下落，进入容器前的水平动量为零。雨水质量流率为
 \[
  q=\frac{\rho S\Delta h}{\tau}.
@@ -1649,9 +1751,18 @@ $3F\tau/M$。分子 $F\tau$ 是冲量，除以质量后确为速度。若容器�
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-20}
 长度为 $l$、质量为 $m$ 的柔软绳放在水平桌面上。用手将绳的一端以恒定速度 $v$ 向上
 提起。求提起高度为 $x$（$x<l$）时手的提力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-1,0)--(5,0);\draw[very thick](0,2.8)--(0,.2)..controls(.1,0)and(.3,0)..(.5,0)--(3.5,0);
+\draw[->,DeepBlue](.4,2)--(.4,3.1)node[right]{$v$};\draw[<->](-.5,0)--(-.5,2.8)node[midway,left]{$x$};\node at(2,1){桌上绳段原来静止};
+\end{tikzpicture}
+\figcap{以恒速上提时绳元由静止进入运动段}\label{mech:07:20:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:20:q}中，桌面上的静止绳元依次从底部进入竖直运动段；手的提力既要托住这段绳的重量，又要提供新绳元的向上动量流率。
+
 绳的线密度为 $\lambda=m/l$。当竖直段长度为 $x$ 时，运动部分质量为 $\lambda x$；绳以
 速率 $v$ 从静止的桌面部分进入竖直运动部分，所以质量流率为
 \[
@@ -1679,7 +1790,7 @@ $3F\tau/M$。分子 $F\tau$ 是冲量，除以质量后确为速度。若容器�
 从静止加速到速度 $v$。
 \end{xesolution}
 
-\Needspace{0.32\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s08-3-21}
 如图，一根质量为 $m$、长为 $l$ 的柔软绳自由悬垂，下端恰与秤盘接触。某时刻放开柔软
 绳上端，求台秤在任意时刻的读数以及读数的最大值。
@@ -1723,9 +1834,18 @@ $3mg$ 是落绳过程中瞬时读数的上限，而不是最终静止读数。
 在密度为 $\rho$ 的均匀介质中，一个截面积为 $S$ 的物体下落。物体能吸附所有与它相遇的
 静止介质粒子，因而质量变化不可忽略。列出物体速度和质量随时间变化的方程，并定性分析
 它的运动；不要求求解。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\x/\y in {-1/1,1/1.5,2.5/.5,-.5/-1.2,2/-1.7,3/1.5}{\fill[DeepBlue](\x,\y)circle(1.4pt);}
+\draw[->,Gold](3.7,1.4)--(3.7,-1.4)node[below]{$y,v$（向下）};\draw[thick,fill=PaleBlue](0,-.5)rectangle(2,.5);\node at(1,0){$m$};\node at(1,-.9){截面积 $S$};\node at(1,2.2){介质粒子在地面系静止};
+\end{tikzpicture}
+\figcap{定截面下落物体对静止介质的扫掠}\label{mech:07:22:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:22:q}中，扫掠厚度在 $\dd t$ 内为 $v\dd t$，迎风面积为 $S$，故质量流率是 $\rho Sv$；介质入流的初始动量为零。
+
 取竖直向下为正。物体在时间 $\dd t$ 内扫过体积 $Sv\dd t$，故吸附质量为
 \[
  \dd m=\rho Sv\dd t,
@@ -1768,9 +1888,18 @@ $v^2=2gm/(3k)+m_0^2[v_i^2-2gm_0/(3k)]/m^2$。当 $kv_i^2>m_0g$ 时，初始阶�
 球状小水滴在静止且密度均匀的雾气中下落，并吸附全部遇到的水分子。水滴始终保持球形，
 忽略空气阻力，重力加速度取恒定值 $g$。列出下落过程中水滴的质量、速度、半径所满足的
 方程，并定性分析水滴运动；不要求求解运动方程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\x/\y in {-1/1,1/1.5,2.5/.5,-.5/-1.2,2/-1.7,3/1.5}{\fill[DeepBlue](\x,\y)circle(1.4pt);}
+\draw[->,Gold](3.7,1.4)--(3.7,-1.4)node[below]{$y,v$（向下）};\draw[thick,fill=PaleBlue](1,0)circle(.65);\draw(1,0)--(1.65,0)node[midway,above]{$r$};\node at(1,2.2){介质粒子在地面系静止};
+\end{tikzpicture}
+\figcap{球形水滴吸附静止雾滴的迎风截面}\label{mech:07:23:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:23:q}中，增长中的球半径为 $r$，迎风面积是 $\pi r^2$，质量却与 $r^3$ 成正比。质量流率与半径增长率须由这两个不同几何量联系。
+
 记雾气中水分子的质量密度为 $\rho_f$，液态水的密度为 $\rho_w$，水滴半径、质量、下落
 速度分别为 $r,m,v$。球形条件给出
 \[
@@ -1820,7 +1949,7 @@ $3\alpha v_i^2/r_0>g$ 时，水滴起初减速。$\alpha$ 无量纲，$gr/\alpha
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/ninth-section/}}
+\graphicspath{{../../../sample/xes-original/ninth-section/}}
 \section{变质量系统}
 % Original problem figures and added solution diagrams for Section 3.3.
 \tikzset{
@@ -2076,68 +2205,103 @@ $\mathrm{kg/s}\times\mathrm{m/s}=\mathrm N$，与外力一致。
 也应消失。最后一种情形只说明无需额外改变主体速度，主体总动量仍可随它包含的质量改变。
 
 
-\begin{origexamplebox}{}\label{ch07:ex:s09-3-24}
-在雨中用恒力 $F$ 推一个质量为 $M$、开口截面积为 $S$ 的容器。若一个静止在地面的
-同样容器中，单位时间内水位上升 $\Delta h$，不考虑雨水对容器前方的阻力，水的密度
-为 $\rho$，求在 $3$ 个单位时间后容器的速度。
-容器初始静止；一个单位时间记为时长 $\tau$，所求时刻就是 $t=3\tau$。
+\begin{origexamplebox}{变式：横向来雨的入流动量}\label{ch07:ex:s09-3-24}
+
+一个初始质量为 $M$、水平开口面积为 $S$ 的容器，从静止开始受恒定水平力 $F>0$ 推动。
+地面光滑，雨水以恒定的向下速度落入开口，且在地面系中还具有与 $F$ 同向的恒定水平速度 $u\ge0$。
+雨水完全留在容器内；稳定质量流率记为 $q=\rho S\Delta h/\tau>0$，其中静止同样容器在
+$\tau$ 时间内水位上升 $\Delta h$。忽略侧面撞雨及溢出。求 $t=3\tau$ 时的速度，并讨论长时间极限。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,1.8)--(0,0)--(3,0)--(3,1.8);\fill[PaleBlue](.05,.05)rectangle(2.95,.8);\draw[thick](-.5,-.2)--(6,-.2);
+\foreach\x in {.4,1.2,2,2.8}{\draw[->,DeepBlue](\x,3)--({\x+.6},2);}
+\draw[->,Gold](3.2,.8)--(4.7,.8)node[right]{$F$};\node at(1.5,1.2){$M,S$};\node at(1.5,3.5){雨水密度 $\rho$};\draw[->,Gold](3.5,2.7)--(5,2.7)node[right]{$u$（雨水水平速度）};
+\end{tikzpicture}
+\figcap{横向有风的雨水携带入流动量}\label{mech:07:24:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
-设水平方向为推力方向。由时长 $\tau$ 内落入的水体积 $S\Delta h$，求得质量流率
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,1.8)--(0,0)--(3,0)--(3,1.8);\fill[PaleBlue](.05,.05)rectangle(2.95,.8);\draw[thick](-.5,-.2)--(6,-.2);
+\foreach\x in {.4,1.2,2,2.8}{\draw[->,DeepBlue](\x,3)--({\x+.6},2);}
+\draw[->,Gold](3.2,.8)--(4.7,.8)node[right]{$F$};\node at(1.5,1.2){$M,S$};\node at(1.5,3.5){雨水密度 $\rho$};\draw[->,Gold](3.5,2.7)--(5,2.7)node[right]{$u$（雨水水平速度）};\node[align=left]at(5,-1){质量流率 $q$\\带入水平动量流率 $qu$};
+\end{tikzpicture}
+\figcap{横向有风的雨水携带入流动量（解答用辅助图）}\label{mech:07:24:a}
+\end{qualityfigure}
+图~\ref{mech:07:24:a}中，雨水在地面系中带有水平速度 $u$，所以每秒不仅带入质量 $q$，还带入动量 $qu$。这是本变式与竖直入雨前例的关键差别。
+
+取推力方向为正。容器与已收集的水构成变质量系统，$m(t)=M+qt$。
+在 $\dd t$ 内进入的雨水质量为 $q\dd t$，它在进入前已有水平动量 $qu\dd t$。
+将这部分带入动量和外力冲量同时计入，得
 \[
- q=\frac{\rho S\Delta h}{\tau}.
+ \frac{\dd}{\dd t}[(M+qt)v]=F+qu.
 \]
-雨滴落入前没有水平速度，所以它们带入系统的水平动量为零。经过时间 $t$，容器及其中
-雨水的总质量为 $M+qt$；恒力的冲量为 $Ft$。由水平动量定理，
+初始动量为零，积分为 $(M+qt)v=(F+qu)t$，所以
 \[
- (M+qt)v=Ft,
+ \boxed{v(3\tau)=\frac{3\tau(F+qu)}{M+3q\tau}},\qquad
+ \boxed{\lim_{t\to\infty}v=u+\frac Fq}.
 \]
-故
-\[
- v(t)=\frac{Ft}{M+(\rho S\Delta h/\tau)t}.
-\]
-图~\ref{ch07:fig:soldiagThreeTwentyFour}中，雨水只增加质量，不带入水平动量；外力使系统水平动量按 $Ft$ 增长。
-\soldiagThreeTwentyFour
-代入 $t=3\tau$，得到
-\[
- \boxed{v=\frac{3F\tau}{M+3\rho S\Delta h}}.
-\]
-若初速度为 $v_i$，应保留初始动量，把分子改为 $Mv_i+Ft$。单位检验：$q$ 是质量/时间，
-$Ft$ 是冲量，故结果为速度。不能直接写 $F=(M+qt)a$，因为还需要将新进入的雨水加速；
-展开正确的动量式可得 $(M+qt)\dot v=F-qv$。当 $q\to0$ 时回到 $v=Ft/M$。
+展开式也可写成 $(M+qt)\dot v=F+q(u-v)$：入流相对容器的速度差产生 $q(u-v)$ 项。
+当容器超过雨水的水平速度时，该项反而使它减速，但恒力仍可使速度继续增加并渐近上述极限。
+检查 $u=0$ 恢复竖直来雨前例；$q\to0$ 的有限时间极限恢复 $v=Ft/M$。
+$qu$ 与 $F$ 同为力，分母为质量，所得速度量纲正确。极限仅在持续稳定入雨且容器不溢出的模型内成立。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch07:ex:s09-3-25}
-一根质量为 $m$、长度为 $l$ 的柔软绳子放在水平桌面上。用手捏住绳的一端，以恒定速度
-$v$ 竖直向上提绳。当这一端离桌面的高度为 $x<l$ 时，求手的拉力大小。
+\begin{origexamplebox}{变式：线密度不均匀的提绳}\label{ch07:ex:s09-3-25}
+
+长度为 $l$、总质量为 $m$ 的柔软绳放在水平桌面上。用手捏住一端，以恒定速度 $v>0$ 竖直提起。
+从手持端沿绳的材料坐标记为 $s$，线密度为 $\lambda(s)=\lambda_0(1+s/l)$，$0\le s\le l$。
+当手端高度为 $0<x<l$ 时，已提起的绳竖直，余绳仍静止，忽略弯折区长度和弹性。
+求 $\lambda_0$、运动绳段质量与手的提力。新进入运动段的绳元按瞬时拾取模型处理。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-1,0)--(5,0);\draw[very thick](0,2.8)--(0,.2)..controls(.1,0)and(.3,0)..(.5,0)--(3.5,0);
+\draw[->,DeepBlue](.4,2)--(.4,3.1)node[right]{$v$};\draw[<->](-.5,0)--(-.5,2.8)node[midway,left]{$x$};\node at(2,1){桌上绳段原来静止};\node[align=left]at(3.5,2.4){材料坐标 $s$ 从手端起\\$\lambda(s)=\lambda_0(1+s/l)$};
+\end{tikzpicture}
+\figcap{线密度沿材料坐标增大的绳}\label{mech:07:25:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
-绳的线密度为
-\[
- \lambda=\frac{m}{l}.
-\]
-高度为 $x$ 时，竖直运动绳段的质量是 $\lambda x$，其速度保持为 $v$。在时间
-$\dd t$ 内，又有长度 $v\dd t$、质量 $\lambda v\dd t$ 的绳元由静止转为以速度 $v$
-向上运动，因此单位时间增加的向上动量为 $\lambda v^2$。
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-1,0)--(5,0);\draw[very thick](0,2.8)--(0,.2)..controls(.1,0)and(.3,0)..(.5,0)--(3.5,0);
+\draw[->,DeepBlue](.4,2)--(.4,3.1)node[right]{$v$};\draw[<->](-.5,0)--(-.5,2.8)node[midway,left]{$x$};\node at(2,1){桌上绳段原来静止};\node[align=left]at(3.5,2.4){材料坐标 $s$ 从手端起\\$\lambda(s)=\lambda_0(1+s/l)$};\draw[->,Gold](4.5,.2)--(4.5,1.1)node[right]{$\dot m=\lambda(x)v$};\node at(2,-.8){运动段质量 $m_x=\int_0^x\lambda(s)\,\dd s$};
+\end{tikzpicture}
+\figcap{线密度沿材料坐标增大的绳（解答用辅助图）}\label{mech:07:25:a}
+\end{qualityfigure}
+图~\ref{mech:07:25:a}中，材料坐标从手端起算，当前进入运动段的绳元位于 $s=x$，其线密度为 $\lambda(x)$；已运动部分的质量则是从 $0$ 到 $x$ 的积分。
 
-对竖直运动部分列动量方程：
+先用总质量归一化线密度：
 \[
- F-\lambda xg=\lambda v^2.
+ m=\int_0^l\lambda_0(1+s/l)\,\dd s=\frac32\lambda_0l,
+ \qquad \boxed{\lambda_0=\frac{2m}{3l}}.
 \]
-图~\ref{ch07:fig:soldiagThreeTwentyFive}中，提力既承担运动绳段的重量，也为新进入运动段的绳元提供动量。
-\soldiagThreeTwentyFive
-所以
+已运动的材料是 $0\le s\le x$，故运动段质量为
 \[
- \boxed{F=\lambda xg+\lambda v^2
- =\frac{m}{l}\left(xg+v^2\right)}.
+ \boxed{m_x=\lambda_0\left(x+\frac{x^2}{2l}\right)}.
 \]
-第一项承担已提起绳段的重量，第二项用来连续加速刚离开桌面的绳元。该结论采用理想柔绳、
-转折区域很小且绳元离桌后立即获得速度 $v$ 的模型。
+拾取点对应 $s=x$，每秒进入的绳长为 $v$，因此
+$\dot m_x=\lambda(x)v=\lambda_0(1+x/l)v$。
+新绳元从零速度变为向上速度 $v$；运动段自身保持恒速，手力与重力的差供给这股动量流率：
+\[
+ F-m_xg=v\dot m_x=\lambda_0(1+x/l)v^2.
+\]
+于是
+\[
+ \boxed{F=\frac{2m}{3l}\left[g\left(x+\frac{x^2}{2l}\right)
+ +(1+x/l)v^2\right]},\qquad 0<x<l.
+\]
+重力项包含运动段线密度的积分，拾取项使用当前位置的局部线密度，不能用同一个平均值替代二者。
+若将分布改回常量 $\lambda=m/l$，立即恢复 $F=\lambda gx+\lambda v^2$。
+两项量纲均为力；$x\to l^-$ 仍有拾取项，但最后一段完全离桌后质量流率变为零，恒速手力随之变为 $mg$。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s09-3-26}
 如图，一根质量为 $m$、长度为 $l$ 的均匀柔绳竖直悬挂，下端刚好与台秤秤盘接触。
 释放绳的上端，求从释放开始台秤示数随时间的变化，并求台秤的最大示数。
@@ -2187,109 +2351,118 @@ $\dd t$ 内，又有长度 $v\dd t$、质量 $\lambda v\dd t$ 的绳元由静止
 碰撞持续时间和秤的响应时间有限，峰值会被平滑。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch07:ex:s09-3-27}
-一个截面积为 $S$ 的物体在密度均匀、密度为 $\rho$ 的介质中竖直下落。物体会把前方
-遇到的介质全部吸收，忽略其他阻力。写出物体速度 $v$ 和质量 $m$ 随时间变化的方程，
-并定性说明其运动规律。
+\begin{origexamplebox}{变式：介质密度随深度增加的吸附下落}\label{ch07:ex:s09-3-27}
+
+初始质量为 $m_0$、固定迎风面积为 $S$ 的物体从静止释放，竖直向下的深度记为 $y\ge0$。
+介质粒子在地面系中静止，质量密度为 $\rho(y)=\rho_0(1+y/L)$，其中 $\rho_0,L>0$。
+物体吸附所有遇到的粒子，重力加速度为常量 $g$，忽略其他作用。求质量 $m(y)$，写出并积分
+速度平方的方程，比较深处运动与均匀介质前例的差别。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\x/\y in {-1/1,1/1.5,2.5/.5,-.5/-1.2,2/-1.7,3/1.5}{\fill[DeepBlue](\x,\y)circle(1.4pt);}
+\draw[->,Gold](3.7,1.4)--(3.7,-1.4)node[below]{$y,v$（向下）};\draw[thick,fill=PaleBlue](0,-.5)rectangle(2,.5);\node at(1,0){$m$};\node at(1,-.9){截面积 $S$};\node at(1,2.2){介质粒子在地面系静止};\node at(1,-2.4){$\rho(y)=\rho_0(1+y/L)$};
+\end{tikzpicture}
+\figcap{介质密度随下落深度线性增加}\label{mech:07:27:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
-取竖直向下为正。时间 $\dd t$ 内物体扫过体积 $Sv\dd t$，吸收的静止介质质量为
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\x/\y in {-1/1,1/1.5,2.5/.5,-.5/-1.2,2/-1.7,3/1.5}{\fill[DeepBlue](\x,\y)circle(1.4pt);}
+\draw[->,Gold](3.7,1.4)--(3.7,-1.4)node[below]{$y,v$（向下）};\draw[thick,fill=PaleBlue](0,-.5)rectangle(2,.5);\node at(1,0){$m$};\node at(1,-.9){截面积 $S$};\node at(1,2.2){介质粒子在地面系静止};\node at(1,-2.4){$\rho(y)=\rho_0(1+y/L)$};\node at(1,3){$\dot m=\rho(y)Sv$，入流初动量为零};
+\end{tikzpicture}
+\figcap{介质密度随下落深度线性增加（解答用辅助图）}\label{mech:07:27:a}
+\end{qualityfigure}
+图~\ref{mech:07:27:a}中，越深处介质越密，瞬时质量流率由当前位置的 $\rho(y)$ 决定，不能继续把 $\rho S$ 当作常量。图中 $y$ 从释放点向下量取。
+
+以题图向下的 $y$ 为正。扫掠厚度为 $\dd y$ 时，吸附质量为
 \[
- \dd m=\rho Sv\,\dd t,
- \qquad
- \boxed{\dot m=\rho Sv}.
+ \dd m=\rho(y)S\,\dd y.
 \]
-被吸收介质在地面系中初始动量为零，因此“物体加上刚吸收的介质”的动量变化只由重力
-产生：
+令 $k=\rho_0S$，由 $m(0)=m_0$ 得
 \[
- \frac{\dd(mv)}{\dd t}=mg.
+ \boxed{m(y)=m_0+k\left(y+\frac{y^2}{2L}\right)},\qquad
+ \dot m=k(1+y/L)v.
 \]
-展开后得到
+入流粒子原本静止，故 $\dd(mv)/\dd t=mg$，即
+$\dot v=g-(m'(y)/m)v^2$。在开始下落后令 $w=v^2$，用 $\dot v=v\,\dd v/\dd y$ 得
 \[
- \boxed{m\dot v=mg-\rho Sv^2}.
+ w'+2\frac{m'}m w=2g,\qquad (m^2w)'=2gm^2.
 \]
-\Needspace{10\baselineskip}
-图~\ref{ch07:fig:soldiagThreeTwentySeven}中，静止介质被吸收后要加速到 $v$，故出现随 $v^2$ 增长的动量流项。
-\soldiagThreeTwentySeven
-右端第二项不是通常意义上的阻力，而是把静止介质加速到速度 $v$ 所需要的动量流。若
-初始时物体由静止释放，质量为 $m_0$，令 $k=\rho S$，消去时间：
+结合 $w(0)=0$，得到含有完整初值的结果
 \[
- \frac{\dd(v^2)}{\dd m}+\frac{2}{m}v^2=\frac{2g}{k}.
+ \boxed{v^2(y)=\frac{2g}{m(y)^2}\int_0^y m(\xi)^2\,\dd\xi}.
 \]
-用积分因子 $m^2$ 将左侧合为乘积的导数：
+本题积分可直接展开为
 \[
- \frac{\dd}{\dd m}(m^2v^2)=\frac{2g}{k}m^2,
- \qquad m^2v^2=\frac{2g}{3k}(m^3-m_0^3).
+ \int_0^y m(\xi)^2\dd\xi
+ =m_0^2y+m_0ky^2+\frac{k^2+m_0k/L}{3}y^3
+ +\frac{k^2}{4L}y^4+\frac{k^2}{20L^2}y^5.
 \]
-除以 $m^2$，得
-\[
- v^2=\frac{2g}{3k}
- \left(m-\frac{m_0^3}{m^2}\right).
-\]
-因此 $m$、$v$ 均随时间增大，但加速度
-\[
- \dot v=g-\frac{k}{m}v^2=\frac g3+\frac{2g}{3}\left(\frac{m_0}{m}\right)^3
-\]
-逐渐减小，并趋近于 $g/3$；速度并不趋于常量。
-若初速度不为零，质量式与速度式仍成立，但单调性须重新检查；初始条件
-$\rho S v_i^2>m_0g$ 会使物体先减速，不能把从静止出发的结论直接推广。
+在 $y\to0$ 时 $v^2\sim2gy$，恢复刚释放时的自由落体起步。
+深处 $m\sim ky^2/(2L)$，所以 $v^2\sim2gy/5$，于是 $a=\tfrac12\dd(v^2)/\dd y\to g/5$。
+这与均匀介质的 $g/3$ 不同，差别来自密度增长使质量随深度按平方增长。
+令 $L\to\infty$ 可恢复均匀介质；积分量纲是质量平方乘长度，乘 $g/m^2$ 后为速度平方。
 \end{xesolution}
 
-\Needspace{0.30\textheight}
-\begin{origexamplebox}{}\label{ch07:ex:s09-3-28}
-一个球形小水滴在均匀的雾中下落。设雾的质量密度均匀，水滴会吸收所遇到的全部小水滴，
-忽略空气阻力，重力加速度 $g$ 为常量。写出大水滴的质量、速度和半径随时间变化的方程，
-并定性说明其运动规律。
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{变式：捕获效率随半径变化的水滴}\label{ch07:ex:s09-3-28}
+
+液态密度为 $\rho_w$ 的球形水滴在静止均匀雾中由静止下落，雾的质量密度为 $\rho_f$。
+初始半径为 $r_0$，重力加速度为 $g$。与全部吸附的前例不同，水滴只捕获迎面雾滴的比例
+$\eta(r)=r_*/r$，其中 $0<r_*\le r_0$，未捕获粒子直接穿过且不交换动量。
+忽略空气阻力和蒸发，水滴始终为球形。列出运动方程，求 $v^2(r)$ 及长时间加速度的极限。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\x/\y in {-1/1,1/1.5,2.5/.5,-.5/-1.2,2/-1.7,3/1.5}{\fill[DeepBlue](\x,\y)circle(1.4pt);}
+\draw[->,Gold](3.7,1.4)--(3.7,-1.4)node[below]{$y,v$（向下）};\draw[thick,fill=PaleBlue](1,0)circle(.65);\draw(1,0)--(1.65,0)node[midway,above]{$r$};\node at(1,2.2){介质粒子在地面系静止};\node at(1,-2.4){捕获比例 $\eta(r)=r_*/r$};
+\end{tikzpicture}
+\figcap{捕获效率随水滴半径减小}\label{mech:07:28:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
-设雾的质量密度为 $\rho_f$，水的密度为 $\rho_w$，大水滴半径为 $r$。则
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\x/\y in {-1/1,1/1.5,2.5/.5,-.5/-1.2,2/-1.7,3/1.5}{\fill[DeepBlue](\x,\y)circle(1.4pt);}
+\draw[->,Gold](3.7,1.4)--(3.7,-1.4)node[below]{$y,v$（向下）};\draw[thick,fill=PaleBlue](1,0)circle(.65);\draw(1,0)--(1.65,0)node[midway,above]{$r$};\node at(1,2.2){介质粒子在地面系静止};\node at(1,-2.4){捕获比例 $\eta(r)=r_*/r$};\node at(1,3){$\dot m=\eta(r)\rho_f\pi r^2v$};
+\end{tikzpicture}
+\figcap{捕获效率随水滴半径减小（解答用辅助图）}\label{mech:07:28:a}
+\end{qualityfigure}
+图~\ref{mech:07:28:a}中，迎风截面仍为 $\pi r^2$，但只有比例 $\eta(r)=r_*/r$ 被吸附。这个效率因子改变质量通量，随后也改变动量方程中的稀释项。
+
+令 $b=\rho_fr_*/(4\rho_w)$，它的量纲是长度。球形质量关系不变，但吸附率含效率因子：
 \[
- m=\frac43\pi\rho_w r^3,
- \qquad
- \dot m=\rho_f\pi r^2v.
+ m=\frac43\pi\rho_wr^3,\qquad
+ \dot m=\eta(r)\rho_f\pi r^2v=\rho_f\pi r_*rv.
 \]
-由第一式求导并与第二式比较：
+由质量式求导，得 $\dot r=bv/r$。被捕获雾滴入流前动量为零，所以
 \[
- 4\pi\rho_w r^2\dot r=\rho_f\pi r^2v,
- \qquad
- \boxed{\dot r=\frac{\rho_f}{4\rho_w}v}.
+ \frac{\dd(mv)}{\dd t}=mg,\qquad
+ \boxed{\dot v=g-\frac{3b}{r^2}v^2},\qquad
+ \boxed{\dot r=\frac br v}.
 \]
-雾滴在被吸收前近似静止，故动量方程仍为
+在 $v>0$ 阶段令 $w=v^2$，消去时间：
 \[
- \frac{\dd(mv)}{\dd t}=mg,
+ \frac{\dd w}{\dd r}=\frac{2gr}{b}-\frac{6w}{r},
+ \qquad \frac{\dd}{\dd r}(r^6w)=\frac{2g}{b}r^7.
 \]
-即
+从 $(r_0,0)$ 积分，得到
 \[
- \boxed{\dot v
- =g-\frac{\dot m}{m}v
- =g-\frac{3\rho_f}{4\rho_w r}v^2}.
+ \boxed{v^2(r)=\frac{g}{4b}\left(r^2-\frac{r_0^8}{r^6}\right)}.
 \]
-\Needspace{10\baselineskip}
-图~\ref{ch07:fig:soldiagThreeTwentyEight}中，半径、迎风面积和质量共同增长，速度必须与它们联立求解。
-\soldiagThreeTwentyEight
-若水滴由静止开始、初始半径为 $r_0$，令
-$\alpha=\rho_f/(4\rho_w)$，令 $y=v^2$，由 $\dot r=\alpha v$ 消去时间，得
+代回速度方程：
 \[
- \frac{\dd y}{\dd r}+\frac{6}{r}y=\frac{2g}{\alpha}.
+ \boxed{a=\frac g4+\frac{3g}{4}\left(\frac{r_0}{r}\right)^8},
+ \qquad \boxed{a\longrightarrow g/4}.
 \]
-乘以积分因子 $r^6$ 并积分：
-\[
- \frac{\dd}{\dd r}(r^6y)=\frac{2g}{\alpha}r^6,
- \qquad r^6y=\frac{2g}{7\alpha}(r^7-r_0^7).
-\]
-因此
-\[
- v^2=\frac{2g}{7\alpha}
- \left(r-\frac{r_0^7}{r^6}\right).
-\]
-代回原方程可得 $\dot v=g/7+6g(r_0/r)^7/7>0$。所以对这一静止初值，
-$r$、$m$ 和 $v$ 都不断增大；随着吸收过程进行，加速度由初始的 $g$ 逐渐减小，
-并趋近于 $g/7$。半径增大使迎风面积增大，吸收增强；质量增长又改变速度，三者必须联立
-考虑。
-若初始速度为 $v_i$，当 $3\alpha v_i^2/r_0>g$ 时会先减速。这里用 $\alpha$ 表示密度比，
-不与加速度符号 $a$ 混用；$gr/\alpha$ 的量纲为速度平方。
+初始 $r=r_0$ 时 $v=0,a=g$，之后半径增大、加速度下降但始终为正。
+$r\ge r_0\ge r_*$ 保证 $0<\eta\le1$，因此捕获比例的模型自洽。
+长时 $v^2\sim gr^2/(4b)$，从而 $\dot r\to\sqrt{gb}/2$、$v\sim gt/4$。
+这里的 $g/4$ 与全捕获模型的 $g/7$ 不同，差别由半径相关效率改变了质量通量。
 \end{xesolution}
 
 火箭依靠从尾部喷出燃料燃烧产生的高温高压气体而获得巨大推力。实际升空过程十分复杂，
@@ -2318,7 +2491,7 @@ $-\Delta M$，在地面参考系中的速度为 $v-u$。
  \dd v=-u\frac{\dd M}{M}.
 \]
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s09-3-29}
 一枚火箭在某时刻的质量为 $M$、速度为 $v$，燃气相对火箭的喷出速度大小为 $u$。
 忽略重力，请根据式 \eqref{ch07:eq:rocket-micro}，在下面坐标系中定性画出此后火箭速度与质量的关系。
@@ -2356,16 +2529,26 @@ $\mathcal M\to0$ 时速度发散只是理想模型的数学
 外推，真实火箭不可能把结构质量全部喷掉。
 \end{xesolution}
 
-\Needspace{0.30\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s09-3-30}
 一枚单级火箭的初始质量为 $M_0$，燃料燃烧完毕后的质量为 $M$。燃气相对火箭的喷出速度
 大小恒为 $u$，火箭由静止开始运动，忽略重力和其他阻力。证明火箭的末速度为
 \[
  v=u\ln\frac{M_0}{M}.
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick,fill=PaleBlue](0,-.5)--(2,-.5)--(2.8,0)--(2,.5)--(0,.5)--cycle;\node at(1,0){$M(t)$};
+\draw[->,DeepBlue](2.8,0)--(4.2,0)node[right]{$v$};\draw[->,Gold](0,0)--(-1.7,0)node[left]{$u$（相对火箭）};
+\node[align=center]at(1,-1.5){燃烧前 $M_0$，燃尽后 $M$\\无重力和其他外力};
+\end{tikzpicture}
+\figcap{火箭减质量与相对喷气速度}\label{mech:07:30:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:07:30:q}中，喷气速率 $u$ 是相对火箭的速率，方向与火箭速度相反。火箭质量递减，所以质量微元 $\dd M<0$，积分时必须保持这一符号约定。
+
 由式 \eqref{ch07:eq:rocket-micro} 的连续形式，
 \[
  \dd v=-u\frac{\dd M}{M}.
@@ -2392,7 +2575,7 @@ $\Delta v=u\ln R$：提高喷气速度 $u$ 能线性提高速度增量，而增�
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twelfth-section/}}
+\graphicspath{{../../../sample/xes-original/twelfth-section/}}
 \section{碰撞}
 % Problem figures and added solution diagrams for Section 4.3.
 \tikzset{
@@ -2672,7 +2855,7 @@ $v_2-v_1$。上式默认 $A\le l_0$ 且物体可视为质点；若模型中物�
 得到 $A>l_0$，则在弹簧长度降为零以前已发生接触，最近距离须由接触条件另行确定。
 \end{xesolution}
 
-\Needspace{0.32\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s12-4-16}
 质量分别为 $m_1,m_2$ 的两个物体 $A,B$ 用原长为 $l_0$、劲度系数为 $k$ 的轻弹簧连接。
 初始时刻 $A$ 放在 $B$ 的上方且均静止，将弹簧压缩至 $l<l_0$。求系统释放以后 $B$
@@ -2714,7 +2897,7 @@ $N=0$，即
 上升。因此若“离开地面”要求产生向上的运动，应取严格不等号。
 \end{xesolution}
 
-\Needspace{0.30\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s12-4-17}
 在光滑平面上有两个球 $A,B$，质量分别为 $m_A,m_B$。开始时刻 $B$ 球静止，$A$ 球以
 速度 $v_0$ 撞向 $B$。如果碰撞之后两球运动速度均与 $A$ 的初速度方向相同，且碰撞过程
@@ -2753,7 +2936,7 @@ $N=0$，即
 $B$ 以 $v_0$ 前进，不能说 $A$ 的速度仍具有原方向。
 \end{xesolution}
 
-\Needspace{0.29\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s12-4-18}
 光滑平面上有两个质量相同的球 $A,B$。$A$ 球以某一初速度 $\vec v_0$ 撞向静止的 $B$，
 碰撞时间极短且无机械能损失。求证：无论 $A$ 球以何种方式弹开，$B$ 球的速度方向总与
@@ -2811,7 +2994,7 @@ $A$ 球弹开的方向垂直。
 也就是说，\textbf{非保守力的功等于系统机械能的变化量}。摩擦力通常做负功，使机械能
 减小；其他非保守力也可能做正功，使物体的机械能增加。
 
-\Needspace{0.28\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s12-4-19}
 在一个物体沿粗糙斜面下滑的过程中验证式\eqref{ch07:eq:nonconservative-work}。物体由静止出发，沿动摩擦因数为
 $\mu$、倾角为 $\theta$ 的粗糙斜面下滑。求沿斜面下滑距离为 $L$ 时的速度。
@@ -2820,6 +3003,17 @@ $\mu$、倾角为 $\theta$ 的粗糙斜面下滑。求沿斜面下滑距离为 $
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate(A)at(0,2.6);\coordinate(B)at(5,0);\draw[very thick](A)--(B);\draw[dashed](0,0)--(B);
+\fill(A)circle(2pt)node[above]{$A$};\fill(B)circle(2pt)node[right]{$B$};\draw[<->](-.3,2.2)--(4.7,-.4)node[midway,below]{$L$};
+\draw[<->](-.8,0)--(-.8,2.6)node[midway,left]{$L\sin\theta$};\draw(4.1,0)arc(180:152.526:.9)node[midway,left]{$\theta$};
+\draw[->,DeepBlue,thick](2,1.56)--(2.9,1.09)node[right]{$mg\sin\theta$};\draw[->,Gold,thick](2,1.56)--(1.1,2.03)node[left]{$f_k$};
+\end{tikzpicture}
+\figcap{粗糙斜面上的位移、高度差和功的符号（解答用辅助图）}\label{mech:07:119:a}
+\end{qualityfigure}
+图~\ref{mech:07:119:a}中，$A\to B$ 沿斜面向下，重力切向分量同向、摩擦力反向；高度差为 $L\sin\theta$，据此分别计算重力势能变化与摩擦功。
+
 物体下降的竖直高度为 $L\sin\theta$，支持力为 $N=mg\cos\theta$，滑动摩擦力的功为
 \[
  W_{NC}=W_f=-\mu mg\cos\theta\,L.
@@ -2843,7 +3037,7 @@ $\mu$、倾角为 $\theta$ 的粗糙斜面下滑。求沿斜面下滑距离为 $
 能否启动，应另用静摩擦因数检验初始临界条件。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch07:ex:s12-4-20}
 如图所示，一轻弹簧一端固定在墙上，另一端连接一小物块。小物块放在摩擦因数为 $\mu$
 的水平面上；弹簧处于自然状态时，小物块中心位于 $O$ 点。现用手将小物块从 $O$ 向右移动距离 $a>0$，

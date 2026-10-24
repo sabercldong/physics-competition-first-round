@@ -1,0 +1,115 @@
+% Editable TikZ problem and solution diagrams, reviewed 2026-10-23.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThConductionBase}{
+ \fill[DeepBlue!12](0,0)rectangle(3,2);\fill[TextGray!18](3,0)rectangle(5,2);
+ \draw[thick](0,0)rectangle(5,2);\draw[thick](3,0)--(3,2);
+ \node[left]at(0,1){$T_h$};\node[right]at(5,1){$T_c$};\node[above]at(3,2.1){$T_i$};
+ \node at(1.5,.6){$\lambda_1,L_1$};\node at(4,.6){$\lambda_2,L_2$};}
+\newcommand{\ThQConduction}{\ThermalFigure{\ThConductionBase
+ \node[right]at(6,1){共同面积 $A$};
+}{两块板沿厚度串联，侧面绝热；接触面温度待求。}{ch15:quality:conduction-q}}
+\newcommand{\ThAConduction}{\ThermalFigure{\ThConductionBase
+ \draw[->,DeepBlue,thick](.4,1.4)--(2.5,1.4)node[midway,above]{$\dot Q$};
+ \draw[->,DeepBlue,thick](3.3,1.4)--(4.7,1.4)node[midway,above]{$\dot Q$};
+ \begin{scope}[shift={(7,0)}]
+ \draw[->](0,0)--(3.4,0)node[right]{$x$};\draw[->](0,0)--(0,2.5)node[above]{$T$};
+ \draw[thick,DeepBlue](0,2)--(1.8,.8)--(3,.3);\fill(1.8,.8)circle(1.5pt)node[above right]{$T_i$};
+ \end{scope}
+}{同一热流穿过两层；稳态温度在各均匀材料内线性变化。}{ch15:quality:conduction-a}
+图~\ref{ch15:quality:conduction-a}中两个 $\dot Q$ 相等，因为界面不储存能量。右图折线的两段温降分别是 $T_h-T_i$、$T_i-T_c$；将每段温降除以各自热阻，才得到同一个热流率。
+}
+\newcommand{\ThRadiationBase}{
+ \draw[thick](0,0)rectangle(3,2);\node at(1.5,1){$C,A,T$};
+ \draw[->,thick](-2,1)--(0,1)node[midway,above]{$P$};
+ \draw[->,DeepBlue](3,1.5)--(5,1.5)node[midway,above]{辐射出射};
+ \draw[<-,DeepBlue](3,.5)--(5,.5)node[midway,below]{环境入射};
+ \node[right]at(5.5,1){热库 $T_0$};}
+\newcommand{\ThQRadiation}{\ThermalFigure{\ThRadiationBase}{电功率与双向辐射能流；温度均使用开尔文。}{ch15:quality:radiation-q}}
+\newcommand{\ThARadiation}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{净输入功率};
+ \draw[DeepBlue,thick,domain=.3:5.4,samples=60]plot(\x,{2.2-.08*\x^2});
+ \draw[dashed](0,1.9)--(5.5,1.9)node[right]{$P$（示意）};
+ \fill(5.244,0)circle(1.5pt)node[below]{$T_e$};
+ \draw[->,thick](3.9,.3)--(4.8,.3);\draw[->,thick](6.4,.3)--(5.7,.3);
+}{净输入 $P-\epsilon\sigma A(T^4-T_0^4)$ 随温度下降穿过零点；曲线仅示意单调性。}{ch15:quality:radiation-a}
+图~\ref{ch15:quality:radiation-a}中的零点对应平衡态。零点左侧净输入为正、物体升温；右侧为负、物体降温。局部斜率为 $-4\epsilon\sigma AT_e^3$，这就是线性回复项的来源。
+}
+\newcommand{\ThPolytropicBase}[1]{
+ \draw[->](0,0)--(5,0)node[right]{$V/V_1$};\draw[->](0,0)--(0,3)node[above]{$p/p_1$};
+ \draw[DeepBlue,thick,domain=1:4,samples=60]plot(\x,{2.4/(\x)^2});
+ \fill(1,2.4)circle(1.5pt)node[above]{$1$};\fill(2,.6)circle(1.5pt)node[above right]{$2$};
+ \draw[dashed](1,0)--(1,2.4) (2,0)--(2,.6);
+ \node[below]at(1,0){$1$};\node[below]at(2,0){$2$};#1}
+\newcommand{\ThQPolytropic}{\ThermalFigure{\ThPolytropicBase{}}{按题设 $pV^2=\mathrm{const}$ 由态1膨胀到态2。}{ch15:quality:polytropic-q}}
+\newcommand{\ThAPolytropic}{\ThermalFigure{\ThPolytropicBase{
+ \fill[DeepBlue!10,domain=1:2,variable=\x] (1,0)--plot(\x,{2.4/\x^2})--(2,0)--cycle;
+ \draw[->,thick](1.3,1.6)--(1.65,1.05);\node[right]at(3,1.8){曲线下面积 $W^{\rm out}$};
+}}{膨胀功取实际路径下的面积；温降还需由 $pV=RT$ 求得。}{ch15:quality:polytropic-a}
+图~\ref{ch15:quality:polytropic-a}的阴影面积为正，表示气体向外做功；端点却满足 $p_2V_2<p_1V_1$，所以内能下降。应将这两个量带符号代入第一定律，不能仅由膨胀方向猜测热量符号。
+}
+\newcommand{\ThACycles}{\ThermalFigure{
+ \draw[->](0,0)--(4.5,0)node[right]{$V$};\draw[->](0,0)--(0,3.2)node[above]{$p$};
+ \fill[DeepBlue!12](1,.7)rectangle(3.5,2.5);\draw[thick](1,.7)rectangle(3.5,2.5);
+ \draw[->,thick](1,1.2)--(1,2);\draw[->,thick](1.6,2.5)--(2.8,2.5);
+ \draw[->,thick](3.5,2)--(3.5,1.2);\draw[->,thick](2.8,.7)--(1.6,.7);
+ \node[right,align=left]at(5,1.6){顺时针示例\\$W_{\rm cyc}^{\rm out}=\oint p\,\dd V$\\循环内能变化为零};
+}{逐段比较功的正负，再用有向面积核对循环净功。}{ch15:quality:cycles-a}
+图~\ref{ch15:quality:cycles-a}抽出题图的一条矩形循环说明记账方法：竖段体积不变，不做体积功；横段按运动方向取正负。题图中每条循环均应独立列出吸热段，净功为面积并不意味着吸热量也等于面积。
+}
+\newcommand{\ThAHeatCylinder}{\begin{qualityfigure}
+\standardHeatCyclesDiagram
+\figcap{沿题图状态号重画三循环，逐段辨认吸热、放热与绝热支路。}\label{ch15:quality:cylinder-a}
+\end{qualityfigure}
+图~\ref{ch15:quality:cylinder-a}中，卡诺循环的热交换支路为 $1\to2$ 与 $3\to4$；奥托、布雷顿循环的热交换支路为 $2\to3$ 与 $4\to1$。先把吸热、放热支路的端点选对，再用其余两条绝热线消去中间状态，才能把效率写成温度比、压缩比或压强比。
+}
+\newcommand{\ThQVariableCapacity}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$V/V_0$};\draw[->](0,0)--(0,3.2)node[above]{$p/p_0$};
+ \draw[DeepBlue,thick](0,2.8)--(4.5,0);\node[left]at(0,2.8){$1$};\node[below]at(4.5,0){$1$};
+ \node[right,align=left]at(5.2,1.7){仅取 $p>0,V>0$ 的线段\\过程方向按题设选取};
+}{题给直线状态路径；过程热容还包含沿路径的做功项。}{ch15:quality:variable-q}}
+\newcommand{\ThCapacityBase}[1]{
+ \draw[->](0,0)--(5.5,0)node[right]{$V$};\draw[->](0,0)--(0,3.2)node[above]{$p$};
+ \draw[DeepBlue,thick,domain=1:5,samples=50]plot(\x,{2.6/\x});
+ \draw[TextGray,thick,domain=1:4.3,samples=50]plot(\x,{2.6/\x^1.67});
+ \draw[thick](1,2.6)--(4.8,2.6);\draw[thick](1,.2)--(1,2.9);
+ \node[right]at(5,2.6){等压};\node[right]at(5,.7){等温};
+ \node[right]at(4.3,.23){绝热};\node[left]at(1,.5){等容};#1}
+\newcommand{\ThQConstantCapacity}{\ThermalFigure{\ThCapacityBase{}}{从同一状态出发的几种准静态路径；热容取决于路径。}{ch15:quality:capacity-q}}
+\newcommand{\ThAConstantCapacity}{\ThermalFigure{\ThCapacityBase{
+ \draw[DeepBlue,dashed,thick,domain=1:4.3,samples=50]plot(\x,{2.6/\x^2.5});
+}}{幂律路径族 $pV^k=\mathrm{const}$；等容线要单列，等温线是热容发散的极限。}{ch15:quality:capacity-a}
+图~\ref{ch15:quality:capacity-a}中各条曲线共有一个初态，却有不同的 $\dd V/\dd T$。因此由 $\delta Q=c_v\dd T+p\dd V$ 定义的过程热容可以不同。推导时除以 $C-c_v$ 的步骤恰好排除了图中的竖直等容线，应在最后补回这一支。
+}
+\newcommand{\ThQAtmosphere}{\ThermalFigure{
+ \draw[->](0,0)--(0,3.4)node[above]{$h$};\draw[thick](1,0)rectangle(4,3);
+ \fill[DeepBlue!12](1,1.4)rectangle(4,1.8);\draw[thick](1,1.4)rectangle(4,1.8);
+ \node[left]at(0,1.4){$h$};\node[left]at(0,1.8){$h+\dd h$};
+ \draw[->](2.5,2.6)--(2.5,1.9)node[right]{$p(h+\dd h)A$};
+ \draw[->](2.5,.6)--(2.5,1.35)node[right]{$p(h)A$};
+ \node[right]at(5,1.5){等温 $T$，薄层面积 $A$};
+}{静止气柱的一小层；重力及上下表面的压强力决定压强梯度。}{ch15:quality:atmosphere-q}}
+\newcommand{\ThQCapillary}{\ThermalFigure{
+ \draw[thick](0,1)--(0,0)--(6,0)--(6,1);\draw[DeepBlue](0,.7)--(6,.7);
+ \draw[thick](2.5,.1)--(2.5,3.3) (3.5,.1)--(3.5,3.3);
+ \draw[DeepBlue,thick](2.5,2.7)..controls(2.8,2.35)and(3.2,2.35)..(3.5,2.7);
+ \draw[<->](4.2,.7)--node[right]{$h$}(4.2,2.45);\draw[<->](2.5,3.5)--node[above]{$2R$}(3.5,3.5);
+}{毛细上升高度从槽中平液面量起；接触角为零的润湿情形。}{ch15:quality:capillary-q}}
+\newcommand{\ThQBubble}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.2);\draw[DeepBlue](0,0)circle(1.1);
+ \draw[->](0,0)--node[above]{$R$}(1.2,0);\node[left]at(-1.5,0){$p_0$};
+ \node[right]at(2,0){膜有内、外两个界面};
+}{薄膜气泡的截面；内外界面均贡献表面能与表面张力。}{ch15:quality:bubble-q}}
+\newcommand{\ThFahrenheitBase}[1]{
+ \draw[thick](0,0)--(0,3);\draw[thick](4,0)--(4,3);
+ \foreach \y/\c/\f in {.5/0/32,2.5/100/212}{
+ \draw(-.15,\y)--(.15,\y)node[left=5pt]{$\c$};\draw(3.85,\y)--(4.15,\y)node[right=5pt]{$\f$};
+ \draw[dashed](.2,\y)--(3.8,\y);}
+ \node[above]at(0,3){$t_C/{}^\circ\mathrm C$};\node[above]at(4,3){$t_F/{}^\circ\mathrm F$};#1}
+\newcommand{\ThQFahrenheit}{\ThermalFigure{\ThFahrenheitBase{}}{同一冰点与沸点在两种温标上的读数。}{ch15:quality:fahrenheit-q}}
+\newcommand{\ThAFahrenheit}{\ThermalFigure{\ThFahrenheitBase{
+ \draw[<->](1,.5)--node[left]{$100$ 格}(1,2.5);\draw[<->](3,.5)--node[right]{$180$ 格}(3,2.5);
+}}{先比较同一温差的刻度数，再对齐冰点这一零点偏移。}{ch15:quality:fahrenheit-a}
+图~\ref{ch15:quality:fahrenheit-a}中的两条虚线代表相同物理状态。两竖标的间隔比给出斜率 $180/100$，而下方冰点虚线给出截距 $32$；二者缺一不可。
+}

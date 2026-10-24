@@ -1,9 +1,12 @@
+% TheoryTikZQuality20261023
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
 \RenewDocumentEnvironment{xesolution}{+b}{%
   \par\nobreak\smallskip\nobreak\begingroup\small
   \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -12,8 +15,13 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{静电场与电势}
+\input{chapters/quality-20261023/theory-tikz/ch19-gallery.tex}
+\input{chapters/quality-20261023/theory-tikz/field-geometries.tex}
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-second-section/}}
+\input{chapters/quality-20261023/thermal/ch19.tex}
+
+
+\graphicspath{{../../../sample/xes-original/thirty-second-section/}}
 \section{电荷、库仑定律与场的叠加}
 
 % All text annotations are transparent. No label uses a white backing rectangle.
@@ -79,7 +87,7 @@
 \newcommand{\coulombHistoryFigure}{%
 \begin{center}
 \begin{minipage}{.21\linewidth}\centering
-\includegraphics[width=\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/coulomb.png}\par\small 库仑
+\includegraphics[width=\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/coulomb.png}\par\small 库仑
 \end{minipage}\hfill
 \begin{minipage}{.76\linewidth}\centering
 \begin{tikzpicture}[scale=.83]
@@ -111,14 +119,14 @@
 
 \newcommand{\fieldLineGallery}{%
 \begin{center}
-\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/field-gallery.pdf}
+\resizebox{.95\linewidth}{!}{\ThTheoryFieldGallery}
 \end{center}}
 
 
 \newcommand{\gaussLawFigure}{%
 \begin{center}
 \begin{tikzpicture}[x=1cm,y=1cm]
-  \node[inner sep=0pt] at (1.1,2.05) {\includegraphics[height=2.7cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/gauss.png}};
+  \node[inner sep=0pt] at (1.1,2.05) {\includegraphics[height=2.7cm]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/gauss.png}};
   \node[xessmall] at (1.1,.38) {高斯};
   % local surface element
   \begin{scope}[shift={(4.25,2.05)}]
@@ -207,7 +215,7 @@
 
 \newcommand{\unequalChargesFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/unequal.pdf}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/unequal.pdf}
 \end{center}}
 
 
@@ -229,7 +237,7 @@
 
 \newcommand{\dipoleFarFigure}{%
 \begin{center}
-\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dipole-far.pdf}
+\includegraphics[width=.95\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dipole-far.pdf}
 \end{center}}
 
 
@@ -244,7 +252,7 @@
   \coordinate (P) at (4.6,2.2);\fill[Ink] (P) circle (1.4pt);\node[xessmall,anchor=west] at ($(P)+(.08,0)$) {$P$};
   \draw[RuleGray,densely dashed] (0,0)--(P);\node[xessmall,above left] at (2.25,1.1) {$r$};
   \draw[DeepBlue,line width=.6pt] (1.0,0) arc[start angle=0,end angle=25.6,radius=1.0];\node[xessmall] at (1.24,.28) {$\theta$};
-  \node[inner sep=0pt] at (8.55,1.25) {\includegraphics[width=4.4cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/quadrupole.pdf}};
+  \node[inner sep=0pt] at (8.55,1.25) {\resizebox{4.4cm}{!}{\MeTheoryQuadrupole}};
 \end{tikzpicture}
 \end{center}}
 
@@ -519,6 +527,8 @@ $z=0$ 时对称性给出零场，$z\gg a$ 时恢复点电荷场。先写“哪�
 \emFiniteLineQuestion
 \figcap{有限直线的端点与观察点；长条带的截面使用同样的端点角约定。}\label{ch19:fig:em-question-1}
 \end{minipage}\par\medskip
+
+\ThQElectroSystems
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -646,6 +656,8 @@ $+Q$、$-q$ 分别位于 $(-a_0,0)$、$(a_0,0)$ 处，且 $Q>q>0$。系统绕二
   \item 远离两个电荷处的电场具有什么特征？
   \item 写出包含 $x$ 轴的平面内的电场线方程。
 \end{enumerate}
+
+\ThQUnequalCharges
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -653,7 +665,11 @@ $+Q$、$-q$ 分别位于 $(-a_0,0)$、$(a_0,0)$ 处，且 $Q>q>0$。系统绕二
 延伸到无穷远；$+Q$ 足以提供全部终止于 $-q$ 的场线，所以不需要从无穷远引入场线。图中实线为场线，
 场线由下文的第一积分计算。通向无穷远与终止于 $-q$ 的场线之间存在分界结构，它趋近零场点；零场点处方向未定义，不能把它当普通连接点。
 
-\unequalChargesFigure
+\begin{qualityfigure}
+\ThUnequalAnalysisDrawing
+\figcap{异号不等量电荷的场线、零场点及远场。}\label{ch19:quality:analysis-02}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-02}中，两电荷附近必须分别保留各自的距离；远处才可用净电荷 $Q-q$ 判断主导项。零场点处场线切向不再由零矢量唯一指定。
 
 零场点只能在两个电荷连线的外侧。由于 $Q>q$，它位于较小电荷 $-q$ 的右侧。设零场点坐标为
 $x_0>a_0$，两场反向且大小相等：
@@ -822,6 +838,8 @@ $\rho=\varepsilon_0(\alpha+\beta)$。其中 $\alpha,\beta$ 的单位为 $\mathrm
   \item 小明想起来似乎万有引力那一章中也计算过类似模型。您还记得答案吗？
   \item 这两个模型有什么区别？
 \end{enumerate}
+
+\ThQCavity
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -829,7 +847,11 @@ $\rho=\varepsilon_0(\alpha+\beta)$。其中 $\alpha,\beta$ 的单位为 $\mathrm
 $P$ 相对 $O,C$ 的位置矢量分别为 $\boldsymbol r,\boldsymbol r'$，于是
 $\boldsymbol r=\boldsymbol a+\boldsymbol r'$。
 
+\begin{qualityfigure}
 \cavityFigure
+\figcap{用一个完整正密度球与一个负密度小球表示偏心空腔。}\label{ch19:quality:analysis-03}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-03}中，图中 $O,C,P$ 满足 $\vect r=\vect a+\vect r'$，所以两球内部线性场相减后只剩与观察点无关的 $\vect a$。金属空腔不能沿用固定体电荷叠加模型。
 
 把“带空洞的均匀带电体”叠加成：一个体电荷密度为 $+\rho$ 的完整大球，再在空洞位置放一个体电荷密度
 为 $-\rho$ 的小球。均匀带电实心球内部的电场由高斯定律得到
@@ -876,7 +898,11 @@ $\rho>0$。初始时，质量为 $m$、电荷为 $-q$ 的点电荷从原点以�
 \]
 图(b)中斜线必须穿过原点，并在 $x=\pm d$ 与两侧水平线连续；这三个位置关系正是后面分段运动的依据。
 
+\begin{qualityfigure}
 \chargedSlabFigure
+\figcap{厚板内外的分段场及负电荷的往复运动。}\label{ch19:quality:analysis-04}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-04}中，边界 $x=\pm d$ 将运动分成板内线性回复力段和板外恒力段。应先比较板内简谐振幅与 $d$，再决定周期是否需要拼接板外时间。
 
 在板内，负电荷受到指向中面的回复力
 \[
@@ -923,7 +949,7 @@ $2\pi/\omega$。
 
 
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-third-section/}}
+\graphicspath{{../../../sample/xes-original/thirty-third-section/}}
 \section{电势与场势关系}
 
 % Text annotations are transparent; no label carries an opaque backing box.
@@ -942,7 +968,7 @@ $2\pi/\omega$。
 
 \newcommand{\equipotentialGallery}{%
 \begin{center}
-\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/equipotentials.pdf}
+\resizebox{.95\linewidth}{!}{\ThTheoryEquipotentials}
 \end{center}}
 
 
@@ -969,13 +995,13 @@ $2\pi/\omega$。
 
 \newcommand{\zeroEquipotentialFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/zero-potential.pdf}
+\resizebox{.76\linewidth}{!}{\ThTheoryZeroPotential}
 \end{center}}
 
 
 \newcommand{\ionizationEnergyFigure}{%
 \begin{center}
-\includegraphics[width=.95\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/ionization.pdf}
+\resizebox{.95\linewidth}{!}{\ThTheoryIonization}
 \end{center}}
 
 
@@ -999,13 +1025,13 @@ $2\pi/\omega$。
 
 \newcommand{\acceleratorTunnelFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/accelerator.png}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/accelerator.png}
 \end{center}}
 
 
 \newcommand{\lightningFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/lightning.png}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/lightning.png}
 \end{center}}
 
 
@@ -1074,19 +1100,19 @@ $2\pi/\omega$。
 
 \newcommand{\apolloniusSphereFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/apollonius-example.pdf}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/apollonius-example.pdf}
 \end{center}}
 
 
 \newcommand{\twoLinesFamiliesFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-lines.pdf}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-lines.pdf}
 \end{center}}
 
 
 \newcommand{\finiteRodFamiliesFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/finite-rod.pdf}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/finite-rod.pdf}
 \end{center}}
 
 
@@ -1126,7 +1152,7 @@ $2\pi/\omega$。
 
 \newcommand{\rutherfordFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/rutherford.pdf}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/rutherford.pdf}
 \end{center}}
 
 
@@ -1376,7 +1402,7 @@ $\boldsymbol p$ 的夹角为 $\theta$。在 $l/r$ 的一阶精度下，电势为
 图~\ref{ch19:fig:s32-1-7} 左侧把场分解为径向和极角方向，右侧以同一偶极矩方向展示远场线族。
 
 \par\noindent\begin{minipage}{\linewidth}
-\dipoleFarFigure
+\ThDipoleAnalysisDrawing
 \diagramcaption{电偶极子的远场分量与典型场线。$\boldsymbol p$ 的方向由负电荷指向正电荷。}\label{ch19:fig:s32-1-7}
 \end{minipage}\par\medskip
 
@@ -1453,6 +1479,8 @@ $r^{-2}$ 更快。
 \begin{origexamplebox}{【电势算电场】}\label{ch19:ex:s33-2-1}
 小明发现电势和电场有非常明确的关系，并且电势是标量，应该更方便计算。请利用先求电势再求电场的方式，
 求解本章前文中诸多问题的电场。您一定会发现有的问题这样求解似乎不太正确，思考为什么以及对应的解决办法。
+
+\ThQPotential
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1464,7 +1492,11 @@ $r^{-2}$ 更快。
 求标量电势，再作 $\boldsymbol E=-\boldsymbol\nabla\varphi$。困难不在求导，而在于：对无限延伸的带电体，
 把无穷远取作零电势会使电势积分发散。
 
+\begin{qualityfigure}
 \potentialMethodFigure
+\figcap{有限带电体与两种无限体系的电势零点选择。}\label{ch19:quality:analysis-07}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-07}中，有限体系可从无穷远积分，而无限直线和平面的同类积分不收敛；图中的有限参考位置说明应先求电势差，再取梯度，不能把发散的常数当成零。
 
 \textbf{1. 点电荷。} 对 $\varphi=kQ/r$ 直接求梯度：
 \[
@@ -1672,6 +1704,8 @@ $\sigma\sim10^{-20}\,\mathrm{m^2}$，理想气体数密度为 $n=P/(k_BT)$，则
 
 \begin{origexamplebox}{【零等势面】}\label{ch19:ex:s33-2-4}
 小明将两个点电荷 $+Q,-q$ 分别置于 $(a,0,0)$ 和原点。求零电势等势面的方程（以无穷远为电势零点）。
+
+\ThQZeroPotential
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1694,7 +1728,11 @@ $\sigma\sim10^{-20}\,\mathrm{m^2}$，理想气体数密度为 $n=P/(k_BT)$，则
   =\left(\frac{a\mu}{|\mu^2-1|}\right)^2}.
 \]
 
-\apolloniusSphereFigure
+\begin{qualityfigure}
+\ThZeroPotentialAnalysisDrawing
+\figcap{零等势面的距离比与球面截线；等量情形退化为中垂面。}\label{ch19:quality:analysis-08}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-08}中，观察点到两个电荷的距离应分别写成 $r_+,r_-$，零势条件约束的是二者之比。配方时除以 $\mu^2-1$ 会排除等量情形，因此 $Q=q$ 须回到原式单独讨论。
 
 若 $Q>q$，球心在负 $x$ 轴，球面包围位于原点的较小电荷 $-q$；若 $Q<q$，则包围 $+Q$。特别地，
 $Q=q$ 时不能除以 $\mu^2-1$，原方程直接化为
@@ -1709,6 +1747,8 @@ $Q=q$ 时不能除以 $\mu^2-1$，原方程直接化为
 \begin{origexamplebox}{【无限长导线】}\label{ch19:ex:s33-2-5}
 两根无限长直导线沿 $z$ 方向，带电线密度分别为 $+\lambda$ 和 $-\lambda$，与 $xOy$ 平面的交点分别为
 $(a,0)$ 和 $(-a,0)$。求平面内任意等势线的方程及电场线方程。
+
+\ThQTwoLines
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1754,7 +1794,11 @@ $\beta_x=u_y$、$\beta_y=-u_x$。而 $\boldsymbol E=-(\lambda/2\pi\varepsilon_0)
 两圆相交于 $P=(x,y)$ 时，相应半径的点积为
 $ (x-c,y)\cdot(x,y-d)=x^2+y^2-cx-dy=0$，证明两族曲线正交。
 
-\twoLinesFamiliesFigure
+\begin{qualityfigure}
+\ThTwoLinesAnalysisDrawing
+\figcap{两平行异号线电荷的等势线与场线族。}\label{ch19:quality:analysis-09}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-09}中，此截面垂直两根导线，场不含 $z$ 分量。等势线由到两导线的距离比确定，场线在非零场处与其正交；不能将等势圆同时当成场线。
 
 图中 $+\lambda$ 位于右侧，$-\lambda$ 位于左侧，箭头从正电荷指向负电荷；实线等势圆与虚线场线圆处处正交。三维空间中，两类截线沿 $z$ 方向平移，分别形成等势柱面和场线
 柱面。
@@ -1765,6 +1809,8 @@ $ (x-c,y)\cdot(x,y-d)=x^2+y^2-cx-dy=0$，证明两族曲线正交。
 \begin{origexamplebox}{【有限长导线】}\label{ch19:ex:s33-2-6}
 一根有限长直导线带电线密度 $\lambda$，位于 $(a,0,0)$ 到 $(-a,0,0)$ 之间。系统绕 $x$ 轴旋转对称。
 求包含 $x$ 轴的平面内任意等势线的方程及电场线方程。
+
+\ThQFiniteLine
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1809,7 +1855,11 @@ $ (x-c,y)\cdot(x,y-d)=x^2+y^2-cx-dy=0$，证明两族曲线正交。
 \]
 它在子午面内是一族共焦双曲线，绕轴旋转后成为双曲面。
 
-\finiteRodFamiliesFigure
+\begin{qualityfigure}
+\ThFiniteRodAnalysisDrawing
+\figcap{有限直线电荷的等势线与场线，以两个端点为焦点。}\label{ch19:quality:analysis-10}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-10}中，两个端点距离都随观察点移动。求势时沿整根导线积分，求场线时再利用局部场方向；有限线段不能套用无限导线的纯径向对称。
 
 图中粗黑线表示 $-a\le x\le a$ 的均匀带电导线（$\lambda>0$）；实线是等势椭圆，虚线箭头从导线不同位置向外。椭圆与双曲线在每个交点正交。导线两端是共同焦点，不是椭圆或双曲线的圆心；这一位置关系是正确画图的
 关键。
@@ -1915,6 +1965,8 @@ $Q/(4\pi\varepsilon_0R)$，所以
 在电子显微镜中，一束原先通过电势差 $U_0$ 加速、具有一定能量的电子，经过一根与电子束原来方向垂直的
 绷紧带电细金属线。该线带正电，电荷线密度为 $\lambda$；金属线产生的电场相对较弱，因此电子轨道只稍受
 影响。入射电子的瞄准参数为 $b$，求电子通过带电金属线以后运动方向的偏转角。
+
+\ThQElectronLens
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1925,7 +1977,11 @@ $Q/(4\pi\varepsilon_0R)$，所以
 正线电荷的场沿径向向外，电子受力指向线电荷。弱偏转近似中，可以沿原来的水平直线计算横向冲量。
 令电子在 $x$ 方向运动，线电荷在原点垂直纸面，未偏转轨迹为 $y=b$，则 $x=vt$。
 
+\begin{qualityfigure}
 \electronLensFigure
+\figcap{弱偏转电子在带电细线附近的冲量近似。}\label{ch19:quality:analysis-11}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-11}中，瞄准参数 $b$ 是未偏转入射直线与细线的垂距。弱场条件允许沿这条近似直线计算横向冲量，再除以初始动量求小角度；它不意味着电子沿真实轨道始终匀速。
 
 线电荷场强为
 \[
@@ -1973,6 +2029,8 @@ $[\lambda/(2\pi\varepsilon_0U_0)]\ln(X/b)\ll1$，使纵向动能变化也远小�
   \item 若是均匀带电的绝缘实心球，答案有什么变化？
   \item 为什么常见的是均匀带电的“金属球壳”和“绝缘球体”？
 \end{enumerate}
+
+\ThQSphereEnergy
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1980,7 +2038,11 @@ $[\lambda/(2\pi\varepsilon_0U_0)]\ln(X/b)\ll1$，使纵向动能变化也远小�
 $Q/(4\pi\varepsilon_0R^2)$；蓝线是均匀带电实心球：内部场从球心开始线性增加，并在表面与外部点电荷场
 连续相接。
 
+\begin{qualityfigure}
 \chargedSphereEnergyFigure
+\figcap{表面电荷球壳与体电荷实心球的场能分布。}\label{ch19:quality:analysis-12}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-12}中，两种分布在 $r>R$ 有相同外场，差别来自球内。场能积分的体积元为 $4\pi r^2\dd r$，须在 $r=R$ 分段，不能把球壳内部零场用于绝缘实心球。
 
 \textbf{1. 金属球壳的能量。} 球外
 $E=Q/(4\pi\varepsilon_0r^2)$，球内 $E=0$，所以
@@ -2039,13 +2101,19 @@ $\rho=3Q/(4\pi R^3)$，由高斯定律
 \begin{origexamplebox}{【相互作用能】}\label{ch19:ex:s33-2-3}
 小明尝试构建一个由 10 个点电荷组成的体系，电荷记为 $Q_i$，$i=1,2,\ldots,10$；任意两电荷之间的
 距离为 $r_{ij}$。为了把这 10 个电荷从无穷远搬到对应位置，小明需要做功多少？
+
+\ThQAssembly
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
 按任意顺序逐个移入电荷。第一个电荷移入时没有其他电荷，外力做功为零；第二个电荷只与第一个发生相互
 作用；第 $i$ 个电荷移入时，只需计算它与已经就位的 $i-1$ 个电荷的作用。这样每一对电荷恰好出现一次。
 
+\begin{qualityfigure}
 \chargeAssemblyFigure
+\figcap{逐个搬入十个点电荷时相互作用对的计数。}\label{ch19:quality:analysis-13}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-13}中，图中的 $r_{ij}$ 属于一对不同电荷。按搬入次序求和时每对只出现一次；若改为 $\sum_iQ_i\varphi_i$，同一对会出现两次，因此总式前须有 $1/2$，且排除点电荷自身发散的势。
 
 外力在准静态组装过程中所做的总功等于系统静电势能：
 \[
@@ -2126,6 +2194,8 @@ $A$ 的重力势能增加 $mgh$，绳的拉力不做功；准静态过程中小�
 \begin{origexamplebox}{【玻尔氢原子】}\label{ch19:ex:s33-2-8}
 在玻尔氢原子模型中，电子在原子核外以光速的 $1/137$ 绕原子核作圆周运动。这个氢原子的总能量是多少？
 为什么是负能量？
+
+\ThQBohr
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -2138,7 +2208,11 @@ $A$ 的重力势能增加 $mgh$，绳的拉力不做功；准静态过程中小�
   \frac{1}{4\pi\varepsilon_0}\frac{e^2}{r}=m_ev^2.
 \]
 
+\begin{qualityfigure}
 \bohrAtomFigure
+\figcap{玻尔模型中的圆周受力、速度与能量零点。}\label{ch19:quality:analysis-15}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-15}中，向心力箭头沿半径指向原子核，而速度沿切向。圆周条件把库仑势能写成 $-mv^2$，再与正的动能相加，所以相对无穷远静止自由电子的能量为负。
 
 电子动能和电势能分别为
 \[
@@ -2167,6 +2241,8 @@ $A$ 的重力势能增加 $mgh$，绳的拉力不做功；准静态过程中小�
   \item 若有很多 $\alpha$ 粒子同时入射，出射的微分散射截面是多少？
   \item 历史上谁第一次做了这个实验？
 \end{enumerate}
+
+\ThQRutherford
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -2178,7 +2254,11 @@ $A$ 的重力势能增加 $mgh$，绳的拉力不做功；准静态过程中小�
   \kappa=\frac{1}{4\pi\varepsilon_0}(2e)(Ze).
 \]
 
-\rutherfordFigure
+\begin{qualityfigure}
+\ThRutherfordAnalysisDrawing
+\figcap{固定排斥中心的散射轨道及渐近入射、出射方向。}\label{ch19:quality:analysis-16}
+\end{qualityfigure}
+图~\ref{ch19:quality:analysis-16}中，冲量参数 $b$ 从入射渐近线量起，散射角则比较两条远处速度方向。把半径 $b$、宽度 $\dd b$ 的入射环映射到立体角环 $2\pi\sin\theta\dd\theta$，即可建立截面变换。
 图中三条曲线使用同一 $\kappa/(2E_k)=0.7$ 和同一核位置，长度以同一个任意单位表示。
 虚线是入射与出射渐近线，$b$ 是入射渐近线到核的垂距；蓝线的 $b$ 最小，因而偏转最大。
 

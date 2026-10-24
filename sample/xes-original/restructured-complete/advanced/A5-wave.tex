@@ -1,3 +1,4 @@
+% AdvancedOpticsQuality20261023
 \section{波动光学}
 
 \subsection{标量波、复振幅与傍轴近似}
@@ -53,13 +54,13 @@
 \[
  \boxed{(\nabla^2+k^2)A(\vect r)=0},\qquad k=\omega/c.
 \]
-真空或线性无源介质中的标势、矢势以及电磁场各分量都可归入这一标量框架，
+在均匀、各向同性、线性无源介质中，电磁场各分量满足相应标量 Helmholtz 方程，势函数还须选用相容规范；非均匀介质不能无条件逐分量套用同一标量方程，
 但偏振问题仍需保留矢量方向。
 
 取主传播轴为 $z$，傍轴平面波写成
 \[
  A(x,y,z)=A_0\e^{\ii kz}
- \e^{\ii k(\theta_xx+\theta_yy)},\qquad
+ \e^{\ii k(\theta_xx+\theta_yy)-\ii kz(\theta_x^2+\theta_y^2)/2},\qquad
  |\theta_x|,|\theta_y|\ll1.
 \]
 物平面 $z=-L$ 上 $(X,Y)$ 点发出的球面波传播到像平面 $(x,y,0)$ 时，
@@ -131,6 +132,10 @@ $r_i,t_i$，反向为 $r_i',t_i'$；层内单程相位为 $\delta$。
 \item 从能流守恒和时间反演说明 Stokes 关系的正确复数形式；
 \item 求整个双界面的等效振幅反射系数与透射系数。
 \end{enumerate}
+
+各介质中的通道均为传播波，选定同一偏振并按单位能流归一化，排除全反射的倏逝通道情形。
+
+\QAOFrame{\QAOInterfaces{0}}{两平行界面的传播通道及单程相位；幅度系数使用同一能流规范。}{quality:A5:q7}
 \end{advexamplebox}
 \begin{advsolution}
 若先把行波振幅按单位能流归一化，无吸收界面的散射矩阵
@@ -169,11 +174,19 @@ $r_i+r_i'=0$、$t_it_i'+r_i^2=1$。这修正了直接把“实系数关系”用
  {1+r_1r_2\e^{2\ii\delta}}}.
 \]
 $r_2=0$ 时退化为单界面 $r=r_1$；相位平均后交叉项消失，回到非相干多次反射。
+
+\QAOFrame{\QAOInterfaces{1}}{两条透射路径与第一次内部反射；每一新增往返都贡献相同的复数乘子。}{quality:A5:a7}
+
+图~\ref{quality:A5:a7}中第一束在界面1直接反射，第二束先进入中间层，再经界面2反射并从界面1退出。因此第二束的系数同时含 $t_1,t'_1,r_2$ 和往返相位；后续往返再乘 $r'_1r_2\e^{2\ii\delta}$。能流归一化后透射率才可直接写为 $|t|^2$。
 \end{advsolution}
 
 \begin{advexamplebox}{周期双层介质的允许带与禁带}\label{advA5:ex:photonic-crystal}
 折射率 $n_1,n_2$、厚度 $d_1,d_2$ 的两层介质周期交错。
 分析哪些频率的正入射光可以传播，哪些频率落入禁带。
+
+介质均匀、无吸收、非磁且折射率为正，先讨论无限周期结构的 Bloch 模式。
+
+\QAOFrame{\QAOStackQuestion}{无限周期双层结构；每一周期的两个折射率与厚度必须分别保留。}{quality:A5:q8}
 \end{advexamplebox}
 \begin{advsolution}
 一周期 $\Lambda=d_1+d_2$ 的特征矩阵为 $M=M_2M_1$。对非磁介质正入射，
@@ -198,6 +211,10 @@ $K$ 有非零虚部，场随周期数指数衰减，是禁带。四分之一波�
 $n_1d_1=n_2d_2=\lambda_0/4$ 在中心波长处右端
 $=-(n_1/n_2+n_2/n_1)/2<-1$（只要 $n_1\ne n_2$），所以形成反射禁带。
 $n_1=n_2$ 时右端化为 $\cos(\delta_1+\delta_2)$，禁带消失，极限正确。
+
+\QAOFrame{\QAOStackAnswer}{定量示例：$n_1/n_2=2$、$n_1d_1=n_2d_2=\lambda_0/4$；阴影内矩阵迹超出传播区间。}{quality:A5:a8}
+
+图~\ref{quality:A5:a8}的阴影由 $|\operatorname{tr}M/2|>1$ 确定，对应 Bloch 特征值一增一减。有限厚度的无吸收叠层仍可有隧穿透射，禁带不是吸收带；带边的重根也应单独看待，不能从 $K$ 实数就断言任意有限器件都完全透射。
 \end{advsolution}
 
 \subsection{衍射、路径积分与光栅}
@@ -279,9 +296,7 @@ $\delta\int n\,\dd s=0$ 正是费马原理。对驻值路径作二次展开，
 \item 说明白光下条纹的颜色、间距和级次。
 \end{enumerate}
 
-\begin{center}\begin{minipage}{\linewidth}\centering
-% Design: 13cm source reconstruction, real slit gaps; omitted intermediate planes explicit.
-\begin{tikzpicture}[>=Latex,font=\small]
+\QAOFrame{\begin{tikzpicture}[>=Latex,font=\small]
  \draw[thick](-5,-1.1)--(-5,-.06) (-5,.06)--(-5,1.1)node[above]{$P_0$};
  \foreach \x/\t in {-3/P_1,-1/P_2,2/P_{2020}}{
   \draw[thick](\x,-1.1)--(\x,-.45) (\x,-.31)--(\x,.31) (\x,.45)--(\x,1.1)node[above]{$\t$};
@@ -295,11 +310,10 @@ $\delta\int n\,\dd s=0$ 正是费马原理。对驻值路径作二次展开，
  \foreach \a/\b/\lab in {-5/-3/L_0,-3/-1/L,2/4/L_1}{
   \draw[<->](\a,-1.45)--(\b,-1.45)node[midway,below]{$\lab$};}
  \draw[<->](-3.5,-.38)--(-3.5,.38)node[midway,left]{$D$};
-\end{tikzpicture}
-\figcap{原题的单缝、等间距双缝序列与观察屏。双缝面上画出两个分开的狭缝，省略号表示未逐一画出的中间面。\label{advA5:fig:cascade-source}}
-\end{minipage}\end{center}
+\end{tikzpicture}}{单缝入射、双缝级联和末端中心；省略号仅省略中间面，不改变面数。\label{advA5:fig:cascade-source}}{quality:A5:q9}
 \end{advexamplebox}
 \begin{advsolution}
+采用窄缝离散传播模型：每缝内的振幅和相位近似均匀，忽略斜程的振幅差及单缝包络变化。若缝宽为 $a$，除 $a\ll D$ 外，还需 $2\pi aD/(\lambda L)\ll1$。
 在相邻双缝面之间，同侧传播距离为 $L$，交叉传播距离在傍轴下为
 $L+D^2/(2L)$。略去公共相位，单步传播矩阵为
 \[
@@ -363,6 +377,10 @@ $q=\arccos(2^{-1/4038})=0.018528\ldots$，每个整数 $m$ 周围满足
  \Delta y_{400}=50.000\,\mu\mathrm m.
 \]
 绿光的第 $3j$ 级与紫光的第 $4j$ 级在 $y=200j\,\mu\mathrm m$ 处重合。白光经级联后主要留下这两个窄波段；各自形成相应间距的亮暗纹，重合处颜色叠加，其余处随两分量比例改变颜色。中心的实际颜色、相对亮度还取决于入射谱和 $I_0(\lambda)$，不能只由几何量确定。有限谱宽会使远处条纹逐渐模糊。级联幂次使\emph{谱峰}变窄，并不把最后双缝的单色空间因子变成同样的高次幂。
+
+\QAOFrame{\QAOCascadeAnswer}{左为级联的谱选择，右为最终双缝的单色空间条纹；两个不同变量上的峰宽不能混同。}{quality:A5:a9}
+
+图~\ref{quality:A5:a9}左图以某一谱峰附近的相位失谐为横坐标，展示高次幂选谱；右图固定波长，只剩末端双缝的 $\cos^2$ 空间因子。两者的自变量分别包含 $\lambda$ 和 $y$，因此窄谱峰不能直接当作窄空间条纹。题图~\ref{quality:A5:q9}中的2020个双缝面只有2019次双缝到双缝传播。
 \end{advsolution}
 
 对周期为 $d$、缝宽 $a$、缝数 $N$ 的矩形光栅，
@@ -380,8 +398,7 @@ $2\lambda/(Nd\cos\theta_j)$。
 
 \begin{advexamplebox}{用 Fresnel 双棱镜阵列模拟光栅}\label{advA5:ex:biprism-grating}
 实验室只有狭缝、对称双凸薄透镜（两面曲率半径 $R=30\,\mathrm{cm}$、折射率 $n_0=1.5$）和许多薄 Fresnel 双棱镜（单侧劈角 $\alpha=30'$、折射率 $n=1.005$）。拟在 $\lambda=500\,\mathrm{nm}$ 时获得一级角位置 $\theta_1=30^\circ$，且后焦面主极大两侧第一零点间宽度不大于 $0.1\,\mathrm{mm}$。按原题要求讨论至少需要多少个双棱镜以及各仪器的放置方法，并检查所需近似和器材条件。
-\begin{center}
-\begin{tikzpicture}[scale=.8]
+\QAOFrame{\begin{tikzpicture}[scale=.8]
  \draw[thick](-4,-1.2)--(-4,1.2)node[above]{狭缝 $S$};
  \foreach \x in {-1.8,-1.4,-1}{\filldraw[fill=DeepBlue!10](\x,-1)--(\x+.2,0)--(\x,1)--(\x-.1,0)--cycle;}
  \node at(-1.4,1.5){双棱镜组};
@@ -390,14 +407,13 @@ $2\lambda/(Nd\cos\theta_j)$。
  \draw[thick](4,-1.3)--(4,1.3)node[above]{屏};
  \draw[guide](-4.3,0)--(4.3,0);
  \node at(0,-1.8){器件顺序示意；棱脊横移量与间距尚须确定};
-\end{tikzpicture}
-\end{center}
+\end{tikzpicture}}{狭缝、横移双棱镜组、透镜与屏的器件顺序；单元数仍待求。}{quality:A5:q10}
 \end{advexamplebox}
 \begin{advsolution}
 \textbf{先区分题目所给条件与理想阵列模型。}
 透镜焦距 $f=R/[2(n_0-1)]=0.300\,\mathrm m$；单侧小劈角的偏折量为
 $\delta=(n-1)\alpha=4.363\times10^{-5}\,\mathrm{rad}$。
-原扫描确为 $30^\circ$，与“全程傍轴”的高精度使用并不相容。以下先给出原题形式近轴模型中的构造，再说明它不能证明原器材条件下的全局最小数目。
+题给 $30^\circ$ 与全程傍轴的高精度使用并不相容。以下先给出原题形式近轴模型中的构造，再说明它不能证明原器材条件下的全局最小数目。
 
 若等效透射场由 $N$ 个等宽、等幅、等相位的平移单元组成，周期为 $d$，则近轴阵列因子为
 \[
@@ -441,6 +457,10 @@ $\delta=(n-1)\alpha=4.363\times10^{-5}\,\mathrm{rad}$。
  \quad N\ge4619.
 \]
 此数值仅是指定大角度屏映射下的理想阵列要求，不能继续直接套用前述近轴棱镜构造。原题若要有可实现且唯一的“最少片数”，必须补足这些条件；不能混用精确光栅角与 $Y=f\theta$ 给出混合近似的束数结论。
+
+\QAOFrame{\QAOBiprismAnswer}{四个平移相位单元的简化示意；各段抛物线相同，公共边界上相位连续。}{quality:A5:a10}
+
+图~\ref{quality:A5:a10}中的棱脊 $b_j$ 是相位斜率的折点，而每个区段的中心是抛物线的极小点。公共孔径必须切出这些完整区段，才能将透射场写成相同单元的平移求和；仅把棱镜同轴堆放不会产生该图的多区段结构。
 \end{advsolution}
 
 Fresnel 波带法把波前按到观察点的光程差每增加 $\lambda/2$ 分带。
@@ -492,8 +512,7 @@ $\dd n/\dd y=0$，相邻条带折射率增加 $\alpha a$。
 波数为 $k$ 的平面波正入射，随后通过焦距 $F$ 的透镜。
 求后焦面坐标 $Y$ 上的光强因子，并判断何时花样关于焦点对称。
 
-\begin{center}
-\begin{tikzpicture}[scale=.9]
+\QAOFrame{\begin{tikzpicture}[scale=.9]
  \foreach \i in {0,...,7}{\pgfmathtruncatemacro{\shade}{8+5*\i}\filldraw[fill=DeepBlue!\shade,draw=RuleGray](0,{-1.2+.3*\i})rectangle(.5,{-1.2+.3*(\i+1)});}
  \draw[axis](0,-1.4)--(0,1.7)node[above]{$y$};
  \foreach \h in {-.9,0,.9}{\draw[DeepBlue,->](-1.6,\h)--(-.15,\h);}
@@ -504,8 +523,7 @@ $\dd n/\dd y=0$，相邻条带折射率增加 $\alpha a$。
  \draw[<->](.75,-1.2)--(.75,-.9)node[right]{$a$};
  \draw[<->](0,-1.7)--(.5,-1.7)node[midway,below]{$d$};
  \node at(2.5,2.2){条带沿 $y$ 并列；虚线仅示透镜轴上聚焦};
-\end{tikzpicture}
-\end{center}
+\end{tikzpicture}}{折射率台阶沿横向分布；每条带内部均匀，透镜用于后焦面观察。}{quality:A5:q11}
 \end{advexamplebox}
 \begin{advsolution}
 令后焦面的横向空间频率
@@ -539,7 +557,12 @@ $kd(n_0+m\alpha a)$。略去公共相位后，
 \]
 时，利用结构因子 $G(\xi)=\sin^2(N\xi)/\sin^2(\xi/2)$ 的偶性和 $2\pi$ 周期性，可得 $G(\pi\ell-qa)=G(\pi\ell+qa)$，故整个花样关于焦点对称。奇数半周与整周的峰位不同，但都具有该对称性。一般相位台阶使主峰偏向
 $Y_0=F d\alpha$（模倒易周期），即形成闪耀光栅。
-令 $\alpha=0$ 可恢复普通 $2N$ 缝光栅，量纲和极限均正确。
+令 $\alpha=0$ 可恢复 $2N$ 个相邻同相条带，即总宽 $2Na$ 的矩形孔径，量纲和极限均正确。
+
+\QAOFrame{\QAOGratingAnswer}{取 $2N=8$：同相时向量相加，第一零点时向量闭合；每条带的公共包络另乘。}{quality:A5:a11}
+
+图~\ref{quality:A5:a11}用八条带说明结构因子：$\xi=0$ 时所有相量同向，$\xi=\pi/4$ 时围成闭合八边形。实际强度还要乘单条带的 $\sinc^2$ 包络，不能把相量合成的主峰位置直接当作全部花样的唯一最大值。$\alpha=0$ 时各条带首尾相接且同相，实际退化为总宽 $2Na$ 的单个矩形孔径，而非缝间含不透光间隔的光栅。
+对 $2N\ge2$，上述对称条件也是必要的。令 $M=2N$、$\varphi=kd\alpha a$，结构因子展开为 $G(\xi)=M+2\sum_{j=1}^{M-1}(M-j)\cos(j\xi)$。要求 $G(\varphi-u)=G(\varphi+u)$ 对所有 $u$ 成立，正弦级数的每个系数必须为零；其中 $j=1$ 的系数非零，便有 $\sin\varphi=0$，即 $\varphi=\pi\ell$。公共包络仅在离散点为零，不改变这一整体对称条件。
 \end{advsolution}
 
 \subsection{偏振密度矩阵}
@@ -591,20 +614,23 @@ $\delta=\pi$ 为半波片，$\delta=\pi/2$ 为四分之一波片。
 \end{advtheorem}
 
 \noindent\textit{证明。}
-从零场准静态建立电场，单位体积外界所做功为
+从零场准静态建立电场，电场能密度的增量为
+$\dd u=\vect E\cdot\dd\vect D$。若 $u$ 是状态函数，定义电共能
+$u^*(\vect E)=\vect E\cdot\vect D-u$，则
 \[
- u(\vect E)=\int_{\vect 0}^{\vect E}\vect D(\vect E')\cdot\dd\vect E'.
+ \dd u^*=\vect D\cdot\dd\vect E,\qquad
+ D_i=\frac{\partial u^*}{\partial E_i}.
 \]
-若 $\vect D=\boldsymbol\varepsilon\vect E$ 且能量与建立路径无关，
-则 $D_i=\partial u/\partial E_i$。所以
+因此二阶偏导可交换给出
 \[
  \varepsilon_{ij}=\frac{\partial D_i}{\partial E_j}
- =\frac{\partial^2u}{\partial E_j\partial E_i}
- =\frac{\partial^2u}{\partial E_i\partial E_j}
+ =\frac{\partial^2u^*}{\partial E_j\partial E_i}
+ =\frac{\partial^2u^*}{\partial E_i\partial E_j}
  =\varepsilon_{ji}.
 \]
-若存在吸收，频域介电张量可为复数；正确条件改为互易性和 Hermitian/反 Hermitian 部分分别控制储能与耗散，
-不能简单照搬实对称结论。
+对这种线性介质才进一步有 $u=u^*=\tfrac12\vect E\cdot\vect D$。
+若存在吸收，频域介电张量可为复数；互易性与无耗散是不同条件。
+反 Hermitian 部分决定单色场的平均吸收，色散介质的储能还涉及介电响应的频率导数，不能简单照搬上述实对称、无色散结论。
 
 实对称介电张量可正交对角化为
 $\operatorname{diag}(\varepsilon_x,\varepsilon_y,\varepsilon_z)$。
@@ -630,6 +656,8 @@ $p_i$ 满足
  +\frac{r_z^2}{v_r^{-2}-v_z^{-2}}=0}.
 \]
 \end{advtheorem}
+
+上述分式须先乘去分母再按连续极限解释。相速度的完整多项式为 $\sum_i p_i^2\prod_{j\ne i}(v_p^2-v_j^2)=0$；沿主轴或出现相等本征值时，不能在分式形式中直接约去零因子而丢失偏振支。单轴情形可因式分解为 $[v_p^2-v_o^2][v_p^2-v_o^2\cos^2\theta-v_e^2\sin^2\theta]=0$，两支都须保留。射线速度的对偶分式亦须作相同处理。
 
 \noindent\textit{证明。}
 对 $\e^{\ii(\vect k\cdot\vect r-\omega t)}$ 代入 Maxwell 方程，

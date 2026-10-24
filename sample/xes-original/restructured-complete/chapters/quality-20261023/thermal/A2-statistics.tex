@@ -1,0 +1,142 @@
+% Editable statistical mechanics figures and the quantitative Bose heat curve.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\AQMicrocanonical}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$q$};\draw[->](0,-1.7)--(0,1.7)node[above]{$p$};
+ \draw[DeepBlue,thick](0,0)ellipse(2 and 1.2);\draw[DeepBlue,thick](0,0)ellipse(1.7 and 1);\node[right]at(3,1){能壳上的相空间体积 $\omega$};
+}{只在给定能壳上归一化概率密度；壳外不属于本次熵极值问题。}{advA2:quality:micro-q}}
+\newcommand{\AAMicrocanonical}{\ThermalFigure{
+ \foreach\x in {0,1,2,3}{\draw[fill=DeepBlue!12](\x,0)rectangle(\x+.8,1.2);}
+ \foreach\x/\h in {6/.4,7/2,8/1.6,9/.8}{\draw[fill=TextGray!15](\x,0)rectangle(\x+.8,\h);}
+ \node[below]at(1.9,-.4){等体积小胞：均匀密度};\node[below]at(7.9,-.4){同一归一化：非均匀密度};
+}{把同一能壳分成等体积小胞，两组柱面积相同，仅分布不同。}{advA2:quality:micro-a}
+图~\ref{advA2:quality:micro-a}比较的是同一能壳和同一测度下的密度；若改变能壳体积，就不是同一个极值问题。相对熵非负可由 $x\ln x-x+1\ge0$ 对均匀参考测度积分得到，等号要求密度比几乎处处等于1，因而也给出最大值的唯一性。
+}
+\newcommand{\AQGrand}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(4,2);\node at(2,1){系统，$V$ 固定};\node[draw](R)at(8,1){巨大热、粒子库 $T,\mu$};
+ \draw[<->,DeepBlue,thick](4,1.5)--(6,1.5)node[midway,above]{能量};\draw[<->,thick](4,.5)--(6,.5)node[midway,below]{粒子};
+}{巨正则体系允许能量和粒子数涨落，但体积作为外控参数固定。}{advA2:quality:grand-q}}
+\newcommand{\AAGrand}{\ThermalFigure{
+ \node[draw](X)at(4,1){$\ln\Xi(\mu,V,T)$};\node[draw](N)at(0,0){$\partial_\mu\ln\Xi$};\node[draw](P)at(4,-1){$\partial_V\ln\Xi$};\node[draw](S)at(8,0){$\partial_T\ln\Xi$};
+ \draw[->](X)--(N);\draw[->](X)--(P);\draw[->](X)--(S);\node[above]at(4,2){每次偏导都须固定其余自然变量};
+}{粒子数、压强、熵来自同一巨配分函数的不同参数响应。}{advA2:quality:grand-a}
+图~\ref{advA2:quality:grand-a}中压强的一般公式是 $p=kT(\partial\ln\Xi/\partial V)_{T,\mu}$。只有均匀、广延的体相体系，忽略边界修正并满足 $\Omega=-pV$ 时，才可进一步写成 $p=(kT/V)\ln\Xi$。固定逸度求温度导数与固定化学势求导不同，因为 $z=e^{\beta\mu}$ 本身含温度。
+}
+\newcommand{\AQDensityStates}{\ThermalFigure{
+ \draw[->](-2,0)--(2,0)node[right]{$p$};\draw[very thick](-1.2,0)--(1.2,0);\node[below]at(0,-.5){一维动量区间};
+ \begin{scope}[shift={(5,0)}]\draw[thick](0,0)circle(1.3);\draw[DeepBlue](0,0)circle(1.1);\node[below]at(0,-1.7){二维动量圆壳};\end{scope}
+ \begin{scope}[shift={(10,0)}]\draw[thick](0,0)circle(1.3);\draw[dashed](0,0)ellipse(1.3 and .4);\draw[->](0,0)--(45:1.3)node[right]{$p$};\node[below]at(0,-1.7){三维动量球壳};\end{scope}
+}{先数能量不超过给定值的动量态，再由壳体积求能量态密度。}{advA2:quality:dos-q}}
+\newcommand{\AADensityStates}{\ThermalFigure{
+ \draw[->](0,0)--(4,0)node[right]{$\varepsilon$};\draw[->](0,0)--(0,3)node[above]{$g$};
+ \draw[DeepBlue,domain=.25:3.5,samples=60]plot(\x,{1/sqrt(\x)});\draw[thick](.25,1)--(3.5,1);\draw[TextGray,domain=.25:3.5,samples=60]plot(\x,{sqrt(\x)});
+ \node[right,DeepBlue]at(3.5,.53){$d=1$};\node[right]at(3.5,1){$d=2$};\node[right,TextGray]at(3.5,1.87){$d=3$};
+ \node[above]at(2,3){非相对论：指数 $d/2-1$};
+ \begin{scope}[shift={(7,0)}]\draw[->](0,0)--(4,0)node[right]{$\varepsilon$};\draw[->](0,0)--(0,3)node[above]{$g$};\draw[thick](.1,.5)--(3,.5);\draw[DeepBlue](0,0)--(3,1.5);\draw[TextGray,domain=0:3,samples=60]plot(\x,{.25*\x*\x});\node[above]at(2,3){无质量：指数 $d-1$};\node[right]at(3,.5){$d=1$};\node[right,DeepBlue]at(3,1.5){$d=2$};\node[right,TextGray]at(3,2.25){$d=3$};\end{scope}
+}{两种色散均按 $d=1,2,3$ 比较幂律，曲线归一化系数仅为示意。}{advA2:quality:dos-a}
+图~\ref{advA2:quality:dos-a}中的幂指数由两个因子合成：动量球壳给 $p^{d-1}\dd p$，从动量改成能量还要乘 $\dd p/\dd\varepsilon$。所以非相对论得到 $\varepsilon^{d/2-1}$，无质量粒子得到 $\varepsilon^{d-1}$；直接把球壳半径改名为能量会漏掉雅可比。
+}
+\newcommand{\AQFreePartition}{\ThermalFigure{
+ \draw[->](0,0)--(4,0)node[right]{$p$};\draw[->](0,0)--(0,3)node[above]{$\varepsilon$};\draw[DeepBlue,thick,domain=0:3,samples=50]plot(\x,{.25*\x*\x});\node[right]at(4,1.5){$p^2/(2m)$};
+ \begin{scope}[shift={(7,0)}]\draw[->](0,0)--(4,0)node[right]{$p$};\draw[->](0,0)--(0,3)node[above]{$\varepsilon$};\draw[DeepBlue,thick](0,0)--(3,2.4);\node[right]at(3,2.4){$pc$};\end{scope}
+}{两种单粒子色散关系；三维空间和统计权重保持相同。}{advA2:quality:free-q}}
+\newcommand{\AAFreePartition}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$\beta\varepsilon$};\draw[->](0,0)--(0,3)node[above]{积分权重};
+ \draw[DeepBlue,thick,domain=.001:5.5,samples=90]plot(\x,{3*sqrt(\x)*exp(-\x)});
+ \draw[thick,domain=0:5.5,samples=90]plot(\x,{2*\x*\x*exp(-\x)});
+ \node[right,align=left]at(6.5,1.6){非相对论：$\varepsilon^{1/2}e^{-\beta\varepsilon}$\\无质量：$\varepsilon^2e^{-\beta\varepsilon}$};
+}{配分积分把态密度与玻尔兹曼权重相乘，能量平均再多乘一因子 $\varepsilon$。}{advA2:quality:free-a}
+图~\ref{advA2:quality:free-a}中两权重的幂次不同。令 $u=\beta\varepsilon$ 后，积分的温度依赖全部提出为 $T^{3/2}$ 或 $T^3$，而无量纲积分为常数；对 $\ln z_1$ 求温度或 $\beta$ 导数便得到对应均能。对这里的固定粒子数模型，两者均有 $pV=NkT$。
+}
+\newcommand{\AQClassicalEntropy}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(5,2);\foreach\x/\y in {1/.6,2.7/1.4,4/.5}{\fill[DeepBlue](\x,\y)circle(3pt);}
+ \draw[<->,thick](1,.9)..controls(1.8,2.4)and(2.8,2.4)..(2.7,1.7);\node[right]at(6,1){交换全同粒子的标号};
+}{同一物理构形可被不同粒子标号重复记录，经典全同粒子配分函数须处理这一重复。}{advA2:quality:classical-s-q}}
+\newcommand{\AAClassicalEntropy}{\ThermalFigure{
+ \node[draw,align=center](L)at(2,1){三粒子标号的六种排列\\$123,132,213,231,312,321$};\node[draw](R)at(9,1){一个无标号构形};\draw[->,thick](L)--node[above]{除以 $3!$}(R);
+}{$N!$ 修正将标号重复还原为物理态计数，而不是删除真实可区分的构型。}{advA2:quality:classical-s-a}
+图~\ref{advA2:quality:classical-s-a}解释 $1/N!$ 的来源。用斯特林公式 $\ln N!\simeq N\ln N-N$ 后，$S$ 才具有热力学极限下的广延性；有限 $N$ 仍有次广延修正。展开成 $\ln T$、$\ln(V/N)$ 的写法只是选定单位后的缩写，严谨的量纲检查应使用完整的无量纲组合 $V/(N\lambda_T^3)$。
+}
+\newcommand{\AQOscillators}{\ThermalFigure{
+ \foreach\s/\i in {0/1,4/2,8/N}{\begin{scope}[shift={(\s,0)}]\draw[thick](0,0)--(0,1.2);\draw[decorate,decoration={coil,segment length=2mm,amplitude=1mm},thick](0,.6)--(1.7,.6);\draw[thick](1.7,.1)rectangle(2.5,1.1);\node at(2.1,.6){$\i$};\end{scope}}
+ \node[above]at(5,2){固定在不同位置、彼此独立的振子，频率均为 $\omega$};
+}{振子由不同位置标识，统计计数不能照搬自由全同粒子的 $1/N!$。}{advA2:quality:osc-q}}
+\newcommand{\AAOscillators}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$q$};\draw[->](0,-1.8)--(0,1.8)node[above]{$p$};\draw[DeepBlue,thick](0,0)ellipse(2 and 1.2);
+ \node[right,align=left]at(3,1){$H=p^2/(2m)+m\omega^2q^2/2$\\等能线为椭圆\\两个独立二次项各贡献 $kT/2$};
+}{相空间高斯积分在 $q,p$ 两方向因子化，再对独立振子取乘积。}{advA2:quality:osc-a}
+图~\ref{advA2:quality:osc-a}中的椭圆不是位置空间轨道，而是单振子的相空间等能线。两维高斯积分分别产生 $T^{1/2}$，故 $z\propto T$；$N$ 个有固定标识的位置对应 $Z=z^N$，而不是再除以 $N!$。
+}
+\newcommand{\AQRotors}{\ThermalFigure{
+ \draw[fill=DeepBlue!10,thick](0,0)ellipse(1.8 and 1);\foreach\x/\y/\lab in {3/0/1,0/2/2,-1.8/-1.5/3}{\draw[->,thick](0,0)--(\x,\y)node[right]{$I_{\lab}$ 主轴};}
+ \node[right]at(4.5,1){非线性刚体，三个主惯量均非零};
+}{主轴是固定于刚体的坐标方向，取向还需用整个旋转群计数。}{advA2:quality:rotor-q}}
+\newcommand{\AARotors}{\ThermalFigure{
+ \draw[thick](0,0)ellipse(2 and 1);\draw[dashed](0,0)ellipse(2 and .35);\draw[->](0,0)--(3,0)node[right]{$L_1$};\draw[->](0,0)--(0,2)node[above]{$L_2$};\draw[->](0,0)--(-1.5,-1.6)node[left]{$L_3$};
+ \node[right,align=left]at(4,1){$H=\sum_iL_i^2/(2I_i)$\\角动量积分给 $T^{3/2}\sqrt{I_1I_2I_3}$\\取向体积为 $8\pi^2/\sigma$};
+}{角动量空间等能面为椭球，取向对称数另外消除同一取向的重复。}{advA2:quality:rotor-a}
+图~\ref{advA2:quality:rotor-a}中三个主轴二次项各独立贡献一个高斯积分。取向对称数 $\sigma$ 处理分子自身的旋转等价，$N!$ 则处理不同全同分子交换，两者不是同一种重复，不能相互替代。线性分子的轴向惯量为零，必须改用两个转动自由度的模型。
+}
+\newcommand{\AQDipoleStatistics}{\ThermalFigure{
+ \draw[->,thick](0,0)--(0,3)node[above]{$\vect E$};\draw[->,DeepBlue,thick](0,0)--(2,1.7)node[right]{$\vect d$};\draw(0,1)arc(90:40.4:1)node[right]{$\theta$};\node[right]at(4,1.5){只计取向能 $-dE\cos\theta$};
+}{偶极取向相对外场的极角为 $\theta$，方位角仍需积分。}{advA2:quality:dip-stat-q}}
+\newcommand{\AADipoleStatistics}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.5);\draw[DeepBlue,thick](-1.2,.9)--(1.2,.9);\draw[->](0,0)--(1.2,.9);\draw[->](0,0)--(0,2)node[above]{$\vect E$};
+ \node[right,align=left]at(3,1){取向带测度 $\dd\Omega=2\pi\sin\theta\dd\theta$\\令 $u=\cos\theta$，积分上下限为 $-1,1$};
+}{取向球上的纬带面积与玻尔兹曼权重相乘；角度并不是均匀分布在 $[0,\pi]$。}{advA2:quality:dip-stat-a}
+图~\ref{advA2:quality:dip-stat-a}中的 $\sin\theta$ 来自球面面积元，不能漏掉。弱场展开时球面对称使 $\langle\cos\theta\rangle_0=0$、$\langle\cos^2\theta\rangle_0=1/3$，直接给出线性响应中的 $1/3$，也是朗之万函数展开的独立核验。
+}
+\newcommand{\AQQuantumDistributions}{\ThermalFigure{
+ \foreach\s/\lab in {0/费米态,6/玻色态}{\begin{scope}[shift={(\s,0)}]\draw[thick](-1,0)--(2,0);\node[above]at(.5,.7){能级 $\varepsilon_i$，\lab};\end{scope}}
+ \node[below]at(.5,-.6){占据数只能为 $0,1$};\node[below]at(6.5,-.6){占据数可为 $0,1,2,\ldots$};
+}{两种统计的区别先体现在同一个单粒子态允许多少粒子占据。}{advA2:quality:quantum-q}}
+\newcommand{\AAQuantumDistributions}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$x=(\varepsilon-\mu)/(kT)$};\draw[->](0,0)--(0,4)node[above]{$\langle n\rangle$};
+ \draw[DeepBlue,thick,domain=0:4.5,samples=70]plot(\x,{1/(exp(\x)+1)});
+ \draw[thick,domain=.25:4.5,samples=100]plot(\x,{1/(exp(\x)-1)});
+ \draw[dashed,domain=0:4.5,samples=70]plot(\x,{exp(-\x)});\node[right,align=left]at(6,2){上：玻色\\中：经典极限 $e^{-x}$\\下：费米（图中 $x>0$）};
+}{同一能级的平均占据；两种量子分布在 $x\gg1$ 时趋于同一经典尾部。}{advA2:quality:quantum-a}
+图~\ref{advA2:quality:quantum-a}中玻色支仅在 $x>0$ 有有限正占据。对有限系统的单基态几何级数，严格收敛要求 $\mu<\varepsilon_0$；热力学极限中的凝聚态需单独处理，才可说 $\mu$ 从下方趋于基态能。费米支则自动限制每个态的占据不超过1。
+}
+\newcommand{\AQFermiCapacity}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$\varepsilon$};\draw[->](0,0)--(0,2.5)node[above]{$f$};\draw[thick](0,2)--(3,2)--(3,0)--(5.5,0);\node[below]at(3,0){$\varepsilon_F$};\node[above]at(3,2.8){$T=0$ 的填充基态};
+}{定粒子数费米气体的零温参考态；满占据以下粒子不能都独立获得经典热激发。}{advA2:quality:fermi-c-q}}
+\newcommand{\AAFermiCapacity}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$\varepsilon$};\draw[->](0,0)--(0,2.5)node[above]{$f$};\draw[dashed](0,2)--(3,2)--(3,0)--(5.5,0);
+ \draw[DeepBlue,thick,domain=0:5.7,samples=100]plot(\x,{2/(exp(3*(\x-3))+1)});\draw[<->](2.3,2.7)--node[above]{$O(kT)$}(3.7,2.7);\node[below]at(3,0){$\mu\simeq\varepsilon_F$};
+}{只有费米面附近的窄能窗参与低温热激发，窗外分布几乎不变。}{advA2:quality:fermi-c-a}
+图~\ref{advA2:quality:fermi-c-a}中的平滑阶跃还须保持总粒子数不变。索末菲展开分别给出
+\[
+ 0=g(\varepsilon_F)\delta\mu+\frac{\pi^2}{6}(kT)^2g'(\varepsilon_F)+O(T^4),
+\]
+再对能量积分展开并消去 $\delta\mu$，只剩 $\delta U=(\pi^2/6)g(\varepsilon_F)(kT)^2$。这样明确了定 $N$ 条件的作用；若固定化学势，不能不加检查地使用同一展开式。
+}
+\newcommand{\AQBoseCapacity}{\ThermalFigure{
+ \draw[thick](0,0)--(5,0);\draw[thick](0,1)--(5,1) (0,1.8)--(5,1.8) (0,2.4)--(5,2.4);
+ \foreach\x in {.5,1,1.5,2,2.5}{\fill[DeepBlue](\x,0)circle(2pt);}\foreach\x/\y in {3/1,4/1.8,2.8/2.4}{\fill(\x,\y)circle(2pt);}
+ \node[right]at(6,0){基态 $N_0$};\node[right]at(6,1.8){激发态 $N-N_0$};
+}{三维均匀理想玻色气体，将基态占据与激发态连续谱分开。}{advA2:quality:bose-c-q}}
+\newcommand{\AABoseCapacity}{\ThermalFigure{
+ \draw[->](0,0)--(5.2,0)node[right]{$T/T_c$};\draw[->](0,0)--(0,2.5)node[above]{$C_V/(Nk)$};
+ \draw[DeepBlue,thick,domain=.001:1,samples=80]plot({1.5*\x},{1.92567168*\x^(1.5)});
+ \draw[DeepBlue,thick]plot coordinates{(1.500000,1.92567168)(1.515000,1.91801858)(1.537500,1.90697113)(1.575000,1.88963169)(1.650000,1.85850730)(1.800000,1.80760611)(2.025000,1.75118594)(2.250000,1.71034420)(2.625000,1.66310220)(3.000000,1.63138079)(3.750000,1.59211964)(4.500000,1.56923444)};
+ \draw[dashed](1.5,0)--(1.5,2.1);\node[below]at(1.5,0){$1$};\node[below]at(3,0){$2$};\node[below]at(4.5,0){$3$};\draw[dashed](0,1.5)--(5,1.5)node[right]{$3/2$};
+}{Bose积分给出的定粒子数热容；上支数值解粒子数方程，未用经验指数替代。}{advA2:quality:bose-c-a}
+图~\ref{advA2:quality:bose-c-a}中的临界以上曲线须同时考虑逸度随温度改变。定义 $g_s(z)=\operatorname{Li}_s(z)$，在 $T>T_c$ 有
+\[
+ \frac NV=\lambda_T^{-3}g_{3/2}(z),\qquad
+ \frac{C_V}{Nk}=\frac{15}{4}\frac{g_{5/2}(z)}{g_{3/2}(z)}
+ -\frac94\frac{g_{3/2}(z)}{g_{1/2}(z)}.
+\]
+定 $N,V$ 求导时，利用 $z\,g_s'(z)=g_{s-1}(z)$ 消去 $\dd z/\dd T$，便得到第二项。$z\to1^-$ 时 $g_{1/2}$ 发散，第二项趋零，与下支连续相接；$z\to0$ 时各 $g_s\simeq z$，回到经典极限 $3/2$。
+}
+\newcommand{\AQQuantumVirial}{\ThermalFigure{
+ \foreach\x in {0,3,6,9}{\fill[DeepBlue](\x,0)circle(2pt);\draw[dashed](\x,0)circle(.7);}
+ \draw[<->](0,-1.3)--node[below]{平均间距 $n^{-1/3}$}(3,-1.3);\draw[<->](-.7,1.2)--node[above]{$\lambda_T$}(.7,1.2);
+}{热波长与平均间距决定占据稀疏程度，内禀简并度 $g$ 还会分摊每态粒子数。}{advA2:quality:virial-q}}
+\newcommand{\AAQuantumVirial}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$x=n\lambda_T^3/g$};\draw[->](0,0)--(0,3.5)node[above]{$p/(nkT)$};\node[left]at(0,1.8){$1$};
+ \draw[dashed](0,1.8)--(4.5,1.8);\draw[DeepBlue,thick](0,1.8)--(4.5,2.8)node[right]{费米};\draw[thick](0,1.8)--(4.5,.8)node[right]{玻色};
+ \node[above]at(3,3.6){只示意 $x\ll1$ 的一阶斜率，纵向修正已放大};
+}{交换统计使弱简并压强分别高于或低于经典值，但不是粒子间真实势力。}{advA2:quality:virial-a}
+图~\ref{advA2:quality:virial-a}中的两直线只在原点附近表示第二维里修正。将逸度展开反解成密度展开后再比较 $p$，才能确定修正系数；若直接把 $z$ 当作 $n\lambda_T^3/g$，会漏掉同阶的反解项，并把正确的 $2^{-5/2}$ 系数算错。
+}

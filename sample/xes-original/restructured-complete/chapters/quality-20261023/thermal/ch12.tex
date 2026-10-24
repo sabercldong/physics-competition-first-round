@@ -1,0 +1,150 @@
+% Editable TikZ: boundary conditions, propagation and energy transport.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThQSelfWeight}{\ThermalFigure{
+ \draw[very thick](-1,3)--(1,3);\draw[fill=DeepBlue!12,thick](-.25,3)rectangle(.25,0);
+ \draw[<->](1,0)--node[right]{$L$}(1,3);\draw[->](2.5,2.7)--(2.5,1.5)node[right]{$g$};
+ \node[right,align=left]at(3.5,1.7){均匀杆：$A,\rho,Y$\\上端固定，下端自由};
+}{自重加载的竖直细杆；下端自由意味着该处轴向张力为零。}{ch12:quality:self-weight-q}}
+\newcommand{\ThStringBase}[1]{
+ \draw[very thick](0,-.7)--(0,.7) (6,-.7)--(6,.7);\draw[thick](0,0)--(6,0);
+ \draw[<->](0,-1)--node[below]{$L$}(6,-1);\node[above]at(3,.8){均匀弦，线密度 $\mu$};#1}
+\newcommand{\ThQStringFrequency}{\ThermalFigure{\ThStringBase{\draw[->](0,0)--(-1,0)node[left]{$\mathcal T$};\draw[->](6,0)--(7,0)node[right]{$\mathcal T$};}}{两端固定、长度与线密度保持不变，改变张力而不改变边界条件。}{ch12:quality:string-frequency-q}}
+\newcommand{\ThAStringFrequency}{\ThermalFigure{\ThStringBase{
+ \draw[DeepBlue,thick,domain=0:6,samples=70]plot(\x,{.65*sin(30*\x)});
+ \node[above]at(3,1.5){基模：两端为节点，中间为一个波腹};
+}}{基模中弦长恒为半个波长，升频来自波速变化。}{ch12:quality:string-frequency-a}
+图~\ref{ch12:quality:string-frequency-a}的两端节点固定了 $\lambda_1=2L$。因此 $f_1=c/(2L)$，而 $c=\sqrt{\mathcal T/\mu}$；频率翻倍要求波速翻倍、张力变为四倍。不能误把增加张力等同于基模变成二次谐波。
+}
+\newcommand{\ThQPulse}{\ThermalFigure{
+ \draw[->](-4,0)--(4,0)node[right]{$x$};\draw[->](0,-.2)--(0,2)node[above]{$y$};
+ \draw[DeepBlue,thick,domain=-3.8:3.8,samples=90]plot(\x,{1.4*exp(-(\x)*(\x))});
+ \node[right]at(4,1.3){$t=0:\ y=F(x),\ y_t=0$};
+}{局域初始弦形，释放时每个质元的横向速度都为零。}{ch12:quality:pulse-q}}
+\newcommand{\ThAPulse}{\ThermalFigure{
+ \draw[->](-5,0)--(5,0)node[right]{$x$};
+ \draw[DeepBlue,thick,domain=-4.8:4.8,samples=100]plot(\x,{.7*exp(-(\x-2.2)*(\x-2.2))+.7*exp(-(\x+2.2)*(\x+2.2))});
+ \draw[->,thick](-2.2,1.1)--(-3.4,1.1)node[left]{$c$};\draw[->,thick](2.2,1.1)--(3.4,1.1)node[right]{$c$};
+ \node[below]at(-2.2,-.3){$F(x+ct)/2$};\node[below]at(2.2,-.3){$F(x-ct)/2$};
+}{两半幅行波相背离开；相遇重叠时仍按位移代数相加。}{ch12:quality:pulse-a}
+图~\ref{ch12:quality:pulse-a}的左右两列波在 $t=0$ 重合，位移相加而速度相消。释放后两列行波各自同时具有动能与势能，所以能量核查应与初态的纯势能比较，不能只把振幅平方简单相加。
+}
+\newcommand{\ThQBeats}{\ThermalFigure{
+ \foreach \x/\lab in {0/标准音叉,4/待测音叉}{\draw[thick](\x,2)--(\x,1)arc(180:360:.5)--(\x+1,2);\draw[thick](\x+.5,.5)--(\x+.5,-.2);\node[below]at(\x+.5,-.4){\lab};}
+ \node[above]at(.5,2.4){$440\,\mathrm{Hz}$};\node[above]at(4.5,2.4){频率 $f$};
+ \node[right,align=left]at(6,1){初始拍频 $3\,\mathrm{Hz}$\\加蜡后拍频 $1\,\mathrm{Hz}$};
+}{两音叉共同发声；加蜡只改变待测音叉的有效振动质量。}{ch12:quality:beats-q}}
+\newcommand{\ThABeats}{\ThermalFigure{
+ \draw[->](0,0)--(8,0)node[right]{$f/\mathrm{Hz}$};
+ \foreach\x/\lab in {1/437,4/440,7/443}{\draw(\x,-.15)--(\x,.15)node[above]{$\lab$};}
+ \draw[->,DeepBlue,thick](7,-.7)--(5,-.7)node[midway,below]{趋近标准};
+ \draw[->,thick](1,-.7)--(0,-.7)node[below]{远离};
+}{加蜡使待测频率下降，只有高频候选会先靠近 $440\,\mathrm{Hz}$。}{ch12:quality:beats-a}
+图~\ref{ch12:quality:beats-a}保留初始的两个频率候选，再沿“加质量使频率降低”的方向移动。低频候选向左会使频差增大，与拍频下降矛盾；因此可排除它，不能只凭 $|f-440|=3$ 直接选正号。
+}
+\newcommand{\ThQDoppler}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(2,1);\foreach\x in {.4,1.6}{\draw(\x,-.15)circle(.2);}
+ \draw[->,thick](2.2,.5)--(4.2,.5)node[midway,above]{$v_s=20\,\mathrm{m/s}$};
+ \fill(7.5,.5)circle(3pt)node[above]{静止观察者};\node[below]at(1,-.7){汽笛 $f_0=600\,\mathrm{Hz}$};
+ \node[below]at(6,-.7){空气静止，$c=340\,\mathrm{m/s}$};
+}{列车接近观察者；通过后驶离，声源的本征周期保持不变。}{ch12:quality:doppler-q}}
+\newcommand{\ThADoppler}{\ThermalFigure{
+ \draw[->](-1,0)--(7,0)node[right]{$x$};\fill(0,0)circle(2pt)node[below]{$S_0$};\fill(1.2,0)circle(2pt)node[below]{$S_1$};
+ \draw[<->](0,-.8)--node[below]{$v_sT_s$}(1.2,-.8);\draw[<->](0,1.2)--node[above]{$cT_s$}(5.5,1.2);
+ \draw[DeepBlue,thick](5.5,-.4)--(5.5,.7);\draw[DeepBlue,thick](1.2,-.4)--(1.2,.7);
+ \draw[<->](1.2,.5)--node[above]{$\lambda_{\rm ahead}$}(5.5,.5);
+}{相隔一个本征周期发射的两波面：前方间距等于声波前进量减去声源前进量。}{ch12:quality:doppler-a}
+图~\ref{ch12:quality:doppler-a}取第一波面发出后经过 $T_s=1/f_0$ 的时刻，此时第二波面从 $S_1$ 刚发出。前方波长为 $(c-v_s)T_s$，后方则为 $(c+v_s)T_s$；静止观察者再用当地声速除以波长求频率，所以两种情形的分母符号不同。
+}
+\newcommand{\ThQSoundSources}{\ThermalFigure{
+ \foreach\x in {0,2,4,6}{\foreach\y in {0,1.5}{\draw[thick](\x,\y)rectangle(\x+.7,\y+.7);\draw(\x+.35,\y+.35)circle(.2);}}
+ \fill[DeepBlue](9,1.1)circle(3pt)node[above]{$P$};\node[right]at(10,1.1){相位互不相关};
+ \node[below]at(3.5,-.5){每台单独在 $P$ 产生 $70\,\mathrm{dB}$};
+}{八台独立声源在同一观察点叠加，给定的是各自单独的声强级。}{ch12:quality:sources-q}}
+\newcommand{\ThASoundSources}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(8,1);\foreach\x in {1,...,7}{\draw(\x,0)--(\x,1);}
+ \node[above]at(4,1.4){$I_{\rm tot}=I_1+\cdots+I_8$};\node[below]at(4,-.4){每格为单台声源的平均强度 $I_1$};
+}{互不相干时相加强度；强度相加完成后再取对数。}{ch12:quality:sources-a}
+图~\ref{ch12:quality:sources-a}中的八格表示强度的八份相加。相位互不相关使长期平均交叉项为零，才有 $I_{\rm tot}=8I_1$；对数刻度上增加的是 $10\log_{10}8$，不能把八个分贝数相加。
+}
+\newcommand{\ThSoundDistanceBase}[1]{
+ \fill(0,0)circle(3pt)node[above]{甲};\fill(2,0)circle(2pt)node[above]{$M$};\fill[DeepBlue](4,0)circle(3pt)node[right]{$P$};
+ \fill(4,2.2)circle(3pt)node[above]{乙};\draw[<->](0,-.6)--node[below]{$2\,\mathrm m$}(2,-.6);
+ \draw[<->](0,-1.3)--node[below]{$4\,\mathrm m$}(4,-1.3);\draw[dashed](4,.2)--(4,2);#1}
+\newcommand{\ThQSoundDistance}{\ThermalFigure{\ThSoundDistanceBase{
+ \node[right]at(5.5,1.3){甲在 $M$ 单独：$80\,\mathrm{dB}$};\node[right]at(5.5,.2){乙在 $P$ 单独：$70\,\mathrm{dB}$};
+}}{甲的测量点 $M$ 与待求观察点 $P$ 不同，乙的给定数据已经对应 $P$。}{ch12:quality:distance-q}}
+\newcommand{\ThASoundDistance}{\ThermalFigure{\ThSoundDistanceBase{
+ \draw[DeepBlue,dashed](0,0)circle(2);\draw[->,DeepBlue](2,.6)--(3.5,.6);
+ \node[right]at(5.5,.7){先把甲换算到 $P$，再加乙的强度};
+}}{同一声源传播距离加倍，球面面积变为四倍。}{ch12:quality:distance-a}
+图~\ref{ch12:quality:distance-a}中甲的功率穿过以它为中心的球面。由 $4\pi r^2I$ 不变，先将 $M$ 点强度除以四得到 $P$ 点的甲源贡献；随后与乙在同一点的贡献相加，避免把不同位置的分贝数据直接相加。
+}
+\newcommand{\ThQDeepWave}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$k$};\draw[->](0,0)--(0,3.2)node[above]{$\omega$};
+ \draw[DeepBlue,thick,domain=.05:5.5,samples=80]plot(\x,{1.1*sqrt(\x)});\node[right]at(6,2){$\omega^2=gk$};
+}{深水、重力主导范围内的正频率色散曲线。}{ch12:quality:deep-q}}
+\newcommand{\ThADeepWave}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$k$};\draw[->](0,0)--(0,3.5)node[above]{$\omega$};
+ \draw[DeepBlue,thick,domain=.05:5.5,samples=80]plot(\x,{1.1*sqrt(\x)});
+ \draw[thick](0,0)--(4.5,2.858);\draw[TextGray,thick](.3,1.048)--(5.4,2.668);
+ \fill(3,1.905)circle(2pt)node[above left]{$(k_0,\omega_0)$};
+ \node[right,align=left]at(6,1){割线斜率：$v_p=\omega_0/k_0$\\切线斜率：$v_g=\dd\omega/\dd k$};
+}{相速度取原点割线斜率，群速度取同一点的切线斜率。}{ch12:quality:deep-a}
+图~\ref{ch12:quality:deep-a}中根号曲线的切线比原点割线平缓，直接反映 $v_g<v_p$。对 $\omega=\sqrt{gk}$ 求导得到恰好一半的斜率，因此波峰穿过以较慢群速度运动的包络；两种速度不能由同一个 $\omega/k$ 重复计算。
+}
+\newcommand{\ThCutoffBase}[1]{
+ \draw[->](0,0)--(4.5,0)node[right]{$c_0k/\omega_c$};\draw[->](0,0)--(0,4)node[above]{$\omega/\omega_c$};
+ \draw[DeepBlue,thick,domain=0:3.6,samples=80]plot(\x,{sqrt(1+\x^2)});
+ \node[left]at(0,1){$1$};\fill(1.732,2)circle(2pt)node[above left]{$\omega=2\omega_c$};#1}
+\newcommand{\ThQCutoff}{\ThermalFigure{\ThCutoffBase{}}{色散曲线在 $k=0$ 有非零截止频率；采用正波数、正频率支。}{ch12:quality:cutoff-q}}
+\newcommand{\ThACutoff}{\ThermalFigure{\ThCutoffBase{
+ \draw[thick](0,0)--(3,3.464);\draw[TextGray,thick](.4,.846)--(3.4,3.444);
+ \node[right]at(5,2){割线与切线分别给出相速度和群速度};
+}}{在同一点比较两种斜率；接近截止时割线变陡、切线变平。}{ch12:quality:cutoff-a}
+图~\ref{ch12:quality:cutoff-a}中的原点割线随 $k\to0^+$ 越来越陡，因为纵截距仍为 $\omega_c$；曲线自身的切线却逐渐水平。这解释了相速度发散而群速度趋零，两者的不同极限来自不同的几何定义。
+}
+\newcommand{\ThQClosedPipe}{\ThermalFigure{
+ \draw[thick](0,-.6)--(6,-.6) (0,.6)--(6,.6);\draw[very thick](0,-.6)--(0,.6);
+ \draw[<->](0,-1.2)--node[below]{$L=0.85\,\mathrm m$}(6,-1.2);
+ \node[above]at(0,1){闭端};\node[above]at(6,1){开口};\node[right]at(7,0){$c=340\,\mathrm{m/s}$};
+}{一端闭、一端开；边界条件应针对质元位移或压强分别说明。}{ch12:quality:closed-q}}
+\newcommand{\ThAClosedPipe}{\ThermalFigure{
+ \foreach \j/\yy in {1/3,3/1,5/-1}{\begin{scope}[shift={(0,\yy)}]
+ \draw[dashed](0,0)--(5,0);\draw[very thick](0,-.7)--(0,.7);
+ \draw[DeepBlue,thick,domain=0:5,samples=90]plot(\x,{.6*sin(\j*18*\x)});
+ \node[right]at(5.4,0){$L=\j\lambda/4$};\end{scope}}
+}{最低三个质元位移驻波：闭端为节点、开口为波腹，只出现奇数个四分之一波长。}{ch12:quality:closed-a}
+图~\ref{ch12:quality:closed-a}中开口端的位移不为零，闭端位移为零；这与压强驻波的节点、波腹恰好相反。故允许的波数满足 $kL=(2n-1)\pi/2$，不能把两端同为节点的弦公式直接搬来。
+}
+\newcommand{\ThResonanceBase}[1]{
+ \foreach \x/\y/\lab in {0/2.4/1,4/.7/2}{
+ \draw[thick](\x,0)--(\x,3.2) (\x+1,0)--(\x+1,3.2);\draw[DeepBlue,thick](\x,\y)--(\x+1,\y);
+ \fill[DeepBlue!15](\x,0)rectangle(\x+1,\y);\draw[<->](\x+1.5,\y)--node[right]{$L_{\lab}$}(\x+1.5,3.2);}
+ \node[above]at(2.5,3.8){同一音叉 $f=500\,\mathrm{Hz}$};#1}
+\newcommand{\ThQResonanceLength}{\ThermalFigure{\ThResonanceBase{}}{调节水面得到连续两次共振；长度从水面量到实际管口。}{ch12:quality:resonance-q}}
+\newcommand{\ThAResonanceLength}{\ThermalFigure{\ThResonanceBase{
+ \draw[dashed](-.2,3.5)--(1.2,3.5) (3.8,3.5)--(5.2,3.5);
+ \draw[<->](-.6,3.2)--node[left]{$e$}(-.6,3.5);\draw[<->](3.4,3.2)--node[left]{$e$}(3.4,3.5);
+}}{两次共振使用相同端部修正，等效开口均在实际管口外侧距离 $e$；图中修正间隔为辨认而放大。}{ch12:quality:resonance-a}
+图~\ref{ch12:quality:resonance-a}的两条虚线表示等效开口，所以基模满足 $L_1+e=\lambda/4$，下一允许模式满足 $L_2+e=3\lambda/4$。两式相减消去未知 $e$，先求声速，再回代求修正量；不能先假定 $e=0$。
+}
+\newcommand{\ThQStringInterface}{\ThermalFigure{
+ \draw[thick](-4,0)--(0,0);\draw[line width=2pt](0,0)--(4,0);\fill(0,0)circle(2pt);
+ \draw[->,DeepBlue](-3,1)--(-1,1)node[midway,above]{入射};\node[below]at(-2,-.3){$\mu_1$};\node[below]at(2,-.3){$\mu_2=4\mu_1$};
+ \node[above]at(0,2){两侧张力相同};
+}{两根弦在无质量结点连接，波从轻弦传播到重弦。}{ch12:quality:interface-q}}
+\newcommand{\ThAStringInterface}{\ThermalFigure{
+ \draw[thick](-4,0)--(0,0);\draw[line width=2pt](0,0)--(4,0);\draw[dashed](0,-1.3)--(0,1.8);
+ \draw[->,DeepBlue](-3,1)--(-1,1)node[midway,above]{$A_i$};\draw[<-,thick](-3,-.8)--(-1,-.8)node[midway,below]{$A_r$};
+ \draw[->,DeepBlue](1,1)--(3,1)node[midway,above]{$A_t$};
+ \node[below,align=center]at(0,-1.7){位移连续：$A_i+A_r=A_t$\\横向力连续：$Z_1(A_i-A_r)=Z_2A_t$};
+}{反射波传播方向相反，在斜率边界条件中带相反符号。}{ch12:quality:interface-a}
+图~\ref{ch12:quality:interface-a}把反射箭头指向左，因而横向力条件中出现 $A_i-A_r$，而位移条件仍是 $A_i+A_r$。求出振幅比后，透射能流还须乘阻抗比 $Z_2/Z_1$；只计算 $t^2$ 会漏掉重弦的能流权重。
+}
+\newcommand{\ThQMembrane}{\ThermalFigure{
+ \draw[thick](0,0)circle(2);\draw[DeepBlue](0,0)circle(.7);\draw[DeepBlue](0,0)circle(1.2);\draw[DeepBlue](0,0)circle(1.7);
+ \draw[->](0,0)--(2.8,0)node[right]{$r$};\draw[->,thick](.8,.8)--(1.6,1.6)node[right]{外行};
+ \node[right,align=left]at(4,0){面密度 $\mu$\\单位长度张力 $\sigma$};
+}{轴对称圆膜外行波的俯视图，波面为同心圆；环半径是传播变量。}{ch12:quality:membrane-q}}

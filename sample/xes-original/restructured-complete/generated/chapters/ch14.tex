@@ -1,3 +1,5 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,9 +8,11 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{温度、物态、理想气体与分子模型}
+\input{chapters/quality-20261023/thermal/ch14.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-eighth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-eighth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/twenty-eighth-section/}{../../../sample/xes-original/twenty-eighth-section/assets/}}
 
 % Teaching diagrams. Labels are transparent; geometry is shared where applicable.
 \newcommand{\boltzmannRayleighContext}{%
@@ -775,9 +779,13 @@ $0.9\times10^{-6}\,\si{K^{-1}}$，因此适合制作精密仪器的结构件。
 \Needspace{180pt}
 \begin{origexamplebox}{两种串联材料受热后的共同轴力}\label{ch14:ex:teaching-composite}
 两根细杆首尾牢固连接，长度为 $L_1,L_2$，截面积同为 $A$，杨氏模量为 $Y_1,Y_2$，线膨胀系数为 $\alpha_1,\alpha_2$。初温时恰好无应力地安装在两个固定支座间。现均匀升温 $\Delta T>0$，求轴力大小和两杆各自的长度变化。假定保持直线，不发生屈曲；两个外端支座固定，两杆在连接处无相对滑移，但连接点可以整体移动。
+
+\ThQComposite
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThAComposite
+
 取拉力 $F$ 为正。连接处没有额外轴向外力，静力平衡要求两杆承受同一轴力，而不是承受相同伸长。分别有
 \[
  \Delta L_i=\alpha_iL_i\Delta T+\frac{FL_i}{AY_i},\qquad i=1,2.
@@ -939,12 +947,19 @@ $\rho_2\simeq1.84\,\mathrm{g/L}$，不能把它写成精确算得 $1.784\,\mathr
 \]
 因此，质量相等的轻、重气体并不贡献相等分压。用密度反推成分之前，必须先说明给出的是哪一种比例。
 
+
+\input{chapters/quality-20261023/ch14-mixture.tex}
+
 \Needspace{180pt}
 \begin{origexamplebox}{等质量氦、氮混合物的分压与密度}\label{ch14:ex:teaching-mixture}
 质量各为 $m$ 的氦气和氮气装在同一容器中，达到温度 $T$、总压强 $p$ 的平衡态，均按理想气体处理。取摩尔质量分别为 $4$ 和 $28\,\mathrm{g/mol}$。求两者分压、混合气体平均摩尔质量及密度。
+
+\ThQMixture
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThAMixture
+
 相同质量下，物质的量之比为
 \[
  n_{\rm He}:n_{\rm N_2}=(m/4):(m/28)=7:1.
@@ -1019,9 +1034,13 @@ $\langle E_{\rm tr}\rangle=3k_BT/2$，得到
 \begin{origexamplebox}{【人体膨胀】}\label{ch14:ex:s28-19-1}
 已知人体的线膨胀系数为 $\alpha$。那么冬天时小明在室内（$25\,{}^\circ\mathrm C$）比室外
 （$0\,{}^\circ\mathrm C$）体积大多少？小明的密度膨胀系数为多少？
+
+\ThQExpansion
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAExpansion
+
 先明确模型：环境温度从 $0\,{}^\circ\mathrm C$ 变到 $25\,{}^\circ\mathrm C$，
 并不意味着真实人体各部分也改变同样的温度；人体有体温调节，不能据此算出实际体积变化。
 若按题意作理想化计算，须另外假定物体整体温度确实改变 $25\,\mathrm K$、质量不变、
@@ -1067,6 +1086,8 @@ $\boxed{\beta_\rho\simeq-3\alpha}$。负号表示升温时密度减小。
 
 （4）小明发现有的叔叔需要进入到 $60\,{}^\circ\mathrm C$ 以上的环境工作，进去之前要先吃点辣椒，
 再穿上棉被。
+
+\ThQSensation
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1107,6 +1128,8 @@ $\boxed{\beta_\rho\simeq-3\alpha}$。负号表示升温时密度减小。
 （2）使用滴定管时，小明发现液滴半天也不滴下去，请说出可能的原因。
 
 （3）老师说在烧杯中倒水时，需要“引流”。这是什么意思？
+
+\ThQMeniscus
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1136,6 +1159,8 @@ $mg$ 尚不足以克服表面张力，便会悬在管口。继续流入液体使
 细玻璃管连接着两个相同玻璃球，管壁光滑，管内有一个质量为 $m$ 的活塞，组成一个实验装置。
 当装置水平放置时，活塞恰在管中点。问竖直放置时活塞的位移 $h$ 满足什么条件？可否根据这一原理
 制作简易气温计？
+
+\ThQGasThermometer
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1170,13 +1195,17 @@ $mg$ 尚不足以克服表面张力，便会悬在管口。继续流入液体使
 因素影响。题设的“管壁光滑”正是为了排除最显著的静摩擦误差。
 \end{xesolution}
 
-\Needspace{10\baselineskip}
-\Needspace{16\baselineskip}\begin{origexamplebox}{【托里拆利实验】}\label{ch14:ex:s28-19-5}
+% FinalReviewQuestionSplit20261024 【托里拆利实验】
+\tcbset{breakable/.default=true}
+\begin{origexamplebox}{【托里拆利实验】}\label{ch14:ex:s28-19-5}
 有一水银气压计，因水银柱上的玻璃管内有微量空气，致使读数不准确。当大气压力为
 $76\,\mathrm{cmHg}$ 时，此气压计读数为 $74\,\mathrm{cm}$，此时其上空气柱长为
 $8.0\,\mathrm{cm}$。若气压计读数为 $72.0\,\mathrm{cm}$ 时，则正确的大气压力为多少？
 （不考虑温度变化）
+
+\ThQBarometer
 \end{origexamplebox}
+\tcbset{breakable/.default=false}
 
 \Needspace{6\baselineskip}\begin{xesolution}
 先写带量纲的关系 $p_{\rm atm}=\rho_{\rm Hg}gH+p_g$。
@@ -1315,14 +1344,16 @@ $P_1$：
 降到 $p_0$。
 \end{xesolution}
 
-\Needspace{11\baselineskip}
-\Needspace{16\baselineskip}\begin{origexamplebox}{【气体膨胀】}\label{ch14:ex:s28-19-8}
+% FinalReviewQuestionSplit20261024 【气体膨胀】
+\tcbset{breakable/.default=true}
+\begin{origexamplebox}{【气体膨胀】}\label{ch14:ex:s28-19-8}
 如图所示，开口向上、粗细均匀的玻璃管长 $L=100\,\mathrm{cm}$，管内有一段高
 $h=20\,\mathrm{cm}$ 的水银柱，封闭着长 $a=50\,\mathrm{cm}$ 的空气柱，大气压强
 $p_0=76\,\mathrm{cmHg}$，温度 $t_0=27\,{}^\circ\mathrm C$。求温度至少升到多高时，
 可使水银全部溢出？
 \figureNineteenEightFaithful
 \end{origexamplebox}
+\tcbset{breakable/.default=false}
 
 \Needspace{6\baselineskip}\begin{xesolution}
 这是一个“先膨胀到管口，再边溢出边变化”的过程。仅求水银柱上端刚到管口的温度还不够；水银开始
@@ -1383,6 +1414,8 @@ $T_0$。水的密度为 $\rho$，忽略毛细现象。判断两液面的移动�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAUTube
+
 图\ref{ch14:fig:closed-u}两端都封闭，水柱在弯管处连续连通。右侧升温后，若液面尚未来得及移动，其压强先增大，所以水柱被向左推：右液面下降、左液面上升。
 设两液面各移动 $x$。截面积相同保证两侧体积变化量相等，因而末态气柱长度分别为 $L-x$、$L+x$。
 由理想气体状态方程
@@ -1486,6 +1519,8 @@ $pV/(p_0V_0)$ 无量纲，故结果仍为温度。
 
 （2）把原子势能在平衡位置展开到二阶项和三阶项，求单原子在温度为 $T$ 时的振动幅度、原子链的
 形变模量和热膨胀系数。
+
+\ThQChain
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}

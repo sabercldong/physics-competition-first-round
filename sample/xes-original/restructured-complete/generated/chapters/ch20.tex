@@ -1,9 +1,12 @@
+% TheoryTikZQuality20261023
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
 \RenewDocumentEnvironment{xesolution}{+b}{%
   \par\nobreak\smallskip\nobreak\begingroup\small
   \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -12,9 +15,14 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{导体、电介质与电容器}
+\input{chapters/quality-20261023/theory-tikz/ch20-conductors.tex}
+\input{chapters/quality-20261023/theory-tikz/field-geometries.tex}
+
+\input{chapters/quality-20261023/thermal/ch20.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fourth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fourth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/thirty-fourth-section/}{../../../sample/xes-original/thirty-fourth-section/assets/}}
 \section{导体平衡、屏蔽与电荷响应}
 
 本节先用等势与电荷守恒确定导体的约束。后面的异号导体题还会用到静电势的最大值原理：无电荷区域的电势满足拉普拉斯方程，非恒定解不能在区域内部取得严格极大或极小值，极值由边界控制。这为判断导体电势与表面电荷符号提供工具；唯一性定理及电像构造将在下一节系统展开。
@@ -35,7 +43,7 @@
 
 \newcommand{\conductorFieldFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/conductor-pair.pdf}
+\resizebox{.76\linewidth}{!}{\EmTheoryConductorPair}
 \end{center}}
 
 
@@ -90,7 +98,7 @@
 
 \newcommand{\groundedSphereImageFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/grounded-sphere.pdf}
+\resizebox{.76\linewidth}{!}{\MeTheoryGroundedSphere}
 \end{center}}
 
 
@@ -232,7 +240,7 @@
 
 \newcommand{\uniformFieldSphereFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/uniform-sphere.pdf}
+\includegraphics[width=.76\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/uniform-sphere.pdf}
 \end{center}}
 
 
@@ -483,6 +491,8 @@ $\partial_t\rho=-\nabla\cdot\boldsymbol j=-\sigma\rho/\varepsilon_0$。
 \begin{origexamplebox}{【异号导体】}\label{ch20:ex:s34-3-1}
 小明使导体 $A,B$ 分别带电 $+Q,-q$，若 $Q>q$。由于二者会产生静电感应，问导体 $A$ 上是否有可能
 出现负电荷，导体 $B$ 上是否有可能出现正电荷？若 $Q=q$，结果有无变化？
+
+\ThQOppositeConductors
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -503,7 +513,11 @@ $B$ 的净电荷为负，所以它至少有一部分表面带负电；但若 $A$
   \boxed{B\text{ 表面可能出现正电荷}\quad\text{但并非必然}}.
 \]
 
+\begin{qualityfigure}
 \twoConductorPatchFigure
+\figcap{异号净电荷导体的表面电荷与局部感应。}\label{ch20:quality:analysis-01}
+\end{qualityfigure}
+图~\ref{ch20:quality:analysis-01}中，$A$ 为最高电势导体时，离开其表面的电势不增，外法向电场因而非负。$B$ 的净电荷只约束表面电荷积分，不能据此禁止图中远侧的局部正电荷斑块。
 
 当 $Q=q$ 时系统总电荷为零。只有两个导体时，$V_A>0>V_B$：$A$ 是电势最大边界，$B$ 是电势最小边界。
 最大值原理和最小值原理分别给出
@@ -520,9 +534,13 @@ $B$ 的净电荷为负，所以它至少有一部分表面带负电；但若 $A$
 小明使导体 $A,B$ 分别带电 $+Q,+q$，若 $Q>q$。由于二者会产生静电感应，问导体 $A$ 上是否有可能
 出现负电荷，导体 $B$ 上是否有可能出现负电荷？若 $Q=q$，结果有无变化？若有更多的球（比如 100 个），
 能得出什么定性结论？
+
+\ThQPositiveConductors
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
+\ThAPositiveConductors
+
 两个导体净电荷都为正，并不意味着每个表面点都一定带正电。决定局部面电荷符号的是该点外侧法向电场，
 而决定法向电场的是两个导体的电势和几何形状。
 
@@ -553,9 +571,13 @@ $B$ 的净电荷为负，所以它至少有一部分表面带负电；但若 $A$
 \begin{origexamplebox}{【凭空相吸】}\label{ch20:ex:s34-3-3}
 小明梦到两个金属球本身都不带电。由于小扰动，某一个球体内的电荷分布发生了一些变化，进而两个球互相
 静电感应、局部带电并相互吸引。醒来后小明觉得这个现象不对，却说不清哪里不对。请解释。
+
+\ThQNeutralConductors
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
+\ThANeutralConductors
+
 两个球都不带净电荷，且没有外加电荷和外场。电势函数
 \[
   \varphi(\boldsymbol r)=0
@@ -733,6 +755,8 @@ $r_1/r_2=L/R=Q/q$，所以 $Q/r_1-q/r_2=0$；球面确为零等势面。像电�
 \begin{origexamplebox}{【同性相吸】}\label{ch20:ex:s34-3-4}
 把一点电荷 $+q$ 放在距球心 $a$ 处，旁边是半径为 $R$、净电荷也为 $+q$ 的孤立金属球，$a>R$。竟然
 可能出现同性相吸。请定量解释。
+
+\ThQLikeAttraction
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -747,7 +771,11 @@ $r_1/r_2=L/R=Q/q$，所以 $Q/r_1-q/r_2=0$；球面确为零等势面。像电�
 \]
 球心电荷在球面上只增加一个常量电势，不破坏“球面等势”；两个像电荷的代数和为球的真实净电荷 $+q$。
 
+\begin{qualityfigure}
 \chargedIsolatedSphereImageFigure
+\figcap{孤立同号球的两个辅助像电荷及竞争的吸、斥作用。}\label{ch20:quality:analysis-04}
+\end{qualityfigure}
+图~\ref{ch20:quality:analysis-04}中，偏心负像电荷满足等势球面条件，球心正像电荷则用来恢复指定净电荷。两个像电荷都只用于球外场；真实点电荷受力应将它们的场相加，而不能把球面感应电荷当作均匀分布。
 
 取远离球心的方向为正。真实电荷受到球心像电荷的斥力，以及偏心负像电荷的吸力：
 \[
@@ -851,9 +879,13 @@ $+q$。接地时外表面电荷为零，地面提供了这 $+q$ 电荷。
 
 \begin{origexamplebox}{【能量】}\label{ch20:ex:s34-3-6}
 计算前文接地导体球外放点电荷的问题，以及例~\ref{ch20:ex:s34-3-5} 接地球腔内放点电荷的问题中，系统的有限静电势能。
+
+\ThQImageEnergy
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
+\ThAImageEnergy
+
 导体感应问题的有限相互作用能统一写成
 \[
   U=\frac12q_{\rm real}\varphi_{\rm ind}(\boldsymbol r_{\rm real}).
@@ -988,6 +1020,8 @@ $+q$ 与上方球内像电荷相消，$-q$ 与下方球内像电荷相消，所�
   \item 瞬间将点电荷移至距板 $2a$ 处，需要做功多少？
   \item 后两问为何不同？差值对应的能量去了哪里？
 \end{enumerate}
+
+\ThQPlaneEnergy
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -997,7 +1031,11 @@ $+q$ 与上方球内像电荷相消，$-q$ 与下方球内像电荷相消，所�
 仅凭初末位置不能决定这些附加项。
 接地平面的像电荷为位于板另一侧对称位置的 $-q$。真实电荷与像电荷距离为 $2a$。
 
+\begin{qualityfigure}
 \planeEnergyFigure
+\figcap{真实电荷移动时的平面感应分布与有限相互作用能。}\label{ch20:quality:analysis-09}
+\end{qualityfigure}
+图~\ref{ch20:quality:analysis-09}中，准静态移动时感应分布随真实电荷连续调整；理想化瞬移的初始分布尚对应旧位置。因此比较两过程必须先明确哪些电荷分布被冻结，不能同时对两者套用同一组静电平衡边界条件。
 
 \textbf{(1) 初始能量。} 导体感应问题保留 $1/2$ 因子：
 \[
@@ -1034,6 +1072,8 @@ $+q$ 与上方球内像电荷相消，$-q$ 与下方球内像电荷相消，所�
 \begin{origexamplebox}{【匀强电场中的导体球】}\label{ch20:ex:s34-3-10}
 把半径为 $R$ 的中性导体球放置在原本沿 $+z$ 方向的匀强电场
 $\boldsymbol E_0=E_0\hat{\boldsymbol z}$ 中，求空间中的电势、电场及球面感应电荷分布。
+
+\ThQConductingSphere
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -1066,10 +1106,12 @@ $E_r(R)=3E_0\cos\theta$，故
   \boxed{\boldsymbol p=4\pi\varepsilon_0R^3\boldsymbol E_0}.
 \]
 
-\par\noindent\begin{minipage}{\linewidth}
-\uniformFieldSphereFigure
-\diagramcaption{匀强电场中的中性导体球。实线为电场线，虚线为等势线；球内无场，球面切向场为零。}
-\end{minipage}\par\medskip
+\begin{qualityfigure}
+\ThUniformSphereAnalysisDrawing
+\figcap{匀强外场中的中性导体球、等势面与表面感应电荷。}\label{ch20:quality:analysis-10}
+\end{qualityfigure}
+图~\ref{ch20:quality:analysis-10}中，导体球面 $r=R$ 必为等势，内部 $E=0$；球外须同时满足这一边界和远处的 $E_0\hat{\vect z}$。先确定偶极项系数，再取径向导数计算表面电荷，才能保证边界条件一致。
+
 
 取图中外场箭头方向为 $+z$ 轴，极角 $\theta$ 也从这一方向量起。场线在
 球面两极处最密，恰对应 $|\sigma|$ 最大；赤道处球面场为零；离开球面后，赤道外侧的场逐渐恢复，场线绕过导体而不进入其内部。
@@ -1077,7 +1119,7 @@ $E_r(R)=3E_0\cos\theta$，故
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fifth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-fifth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/thirty-fifth-section/}{../../../sample/xes-original/thirty-fifth-section/assets/}}
 \section{电容的定义与导体组}
 
 % Labels are deliberately transparent: no white boxes may cover geometry.
@@ -1096,7 +1138,7 @@ $E_r(R)=3E_0\cos\theta$，故
 
 \newcommand{\capacitorFieldFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/capacitor-pair.pdf}
+\resizebox{.76\linewidth}{!}{\EmTheoryCapacitorPair}
 \end{center}}
 
 
@@ -1115,7 +1157,7 @@ $E_r(R)=3E_0\cos\theta$，故
     \node[xestiny,text=Gold!70!black] at (-.15,-1.8) {$d$};
     \node[xessmall] at (0,1.65) {面积 $A$，板间距 $d$};
   \end{scope}
-  \node[inner sep=0pt] at (3,0) {\includegraphics[width=6.7cm]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/plate-edges.pdf}};
+  \node[inner sep=0pt] at (3,0) {\resizebox{6.7cm}{!}{\EmTheoryPlateEdges}};
 
 \end{tikzpicture}
 \end{center}}
@@ -1213,7 +1255,7 @@ $E_r(R)=3E_0\cos\theta$，故
 
 \newcommand{\dielectricMeterFigure}{%
 \begin{center}
-\includegraphics[width=.93\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-meter.png}
+\includegraphics[width=.93\linewidth]{../../../sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-meter.png}
 \end{center}}
 
 
@@ -1313,7 +1355,7 @@ $E_r(R)=3E_0\cos\theta$，故
 
 \newcommand{\twoCylindersFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/two-cylinders.pdf}
+\resizebox{.76\linewidth}{!}{\MeTheoryTwoCylinders}
 \end{center}}
 
 
@@ -1381,7 +1423,7 @@ $E_r(R)=3E_0\cos\theta$，故
 
 \newcommand{\dielectricSphereFieldFigure}{%
 \begin{center}
-\includegraphics[width=.76\linewidth]{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-sphere.pdf}
+\resizebox{.76\linewidth}{!}{\EmTheoryDielectricSphere}
 \end{center}}
 
 
@@ -1733,6 +1775,8 @@ $l\gg d$，柱电容器长度远大于极板间距。试利用高斯定理求解
 \end{minipage}\par\medskip
 
 \begin{xesolution}
+\ThACapacitors
+
 三种结构都具有足够的对称性。统一方法是：先由高斯定理求 $E$，再沿场线积分求电势差 $U$，
 最后使用 $C=Q/U$。
 
@@ -1806,8 +1850,11 @@ $l\gg d$，柱电容器长度远大于极板间距。试利用高斯定理求解
 这两列像电荷产生的等势面恰包含两个相切球面。像电荷只是计算工具；它们的总和等于真实导体所带总电荷。
 
 \par\noindent\begin{minipage}{\linewidth}
+\begin{qualityfigure}
 \touchingSphereImagesFigure
-\diagramcaption{解图：相切双球的像电荷序列。两列交错符号的像电荷向接触点聚集。}
+\figcap{相切等势双球的逐次电像构造；两列交错符号的像电荷向接触点聚集。}\label{ch20:quality:analysis-12}
+\end{qualityfigure}
+图~\ref{ch20:quality:analysis-12}中，每次新增像电荷用来修复上一轮在另一球面上破坏的等势条件。两球连接为一个导体，求电容时分母是共同电势，分子必须计入两个球的总电荷。
 \end{minipage}\par\medskip
 
 一个球对应的总电荷为
@@ -1848,6 +1895,8 @@ $l\gg d$，柱电容器长度远大于极板间距。试利用高斯定理求解
 \end{minipage}\par\medskip
 
 \begin{xesolution}
+\ThACylinders
+
 先说明为什么圆柱截面可由两条虚拟线电荷构造。令 $d=L/2$、$a=\sqrt{d^2-R^2}$，
 在图~\ref{ch20:fig:s35-4-13}中 $x=\pm a$ 放虚拟线电荷 $\pm\lambda$。它们位于各自圆柱内部，
 只在柱外使用对应电势 $\varphi=(\lambda/2\pi\varepsilon_0)\ln(r_-/r_+)$。
@@ -2052,6 +2101,8 @@ $C=(\varepsilon_1S_1+\varepsilon_2S_2)/d$。不能仅凭“各占一半”选择
 \end{minipage}\par\medskip
 
 \begin{xesolution}
+\ThAModifiedCapacitor
+
 原电容为 $C_0=\varepsilon_0S/d$。
 
 \textbf{(1) 按面积分区。} 两个区域的电势差均为同一个 $U$，相当于并联：
@@ -2083,14 +2134,19 @@ $C=(\varepsilon_1S_1+\varepsilon_2S_2)/d$。不能仅凭“各占一半”选择
 \begin{origexamplebox}{【匀强电场中的电介质球】}\label{ch20:ex:s35-4-6}
 半径为 $R$、相对介电常数为 $\varepsilon_r$ 的电介质球放在匀强电场
 $\boldsymbol E_0=E_0\hat{\boldsymbol z}$ 中，求空间中的电场。
+
+\ThQDielectricSphere
 \end{origexamplebox}\par\nopagebreak[4]
 
+
+
+\begin{xesolution}
 \par\noindent\begin{minipage}{\linewidth}
 \dielectricSphereFieldFigure
 \diagramcaption{解图：$\varepsilon_r=4$ 时的电介质球，$+z$ 沿外场。线表示场的方向，线密度不用于跨介质比较 $E$ 的大小；界面处切向 $E$、法向 $D$ 连续。}
 \end{minipage}\par\medskip
+\ThADielectricSphere
 
-\begin{xesolution}
 问题关于 $z$ 轴对称，且远处电势应趋于 $-E_0r\cos\theta$。球内电势在原点必须有限，球外附加项
 必须在无穷远消失，因此设
 \[
@@ -2246,7 +2302,7 @@ $d$，介质插入长度为 $x$，如图。利用虚功法求介质受到的力�
 
 (2) 电容器接在电压为 $U$ 的理想电源上。
 
-两问均用电容器内的电场 $E$ 表示结果。
+两问均用电容器内的电场 $E$ 表示结果。在 $a,b\gg d$ 且 $x,a-x\gg d$ 的内部插入区间求主阶结果，忽略边缘效应对总电容的修正。
 \emInsertionQuestion\figcap{介质插入长度与电容器尺寸；受力方向待求。}\label{ch20:fig:em-insertion-question}
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2258,7 +2314,9 @@ $d$，介质插入长度为 $x$，如图。利用虚功法求介质受到的力�
 \end{minipage}\par\medskip
 
 \begin{xesolution}
-忽略边缘场。插入部分与未插入部分共享相同板间电压，因此
+\ThAInsertion
+
+忽略边缘效应对总电容的修正。插入部分与未插入部分共享相同板间电压，因此
 \[
  C(x)=\varepsilon_r\varepsilon_0\frac{bx}{d}
       +\varepsilon_0\frac{b(a-x)}d
@@ -2292,7 +2350,7 @@ $\mathrm dQ=U\,\mathrm dC$。把电容器与电源作为整体，其与机械坐
  =\boxed{\frac12\varepsilon_0(\varepsilon_r-1)b d\,E^2}.
 \]
 两问用瞬时场强 $E$ 表示时形式相同，方向都指向增大 $x$ 的方向，即介质被吸入电容器。定电压情形若
-遗漏电源做功，会错误地得到相反的力。
+遗漏电源做功，会错误地得到相反的力。微观上，吸入力来自介质前缘附近的非均匀边缘场；上面的电容近似只省略它对总电容的高阶修正，不能据此把局部边缘场也删去。
 \end{xesolution}
 
 
@@ -2301,14 +2359,19 @@ $\mathrm dQ=U\,\mathrm dC$。把电容器与电源作为整体，其与机械坐
 线性电介质中的电场能量密度为
 $u=\tfrac12\varepsilon_r\varepsilon_0E^2$，而真空中在相同场强下只有
 $u_0=\tfrac12\varepsilon_0E^2$。试提出一个物理图像解释这个现象。
+
+\ThQPolarizationEnergy
 \end{origexamplebox}\par\nopagebreak[4]
 
+
+
+\begin{xesolution}
 \par\noindent\begin{minipage}{\linewidth}
 \polarizationEnergyFigure
 \diagramcaption{解图：极化可类比为微观正负电荷之间的“弹簧”被拉伸；建立同样场强时还要为极化自由度输入能量。}
 \end{minipage}\par\medskip
+\ThAPolarizationEnergy
 
-\begin{xesolution}
 线性介质中
 \[
  \boldsymbol D=\varepsilon_0\boldsymbol E+\boldsymbol P,
@@ -2338,14 +2401,19 @@ $Q^2/(2C)$ 反而降低，差值转化为机械功；若电压固定，电源继
 (2) 若电阻 $R\to0^+$，电源做功多少，发热多少？
 
 (3) 如果电路中完全没有电阻，答案会有什么变化？
+
+\ThQCharging
 \end{origexamplebox}\par\nopagebreak[4]
 
+
+
+\begin{xesolution}
 \par\noindent\begin{minipage}{\linewidth}
 \chargingEnergyFigure
 \diagramcaption{解图：理想恒压源经任意正电阻给电容充电时，电源做功的一半进入电场，另一半成为焦耳热。}
 \end{minipage}\par\medskip
+\ThACharging
 
-\begin{xesolution}
 充电完成后 $Q=C\mathcal E$。电源每搬运电量 $\mathrm dq$ 做功
 $\mathcal E\,\mathrm dq$，所以总功
 \[
@@ -2392,6 +2460,8 @@ $\varphi_1,\varphi_2,\varphi_3$。求三个电容器外侧极板所带电荷。
 
 
 \begin{xesolution}
+\ThAFloatingNode
+
 设中心浮置节点电势为 $V$。第 $i$ 个电容器外侧极板的电荷为
 \[
  q_i=C_i(\varphi_i-V).
@@ -2423,9 +2493,13 @@ $\varphi_1,\varphi_2,\varphi_3$。求三个电容器外侧极板所带电荷。
 \begin{origexamplebox}{【电容串并联】}\label{ch20:ex:s35-4-10}
 证明两个电容器串联或并联时都可以等效成一个电容器，求出等效公式，并讨论更多电容器串、并联时
 是否也可以等效。
+
+\ThQCapNetworks
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
+\ThACapNetworks
+
 等效的含义是：从外部两个端口看，在任意端电压 $U$ 下，系统从电源取得的总电荷 $Q$ 与某个单电容
 $C_{\rm eq}$ 完全相同，即 $Q=C_{\rm eq}U$。
 
@@ -2467,14 +2541,19 @@ $5\times10^5\,\mathrm C$ 的负电荷；把距地表 $5\,\mathrm{km}$ 的同心�
 (4) 大气电容与电阻构成 $RC$ 放电回路，求时间常数；
 
 (5) 若平均一次雷电向地面补充 $25\,\mathrm C$ 电荷，为维持上述电荷量，全球每天平均需要多少次雷电？
+
+\ThQEarthCapacitor
 \end{origexamplebox}\par\nopagebreak[4]
 
+
+
+\begin{xesolution}
 \par\noindent\begin{minipage}{\linewidth}
 \earthCapacitorFigure
 \diagramcaption{解图：地球表面与高空等效层构成同心球形电容器；大气同时提供漏电电阻。}
 \end{minipage}\par\medskip
+\ThAEarthCapacitor
 
-\begin{xesolution}
 取地球半径 $R_\oplus=6.4\times10^6\,\mathrm m$，大气等效厚度
 $d=5.0\times10^3\,\mathrm m$，外层半径 $R_\oplus+d$，电荷量大小
 $Q=5.0\times10^5\,\mathrm C$。

@@ -1,0 +1,98 @@
+% Pure problem geometry. Rich legacy force/process figures now appear in solutions.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThVectorBase}[1]{
+ \coordinate(A)at(0,0);\coordinate(C)at(3,1);\coordinate(B)at(3,3);
+ \fill(A)circle(2pt)node[left]{$A$};\fill(C)circle(2pt)node[right]{$C$};\fill(B)circle(2pt)node[above]{$B$};
+ \draw[->,thick](A)--(B)node[midway,above left]{$(1,1,1)$};\draw[->,DeepBlue,thick](A)--(C)node[midway,below]{$(1,1,0)$};
+ \draw[dashed](B)--(C);#1}
+\newcommand{\ThQVectors}{\ThermalFigure{\ThVectorBase{}}{两矢量共起点于 $A$；$C$ 是 $B$ 向 $z=0$ 平面的正交投影，图为斜投影。}{ch09:quality:vectors-q}}
+\newcommand{\ThAVectors}{\ThermalFigure{\ThVectorBase{
+ \node[right,align=left]at(4.7,1.8){$AC=\sqrt2$\\$BC=1$\\$AB=\sqrt3$};
+}}{直角三角形 $ACB$ 提供独立的夹角核验；叉积方向垂直两矢量所在平面。}{ch09:quality:vectors-a}
+图~\ref{ch09:quality:vectors-a}中的 $BC$ 沿 $z$ 方向，而 $AC$ 位于 $z=0$，故二者垂直。三角形给出 $\sin\theta=BC/AB$、$\cos\theta=AC/AB$，与分量内外积的结果互相核验；交换叉积次序只反转法向，不改变其大小。
+}
+\newcommand{\ThQArea}{\ThermalFigure{
+ \fill[DeepBlue!10](0,0)--(4,.3)--(3.6,1.5)--cycle;
+ \draw[->](0,0)--(4,.3)node[midway,below]{$\vect r$};\draw[->](0,0)--(3.6,1.5);
+ \draw[->,thick](4,.3)--(3.6,1.5)node[right]{$\Delta\vect r$};\node[left]at(0,0){$O$};
+}{质点在短时间内从一条位矢的末端移到另一条位矢的末端，扫过窄三角形。}{ch09:quality:area-q}}
+\newcommand{\ThQInertias}{\ThermalFigure{
+ \draw[very thick](-1.3,0)--(1.3,0);\draw[->](0,-.8)--(0,1.3);\node[below]at(0,-1){细杆 $l$，中垂轴};
+ \begin{scope}[shift={(4,0)}]\draw[thick](0,0)circle(1);\draw[->](-1.5,0)--(1.5,0);\node[below]at(0,-1.3){薄圆盘 $R$，直径轴};\end{scope}
+ \foreach\x/\lab in {8/薄球壳,12/实心球}{\begin{scope}[shift={(\x,0)}]\draw[thick](0,0)circle(1);\draw[dashed](0,0)ellipse(1 and .3);\draw[->](0,-1.4)--(0,1.4);\node[below]at(0,-1.7){\lab $R$};\end{scope}}
+}{四种均匀分布均具有质量 $m$；箭头明确指定各问所求转轴。}{ch09:quality:inertias-q}}
+\newcommand{\ThQConePendulum}{\ThermalFigure{
+ \draw[thick](0,3)--(2,0)node[midway,right]{$l$};\draw[dashed](0,3)--(0,0)--(2,0);
+ \draw[dashed](0,0)ellipse(2 and .5);\fill(0,3)circle(2pt)node[above]{$O$};\fill[DeepBlue](2,0)circle(3pt)node[right]{$m$};
+ \draw(0,2.2)arc(270:304:.8)node[below]{$\theta$};\node[right]at(3.5,1.5){小球在水平圆周上运动};
+}{圆锥摆的悬点、绳长与倾角；受力、角动量和角速度方向在解答中分别确定。}{ch09:quality:conical-q}}
+\newcommand{\ThQDumbbell}{\ThermalFigure{
+ \draw[thick](-1,0)--(5,0);\draw[very thick](0,0)--(3,2);\fill(0,0)circle(3pt)node[below]{$A,m$};\fill(3,2)circle(3pt)node[right]{$B,m$};
+ \draw[->,thick](1.5,2.4)--(1.5,1.2)node[left]{$v_0$};\draw(1,0)arc(0:33.7:1)node[right]{$\theta$};\node[above left]at(1.5,1){$2l$};
+}{碰前哑铃作竖直平动，只有下端 $A$ 先接触地面。}{ch09:quality:dumbbell-q}}
+\newcommand{\ThQDumbbells}{\ThermalFigure{
+ \draw[very thick](0,0)--(2.5,0) (2.5,1.8)--(5,1.8);
+ \foreach\x/\y/\lab in {0/0/A,2.5/0/B,2.5/1.8/C,5/1.8/D}{\fill(\x,\y)circle(3pt)node[above right]{$\lab$};}
+ \draw[->,thick](1,-1)--(1,.8)node[left]{$v_0$};\draw[dashed](2.5,.15)--(2.5,1.65);
+ \node[right]at(6,1){碰撞线 $BC$ 垂直两杆；上杆初始静止};
+}{两杆沿水平方向，每端质量为 $m$；杆长均为 $2l$。}{ch09:quality:dumbbells-q}}
+\newcommand{\ThQSeesaws}{\ThermalFigure{
+ \foreach\s/\a/\b in {0/A/B,7/B/C}{\begin{scope}[shift={(\s,0)}]
+ \draw[very thick](-2,0)--(2,0);\draw[thick](-.4,-.7)--(0,0)--(.4,-.7);
+ \fill(-2,0)circle(3pt)node[above]{$\a$};\fill(2,0)circle(3pt)node[above]{$\b$};\end{scope}}
+ \draw[->](3,0)--(4,0);\node[above]at(3.5,1.2){第一次冲击后，B等高落回另一装置};
+}{两次等臂弹射的先后关系；$C$ 表示小明。}{ch09:quality:seesaws-q}}
+\newcommand{\ThQConeBead}{\ThermalFigure{
+ \draw[thick](-2,3.46)--(0,0)--(2,3.46);\draw[dashed](0,0)--(0,4);
+ \fill[DeepBlue](1.5,2.598)circle(3pt)node[right]{$P$};\draw[dashed](0,2.598)--(1.5,2.598);
+ \node[above]at(.7,2.6){$r$};\node[DeepBlue]at(2.4,2.6){$\otimes\ v_0$};\node[left]at(0,0){$O$};
+}{正三角形轴截面，初速度垂直该截面；力和有效势的分析在解答中展开。}{ch09:quality:bead-q}}
+\newcommand{\ThQBrakingWheel}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.6);\fill(0,0)circle(2pt)node[below]{$O$};\fill(1,0)circle(2pt);
+ \draw[->,thick](1,0)--(1,1.1)node[right]{$f$};\draw[->](140:1.9)arc(140:20:1.9)node[right]{$\omega_0$};
+ \draw[<->](0,-.5)--node[below]{$r$}(1,-.5);\node[right]at(3,.3){均匀砂轮 $m,R$；固定轴};
+}{力作用于圆心右侧且向上，初始转向为顺时针。}{ch09:quality:braking-q}}
+\newcommand{\ThQWheels}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.5);\draw[thick](2.7,0)circle(1.2);
+ \node[align=center]at(0,0){$m_1$\\$R_1$};\node[align=center]at(2.7,0){$m_2$\\$R_2$};
+ \draw[->](150:1.8)arc(150:35:1.8);\draw[->]($(2.7,0)+(30:1.5)$)arc(30:145:1.5);
+ \node[above]at(-.2,2.1){$\omega_{10}$};\node[above]at(3.2,1.7){$\omega_{20}$};
+ \node[right]at(5,0){仅相对滑动时摩擦力大小为 $f$};
+}{两固定轴砂轮的初始转向；接触处两个表面均向下运动，滑动方向由速度差决定。}{ch09:quality:wheels-q}}
+\newcommand{\ThQBilliard}{\ThermalFigure{
+ \draw[thick](-2,0)--(4,0);\draw[thick](0,1)circle(1);\draw[->,thick](0,1)--(2.5,1)node[right]{$v_0$};
+ \node[above]at(0,2.4){初态 $\omega=0$};\node[below]at(1,-.4){粗糙水平面 $\mu$};
+}{匀质球起初只有平动，自转由后续摩擦建立。}{ch09:quality:billiard-q}}
+\newcommand{\ThQBilliards}{\ThermalFigure{
+ \draw[thick](-2,0)--(6,0);\draw[thick](0,1)circle(1) (3,1)circle(1);
+ \draw[->,thick](0,1)--(1.6,1)node[right]{$v_0$};\draw[->]($(0,1)+(140:1.2)$)arc(140:20:1.2);
+ \node[above]at(0,2.5){白球 $\omega_0$};\node[above]at(3,2.5){红球静止};\node[below]at(2,-.5){球间无摩擦，地面粗糙};
+}{碰前白球向右纯滚动，球间冲量沿两球心连线。}{ch09:quality:billiards-q}}
+\newcommand{\ThQEggs}{\ThermalFigure{
+ \foreach\s/\lab in {0/生,6/熟}{\begin{scope}[shift={(\s,0)}]
+ \draw[thick](-1,2)--(4,0);\begin{scope}[shift={(1.4,2.12)},rotate=-21.8]\draw[thick](0,0)ellipse(.7 and 1);\node at(0,0){\lab};\end{scope}\end{scope}}
+ \node[above]at(4.5,3.8){两次测试：同一坡角、相同释放高度};
+}{两个面板分别表示生、熟鸡蛋的同条件测试，不把初始位置差异混入比较。}{ch09:quality:eggs-q}}
+\newcommand{\ThQPulley}{\ThermalFigure{
+ \draw[thick](0,2.5)circle(.8);\draw[thick](-.8,2.5)arc(180:0:.8)--(.8,.5) (-.8,2.5)--(-.8,0);
+ \draw[thick](-1.15,-.7)rectangle(-.45,0);\draw[thick](.45,-.2)rectangle(1.15,.5);
+ \node at(-.8,-.35){$m_1$};\node at(.8,.15){$m_2$};\fill(0,2.5)circle(2pt)node[right]{$O$};
+ \draw[thick](0,2.5)--(0,4);\node[right]at(2,2.5){滑轮 $M,R$，$m_1>m_2$};
+}{绳沿轮缘绕过固定轴滑轮，两端连接重物；无相对滑动。}{ch09:quality:pulley-q}}
+\newcommand{\ThQRodWork}{\ThermalFigure{
+ \draw[dashed](0,2.5)--(5,2.5);\draw[very thick](0,2.5)--(4,.2);
+ \fill(0,2.5)circle(2pt)node[left]{$O$};\fill(2,1.35)circle(3pt)node[below left]{$2,m$};\fill(4,.2)circle(3pt)node[right]{$1,m$};
+ \node[above left]at(1,1.925){$l$};\node[above left]at(3,.775){$l$};\draw(1.2,2.5)arc(0:-29.9:1.2)node[right]{$\theta$};
+}{水平初态用虚线表示，当前杆从水平线向下转过 $\theta$。}{ch09:quality:rod-work-q}}
+\newcommand{\ThQPercussion}{\ThermalFigure{
+ \draw[very thick](0,3.5)--(0,0);\fill(0,3.5)circle(2pt)node[above]{$O$};\fill(0,1)circle(2pt)node[right]{$P$};
+ \draw[->,thick](-2,1)--(0,1)node[midway,above]{$J$};\draw[<->](.8,0)--node[right]{$a$}(.8,1);
+ \draw[<->](1.8,0)--node[right]{$L$}(1.8,3.5);\node[right]at(3,1.5){悬点冲量为零的打击位置待求};
+}{打击点 $P$ 距下端 $a$，距铰点则为 $L-a$。}{ch09:quality:percussion-q}}
+\newcommand{\ThQChimney}{\ThermalFigure{
+ \draw[very thick](0,0)--(2.4,3.84);\draw[dashed](0,0)--(0,4.5);\fill(0,0)circle(2pt)node[below]{$O$};
+ \draw(0,1)arc(90:58:1)node[above]{$\theta$};\node[above left]at(1.2,1.92){$L,m$};
+ \draw[dashed](.55,1.5)--(1.1,1.15);\node[right]at(3,2){比较不同截面的剪力与弯矩};
+}{烟囱按绕底端转动的均匀杆处理，倾角从铅垂方向量起。}{ch09:quality:chimney-q}}

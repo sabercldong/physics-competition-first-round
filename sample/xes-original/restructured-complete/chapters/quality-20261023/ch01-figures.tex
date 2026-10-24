@@ -1,0 +1,338 @@
+% Each model is parameterized only by question/solution stage, never by page.
+\newcommand{\QMathNamed}[3]{%
+\begin{qualityfigure}\begingroup
+\renewcommand{\figcap}[1]{}\renewcommand{\diagramcaption}[1]{}\renewcommand{\bookcaption}[1]{}\renewcommand{\label}[1]{}
+#1\endgroup\figcap{#2}\label{#3}\end{qualityfigure}}
+\pgfplotsset{qualitymath/.style={width=.68\linewidth,height=4.5cm,axis lines=left,
+ every axis label/.style={fill=none},legend style={draw=none,font=\footnotesize}}}
+
+\newcommand{\QMPendulum}[1]{\begin{tikzpicture}[>=Latex]
+ \coordinate (O) at (0,2.6);\coordinate (P) at (1.1,0);
+ \draw[ground] (-.6,2.6)--(.6,2.6);\draw[guide] (O)--(0,-.3);
+ \draw[thick] (O)--node[right] {$\ell$}(P);\fill[DeepBlue] (P) circle (3pt);
+ \node[right] at (1.3,0) {$m$};\node[above left] at (O) {$O$};
+ \draw (0,1.9) arc[start angle=-90,end angle=-67.1,radius=.7];\node at (.35,1.65) {$\theta$};
+ \draw[vector] (2,1.4)--(2,.4) node[right] {$g$};
+ \ifnum#1=1
+  \draw[->,DeepBlue] (3,1.8)--node[above] {$\sqrt{\ell/g}$}(6,1.8);
+  \node[align=center] at (4.5,.7) {唯一有量纲时间尺度\\$T_0=C\sqrt{\ell/g}$};
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMStokes}{\begin{tikzpicture}[>=Latex]
+ \fill[DeepBlue!8] (-2,-1.5) rectangle (3,1.9);\draw[DeepBlue!40] (-2,1.5)--(3,1.5);
+ \draw[thick,fill=white] (0,0) circle (.65);\draw[->] (0,0)--(.65,0) node[midway,above] {$R$};
+ \node[left] at (-.8,0) {$\rho_s$};\node[above] at (.5,1.5) {流体：$\rho_f,\eta$};
+ \draw[vector] (1.5,.5)--(1.5,-.8) node[right] {$g$};
+\end{tikzpicture}}
+
+\newcommand{\QMTorque}[1]{\begin{tikzpicture}[>=Latex]
+ \draw[axis] (-.4,0)--(4.5,0) node[right] {$x/\mathrm m$};\draw[axis] (0,-1.2)--(0,2.5) node[above] {$y/\mathrm m$};
+ \coordinate (P) at (2,1);\fill (P) circle (2pt);\node[above] at (P) {$P(2,1)$};
+ \draw[vector] (0,0)--node[above left] {$\vect r$}(P);
+ \draw[vector,draw=TextGray] (P)--(3.2,-.6) node[right] {$\vect F=(3,-4)\,\mathrm N$};
+ \ifnum#1=1
+  \draw[guide] (P)--(3.2,1)--(3.2,-.6);
+  \node[above] at (2.65,1) {$F_x$};\node[right] at (3.2,.4) {$F_y$};
+  \node[below left,align=center] at (0,0) {$\otimes$\\$\tau_z<0$};
+ \fi
+ \node[below] at (2,-1.25) {力箭头与位置坐标采用不同的长度比例};
+\end{tikzpicture}}
+
+\newcommand{\QMSphere}[1]{\begin{tikzpicture}[>=Latex]
+ \draw[thick] (0,0) circle (1.8);\fill (0,0) circle (1.3pt);\node[below left] at (0,0) {$O$};
+ \draw[->] (0,0)--(40:1.8) node[midway,above left] {$R$};
+ \ifnum#1=1
+  \fill[DeepBlue!20,even odd rule] (0,0) circle (1.25) (0,0) circle (1.12);
+  \draw (0,0) circle (1.12) (0,0) circle (1.25);
+  \draw[->] (0,0)--(0,-1.12) node[midway,right] {$r$};
+  \draw[<->] (-1.25,0)--(-1.12,0);\node[left] at (-1.3,0) {$\dd r$};
+  \node[align=left] at (4.3,.4) {$\dd V=4\pi r^2\dd r$\\$\dd m=\rho(r)\dd V$};
+ \else
+  \node[align=left] at (4.2,.4) {$0\le r\le R$\\$\rho(r)=\rho_0(1-r/R)$};
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMDerivatives}[1]{\begin{tikzpicture}[x=.9cm,y=.9cm]
+ \foreach \panel/\fun/\lab in {0/{1}/{C},1/{\x}/{kx},2/{\x*\x}/{ax^n},3/{sin(\x r)}/{A\sin(kx)},4/{exp(\x)}/{e^x}}{
+  \begin{scope}[shift={({mod(\panel,3)*4},{-floor(\panel/3)*3.6})}]
+   \draw[axis] (0,0)--(2,0) node[right] {$x$};\draw[axis] (0,0)--(0,2.7) node[above] {$y$};
+   \draw[DeepBlue,thick,domain=0:1.45,samples=35] plot(\x,{.5*(\fun)});
+   \node[above] at (1,2.6) {$\lab$};
+   \ifnum#1=1
+    \ifcase\panel\def\qqY{1}\def\qqSlope{0}\or\def\qqY{.7}\def\qqSlope{1}\or\def\qqY{.49}\def\qqSlope{1.4}\or\def\qqY{sin(.7 r)}\def\qqSlope{cos(.7 r)}\or\def\qqY{exp(.7)}\def\qqSlope{exp(.7)}\fi
+    \draw[TextGray,dashed,domain=.2:1.2] plot(\x,{.5*(\qqY+\qqSlope*(\x-.7))});
+   \fi
+  \end{scope}}
+\end{tikzpicture}}
+
+\newcommand{\QMProduct}[1]{\begin{tikzpicture}[>=Latex]
+ \fill[DeepBlue!10] (0,0) rectangle (3,1.8);\draw[thick] (0,0) rectangle (3,1.8);
+ \node at (1.5,.9) {$f(x)g(x)$};\node[below] at (1.5,0) {$f(x)$};\node[left] at (0,.9) {$g(x)$};
+ \ifnum#1=1
+  \fill[Gold!20] (3,0) rectangle (3.7,1.8);\fill[Gold!20] (0,1.8) rectangle (3,2.4);
+  \draw (0,0) rectangle (3.7,2.4);\draw[guide] (3,0)--(3,2.4) (0,1.8)--(3.7,1.8);
+  \node[right] at (3.9,.8) {$g\Delta f$};\node[above] at (1.5,2.4) {$f\Delta g$};
+  \draw[->] (5.2,2.5)--(3.4,2.1) node[pos=0,left] {$\Delta f\Delta g$};
+ \else
+  \node[draw] (x) at (5,0) {$x$};\node[draw] (u) at (7,0) {$g(x)$};\node[draw] (v) at (9.5,0) {$f(g(x))$};
+  \draw[->] (x)--node[above] {$g$}(u);\draw[->] (u)--node[above] {$f$}(v);
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMMotion}[1]{\begin{tikzpicture}
+ \foreach \pan in {0,1,2}{\begin{scope}[xshift={\pan*4.4cm}]
+  \begin{axis}[width=5cm,height=4.2cm,axis lines=middle,xmin=0,xmax=4,ymin=-1.2,ymax=3,xlabel={$s$},ticks=none,title={情形\the\numexpr\pan+1\relax}]
+   \ifnum#1=0
+    \ifcase\pan\addplot[DeepBlue,domain=0:2,samples=50]{x+.5*x^2};\or\addplot[DeepBlue,domain=0:4,samples=90]{exp(-.25*x)*cos(deg(x))};\or\addplot[DeepBlue,domain=0:4]{1-exp(-x)};\fi
+   \else
+    \ifcase\pan\addplot[DeepBlue,domain=0:2]{1+x};\addplot[TextGray,dashed,domain=0:4]{1};
+    \or\addplot[DeepBlue,domain=0:4,samples=90]{-exp(-.25*x)*(.25*cos(deg(x))+sin(deg(x)))};\addplot[TextGray,dashed,domain=0:4,samples=90]{exp(-.25*x)*(-.9375*cos(deg(x))+.5*sin(deg(x)))};
+    \or\addplot[DeepBlue,domain=0:4]{exp(-x)};\addplot[TextGray,dashed,domain=0:4]{-exp(-x)};\fi
+   \fi
+  \end{axis}\end{scope}}
+\end{tikzpicture}}
+
+\newcommand{\QMLens}[1]{\begin{tikzpicture}[>=Latex]
+ \draw[axis] (-4,0)--(3.8,0);\draw[<->,thick] (0,-1)--(0,1);
+ \fill (-3,0) circle (2pt);\node[below] at (-3,0) {物点};\draw[vector] (-3,.4)--(-2.3,.4) node[above] {$v$};
+ \draw[DeepBlue] (-3,0)--(0,.8)--(1.5,0) (-3,0)--(0,-.8)--(1.5,0);
+ \node[below] at (-1,0) {$F$};\node[below] at (1,0) {$F'$};
+ \draw[<->] (-3,-1.2)--node[below] {$u$}(0,-1.2);\draw[<->] (0,-1.2)--node[below] {$q$}(1.5,-1.2);
+ \ifnum#1=1
+  \draw[vector] (1.5,.2)--(2.4,.2) node[above] {$\dot q>0$};
+  \begin{scope}[xshift=7cm]
+   \draw[axis] (-2,0)--(2.6,0);\draw[<->,thick] (0,-1)--(0,1);
+   \draw[DeepBlue] (-.5,0)--(0,.5)--(2,1.5) (-.5,0)--(0,-.5)--(2,-1.5);
+   \draw[guide] (-1,0)--(0,.5) (-1,0)--(0,-.5);
+   \fill (-1,0) circle (2pt);\node[below] at (-1,0) {虚像 $q<0$};
+   \fill (-.5,0) circle (1.5pt);\node[above left] at (-.5,0) {物点};
+   \draw[vector] (-1,.3)--(-.3,.3) node[above] {$\dot q>0$};
+   \node[below] at (1,-1.5) {$0<u<f$};
+  \end{scope}
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMFermat}{\begin{tikzpicture}[>=Latex]
+ \draw[thick] (-3,0)--(3,0);\draw[guide] (0,-1.6)--(0,2.2);
+ \coordinate (A) at (-2,2);\coordinate (P) at (0,0);\coordinate (B) at (2,-1.3);
+ \draw[DeepBlue,thick] (A)--(P)--(B);\node[left] at (A) {$A$};\node[below right] at (B) {$B$};\node[below left] at (P) {$P$};
+ \draw[TextGray,dashed] (A)--(.5,0)--(B);\draw[<->] (0,-.35)--node[below] {$\delta x$}(.5,-.35);
+ \node at (-.35,.8) {$\theta_1$};\node at (.55,-.65) {$\theta_2$};
+ \node[left] at (-2.7,1) {$n_1$};\node[left] at (-2.7,-.8) {$n_2$};
+\end{tikzpicture}}
+
+\newcommand{\QMPVExtrema}{\begin{tikzpicture}
+ \begin{axis}[qualitymath,width=.46\linewidth,xmin=.7,xmax=2.3,ymin=.7,ymax=2.3,xlabel={$V/V_0$},ylabel={$p/p_0$},title={直线路径}]
+  \addplot[DeepBlue,thick,domain=1:2]{3-x};\addplot[TextGray,dashed,domain=1:2]{2.25/x};
+  \fill (axis cs:1.5,1.5) circle (2pt);\node[above right] at (axis cs:1.5,1.5) {$T_{\max}$};
+ \end{axis}
+ \begin{scope}[xshift=7.5cm]\begin{axis}[qualitymath,width=.46\linewidth,xmin=.3,xmax=1.7,ymin=.3,ymax=1.7,xlabel={$V/V_0$},ylabel={$p/p_0$},title={无量纲圆路径}]
+  \addplot[DeepBlue,thick,domain=0:360,samples=121] ({1+.5*cos(x)},{1+.5*sin(x)});
+  \draw[guide] (axis cs:.4,.4)--(axis cs:1.6,1.6);
+  \fill (axis cs:1.35355,1.35355) circle (2pt);\fill (axis cs:.64645,.64645) circle (2pt);
+  \node[right] at (axis cs:1.35355,1.35355) {最大};\node[left] at (axis cs:.64645,.64645) {最小};
+ \end{axis}\end{scope}
+\end{tikzpicture}}
+
+\newcommand{\QMGravityMaximum}{\begin{tikzpicture}\begin{axis}[qualitymath,xmin=0,xmax=3,ymin=0,ymax=.9,
+ xlabel={$u=x/L$},ylabel={$F/(GMm/L^2)$}]
+ \addplot[DeepBlue,thick,domain=0:3,samples=100]{2*x/(1+x^2)^1.5};
+ \draw[guide] (axis cs:.707107,0)--(axis cs:.707107,.76980);
+ \node[below] at (axis cs:.707107,0) {$1/\sqrt2$};
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMSafety}{\begin{tikzpicture}
+ \begin{axis}[qualitymath,width=.43\linewidth,height=4.8cm,xmin=-1.2,xmax=1.2,ymin=0,ymax=.65,
+ xlabel={$gx/v_0^2$},ylabel={$gy/v_0^2$},ticks=none]
+  \foreach \ang in {30,45,60}{\addplot[DeepBlue!65,domain=-1.1:1.1,samples=80]{abs(x)*tan(\ang)-x^2/(2*cos(\ang)^2)};}
+  \addplot[TextGray,dashed,thick,domain=-1.1:1.1]{.5-.5*x^2};
+ \end{axis}
+ \begin{scope}[xshift=12.8cm,yshift=.3cm,scale=1.2]
+  \draw[ground] (-4.3,0)--(1.5,0);\draw[thick] (0,1) circle (1);
+  \draw[DeepBlue,domain=-4:0,samples=70] plot(\x,{2-.125*\x*\x});
+  \fill (-4,0) circle (1.7pt);\node[below] at (-4,0) {抛出点};\fill (0,2) circle (1.7pt);\node[above] at (0,2) {球顶};
+  \draw[<->] (1.25,0)--node[right] {$2R$}(1.25,2);
+  \draw[vector] (-4,0)--(-3.3,.7) node[left] {$v_0$};
+ \end{scope}
+\end{tikzpicture}}
+
+\newcommand{\QMSpringForces}{\begin{tikzpicture}[>=Latex]
+ \coordinate (A) at (0,0);\coordinate (B) at (3,0);\coordinate (P) at (3,-2);
+ \draw[ground] (3,1)--(3,-3.5);\draw[spring] (A)--(P);
+ \draw[guide] (A)--(B);\node[above] at (A) {$A$};\node[right] at (B) {$B$};\node[above right] at (P) {$P$};
+ \draw[vector] (P)--(1.8,-1.2) node[left] {$F_s$};
+ \draw[vector] (P)--(4.2,-2) node[right] {$N$};\draw[vector] (P)--(3,-3.3) node[left] {$mg$};
+ \draw[<->] (-.45,0)--node[left] {$x$}(-.45,-2);\node[above] at (1.5,0) {$h$};
+\end{tikzpicture}}
+
+\newcommand{\QMConeEnergy}{\begin{tikzpicture}\begin{axis}[qualitymath,xmin=0,xmax=3,ymin=-.8,ymax=1.2,
+ xlabel={$s=2\pi x\tan\alpha/L_0$},ylabel={$U/(kL_0^2)$}]
+ \addplot[DeepBlue,thick,domain=0:3]{.5*(x-1)^2-.5*x};
+ \draw[guide] (axis cs:1.5,-.625)--(axis cs:1.5,.6);
+ \node[above] at (axis cs:1.5,.6) {$s_{\rm eq}=1+\eta$};
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMDoubleRodEnergy}{\begin{tikzpicture}\begin{axis}[qualitymath,xmin=0,xmax=90,ymin=0,ymax=2.7,
+ xlabel={$\theta/{}^\circ$},ylabel={$U/(kl^2)$}]
+ \addplot[DeepBlue,thick,domain=0:90,samples=90]{2*sin(x)+2*cos(x)^2};
+ \fill (axis cs:30,2.5) circle (2pt);\node[above] at (axis cs:30,2.5) {内点极大};
+ \draw[guide] (axis cs:30,0)--(axis cs:30,2.5);
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMRelativityEnergy}[1]{\begin{tikzpicture}\begin{axis}[qualitymath,xmin=0,xmax=.9,ymin=0,ymax=2.4,
+ xlabel={$\beta=v/c$},ylabel={无量纲能量}]
+ \ifnum#1=0
+  \addplot[DeepBlue,thick,domain=0:.9,samples=100]{1/sqrt(1-x^2)};\node at (axis cs:.45,2) {$E/(mc^2)=\gamma$};
+ \else
+  \addplot[DeepBlue,thick,domain=0:.9,samples=100]{1/sqrt(1-x^2)-1};\addlegendentry{$(E-mc^2)/(mc^2)$}
+  \addplot[TextGray,dashed,domain=0:.9]{.5*x^2};\addlegendentry{$\beta^2/2$}
+ \fi
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMRelativityMotion}[1]{\begin{tikzpicture}\begin{axis}[qualitymath,xmin=0,xmax=2,ymin=0,ymax=2,
+ xlabel={$s=Ft/(mc)$},ylabel={$Fx/(mc^2)$}]
+ \addplot[DeepBlue,thick,domain=0:2,samples=80]{sqrt(1+x^2)-1};
+ \ifnum#1=1\addplot[TextGray,dashed,domain=0:2]{.5*x^2};\addlegendentry{精确位移}\addlegendentry{经典低速近似}\fi
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMRange}[1]{\begin{tikzpicture}
+ \ifnum#1=0
+  \draw[ground] (-.5,0)--(7,0);\draw[DeepBlue,domain=0:6,samples=70] plot(\x,{.25*\x*(6-\x)});
+  \draw[vector] (0,0)--(1,1.5) node[above] {$v$};\draw[guide] (0,0)--(1.25,1.5) node[right] {$v+\delta v,\ \theta+\delta\theta$};
+  \draw[<->] (0,-.5)--node[below] {$S$}(6,-.5);\node at (.5,.25) {$\theta$};
+ \else
+  \begin{axis}[qualitymath,xmin=0,xmax=90,ymin=0,ymax=1.2,xlabel={$\theta/{}^\circ$},ylabel={$gS/v^2$}]
+   \addplot[DeepBlue,thick,domain=0:90,samples=90]{sin(2*x)};
+   \draw[TextGray,dashed] (axis cs:27,1)--(axis cs:63,1);\fill (axis cs:45,1) circle (2pt);
+  \end{axis}
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMSmallAngle}{\begin{tikzpicture}\begin{axis}[qualitymath,axis lines=middle,xmin=-.9,xmax=.9,ymin=-1,ymax=1,
+ xlabel={$\theta\;(\mathrm{rad})$},ylabel={恢复项}]
+ \addplot[DeepBlue,thick,domain=-.9:.9]{sin(deg(x))};\addlegendentry{$\sin\theta$}
+ \addplot[TextGray,dashed,domain=-.9:.9]{x};\addlegendentry{$\theta$}
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMStrip}[1]{\begin{tikzpicture}[>=Latex]
+ \draw[axis] (0,0)--(4,0) node[right] {$x$};\draw[axis] (0,0)--(0,3.1) node[above] {$y$};
+ \ifnum#1=1\def\stripTop{2.48}\def\sliceHeight{1.84}\draw[DeepBlue,thick] (0,0)--(3.6,2.88) node[above] {$kx$};
+ \else\def\stripTop{2.4025}\def\sliceHeight{1.3225}\draw[DeepBlue,thick,domain=0:3.6] plot(\x,{.25*\x*\x}) node[above] {$kx^2$};\fi
+ \fill[DeepBlue!20] (2.3,0) rectangle (2.55,\sliceHeight);
+ \draw[guide] (3.1,0)--(3.1,\stripTop);\node[below] at (3.1,0) {$a$};
+ \draw[<->] (2.3,-.35)--(2.55,-.35);\node[below] at (2.42,-.35) {$\dd x$};
+ \node[align=left] at (6.4,1.5) {$\dd S=f(x)\dd x$\\$S=\int_0^a f(x)\dd x$};
+\end{tikzpicture}}
+
+\newcommand{\QMCone}[1]{\begin{tikzpicture}[>=Latex]
+ \draw[thick] (0,3)--(-2,0) arc[start angle=180,end angle=360,x radius=2,y radius=.45]--(0,3);
+ \draw[dashed] (-2,0) arc[start angle=180,end angle=0,x radius=2,y radius=.45];
+ \draw[axis] (-3,3)--(-3,-.3) node[below] {$x$};\node[left] at (-3,3) {$0$};\node[left] at (-3,0) {$H$};
+ \draw[->] (0,0)--(2,0) node[midway,above] {$R$};
+ \ifnum#1=1
+  \fill[DeepBlue!20] (0,1.5) ellipse (1 and .22);\draw (0,1.5) ellipse (1 and .22);
+  \draw[guide] (-3,1.5)--(0,1.5);\node[left] at (-3,1.5) {$x$};
+  \draw[->] (0,1.5)--(1,1.5) node[above] {$r(x)$};
+  \node[right,align=left] at (3,1.5) {$r(x)=Rx/H$\\$\dd V=\pi r^2\dd x$};
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMMassGeometry}{\begin{tikzpicture}[>=Latex]
+ \draw[axis] (0,-.2)--(0,3.4) node[above] {$x$};
+ \draw[thick] (-1.5,0)..controls(-1.2,1.5)and(-.6,2)..(-1,3);
+ \draw[thick] (1.5,0)..controls(1.2,1.5)and(.6,2)..(1,3);
+ \draw (0,0) ellipse (1.5 and .25);\draw (0,3) ellipse (1 and .18);
+ \draw[->] (0,1.5)--(1,1.5) node[right] {$r(x)$};\node[left] at (-1.7,1.5) {$\rho(x)$};\node[left] at (0,3) {$H$};
+ \begin{scope}[xshift=6cm]\draw[thick] (0,1.5) circle (1.5);\draw[->] (0,1.5)--(1,2.3) node[midway,above] {$r$};
+ \node[below] at (0,-.3) {球对称：$\rho(r)$};\end{scope}
+\end{tikzpicture}}
+
+\newcommand{\QMForceCurves}[1]{\begin{tikzpicture}
+ \foreach \pan in {0,1,2}{\begin{scope}[xshift={\pan*4.5cm}]
+  \begin{axis}[width=5cm,height=4cm,axis lines=middle,xmin=.5,xmax=2,ymin=-2,ymax=1,xlabel={位置},ticks=none]
+   \ifcase\pan
+    \ifnum#1=1\addplot[draw=none,fill=DeepBlue!20,domain=1:1.7]{-x}\closedcycle;\fi
+    \addplot[DeepBlue,thick,domain=.5:2]{-x};\node at (axis cs:1.15,.6) {$-kx$};
+   \or
+    \ifnum#1=1\addplot[draw=none,fill=DeepBlue!20,domain=1:1.7]{-1/x^2}\closedcycle;\fi
+    \addplot[DeepBlue,thick,domain=.72:2]{-1/x^2};\node at (axis cs:1.2,.6) {$-Gm_1m_2/r^2$};
+   \or
+    \ifnum#1=1\addplot[draw=none,fill=DeepBlue!20,domain=1:1.7,samples=60]{x^(-6)-x^(-12)}\closedcycle;\fi
+    \addplot[DeepBlue,thick,domain=.9:2,samples=120]{x^(-6)-x^(-12)};\node at (axis cs:1.2,.6) {$A/r^6-B/r^{12}$};\fi
+   \ifnum#1=1\draw[guide] (axis cs:1,-2)--(axis cs:1,1) (axis cs:1.7,-2)--(axis cs:1.7,1);
+    \ifnum\pan=0\node[below] at (axis cs:1,0) {$x_1$};\node[above] at (axis cs:1.7,0) {$x_2$};
+    \else\node[below] at (axis cs:1,0) {$r_1$};\node[above] at (axis cs:1.7,0) {$r_2$};\fi
+   \fi
+  \end{axis}\end{scope}}
+\end{tikzpicture}}
+
+\newcommand{\QMDragBody}[1]{\begin{tikzpicture}[>=Latex]
+ \draw[ground] (-1,-.5)--(5,-.5);\draw[fill=PaleBlue] (1,-.5) rectangle (2.2,.5);\node at (1.6,0) {$m$};
+ \draw[vector] (2.3,.1)--(4,.1) node[right] {$v>0$};
+ \ifnum#1=1\draw[vector,draw=TextGray] (1,.1)--(-.5,.1) node[above] {$-\beta v^2$};
+ \else\draw[vector,draw=TextGray] (1,.1)--(-.5,.1) node[above] {$-\alpha v$};\fi
+ \draw[axis] (-.5,-1)--(4.8,-1) node[right] {$+x$};
+\end{tikzpicture}}
+
+\newcommand{\QMLinearDrag}{\begin{tikzpicture}
+ \begin{axis}[qualitymath,width=.46\linewidth,xmin=0,xmax=4,ymin=0,ymax=1.2,xlabel={$t/\tau$},ylabel={无量纲量}]
+  \addplot[DeepBlue,thick,domain=0:4]{exp(-x)};\addlegendentry{$v/v_0$}
+  \addplot[TextGray,dashed,domain=0:4]{1-exp(-x)};\addlegendentry{$x/(v_0\tau)$}
+ \end{axis}
+ \begin{scope}[xshift=7.5cm]\begin{axis}[qualitymath,width=.42\linewidth,xmin=0,xmax=1.1,ymin=0,ymax=1.1,xlabel={$x/(v_0\tau)$},ylabel={$v/v_0$}]
+  \addplot[DeepBlue,thick,domain=0:.99]{1-x};\draw[DeepBlue,fill=white] (axis cs:1,0) circle (2pt);
+ \end{axis}\end{scope}
+\end{tikzpicture}}
+
+\newcommand{\QMFallingDrag}[1]{\begin{tikzpicture}[>=Latex]
+ \ifnum#1=0
+  \fill[DeepBlue] (0,0) circle (3pt);\draw[vector] (0,0)--(0,-1.6) node[right] {$mg$};
+  \draw[vector,draw=TextGray] (0,0)--(0,1.1) node[right] {$\alpha v$};
+  \draw[axis] (2,1.3)--(2,-1.7) node[below] {向下为正};
+ \else
+  \begin{axis}[qualitymath,xmin=0,xmax=5,ymin=0,ymax=1.2,xlabel={$t/\tau$},ylabel={$v/v_\infty$}]
+   \addplot[DeepBlue,thick,domain=0:5]{1-exp(-x)};\draw[guide] (axis cs:0,1)--(axis cs:5,1);
+  \end{axis}
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMQuadraticDrag}{\begin{tikzpicture}\begin{axis}[qualitymath,xmin=0,xmax=6,ymin=0,ymax=1.1,
+ xlabel={$s=\beta v_0t/m$},ylabel={$v/v_0$}]
+ \addplot[DeepBlue,thick,domain=0:6]{1/(1+x)};
+\end{axis}\end{tikzpicture}}
+
+\newcommand{\QMRadialInitial}{\begin{tikzpicture}[>=Latex]
+ \draw[axis] (-.5,0)--(7,0) node[right] {$r$};\fill[DeepBlue] (0,0) circle (4pt);\node[above] at (0,0) {$A:M$};
+ \draw[thick] (5,0) circle (2.5pt);\node[above] at (5,0) {$m,\ v(0)=0$};
+ \draw[<->] (0,-.6)--node[below] {$r_0$}(5,-.6);\draw[vector] (4.8,.4)--(3.4,.4) node[above] {引力};
+\end{tikzpicture}}
+
+\newcommand{\QMDecay}[1]{\begin{tikzpicture}
+ \ifnum#1=0
+  \draw[thick] (0,0) rectangle (5,1.8);\foreach \p in {(.5,.5),(1,1.3),(2.1,.7),(3,1.2),(4,.5)}{\fill[DeepBlue] \p circle (2pt);}
+  \node[above] at (2.5,1.8) {$t=0:\ N_0$ 个同类原子};\node[below] at (2.5,0) {每个未衰变原子具有相同瞬时衰变率 $\lambda$};
+ \else
+  \begin{axis}[qualitymath,xmin=0,xmax=4,ymin=0,ymax=1.1,xlabel={$s=\lambda t$},ylabel={$N(t)/N_0$}]
+   \addplot[DeepBlue,thick,domain=0:4]{exp(-x)};\draw[guide] (axis cs:0,.5)--(axis cs:.693147,.5)--(axis cs:.693147,0);
+   \node[below] at (axis cs:.693147,0) {$\ln2$};
+  \end{axis}
+ \fi
+\end{tikzpicture}}
+
+\newcommand{\QMPhasorQuestion}{\begin{tikzpicture}[>=Latex]
+ \draw[axis] (-2,0)--(3,0) node[right] {$\Re$};\draw[axis] (0,-.4)--(0,2.7) node[above] {$\Im$};
+ \draw[vector] (0,0)--(2.3,0) node[above] {$A$};\draw[vector] (0,0)--(-1.15,1.992) node[above] {$Ae^{2\pi\ii/3}$};
+ \draw (1,0) arc[start angle=0,end angle=120,radius=1];\node at (.5,1.15) {$2\pi/3$};
+\end{tikzpicture}}
+
+\newcommand{\QMCooling}[1]{\begin{tikzpicture}[>=Latex]
+ \ifnum#1=0
+  \fill[SoftGray] (-1,-.5) rectangle (6,2);\draw[thick,fill=white] (0,0) rectangle (2,1.4);
+  \node at (1,.7) {$T(t)$};\draw[<->,DeepBlue,thick] (2.2,.7)--(4,.7);\node[right] at (4,.7) {$T_a$ 恒定};
+ \else
+  \begin{axis}[qualitymath,xmin=0,xmax=5,ymin=0,ymax=1.1,xlabel={$s=kt$},ylabel={$(T-T_a)/(T_0-T_a)$}]
+   \addplot[DeepBlue,thick,domain=0:5]{exp(-x)};
+  \end{axis}
+ \fi
+\end{tikzpicture}}

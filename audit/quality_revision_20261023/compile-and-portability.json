@@ -1,0 +1,823 @@
+{
+  "date": "2026-10-24",
+  "pages": 1329,
+  "stable_original_aux": true,
+  "stable_original_toc": true,
+  "portable_aux_matches": true,
+  "portable_toc_matches": true,
+  "original_checkout_references": [],
+  "active_input_types": {
+    ".png": 50,
+    ".tex": 108,
+    ".dat": 3
+  },
+  "active_inputs": [
+    {
+      "file": "sample/xes-original/fortieth-section/assets/betatron-built-in-v1.png",
+      "sha256": "c097709e999ee16e1ab0471cd075a9687d0b58d3e05584f0be52aac3d0fafbec",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/fortieth-section/assets/faraday-ring-built-in-v1.png",
+      "sha256": "b7dea8e809fd3382bdddb1b18bd54953408cbabf354b76d766b266d16117f508",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/fortieth-section/moving-magnet-experiment-built-in-v1.png",
+      "sha256": "2d5b8da72e8078b044d831c9f853792650c183d930dbdd0b0b10d7476c316fef",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/fortieth-section/rl-inductor-built-in-v1.png",
+      "sha256": "a6b27c990ef3f312e4c6acb8de599116e743b384cd5780c7fdabe5c4cb30c9db",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fifth-section/assets/astronomy-contexts-20260923.png",
+      "sha256": "a27587475cc1375b4579c9108c2c957492f58350e7bf5e11312862b53d790440",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fifth-section/assets/galaxy-dinosaurs-20260923.png",
+      "sha256": "e19269fd4b83f559b6ecb3eaca0ed6ea03ba2d8d977f70633497d85547bf2a76",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fifth-section/assets/ribosome-20260923.png",
+      "sha256": "f2cddb6c4bcc9c9f002a1cbf9be874b8f7b39d32ab7d19922836a583f82e4865",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fifth-section/assets/von-laue-diffraction-v1.png",
+      "sha256": "43ab1b7dd0b0ea0c4cc56f6e723b7fb8696aebe85e5d1b486f6483a7214a43d1",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-first-section/assets/levitation-built-in-v1.png",
+      "sha256": "e3f12ed97682947c675c35a65caf7cec01c33309612144a43caff94256d213da",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-first-section/assets/maxwell-built-in-v1.png",
+      "sha256": "eeb0e638cf6169e56cb2cd05e5000faaf4f644190a61d4d824383dd9985cdfef",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-first-section/assets/maxwell-onnes-built-in-v1.png",
+      "sha256": "ab94573b1fbed0ab4416b390748e45aef2d525a6c319247f209e394d3d0f6aef",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-first-section/assets/onnes-built-in-v1.png",
+      "sha256": "2722659ad37daf2a556c2e97c6265576dec54cd47b5ce03ac63df9102986e027",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fourth-section/assets/ligo-two-sites-20260923.png",
+      "sha256": "e0810ec077b6a092c4ca3c9775c0925f3f0b71620af25578aff85492faa39773",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fourth-section/assets/newton-rings-20260923.png",
+      "sha256": "1c8bf0c4cdf48c2dd4ac9babbcbdff50a4a8578de7fcb6081af41850b938b430",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-fourth-section/assets/thin-film-scenes-20260923.png",
+      "sha256": "2c33882032cd58cb59a7178c021d0636fd265d8cfa29d1d61ad1490f52b20ab4",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-second-section/assets/fiber-pioneer-built-in-v1.png",
+      "sha256": "5b30a9e9445b67bedd8cda5abf333d6e689ac12a355c491f410411921fd4f1f6",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-second-section/assets/optics-history-built-in-v1.png",
+      "sha256": "a824107f65c6cc2707252f775023a881dc5b36131dcc1b78cf20981709af495b",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-second-section/assets/optics-history-tir.png",
+      "sha256": "5e00f1bf97d1f9927b3a05f9380c533a8cc89bf225dbcbeada0277b25799c3ee",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-second-section/assets/reflection-applications-built-in-v1.png",
+      "sha256": "1fe9f423789bd2339cc743350fde24564a7f740c8b0d771b0cbab8dcdb69aab8",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-third-section/assets/imaging-contexts.png",
+      "sha256": "8e61d2cd339c1ac40ce33e473672d71cc106b1d377d1b442f3d5fac95f620fa4",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/forty-third-section/assets/optical-instruments-built-in-v1.png",
+      "sha256": "6ae42ecfede72564d0895804988a5ca39882678014b9faa1fc05589547816c8a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A1-continuum.tex",
+      "sha256": "fa85b8dcea30c3678323ccb3fbfa0546396a550b8d8ad4a726e9913b4d85542a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A1-rigid.tex",
+      "sha256": "412b34e19a81396875b4c71bf77995034bb5aa2952a58104c8815e9bfa39f57e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A1.tex",
+      "sha256": "a69fd9a849a1d28319979bae5cf81b7050214a7fef65b8ece0d9d38192008005",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A2-statistics.tex",
+      "sha256": "b68b3efd49f833f61f5812e859765db5690beb1fab910637d25df875b7740af5",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A2.tex",
+      "sha256": "b010cb41f0db54c69ac429349e2507edb3411730532db3b72fdd8a3f467b383d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A3-pde.tex",
+      "sha256": "b174f1825b744668d293af307ddd85d6c1ae2658679a8fca6e64e8523fd01f7e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A3-vector.tex",
+      "sha256": "2df0eeb6824dc3bff7e6c7f968bcc5541fa7484cd52c1df9fceb30c4f82931f2",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A3.tex",
+      "sha256": "5fa8b14fd48a0e81c91c54e59e9627c7da2f7dbd8afcd106797adb4892f3b42a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A4-electrostatics.tex",
+      "sha256": "9eea01ecdfe997eb275228c0191fb9ea3fd2a4af7356d914e5442ded2197e67d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A4-gauge.tex",
+      "sha256": "af6c3a81cec5917bd7f09a3d720ef107d0153e8d34093e2a96c185356b6a982d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A4-magnetostatics.tex",
+      "sha256": "1bcb7ce43cfc2b4fd83f52c887b0bda9b909a0b73fa31f74a7958bc7f53db788",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A4-waves.tex",
+      "sha256": "5490bad3a3e56492ba68c3acbfed3f196e20023f3566e4d0a1f097849ca071d3",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A4.tex",
+      "sha256": "fddf127dd8a95e01382a2828721eb3d35220365f03f37b3faf047ab4183cb26a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A5-geometric.tex",
+      "sha256": "7471b198316f39710bf358185d32182dc966a14bb97e08ca2a8e7e93371c9e97",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A5-photometry.tex",
+      "sha256": "687cf1e8f2fa25237372fb484b6e7680acee9b16aba23a1932c7e5e1b924bf5a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A5-source-interference.tex",
+      "sha256": "1fde39595f652cb5085fafec4f262d926ed3055ba1b07c8dfdf6e55ea02faa31",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A5-wave.tex",
+      "sha256": "79ed677f1df7fdd297760e6f1664484f91afd0b423262470ef1d7012680bb754",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A5.tex",
+      "sha256": "d78428df38c246af71bad146e84258c063f5b19e7bc2339dc624f93e6b4ed1eb",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A6-quantum-mechanics.tex",
+      "sha256": "bfb8ad0a0a56dc94033eb5e57a7c43d047f93eeac55f39a2dec5ad1939888391",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A6-quantum-phenomena.tex",
+      "sha256": "2ce9a45afd2408c269ef92c864616732020de99161507b163ec91897644952e5",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A6-relativity.tex",
+      "sha256": "8d1b92348129e0eaad36ba140718575dde15d458c5c5959ce5b2a317a1314d40",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A6-source-exercises.tex",
+      "sha256": "69fe44e6d2cc3bcfe4f066ca48449f2f2ed0ce54ce6cd80e35dc1118bdbe224d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A6-source-more.tex",
+      "sha256": "ff2d463677a04865c4441d26fdefa3613557bcfc791bc5673ec1d09e7faa10a3",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/A6.tex",
+      "sha256": "2c60d11e1405391719ead292e50353da7372dc28651379b34ef2ab14a887ce78",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/advanced/layout.tex",
+      "sha256": "44279bd75d8cf0f113d7a45db9d367567cc42eda934d0bae7166cc108f1fdf07",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/ch10/benzene-model.png",
+      "sha256": "c52906427b6d5366567d80395e79fd1da00ff044134b002a4ca986b8d2bcdd9c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/ch17/contrail.png",
+      "sha256": "6ee237acab3ec3d037a0ebba5a8fdfc1bc9af88bd5614f25cedb70598605189e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/ch17/critical-cell.png",
+      "sha256": "d33b3a1adf9cc10761268f236fa25e0e75d0bb448749d35cf47213e0cabc4f48",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/ch17/saturation.dat",
+      "sha256": "8ecf96520cc367eed4119485e2cf28a64c6f7a008bbbd16160bfe644b5fd7763",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/accelerator-source.tex",
+      "sha256": "3474f7622f4025ceb8fe29af4be45cdab0c9b80696e959621c7a701a10ee5735",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/closed-clock-source.tex",
+      "sha256": "7663f8a678031c9b705a06516f2179e6f300cb53cac523619f41c91e9d3c0aa5",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/elliptic-current-source.tex",
+      "sha256": "9ddb4e1904415b7e4dcad29b716305d9b432130faff48c7a2b33bf988a07929e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/neutron-interferometer-source.tex",
+      "sha256": "f921f4c039495c23ea500f4e5bf4234d3f98152b6b2db4d5ae713c62020709bb",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/photon-scattering-source.tex",
+      "sha256": "3bf38f00f01fbfaeec674af80e1476ece2b9f63afc494b36136688ac2f667ed6",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/photon-wavevector-locus.tex",
+      "sha256": "a903c12f14459bc3a939371854a73e4507a734fff03c6e06c3677c776e73588d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/pursuit-source.tex",
+      "sha256": "c6be03894eb84e9059365de74d0218e285bbbe63e128f7afc72d685a84bb06ed",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/recoil-resonance-source.tex",
+      "sha256": "36e9ab0ddefd8990dfa9b0ad754615b973605e4dc20ecdb2707860a66fcf1f3b",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/rod-telescope-source.tex",
+      "sha256": "7d6860e1780f2857df38a8d7b3545240ad7e66ec9ad3becea1b154b26262c608",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/diagrams-modern/rutherford-recoil-source.tex",
+      "sha256": "673bf89f82f92ddad1bfdf912a44a408a84784901465eaceb21d4aa693c7c9dd",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/generated/A6-grand-radio-array.png",
+      "sha256": "2ce461fec3c7883430e23318b11f0c4233bb254687d9a45a35b41e7ca3652dfa",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/generated/michelson-morley-lab.png",
+      "sha256": "19e78216f9b6c5b4a6d02865dea21ac2f9dcf3f71f14d03f5dc4f770f7403515",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/revision-ch19-ch20/accelerator.png",
+      "sha256": "0e669a066b8d4fbfba9a7a1e9b746dd83e62183db2357bbfba5a652ff4c6cd0e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/revision-ch19-ch20/coulomb.png",
+      "sha256": "8f08e1e81a206615e7dc5ab7c3d7bc8c3048b4c9e6a56205ff09da8d98ec21a3",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/revision-ch19-ch20/dielectric-meter.png",
+      "sha256": "bbdb9651db62f45b5debd67f3be2a1eec0df94989e1a64b1151251c981a808be",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/revision-ch19-ch20/gauss.png",
+      "sha256": "c29458fc5c7b14ce2cbe031d04bc534f474373bdff0f1824537a5fcd1137e934",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/assets/revision-ch19-ch20/lightning.png",
+      "sha256": "ecb608982afc51afde4309af4729230de8337591039d63788c9c2408baa28f37",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/advanced-optics/figures.tex",
+      "sha256": "6c010443cd3d31c4c1900fcd20eae519a5a452246ab07153de8482377f598670",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/appendix-e-figures.tex",
+      "sha256": "3778be5cecd22b5603fe8c5c928032354d95d614c496614bb21a928c4286ee8e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch01-figures.tex",
+      "sha256": "cd01524e76a788131a68705e1bc3db5f0478ae45bb2f5e5c7e94e2affa822409",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch07-components.tex",
+      "sha256": "205a01a00d87cd585f04a683e971c050636114e9342fccedad92370a79c6de83",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch08-work.tex",
+      "sha256": "3e09eb7a0e983f712931f6c42a7bc22f8c307f386da45a21a546c058ec920198",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch12-sound.tex",
+      "sha256": "f654bfaa8ee6f284b50427001722df048ea88ef139f908e31c4b5b499ad55690",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch14-mixture.tex",
+      "sha256": "205e90a6c021ef4df6c4b101b6efffe650fe98929408ffb2a9c585a02df82b62",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch18-figures.tex",
+      "sha256": "37ffe326ed71c63ce28070453ad8efc656de8f5c9cb008b25427ff8e22ea4bf7",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch21-conduction-devices.tex",
+      "sha256": "644b55e8be09c0265a20884eafece500dba4f38b36624f4fe226e59037d3a674",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch25-power-applications.tex",
+      "sha256": "57dbae10239f513b1b69c2f33cc3f8ff6065fa3a44b2a8ae3c434f7800404a67",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch26-radiation.tex",
+      "sha256": "7941f485f896cc7a2794b9fbe9c3c6f9660a9300349337000f4a20be915ec39c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch31-redshift.tex",
+      "sha256": "41664c4f398dbd4bee28bfc9f581c0a15097fb9118af1be6be158916e5ae2536",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/ch32-laser.tex",
+      "sha256": "fb5aa3f973b26e797e2c92744f77155345f3f91885962723f59649e6e741d2e2",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/em-optics/ch25-notes.tex",
+      "sha256": "2c218d8d880b8835ce773be900a4b4b9a9fb2ffb187207995f65fca5be0741d4",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/em-optics/ch29-notes.tex",
+      "sha256": "b6f665cac45c8cb7554e776a78789744d05e9b4b1ceab2816a4f575ba547aa2c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/em-optics/ch30-notes.tex",
+      "sha256": "fbac5e29338c3e9635807118685779daea9f5bef6fd703ecd4657f5739331538",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/theory-tikz/ch19-gallery.tex",
+      "sha256": "445638acad408451620dab9381803dd955703c10b2e577ad97dc3ffe086a03da",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/theory-tikz/ch20-conductors.tex",
+      "sha256": "c8feff798e642cd55c2c07657c2dbda52e41114a4303fffd21a2fea3b04e47ce",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/theory-tikz/field-geometries.tex",
+      "sha256": "176133991de3c49d58a8a87dc72d95e97e78f24e8a030c87f564d9e267096536",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/A2-statistics.tex",
+      "sha256": "5fea7804279f74a7ccd462e0a07935a555eab5f62cbfa083baad3ac1901334c7",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/A2-thermo.tex",
+      "sha256": "4585c743cf44dddec89e10645c8496124a3930ca66288d506c89e4fa18a3a74c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/A3-pde.tex",
+      "sha256": "fdecb8919959cfc7e33d9e01ad51a3d7f77619e15492d79b0c99db7076919754",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/A3-vector.tex",
+      "sha256": "7e7ff5e0d1879d6719b2fa9de8c4d49140072c2ff813afb571acf3626662f629",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch08.tex",
+      "sha256": "87aa24dc68d108f0598682752e6b4943c6572e77007bf8e25094cb63a187bc11",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch09.tex",
+      "sha256": "6ced75d34433c183fa2a1cd0d9e07cde72223f2258a529a33a6bb92bfa0cfb57",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch10.tex",
+      "sha256": "46faf439d39be93525237e868c00f0eba8a1e44261c368b8311c65b715e8e960",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch11.tex",
+      "sha256": "ffcb19f0b46945e92c52b0c8507e4a94d5b1cf3c8afa1b9cb98b83c1511d8440",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch12.tex",
+      "sha256": "8397da11f71813780a6c9713b822d277c23c006ae47f0cd40862c4398bf5ea33",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch13.tex",
+      "sha256": "c405447b996855b0ac220f46be4766468a268eea3c66c41db9ad6e036a0fdae2",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch14.tex",
+      "sha256": "e49bb202b7e6869e1e4dfc433081b99ae41ac884c280e3c79c444b96c5b392ad",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch15.tex",
+      "sha256": "c21c9c7ca69937ec964d74d46cdb5302293758eaa2f6d843babdb5d412d3ddbc",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch16.tex",
+      "sha256": "ae68f39aa24f40eff359769e43f11d0a5bbc09d6f5ed8c992b4aa6d5235b0e37",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch17.tex",
+      "sha256": "9eb8f5dd6816cae9622e350e7e1037dc52fcde384988448a8d4cab61454e7f9f",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch19.tex",
+      "sha256": "c00a66bbea03006d198da2aabd00b5d215a1245c57793e608afcd62da217d965",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/ch20.tex",
+      "sha256": "6c7f75f9f90feb8e15620ff22b93e169d17fad634c56a3c508f887c06e3df2f7",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/electrostatic-analysis-ch19.tex",
+      "sha256": "f48c42f54c3506d501f20889e2f5e83eb6096c97ea30ae4bd6f4ce78838c445e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/chapters/quality-20261023/thermal/electrostatic-analysis-ch20.tex",
+      "sha256": "09a4a1f4ec3ea6217f43e5c146b1b7168810029ea4dc9adfb4c7c15783398612",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/frontmatter/reading-guide.tex",
+      "sha256": "48969ff956848a4edaabb94f5ff460cabc9733195be58e8465d3deec874f3443",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/appendices/appendix-e.tex",
+      "sha256": "7aba482b89efa0d29991d83e67d399147398799c491b2551f0f13b3fe1ef5a1e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch01.tex",
+      "sha256": "dbf304b4ee25a3903bee02213b3d93184e455c1a6e16165b0305195c3216ad55",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch02.tex",
+      "sha256": "74026e172fbeea2fb6eb65e9947ac78b3ad376a143582675a005d1cb14a3a19f",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch03.tex",
+      "sha256": "2de0b8b3568956ffddec20d09a14bc8b5bcc4df216c5bb6ddf5eb4ca60ece063",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch04.tex",
+      "sha256": "472195ea0ea0ce0db3d65eeff1f1809577e86114ccc76ba3dc7e121ca04b527d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch05.tex",
+      "sha256": "0b2821e8ce160cfebd6a6e3c9e0f84f7a9ee6bd6160c5cb4698c12393a69c167",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch06.tex",
+      "sha256": "8ab61d513a96d80e93c7a5b8b1c4ba1a7182b7130ebc04055269f39c6d13bca9",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch07.tex",
+      "sha256": "5e10c1e920907fd46e5e80b40553b2fad54ceaaa18ff86ba69aea0295bf4bf6d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch08.tex",
+      "sha256": "6f44c79792815a412049c5804425a9c9138db9df746b640ac62adfbb6a3dc9a7",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch09.tex",
+      "sha256": "3fd94ebdd8bb8bd2eec9a31887af8a01993b9afc73ef41796041af0a9551c416",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch10.tex",
+      "sha256": "f178e566f583f977d0ed89890e7313ee121424e91a87abcce48537babfa06658",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch11.tex",
+      "sha256": "0f086d185bd8059a06597b49c70a02776d562aaaa50dd91eff5de317af5916fc",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch12.tex",
+      "sha256": "46a4820f9251428eb8b73a9bbb1ee42875d682dfcfad1044d1410d972293977e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch13.tex",
+      "sha256": "af14d738da823714c8f8d82d46ec8d05324ce8dba9ec69b03b6e06383ebdaaf7",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch14.tex",
+      "sha256": "a57c94cd8c3cef9c5c1c5fcaefb7536dcd065b75524a83304f0e7612745ab1e0",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch15.tex",
+      "sha256": "4c886d9b7af762204796d538c8518a75038ab333101e4d97f377528f4533e121",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch16.tex",
+      "sha256": "7fa906ed1d59e56e095ddd2cd45bbb141cfb0c8cd171df692c67f04fe64a776c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch17.tex",
+      "sha256": "748e5889b5be4f461a13018f9662b396966b29ae800bc88d6bb9f742dbbcf6e6",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch18.tex",
+      "sha256": "a8a6c587137da8a4a91a3729131eb260e5fcba8220d33692c3e1de35a3f9dfd2",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch19.tex",
+      "sha256": "d82f90ac89ffa549b246dbb161967ec9a4a7a68030643d928d6a9c2c41152a51",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch20.tex",
+      "sha256": "5df83ed48690c2d038ee41bfcc05efebb39fd387fdc10f350344dda21447df5e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch21.tex",
+      "sha256": "e0e10b1ab1362e3b35ab1e041a183342c06c4c2e4ac92347b3eaee019ed184e1",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch22.tex",
+      "sha256": "1dbc2100f8b6b6f45b8fc612d478e3945f7033331b443cae485a5481d0ed57e7",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch23.tex",
+      "sha256": "8a21ec25f70672e26a8ac4ffcbec2b70f0f4875b8d40e9d64078ee45d4fa769c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch24.tex",
+      "sha256": "84333a9aabc5efe7815330355831dc3d9917866dcbe822f2ca1d981b6031a53e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch25.tex",
+      "sha256": "04c3d70703f33b3431f0d54a1369b9399ab8e5d1021e81647eeef72da9ae7ccc",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch26.tex",
+      "sha256": "3b4f9aca8819b9bc92082d422c8fa8c0bdbb8e2a83962da8631d5e23f43a1ffb",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch27.tex",
+      "sha256": "d9c49a7c56db2a8a52f60ce881fd85c4157a3592359ffa1cfb1831f9c8f00ed0",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch28.tex",
+      "sha256": "a76fe2fbbcf66f94266682c417761b630d2ce40bb24ad85f4652f1d94bc39d13",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch29.tex",
+      "sha256": "2d1f503a68688dd2a286a5122d894d4b340a982545aee1862675de739cf43cc5",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch30.tex",
+      "sha256": "350223400b2768acacd54fb19b121d2b9d6721f339e61339fc509f3219dc887e",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch31.tex",
+      "sha256": "d954671a0a2998316a18e558490cc97ef1c57bd48d32be27f0824bd74c2e406a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/generated/chapters/ch32.tex",
+      "sha256": "085325e84f47520869404c4b240bad6ff5d6f5aaf970259a1c83413ae0f128b9",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/main.tex",
+      "sha256": "723e1525cdfa2e661648de5e59200bd4a514623a55c8ba49ee4286685b66dd23",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/restructured-complete/style.tex",
+      "sha256": "17241d3aefb645aefb24247ce6e44b210f4e14025df90f25f65a725b10b5782d",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/sixteenth-section/assets/cosmic-angular-momentum-redraw.png",
+      "sha256": "2e88e22d4f82c890028cf2d91351e07b863d8c5fa01f2ec3e4125e67c610146b",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirtieth-section/assets/boltzmann-memorial.png",
+      "sha256": "970e49f627e65d12cd5760f13a58add3c02a37d4f46d21c9099cfff7a2960826",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirtieth-section/assets/thermodynamics-founders.png",
+      "sha256": "23c260ec21a5459fc50150e56719493ddef0da95d2f845c881510ed3f6013612",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-eighth-section/assets/cyclotron-apparatus-built-in.png",
+      "sha256": "66e0425800db0a544aba1131964970ac511858bd804963508670b25de561d606",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-eighth-section/assets/lorentz-zeeman-built-in-v1.png",
+      "sha256": "dd3872f4d5bd4bd46bf112451503ad17d1e682e7e7d0ee5e7180aae8afcbdb93",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-eighth-section/assets/magnet-field-built-in-v1.png",
+      "sha256": "92dcf4c494d45e256b1297dcc91fec699fe40ffab58d65bfedfa3d9bcb00e934",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-eighth-section/assets/particle-tracks-built-in-v1.png",
+      "sha256": "c28c8103fcfe5bd99cd2d08fcdfeef98bdcab8d85435e5bbab20d4fa2dc4286b",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-eighth-section/assets/trajectory-data/layers.dat",
+      "sha256": "c5febd032175c7b48221480c49d94ad174133eb8884b48ac6d92c2328557f2cd",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-eighth-section/assets/trajectory-data/mirror.dat",
+      "sha256": "95722760612e353067bb89aa6f3a9ba73737a20656ded5d85ec6ec88836c492c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-fourth-section/assets/faraday-cage-built-in-v2.png",
+      "sha256": "f9cfa48e75b6ed96b1319e911f1dd608f452e8d76ce76ca04c3e0aa010592ae6",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-fourth-section/assets/ionosphere-communication-built-in-v2.png",
+      "sha256": "bcfccb057edc9f6f276839f9f0a02fbaafeb1cd91ef3618cf49b419f7299aa2a",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-ninth-section/assets/motor-helmholtz-built-in-v1.png",
+      "sha256": "4ce3e27ea0a9fc02cf27ade59e5782142f1fd71d5a0db2c10c8b80dedb1a63c5",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-ninth-section/assets/right-hand-solenoid.png",
+      "sha256": "a6c2cfb57b4e9b22398e64c93080d3e289197a53f01fe1c8f2313586a5da2f86",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/thirty-sixth-section/assets/ohm-portrait-and-stamp-built-in-v1.png",
+      "sha256": "5726e642db2088bde68d0e93bd03c6a68136a7c2bbb5a267aed34103b1b0882c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-eighth-section/assets/boltzmann-rayleigh-context.png",
+      "sha256": "0811af832273e1292d0d26fa38132da8e5d877abcb79ad03e3c68aa27448d549",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-eighth-section/assets/figure19-1-redraw.png",
+      "sha256": "85bc96244d01ab08352cc2d85ff3d5efd8f552446455af75ef7ad7057cfed0ce",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-eighth-section/assets/thermometer-contact.png",
+      "sha256": "577370c6cb57c6846202628f6f726df48a194bbecfb8356ebe7cc3af63a373ff",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-ninth-section/assets/atmosphere-scenes.png",
+      "sha256": "414ae80d69cecae2969ba95dc57659dff8704d1d3ba08a1929a4507fded7c2bf",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-ninth-section/assets/figure20-2-redraw-v3.png",
+      "sha256": "1ffa6f7a4edd94d1d7d6f34d82e6530f08e6811d3928bdce84473273a9504c1c",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-ninth-section/assets/figure20-3-redraw-v2.png",
+      "sha256": "298b01e2611146979e3e7a3bbef9bd871c5744cb0b22df5016bd410a1a35aff5",
+      "matches_original": true
+    },
+    {
+      "file": "sample/xes-original/twenty-ninth-section/assets/figure20-4-redraw-v2.png",
+      "sha256": "a919c1bb48e64344c3ec4129bc545452b61a032b8db93eacbe2484420f6ac08e",
+      "matches_original": true
+    }
+  ],
+  "overlay_idempotence_files": 53,
+  "overlay_idempotence_failures": []
+}

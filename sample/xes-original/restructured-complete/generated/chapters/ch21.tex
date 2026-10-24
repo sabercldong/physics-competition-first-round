@@ -1,9 +1,11 @@
+% EMOpticsQuality20261023
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
 \RenewDocumentEnvironment{xesolution}{+b}{%
   \par\nobreak\smallskip\nobreak\begingroup\small
   \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -14,7 +16,7 @@
 \chapter{恒定电流与复杂电路}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-sixth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-sixth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/thirty-sixth-section/}{../../../sample/xes-original/thirty-sixth-section/assets/}}
 \section{电流密度与微观输运}
 
 % All labels are transparent. Rectangles in circuit figures represent actual elements,
@@ -72,7 +74,7 @@
   \begin{minipage}[t]{.43\linewidth}\centering\small\color{TextGray}
     (b) 以电阻和 $U=RI$ 为主题的纪念邮票。
   \end{minipage}
-  \figcap{欧姆肖像与电阻定律纪念邮票。}\label{ch21:fig:s36-5-2}
+  \figcap{欧姆肖像与电阻定律纪念邮票。\label{ch21:fig:s36-5-2}}
 \end{center}}
 
 \newcommand{\cylindricalResistorFigure}{%
@@ -628,7 +630,7 @@ $\tau=m/\alpha$ 内趋近新的稳态值。通常金属中的 $\tau$ 极短，�
 
 \par\noindent\begin{minipage}{\linewidth}
 \drudeFigure
-\diagramcaption{导体内电子的无规则运动与定向漂移。蓝色曲线表示一条示意轨迹，金色圆点表示晶格散射中心。}\label{ch21:fig:s36-5-6}
+\diagramcaption{导体内电子的无规则运动与定向漂移。蓝色曲线表示一条示意轨迹，金色圆点表示晶格散射中心。\label{ch21:fig:s36-5-6}}
 \end{minipage}\par\medskip
 
 设自由电子数密度为 $n$、电子电荷量的绝对值为 $e$、质量为 $m$，两次有效散射之间的平均时间为
@@ -653,7 +655,7 @@ $\tau\sim\ell/\bar v$ 因而减小，仍得到同一趋势；但金属中更准�
 
 \par\noindent\begin{minipage}{\linewidth}
 \gasDischargeFigure
-\diagramcaption{气体放电的典型电压--电流曲线。横轴为对数电流标度，各区段明显不满足线性欧姆定律。}\label{ch21:fig:s36-5-7}
+\diagramcaption{气体放电的典型电压--电流曲线。横轴为对数电流标度，各区段明显不满足线性欧姆定律。\label{ch21:fig:s36-5-7}}
 \end{minipage}\par\medskip
 
 经典模型仍不能精确描述金属电子，但能把实测电导率换算成有意义的微观尺度。以银为例，
@@ -702,14 +704,29 @@ $\boldsymbol\Gamma_{\rm diff}=-D\nabla n$，相应电流为 $q\boldsymbol\Gamma_
 角速度绕主轴转动，此时环中没有相对晶格的电流；再让铜环突然停止，发现环内出现短暂电流。求从铜环
 停止开始流过任一横截面的总电量。结果用环半径 $r$、初始角速度 $\omega$、电子电量绝对值 $e$、
 电子质量 $m$ 和铜的电导率 $\sigma$ 表示。记导线横截面积为 $S$。
-\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,0) circle (1.15);
+\draw[->] (0,0)--(1.15,0) node[midway,below]{$r$};
+\fill (0,0) circle (1.2pt) node[below left]{$O$};
+\draw[DeepBlue,thick,->] (1.15,0)--(1.15,.8) node[right]{$\omega>0$};
+\draw[thick] (-1.4,-.12)--(-.9,-.12) (-1.4,.12)--(-.9,.12);
+\node[left] at (-1.4,0){截面 $S$};
+
+\end{tikzpicture}
+\figcap{题图：骤停前铜环的转向与被考察的导线截面。\label{ch21:quality:q1}}
+\end{minipage}\end{center}
+\end{origexamplebox}
+\begin{xesolution}\par\nopagebreak[4]
 
 \par\noindent\begin{minipage}{\linewidth}
 \tolmanRingFigure
-\diagramcaption{解图：铜环晶格骤停后，电子因惯性保持原切向速度；常规电流方向与电子运动方向相反。}
+\diagramcaption{解图：铜环晶格骤停后，电子因惯性保持原切向速度；常规电流方向与电子运动方向相反。\label{ch21:quality:a1}}
 \end{minipage}\par\medskip
 
-\begin{xesolution}
+
 停止前，自由电子随晶格共同转动，其切向速度为 $r\omega$；相对于晶格没有漂移，所以没有电流。晶格
 突然停止时，电子速度不能突变，刚停止后的相对漂移速度仍为 $r\omega$。用德鲁德弛豫模型描述碰撞：
 \[
@@ -735,6 +752,8 @@ $\boldsymbol\Gamma_{\rm diff}=-D\nabla n$，相应电流为 $q\boldsymbol\Gamma_
 若把转动方向规定为正，由于电子带负电，常规电流以及带符号的 $Q$ 均沿反方向。
 总电量与横截面积 $S$ 成正比；单位横截面积通过的电量为
 $|Q|/S=m\sigma r\omega/e$。
+
+图~\ref{ch21:quality:a1} 中，截面 $S$ 固定在骤停后的晶格上；电子继续沿原切向运动，而常规电流反向，因此积分的是穿过该截面的电荷量。
 \end{xesolution}
 
 
@@ -742,6 +761,19 @@ $|Q|/S=m\sigma r\omega/e$。
 \begin{origexamplebox}{【暂态电流】}\label{ch21:ex:s36-5-2}
 在一个阻值为 $R$ 的圆柱形电阻两端突然加上恒定电压 $U$。考虑载流子的惯性，求通过电阻的电流
 随时间的变化关系 $I(t)$。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-.35) rectangle (3.3,.35);
+\draw (0,0)--(-.7,0) (3.3,0)--(4,0);
+\node[above] at (1.65,.35){$l,S,R$};
+\node[below] at (1.65,-.35){$t=0$ 接通电压 $U$};
+\draw[DeepBlue,->] (.45,0)--(2.75,0) node[midway,above]{$I$ 正方向};
+
+\end{tikzpicture}
+\figcap{题图：圆柱导体在 $t=0$ 突然接通恒压源，箭头规定常规电流正向。\label{ch21:quality:q2}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[4]
 
 \begin{xesolution}
@@ -761,11 +793,13 @@ $U/R=neS(eE\tau/m)$，可得电流满足
 
 \par\noindent\begin{minipage}{\linewidth}
 \transientCurrentFigure
-\diagramcaption{解图：电流以时间常数 $\tau$ 从零趋近稳态值 $U/R$；普通电路中 $\tau$ 极短。}
+\diagramcaption{解图：电流以时间常数 $\tau$ 从零趋近稳态值 $U/R$；普通电路中 $\tau$ 极短。\label{ch21:quality:a2}}
 \end{minipage}\par\medskip
 
 欧姆定律 $I=U/R$ 是 $t\gg\tau$ 后的稳态结果。若理想化地令 $\tau\to0$，才会得到“加压瞬间电流
 立刻跳到 $U/R$”的集中参数模型。
+
+图~\ref{ch21:quality:a2} 中，$I$ 的正向与电场相同，电子漂移反向；曲线初值 $I(0)=0$ 与远时极限 $U/R$ 分别确定积分常数和稳态。
 \end{xesolution}
 
 
@@ -775,16 +809,17 @@ $U/R=neS(eE\tau/m)$，可得电流满足
 这一过程可以等效为圆形导线中的稳恒电流，求等效电流 $I$。
 \par\noindent\begin{minipage}{\linewidth}
 \emRotatingRingQuestion
-\figcap{刚性带电圆环及给定转动方向，等效电流待求。}\label{ch21:fig:em-source-thirty-sixth-section-3}
+\figcap{刚性带电圆环及给定转动方向，等效电流待求。\label{ch21:fig:em-source-thirty-sixth-section-3}}
 \end{minipage}\par\medskip
-\end{origexamplebox}\par\nopagebreak[4]
+\end{origexamplebox}
+\begin{xesolution}\par\nopagebreak[4]
 
 \par\noindent\begin{minipage}{\linewidth}
 \rotatingChargedRingFigure
-\diagramcaption{，图示取 $Q>0$。圆环每转一周，总电荷 $Q$ 就完整通过任一固定截面一次。}\label{ch21:fig:s36-5-12}
+\diagramcaption{，图示取 $Q>0$。圆环每转一周，总电荷 $Q$ 就完整通过任一固定截面一次。\label{ch21:quality:a3}\label{ch21:fig:s36-5-12}}
 \end{minipage}\par\medskip
 
-\begin{xesolution}
+
 圆环转动周期为
 \[
   T=\frac{2\pi}{\omega}.
@@ -795,6 +830,8 @@ $U/R=neS(eE\tau/m)$，可得电流满足
 \]
 若 $Q>0$，电流方向与转动方向相同；若 $Q<0$，常规电流方向相反。半径 $R$ 不出现在结果中，因为
 半径增大虽然使线速度增大，却同时使一周路程同比增大，周期仍只由 $\omega$ 决定。
+
+图~\ref{ch21:quality:a3} 中，固定截面每经过一个周期 $T$ 收到整环电荷 $Q$；应以电荷正负决定常规电流相对转向的方向。
 \end{xesolution}
 
 
@@ -814,7 +851,7 @@ $I$ 通过。阴极发射充分，工作于零初速的空间电荷限制状态�
 (5) 积分证明查尔德--朗缪尔定律 $I=KU^{3/2}$，并求 $K$。
 \par\noindent\begin{minipage}{\linewidth}
 \vacuumDiodeFigure
-\diagramcaption{电子由阴极射向阳极，图中 $I$ 表示相反方向的常规电流大小。}\label{ch21:fig:s36-5-13}
+\diagramcaption{电子由阴极射向阳极，图中 $I$ 表示相反方向的常规电流大小。\label{ch21:fig:s36-5-13}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -875,7 +912,7 @@ $I$ 通过。阴极发射充分，工作于零初速的空间电荷限制状态�
 
 \par\noindent\begin{minipage}{\linewidth}
 \childLangmuirFigure
-\diagramcaption{解图：空间电荷限制状态下的电势曲线。阴极处切线水平，随后按 $x^{4/3}$ 增长。}
+\diagramcaption{解图：空间电荷限制状态下的电势曲线。阴极处切线水平，随后按 $x^{4/3}$ 增长。\label{ch21:quality:a4}}
 \end{minipage}\par\medskip
 
 最后将 $A=(4/9)U^{3/2}/L^2$ 与其定义比较：
@@ -885,6 +922,8 @@ $I$ 通过。阴极发射充分，工作于零初速的空间电荷限制状态�
   \qquad
   \boxed{K=\frac49\frac{\varepsilon_0S}{L^2}\sqrt{\frac{2e}{m}}}.
 \]
+
+图~\ref{ch21:quality:a4} 中，电势曲线在阴极 $x=0$ 处斜率为零，正是空间电荷限制状态的边界；阳极 $x=L$ 的纵坐标为 $U$。
 \end{xesolution}
 
 
@@ -900,7 +939,7 @@ $I$ 通过。阴极发射充分，工作于零初速的空间电荷限制状态�
 
 \par\noindent\begin{minipage}{\linewidth}
 \ivCharacteristicFigure
-\diagramcaption{二端元件及其 $I$--$V$ 特性。标出的正、负号与箭头只是统一的测试约定。}\label{ch21:fig:s36-5-1}
+\diagramcaption{二端元件及其 $I$--$V$ 特性。标出的正、负号与箭头只是统一的测试约定。\label{ch21:fig:s36-5-1}}
 \end{minipage}\par\medskip
 
 若元件稳定工作时，同一个端电压总对应同一个端电流，就可用函数 $I=I(V)$ 描述它的外部性能，称为
@@ -939,7 +978,7 @@ $A$ 的均匀圆柱形导体，实验进一步给出
 
 \par\noindent\begin{minipage}{\linewidth}
 \cylindricalResistorFigure
-\diagramcaption{长度为 $l$、截面积为 $A$ 的均匀圆柱形电阻。电流方向与端电压测试方向一致。}\label{ch21:fig:s36-5-4}
+\diagramcaption{长度为 $l$、截面积为 $A$ 的均匀圆柱形电阻。电流方向与端电压测试方向一致。\label{ch21:fig:s36-5-4}}
 \end{minipage}\par\medskip
 
 理想电阻的伏安关系是一条过原点的直线。若纵轴为 $I$、横轴为 $V$，直线斜率为 $1/R$；曲线越陡，
@@ -947,7 +986,7 @@ $A$ 的均匀圆柱形导体，实验进一步给出
 
 \par\noindent\begin{minipage}{\linewidth}
 \ohmicIVFigure
-\diagramcaption{理想电阻的 $I$--$V$ 特性。直线斜率是电导 $1/R$。}\label{ch21:fig:s36-5-5}
+\diagramcaption{理想电阻的 $I$--$V$ 特性。直线斜率是电导 $1/R$。\label{ch21:fig:s36-5-5}}
 \end{minipage}\par\medskip
 
 把宏观欧姆定律写成局部形式。对图~\ref{ch21:fig:s36-5-4} 的均匀导体，内部电场 $E=U/l$，电流密度 $j=I/A$。
@@ -989,16 +1028,17 @@ $\dd R=\rho(x)\dd x/A(x)$，$R=\int\rho(x)\dd x/A(x)$。若长度 $l$ 内截面�
 与当地电场大小成正比，即 $\sigma=KE$。若两球壳之间的电势差为 $U$，求两壳之间的电流。
 \par\noindent\begin{minipage}{\linewidth}
 \emConductingShellQuestion
-\figcap{导电厚球壳的内外半径；两球面之间加给定电压。}\label{ch21:fig:em-source-thirty-sixth-section-5}
+\figcap{导电厚球壳的内外半径；两球面之间加给定电压。\label{ch21:fig:em-source-thirty-sixth-section-5}}
 \end{minipage}\par\medskip
-\end{origexamplebox}\par\nopagebreak[4]
+\end{origexamplebox}
+\begin{xesolution}\par\nopagebreak[4]
 
 \par\noindent\begin{minipage}{\linewidth}
 \conductingShellFigure
-\diagramcaption{球对称性保证电流密度和电场均沿径向，且通过任一同心球面的电流相同。}\label{ch21:fig:s36-5-14}
+\diagramcaption{球对称性保证电流密度和电场均沿径向，且通过任一同心球面的电流相同。\label{ch21:quality:a5}\label{ch21:fig:s36-5-14}}
 \end{minipage}\par\medskip
 
-\begin{xesolution}
+
 稳恒状态下，任意半径 $r$ 的同心球面都通过同一电流 $I$。因此
 \[
   j(r)=\frac{I}{4\pi r^2}.
@@ -1022,10 +1062,14 @@ $\dd R=\rho(x)\dd x/A(x)$，$R=\int\rho(x)\dd x/A(x)$。若长度 $l$ 内截面�
 \]
 这里 $I\propto U^2$，明确说明该材料不满足线性欧姆定律。若交换两球壳电势高低，电流方向反向；
 上式给出其大小。
+
+图~\ref{ch21:quality:a5} 中，半径为 $r$ 的球面面积为 $4\pi r^2$，该面上的总电流不随 $r$ 改变；从 $a$ 到 $b$ 的径向积分给出两壳电压。
 \end{xesolution}
 
 
 
+% FinalReviewQuestionSplit20261024 【电离计数器】
+\tcbset{breakable/.default=true}
 \begin{origexamplebox}{【电离计数器】}\label{ch21:ex:s36-5-6}
 最简单的电离室由一对面积为 $S$、间距为 $D$ 的平行板电极构成，置于充有混合气体的气密容器中。
 阴极电势为 $-U_0$，阳极通过负载电阻 $R$ 接地。带电粒子平行极板入射，在距阳极 $x_0$ 处沿径迹
@@ -1036,16 +1080,19 @@ $\dd R=\rho(x)\dd x/A(x)$，$R=\int\rho(x)\dd x/A(x)$。若长度 $l$ 内截面�
 (4) 当 $v^-\gg v^+$ 时信号的特征；(5) $R$ 的作用不可忽略时的 $\Delta U(t)$。
 \par\noindent\begin{minipage}{\linewidth}
 \emIonChamberQuestion
-\figcap{平行板电离室的装置、入射径迹与外接电路；竖直侧壁表示绝缘容器边界。}\label{ch21:fig:em-source-thirty-sixth-section-6}
+\figcap{平行板电离室的装置、入射径迹与外接电路；竖直侧壁表示绝缘容器边界。\label{ch21:fig:em-source-thirty-sixth-section-6}}
 \end{minipage}\par\medskip
-\end{origexamplebox}\par\pagebreak[1]
+\end{origexamplebox}
+\tcbset{breakable/.default=false}
+\par\pagebreak[0]
+\begin{xesolution}
 
 \par\noindent\begin{minipage}{\linewidth}
 \ionChamberFigure
-\diagramcaption{题图：平行板电离室。$x$ 从阳极指向阴极；电子向阳极、正离子向阴极漂移并共同形成感应信号。}
+\diagramcaption{解图：平行板电离室。$x$ 从阳极指向阴极；电子向阳极、正离子向阴极漂移并共同形成感应信号。}
 \end{minipage}\par\medskip
 
-\begin{xesolution}
+
 若入射粒子在气体中沉积能量 $E_{\rm dep}$，则理想情况下 $N=E_{\rm dep}/W$；本题已直接给出 $N$。
 以下取阳极对地电压变化为 $\Delta U$，并采用小信号条件 $Ne/C\ll U_0$，使收集过程中的场强和漂移速率
 可近似不变。信号大小记为 $u=-\Delta U\ge0$，避免把实际负脉冲误画成正电压。
@@ -1091,7 +1138,7 @@ $t_i<t_e$ 情形。后一情形先失去离子分量，剩下电子分量直至 
 
 \par\noindent\begin{minipage}{\linewidth}
 \ionSignalFigure
-\diagramcaption{解图：忽略泄放时的信号大小。图中把常见的 $t_e<t_i$ 情形画成快速前沿加缓慢离子尾。}
+\diagramcaption{解图：忽略泄放时的信号大小。图中把常见的 $t_e<t_i$ 情形画成快速前沿加缓慢离子尾。\label{ch21:quality:a6}}
 \end{minipage}\par\medskip
 
 \textbf{(5) 有限负载电阻。} 读出节点相当于电容 $C$ 与电阻 $R$ 并联，信号满足
@@ -1114,6 +1161,8 @@ $I_k=Ne v_k/D$ 的分量，零初值解为
 分别取 $(v_k,T_k)=(v^-,t_e)$ 与 $(v^+,t_i)$，得到 $\Delta U(t)=-u_e(t)-u_i(t)$。当
 $RC\gg\max(t_e,t_i)$ 时，在收集时间内展开指数，退化为前面近似无泄放的折线；当 $RC$ 较小时，信号在收集过程中
 已明显经电阻衰减，收集结束后则按 $e^{-t/(RC)}$ 回到零。
+
+图~\ref{ch21:quality:a6} 中，电子收集结束于 $t_e$，斜率随即减少；离子在 $t_i$ 收集完成后信号大小达到 $Ne/C$，实际阳极电压为其负值。
 \end{xesolution}
 
 
@@ -1128,7 +1177,7 @@ $RC\gg\max(t_e,t_i)$ 时，在收集时间内展开指数，退化为前面近�
 
 \par\noindent\begin{minipage}{\linewidth}
 \seriesParallelResistorsFigure
-\diagramcaption{电阻的串联与并联。判断连接方式的依据是节点关系，而不是图形看起来是否横排或竖排。}\label{ch21:fig:s36-5-8}
+\diagramcaption{电阻的串联与并联。判断连接方式的依据是节点关系，而不是图形看起来是否横排或竖排。\label{ch21:fig:s36-5-8}}
 \end{minipage}\par\medskip
 
 对 $n$ 个串联电阻，$U_i=IR_i$，所以
@@ -1172,7 +1221,7 @@ $I=\sum_i I_i=U\sum_i(1/R_i)$，故等效电阻满足
 
 \par\noindent\begin{minipage}{\linewidth}
 \networkTermsFigure
-\diagramcaption{电路分析中的元件、节点、支路和回路。虚线只标示所选回路，不是导线。}\label{ch21:fig:s36-5-9}
+\diagramcaption{电路分析中的元件、节点、支路和回路。虚线只标示所选回路，不是导线。\label{ch21:fig:s36-5-9}}
 \end{minipage}\par\medskip
 
 
@@ -1191,7 +1240,7 @@ $I=\sum_i I_i=U\sum_i(1/R_i)$，故等效电阻满足
 
 \par\noindent\begin{minipage}{\linewidth}
 \kclKvlFigure
-\diagramcaption{左图为 KCL 的支路电流约定，右图为同一网络的支路电压和回路方向。所有字母标注均不覆盖元件。}\label{ch21:fig:s36-5-10}
+\diagramcaption{左图为 KCL 的支路电流约定，右图为同一网络的支路电压和回路方向。所有字母标注均不覆盖元件。\label{ch21:fig:s36-5-10}}
 \end{minipage}\par\medskip
 
 按左图箭头，对四个节点分别可写为
@@ -1253,7 +1302,7 @@ $\mathcal E-Ir-IR=0$。
 
 \par\noindent\begin{minipage}{\linewidth}
 \nodeMethodFigure
-\diagramcaption{节点电压法示例。取 $c$ 为参考地，理想电压源固定 $a$ 点电势，只剩 $b$ 点电势未知。}\label{ch21:fig:s36-5-11}
+\diagramcaption{节点电压法示例。取 $c$ 为参考地，理想电压源固定 $a$ 点电势，只剩 $b$ 点电势未知。\label{ch21:fig:s36-5-11}}
 \end{minipage}\par\medskip
 
 在图中令 $\varphi_c=0$，电压源使 $\varphi_a=E_0$，设 $\varphi_b=e$。以流入 $b$ 点为正：
@@ -1300,16 +1349,17 @@ $V_a=\mathcal E R_a/(R_a+R_b)$、$V_b=-\mathcal E R_b/(R_a+R_b)$。
 电流为 $I$ 的恒流源，结论又如何？
 \par\noindent\begin{minipage}{\linewidth}
 \emRingResistorQuestion
-\figcap{均匀电阻圆环及接点；两段弧的电阻记为 $R_1,R_2$。}\label{ch21:fig:em-source-thirty-sixth-section-7}
+\figcap{均匀电阻圆环及接点；两段弧的电阻记为 $R_1,R_2$。\label{ch21:fig:em-source-thirty-sixth-section-7}}
 \end{minipage}\par\medskip
-\end{origexamplebox}\par\nopagebreak[4]
+\end{origexamplebox}
+\begin{xesolution}\par\nopagebreak[4]
 
 \par\noindent\begin{minipage}{\linewidth}
 \ringResistorFigure
-\diagramcaption{题图：接点 $a,b$ 把圆环分成电阻为 $R_1,R_2$ 的两段，两段端点相同，故彼此并联。}
+\diagramcaption{题图：接点 $a,b$ 把圆环分成电阻为 $R_1,R_2$ 的两段，两段端点相同，故彼此并联。\label{ch21:quality:a7}}
 \end{minipage}\par\medskip
 
-\begin{xesolution}
+
 两段弧的电阻之和固定：$R_1+R_2=R$。它们并联后的等效电阻为
 \[
   R_{\rm eq}=\frac{R_1R_2}{R_1+R_2}=\frac{R_1R_2}{R}.
@@ -1339,6 +1389,8 @@ $V_a=\mathcal E R_a/(R_a+R_b)$、$V_b=-\mathcal E R_b/(R_a+R_b)$。
 （若规定 $a,b$ 必须是不同点，则 $0$ 是下确界，只能无限接近而不能取到）。相反，$b$ 位于直径对面
 时 $R_{\rm eq}$ 最大，恒流情况下反而得到最大功率 $I^2R/4$。这两种结论相反，根源是恒压时
 $P=U^2/R_{\rm eq}$，恒流时 $P=I^2R_{\rm eq}$。
+
+图~\ref{ch21:quality:a7} 中，两段弧连接同一对节点 $a,b$，故是并联；移动 $b$ 只改变 $R_1,R_2$ 的分配而保持两者之和为 $R$。
 \end{xesolution}
 
 
@@ -1352,12 +1404,38 @@ $P=U^2/R_{\rm eq}$，恒流时 $P=I^2R_{\rm eq}$。
 (2) 对结果变形，说明它怎样给出关于电源叠加和戴维南等效的启发。
 \par\noindent\begin{minipage}{\linewidth}
 \dualSourceFigure
-\diagramcaption{每个实际电源均由理想电动势与内阻串联构成，三条支路跨接同一对节点。}\label{ch21:fig:s36-5-15}
+\diagramcaption{每个实际电源均由理想电动势与内阻串联构成，三条支路跨接同一对节点。\label{ch21:fig:s36-5-15}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (L) at (-2.65,0);\coordinate (R) at (2.65,0);
+  \draw[circuit] (L)--(-1.50,0);
+  \draw[circuit,decorate,decoration={zigzag,segment length=3mm,amplitude=1.05mm}] (-1.50,0)--(1.20,0);
+  \draw[circuit] (1.20,0)--(R);
+  \node[xeslabel,above] at (0,0.25) {$R$};
+  \draw[circuit] (L)--(-2.65,-1.20)--(-.55,-1.20);
+  \draw[circuit] (-.55,-1.60)--(-.55,-.80) (-.15,-1.48)--(-.15,-.92);
+  \draw[circuit] (-.15,-1.20)--(.35,-1.20);
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=.9mm}] (.35,-1.20)--(1.70,-1.20);
+  \draw[circuit] (1.70,-1.20)--(2.65,-1.20)--(R);
+  \node[xeslabel,below] at (-.35,-1.62) {$\varepsilon_1$};\node[xeslabel,above] at (1.02,-1.03) {$r_1$};
+  \draw[circuit] (L)--(-2.65,-2.40)--(-.55,-2.40);
+  \draw[circuit] (-.55,-2.80)--(-.55,-2.00) (-.15,-2.68)--(-.15,-2.12);
+  \draw[circuit] (-.15,-2.40)--(.35,-2.40);
+  \draw[circuit,decorate,decoration={zigzag,segment length=2.8mm,amplitude=.9mm}] (.35,-2.40)--(1.70,-2.40);
+  \draw[circuit] (1.70,-2.40)--(2.65,-2.40)--(R);
+  \node[xeslabel,below] at (-.35,-2.82) {$\varepsilon_2$};\node[xeslabel,above] at (1.02,-2.23) {$r_2$};
+  \node[nodepoint] at (L) {};\node[nodepoint] at (R) {};
+  \draw[xesarrow] (-1.9,.45)--(-.85,.45);\node[xeslabel,above] at (-1.38,.48) {$I$};
+  \node[xessmall] at (0,-3.30) {两个实际电源同极性并联后向负载 $R$ 供电};
+\end{tikzpicture}
+\figcap{解图：以公共节点电势差统一表示三个支路电流。\label{ch21:quality:a8}}
+\end{minipage}\end{center}
+
 记左、右公共节点电势差为 $V=V_L-V_R$，并把三条支路电流都暂按从左向右取正。负载支路电流为
 $V/R$；对第 $k$ 个电源支路，按图示极性有 $V=\varepsilon_k+i_kr_k$，所以
 $i_k=(V-\varepsilon_k)/r_k$。在左节点写 KCL：
@@ -1388,11 +1466,13 @@ $i_k=(V-\varepsilon_k)/r_k$。在左节点写 KCL：
 实际电源，正是戴维南等效的形式。同时，$V$ 对 $\varepsilon_1,\varepsilon_2$ 是线性的，每个电源的
 贡献可以分别计算再相加，体现了线性网络的叠加思想。若两电源极性相反，只需把其中一个
 $\varepsilon_k$ 按符号取负；公式仍然成立。
+
+图~\ref{ch21:quality:a8} 中，两个电源支路和负载都接在同一对公共节点上；三个向右参考电流的代数和为零，某个电源支路电流为负即表示向左供电。
 \end{xesolution}
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-seventh-section/}}
+\graphicspath{{../../../sample/xes-original/thirty-seventh-section/}}
 \section{等效电源、对称性与电桥}
 
 % Technical figures are redrawn as vectors.  Every text node is transparent;
@@ -1984,7 +2064,7 @@ $I_{R_2}=I_1+I_2$；若方向相反，就应按所选正方向作代数相加。
 
 \par\noindent\begin{minipage}{\linewidth}
 \superpositionFigure
-\diagramcaption{叠加原理。左图只保留电压源，右图只保留电流源；被置零的电压源短路，被置零的电流源断路。}\label{ch21:fig:s37-6-1}
+\diagramcaption{叠加原理。左图只保留电压源，右图只保留电流源；被置零的电压源短路，被置零的电流源断路。\label{ch21:fig:s37-6-1}}
 \end{minipage}\par\medskip
 
 叠加的是电压和电流，不是功率。由于 $P=I^2R$ 或 $P=U^2/R$ 是二次量，通常不能把各电源单独作用时
@@ -2016,7 +2096,7 @@ $I_{R_2}=I_1+I_2$；若方向相反，就应按所选正方向作代数相加。
 
 \par\noindent\begin{minipage}{\linewidth}
 \theveninDerivationFigure
-\diagramcaption{戴维南定理的推导。四幅图的端口方向完全一致，第三幅只保留测试源，第四幅只保留网络内部独立源。}\label{ch21:fig:s37-6-2}
+\diagramcaption{戴维南定理的推导。四幅图的端口方向完全一致，第三幅只保留测试源，第四幅只保留网络内部独立源。\label{ch21:fig:s37-6-2}}
 \end{minipage}\par\medskip
 
 具体地说，任意线性有源二端网络都可等效为开路电压 $V_{\rm Th}$ 与电阻 $R_{\rm Th}$ 串联：
@@ -2031,7 +2111,7 @@ $R_{\rm N}$ 与 $R_{\rm Th}$ 相同。两种等效电路在端口上满足
 
 \par\noindent\begin{minipage}{\linewidth}
 \sourceEquivalenceFigure
-\diagramcaption{同一个线性有源二端网络的戴维南形式与诺顿形式。等效只保证端口外部特性相同。}\label{ch21:fig:s37-6-3}
+\diagramcaption{同一个线性有源二端网络的戴维南形式与诺顿形式。等效只保证端口外部特性相同。\label{ch21:fig:s37-6-3}}
 \end{minipage}\par\medskip
 
 “等效”并不意味着三种电路内部的电流和功率分布相同；它只表示接到同一个负载后，端口电压和负载电流
@@ -2082,7 +2162,7 @@ $R_5$ 中无电流，“短路”说的是它的两个端点等势，二者描�
 
 \par\noindent\begin{minipage}{\linewidth}
 \bridgeFigure
-\diagramcaption{平衡电桥。$R_5$ 的上下端分别是两个分压支路的中点；平衡条件下二者等势。}\label{ch21:fig:s37-6-4}
+\diagramcaption{平衡电桥。$R_5$ 的上下端分别是两个分压支路的中点；平衡条件下二者等势。\label{ch21:fig:s37-6-4}}
 \end{minipage}\par\medskip
 
 
@@ -2116,14 +2196,31 @@ $(R_1\parallel R_2)+(R_3\parallel R_4)$，桥电流便等于开路中点电压�
 \begin{origexamplebox}{【电流源】}\label{ch21:ex:s37-6-1}
 小明利用一个电流源向外供电，但是小红却误以为是一个电压源。小明发现无法说服小红，即电流源和
 电压源是等价的。试帮助小明证明这个结论，并利用这个关系求解电压源并联的公式。
-\end{origexamplebox}\par\nopagebreak[4]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw (0,-.8) rectangle (2.8,.8);
+\draw (1.4,0) circle (.3);\draw[->] (1.4,-.2)--(1.4,.2);
+\draw (1.4,.3)--(1.4,.8) (1.4,-.3)--(1.4,-.8);
+\draw (2,-.8)--(2,-.3) rectangle (2.3,.3);\draw (2.15,.3)--(2.15,.8);
+\node[right] at (2.3,0){$r$};\node[left] at (1.1,0){$I_N$};
+\draw (2.8,.8)--(4,.8) (2.8,-.8)--(4,-.8);
+\fill (4,.8) circle (1.5pt) node[right]{$+$};\fill (4,-.8) circle (1.5pt) node[right]{$-$};
+\node[right] at (4,0){$U$};\draw[->] (3,.8)--(3.8,.8) node[midway,above]{$I$};
+
+\end{tikzpicture}
+\figcap{题图：有并联内阻 $r$ 的电流源端口，$I$ 取向负载输出为正。\label{ch21:quality:q9}}
+\end{minipage}\end{center}
+\end{origexamplebox}
+\begin{xesolution}\par\nopagebreak[4]
 
 \par\noindent\begin{minipage}{\linewidth}
 \sourceTransformExampleFigure
-\diagramcaption{解图：电压源串联内阻与电流源并联内阻的端口方向。两图对同一负载给出相同的 $U,I$。}
+\diagramcaption{解图：电压源串联内阻与电流源并联内阻的端口方向。两图对同一负载给出相同的 $U,I$。\label{ch21:quality:a9}}
 \end{minipage}\par\medskip
 
-\begin{xesolution}
+
 这里的“等价”指\textbf{带内阻电源的端口等价}，并不是说孤立的理想电压源与孤立的理想电流源可以
 无条件互换。设实际电压源的电动势为 $E$、串联内阻为 $r$，负载端电压为 $U$，向负载输出的电流为
 $I$。由 KVL，端口关系为
@@ -2162,6 +2259,8 @@ $r_i$ 并联。并联电流源的电流相加，并联内阻的电导相加，�
 \]
 若某支路极性相反，应把相应 $E_i$ 取负。两个电动势不同、内阻又被理想化为零的电压源不能直接并联，
 因为模型会要求无限大的环流；真实电源的内阻正是公式成立所必需的物理条件。
+
+图~\ref{ch21:quality:a9} 中，端口的 $U,I$ 参考方向在两种表示中相同；并联内阻分走 $U/r$，所以负载电流是 $I_N-U/r$。
 \end{xesolution}
 
 
@@ -2174,7 +2273,7 @@ $r_i$ 并联。并联电流源的电流相加，并联内阻的电导相加，�
 (2) 相邻的两个顶点 $A,B$ 的等效电阻。
 \par\noindent\begin{minipage}{\linewidth}
 \gridProblemFigure
-\diagramcaption{九个交点都是节点，十二个相邻节点间的线段各代表一个电阻 $R$。}\label{ch21:fig:s37-6-6}
+\diagramcaption{九个交点都是节点，十二个相邻节点间的线段各代表一个电阻 $R$。\label{ch21:fig:s37-6-6}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2220,22 +2319,36 @@ $r_i$ 并联。并联电流源的电流相加，并联内阻的电导相加，�
 
 \par\noindent\begin{minipage}{\linewidth}
 \gridPotentialAdjacentFigure
-\diagramcaption{解图（2）：相邻端点激励不再具有对角情形的全部对称性；图中的九个电势已经逐点满足 KCL。}
+\diagramcaption{解图（2）：相邻端点激励不再具有对角情形的全部对称性；图中的九个电势已经逐点满足 KCL。\label{ch21:quality:a10}}
 \end{minipage}\par\medskip
+
+图~\ref{ch21:quality:a10} 中，相邻端点激励的电势分布与对角激励不同；相邻情形的左边中点为 $7V/10$，直接决定从输入端流出的第二条支路电流。
 \end{xesolution}
 
 
 
 \begin{origexamplebox}{【正四面体电阻】}\label{ch21:ex:s37-6-3}
-有一个正四面体框架的电阻网络，每条边电阻为 $R$，试求任意两点间的等效电阻。
+有一个正四面体框架的电阻网络，每条边电阻为 $R$，试求任意两顶点间的等效电阻。
 \par\noindent\begin{minipage}{\linewidth}
 \tetrahedronProblemFigure
-\diagramcaption{四个顶点、六条棱均完整画出；交叉处没有节点。}\label{ch21:fig:s37-6-7}
+\diagramcaption{四个顶点、六条棱均完整画出；交叉处没有节点。\label{ch21:fig:s37-6-7}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \coordinate (T) at (0,2.0);\coordinate (L) at (-2.0,.15);\coordinate (R) at (2.0,.15);\coordinate (B) at (0,-1.65);
+  \draw[circuit] (T)--(L)--(B)--(R)--(T) (L)--(R) (T)--(B);
+  \foreach \P in {T,L,R,B}{\node[bluenode] at (\P) {};}
+  \node[xestiny,above] at (T) {$A$};\node[xestiny,left] at (L) {$C$};
+  \node[xestiny,right] at (R) {$D$};\node[xestiny,below] at (B) {$B$};
+  \node[xessmall] at (0,-2.15) {交叉点只是投影重叠，不是电路节点};
+\end{tikzpicture}
+\figcap{解图：端点固定后检查 $C,D$ 的等势对称性。\label{ch21:quality:a11}}
+\end{minipage}\end{center}
+
 从任意两顶点 $A,B$ 接入电源。其余两顶点 $C,D$ 在保持 $A,B$ 不动的对称变换下可以交换，所以
 $\varphi_C=\varphi_D$，连接 $C,D$ 的电阻中没有电流，可删去。此后 $A$ 到 $B$ 之间有三条并联支路：
 一条是直接的 $R$，另两条分别是 $A-C-B$ 和 $A-D-B$，每条为 $2R$。于是
@@ -2245,6 +2358,8 @@ $\varphi_C=\varphi_D$，连接 $C,D$ 的电阻中没有电流，可删去。此�
   \boxed{R_{AB}=\frac R2}.
 \]
 这个结论与所选顶点无关，因为正四面体的任意两顶点在网络拓扑上完全等价。
+
+图~\ref{ch21:quality:a11} 中，固定端点 $A,B$ 后，$C,D$ 可由网络对称性互换，因而 $CD$ 无电流；其余三条通路才参与端口并联。
 \end{xesolution}
 
 
@@ -2254,7 +2369,7 @@ $\varphi_C=\varphi_D$，连接 $C,D$ 的电阻中没有电流，可删去。此�
 任意两点间的等效电阻。
 \par\noindent\begin{minipage}{\linewidth}
 \completeGraphProblemFigure
-\diagramcaption{图示为 $K_5$；一般情形是任意两顶点之间都有且只有一个电阻 $R$。}\label{ch21:fig:s37-6-8}
+\diagramcaption{图示为 $K_5$；一般情形是任意两顶点之间都有且只有一个电阻 $R$。\label{ch21:fig:s37-6-8}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2277,8 +2392,10 @@ $(N-2)V/(2R)$：
 
 \par\noindent\begin{minipage}{\linewidth}
 \completeGraphReductionFigure
-\diagramcaption{解图：固定端点 $A,B$ 后，其余 $N-2$ 点全部等势。虚线框表示把这些点视为同一电势层，而非新增导线。}
+\diagramcaption{解图：固定端点 $A,B$ 后，其余 $N-2$ 点全部等势。虚线框表示把这些点视为同一电势层，而非新增导线。\label{ch21:quality:a12}}
 \end{minipage}\par\medskip
+
+图~\ref{ch21:quality:a12} 中，中间 $N-2$ 个节点全部等势，因此它们之间的内部支路不载流；每个中间节点仍各通过一个电阻连接端点 $A$ 和 $B$。
 \end{xesolution}
 
 
@@ -2288,7 +2405,7 @@ $(N-2)V/(2R)$：
 最远的两点间的等效电阻。
 \par\noindent\begin{minipage}{\linewidth}
 \octagonProblemFigure
-\diagramcaption{八边形中唯独四条直径不接电阻；任意其他两顶点之间均接一个 $R$。}\label{ch21:fig:s37-6-9}
+\diagramcaption{八边形中唯独四条直径不接电阻；任意其他两顶点之间均接一个 $R$。\label{ch21:fig:s37-6-9}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2308,8 +2425,10 @@ $B$；中间点之间的支路两端等势，均无电流。
 
 \par\noindent\begin{minipage}{\linewidth}
 \octagonReductionFigure
-\diagramcaption{解图：六个蓝色中间点等势，内部连线均不载流；真正参与端口电流的是六条长度为两个电阻的并联通路。}
+\diagramcaption{解图：六个蓝色中间点等势，内部连线均不载流；真正参与端口电流的是六条长度为两个电阻的并联通路。\label{ch21:quality:a13}}
 \end{minipage}\par\medskip
+
+图~\ref{ch21:quality:a13} 中，六个中间节点为 $V/2$，它们之间虽有连线但不载流；$A,B$ 间没有直接电阻，端口电流仅来自六条 $2R$ 通路。
 \end{xesolution}
 
 
@@ -2324,7 +2443,7 @@ $B$；中间点之间的支路两端等势，均无电流。
 (3) 体对角线两顶点的等效电阻。
 \par\noindent\begin{minipage}{\linewidth}
 \cubeProblemFigure
-\diagramcaption{实线和虚线共同构成立方体的十二条棱；虚线只表示被遮挡的三条棱。}\label{ch21:fig:s37-6-10}
+\diagramcaption{实线和虚线共同构成立方体的十二条棱；虚线只表示被遮挡的三条棱。\label{ch21:fig:s37-6-10}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2335,7 +2454,7 @@ $B$；中间点之间的支路两端等势，均无电流。
 
 \par\noindent\begin{minipage}{\linewidth}
 \cubePotentialFigure
-\diagramcaption{解图：三种端点选择的归一化电势。每个数值紧邻顶点外侧，虚线棱与实线棱的空间关系保持一致。}
+\diagramcaption{解图：三种端点选择的归一化电势。每个数值紧邻顶点外侧，虚线棱与实线棱的空间关系保持一致。\label{ch21:quality:a14}}
 \end{minipage}\par\medskip
 
 \textbf{(1) 相邻顶点。} 用三位坐标 $000$ 至 $111$ 标记立方体顶点，一条棱只改变其中一位。
@@ -2380,6 +2499,8 @@ $B$；中间点之间的支路两端等势，均无电流。
   \boxed{R_{\text{体}}=\frac{5R}{6}}.
 \]
 三种结果依次增大，但这不是由“几何距离”直接决定的，而是由端点选择后整个网络允许的并联通道决定。
+
+图~\ref{ch21:quality:a14} 中，三种端点选择分别改变等势层，须对每个内部节点检验KCL；体对角接法在输入端的三个邻点均为 $3V/5$。
 \end{xesolution}
 
 
@@ -2460,7 +2581,7 @@ $C$ 出”和“从 $C$ 进、从 $B$ 出”两种分布按相同电流强度相
 
 \par\noindent\begin{minipage}{\linewidth}
 \deltaStarFigure
-\diagramcaption{同一三端网络的三角形连接与星形连接。对应关系由端口字母决定，不应靠电阻在图中的朝向记忆。}\label{ch21:fig:s37-6-5}
+\diagramcaption{同一三端网络的三角形连接与星形连接。对应关系由端口字母决定，不应靠电阻在图中的朝向记忆。\label{ch21:fig:s37-6-5}}
 \end{minipage}\par\medskip
 
 星形--三角形变换能把许多表面上既不串联也不并联的网络改写成可逐级化简的形式；但在高度对称或
@@ -2493,7 +2614,7 @@ $f'(X)=R^2/(R+X)^2\le1/4$，所以相邻近似间的差不断缩小，极限确�
 求图示无限电阻网络中 $a,b$ 两点间的等效电阻。图中每个电阻的阻值均为 $R$。
 \par\noindent\begin{minipage}{\linewidth}
 \infiniteLadderProblemFigure
-\diagramcaption{上下两条横向支路和每一根竖直梯档都为 $R$，网络向右无限延伸。}\label{ch21:fig:s37-6-11}
+\diagramcaption{上下两条横向支路和每一根竖直梯档都为 $R$，网络向右无限延伸。\label{ch21:fig:s37-6-11}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2508,7 +2629,7 @@ $f'(X)=R^2/(R+X)^2\le1/4$，所以相邻近似间的差不断缩小，极限确�
 
 \par\noindent\begin{minipage}{\linewidth}
 \ladderRecursionFigure
-\diagramcaption{解图：虚线框内的无限尾部仍等效为 $X$。两只横向 $R$ 串在 $R\parallel X$ 的两侧。}
+\diagramcaption{解图：虚线框内的无限尾部仍等效为 $X$。两只横向 $R$ 串在 $R\parallel X$ 的两侧。\label{ch21:quality:a15}}
 \end{minipage}\par\medskip
 
 令 $x=X/R$，有
@@ -2521,6 +2642,8 @@ $f'(X)=R^2/(R+X)^2\le1/4$，所以相邻近似间的差不断缩小，极限确�
   \boxed{R_{ab}=X=(1+\sqrt3)R}.
 \]
 回代可见 $X>2R$，与“入口处必经上下两个 $R$，中间还有有限并联电阻”的结构相符。
+
+图~\ref{ch21:quality:a15} 中，虚线框内的无限尾部从第一对节点看仍为 $X$，它与竖直电阻 $R$ 并联；入口上下两只 $R$ 则串在该并联块两侧。
 \end{xesolution}
 
 
@@ -2556,7 +2679,7 @@ $L\boldsymbol e_3=3\boldsymbol e_3$。横向三根电阻同为 $R$，不会混�
 
 \par\noindent\begin{minipage}{\linewidth}
 \threeRailModesFigure
-\diagramcaption{解图：三行节点的两个有效电势模式。箭头长度表示相对电势（或注入电流）分量，不是实际支路。}
+\diagramcaption{解图：三行节点的两个有效电势模式。箭头长度表示相对电势（或注入电流）分量，不是实际支路。\label{ch21:quality:a16}}
 \end{minipage}\par\medskip
 
 设某一模式从边界看入的无量纲输入电导为 $y_\mu$，真实电导为 $y_\mu/R$。越过最左边的横向电阻后，
@@ -2593,6 +2716,8 @@ $1/2,3/2$。两个正交模式的电压降相加：
 \]
 数值上 $R_{AB}\approx2.70466R$、$R_{AC}\approx3.23607R$。这也符合端点距离直觉：$A,C$ 分处
 最上、最下两行，等效电阻较大。
+
+图~\ref{ch21:quality:a16} 中，两个有效横向模式分别为 $(1,0,-1)$ 与 $(1,-2,1)$，不能只以一个端口电阻代替三端尾部；输入向量投影到各模式后分别响应。
 \end{xesolution}
 
 
@@ -2602,7 +2727,7 @@ $1/2,3/2$。两个正交模式的电压降相加：
 无穷，取 $AB$ 边长为 $a$，以后每个三角形的边长依次减小一半。求框架上 $A,B$ 两点间的电阻。
 \par\noindent\begin{minipage}{\linewidth}
 \nestedTriangleProblemFigure
-\diagramcaption{每个新三角形的三个顶点是上一三角形的三边中点，方向逐级交替。}\label{ch21:fig:s37-6-12}
+\diagramcaption{每个新三角形的三个顶点是上一三角形的三边中点，方向逐级交替。\label{ch21:fig:s37-6-12}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2618,7 +2743,7 @@ $1/2,3/2$。两个正交模式的电压降相加：
 
 \par\noindent\begin{minipage}{\linewidth}
 \nestedTriangleRecursionFigure
-\diagramcaption{解图：把中点以内的无限嵌套部分替换成三条 $kr/2$。外层六段金属丝各为 $r/2$。}
+\diagramcaption{解图：把中点以内的无限嵌套部分替换成三条 $kr/2$。外层六段金属丝各为 $r/2$。\label{ch21:quality:a17}}
 \end{minipage}\par\medskip
 
 在图中令 $A,B$ 电势为 $V,0$。反射对称性与电势反对称性给出 $C$ 及 $AB$ 中点电势为 $V/2$；
@@ -2651,6 +2776,8 @@ $1/2,3/2$。两个正交模式的电压降相加：
   \boxed{R_{AB}=\frac{\sqrt7-1}{3}\,\rho a}.
 \]
 结果小于只保留外三角形时的 $2\rho a/3$，因为不断加入的内接金属丝提供了额外并联通路。
+
+图~\ref{ch21:quality:a17} 中，中点以内的尾网边长为 $a/2$，故三端等效三角形每支为 $k\rho a/2$；外侧六段金属丝仍各有电阻 $\rho a/2$。
 \end{xesolution}
 
 
@@ -2669,7 +2796,7 @@ $1/2,3/2$。两个正交模式的电压降相加：
 (4) 讨论上述结果。
 \par\noindent\begin{minipage}{\linewidth}
 \sierpinskiProblemFigure
-\diagramcaption{前三阶图形由同一中点规则生成；白色倒三角形是被镂空的部分。}\label{ch21:fig:s37-6-13}
+\diagramcaption{前三阶图形由同一中点规则生成；白色倒三角形是被镂空的部分。\label{ch21:fig:s37-6-13}}
 \end{minipage}\par\medskip
 \end{origexamplebox}\par\nopagebreak[4]
 
@@ -2719,7 +2846,7 @@ $CA,CB$ 中点分别为 $u,V-u$。前一中点连接 $A,C$ 及另外两个中点
 
 \par\noindent\begin{minipage}{\linewidth}
 \sierpinskiResistanceFigure
-\diagramcaption{解图：每一阶由三个缩小到 $1/2$ 的同型三端网络拼成；拓扑使等效电阻乘 $5/3$，长度缩放又使单段电阻乘 $1/2$。}
+\diagramcaption{解图：每一阶由三个缩小到 $1/2$ 的同型三端网络拼成；拓扑使等效电阻乘 $5/3$，长度缩放又使单段电阻乘 $1/2$。\label{ch21:quality:a18}}
 \end{minipage}\par\medskip
 
 取极限得
@@ -2732,9 +2859,15 @@ $CA,CB$ 中点分别为 $u,V-u$。前一中点连接 $A,C$ 及另外两个中点
 的性质。它们分别测量二维占据、线性边界和电流并联通道，不应互相替代。面积每阶乘 $3/4$；总边长
 每阶乘 $3/2$；电阻则是拓扑因子 $5/3$ 与几何缩放 $1/2$ 的乘积，即每阶乘 $5/6$。真实导线有有限
 线径、接触电阻和最小结构尺度，递归在某一阶必然停止，因而真实面积、长度和电阻都保持有限且非零。
+
+图~\ref{ch21:quality:a18} 中，相似子网的拓扑因子为 $5/3$，每段实际长度缩小又使电阻乘 $1/2$；两者同时作用才得到随阶数变化的 $5/6$。
 \end{xesolution}
 }
 
 \endgroup
 
+
+\begingroup\tcbset{breakable/.default=false}
+\input{chapters/quality-20261023/ch21-conduction-devices.tex}
+\endgroup
 \endgroup

@@ -1,0 +1,155 @@
+% Editable TikZ for advanced thermodynamics; each proof names the plotted derivative.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\AQEntropyVolume}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(8,2);\draw[very thick](4,0)--(4,2);
+ \node[align=center]at(2,1){体系1\\$p_1,T_1,U_1,N_1$};\node[align=center]at(6,1){体系2\\$p_2,T_2,U_2,N_2$};
+ \node[below]at(4,-.5){在状态空间中转移体积，不预设为自由活塞的实际运动};
+}{给定 $p_1<p_2,T_1<T_2$；各侧内能与粒子数在指定虚变分中保持不变。}{advA2:quality:entropy-volume-q}}
+\newcommand{\AAEntropyVolume}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(8,2);\draw[dashed](4,0)--(4,2);\draw[very thick](4.7,0)--(4.7,2);
+ \draw[->,DeepBlue](4,2.6)--(4.7,2.6)node[right]{$\delta V_1=-\delta V_2>0$};
+ \node at(2,1){$\delta S_1=(p_1/T_1)\delta V_1$};\node[right]at(8.5,1){$\delta S_2=-(p_2/T_2)\delta V_1$};
+}{相同体积增量带来两项熵变化，比较的是 $p/T$。}{advA2:quality:entropy-volume-a}
+图~\ref{advA2:quality:entropy-volume-a}中界面的位移仅标识邻近平衡态之间的体积参数变化。两侧没有在此变分中交换内能，故熵梯度取固定 $U,N$ 的偏导；若换成真实自由活塞，压力功会改变两侧内能，不能继续把这条约束路径当作运动方程。
+}
+\newcommand{\AQGibbsHelmholtz}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$G/T$};
+ \draw[DeepBlue,thick](1,2.4)..controls(2,1.7)and(3.5,1.3)..(5,1.1);\fill(3,1.5)circle(2pt)node[above]{$p,N$ 固定};
+}{沿等压曲线考察商函数的局部导数；曲线形状仅用于标识求导路径。}{advA2:quality:gh-q}}
+\newcommand{\AAGibbsHelmholtz}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$G/T$};
+ \draw[DeepBlue,thick](1,2.4)..controls(2,1.7)and(3.5,1.3)..(5,1.1);\draw[thick](1.5,2)--(4.5,1);
+ \node[right]at(6,1.8){局部斜率 $-H/T^2$};
+}{固定压强与组成后才可使用 $G_T=-S$；导数的符号还依赖焓的参考零点。}{advA2:quality:gh-a}
+图~\ref{advA2:quality:gh-a}的切线表示同一条等压、定组成状态路径上的导数。商法则必须同时对分子 $G$ 与分母 $T$ 求导；分子得到 $-TS-G$，再用 $G=H-TS$ 抵消熵项。若压强随温度改变，$\dd G=-S\dd T+V\dd p$ 还会多出一项，不能直接照用本式。
+}
+\newcommand{\AQSurfaceThermo}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(4,2);\fill[DeepBlue!10](0,0)rectangle(2.5,2);\draw[very thick](2.5,0)--(2.5,2);
+ \draw[->](2.5,2.5)--(3.5,2.5)node[right]{$\delta x$};\node at(1.2,1){$A,T,\gamma(T)$};
+}{移动边框改变界面面积；$A$ 按题给表面自由能的面积定义计数。}{advA2:quality:surface-thermo-q}}
+\newcommand{\AASurfaceThermo}{\ThermalFigure{
+ \node[draw,minimum width=3cm,minimum height=1.3cm](S)at(3,1){界面 $U_s,S_s,A$};
+ \draw[->,thick](0,1)--node[above]{$\gamma\dd A$}(S);\draw[->,DeepBlue](3,-1)--node[right]{$T\dd S_s$}(S);
+ \node[right]at(6,1){$\dd U_s=T\dd S_s+\gamma\dd A$};
+}{机械表面功与可逆热量分开进入界面能量平衡。}{advA2:quality:surface-thermo-a}
+图~\ref{advA2:quality:surface-thermo-a}中机械功由面积变化决定，热量由表面熵变化决定。因此 $F_s=\gamma A$ 并不等于 $U_s$；两者相差 $TS_s$。固定面积加热时仍会因 $\gamma'(T)$ 改变表面熵，所得负热容只是界面对完整液体热容的贡献。
+}
+\newcommand{\AQGravityHeat}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(3,3);\foreach\x/\y in {.5/.4,1/.7,2.3/.5,1.8/1.1,.7/1.6,2/2.4}{\fill[DeepBlue](\x,\y)circle(1.5pt);}
+ \draw[->](-.7,0)--(-.7,3.5)node[above]{$z$};\draw[<->](3.7,0)--node[right]{$H$}(3.7,3);
+ \node[right,align=left]at(5,1.7){势能 $mgz$\\上下边界固定\\$0\le z\le H$};
+}{受限气柱的竖直构型空间；支承球的两种约束另见解答中的受力图。}{advA2:quality:gravity-q}}
+\newcommand{\AQSuperconductivity}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$T/T_c$};\draw[->](0,0)--(0,3)node[above]{$H_c/H_0$};
+ \draw[DeepBlue,thick,domain=0:4,samples=70]plot(\x,{2.5*(1-(\x/4)*(\x/4))});\node[below]at(4,0){$1$};\node[left]at(0,2.5){$1$};
+}{题给热力学临界场曲线，讨论范围为 $0\le T\le T_c$。}{advA2:quality:super-q}}
+\newcommand{\AASuperconductivity}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$g_n-g_s$};
+ \draw[DeepBlue,thick,domain=0:4,samples=70]plot(\x,{2.5*(1-(\x/4)*(\x/4))*(1-(\x/4)*(\x/4))});\node[below]at(4,0){$T_c$};
+ \node[right,align=left]at(5.5,1.5){函数值：凝聚能\\负的一阶导数：$s_n-s_s$\\二阶导数：热容差};
+}{凝聚能在零场端点以零斜率消失，但曲率不为零。}{advA2:quality:super-a}
+图~\ref{advA2:quality:super-a}中横轴导数始终沿同一零场自由能差求取。到 $T_c$ 时函数值与斜率都趋零，所以潜热消失；二阶导数仍可不同，因而热容有有限跳变。题中的 $L$ 与 $c$ 都按单位体积计，不能把它们当作整块样品的热量与热容量。
+}
+\newcommand{\AQWeissCritical}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$m$};\draw[->](0,-2.3)--(0,2.3)node[above]{$f(m)$};
+ \draw[dashed](-2.2,-2.2)--(2.2,2.2);\draw[DeepBlue,thick,domain=-2.2:2.2,samples=70]plot(\x,{tanh(.8*\x)});
+ \node[right]at(3,1){比较 $m$ 与 $\tanh[(T_c/T)m]$ 的交点};
+}{自洽方程的图解设定；纵横坐标按相同的磁化变量作示意缩放。}{advA2:quality:weiss-critical-q}}
+\newcommand{\AAWeissCritical}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$m$};\draw[->](0,-2.1)--(0,2.1)node[above]{$f(m)$};
+ \draw[thick](-2,-2)--(2,2);\draw[DeepBlue,thick,domain=-1.9:1.9,samples=80]plot(\x,{tanh(1.4*\x)});
+ \draw[TextGray,dashed,domain=-1.9:1.9,samples=80]plot(\x,{tanh(.7*\x)});
+ \node[right,align=left]at(3,1){实线：$T_c/T>1$\\虚线：$T_c/T<1$};
+}{是否产生非零交点由原点斜率跨过1决定，同时用双曲正切的全局界保证无遗漏。}{advA2:quality:weiss-critical-a}
+图~\ref{advA2:quality:weiss-critical-a}只说明自洽解的位置；把非零解解释为稳定自发磁化还需比较相应平均场自由能。对 $a=T_c/T\le1$，有 $|\tanh(am)|<|am|\le|m|$，从而能在全部 $m\ne0$ 上排除交点，这比只在原点作泰勒展开更完整。
+}
+\newcommand{\AQWeissCurve}{\ThermalFigure{
+ \foreach\x in {0,1.2,2.4,3.6,4.8}{\draw[->,thick](\x,0)--(\x,1.3);}
+ \node[above]at(2.4,1.8){$N$ 个自旋 $1/2$ 的同向极限};\node[below]at(2.4,-.5){单自旋磁矩 $\mu_s=\hbar\gamma/2$};
+}{先由同向极限定义磁化尺度 $M_0$，再讨论零场温度曲线。}{advA2:quality:weiss-curve-q}}
+\newcommand{\AQCurieWeiss}{\ThermalFigure{
+ \draw[->,DeepBlue,thick](0,0)--(4,0)node[right]{$B$};\draw[->,thick](0,1)--(3,1)node[right]{$\lambda M$};
+ \node[above]at(2,2){自旋感受 $B_{\rm eff}=B+\lambda M$};\node[below]at(2,-.6){外加场与平均分子场须在同一磁变量约定下相加};
+}{在顺磁弱场支路，对自洽方程求线性响应。}{advA2:quality:curie-q}}
+\newcommand{\AACurieWeiss}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$1/\chi$};\draw[DeepBlue,thick](2,0)--(5.5,2.5);\node[below]at(2,0){$T_c$};
+ \node[right]at(6,1.7){仅画 $T>T_c$ 的顺磁线性支};
+}{逆磁化率的直线外推截距为 $T_c$；不能把负斜温区当作稳定顺磁响应。}{advA2:quality:curie-a}
+图~\ref{advA2:quality:curie-a}的响应由 $B\to0$ 的顺磁支定义，适用 $T>T_c$。接近临界点时分母变小，保持线性需要更弱的外场；在 $T<T_c$ 已有自发磁化，应围绕有序态重新展开，不能继续把本式得到的负 $\chi$ 当作稳定答案。
+}
+\newcommand{\AQLandau}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$\phi$};\draw[->](0,-.1)--(0,3.1)node[above]{$F-F_0$};
+ \draw[DeepBlue,thick,domain=-1.2:1.2,samples=80]plot(\x,{2*(.5*(\x)*(\x)-(\x)^4+(\x)^6)});
+ \node[right]at(3,1.8){偶次六阶势，改变二次项系数 $a$};
+}{给定多项式的一个参数截面；相变共存条件还须比较不同极小值的高度。}{advA2:quality:landau-q}}
+\newcommand{\AALandau}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$\phi$};\draw[->](0,0)--(0,2.7)node[above]{$F-F_0$};
+ \draw[DeepBlue,thick,domain=-.86:.86,samples=150]plot({2.2*\x},{50*(\x)*(\x)*((\x)*(\x)-.5)*((\x)*(\x)-.5)});
+ \foreach\x in {-1.555635,0,1.555635}{\fill(\x,0)circle(2pt);}
+ \draw(-1.555635,-.1)--(-1.9,-.55)node[below]{$-\sqrt{b/(2c)}$};\draw(1.555635,-.1)--(1.9,-.55)node[below]{$\sqrt{b/(2c)}$};
+}{共存点可因式分解为 $c\phi^2[\phi^2-b/(2c)]^2$，三个极小值等深。}{advA2:quality:landau-a}
+图~\ref{advA2:quality:landau-a}要求的是非零点既驻定、又与原点等自由能，两条条件必须同时满足。因式分解还直接证明这些驻点是全局极小值，并说明中间有势垒；序参量在相变时发生有限跳变，而不仅是曲率在原点改变符号。
+}
+\newcommand{\AQHomogeneous}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$x_1$};\draw[->](0,0)--(0,3.3)node[above]{$x_2$};\draw[->,DeepBlue,thick](0,0)--(4,2.7);
+ \fill(2,1.35)circle(2pt)node[above left]{$\vect x$};\fill(4,2.7)circle(2pt)node[above left]{$\lambda\vect x$};
+}{齐次性比较同一射线上的两点，所有自变量按同一因子缩放。}{advA2:quality:euler-q}}
+\newcommand{\AAHomogeneous}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$\lambda$};\draw[->](0,0)--(0,3.4)node[above]{$A(\lambda\vect x)$};
+ \draw[DeepBlue,thick,domain=.3:2,samples=60]plot({2*\x},{.7*\x^2});\draw[dashed](2,0)--(2,.7);\fill(2,.7)circle(2pt)node[right]{$\lambda=1$};
+ \node[right]at(5.7,1.7){沿射线导数 $\vect x\cdot\nabla A$};
+}{多变量齐次关系限制到一条缩放射线后成为单变量恒等式；曲线示意 $k=2$。}{advA2:quality:euler-a}
+图~\ref{advA2:quality:euler-a}沿射线保持各坐标之比不变。链式法则给出方向导数 $\sum_i x_iA_{x_i}$，而题设幂律给出 $k\lambda^{k-1}A(\vect x)$；在同一点 $\lambda=1$ 比较二者即得结论，不能把各 $x_i$ 当作彼此单独缩放。
+}
+\newcommand{\AQSackur}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(5,2);\foreach\x/\y in {.5/.5,1.3/1.5,2/.8,3.2/1.4,4.4/.6}{\fill[DeepBlue](\x,\y)circle(2pt);}
+ \node[right,align=left]at(6,1){$N$ 个单原子粒子\\体积 $V$、内能 $U$\\熵基本式 $S(U,V,N)$};
+}{先把 $U,V,N$ 作为独立广延变量，再改用 $T,V,N$。}{advA2:quality:sackur-q}}
+\newcommand{\AASackur}{\ThermalFigure{
+ \node[draw](S)at(3,1){$S(U,V,N)$};\node[draw](U)at(0,0){沿 $U$ 方向};\node[draw](V)at(3,-1){沿 $V$ 方向};\node[draw](N)at(6,0){沿 $N$ 方向};
+ \draw[->](S)--node[above left]{$1/T$}(U);\draw[->](S)--node[right]{$p/T$}(V);\draw[->](S)--node[above right]{$-\mu/T$}(N);
+}{同一熵函数的三个偏导对应三种强度量，余下两广延变量各自固定。}{advA2:quality:sackur-a}
+图~\ref{advA2:quality:sackur-a}中求化学势的支路固定的是 $U,V$，不是求完 $U(T,N)$ 后再固定 $T,V$ 对熵求导。$N$ 同时出现在对数外和对数内，二者都要求导；先由 $S_U$ 得到 $U(T)$ 再代回完整熵式，可避免漏掉常数 $5/2$ 的抵消。
+}
+\newcommand{\AQGibbsDuhem}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(3,1.6);\node at(1.5,.8){$U,S,V,N$};\draw[->](3.5,.8)--(4.5,.8);
+ \foreach\x in {5,8.4}{\draw[thick](\x,0)rectangle(\x+3,1.6);\node at(\x+1.5,.8){$U,S,V,N$};}
+}{复制相同均匀子系统，忽略子系统间界面能，广延量相加。}{advA2:quality:gibbs-duhem-q}}
+\newcommand{\AAGibbsDuhem}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$\dd T$};\draw[->](0,0)--(0,3)node[above]{$\dd p$};
+ \draw[fill=DeepBlue!10,thick](.5,.4)--(4,.4)--(3,2.3)--(-.5,2.3)--cycle;
+ \node[right,align=left]at(5.5,1.5){允许的强度量微变满足\\$S\dd T-V\dd p+N\dd\mu=0$};
+}{微变分在三个强度量空间受一条线性约束；图只示意其切平面。}{advA2:quality:gibbs-duhem-a}
+图~\ref{advA2:quality:gibbs-duhem-a}说明强度量之间存在约束。推导先要求 $U(S,V,N)$ 一次齐次，才可写欧拉式；对欧拉式微分产生的 $S\dd T-V\dd p+N\dd\mu$ 不是基本关系中的交换项，与基本关系比较后必须为零。有限界面能或长程非加性体系应重新检查齐次假设。
+}
+\newcommand{\AQResponse}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$p$};\fill(2,1.4)circle(2pt)node[above left]{$A$};
+ \draw[->,thick](2,1.4)--(3.4,1.4)node[below]{定 $p$};\draw[->,DeepBlue](2,1.4)--(2,2.6)node[right]{定 $T$};
+}{热膨胀与等温压缩分别考察状态平面上不同方向的体积响应。}{advA2:quality:response-q}}
+\newcommand{\AAResponse}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$p$};\draw[DeepBlue,thick](.6,.4)--(4,2.5)node[right]{$V$ 固定};
+ \draw[dashed](1.2,.77)--(3.2,.77)--(3.2,2.0);\node[below]at(2.2,.77){$\dd T$};\node[right]at(3.2,1.3){$\dd p$};
+}{沿定体积方向，热膨胀造成的体积增加由升压压缩恰好抵消。}{advA2:quality:response-a}
+图~\ref{advA2:quality:response-a}中沿定体积线有 $\dd V/V=\alpha\dd T-\kappa_T\dd p=0$，所以斜率为 $\alpha/\kappa_T$。另一方面同一斜率由 $\beta=(1/p)(\partial p/\partial T)_V$ 定义为 $p\beta$，等式来自比较同一条路径，而不是任意互换三个偏导的下标。
+}
+\newcommand{\AQCompressibilities}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$V$};\draw[->](0,0)--(0,3.3)node[above]{$p$};\fill(2,2)circle(2pt)node[above]{$A$};
+ \draw[thick](.7,2.7)--(4.4,.7);\draw[DeepBlue](1.3,2.9)--(3,.7);\node[right]at(5,2){比较经过同一状态的定温与定熵方向};
+}{两压缩系数是状态空间中不同约束方向的导数。}{advA2:quality:compress-q}}
+\newcommand{\AACompressibilities}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$V$};\draw[->](0,0)--(0,3.3)node[above]{$p$};
+ \draw[thick](.7,2.7)--(4.4,.7)node[right]{$T$ 固定};\draw[DeepBlue,thick](1.3,2.9)--(3,.7)node[below right]{$S$ 固定};\fill(2,2)circle(2pt);
+}{同一小压强变化下，稳定物质的绝热体积响应较小，故绝热线较陡。}{advA2:quality:compress-a}
+图~\ref{advA2:quality:compress-a}中的局部关系可直接由 $\dd S=(C_p/T)\dd T-V\alpha\dd p$ 推导：令 $\dd S=0$ 得 $\dd T=TV\alpha\dd p/C_p$，再代入 $\dd V/V=\alpha\dd T-\kappa_T\dd p$，即有 $\kappa_S=\kappa_T-TV\alpha^2/C_p$。这补出了从熵约束消去温度变化的关键一步。
+}
+\newcommand{\AQHeatDifference}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$S$};\fill(1,.6)circle(2pt)node[left]{$A$};
+ \draw[thick](1,.6)--(4,1.7);\draw[DeepBlue](1,.6)--(4,2.6);\node[right]at(5,1.7){从同一初态升温的两条约束路径};
+}{熵对温度的路径导数给出对应热容除以温度。}{advA2:quality:heat-diff-q}}
+\newcommand{\AAHeatDifference}{\ThermalFigure{
+ \draw[->](0,0)--(5,0)node[right]{$T$};\draw[->](0,0)--(0,3)node[above]{$S$};\fill(1,.6)circle(2pt);
+ \draw[thick](1,.6)--(4,1.7)node[right]{$V$ 固定};\draw[DeepBlue,thick](1,.6)--(4,2.6)node[right]{$p$ 固定};
+ \draw[dashed](4,1.7)--(4,2.6);\node[right]at(6,.7){局部斜率分别为 $C_V/T,C_p/T$};
+}{同一状态的斜率之差由额外的体积响应与熵对体积的导数相乘给出。}{advA2:quality:heat-diff-a}
+图~\ref{advA2:quality:heat-diff-a}画的是同一状态附近的局部切向比较，并非断言任意长路径上熵差恒定。定压路径允许 $\dd V=V\alpha\dd T$，使熵导数比定容多出 $(\partial S/\partial V)_T V\alpha$；再以麦克斯韦关系替换第一因子即可得到所证公式。
+}

@@ -1,0 +1,74 @@
+\section{受激辐射、布居反转与激光阈值}
+
+\subsection{受激辐射并不等于普通的吸收后再发光}
+设两个能级满足 $E_2-E_1=h\nu>0$。处于下能级的粒子可以吸收共振光子跃迁到上能级；处于上能级的粒子可以自发辐射，也可以在入射场作用下受激辐射。自发辐射的相位和方向没有被同一个入射场锁定；受激辐射则向与刺激场相同的光学模式增加光子，是光放大的微观基础。光的频率由能级差确定，放大强度还取决于布居与损耗。
+
+在相同简并度、相同跃迁截面的简化模型中，吸收率正比于下能级粒子数 $N_1$，受激发射率正比于上能级粒子数 $N_2$，所以小信号净增益与 $N_2-N_1$ 成正比。若简并度不同，应比较每个微观态的布居：反转条件为 $N_2/g_2>N_1/g_1$，不能只比较能级总数。
+正温度热平衡满足
+\[
+ \frac{N_2/g_2}{N_1/g_1}=e^{-h\nu/(k_BT)}<1.
+\]
+因此单纯加热到热平衡不能产生这一布居反转；必须用外部泵浦维持非平衡状态。一个只靠同一共振场驱动的理想封闭二能级系统，会趋于吸收与受激辐射相抵，不能以这种方式维持稳态反转。
+
+图~\ref{quality:32:fourlevel}给出四能级泵浦的一种理想化结构。泵浦将粒子由基态送到高能级，迅速弛豫到寿命较长的上激光能级；下激光能级又快速排空。这样上、下激光能级可以反转，同时满足能量由外部输入。具体材料的允许跃迁和速率不同，不能只画四条线就认定一定能够振荡。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex,x=1cm,y=1cm]
+ \foreach \y/\s in {0/E_0,.75/E_1,2/E_2,2.8/E_3}{\draw[thick] (0,\y)--(5,\y) node[right] {$\s$};}
+ \draw[vector,draw=Gold] (.5,.05)--node[left] {泵浦}(.5,2.75);
+ \draw[->,dashed,thick] (2,2.75)--node[right] {快弛豫}(2,2.05);
+ \draw[vector] (3,1.95)--node[right] {$h\nu=E_2-E_1$}(3,.8);
+ \draw[->,dashed,thick] (4,.7)--node[right] {快弛豫}(4,.05);
+ \node[above] at (3,3.15) {上激光能级寿命较长；下激光能级快速排空};
+\end{tikzpicture}
+\figcap{四能级泵浦示意；实线向下箭头表示激光跃迁，虚线表示非激光弛豫通道。}\label{quality:32:fourlevel}
+\end{qualityfigure}
+
+\subsection{有光放大仍需满足谐振腔的往返条件}
+谐振腔提供反馈并选择模式，但镜面与介质都有损耗。定义强度增益系数 $g$ 与分布损耗系数 $\alpha$，使一束弱光在均匀介质中传播距离 $z$ 后
+\[
+ I(z)=I(0)e^{(g-\alpha)z}.
+\]
+二者单位均为 $\mathrm{m^{-1}}$。若长度为 $L$ 的介质充满双镜腔，镜面强度反射率为 $R_1,R_2$，一次往返后强度乘以
+\[
+ G_{\rm rt}=R_1R_2e^{2(g-\alpha)L}.
+\]
+起振阈值要求 $G_{\rm rt}=1$，从而
+\[
+ \boxed{g_{\rm th}=\alpha+\frac1{2L}\ln\frac1{R_1R_2}}.
+\]
+这里采用强度系数与强度反射率。若混用场振幅系数，指数中的2会出错。起振后增益饱和与输出耦合共同决定稳态功率，小信号阈值关系本身不能给出输出功率。
+
+\begin{origexamplebox}{把布居反转与腔损耗连接起来}\label{quality:32:ex:laser-threshold}
+均匀激光介质充满长度 $L=0.300\,\mathrm m$ 的双镜腔，镜面强度反射率 $R_1=1.00$、$R_2=0.900$，介质分布强度损耗系数 $\alpha=0.0200\,\mathrm{m^{-1}}$。假设上下激光能级简并度相同，受激发射与吸收截面均为 $\sigma=3.00\times10^{-20}\,\mathrm{m^2}$，小信号增益 $g=\sigma(n_2-n_1)$，$n_i$ 为数密度。求阈值增益与阈值反转数密度差。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \fill[DeepBlue!10] (.2,-.5) rectangle (6.8,.5);
+ \draw[very thick] (0,-.9)--(0,.9) (7,-.9)--(7,.9);
+ \draw[vector] (.5,0)--(8.2,0) node[right] {输出};
+ \node[above] at (0,.9) {$R_1$};\node[above] at (7,.9) {$R_2$};
+ \node[above] at (3.5,.5) {$g=\sigma(n_2-n_1),\quad\alpha$};
+ \draw[<->] (0,-1.1)--node[below] {$L$}(7,-1.1);
+\end{tikzpicture}
+\figcap{均匀增益介质填满镜间距离；两面镜的反射率均按光强定义。}\label{quality:32:laser-q}
+\end{qualityfigure}
+\end{origexamplebox}
+\begin{xesolution}
+从题图~\ref{quality:32:laser-q}中左镜反射后向右传播的弱光开始记账。图~\ref{quality:32:laser-a}分别列出两程传播和两次反射；阈值时回到同一截面、同一传播方向的光强恰好等于初值。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \node[draw] (l) at (0,0) {$I_0$};
+ \node[draw] (r) at (7,0) {$I_0e^{(g-\alpha)L}$};
+ \draw[->,DeepBlue] (l)--node[above] {向右传播距离 $L$}(r);
+ \draw[->,TextGray] (r.south) -- (7,-1) --node[below] {右镜 $R_2$、向左传播 $L$、左镜 $R_1$}(0,-1)--(l.south);
+\end{tikzpicture}
+\figcap{一个完整往返含两次传播和两次镜面反射；返回左框时乘因子 $G_{\rm rt}$。}\label{quality:32:laser-a}
+\end{qualityfigure}
+令 $\ln G_{\rm rt}=0$，得
+\[
+ g_{\rm th}=0.0200+\frac{\ln(1/0.900)}{0.600}
+ =\boxed{0.196\,\mathrm{m^{-1}}},
+\]
+因此
+\[
+ \boxed{(n_2-n_1)_{\rm th}=\frac{g_{\rm th}}\sigma
+ =6.52\times10^{18}\,\mathrm{m^{-3}}}.
+\]
+单位核对为 $\mathrm{m^{-1}/m^2=m^{-3}}$。即使两面镜均全反射，本题仍需 $g_{\rm th}=\alpha$ 抵消介质损耗；若连分布损耗也为零，理想模型的阈值才趋于零。实际光束未必完全覆盖增益介质，若存在填充因子或额外器件损耗，应重新计算往返因子。
+\end{xesolution}

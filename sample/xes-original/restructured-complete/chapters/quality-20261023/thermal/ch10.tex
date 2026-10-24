@@ -1,0 +1,57 @@
+% Editable TikZ, including frequency-response and weak-nonlinearity analysis.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThQVerticalSpring}{\ThermalFigure{
+ \draw[thick](-1,3)--(1,3);\draw[decorate,decoration={coil,segment length=3mm,amplitude=2mm},thick](0,3)--(0,.5);
+ \draw[fill=DeepBlue!15,thick](-.4,-.2)rectangle(.4,.5);\node at(0,.15){$m$};
+ \draw[dashed](-1.1,1)--(1,1)node[right]{原长末端};\draw[<->](1.5,1)--node[right]{伸长量}(1.5,.5);
+ \node[left]at(-.5,1.9){$k$};\draw[->](3,1.8)--(3,.5)node[right]{$g$};
+}{竖直轻弹簧与小球；须区分从原长量起的伸长与从平衡位置量起的位移。}{ch10:quality:vertical-q}}
+\newcommand{\ThQPhysicalPendulum}{\ThermalFigure{
+ \fill[DeepBlue!10](.5,1.3)ellipse(1 and 1.8);\draw[thick](.5,1.3)ellipse(1 and 1.8);
+ \coordinate(O)at(0,3);\coordinate(C)at(.6,.9);\draw[thick](O)--(C);
+ \fill(O)circle(2pt)node[above]{$O$};\fill(C)circle(2pt)node[right]{$C$};
+ \draw[dashed](0,3)--(0,.2);\draw[<->](-.5,2.9)--node[left]{$a$}(.1,.8);
+ \draw(0,2.2)arc(270:286:.8)node[below]{$\theta$};\node[right,align=left]at(3,1.7){绕 $O$ 转动惯量 $I$\\质心 $C$ 位于轴下方};
+}{任意刚体的复摆；小角度是质心连线与向下铅垂线的夹角。}{ch10:quality:pendulum-q}}
+\newcommand{\ThBandwidthBase}[1]{
+ \draw[->](0,0)--(7,0)node[right]{$\omega$};\draw[->](0,0)--(0,3.2)node[above]{$\overline P$};
+ \draw[DeepBlue,thick,domain=.4:6.6,samples=100]plot(\x,{2.8/(1+(\x-3.5)^2/.64)});
+ \draw[dashed](0,1.4)--(6.5,1.4);\node[left]at(0,1.4){$\overline P_{\max}/2$};
+ \draw[dashed](2.7,0)--(2.7,1.4) (4.3,0)--(4.3,1.4);
+ \node[below]at(2.7,0){$\omega_1$};\node[below]at(4.3,0){$\omega_2$};#1}
+\newcommand{\ThQBandwidth}{\ThermalFigure{\ThBandwidthBase{}}{半功率带宽由功率曲线与半高线的两个交点定义；图为弱阻尼近峰示意。}{ch10:quality:bandwidth-q}}
+\newcommand{\ThABandwidth}{\ThermalFigure{\ThBandwidthBase{
+ \draw[<->](2.7,-.7)--node[below]{$\Delta\omega$}(4.3,-.7);\draw[dashed](3.5,0)--(3.5,2.8);\node[above]at(3.5,2.9){功率峰 $\omega_0$};
+}}{先对功率施加半高条件，再比较两个正频率根。}{ch10:quality:bandwidth-a}
+图~\ref{ch10:quality:bandwidth-a}中的水平线表示功率减半，并非位移振幅减半。对于线性黏性阻尼模型，它给出 $|k-m\omega^2|=b\omega$；左右交点取绝对值的不同分支，故两个二次方程的一次项符号相反。
+}
+\newcommand{\ThHardeningBase}[1]{
+ \draw[->](-2.7,0)--(2.7,0)node[right]{$x$};\draw[->](0,-2.3)--(0,2.3)node[above]{$F$};
+ \draw[TextGray,dashed](-2,1)--(2,-1);
+ \draw[DeepBlue,thick,domain=-2:2,samples=70]plot(\x,{-.5*\x-.12*\x^3});
+ \node[left]at(-2,2){$-kx-\lambda x^3$};\node[right]at(2,-.8){$-kx$};#1}
+\newcommand{\ThQHardening}{\ThermalFigure{\ThHardeningBase{}}{硬化回复力比线性模型更强；初态为正转折点 $x=A$。}{ch10:quality:hardening-q}}
+\newcommand{\ThAHardening}{\ThermalFigure{
+ \draw[->](-2.6,0)--(2.6,0)node[right]{$x$};\draw[->](0,0)--(0,3.1)node[above]{$U$};
+ \draw[TextGray,dashed,domain=-2:2,samples=70]plot(\x,{.3*(\x)*(\x)});
+ \draw[DeepBlue,thick,domain=-2:2,samples=70]plot(\x,{.3*(\x)*(\x)+.075*(\x)*(\x)*(\x)*(\x)});
+ \draw[dashed](-2,2.4)--(2,2.4);\node[below]at(-2,0){$-A$};\node[below]at(2,0){$A$};
+ \node[right,align=left]at(3,1.8){实线：$U=kx^2/2+\lambda x^4/4$\\虚线：线性弹簧势能};
+}{正四次势能使势阱在大位移处更陡，转折点仍由总能量与势能相等确定。}{ch10:quality:hardening-a}
+图~\ref{ch10:quality:hardening-a}中的正四次项使回复作用增强，预期频率随振幅增大而升高。作一阶估计时，$\cos^3\Omega t=(3\cos\Omega t+\cos3\Omega t)/4$ 的基频部分改变频率，三倍频部分只在同阶修正波形；这给出相对频移的系数 $3/8$。
+}
+\newcommand{\ThQSphereCharges}{\ThermalFigure{
+ \draw[thick](0,0)circle(2);\draw[dashed](0,0)ellipse(2 and .55);
+ \foreach \x/\y/\n in {1.5/1.323/1,-1.8/.872/2,.5/-1.936/3}{\fill[DeepBlue](\x,\y)circle(3pt)node[right]{$\n:Q,m$};}
+ \draw[->](0,0)--(-1,-1.732)node[midway,right]{$R$};\node[right]at(4,0){各粒子限于球面；初图不预设平衡形状};
+}{约束球面上的三个同号点电荷；平衡构形及简正模由势能极小与二阶展开求出。}{ch10:quality:charges-q}}
+\newcommand{\ThQSpringPendulum}{\ThermalFigure{
+ \coordinate(S)at(0,3);\coordinate(O)at(0,0);\coordinate(P)at(1.5,-.8);
+ \draw[thick](-.7,3)--(.7,3);\draw[dashed](S)--(O);
+ \draw[decorate,decoration={coil,segment length=3mm,amplitude=2mm},thick](S)--(P);
+ \fill[DeepBlue](P)circle(3pt)node[right]{$m$};\fill(O)circle(1pt)node[above left]{$O$（平衡）};
+ \draw[->](O)--(2.7,0)node[right]{$x$};\draw[->](O)--(0,-1.7)node[below]{$y$};
+ \draw[dashed](P)--(1.5,0) (P)--(0,-.8);\node[left]at(0,1.5){$l_e$};
+}{竖直平衡长度为 $l_e$，原长为 $l_0$；展开坐标从平衡位置而非原长末端量起。}{ch10:quality:spring-pendulum-q}}

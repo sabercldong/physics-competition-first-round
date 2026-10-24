@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{静电场}
 
 \subsection{分布、电势与能量}
@@ -42,9 +43,37 @@ Lorentz 核
 \[
  \delta(x)=\frac1{2\pi}\int_{-\infty}^{\infty}\e^{\ii kx}\dd k.
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-2.5,0)--(2.5,0) node[right]{$x$};\draw[->] (0,-.3)--(0,2.2);
+\draw[DeepBlue,domain=-2:2,samples=100] plot(\x,{1.8*exp(-4*\x*\x)});
+\draw[dashed,DeepBlue,domain=-2:2,samples=100] plot(\x,{.9*exp(-\x*\x)});
+\node[right] at (.9,1.4){两种 $\epsilon$ 的Gaussian核};\node[below] at (0,-.5){核与测试函数 $f(x)$ 配对};
+
+\end{tikzpicture}
+\figcap{题图：宽度不同的归一化逼近核，极限须在对测试函数积分之后取。}\label{advA4:quality:A4-electrostatics:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
-对 Gaussian 核令 $x=\epsilon u$，则对任意连续快速衰减的 $f$，
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-2.5,0)--(2.5,0) node[right]{$x$};\draw[->] (0,-.3)--(0,2.2);
+\draw[DeepBlue,domain=-2:2,samples=100] plot(\x,{1.8*exp(-4*\x*\x)});
+\draw[dashed,DeepBlue,domain=-2:2,samples=100] plot(\x,{.9*exp(-\x*\x)});
+\node[right] at (.9,1.4){两种 $\epsilon$ 的Gaussian核};\node[below] at (0,-.5){核与测试函数 $f(x)$ 配对};
+
+\end{tikzpicture}
+\figcap{解图：宽度不同的归一化逼近核，极限须在对测试函数积分之后取。}\label{advA4:quality:A4-electrostatics:a1}
+\end{minipage}\end{center}
+
+对 Gaussian 核令 $x=\epsilon u$，取任意Schwartz测试函数 $f$（光滑且各阶导数均快速衰减），则
 \[
  \int\frac{\e^{-x^2/(2\epsilon^2)}}{\sqrt{2\pi}\epsilon}f(x)\dd x
  =\int\frac{\e^{-u^2/2}}{\sqrt{2\pi}}f(\epsilon u)\dd u
@@ -59,6 +88,8 @@ Lorentz 核
 长度为 $2\pi$ 的周期区间上，Dirichlet 核
 $D_N(x)=\sum_{n=-N}^{N}\e^{\ii nx}$ 满足
 $(2\pi)^{-1}\int_{-\pi}^{\pi}D_N(x)f(x)\dd x\to f(0)$（在满足 Dirichlet 条件时取左右极限平均）。令周期趋于无穷，离散波数和变成积分，即得连续 Fourier 表示。四种表达都只在分布意义成立，不能把 $\delta(0)=\infty$ 当普通函数值参与代数运算。
+
+图~\ref{advA4:quality:A4-electrostatics:a1} 中，核的总面积保持1、质量集中到原点；sinc核虽有负旁瓣，Fourier反演仍可控制配对极限，不能把它当作非负概率密度。
 \end{advsolution}
 
 \subsection{Cartesian 多极展开}
@@ -123,24 +154,55 @@ $\rho=\tfrac12Q_{ij}\partial_i\partial_j\delta^{(3)}$。在光滑外势中的相
 
 \begin{advexamplebox}{对称无迹张量的独立分量数}\label{advA4:ex:stf-dimension}
 证明三维 $n$ 阶完全对称无迹张量有 $2n+1$ 个独立分量。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0)--(3,0)--(0,3)--cycle;
+\foreach \i in {0,1,2,3}{\foreach \j in {0,1,2,3}{\pgfmathtruncatemacro{\k}{\i+\j}\ifnum\k<4\fill[DeepBlue] (\i,\j) circle (1.7pt);\fi}}
+\node[below] at (1.5,-.3){$n_1$};\node[left] at (-.2,1.5){$n_2$};\node[right] at (2.1,1.2){$n_3=n-n_1-n_2$};\node[above] at (1.2,3.3){$n=3$ 的指标重数组合};
+
+\end{tikzpicture}
+\figcap{题图：完全对称张量的指标重数组合可看作非负整数格点，图用 $n=3$ 示意。}\label{advA4:quality:A4-electrostatics:q2}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0)--(3,0)--(0,3)--cycle;
+\foreach \i in {0,1,2,3}{\foreach \j in {0,1,2,3}{\pgfmathtruncatemacro{\k}{\i+\j}\ifnum\k<4\fill[DeepBlue] (\i,\j) circle (1.7pt);\fi}}
+\node[below] at (1.5,-.3){$n_1$};\node[left] at (-.2,1.5){$n_2$};\node[right] at (2.1,1.2){$n_3=n-n_1-n_2$};\node[above] at (1.2,3.3){$n=3$ 的指标重数组合};
+
+\end{tikzpicture}
+\figcap{解图：完全对称张量的指标重数组合可看作非负整数格点，图用 $n=3$ 示意。}\label{advA4:quality:A4-electrostatics:a2}
+\end{minipage}\end{center}
+
 $n$ 阶完全对称张量只由指标1、2、3各出现多少次决定，因此
 \[
  \dim S^n(\mathbb R^3)=\binom{n+2}{2}.
 \]
-取迹把 $S^n$ 映到 $S^{n-2}$。这个映射是满射：给定任意
-$B\in S^{n-2}$，先取对称化的 $\delta\odot B$，再减去有限个更高重迹项即可构造迹恰为 $B$ 的张量。因此无迹子空间是迹映射的核，秩--零化度定理给出
+对 $n\ge2$，取迹映射 $\operatorname{Tr}:S^n\to S^{n-2}$。下面补出它满射的依据。
+用分量完全缩并作为两空间的正定内积，取迹的伴随映射为
+$B\mapsto\operatorname{Sym}(\delta\otimes B)$。把对称张量对应到齐次多项式，这个伴随映射正对应乘以 $r^2=x_1^2+x_2^2+x_3^2$。
+非零多项式乘以 $r^2$ 不可能恒为零，所以伴随映射单射；有限维空间中映射与其伴随秩相同，因此取迹映射的秩等于 $\dim S^{n-2}$，确实满射。
+无迹子空间是取迹映射的核，秩--零化度定理于是给出
 \[
  \dim\operatorname{STF}^n
  =\binom{n+2}{2}-\binom n2
  =\boxed{2n+1}.
 \]
-$n=1$ 得3个偶极分量，$n=2$ 得5个四极分量，也与“对称矩阵6个分量减去一个迹条件”一致。
+$n=0,1$ 不存在取迹约束，分别有1、3个分量，也符合通式。$n=1$ 得3个偶极分量，$n=2$ 得5个四极分量，也与“对称矩阵6个分量减去一个迹条件”一致。
+
+图~\ref{advA4:quality:A4-electrostatics:a2} 中，每个格点代表一个对称分量；取迹把阶数从 $n$ 降到 $n-2$，但不能把各迹条件随意当作独立，满射性必须另证。
 \end{advsolution}
 
 \begin{advtheorem}{点电偶极子的完整分布场}\label{advA4:thm:dipole-distribution-field}
-点偶极子在全空间的电场是
+点偶极子在全空间的电场（非 $\delta$ 项按以原点为中心的球形主值理解）是
 \[
  \boxed{\vect E(\vect r)=\frac1{4\pi\varepsilon_0}
  \frac{3(\vect p\cdot\vect r)\vect r-r^2\vect p}{r^5}
@@ -166,8 +228,34 @@ $\nabla\cdot\vect E=-(\vect p\cdot\nabla\delta)/\varepsilon_0$。\hfill$\square$
  \vect F=(\vect p\cdot\nabla)\vect E,
  \qquad \vect M=\vect p\times\vect E.
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (-.8,0) circle (2pt) node[below]{$-q$};\fill (.8,.6) circle (2pt) node[above]{$+q$};
+\draw[DeepBlue,->] (-.8,0)--(.8,.6) node[midway,above]{$\boldsymbol a$};\draw[->] (-1.4,1.2)--(1.8,1.2) node[right]{$\boldsymbol E(\boldsymbol r)$};
+\fill (0,.3) circle (1pt) node[below]{$\boldsymbol r$};
+
+\end{tikzpicture}
+\figcap{题图：相反电荷关于偶极中心对称分开，外场在这个长度上缓慢变化。}\label{advA4:quality:A4-electrostatics:q3}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (-.8,0) circle (2pt) node[below]{$-q$};\fill (.8,.6) circle (2pt) node[above]{$+q$};
+\draw[DeepBlue,->] (-.8,0)--(.8,.6) node[midway,above]{$\boldsymbol a$};\draw[->] (-1.4,1.2)--(1.8,1.2) node[right]{$\boldsymbol E(\boldsymbol r)$};
+\fill (0,.3) circle (1pt) node[below]{$\boldsymbol r$};
+
+\end{tikzpicture}
+\figcap{解图：相反电荷关于偶极中心对称分开，外场在这个长度上缓慢变化。}\label{advA4:quality:A4-electrostatics:a3}
+\end{minipage}\end{center}
+
 把偶极子看成位于 $\vect r\pm\vect a/2$ 的 $\pm q$，其中 $\vect p=q\vect a$。合力
 \[
  \vect F=q\vect E(\vect r+\vect a/2)-q\vect E(\vect r-\vect a/2)
@@ -182,12 +270,45 @@ $\nabla\cdot\vect E=-(\vect p\cdot\nabla\delta)/\varepsilon_0$。\hfill$\square$
 也可从势能 $U=-\vect p\cdot\vect E$ 得到
 $\vect F=-\nabla U$；静电场无旋时
 $\nabla(\vect p\cdot\vect E)=(\vect p\cdot\nabla)\vect E$。力矩使 $\vect p$ 转向 $\vect E$，稳定方向为同向。
+
+图~\ref{advA4:quality:A4-electrostatics:a3} 中，两电荷位于 $\boldsymbol r\pm\boldsymbol a/2$；合力取两个局部场之差，而力矩的两个力臂均从同一个中心量取，因而可分别作一阶展开。
 \end{advsolution}
 
 \begin{advexamplebox}{任意取向偶极子与孤立中性导体球}\label{advA4:ex:dipole-grounded-sphere}
 半径为 $R$、总电荷为零的孤立导体球外，距球心 $a>R$ 处放置偶极矩 $\vect p$，它与连心线夹角为 $\theta$。令 $\vect p=p_\parallel\vect e_r+\vect p_\perp$。求像系、势能、力和力矩，并与接地球比较。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1);\fill (0,0) circle (1.3pt) node[below]{$O$};
+\draw[->] (0,0)--(0,1) node[midway,left]{$R$};
+\fill (2.8,0) circle (1.8pt) node[below]{$\boldsymbol r_0$};\draw[dashed] (0,0)--(2.8,0);
+
+\draw[DeepBlue,->] (2.8,0)--(3.5,.7) node[right]{$\boldsymbol p$};\node at (3.25,.12){$\theta$};\node[below] at (1.7,-.3){$a>R$};\node[above] at (0,1.3){孤立导体，总电荷0};
+
+\end{tikzpicture}
+\figcap{题图：外部偶极子相对连心线具有任意取向，球的边界条件是孤立且中性。}\label{advA4:quality:A4-electrostatics:q4}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1);\fill (0,0) circle (1.3pt) node[below]{$O$};
+\draw[->] (0,0)--(0,1) node[midway,left]{$R$};
+\fill (2.8,0) circle (1.8pt) node[below]{$\boldsymbol r_0$};\draw[dashed] (0,0)--(2.8,0);
+
+\fill[DeepBlue] (.36,0) circle (1.8pt) node[above]{$q',\boldsymbol p'$};\fill[DeepBlue] (0,0) circle (2pt) node[below]{$q_0=-q'$};
+\draw[DeepBlue,->] (2.8,0)--(3.5,.7) node[right]{$\boldsymbol p$};\node[below] at (1,-.6){像点 $b=R^2/a$；像系不是真实球内电荷};
+
+\end{tikzpicture}
+\figcap{解图：像点的点电荷/偶极与球心补偿电荷承担不同的边界条件。}\label{advA4:quality:A4-electrostatics:a4}
+\end{minipage}\end{center}
+
 先构造接地球的像系：令 $d=a^2-R^2$，像点位于 $b=R^2/a$，其上有
 \[
  q'=\frac{Rp_\parallel}{a^2},\qquad
@@ -244,6 +365,8 @@ $\nabla(\vect p\cdot\vect E)=(\vect p\cdot\nabla)\vect E$。力矩使 $\vect p$ 
  U\longrightarrow-\frac{2p_n^2+p_t^2}{64\pi\varepsilon_0h^3},
 \]
 其中 $p_n,p_t$ 是相对于平面的法向、切向分量。
+
+图~\ref{advA4:quality:A4-electrostatics:a4} 中，径向与切向偶极分量必须分别映射；球心的补偿像电荷负责保持总感应电荷为零，不能省略后套用接地球的能量。
 \end{advsolution}
 
 \subsection{电介质}
@@ -285,8 +408,32 @@ $w=\tfrac12\vect D\cdot\vect E$。
 
 \begin{advexamplebox}{位移极化的极化率}\label{advA4:ex:displacement-polarization}
 把分子视为电荷 $\pm Q$ 的一维谐振子，相对位移势能为 $kx^2/2$，数密度为 $n$。求自由能系数 $\alpha$ 与电极化率 $\chi_e$。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (0,0) circle (2pt) node[below]{$-Q$};\fill (1.5,0) circle (2pt) node[below]{$+Q$};\draw[thick] (.1,0)--(.4,.2)--(.7,-.2)--(1,.2)--(1.3,0);
+\draw[->] (0,1)--(2.4,1) node[right]{$\boldsymbol E$};\draw[<->] (0,-.6)--(1.5,-.6) node[midway,below]{$x$，回复劲度 $k$};
+
+\end{tikzpicture}
+\figcap{题图：异号电荷的相对位移谐振子，$x$ 取电场正向。}\label{advA4:quality:A4-electrostatics:q5}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (0,0) circle (2pt) node[below]{$-Q$};\fill (1.5,0) circle (2pt) node[below]{$+Q$};\draw[thick] (.1,0)--(.4,.2)--(.7,-.2)--(1,.2)--(1.3,0);
+\draw[->] (0,1)--(2.4,1) node[right]{$\boldsymbol E$};\draw[<->] (0,-.6)--(1.5,-.6) node[midway,below]{$x$，回复劲度 $k$};
+
+\end{tikzpicture}
+\figcap{解图：异号电荷的相对位移谐振子，$x$ 取电场正向。}\label{advA4:quality:A4-electrostatics:a5}
+\end{minipage}\end{center}
+
 平衡时 $kx=QE$，单分子偶极矩
 $p=Qx=Q^2E/k$。所以
 \[
@@ -300,12 +447,36 @@ $p=Qx=Q^2E/k$。所以
  =\frac{nQ^2}{\varepsilon_0k}}.
 \]
 $k$ 越大越难极化，$n,Q$ 越大越易极化，趋势正确。三维各向同性束缚若三个方向劲度相同，结果逐方向相同。
+
+图~\ref{advA4:quality:A4-electrostatics:a5} 中，电场对相对坐标的势能为 $-QEx$，与 $kx^2/2$ 一起极小化后得到位移；极化强度还需乘数密度 $n$，不能把单分子偶极矩直接当作 $P$。
 \end{advsolution}
 
 \begin{advexamplebox}{取向极化与 Langevin 函数}\label{advA4:ex:orientation-polarization}
 数密度为 $n$ 的永久偶极矩 $p$ 在温度 $T$ 下达到热平衡。求极化强度的精确式和弱场极化率。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,0)--(0,2) node[above]{$\boldsymbol E$};\draw[DeepBlue,->] (0,0)--(1.1,1.2) node[right]{$\boldsymbol p$};\node at (.25,.8){$\theta$};\draw[dashed] (0,1.2)--(1.1,1.2);\node[right] at (1.7,0){温度 $T$ 的取向系综};
+
+\end{tikzpicture}
+\figcap{题图：永久偶极矩与外场的夹角是系综积分变量，不固定为零。}\label{advA4:quality:A4-electrostatics:q6}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,0)--(0,2) node[above]{$\boldsymbol E$};\draw[DeepBlue,->] (0,0)--(1.1,1.2) node[right]{$\boldsymbol p$};\node at (.25,.8){$\theta$};\draw[dashed] (0,1.2)--(1.1,1.2);\node[right] at (1.7,0){温度 $T$ 的取向系综};
+
+\end{tikzpicture}
+\figcap{解图：永久偶极矩与外场的夹角是系综积分变量，不固定为零。}\label{advA4:quality:A4-electrostatics:a6}
+\end{minipage}\end{center}
+
 取 $\vect E$ 为极轴，单偶极能量 $U=-pE\cos\theta$。令
 $x=pE/(k_BT)$，配分函数的角部分为
 \[
@@ -331,6 +502,8 @@ $x=pE/(k_BT)$，配分函数的角部分为
  \boxed{\chi_e=\frac{np^2}{3\varepsilon_0k_BT}}.
 \]
 强场 $x\to\infty$ 时 $P\to np$，正确体现饱和而不是无限线性增长。
+
+图~\ref{advA4:quality:A4-electrostatics:a6} 中，场向分量为 $p\cos\theta$，球面取向测度还含 $\sin\theta$；分子能量 $-pE\cos\theta$ 进入Boltzmann权重，归一化后才得到平均投影。
 \end{advsolution}
 
 \begin{advtheorem}{Helmholtz 分解}\label{advA4:thm:helmholtz}
@@ -378,8 +551,32 @@ $\Omega=\int_S\dd\vect S\cdot\vect e_r/r^2$ 是有向立体角。
 
 \begin{advexamplebox}{圆锥立体角与球坐标立体角元}\label{advA4:ex:solid-angle}
 半顶角为 $\alpha$ 的圆锥从顶点截取单位球面。求其立体角、$\alpha$ 改变时的立体角元，并推广到球坐标一般面元。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0)--(-1.2,2)--(1.2,2)--cycle;\draw (0,2) ellipse (1.2 and .25);\draw[dashed] (0,0)--(0,2.6) node[above]{$z$};
+\node at (.3,1){$\alpha$};\draw[->] (0,0)--(1.2,2) node[midway,right]{$r=1$};\node[below] at (0,-.3){顶点 $O$};
+
+\end{tikzpicture}
+\figcap{题图：圆锥顶点位于单位球心，半顶角从锥轴量起；上方椭圆示意球面截线。}\label{advA4:quality:A4-electrostatics:q7}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0)--(-1.2,2)--(1.2,2)--cycle;\draw (0,2) ellipse (1.2 and .25);\draw[dashed] (0,0)--(0,2.6) node[above]{$z$};
+\node at (.3,1){$\alpha$};\draw[->] (0,0)--(1.2,2) node[midway,right]{$r=1$};\node[below] at (0,-.3){顶点 $O$};
+
+\end{tikzpicture}
+\figcap{解图：圆锥顶点位于单位球心，半顶角从锥轴量起；上方椭圆示意球面截线。}\label{advA4:quality:A4-electrostatics:a7}
+\end{minipage}\end{center}
+
 单位球面上圆锥对应 $0\le\theta\le\alpha$，故
 \[
  \boxed{\Omega=\int_0^{2\pi}\!\int_0^\alpha
@@ -395,12 +592,38 @@ $\dd\Omega=2\pi\sin\alpha\dd\alpha$。一般球坐标面元在半径 $r$ 的球�
 \]
 若开曲面法向与视线夹角为 $\beta$，则
 $\dd\Omega=(\cos\beta/r^2)\dd S$。$\alpha=\pi$ 时得到 $4\pi$，全空间极限正确。
+
+图~\ref{advA4:quality:A4-electrostatics:a7} 中，薄纬圈面积为 $2\pi\sin\theta\,\mathrm d\theta$，单位球面面积就是立体角；一般经纬小块的两边分别为 $\mathrm d\theta$ 和 $\sin\theta\,\mathrm d\varphi$。
 \end{advsolution}
 
 \begin{advexamplebox}{匀强场与共轴电偶极子的电场线}\label{advA4:ex:dipole-uniform-field-lines}
 匀强电场 $E_0\vect e_z$ 中放置位于原点、偶极矩平行或反平行于 $\vect e_z$ 的点偶极子。求轴对称电场线方程。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.3)--(0,1.8) node[above]{$z,\boldsymbol E_0$};\fill (0,0) circle (1.8pt);\draw[DeepBlue,->] (0,-.3)--(0,.8) node[right]{$\boldsymbol p$};
+\draw[dashed] (0,0)--(1.7,1);\node[right] at (1.7,1){$P(r,\theta)$};\node at (.35,.6){$\theta$};\node[below] at (1.5,-1){分别考虑 $\boldsymbol p\parallel\pm\boldsymbol E_0$};
+
+\end{tikzpicture}
+\figcap{题图：共轴偶极与均匀场，场点使用以 $+z$ 为极轴的球坐标。}\label{advA4:quality:A4-electrostatics:q8}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.3)--(0,1.8) node[above]{$z,\boldsymbol E_0$};\fill (0,0) circle (1.8pt);\draw[DeepBlue,->] (0,-.3)--(0,.8) node[right]{$\boldsymbol p$};
+\draw[dashed] (0,0)--(1.7,1);\node[right] at (1.7,1){$P(r,\theta)$};\node at (.35,.6){$\theta$};\node[below] at (1.5,-1){分别考虑 $\boldsymbol p\parallel\pm\boldsymbol E_0$};
+
+\end{tikzpicture}
+\figcap{解图：共轴偶极与均匀场，场点使用以 $+z$ 为极轴的球坐标。}\label{advA4:quality:A4-electrostatics:a8}
+\end{minipage}\end{center}
+
 令 $s=+1$ 表示同向，$s=-1$ 表示反向，$p>0$。总电势为
 \[
  \varphi=-E_0r\cos\theta+s\frac{p\cos\theta}{4\pi\varepsilon_0r^2}.
@@ -424,6 +647,8 @@ $\dd\Omega=(\cos\beta/r^2)\dd S$。$\alpha=\pi$ 时得到 $4\pi$，全空间极�
  \right)=C}.
 \]
 同向时两条轴上偶极场都与匀强场同向，因而轴上无零点；赤道面有半径 $r=(p/4\pi\varepsilon_0E_0)^{1/3}$ 的零场环。反向时零点在正、负两条轴上，均满足 $r=(2p/4\pi\varepsilon_0E_0)^{1/3}$。把 $p$ 置零退回平行直线，把 $E_0$ 置零得到偶极场线 $r\propto\sin^2\theta$。
+
+图~\ref{advA4:quality:A4-electrostatics:a8} 中，固定方位角后，场线切向满足 $\mathrm dr/(r\mathrm d\theta)=E_r/E_\theta$；叠加的是场分量，不能把两套场线的曲线直接相加。
 \end{advsolution}
 
 静电能可写成
@@ -471,8 +696,32 @@ $\nabla^2\varphi_i=-\rho_i/\varepsilon_0$ 即得。\hfill$\square$
  \item 给出扁旋转椭球的对应结果和等效像电荷分布；
  \item 在长轴上距中心 $l>A$ 处放点电荷 $Q$ 并把椭球接地，求椭球总感应电荷。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.8)--(0,1.9) node[above]{$z$};\draw[very thick,DeepBlue] (0,-1)--(0,1);\node[left] at (0,1){$+c$};\node[left] at (0,-1){$-c$};
+\draw[dashed] (0,0) ellipse (1.2 and 1.55);\fill (1.05,.75) circle (1.6pt) node[right]{$P$};\draw[dashed] (0,1)--(1.05,.75)--(0,-1);
+
+\end{tikzpicture}
+\figcap{题图：均匀带电焦线段及到两端点的距离，旋转椭球截线仅表示待验证的候选等势面。}\label{advA4:quality:A4-electrostatics:q9}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.8)--(0,1.9) node[above]{$z$};\draw[very thick,DeepBlue] (0,-1)--(0,1);\node[left] at (0,1){$+c$};\node[left] at (0,-1){$-c$};
+\draw[dashed] (0,0) ellipse (1.2 and 1.55);\fill (1.05,.75) circle (1.6pt) node[right]{$P$};\draw[dashed] (0,1)--(1.05,.75)--(0,-1);
+
+\end{tikzpicture}
+\figcap{解图：均匀带电焦线段及到两端点的距离，旋转椭球截线仅表示待验证的候选等势面。}\label{advA4:quality:A4-electrostatics:a9}
+\end{minipage}\end{center}
+
 记到线段两端的距离为 $r_\pm$。线电荷密度为 $\lambda$ 时
 \[
  \varphi=\frac\lambda{4\pi\varepsilon_0}
@@ -535,6 +784,8 @@ $c=\sqrt{B^2-A^2}$。把 $c$ 作解析延拓可得
  =-Q\frac{\ln[(l+c)/(l-c)]}{\ln[(A+c)/(A-c)]}}.
 \]
 $l\to\infty$ 时感应总电荷趋零，$l\downarrow A$ 时趋于 $-Q$，极限合理。
+
+图~\ref{advA4:quality:A4-electrostatics:a9} 中，到两焦点的距离和决定长旋转椭球面，差决定与之正交的双曲面；导体表面电荷密度须由外侧法向场给出，不是把线电荷密度直接投影到面上。
 \end{advsolution}
 
 \subsection{静电边值问题与格林函数}
@@ -577,8 +828,34 @@ $-4\pi G(\vect r',\vect r)+4\pi G(\vect r,\vect r')$。Dirichlet 情形边界上
 \begin{advexamplebox}{上半空间的 Dirichlet 与 Neumann Green 函数}\label{advA4:ex:half-space-green}
 区域为 $z>0$，源点为 $\vect r_0=(x_0,y_0,z_0)$，镜像点为
 $\vect r_0^*=(x_0,y_0,-z_0)$。求两类 Green 函数并解释像电荷法。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!5] (-2,0) rectangle (2,2);\draw[thick] (-2,0)--(2,0);\node[right] at (2,0){$z=0$};
+\fill (0,1.3) circle (2pt) node[right]{$\boldsymbol r_0$};\draw[dashed] (0,-1.3)--(0,1.3);\fill[gray] (0,-1.3) circle (1.6pt) node[right]{$\boldsymbol r_0^*$（镜像位置）};
+\draw[->] (-1,0)--(-1,-.7) node[left]{$\boldsymbol n$};\node at (-1,1.5){区域 $z>0$};
+
+\end{tikzpicture}
+\figcap{题图：上半空间及其边界外法线；像点在求解域之外，像电荷符号尚待边界条件确定。}\label{advA4:quality:A4-electrostatics:q10}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!5] (-2,0) rectangle (2,2);\draw[thick] (-2,0)--(2,0);\node[right] at (2,0){$z=0$};
+\fill (0,1.3) circle (2pt) node[right]{$\boldsymbol r_0$};\draw[dashed] (0,-1.3)--(0,1.3);\fill[gray] (0,-1.3) circle (1.6pt) node[right]{$\boldsymbol r_0^*$（镜像位置）};
+\draw[->] (-1,0)--(-1,-.7) node[left]{$\boldsymbol n$};\node at (-1,1.5){区域 $z>0$};
+
+\end{tikzpicture}
+\figcap{解图：上半空间及其边界外法线；像点在求解域之外，像电荷符号尚待边界条件确定。}\label{advA4:quality:A4-electrostatics:a10}
+\end{minipage}\end{center}
+
 令 $R_-=|\vect r-\vect r_0|$、$R_+=|\vect r-\vect r_0^*|$。在平面 $z=0$ 上 $R_-=R_+$，故
 \[
  \boxed{G_D=\frac1{R_-}-\frac1{R_+}}
@@ -591,12 +868,40 @@ $\vect r_0^*=(x_0,y_0,-z_0)$。求两类 Green 函数并解释像电荷法。
 \]
 满足 $\partial_nG_N=0$，等价于同号像电荷。前者使势为奇延拓，后者使势为偶延拓。代回
 $\nabla^2G=-4\pi\delta$ 时，镜像点在区域外，不引入额外真实源。Green 函数均关于 $\vect r,\vect r_0$ 对称。
+
+图~\ref{advA4:quality:A4-electrostatics:a10} 中，区域外法线在平面边界上沿 $-z$；Dirichlet条件用相反号像源抵消边界值，Neumann条件用同号像源抵消法向导数。
 \end{advsolution}
 
 \begin{advexamplebox}{球外区域的两类 Green 函数}\label{advA4:ex:sphere-green}
 对半径 $R$ 的球外区域 $r>R$，源点 $r_0>R$。求 Dirichlet Green 函数；给出零法向导数 Neumann Green 函数的球谐展开，并说明为什么后者不能由单个像点电荷完成。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1);\fill (0,0) circle (1.3pt) node[below]{$O$};
+\draw[->] (0,0)--(0,1) node[midway,left]{$R$};
+\fill (2.8,0) circle (1.8pt) node[below]{$\boldsymbol r_0$};\draw[dashed] (0,0)--(2.8,0);
+\draw[->] (1,0)--(.4,0) node[below]{$\boldsymbol n$};\node[above] at (1.9,1){求解域 $r>R$};
+\end{tikzpicture}
+\figcap{题图：球外求解域、外部源点与内边界的区域外法线；无穷远行为也属于边界条件。}\label{advA4:quality:A4-electrostatics:q11}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1);\fill (0,0) circle (1.3pt) node[below]{$O$};
+\draw[->] (0,0)--(0,1) node[midway,left]{$R$};
+\fill (2.8,0) circle (1.8pt) node[below]{$\boldsymbol r_0$};\draw[dashed] (0,0)--(2.8,0);
+\draw[->] (1,0)--(.4,0) node[below]{$\boldsymbol n$};\node[above] at (1.9,1){求解域 $r>R$};
+\end{tikzpicture}
+\figcap{解图：球外求解域、外部源点与内边界的区域外法线；无穷远行为也属于边界条件。}\label{advA4:quality:A4-electrostatics:a11}
+\end{minipage}\end{center}
+
 令
 \[
  \vect r_0^*=\frac{R^2}{r_0^2}\vect r_0.
@@ -628,12 +933,38 @@ $\partial_rG_N|_{r=R}=0$，逐阶得到
  \frac{R^{2l+1}}{r^{l+1}r_0^{l+1}}P_l(\cos\gamma)}.
 \]
 单个像点的展开系数只能按固定几何比变化，不可能产生逐阶的 $l/(l+1)$，所以 Neumann 球问题通常需要连续像分布或无穷级数。
+
+图~\ref{advA4:quality:A4-electrostatics:a11} 中，球面作为外部区域的内边界，其法线朝球心；Dirichlet单像源利用反演距离恒比，Neumann各球谐阶的导数权重不同，不能由同一个像源系数同时满足。
 \end{advsolution}
 
 \begin{advexamplebox}{两半球维持相反电势}\label{advA4:ex:split-sphere-potential}
 半径 $R$ 的球面上，北半球维持 $+V$、南半球维持 $-V$，赤道绝缘缝宽忽略。求球内电势。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.3);\draw[dashed] (-1.3,0)--(1.3,0);\draw[->] (0,-1.6)--(0,1.8) node[above]{$z$};
+\node at (.5,.6){$+V$};\node at (.5,-.6){$-V$};\node[right] at (1.4,0){绝缘缝};\node[left] at (-1.3,.6){半径 $R$};
+
+\end{tikzpicture}
+\figcap{题图：赤道分开的两个半球维持相反电势，求解区域在球内。}\label{advA4:quality:A4-electrostatics:q12}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.3);\draw[dashed] (-1.3,0)--(1.3,0);\draw[->] (0,-1.6)--(0,1.8) node[above]{$z$};
+\node at (.5,.6){$+V$};\node at (.5,-.6){$-V$};\node[right] at (1.4,0){绝缘缝};\node[left] at (-1.3,.6){半径 $R$};
+
+\end{tikzpicture}
+\figcap{解图：赤道分开的两个半球维持相反电势，求解区域在球内。}\label{advA4:quality:A4-electrostatics:a12}
+\end{minipage}\end{center}
+
 边值只依赖 $\theta$，球内正则轴对称解为
 \[
  \varphi(r,\theta)=\sum_{l=0}^\infty A_l
@@ -657,17 +988,45 @@ $\int P_l\dd u=[P_{l+1}-P_{l-1}]/(2l+1)$，得到
 \]
 前两项是
 $\varphi=(3V/2)(r/R)P_1-(7V/8)(r/R)^3P_3+\cdots$。中心势为0，符合南北反对称；在任意 $r<R$ 级数绝对收敛。
+
+图~\ref{advA4:quality:A4-electrostatics:a12} 中，边界值关于 $z\mapsto-z$ 反对称，所以仅有奇数阶Legendre多项式；球内正则性舍去原点发散的径向支，赤道跳变点按极限处理。
 \end{advsolution}
 
 \begin{advexamplebox}{六面给定电势的立方体中心}\label{advA4:ex:cube-center-potential}
 立方体两相对面维持 $+V$，其余四面维持 $-V$，棱边窄缝忽略。求中心电势。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) rectangle (2,2);\draw[thick] (.6,.5)--(2.6,.5)--(2.6,2.5)--(.6,2.5)--cycle;\draw (0,0)--(.6,.5) (2,0)--(2.6,.5) (2,2)--(2.6,2.5) (0,2)--(.6,2.5);
+\fill (1.3,1.25) circle (1.8pt) node[below]{$O$};\node[left] at (0,1){$+V$};\node[right] at (2.6,1.5){$+V$};\node[above] at (1.3,2.7){其余四面 $-V$};
+
+\end{tikzpicture}
+\figcap{题图：两个相对面为 $+V$，其余四面为 $-V$，棱边窄缝只用于维持边界电势。}\label{advA4:quality:A4-electrostatics:q13}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) rectangle (2,2);\draw[thick] (.6,.5)--(2.6,.5)--(2.6,2.5)--(.6,2.5)--cycle;\draw (0,0)--(.6,.5) (2,0)--(2.6,.5) (2,2)--(2.6,2.5) (0,2)--(.6,2.5);
+\fill (1.3,1.25) circle (1.8pt) node[below]{$O$};\node[left] at (0,1){$+V$};\node[right] at (2.6,1.5){$+V$};\node[above] at (1.3,2.7){其余四面 $-V$};
+
+\end{tikzpicture}
+\figcap{解图：两个相对面为 $+V$，其余四面为 $-V$，棱边窄缝只用于维持边界电势。}\label{advA4:quality:A4-electrostatics:a13}
+\end{minipage}\end{center}
+
 Dirichlet 解对边值线性。中心关于立方体的六个面完全对称，因此从任一面传到中心的调和测度相同；六个权重之和为1，所以每个面权重是 $1/6$。棱和顶点的集合面积为零，不影响调和测度。于是
 \[
  \boxed{\varphi(0)=\frac16[2(+V)+4(-V)]=-\frac V3}.
 \]
 也可把六个“单独一面为1、其余面为0”的解相加：常数边界1的解处处为1，中心对称性迫使六个单面解在中心相等，故各为 $1/6$。这避免了不必要的三重 Fourier 级数。
+
+图~\ref{advA4:quality:A4-electrostatics:a13} 中，中心在立方体旋转群下保持不变，六个面的中心影响权重相同且总和为1；因此可将各面单独激励的中心电势线性叠加，而不是对空间位置取普通平均。
 \end{advsolution}
 
 \begin{advtheorem}{球谐函数加法定理}\label{advA4:thm:spherical-addition}
@@ -677,14 +1036,44 @@ Dirichlet 解对边值线性。中心关于立方体的六个面完全对称，�
  \sum_{m=-l}^{l}Y_{lm}(\theta,\phi)Y_{lm}^*(\theta',\phi')}.
 \]
 \end{advtheorem}
-\noindent\textbf{证明}\quad 固定第二方向，右边是关于第一方向的 $l$ 阶球谐函数，并在同时旋转两方向时不变，因此只能是 $C_lP_l(\cos\gamma)$。令两方向重合并在球面上积分：正交归一性给出右边积分为
-$\sum_m1=2l+1$；而旋转对称性说明
-$\sum_m|Y_{lm}|^2$ 是常数，其球面积分为 $2l+1$，故常数为 $(2l+1)/(4\pi)$。于是 $C_l=(2l+1)/(4\pi)$ 的倒数，得到公式。\hfill$\square$
+\noindent\textbf{证明}\quad 先定义尚未归一化的核
+\[
+ K_l(\Omega,\Omega')=\sum_{m=-l}^{l}Y_{lm}(\Omega)Y_{lm}^*(\Omega').
+\]
+旋转在固定 $l$ 的球谐空间中作酉变换，所以同时旋转两方向不改变 $K_l$。固定第二方向后，它是绕该方向轴对称的 $l$ 阶球谐函数，故
+$K_l=C_lP_l(\cos\gamma)$。令两方向重合，$P_l(1)=1$，旋转不变性使 $K_l(\Omega,\Omega)=C_l$ 为常数。再用正交归一性，
+\[
+ 4\pi C_l=\int K_l(\Omega,\Omega)\,\dd\Omega
+ =\sum_{m=-l}^{l}\int |Y_{lm}|^2\,\dd\Omega=2l+1.
+\]
+因此 $C_l=(2l+1)/(4\pi)$；将 $K_l=C_lP_l$ 两边乘以 $4\pi/(2l+1)$，即得所列公式。\hfill$\square$
 
 \begin{advexamplebox}{接地球内的均匀带电直径}\label{advA4:ex:charged-diameter-in-sphere}
 半径 $R$ 的接地导体球内，沿 $z$ 轴直径放置总电荷 $Q$ 的均匀细线。求球内电势的一种完整表示。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.3);\draw[very thick,DeepBlue] (0,-1.3)--(0,1.3);\node[right] at (0,.7){均匀线电荷};\draw[->] (-.4,0)--(1.8,0) node[right]{$\rho$};\node[above] at (0,1.6){球面接地，半径 $R$};\node[left] at (-1.3,-.4){总电荷 $Q$};
+
+\end{tikzpicture}
+\figcap{题图：带电细线沿接地球的整条直径分布，球面电势为零。}\label{advA4:quality:A4-electrostatics:q14}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.3);\draw[very thick,DeepBlue] (0,-1.3)--(0,1.3);\node[right] at (0,.7){均匀线电荷};\draw[->] (-.4,0)--(1.8,0) node[right]{$\rho$};\node[above] at (0,1.6){球面接地，半径 $R$};\node[left] at (-1.3,-.4){总电荷 $Q$};
+
+\end{tikzpicture}
+\figcap{解图：带电细线沿接地球的整条直径分布，球面电势为零。}\label{advA4:quality:A4-electrostatics:a14}
+\end{minipage}\end{center}
+
 线密度 $\lambda=Q/(2R)$。球内 Dirichlet Green 函数对位于
 $\vect r'=z'\vect e_z$ 的源点为
 \[
@@ -707,6 +1096,8 @@ $|\vect r|=R$，反演恒等式
  =\frac R{|z'|}|\vect r-z'\vect e_z|
 \]
 使方括号逐点为零，所以边界条件被精确满足。积分关于 $z'$ 对称，故势关于赤道对称；线端点的理想化会造成局部奇异，但球内离开线段处势有限且满足 Laplace 方程。
+
+图~\ref{advA4:quality:A4-electrostatics:a14} 中，每个直径线元都可使用球内Dirichlet Green函数；先对真实源坐标积分再检验球面值，线所在处的奇性不能误判成边界条件失败。
 \end{advsolution}
 
 \subsection{静电平衡与电容矩阵}

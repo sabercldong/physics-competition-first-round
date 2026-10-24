@@ -1,3 +1,5 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,6 +8,8 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{弹性体与机械波}
+\input{chapters/quality-20261023/thermal/ch12.tex}
+
 
 \section{弹性形变、应力与材料定律}
 \subsection{弹性体、物质坐标与小形变}
@@ -276,6 +280,8 @@ $F/A=Y\Delta L/L$，故整体等效劲度系数 $k=YA/L$；
 \label{ch12:ex:01}
 长为 $L$、截面积为 $A$、密度为 $\rho$、杨氏模量为 $Y$ 的均匀细杆竖直悬挂，
 求自重引起的总伸长。取小形变，$L,A,\rho$ 均指参考构形的量。
+
+\ThQSelfWeight
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 从杆的自由下端向上量原构形坐标 $x$。图\ref{ch12:fig:selfweight}右侧取出截面以下的部分：
@@ -413,7 +419,7 @@ $\dd s=\sqrt{1+\xi_x^2+\eta_x^2}\dd x
 以一个偏振 $y$ 为例，截面左侧通过张力对右侧做功的功率为
 $P=-Ty_xy_t$。右行波 $y=A\cos(kx-\omega t)$ 满足
 $y_x=-kA\sin(kx-\omega t)$、$y_t=\omega A\sin(kx-\omega t)$，
-因此 $P=Tk\omega A^2\sin^2(kx-\omega t)>0$。周期平均得到
+因此 $P=Tk\omega A^2\sin^2(kx-\omega t)\ge0$。周期平均得到
 \begin{equation}
  \overline P=\frac12Tk\omega A^2
  =\frac12\mu c_{\rm string}\omega^2A^2,\qquad
@@ -492,8 +498,12 @@ $x=n\pi/k$ 始终不动，是波节；两节之间振幅最大的地方是波腹
 \label{ch12:ex:02}
 长 $L$、线密度 $\mu$ 的弦两端固定，基频为 $f_1$。
 若长度、线密度不变而基频提高为 $2f_1$，张力应变为原来的多少倍？
+
+\ThQStringFrequency
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAStringFrequency
+
 基频对应两端各一个波节、中间一个波腹，由式\eqref{ch12:eq:fixed-modes}，
 $f_1=c/(2L)=\sqrt{T/\mu}/(2L)$。两次状态相除，
 \[
@@ -516,8 +526,12 @@ $A=B,\delta=\pm\pi/2$ 时轨迹为圆，称圆偏振；一般情形为椭圆偏�
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{松手后分裂成两份的弦脉冲}\label{ch12:ex:teaching-initial-pulse}
 一根足够长的均匀弦，波速为 $c$。在 $t=0$ 时拉成位移形状 $F(x)$ 并从静止释放，即 $y(x,0)=F(x)$、$y_t(x,0)=0$；$F$ 为局域的平滑函数。求后续波形，并解释为什么两列波的振幅各为原来的一半，能量却没有丢失。
+
+\ThQPulse
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAPulse
+
 写 $y=f(x-ct)+g(x+ct)$。初位移给 $f(x)+g(x)=F(x)$；初速度给 $-cf'(x)+cg'(x)=0$。后式说明 $f-g$ 为常量。局域条件使远处位移趋零，常量可取零，故
 \[
  y(x,t)=\frac12F(x-ct)+\frac12F(x+ct).
@@ -606,8 +620,12 @@ $M_{\rm mol}$ 为摩尔质量而不是单个分子质量。若使用单分子质
 \Needspace{16\baselineskip}\begin{origexamplebox}{用拍频校准音叉}
 \label{ch12:ex:03}
 标准音叉频率为 $440\,\mathrm{Hz}$，待测音叉与它同时发声时每秒听到3次响度增强。在待测音叉上粘少量蜡后，拍频降为 $1\,\mathrm{Hz}$。求待测音叉原频率。
+
+\ThQBeats
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThABeats
+
 初始只有两个候选：
 \[
  f=440\pm3\,\mathrm{Hz},
@@ -660,8 +678,12 @@ $(c-v_s)/f$，观察者迎着波峰运动，单位时间跨过 $(c+v_o)/\lambda_
 \label{ch12:ex:04}
 列车以 $20\,\mathrm{m/s}$ 接近静止观察者，汽笛本征频率 $600\,\mathrm{Hz}$，空气中声速
 $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
+
+\ThQDoppler
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThADoppler
+
 观察者静止，$v_o=0$。接近时声源向观察者，
 \[
  f_{\rm app}=600\frac{340}{340-20}
@@ -689,11 +711,18 @@ $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
 \end{equation}
 分贝是对数比值；多个互不相干声源应先相加强度，再取对数，不能直接相加分贝数。
 
+
+\input{chapters/quality-20261023/ch12-sound.tex}
+
 \Needspace{16\baselineskip}\begin{origexamplebox}{相同声源的声强级叠加}
 \label{ch12:ex:05}
 一台机器在某点产生 $70\,\mathrm{dB}$ 的声强级。若有8台相同机器独立运行，且它们在该点的声波相位互不相关，求总声强级。
+
+\ThQSoundSources
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThASoundSources
+
 每台强度相同，非相干时总强度为 $I_{\rm tot}=8I$。因此
 \[
  L_{\rm tot}-L_1=10\log_{10}8\approx9.03\,\mathrm{dB}.
@@ -740,8 +769,12 @@ $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{不同距离、不同声强级的两个独立声源}\label{ch12:ex:teaching-sound-distance}
 两个可视为点声源的机器各向同性发声。在距机器甲 $2\,\mathrm m$ 处，它单独产生 $80\,\mathrm{dB}$ 的声强级；机器乙在观察点单独产生 $70\,\mathrm{dB}$。观察点距甲 $4\,\mathrm m$。忽略反射和吸收，二者互不相干。求同时工作时观察点的总声强级。
+
+\ThQSoundDistance
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThASoundDistance
+
 先把甲的测量位置换到观察点。距离加倍，强度减为四分之一，故
 \[
  I_A=\frac14I_0 10^{80/10}=2.5\times10^{-5}\,\mathrm{W/m^2}.
@@ -791,8 +824,12 @@ $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
 \Needspace{16\baselineskip}\begin{origexamplebox}{深水重力波的相速度与群速度}
 \label{ch12:ex:06}
 深水表面重力波满足 $kh\gg1$（$h$ 为水深），并处在重力远强于表面张力的波长范围。忽略黏性，色散关系 $\omega^2=gk$。求相速度和群速度的关系，并判断一个窄带波包中能量包络相对波峰怎样运动。
+
+\ThQDeepWave
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThADeepWave
+
 取正频率支 $\omega=\sqrt{gk}$，
 \[
  v_p=\frac\omega k=\sqrt{\frac gk},
@@ -833,8 +870,12 @@ $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{带截止频率的波包}\label{ch12:ex:teaching-cutoff}
 某无耗一维线性系统的色散关系为 $\omega^2=\omega_c^2+c_0^2k^2$，其中 $\omega_c>0$、$c_0>0$ 均为常量。取沿 $+x$ 传播的窄带波包，中心频率为 $2\omega_c$。求相速度、群速度及二者之积，并讨论接近截止频率时的变化。
+
+\ThQCutoff
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThACutoff
+
 取 $k>0$、$\omega>0$，在中心频率处有 $k_0=\sqrt3\omega_c/c_0$。先由相位定义计算
 \[
  v_p=\frac{2\omega_c}{\sqrt3\omega_c/c_0}=\frac{2c_0}{\sqrt3}.
@@ -879,8 +920,12 @@ $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
 \Needspace{16\baselineskip}\begin{origexamplebox}{闭管的共振频率判别}
 \label{ch12:ex:07}
 一端闭口、一端开口的空气柱长 $L=0.85\,\mathrm m$，声速 $c=340\,\mathrm{m/s}$。求最低三个共振频率，并判断 $300\,\mathrm{Hz}$ 是否为共振频率。
+
+\ThQClosedPipe
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAClosedPipe
+
 基频
 \[
  f_1=\frac c{4L}=\frac{340}{4\times0.85}=100\,\mathrm{Hz}.
@@ -910,8 +955,12 @@ $340\,\mathrm{m/s}$。求接近时和驶离后的听到频率，忽略风。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{由连续共振长度测声速与端部修正}\label{ch12:ex:teaching-resonance-length}
 频率 $f=500\,\mathrm{Hz}$ 的音叉放在竖直细管口附近，管下部水面形成近似刚性闭端。调节水面，测得连续两个共振空气柱长度为 $L_1=0.160\,\mathrm m$、$L_2=0.500\,\mathrm m$。设两次开口端修正量相同，记为 $e$；且第一次为基模。求声速和 $e$。
+
+\ThQResonanceLength
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAResonanceLength
+
 开口位移腹稍在管外，所以有效长度是 $L+e$。第一、第二允许模态分别满足
 \[
  L_1+e=\frac\lambda4,\qquad L_2+e=\frac{3\lambda}4.
@@ -970,8 +1019,12 @@ $k_1(A_i-A_r)=k_2A_t$。因 $Tk_j=\omega Z_j$，
 \Needspace{16\baselineskip}\begin{origexamplebox}{轻弦到重弦的反射相位与能量}
 \label{ch12:ex:08}
 同一张力下两弦线密度满足 $\mu_2=4\mu_1$，波从弦1入射到弦2。求位移振幅反射、透射系数和能量反射、透射率，并判断反射是否反相。
+
+\ThQStringInterface
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAStringInterface
+
 $Z\propto\sqrt\mu$，所以 $Z_2=2Z_1$。于是
 \[
  r=\frac{Z_1-Z_2}{Z_1+Z_2}=-\frac13,
@@ -1384,6 +1437,8 @@ $y_x(0^-)=-\ii kA+\ii kB$，省略共同时间因子。
  z(r,t)=A(r)\cos(\omega t-kr).
 \]
 求 $\omega/k$ 和振幅 $A(r)$ 的渐近形式，并用环形微元的牛顿第二定律说明这一形式为什么只在 $kr\gg1$ 时成立。
+
+\ThQMembrane
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 半径 $r$、宽度 $\dd r$ 的环形微元质量为 $\mu2\pi r\dd r$。

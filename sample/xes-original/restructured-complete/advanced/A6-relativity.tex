@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{狭义相对论}
 
 \subsection{时空观与相对性原理}
@@ -89,8 +90,33 @@ $\beta=\tanh\vartheta$、$\gamma=\cosh\vartheta$，共线速度合成变为快�
 \item 在保持 Born 刚性的缓慢加速近似下，尾端发出本征频率 $\nu_1$ 的信号，
 求头端收到的频率 $\nu_2$。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[very thick] (0,0)--(3,0);\fill (0,0) circle (1.5pt) node[below]{尾};\fill (3,0) circle (1.5pt) node[below]{头};\draw[->] (.3,1)--(1.6,1) node[midway,above]{$v$};\draw[->] (2,1)--(3.2,1) node[midway,above]{$a$};\node[below] at (1.5,-.6){本征长 $L$；地面同时长度 $\ell$ 待求};
+
+\end{tikzpicture}
+\figcap{题图：沿杆方向的速度与缓慢加速度；本征长和地面同时长度属于不同测量口径。}\label{advA6:quality:A6-relativity:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-.3,0)--(4,0) node[right]{$x$};\draw[->] (0,-.2)--(0,3.3) node[above]{$ct$};
+\draw[thick] (.3,0)..controls(.5,1.7)and(.9,2.5)..(1.3,3);\draw[thick] (2.1,0)..controls(2.3,1.7)and(2.7,2.5)..(3.1,3);
+\draw[dashed] (0,1.4)--(3.5,1.4) node[right]{地面同时截面};\draw[DeepBlue,->] (.35,.2)--(2.5,2.35) node[midway,above left]{光信号};
+\node[below] at (.3,0){尾};\node[below] at (2.1,0){头};
+
+\end{tikzpicture}
+\figcap{解图：局部短杆世界线的示意，水平截面用于测长，斜光线用于频移；曲线不作精确Born刚性比例图。}\label{advA6:quality:A6-relativity:a1}
+\end{minipage}\end{center}
+
 第一问保留杆长 $L$ 的一阶项，$v,a$ 取尾端瞬时值。
 对保持Born刚性的加速杆，使用此近似需要更强条件
 $\varepsilon=\gamma^3aL/c^2\ll1$，并要求加速度在跨杆的本征时间尺度 $L/c$ 内缓变。
@@ -162,6 +188,8 @@ $a_0L/c^2=\gamma^3aL/c^2\ll1$；高速时，题设 $aL/c^2\ll1$ 本身并不足�
 第一问使用的 $\ell=L/\gamma$ 同样是各点速度差可忽略的局部短杆表达。
 若杆各点被强行赋予相同实验室加速度，杆将不保持 Born 刚性，
 题目便需要另行给出内部变形模型。
+
+图~\ref{advA6:quality:A6-relativity:a1} 中，地面长度由同一地面时刻截取两端世界线得到，信号传播却连接不同时刻的两个事件；Born刚性还要求两端本征加速度按位置改变，不能给整根杆同一个本征加速度。
 \end{advsolution}
 
 \begin{advexamplebox}{相对论电子束的电场加速与磁场回转}\label{advA6:ex:relativistic-accelerator}
@@ -179,11 +207,41 @@ $a_0L/c^2=\gamma^3aL/c^2\ll1$；高速时，题设 $aL/c^2\ll1$ 本身并不足�
 
 \begin{center}
 \input{assets/diagrams-modern/accelerator-source.tex}
+\figcap{题图：保留下加速段、磁场半圆与上减速段的原始TikZ几何。}\label{advA6:quality:A6-relativity:q2}
+
 \par\smallskip
 电子经下通道向右、沿半圆转回、经上通道向左。极板开孔处允许束流通过。
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \x in {-3,0}{
+  \draw[very thick] (\x,-2.05)--(\x,-1.6) (\x,-1.4)--(\x,1.4) (\x,1.6)--(\x,2.05);
+ }
+ \draw[DeepBlue,thick,->] (-4.1,-1.5)--(-.45,-1.5);
+ \draw[DeepBlue,thick] (-.45,-1.5)--(0,-1.5) arc(-90:90:1.5)--(-.4,1.5);
+ \draw[DeepBlue,thick,->] (-.4,1.5)--(-4.1,1.5);
+ \draw[DeepBlue,thick,->] ({1.5*cos(-20)},{1.5*sin(-20)}) arc(-20:18:1.5);
+ \node[below right=5pt] at (0,-1.5){X};\node[right=7pt] at (1.5,0){Y};
+ \node[above right=5pt] at (0,1.5){Z};
+ \foreach \y in {-.55,.55}{\draw[->] (-.5,\y)--(-2.5,\y);}
+ \node at (-1.5,0){$\vect E$};
+ \foreach \x/\y in {.45/-.65,.85/-.65,.45/0,.85/0,.45/.65,.85/.65}{
+  \draw (\x,\y) circle(.075);\fill (\x,\y) circle(.018);
+ }
+ \node at (2.1,-.9){$\vect B$ 出纸面};
+ \draw[<->] (-3.55,-1.5)--(-3.55,1.5) node[midway,left=4pt]{$D$};
+ \draw[<->] (-3,-2.4)--(0,-2.4) node[midway,below=4pt]{$L$};
+ \node[below=5pt] at (-4.1,-1.5){$p_0$};
+\end{tikzpicture}
+\figcap{解图：保留下加速段、磁场半圆与上减速段的原始TikZ几何。}\label{advA6:quality:A6-relativity:a2}
+\end{minipage}\end{center}
+
 图中负电子在下通道向右加速，电场必须向左：$\vect E=-E\vect e_x$。
 在X点速度向右而磁力向上，$-e\vect v\times\vect B$ 要指向半圆圆心，故 $\vect B=B\vect e_z$ 出纸面。
 设入口 $\gamma_0=\sqrt{1+(p_0/mc)^2}$。电场做功给出
@@ -272,6 +330,8 @@ $t_E>L/c$ 保证下段仍带负电；前后两段的修正相消。这也表明�
 \]
 原来无场的外部区域仍无场。这里仅讨论理想外加场，忽略束流自场及开孔边缘场。
 在X处 $-e\vect E'$ 向上，与电子的弯转方向一致；$v_X\to0$ 时也退回原场。
+
+图~\ref{advA6:quality:A6-relativity:a2} 中，$X,Y,Z$ 是不同空间位置的束流截面，换系后应在新系同一时刻重新截取每个区域的电荷；不能把实验室同时装入区域的全部粒子不加说明地当作新系同时的同一集合。
 \end{advsolution}
 
 \begin{advexamplebox}{运动椭圆柱的表面四流与内部电磁场}\label{advA6:ex:elliptic-cylinder}
@@ -287,11 +347,46 @@ $+\sigma_0$ 与 $-\sigma_0$ 两层电荷，负层静止，正层以速率 $u$ �
 
 \begin{center}
 \input{assets/diagrams-modern/elliptic-current-source.tex}
+\figcap{题图：保留椭圆柱的正负面电荷层、切向正电流与运动方向。}\label{advA6:quality:A6-relativity:q3}
+
 \par\smallskip
 左图正电荷逆时针流动、负电荷静止。右图的角度从圆心随动横轴量起，$\vect K$ 为实验室面电流。
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}
+  \draw[thick] (0,0) ellipse(2 and 1.2);
+  \draw[->] (-2.4,0)--(2.4,0) node[right]{$x_0$};
+  \draw[->] (0,-1.5)--(0,1.75) node[above]{$y_0$};
+  \node[below=4pt] at (1,0){$a$};\node[left=4pt] at (0,.7){$b$};
+  \draw[DeepBlue,thick,->] (2,-.35)--(2,.35) node[right=4pt]{$u$};
+  \draw[DeepBlue,thick,->] (.45,1.2)--(-.45,1.2) node[above=5pt]{$u$};
+  \node at (1.1,.5){$\pm\sigma_0$};
+  \node at (0,-2){$S_0$：截面静止};
+ \end{scope}
+ \begin{scope}[xshift=7cm]
+  \draw[thick] (0,0) circle(1.2);
+  \draw[->] (-1.6,0)--(2,0) node[right]{$x-vt$};
+  \draw[->] (0,-1.5)--(0,1.75) node[above]{$y$};
+  \coordinate (P) at (45:1.2);
+  \draw (0,0)--(P);\node[above left=3pt] at (45:.8){$b$};
+  \draw (.48,0) arc(0:45:.48);\node at (23:.75){$\theta$};
+  \fill (P) circle(1.8pt);
+  \draw[thin] (P)--(1.55,1.2);\node[right=3pt] at (1.55,1.2){$\sigma,\vect K$};
+  \draw[DeepBlue,thick,->] (1.4,-.8)--(2.2,-.8) node[midway,below=3pt]{$v$};
+  \node at (0,-2){$S$：圆截面右移};
+ \end{scope}
+ \draw[->] (4.3,.55)--(3.1,.55) node[midway,above=4pt]{$\vect V=-v\vect e_x$};
+\end{tikzpicture}
+\figcap{解图：保留椭圆柱的正负面电荷层、切向正电流与运动方向。}\label{advA6:quality:A6-relativity:a3}
+\end{minipage}\end{center}
+
 均匀磁化 $\vect M=\sigma_0u\,\vect e_z$ 的束缚面电流
 $\vect K=\vect M\times\vect n$ 恰为大小 $\sigma_0u$ 的周向电流，
 与截面形状无关。因此
@@ -392,6 +487,8 @@ $-v_n[\vect E]\delta(n)$，旋度的表面项为 $\vect n\times[\vect B]\delta(n
 其 $z$ 分量为 $-E_y\cos\theta=-vB_z\cos\theta$，由 $E_y=vB_z$ 满足。
 最后检查 $a\to b$ 时 $v\to0$，电场消失、磁场回到 $B_0$；
 电场尺度 $vB_0$ 的单位也正是 $\mathrm{V/m}$。
+
+图~\ref{advA6:quality:A6-relativity:a3} 中，柱面法向随极角改变，所以面密度变换除四流外还须包含面积元素的变化；圆截面是在新系同一时刻取得，不能把椭圆照片与同时截面混用。
 \end{advsolution}
 
 \begingroup\tcbset{breakable/.default=false}
@@ -418,9 +515,33 @@ $m_e=0.5110\,\mathrm{MeV}/c^2$。在与入射束成 $30^\circ$ 的方向探测�
 \par\smallskip
 {\small\color{TextGray}山地射电天线阵列通过短暂大气簇射的低频脉冲寻找地球掠射中微子事件。}
 \end{center}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[DeepBlue,->] (-2,0)--(0,0) node[midway,above]{$\nu_\tau,E_\nu$};\fill (0,0) circle (2pt) node[below]{$n$ 静止};\draw[->] (.4,0)--(1.5,0);\node[above] at (1.7,0){$\tau^-+p$};
+\fill (2.4,0) circle (1.5pt);\draw[dashed] (2.4,0)--(4.6,0);\draw[DeepBlue,->] (2.4,0)--(4.3,1.097) node[right]{$e^-$};\node at (3.1,.18){$30^\circ$};\node[below] at (3.8,-.5){衰变另有两中微子};
+
+\end{tikzpicture}
+\figcap{题图：固定中子靶的产生反应与随后定角电子探测，两个过程分别使用能动量守恒。}\label{advA6:quality:A6-relativity:q4}
+\end{minipage}\end{center}
 \end{advexamplebox}
 \endgroup\par\nopagebreak[3]
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[DeepBlue,->] (-2,0)--(0,0) node[midway,above]{$\nu_\tau,E_\nu$};\fill (0,0) circle (2pt) node[below]{$n$ 静止};\draw[->] (.4,0)--(1.5,0);\node[above] at (1.7,0){$\tau^-+p$};
+\fill (2.4,0) circle (1.5pt);\draw[dashed] (2.4,0)--(4.6,0);\draw[DeepBlue,->] (2.4,0)--(4.3,1.097) node[right]{$e^-$};\node at (3.1,.18){$30^\circ$};\node[below] at (3.8,-.5){衰变另有两中微子};
+
+\end{tikzpicture}
+\figcap{解图：固定中子靶的产生反应与随后定角电子探测，两个过程分别使用能动量守恒。}\label{advA6:quality:A6-relativity:a4}
+\end{minipage}\end{center}
+
 用 Mandelstam 不变量
 \[
  s=(p_\nu+p_n)^2=m_n^2c^4+2m_nc^2E_\nu.
@@ -513,4 +634,6 @@ $(N^2-P^2+2NE_\nu)/[2N+2E_\nu(1-\cos\theta)]$，
  =\boxed{1.720\,\mathrm{GeV}}.
 \]
 使用电子质量求精确根只改变末位。结果小于入射能量且满足四动量守恒。
+
+图~\ref{advA6:quality:A6-relativity:a4} 中，电子探测角从原入射束方向量起，未必等于相对 $\tau$ 运动方向的角；先保留入射能量参数并优化允许的 $\tau$ 运动，再讨论无界入射能量极限。
 \end{advsolution}

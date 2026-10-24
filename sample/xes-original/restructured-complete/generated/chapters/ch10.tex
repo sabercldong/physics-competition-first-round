@@ -1,7 +1,10 @@
+% ThermalQualityRevision20261023-v1
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{简谐振动、阻尼、受迫振动和共振}
+\input{chapters/quality-20261023/thermal/ch10.tex}
+
 
 % Chapter-local, deterministic geometry. Text nodes never have opaque fill.
 \newenvironment{chTenFigure}{\par\begin{center}\begin{minipage}{.98\linewidth}\centering}{\end{minipage}\end{center}\par}
@@ -410,6 +413,8 @@ $(\Re\widetilde q)^2\ne\Re(\widetilde q^{2})$。例如计算动能时必须使�
 
 \begin{origexamplebox}{竖直弹簧的平衡位置与周期}\label{ch10:ex:vertical-spring}
 劲度系数为$k$的轻弹簧竖直悬挂，末端连接质量为$m$的小球。求平衡伸长量及小球在平衡位置附近作小振动的周期。运动过程中弹簧保持在线性弹性范围内。
+
+\ThQVerticalSpring
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 以弹簧原长时球的位置为伸长量$y$的零点，向下为正。球所受重力为$+mg$，弹簧力为$-ky$，故
@@ -475,6 +480,8 @@ $M_0$是对坐标$q$而言的惯性系数，不一定具有质量的量纲；若
 
 \begin{origexamplebox}{复摆的小振动}\label{ch10:ex:physical-pendulum}
 质量为$M$、质心到水平固定转轴的距离为$a>0$的刚体可以绕该轴无摩擦转动，绕轴转动惯量为$I$。求质心位于轴下方的平衡位置附近的小振动周期。
+
+\ThQPhysicalPendulum
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 取图\ref{ch10:fig:physical-pendulum}中向右偏转的$\theta$为正。重力对轴$O$的力矩使偏角减小，其有符号值为$-Mga\sin\theta$，因此精确转动方程是
@@ -688,8 +695,12 @@ $M_0$是对坐标$q$而言的惯性系数，不一定具有质量的量纲；若
 
 \begin{origexamplebox}{共振半功率带宽}\label{ch10:ex:bandwidth}
 弱阻尼受迫振子在共振附近的两个半功率频率为$\omega_1<\omega_2$。证明$Q\simeq\omega_0/(\omega_2-\omega_1)$。
+
+\ThQBandwidth
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThABandwidth
+
 由式\eqref{ch10:eq:power}，将功率除以峰值，得
 \[
  \frac{\overline P}{\overline P_{\max}}
@@ -1101,8 +1112,12 @@ $\varepsilon$用来标记小修正阶数，要求$|\varepsilon\alpha A^2|\ll\ome
 
 \begin{origexamplebox}{弱硬化弹簧的频率与适用范围}\label{ch10:ex:teaching-hardening}
 质点质量为 $m$，在光滑直线上受到回复力 $F=-kx-\lambda x^3$，$k,\lambda>0$。从 $x=A$ 静止释放，且 $\lambda A^2/k\ll1$。求振动频率的首阶修正；若要求频率相对简谐值的修正不超过 $1\%$，振幅应满足什么近似条件？
+
+\ThQHardening
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAHardening
+
 由牛顿定律，$\ddot x+(k/m)x+(\lambda/m)x^3=0$，所以 $\omega_0=\sqrt{k/m}$，而本节的一阶系数对应 $\varepsilon\alpha=\lambda/m$。代入已推导的消长期项条件，得到
 \[
  \Omega\simeq\sqrt{\frac km}\left(1+\frac{3\lambda A^2}{8k}\right),
@@ -1491,6 +1506,8 @@ $\omega t=4\pi$；题给落地条件保证上述接触解在该时刻仍有效�
 （3）求小振动的不同角频率及简并度。
 
 作为计数参照，非线性三原子水分子共有9个位置坐标，扣除整体平动3个、转动3个，剩3个内部振动：键角弯曲、两氢氧键对称伸缩和反对称伸缩。两种伸缩频率通常较接近，弯曲频率较低。本题同样要区分内部形变和整体转动。
+
+\ThQSphereCharges
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 令$d_{ij}=|\vect r_i-\vect r_j|$，由$|\vect r_i|=R$得
@@ -1559,6 +1576,8 @@ $y$ 为竖直向下位移。把势能写到三阶小量
  +ax^3+bx^2y+cxy^2+dy^3,
 \]
 求全部系数，并讨论最低阶非线性耦合产生的内共振条件。
+
+\ThQSpringPendulum
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 平衡长度

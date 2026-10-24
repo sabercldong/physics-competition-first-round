@@ -1,0 +1,62 @@
+% Editable TikZ: work, frames, and energy system boundaries.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThQSlidingBoard}{\ThermalFigure{
+ \draw[thick](-1,0)--(7,0);\draw[fill=DeepBlue!10,thick](0,0)rectangle(6,.5);
+ \draw[fill=DeepBlue!20,thick](.7,.5)rectangle(2,1.4);\node at(1.35,.95){$A,m$};\node at(4,.25){$B,M$};
+ \draw[->,thick](2.3,1)--(4,1)node[right]{$v_0$};\node[below]at(3,-.4){板与地面光滑；物块与板间摩擦因数 $\mu$};
+}{初态物块向右滑上静止长板，两个物体的位移须分别计算。}{ch08:quality:board-q}}
+\newcommand{\ThTrainBase}[1]{
+ \draw[thick](0,0)rectangle(6,2);\draw[fill=DeepBlue!12](1,.2)rectangle(2,1.1);\node at(1.5,.65){$m$};
+ \draw[->,thick](2,1)--(3.6,1)node[right]{$F$};\draw[->](6.5,1)--(8,1)node[right]{#1};
+ \draw[<->](1,-.6)--node[below]{车内位移 $L$}(4.5,-.6);}
+\newcommand{\ThQTrain}{\ThermalFigure{\ThTrainBase{$v_0$ 恒定}}{拉力及物块相对车厢的位移；地面系的作用点位移还包含车厢前进量。}{ch08:quality:train-q}}
+\newcommand{\ThQAcceleratingTrain}{\ThermalFigure{\ThTrainBase{加速度 $a$}
+ \node[above]at(3,2.4){初态物块相对车厢静止};
+}{真实拉力在两参考系中相同；在加速车厢内列动力学方程需另处理惯性项。}{ch08:quality:accelerating-q}}
+\newcommand{\ThRadialWorkBase}[1]{
+ \fill(0,0)circle(3pt)node[below]{$O$（固定物体）};\draw[->](-.5,0)--(7,0)node[right]{$r$};
+ \fill[DeepBlue](2,0)circle(2pt)node[above]{$A$};\fill[DeepBlue](5,0)circle(2pt)node[above]{$B$};
+ \draw[<->](0,-.7)--node[below]{$r_A$}(2,-.7);\draw[<->](0,-1.5)--node[below]{$r_B$}(5,-1.5);
+ \node[above]at(4,1){#1};}
+\newcommand{\ThQInverseForce}{\ThermalFigure{\ThRadialWorkBase{吸引力大小 $k/r$}}{始末距离从同一固定力心量起；图示 $r_B>r_A$，公式也应适用于相反方向。}{ch08:quality:inverse-q}}
+\newcommand{\ThQInverseSquareForce}{\ThermalFigure{\ThRadialWorkBase{吸引力大小 $k/r^2$}}{平方反比吸引力的始末位置；不要把路程与有符号径向位移混淆。}{ch08:quality:inverse-square-q}}
+\newcommand{\ThQConservative}{\ThermalFigure{
+ \draw[->](0,0)--(3,0)node[right]{$x$};\fill(1,0)circle(2pt);\draw[->,DeepBlue](1,0)--(2.5,0);
+ \node[above,align=center]at(1.5,1){一维三种力\\$at,\ -\alpha v,\ -kx^3$};
+ \begin{scope}[shift={(7,0)}]\fill(0,0)circle(2pt)node[below]{$O$};\fill(2,1)circle(2pt)node[right]{$P$};
+ \draw[dashed](0,0)--node[above]{$r$}(2,1);\draw[->,DeepBlue,thick](2,1)--(1,.5)node[below right]{$\vect f(r)$};\end{scope}
+}{分别辨认力依赖时间、速度还是位置；径向吸引力的适用域还须避开 $r=0$。}{ch08:quality:conservative-q}}
+\newcommand{\ThStoppingBase}[1]{
+ \draw[thick](-.5,0)--(7,0);\foreach\x in {0,.5,...,6.5}{\draw[TextGray](\x,0)--++(-.2,-.2);}
+ \draw[fill=DeepBlue!12,thick](0,0)rectangle(1.3,1);\node at(.65,.5){$m$};
+ \draw[->,thick](1.4,.6)--(3,.6)node[right]{$v_0$};
+ \draw[dashed](5,0)rectangle(6.3,1);\node[above]at(5.65,1.1){停止};\draw[<->](0,-.7)--node[below]{$s$}(5,-.7);#1}
+\newcommand{\ThQStopping}{\ThermalFigure{\ThStoppingBase{}}{同一标志点从初态到停下前的位移为 $s$。}{ch08:quality:stopping-q}}
+\newcommand{\ThAStopping}{\ThermalFigure{\ThStoppingBase{
+ \draw[->,DeepBlue,thick](.65,.5)--(-1,.5)node[left]{$f_k$};
+ \draw[dashed](-1.5,-1.2)rectangle(7.2,1.6);\node[above]at(3,1.7){大系统边界：滑块＋地面};
+}}{摩擦力对滑块做负功；扩大系统后，摩擦引起内部能量转化。}{ch08:quality:stopping-a}
+图~\ref{ch08:quality:stopping-a}的摩擦力与向右位移相反，因此滑块所受摩擦功为 $-f_ks$。虚线把地面也纳入系统后，这一作用成为内部作用，减少的宏观动能转为内能；改变系统边界不会改变停车距离。
+}
+\newcommand{\ThARoughSpring}{\ThermalFigure{
+ \draw[->](-.5,0)--(6,0)node[right]{$x$};\draw[->](0,0)--(0,3.4)node[above]{$K(x)$};
+ \draw[DeepBlue,thick,domain=0:4,samples=70]plot(\x,{2.4-.15*\x^2-.05*(4-\x)});
+ \fill(4,0)circle(1.5pt)node[below]{$a$};\node[right]at(4.4,2.8){示意：$\mu_kmg<ka/2$};
+ \node[right]at(4.4,1.9){仅在实际滑动路径上取 $K\ge0$};
+ \draw[->,thick](3.4,1.1)--(2.8,1.65);
+}{用能量曲线检查运动能否走到原长位置；启动仍须先通过静摩擦条件。}{ch08:quality:rough-spring-a}
+图~\ref{ch08:quality:rough-spring-a}把释放点 $x=a$ 的动能取为零。向左滑动时，弹簧释放能量但摩擦持续耗散，故 $K(x)=\tfrac12k(a^2-x^2)-\mu_kmg(a-x)$。只有在运动已启动的前提下，检查 $K(0)$ 才能区分到达与以非零速度通过 $O$；静摩擦条件不能从这条滑动曲线中省掉。
+}
+\newcommand{\ThBulletBase}[1]{
+ \fill[DeepBlue](0,.6)circle(3pt)node[above]{$m$};\draw[->,thick](.3,.6)--(1.7,.6)node[midway,above]{$u$};
+ \draw[thick](2.2,0)rectangle(4,1.2);\node at(3.1,.6){$M$};\draw[->](4.5,.6)--(5.4,.6);
+ \draw[fill=DeepBlue!12,thick](6,0)rectangle(8,1.2);\fill(6.4,.6)circle(3pt);\node at(7.2,.6){$M+m$};#1}
+\newcommand{\ThQBullet}{\ThermalFigure{\ThBulletBase{}}{子弹留在木块中，两者随后共同运动；水平外力冲量在碰撞时可忽略。}{ch08:quality:bullet-q}}
+\newcommand{\ThABullet}{\ThermalFigure{\ThBulletBase{
+ \draw[->,thick](8.3,.6)--(9.5,.6)node[right]{$v$};
+ \draw[dashed](-.5,-.5)rectangle(4.3,1.7);\node[below]at(2,-.7){同一系统的碰前状态};
+}}{动量守恒跨越碰撞；内能增加由碰前、碰后宏观动能差确定。}{ch08:quality:bullet-a}
+图~\ref{ch08:quality:bullet-a}中虚线把子弹和木块一起选为系统，内部碰撞力的冲量成对抵消。右图两者共用速度 $v$，所以末动能必须使用总质量 $M+m$；不能只计算木块动能而漏掉嵌入的子弹。
+}

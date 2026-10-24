@@ -1,0 +1,74 @@
+% Editable TikZ for phase equilibrium and mixed gases.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThQCondensation}{\ThermalFigure{
+ \draw[thick](0,2.2)--(0,0)--(4,0)--(4,2.2);\draw[line width=2pt](0,1.7)--(4,1.7);
+ \node[align=center] at(2,.9){干空气 $p_{a0}$\\水蒸气 $\phi p_s$};
+ \draw[->,thick](4.7,2)--(4.7,1)node[right]{等温压缩};
+ \node[right,align=left]at(6,1.5){初始 $V_0$、无液水\\压缩后 $V=V_0/r$};
+}{先按各组分分压判断饱和；总压强不是水蒸气的饱和判据。}{ch17:quality:condensation-q}}
+\newcommand{\ThACondensation}{\ThermalFigure{
+ \draw[->](0,0)--(6.3,0)node[right]{$r$};\draw[->](0,0)--(0,3)node[above]{$p_v/p_s$};
+ \draw[DeepBlue,thick](1,.6)--(3,2)--(6,2);\draw[dashed](3,0)--(3,2) (0,2)--(6,2);
+ \node[below]at(1,0){$1$};\node[below]at(3,0){$1/\phi$};\node[left]at(0,2){$1$};
+ \node[above]at(1.8,1.5){无液水};\node[above]at(4.6,2.1){气液共存};
+}{凝结前蒸气分压随压缩倍数增大，凝结后被饱和蒸气压限制。}{ch17:quality:condensation-a}
+图~\ref{ch17:quality:condensation-a}中的折点满足 $p_v=p_s$。折点右侧气相水的物质的量减少，才使分压保持不变；空气分压没有这一平台，因而总压强仍随 $r$ 增长。
+}
+\newcommand{\ThBoilingBase}[1]{
+ \draw[->](0,0)--(5,0)node[right]{$T$};\draw[->](0,0)--(0,3.3)node[above]{$p_s$};
+ \draw[DeepBlue,thick,domain=.5:4.6,samples=60]plot(\x,{.15*exp(.6*\x)});
+ \draw[dashed](0,2.2)--(4.5,2.2);\draw[dashed](0,1.1)--(4.5,1.1);
+ \node[left]at(0,2.2){$p_1$};\node[left]at(0,1.1){$p_1/2$};#1}
+\newcommand{\ThQBoiling}{\ThermalFigure{\ThBoilingBase{
+ \node[right]at(5,2){已知 $p_s(T_1)=p_1$};
+}}{降低外压后，沸腾条件仍为饱和蒸气压等于外压；曲线仅作定性示意。}{ch17:quality:boiling-q}}
+\newcommand{\ThABoiling}{\ThermalFigure{\ThBoilingBase{
+ \draw[dashed](4.476,0)--(4.476,2.2) (3.321,0)--(3.321,1.1);
+ \node[below]at(4.476,0){$T_1$};\node[below]at(3.321,0){$T_2$};
+ \draw[->,thick](4.4,2.8)--(3.4,2.8);
+}}{在正斜率共存线上，压强下降对应沸点下降；温度并不减半。}{ch17:quality:boiling-a}
+图~\ref{ch17:quality:boiling-a}中两条水平线与同一共存线相交。积分克拉珀龙方程应在这两个交点之间进行，使用 $\ln(p_2/p_1)$ 与倒温度差，而不能把压强比直接当成温度比。
+}
+\newcommand{\ThQMercury}{\ThermalFigure{
+ \draw[thick](6,0)--(0,0)--(0,.6)--(6,.6);\fill[TextGray!40](3.4,0)rectangle(5.4,.6);
+ \node[above]at(1.7,.8){空气＋汞蒸气，$17\,\mathrm{cm}$};\node[below]at(4.4,-.1){汞柱 $10\,\mathrm{cm}$};
+ \draw[thick](8,-1)--(8,3)--(8.6,3)--(8.6,-1);\fill[TextGray!40](8,0)rectangle(8.6,1);
+ \node[right]at(9,2){封闭气柱 $20\,\mathrm{cm}$};\node[right]at(9,.5){汞柱 $10\,\mathrm{cm}$};
+ \node[right]at(9,-.7){下端与大气相通};
+}{水平与封闭端朝上的竖直情形；两图分别按各自尺度画出，竖直方向由题给膨胀事实辨明。}{ch17:quality:mercury-q}}
+\newcommand{\ThVaporizationBase}[1]{
+ \node[draw,minimum width=2.2cm,minimum height=1cm](L)at(0,0){液态苯 $m$};
+ \node[draw,minimum width=2.6cm,minimum height=1.6cm](G)at(6,0){蒸气 $m$};
+ \draw[->,thick](L)--node[above]{$p,T$ 不变}(G);
+ \draw[->,DeepBlue](2.4,-1.6)--(2.4,-.2)node[midway,left]{$Q$};#1}
+\newcommand{\ThQVaporization}{\ThermalFigure{\ThVaporizationBase{}}{同一质量的苯等压汽化；气相体积远大于液相体积。}{ch17:quality:vaporization-q}}
+\newcommand{\ThAVaporization}{\ThermalFigure{\ThVaporizationBase{
+ \draw[->,thick](G.east)--(9,0)node[right]{$W=p\Delta V$};
+ \node[below]at(6,-1.4){吸热分为内能增加与对外做功};
+}}{把同一质量的物质作为系统；系统边界随汽化膨胀而移动。}{ch17:quality:vaporization-a}
+图~\ref{ch17:quality:vaporization-a}中的出功箭头表示克服外压的膨胀功。因此 $mL$ 是焓的增加量，求内能增加必须扣除 $p(V_g-V_l)$；忽略 $V_l$ 后该项为 $nRT$。
+}
+\newcommand{\ThQWetExpansion}{\ThermalFigure{
+ \foreach \x/\w/\lab in {0/2/初态,5/3/水刚消失}{
+ \draw[thick](\x,2)--(\x,0)--(\x+\w,0)--(\x+\w,2);\draw[line width=2pt](\x,1.5)--(\x+\w,1.5);
+ \node[above]at(\x+.5*\w,2){\lab};}
+ \fill[DeepBlue!30](.2,.1)rectangle(1.8,.3);
+ \node[below]at(1,-.3){$V,\ 3.0\,\mathrm{atm}$};\node[below]at(6.5,-.3){$2V,\ 2.0\,\mathrm{atm}$};
+ \draw[->](2.6,.8)--(4.4,.8)node[midway,above]{等温};
+}{液水尚存与刚好消失是两个不同约束；干空气物质的量始终不变。}{ch17:quality:wet-expansion-q}}
+\newcommand{\ThQTwoVessels}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(3,2);\draw[thick](6,0)rectangle(9,2);
+ \draw[thick](3,.8)--(6,.8) (3,1.2)--(6,1.2);
+ \node at(1.5,1){容器甲，$V$};\node at(7.5,1){容器乙，$V$};
+ \node[below]at(1.5,-.3){保持 $100\,{}^\circ\mathrm C$};\node[below]at(7.5,-.3){冷却至 $0\,{}^\circ\mathrm C$};
+ \node[above]at(4.5,2.6){初态均为 $1\,\mathrm{atm}$、$100\,{}^\circ\mathrm C$、$50\%$ 相对湿度};
+}{细管允许组分重新分配，温度分别由两个外界维持。}{ch17:quality:vessels-q}}
+\newcommand{\ThQCloud}{\ThermalFigure{
+ \draw[thick](-1,0)--(5,0);\draw[->](0,0)--(0,3.8)node[above]{$z$};
+ \draw[DeepBlue,thick](2,.5)circle(.5);\draw[DeepBlue,thick](2,2.6)circle(.8);
+ \draw[->,thick](2,1.2)--(2,1.7)node[right]{未凝结气团上升};
+ \node[right]at(3.3,.5){地面 $p_0,T_0$};\node[right]at(3.3,2.7){与周围同压，绝热降温};
+ \draw[dashed](.3,3.4)--(5,3.4)node[right]{凝结起点待定};
+}{干绝热模型仅用于到达饱和之前；凝结后需重新计入潜热。}{ch17:quality:cloud-q}}

@@ -1,0 +1,100 @@
+\section{电解质、半导体与二极管模型}
+
+\subsection{载流子决定电流与物质迁移的关系}
+金属中的导电主要来自电子漂移，金属原子并不随电流绕电路作整体迁移。电解质溶液中，正、负离子分别沿电场和逆电场运动，两类离子的电流方向相同；电极表面的氧化、还原反应则把电荷输运与物质转化联系起来。不能把电解液中所有电流都理解为自由电子穿过溶液。
+
+设一类载流子的数密度为 $n$、电荷为 $q$、平均漂移速度为 $\vect v_d$，则 $\vect j=nq\vect v_d$。不同载流子的电流密度应作矢量相加。这里的漂移速度是叠加在热运动上的平均速度，不能拿分子的热运动速率代替它。
+
+在电极反应中，若每生成一个目标原子或分子需转移 $z$ 个电子，转化 $n_{\rm mol}$ 摩尔物质便需电荷 $Q=zF n_{\rm mol}$，其中 $F=N_Ae$ 为法拉第常量。因此
+\[
+ m=\frac{M Q}{zF},\qquad Q=\int I(t)\dd t.
+\]
+$M$ 是目标物质的摩尔质量。若只有比例 $\eta$ 的电荷用于目标反应，则 $m=\eta MQ/(zF)$。$\eta$ 是电流效率，不能与装置的能量效率混淆；副反应、漏电及未收集的产物会使实际沉积量小于理想值。公式只给物质量与电荷的关系，不能单独求出维持反应所需的电压。
+
+\begin{origexamplebox}{由电荷量计算铜的沉积质量}\label{quality:21:ex:electrolysis}
+如图~\ref{quality:21:electrolysis-q}，含 $\mathrm{Cu}^{2+}$ 的电解液用直流电电解，阴极发生
+$\mathrm{Cu}^{2+}+2e^-\to\mathrm{Cu}$。电流恒为 $2.00\,\mathrm A$，持续 $965\,\mathrm s$，目标反应的电流效率为 $80.0\%$。取 $M_{\rm Cu}=63.5\,\mathrm{g/mol}$、$F=9.65\times10^4\,\mathrm{C/mol}$，求阴极新增铜的质量。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \draw[ground] (0,2.3)--(0,0)--(6,0)--(6,2.3);
+ \fill[DeepBlue!8] (.05,.05) rectangle (5.95,1.7);
+ \draw[very thick] (1.2,2.4)--(1.2,.4) (4.8,2.4)--(4.8,.4);
+ \node[above] at (1.2,2.4) {阳极 $+$};\node[above] at (4.8,2.4) {阴极 $-$};
+ \draw[vector] (2.7,1.1)--node[above] {$\mathrm{Cu}^{2+}$}(4.3,1.1);
+ \node[below] at (3,-.1) {电源维持 $I$；图示阴极沉积过程};
+\end{tikzpicture}
+\figcap{阳离子到达阴极，获得电子并沉积；电极正负号针对电解装置。}\label{quality:21:electrolysis-q}
+\end{qualityfigure}
+\end{origexamplebox}
+\begin{xesolution}
+先按题图~\ref{quality:21:electrolysis-q}的阴极反应确定 $z=2$，不能把铜离子的正电荷号当作另一个负号。通过电解池的总电荷与用于沉积铜的电荷分别为
+\[
+ Q=It=1.930\times10^3\,\mathrm C,\qquad Q_{\rm Cu}=\eta Q=1.544\times10^3\,\mathrm C.
+\]
+图~\ref{quality:21:electrolysis-a}把电荷账逐步换成物质量：每摩尔铜需两摩尔电子，所以
+\[
+ n_{\rm Cu}=\frac{Q_{\rm Cu}}{2F}=8.00\times10^{-3}\,\mathrm{mol},\qquad
+ \boxed{m=0.508\,\mathrm g}.
+\]
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex,node distance=1.6cm]
+ \node[draw,align=center] (q) {$Q=It$\\$1930\,\mathrm C$};
+ \node[draw,align=center,right=of q] (e) {$Q_{\rm Cu}/F$\\$0.0160\,\mathrm{mol}$ 电子};
+ \node[draw,align=center,right=of e] (cu) {$n_{\rm Cu}$\\$0.00800\,\mathrm{mol}$ 铜};
+ \draw[->] (q)--node[above] {$\eta/F$}(e);\draw[->] (e)--node[above] {$\div2$}(cu);
+\end{tikzpicture}
+\figcap{质量计算前先核对电子转移数；箭头上的操作作用于前一框中的电荷量或物质量。}\label{quality:21:electrolysis-a}
+\end{qualityfigure}
+若忽略副反应，质量为 $0.635\,\mathrm g$；乘 $80.0\%$ 后应更小，符合本题结果。采用克每摩尔代入 $M$ 时，输出质量自然以克计。
+\end{xesolution}
+
+\subsection{从掺杂到PN结的内建电场}
+半导体在价带与导带之间存在禁带。本征半导体的热激发同时产生导带电子和价带空穴；空穴表示价带中缺少电子的状态，能以正电荷载流子的方式描述输运，它不是一个被掺入的正离子。
+施主杂质容易提供导带电子，形成n型；受主杂质容易俘获价带电子并留下空穴，形成p型。n型和p型分别说的是多数载流子的类型，并不表示整块材料带负电或正电。
+
+将p型与n型区域接触后，电子倾向从n区向p区扩散，空穴反向扩散并在结附近复合。移动载流子减少后，留下p侧带负电的受主离子和n侧带正电的施主离子，形成耗尽层。图~\ref{quality:21:pn-field}中，内建电场从n侧指向p侧，漂移作用抵消扩散；平衡时净电流为零，而不是两种过程都停止。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \fill[PaleBlue] (0,0) rectangle (3,1.5);\fill[PaleGold] (3,0) rectangle (6,1.5);
+ \draw[ground] (0,0) rectangle (6,1.5);\draw[guide] (2,0)--(2,1.5) (4,0)--(4,1.5);
+ \node at (1,.75) {p区：空穴};\node at (5,.75) {n区：电子};
+ \node at (2.5,.4) {$-\ -$};\node at (3.5,.4) {$+\ +$};
+ \draw[vector] (3.8,1.1)--node[above] {$\vect E_{\rm bi}$}(2.2,1.1);
+ \node[below] at (3,0) {耗尽层内的符号表示固定杂质离子};
+\end{tikzpicture}
+\figcap{平衡PN结的空间电荷与内建电场方向，图未按实际耗尽层宽度比例绘制。}\label{quality:21:pn-field}
+\end{qualityfigure}
+正向偏置令p端电势相对n端升高，削弱结区势垒，使多数载流子更易跨结，正向电流迅速增大。反向偏置提高势垒，在未击穿时电流较小。实际器件有漏电、温度依赖与击穿限制；“只许一个方向通电”是限定工作区间后的理想化模型，不能据此处理任意大小的反向电压。
+
+\subsection{二极管电路必须同时满足器件关系与外电路关系}
+理想二极管的导通压降取零；恒压降模型则在正向导通时取 $U_D=U_{\rm on}>0$、截止时取 $I=0$。两者是不同的近似。在恒压降模型中，要先假定状态，用基尔霍夫定律求解，再检验所得电流方向和结电压是否与假定相符。
+
+\begin{origexamplebox}{二极管的工作状态与负载线}\label{quality:21:ex:diode}
+电源电压 $U$ 经 $R=1.00\,\mathrm{k}\Omega$ 电阻接到二极管p端，n端接电源参考端。二极管用正向导通压降 $U_{\rm on}=0.700\,\mathrm V$、反向截止模型，且两种给定电压均未达到击穿。分别求 $U=5.00\,\mathrm V$ 和 $U=-5.00\,\mathrm V$ 时的电流；正向时核对功率。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \draw (0,0)--(1,0);\draw (1,-.25) rectangle (2.5,.25);\draw (2.5,0)--(3.5,0);
+ \draw[thick] (3.5,-.35)--(4.2,0)--(3.5,.35)--cycle;\draw[thick] (4.2,-.35)--(4.2,.35);
+ \draw (4.2,0)--(5.5,0)--(5.5,-1.1)--(0,-1.1);
+ \node[left] at (0,0) {$U$};\node[left] at (0,-1.1) {$0$};
+ \node[above] at (1.75,.25) {$R$};\node[above] at (3.5,.35) {p};\node[above] at (4.25,.35) {n};
+ \draw[->,DeepBlue] (.3,.65)--(1.1,.65) node[right] {$I$};
+\end{tikzpicture}
+\figcap{电流正向取由p到n；$U$ 是可正可负的电源端电压。}\label{quality:21:diode-q}
+\end{qualityfigure}
+\end{origexamplebox}
+\begin{xesolution}
+题图~\ref{quality:21:diode-q}中若二极管导通，回路方程为 $U=IR+U_{\rm on}$。当 $U=5.00\,\mathrm V$，得到
+\[
+ I=\frac{5.00-0.700}{1000}=\boxed{4.30\,\mathrm{mA}}>0,
+\]
+与正向假定相容。图~\ref{quality:21:diode-a}的交点同时满足电源负载线与恒压降器件关系。若 $U=-5.00\,\mathrm V$，硬套导通关系会得到负电流，不符合本模型的正向导通条件；改取截止态 $I=0$，此时结电压 $U_D=-5.00\,\mathrm V$ 确为反向，故自洽。
+\begin{qualityfigure}\begin{tikzpicture}[x=1cm,y=.55cm]
+ \draw[axis] (0,0)--(6,0) node[right] {$U_D/\mathrm V$};
+ \draw[axis] (0,0)--(0,6) node[above] {$I/\mathrm{mA}$};
+ \draw[DeepBlue,thick] (0,5)--(5,0) node[above right] {$I=(5-U_D)/R$};
+ \draw[TextGray,thick] (.7,0)--(.7,5.5);
+ \fill[DeepBlue] (.7,4.3) circle (2pt);
+ \draw[guide] (.7,4.3)--(0,4.3) node[left] {$4.30$};
+ \node[below] at (.7,0) {$0.700$};
+\end{tikzpicture}
+\figcap{正向工作点是两种约束的交点；恒压降竖线是模型，不是实际器件的完整伏安曲线。}\label{quality:21:diode-a}
+\end{qualityfigure}
+正向电阻耗散 $P_R=I^2R=18.49\,\mathrm{mW}$，二极管耗散 $P_D=U_DI=3.01\,\mathrm{mW}$，二者之和 $21.50\,\mathrm{mW}$ 等于电源输出 $UI$。能量核对同时检验了电压降与电流参考方向。
+\end{xesolution}

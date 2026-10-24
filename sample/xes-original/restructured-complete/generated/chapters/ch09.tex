@@ -1,10 +1,14 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{角动量与刚体动力学}
+\input{chapters/quality-20261023/thermal/ch09.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/sixteenth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/sixteenth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/sixteenth-section/}{../../../sample/xes-original/sixteenth-section/assets/}}
 \section{角动量、力矩与参考点}
 % Chapter-local deterministic geometry. All text nodes have transparent fill.
 \newcommand{\crossProductDiagram}{%
@@ -522,7 +526,7 @@ $\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对
 不能用约去零因子的步骤推断可观测的进动。式中r始终是支点到质心的距离，不是陀螺轮体半径。
 
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【统统算出来】}\label{ch09:ex:s16-14-1}
 已知 $\overrightarrow{AB}=(1,1,1)$，$\overrightarrow{AC}=(1,1,0)$，求：
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
@@ -532,9 +536,13 @@ $\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对
   \item $\overrightarrow{AB}$ 与 $\overrightarrow{AC}$ 夹角的余弦；
   \item 验证 $\sin^2\theta+\cos^2\theta=1$。
 \end{enumerate}
+
+\ThQVectors
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAVectors
+
 记 $\vect a=(1,1,1)$、$\vect b=(1,1,0)$。直接按分量计算：
 \[
  \vect a\times\vect b
@@ -567,15 +575,19 @@ $\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对
 验证完毕。由于内积为正，夹角是锐角；因此这里的正弦、余弦均取正值。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【面积速度】}\label{ch09:ex:s16-14-2}
 学习角动量之前，小明定义了“面积速度”：在参考点看来，一个质点与参考点的连线在运动
 过程中会扫过一定面积。按照右手螺旋方向把面积定义为面积矢量 $\vect S$，面积速度矢量即
 单位时间内扫过的面积矢量。试说明面积速度矢量与角动量的关系。
-\areaVelocityDiagram
+
+
+\ThQArea
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\areaVelocityDiagram
+
 在短时间 $\dd t$ 内，质点位移为 $\dd\vect r=\vect v\dd t$。
 图~\ref{ch09:fig:area}中窄三角形的有向面积为
 \[
@@ -592,7 +604,7 @@ $\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对
 面积速度恒定，这正是开普勒第二定律的几何本质。
 \end{xesolution}
 
-\Needspace{0.35\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【继续算出来】}\label{ch09:ex:s16-14-3}
 小明研究刚体的角动量，需要先计算转动惯量。以下刚体质量均匀分布，质量均为 $m$。求：
 \begin{enumerate}[label=(\arabic*),leftmargin=2.2em]
@@ -601,6 +613,8 @@ $\overrightarrow{OC}$ 与重力所在平面；支点反力通过O，不贡献对
   \item 半径为 $R$ 的空心球壳绕一条直径的转动惯量；
   \item 半径为 $R$ 的实心球体绕一条直径的转动惯量。
 \end{enumerate}
+
+\ThQInertias
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -656,7 +670,7 @@ $\dd I=(2/3)r^2\dd m$，故
 其惯量小于薄球壳，$2/5<2/3$ 与几何分布一致。
 \end{xesolution}
 
-\Needspace{0.42\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【小明的疑惑】}\label{ch09:ex:s16-14-4}
 质量为 $m$ 的质点被长为 $l$ 的绳子拉着，在水平面内做圆周运动，绳子与竖直方向夹角
 $\theta$。
@@ -667,10 +681,14 @@ $\theta$。
   \item 角动量与角速度似乎不在同一方向上，这样对吗？
   \item 验证这个运动是否满足角动量定理。
 \end{enumerate}
-\conicalPendulumDiagram
+
+
+\ThQConePendulum
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\conicalPendulumDiagram
+
 取 $0<\theta<\pi/2$，绳不可伸长且小球可视为质点。图~\ref{ch09:fig:conical}中圆周半径
 $r=l\sin\theta$。绳的张力 $T$ 的竖直分量平衡重力，水平分量提供向心力：
 \[
@@ -723,16 +741,20 @@ $L_h=mlv\cos\theta$，因而
 当$\theta$趋于零时v趋于零，轨道缩为一点；角速度公式的有限极限不代表静止点仍有可见的圆周轨迹。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【哑铃落地】}\label{ch09:ex:s16-14-5}
 两端各为质量m质点的哑铃由长 $2l$ 的轻杆连接，以速度 $v_0$ 竖直向下纯平动，杆与地面
 夹角为 $0\le\theta\le\pi/2$。下端A首先碰到沙地，并在极短碰撞中粘住、固定在该点；
 另一端B不同时碰地。忽略碰撞期间重力冲量。用角动量方法求碰后瞬间角速度、B的速度及机械能损失。
 这也是把碰撞与能量方法用于哑铃落地模型的另一种解法。
-\dumbbellGroundDiagram
+
+
+\ThQDumbbell
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\dumbbellGroundDiagram
+
 图~\ref{ch09:fig:dumbbell-ground}标出了A、B及碰前速度。对固定接触点A取矩，
 沙地冲量的力矩为零，故碰撞前后关于A的角动量守恒。取顺时针为正，B的动量产生正角动量。
 $\theta$=0的情形应理解为A先接触的极限；若两端同时接触，则是另一种约束，不能套本解。
@@ -765,7 +787,7 @@ $\theta$=0的情形应理解为A先接触的极限；若两端同时接触，则
 该冲量的力矩冲量为零，角动量守恒恰好可用。
 \end{xesolution}
 
-\Needspace{0.40\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【哑铃的碰撞】}\label{ch09:ex:s16-14-6}
 两个相同哑铃进行完全弹性碰撞：一个初始静止，另一个以速度 $v_0$ 撞来。左侧哑铃的右端
 重物与右侧哑铃的左端重物发生对心正碰，且碰撞线垂直于两根轻杆。每个端点重物的质量均为
@@ -774,10 +796,14 @@ $m$。求：
   \item 碰后四个重物的运动速度；
   \item 计算接触两端点的恢复系数。
 \end{enumerate}
-\dumbbellCollisionDiagram
+
+
+\ThQDumbbells
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\dumbbellCollisionDiagram
+
 令每根杆长为 $2l$。只讨论沿碰撞线方向的速度；图~\ref{ch09:fig:dumbbell-collision}画的是碰撞前，
 运动哑铃纯平动，四个端点依次记为
 $A,B,C,D$，其中 $B,C$ 接触。设碰撞冲量大小为 $J$，方向使 $B$ 减速、$C$ 加速。
@@ -810,7 +836,7 @@ $I_{\rm c}=2ml^2$，故角速度改变量为 $-J/(2ml)$。于是
 这也与题设“完全弹性碰撞”一致。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【跷跷板跳高】}\label{ch09:ex:s16-14-7}
 小明想跳得更高，以便扣篮。他把两个轻质、等臂跷跷板顺次放在篮球场上。A 同学质量
 $90\,\mathrm{kg}$，B 同学质量 $80\,\mathrm{kg}$，小明质量 $60\,\mathrm{kg}$。A 从
@@ -818,10 +844,14 @@ $50\,\mathrm{cm}$ 高处落在第一块跷跷板上，把 B 弹起；B 随后落
 小明弹起。所有碰撞均为弹性碰撞。按短时、等臂的理想冲击模型，只计算各人的竖直运动：
 跷跷板在碰撞位置近于水平，B两次接触点等高，忽略转移到第二装置所需的水平运动对竖直运动的影响，
 两次弹射后人与板均可分离。小明相对于起跳位置的重心能上升多高？
-\seesawDiagram
+
+
+\ThQSeesaws
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\seesawDiagram
+
 A 落到跷跷板时的速率为
 \[
  u_A=\sqrt{2gh_0},\qquad h_0=0.50\,\mathrm m.
@@ -863,7 +893,7 @@ B 上升后再落回同一高度，撞击第二块跷跷板前速率仍为 $v_B$
 式中速度与 $\sqrt{gh_0}$ 同量纲，全部质量同比放大时高度不变；实际耗散、板质量和主动蹬跳须另建模型。
 \end{xesolution}
 
-\Needspace{0.44\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【漏斗与黄豆】}\label{ch09:ex:s16-14-8}
 一个光滑漏斗内部为圆锥面，轴截面是正三角形。小明把一粒黄豆放在漏斗内，给它合适的
 水平初速度 $v_0$，黄豆在漏斗中作匀速圆周运动。
@@ -872,10 +902,14 @@ B 上升后再落回同一高度，撞击第二块跷跷板前速率仍为 $v_B$
   \item 若把初速度加倍，且黄豆不会飞出或漏下，最高、最低分别能达到多高？
   \item 若把初速度减半，且黄豆不会飞出或漏下，最高、最低分别能达到多高？
 \end{enumerate}
-\funnelDiagram
+
+
+\ThQConeBead
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\funnelDiagram
+
 图~\ref{ch09:fig:funnel}以O为圆锥顶点，h竖直向上量；P处的初速度垂直轴截面，不能沿半径。
 圆锥轴截面是正三角形，所以母线与竖直轴夹角 $\theta=30^\circ$，半径与高度满足
 $r=h\tan\theta=h/\sqrt3$。
@@ -947,7 +981,7 @@ $x=1$ 是改变速度的瞬间所在回归点，另一个正根为
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/seventeenth-section/}}
+\graphicspath{{../../../sample/xes-original/seventeenth-section/}}
 \section{刚体的运动描述}
 % Chapter-local figures. Text remains transparent; geometric coordinates are shared.
 \newcommand{\eulerDiagram}{%
@@ -1418,14 +1452,18 @@ $\Delta\vect L_C=\overrightarrow{CP}\times\vect J$；平面情况下可再写成
 极限情况相互校验，不能仅靠整体能量判断哪个截面最危险。
 
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【砂轮制动】}\label{ch09:ex:s17-15-1}
 一个质量为 $m$、半径为 $R$ 的匀质砂轮以角速度 $\omega_0$ 旋转。在距离圆心为 $r$ 处
 有恒力 $f$ 作用，方向如图。求随后砂轮的运动。
-\brakeWheelDiagram
+
+
+\ThQBrakingWheel
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\brakeWheelDiagram
+
 图~\ref{ch09:fig:brake}中砂轮初始顺时针转动，f在圆心右侧向上，故力矩逆时针。
 取顺时针为正，匀质砂轮视为均匀圆盘，绕中心轴的转动惯量
 \[
@@ -1452,7 +1490,7 @@ $\Delta\vect L_C=\overrightarrow{CP}\times\vect J$；平面情况下可再写成
 若题意中的恒力在停止后仍保持原方向，砂轮会反向转动；“制动”通常只讨论首次停转之前。
 \end{xesolution}
 
-\Needspace{0.37\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【两个砂轮】}\label{ch09:ex:s17-15-2}
 两个匀质砂轮质量分别为 $m_1,m_2$，半径分别为 $R_1,R_2$，初始分别以角速度
 $\omega_{10},\omega_{20}$ 按图示方向旋转。$t=0$ 时两轮接触，此后接触处有恒定摩擦力
@@ -1461,10 +1499,14 @@ $f$（仅在相对滑动期间取此大小，两轮轴固定且忽略其他阻�
   \item 任意时刻二者的角速度；
   \item 这个问题是否有类似的质点动力学问题相对应？
 \end{enumerate}
-\twoWheelsDiagram
+
+
+\ThQWheels
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\twoWheelsDiagram
+
 图~\ref{ch09:fig:two-wheels}的第一轮以顺时针为正、第二轮以逆时针为正；两接触表面初速度均向下。
 令 $u_{10}=R_1\omega_{10}$、$u_{20}=R_2\omega_{20}$，以向下为正的初始相对速度
 $s_0=u_{10}-u_{20}$。若 $s_0>0$，摩擦使第一轮减速、第二轮加速，图中力箭头对应此分支；
@@ -1506,14 +1548,18 @@ $q_2\dot u_2=\varepsilon f$，相加得 $q_1u_1+q_2u_2$ 不变。于是最终共
 可由初末转动动能相减得到，量纲为能量且 $s_0=0$ 时为零。
 \end{xesolution}
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【滚动的台球】}\label{ch09:ex:s17-15-3}
 质量为 $m$、半径为 $R$ 的匀质台球刚被击出时速度为 $v_0$，没有旋转。已知台球与地面的
 滑动摩擦因数为 $\mu$，求台球此后的运动。
-\billiardRollingDiagram
+
+
+\ThQBilliard
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\billiardRollingDiagram
+
 图~\ref{ch09:fig:billiard}分别画出初态和滑动阶段，避免把 $\omega=0$ 的初态与后续转动混为一图。
 初始接触点相对地面向前滑，滑动摩擦力大小为 $f=\mu mg$、方向向后。匀质实心球
 $I=\tfrac25mR^2$。在滑动阶段
@@ -1548,17 +1594,21 @@ $I=\tfrac25mR^2$。在滑动阶段
 比初值 $mv_0^2/2$ 少 $mv_0^2/7$。损失来自接触点滑动，不能用质心路程直接乘摩擦力代表总损失。
 \end{xesolution}
 
-\Needspace{0.35\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【台球碰撞】}\label{ch09:ex:s17-15-4}
 质量均为 $m$、半径均为 $R$ 的匀质白球和红球发生无摩擦正碰。碰前白球以速度 $v_0$
 向前运动，同时具有角速度 $\omega_0$，且 $v_0=\omega_0R$。红球起初静止且不自转。
 两球所在的同一水平面与球的动摩擦因数均为$\mu$，忽略滚动阻力；球间碰撞极短，可忽略该期间的地面冲量。
 球间碰撞完全弹性。求碰撞后两个
 球的运动，并判断白球是否可能再次撞到红球。
-\ballsCollisionDiagram
+
+
+\ThQBilliards
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ballsCollisionDiagram
+
 图~\ref{ch09:fig:balls}标出碰前状态，取向右与顺时针为正，碰后另以t=0计时。
 球与球之间无摩擦，所以碰撞冲量沿两球心连线，不对任一球心产生力矩。因而碰撞过程中
 两球角速度不变：
@@ -1604,7 +1654,7 @@ $I=\tfrac25mR^2$。在滑动阶段
 当$\mu$趋零时，滑动调节时间趋无穷，但球间碰后红球前进、白球只自转，仍不会追及。
 \end{xesolution}
 
-\Needspace{0.37\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【小明拍球】}\label{ch09:ex:s17-15-5}
 小明把一个篮球快速旋转地拍下。落地前篮球速度大小为 $v_0$、方向竖直向下，角速度为
 $\omega_0$，转向如图。篮球视为质量 $m$、半径 $R$ 的空心球壳，与地面的滑动摩擦因数为
@@ -1679,13 +1729,17 @@ $v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
 在本题允许的冲量范围内非正，说明摩擦耗能与题设法向弹性条件相容。
 \end{xesolution}
 
-\Needspace{0.33\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【生熟鸡蛋】}\label{ch09:ex:s17-15-6}
 把不同鸡蛋放在同一个斜面上向下滚，如何利用物理方法区分生鸡蛋和熟鸡蛋？
-\eggRollingDiagram
+
+
+\ThQEggs
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\eggRollingDiagram
+
 图~\ref{ch09:fig:egg}把两只鸡蛋放在相同坡角的两个面板中，接触位置与释放高度相同；
 用剖面区分内部凝固与内部液体。比较前还要尽量控制外形、质量、放置朝向和坡面的粗糙程度。
 熟鸡蛋内部凝固，外壳与内部近似共同转动；生鸡蛋内部液体可以相对外壳流动，不能给全部质量
@@ -1716,14 +1770,18 @@ $v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
 这个补充实验利用内部相对运动，不能反过来当作斜面滚动谁先到底的证明。
 \end{xesolution}
 
-\Needspace{0.35\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【重滑轮】}\label{ch09:ex:s17-15-7}
 两个重物挂在滑轮两端，绳与定滑轮间不相对滑动。定滑轮质量为 $M$、半径为 $R$，质量均匀
 分布。求松手时 $m_1$ 的加速度，设 $m_1>m_2$。
-\massivePulleyDiagram
+
+
+\ThQPulley
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\massivePulleyDiagram
+
 图~\ref{ch09:fig:pulley}中绳绕轮缘且连到两重物的中心吊点，支架连接固定轮轴。
 设 $m_1$ 向下、$m_2$ 向上加速度大小均为 $a$，两侧张力分别为 $T_1,T_2$：
 \[
@@ -1747,7 +1805,7 @@ $v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
 方向为 $m_1$ 向下。滑轮有转动惯性，所以加速度小于把滑轮视为轻滑轮时的结果。
 \end{xesolution}
 
-\Needspace{0.39\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【力矩做功】}\label{ch09:ex:s17-15-8}
 两个质量均为 $m$ 的质点固定在长为 $2l$ 的轻杆上，一个在最远端，另一个在中点。杆的
 另一端铰接在天花板上。初始时杆水平，由静止释放。求杆与水平呈 $\theta$ 角时：
@@ -1757,10 +1815,14 @@ $v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
   \item 1 号、2 号质点重力势能的减小量；
   \item 说明本题与力矩做功的关系。
 \end{enumerate}
-\torqueWorkDiagram
+
+
+\ThQRodWork
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\torqueWorkDiagram
+
 图~\ref{ch09:fig:torque-work}中$\theta$从水平参考线向下量，取第一次下落的 $0\le\theta\le\pi/2$。
 两质点到转轴的距离分别为 $2l$ 与 $l$，系统转动惯量
 \[
@@ -1805,14 +1867,18 @@ $v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
 这正是转动形式的动能定理。
 \end{xesolution}
 
-\Needspace{0.37\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【打击中心】}\label{ch09:ex:s17-15-9}
 一根质量均匀、质量为 $m$、长度为 $L$ 的杆悬挂在天花板上。用冲量 $J$ 水平打击杆上距
 下端 $a$ 的位置，发现悬挂端没有受到冲量。求打击位置。
-\percussionDiagram
+
+
+\ThQPercussion
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\percussionDiagram
+
 图~\ref{ch09:fig:percussion}中O是固定铰点，杆初始静止；打击点P距悬点为 $x=L-a$。
 悬点冲量为零，杆质心获得的线动量完全来自打击冲量：
 \[
@@ -1841,7 +1907,7 @@ $v_x'+\omega'R=\omega_0R-5\mu v_0$ 仍为正。
 不承受冲量。
 \end{xesolution}
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【小明的疑惑】}\label{ch09:ex:s17-15-10}
 一根质量m、长度L、质量均匀分布的棍靠两端A、B的支撑点水平悬空放置。小明只分析左半根棍时，发现外力矩似乎
 不能平衡。这是怎么回事？
@@ -1874,7 +1940,7 @@ $-(mg/2)(L/2)+(mg/2)(L/4)=-mgL/8$。为保持静止，中截面必须提供逆�
 作用一般包括轴力、剪力和弯矩；只有把它们全部画出，局部受力与力矩才能平衡。
 \end{xesolution}
 
-\Needspace{0.42\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{【烟囱倒地】}\label{ch09:ex:s17-15-11}
 把烟囱视为质量 $m$、长度 $L$ 的均匀硬杆，绕底端倾倒，杆与竖直方向夹角为 $\theta$。
 用两种模型判断哪里最容易断裂：
@@ -1882,10 +1948,14 @@ $-(mg/2)(L/2)+(mg/2)(L/4)=-mgL/8$。为保持静止，中截面必须提供逆�
   \item 烟囱内部会有垂直于烟囱的剪力，剪力最大处最先断裂；
   \item 烟囱内部会提供弯矩，弯矩最大处最先断裂。
 \end{enumerate}
-\chimneyDiagram
+
+
+\ThQChimney
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\chimneyDiagram
+
 图~\ref{ch09:fig:chimney}中 $x$ 从固定基底O沿杆向上量，研究截面P以上的一段；
 规定切向正方向 $\uvec e_t$ 为倾倒的顺时针方向，角速度、角加速度也以顺时针为正。
 线密度 $\lambda=m/L$。整杆绕底端转动惯量

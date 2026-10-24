@@ -1,3 +1,5 @@
+% AdvancedMechanicsAssumptions20261023-v1
+% AdvancedMechanicsQuality20261023-v1
 \section{刚体}
 
 \subsection{质量几何与矩生成函数}
@@ -15,8 +17,23 @@
  \binom pi\binom qj\binom rk
  a^{p-i}b^{q-j}c^{r-k}M_{ijk}.
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(1.2,1.3);\coordinate(Q)at(3,2);\fill(P)circle(2pt)node[left]{$\vect r'$};\fill(Q)circle(2pt)node[right]{$\vect r'+\vect a$};\draw[->,DeepBlue](0,0)--(P);\draw[->,Gold](P)--(Q)node[midway,below]{$\vect a$};
+\end{tikzpicture}
+\figcap{同一质量元的坐标整体平移（题设几何）}\label{advA1:fig:quality-moment-translation-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(1.2,1.3);\coordinate(Q)at(3,2);\fill(P)circle(2pt)node[left]{$\vect r'$};\fill(Q)circle(2pt)node[right]{$\vect r'+\vect a$};\draw[->,DeepBlue](0,0)--(P);\draw[->,Gold](P)--(Q)node[midway,below]{$\vect a$};\draw[->,thick](0,0)--(Q);\node at(2,-1.8){同一质量元在求和坐标中的矩贡献};
+\end{tikzpicture}
+\figcap{同一质量元的坐标整体平移（解答辅助图）}\label{advA1:fig:quality-moment-translation-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-moment-translation-a}中，平移前后的质量元相同，改变的是坐标中的三个分量；把每个分量的幂按二项式展开，再对同一个质量测度积分。
+
 平移后同一质量元的坐标由 $(x,y,z)$ 变为 $(x+a,y+b,z+c)$，而 $\rho\dd V$ 不变。代入定义\eqref{advA1:eq:cartesian-moment}，对三个因子分别用二项式定理：
 \[
  (x+a)^p(y+b)^q(z+c)^r
@@ -45,8 +62,23 @@ $\vect M'_1=\vect M_1+M\vect a$；对二阶矩，它给出熟悉的平行轴项�
 
 \begin{advexamplebox}{均匀正方形薄板的前四级矩}\label{advA1:ex:square-moments}
 在 $0\le x\le l, 0\le y\le l$ 上面密度 $\sigma$ 均匀分布。求总阶数 $p+q=0,1,2,3$ 的全部平面笛卡尔矩 $M_{pq}$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3.5)node[above]{$y$};\draw[fill=PaleBlue](0,0)rectangle(3,3);\node[below]at(3,0){$l$};\node[left]at(0,3){$l$};\node at(1.5,2.5){$\sigma$};
+\end{tikzpicture}
+\figcap{第一象限的均匀正方形与面积微元（题设几何）}\label{advA1:fig:quality-square-moments-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3.5)node[above]{$y$};\draw[fill=PaleBlue](0,0)rectangle(3,3);\node[below]at(3,0){$l$};\node[left]at(0,3){$l$};\node at(1.5,2.5){$\sigma$};\fill[DeepBlue](1.3,1.1)rectangle(1.6,1.4);\node[right]at(1.7,1.2){$\dd m=\sigma\dd x\dd y$};
+\end{tikzpicture}
+\figcap{第一象限的均匀正方形与面积微元（解答辅助图）}\label{advA1:fig:quality-square-moments-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-square-moments-a}中，积分区域是从 $0$ 到 $l$ 的正方形，原点在角点；奇数矩一般不为零，不能误用以板中心为原点的对称性。
+
 \[
  M_{pq}=\sigma\int_0^l x^p\dd x\int_0^l y^q\dd y
  =\frac{\sigma l^{p+q+2}}{(p+1)(q+1)}.
@@ -70,8 +102,23 @@ $\vect M'_1=\vect M_1+M\vect a$；对二阶矩，它给出熟悉的平行轴项�
  =\int\alpha(\vect r')\beta(\vect r-\vect r\,')\dd^3r'.
 \]
 若三个分布的矩生成函数分别为 $P,Q,R$，矩分别为 $L,M,N$，证明 $R=PQ$，并写出 $N_{pqr}$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(1.2,1.3);\coordinate(Q)at(3,2);\fill(P)circle(2pt)node[left]{$\vect r'$};\fill(Q)circle(2pt)node[right]{$\vect r$};\draw[->,DeepBlue](0,0)--(P);\draw[->,Gold](P)--(Q)node[midway,below]{$\vect r-\vect r'$};
+\end{tikzpicture}
+\figcap{卷积中的两个位置矢量相加（题设几何）}\label{advA1:fig:quality-convolution-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(1.2,1.3);\coordinate(Q)at(3,2);\fill(P)circle(2pt)node[left]{$\vect r'$};\fill(Q)circle(2pt)node[right]{$\vect r$};\draw[->,DeepBlue](0,0)--(P);\draw[->,Gold](P)--(Q)node[midway,below]{$\vect r-\vect r'$};\draw[->,thick](0,0)--(Q);\node at(2,-1.8){同一质量元在求和坐标中的矩贡献};
+\end{tikzpicture}
+\figcap{卷积中的两个位置矢量相加（解答辅助图）}\label{advA1:fig:quality-convolution-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-convolution-a}中，$\vect r=\vect r'+(\vect r-\vect r')$ 把卷积积分中的两个独立变量分开；指数因子因此可分解成两项，矩展开则产生三个二项式系数。
+
 对卷积作变量代换 $\vect u=\vect r-\vect r\,'$，
 \begin{align*}
  R(\vect s)
@@ -114,8 +161,23 @@ $\vect\varepsilon_i=\partial\vect R/\partial x_i$。
 
 \begin{advexamplebox}{三条坐标轴的转动矩阵}\label{advA1:ex:axis-rotations}
 写出绕 $x,y,z$ 轴主动旋转 $\theta$ 的矩阵，检验不同轴转动是否对易，并讨论能否用一组实坐标同时将所有转动对角化。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,DeepBlue,thick](0,0)--(2.5,.7)node[right]{$\vect r$};\draw[->,Gold](1.1,1.5)arc(0:160:1.1 and .3)node[left]{$\theta$（绕 $z$ 示例）};
+\end{tikzpicture}
+\figcap{主动转动的轴、初始矢量与转角（题设几何）}\label{advA1:fig:quality-axis-rotations-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,DeepBlue,thick](0,0)--(2.5,.7)node[right]{$\vect r$};\draw[->,Gold](1.1,1.5)arc(0:160:1.1 and .3)node[left]{$\theta$（绕 $z$ 示例）};\node at(1.7,-1.7){各次主动旋转均遵循右手定则};
+\end{tikzpicture}
+\figcap{主动转动的轴、初始矢量与转角（解答辅助图）}\label{advA1:fig:quality-axis-rotations-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-axis-rotations-a}中，主动旋转改变物理矢量，实验室坐标轴保持固定；判断不同轴转动是否对易时必须保持同一右手定则和同一先后次序。
+
 \[
  R_x=\begin{pmatrix}1&0&0\\0&c&-s\\0&s&c\end{pmatrix},
  \quad
@@ -150,7 +212,12 @@ $\dot{\mathsf A}^{\mathsf T}\mathsf A+\mathsf A^{\mathsf T}\dot{\mathsf A}=0$。
  \end{pmatrix},
  \qquad [\vect\omega]_\times\vect r=\vect\omega\times\vect r.
 \]
-所以刚体上的点在刚体坐标中满足 $\vect v=\vect\omega\times\vect r$。
+所以刚体上固定材料点的惯性系速度在刚体系中的分量满足
+\[
+ \vect v_{\rm body}=\mathsf A^{\mathsf T}\dot{\vect R}
+ =\vect\omega\times\vect r.
+\]
+这里 $\vect\omega$ 也取刚体系分量；材料点相对刚体坐标的速度 $\dot{\vect r}$ 则为零，不能与 $\vect v_{\rm body}$ 混同。
 
 \begin{advexamplebox}{矩阵指数与有限转动}\label{advA1:ex:matrix-exponential}
 记 $[\vect n]_\times$ 为单位矢量 $\vect n$ 的叉乘矩阵。证明
@@ -160,8 +227,23 @@ $\dot{\mathsf A}^{\mathsf T}\mathsf A+\mathsf A^{\mathsf T}\dot{\mathsf A}=0$。
  \frac\theta N[\vect n]_\times\right)^N,
 \]
 并得到罗德里格公式。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,Gold,very thick](0,0)--(1.8,2.5)node[above]{$\vect n$};\coordinate(P)at(2.6,.7);\fill(P)circle(2pt)node[right]{$P$};\draw[dashed](0,0)--(P);\draw[->,DeepBlue](1.9,.4)arc(-10:65:.8 and .35)node[right]{$\theta$};
+\end{tikzpicture}
+\figcap{绕固定单位轴的有限转动（题设几何）}\label{advA1:fig:quality-matrix-exponential-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,Gold,very thick](0,0)--(1.8,2.5)node[above]{$\vect n$};\coordinate(P)at(2.6,.7);\fill(P)circle(2pt)node[right]{$P$};\draw[dashed](0,0)--(P);\draw[->,DeepBlue](1.9,.4)arc(-10:65:.8 and .35)node[right]{$\theta$};\draw[dashed](P)--(1.219,1.694)node[midway,above]{$r_\perp$};\node at(3,-1.6){沿轴与垂轴分量分别处理};
+\end{tikzpicture}
+\figcap{绕固定单位轴的有限转动（解答辅助图）}\label{advA1:fig:quality-matrix-exponential-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-matrix-exponential-a}中，平行 $\vect n$ 的分量不变，垂直分量在二维平面内转动；叉乘生成元的幂可按这两类分量分别求和。
+
 因 $[\vect n]_\times^2=\vect n\vect n^{\mathsf T}-\mathsf I$，且
 $[\vect n]_\times^3=-[\vect n]_\times$，指数级数的奇、偶次项可分别求和：
 \[
@@ -185,8 +267,23 @@ $[\vect n]_\times^3=-[\vect n]_\times$，指数级数的奇、偶次项可分别
  \quad\Longleftrightarrow\quad
  \vect\omega'=\mathsf O\vect\omega .
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,DeepBlue,very thick](0,0)--(1,2)node[above]{$\vect\omega$};\draw[->,Gold,very thick](0,0)--(2,1)node[right]{$\vect\omega'$};\draw[->](.8,1.6)arc(63.435:26.565:1.789)node[midway,above right]{$\mathsf O$};
+\end{tikzpicture}
+\figcap{同一角速度矢量在转动基底中的分量（题设几何）}\label{advA1:fig:quality-omega-transform-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,DeepBlue,very thick](0,0)--(1,2)node[above]{$\vect\omega$};\draw[->,Gold,very thick](0,0)--(2,1)node[right]{$\vect\omega'$};\draw[->](.8,1.6)arc(63.435:26.565:1.789)node[midway,above right]{$\mathsf O$};\node at(2,-1.7){正向正交变换保持叉积的方向约定};
+\end{tikzpicture}
+\figcap{同一角速度矢量在转动基底中的分量（解答辅助图）}\label{advA1:fig:quality-omega-transform-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-omega-transform-a}中，题设只取 $SO(3)$ 中的正交正向变换；叉乘方向与坐标三重积均按同一右手系变化，才可将叉乘矩阵的共轭变换与矢量变换对应。
+
 对任意矢量 $\vect x$，
 \[
  \mathsf O[\vect\omega]_\times\mathsf O^{-1}\vect x
@@ -261,8 +358,23 @@ $\mathsf I=\operatorname{tr}(\mathsf M)\mathsf1-\mathsf M$。
 \[
  I_{\vect n}=\vect n^{\mathsf T}\mathsf I\vect n.
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,Gold,very thick](0,0)--(1.8,2.5)node[above]{$\vect n$};\coordinate(P)at(2.6,.7);\fill(P)circle(2pt)node[right]{$P$};\draw[dashed](0,0)--(P);\draw[->,DeepBlue](1.9,.4)arc(-10:65:.8 and .35)node[right]{$\theta$};
+\end{tikzpicture}
+\figcap{质量元到任意轴的垂直距离（题设几何）}\label{advA1:fig:quality-axis-inertia-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[->,Gold,very thick](0,0)--(1.8,2.5)node[above]{$\vect n$};\coordinate(P)at(2.6,.7);\fill(P)circle(2pt)node[right]{$P$};\draw[dashed](0,0)--(P);\draw[->,DeepBlue](1.9,.4)arc(-10:65:.8 and .35)node[right]{$\theta$};\draw[dashed](P)--(1.219,1.694)node[midway,above]{$r_\perp$};\node at(3,-1.6){沿轴与垂轴分量分别处理};
+\end{tikzpicture}
+\figcap{质量元到任意轴的垂直距离（解答辅助图）}\label{advA1:fig:quality-axis-inertia-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-axis-inertia-a}中，任意轴方向为单位矢量 $\vect n$，质量元到轴的距离是 $r_\perp$；把 $r_\perp^2=r^2-(\vect n\cdot\vect r)^2$ 积分后才得到惯量的二次型。
+
 令 $\vect\omega=\omega\vect n$，将式\eqref{advA1:eq:inertia-tensor}中的动能与定义 $T=I_{\vect n}\omega^2/2$ 比较，
 \[
  \frac12I_{\vect n}\omega^2
@@ -400,9 +512,24 @@ $\Pi_i=I_i\omega_i$，则轨道是
 
 \begin{advexamplebox}{无章动条件与小章动频率}\label{advA1:ex:nutation}
 对式\eqref{advA1:eq:top-effective}的一般对称陀螺，求恒定 $\theta=\theta_0$ 的条件，并求其附近小章动的频率。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,2.5)circle(2pt)node[above]{$O$};\draw[dashed](0,2.5)--(0,-1);\coordinate(P)at(1.5,.1);\draw[thick](0,2.5)--(P);\fill(P)circle(3pt)node[right]{$G$};\draw(0,1.6)arc(-90:-58:.9)node[midway,below right]{$\theta$};\draw[->,Gold](.5,1.7)--(1.2,.58)node[right]{对称轴};\node at(3,-1){$\theta=\theta_0+\delta\theta$};
+\end{tikzpicture}
+\figcap{对称陀螺的轴倾角与小偏离（题设几何）}\label{advA1:fig:quality-nutation-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
-无章动要求
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,2.5)circle(2pt)node[above]{$O$};\draw[dashed](0,2.5)--(0,-1);\coordinate(P)at(1.5,.1);\draw[thick](0,2.5)--(P);\fill(P)circle(3pt)node[right]{$G$};\draw(0,1.6)arc(-90:-58:.9)node[midway,below right]{$\theta$};\draw[->,Gold](.5,1.7)--(1.2,.58)node[right]{对称轴};\node at(3,-1){$\theta=\theta_0+\delta\theta$};\begin{scope}[xshift=4cm,yshift=.3cm]\draw[->](0,0)--(3,0)node[right]{$\theta$};\draw[->](0,0)--(0,2)node[above]{$V_{\rm eff}$};\draw[DeepBlue,domain=.3:2.7,samples=40]plot(\x,{.8*(\x-1.5)^2+.3});\draw[dashed](1.5,0)--(1.5,.3);\node[below]at(1.5,0){$\theta_0$};\node at(1.5,-.9){稳定驻点的局部示意};\end{scope}
+\end{tikzpicture}
+\figcap{对称陀螺的轴倾角与小偏离（解答辅助图）}\label{advA1:fig:quality-nutation-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-nutation-a}中，恒定倾角 $\theta_0$ 是有效势的一处驻点；小偏离 $\delta\theta$ 的恢复系数来自该处二阶导数，必须同时检查驻点是否稳定。
+
+以下在球坐标无奇异区域 $0<\theta_0<\pi$ 内讨论。轴向姿态 $\theta_0=0,\pi$ 不能直接代入含 $\sin\theta$ 分母的式，应在横向倾斜坐标中另行线性化。无章动要求
 \[
  V_{\rm eff}'(\theta_0)=0,
  \qquad E=V_{\rm eff}(\theta_0)+\frac{J_\psi^2}{2I_0}.
@@ -422,16 +549,24 @@ $\Pi_i=I_i\omega_i$，则轨道是
 \[
  \boxed{\omega_{\rm nut}^2=\frac{V_{\rm eff}''(\theta_0)}I}.
 \]
-稳定无章动还要求 $V_{\rm eff}''(\theta_0)>0$；若小于零，则微小扰动指数增长。
+具有非零线性回复频率的稳定无章动要求 $V_{\rm eff}''(\theta_0)>0$；若小于零，则微小扰动指数增长。若等于零，线性化不能判定稳定性，须继续检查有效势的高阶项；正四次项仍可给出稳定平衡。
 \end{advsolution}
 
 \begin{advexamplebox}{始终保持底边水平的等边三角板}\label{advA1:ex:triangle-top}
-均匀等边三角形薄板 $OAB$ 的质量为 $m$、边长为 $l$，绕过顶点 $O$ 的竖直轴定点转动，且 $AB$ 始终水平。
+均匀等边三角形薄板 $OAB$ 的质量为 $m$、边长为 $l$，以顶点 $O$ 为固定支点运动，允许绕过 $O$ 的竖直轴进动，并约束 $AB$ 始终水平。
 (1) 当板以进动角速度 $\omega$ 作无章动运动时，求板中线 $OG$ 与竖直向下方向的夹角 $\phi$；
 (2) 在不施加额外竖直轴力矩的情况下，求 $\phi$ 发生微小章动的周期。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate(O)at(0,2.5);\coordinate(A)at(-.5,0);\coordinate(B)at(3,0);\draw[thick,fill=PaleBlue](O)--(A)--(B)--cycle;\draw[dashed](0,2.5)--(0,-.5);\coordinate(G)at(.833,.833);\draw[DeepBlue](O)--(G);\fill(G)circle(2pt)node[right]{$G$};\foreach\p in{O,A,B}{\node[above left]at(\p){$\p$};}\node[align=center]at(1.5,-.7){$AB=l$ 且始终水平\\三维姿态的斜投影};\draw(0,1.8)arc(-90:-63.435:.7);\node at(.35,1.55){$\phi$};
+\end{tikzpicture}
+\figcap{等边三角板的支点、中线与水平底边（题设几何）}\label{advA1:fig:quality-triangle-top-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \AdvHideHeadingtrue
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-triangle-top-q}中，$O$ 是固定支点，$G$ 在中线上，底边 $AB$ 保持水平。进动与章动均需使用板相对 $O$ 的惯量，且微章动时应固定竖直轴角动量。
+
 \noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
 \begin{center}\begin{minipage}{\linewidth}\centering
 \begin{tikzpicture}[scale=.92]
@@ -482,7 +617,7 @@ $\Pi_i=I_i\omega_i$，则轨道是
  \boxed{\cos\phi=\frac{mga}{(I_2-I_3)\omega^2}
  =\frac{8g}{3\sqrt3\,l\omega^2}}.
 \]
-它要求 $\omega^2\ge8g/(3\sqrt3\,l)$。
+非竖直支要求 $\omega^2>8g/(3\sqrt3\,l)$；等号时 $\phi=0$，该支与竖直支重合，不能再视为非竖直定常解。
 
 (2) 章动时 $\alpha$ 不再保持严格匀速，守恒的是
 $p_\alpha=A(\phi)\dot\alpha=A(\phi_0)\omega$。罗斯函数为

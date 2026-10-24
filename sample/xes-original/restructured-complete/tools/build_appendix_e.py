@@ -280,7 +280,8 @@ def build() -> dict:
         parts.append(SUPPLEMENTS.read_text(encoding="utf-8"))
 
     APPENDIX.parent.mkdir(parents=True, exist_ok=True)
-    APPENDIX.write_text(normalize_visible_eponyms("\n\n".join(parts)) + "\n", encoding="utf-8")
+    from quality_revision_appendix import apply_revision
+    APPENDIX.write_text(apply_revision(normalize_visible_eponyms("\n\n".join(parts)) + "\n"), encoding="utf-8")
     LEDGER.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"appendix E: {len(report['included'])} unique candidates")
     return report

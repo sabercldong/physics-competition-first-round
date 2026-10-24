@@ -1,0 +1,153 @@
+{
+  "scope": "Independent spot checks of specified revised formulas; not certification of every derivation",
+  "checks": [
+    {
+      "check": "linear drag ODE",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "linear drag initial speed",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "quadratic drag ODE",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "vertical drag ODE",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "vertical drag initial acceleration",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "disk potential gradient",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "cube unit-current port 0-1",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "cube unit-current port 0-2",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "cube unit-current port 0-6",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "three-rail Schur p",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "three-rail Schur q",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "three-rail positive fixed point p",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "three-rail positive fixed point q",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "atmospheric capacitance F",
+      "passed": true,
+      "computed": 0.9121950214583822,
+      "expected": 0.912,
+      "tolerance": 0.001
+    },
+    {
+      "check": "atmospheric resistance ohm",
+      "passed": true,
+      "computed": 291.1939093455376,
+      "expected": 291,
+      "tolerance": 1
+    },
+    {
+      "check": "dielectric relaxation time s",
+      "passed": true,
+      "computed": 265.62563438400286,
+      "expected": 265.625634384,
+      "tolerance": 1e-08
+    },
+    {
+      "check": "copper electrolysis grams",
+      "passed": true,
+      "computed": 0.5080772271067143,
+      "expected": 0.508,
+      "tolerance": 0.001
+    },
+    {
+      "check": "star three-phase power W",
+      "passed": true,
+      "computed": 4813.333333333333,
+      "expected": 4810,
+      "tolerance": 10
+    },
+    {
+      "check": "delta three-phase power W",
+      "passed": true,
+      "computed": 14440.0,
+      "expected": 14440,
+      "tolerance": 10
+    },
+    {
+      "check": "laser threshold gain inverse m",
+      "passed": true,
+      "computed": 0.1956008594297106,
+      "expected": 0.196,
+      "tolerance": 0.001
+    },
+    {
+      "check": "capacitor ripple peak-to-peak V",
+      "passed": true,
+      "computed": 0.19999999999999998,
+      "expected": 0.2,
+      "tolerance": 1e-12
+    },
+    {
+      "check": "thick-eyepiece pupil magnification",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "thick-eyepiece pupil conjugacy",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "thick-eyepiece afocal condition",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "thick-eyepiece angular magnification",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "check": "uniaxial crystal retains both polarization roots",
+      "passed": true,
+      "residual": "0"
+    }
+  ],
+  "passed": 26,
+  "total": 26
+}

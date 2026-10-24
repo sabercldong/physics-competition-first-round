@@ -1,3 +1,5 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,9 +8,11 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{热力学第一定律}
+\input{chapters/quality-20261023/thermal/ch15.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-ninth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/twenty-ninth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/twenty-ninth-section/}{../../../sample/xes-original/twenty-ninth-section/assets/}}
 
 % Diagrams for Lesson 20: the first law of thermodynamics.
 
@@ -1008,10 +1012,11 @@ $Q<0$，系统净放热。后文第一定律中的 $Q^{\rm in}$ 也表示这一�
 较热气体受到扰动向上运动，到达高处后密度仍小于周围气体，它将继续受到向上的浮力，并把所携带的
 热量送往高处。对流一旦形成，流体的整体运动会迅速交换各区域的能量，趋向减小温差。
 
-\par\noindent\begin{minipage}{\linewidth}
+\begin{figure}[!t]
+\centering
 \stellarInteriorRevision
 \diagramcaption{太阳与红巨星的内部剖面及表面对流细节。箭头表示对流区物质的循环运动；两星大小与内部层厚不按同一比例。}\label{ch15:fig:s29-20-3}
-\end{minipage}\par\medskip
+\end{figure}
 图~\ref{ch15:fig:s29-20-3}左侧太阳的核心产生能量，能量先穿过辐射区，再经外层对流区向外传递；右侧红巨星具有扩展的
 对流包层和相对紧凑的内部区域。下方局部图中，亮区对应较热物质上涌，暗边界对应较冷物质下沉。
 这说明对流不仅发生在地球空气中，也能成为恒星内部的重要输能方式；不能把表面纹理直接当作内部结构。
@@ -1056,9 +1061,13 @@ $Q<0$，系统净放热。后文第一定律中的 $Q^{\rm in}$ 也表示这一�
 \Needspace{180pt}
 \begin{origexamplebox}{复合平板中的界面温度}\label{ch15:ex:teaching-conduction}
 面积为 $A$ 的两块平板紧贴串联，厚度为 $L_1,L_2$，热导率为 $\lambda_1,\lambda_2$。第一块外侧恒为 $T_h$，第二块外侧恒为 $T_c<T_h$。忽略接触热阻、侧面散热和内部热源，求稳态热流率及两板接触面的温度 $T_i$。
+
+\ThQConduction
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThAConduction
+
 取由热端指向冷端为正，两块板满足
 \[
  \dot Q=\frac{T_h-T_i}{\mathcal R_1}
@@ -1084,9 +1093,13 @@ $Q<0$，系统净放热。后文第一定律中的 $Q^{\rm in}$ 也表示这一�
 \Needspace{180pt}
 \begin{origexamplebox}{电加热物体的辐射平衡与回稳时间}\label{ch15:ex:teaching-radiation}
 热容量为常数 $C$ 的物体内部温度均匀、表面积为 $A$，被温度 $T_0$ 的巨大环境包围。恒定电功率 $P$ 全部转化为物体内能，只通过上述灰体辐射模型交换热量。求平衡温度，并求偏离平衡很小时温差的衰减时间常数。
+
+\ThQRadiation
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThARadiation
+
 以物体为系统，功率形式的第一定律为
 \[
  C\frac{\dd T}{\dd t}=P-\epsilon\sigma A(T^4-T_0^4).
@@ -1326,9 +1339,13 @@ $\kappa$ 是路径参数，不能一看到幂律便将它写成气体的 $\gamma
 \Needspace{180pt}
 \begin{origexamplebox}{温度下降的膨胀是否一定吸热}\label{ch15:ex:teaching-polytropic}
 一摩尔单原子理想气体从 $(p_1,V_1,T_1)$ 沿准静态路径 $pV^2=\mathrm{const}$ 膨胀至 $V_2=2V_1$。只做体积功，求末温、对外功、内能变化和热量，并解释热量的符号。
+
+\ThQPolytropic
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThAPolytropic
+
 由路径和状态方程，$TV=\mathrm{const}$，所以 $T_2=T_1/2$。实际压力曲线给出
 \[
  W^{\rm out}=\int_{V_1}^{2V_1}\frac{p_1V_1^2}{V^2}\dd V
@@ -1416,6 +1433,8 @@ $\kappa$ 是路径参数，不能一看到幂律便将它写成气体的 $\gamma
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
+\ThACycles
+
 记
 \begin{equation*}
   \Delta P=P_2-P_1,\qquad \Delta V=V_2-V_1,
@@ -1498,6 +1517,8 @@ $P_2/P_1$、$V_2/V_1$ 和 $c_v/R$。若把循环关于原点相似放大，使�
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
+\ThAHeatCylinder
+
 三种循环都用绝热段连接吸热、放热过程。绝热段本身 $Q=0$，关键是分别计算另外两段的吸、放热量。
 
 在图\ref{ch15:fig:three-standard-cycles}中，卡诺循环的 $1\to2$ 为高温等温膨胀；奥托与布雷顿循环的
@@ -1561,6 +1582,8 @@ $T_3-T_2=b(T_4-T_1)$。约去热量比中的 $nc_p$，得到布雷顿循环效�
   \frac{P}{P_0}+\frac{V}{V_0}=1.
 \end{equation*}
 设气体的定容摩尔热容为 $c_v$，求整个过程中摩尔过程热容随体积的变化关系。
+
+\ThQVariableCapacity
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -1616,9 +1639,13 @@ $z_*<z<1$ 时 $C>0$。膨胀经过负热容区时仍吸热，却因对外做功�
 \Needspace{16\baselineskip}\begin{origexamplebox}{【恒定的热容】}\label{ch15:ex:s29-20-4}
 小明猜想，可能存在一些过程使过程热容保持不变，例如常见的等容、等压、等温和绝热过程。但逐一枚举
 容易遗漏。能否得到“过程热容为常量”的统一过程方程？
+
+\ThQConstantCapacity
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
+\ThAConstantCapacity
+
 设一摩尔、定组成理想气体沿准静态过程的摩尔过程热容为有限常量 $C$，并取常数 $c_v,c_p$。由定义与第一定律
 \begin{equation*}
   C\dd T=c_v\dd T+P\dd V,
@@ -1675,6 +1702,8 @@ $PV^k=\mathrm{const}$ 的一整族过程；不能把“无穷大”当作与 $c_
 \Needspace{16\baselineskip}\begin{origexamplebox}{【等温大气】}\label{ch15:ex:s29-20-5}
 小明研究一个简化的大气模型。假设大气经过长时间热接触后处处具有相同温度 $T$，气体平均摩尔质量
 为 $\mu$。考虑气体密度随压强改变，求压强和分子数密度随高度 $h$ 的变化关系。
+
+\ThQAtmosphere
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -1718,6 +1747,8 @@ $PV^k=\mathrm{const}$ 的一整族过程；不能把“无穷大”当作与 $c_
 小明把一根内半径为 $R$ 的玻璃管插入水面。假设水完全润湿玻璃，表面张力系数为 $\sigma$，水的密度
 为 $\rho$。水面会上升多高？小明认为大树吸水、蒸腾也是同样机制，那么仅靠毛细作用给
 $\SI{10}{m}$ 高处供水，需要多细的管半径？
+
+\ThQCapillary
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -1763,6 +1794,8 @@ $\SI{10}{m}$ 高处供水，需要多细的管半径？
 
 （2）若平衡时液膜的质量面密度为 $\sigma_0$，忽略空气质量，把空气看成双原子理想气体。在小的径向
 扰动下，设气泡仍能维持球形，判断平衡是否稳定。
+
+\ThQBubble
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -1835,9 +1868,13 @@ $(p_R-p_0)\dd V=\sigma\dd A_s$，由此再次得到因子4。
 $212\,{}^\circ\mathrm F$。
 
 （1）导出华氏温度与摄氏温度之间的换算关系；（2）给出绝对零度的华氏温度。
+
+\ThQFahrenheit
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
+\ThAFahrenheit
+
 摄氏温标中冰点与沸点相差 $100$ 度，华氏温标中相差 $212-32=180$ 度，因此同一温差满足
 \begin{equation*}
   \Delta t_F=\frac{180}{100}\Delta t_C=\frac95\Delta t_C.
@@ -1860,7 +1897,9 @@ $212\,{}^\circ\mathrm F$。
 \end{xesolution}
 
 
-\Needspace{16\baselineskip}\begin{origexamplebox}{【循环过程】}\label{ch15:ex:s29-20-9}
+% FinalReviewQuestionSplit20261024 【循环过程】
+\tcbset{breakable/.default=true}
+\begin{origexamplebox}{【循环过程】}\label{ch15:ex:s29-20-9}
 如图所示，一定量单原子理想气体从初态 $a(P_1,V_1)$ 出发，先经等容过程到状态 $b$，再经等压过程
 到状态 $c$，最后经等温过程回到 $a$，完成一个循环。图中 $P_b=P_c=P_1/4$。已知一摩尔气体温度
 改变 $\SI{1}{K}$ 时内能改变 $c_v=3R/2$。
@@ -1873,7 +1912,8 @@ $212\,{}^\circ\mathrm F$。
 \diagramcaption{$a\to b\to c\to a$ 循环。箭头给出过程方向，$c\to a$ 为等温压缩。}\label{ch15:fig:s29-20-9}
 \end{minipage}\par\medskip
 图~\ref{ch15:fig:s29-20-9}中 $a,c$ 在同一条双曲线上，而 $b,c$ 具有相同压强。
-\end{origexamplebox}\par\nopagebreak[4]
+\end{origexamplebox}
+\tcbset{breakable/.default=false}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
 过程 $c\to a$ 等温，所以 $P_cV_c=P_aV_a$。由 $P_c=P_1/4$ 得

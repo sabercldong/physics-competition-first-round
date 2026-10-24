@@ -1055,7 +1055,8 @@ def generate() -> dict:
                 parts.append(_qualify_existing_labels(new_text, number))
                 source_units.append(name)
         target = GENERATED / "chapters" / f"ch{number:02d}.tex"
-        target.write_text(apply_chapter_layout(number, normalize_visible_eponyms("\n".join(parts))), encoding="utf-8")
+        from quality_revision_20261023 import apply_quality_revision
+        target.write_text(apply_quality_revision(number, apply_chapter_layout(number, normalize_visible_eponyms("\n".join(parts)))), encoding="utf-8")
         if 27 <= number <= 30:
             from optics_teaching_layout import update_source_maps
             update_source_maps(number, source_number_maps)

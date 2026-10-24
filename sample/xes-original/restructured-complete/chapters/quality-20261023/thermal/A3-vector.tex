@@ -1,0 +1,88 @@
+% Editable mathematical diagrams: index structure, orthogonal directions and boundaries.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\AQEpsilon}{\ThermalFigure{
+ \draw[thick](0,0)grid[step=.7](2.1,2.1);\foreach\x/\y in {.35/1.75,1.05/1.05,1.75/.35}{\node at(\x,\y){$1$};}
+ \node[left]at(0,1.75){$[1]_r$};\node[left]at(0,1.05){$[2]_r$};\node[left]at(0,.35){$[3]_r$};
+ \node[right,align=left]at(3,1.2){从单位矩阵依次选行 $i,j,k$\\未标格的元素为零};
+}{每行是一个标准基矢的分量，指标重复与行重复相对应。}{advA3:quality:epsilon-q}}
+\newcommand{\AAEpsilon}{\ThermalFigure{
+ \node[draw,align=center](A)at(1,1){行序 $1,2,3$\\正定向};\node[draw,align=center](B)at(6,1){行序 $2,1,3$\\交换两行};
+ \draw[<->,thick](A)--node[above]{一次换位}(B);\node[below]at(3.5,-.5){行列式 $+1\longleftrightarrow-1$；两行重复时为零};
+}{定向改变对应全反对称符号；缩并后的 Kronecker 符号表达相同的指标配对。}{advA3:quality:epsilon-a}
+图~\ref{advA3:quality:epsilon-a}中一次换位翻转定向，循环置换包含两次换位而保号。缩并 $\varepsilon_{ijk}\varepsilon_{imn}$ 时，若 $j=k$ 两边均为零；若 $j\ne k$，第一个因子只允许互补的一个 $i$，第二个因子再检验 $(m,n)$ 是同序还是反序，从而得到两个 $\delta$ 乘积之差。
+}
+\newcommand{\AQJacobi}{\ThermalFigure{
+ \foreach\x/\y/\lab in {3/0/u,1/2.5/v,-1.5/1.2/w}{\draw[->,thick](0,0)--(\x,\y)node[above]{$\vect\lab$};}\fill(0,0)circle(2pt)node[below]{$O$};
+ \node[right]at(4,1.5){同起点矢量的投影示意，不预设三矢量共面};
+}{三个矢量在双重叉积中循环交换，括号的次序须保留。}{advA3:quality:jacobi-q}}
+\newcommand{\AAJacobi}{\ThermalFigure{
+ \node[draw,align=left]at(4,2){沿 $\vect u$：$-(\vect v\cdot\vect w)\vect u+(\vect w\cdot\vect v)\vect u$};
+ \node[draw,align=left]at(4,.7){沿 $\vect v$：$(\vect u\cdot\vect w)\vect v-(\vect w\cdot\vect u)\vect v$};
+ \node[draw,align=left]at(4,-.6){沿 $\vect w$：$-(\vect u\cdot\vect v)\vect w+(\vect v\cdot\vect u)\vect w$};
+}{展开后三个方向的系数分别成对抵消，不需要三个矢量线性无关。}{advA3:quality:jacobi-a}
+图~\ref{advA3:quality:jacobi-a}把六项按同一输出矢量分组。每组的两个标量内积相等、符号相反，故逐组为零；证明不依赖三矢量能否组成一组基。这也说明应使用双重叉积恒等式，不能将叉积误当作满足结合律的乘法。
+}
+\newcommand{\AQDerivations}{\ThermalFigure{
+ \node[draw](W)at(0,1){$\vect w$};\node[draw](V)at(4,2){$D_{\vect v}\vect w$};\node[draw](U)at(4,0){$D_{\vect u}\vect w$};
+ \draw[->](W)--node[above]{$D_{\vect v}$}(V);\draw[->](W)--node[below]{$D_{\vect u}$}(U);
+ \node[right]at(7,1){继续复合并比较两种次序};
+}{算子复合中右侧算子先作用；两条路径的差是对易子。}{advA3:quality:derivation-q}}
+\newcommand{\AADerivations}{\ThermalFigure{
+ \node[draw,align=center](A)at(1,1){$D_{\vect u}D_{\vect v}\vect w$\\$-D_{\vect v}D_{\vect u}\vect w$};
+ \node[draw](B)at(8,1){$(\vect u\times\vect v)\times\vect w$};\draw[->,thick](A)--node[above]{雅可比重排}(B);
+ \node[below]at(4.5,-.4){同一等式对每个输入 $\vect w$ 成立，才得到算子恒等式};
+}{把对易子先落实到任意测试矢量，避免将形式符号当作交换乘法。}{advA3:quality:derivation-a}
+图~\ref{advA3:quality:derivation-a}中的右端是一个新的叉积算子对 $\vect w$ 的作用。由于 $\vect w$ 任意，才可去掉测试输入得到算子等式。导子性质则将 $D_{\vect u}$ 分别作用于楔积的两个因子，输出仍为同一矢量空间中的矢量。
+}
+\newcommand{\AQSensors}{\ThermalFigure{
+ \draw[thick](0,0)grid[step=.8](2.4,2.4);\fill[DeepBlue!12](0,0)--(2.4,2.4)--(2.4,0)--cycle;
+ \node[right,align=left]at(3.2,1.6){二阶例：$T_{ij}=T_{ji}$\\一般 $n$ 阶：所有指标置换均对称};
+}{完全对称性把指标顺序不同、出现次数相同的分量识别为同一个自由参数。}{advA3:quality:symmetric-q}}
+\newcommand{\AASensors}{\ThermalFigure{
+ \foreach\x in {0,.7,2.2,3.7,4.4}{\fill[DeepBlue](\x,0)circle(3pt);}\draw[very thick](1.4,-.5)--(1.4,.5) (2.9,-.5)--(2.9,.5);
+ \node[below]at(.35,-.7){$r_1=2$};\node[below]at(2.2,-.7){$r_2=1$};\node[below]at(4.05,-.7){$r_3=2$};
+ \node[above]at(2.2,1.1){五颗星、两块隔板：五阶三维的一种分量类型};
+}{允许相邻隔板，表示某类指标可以出现零次；总位置数为 $n+m-1$。}{advA3:quality:symmetric-a}
+图~\ref{advA3:quality:symmetric-a}中的点表示指标出现次数而不是不同粒子。完全对称性使每一组计数 $(r_1,\ldots,r_m)$ 只对应一个独立分量，因此从 $n+m-1$ 个位置选 $m-1$ 个放隔板即可。若张量只对部分指标对称，这一计数不再适用。
+}
+\newcommand{\AQExterior}{\ThermalFigure{
+ \foreach\x/\y/\lab in {3/0/1,0/2.5/2,-1.8/-1.2/3}{\draw[->,thick](0,0)--(\x,\y)node[right]{$\vect e_{\lab}$};}
+ \node[right]at(4,1.5){各阶基由不同基矢的楔积构成};
+}{外代数同时含零阶标量、向量及更高阶有向面积与体积元。}{advA3:quality:exterior-q}}
+\newcommand{\AAExterior}{\ThermalFigure{
+ \foreach\x/\w/\lab in {0/1/{1},1/3/{e_1,e_2,e_3},4/3/{e_1\wedge e_2,e_1\wedge e_3,e_2\wedge e_3},7/1/{e_1\wedge e_2\wedge e_3}}{\draw[thick](\x,0)rectangle(\x+\w,1);}
+ \node at(.5,.5){$1$};\node at(2.5,.5){$\Lambda^1$：3};\node at(5.5,.5){$\Lambda^2$：3};\node at(7.5,.5){1};
+ \node[below]at(4,-.6){三维：$1+3+3+1$；每个基矢可选或不选};
+}{每个递增指标子集唯一对应一个楔积基元，重复指标则为零。}{advA3:quality:exterior-a}
+图~\ref{advA3:quality:exterior-a}按阶数分组计数，最左的一份必须包括空子集对应的标量单位。每个基矢独立有“选、不选”两种选择，给出 $2^n$ 个子集；固定选 $l$ 个时才得到 $\binom nl$，两种计数相互核验。
+}
+\newcommand{\AQHodge}{\ThermalFigure{
+ \fill[DeepBlue!10](-2,-.5)--(1,-.5)--(2,.5)--(-1,.5)--cycle;\draw[thick](-2,-.5)--(1,-.5)--(2,.5)--(-1,.5)--cycle;
+ \draw[->,thick](0,0)--(0,2.6)node[right]{$\vect v$};\draw[->,DeepBlue](0,0)--(2,2)node[right]{$\vect u$};\node[below]at(0,-1){$\star\vect v$ 所在有向平面};
+}{三维欧氏空间中的矢量与有向面积对偶，采用固定正定向。}{advA3:quality:hodge-q}}
+\newcommand{\AAHodge}{\ThermalFigure{
+ \draw[thick](-2,0)--(3,0);\node[below]at(-1,-.2){$\star\vect v$ 的平面};\draw[->](0,0)--(0,2.5)node[left]{$\vect v$};
+ \draw[->,DeepBlue,thick](0,0)--(2,2)node[right]{$\vect u$};\draw[dashed](2,2)--(0,2);\draw[->,thick](0,0)--(0,2)node[left]{$u_\parallel$};
+}{楔积产生有向体积，只保留 $\vect u$ 沿平面法向的分量。}{advA3:quality:hodge-a}
+图~\ref{advA3:quality:hodge-a}中切向分量与面积元线性相关，其楔积为零，法向分量则给出 $|u_\parallel||v|$ 的有向体积。最后的霍奇对偶将三阶体积元变成标量，结果正是内积。若改变空间定向，两次对偶的符号须一起改变，不能只更改一次。
+}
+\newcommand{\AQRadialHessian}{\ThermalFigure{
+ \foreach\r in {.7,1.3,2}{\draw[TextGray](0,0)circle(\r);}\fill(0,0)circle(2pt)node[below]{$O$};\fill[DeepBlue](1.414,1.414)circle(2pt)node[right]{$P$};\draw[->,thick](0,0)--(1.414,1.414)node[midway,above left]{$\vect r$};
+ \node[right]at(3.5,1){$f(r)$ 的等值面为同心球面};
+}{径向函数只通过 $r$ 依赖各坐标，导数仍须按坐标分量逐一求取。}{advA3:quality:radial-hessian-q}}
+\newcommand{\AARadialHessian}{\ThermalFigure{
+ \draw[thick](0,0)circle(2);\fill(2,0)circle(2pt)node[below right]{$P$};\draw[->,DeepBlue,thick](2,0)--(3.3,0)node[right]{径向};\draw[->,thick](2,0)--(2,1.4)node[right]{切向};\draw[dashed](0,0)--(2,0);
+ \node[right,align=left]at(4.8,1.5){径向本征值 $n(n-1)r^{n-2}$\\两个切向本征值 $nr^{n-2}$};
+}{Hessian 在径向与两切向分量上分别作用，其迹由三个本征值相加。}{advA3:quality:radial-hessian-a}
+图~\ref{advA3:quality:radial-hessian-a}将局部增量分为沿 $\vect r$ 与垂直 $\vect r$ 的方向。由 $\partial_i r=x_i/r$ 再求一次导数可得 $\partial_i\partial_jr^n=nr^{n-2}\delta_{ij}+n(n-2)r^{n-4}x_ix_j$；切向增量与 $\vect r$ 点乘为零，直接读出两个本征值。所有这些点态表达式都排除原点的分布项。
+}
+\newcommand{\AQGreen}{\ThermalFigure{
+ \draw[thick,fill=DeepBlue!7](0,0)ellipse(2.5 and 1.5);\node at(0,0){$V:\ \phi,\psi$};\fill(2.5,0)circle(2pt);\draw[->,thick](2.5,0)--(3.7,0)node[right]{$\vect n$};\node[above]at(0,2){分片光滑边界 $\partial V$};
+}{边界法向取向外，曲面元为 $\dd\vect S=\vect n\dd S$。}{advA3:quality:green-q}}
+\newcommand{\AAGreen}{\ThermalFigure{
+ \draw[fill=DeepBlue!7,thick](-3,-1.3)rectangle(3,1.3);\draw[thick](0,-1.3)--(0,1.3);\node at(-1.5,.6){$V_1$};\node at(1.5,.6){$V_2$};
+ \draw[->,DeepBlue,thick](0,0)--(1,0)node[below]{$\vect n_1$};\draw[->,thick](0,0)--(-1,0)node[below]{$\vect n_2$};
+ \draw[->](3,.7)--(4.2,.7)node[right]{外边界法向};
+}{相邻子体积的内部通量相消，只有整个区域的外边界保留下来。}{advA3:quality:green-a}
+图~\ref{advA3:quality:green-a}中内部面的两法向相反，同一光滑通量 $\phi\nabla\psi$ 的贡献因而抵消。第一恒等式来自这一通量的散度；交换 $\phi,\psi$ 后相减，两个相同的梯度内积也抵消，从而得到第二恒等式。场若含奇点，应先挖去奇点小邻域，并另外保留其内边界通量。
+}

@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{量子物理现象}
 
 \subsection{真空光场的模式与黑体辐射}
@@ -21,12 +22,16 @@
  \vect e_{\vect k,r}\e^{\ii\vect k\cdot\vect r},
 \qquad r=1,2.
 \]
-利用 Parseval 公式，电磁场 Hamilton 量成为独立谐振子之和
+经典场为实场；选取 $\vect e_{-\vect k,r}=\vect e_{\vect k,r}$ 后，
+复系数满足 $q_{-\vect k,r}=q_{\vect k,r}^*$，不能把它们当作独立复坐标。
+对每一对 $\pm\vect k$ 改用正弦、余弦两个实模式，并按 Parseval 公式归一化，
+可把 Hamilton 量写成独立实谐振子之和
 \[
- H=\sum_{\vect k,r}
- \left(\frac{|p_{\vect k,r}|^2}{2m}
- +\frac{m\omega_{\vect k}^2|q_{\vect k,r}|^2}{2}\right).
+ H=\sum_{\lambda}
+ \left(\frac{P_{\lambda}^2}{2m}
+ +\frac{m\omega_{\lambda}^2Q_{\lambda}^2}{2}\right).
 \]
+指标 $\lambda$ 枚举独立实模式与偏振；每对波矢的两个实模式对应全波矢球中的两点，态密度无须再额外乘二。
 半径为 $k$ 的波矢球计数并乘两种偏振，单位体积角频率态密度为
 \[
  \boxed{g(\omega)=\frac{\omega^2}{\pi^2c^3}}.
@@ -50,7 +55,7 @@ $E_n=n\hbar\omega$（真空零点项不影响热谱），配分函数与平均�
 \]
 低频极限回到 Rayleigh--Jeans 公式，高频呈指数衰减。
 
-用
+用（$\operatorname{Re}s>1$）
 \[
  \int_0^\infty\frac{x^{s-1}}{\e^x-1}\,\dd x
  =\Gamma(s)\zeta(s)
@@ -84,15 +89,25 @@ $t/(\e^t-1)=\sum B_nt^n/n!$
 \end{advtheorem}
 
 \noindent\textit{证明。}
-右端按 $\pm n$ 成对求和后局部一致收敛，并与 $\pi\cot\pi z$ 具有相同的一阶极点和留数。
-令两者之差为 $h(z)$，则 $h$ 是整函数且周期为 $1$。
-在矩形
-$[-N-\tfrac12,N+\tfrac12]\times[-N,N]$ 上，
-$\cot\pi z$ 在远离整数极点处有统一界；成对级数的尾项为 $O(N^{-1})$。
-由最大模原理，令 $N\to\infty$ 得 $h$ 为有界整函数，故为常数。
-取 $z\to\ii\infty$ 或比较 $z=1/2$ 可知常数为零。
+固定 $z\notin\mathbb Z$，取边界 $C_N$ 为
+$|\operatorname{Re}w|,|\operatorname{Im}w|\le N+1/2$ 的正向方框。
+在其边界上 $\cot\pi w$ 一致有界，且对固定 $z$，
+$|w^2-z^2|$ 为 $N^2$ 量级；因此
+\[
+ \oint_{C_N}\frac{\pi\cot\pi w}{w^2-z^2}\,\dd w=O(N^{-1})\longrightarrow0.
+\]
+框内整数 $k=-N,\ldots,N$ 处的留数为 $1/(k^2-z^2)$，
+而 $w=z,-z$ 两处的留数之和为 $\pi\cot(\pi z)/z$。
+留数定理给出
+\[
+ 0=\frac{\pi\cot\pi z}{z}
+   +\lim_{N\to\infty}\sum_{k=-N}^{N}\frac1{k^2-z^2}.
+\]
+把 $k=0$ 项分出、其余按正负整数配对并乘以 $z$，即得所需展开。
+配对项 $2z/(z^2-n^2)$ 在避开整数的任意固定紧集上一致为 $O(n^{-2})$，
+故级数局部一致收敛。这里的固定紧集估计不能直接用于随 $N$ 扩大的边界。
 
-再写
+在 $|z|<1$ 内再作幂级数展开：
 \[
  \pi z\cot\pi z=1-2\sum_{s=1}^\infty\zeta(2s)z^{2s},
 \]
@@ -107,15 +122,38 @@ $\zeta(2)=\pi^2/6$。
 
 \begin{advexamplebox}{充满热辐射的弹性气球}\label{advA6:ex:radiation-balloon}
 质量为 $m$ 的球形薄膜包住温度为 $T$ 的热辐射，外界为真空且无泄漏。
-薄膜弹性等效于表面张力系数为 $\alpha$ 的肥皂泡。
+薄膜弹性等效于表面张力系数为常量 $\alpha$ 的肥皂泡；忽略膜的内能、热容量及辐射对径向运动的惯性贡献。
+振动比膜与辐射之间的换热快，但比光跨越球内的时间慢，使球内辐射可保持近似均匀。
 
 \begin{enumerate}
 \item 求平衡半径；
 \item 若薄膜作各向同性快速径向小振动，辐射与薄膜来不及交换热量，求周期；
 \item 判断这种热平衡在与热库接触时是否稳定。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[very thick] (0,0) circle (1.2);\foreach \a in {0,60,120,180,240,300}{\draw[DeepBlue,->] (\a:.5)--(\a:1.05);}\draw[->] (0,0)--(1.2,0) node[midway,below]{$R$};\node[above] at (0,1.6){膜质量 $m$，肥皂泡张力系数 $\alpha$};\node[below] at (0,-1.5){内部热辐射 $T$，外界真空};
+
+\end{tikzpicture}
+\figcap{题图：辐射压作用于球形薄膜，肥皂泡模型包含内外两个表面。}\label{advA6:quality:A6-quantum-phenomena:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[very thick] (0,0) circle (1.2);\foreach \a in {0,60,120,180,240,300}{\draw[DeepBlue,->] (\a:.5)--(\a:1.05);}\draw[->] (0,0)--(1.2,0) node[midway,below]{$R$};\node[above] at (0,1.6){膜质量 $m$，肥皂泡张力系数 $\alpha$};\node[below] at (0,-1.5){内部热辐射 $T$，外界真空};
+
+\end{tikzpicture}
+\figcap{解图：辐射压作用于球形薄膜，肥皂泡模型包含内外两个表面。}\label{advA6:quality:A6-quantum-phenomena:a1}
+\end{minipage}\end{center}
+
 光子气体能量密度与压强为
 \[
  u=a_{\rm R}T^4,\qquad p=\frac u3.
@@ -149,6 +187,8 @@ $U=a_{\rm R}T^4(4\pi R^3/3)=C/R$。
 $U+8\pi\alpha R_0^2\propto T^{-8}$，因此
 $C_{\rm eff}=\dd E/\dd T<0$。孤立体系可在力学上稳定振动，
 但与无限热库作正反馈换热时热平衡不稳定。这区分了力学稳定性和热稳定性。
+
+图~\ref{advA6:quality:A6-quantum-phenomena:a1} 中，径向膨胀使两表面面积都增加，所以表面能是 $8\pi\alpha R^2$；快速振动保持辐射绝热量 $TR$，接触热库的稳定性则需另检验，二者不能混为一谈。
 \end{advsolution}
 
 \subsection{介质响应、因果性与散射}
@@ -162,8 +202,9 @@ Lorentz 振子模型
  \chi(\omega)=
  \frac{\omega_p^2}{\omega_0^2-\omega^2-\ii\Gamma\omega},
 \qquad
- \omega_p^2=\frac{n_eZe^2}{m\varepsilon_0}.
+ \omega_p^2=\frac{n_ee^2}{m\varepsilon_0}.
 \]
+这里 $n_e$ 是参与该振子响应的电子数密度；若每个原子有 $Z$ 个等效电子，则 $n_e=Zn_{\rm atom}$。
 写 $\chi=\chi_1+\ii\chi_2$，实部控制色散，虚部控制吸收。
 
 \begin{advtheorem}{Kramers--Kronig 关系}\label{advA6:thm:kramers-kronig}
@@ -210,8 +251,30 @@ $\chi(z')/(z'-z)$ 沿实轴和上半平面大半圆应用 Cauchy 公式，
  \frac{\omega_p^2}{\omega_0^2-\omega^2-\ii\Gamma\omega}
 \]
 用 Laplace 变换求时域响应 $\chi(t)$，并检验因果性。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1.5,0)--(5.8,0) node[right]{$t$};\draw[->,DeepBlue,thick] (0,0)--(0,1.6) node[above]{$\delta(t)$};\node[below] at (0,-.2){0};\node[right,align=left,text width=4cm] at (1.1,1.1){初态静止\\响应在 $t<0$ 为零};
+
+\end{tikzpicture}
+\figcap{题图：只在 $t=0$ 作用的单位脉冲，因果响应不能先于激励。}\label{advA6:quality:A6-quantum-phenomena:q2}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1.5,0)--(5,0) node[right]{$t$};\draw[DeepBlue,very thick] (-1.4,0)--(0,0);\draw[DeepBlue,domain=0:4.6,samples=120] plot(\x,{1.25*exp(-.5*\x)*sin(150*\x)});\draw[gray,dashed,domain=0:4.6,samples=80] plot(\x,{1.6*\x*exp(-1.5*\x)});\node[above] at (2.9,1.3){实线：欠阻尼示意；虚线：临界示意};
+
+\end{tikzpicture}
+\figcap{解图：同为因果的振荡/非振荡脉冲响应，幅值和时间刻度只作形状示意。}\label{advA6:quality:A6-quantum-phenomena:a2}
+\end{minipage}\end{center}
+
 单位脉冲驱动的响应满足
 \[
  \ddot\chi+\Gamma\dot\chi+\omega_0^2\chi
@@ -229,9 +292,22 @@ $\Omega=\sqrt{\omega_0^2-\Gamma^2/4}$，逆变换得
  \Theta(t)\frac{\omega_p^2}{\Omega}
  \e^{-\Gamma t/2}\sin\Omega t}.
 \]
+题目未限定阻尼区间，还需给出另外两个分支。临界阻尼 $\Gamma=2\omega_0$ 时取 $\Omega\to0$，得
+\[
+ \chi(t)=\Theta(t)\,\omega_p^2t\,e^{-\Gamma t/2}.
+\]
+过阻尼 $\Gamma>2\omega_0$ 时令 $\Lambda=\sqrt{\Gamma^2/4-\omega_0^2}$，得到
+\[
+ \chi(t)=\Theta(t)\frac{\omega_p^2}{\Lambda}
+ e^{-\Gamma t/2}\sinh(\Lambda t).
+\]
+三种分支的响应本身在 $t=0$ 连续为零，导数的跳跃均为 $\omega_p^2$，来自把运动方程在脉冲附近积分。
+以下关于初值与因果性的检查适用于这三个分支。
 它在 $t<0$ 严格为零，并在 $t=0^+$ 满足
 $\dot\chi(0^+)=\omega_p^2$。令 $s=-\ii\omega+0^+$ 便恢复给定的
 $\chi(\omega)$，其极点均在频率下半平面，因果性检查通过。
+
+图~\ref{advA6:quality:A6-quantum-phenomena:a2} 中，零时刻的脉冲改变响应导数而不使响应本身跳变；之后的曲线按阻尼大小选择欠阻尼、临界或过阻尼分支，三者都只支撑在 $t\ge0$。
 \end{advsolution}
 
 加速电荷的 Larmor 辐射功率为
@@ -321,11 +397,18 @@ $S_z=\pm\hbar/2$。电子磁矩
 图 \ref{advA6:fig:sequential-sg}(a) 表明重复测量同一分量结果确定；
 (b) 表明 $|z+\rangle$ 对 $S_x$ 是等概率叠加；
 (c) 表明选择 $x+$ 后再次测量 $S_z$ 又分成两束。
-因此态振幅必须是复数：
+上述仅含 $x,z$ 两方向的序列尚不足以确定一般相对相位。要描述任意空间方向的自旋态，
+在固定的 $z$ 基底中写成
 \[
  |\vect n,+\rangle=
  \cos\frac\theta2|z+\rangle
  +\e^{\ii\phi}\sin\frac\theta2|z-\rangle,
 \]
-概率由模方给出。相位 $\phi$ 不影响单次 $S_z$ 概率，却影响其他方向的干涉结果，
-这正是实概率模型无法表达的结构。
+概率由模方给出。除 $P_{z,+}=\cos^2(\theta/2)$ 外，沿另两轴测量得到
+\[
+ P_{x,+}=\frac{1+\sin\theta\cos\phi}{2},\qquad
+ P_{y,+}=\frac{1+\sin\theta\sin\phi}{2}.
+\]
+例如 $|y+\rangle=(|z+\rangle+\ii|z-\rangle)/\sqrt2$，其 $S_y$ 结果确定，
+而 $S_x,S_z$ 各为等概率。固定这一基底后，若只允许两个实振幅，就只能表达
+$\phi=0,\pi$ 的实截面，不能覆盖所有三维测量方向；可观测的是相对相位，整体相位仍可任取。

@@ -1,9 +1,12 @@
+% MechanicsNumberedSolutionFigures20261023-v1
+% MechanicsQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{力、受力分析与静力平衡}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/first-section/}}
+\graphicspath{{../../../sample/xes-original/first-section/}}
 \section{力的基本性质}
 同学们可能有所耳闻，自然界中有四种基本的相互作用力，它们分别是万有引力、电磁力、
 强和弱相互作用力。力（force）是物体之间相互作用的一种表现形式，当有力作用在任何一个
@@ -30,7 +33,6 @@
 之间的关系，最后逐步地深入探讨力的本质和起源。基于经验和观察人们发现了几种常见的力，
 下面我们逐一了解一下它们。
 
-\clearpage
 \subsection{重力}
 
 本质上讲重力是万有引力在地球表面附近的一种表现形式，它来自于地球对所有物体的吸引。
@@ -78,11 +80,14 @@
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s01-1-1}。
+
 取三角形三个顶点的位置矢量分别为 $\vec r_A,\vec r_B,\vec r_C$。先作一条中线，例如从
 $A$ 连到 $BC$ 的中点 $D$。把三角板分成平行于 $BC$ 的许多极细长条，每个长条的质心都在
 $AD$ 上，因而整块板的质心也在 $AD$ 上。同理，它还在其他中线上，所以质心就是三条中线的交点 $G$。
 
 \begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=0.72]
   \coordinate (A) at (0.6,2.7); \coordinate (B) at (4.5,0.2); \coordinate (C) at (-0.4,0);
   \coordinate (D) at ($(B)!0.5!(C)$); \coordinate (E) at ($(C)!0.5!(A)$);
@@ -94,6 +99,8 @@ $AD$ 上，因而整块板的质心也在 $AD$ 上。同理，它还在其他中
     node[above=6pt,xshift=4pt,inner sep=0pt] {$G$};
   \node[above] at (A) {$A$}; \node[right] at (B) {$B$}; \node[left] at (C) {$C$};
 \end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch05:s01-1-1}
+\end{qualityfigure}
 \end{center}
 
 中线交点将每条中线按从顶点起 $2:1$ 分割，等价地
@@ -123,6 +130,19 @@ $a^2+b^2=c^2$。分别用 $\lambda_a,\lambda_b,\lambda_c$ 表示各杆的线密�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate(C)at(0,0);\coordinate(A)at(4.2,0);\coordinate(B)at(0,2.6);
+\draw[very thick] (B)--(C)--(A)--cycle;\draw (0,.3)--(.3,.3)--(.3,0);
+\node[below left]at(C){$C=O$};\node[right]at(A){$A$};\node[above]at(B){$B$};
+\foreach\x/\y/\t in {0/1.3/a,2.1/0/b,2.1/1.3/c}{\fill[DeepBlue](\x,\y)circle(2pt)node[above right]{$M_\t$};}
+\draw[->] (0,0)--(4.8,0) node[right]{$x$};\draw[->] (0,0)--(0,3.2)node[above]{$y$};
+\node at(2.5,-1.1){$m_a=\lambda_a a,\ m_b=\lambda_b b,\ m_c=\lambda_c c$};
+\end{tikzpicture}
+\figcap{把三根杆的质量集中到各自中点（解答用辅助图）}\label{mech:05:2:a}
+\end{qualityfigure}
+图~\ref{mech:05:2:a}中，$M_a,M_b,M_c$ 分别是三根均匀杆的中点；杆的质量应由各自线密度乘长度得到，再以这些中点坐标作质量加权。
+
 “均匀”表示每根杆内部的线密度不随位置变化，并不表示三根杆的线密度一定相等。
 取直角顶点 $C$ 为原点，$CA$ 沿 $x$ 轴、$CB$ 沿 $y$ 轴。
 三根杆的质量及各自中点为
@@ -178,6 +198,8 @@ AB & \lambda_c c &(b/2,a/2)
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s01-1-3}。
+
 设薄片面密度为 $\sigma$，以大圆圆心 $O$ 为原点。把挖去的小圆看成位于 $O'$ 的“负质量”，则
 \[
   M=\sigma\pi R^2,\qquad m=\sigma\pi r^2.
@@ -191,6 +213,7 @@ AB & \lambda_c c &(b/2,a/2)
   \boxed{\vec r_G=-\frac{r^2}{R^2-r^2}\,\overrightarrow{OO'}}.
 \]
 \begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=0.62]
   \coordinate (O) at (0,0);
   \coordinate (Op) at (-0.92,0);
@@ -210,7 +233,9 @@ AB & \lambda_c c &(b/2,a/2)
   \node[font=\scriptsize,text=TextGray,anchor=west] at (1.95,0.35)
     {质心在小孔的反方向};
   \draw[guide] (1.85,0.20)--(0.55,0.06);
-\end{tikzpicture}\\[-0.4ex]
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch05:s01-1-3}
+\end{qualityfigure}\par
 {\scriptsize\color{TextGray}方向示意；为便于辨认，图中 $OG$ 的长度未按比例绘制。}
 \end{center}
 质心位于 $OO'$ 直线上、在小孔的反方向，与 $O$ 的距离为
@@ -222,9 +247,23 @@ $lr^2/(R^2-r^2)$。这一结果要求小圆孔完全位于大圆内，即 $l+r\l
 进入了杯子的水和杯子的总重心会发生变化。请问重心如何变化？是否有最值？是多少？
 （已知杯子底面积为 $S$，水的密度为 $\rho$，原来空杯子重心高度为 $H$，杯内允许的
 最大水深为 $h_{\max}$。）
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick] (0,3)--(0,0)--(2.5,0)--(2.5,3);
+\fill[PaleBlue] (.05,.05)rectangle(2.45,1.3);\draw[DeepBlue,thick](0,1.3)--(2.5,1.3);
+\draw[<->](-.5,0)--(-.5,1.3)node[midway,left]{$h$};
+\draw[<->](3,0)--(3,2.2)node[midway,right]{$H$};\draw[dashed](0,2.2)--(2.5,2.2);
+\draw[->](1.25,-.2)--(1.25,3.5)node[above]{$z$};\node at(1.25,-.6){底面积 $S$};
+\node[align=left]at(5,1.5){空杯质量 $M$\\水密度 $\rho$\\$0\le h\le h_{\max}$};
+\end{tikzpicture}
+\figcap{注水状态、杯底原点和允许水深}\label{mech:05:4:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s01-1-4}。
+
 设水面高度为 $h$，从杯底向上量取坐标。水的质量为 $\rho Sh$，其质心高度为 $h/2$，
 因而系统质心高度为
  \begin{equation}
@@ -232,6 +271,7 @@ $lr^2/(R^2-r^2)$。这一结果要求小圆孔完全位于大圆内，即 $l+r\l
   \label{ch05:eq:cup-centre-mass}
 \end{equation}
 \begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=0.68]
   \fill[PaleBlue] (0.06,0.06) rectangle (2.64,1.45);
   \draw[very thick] (0,3.10)--(0,0)--(2.70,0)--(2.70,3.10);
@@ -251,7 +291,9 @@ $lr^2/(R^2-r^2)$。这一结果要求小圆孔完全位于大圆内，即 $l+r\l
   \draw[guide] (1.45,1.86)--(3.08,1.86);
   \node[anchor=west,inner sep=0pt,text=DeepBlue] at (3.12,1.86)
     {总质心：$z(h)$};
-\end{tikzpicture}\\[-0.4ex]
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch05:s01-1-4}
+\end{qualityfigure}\par
 {\scriptsize\color{TextGray}某一注水状态示意；$z(h)$ 总在 $H$ 与 $h/2$ 之间，图中具体高度不代表一般大小关系。}
 \end{center}
 注水时新加入的一层水位于高度 $h$，由式 \eqref{ch05:eq:cup-centre-mass} 也可直接得到
@@ -282,15 +324,31 @@ $lr^2/(R^2-r^2)$。这一结果要求小圆孔完全位于大圆内，即 $l+r\l
 
 \begin{origexamplebox}{【思考题】}\label{ch05:ex:s01-1-5}
 已知一个均匀质量的圆球壳，半径为 $R$，现在将球壳上端高度为 $h$ 的部分切下，然后
-粘贴在圆球的最下面，形成一个“杯子”。求这个杯子的重心。
+保持球冠原朝向且不翻转，整体向下平移，使球冠顶点粘贴在原球壳最低点，形成一个“杯子”。求这个杯子的重心。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,0)circle(1.5);\draw[DeepBlue,very thick](-1.118,1)arc(138.19:41.81:1.5);
+\draw[dashed](-1.118,1)--(1.118,1);\draw[<->](-1.8,1)--(-1.8,1.5)node[midway,left]{$h$};
+\fill(0,0)circle(2pt)node[left]{$O$};\draw[->](0,-1.7)--(0,2)node[above]{$z$};
+\draw[->,Gold](2.1,.4)--(3.2,.4)node[midway,above]{下移};
+\draw[thick](3.682,1)arc(138.19:401.81:1.5);\draw[dashed](3.682,1)arc(138.19:41.81:1.5);
+\draw[DeepBlue,very thick](3.682,-2)arc(138.19:41.81:1.5);
+\draw[dashed](3.682,-2)--(5.918,-2);\node[below]at(4.8,-2.3){保持朝向，顶点粘在原最低点};
+\end{tikzpicture}
+\figcap{球冠切下后不翻转地移至底部}\label{mech:05:5:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s01-1-5}。
+
 以原球心为原点，向上为 $z$ 轴。这里的“粘贴在圆球的最下面”是指：
 球冠保持原来的朝向，不作翻转，整体向下平移，使球冠顶点与原球壳最低点粘接；
 球冠的圆形边缘位于最下方，构成杯子的底座。
 
 \begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=0.82]
   \begin{scope}[shift={(-3.30,0)}]
     % 取示意半径 1.5、球冠高度 0.5；切口在 y=1.0。
@@ -336,7 +394,8 @@ $lr^2/(R^2-r^2)$。这一结果要求小圆孔完全位于大圆内，即 $l+r\l
     \node[DeepBlue,font=\small] at (0,-2.82) {(2) 作为底座粘贴};
   \end{scope}
 \end{tikzpicture}
-\\[-0.4ex]
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch05:s01-1-5}
+\end{qualityfigure}\par
 {\scriptsize\color{TextGray}蓝色曲线表示同一球冠；右图中球冠在原球壳外部，顶点与球壳最低点相接。}
 \end{center}
 
@@ -412,10 +471,31 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 \end{itemize}
 
 \begin{origexamplebox}{}\label{ch05:ex:s01-1-6}
-证明：串联弹簧的等效弹性系数小于其中任何一根弹簧的弹性系数，并解释形成这一现象的原因。
+设至少两根理想轻弹簧串联，各劲度系数均为正。证明：串联弹簧的等效弹性系数小于其中任何一根弹簧的弹性系数，并解释形成这一现象的原因。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick](0,-.6)--(0,.6);\draw[thick](0,0)--(.4,0);
+\draw[decorate,decoration={coil,aspect=.5,segment length=5pt,amplitude=3pt}] (.4,0)--(2.5,0)node[midway,above=6pt]{$k_1$};
+\draw[thick](2.5,0)--(2.9,0);\draw[decorate,decoration={coil,aspect=.5,segment length=5pt,amplitude=3pt}](2.9,0)--(5,0)node[midway,above=6pt]{$k_2$};
+\draw[->,DeepBlue,thick](5,0)--(6.5,0)node[right]{$F$};
+\end{tikzpicture}
+\figcap{串联弹簧的共同张力和伸长相加}\label{mech:05:6:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick](0,-.6)--(0,.6);\draw[thick](0,0)--(.4,0);
+\draw[decorate,decoration={coil,aspect=.5,segment length=5pt,amplitude=3pt}] (.4,0)--(2.5,0)node[midway,above=6pt]{$k_1$};
+\draw[thick](2.5,0)--(2.9,0);\draw[decorate,decoration={coil,aspect=.5,segment length=5pt,amplitude=3pt}](2.9,0)--(5,0)node[midway,above=6pt]{$k_2$};
+\draw[->,DeepBlue,thick](5,0)--(6.5,0)node[right]{$F$};\draw[<->](.4,-.8)--(2.5,-.8)node[midway,below]{$x_1$};\draw[<->](2.9,-.8)--(5,-.8)node[midway,below]{$x_2$};\node at(3,-1.8){总伸长 $x=x_1+x_2$，同一张力通过各弹簧};
+\end{tikzpicture}
+\figcap{串联弹簧的共同张力和伸长相加（解答用辅助图）}\label{mech:05:6:a}
+\end{qualityfigure}
+图~\ref{mech:05:6:a}中，中间连接点视为无质量，所以两侧弹力大小相等；总伸长是每根弹簧伸长之和。结论以至少两根、均具有正劲度的理想轻弹簧为前提。
+
 两根弹簧串联时张力相同，设为 $F$。各弹簧伸长量为 $x_i=F/k_i$，总伸长量为
 \[
   x=\sum_i x_i=F\sum_i\frac1{k_i}.
@@ -480,6 +560,8 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s01-1-7}。
+
 取向东为 $x$ 正方向、向北为 $y$ 正方向。板 $A$ 和块 $B$ 对地速度分别为
 \[
   \vec v_A=v\,\hat{\boldsymbol j},\qquad
@@ -494,6 +576,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 
 \noindent\begin{minipage}[c]{0.42\linewidth}
 \centering
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=0.64]
   \draw[axis] (-2.2,0)--(2.3,0) node[right]{东};
   \draw[axis] (0,-1.8)--(0,2.1) node[above]{北};
@@ -502,6 +585,8 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \draw[component] (0,0)--(1.4,-1.4) node[below right]{$\vec v_{B/A}$};
   \draw[vector] (0,0)--(-1.15,1.15) node[above left]{$\vec f_{A\to B}$};
 \end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch05:s01-1-7}
+\end{qualityfigure}
 \end{minipage}\hfill
 \begin{minipage}[c]{0.55\linewidth}
 若 $B$ 在竖直方向无加速度，则 $N=mg$，故
@@ -517,7 +602,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/second-section/}}
+\graphicspath{{../../../sample/xes-original/second-section/}}
 \section{受力分析}
 当一个物体受多个力作用时，需要给定所有力的大小、方向和作用点才能够完全了解它的
 受力情况。对质点，多个力可合成为一个力；对刚体，若各力的作用线通过同一点，称为共点力，
@@ -568,6 +653,18 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\coordinate(O)at(0,0);\draw[dashed](0,0)--(1,1.732)--(3,1.732)--(4,0)--(3,-1.732)--(1,-1.732)--cycle;
+\foreach\x/\y/\t in {1/1.732/1,3/1.732/2,4/0/3,3/-1.732/4,1/-1.732/5}{\draw[->,DeepBlue](0,0)--(\x,\y)node[right]{$F_\t$};}
+\draw[->,Gold,thick](0,-2.4)--(1,-2.4)node[right]{$\vec F_1+\vec F_5$};
+\draw[->,Gold,thick](0,-3.1)--(3,-3.1)node[right]{$\vec F_2+\vec F_4$};
+\node[below left]at(O){$O$};\node at(2,2.5){关于水平轴对称的竖直分量相消};
+\end{tikzpicture}
+\figcap{正六边形力矢量按对称对相加（解答用辅助图）}\label{mech:05:8:a}
+\end{qualityfigure}
+图~\ref{mech:05:8:a}中，$F_1$ 与 $F_5$、$F_2$ 与 $F_4$ 分别关于 $F_3$ 方向对称，竖直分量两两抵消；只需比较它们沿水平轴的投影。
+
 图中各力的大小就是相应矢量的几何长度。沿 $F_3$ 方向取 $x$ 轴，正六边形的边长设为 $s$，则
 \[
   F_3=2s.
@@ -634,11 +731,14 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s02-1-9}。
+
 隔离木棒。对图示的非竖直木棒，需要考虑中点处的重力 $mg$、上端细线的竖直张力 $T$、
 下端地面的法向力 $N$ 和水平摩擦力未知量 $f$。图中灰色虚线只表示 $f$ 的预设正方向，
 并不表示摩擦力一定非零。
 
 \begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=0.68]
   \coordinate (A) at (-1.8,-1.2); \coordinate (B) at (1.6,1.8); \coordinate (C) at ($(A)!0.5!(B)$);
   \draw[very thick] (A)--(B);
@@ -649,6 +749,8 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
     (A)--++(1.05,0) node[pos=0.72,below=3pt,inner sep=0pt]{$f$};
   \node[below left] at (A) {$A$}; \node[right] at (B) {$B$};
 \end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch05:s02-1-9}
+\end{qualityfigure}
 \end{center}
 
 水平方向只有 $f$，由平衡条件立即得
@@ -673,7 +775,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/third-section/}}
+\graphicspath{{../../../sample/xes-original/third-section/}}
 \section{质点与刚体的静力平衡}
 % TikZ diagrams written for the added solutions.  They expose the forces
 % and geometric quantities used in each derivation and are visually checked
@@ -691,9 +793,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   solpanel/.style={font=\footnotesize\bfseries,text=TextGray}
 }
 
-\newcommand{\soldiagcaption}[1]{%
-  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}解图：#1\par}\vspace{0.2em}%
-}
+\newcommand{\soldiagcaption}[1]{\figcap{#1}}
 
 \newcommand{\soldiagOneTen}{%
 \begin{center}
@@ -720,7 +820,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \draw[solgeom] ($(D)+(0.35,0.61)$) -- ++(-30:0.22) -- ++(-120:0.22);
 \end{tikzpicture}
 \soldiagcaption{先由 $C$ 点平衡求出杆 $CD$ 的轴力，再在 $D$ 点取垂直于 $DB$ 的分量。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-10}\end{center}}
 
 \newcommand{\soldiagOneEleven}{%
 \begin{center}
@@ -738,7 +838,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (2.4,-1.55) {$N_1$ 的投影为零};
 \end{tikzpicture}
 \soldiagcaption{$N_1$ 垂直于下斜面，故沿下斜面只需平衡 $N$ 和 $mg$ 的分量。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-11}\end{center}}
 
 \newcommand{\soldiagOneTwelve}{%
 \begin{center}
@@ -758,7 +858,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[right,sollabel] at (1.55,-.58) {$\theta_2$};
 \end{tikzpicture}
 \soldiagcaption{$N_1$ 与竖直向上的夹角为 $\theta_1$；$N_2$ 与竖直向下的夹角为 $\theta_2$，因为支持力分别垂直于对应斜面。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-12}\end{center}}
 
 \newcommand{\soldiagOneThirteen}{%
 \begin{center}
@@ -794,7 +894,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at ($(P)+(204:0.78)$) {$\beta$};
 \end{tikzpicture}
 \soldiagcaption{$\beta$ 由三球接触几何确定；两大球刚分离时令接触力 $Q=0$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-13}\end{center}}
 
 \newcommand{\soldiagOneFourteen}{%
 \begin{center}
@@ -833,7 +933,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \draw[solgeom] (G)--++(0,1.25);
 \end{tikzpicture}
 \soldiagcaption{$\delta=\theta+\psi$ 且 $\sin\delta=R/l$；绕绳对球的作用等于两端张力的矢量和。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-14}\end{center}}
 
 \newcommand{\soldiagOneFifteen}{%
 \begin{center}
@@ -858,7 +958,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[right,sollabel] at (2.72,-1.72) {倾覆边缘};
 \end{tikzpicture}
 \soldiagcaption{两侧壁受到一对等大反向水平力，形成力偶 $N_2(2r\sin\beta)$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-15}\end{center}}
 
 \newcommand{\soldiagOneSixteen}{%
 \begin{center}
@@ -889,7 +989,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (2.05,-0.05) {$s_3=s_1+4r$};
 \end{tikzpicture}
 \soldiagcaption{接触点沿板的位置为 $s_1,s_2,s_3$，板对各圆柱的支持力均垂直于板。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-16}\end{center}}
 
 \newcommand{\soldiagOneSeventeen}{%
 \begin{center}
@@ -916,7 +1016,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (-1.82,0.90) {钢索切线};
 \end{tikzpicture}
 \soldiagcaption{一侧斜壁重为 $4mg$；斜壁的力矩平衡与屋面整体的竖直平衡必须同时满足。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-17}\end{center}}
 
 \newcommand{\soldiagOneEighteen}{%
 \begin{center}
@@ -936,7 +1036,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
     node[midway,below,sollabel] {匀速};
 \end{tikzpicture}
 \soldiagcaption{沿运动方向有 $F\cos\alpha=f$；拉力的竖直分量使支持力减为 $N=Mg-F\sin\alpha$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-18}\end{center}}
 
 \newcommand{\soldiagOneNineteen}{%
 \begin{center}
@@ -971,7 +1071,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (1.65,-1.20) {向内};
 \end{tikzpicture}
 \soldiagcaption{正压力的合力向外，极限摩擦力的合力沿角平分线指向 $O$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-19}\end{center}}
 
 \newcommand{\soldiagOneTwenty}{%
 \begin{center}
@@ -997,7 +1097,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (-1.46,-0.78) {$y$};
 \end{tikzpicture}
 \soldiagcaption{附加重物放在距 $A$ 为 $y$ 处；对 $A$ 取矩可直接消去 $N$、$f$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-20}\end{center}}
 
 \newcommand{\soldiagOneTwentyOne}{%
 \begin{center}
@@ -1016,7 +1116,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[right,sollabel] at (-.70,-.42) {$\theta$};
 \end{tikzpicture}
 \soldiagcaption{外力始终与杆垂直；地板处的 $f/N$ 随抬起角度变化。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-21}\end{center}}
 
 \newcommand{\soldiagOneTwentyTwo}{%
 \begin{center}
@@ -1039,7 +1139,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
     node[above left=2pt,sollabel] {$f$};
 \end{tikzpicture}
 \soldiagcaption{结点给出 $2T\sin\beta=Mg$；圆环的支持力还要承担细线的竖直分量。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-22}\end{center}}
 
 \newcommand{\soldiagOneTwentyThree}{%
 \begin{center}
@@ -1079,7 +1179,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at ($(P)+({\solConeHalfAngle/2}:1.03)$) {$\delta$};
 \end{tikzpicture}
 \soldiagcaption{左图先标出水平纬圈；右图把该圈微元放入径向--竖直截面，张力合力水平向内，支持力向外且向上。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-23}\end{center}}
 
 \newcommand{\soldiagOneTwentyFour}{%
 \begin{center}
@@ -1103,7 +1203,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (-1.60,0.95) {$\mathrm ds=R\,\mathrm d\varphi$};
 \end{tikzpicture}
 \soldiagcaption{微元两端张力之差平衡重力的切向分量；沿 $\varphi$ 增大方向张力增加。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-24}\end{center}}
 
 \newcommand{\soldiagOneTwentyFive}{%
 \begin{center}
@@ -1120,7 +1220,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (-2.65,1.45) {$T_{\max}=T_0+\lambda gR$};
 \end{tikzpicture}
 \soldiagcaption{从自由端向最高点累加下方绳段的切向重力，最高点张力最大。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-25}\end{center}}
 
 \newcommand{\soldiagOneTwentySix}{%
 \begin{center}
@@ -1152,7 +1252,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \draw[solforce] (P)--++(-90:1.60) node[below=4pt,sollabel] {$\dfrac{Mg}{2\pi}\,\mathrm d\varphi$};
 \end{tikzpicture}
 \soldiagcaption{左图明确绳圈是球面纬圈；右图显示支持力沿球面半径，水平分量平衡张力合力，竖直分量平衡重力。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-26}\end{center}}
 
 \newcommand{\soldiagOneTwentySeven}{%
 \begin{center}
@@ -1184,7 +1284,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \draw[TextGray,thin] (.75,1.40)--(.65,{\cc*(cosh(.65/\cc)-1)});
 \end{tikzpicture}
 \soldiagcaption{对最低点到 $P$ 的绳段整体受力：左端受 $H$，右端受沿切线的 $T$，绳重为 $\lambda gs$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-27}\end{center}}
 
 \newcommand{\soldiagOneTwentyEight}{%
 \begin{center}
@@ -1220,7 +1320,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at (1.95,1.92) {$\Delta\ell_{\rm R}\simeq-x$};
 \end{tikzpicture}
 \soldiagcaption{杆顶水平位移为 $x$；小角度下两弹簧一伸一缩，形变量的一阶项为 $\pm x$。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-28}\end{center}}
 
 \newcommand{\soldiagOneTwentyNine}{%
 \begin{center}
@@ -1245,7 +1345,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \draw[solforce] (A)--++(90:1.12) node[above left,sollabel] {$N_A$};
 \end{tikzpicture}
 \soldiagcaption{两个面板分别只画一个研究对象：顶端质点满足 $2P\cos\theta=Mg$；下端结点的杆力、弹簧力和支持力作用于同一点。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-29}\end{center}}
 
 \newcommand{\soldiagOneThirty}{%
 \begin{center}
@@ -1272,7 +1372,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel,above] at (2.2,4.30) {三力作用线交于 $C$};
 \end{tikzpicture}
 \soldiagcaption{墙面支持力、重力和曲面法向力三条作用线必须共点。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-30}\end{center}}
 
 \newcommand{\soldiagOneThirtyOne}{%
 \begin{center}
@@ -1308,7 +1408,7 @@ $\dd A=2\pi R\,\dd z$，所以球冠质心高度为
   \node[sollabel] at ($(O)+(66:1.32)$) {$\psi$};
 \end{tikzpicture}
 \soldiagcaption{球心与接触点沿同一半径；示意转角由无滑动关系 $\psi=-(a/r)\varphi$ 同步生成。}
-\end{center}}
+\label{mech:legacy:ch05:s03-1-31}\end{center}}
 
 \newcommand{\soldiagConvexRolling}{%
 \begin{center}
@@ -1744,6 +1844,8 @@ $\vec F$ 的作用线所作垂线段的长度 $OB=r_\perp$ 称为力臂。除了
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-10}。
+
 由 $AB=2l$、$CD=l$ 以及三杆等长可知，左右两根斜杆与水平方向的夹角均为
 $60^\circ$。先研究铰链 $C$。设杆 $AC$ 中的轴力为 $S$，杆 $CD$ 中的轴力为 $H$。解图把
 $C$、$D$ 两个铰链的受力分开画出：
@@ -1770,6 +1872,8 @@ $C$、$D$ 两个铰链的受力分开画出：
 
 \Needspace{62mm}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-11}。
+
 设下方斜面和挡板对球的压力分别为 $N_1$、$N$。三个力的方向及投影方向如解图所示：
 \soldiagOneEleven
 $N_1$ 垂直于下方斜面，沿该斜面方向的分量为零。因此沿斜面向上取正方向，
@@ -1797,6 +1901,8 @@ $\theta_1$，上斜面与同一水平面的夹角为 $\theta_2$，其中 $0<\the
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-12}。
+
 按题图，两个倾角都从水平面量起，因而两斜面之间的夹角是 $\theta_2-\theta_1$。
 设下、上斜面对球的压力分别为 $N_1$、$N_2$，三个力
 的方向如解图所示：
@@ -1833,6 +1939,8 @@ $r$（$r=R/2$）的圆球 $C$，如图，
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-13}。
+
 把图中 $O$ 点到大球球心的距离记为 $d_0$。由题设的绳长定义和 $l=2R$，有
 $d_0=l+R=3R$。
 
@@ -1939,6 +2047,8 @@ $n>n_{\rm c}$ 时，小球会把两大球推开并从中间落下。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-14}。
+
 设悬挂 $m_2$ 的绳中张力为 $T=m_2g$，球心到 $O$ 的连线与绳的上方切线之间夹角为
 $\delta$。由切线性质
 \[
@@ -1976,6 +2086,8 @@ $\delta$。由切线性质
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-15}。
+
 设两球球心连线与水平方向的夹角为 $\beta$。由几何关系
 \[
   2r\cos\beta=2(a-r),
@@ -2013,6 +2125,8 @@ $\delta$。由切线性质
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-16}。
+
 沿木板向上的单位方向记为 $\boldsymbol t$，板的法线方向记为 $\boldsymbol n$。木板与竖直
 墙面的夹角为 $\theta$。设三个圆柱与板的接触点到 $A$ 的距离依次为 $s_1,s_2,s_3$。
 由第一个圆柱同时与墙、板相切可得
@@ -2072,6 +2186,8 @@ $\delta$。由切线性质
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-17}。
+
 设斜壁与地面的夹角为 $\beta$，钢索端部切线与地面的夹角为 $\gamma$。由图示几何关系
 \[
   \beta-\gamma=30^\circ.
@@ -2149,6 +2265,8 @@ $|f|>\mu_{\rm s}N$，假设的静力平衡才不可能实现，物体将发生�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-18}。
+
 木箱受拉力 $F$、重力 $Mg$、地面支持力 $N$ 和滑动摩擦力 $f$，方向如解图所示：
 \soldiagOneEighteen
 由解图可见，木箱水平向右匀速运动，摩擦力向左，且 $f=\mu N$。水平方向平衡给出
@@ -2183,6 +2301,8 @@ $|f|>\mu_{\rm s}N$，假设的静力平衡才不可能实现，物体将发生�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-19}。
+
 取关于角平分线对称的两个接触点。设每根筷子对鸡蛋的正压力为 $N$。两正压力沿角平分
 线向外，而极限摩擦力沿筷子指向 $O$：
 \soldiagOneNineteen
@@ -2216,6 +2336,8 @@ $|f|>\mu_{\rm s}N$，假设的静力平衡才不可能实现，物体将发生�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-20}。
+
 杆、墙面和细绳的受力关系如解图所示；附加重物的位置暂记为 $y$：
 \soldiagOneTwenty
 先考虑没有附加重物的木杆。设绳张力为 $T$，墙面对杆的支持力和摩擦力分别为 $N$、
@@ -2265,6 +2387,8 @@ $f$。对 $A$ 点取矩：
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-21}。
+
 设杆长为 $L$、质量为 $m$，杆与地板夹角为 $\theta$。外力 $F$ 始终垂直于杆。对杆的下端
 取矩最方便，因为地板处的两个力都不产生力矩：
 \soldiagOneTwentyOne
@@ -2310,6 +2434,8 @@ $x$。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-22}。
+
 系统关于中点对称。每一侧细线长度为 $a/2$。设细线与水平方向夹角为 $\beta$，则
 \[
   \cos\beta=\frac xa,
@@ -2377,6 +2503,8 @@ $s$，并求绳圈相对锥顶的竖直高度 $z$。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-23}。
+
 令圆锥的半顶角为 $\delta=\alpha/2$，平衡绳圈的水平半径为 $\rho$，绳中张力为 $T$。
 取绳圈上圆心角为 $\mathrm d\varphi$ 的一小段，微元受力如解图所示：
 \soldiagOneTwentyThree
@@ -2417,6 +2545,8 @@ $s$，并求绳圈相对锥顶的竖直高度 $z$。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-24}。
+
 绳的线密度为
 \[
   \lambda=\frac{m}{\pi R/2}=\frac{2m}{\pi R}.
@@ -2447,6 +2577,8 @@ $l\ge\pi R$，绳关于滑轮的竖直中线对称，两端自由段均竖直且
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-25}。
+
 设 $l\ge\pi R$，绳关于滑轮的竖直中线对称。搭在滑轮上的部分长为 $\pi R$，两段竖直
 部分各长
 \[
@@ -2481,6 +2613,8 @@ $g$ 表示，$g$ 为重力加速度）
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-26}。
+
 设绳圈所在水平面的高度相对球心为 $z$。由球面几何关系
 \[
   b^2+z^2=R^2.
@@ -2520,6 +2654,8 @@ $d<L$ 的 $A$、$B$ 两点，你能够用何种方法决定平衡以后绳的形
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-27}。
+
 平衡后的绳是悬链线。取最低点为坐标原点，$x$ 轴水平、$y$ 轴竖直向上。设绳的线密度
 $\lambda=m/L$，最低点处的水平张力为 $H$，并定义
 \[
@@ -2638,6 +2774,8 @@ $q\to0$、$c\to\infty$，曲线近似为 $y\simeq x^2/(2c)$，下垂趋于零，
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-28}。
+
 设杆从竖直方向偏转一个小角 $\varphi$。杆上端的水平位移为
 \[
   x=L\sin\varphi=L\varphi+O(\varphi^3).
@@ -2693,6 +2831,8 @@ $\Delta U<0$，所以临界点仍不稳定，稳定范围确为上面的严格�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-29}。
+
 题图中的光滑水平支承面只提供竖直支持力，$A$、$B$ 可以沿水平方向滑动。
 解图分别画顶点 $M$ 和下端 $A$ 的受力，其中 $N_A$ 是支承面对 $A$ 的竖直支持力；
 $B$ 端按对称性处理，$N_B=N_A$：
@@ -2746,6 +2886,8 @@ $k>Mg/(4L)$ 时稳定；等号处二次项消失而四次项为负，仍不稳�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-30}。
+
 设杆与曲面的接触点为 $P(x,y)$，杆在墙上的端点为 $A(0,Y)$。由杆长为 $L$，
 \[
   Y-y=\sqrt{L^2-x^2}.
@@ -2815,6 +2957,8 @@ $k>Mg/(4L)$ 时稳定；等号处二次项消失而四次项为负，仍不稳�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch05:s03-1-31}。
+
 设 $OG=h$，并取 $h>0$ 表示重心位于球心上方。假设小球在碗内滚动而不滑动，记
 $a=R-r$。小球偏离最低位置后的两个转角和重心位置如解图所示：
 \soldiagOneThirtyOne

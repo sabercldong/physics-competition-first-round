@@ -1,14 +1,16 @@
+% EMOpticsQuality20261023
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
 \RenewDocumentEnvironment{xesolution}{+b}{%
   \par\nobreak\smallskip\nobreak\begingroup\small
   \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 \chapter{电磁感应}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fortieth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fortieth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/fortieth-section/}{../../../sample/xes-original/fortieth-section/assets/}}
 \section{磁通法、楞次定律与发电机}
 
 % Diagrams for Lesson 9: electromagnetic induction.
@@ -29,7 +31,7 @@
   \node[anchor=east,align=center] at (-7.35,-2.35)
     {(c) 远离\\$\vect v_M\rightarrow$};
 \end{tikzpicture}}%
-\figcap{磁铁靠近时检流计向一侧偏转；停住时回零；远离时反向偏转。}\label{ch24:fig:s40-9-2}
+\figcap{磁铁靠近时检流计向一侧偏转；停住时回零；远离时反向偏转。\label{ch24:fig:s40-9-2}}
 \end{center}}
 
 \newcommand{\fluxOrientationDiagram}{%
@@ -161,7 +163,7 @@
     \draw[->,DeepBlue,very thick] (0.55,1.90)--(1.35,1.90) node[midway,above] {$I$};
   \end{scope}
 \end{tikzpicture}}%
-\figcap{左为环形电感实物结构；右为串联 $RL$ 回路。闭合 $S$ 后，电流沿箭头方向逐渐建立。}\label{ch24:fig:s40-9-9}
+\figcap{左为环形电感实物结构；右为串联 $RL$ 回路。闭合 $S$ 后，电流沿箭头方向逐渐建立。\label{ch24:fig:s40-9-9}}
 \end{center}}
 
 \newcommand{\mutualInductanceDiagram}{%
@@ -480,7 +482,7 @@
     \node[below,font=\scriptsize] at (0,-2.48) {$\Phi_B=NAB\cos\theta$};
   \end{scope}
 \end{tikzpicture}}%
-\figcap{磁极间转动线圈、滑环与负载；右图给出磁场、线圈面积法向和夹角。}\label{ch24:fig:s40-9-4}
+\figcap{磁极间转动线圈、滑环与负载；右图给出磁场、线圈面积法向和夹角。\label{ch24:fig:s40-9-4}}
 \end{center}}
 
 % Explicit circuit topology and geometric references; no opaque label backgrounds.
@@ -766,7 +768,7 @@ $\vect v\times\vect B$，还是来自变化磁场产生的涡旋电场。
 图~\ref{ch24:fig:review-fluxorientationdiagram-1}中，环路正向和法向按右手规则绑定，负号相对于这套共同约定解释。
 \par\noindent\begin{minipage}{\linewidth}
 \fluxOrientationDiagram
-\figcap{回路正向与磁通法向}\label{ch24:fig:review-fluxorientationdiagram-1}
+\figcap{回路正向与磁通法向\label{ch24:fig:review-fluxorientationdiagram-1}}
 \end{minipage}\par\medskip
 
 “阻碍变化”要与“阻碍原磁场”区分。原磁通增大时，感应磁场与它反向；原磁通减小时，感应磁场反而
@@ -864,7 +866,7 @@ $q\vect v\times\vect B$”作为唯一解释；法拉第定律仍预言回路中
 图~\ref{ch24:fig:review-movingloopdiagram-1}中，图示各点速度相同，面积与法向不变，正负的局部动生贡献沿全回路相消。
 \par\noindent\begin{minipage}{\linewidth}
 \movingLoopDiagram
-\figcap{匀强场中闭合回路的刚性平移}\label{ch24:fig:review-movingloopdiagram-1}
+\figcap{匀强场中闭合回路的刚性平移\label{ch24:fig:review-movingloopdiagram-1}}
 \end{minipage}\par\medskip
 
 
@@ -908,7 +910,7 @@ $q\vect v\times\vect B$”作为唯一解释；法拉第定律仍预言回路中
  \else\draw[vector](1.1,0)arc[start angle=0,end angle=-65,radius=1.1];\node at(0,2.5){小环电流突然建立};\fi
  \node[below]at(0,-2.3){两环电阻均为 $r$};\end{scope}}
 \end{tikzpicture}\end{center}
-\figcap{两种激励情形；箭头仅表示题设中主动建立的顺时针电流。}\label{ch24:fig:em24-question-1}
+\figcap{两种激励情形；箭头仅表示题设中主动建立的顺时针电流。\label{ch24:fig:em24-question-1}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -923,7 +925,7 @@ $q\vect v\times\vect B$”作为唯一解释；法拉第定律仍预言回路中
 图~\ref{ch24:fig:review-concentricloopsdiagram-1}中，所激励环的顺时针电流增加时，另一环的感应电流为逆时针；交换激励环仍须重算所穿磁通。
 \par\noindent\begin{minipage}{\linewidth}
 \concentricLoopsDiagram
-\figcap{同心大小圆环的感应方向}\label{ch24:fig:review-concentricloopsdiagram-1}
+\figcap{同心大小圆环的感应方向\label{ch24:fig:review-concentricloopsdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -943,7 +945,7 @@ $q\vect v\times\vect B$”作为唯一解释；法拉第定律仍预言回路中
   \draw[DeepBlue,very thick] (0,-1.25) arc(270:450:.33 and 1.25);
   \draw[vector] (-1.7,1.1)--(-2.7,1.1) node[midway,above=4pt] {$\vect v_M$};
   \end{tikzpicture}\end{center}
-\figcap{磁铁开始左移，三个导体圆环的运动与形变待求。}\label{ch24:fig:em24-question-2}
+\figcap{磁铁开始左移，三个导体圆环的运动与形变待求。\label{ch24:fig:em24-question-2}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -978,7 +980,7 @@ $q\vect v\times\vect B$”作为唯一解释；法拉第定律仍预言回路中
 图~\ref{ch24:fig:review-magnetthreeloopsdiagram-1}中，轴向箭头描述对相对运动的阻碍；径向标记只适用于图示近轴极外和近中部的局部场条件。
 \par\noindent\begin{minipage}{\linewidth}
 \magnetThreeLoopsDiagram
-\figcap{磁铁左移时的三个圆环}\label{ch24:fig:review-magnetthreeloopsdiagram-1}
+\figcap{磁铁左移时的三个圆环\label{ch24:fig:review-magnetthreeloopsdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1027,7 +1029,7 @@ $\dd S=\ell v\dd t$，于是 $|\dd\Phi_B/\dd t|=B\ell v$。洛伦兹力积分与
 图~\ref{ch24:fig:review-motionalroddiagram-1}中，棒向右、B向纸内，正电荷磁力沿棒向上，因此环流逆时针，棒受到向左的阻力。
 \par\noindent\begin{minipage}{\linewidth}
 \motionalRodDiagram
-\figcap{运动导体棒与闭合电阻回路}\label{ch24:fig:review-motionalroddiagram-1}
+\figcap{运动导体棒与闭合电阻回路\label{ch24:fig:review-motionalroddiagram-1}}
 \end{minipage}\par\medskip
 
 
@@ -1081,7 +1083,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
   \draw[<->] (-3.7,-1.4)--node[left] {$L$}(-3.7,1.4);
   \foreach \x in {-1.7,-0.7,0.3,1.4,2.3}{\foreach \y in {-0.75,0.75}{\node[TextGray] at (\x,\y) {$\times$};}}
   \end{tikzpicture}\end{center}
-\figcap{棒与定值电阻组成的闭合导轨回路。}\label{ch24:fig:em24-question-3}
+\figcap{棒与定值电阻组成的闭合导轨回路。\label{ch24:fig:em24-question-3}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1110,7 +1112,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-rodresistordiagram-1}中，棒横跨上下导轨，左侧R闭合回路；速度减小导致电流和阻力同时减小。
 \par\noindent\begin{minipage}{\linewidth}
 \rodResistorDiagram
-\figcap{导体棒经电阻耗散动能}\label{ch24:fig:review-rodresistordiagram-1}
+\figcap{导体棒经电阻耗散动能\label{ch24:fig:review-rodresistordiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1134,7 +1136,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
   \foreach \x in {-2.4,-0.5,0.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
   \draw[<->] (-3.25,-1.4)--node[left] {$L$}(-3.25,1.4);
   \end{tikzpicture}\end{center}
-\figcap{两根相同导体棒，右棒具有初速度。}\label{ch24:fig:em24-question-4}
+\figcap{两根相同导体棒，右棒具有初速度。\label{ch24:fig:em24-question-4}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1167,7 +1169,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-tworoddiagram-1}中，两个运动边界的电动势相减，驱动量取决于 $v_2-v_1$，不是任一棒的绝对速度。
 \par\noindent\begin{minipage}{\linewidth}
 \twoRodDiagram
-\figcap{同一导轨上的两根导体棒}\label{ch24:fig:review-tworoddiagram-1}
+\figcap{同一导轨上的两根导体棒\label{ch24:fig:review-tworoddiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1192,7 +1194,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
  \node at(-2,-.5){$B_1,L_1$};\node at(2,-.6){$B_2,L_2$};
  \foreach \x in {-3,-2,2,3}{\node[TextGray]at(\x,.65){$\times$};}
  \end{tikzpicture}\end{center}
-\figcap{不同棒长与场强的两导轨段，由固定导线相连。}\label{ch24:fig:em24-question-5}
+\figcap{不同棒长与场强的两导轨段，由固定导线相连。\label{ch24:fig:em24-question-5}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1236,7 +1238,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-unequalroddiagram-1}中，上下两根过渡导线分别连通；右棒正电流向上、左棒向下，故两棒的安培力方向相反。
 \par\noindent\begin{minipage}{\linewidth}
 \unequalRodDiagram
-\figcap{不等宽导轨之间的闭合连接}\label{ch24:fig:review-unequalroddiagram-1}
+\figcap{不等宽导轨之间的闭合连接\label{ch24:fig:review-unequalroddiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1261,7 +1263,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
   \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
   \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
   \end{tikzpicture}\end{center}
-\figcap{导体棒通过小电阻与初始未充电的电容器相连，图示接通后的回路。}\label{ch24:fig:em24-question-6}
+\figcap{导体棒通过小电阻与初始未充电的电容器相连，图示接通后的回路。\label{ch24:fig:em24-question-6}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1300,7 +1302,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-rodcapacitordiagram-1}中，电容最终电压等于棒的动生电动势；暂态需按文中微小电阻模型理解。
 \par\noindent\begin{minipage}{\linewidth}
 \rodCapacitorDiagram
-\figcap{电容充电时的回路与棒的冲量关系}\label{ch24:fig:review-rodcapacitordiagram-1}
+\figcap{电容充电时的回路与棒的冲量关系\label{ch24:fig:review-rodcapacitordiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1321,7 +1323,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
   \draw[vector] (1.0,0)--(2.4,0) node[right] {$v_0$};
   \foreach \x in {-1.7,-0.7,0.2,1.5,2.4}{\foreach \y in {-0.7,0.7}{\node[TextGray] at (\x,\y) {$\times$};}}
   \end{tikzpicture}\end{center}
-\figcap{导体棒与电感相连，电感初始电流为零。}\label{ch24:fig:em24-question-7}
+\figcap{导体棒与电感相连，电感初始电流为零。\label{ch24:fig:em24-question-7}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1353,7 +1355,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-rodinductordiagram-1}中，线圈接入回路后，电感电流和棒速度连续变化，动能与磁能相互转化。
 \par\noindent\begin{minipage}{\linewidth}
 \rodInductorDiagram
-\figcap{导体棒与电感的能量交换}\label{ch24:fig:review-rodinductordiagram-1}
+\figcap{导体棒与电感的能量交换\label{ch24:fig:review-rodinductordiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1378,7 +1380,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
  \draw[vector](1.2,0)--(2.6,0)node[right]{$v_0$};
  \foreach \x in {-1.6,-.6,1.8}{\foreach \y in {-.9,.9}{\node[TextGray]at(\x,\y){$\times$};}}
 \end{tikzpicture}\end{center}
-\figcap{电源、定值电阻和运动导体棒的实际连接。}\label{ch24:fig:em24-question-8}
+\figcap{电源、定值电阻和运动导体棒的实际连接。\label{ch24:fig:em24-question-8}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1403,7 +1405,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-rodsourcediagram-1}中，按所标电源极性，正电流在棒中向下；当动生电动势大于电源时，电流可反向。
 \par\noindent\begin{minipage}{\linewidth}
 \rodSourceDiagram
-\figcap{电源驱动的导体棒}\label{ch24:fig:review-rodsourcediagram-1}
+\figcap{电源驱动的导体棒\label{ch24:fig:review-rodsourcediagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1430,7 +1432,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
  \foreach \x in {-1.6,-.5,1.8}{\foreach \y in {-.8,.8}{\node at(\x,\y){$\otimes$};}}
  \node at(-.7,0){$B$};
 \end{tikzpicture}\end{center}
-\figcap{可运动导体棒的电学端口；箭头和正负号定义关联参考方向。}\label{ch24:fig:em24-question-9}
+\figcap{可运动导体棒的电学端口；箭头和正负号定义关联参考方向。\label{ch24:fig:em24-question-9}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1463,7 +1465,7 @@ $\mathcal E=Blv$，$I=Blv/R$，磁力阻碍滑动，因此
 图~\ref{ch24:fig:review-equivalentcircuitdiagram-1}中，机械端口电压 $U_m=BLv$ 与电流关系相当于电容，图中R与该电容串联。
 \par\noindent\begin{minipage}{\linewidth}
 \equivalentCircuitDiagram
-\figcap{运动导体棒的电学端口等效}\label{ch24:fig:review-equivalentcircuitdiagram-1}
+\figcap{运动导体棒的电学端口等效\label{ch24:fig:review-equivalentcircuitdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1509,7 +1511,7 @@ $\pi R^2B$，因此出现 $E_\varphi\propto1/r$ 的外区结果。电场线是�
 图~\ref{ch24:fig:review-vortexfielddiagram-1}中，磁场向纸内增强时，电场逆时针；半径R是内外电场公式的分界，不是电场消失的位置。
 \par\noindent\begin{minipage}{\linewidth}
 \vortexFieldDiagram
-\figcap{柱形变磁场内外的涡旋电场}\label{ch24:fig:review-vortexfielddiagram-1}
+\figcap{柱形变磁场内外的涡旋电场\label{ch24:fig:review-vortexfielddiagram-1}}
 \end{minipage}\par\medskip
 
 
@@ -1614,11 +1616,24 @@ $B_z(r,t)=B_c(t)[1-\alpha r^2/r_0^2]$。其面积平均值为
 分别求小环的角速度、位置以及大环对小环的径向支持力。
 \par\noindent\begin{minipage}{\linewidth}
 \chargedRingDiagram
-\figcap{小环的角向和径向符号约定}\label{ch24:fig:review-chargedringdiagram-1}
+\figcap{小环的角向和径向符号约定\label{ch24:fig:review-chargedringdiagram-1}}
 \end{minipage}\par\medskip
 \end{origexamplebox}
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](0,0)circle(2.1);\fill(2.1,0)circle(2.4pt)node[above right]{$m,+q$};
+ \draw[guide,dashed](0,0)--(2.1,0);\node[above]at(.95,0){$R$};
+ \draw[DeepBlue,->](0:2.45)arc(0:-60:2.45);\node[right]at(2.5,-1.3){$\theta$ 正向};
+ \draw[vector](2.1,0)--(2.1,-1.2)node[left]{$\vect e_\theta$};
+ \draw[vector](2.1,0)--(3.5,0)node[right]{$\vect e_r$};
+ \node[TextGray]at(-.5,.9){$\otimes\ B(t)$};
+ \node[align=left,anchor=west]at(4.5,.4){$N_r>0$ 向外\\$N_r<0$ 向内\\图示 $\theta=0$ 的基矢};
+\end{tikzpicture}
+\figcap{解图：带电小环的切向、径向基矢与支持力正方向；图示 $\theta=0$。\label{ch24:quality:a10}}
+\end{minipage}\end{center}
+
 半径 $R$ 处的感生电场为
 \begin{equation}
   E_\theta=-\frac R2\dot B.
@@ -1669,6 +1684,8 @@ $-q^2R\alpha^2t^2/(4m)$，磁力移项为 $q^2R\alpha^2t^2/(2m)$，相加得
 
 图~\ref{ch24:fig:review-chargedringdiagram-1}中，顺时针为角坐标正向，径向向外为正；两个力的代数值按同一径向约定相加。
 
+
+图~\ref{ch24:quality:a10} 中，带电小环是沿固定大圆轨道滑动的质点。先对半径 $R$ 的圆周使用法拉第定律，由对称性求出小环所在处的 $E_\theta$；再把局部切向电力 $qE_\theta$ 代入 $mR\ddot\theta=qE_\theta$。大环只提供径向约束，不能把它误当成整体带电的受力环。
 \end{xesolution}
 
 
@@ -1692,7 +1709,7 @@ $B=B_0\sin\omega t$。在距离圆心 $h$ 的一条弦上有光滑直轨，带�
   \node[TextGray] at (-1.4,1.0) {$\times$}; \node[TextGray] at (0,1.0) {$\times$}; \node[TextGray] at (1.4,1.0) {$\times$};
   \node at (0,1.65) {$B_0\sin\omega t$};
   \end{tikzpicture}\end{center}
-\figcap{正电荷位于弦中点，圆形区域内磁场按给定规律变化。}\label{ch24:fig:em24-question-11}
+\figcap{正电荷位于弦中点，圆形区域内磁场按给定规律变化。\label{ch24:fig:em24-question-11}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1723,7 +1740,7 @@ $s=\sqrt{R^2-h^2}$，而 $|x|$ 的最大值为 $|q|hB_0/(m\omega)$，故条件�
 图~\ref{ch24:fig:review-chordparticlediagram-1}中，轨道在圆心下方h处，端点由同一个圆与直线的交点确定；粒子位移不能越过弦端。
 \par\noindent\begin{minipage}{\linewidth}
 \chordParticleDiagram
-\figcap{弦上粒子的约束与磁场边界}\label{ch24:fig:review-chordparticlediagram-1}
+\figcap{弦上粒子的约束与磁场边界\label{ch24:fig:review-chordparticlediagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1744,7 +1761,7 @@ $B=B_0+kt$。距圆心 $h$ 处有一条直导线 $AD$，与圆的两个交点为
   \draw[<->] (0,0)--node[right] {$h$}(0,-1.2);
   \node[TextGray] at (-1.1,.2) {$\dot B=k$};
 \end{tikzpicture}\end{center}
-\figcap{弦、观察端点和外延直线；感生电场分布待求。}\label{ch24:fig:em24-question-12}
+\figcap{弦、观察端点和外延直线；感生电场分布待求。\label{ch24:fig:em24-question-12}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1777,7 +1794,7 @@ $B=B_0+kt$。距圆心 $h$ 处有一条直导线 $AD$，与圆的两个交点为
 图~\ref{ch24:fig:review-chordemfdiagram-1}中，A、C为圆与导线的交点，D为有限观察端点；圆外仍需积分涡旋电场。
 \par\noindent\begin{minipage}{\linewidth}
 \chordEmfDiagram
-\figcap{跨越磁场边界的直导线}\label{ch24:fig:review-chordemfdiagram-1}
+\figcap{跨越磁场边界的直导线\label{ch24:fig:review-chordemfdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1789,11 +1806,31 @@ $B=B_0+kt$。距圆心 $h$ 处有一条直导线 $AD$，与圆的两个交点为
 $V_3$ 的两根导线从 $A,C$ 沿径向通到圆心。求三表示数并解释它们测量的物理量。
 \par\noindent\begin{minipage}{\linewidth}
 \circularVoltmetersDiagram
-\figcap{圆形电阻线与三种测量路径}\label{ch24:fig:review-circularvoltmetersdiagram-1}
+\figcap{圆形电阻线与三种测量路径\label{ch24:fig:review-circularvoltmetersdiagram-1}}
 \end{minipage}\par\medskip
 \end{origexamplebox}
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.8,>=Latex]
+ \draw[Ink,thick](0,0)circle(2.4);
+ \coordinate(A)at(150:2.4);\coordinate(C)at(30:2.4);
+ \fill(A)circle(2pt)node[left]{$A$};\fill(C)circle(2pt)node[right]{$C$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vone)at(0,3.15){$V_1$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vtwo)at(0,-3.15){$V_2$};
+ \draw(A)--(150:3.15)arc(150:100:3.15)--(Vone.west);
+ \draw(Vone.east)--(80:3.15)arc(80:30:3.15)--(C);
+ \draw(A)--(150:3.15)arc(150:260:3.15)--(Vtwo.west);
+ \draw(Vtwo.east)--(280:3.15)arc(280:390:3.15)--(C);
+ \draw[Ink](0,0)circle(.38);\node at(0,0){$V_3$};
+ \draw(A)--(150:.38) (30:.38)--(C);
+ \draw[guide](30:.8)arc(30:150:.8);\node at(0,1.12){$2\pi/3$};
+ \node[TextGray]at(0,-1.2){$\otimes\quad \dot B=k$};
+ \node[align=left,anchor=west]at(3.8,.3){$V_3$ 的接线沿 $AO,CO$\\仪表视为点状，$O$ 为圆心\\$V_1,V_2$ 引线取紧贴弧线极限\\图中间距只为辨认路径};
+\end{tikzpicture}
+\figcap{解图：本题条件的分解与计算所用几何。\label{ch24:quality:a13}}
+\end{minipage}\end{center}
+
 总感应电动势的大小为
 \begin{equation}
   \mathcal E_0=k\pi R^2.
@@ -1818,6 +1855,8 @@ $V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意�
 
 图~\ref{ch24:fig:review-circularvoltmetersdiagram-1}中，V1、V2的引线分别紧贴两段弧，V3沿两条半径；不同闭合路径对应不同包围面积。
 
+
+图~\ref{ch24:quality:a13} 中，各电压表的引线与圆环组成不同闭合路径，所围变化磁通不同；两读数相减须连同两条引线路径一起使用法拉第定律。
 \end{xesolution}
 
 
@@ -1827,11 +1866,35 @@ $V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意�
 电压表 $V_1,V_2,V_3,V_4$ 分别紧贴上、右、下、左四边连接。求各表示数并解释其物理意义。
 \par\noindent\begin{minipage}{\linewidth}
 \squareVoltmetersDiagram
-\figcap{四只电压表的真实连接点}\label{ch24:fig:review-squarevoltmetersdiagram-1}
+\figcap{四只电压表的真实连接点\label{ch24:fig:review-squarevoltmetersdiagram-1}}
 \end{minipage}\par\medskip
 \end{origexamplebox}
 
 \begin{xesolution}
+先由整个线框的变化磁通求环流，再按图~\ref{ch24:fig:review-squarevoltmetersdiagram-1}中各电压表与被测边围成的路径求读数。解图~\ref{ch24:quality:a14}保留四个接点，便于逐边检查欧姆压降。
+
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.82,>=Latex]
+ \draw[Ink,thick](-2,1.65)--(2,1.65)--(2,.45) (2,-.45)--(2,-1.65)--(-2,-1.65)--(-2,-.45) (-2,.45)--(-2,1.65);
+ \draw[Ink,thick](-2.15,-.45)rectangle(-1.85,.45) (1.85,-.45)rectangle(2.15,.45);
+ \node[right]at(-1.7,.0){$R_1$};\node[left]at(1.7,0){$R_2$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vone)at(0,2.35){$V_1$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vtwo)at(2.8,0){$V_2$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vthree)at(0,-2.35){$V_3$};
+ \node[circle,draw,minimum size=.7cm,inner sep=1pt](Vfour)at(-2.8,0){$V_4$};
+ \draw(-2,1.65)--(-2,2.35)--(Vone.west) (Vone.east)--(2,2.35)--(2,1.65);
+ \draw(2,1.65)--(2.8,1.65)--(Vtwo.north) (Vtwo.south)--(2.8,-1.65)--(2,-1.65);
+ \draw(-2,-1.65)--(-2,-2.35)--(Vthree.west) (Vthree.east)--(2,-2.35)--(2,-1.65);
+ \draw(-2,1.65)--(-2.8,1.65)--(Vfour.north) (Vfour.south)--(-2.8,-1.65)--(-2,-1.65);
+ \foreach \x in {-2,2}{\foreach \y in {-1.65,1.65}{\fill(\x,\y)circle(2pt);}}
+ \node[TextGray]at(0,0){$\otimes\ B(t)$};
+ \draw[<->](-2,-3)--(2,-3)node[midway,below]{$a$};
+ \node[align=left,anchor=west]at(4,.2){仪表、引线均与顶点相接\\为辨认路径放大引线间距\\计算取紧贴极限，附加面积趋零};
+\end{tikzpicture}
+\figcap{解图：本题条件的分解与计算所用几何。\label{ch24:quality:a14}}
+\end{minipage}\end{center}
+
 线框的感应电动势大小为 $\mathcal E_0=ka^2$，电流大小为
 \begin{equation}
   I=\frac{ka^2}{R_1+R_2}.
@@ -1851,6 +1914,8 @@ $V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意�
 
 图~\ref{ch24:fig:review-squarevoltmetersdiagram-1}中，所有引线都接到顶点，表与被测边的间距仅为辨认而放大，计算取其所围附加面积趋零。
 
+
+图~\ref{ch24:quality:a14} 中，电压表接线限定了测量路径；即使两端点相同，绕过变化磁通的不同路径也不能直接等同为同一个静电势差。
 \end{xesolution}
 
 
@@ -1865,7 +1930,7 @@ $V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意�
  \node at(-1,1){$\otimes$};\node at(1,1){$\otimes$};\node at(-1,-1){$\otimes$};\node at(1,-1){$\otimes$};
  \draw[<->](-2,-2.5)--(2,-2.5)node[midway,below]{$2a$};\node[right]at(2.6,.2){$\dot B=k$};
 \end{tikzpicture}\end{center}
-\figcap{四个方格中的垂直磁场按相同变化率改变。}\label{ch24:fig:em24-question-15}
+\figcap{四个方格中的垂直磁场按相同变化率改变。\label{ch24:fig:em24-question-15}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1888,7 +1953,7 @@ $V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意�
 图~\ref{ch24:fig:review-gridcurrentdiagram-1}中，向纸内磁场增强时，外周逆时针电流产生向纸外的反抗磁场，内部支路电流为零。
 \par\noindent\begin{minipage}{\linewidth}
 \gridCurrentDiagram
-\figcap{田字格的外周环流}\label{ch24:fig:review-gridcurrentdiagram-1}
+\figcap{田字格的外周环流\label{ch24:fig:review-gridcurrentdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1896,9 +1961,39 @@ $V_3$ 测得的是由该引线路径定义的端点读数，它不等于任意�
 
 \begin{origexamplebox}{【万能的基尔霍夫】}\label{ch24:ex:s40-9-16}
 证明：任意复杂的、仅含电阻和理想电源的线性网络放入匀强时变磁场 $B=B_0+kt$ 中，只要所有支路参数和各独立回路所围面积均已知，就能求出所有支路电流；并证明此时仍满足电源叠加定理。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw (0,0) rectangle (4,2);\draw (2,0)--(2,.7) rectangle (2.35,1.3);\draw (2.175,1.3)--(2.175,2);
+\draw (0,.8) rectangle (.3,1.4);\node[left] at (0,1.1){$R_1$};
+\draw (3.7,.8) rectangle (4,1.4);\node[right] at (4,1.1){$R_2$};
+\node[right] at (2.35,1){$R_3$};
+\node at (1,1){$S_1$};\node at (3.1,1){$S_2$};
+\node[above] at (2,2.15){$\boldsymbol B(t)\;\odot$};
+\draw[->] (.6,.4)--(1.2,.4);\draw[->] (2.6,.4)--(3.2,.4);
+
+\end{tikzpicture}
+\figcap{题图：任意网络的两个相邻独立回路示意；面积和绕行方向必须与回路方程一致。\label{ch24:quality:q16}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw (0,0) rectangle (4,2);\draw (2,0)--(2,.7) rectangle (2.35,1.3);\draw (2.175,1.3)--(2.175,2);
+\draw (0,.8) rectangle (.3,1.4);\node[left] at (0,1.1){$R_1$};
+\draw (3.7,.8) rectangle (4,1.4);\node[right] at (4,1.1){$R_2$};
+\node[right] at (2.35,1){$R_3$};
+\node at (1,1){$S_1$};\node at (3.1,1){$S_2$};
+\node[above] at (2,2.15){$\boldsymbol B(t)\;\odot$};
+\draw[->] (.6,.4)--(1.2,.4);\draw[->] (2.6,.4)--(3.2,.4);
+
+\end{tikzpicture}
+\figcap{解图：独立回路的面积、方向与共有电阻决定线性方程的系数。\label{ch24:quality:a16}}
+\end{minipage}\end{center}
+
 为网络选取 $n$ 个独立网孔电流，组成列向量 $\vect i$。记 $\vect R$ 为由支路电阻组成的网孔电阻矩阵，$\vect e$ 为理想电源在各网孔中的代数和，
 $\vect S=(S_1,\ldots,S_n)^{\mathsf T}$ 为有符号面积列向量。法拉第--基尔霍夫方程可写成
 \begin{equation}
@@ -1916,6 +2011,8 @@ $\vect i^{\mathsf T}\vect R\vect i=\sum_eR_eI_e^2\ge0$。
 若存在纯理想电源或零电阻回路，必须先检查约束：回路电动势不相容时无有限稳态解，
 相容时也可能不能唯一确定电流。例如两只等电压理想电源并联，其分担电流不由理想模型唯一决定。
 因此题设的“任意”须理解为非退化、约束相容的线性网络；退化情况不能直接写 $\vect R^{-1}$。
+
+图~\ref{ch24:quality:a16} 中，$R_3$ 是两个回路的共有支路，按图中同为逆时针的回路电流取向，其支路电流是两个网孔电流之差；每个回路另有感应电动势 $-kS_j$。
 \end{xesolution}
 
 
@@ -1955,7 +2052,7 @@ $n$ 匝的理想长螺线管，
 图~\ref{ch24:fig:review-selffieldlinesdiagram-1}中，单环和多匝线圈都有内部场与外部回流场，同向绕组的内场贡献相加。
 \par\noindent\begin{minipage}{\linewidth}
 \selfFieldLinesDiagram
-\figcap{单环与有限螺线管的自生场}\label{ch24:fig:review-selffieldlinesdiagram-1}
+\figcap{单环与有限螺线管的自生场\label{ch24:fig:review-selffieldlinesdiagram-1}}
 \end{minipage}\par\medskip
 图中的单环电流按右手规则产生向上的轴场，场线从上侧绕回下侧；多匝同向绕组使内部磁场叠加，
 外部回流场仍存在。计算自感时，必须计算这些自生磁场穿过本回路各匝的磁链，而不是把外部场另行遗漏。
@@ -2020,7 +2117,7 @@ $P=UI=LI\dot I$，从零电流积分到 $I$：
 图~\ref{ch24:fig:review-selfinductancediagram-1}中，内部磁场穿过每一匝，磁链要将各匝通量相加，才得到 $\Lambda=LI$。
 \par\noindent\begin{minipage}{\linewidth}
 \selfInductanceDiagram
-\figcap{螺线管的自生磁链}\label{ch24:fig:review-selfinductancediagram-1}
+\figcap{螺线管的自生磁链\label{ch24:fig:review-selfinductancediagram-1}}
 \end{minipage}\par\medskip
 
 
@@ -2099,7 +2196,7 @@ $|k|\le1$ 不是经验规定，而是能量正定性的结果。$|k|=1$ 表示�
 图~\ref{ch24:fig:review-mutualinductancediagram-1}中，两个同向电流的正法向一致，回路1的场穿过回路2，反向激励时交换源和受体。
 \par\noindent\begin{minipage}{\linewidth}
 \mutualInductanceDiagram
-\figcap{两个同轴回路的互感}\label{ch24:fig:review-mutualinductancediagram-1}
+\figcap{两个同轴回路的互感\label{ch24:fig:review-mutualinductancediagram-1}}
 \end{minipage}\par\medskip
 
 
@@ -2142,7 +2239,7 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
  \draw[<->](-3.8,-1.5)--(0,-1.5)node[midway,below]{$l_1$};
  \draw[<->](0,-1.5)--(3.8,-1.5)node[midway,below]{$l_2$};
  \end{tikzpicture}\end{center}
-\figcap{沿同一长螺线管把绕组分为两段，位置保持不变。}\label{ch24:fig:em24-question-17}
+\figcap{沿同一长螺线管把绕组分为两段，位置保持不变。\label{ch24:fig:em24-question-17}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -2172,7 +2269,7 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
 图~\ref{ch24:fig:review-solenoidsplitdiagram-1}中，分界只是对同一线圈的划分；保持位置时总自感还包括两段互感的两倍。
 \par\noindent\begin{minipage}{\linewidth}
 \solenoidSplitDiagram
-\figcap{同向串联的两段线圈}\label{ch24:fig:review-solenoidsplitdiagram-1}
+\figcap{同向串联的两段线圈\label{ch24:fig:review-solenoidsplitdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -2188,14 +2285,14 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
  \node at(-2.5,0){线圈1};\node at(2.5,.4){线圈2};
  \node[right]at(-1.35,.95){$I_1$};\node[right]at(3.45,1.2){$I_2$};
 \end{tikzpicture}\end{center}
-\figcap{两个单匝线圈及各自的电流参考方向。}\label{ch24:fig:em24-question-18}
+\figcap{两个单匝线圈及各自的电流参考方向。\label{ch24:fig:em24-question-18}}
 
 \end{origexamplebox}
 
 \begin{xesolution}
 \par\noindent\begin{minipage}{\linewidth}
 \mutualLoopsProofDiagram
-\figcap{互感双重积分的源点和场点}\label{ch24:fig:review-mutualloopsproofdiagram-1}
+\figcap{互感双重积分的源点和场点\label{ch24:fig:review-mutualloopsproofdiagram-1}}
 \end{minipage}\par\medskip
 
 使用稳恒线电流的矢势
@@ -2233,11 +2330,34 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
 电阻 $R$、电感 $L$、电容 $C$ 串联成回路。初始电流为零，电容初电压为 $U$。$t=0$ 闭合开关，求任意时刻的放电电流。
 \par\noindent\begin{minipage}{\linewidth}
 \rlcDiagram{0}
-\figcap{RLC回路及初始电压参考极性}\label{ch24:fig:review-rlcdiagram-1}
+\figcap{RLC回路及初始电压参考极性\label{ch24:fig:review-rlcdiagram-1}}
 \end{minipage}\par\medskip
 \end{origexamplebox}
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[Ink,thick](-4,1)--(-3.2,1) (-2.75,1)--(-1.8,1);
+ \draw[Ink,thick](-3.2,.5)--(-3.2,1.5) (-2.75,.5)--(-2.75,1.5);
+ \node[above]at(-3,1.75){$C,\ U$};
+ \ifnum0=1\node[below]at(-3.25,.45){$+$};\node[below]at(-2.7,.45){$-$};
+ \else\node[below]at(-3.25,.45){$-$};\node[below]at(-2.7,.45){$+$};\fi
+ \foreach \xx in {-1.8,-1.3,-.8,-.3}{\draw[Ink,thick](\xx,1)arc(180:0:.25 and .3);}
+ \draw[Ink,thick](.2,1)--(.65,1);\draw[Ink,thick](.65,.8)rectangle(1.85,1.2);
+ \draw[Ink,thick](1.85,1)--(3,1)--(3,-1)--(1.2,-1);
+ \node[above]at(-.8,1.45){$L$};\node[above]at(1.25,1.4){$R$};
+ \fill(1.2,-1)circle(1.6pt);\fill(.3,-1)circle(1.6pt);
+ \draw[Ink,thick](.3,-1)--(1.2,-1);\node[below]at(.75,-1.15){$S$（已闭合）};
+ \ifnum0=1
+  \draw[Ink,thick](.3,-1)--(-1,-1) (-1.4,-1)--(-4,-1)--(-4,1);
+  \draw[Ink,thick](-1.4,-1.5)--(-1.4,-.5) (-1,-1.3)--(-1,-.7);
+  \node[below]at(-1.2,-1.65){$\mathcal E$};\node[above]at(-1.55,-.5){$+$};
+ \else\draw[Ink,thick](.3,-1)--(-4,-1)--(-4,1);\fi
+ \draw[vector](-1.7,0)--(.15,0)node[midway,above]{$I(t)$};
+\end{tikzpicture}
+\figcap{解图：本题条件的分解与计算所用几何。\label{ch24:quality:a19}}
+\end{minipage}\end{center}
+
 记电容器带电量为 $q$，并把放电方向的电流取为 $I=-\dot q$。则
 \begin{equation}
   L\ddot q+R\dot q+\frac qC=0,
@@ -2272,6 +2392,8 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
 
 图~\ref{ch24:fig:review-rlcdiagram-1}中，图示开关已闭合，C为等长双极板，R、L使用独立元件符号；电流正向与初始电压极性共同决定方程。
 
+
+图~\ref{ch24:quality:a19} 中，串联路径中的同一电流依次改变电容电荷、产生电阻压降和自感电动势；取 $I=-\dot q$ 时，电容放电方向与电荷减少一致。
 \end{xesolution}
 
 
@@ -2280,11 +2402,34 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
 电阻 $R$、电感 $L$、电容 $C$ 与恒定电源 $\mathcal E$ 串联成回路。初始电流为零，电容初电压为 $U$。$t=0$ 闭合开关，求任意时刻的电流。
 \par\noindent\begin{minipage}{\linewidth}
 \rlcDiagram{1}
-\figcap{RLC回路及初始电压参考极性}\label{ch24:fig:review-rlcdiagram-2}
+\figcap{RLC回路及初始电压参考极性\label{ch24:fig:review-rlcdiagram-2}}
 \end{minipage}\par\medskip
 \end{origexamplebox}
 
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[scale=.9,>=Latex]
+ \draw[Ink,thick](-4,1)--(-3.2,1) (-2.75,1)--(-1.8,1);
+ \draw[Ink,thick](-3.2,.5)--(-3.2,1.5) (-2.75,.5)--(-2.75,1.5);
+ \node[above]at(-3,1.75){$C,\ U$};
+ \ifnum1=1\node[below]at(-3.25,.45){$+$};\node[below]at(-2.7,.45){$-$};
+ \else\node[below]at(-3.25,.45){$-$};\node[below]at(-2.7,.45){$+$};\fi
+ \foreach \xx in {-1.8,-1.3,-.8,-.3}{\draw[Ink,thick](\xx,1)arc(180:0:.25 and .3);}
+ \draw[Ink,thick](.2,1)--(.65,1);\draw[Ink,thick](.65,.8)rectangle(1.85,1.2);
+ \draw[Ink,thick](1.85,1)--(3,1)--(3,-1)--(1.2,-1);
+ \node[above]at(-.8,1.45){$L$};\node[above]at(1.25,1.4){$R$};
+ \fill(1.2,-1)circle(1.6pt);\fill(.3,-1)circle(1.6pt);
+ \draw[Ink,thick](.3,-1)--(1.2,-1);\node[below]at(.75,-1.15){$S$（已闭合）};
+ \ifnum1=1
+  \draw[Ink,thick](.3,-1)--(-1,-1) (-1.4,-1)--(-4,-1)--(-4,1);
+  \draw[Ink,thick](-1.4,-1.5)--(-1.4,-.5) (-1,-1.3)--(-1,-.7);
+  \node[below]at(-1.2,-1.65){$\mathcal E$};\node[above]at(-1.55,-.5){$+$};
+ \else\draw[Ink,thick](.3,-1)--(-4,-1)--(-4,1);\fi
+ \draw[vector](-1.7,0)--(.15,0)node[midway,above]{$I(t)$};
+\end{tikzpicture}
+\figcap{解图：本题条件的分解与计算所用几何。\label{ch24:quality:a20}}
+\end{minipage}\end{center}
+
 取电源充电方向为电流正方向，令 $q$ 为电容正极板电量，$I=\dot q$。回路方程为
 \begin{equation}
   L\ddot q+R\dot q+\frac qC=\mathcal E,
@@ -2311,6 +2456,8 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
 
 图~\ref{ch24:fig:review-rlcdiagram-2}中，图示开关已闭合，C为等长双极板，R、L使用独立元件符号；电流正向与初始电压极性共同决定方程。
 
+
+图~\ref{ch24:quality:a20} 中，电源与串联的 $R,L,C$ 在同一回路中；稳态特解叠加的衰减自由振荡必须一起满足接通瞬间的电荷与电流初值。
 \end{xesolution}
 
 
@@ -2335,14 +2482,14 @@ $W=Q^2/(2C)+LI^2/2$，无源时应有 $\dot W=-RI^2\le0$。若推导得到无源
  \draw[<->](-4.4,-1.15)--(-4.4,1.15)node[midway,left]{$L$};
  \node at(0,2.1){$B(x,t)=B_0\cos(kx-\omega t)$，垂直框面};
 \end{tikzpicture}\end{center}
-\figcap{闭合导体框与绝缘机械支承；框长、框宽及瞬时速度为已知量。}\label{ch24:fig:em24-question-21}
+\figcap{闭合导体框与绝缘机械支承；框长、框宽及瞬时速度为已知量。\label{ch24:fig:em24-question-21}}
 
 \end{origexamplebox}
 
 \begin{xesolution}
 \par\noindent\begin{minipage}{\linewidth}
 \travelingFieldTrainDiagram
-\figcap{行波磁场与绝缘机械支承}\label{ch24:fig:review-travelingfieldtraindiagram-1}
+\figcap{行波磁场与绝缘机械支承\label{ch24:fig:review-travelingfieldtraindiagram-1}}
 \end{minipage}\par\medskip
 
 令

@@ -1,3 +1,4 @@
+% ThermalQualityRevision20261023-v1
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,6 +7,8 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{有心力、万有引力与天体运动}
+\input{chapters/quality-20261023/thermal/ch11.tex}
+
 
 第9章已建立角动量守恒、有效势与有心力轨道的基本方法。本章先作必要回顾，再重点讨论轨道初始条件、二体运动及天体运动中的具体应用。
 
@@ -310,8 +313,12 @@ $U_{\rm eff}''>0$ 时是径向小振动，$U_{\rm eff}''<0$ 时扰动指数增�
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{从静止径向落向引力中心的时间}\label{ch11:ex:teaching-radial-fall}
 质量可忽略的质点从距固定点质量 $M$ 为 $r_0$ 处静止释放，仅受万有引力。求降到 $r_1$ 的时间，其中 $0<r_1<r_0$，并讨论形式上的 $r_1\to0$ 极限。把引力源看作点质量。
+
+\ThQRadialFall
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThARadialFall
+
 初速度为零，故角动量为零，运动是纯径向的，不可使用含 $1/L$ 的轨道公式。记 $\mu=GM$，单位质量机械能守恒给出
 \[
  \tfrac12\dot r^2-\frac\mu r=-\frac\mu{r_0}.
@@ -438,8 +445,12 @@ $mv_e^2/2-GMm/r=0$，所以 $v_e=\sqrt{2GM/r}=\sqrt2v_c$。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{近地圆轨道和逃逸速度}\label{ch11:ex:01}
 忽略大气和地球自转，地球半径为 $R$、地表重力加速度为 $g$。求近地圆轨道速度、周期和第二宇宙速度。
+
+\ThQOrbit
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAOrbit
+
 地表重力满足 $mg=GMm/R^2$，消去试探物体质量得 $GM=gR^2$。
 近地圆轨道径向方程为 $mv_c^2/R=mg$，因此
 \[
@@ -459,6 +470,8 @@ $g=9.81\,\mathrm{m/s^2}$，分别约为 $7.9\,\mathrm{km/s}$、$84.4\,\mathrm{mi
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{椭圆轨道远近点速度}\label{ch11:ex:02}
 卫星绕质量为 $M$ 的天体作椭圆运动，近点和远点距离分别为 $r_p,r_a$。求两点速度之比，并给出速度本身。
+
+\ThQApsides
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 图\ref{ch11:fig:apsis}中力心在椭圆的焦点而非中心。两拱点有 $\dot r=0$，速度均垂直于位置矢量。
@@ -518,8 +531,12 @@ $v=v_e$ 是抛物轨道、$v>v_e$ 是双曲轨道，都不再是束缚椭圆。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{两个共面圆轨道之间的双脉冲转移}\label{ch11:ex:teaching-transfer}
 卫星原在半径 $r_1$ 的圆轨道上，拟转入同平面、同绕行方向、半径 $r_2>r_1$ 的圆轨道。采用一条近点为 $r_1$、远点为 $r_2$ 的椭圆转移轨道，在两端各施加一次沿切向的瞬时速度增量。忽略卫星质量及推进过程的有限持续时间，求两次增量与转移时间。
+
+\ThQTransfer
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThATransfer
+
 图~\ref{ch11:fig:apsis} 的 $P,A$ 分别对应转移椭圆的近点、远点，故半长轴 $a=(r_1+r_2)/2$。记 $\mu=GM$。转移过程中单位质量能量为 $-\mu/(2a)$，在任一点有
 \[
  \frac{v^2}{2}-\frac\mu r=-\frac\mu{2a},
@@ -672,8 +689,12 @@ $\arctan(v_\theta/v_r)=54.695^\circ$，所以相对 $SP_0$ 的方向角为
 质量分别为 $M$ 和 $m$（$M>m$）的两颗星相距 $d$，在相互引力作用下绕共同质心作圆周运动。
 某次超新星爆发使质量较大的星体瞬时、各向同性地失去质量 $\Delta M$；抛出物不碰撞另一颗星，
 且爆发不对残余星体施加反冲。求爆发后两颗残余星体仍保持束缚的条件。
+
+\ThQMassLoss
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAMassLoss
+
 爆发前相对运动的圆轨道速度满足
 \[
  v_{\rm rel}^2=\frac{G(M+m)}{d}.
@@ -704,8 +725,12 @@ $M-\Delta M+m$。于是单位约化质量的相对轨道能量为
 \[
  r=\frac{p_0}{1+e\cos\theta}.
 \]
+
+\ThQLRL
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThALRL
+
 这里 $\vect p=m\vect v$、$\vect L=\vect r\times\vect p$，并记
 $\uvec r=\vect r/r$。引力为
 \[
@@ -752,6 +777,8 @@ $\uvec r=\vect r/r$。引力为
 （1）先把飞船视为固定的引力中心，求尘埃被散射到 $\theta$ 至 $\theta+\dd\theta$ 时的微分散射截面
 $\dd\sigma/\dd\Omega$；（2）假设直接撞击的尘埃被飞船吸收，并且引力散射均为小角度，求直接碰撞阻力与
 掠过飞船的尘埃造成的引力阻力。
+
+\ThQDust
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 设尘埃的冲量参数为 $b$，即远处入射直线与引力中心的距离，而不是最近距离。
@@ -847,8 +874,12 @@ $\rho v\,2\pi b\dd b$，纵向速度损失为 $v(1-\cos\theta)$。又
 \label{ch11:ex:07}
 除太阳质量 $M$ 的平方反比引力外，质量为 $m$ 的行星还受到很小的径向外力
 $\vect F_1=kmr\,\uvec r$，其中 $k>0$ 为常量。设近圆轨道半径为 $R$，求近日点进动角速度。
+
+\ThQPrecession
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAPrecession
+
 附加力向外，故单位质量势能可写为
 \[
  \Phi(r)=-\frac{GM}{r}-\frac12kr^2.
@@ -892,8 +923,12 @@ $\kappa_r=n-2k/n+O(k^2/n^3)$，相减得
 质量为 $m$ 的质点在固定质量 $M$ 的平方反比引力下沿椭圆运动，同时受到很小的阻力
 $\vect f=-\gamma\vect v$。取时间间隔 $\dd t$ 远长于轨道周期、又短到轨道根数的相对变化仍很小。
 已知机械能和角动量的大小分别为 $E<0,L$。求周期平均后的 $\dd E,\dd L$，并证明轨道只按比例缩小、偏心率不变。
+
+\ThQOrbitDrag
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAOrbitDrag
+
 阻力的瞬时功率为
 \[
  \dot E=\vect f\cdot\vect v=-\gamma v^2.

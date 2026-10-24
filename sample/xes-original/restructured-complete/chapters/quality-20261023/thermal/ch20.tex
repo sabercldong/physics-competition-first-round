@@ -1,0 +1,140 @@
+% Editable TikZ: boundary values, image energy, polarization, and circuits.
+\input{chapters/quality-20261023/thermal/electrostatic-analysis-ch20.tex}
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThConductorsBase}[2]{
+ \draw[fill=DeepBlue!8,thick](-2,0)ellipse(1.3 and 1);\draw[fill=DeepBlue!8,thick](2,0)ellipse(.9 and 1.2);
+ \node at(-2,0){$A:#1$};\node at(2,0){$B:#2$};\node[above]at(0,1.9){形状、尺寸和间距不预设对称};}
+\newcommand{\ThQOppositeConductors}{\ThermalFigure{\ThConductorsBase{+Q}{-q}}{两个孤立导体的给定净电荷，不预先指定局部表面电荷的符号。}{ch20:quality:opposite-q}}
+\newcommand{\ThQPositiveConductors}{\ThermalFigure{\ThConductorsBase{+Q}{+q}}{两导体净电荷均为正，电势大小关系还依赖几何。}{ch20:quality:positive-q}}
+\newcommand{\ThAPositiveConductors}{\ThermalFigure{
+ \draw[->](0,0)--(7,0)node[right]{从高电势导体表面向外};\draw[->](0,0)--(0,3)node[above]{$\varphi$};
+ \draw[DeepBlue,thick](0,2.5)..controls(2,1.8)and(3,.6)..(6.5,.2);\node[left]at(0,2.5){$V_{\max}$};
+ \node[right]at(3.5,2.2){$E_n=-\partial_n\varphi\ge0$};
+}{最高电势边界的向外导数非正；仅给净电荷大小不能先指定谁处于最高电势。}{ch20:quality:positive-a}
+图~\ref{ch20:quality:positive-a}从最高电势导体的表面沿外法线出发。拉普拉斯方程的最大值原理禁止外部电势超过该最大边界值，故其面电荷非负；较低电势导体的局部导数可以反号，不能由净电荷正号直接确定局部符号。
+}
+\newcommand{\ThQNeutralConductors}{\ThermalFigure{\ThConductorsBase{0}{0}
+ \node[below]at(0,-1.7){无外加电荷、无外场，两球初始各自中性};
+}{考察静电平衡能否仅由相互感应自发产生持续带电分布。}{ch20:quality:neutral-q}}
+\newcommand{\ThANeutralConductors}{\ThermalFigure{
+ \draw[thick](-2,0)circle(1);\draw[thick](2,0)circle(1);\draw[dashed](-4,-1.8)rectangle(4,1.8);
+ \node at(-2,0){$Q_A=0$};\node at(2,0){$Q_B=0$};\node[above]at(0,2.1){$\varphi(\infty)=0$};
+ \node[below]at(0,-2.1){候选平衡解：$\varphi=0$，$\vect E=0$};
+}{唯一性问题的边界条件：各导体等势且各自净电荷为零。}{ch20:quality:neutral-a}
+图~\ref{ch20:quality:neutral-a}中给定的是两个独立的净电荷约束，不是允许两球交换任意电荷的单一约束。处处零电势同时满足全部条件；唯一性定理排除另外一组稳定、非零的经典静电场。
+}
+\newcommand{\ThQLikeAttraction}{\ThermalFigure{
+ \draw[fill=DeepBlue!10,thick](0,0)circle(1.4);\node at(0,0){净电荷 $+q$};\fill[DeepBlue](4,0)circle(3pt)node[above]{$+q$};
+ \draw[<->](0,-2)--node[below]{$a$}(4,-2);\draw[->](0,0)--(120:1.4)node[midway,left]{$R$};
+}{真实系统只有一个孤立导体球和一个球外点电荷，$a>R$。}{ch20:quality:like-q}}
+\newcommand{\ThQImageEnergy}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.2);\fill[DeepBlue](3,0)circle(3pt)node[above]{$+Q$};\draw[<->](0,-1.7)--node[below]{$L>R$}(3,-1.7);
+ \node[below]at(0,-2.4){接地球外};\begin{scope}[shift={(7,0)}]\draw[thick](0,0)circle(1.7);\draw[thick](0,0)circle(1.2);\fill(.6,0)circle(3pt)node[above]{$-q$};\draw[<->](0,-.5)--node[below]{$d<R$}(.6,-.5);\node[below]at(0,-2.4){接地球腔内};\end{scope}
+}{比较外部与内部点电荷的有限感应能；点电荷自身发散的自能须扣除。}{ch20:quality:image-energy-q}}
+\newcommand{\ThAImageEnergy}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{建立电荷的比例 $\lambda$};\draw[->](0,0)--(0,3)node[above]{$|q\varphi_{\rm ind}(\lambda)|$};
+ \draw[DeepBlue,thick](0,0)--(5,2.5);\fill[DeepBlue!12](0,0)--(5,0)--(5,2.5)--cycle;\node[below]at(5,0){$1$};
+ \node[right]at(6,1.4){图示能量大小；实际感应势取负};
+}{线性感应随真实电荷逐渐建立，装配功是三角形面积而非矩形面积。}{ch20:quality:image-energy-a}
+图~\ref{ch20:quality:image-energy-a}把真实电荷从零逐渐增加，线性边界值问题使感应势也正比于 $\lambda$。积分 $\int_0^1\lambda\,\dd\lambda=1/2$ 产生感应能中的一半因子；像电荷位置虽可用于求场，却不能被当作独立真实电荷再完整计算一次两体装配能。
+}
+\newcommand{\ThQPlaneEnergy}{\ThermalFigure{
+ \draw[very thick](0,-1.6)--(0,1.6);\foreach\y in {-1.4,-1,...,1.4}{\draw[TextGray](0,\y)--(-.2,\y-.2);}
+ \fill[DeepBlue](2,0)circle(3pt)node[above]{$q$};\draw[dashed](4,0)circle(.1)node[above]{$q$（新位置）};
+ \draw[<->](0,-.7)--node[below]{$a$}(2,-.7);\draw[<->](0,-1.4)--node[below]{$2a$}(4,-1.4);\node[right]at(5,0){接地无限平面};
+}{同一真实电荷由距板 $a$ 移至 $2a$，比较准静态与理想化瞬移两种过程。}{ch20:quality:plane-q}}
+\newcommand{\ThUniformSphereBase}[1]{
+ \draw[thick](0,0)circle(1.4);\node at(0,-.8){#1};\draw[->](-3.3,-1.5)--(-3.3,1.8)node[above]{$z$};
+ \foreach\x in {-2.5,2.5}{\draw[->,DeepBlue,thick](\x,-1)--(\x,1.5);}\node[right]at(3,1){$\vect E_0=E_0\hat{\vect z}$};
+ \draw[->](0,0)--(45:1.4)node[right]{$R$};}
+\newcommand{\ThQConductingSphere}{\ThermalFigure{\ThUniformSphereBase{中性导体}}{远处原本均匀的外场与导体球；图中箭头只规定外加场方向。}{ch20:quality:conductor-sphere-q}}
+\newcommand{\ThADielectricSphere}{\ThermalFigure{\ThUniformSphereBase{$\varepsilon_r$}
+ \node[DeepBlue]at(0,1.65){$+$};\node[DeepBlue]at(0,-1.65){$-$};
+ \draw[->,thick](.45,-.5)--(.45,.6)node[right]{$\vect E_{\rm in}$};
+}{均匀极化球的束缚表面电荷等效产生反向退极化场，球内仍有非零均匀场。}{ch20:quality:dielectric-a}
+图~\ref{ch20:quality:dielectric-a}中的正负符号表示束缚电荷的两极，外场与退极化场叠加确定球内场。边界上须连续的是切向 $E$ 和法向 $D$（无自由面电荷），所以不能把导体的 $E_{\rm in}=0$ 边界直接套给有限 $\varepsilon_r$ 的电介质。
+}
+\newcommand{\ThQDielectricSphere}{\ThermalFigure{\ThUniformSphereBase{电介质 $\varepsilon_r$}}{球外是真空，球内为均匀线性各向同性介质；远场边界为给定匀强场。}{ch20:quality:dielectric-q}}
+\newcommand{\ThACapacitors}{\ThermalFigure{
+ \draw[very thick](0,0)--(0,2) (1.4,0)--(1.4,2);\draw[->,DeepBlue](.2,1)--(1.2,1)node[above]{$E$};\draw[dashed](-.3,.6)rectangle(.8,1.4);\node[below]at(.7,-.5){平板，薄柱高斯面};
+ \begin{scope}[shift={(5,1)}]\draw[thick](0,0)circle(.7);\draw[thick](0,0)circle(1.4);\draw[DeepBlue,dashed](0,0)circle(1.05);\node[below]at(0,-1.7){球形，$a<r<b$};\end{scope}
+ \begin{scope}[shift={(10,1)}]\draw[thick](0,0)ellipse(.7 and 1.2);\draw[thick](0,0)ellipse(1.4 and 1.5);\draw[DeepBlue,dashed](0,0)ellipse(1.05 and 1.35);\node[below]at(0,-1.7){柱形，同轴高斯面};\end{scope}
+}{先用对称高斯面求间隙电场，再沿场方向积分求极板电势差。}{ch20:quality:capacitors-a}
+图~\ref{ch20:quality:capacitors-a}的虚线分别给出三类适用的高斯面。球形通量面积为 $4\pi r^2$，柱形侧面积为 $2\pi rh$，所以其径向电场依次按 $r^{-2}$、$r^{-1}$ 变化；积分 $U=\int_a^bE(r)\dd r$ 后再用 $C=Q/U$，不能直接拿某一点的场强乘所有几何间距。
+}
+\newcommand{\ThACylinders}{\ThermalFigure{
+ \draw[thick](-2.1,0)circle(1);\draw[thick](2.1,0)circle(1);\draw[->](-4,0)--(4,0)node[right]{$x$};
+ \fill[DeepBlue](-1.847,0)circle(3pt)node[above]{$-\lambda$};\fill[DeepBlue](1.847,0)circle(3pt)node[above]{$+\lambda$};
+ \draw[<->](-2.1,-1.5)--node[below]{$L$}(2.1,-1.5);\node[above]at(0,1.8){等效线电荷在 $x=\pm a$，$a=\sqrt{(L/2)^2-R^2}$};
+}{真实圆柱表面是等势圆，辅助线电荷偏离各圆柱几何中心。}{ch20:quality:cylinders-a}
+图~\ref{ch20:quality:cylinders-a}中的辅助线电荷放在 $\pm a$，不是 $\pm L/2$。选择这一偏移量才使两圆柱表面分别为固定距离比的等势圆；对数电势差由两个导体的电势相减得到，电容的电荷量按单位轴向长度计算。
+}
+\newcommand{\ThCapSymbol}[3]{\draw[thick](#1,#2)--++(.75,0) ++(0,-.3)--++(0,.6) ++(.25,0)--++(0,-.6) ++(0,.3)--++(.75,0);\node[above]at(#1+.875,#2+.4){#3};}
+\newcommand{\ThAModifiedCapacitor}{\ThermalFigure{
+ \draw[thick](0,-1)--(0,1)--(1,1) (0,-1)--(1,-1) (2.75,-1)--(4,-1)--(4,1)--(2.75,1);
+ \ThCapSymbol{1}{1}{$C_0/2$}\ThCapSymbol{1}{-1}{$\varepsilon_rC_0/2$}
+ \node[below]at(2,-1.8){面积分半：共同电压，并联};
+ \begin{scope}[shift={(6,0)}]\ThCapSymbol{0}{0}{$2C_0$}\draw[thick](1.75,0)--(2,0);\ThCapSymbol{2}{0}{$2\varepsilon_rC_0$}\node[below]at(2,-1.8){厚度分半：共同电荷，串联};\end{scope}
+}{用与真实几何约束对应的等效网络计算，不按图上左右位置机械判断串并联。}{ch20:quality:modified-a}
+图~\ref{ch20:quality:modified-a}左图两部分跨接同一对极板，所以端电压相同；右图两层沿场方向叠放，中间无自由面电荷，故法向 $D$ 相同、对应串联。每层的厚度或面积都要先改写，才得到图中的分电容。
+}
+\newcommand{\ThAInsertion}{\ThermalFigure{
+ \draw[very thick](0,1)--(6,1) (0,-1)--(6,-1);\fill[DeepBlue!18](0,-.9)rectangle(2.7,.9);
+ \draw[<->](0,-1.6)--node[below]{$x$}(2.7,-1.6);\draw[->,thick](2.7,0)--(4,0)node[right]{$\dd x>0$};
+ \node[right,align=left]at(7,0){定 $Q$：$\delta W_{\rm mech}=-\dd[Q^2/(2C)]$\\定 $U$：电源另供能 $U\dd Q$};
+}{介质沿极板方向插入使有效并联面积增大；虚位移与机械功取相同方向。}{ch20:quality:insertion-a}
+图~\ref{ch20:quality:insertion-a}把插入方向取为正，因此 $C'(x)>0$。定电荷时由场能下降提供机械功；定电压时还必须计入电源功，机械功为 $U\dd Q-\dd(CU^2/2)$。这两条能量账得到同向的吸入力，不能只对定电压场能取负梯度。
+}
+\newcommand{\ThPolarizationBase}[1]{
+ \draw[thick](0,0)rectangle(3,2);\node at(1.5,1){真空};\draw[thick](5,0)rectangle(8,2);\node at(6.5,1){电介质};
+ \foreach\x in {1.5,6.5}{\draw[->,DeepBlue,thick](\x,-.8)--(\x,.1)node[below left]{$E$};}#1}
+\newcommand{\ThQPolarizationEnergy}{\ThermalFigure{\ThPolarizationBase{}}{比较相同实际场强下两种介质的能量密度，不能先假定电荷或电压也相同。}{ch20:quality:polarization-q}}
+\newcommand{\ThAPolarizationEnergy}{\ThermalFigure{
+ \fill[DeepBlue](0,0)circle(3pt)node[left]{$-$};\fill[DeepBlue](2,0)circle(3pt)node[right]{$+$};
+ \draw[decorate,decoration={coil,segment length=2mm,amplitude=1.5mm},thick](.2,0)--(1.8,0);
+ \draw[->,thick](0,.7)--(2,.7)node[right]{$\vect E,\ \vect p$};\node[below]at(1,-.8){束缚电荷相对位移的示意};
+ \node[right,align=left]at(4,0){线性响应：$\vect P\propto\vect E$\\建立极化需逐渐增大外场};
+}{微观弹性约束的偶极模型提供极化储能图像；图不表示自由电荷的宏观导电。}{ch20:quality:polarization-a}
+图~\ref{ch20:quality:polarization-a}中正负束缚电荷中心被外场拉开，线性响应使建立极化的功含 $1/2$ 因子。比较 $u-u_0=\tfrac12\vect E\cdot\vect P$ 时固定的是同一实际场强；若改成孤立电容器的定 $Q$ 插入过程，场强会改变，能量判断也须重算。
+}
+\newcommand{\ThQCharging}{\ThermalFigure{
+ \draw[thick](0,0)--(0,.8) (0,1.2)--(0,2)--(1,2);\draw[thick](1,1.6)rectangle(2.5,2.4);\node[above]at(1.75,2.6){$R$};
+ \draw[thick](2.5,2)--(5,2)--(5,.8) (5,.2)--(5,0)--(0,0);
+ \draw[line width=1.2pt](4.5,.8)--(5.5,.8) (4.5,.2)--(5.5,.2);\node[right]at(5.6,.5){$C$};
+ \draw[line width=1.2pt](-.4,1.2)--(.4,1.2) (-.25,.8)--(.25,.8);\node[left]at(-.5,1){$\mathcal E$};
+}{初始未充电电容经电阻接理想电源；严格零阻时还要检查被忽略的电感等条件。}{ch20:quality:charging-q}}
+\newcommand{\ThACharging}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{$q$};\draw[->](0,0)--(0,3.4)node[above]{每单位电荷的功};
+ \draw[thick](0,2.5)--(5,2.5)node[right]{$\mathcal E$};\draw[DeepBlue,thick](0,0)--(5,2.5)node[above left]{$q/C$};
+ \fill[DeepBlue!12](0,0)--(5,0)--(5,2.5)--cycle;\node[below]at(5,0){$C\mathcal E$};
+}{电源功是矩形面积，电容储能是下方三角形面积，二者之差由电阻耗散。}{ch20:quality:charging-a}
+图~\ref{ch20:quality:charging-a}中电源每搬一单位电荷始终做功 $\mathcal E$，而电容反电压随 $q$ 线性增加。两面积的差在任意 $R>0$ 的最终平衡态都相同；减小电阻只缩短过程，不能据此消除这部分积分耗散。
+}
+\newcommand{\ThAFloatingNode}{\ThermalFigure{
+ \coordinate(O)at(0,0);\fill(O)circle(3pt)node[below]{$V$};
+ \foreach\a/\i in {90/1,210/2,330/3}{\begin{scope}[rotate=\a]\draw[thick](0,0)--(1,0) (1.25,0)--(2.6,0);\draw[thick](1,-.3)--(1,.3) (1.25,-.3)--(1.25,.3);\end{scope}\node at(\a:3.1){$\varphi_\i,C_\i$};}
+ \node[right,align=left]at(4,0){中心三内极板是同一导体\\其净电荷保持初始的零};
+}{对浮置中心节点列电荷守恒，先求节点电势，再求三外极板电荷。}{ch20:quality:node-a}
+图~\ref{ch20:quality:node-a}中每个内极板电荷为 $C_i(V-\varphi_i)$。三个内极板通过导线相连但未接电源，其电荷和才守恒为零，各内极板的电荷不必分别为零；这给出唯一未知节点电势的线性方程。
+}
+\newcommand{\ThNetworksBase}[1]{
+ \ThCapSymbol{0}{0}{$C_1$}\draw[thick](1.75,0)--(2,0);\ThCapSymbol{2}{0}{$C_2$}\node[left]at(0,0){$A$};\node[right]at(3.75,0){$B$};\node[below]at(2,-.6){串联};
+ \begin{scope}[shift={(6,0)}]\draw[thick](0,-1)--(0,1)--(.4,1) (0,-1)--(.4,-1) (2.15,1)--(3,1)--(3,-1)--(2.15,-1);\ThCapSymbol{.4}{1}{$C_1$}\ThCapSymbol{.4}{-1}{$C_2$}\node[left]at(0,0){$A$};\node[right]at(3,0){$B$};\node[below]at(1.5,-1.6){并联};\end{scope}#1}
+\newcommand{\ThQCapNetworks}{\ThermalFigure{\ThNetworksBase{}}{比较同一对外端口的两种连接方式，串联中间节点起初中性。}{ch20:quality:networks-q}}
+\newcommand{\ThACapNetworks}{\ThermalFigure{\ThNetworksBase{
+ \fill(1.88,0)circle(2pt)node[above]{$N$};\node[above]at(5,2.5){串联：节点 $N$ 净电荷零；并联：端口电势共同};
+}}{由导线连接关系决定共同电压或共同电荷，再建立两端等效关系。}{ch20:quality:networks-a}
+图~\ref{ch20:quality:networks-a}左图的浮置节点 $N$ 只连接两块内极板，故这两块电荷大小相等、符号相反，从而两电容的电荷量大小相等；右图各电容直接接同一对 $A,B$ 端口，所以电压相等。应先证明这两种约束，再分别相加电压或电荷。
+}
+\newcommand{\ThEarthBase}[1]{
+ \fill[DeepBlue!10](0,0)circle(1.5);\draw[thick](0,0)circle(1.5);\draw[thick](0,0)circle(2.1);\node at(0,0){地球 $-Q$};
+ \draw[->](0,0)--(150:1.5)node[midway,above]{$R_\oplus$};\draw[<->](1.5,0)--node[above]{$d$}(2.1,0);\node[right]at(3,1){等效外球面 $+Q$};#1}
+\newcommand{\ThQEarthCapacitor}{\ThermalFigure{\ThEarthBase{\node[below]at(0,-2.6){大气为有电阻率的球形间隙；厚度示意放大};}}{两同心球面构成电容，大气同时提供漏电通路。}{ch20:quality:earth-q}}
+\newcommand{\ThAEarthCapacitor}{\ThermalFigure{\ThEarthBase{
+ \draw[DeepBlue,dashed](0,0)circle(1.8);\draw[->,DeepBlue,thick](1.75,.4)--(1.3,.3);
+ \node[right,align=left]at(3,-.5){半径 $r$ 处径向通流面积 $4\pi r^2$\\$\dd R=\rho\dd r/(4\pi r^2)$};
+}}{同一球形间隙的电容与径向电阻使用相同的几何边界。}{ch20:quality:earth-a}
+图~\ref{ch20:quality:earth-a}的虚线球面既可用于高斯定理，也可作为径向漏电流的通流截面。场强与电阻微元都含 $r^{-2}$，因此电容的几何因子恰与电阻的几何因子互为倒数，乘积 $RC=\rho\varepsilon_0$ 与球壳半径无关；雷电补充电荷率应再与漏电流相平衡。
+}

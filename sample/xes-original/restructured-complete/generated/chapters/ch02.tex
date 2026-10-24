@@ -1,9 +1,12 @@
+% MechanicsNumberedSolutionFigures20261023-v1
+% MechanicsQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{质点运动的描述}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{理想物理模型：质点}
 \newcommand{\EarthMoonScaleDiagram}{%
 \begin{center}\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
@@ -47,7 +50,7 @@
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{时间、位移、速度与加速度}
 \newcommand{\SprintGraph}{%
 \begin{center}\begin{tikzpicture}
@@ -466,6 +469,8 @@ $x/\mathrm{m}$&1&4&9&16&25&35&45&55&65&75&85&100\\
 \KQuestionAB
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch02:k02-2-1}。
+
 \textbf{第一步：确定坐标轴和比例。}
 横轴表示时刻 $t$，范围取 $0$ 到 $6\,\mathrm{s}$；纵轴表示相对所选原点的竖直坐标 $x$，
 范围至少要覆盖 $-60\,\mathrm{m}$ 到 $20\,\mathrm{m}$。把题中每一对 $(t,x)$ 作为一个点标在
@@ -535,7 +540,8 @@ $(20\,\mathrm{m/s})t$ 与 $(5.0\,\mathrm{m/s^2})t^2$ 都是长度。
 
 最后需要说明：有限个测量点本身不能唯一确定点与点之间的真实运动。这里所有点具有严格恒定的二阶差分，
 因此采用匀加速度对应的二次函数作最简单的光滑连接；若没有这一物理建模假设，还可以画出无穷多条经过同一组数据点的光滑曲线。
-\begin{center}\begin{tikzpicture}
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}
 \begin{axis}[width=.72\linewidth,height=5.8cm,axis lines=middle,
   xlabel={$t/\mathrm{s}$},ylabel={$x/\mathrm{m}$},
   xlabel style={at={(axis description cs:1.01,.49)},anchor=west},
@@ -546,7 +552,9 @@ $(20\,\mathrm{m/s})t$ 与 $(5.0\,\mathrm{m/s^2})t^2$ 都是长度。
 \addplot[only marks,mark=*,mark size=1.5pt,DeepBlue] coordinates{(0,0)(.5,8.75)(1,15)(1.5,18.75)(2,20)(2.5,18.75)(3,15)(3.5,8.75)(4,0)(4.5,-11.25)(5,-25)(5.5,-41.25)(6,-60)};
 \addplot[guide] coordinates{(2,-65)(2,20)};
 \node[anchor=south west,DeepBlue] at (axis cs:2,20) {最高点};
-\end{axis}\end{tikzpicture}\end{center}
+\end{axis}\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch02:k02-2-1}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 \begin{origexamplebox}{三种运动函数的图像}\label{ch02:ex:k02-2-2}
@@ -559,6 +567,8 @@ $(20\,\mathrm{m/s})t$ 与 $(5.0\,\mathrm{m/s^2})t^2$ 都是长度。
 \KQuestionAC
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch02:k02-2-2}。
+
 作函数图像不能只凭“形状印象”，应先确定定义域、关键点和变化趋势。若 $t$ 表示从计时开始后的时间，物理上通常只取 $t\ge0$；下面同时说明函数在完整数学定义域上的特征。
 
 \textbf{（1）$x=5t^2$。}
@@ -590,7 +600,8 @@ $t\ge0$，则从 $(0,3)$ 出发，并因
  \quad (0.75\,\mathrm s,-5),\quad (1.00\,\mathrm s,0).
 \]
 按这些点画出正弦曲线，再以 $1\,\mathrm s$ 为周期重复。三幅图的纵轴都是位置 $x$，曲线形状不是质点在空间中的轨迹。
-\begin{center}\begin{tikzpicture}
+\begin{center}\begin{qualityfigure}
+\begin{tikzpicture}
 \foreach \dx/\mode in {-4.6/1,0/2,4.6/3}{
 \begin{scope}[xshift=\dx cm]
 \draw[kaxis] (-1.7,0)--(1.75,0) node[right,clearlabel]{$t$};
@@ -599,7 +610,9 @@ $t\ge0$，则从 $(0,3)$ 出发，并因
 \ifnum\mode=2 \draw[kcurve] plot[domain=0:3.1,samples=80] ({\x-1.45},{1.15/(\x+1)});\node[clearlabel,below] at (0,-1.6){$3/(t+1)\ (t\ge0)$};\fi
 \ifnum\mode=3 \draw[kcurve] plot[domain=0:3.1,samples=100] ({\x-1.45},{.85*sin(360*\x)});\node[clearlabel,below] at (0,-1.6){$5\sin2\pi t$};\fi
 \end{scope}}
-\end{tikzpicture}\end{center}
+\end{tikzpicture}
+\figcap{本题解答中的位置、分量与辅助量。}\label{mech:legacy:ch02:k02-2-2}
+\end{qualityfigure}\end{center}
 \end{xesolution}
 
 \begin{origexamplebox}{由位置图判断运动特征}\label{ch02:ex:k02-2-3}
@@ -608,6 +621,20 @@ $t\ge0$，则从 $(0,3)$ 出发，并因
 \KQuestionAD
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(7,0) node[right]{$t$};
+\draw[->] (0,-1.1)--(0,1.35) node[above]{$x$};
+\draw[DeepBlue,thick,domain=0:6.5,samples=130] plot(\x,{cos(180*\x)});
+\draw[<->] (.2,1.15)--(2.2,1.15) node[midway,above]{$T$};
+\draw[dashed] (0,1)--(6.5,1);
+\node[left] at (0,1){$A$};
+\draw[Gold,thick] (.65,-1)--(1.35,-1) node[right]{$v=0$};
+\end{tikzpicture}
+\figcap{恒幅运动的周期、振幅与极值点切线（解答用辅助图）}\label{mech:02:3:a}
+\end{qualityfigure}
+图~\ref{mech:02:3:a}中，图中的 $T$ 由相邻同向相位给出，$A$ 是极值到 $x=0$ 的距离；极值处的水平切线给出 $v=0$。
+
 先明确读图规则：纵坐标给位置 $x$，曲线斜率给速度 $v=\dd x/\dd t$，极大值和极小值之间的竖直距离不能直接当成路程。
 
 \textbf{第一图。}相邻同向过零点之间的时间间隔不变，说明周期 $T$ 不变；正、负极值到平衡位置 $x=0$ 的距离相同且不随时间改变，说明振幅不变。每到极值点，切线水平，故 $v=0$，质点在这一瞬间换向；经过 $x=0$ 附近时图线最陡，故速度大小最大。一个周期内，质点从一侧极值出发，经过平衡位置，到达另一侧极值，再返回原位置。
@@ -666,9 +693,32 @@ $t\ge0$，则从 $(0,3)$ 出发，并因
 \[
 0,8.75,15,18.75,20,18.75,15,8.75,0,-11.25,-25,-41.25,-60\ \mathrm{m}.
 \]
-求相邻两次测量之间的平均速率。
+已知这些数据来自同一匀加速直线运动，且采样时刻之间也服从该运动规律。求相邻两次测量之间的平均速率。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.6,0) node[right]{$t/\mathrm s$};
+\draw[->] (0,-2.2)--(0,1) node[above]{$x$};
+\draw[DeepBlue,thick,domain=0:6,samples=70] plot(\x,{(20*\x-5*\x*\x)/30});
+\foreach \t in {0,.5,...,6} {\fill (\t,{(20*\t-5*\t*\t)/30}) circle(1.2pt);}
+\draw[dashed] (2,0)--(2,.667) node[above]{$t=2$};
+\end{tikzpicture}
+\figcap{相邻采样点与区间内的运动}\label{mech:02:4:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.6,0) node[right]{$t/\mathrm s$};
+\draw[->] (0,-2.2)--(0,1) node[above]{$x$};
+\draw[DeepBlue,thick,domain=0:6,samples=70] plot(\x,{(20*\x-5*\x*\x)/30});
+\foreach \t in {0,.5,...,6} {\fill (\t,{(20*\t-5*\t*\t)/30}) circle(1.2pt);}
+\draw[dashed] (2,0)--(2,.667) node[above]{$t=2$};\draw[Gold,very thick] (3,.5)--(3.5,.292);\draw[<->] (3,-.3)--(3.5,-.3) node[midway,below]{$\Delta t$};\node[above right] at (3,.5){$\Delta x<0$};
+\end{tikzpicture}
+\figcap{相邻采样点与区间内的运动（解答用辅助图）}\label{mech:02:4:a}
+\end{qualityfigure}
+图~\ref{mech:02:4:a}中，图中突出的一小段以 $\Delta t$ 为横向间隔、$\Delta x$ 为纵向变化；本题给定连续匀加速模型后，每个采样区间内均不换向。
+
 相邻两次测量的时间间隔均为
 \[
  \Delta t=0.5\,\mathrm s.
@@ -692,8 +742,31 @@ $t=2\,\mathrm{s}$ 前平均速度为正，之后为负；负号表示沿坐标�
 
 \begin{origexamplebox}{相向运动}\label{ch02:ex:k02-2-5}
 质点 $A,B$ 在同一直线上匀速相向运动。初始位置 $x_A=-5\,\mathrm m$、$x_B=10\,\mathrm m$；$A$ 沿正方向以 $1.5\,\mathrm{m/s}$ 运动，$B$ 沿负方向的速率为 $0.5\,\mathrm{m/s}$。求相遇时间和位置。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.5,0)--(7,0) node[right]{$x$};
+\fill (0,0) circle(2pt) node[below]{$A_0:-5\,\mathrm m$};
+\fill (6,0) circle(2pt) node[below]{$B_0:10\,\mathrm m$};
+\draw[->,thick,DeepBlue] (0,.4)--(1.8,.4) node[midway,above]{$1.5\,\mathrm{m/s}$};
+\draw[->,thick,Gold] (6,.4)--(5,.4) node[midway,above]{$0.5\,\mathrm{m/s}$};
+\end{tikzpicture}
+\figcap{两质点相向运动与闭合距离}\label{mech:02:5:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.5,0)--(7,0) node[right]{$x$};
+\fill (0,0) circle(2pt) node[below]{$A_0:-5\,\mathrm m$};
+\fill (6,0) circle(2pt) node[below]{$B_0:10\,\mathrm m$};
+\draw[->,thick,DeepBlue] (0,.4)--(1.8,.4) node[midway,above]{$1.5\,\mathrm{m/s}$};
+\draw[->,thick,Gold] (6,.4)--(5,.4) node[midway,above]{$0.5\,\mathrm{m/s}$};\fill (4.5,0) circle(2pt) node[above=12pt]{$P$};\draw[<->] (0,-.9)--(4.5,-.9) node[midway,below]{$1.5t$};\draw[<->] (4.5,-.9)--(6,-.9) node[midway,below]{$0.5t$};
+\end{tikzpicture}
+\figcap{两质点相向运动与闭合距离（解答用辅助图）}\label{mech:02:5:a}
+\end{qualityfigure}
+图~\ref{mech:02:5:a}中，图中 $A_0P$ 和 $B_0P$ 分别是两质点到相遇点 $P$ 的路程，两段之和等于初始间距 $15\,\mathrm m$。
+
 取题目给定的正方向，令 $t=0$ 为两质点处在初始位置的时刻。匀速直线运动满足“位置等于初位置加上速度乘时间”，因此
 \[
 x_A(t)=-5\,\mathrm m+(1.5\,\mathrm{m/s})t,
@@ -733,6 +806,8 @@ $x$-$t$ 图像中两点割线斜率是平均速度，切线斜率是瞬时速度
 \KQuestionAG
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch02:fig:k02-ex-2-6}。
+
 沿横轴箭头方向读取时间，并在每一段比较切线斜率 $v=\dd x/\dd t$。
 
 
@@ -774,6 +849,8 @@ $x$-$t$ 图像中两点割线斜率是平均速度，切线斜率是瞬时速度
 \KQuestionAH
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch02:fig:k02-ex-2-7}。
+
 设初始速度为 $v_0>0$，末速度为 $-v_0$。速度随时间线性变化，所以连接 $(0,v_0)$ 与 $(T,-v_0)$ 的直线方程是
 \[
  v(t)=v_0-\frac{2v_0}{T}t.
@@ -808,6 +885,8 @@ $x$-$t$ 图像中两点割线斜率是平均速度，切线斜率是瞬时速度
 \KQuestionAI
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch02:fig:k02-ex-2-8}。
+
 三幅 $v$--$t$ 图都位于时间轴上方，故速度始终非负，路程与位移相等，均可直接用图线下的面积计算。
 
 
@@ -876,8 +955,29 @@ $v$-$t$ 图的斜率是 $a$，$a$-$t$ 图的面积是速度变化量。
 
 \begin{origexamplebox}{用速度图推出位置公式}\label{ch02:ex:k02-2-9}
 根据匀加速运动的速度-时间图像，由 $v=v_0+at$ 推出位置随时间的关系。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(5,0) node[right]{$t$};
+\draw[->] (0,0)--(0,3) node[above]{$v$};
+\draw[DeepBlue,thick] (0,.9)--(4,2.5);
+\node[left] at (0,.9){$v_0$};\draw[dashed] (4,0) node[below]{$t$}--(4,2.5) node[above]{$v$};
+\end{tikzpicture}
+\figcap{速度图下的梯形与有向位移}\label{mech:02:9:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill[PaleBlue] (0,0)--(4,0)--(4,2.5)--(0,.9)--cycle;\draw[->] (0,0)--(5,0) node[right]{$t$};
+\draw[->] (0,0)--(0,3) node[above]{$v$};
+\draw[DeepBlue,thick] (0,.9)--(4,2.5);
+\node[left] at (0,.9){$v_0$};\draw[dashed] (4,0) node[below]{$t$}--(4,2.5) node[above]{$v$};\draw[dashed] (0,.9)--(4,.9);\node at (2,.45){$v_0t$};\node at (2.9,1.4){$\frac12at^2$};
+\end{tikzpicture}
+\figcap{速度图下的梯形与有向位移（解答用辅助图）}\label{mech:02:9:a}
+\end{qualityfigure}
+图~\ref{mech:02:9:a}中，图中阴影拆为矩形 $v_0t$ 与三角形 $at^2/2$；它们相加得到位置变化 $x-x_0$。图示取 $v_0,a>0$，一般情形仍按有向面积相加。
+
 匀加速运动满足 $v(t)=v_0+at$，所以 $v$--$t$ 图是从 $(0,v_0)$ 到
 $(t,v)$ 的直线。位置变化等于速度图下的有向面积：
 \[
@@ -906,8 +1006,29 @@ $(t,v)$ 的直线。位置变化等于速度图下的有向面积：
 \[
   v_2^2-v_1^2=2a(x_2-x_1).
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(5,0) node[right]{$t$};
+\draw[->] (0,0)--(0,3) node[above]{$v$};
+\draw[DeepBlue,thick] (0,.9)--(4,2.5);
+\node[left] at (0,.9){$v_1$};\draw[dashed] (4,0) node[below]{$\Delta t$}--(4,2.5) node[above]{$v_2$};
+\end{tikzpicture}
+\figcap{首末速度与时间间隔对应的位移面积}\label{mech:02:10:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill[PaleBlue] (0,0)--(4,0)--(4,2.5)--(0,.9)--cycle;\draw[->] (0,0)--(5,0) node[right]{$t$};
+\draw[->] (0,0)--(0,3) node[above]{$v$};
+\draw[DeepBlue,thick] (0,.9)--(4,2.5);
+\node[left] at (0,.9){$v_1$};\draw[dashed] (4,0) node[below]{$\Delta t$}--(4,2.5) node[above]{$v_2$};\node at (2,.7){$x_2-x_1$};
+\end{tikzpicture}
+\figcap{首末速度与时间间隔对应的位移面积（解答用辅助图）}\label{mech:02:10:a}
+\end{qualityfigure}
+图~\ref{mech:02:10:a}中，图中阴影的有向面积为 $x_2-x_1$，梯形上下底为 $v_1,v_2$，横向宽度为 $\Delta t$，所以可用梯形面积消去时间。
+
 记从状态1到状态2所经历的时间为 $\Delta t$。由于加速度恒定，
 \[
  v_2-v_1=a\Delta t,
@@ -934,8 +1055,33 @@ $(t,v)$ 的直线。位置变化等于速度图下的有向面积：
 
 \begin{origexamplebox}{列车中部通过定点的速度}\label{ch02:ex:k02-2-11}
 一列火车以恒定加速度沿直线前进。车头通过点 $O$ 时速度为 $v_1$，车尾通过 $O$ 时速度为 $v_2$。求列车中部通过 $O$ 时的速度 $v$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-1,0)--(7,0) node[right]{$x$};
+\draw[thick,fill=PaleBlue] (0,.25) rectangle (5,.85);
+\node at (.5,.55){尾};\node at (2.5,.55){中};\node at (4.5,.55){头};
+\draw[->] (5.3,.55)--(6.5,.55) node[midway,above]{$v$};
+\draw[<->] (0,1.25)--(5,1.25) node[midway,above]{$L$};
+\fill (5,0) circle(2pt) node[below]{$O$};
+\end{tikzpicture}
+\figcap{列车通过固定点时的三个平移状态}\label{mech:02:11:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-1,0)--(7,0) node[right]{$x$};
+\draw[thick,fill=PaleBlue] (0,.25) rectangle (5,.85);
+\node at (.5,.55){尾};\node at (2.5,.55){中};\node at (4.5,.55){头};
+\draw[->] (5.3,.55)--(6.5,.55) node[midway,above]{$v$};
+\draw[<->] (0,1.25)--(5,1.25) node[midway,above]{$L$};
+\fill (5,0) circle(2pt) node[below]{$O$};\draw[<->,Gold] (0,-.65)--(2.5,-.65) node[midway,below]{$L/2$};\draw[<->,Gold] (2.5,-.65)--(5,-.65) node[midway,below]{$L/2$};\node[align=center] at (2.5,-1.6){同一标志点依次前移 $0,L/2,L$\\对应速率 $v_1,v,v_2$};
+\end{tikzpicture}
+\figcap{列车通过固定点时的三个平移状态（解答用辅助图）}\label{mech:02:11:a}
+\end{qualityfigure}
+图~\ref{mech:02:11:a}中，图中每个半车长均为 $L/2$；车头、中部、车尾依次通过 $O$ 时，对同一列车标志点而言累计位移分别为 $0,L/2,L$。
+
 设车长为 $L$，取列车前进方向为正。把整列车看成刚体，用车头、车中部或车尾上任一点的位置描述列车平移，三点在同一时刻具有相同速度。
 
 车头刚通过 $O$ 时，把该时刻记为状态1。等车尾通过 $O$ 时，整列车恰向前平移了一个车长 $L$，于是由无时间公式
@@ -959,8 +1105,31 @@ $(t,v)$ 的直线。位置变化等于速度图下的有向面积：
 
 \begin{origexamplebox}{通过路口或制动停车}\label{ch02:ex:k02-2-12}
 汽车以 $v_0=20\,\mathrm{m/s}$ 行驶，在距路口 $60\,\mathrm m$ 处发现倒计时还剩 $2\,\mathrm s$。忽略司机反应时间，并假定采取方案后加速度保持恒定。若加速通过，所需加速度至少多大？若停车不闯红灯，制动加速度大小至少多大？
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.3,0)--(6.7,0);\draw[very thick] (6,-.6)--(6,1);
+\node[above] at (6,1){路口};\draw[fill=PaleBlue] (0,.1) rectangle (1,.65);
+\draw[->] (1.2,.4)--(2.5,.4) node[midway,above]{$v_0$};
+\draw[<->] (.5,-.55)--(6,-.55) node[midway,below]{$60\,\mathrm m$};
+\node at (3.5,1.2){倒计时 $2\,\mathrm s$};
+\end{tikzpicture}
+\figcap{路口边界与加速、制动的方向}\label{mech:02:12:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.3,0)--(6.7,0);\draw[very thick] (6,-.6)--(6,1);
+\node[above] at (6,1){路口};\draw[fill=PaleBlue] (0,.1) rectangle (1,.65);
+\draw[->] (1.2,.4)--(2.5,.4) node[midway,above]{$v_0$};
+\draw[<->] (.5,-.55)--(6,-.55) node[midway,below]{$60\,\mathrm m$};
+\node at (3.5,1.2){倒计时 $2\,\mathrm s$};\draw[->,DeepBlue] (1.3,1.6)--(2.8,1.6) node[right]{$a_{\text{pass}}$};\draw[->,Gold] (2.8,2.25)--(1.3,2.25) node[left]{$a_{\text{stop}}$};
+\end{tikzpicture}
+\figcap{路口边界与加速、制动的方向（解答用辅助图）}\label{mech:02:12:a}
+\end{qualityfigure}
+图~\ref{mech:02:12:a}中，图中的路口竖线是位移边界 $x=60\,\mathrm m$；加速通过对应限定时间，制动停车对应该边界处的末速度条件。
+
 两种选择要分别建立临界条件。“至少”的边界都对应恰好满足要求；比临界值更小就会失败。
 
 \textbf{加速通过。}设加速度沿行驶方向为 $a_{\rm pass}>0$。要在倒计时结束时刚好到达路口，$2\,\mathrm s$ 内的位移应恰为 $60\,\mathrm m$：
@@ -987,9 +1156,32 @@ $(t,v)$ 的直线。位置变化等于速度图下的有向面积：
 \end{xesolution}
 
 \begin{origexamplebox}{追尾避免条件}\label{ch02:ex:k02-2-13}
-$A$ 车以 $20\,\mathrm{m/s}$ 行驶，发现前方同轨道上相距 $100\,\mathrm m$ 的另一列车以 $10\,\mathrm{m/s}$ 行驶，立即以大小为 $a$ 的恒定加速度制动。求不相撞所需的最小 $a$。
+$A$ 车以 $20\,\mathrm{m/s}$ 行驶，发现前方同轨道上相距 $100\,\mathrm m$ 的另一列车以 $10\,\mathrm{m/s}$ 行驶，立即以大小为 $a$ 的恒定加速度制动。先求两车恰好接触的临界制动加速度，再给出保持正间距的条件。忽略车长，制动到停车后后车保持静止。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.3,0)--(7,0) node[right]{$x$};
+\fill (0,0) circle(2pt) node[below]{$A$};\fill (3,0) circle(2pt) node[below]{$B$};
+\draw[->,DeepBlue,thick] (0,.4)--(1.5,.4) node[above]{$20$};
+\draw[->,Gold,thick] (3,.4)--(4,.4) node[above]{$10$};
+\draw[<->] (0,-.6)--(3,-.6) node[midway,below]{$100\,\mathrm m$};
+\end{tikzpicture}
+\figcap{前后车的间距与后车制动方向}\label{mech:02:13:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.3,0)--(7,0) node[right]{$x$};
+\fill (0,0) circle(2pt) node[below]{$A$};\fill (3,0) circle(2pt) node[below]{$B$};
+\draw[->,DeepBlue,thick] (0,.4)--(1.5,.4) node[above]{$20$};
+\draw[->,Gold,thick] (3,.4)--(4,.4) node[above]{$10$};
+\draw[<->] (0,-.6)--(3,-.6) node[midway,below]{$100\,\mathrm m$};\draw[->,Gold] (1.5,1.2)--(0,1.2) node[midway,above]{$a$};\node[align=center] at (4.5,1.6){间距最小时\\$v_A=v_B$};
+\end{tikzpicture}
+\figcap{前后车的间距与后车制动方向（解答用辅助图）}\label{mech:02:13:a}
+\end{qualityfigure}
+图~\ref{mech:02:13:a}中，图中前车 $B$ 的位置减去后车 $A$ 的位置得到间距；制动箭头向后，故后车加速度为 $-a$。间距极小必须与两车速度相等同时成立。
+
 取行驶方向为正，设后车为 $A$、前车为 $B$。从开始制动计时，
 \[
 x_A=20t-\frac12at^2,
@@ -1014,7 +1206,7 @@ d_{\min}=100-10\frac{10}{a}
 +\frac12a\left(\frac{10}{a}\right)^2
 =100-\frac{50}{a}.
 \]
-不相撞要求最小间距非负：
+若把恰好接触也作为临界状态，要求最小间距非负：
 \[
 100-\frac{50}{a}\ge0,\qquad \boxed{a_{\min}=0.50\,\mathrm{m/s^2}}.
 \]
@@ -1028,8 +1220,31 @@ $20-10=10\,\mathrm{m/s}$，相对减速度大小为 $a$，消除相对速度所�
 
 \begin{origexamplebox}{直道追及条件}\label{ch02:ex:k02-2-14}
 两辆赛车进入长度为 $L$ 的直道，并在所考察时间内始终沿直道正方向运动。以两车车头所在点代表各自位置：初始时后车位于直道起点，前车在其前方 $d$ 处；后车初速为 $v_1$，前车初速为 $v_2>v_1$；后车加速度为 $a_1>0$，前车加速度为 $a_2$，且 $a_1>a_2$。求后车车头在到达直道末端以前追上前车车头的条件。若要求车身完全超越，还需另给两车车长，本题不讨论该情形。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.3,0)--(7,0) node[right]{$x$};
+\fill (0,0) circle(2pt) node[below]{$A$};\fill (3,0) circle(2pt) node[below]{$B$};
+\draw[->,DeepBlue,thick] (0,.4)--(1.5,.4) node[above]{$v_A$};
+\draw[->,Gold,thick] (3,.4)--(4,.4) node[above]{$v_B$};
+\draw[<->] (0,-.6)--(3,-.6) node[midway,below]{$d$};\draw[very thick] (6,-.3)--(6,.8) node[above]{$x=L$};
+\end{tikzpicture}
+\figcap{追及问题的初始间距和直道终点}\label{mech:02:14:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (-.3,0)--(7,0) node[right]{$x$};
+\fill (0,0) circle(2pt) node[below]{$A$};\fill (3,0) circle(2pt) node[below]{$B$};
+\draw[->,DeepBlue,thick] (0,.4)--(1.5,.4) node[above]{$v_A$};
+\draw[->,Gold,thick] (3,.4)--(4,.4) node[above]{$v_B$};
+\draw[<->] (0,-.6)--(3,-.6) node[midway,below]{$d$};\draw[very thick] (6,-.3)--(6,.8) node[above]{$x=L$};\node[align=center] at (3,1.5){$r=x_B-x_A$\\$r(t_*)=0$};\draw[->] (2.2,1.1)--(2.2,.1);
+\end{tikzpicture}
+\figcap{追及问题的初始间距和直道终点（解答用辅助图）}\label{mech:02:14:a}
+\end{qualityfigure}
+图~\ref{mech:02:14:a}中，图中终点竖线 $x=L$ 限定允许追及的位置；$r=x_B-x_A$ 的正根给出首次相遇，必须再检查相遇点严格在这条边界之前。
+
 取后车进入直道的位置为 $x=0$，令前车初始位置为 $x=d$。两车的位置分别为
 \[
 x_1(t)=v_1t+\frac12a_1t^2,
@@ -1096,8 +1311,35 @@ t_L=\frac{-v_1+\sqrt{v_1^2+2a_1L}}{a_1},
 
 \begin{origexamplebox}{三种竖直运动的位置}\label{ch02:ex:k02-2-15}
 以抛出点为原点、竖直向上为正，取 $g=10\,\mathrm{m/s^2}$。分别求：（1）静止释放后 $1,5,10\,\mathrm s$ 的位置；（2）以 $10\,\mathrm{m/s}$ 竖直上抛后 $1,2,3\,\mathrm s$ 的位置；（3）以 $10\,\mathrm{m/s}$ 竖直下抛后相同时刻的位置。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach \x/\v/\name in {0/0/静放,2.8/+10/上抛,5.6/-10/下抛}{
+\draw[->] (\x,-1.8)--(\x,1.7) node[above]{$x$};
+\fill (\x,0) circle(2pt) node[left]{$O$};
+\node[below] at (\x,-2){\name};\node[right] at (\x,.2){$v_0=\v$};}
+\draw[->,DeepBlue] (3.2,.5)--(3.2,1.3);
+\draw[->,DeepBlue] (6,.5)--(6,-.5);
+\draw[->,Gold] (7,1.3)--(7,.3) node[midway,right]{$g$};
+\end{tikzpicture}
+\figcap{三种竖直运动使用同一个向上正方向}\label{mech:02:15:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach \x/\v/\name in {0/0/静放,2.8/+10/上抛,5.6/-10/下抛}{
+\draw[->] (\x,-1.8)--(\x,1.7) node[above]{$x$};
+\fill (\x,0) circle(2pt) node[left]{$O$};
+\node[below] at (\x,-2){\name};\node[right] at (\x,.2){$v_0=\v$};}
+\draw[->,DeepBlue] (3.2,.5)--(3.2,1.3);
+\draw[->,DeepBlue] (6,.5)--(6,-.5);
+\draw[->,Gold] (7,1.3)--(7,.3) node[midway,right]{$g$};\node[align=center] at (2.8,-3.3){同一坐标约定：$a=-g$\\$x=v_0t-gt^2/2$};
+\end{tikzpicture}
+\figcap{三种竖直运动使用同一个向上正方向（解答用辅助图）}\label{mech:02:15:a}
+\end{qualityfigure}
+图~\ref{mech:02:15:a}中，图中三个原点均在各自抛出点，重力箭头向下，故 $a=-g$；上抛和下抛的差别进入 $v_0$ 的正负号。
+
 统一取抛出点为 $x=0$、竖直向上为正。因为 $a=-g=-10\,\mathrm{m/s^2}$，三种运动都使用
 \[
 x(t)=v_0t-\frac12gt^2=v_0t-5t^2,
@@ -1145,8 +1387,29 @@ x/\mathrm m&-15&-40&-75\\\bottomrule
 
 \begin{origexamplebox}{到达指定高度的时间}\label{ch02:ex:k02-2-16}
 质点从原点以 $v_0=20\,\mathrm{m/s}$ 竖直上抛，取 $g=10\,\mathrm{m/s^2}$。求到达 $x=15,20,25,0,-25\,\mathrm m$ 所需时间。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(5.6,0) node[right]{$t$};
+\draw[->] (0,-1.3)--(0,2) node[above]{$x$};
+\draw[DeepBlue,thick,domain=0:5,samples=70] plot(\x,{(20*\x-5*\x*\x)/15});
+\foreach \yy/\lab in {1/15,1.333/20,1.667/25,-1.667/-25}{\draw[dashed] (0,\yy)--(5,\yy);\node[left] at (0,\yy){$\lab$};}
+\end{tikzpicture}
+\figcap{高度水平线与位置曲线的交点}\label{mech:02:16:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(5.6,0) node[right]{$t$};
+\draw[->] (0,-1.3)--(0,2) node[above]{$x$};
+\draw[DeepBlue,thick,domain=0:5,samples=70] plot(\x,{(20*\x-5*\x*\x)/15});
+\foreach \yy/\lab in {1/15,1.333/20,1.667/25,-1.667/-25}{\draw[dashed] (0,\yy)--(5,\yy);\node[left] at (0,\yy){$\lab$};}\foreach \t in {1,3}{\fill (\t,1) circle(2pt);\draw[dashed] (\t,0)--(\t,1);}\draw[dashed] (2,0)--(2,1.333);\node[below] at (2,0){$2$};\node[above right] at (3,1){同一高度的两次通过};
+\end{tikzpicture}
+\figcap{高度水平线与位置曲线的交点（解答用辅助图）}\label{mech:02:16:a}
+\end{qualityfigure}
+图~\ref{mech:02:16:a}中，图中 $x=15\,\mathrm m$ 水平线与曲线有两个交点，$x=20\,\mathrm m$ 在顶点相切，$x=25\,\mathrm m$ 没有交点；负时间分支不属于实际运动。
+
 位置方程为
 \[
 x=20t-5t^2.
@@ -1195,6 +1458,8 @@ x_{\max}=\frac{v_0^2}{2g}=20\,\mathrm m,
 \KQuestionAR
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch02:fig:k02-ex-2-17}。
+
 取地面为 $y=0$、竖直向上为正。两球的位置分别为
 \[
 y_A=h-\frac12gt^2,
@@ -1230,8 +1495,33 @@ $\sqrt{(\mathrm{m/s^2})\mathrm m}=\mathrm{m/s}$。
 
 \begin{origexamplebox}{超人追赶自由落体}\label{ch02:ex:k02-2-18}
 一名女子从高为 $H$ 的楼顶落下。经过时间 $T$ 后，超人从楼顶以向下初速度 $v_0$ 出发，并同样以重力加速度向下运动。允许临界情况下恰在女子落地时追上她，求所需的最小 $v_0$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.5,2)--(2.5,2);\node[left] at (-.5,2){楼顶 $O$};
+\draw[thick] (-.5,-1.5)--(6,-1.5) node[right]{地面};
+\draw[->] (0,2)--(0,-1.8) node[below]{$y$};
+\draw[<->] (-.8,2)--(-.8,-1.5) node[midway,left]{$H$};
+\fill (1,1) circle(2pt) node[right]{女子（先出发 $T$）};
+\fill (1,2) circle(2pt);\draw[->,DeepBlue] (1.4,1.9)--(1.4,1.3) node[right]{$v_0$};
+\end{tikzpicture}
+\figcap{延迟出发、初始领先距离和地面边界}\label{mech:02:18:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (-.5,2)--(2.5,2);\node[left] at (-.5,2){楼顶 $O$};
+\draw[thick] (-.5,-1.5)--(6,-1.5) node[right]{地面};
+\draw[->] (0,2)--(0,-1.8) node[below]{$y$};
+\draw[<->] (-.8,2)--(-.8,-1.5) node[midway,left]{$H$};
+\fill (1,1) circle(2pt) node[right]{女子（先出发 $T$）};
+\fill (1,2) circle(2pt);\draw[->,DeepBlue] (1.4,1.9)--(1.4,1.3) node[right]{$v_0$};\draw[<->,Gold] (4,2)--(4,1) node[midway,right]{$gT^2/2$};\node[align=center] at (3.5,-.7){剩余时间 $t_f-T$\\相对加速度为零};
+\end{tikzpicture}
+\figcap{延迟出发、初始领先距离和地面边界（解答用辅助图）}\label{mech:02:18:a}
+\end{qualityfigure}
+图~\ref{mech:02:18:a}中，图中在超人出发时女子已下降 $gT^2/2$；两人以相同加速度下落，能消除这段领先的仅是相对速度 $v_0-gT$，可用时间为 $t_f-T$。
+
 取楼顶为原点、竖直向下为正，并从女子开始下落时计时。女子的位置为
 \[
 y_w(t)=\frac12gt^2,
@@ -1277,6 +1567,8 @@ s_0=\frac12gT^2
 \KQuestionAT
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{ch02:fig:k02-ex-2-19}。
+
 从高度 $H$ 自由下落到第一次碰地前，由
 \[
 u^2=2gH
@@ -1319,8 +1611,29 @@ S&=\frac{u^2}{g}\sum_{n=1}^{\infty}e^{2n}
 
 \begin{origexamplebox}{逐次增强的回向加速度}\label{ch02:ex:k02-2-20}
 质点以速度大小 $v_0$ 撞向一固定板。第一次及以后每次碰板时，速度均立即反向且大小不变。第一次反弹后，它以大小为 $a$、方向始终指向板的加速度运动；以后每完成一次碰板，回向加速度的大小变为前一次的 $k>1$ 倍。求第一次反弹后的总时间和总路程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick] (0,-.5)--(0,1.8) node[above]{固定板};
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};
+\fill (1.5,.35) circle(2pt);\draw[->,DeepBlue] (1.5,.35)--(2.7,.35) node[right]{$v_0$};
+\draw[->,Gold] (2.7,1.1)--(1.5,1.1) node[midway,above]{$a_n$};
+\end{tikzpicture}
+\figcap{第 n 次离板、转向和返回的循环}\label{mech:02:20:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick] (0,-.5)--(0,1.8) node[above]{固定板};
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};
+\fill (1.5,.35) circle(2pt);\draw[->,DeepBlue] (1.5,.35)--(2.7,.35) node[right]{$v_0$};
+\draw[->,Gold] (2.7,1.1)--(1.5,1.1) node[midway,above]{$a_n$};\fill (4.5,0) circle(2pt) node[above]{$v=0$};\draw[<->] (0,-.6)--(4.5,-.6) node[midway,below]{$x_{\max,n}$};\draw[->,DeepBlue] (4.3,-1.2)--(.3,-1.2) node[midway,below]{返回路程与去程相同};
+\end{tikzpicture}
+\figcap{第 n 次离板、转向和返回的循环（解答用辅助图）}\label{mech:02:20:a}
+\end{qualityfigure}
+图~\ref{mech:02:20:a}中，图中从板到转向点的距离为 $x_{\max,n}$；去、回两段路程相等，而 $a_n$ 始终指向板，故每个循环要单独代入负的坐标加速度。
+
 把板的位置取为 $x=0$，离开板的方向取为正。第 $n$ 个“离板—回板”循环中，加速度大小为
 \[
 a_n=ak^{n-1}\qquad(n=1,2,\ldots),
@@ -1363,8 +1676,21 @@ S&=\frac{v_0^2}{a}\sum_{n=0}^{\infty}k^{-n}
 
 \begin{origexamplebox}{周期运动的频闪取样}\label{ch02:ex:k02-2-21}
 竖直真空玻璃管内，小球从距管底高度 $H$ 处由静止下落，与管底完全弹性碰撞后不停上下运动。照相机每隔固定时间 $T$ 拍摄一次，曝光时间可忽略；所有照片中小球均处于同一位置。求可能的 $H$，以及相应照片中小球距管底的可能高度。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick] (0,3)--(0,0)--(2,0)--(2,3);
+\draw[dashed] (0,2.7)--(2,2.7);\fill (1,2.7) circle(2pt) node[right]{$H$};
+\fill[DeepBlue] (1,1.1) circle(2pt);\draw[<->] (2.4,0)--(2.4,1.1) node[midway,right]{$h$};
+\draw[->] (.65,2.2)--(.65,1.5);\draw[->] (1.35,.4)--(1.35,1.2);
+\node[align=left] at (5,1.8){拍摄时刻 $t_0+nT$\\同一高度可对应上行、下行};
+\end{tikzpicture}
+\figcap{频闪拍摄的高度和运动方向}\label{mech:02:21:q}
+\end{qualityfigure}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch02:k02-2-21}。
+
 设从最高点落到底部的时间
 \[
 \tau=\sqrt{\frac{2H}{g}},
@@ -1372,6 +1698,7 @@ S&=\frac{v_0^2}{a}\sum_{n=0}^{\infty}k^{-n}
 完整运动周期为 $P=2\tau$。同一高度除转折点外在一个周期内出现两次，且两次相位关于最高点对称。
 
 \begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[x=1.25cm,y=2.05cm,>=Latex]
   \draw[axis,->] (-.15,0)--(4.35,0) node[right] {$t$};
   \draw[axis,->] (0,-.06)--(0,1.18) node[above] {$y/H$};
@@ -1387,7 +1714,8 @@ S&=\frac{v_0^2}{a}\sum_{n=0}^{\infty}k^{-n}
   \foreach \x/\lab in {2/$\tau$,4/$P$}{\draw (\x,.025)--(\x,-.025) node[below] {\lab};}
   \node[left] at (0,1) {$1$};
 \end{tikzpicture}
-\figcap{一个周期内的高度—时间图。除最高点和碰撞点外，同一高度对应下降、上升两个相位；二者只有在图示特殊位置才相差半周期。}
+\figcap{一个周期内的高度—时间图。除最高点和碰撞点外，同一高度对应下降、上升两个相位；二者只有在图示特殊位置才相差半周期。}\label{mech:legacy:ch02:k02-2-21}
+\end{qualityfigure}
 \end{center}
 
 为什么不会遗漏其他取样周期？把拍摄时刻按周期 $P$ 取模。若 $T/P$ 为无理数，取样相位会在整个周期内稠密分布，

@@ -1,0 +1,92 @@
+% Editable TikZ: problem geometry and solution steps, reviewed 2026-10-23.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThCompositeBase}{
+ \fill[DeepBlue!12] (0,0) rectangle (4,.65);
+ \fill[TextGray!18] (4,0) rectangle (7,.65);
+ \draw[thick] (0,0) rectangle (7,.65);\draw[thick] (4,0)--(4,.65);
+ \draw[very thick] (0,-.4)--(0,1.1) (7,-.4)--(7,1.1);
+ \node[above] at(2,.8){$L_1,Y_1,\alpha_1$};\node[above] at(5.5,.8){$L_2,Y_2,\alpha_2$};
+ \node[below] at(4,-.1){连接点 $C$};}
+\newcommand{\ThQComposite}{\ThermalFigure{\ThCompositeBase
+ \node[below] at(3.5,-1){两外端固定，整体升温 $\Delta T$};
+}{两杆串联；固定约束作用于总长，连接点未固定。}{ch14:quality:composite-q}}
+\newcommand{\ThAComposite}{\ThermalFigure{\ThCompositeBase
+ \draw[->,DeepBlue,thick] (.2,.32)--(1.2,.32) node[right]{$|F|$};
+ \draw[->,DeepBlue,thick] (6.8,.32)--(5.8,.32) node[left]{$|F|$};
+ \draw[dashed] (4,-.7)--(4,-1.2);\draw[->] (4,-1)--(4.8,-1) node[right]{$\Delta L_1$（正向）};
+}{受压时支座力朝内；连接点位移使两段长度变化互相抵消。}{ch14:quality:composite-a}
+图~\ref{ch14:quality:composite-a}把连接点 $C$ 向右的位移取正，因此左杆的长度变化为 $\Delta L_1$，右杆为 $-\Delta L_1$。图中压力箭头只表示两杆都受压；下式仍统一以拉力为正，故受压解带负号。
+}
+\newcommand{\ThMixtureBase}{
+ \draw[thick] (0,0) rectangle (6,2.1);
+ \foreach \x/\y in {.7/.5,1.5/1.5,3.1/1.5,4.8/.6}{\fill[DeepBlue] (\x,\y) circle(2pt);}
+ \draw[thick] (3,1) circle(4pt) (5.2,1.5)circle(4pt);
+ \node[right,align=left] at(6.4,1.1){实点：He\\空心：$\mathrm{N_2}$\\共同体积 $V$、温度 $T$};}
+\newcommand{\ThQMixture}{\ThermalFigure{\ThMixtureBase}{等质量的两种气体均匀混合；粒子数比例尚需由摩尔质量求出，图中粒子数仅作示意。}{ch14:quality:mixture-q}}
+\newcommand{\ThAMixture}{\ThermalFigure{
+ \draw[thick] (0,0) rectangle (8,1);\fill[DeepBlue!18] (0,0) rectangle(7,1);
+ \draw[thick] (7,0)--(7,1);\node at(3.5,.5){$n_{\rm He}$};\node at(7.5,.5){$n_{\rm N_2}$};
+ \draw[<->] (0,-.5)--node[below]{$7$ 份}(7,-.5);\draw[<->] (7,-.5)--node[below]{$1$ 份}(8,-.5);
+}{物质的量分为八等份；在共同 $V,T$ 下，分压也按这八份分配。}{ch14:quality:mixture-a}
+图~\ref{ch14:quality:mixture-a}中的长条按物质的量划分，而不是按质量划分。因为每种组分均满足 $p_iV=n_iRT$，同一张比例图才同时给出 $p_i/p=n_i/(n_{\rm He}+n_{\rm N_2})$。
+}
+\newcommand{\ThExpansionBase}[1]{
+ \draw[thick] (0,0) rectangle(2,1.6);\node at(1,.8){$V_0$};
+ \draw[->,thick] (2.6,.8)--(3.6,.8) node[midway,above]{$\Delta T$};
+ \draw[DeepBlue,thick] (4,0) rectangle(6.5,2);\node at(5.25,1){$V$};
+ \draw[<->] (0,-.5)--node[below]{$a_0$}(2,-.5);
+ \draw[<->] (4,-.5)--node[below]{#1}(6.5,-.5);
+ \node[below] at(3.2,-1.15){同质量；示意图未按微小膨胀比例绘制};}
+\newcommand{\ThQExpansion}{\ThermalFigure{\ThExpansionBase{$a$}}{各向同性理想模型中的初末体积；温升须指物体本身的温升。}{ch14:quality:expansion-q}}
+\newcommand{\ThAExpansion}{\ThermalFigure{\ThExpansionBase{$a_0(1+\alpha\Delta T)$}}{沿三个方向的相同比例伸长相乘，才得到体积变化。}{ch14:quality:expansion-a}
+图~\ref{ch14:quality:expansion-a}只画出一条边的变化；另两条边也各乘 $1+\alpha\Delta T$。所以体积比是三个因子的乘积，而密度比在质量不变时取其倒数。
+}
+\newcommand{\ThQSensation}{\ThermalFigure{
+ \foreach \x/\t in {0/冷水,3/温水,6/热水}{\draw[thick](\x,1.6)--(\x,0)--(\x+2,0)--(\x+2,1.6);\draw[DeepBlue](\x,.8)--(\x+2,.8);\node[below]at(\x+1,-.2){\t};}
+ \draw[->,thick] (1,2.1)--(3.7,1.2);\draw[->,thick] (7,2.1)--(4.3,1.2);
+ \node[above]at(1,2.1){手甲预冷};\node[above]at(7,2.1){手乙预热};
+}{两手经历不同的预处理后进入同一盆温水；其余小问需比较传热条件与生理反应。}{ch14:quality:sensation-q}}
+\newcommand{\ThQMeniscus}{\ThermalFigure{
+ \draw[thick](0,2.1)--(0,0)--(2,0)--(2,2.1);
+ \draw[DeepBlue,thick](0,1.6)..controls(.7,.9)and(1.3,.9)..(2,1.6);
+ \draw[thick](4,2.1)--(4,0)--(6,0)--(6,2.1);
+ \draw[DeepBlue,thick](4,1.1)..controls(4.7,1.8)and(5.3,1.8)..(6,1.1);
+ \node[below]at(1,-.2){凹液面};\node[below]at(5,-.2){凸液面};
+ \draw[dashed](1,1.08)--(3,1.08);\draw[dashed](5,1.62)--(7.6,1.62);
+ \node[right]at(7.6,1.62){水平读数视线};
+}{接触角改变液面弯曲方向；读数位置须配合量具校准方式。}{ch14:quality:meniscus-q}}
+\newcommand{\ThQGasThermometer}{\ThermalFigure{
+ \draw[thick] (0,1) circle(.8);\draw[thick] (5,1) circle(.8);
+ \fill[white] (.6,.7)rectangle(4.4,1.3);\draw[thick](.6,.7)--(4.4,.7) (.6,1.3)--(4.4,1.3);
+ \draw[line width=3pt] (2.5,.7)--(2.5,1.3);\node[above]at(2.5,1.6){活塞 $m$};
+ \node[below]at(0,-.1){左球 $V$};\node[below]at(5,-.1){右球 $V$};
+ \draw[->] (6.8,1.7)--(6.8,.1)node[below]{$g$};
+ \node[right,align=left]at(7.1,1){转为竖直后\\活塞可移动 $h$};
+}{水平初态的两球与连接细管；截面积及球内容积应在计算中显式引入。}{ch14:quality:thermometer-q}}
+\newcommand{\ThQBarometer}{\ThermalFigure{
+ \draw[thick](0,3.6)--(0,0)--(2,0)--(2,3.6);
+ \draw[thick](.6,3.5)--(.6,.4) (1.2,.4)--(1.2,3.5)--(.6,3.5);
+ \draw[DeepBlue,thick](.6,2.7)--(1.2,2.7);\draw[DeepBlue,thick](0,.8)--(2,.8);
+ \draw[<->](2.6,.8)--node[right]{$H$}(2.6,2.7);
+ \draw[<->](.3,2.7)--node[left]{$\ell$}(.3,3.5);
+ \node[right]at(3.5,2.8){残余空气 $p_g$};\node[right]at(3.5,1.6){两次温度相同};
+}{读数 $H$ 从槽面起算；残余空气柱长为 $\ell$，两者随汞面移动反向变化。}{ch14:quality:barometer-q}}
+\newcommand{\ThAUTube}{\ThermalFigure{
+ \draw[thick] (0,3)--(0,0)arc(180:360:1.5)--(3,3);
+ \draw[thick] (.55,3)--(.55,0)arc(180:360:.95)--(2.45,3);
+ \draw[thick] (0,3)--(.55,3) (2.45,3)--(3,3);
+ \draw[DeepBlue,thick](0,1.5)--(.55,1.5) (2.45,.7)--(3,.7);
+ \draw[dashed](-.3,1.1)--(3.5,1.1);
+ \draw[->,DeepBlue](-.5,1.1)--(-.5,1.5)node[left]{$x$};
+ \draw[->,DeepBlue](3.5,1.1)--(3.5,.7)node[right]{$x$};
+ \node[above]at(.3,3.1){$T_0,p_L$};\node[above]at(2.8,3.1){$T_R,p_R$};
+}{等截面管的两液面相对初态各移 $x$，液面高度差为 $2x$。}{ch14:quality:utube-a}
+图~\ref{ch14:quality:utube-a}取右液面下降、左液面上升为 $x>0$。因而气柱长分别为 $L-x$ 和 $L+x$，静液压关系中的高度差必须使用 $2x$，不能只用一侧位移 $x$。
+}
+\newcommand{\ThQChain}{\ThermalFigure{
+ \foreach \x in {0,2,4,6,8}{\fill[DeepBlue](\x,0)circle(3pt);}
+ \draw[thick](0,0)--(8,0);\draw[<->](2,-.65)--node[below]{$r$}(4,-.65);
+ \node[above]at(4,.5){统一原子间距；相邻粒子相互作用由 $U(r)$ 描述};
+}{原子链的几何变量 $r$；势能在平衡间距附近展开以分离谐性与非谐性项。}{ch14:quality:chain-q}}

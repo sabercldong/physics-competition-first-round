@@ -9,7 +9,7 @@
 
 \RenewDocumentEnvironment{advsolution}{+b}{%
   \par\smallskip\begingroup\small\noindent
-  \ifAdvHideHeading\global\AdvHideHeadingfalse\else{\bfseries\color{DeepBlue}解答}\quad\fi #1\par\endgroup\smallskip
+  \ifAdvHideHeading\global\AdvHideHeadingfalse\else\LectureSolutionHeading\fi #1\par\endgroup\smallskip
 }{}
 
 \RenewDocumentEnvironment{advdefinition}{m +b}{%

@@ -1,0 +1,159 @@
+% Editable TikZ: control volumes, free bodies, and local integration elements.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThFlowElement}[1]{
+ \draw[thick](0,.5)--(2.5,.5)--(4,1)--(6.5,1);
+ \draw[thick](0,-.5)--(2.5,-.5)--(4,-1)--(6.5,-1);
+ \fill[DeepBlue!18](.6,-.5)rectangle(1.8,.5);\fill[DeepBlue!18](4.5,-1)rectangle(5.1,1);
+ \draw[<->](.6,-1.5)--node[below]{$v_A\Delta t$}(1.8,-1.5);
+ \draw[<->](4.5,-1.5)--node[below]{$v_B\Delta t$}(5.1,-1.5);
+ \node[above]at(1.2,.7){$S_A$};\node[above]at(4.8,1.2){$S_B$};#1}
+\newcommand{\ThAFlowVolume}{\ThermalFigure{\ThFlowElement{}}{在同一时间内经过两个截面的流体柱，长度分别为当地流速乘时间。}{ch13:quality:volume-a}
+图~\ref{ch13:quality:volume-a}中的阴影柱体不是同一时刻被跟踪的两个质点，而是相同时间内穿过截面的体积。稳态、不可压缩且无侧向支流保证控制体没有净体积积累，因而两柱体积相等。若右侧截面变大，右柱必须变短，正对应流速减小。
+}
+\newcommand{\ThAUniformFlow}{\ThermalFigure{
+ \draw[thick](0,-.5)rectangle(7,.5);\draw[dashed](1,-.5)--(1,.5) (5,-.5)--(5,.5);
+ \draw[->,DeepBlue,thick](1,0)--(2.2,0)node[above]{$v_1$};\draw[->,DeepBlue,thick](5,0)--(6.2,0)node[above]{$v_2$};
+ \node[below]at(3.5,-.8){控制体：等截面直管的两截面之间};
+}{一维稳态模型中的相同截面积与流量；不是一般三维速度场的结论。}{ch13:quality:uniform-a}
+图~\ref{ch13:quality:uniform-a}的侧壁不漏流，任取两端均有相同的截面积 $S$。若 $v_2>v_1$，每秒流出体积将大于流入体积，控制体内就不能保持处处充满且密度不变，与题设矛盾。
+}
+\newcommand{\ThAFallingFlow}{\ThermalFigure{
+ \draw[DeepBlue,thick](-.8,0)..controls(-.5,-1)and(-.4,-2)..(-.35,-3);
+ \draw[DeepBlue,thick](.8,0)..controls(.5,-1)and(.4,-2)..(.35,-3);
+ \draw[thick](-.8,0)--(.8,0) (-.38,-2.5)--(.38,-2.5);
+ \draw[<->](-1.6,0)--node[left]{$h$}(-1.6,-2.5);
+ \draw[->](1.3,0)--(1.3,-.7)node[right]{$v$};\draw[->](1.3,-2.5)--(1.3,-3.6)node[right]{$v(h)$};
+ \node[right]at(2.7,-1.2){$S\,v=S(h)v(h)$};
+}{先用同一水微元的自由下落求速度，再用稳态连续性比较两个截面。}{ch13:quality:falling-a}
+图~\ref{ch13:quality:falling-a}将两个步骤分开：高度差 $h$ 决定微元增加的动能，两个横截面则用于守恒单位时间的流体体积。流速增加时截面必须缩小，不能把两处面积也设为相同。
+}
+\newcommand{\ThAFlowMass}{\ThermalFigure{\ThFlowElement{
+ \node[right]at(7,1){$\Delta m_A=\rho_AS_Av_A\Delta t$};
+ \node[right]at(7,-.1){$\Delta m_B=\rho_BS_Bv_B\Delta t$};
+}}{可压缩流的两体积柱可以不等大，但通过的质量须相同。}{ch13:quality:mass-a}
+图~\ref{ch13:quality:mass-a}中每一柱体还须乘当地密度才得到质量。控制体内部的质量既不累积也不凭空产生，因此应令 $\Delta m_A=\Delta m_B$；只有同密度时才可进一步令两柱体积相等。
+}
+\newcommand{\ThDilutingBase}[1]{
+ \draw[thick](-.6,0)--(-.6,-3) (.6,0)--(.6,-3);
+ \draw[dashed](-1,0)--(1,0) (-1,-2.5)--(1,-2.5);
+ \node[above]at(0,.2){$S,\rho,v$};\node[below]at(0,-3.2){$S,\rho(h),v(h)$};
+ \draw[<->](-1.4,0)--node[left]{$h$}(-1.4,-2.5);
+ \foreach \y in {-.2,-.4,-.6,-1.4,-1.9,-2.5}{\fill[DeepBlue](0,\y)circle(1.5pt);}#1}
+\newcommand{\ThQDilutingColumn}{\ThermalFigure{\ThDilutingBase{}}{题设人为固定横截面积；分子沿竖直方向自由下落。}{ch13:quality:diluting-q}}
+\newcommand{\ThADilutingColumn}{\ThermalFigure{\ThDilutingBase{
+ \draw[->](1.5,-.1)--(1.5,-.7)node[right]{$v$};\draw[->](1.5,-2)--(1.5,-3)node[right]{$v(h)$};
+}}{下方流速更大而面积固定，分子间的纵向间距增大。}{ch13:quality:diluting-a}
+图~\ref{ch13:quality:diluting-a}中粒子点的疏密表示题设模型的密度变化。两个截面共用同一个 $S$，连续性要求 $\rho(h)v(h)=\rho v$；这里降低的是密度，不能照搬上一题缩小截面的真实水束模型。
+}
+\newcommand{\ThLayerBase}[1]{
+ \fill[DeepBlue!10](0,1.5)rectangle(3,3);\fill[DeepBlue!25](0,0)rectangle(3,1.5);
+ \draw[thick](0,3.3)--(0,0)--(3,0)--(3,3.3);\draw[DeepBlue](0,3)--(3,3) (0,1.5)--(3,1.5);
+ \node at(1.5,2.3){$\rho_1,h_1$};\node at(1.5,.75){$\rho_2,h_2$};
+ \draw[->](3.6,1.5)--(3.6,.2)node[right]{$x$};#1}
+\newcommand{\ThQLayers}{\ThermalFigure{\ThLayerBase{\node[right]at(4.5,2.5){壁宽 $b$ 垂直纸面};}}{界面是下层深度坐标的起点，外侧大气压在净压力中抵消。}{ch13:quality:layers-q}}
+\newcommand{\ThALayers}{\ThermalFigure{\ThLayerBase{
+ \draw[DeepBlue,thick](3,1.5)--(4.2,1.5)--(5,0)--(3,0);
+ \foreach \y in {.2,.65,1.1}{\draw[->,DeepBlue](3,\y)--({5-.8*\y/1.5},\y);}
+ \node[right]at(5.3,.8){梯形表压分布};
+}}{下层侧壁表压等于常量项与线性项之和，合力矩须逐条积分。}{ch13:quality:layers-a}
+图~\ref{ch13:quality:layers-a}中下层顶部已经有上层液柱贡献的表压，故压力图是梯形而非从零开始的三角形。深度为 $x$ 的窄条面积为 $b\dd x$，其关于界面的力矩为 $x\Delta p(x)b\dd x$，由此得到合力的作用点。
+}
+\newcommand{\ThFloatBase}[1]{
+ \fill[DeepBlue!10](-1,-1.5)rectangle(4,.4);\draw[DeepBlue](-1,.4)--(4,.4);
+ \draw[thick](.7,-.8)rectangle(2.3,1.8);\node at(1.5,1.3){$m,S$};
+ \draw[<->](2.9,-.8)--node[right]{$h_0$}(2.9,.4);#1}
+\newcommand{\ThQFloat}{\ThermalFigure{\ThFloatBase{}}{直立柱体的平衡浸深；小振动中顶面仍露出、底面仍浸没。}{ch13:quality:float-q}}
+\newcommand{\ThAFloat}{\ThermalFigure{\ThFloatBase{
+ \draw[dashed](.7,-1.1)--(2.3,-1.1);\draw[->](.2,-.8)--(.2,-1.1)node[left]{$x$};
+ \draw[->,thick](1.5,.1)--(1.5,-1.5)node[below]{$mg$};
+ \draw[->,DeepBlue,thick](1.5,.1)--(1.5,1)node[right]{$F_b$};
+}}{向下位移增加排液体积 $Sx$，额外浮力朝向上方。}{ch13:quality:float-a}
+图~\ref{ch13:quality:float-a}将 $x$ 取向下为正；额外排液体积为 $Sx$，因此浮力增量的有向分量是 $-\rho gSx$。先用平衡条件消去 $mg-\rho gSh_0$，才留下关于平衡位置的振动方程。
+}
+\newcommand{\ThQOutlet}{\ThermalFigure{
+ \draw[thick](0,3)--(0,0)--(3,0)--(3,.8) (3,1.1)--(3,3);\draw[DeepBlue](0,2.5)--(3,2.5);
+ \node[left]at(0,2.5){$A$};\node[right]at(3.1,.95){$B$};\draw[->](3.1,.95)--(4.8,.95)node[right]{$v$};
+ \draw[<->](5.5,.95)--node[right]{$h$}(5.5,2.5);
+}{自由液面 $A$ 与出口 $B$ 均接大气，容器横截面远大于孔口。}{ch13:quality:outlet-q}}
+\newcommand{\ThJetBase}[1]{
+ \draw[DeepBlue,thick](0,.3)--(4,.3) (0,-.3)--(4,-.3);\draw[very thick](4,-1.6)--(4,1.6);
+ \draw[->,thick](.6,0)--(2,0)node[midway,above]{$v$};\node[below]at(1,-.6){$A,\rho$};#1}
+\newcommand{\ThQJet}{\ThermalFigure{\ThJetBase{\node[right]at(4.5,1){静止大平板};}}{自由射流垂直撞击平板后沿板面流走。}{ch13:quality:jet-q}}
+\newcommand{\ThQMovingPlate}{\ThermalFigure{\ThJetBase{
+ \draw[->,thick](4.5,1)--(6,1)node[right]{$u$};\node[right]at(4.5,-.8){$0\le u<v$};
+}}{平板沿来流方向匀速后退，截面流速 $v$ 仍相对地面给定。}{ch13:quality:moving-q}}
+\newcommand{\ThAMovingPlate}{\ThermalFigure{
+ \draw[dashed](-.5,-1)rectangle(4.5,1);\draw[very thick](3.5,-1.4)--(3.5,1.4);
+ \draw[->,DeepBlue,thick](0,0)--(2,0)node[midway,above]{$v-u$};
+ \draw[->,DeepBlue,thick](3.5,.1)--(3.5,1.4);\draw[->,DeepBlue,thick](3.5,-.1)--(3.5,-1.4);
+ \node[right,align=left]at(5,0){板系控制体静止\\出流法向速度为零};
+}{在匀速平板的惯性系中计算撞击质量率和法向动量变化。}{ch13:quality:moving-a}
+图~\ref{ch13:quality:moving-a}的虚线控制体随板一起平移，水以相对速度 $v-u$ 穿过入口。因此流入质量率和每单位质量损失的法向动量都含 $v-u$，合力中出现它的平方；向地面系中的平板传功时再乘板速 $u$。
+}
+\newcommand{\ThQSettling}{\ThermalFigure{
+ \draw[thick](-2,2)--(-2,-2)--(2,-2)--(2,2);\draw[DeepBlue](-2,1.6)--(2,1.6);
+ \draw[thick](0,0)circle(.55);\draw[->](0,0)--node[above]{$R$}(.55,0);
+ \draw[->,DeepBlue,thick](1,0)--(1,-1.2)node[below]{$v$};
+ \node[right,align=left]at(3,0){球 $\rho_s$\\液体 $\rho_f,\eta$};
+}{小球远离容器壁的缓慢下沉模型；终端状态由合力为零确定。}{ch13:quality:settling-q}}
+\newcommand{\ThDropletBase}[1]{
+ \draw[DeepBlue,thick](0,0)circle(.65);\draw[DeepBlue,thick](2,0)circle(.65);
+ \node[below]at(0,-.8){$R$};\node[below]at(2,-.8){$R$};\draw[->,thick](3.2,0)--(4.2,0);
+ \draw[DeepBlue,thick](5.7,0)circle(.82);\node[below]at(5.7,-1){#1};}
+\newcommand{\ThQDroplets}{\ThermalFigure{\ThDropletBase{$R_f$ 待求}}{两滴同种液体合并为一滴，体积守恒而界面面积改变。}{ch13:quality:droplets-q}}
+\newcommand{\ThADroplets}{\ThermalFigure{\ThDropletBase{$R_f=2^{1/3}R$}
+ \node[above]at(1,1.3){$A_i=8\pi R^2$};\node[above]at(5.7,1.3){$A_f=4\pi R_f^2$};
+}{先由体积相加求半径，再比较新旧界面面积。}{ch13:quality:droplets-a}
+图~\ref{ch13:quality:droplets-a}中的两个初始界面都计入 $A_i$，末态只剩一个界面。界面能的减少为 $\gamma(A_i-A_f)$；这些能量转移到流动和内能，不能解释为总能量消失。
+}
+\newcommand{\ThACoupledMercury}{\ThermalFigure{
+ \draw[thick](0,-.4)rectangle(7,.4);\draw[line width=3pt](1,-.4)--(1,.4) (6,-.4)--(6,.4);
+ \draw[->,DeepBlue,thick](1,1)--(2,1)node[right]{$q_1$};\draw[->,DeepBlue,thick](6,1)--(5,1)node[left]{$q_2$};
+ \node at(3.5,0){绝热空气 $\bar p+\delta p$};
+ \draw[<->](1,-1)--node[below]{$\ell-q_1-q_2$}(6,-1);
+}{抽出两个水银内侧界面的位移，以空气柱的压缩量建立耦合项。}{ch13:quality:coupled-a}
+图~\ref{ch13:quality:coupled-a}把两个位移都取向空气内部为正，所以气柱缩短量为 $q_1+q_2$。同一个 $\delta p$ 同时作用于两段水银，但两段惯性分别由各自总长度 $L_1,L_2$ 决定，不能只用竖直高度 $h$ 作为质量长度。
+}
+\newcommand{\ThACouette}{\ThermalFigure{
+ \draw[thick](0,0)circle(1);\draw[thick](0,0)circle(2.3);\draw[DeepBlue,dashed](0,0)circle(1.6);
+ \draw[->](0,0)--node[above]{$r$}(1.6,0);\fill(1.6,0)circle(1.5pt);
+ \draw[->,DeepBlue,thick](1.6,0)--(1.6,1.2)node[right]{$v_\theta=r\omega$};
+ \node[right,align=left]at(3,0){圆柱面面积 $2\pi r l$\\切应力 $\tau_{r\theta}$\\力矩再乘力臂 $r$};
+}{在半径 $r$ 的同轴圆柱面上传递黏性力矩，不能只令切应力恒定。}{ch13:quality:couette-a}
+图~\ref{ch13:quality:couette-a}的虚线圆柱面传递的总力矩为 $2\pi l r^2\tau_{r\theta}$。稳态无角动量积累，要求该乘积与 $r$ 无关；柱坐标中的 $-v_\theta/r$ 项保证刚体转动 $v_\theta\propto r$ 时没有虚假的剪切应力。
+}
+\newcommand{\ThAHangar}{\ThermalFigure{
+ \draw[thick](-2,0)arc(180:0:2);\draw[thick](-2,0)--(2,0);\fill(0,0)circle(1pt)node[below]{$O$};
+ \draw[->](0,0)--(1.414,1.414)node[midway,below right]{$R$};
+ \draw[->,DeepBlue,thick](1.414,1.414)--(2.15,2.15)node[right]{$\Delta p\,\dd A$};
+ \draw[->](.65,0)arc(0:45:.65)node[right]{$\theta$};\node[left]at(-2,0){$A$};
+}{曲面微元的净压力沿外法线；竖直分量另乘 $\sin\theta$。}{ch13:quality:hangar-a}
+图~\ref{ch13:quality:hangar-a}中微元面积为 $\dd A=lR\dd\theta$。压力差先由门口 $A$ 的停滞压确定库内压强，再与曲面外压比较；左右对称使水平分量相消，竖直积分还应包含法线的投影因子 $\sin\theta$。
+}
+\newcommand{\ThAFunnel}{\ThermalFigure{
+ \draw[thick](-2,3)--(-.12,0) (.12,0)--(2,3);\draw[DeepBlue](-1.35,2)--(1.35,2);
+ \draw[dashed](0,0)--(0,3.2);\draw[<->](2.5,0)--node[right]{$h$}(2.5,2);
+ \draw[<->](-1.35,2.5)--node[above]{$2Rh/H$}(1.35,2.5);
+ \draw[->,DeepBlue](0,0)--(0,-.8)node[right]{$Q$};
+}{尖锥近似下自由液面的半径随水深变化，积分时不能保持水面面积不变。}{ch13:quality:funnel-a}
+图~\ref{ch13:quality:funnel-a}中的相似三角形给出自由液面半径 $Rh/H$；液面下降 $\dd h<0$ 排出的体积是 $-A(h)\dd h$。将它等于小孔流出体积 $Q\dd t$，即可把流速公式转为排液时间积分。
+}
+\newcommand{\ThAShore}{\ThermalFigure{
+ \draw[thick](-1,0)--(6,0)node[right]{岸线 $y=0$};\draw[->](0,0)--(0,3.4)node[above]{$y$};
+ \draw[DeepBlue,thick](0,3)..controls(3,3)and(4,1.5)..(4.4,.3);\fill(0,3)circle(1.5pt)node[left]{$B$};
+ \fill(3.2,1.9)circle(1.5pt)node[above right]{$P$};\draw[dashed](3.2,1.9)--(3.2,.6);
+ \draw[->,thick](3.2,1.9)--(3.9,1.1);\draw(3.2,1.3)arc(270:311:.6)node[below]{$\theta$};
+}{局部传播方向与朝岸法线 $-y$ 的夹角为 $\theta$；图示只标方向，不代替精确摆线。}{ch13:quality:shore-a}
+图~\ref{ch13:quality:shore-a}中射线朝岸传播，所以 $\dd y<0$ 而 $\dd x>0$，这决定 $\dd x/\dd y=-\tan\theta$ 的负号。沿岸平移对称给出 $\sin\theta/c(y)$ 不变，初点 $B$ 的水平切向又给出其常量值。
+}
+\newcommand{\ThAHose}{\ThermalFigure{
+ \coordinate(O)at(0,0);\coordinate(E)at(-.8,-2.3);\coordinate(P)at(1.5,-3.1);
+ \draw[very thick](O)--(E)--(P);\fill(O)circle(2pt)node[above]{$O$};\node[left]at(E){$E$};\node[below]at(P){$P$};
+ \draw[->,DeepBlue,thick](P)--(2.7,-3.5)node[right]{$u\vect e_2$};
+ \fill(-.025,-1.925)circle(1.5pt)node[left]{$C$};\draw[->,thick](-.025,-1.925)--(-.025,-3.5)node[below]{$Mg$};
+ \draw[dashed](0,0)--(1.5,-3.1);\node[right]at(2,-1){关于 $O$ 比较重力矩与出流角动量通量};
+}{管和管内水组成控制体；出口动量通量关于接头 $O$ 有非零力矩。}{ch13:quality:hose-a}
+图~\ref{ch13:quality:hose-a}的 $C$ 表示管与管内水的共同质心，两段均匀且等长时它位于两段中点的平均位置。入口位于 $O$，关于 $O$ 的入口角动量为零；出口 $P$ 则必须保留位置矢量与出流动量的叉乘。
+}

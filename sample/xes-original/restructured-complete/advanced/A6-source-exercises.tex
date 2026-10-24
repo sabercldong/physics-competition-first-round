@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{相对论时空与量子现象综合题}
 \begingroup\tcbset{breakable/.default=false}
 
@@ -14,12 +15,37 @@
 \end{enumerate}
 \begin{center}
 \input{assets/diagrams-modern/closed-clock-source.tex}
+\figcap{题图：闭合轨道、切口O与随轨道增大的弧长 $s$，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:q1}
+
 \par\smallskip
 O既是弧长零点也是同步开线段的接缝；动量始终沿轨道切向。
 \end{center}
 \end{advexamplebox}
 \endgroup\par\nopagebreak[3]
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick,samples=161,domain=0:360,smooth,variable=\t]
+  plot ({1.7*cos(\t)+.45*cos(2*\t)},{1.7*sin(\t)});
+ \coordinate (O) at (-.45,-1.7);
+ \coordinate (M) at ({1.7*cos(345)+.45*cos(690)},{1.7*sin(345)});
+ \fill (O) circle(2pt) (M) circle(2pt);
+ \node[below left=5pt] at (O){$O:\ s=0,S$};
+ \node[below right=4pt] at (M){$m$};
+ \draw[DeepBlue,very thick,->] (M)--++({.65*(-1.7*sin(345)-.9*sin(690))},{.65*1.7*cos(345)})
+  node[above right=4pt]{$\vect p(s)$};
+ \draw[DeepBlue,thick,->,samples=31,domain=283:317,smooth,variable=\t]
+  plot ({1.7*cos(\t)+.45*cos(2*\t)},{1.7*sin(\t)});
+ \node at (1,-1.95){$s$ 增大};
+ \node at (0,.2){面积 $A$};
+\end{tikzpicture}
+\figcap{解图：闭合轨道、切口O与随轨道增大的弧长 $s$，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:a1}
+\end{minipage}\end{center}
+
 （1）图中 $s$ 按粒子前进方向增大，令速率 $u(s)>0$、
 $\gamma(s)=1/\sqrt{1-u(s)^2/c^2}$。在微小弧段内，
 \[
@@ -94,6 +120,8 @@ $\tau_2$ 是其绝对值；若交换两侧相减的顺序，符号随之改变�
 因此最终等号恰在沿圆周匀速运动时成立。
 检验匀速圆：$\tau_1=2\pi R/(\gamma u)$、$\tau_2=2\pi R\gamma u/c^2$，
 乘积为 $4\pi^2R^2/c^2=4\pi A/c^2$；两边的量纲都是时间平方。
+
+图~\ref{advA6:quality:A6-source-exercises:a1} 中，切口O两侧是同一个空间位置的不同同步支路；每段固有走时用 $m\,\mathrm ds/p$，同一实验室校准时刻的读数梯度用 $-p/(mc^2)$，两种积分不能混为一个时间差。
 \end{advsolution}
 
 \begin{advexamplebox}{核辐射的反冲与运动共振}\label{advA6:ex:nuclear-resonance}
@@ -105,9 +133,33 @@ $\tau_2$ 是其绝对值；若交换两侧相减的顺序，符号随之改变�
 已知原子核质量为 $M$，用 $v,\sigma,M$ 表示发生共振吸收所需的 $\sigma'$，并说明近似条件。
 \begin{center}
 \input{assets/diagrams-modern/recoil-resonance-source.tex}
+\figcap{题图：发射晶体、反冲核和迎面运动的吸收晶体，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:q2}
+
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach \x in {0,4.2}{\draw[TextGray] (\x,0) rectangle ++(3.4,2);}
+ \fill (.9,1) circle(4pt) (6.7,1) circle(4pt);
+ \node[below=7pt] at (.9,1){$N$};
+ \node[below=7pt] at (6.7,1){$N'$};
+ \draw[->,thick] (.72,1)--(.22,1) node[above=5pt,anchor=south west]{反冲};
+ \draw[->,thick,DeepBlue] (1.55,1)--(2.95,1) node[midway,above=6pt]{$\gamma$};
+ \draw[->,thick,DeepBlue] (4.65,1)--(5.95,1) node[midway,above=6pt]{$\gamma$};
+ \draw[->,thick] (6.52,1)--(6.07,1);
+ \draw[->,thick] (7.45,2.45)--(6.2,2.45) node[midway,above=3pt]{$v$：接近};
+ \node at (1.7,-.45){(a) 发射；跃迁能 $hc\sigma$};
+ \node at (5.9,-.45){(b) 吸收；跃迁能 $hc\sigma'$};
+ \draw[->] (3.05,2.5)--(3.85,2.5) node[right]{$x$};
+\end{tikzpicture}
+\figcap{解图：发射晶体、反冲核和迎面运动的吸收晶体，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:a2}
+\end{minipage}\end{center}
+
 图(a)中光子沿 $+x$ 传播，反冲核沿 $-x$ 运动；图(b)中的吸收核在吸收前沿 $-x$ 接近光源。
 不能把跃迁能直接当成实际发射的光子能量，因为一部分能量变成了反冲动能。
 先按照题设的单核反冲模型计算，记 $\Delta=hc\sigma$、$\Delta'=hc\sigma'$。
@@ -156,6 +208,8 @@ $r\ll1$ 且 $Dr\ll1$、发射和吸收反冲均非相对论的条件下，可先
 还要区分本题模型与穆斯堡尔效应中的无反冲谱线。晶体中的核有一定概率不激发晶格振动，
 此时动量由整个晶体承担，反冲有效质量远大于单个原子核的 $M$，上面的单核反冲修正便显著减小。
 不能在同一步计算中既采用单核质量，又宣称反冲完全由晶体承担。
+
+图~\ref{advA6:quality:A6-source-exercises:a2} 中，光子沿探测方向传播、发射核向反方向反冲，吸收晶体的迎面速度产生蓝移；发射与吸收各自的反冲能都需进入共振条件。
 \end{advsolution}
 
 \begin{advexamplebox}{两光子散射与出射波矢的取值范围}\label{advA6:ex:photon-scattering}
@@ -171,6 +225,8 @@ $E^2=p^2c^2+m_e^2c^4$、能量为正的自由实粒子。
 \end{enumerate}
 \begin{center}
 \input{assets/diagrams-modern/photon-scattering-source.tex}
+\figcap{题图：两入射与两出射光子外线及题给角度，内部电子线表示虚传播子。}\label{advA6:quality:A6-source-exercises:q3}
+
 \end{center}
 \end{advexamplebox}
 \begin{advsolution}
@@ -212,6 +268,8 @@ $E^2=p^2c^2+m_e^2c^4$、能量为正的自由实粒子。
 下面画其包含 $\vect K$ 的一个截面；绕水平轴旋转即为完整允许面。
 \begin{center}
 \input{assets/diagrams-modern/photon-wavevector-locus.tex}
+\figcap{解图：出射波矢端点允许面是旋转椭球面；此图为含总波矢 $\boldsymbol K$ 轴的截面，O与第二焦点的间距为 $k_0$。}\label{advA6:quality:A6-source-exercises:a3}
+
 \end{center}
 图中的O到P代表 $\vect k_3$，P到第二焦点代表 $\vect k_4$，两矢量首尾相接恰等于 $\vect K$。
 用 $k_\parallel$ 和 $k_\perp$ 表示任一出射波矢平行、垂直于 $\vect K$ 的分量，允许面满足
@@ -239,6 +297,8 @@ $E^2=p^2c^2+m_e^2c^4$、能量为正的自由实粒子。
 最大值沿合动量方向出现，最小值沿其反方向出现。极值时两光子反向传播，频率分别为
 $3\nu_0/2$ 和 $\nu_0/2$：频率和为 $2\nu_0$，动量差为 $\hbar k_0$，正好复核两条守恒式。
 允许面给出运动学范围，不意味着各方向的散射概率相同；概率还取决于量子散射振幅。
+
+图~\ref{advA6:quality:A6-source-exercises:a3} 中，O到P及P到第二焦点的两矢量首尾相接为 $\boldsymbol K$，两段长度之和为 $2k_0$；这同时表达动量守恒与能量守恒，所以允许集合是椭球表面而非内部区域。
 \end{advsolution}
 
 \begin{advexamplebox}{有限质量氢靶的卢瑟福散射}\label{advA6:ex:rutherford-recoil}
@@ -249,10 +309,46 @@ $\theta_c,\varphi_c$ 表示对应的质心系角。求实验室系中反冲氢�
 $\varphi_L=30^\circ$ 方向的微分散射截面及其反冲动能。
 \begin{center}
 \input{assets/diagrams-modern/rutherford-recoil-source.tex}
+\figcap{题图：有限质量靶的散射几何与两个参考系的角度，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:q4}
+
 \end{center}
 图为同一比例尺的速度矢量构图；C表示质心平移速度的端点，不是碰撞时第三个粒子的位置。
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate (O) at (0,0);\coordinate (C) at (3.2,0);
+ \coordinate (A) at (2.8,{.8*sin(120)});
+ \coordinate (P) at (4.8,{-3.2*sin(120)});
+ \draw[->,TextGray] (-1.3,0)--(5.15,0);
+ \draw[->,thick] (-1.25,0)--(-.2,0);
+ \node[above=6pt] at (-.85,0){$\alpha$ 入射};
+ \draw[->,thick,DeepBlue] (O)--(A);
+ \draw[->,thick,DeepBlue] (O)--(P);
+ \draw[dashed,->,thick] (C)--(A);
+ \draw[dashed,->,thick] (C)--(P);
+ \fill (O) circle(2pt) (C) circle(2pt) (A) circle(2pt) (P) circle(2pt);
+ \node[below left=6pt] at (O){$O$};
+ \node[below left=5pt] at (C){$C$};
+ \node[above left=4pt] at (A){$\alpha$};
+ \node[below right=4pt] at (P){$p$};
+ \draw (.85,0) arc[start angle=0,end angle=13.8979,radius=.85];
+ \node at (.8,.4){$\theta_L$};
+ \draw (1.18,0) arc[start angle=0,end angle=-30,radius=1.18];
+ \node at (1.45,-.33){$\varphi_L$};
+ \draw (3.67,0) arc[start angle=0,end angle=120,radius=.47];
+ \node at (3.56,.78){$\theta_c$};
+ \draw (3.9,0) arc[start angle=0,end angle=-60,radius=.7];
+ \node at (4.18,-.47){$\varphi_c$};
+ \node[align=left,anchor=west] at (-1.25,-2.25){实线：实验室速度\\虚线：质心系速度};
+\end{tikzpicture}
+\figcap{解图：有限质量靶的散射几何与两个参考系的角度，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:a4}
+\end{minipage}\end{center}
+
 设入射速率为 $v_0$，入射方向为 $+x$。质心速度和相对运动约化质量分别为
 \[
  V=\frac{4m}{5m}v_0=\frac45v_0,\qquad
@@ -330,6 +426,8 @@ $\dd\Omega_L=2\pi\sin\varphi_L|\dd\varphi_L|$。
 $v_0(0.7,\sqrt3/10)$ 计算也得到 $K_\alpha=0.52K$，两者之和为 $2\,\mathrm{MeV}$。
 当 $\varphi_L\to90^\circ$，反冲动能趋于零，而纯库仑模型的小角散射截面发散；
 实际屏蔽会限制该理想模型在极小动量转移处的适用性。
+
+图~\ref{advA6:quality:A6-source-exercises:a4} 中，实验室中的重入射粒子偏转角与动量中心系散射角不同，最大实验室偏转受靶反冲限制；角度分支应与速度矢量三角形一致。
 \end{advsolution}
 
 \begin{advexamplebox}{中子重力干涉与两个输出端口}\label{advA6:ex:neutron-gravity}
@@ -341,9 +439,59 @@ $v_0(0.7,\sqrt3/10)$ 计算也得到 $K_\alpha=0.52K$，两者之和为 $2\,\mat
 先给出理想等分束、两臂完全反射的结果，再说明分束比或中间晶体反射率不是理想值时怎样计算。
 \begin{center}
 \input{assets/diagrams-modern/neutron-interferometer-source.tex}
+\figcap{题图：中子菱形干涉仪的四段光路与两个输出端口，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:q5}
+
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \coordinate (O) at (0,0);\coordinate (B) at (3.25,0);
+ \coordinate (A) at ({3.25*cos(50)},{3.25*sin(50)});
+ \coordinate (C) at ({3.25*(1+cos(50))},{3.25*sin(50)});
+ \draw[->,thick,DeepBlue] (-1.2,0)--(O);
+ \draw[->,thick,DeepBlue] (O)--(B);
+ \draw[->,thick,DeepBlue] (O)--(A);
+ \draw[->,thick,DeepBlue] (A)--(C);
+ \draw[->,thick,DeepBlue] (B)--(C);
+ \draw[->,thick,DeepBlue] (C)--++(1.2,0) node[right]{1};
+ \draw[->,thick,DeepBlue] (C)--++({.9*cos(50)},{.9*sin(50)}) node[above]{2};
+ \draw[dashed,TextGray] (O)--(C);
+ \foreach \name in {O,A,B,C}{
+  \draw[very thick,TextGray] ($ (\name)+({-.42*cos(25)},{-.42*sin(25)}) $)
+     --($ (\name)+({.42*cos(25)},{.42*sin(25)}) $);
+ }
+ \node[below=7pt] at (O){$O$};\node[below=7pt] at (B){$B$};
+ \node[above=8pt] at (A){$A$};\node[below right=6pt] at (C){$C$};
+ \node[below=6pt] at (1.63,0){$l$};
+ \node[above=6pt] at ({3.25*cos(50)+1.63},{3.25*sin(50)}){$l$};
+ \node[left=6pt] at ({1.63*cos(50)},{1.63*sin(50)}){$l$};
+ \node[right=6pt] at ({3.25+1.63*cos(50)},{1.63*sin(50)}){$l$};
+ \draw (.9,0) arc[start angle=0,end angle=25,radius=.9];
+ \node at (1.15,.23){$\theta$};
+ \draw (1.45,0) arc[start angle=0,end angle=50,radius=1.45];
+ \node at (1.5,1.35){$2\theta$};
+ \node[anchor=west] at (-1.1,3.2){(a) 装置平面内的光路};
+ \begin{scope}[shift={(0,-2.1)}]
+  \draw[->,TextGray] (0,0)--(4,0) node[right]{水平};
+  \draw[thick] (0,0)--(3.2,1.16);
+  \draw[dashed] (3.2,0)--(3.2,1.16);
+  \draw[<->] (3.65,0)--(3.65,1.16) node[midway,right=5pt]{$h=l\sin2\theta\sin\varphi$};
+  \fill (0,0) circle(2pt);
+  \node[below=5pt] at (0,0){转轴 $OB$};
+  \draw (.9,0) arc[start angle=0,end angle=19.9256,radius=.9];
+  \node at (1.17,.17){$\varphi$};
+  \node[above,rotate=19.9256] at (1.95,.71){$l\sin2\theta$};
+  \node[anchor=west] at (-1.1,-.75){(b) 垂直转轴的截面};
+ \end{scope}
+\end{tikzpicture}
+\figcap{解图：中子菱形干涉仪的四段光路与两个输出端口，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:a5}
+\end{minipage}\end{center}
+
 几何关系必须先从图(a)确定。$OB$、$AC$ 长为 $l$ 且水平，$OA$、$BC$ 与它们夹角为 $2\theta$，
 对角线 $OC$ 才与底边夹角为 $\theta$。不能把整个菱形的顶角错当作布拉格角。
 菱形面积为 $A=l^2\sin2\theta$，垂直于转轴的宽度为 $l\sin2\theta$。
@@ -400,6 +548,8 @@ $t=\sqrt T$、$r=\mathrm i\sqrt R$，其中 $T+R=1$；这个 $\pi/2$ 相对相�
 若两臂还有固定相位差 $\delta_0$，把公式中的 $\delta$ 换为 $\delta+\delta_0$。
 检验：$\delta$ 的量纲为能量乘时间除以作用量，是无量纲；
 $g\to0$ 或 $\varphi\to0$ 时重力条纹位移消失；一般无吸收模型恒有 $I_1+I_2=R_m$。
+
+图~\ref{advA6:quality:A6-source-exercises:a5} 中，两条到达同一输出端口的路径须保持相干，重力相位取两路势能积分之差；另一个端口的相位与分束振幅相联，不能把某端口变暗解释成中子消失。
 \end{advsolution}
 
 \begin{advexamplebox}{发光杆、激光脉冲与恒星光行差}\label{advA6:ex:rod-pulse-aberration}
@@ -415,9 +565,53 @@ $g\to0$ 或 $\varphi\to0$ 时重力条纹位移消失；一般无吸收模型恒
 \end{enumerate}
 \begin{center}
 \input{assets/diagrams-modern/rod-telescope-source.tex}
+\figcap{题图：发光杆、脉冲和观察方向的原TikZ配置保留。}\label{advA6:quality:A6-source-exercises:q6}
+
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}[shift={(-3.5,0)}]
+  \draw[->] (0,0)--(3.1,0) node[right]{$x$};
+  \draw[->] (0,0)--(0,3.25) node[above]{$y,S$};
+  \draw[->,TextGray] (.28,-.28)--(3.1,-.28) node[right]{$x'$};
+  \draw[->,TextGray] (.28,-.28)--(.28,2.9) node[above right]{$S'$};
+  \draw[DeepBlue,line width=3pt] (0,0)--({2.8*cos(60)},{2.8*sin(60)});
+  \node[right=7pt] at (.7,1.21){$l$};
+  \draw (.72,0) arc[start angle=0,end angle=60,radius=.72];
+  \node at (.88,.43){$\theta$};
+  \draw[->,thick] (.65,2.75)--(1.45,2.75) node[midway,above]{$v$};
+  \node at (1.35,-.85){(a) 静止发光杆与两个参考系};
+ \end{scope}
+ \begin{scope}[shift={(1.9,.25)}]
+  \pgfmathsetmacro{\tt}{atan(sin(60)/(cos(60)+.4))}
+  \coordinate (L) at ({2*cos(\tt)},{2*sin(\tt)});
+  \draw[TextGray] (-.65,-.6)--(-.65,.35) arc[start angle=180,end angle=0,radius=1.25]--(1.85,-.6)--cycle;
+  \begin{scope}[rotate=\tt]
+   \draw[thick] (0,-.08) rectangle (2,.08);
+   \draw[thick] (2,-.14)--(2,.14);
+  \end{scope}
+  \draw[dashed] (0,0)--(1.1,0);
+  \draw (.67,0) arc[start angle=0,end angle=\tt,radius=.67];
+  \node at (.95,.32){$\theta_3$};
+  \draw[dashed,DeepBlue] (L)--++(60:1.55);
+  \draw[dashed] (L)--++(1.15,0);
+  \draw ($(L)+(.58,0)$) arc[start angle=0,end angle=60,radius=.58];
+  \node at ($(L)+(.74,.4)$){$\theta$};
+  \node at ($(L)+(60:1.7)$){$\ast$};
+  \node[right=3pt] at ($(L)+(60:1.7)$){恒星};
+  \draw[->,thick] (2,-.42)--(2.8,-.42) node[midway,below]{$v$};
+  \node at (1.1,-1.1){(b) 运动天文台中的望远镜};
+ \end{scope}
+\end{tikzpicture}
+\figcap{解图：发光杆、脉冲和观察方向的原TikZ配置保留。}\label{advA6:quality:A6-source-exercises:a6}
+\end{minipage}\end{center}
+
 令 $\beta=v/c$、$\gamma=(1-\beta^2)^{-1/2}$，所有角均从本系的正 $x$ 轴量起。
 这里“方向”指坐标测量方向，不是未作光传播时延校正的杆的照片形状。
 
@@ -502,6 +696,8 @@ $t_f=v x_f/c^2$，解得 $t_f=\beta l\cos\theta/[c(1-\beta\cos\theta)]$。于是
 二者分量比和象限均与镜筒相同，所以星像位于镜筒正中。
 当 $v\to0$，四个方向均回到 $\theta$；对 $\theta=90^\circ$，
 恒星观测方向具有正 $x'$ 分量 $\beta$，即向天文台运动前方偏移。
+
+图~\ref{advA6:quality:A6-source-exercises:a6} 中，杆长由新系同时截面测得，照片方向由同一接收时刻的迟延光决定；激光脉冲长度还涉及两个端点事件的选择，三个测量问题必须各自指定事件。
 \end{advsolution}
 
 \begin{advexamplebox}{等速追及曲线与迟延接收的多普勒频移}\label{advA6:ex:pursuit-doppler}
@@ -515,6 +711,8 @@ $t_f=v x_f/c^2$，解得 $t_f=\beta l\cos\theta/[c(1-\beta\cos\theta)]$。于是
 \end{enumerate}
 \begin{center}
 \input{assets/diagrams-modern/pursuit-source.tex}
+\figcap{题图：雷达鼠和电波狗的初始垂直速度及连线，原TikZ图保留。}\label{advA6:quality:A6-source-exercises:q7}
+
 \end{center}
 \end{advexamplebox}
 \begin{advsolution}
@@ -564,7 +762,7 @@ $t_f=v x_f/c^2$，解得 $t_f=\beta l\cos\theta/[c(1-\beta\cos\theta)]$。于是
  \draw[thin](.24,.18)--(.42,-.06)--(.18,-.24);
  \node[anchor=west]at(2.2,0){$\vect F\cdot\vect v_D=0$};
 \end{tikzpicture}
-\bookcaption{同速追逐的受力方向：力改变动量方向而不改变其大小}\label{advA6:fig:pursuit-force-solution}
+\figcap{同速追逐的受力方向：力垂直于瞬时速度，改变动量方向而不改变其大小。}\label{advA6:quality:A6-source-exercises:a7}\label{advA6:fig:pursuit-force-solution}
 \end{minipage}\end{center}
 
 初始力向右，大小为 $\gamma mv^2/p$；当 $\theta\to0$ 时曲线趋于直线，所需力趋于零。
@@ -604,5 +802,7 @@ $\nu_r/\nu_0\simeq1+\beta(1-\cos\theta)$，与距离在减小产生的蓝移一�
 不能直接套“横向接收”公式，因为实际光线并不沿瞬时竖直连线。
 低速蓝移也不能推广到所有高速情况。例如 $\beta=0.9,\theta=60^\circ$ 时，
 本式给出 $\nu_r/\nu_0\simeq0.2535$：尽管瞬时间距减小，迟延接收仍出现红移。
+
+图~\ref{advA6:quality:A6-source-exercises:a7} 中，追及曲线中的连线连接同一时刻的两个位置，接收频移中的光线却连接发射与接收两个迟延事件；频移必须用后者的传播方向。
 \end{advsolution}
 \endgroup

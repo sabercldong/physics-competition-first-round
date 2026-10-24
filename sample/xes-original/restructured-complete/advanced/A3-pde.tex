@@ -1,3 +1,5 @@
+% AdvancedThermalQuality20261023-v1
+\input{chapters/quality-20261023/thermal/A3-pde.tex}
 \section{偏微分方程}
 
 偏微分方程把场在空间各点之间的联系与边界、初始条件同时编码。处理这类问题的主线有三条：先用自伴本征值问题建立正交函数系，再用分离变量把偏微分方程化成常微分方程，最后用正交展开或傅里叶变换确定各阶模态的系数。本节依次讨论 Sturm--Liouville 理论、三族正交多项式、波动方程与热方程，并给出所用定理的证明与例题的完整解答。
@@ -36,8 +38,12 @@ $\int_0^l|y|^2\dd x=\sum_n|c_n|^2$。这正是有限维正交投影在函数空�
  |(f,g)_\rho|\le \|f\|_\rho\|g\|_\rho,
 \]
 并说明如何把线性无关函数 $z_1,\ldots,z_n$ 化为正交归一组。
+
+\AQOrthogonal
 \end{advexamplebox}
 \begin{advsolution}
+\AAOrthogonal
+
 若 $g=0$ 结论显然。若 $g\ne0$，对任意复数 $c$ 有
 \[
  0\le\|f-cg\|^2
@@ -80,7 +86,7 @@ $\int_0^l|y|^2\dd x=\sum_n|c_n|^2$。这正是有限维正交投影在函数空�
 \[
  c_1y(a)+c'_1y'(a)=0,\qquad c_2y(b)+c'_2y'(b)=0
 \]
-或周期边界条件 $y(a)=y(b),\ p(a)y'(a)=p(b)y'(b)$ 下的非零解。使非零解存在的 $\lambda$ 称本征值，相应的 $y$ 称本征函数。无穷区间还要求 $\int |y|^2\rho\dd x<\infty$。
+或周期边界条件 $y(a)=y(b),\ p(a)y'(a)=p(b)y'(b)$ 下的非零解。分离边界条件的各对系数须为不同时为零的实数。使非零解存在的 $\lambda$ 称本征值，相应的 $y$ 称本征函数。奇异端点和无穷端点还须指定自伴定义域；平方可积性是要求之一，不能代替所有必要的端点条件。
 \end{advdefinition}
 
 定义算符
@@ -110,7 +116,7 @@ $\int_0^l|y|^2\dd x=\sum_n|c_n|^2$。这正是有限维正交投影在函数空�
  (f,Lg)_\rho-(Lf,g)_\rho
  =\bigl[p(f'^*g-f^*g')\bigr]_a^b.                         \tag{A3.1}
 \]
-分离边界条件在每个端点都把 $f,f'$ 与 $g,g'$ 限制为同一线性关系，因此括号为零；周期边界条件下两端贡献相消。奇异端点（例如 Legendre 的 $x=\pm1$）由 $p=0$ 消去边界项；无穷端点则由平方可积性和允许的衰减条件消去边界项，故式(A3.1)右端为零。\hfill$\square$
+实系数分离边界条件在每个正则端点都把 $f,f'$ 与 $g,g'$ 限制为同一线性关系，因此括号为零；周期边界条件下两端贡献相消。奇异端点须在指定的自伴定义域中取极限，不能仅因 $p\to0$ 就断言乘积为零。例如 Legendre 多项式采用端点正则分支，满足 $pf',pg'\to0$ 且 $f,g$ 有界，边界型才消失；若允许平方可积的对数发散支，这一结论不再自动成立。无穷端点也须由所选定义域的衰减条件保证边界型消失。因此式(A3.1)在这些端点条件下为零。\hfill$\square$
 
 \begin{advtheorem}{正则 Sturm--Liouville 谱的存在性与完备性}\label{advA3:thm:sl-spectrum}
 正则分离边界问题的本征值为离散实数列
@@ -160,8 +166,12 @@ $\beta_2n(n-1)+(2\beta_2+\alpha_1)n+\lambda_n=0$，即所列本征值。\hfill$\
  P(x)y''+Q(x)y'+[R_0(x)+\lambda R_1(x)]y=0,
  \]
 其中 $P\ne0$。求等价的 Sturm--Liouville 形式。
+
+\AQSelfAdjoint
 \end{advexamplebox}
 \begin{advsolution}
+\AASelfAdjoint
+
 先除以 $P$，再乘积分因子 $\mu$。要使 $y''$ 与 $y'$ 合成 $(py')'$，须有
 \[
  p=\mu,\qquad p'=\mu\frac QP,\qquad
@@ -188,8 +198,12 @@ $\beta_2n(n-1)+(2\beta_2+\alpha_1)n+\lambda_n=0$，即所列本征值。\hfill$\
  x^2y''+xy'+(x^2-\alpha^2)y=0
 \]
 化为自伴形式，并判断它是否存在一族有限次正交多项式解。
+
+\AQBessel
 \end{advexamplebox}
 \begin{advsolution}
+\AABessel
+
 除以 $x$ 即得
 \[
  \boxed{(xy')'+\left(x-\frac{\alpha^2}{x}\right)y=0}.
@@ -199,7 +213,7 @@ $(xy')'+xy-\alpha^2x^{-1}y=0$；若把固定区间边界条件决定的径向波
 \[
  (xy')'+\left(k^2x-\frac{\alpha^2}{x}\right)y=0,
 \]
-权函数为 $\rho=x$。它不满足定理\ref{advA3:thm:orthogonal-polynomial-ode}所需的 $q=0$（或可并入常数本征值）条件，幂级数也不会在一般阶次截断，故解为 Bessel 函数而不是有限次正交多项式。只有特殊退化参数可能偶然化简，不能构成完整多项式族。
+权函数为 $\rho=x$。它不满足定理\ref{advA3:thm:orthogonal-polynomial-ode}所需的 $q=0$（或可并入常数本征值）条件，幂级数也不会在一般阶次截断，故解为 Bessel 函数而不是有限次正交多项式。实际上，对本题所给方程，最高次项检查排除了所有非零有限次多项式解。
 \end{advsolution}
 
 \begin{advexamplebox}{Chebyshev 多项式}\label{advA3:ex:chebyshev}
@@ -208,8 +222,12 @@ $(xy')'+xy-\alpha^2x^{-1}y=0$；若把固定区间边界条件决定的径向波
  (1-x^2)y''-xy'+\lambda y=0,\qquad -1<x<1
 \]
 在自然边界条件 $\lim_{x\to\pm1}\sqrt{1-x^2}\,y'=0$ 下的本征值，并写出零至四次的归一化多项式解。
+
+\AQChebyshev
 \end{advexamplebox}
 \begin{advsolution}
+\AAChebyshev
+
 令 $x=\cos\theta$，则
 \[
  (1-x^2)y''-xy'=\frac{\dd^2y}{\dd\theta^2}.
@@ -416,8 +434,12 @@ $\mu$ 阶 Laguerre 方程给出
 \[
  P'_{n+1}(x)-xP'_n(x)=(n+1)P_n(x).
 \]
+
+\AQLegendreRecurrence
 \end{advexamplebox}
 \begin{advsolution}
+\AALegendreRecurrence
+
 从 Bonnet 递推式
 \[
  (n+1)P_{n+1}=(2n+1)xP_n-nP_{n-1}
@@ -440,8 +462,12 @@ $P'_{n+1}-xP'_n=(n+1)P_n$。在 $n=0$ 时左边是 $P'_1=1$，右边也是1，�
 \[
  \int_{-1}^1[P'_n(x)]^2\dd x=n(n+1).
 \]
+
+\AQLegendreNorm
 \end{advexamplebox}
 \begin{advsolution}
+\AALegendreNorm
+
 由导数递推反复展开，
 \[
  P'_n=(2n-1)P_{n-1}+(2n-5)P_{n-3}+\cdots.
@@ -465,8 +491,12 @@ $\int x^2(P'_n)^2=\int(P'_n)^2-n(n+1)\int P_n^2$，即可由 $n$ 推到 $n+1$。
 \[
  \mathcal P_{ij}=\int_{-1}^1xP_i(x)P_j(x)\dd x.
 \]
+
+\AQDipoleMatrix
 \end{advexamplebox}
 \begin{advsolution}
+\AADipoleMatrix
+
 由 Bonnet 递推
 \[
  xP_i=\frac{i+1}{2i+1}P_{i+1}+\frac{i}{2i+1}P_{i-1}.
@@ -532,8 +562,12 @@ $\int x^2(P'_n)^2=\int(P'_n)^2-n(n+1)\int P_n^2$，即可由 $n$ 推到 $n+1$。
 
 \begin{advexamplebox}{典型物理方程的分类}\label{advA3:ex:pde-types}
 判断波动方程、热方程、Schr\"odinger 方程、Laplace 方程、Poisson 方程和 Helmholtz 方程的类型。
+
+\AQPDETypes
 \end{advexamplebox}
 \begin{advsolution}
+\AAPDETypes
+
 把时间也视为自变量。$n$ 维波动方程主部矩阵为
 $\operatorname{diag}(1,-c^2,\ldots,-c^2)$，有一正 $n$ 负，故为双曲型。热方程关于 $(t,\vect x)$ 的二阶主部是
 $\operatorname{diag}(0,-\kappa,\ldots,-\kappa)$，恰有一个零特征值，故为抛物型。
@@ -594,7 +628,7 @@ $\operatorname{diag}(0,-\kappa,\ldots,-\kappa)$，恰有一个零特征值，故
  \e^{-\varepsilon x^2+\ii kx}\dd x
  =\sqrt{\frac\pi\varepsilon}\e^{-k^2/(4\varepsilon)}.
 \]
-对任意光滑快速衰减的 $\varphi$，令 $k=2\sqrt\varepsilon,u$，
+对任意光滑快速衰减的 $\varphi$，令 $k=2\sqrt{\varepsilon}\,u$，
 \[
  \frac1{2\pi}\int I_\varepsilon(k)\varphi(k)\dd k
  =\frac1{\sqrt\pi}\int\e^{-u^2}\varphi(2\sqrt\varepsilon u)\dd u
@@ -607,8 +641,12 @@ $\operatorname{diag}(0,-\kappa,\ldots,-\kappa)$，恰有一个零特征值，故
 \[
  \int_{-\infty}^{\infty}\frac{\sin kx}{x}\dd x=\pi\operatorname{sgn}k.
 \]
+
+\AQDirichlet
 \end{advexamplebox}
 \begin{advsolution}
+\AADirichlet
+
 设 $k>0$，先加收敛因子
 \[
  F_\varepsilon(k)=\int_0^\infty\e^{-\varepsilon x}
@@ -685,8 +723,12 @@ $\mathcal F^2f(\vect x)=f(-\vect x)$。
  =\int_{-\infty}^{\infty}\widetilde f^*(k)\widetilde g(k)\dd k,
 \]
 并由此得到 $\|f\|_2=\|\widetilde f\|_2$。
+
+\AQParseval
 \end{advexamplebox}
 \begin{advsolution}
+\AAParseval
+
 把 $g$ 的反变换代入左边并交换积分次序：
 \[
  \int f^*(x)g(x)\dd x
@@ -708,8 +750,12 @@ $\int|f|^2=\int|\widetilde f|^2$，这就是 Plancherel 定理。它说明 Fouri
  f(x)=\frac1{\sqrt{2\pi}}\e^{-x^2/2}
 \]
 在本节对称归一化约定下的 Fourier 变换。
+
+\AQGaussianFourier
 \end{advexamplebox}
 \begin{advsolution}
+\AAGaussianFourier
+
 配方
 \[
  -\frac{x^2}{2}-\ii kx=-\frac{(x+\ii k)^2}{2}-\frac{k^2}{2}.
@@ -730,8 +776,12 @@ $\widetilde f(0)=1/\sqrt{2\pi}$，也等于 $(2\pi)^{-1/2}\int f\dd x$，常数�
  y_{tt}-c^2y_{xx}=0,\qquad y(0,t)=a(t),\quad y(l,t)=b(t)
 \]
 的求解方法。
+
+\AQBoundaryLift
 \end{advexamplebox}
 \begin{advsolution}
+\AABoundaryLift
+
 在固定边界 $x=l$ 上，边值只能随时间变化。构造满足两端边界条件的线性函数
 \[
  h(x,t)=\left(1-\frac xl\right)a(t)+\frac xl b(t),
@@ -739,7 +789,7 @@ $\widetilde f(0)=1/\sqrt{2\pi}$，也等于 $(2\pi)^{-1/2}\int f\dd x$，常数�
 \]
 于是 $u(0,t)=u(l,t)=0$，而
 \[
- u_{tt}-c^2u_{xx}=-h_{tt}equiv F(x,t).
+ u_{tt}-c^2u_{xx}=-h_{tt}\equiv F(x,t).
 \]
 展开
 \[
@@ -754,13 +804,17 @@ $\widetilde f(0)=1/\sqrt{2\pi}$，也等于 $(2\pi)^{-1/2}\int f\dd x$，常数�
 \end{advsolution}
 
 \begin{advexamplebox}{非齐次波动方程的模态解}\label{advA3:ex:forced-wave}
-求解思路：
+对下列初边值问题建立模态解：
 \[
  y_{tt}-c^2y_{xx}=A(x,t),\qquad y(0,t)=y(l,t)=0,
 \]
 并给出零初值时的显式模态公式。
+
+\AQForcedWave
 \end{advexamplebox}
 \begin{advsolution}
+\AAForcedWave
+
 令
 \[
  y=\sum_{n=1}^\infty q_n(t)\sin k_nx,\qquad
@@ -795,8 +849,12 @@ $A_n(t)=\tfrac2l\int_0^lA(x,t)\sin k_nx\dd x$。正交投影后
  \int_{-\infty}^{\infty}
  \exp\!\left[-\frac{(x-\xi)^2}{4\kappa t}\right]f(\xi)\dd\xi.
 \]
+
+\AQHeatKernel
 \end{advexamplebox}
 \begin{advsolution}
+\AAHeatKernel
+
 对 $x$ 作 Fourier 变换，$\widetilde{u_{xx}}=-k^2\widetilde u$，故
 \[
  \partial_t\widetilde u+\kappa k^2\widetilde u=0,\qquad
@@ -841,9 +899,9 @@ $z=\e^{\ii m\varphi}$、$m\in\mathbb Z$；$y$ 满足连带 Legendre 方程
 其有限解可写为
 \[
  P_l^m(x)=(-1)^m(1-x^2)^{m/2}\frac{\dd^mP_l}{\dd x^m},
- \qquad |m|\le l.
+ \qquad 0\le m\le l.
 \]
-这里采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。
+这里的 $l,m$ 均为整数，导数定义先用于 $0\le m\le l$；负阶由下题关系延拓。采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。
 
 \begin{advexamplebox}{连带 Legendre 函数的负阶与宇称关系}\label{advA3:ex:associated-legendre}
 证明
@@ -851,8 +909,12 @@ $z=\e^{\ii m\varphi}$、$m\in\mathbb Z$；$y$ 满足连带 Legendre 方程
  P_l^{-m}(x)=(-1)^m\frac{(l-m)!}{(l+m)!}P_l^m(x),
  \qquad P_l^m(-x)=(-1)^{l+m}P_l^m(x).
 \]
+
+\AQAssociatedLegendre
 \end{advexamplebox}
 \begin{advsolution}
+\AAAssociatedLegendre
+
 第二式最直接。由 Rodrigues 公式 $P_l(-x)=(-1)^lP_l(x)$，对 $x$ 求 $m$ 阶导数时每次链式法则再带一个负号，故
 \[
  \frac{\dd^mP_l(-x)}{\dd(-x)^m}=(-1)^{l+m}

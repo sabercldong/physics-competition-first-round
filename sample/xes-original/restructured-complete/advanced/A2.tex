@@ -1,3 +1,5 @@
+% AdvancedThermalQuality20261023-v1
+\input{chapters/quality-20261023/thermal/A2-thermo.tex}
 \begingroup
 \input{advanced/layout.tex}
 \AdvancedUnit{2}{热学}
@@ -53,8 +55,12 @@
 
 \begin{advexamplebox}{小压强一侧为何仍可能膨胀}\label{advA2:ex:pressure-temperature}
 两个子体系满足 $p_1<p_2$ 且 $T_1<T_2$。在固定各子体系内能与粒子数的熵虚变分中，解释为什么体积从体系2转给体系1仍可能使总熵增加；说明这是否就是自由绝热活塞的实际运动判据。
+
+\AQEntropyVolume
 \end{advexamplebox}
 \begin{advsolution}
+\AAEntropyVolume
+
 令 $\dd V_1=-\dd V_2>0$，并按题设在状态空间中固定 $U_1,U_2,N_1,N_2$，则
 \[
  \dd S_{\rm tot}
@@ -107,8 +113,12 @@ G(T,p,N)&U-TS+pV&\dd G=-S\dd T+V\dd p+\mu\dd N\\
 \[
  \boxed{\left[\frac{\partial(G/T)}{\partial T}\right]_p=-\frac{H}{T^2}}.
 \]
+
+\AQGibbsHelmholtz
 \end{advexamplebox}
 \begin{advsolution}
+\AAGibbsHelmholtz
+
 在定压下 $G_T=-S$，而 $G=H-TS$。因此
 \[
  \left[\frac{\partial(G/T)}{\partial T}\right]_p
@@ -125,8 +135,12 @@ G(T,p,N)&U-TS+pV&\dd G=-S\dd T+V\dd p+\mu\dd N\\
  \item 若 $\gamma=C(T_c-T)$，等温增加面积 $\Delta A$，求外力功与吸热。
  \item 若 $\gamma=CT_c(1-T/T_c)^a$ 且 $1<a<2$，保持面积不变加热时表面层吸热还是放热？这是否意味着整个液体具有负热容？
 \end{enumerate}
+
+\AQSurfaceThermo
 \end{advexamplebox}
 \begin{advsolution}
+\AASurfaceThermo
+
 表面功项为 $\gamma\dd A$，故
 \[
  \dd F_s=-S_s\dd T+\gamma\dd A,
@@ -159,6 +173,8 @@ G(T,p,N)&U-TS+pV&\dd G=-S\dd T+V\dd p+\mu\dd N\\
  $\alpha_z=z^{-1}(\partial z/\partial T)_g$。推导 $(\partial C_g/\partial g)_T$。
  \item 地面上承托的球与天花板下悬挂的球吸收相同热量时，能否仅凭“膨胀时重力做功的正负”断言谁升温更多？
 \end{enumerate}
+
+\AQGravityHeat
 \end{advexamplebox}
 \begin{advsolution}
 单粒子的竖直构型配分因子为
@@ -282,8 +298,12 @@ $s_T=c_p/T,s_p=-v\alpha,v_T=v\alpha,v_p=-v\kappa_T$，便得两条埃伦费斯�
  H_c(T)=H_0\left(1-\frac{T^2}{T_c^2}\right).
 \]
 求相变潜热，并求零场二级相变点的单位体积热容突变。
+
+\AQSuperconductivity
 \end{advexamplebox}
 \begin{advsolution}
+\AASuperconductivity
+
 采用SI制，凝聚能密度满足
 \[
  g_n-g_s=\frac{\mu_0H_c^2}{2}.
@@ -320,8 +340,12 @@ $s_T=c_p/T,s_p=-v\alpha,v_T=v\alpha,v_p=-v\kappa_T$，便得两条埃伦费斯�
 
 \begin{advexamplebox}{外斯模型的临界温度}\label{advA2:ex:weiss-critical}
 由自洽方程在正温度下，证明自发磁化的非零解只在 $T<T_c=n\hbar J/(4k)$ 时出现，并检查 $T=T_c$。
+
+\AQWeissCritical
 \end{advexamplebox}
 \begin{advsolution}
+\AAWeissCritical
+
 $m=0$ 总是解。临界点附近展开 $\tanh x=x-x^3/3+\cdots$：
 \[
  m=\frac{T_c}{T}m-\frac13\left(\frac{T_c}{T}m\right)^3+\cdots.
@@ -335,6 +359,8 @@ $m=0$ 总是解。临界点附近展开 $\tanh x=x-x^3/3+\cdots$：
  \frac{T}{T_c}=\frac{2m}{\ln[(1+m)/(1-m)]},
 \]
 求 $M_0$ 并确定 $T\to T_c^-$ 时磁化强度的临界指数。
+
+\AQWeissCurve
 \end{advexamplebox}
 \begin{advsolution}
 对式\eqref{advA2:eq:weiss-self-consistent}取反双曲正切：
@@ -363,12 +389,18 @@ $\boxed{M_0=N\hbar\gamma/2}$。临界附近由上例展开式，
 \end{tikzpicture}
 \bookcaption{平均场磁化强度在临界点连续降为零，近临界区呈平方根律}\label{advA2:fig:weiss-curve}
 \end{minipage}\end{center}
+
+图~\ref{advA2:fig:weiss-curve}中的纵轴为归一化磁化，临界点左侧由正值连续降至零；平方根律只描述这一邻域，不能外推到全温区。零外场还存在符号相反但能量相同的负磁化支。
 \end{advsolution}
 
 \begin{advexamplebox}{居里--外斯定律}\label{advA2:ex:curie-weiss}
 在线性弱场区求磁化率，并证明 $1/\chi$ 与 $T-T_c$ 成正比。
+
+\AQCurieWeiss
 \end{advexamplebox}
 \begin{advsolution}
+\AACurieWeiss
+
 把分子场写成 $B_{\rm eff}=B+\lambda M$。弱场高温下
 \[
  M=N\mu_s\tanh\frac{\mu_s(B+\lambda M)}{kT}
@@ -387,16 +419,21 @@ $\boxed{M_0=N\hbar\gamma/2}$。临界附近由上例展开式，
 朗道理论用序参量 $\phi$ 的对称性组织相变。若体系在 $\phi\to-\phi$ 下不变，最低阶展开可写成
 \[
  F=F_0+a(T-T_c)\phi^2+b\phi^4+\cdots,
- \qquad b>0.
+ \qquad a>0,\quad b>0.
 \]
 $T<T_c$ 时平衡序参量为
-$\phi_\pm=\pm\sqrt{-a(T-T_c)/(2b)}$。熵与热容分别为
+$\phi_\pm=\pm\sqrt{-a(T-T_c)/(2b)}$。先对每个温度极小化，得到
 \[
- S=-\left(\frac{\partial F}{\partial T}\right)_\phi,
- \qquad C=T\left(\frac{\partial S}{\partial T}\right),
+ F_{\rm eq}(T)=F_0(T)-\frac{a^2(T-T_c)^2}{4b}\quad(T<T_c),
+ \qquad F_{\rm eq}(T)=F_0(T)\quad(T\ge T_c).
 \]
-从而在平均场近似中热容出现有限跃变
-$\Delta C=a^2T_c/(2b)$。
+平衡熵和热容应沿这条极小值支求导：
+\[
+ S_{\rm eq}=-\frac{\dd F_{\rm eq}}{\dd T},
+ \qquad C_{\rm eq}=-T\frac{\dd^2F_{\rm eq}}{\dd T^2}.
+\]
+因此熵在 $T_c$ 连续，而低温侧相对于高温侧的热容跃变量为
+$\Delta C=a^2T_c/(2b)$。若在求第二次温度导数时错误地固定 $\phi$，就会漏掉平衡序参量随温度改变的贡献。
 
 \begin{advexamplebox}{六次朗道势与一级相变}\label{advA2:ex:landau-first-order}
 证明当
@@ -405,8 +442,12 @@ $\Delta C=a^2T_c/(2b)$。
  \qquad a,b,c>0,
 \]
 随控制参量改变时可以发生一级相变，并求两相等自由能时的非零序参量与 $a$。
+
+\AQLandau
 \end{advexamplebox}
 \begin{advsolution}
+\AALandau
+
 令 $x=\phi^2\ge0$。非零驻点满足
 \[
  a-2bx+3cx^2=0.
@@ -433,8 +474,12 @@ $ax-bx^2+cx^3=0$。两式联立得
 \[
  \boxed{kA=\sum_i x_i\frac{\partial A}{\partial x_i}}.
 \]
+
+\AQHomogeneous
 \end{advexamplebox}
 \begin{advsolution}
+\AAHomogeneous
+
 固定 $x_i$，对缩放参数求导：
 \[
  \frac{\dd}{\dd\lambda}A(\lambda x_i)
@@ -452,8 +497,12 @@ $ax-bx^2+cx^3=0$。两式联立得
  \right]+\frac52.
 \]
 以 $N,V,T$ 为自变量求 $U,S,p,\mu$。
+
+\AQSackur
 \end{advexamplebox}
 \begin{advsolution}
+\AASackur
+
 由熵基本关系，
 \[
  \frac1T=\left(\frac{\partial S}{\partial U}\right)_{V,N}
@@ -497,8 +546,12 @@ $U$ 与 $pV$ 均与 $NkT$ 同量纲；稀薄极限 $V/N\to\infty$ 时 $\mu\to-\i
  \qquad U=TS-pV+\mu N,
 \]
 并写出吉布斯--杜亥姆关系。
+
+\AQGibbsDuhem
 \end{advexamplebox}
 \begin{advsolution}
+\AAGibbsDuhem
+
 $U(S,V,N)$ 是一次齐次函数。对它应用例\ref{advA2:ex:euler-homogeneous}，再用
 $U_S=T,U_V=-p,U_N=\mu$，得
 \[
@@ -548,8 +601,12 @@ $(\partial S/\partial V)_T=(\partial p/\partial T)_V$。又
 
 \begin{advexamplebox}{膨胀系数、压强系数与等温压缩系数}\label{advA2:ex:alpha-beta-kappa}
 证明 $\alpha=\beta\kappa_Tp$。
+
+\AQResponse
 \end{advexamplebox}
 \begin{advsolution}
+\AAResponse
+
 把状态方程写成 $V=V(T,p)$。在定体积线上
 \[
  0=\left(\frac{\partial V}{\partial T}\right)_p\dd T
@@ -569,8 +626,12 @@ $\alpha=1/T,\beta=1/T,\kappa_T=1/p$，校验成立。
 \[
  \boxed{\frac{C_p}{C_V}=\frac{\kappa_T}{\kappa_S}}.
 \]
+
+\AQCompressibilities
 \end{advexamplebox}
 \begin{advsolution}
+\AACompressibilities
+
 把熵写成 $S(T,V)$。由麦克斯韦关系
 $(\partial S/\partial V)_T=(\partial p/\partial T)_V$，
 \[
@@ -592,8 +653,12 @@ $C_p\ge C_V>0$，所以 $\kappa_T\ge\kappa_S>0$，方向也正确。
 \[
  \boxed{C_p-C_V=\alpha\beta pVT}.
 \]
+
+\AQHeatDifference
 \end{advexamplebox}
 \begin{advsolution}
+\AAHeatDifference
+
 由
 \[
  C_p-C_V=T\left[\left(\frac{\partial S}{\partial T}\right)_p

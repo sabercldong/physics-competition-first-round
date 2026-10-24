@@ -1,9 +1,12 @@
+% MechanicsNumberedSolutionFigures20261023-v1
+% MechanicsQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{牛顿定律、非惯性系及其应用}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fourth-section/}}
+\graphicspath{{../../../sample/xes-original/fourth-section/}}
 \section{牛顿运动定律}
 % TikZ diagrams for the added solutions.  Each diagram contains only the
 % geometric or force quantities used immediately in the accompanying text.
@@ -17,13 +20,9 @@
   solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
 }
 
-\newcommand{\soldiagcaption}[1]{%
-  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}解图：#1\par}\vspace{0.2em}%
-}
+\newcommand{\soldiagcaption}[1]{\figcap{#1}}
 
-\newcommand{\diagcaption}[2]{%
-  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}#1：#2\par}\vspace{0.2em}%
-}
+\newcommand{\diagcaption}[2]{\figcap{#1：#2}}
 
 \newcommand{\soldiagTwoOne}{%
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -168,7 +167,7 @@
   \node[sollabel] at (1.92,-0.10) {$m_2$};
 \end{tikzpicture}
 \soldiagcaption{先对整体求共同加速度，再分离 $m_2$ 求绳张力，可避免同时解两个方程。}
-\end{minipage}\end{center}}
+\label{mech:legacy:ch06:s04-2-8}\end{minipage}\end{center}}
 
 \newcommand{\soldiagTwoNine}{%
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -185,7 +184,7 @@
 }
 \end{tikzpicture}
 \soldiagcaption{分离两物块，只列水平力；上块摩擦向右，下块受到向左的反作用力。超过极限后用 $\mu mg$ 替代 $f$。}
-\end{minipage}\end{center}}
+\label{mech:legacy:ch06:s04-2-9}\end{minipage}\end{center}}
 
 \newcommand{\soldiagTwoTen}{%
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -206,7 +205,7 @@
   \draw[solgeom,-{Latex[length=1.6mm]}] (2.45,-0.35)--++(0,-0.85) node[right,sollabel] {$a$};
 \end{tikzpicture}
 \soldiagcaption{轻绳不可伸长，故 $m_1$ 向右和 $m_2$ 向下的加速度大小相等。}
-\end{minipage}\end{center}}
+\label{mech:legacy:ch06:s04-2-10}\end{minipage}\end{center}}
 
 
 质点是对运动物体的简化模型，它的运动学性质集中体现为它作为“点”的一面，可以用质
@@ -365,9 +364,19 @@ $\vec r\cdot\vec a=-v^2$，因此即使轨道静止，质点仍有大小 $v^2/R$
   x(t)=A\cos\omega t,
 \]
 求它所受到外力随位置的关系。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-3,0)--(3.2,0)node[right]{$x$};\fill(0,0)circle(2pt)node[below]{$O$};
+\fill(2.2,0)circle(2pt)node[below]{$A$};\fill(1.2,0)circle(2pt)node[above]{$P(x)$};\node at(2.2,.9){$t=0:\ x=A$};
+\draw[dashed](-2.2,-.4)--(-2.2,.4)node[above]{$-A$};\draw[<->](-2.2,-.8)--(2.2,-.8)node[midway,below]{$x=A\cos\omega t$};
+\end{tikzpicture}
+\figcap{沿 x 轴的余弦位置函数与振幅边界}\label{mech:06:1:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:1:q}中，$O$ 是平衡位置，$P$ 的坐标为有符号的 $x$。以下求二阶导数时沿这个固定坐标轴投影，再判断力的符号与 $x$ 的关系。
+
 对位置函数连续求两次导数：
 \[
   v_x=\frac{\dd x}{\dd t}=-A\omega\sin\omega t,
@@ -391,9 +400,19 @@ $\vec r\cdot\vec a=-v^2$，因此即使轨道静止，质点仍有大小 $v^2/R$
   y(t)=A\sin\omega t
 \]
 给出，其中 $A>0$、$\omega>0$，质点质量为 $m$。求它在运动过程中的合外力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick] (0,0) circle(1.5);\fill (0,0) circle(2pt) node[below left]{$O$};
+\fill (1.5,0) circle(2pt) node[below right]{$P$};\draw[thin] (0,0)--(1.5,0) node[midway,below]{$A$};
+\draw[->,DeepBlue,thick] (1.5,.1)--(1.5,1.3) node[right]{$v$};
+\end{tikzpicture}
+\figcap{给定参数方程在平面中的圆周}\label{mech:06:2:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:2:q}中，$OP=A$ 是到原点的距离；由参数方程可知初始点在正 $x$ 轴上且速度向上。以下分别求 $x,y$ 的二阶导数，检查合力是否指向 $O$。
+
 对两个坐标分别求二阶导数：
 \[
   \ddot x=-\omega^2x,
@@ -427,9 +446,20 @@ $\vec r\cdot\vec a=-v^2$，因此即使轨道静止，质点仍有大小 $v^2/R$
   \qquad z(t)=q(t)
 \]
 其中 $A>0$、$\omega>0$，$q(t)$ 是给定的二阶可导位置函数。另讨论 $q(t)=ut$、$u$ 为常量的情形。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,-.2)--(0,4)node[above]{$z$};\draw[->](0,0)--(3,-.7)node[right]{$x$};\draw[->](0,0)--(-1.2,-.7)node[left]{$y$};
+\draw[dashed](0,0)ellipse(1.3 and .35);\draw[DeepBlue,thick,domain=0:720,samples=140]plot({1.3*cos(\x)},{.0042*\x+.35*sin(\x)});
+\node[align=left]at(4,2.4){$x=A\cos\omega t$\\$y=A\sin\omega t$\\$z=q(t)$};
+\node[below]at(1.3,0){$A$};\node at(4,.8){螺旋线示意对应 $q(t)=ut$};
+\end{tikzpicture}
+\figcap{水平圆投影和独立给定的竖直位置}\label{mech:06:3:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:3:q}中，水平投影半径为 $A$，而竖直坐标由 $q(t)$ 独立给定。图中螺旋线仅示意 $q(t)=ut$ 的特例，不能据此在一般情形中令 $q''(t)=0$。
+
 三个方向的加速度为
 \[
   \ddot x=-A\omega^2\cos\omega t,
@@ -462,9 +492,19 @@ $m\sqrt{\omega^4A^2+[q''(t)]^2}$；两项的量纲均为加速度的平方。
   v(x)=v_0-\alpha x,\qquad v_0>0,\quad\alpha>0.
 \]
 探讨它所受阻力的形式。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->] (0,0)--(6.2,0) node[right]{$x$};\fill (1,0) circle(2pt) node[below]{$P$};
+\draw[->,DeepBlue,thick] (1,.5)--(2.6,.5) node[right]{$v>0$};
+\draw[->,Gold,thick] (2.6,1.3)--(1,1.3) node[midway,above]{$a<0$};
+\end{tikzpicture}
+\figcap{正向减速运动的速度与加速度方向}\label{mech:06:4:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:4:q}中，质点仍沿 $+x$ 运动，给定关系 $v=v_0-\alpha x$ 对应 $0\le x<v_0/\alpha$ 的运动阶段。要由它求力，须使用 $a=v\,\dd v/\dd x$，而非把 $\dd v/\dd x$ 直接当成加速度。
+
 在质点仍沿 $+x$ 方向运动时，利用链式求导
 \[
   a=\frac{\dd v}{\dd t}
@@ -528,9 +568,19 @@ $\vec r$、速度 $\vec v$ 和所受外力 $\vec F$ 均为已知时，其加速�
 \begin{origexamplebox}{}\label{ch06:ex:s04-2-5}
 一个质量为 $m$ 的质点在恒力 $F$ 作用下沿直线加速运动，经过一段时间，它的速度由 $v_0$
 变成了 $v_1$，求外力作用的时间以及外力作用下质点的位移。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(6.5,0)node[right]{$x$};\fill(0,0)circle(2pt)node[below]{$O$};
+\fill(1,0)circle(2pt)node[below]{$m$};\draw[->,DeepBlue,thick](1,.4)--(2.4,.4)node[right]{$v_0$};\draw[->,Gold,thick](1,1.1)--(2.8,1.1)node[right]{$F$};
+\fill(5,0)circle(2pt)node[below]{末态};\draw[->,DeepBlue](5,.4)--(6.4,.4)node[above]{$v_1$};
+\end{tikzpicture}
+\figcap{恒力作用下的初末速度与位移方向}\label{mech:06:5:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:5:q}中，正方向沿恒力选取，初末速度应理解为该方向的有符号分量。时间由速度变化决定，位移则由初末速度平方之差决定。
+
 取恒力方向为正方向，则运动中的各量如解图所示：
 \soldiagTwoFive
 根据牛顿第二定律，加速度为
@@ -553,9 +603,19 @@ $\vec r$、速度 $\vec v$ 和所受外力 $\vec F$ 均为已知时，其加速�
 \begin{origexamplebox}{}\label{ch06:ex:s04-2-6}
 质量不变的质点受到非零恒定合力，且初速度垂直于该力的分量不为零。
 证明轨迹是开口指向恒力方向的抛物线，并讨论初速度与恒力平行的退化情形。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-.2,0)--(4,0)node[right]{$x$};\draw[->](0,-.2)--(0,3.4)node[above]{$y$};
+\fill(0,0)circle(2pt)node[below left]{$O$};\draw[->,DeepBlue,thick](0,0)--(2,1)node[right]{$\vect v_0$};
+\draw[->,Gold,thick](2.7,1.2)--(2.7,2.8)node[right]{$\vect F$};\draw[dashed](2,1)--(2,0)node[below]{$u$};\node[left]at(0,1){$w$};\draw[dashed](0,1)--(2,1);
+\end{tikzpicture}
+\figcap{沿恒力与垂直恒力的坐标分解}\label{mech:06:6:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:6:q}中，$y$ 轴沿恒力，$x$ 轴垂直于恒力；初速度的水平分量 $u$ 非零时，$x=ut$ 才能用来消去时间。
+
 该命题在初速度对恒力垂直方向的分量非零时成立。若初速度与恒力平行，轨迹退化为直线，不应再称为非退化抛物线。
 
 在运动平面内取 $y$ 轴沿恒力 $\vec F$ 的方向，$x$ 轴与之垂直。设初速度分量为 $v_{0x}=u\ne0$、$v_{0y}=w$，并把初始位置取为原点。由解图所示的坐标选择，
@@ -575,9 +635,18 @@ $\vec r$、速度 $\vec v$ 和所受外力 $\vec F$ 均为已知时，其加速�
 
 \begin{origexamplebox}{}\label{ch06:ex:s04-2-7}
 一个质量为 $m$ 的质点在一平面内运动，开始时刻其运动速度为 $v$。在此后的运动过程中，它时刻受到一个与速度方向垂直、指向前进方向右侧且大小不变的力，大小为 $F$。试根据牛顿第二定律给出该质点的运动轨迹。如果该质点做周期运动，请给出周期与已知量的关系。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,0)circle(2pt)node[below left]{$m$};\draw[->,DeepBlue,very thick](0,0)--(3,0)node[right]{$\vect v$};
+\draw[->,Gold,very thick](0,0)--(0,-2)node[below]{$\vect F$（前进方向右侧）};\draw(.3,0)--(.3,-.3)--(0,-.3);
+\end{tikzpicture}
+\figcap{初始速度及始终指向前进方向右侧的力}\label{mech:06:7:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:7:q}中，垂直标记表示合力没有切向分量；“右侧”是随瞬时前进方向改变的方向。先由此确定速率不变，再分析法向曲率。
+
 先沿速度方向列切向方程。因为力始终与速度垂直，$F_t=0$，所以
 \[
  m\frac{\dd v}{\dd t}=0,\qquad v(t)=v.
@@ -646,6 +715,8 @@ $\vec r$、速度 $\vec v$ 和所受外力 $\vec F$ 均为已知时，其加速�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s04-2-8}。
+
 轻绳不可伸长，所以两物体具有相同的向右加速度 $a$。先把 $A$、$B$ 作为整体，再分离 $B$，如解图所示：
 \soldiagTwoEight
 对整体而言，绳张力是内力，水平方向的外力只有 $F$，故
@@ -681,6 +752,8 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s04-2-9}。
+
 若两块共同向右运动，设共同加速度大小为 $a$。此时摩擦力必须带动上块，方向和两种运动分支如解图所示：
 \soldiagTwoNine
 对整体列式得
@@ -729,6 +802,8 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s04-2-10}。
+
 轻绳不可伸长，因此 $m_1$ 向右和 $m_2$ 向下的加速度大小相等，记为 $a$。无摩擦定滑轮与轻绳使绳两端张力均为 $T$，如解图所示：
 \soldiagTwoTen
 分别对两物体沿运动方向列牛顿第二定律：
@@ -749,7 +824,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fifth-section/}}
+\graphicspath{{../../../sample/xes-original/fifth-section/}}
 \section{牛顿定律的建模方法与典型应用}
 % Original problem figures and added solution diagrams for Section 2.2.
 
@@ -761,9 +836,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
   solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
 }
 
-\newcommand{\diagcaption}[2]{%
-  \par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}#1：#2\par}\vspace{0.2em}%
-}
+\newcommand{\diagcaption}[2]{\figcap{#1：#2}}
 
 \newcommand{\soldiagTwoEleven}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.78]
@@ -814,7 +887,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solforce] (1.5,0)--++(0,-1.2) node[below,sollabel] {$\massB g$};
  \end{scope}
 }
-\end{tikzpicture}\diagcaption{解图}{左侧只列沿斜面的力分量，右侧列悬挂物的竖直受力；两次分别使用 $T,T'$。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{左侧只列沿斜面的力分量，右侧列悬挂物的竖直受力；两次分别使用 $T,T'$。}\label{mech:legacy:ch06:s05-2-12}\end{minipage}\end{center}}
 
 % 题图仅呈现题目的 A、斜槽、竖直参考线和两角；H/K/h/ell 属于解答构造。
 \newcommand{\probdiagTwoThirteen}{%
@@ -861,7 +934,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solforce] (4.7,2.5)--(4.7,1.2) node[midway,left=5pt,sollabel] {$mg$};
  \draw[solgeom,->] (4.7,2.5)--++(-50:1.3) node[right=4pt,sollabel] {沿槽};
  \node[sollabel] at (4.9,.65) {$a=g\cos\beta$};
-\end{tikzpicture}\diagcaption{解图}{$AK=\ell\cos\beta$，$KB=\ell\sin\beta$，$HK=KB\tan\alpha$，故 $AH=AK+HK$。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{$AK=\ell\cos\beta$，$KB=\ell\sin\beta$，$HK=KB\tan\alpha$，故 $AH=AK+HK$。}\label{mech:legacy:ch06:s05-2-13}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoFourteen}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.78]
@@ -885,7 +958,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
   \draw[solforce] (2.10,.25)--++(-1.15,0) node[left=5pt,sollabel] {$f$};
   \draw[solgeom,-{Latex[length=1.6mm]}] (-2.15,-.65)--++(.85,0) node[below,sollabel] {$a_m$};
   \draw[solgeom,-{Latex[length=1.6mm]}] (2.10,-.65)--++(-.85,0) node[below,sollabel] {$a_M$};
-\end{tikzpicture}\diagcaption{解图}{只列水平受力，两力大小均为 $f=\mu mg$；摩擦使物块加速、小车减速。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{只列水平受力，两力大小均为 $f=\mu mg$；摩擦使物块加速、小车减速。}\label{mech:legacy:ch06:s05-2-14}\end{minipage}\end{center}}
 
 \newcommand{\soldiagTwoFifteen}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.9]
@@ -918,7 +991,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
   \draw[solforce] (-.15,.10)--++(-35:1.10) node[below right,sollabel] {$N$};
   \draw[solforce] (0,.10)--++(-1.20,0) node[left,sollabel] {$\mu N_g$};
   \draw[solgeom,-{Latex[length=1.6mm]}] (.75,.10)--++(.95,0) node[right,sollabel] {$a$};
-\end{tikzpicture}\diagcaption{解图}{由斜面法向力的竖直分量和水平分量确定共同加速度与地面压力。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{由斜面法向力的竖直分量和水平分量确定共同加速度与地面压力。}\label{mech:legacy:ch06:s05-2-16}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoSeventeen}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.78]
@@ -939,7 +1012,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solgeom] (0,2) node[left=3pt,sollabel] {$a_c$}--(2,2);
  \node[sollabel,anchor=west] at (.4,4.5) {$t<t_0$：$a_1=a_2$};
  \node[sollabel,anchor=west] at (.4,3.85) {$a_c=\mu m_1g/m_2$};
-\end{tikzpicture}\diagcaption{解图}{以 $m_1=m_2$ 示意两段斜率关系；达到 $t_0$ 后上块加速度增长更快，下块加速度保持 $a_c$。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{以 $m_1=m_2$ 示意两段斜率关系；达到 $t_0$ 后上块加速度增长更快，下块加速度保持 $a_c$。}\label{mech:legacy:ch06:s05-2-17}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoEighteen}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.9]
@@ -963,7 +1036,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solforce] (A)--(Q) node[midway,above left=5pt,sollabel] {$\vec F_c$};
  \fill (A) circle(2pt) node[above right,sollabel] {$A$};
  \node[sollabel,align=left,anchor=west] at (1,-.8) {$\vec F_c=-m\omega^2L\hat e_r$\\[5pt]$\vec R+m\vec g=\vec F_c$};
-\end{tikzpicture}\diagcaption{解图}{力矢量首尾相接：重力向下，合力 $\vec F_c$ 指向圆心；杆对质点的力 $\vec R$ 一般不沿杆。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{力矢量首尾相接：重力向下，合力 $\vec F_c$ 指向圆心；杆对质点的力 $\vec R$ 一般不沿杆。}\label{mech:legacy:ch06:s05-2-18}\end{minipage}\end{center}}
 
 \newcommand{\soldiagTwoNineteen}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.80]
@@ -1043,7 +1116,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solgeom,->] (4.3,1.1)--(4.3,.2) node[midway,right,sollabel] {$a_1$};
  \draw[solgeom,->] (5.3,1.9)--(5.3,1) node[midway,right=5pt,sollabel] {$a_p$};
  \node[sollabel] at (3,-1.3) {$a_1+a_2=2a_p$};
-\end{tikzpicture}\diagcaption{解图}{物体位置与题图保持一致；箭头表示向下取正，并不预先断言实际加速度方向。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{物体位置与题图保持一致；箭头表示向下取正，并不预先断言实际加速度方向。}\label{mech:legacy:ch06:s05-2-21}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentyTwo}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.84]
@@ -1075,7 +1148,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solgeom,->] (Q)--(P) node[midway,below=5pt,sollabel] {$\ddot X\,\hat e_x$};
  \draw[solforce] (O)--(P) node[pos=.5,right=5pt,sollabel] {$\vec a_m$};
  \node[sollabel] at (2,-1.6) {$\vec a_m=\ddot s\,\hat e_s+\ddot X\,\hat e_x$};
-\end{tikzpicture}\diagcaption{解图}{右图取 $M=m$ 示意，$\hat e_s$ 沿斜面向下；地面系加速度比斜面方向更陡，不沿斜面。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{右图取 $M=m$ 示意，$\hat e_s$ 沿斜面向下；地面系加速度比斜面方向更陡，不沿斜面。}\label{mech:legacy:ch06:s05-2-22}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentyThree}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85]
@@ -1109,7 +1182,7 @@ $M$。两块初始相对静止，两物体间的最大静摩擦因数和动摩�
  \draw[solforce] (2.5,0)--++(-1.4,0) node[left,sollabel] {$N\sin\theta$};
  \draw[solforce] (2.5,0)--++(1.4,0) node[right,sollabel] {$F$};
  \draw[solgeom,->] (2,-.8)--(3.1,-.8) node[right,sollabel] {$a$};
-\end{tikzpicture}\diagcaption{解图}{左图保留固定导轨的水平约束力 $R_h$；右图只列斜面的水平力分量，二者的加速度方向不同。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{左图保留固定导轨的水平约束力 $R_h$；右图只列斜面的水平力分量，二者的加速度方向不同。}\label{mech:legacy:ch06:s05-2-23}\end{minipage}\end{center}}
 
 
 将牛顿三定律与受力对象的性质和特点有机地结合在一起，可以解决几乎所有物体在受力作用下的
@@ -1151,9 +1224,20 @@ $9.8\,\mathrm{m/s^2}$；通过天文观测发现月球的公转轨道平均半�
 $3.8\times10^5\,\mathrm{km}$，公转周期约为 $27.3$ 天。传说牛顿在被苹果砸到以后开始
 考虑导致地球表面物体下落和月球公转的是同一种力。你能否通过上面的数据给出月球公转
 加速度与地球表面重力加速度的关系？
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue](0,0)circle(.65);\node at(0,.95){地球};\fill(0,0)circle(1.5pt)node[below left]{$O$};
+\draw[DeepBlue](0,0)circle(2.4);\fill(2.4,0)circle(2.5pt)node[right]{月球};
+\draw[dashed](0,0)--(2.4,0)node[midway,above]{$r$};\draw(0,0)--(-.46,.46)node[above left=6pt]{$R_E$};
+\node[align=left]at(5,1.1){$r=3.8\times10^5\,\mathrm{km}$\\$T=27.3$ 天};\node at(1,-3){示意不按实际比例绘制};
+\end{tikzpicture}
+\figcap{地表重力尺度与月球轨道尺度}\label{mech:06:11:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:11:q}中，$r$ 从地心 $O$ 量到月球，$R_E$ 是地球半径；比较平方反比规律时应使用这两个到地心的距离，而非月球离地表的高度。
+
 把月球公转近似为半径为 $r$ 的匀速圆周运动，解图给出了向心加速度的方向：
 \soldiagTwoEleven
 取
@@ -1190,6 +1274,8 @@ $m_2$ 悬空，$m_1$ 放在斜面上，发现 $m_1$ 自斜面底端由静止开�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-12}。
+
 设斜面长度为 $s$。两次都是从静止出发并通过同一段距离，所以
 \[
  s=\frac12a_1t^2
@@ -1234,6 +1320,8 @@ $m_2$ 悬空，$m_1$ 放在斜面上，发现 $m_1$ 自斜面底端由静止开�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-13}。
+
 取 $0<\alpha<\pi/2$，研究位于图示竖直平面内、向右下方倾斜的直槽。
 设 $H$ 是 $A$ 正下方的斜面点，$AH=h$；槽端为 $B$，槽长 $AB=\ell$，
 槽与竖直方向的夹角为 $0\le\beta<\pi/2$。图中 $BK$ 水平、$AK$ 竖直：
@@ -1284,6 +1372,8 @@ $m$、相对地面初速度为零的小物块放置在车顶前缘。已知物�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-14}。
+
 物块相对地面初速度为零，小车初速度为 $v_0$。滑动阶段的受力如解图所示：
 \soldiagTwoFourteen
 物块受摩擦向右，$a_m=\mu g$；小车受摩擦向左，$a_M=-\mu mg/M$。在随小车平动的相对
@@ -1313,9 +1403,19 @@ $L_{\min}\to v_0^2/(2\mu g)$，也符合物块在匀速车面上减小相对速�
 运动一段距离之后撤去该力，物块继续滑行 $t=2.0\,\mathrm s$ 后停在 $B$ 点。已知
 $A,B$ 两点的距离 $x=5.0\,\mathrm m$，物块与水平面之间的动摩擦系数 $\mu=0.20$，
 求恒力 $F$ 的大小。简单起见取 $g=10\,\mathrm{m/s^2}$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-.5,0)--(6.8,0);\draw[fill=PaleBlue](.2,0)rectangle(1.2,.65);\draw[->,DeepBlue](1.3,.3)--(2.3,.3)node[above]{$F$};
+\fill(.7,0)circle(1pt)node[below]{$A$};\fill(3.2,0)circle(2pt)node[below]{撤力点 $C$};\fill(6.3,0)circle(2pt)node[above]{$B$（停止）};
+\draw[<->](.7,-.7)--(6.3,-.7)node[midway,below]{$x=5.0\,\mathrm m$};\node at(4.8,1){撤力后滑行 $2.0\,\mathrm s$};\node at(3,-1.6){全过程接触面粗糙，$\mu=0.20$};
+\end{tikzpicture}
+\figcap{受恒力段与撤力后的滑行段}\label{mech:06:15:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:15:q}中，撤力点 $C$ 把总位移 $AB$ 分成两段，$CB$ 段的已知停车时间可先确定 $C$ 点速度，随后再倒推 $AC$ 段。
+
 按“先处理撤力后的运动，再倒推受力阶段”的顺序分析，运动分段如解图所示：
 \soldiagTwoFifteen
 撤力后减速度大小为
@@ -1353,6 +1453,8 @@ $\theta$ 的光滑斜面。现对 $A$ 施加水平推力 $F$，要使两块由�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-16}。
+
 设共同向右加速度为 $a$。分离 $B$，接触面法向力 $N$ 垂直于斜面并指向右下方，受力如
 解图所示：
 \soldiagTwoSixteen
@@ -1408,6 +1510,8 @@ $m_1$ 和 $m_2$ 的加速度 $a_1,a_2$ 与时间的关系并画出此关系的�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-17}。
+
 尚未滑动时两块共同加速：
 \[
  a_1=a_2=\frac{kt}{m_1+m_2}.
@@ -1451,6 +1555,8 @@ $m_1$ 和 $m_2$ 的加速度 $a_1,a_2$ 与时间的关系并画出此关系的�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-18}。
+
 设杆与竖直向上的夹角为 $\theta$，从竖直向上沿顺时针方向计角。
 在图示右半圆，$\hat{\boldsymbol e}_r=(\sin\theta,\cos\theta)$ 沿杆向外，
 $\hat{\boldsymbol e}_t=(\cos\theta,-\sin\theta)$ 沿 $\theta$ 增大的方向。
@@ -1494,9 +1600,19 @@ $m(\omega^2L+g)$。驱动装置通过杆补偿重力的切向作用，才能使�
 水平的粗糙圆盘以恒定角速度绕竖直中心轴转动。盘上放有一个质量为 $m$ 的物体，它与圆盘之间的最大静摩擦因数为 $\mu$，与圆心的
 距离为 $r$。求该物体能够与圆盘保持相对静止时，圆盘绕中心转动的最大角速度
 $\omega_0$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue](0,0)circle(2);\fill(0,0)circle(2pt)node[below left]{$O$};\fill(1.4,0)circle(3pt)node[right]{$m$};
+\draw[dashed](0,0)--(1.4,0)node[midway,below]{$r$};\draw[->,Gold](0,1.4)arc(90:170:1.4)node[midway,left]{$\omega$};
+\node at(0,-2.6){俯视图；最大静摩擦因数 $\mu$};
+\end{tikzpicture}
+\figcap{圆盘俯视中的物体半径和角速度}\label{mech:06:19:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:19:q}中，$r$ 是物体到轴心 $O$ 的距离；相对圆盘静止并不表示对地静止，所需水平向心力必须由静摩擦承担。
+
 物体随圆盘作圆周运动，水平方向只有静摩擦力能够提供向心力，方向如解图：
 \soldiagTwoNineteen
 所需向心力为 $m\omega^2r$，而
@@ -1521,9 +1637,19 @@ $\omega_0$。
 的重物，另一端有一名质量为 $m_2$ 的同学。现该同学用力拉绳子，使他相对于绳子以加速度
 $a$ 向上运动；规定向上为 $a$ 的正方向。先在绳保持绷紧的阶段求重物的加速度和绳中张力，
 再求绳刚好失去张力的极限状态所对应的 $a$，并说明其物理含义。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,2.6)circle(.5);\draw[thick](0,3.1)--(0,3.6);\draw[thick](-.5,2.6)--(-.5,0)(.5,2.6)--(.5,-.6);
+\draw[fill=PaleBlue](-.9,-.7)rectangle(-.1,0);\node at(-.5,-.35){$m_1$};\fill(.9,.8)circle(.16);\draw(.9,.64)--(.9,-.15)(.9,.3)--(.5,.7)(.9,-.15)--(.6,-.7)(.9,-.15)--(1.2,-.7);\node[right]at(1,.3){$m_2$};
+\draw[->,Gold](1.8,-.4)--(1.8,1.2)node[midway,right]{$a$（相对绳）};\node at(-2.1,1){轻绳、轻滑轮};
+\end{tikzpicture}
+\figcap{重物、同学及相对绳的加速度}\label{mech:06:20:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:20:q}中，$a$ 的箭头表示同学相对他这一侧绳的加速度，而非相对地面的加速度。绷紧轻绳两侧的加速度反向，所以应先建立相对加速度约束再列动力学方程。
+
 统一取竖直向上为正。设重物和同学相对地面的加速度分别为 $a_1,a_2$。重物一侧绳端的
 加速度为 $a_1$，因此同学一侧绳的加速度为 $-a_1$；同学相对绳向上加速度为 $a$，因而
 \[
@@ -1563,6 +1689,8 @@ $a$ 向上运动；规定向上为 $a$ 的正方向。先在绳保持绷紧的�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-21}。
+
 统一取竖直向下为正，设动滑轮 $M_2$ 的加速度为 $a_p$，两个小物体的加速度为
 $a_1,a_2$。两根轻绳分别给出
 \[
@@ -1631,6 +1759,8 @@ $a_1,a_2$。两根轻绳分别给出
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-22}。
+
 设斜面向右位移为 $X$，物块沿斜面向下位移为 $s$。在地面惯性系中
 \[
  x_m=X-s\cos\theta,
@@ -1689,6 +1819,8 @@ $a_1,a_2$。两根轻绳分别给出
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s05-2-23}。
+
 几何约束决定：斜面向右移动 $x$ 时，固定在水平位置的杆接触高度增加 $x\tan\theta$，
 所以杆的竖直加速度为
 \[
@@ -1711,7 +1843,7 @@ $a_1,a_2$。两根轻绳分别给出
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/sixth-section/}}
+\graphicspath{{../../../sample/xes-original/sixth-section/}}
 \section{非惯性系与惯性力}
 % Original problem figures and added solution diagrams for Section 2.3.
 \tikzset{
@@ -1721,7 +1853,7 @@ $a_1,a_2$。两根轻绳分别给出
   sollabel/.style={font=\footnotesize,fill=none,inner sep=0.7pt,outer sep=1.2pt,text=Ink},
   solpanel/.style={font=\scriptsize\bfseries,text=TextGray}
 }
-\newcommand{\diagcaption}[2]{\par\vspace{-0.3em}{\centering\scriptsize\color{TextGray}#1：#2\par}\vspace{0.2em}}
+\newcommand{\diagcaption}[2]{\figcap{#1：#2}}
 
 \newcommand{\probdiagTwoTwentyFour}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.86]
@@ -1762,7 +1894,7 @@ $a_1,a_2$。两根轻绳分别给出
  \draw[draw=TextGray] ($(O)+(-90:1.6)$) arc[start angle=-90,end angle=-140,radius=1.6];
  \node[sollabel] at ($(O)+(-122:1.95)$) {$\theta_2$};
  \draw[solforce] (4.65,1.2)--++(-115:1.25) node[right=5pt,sollabel] {$\vec g_{\rm eff}$};
-\end{tikzpicture}\diagcaption{解图}{$B_0$ 为释放点，$B_e$ 为平衡点，$B_2$ 为另一端点；$OB_e$ 平行于有效重力，$\theta_2=2\theta_1$。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{$B_0$ 为释放点，$B_e$ 为平衡点，$B_2$ 为另一端点；$OB_e$ 平行于有效重力，$\theta_2=2\theta_1$。}\label{mech:legacy:ch06:s06-2-24}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentyFive}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.76]
@@ -1777,7 +1909,7 @@ $a_1,a_2$。两根轻绳分别给出
   \draw[solforce] (0,0)--++(0,-1.25) node[below,sollabel] {$mg$};
   \draw[solforce] (0,0)--++(0,1.25) node[above,sollabel] {$F_i=mg$};
   \node[sollabel] at (2.2,.2) {$\vec g_{\rm eff}=\vec g-\vec g=0$};
-\end{tikzpicture}\diagcaption{解图}{在自由落体电梯系中，惯性力与重力抵消，局部呈现失重。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{在自由落体电梯系中，惯性力与重力抵消，局部呈现失重。}\label{mech:legacy:ch06:s06-2-25}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentySix}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.87]
@@ -1805,7 +1937,7 @@ $a_1,a_2$。两根轻绳分别给出
  \draw[solforce] (0,0)--(0,-1.5) node[below,sollabel] {$mg$};
  \draw[solforce] (0,0)--(112:1.5) node[above left,sollabel] {$N$};
  \draw[solgeom,->] ($(0,0)+(112:.7)$)--++(22:1.7) node[above right=3pt,sollabel] {$a_{\parallel}$};
-\end{tikzpicture}\diagcaption{解图}{$N$ 垂直斜面；沿斜面向上取正，$a_{\parallel}=a\cos\theta-g\sin\theta$。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{$N$ 垂直斜面；沿斜面向上取正，$a_{\parallel}=a\cos\theta-g\sin\theta$。}\label{mech:legacy:ch06:s06-2-26}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentySeven}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85]
@@ -1831,7 +1963,7 @@ $a_1,a_2$。两根轻绳分别给出
  \draw[solforce] (0,0)--(0,-1.5) node[below,sollabel] {$mg$};
  \draw[solforce] (0,0)--({-1.5*tan(26)},0) node[left,sollabel] {$ma$};
  \draw[solforce] (0,0)--({1.5*tan(26)},1.5) node[above right,sollabel] {$N$};
-\end{tikzpicture}\diagcaption{解图}{虚线与题图斜面同向；平衡时 $N$ 正好抵消重力和惯性力的合力，并与斜面垂直。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{虚线与题图斜面同向；平衡时 $N$ 正好抵消重力和惯性力的合力，并与斜面垂直。}\label{mech:legacy:ch06:s06-2-27}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentyEight}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.72]
@@ -1897,7 +2029,7 @@ $a_1,a_2$。两根轻绳分别给出
     node[right,sollabel] {$\ddot X=A\ (+)$};
   \node[sollabel] at (-2.45,-.57) {$\alpha$};
   \node[sollabel] at (1.68,-.52) {$\beta$};
-\end{tikzpicture}\diagcaption{解图}{取 $x$ 轴向右；$s_1,s_2$ 分别沿左右斜面向下为正，斜面加速度 $A=\ddot X$ 向右为正。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{取 $x$ 轴向右；$s_1,s_2$ 分别沿左右斜面向下为正，斜面加速度 $A=\ddot X$ 向右为正。}\label{mech:legacy:ch06:s06-2-28}\end{minipage}\end{center}}
 
 \newcommand{\probdiagTwoTwentyNine}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.76]
@@ -1914,7 +2046,7 @@ $a_1,a_2$。两根轻绳分别给出
  \draw[solforce] (0,0)--(1.12,1.4) node[above right=4pt,sollabel] {浮力};
  \node[sollabel,anchor=west] at (2.35,-1.1) {等压线};
  \draw[draw=TextGray] (2.3,-1.2)--(1.9,-1.52);
-\end{tikzpicture}\diagcaption{解图}{等压线沿 $(g,-a)$ 方向，与有效重力 $(-a,-g)$ 垂直；压力向左下方增大，浮力指向右上方。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{等压线沿 $(g,-a)$ 方向，与有效重力 $(-a,-g)$ 垂直；压力向左下方增大，浮力指向右上方。}\label{mech:legacy:ch06:s06-2-29}\end{minipage}\end{center}}
 
 % 题图保留杆、转轴、质点与给定量；半径投影及圆轨迹在解图中构造。
 \newcommand{\probdiagTwoThirty}{%
@@ -1953,7 +2085,7 @@ $a_1,a_2$。两根轻绳分别给出
  \draw[<->,draw=TextGray] ($(O)+(-35:.4)$)--($(P)+(-35:.4)$) node[midway,below right=4pt,sollabel] {$l$};
  \draw[->,draw=TextGray] (-.65,2.1) arc[start angle=180,end angle=350,x radius=.65,y radius=.17];
  \node[sollabel] at (.9,2.2) {$\omega$};
-\end{tikzpicture}\diagcaption{解图}{$OP=l$，水平转动半径 $r=l\sin\theta$；圆轨道后半部以虚线表示。}\end{minipage}\end{center}}
+\end{tikzpicture}\diagcaption{解图}{$OP=l$，水平转动半径 $r=l\sin\theta$；圆轨道后半部以虚线表示。}\label{mech:legacy:ch06:s06-2-30}\end{minipage}\end{center}}
 
 \newcommand{\soldiagTwoThirty}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.95]
@@ -2084,6 +2216,8 @@ $\vec a_0=0$、$\dot{\vec\omega}=0$、$\vec v'=0$，只需加入离心力。
 
 \Needspace{16\baselineskip}
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-24}。
+
 以车为参考系。车向右加速，因此小球受到大小为 $ma$、方向向左的惯性力。平衡位置的
 受力和有效重力方向如解图所示：
 \soldiagTwoTwentyFour
@@ -2130,6 +2264,8 @@ $\vec a_0=0$、$\dot{\vec\omega}=0$、$\vec v'=0$，只需加入离心力。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-25}。
+
 在地面惯性系的近似下，电梯与其中任意自由物体都只受重力，因而
 \[
  \vec a_{\rm E}=\vec g,
@@ -2160,6 +2296,8 @@ $a$ 还应满足什么条件？
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-26}。
+
 在汽车参考系中，惯性力 $ma$ 水平向右。沿斜面方向分解重力与惯性力，受力关系如解图：
 \soldiagTwoTwentySix
 取沿斜面向上为正，则
@@ -2183,6 +2321,8 @@ $a$ 还应满足什么条件？
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-27}。
+
 以随斜面向右加速的参考系分析。物块相对斜面静止，受到重力、支持力和水平向左的惯性力，
 三力平衡，如解图所示：
 \soldiagTwoTwentySeven
@@ -2211,6 +2351,8 @@ $a$ 还应满足什么条件？
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-28}。
+
 取水平向右为正，设斜面的水平加速度为 $A=\ddot X$；令 $s_1,s_2$ 分别表示两物块相对
 斜面沿各自斜面向下的位移。坐标和正方向如解图：
 \soldiagTwoTwentyEight
@@ -2283,6 +2425,8 @@ $N_2$ 交换下标及角度可得同样结论，因此在 $M>0$、两倾角均�
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-29}。
+
 在水箱参考系中，液体受到向后的惯性力。把重力和惯性力合成，有效重力方向为“向下且
 向后”。取 $x$ 向前、$y$ 向上，则 $\vec g_{\rm eff}=(-a,-g)$。
 在液体随箱共同加速、相对流动的瞬态可忽略时，取宽 $\dd x$、横截面积 $S$ 的液体微元，
@@ -2322,6 +2466,8 @@ $\omega$ 的范围。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+以下推导所用的解图为图~\ref{mech:legacy:ch06:s06-2-30}。
+
 先作质点到竖直转轴的水平投影。杆长段 $OP=l$ 与竖直方向成 $\theta$，故转动半径为 $r=l\sin\theta$：
 \soldiagTwoThirtyGeometry
 在随杆转动的参考系中，质点相对静止，受到
@@ -2384,9 +2530,18 @@ $f_s=m(g\cos\theta-\omega^2l\sin^2\theta)$：转得慢时它阻止下滑，沿�
 航空医学研究中使用的离心机，是一个绕竖直轴转动的水平杆，杆的一端携带一个实验对象。
 如果从转动中心到实验对象的距离为 $7\,\mathrm m$，离心机要转动多快，才能使乘坐者获得
 大小为 $5g$ 的水平向心加速度？
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[dashed](0,0)circle(2.3);\draw[very thick](0,0)--(2.3,0)node[midway,below]{$r=7\,\mathrm m$};\fill(0,0)circle(2pt)node[below left]{$O$};\fill(2.3,0)circle(4pt)node[right]{实验对象};
+\draw[->,Gold](.5,1.9)arc(75:150:2)node[midway,above]{$\omega$};\node at(1,-2.8){水平向心加速度要求 $5g$};
+\end{tikzpicture}
+\figcap{离心机的水平杆、轴心和实验对象}\label{mech:06:31:q}
+\end{qualityfigure}
 \end{origexamplebox}
 
-\Needspace{6\baselineskip}\begin{xesolution}
+\Needspace{6\baselineskip}\begin{xesolution}题图~\ref{mech:06:31:q}中，半径从转轴 $O$ 量到实验对象；$5g$ 明确指水平向心加速度，故直接用 $\omega^2r=5g$，不把竖直重力混入这一给定分量。
+
 离心机提供的水平向心加速度满足
 \[
  \omega^2r=5g.

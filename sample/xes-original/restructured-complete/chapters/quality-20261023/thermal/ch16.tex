@@ -1,0 +1,80 @@
+% Editable TikZ and prose: state entropy versus actual process.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}
+\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\ThQTwoPaths}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(4,2);\draw[line width=2pt](2,0)--(2,2);
+ \node at(1,1){$T_0,V_0$};\node at(3,1){真空};
+ \draw[->,thick](4.5,1)--(5.5,1);\draw[thick](6,0)rectangle(10,2);\node at(8,1){$T_f,2V_0$};
+ \node[below,align=center]at(5,-.4){甲：热库 $T_0$，可逆膨胀\quad 乙：隔热，撤去隔板};
+}{同一初态到体积加倍的两种实现方式；末温及熵产生由过程分别判断。}{ch16:quality:paths-q}}
+\newcommand{\ThATwoPaths}{\ThermalFigure{
+ \node[draw,minimum width=2.4cm,minimum height=1cm] (A)at(0,0){$(T_0,V_0)$};
+ \node[draw,minimum width=2.4cm,minimum height=1cm] (B)at(7,0){$(T_0,2V_0)$};
+ \draw[->,thick,DeepBlue](A.north)..controls(2,2)and(5,2)..(B.north)node[midway,above]{甲：可逆等温，$Q_{\rm rev}$};
+ \draw[->,thick](A.south)..controls(2,-2)and(5,-2)..(B.south)node[midway,below]{乙：自由膨胀，$Q=0$};
+}{气体的熵变由相同端点决定，总熵产生还须计入热库。}{ch16:quality:paths-a}
+图~\ref{ch16:quality:paths-a}的两条箭头连接同一对平衡态，所以气体的 $\Delta S$ 相同。乙过程不能用真实热量 $Q=0$ 代替上方辅助可逆路径的 $Q_{\rm rev}$；两种路径的环境熵变不同，才使总熵产生不同。
+}
+\newcommand{\ThFiniteWorkBase}[1]{
+ \node[draw,minimum width=2.4cm,minimum height=.9cm](H)at(0,2){$C_1,T_h$};
+ \node[draw,minimum width=2.4cm,minimum height=.9cm](L)at(0,-2){$C_2,T_c$};
+ \node[draw,circle,minimum size=1cm](E)at(0,0){热机};
+ \draw[->,thick](H)--node[right]{$\delta Q_h$}(E);\draw[->,thick](E)--node[right]{$\delta Q_c$}(L);
+ \draw[->,DeepBlue,thick](E)--(3,0)node[right]{$\delta W$};#1}
+\newcommand{\ThQFiniteWork}{\ThermalFigure{\ThFiniteWorkBase{
+ \node[right,align=left]at(4,1){两端是有限物体\\温度均随取热、放热改变};
+}}{整体隔热，只向外输出功；两物体最终达到共同温度。}{ch16:quality:finite-q}}
+\newcommand{\ThAFiniteWork}{\ThermalFigure{
+ \draw[->](0,0)--(6,0)node[right]{过程进度};\draw[->](0,0)--(0,3.6)node[above]{$T$};
+ \draw[DeepBlue,thick](.3,3.1)..controls(2,2.3)and(4,1.8)..(5.5,1.8);
+ \draw[thick](.3,.6)..controls(2,1.3)and(4,1.8)..(5.5,1.8);
+ \node[left]at(0,3.1){$T_h$};\node[left]at(0,.6){$T_c$};\node[right]at(5.5,1.8){$T_*$（可逆极限）};
+}{热物体降温，冷物体升温；可逆运行给出能达到的最低共同终温。}{ch16:quality:finite-a}
+图~\ref{ch16:quality:finite-a}中的共同终温不是预先给定的热库温度。终温越低，留在两物体中的总内能越少，输出功越大；因此先用总熵不减确定终温下界，再由能量守恒求最大功。
+}
+\newcommand{\ThCoolingBase}[1]{
+ \node[draw,minimum width=2.6cm,minimum height=.9cm](C)at(0,0){物体 $C,T$};
+ \node[draw,circle,minimum size=1cm](R)at(4,0){制冷机};
+ \node[draw,minimum width=2.6cm,minimum height=.9cm](H)at(8,0){环境 $T_0$};
+ \draw[->,thick](C)--node[above]{$\delta Q_c$}(R);\draw[->,thick](R)--node[above]{$\delta Q_h$}(H);
+ \draw[->,DeepBlue,thick](4,-1.7)--(R)node[midway,right]{$\delta W$};#1}
+\newcommand{\ThQCooling}{\ThermalFigure{\ThCoolingBase{}}{制冷机循环复原，有限物体从 $T_0$ 冷却至 $T_1$。}{ch16:quality:cooling-q}}
+\newcommand{\ThACooling}{\ThermalFigure{\ThCoolingBase{
+ \node[below]at(0,-.9){$\dd T<0,\quad\delta Q_c=-C\dd T>0$};
+ \node[above]at(4,1){可逆元循环：$\delta Q_h/T_0=\delta Q_c/T$};
+}}{按物体瞬时温度逐次计算取热与元功，再沿降温过程积分。}{ch16:quality:cooling-a}
+图~\ref{ch16:quality:cooling-a}中的热量箭头均取正的大小。物体每降低 $\dd T<0$ 放出 $-C\dd T$，环境收到的热量还包含输入功；可逆熵平衡给出 $\delta W=\delta Q_c(T_0/T-1)$，随 $T$ 改变，不能把终态制冷系数用于整个过程。
+}
+\newcommand{\ThQCarnot}{\ThermalFigure{
+ \node[draw](H)at(0,2){热库 $T_1$};\node[draw,circle](E)at(0,0){循环工质};\node[draw](C)at(0,-2){热库 $T_2$};
+ \draw[->,thick](H)--node[right]{$Q_1$}(E);\draw[->,thick](E)--node[right]{$Q_2$}(C);
+ \draw[->,DeepBlue,thick](E)--(3,0)node[right]{$W$};\node[right]at(4,1.5){$T_1>T_2$};
+}{只与两个热库交换热量的循环热机；先约定热量大小与方向。}{ch16:quality:carnot-q}}
+\newcommand{\ThQSecondLaw}{\ThermalFigure{
+ \node[draw](H)at(0,1.5){单一热库};\node[draw,circle](E)at(0,0){循环装置};
+ \draw[->](H)--node[right]{$Q$}(E);\draw[->](E)--(2.3,0)node[right]{$W$};
+ \node[below]at(0,-1){开尔文情境};
+ \node[draw](C)at(6,0){低温热库 $T_c$};\node[draw](T)at(6,2){高温热库 $T_h$};
+ \draw[->,thick](C)--node[right]{$Q$}(T);\node[below]at(6,-1){克劳修斯情境};
+}{两种假设过程：完全把单库热量变成功，或不附带其他变化地逆温差传热。}{ch16:quality:second-law-q}}
+\newcommand{\ThQIrreversibility}{\ThermalFigure{
+ \draw[->](0,0)--(4.7,0)node[right]{$V$};\draw[->](0,0)--(0,3)node[above]{$p$};
+ \draw[DeepBlue,thick,domain=1:4,samples=60]plot(\x,{2.6/\x});
+ \draw[thick,domain=1:4,samples=60]plot(\x,{2.6/\x^1.5});
+ \fill(1,2.6)circle(1.5pt)node[above right]{$A$};
+ \node[right]at(4.8,2.2){等温与可逆绝热};
+ \node[right]at(4.8,1.2){还需分别讨论有限温差传热、快速膨胀};
+}{状态曲线的几何性质与过程能否自然发生属于不同问题，需要分别核查条件。}{ch16:quality:irreversibility-q}}
+\newcommand{\ThQThreeBodies}{\ThermalFigure{
+ \foreach \x/\lab/\temp in {0/1/300,3/2/300,6/3/100}{
+ \draw[thick](\x,0)rectangle(2+\x,1.5);\node at(\x+1,1){物体 $\lab$};\node at(\x+1,.45){$c,\ \temp\,\mathrm K$};}
+ \draw[dashed](-.4,-.4)rectangle(8.4,2);\node[above]at(4,2.1){外界不供热、不做功；内部可用循环热机};
+}{三个物体组成隔离整体，最高温度由总能量与总熵共同限制。}{ch16:quality:three-q}}
+\newcommand{\ThQSurfaceEngine}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(4,2);\fill[DeepBlue!12](0,0)rectangle(2.7,2);
+ \draw[line width=2pt](2.7,0)--(2.7,2);\draw[->](2.7,2.5)--(3.7,2.5)node[right]{$\dd x$};
+ \draw[<->](-.5,0)--node[left]{$\ell$}(-.5,2);\node at(1.3,1){表面 $A$};
+ \draw[->,DeepBlue,thick](2.8,1)--(4.7,1)node[right]{维持准静态的外力};
+ \node[right,align=left]at(5.4,1.4){界面张力 $\sigma(T)$\\温度由热库控制};
+}{可移动边界改变界面面积；外力功与表面张力功的符号应随面积变化判断。}{ch16:quality:surface-q}}

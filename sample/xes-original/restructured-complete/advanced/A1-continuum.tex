@@ -1,3 +1,5 @@
+% AdvancedMechanicsAssumptions20261023-v1
+% AdvancedMechanicsQuality20261023-v1
 \section{连续体}
 
 \subsection{分析力学的变分表述}
@@ -62,8 +64,23 @@ $\mathcal L-\sum_a\lambda_a\mathcal C_a$ 使用同一方程，并与全部约束
  \int\frac12mv^2f\,\dd v=\frac12kT
 \]
 条件下最大。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-3,0)--(3.3,0)node[right]{$v$};\draw[->](0,0)--(0,2.2)node[above]{$f(v)$};\draw[DeepBlue,thick,domain=-2.8:2.8,samples=90]plot(\x,{.9*exp(-2*(\x-1)^2)+.9*exp(-2*(\x+1)^2)});\node at(0,-.8){满足给定矩约束的候选分布示意};
+\end{tikzpicture}
+\figcap{速度分布的矩约束与熵极值（题设几何）}\label{advA1:fig:quality-max-entropy-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-3,0)--(3.3,0)node[right]{$v$};\draw[->](0,0)--(0,2.2)node[above]{$f(v)$};\draw[DeepBlue,thick,domain=-2.8:2.8,samples=90]plot(\x,{1.8*exp(-\x*\x)});\node at(1.8,1.8){高斯驻值分布};\node at(0,-.8){曲线面积为 $1$，二阶矩为 $kT/m$};
+\end{tikzpicture}
+\figcap{速度分布的矩约束与熵极值（解答辅助图）}\label{advA1:fig:quality-max-entropy-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-max-entropy-a}中，横轴覆盖整个实数速度区间；归一化、零均值和二阶矩是三个独立积分约束，分别用拉格朗日乘子加入变分。
+
 引入三个拉格朗日乘数，令
 \[
  \mathcal F[f]=-\int f\ln f\,\dd v-\lambda_0\!\left(\int f\,\dd v-1\right)
@@ -147,11 +164,26 @@ $\sigma_{ij}=\partial W/\partial\varepsilon_{ij}$ 即得式\eqref{advA1:eq:svk}�
 \end{equation}
 
 \begin{advexamplebox}{由应力散度推出纳维--柯西方程}\label{advA1:ex:stress-divergence}
-从应力张量的局域动量平衡
+对均匀、各向同性的小应变线弹性体，取常量拉梅参数。由应力张量的局域动量平衡
 $\rho_m\ddot{\vect\xi}=\nabla\cdot\bm\sigma+\vect f$
 出发，推导式\eqref{advA1:eq:navier-cauchy}。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue](0,0)rectangle(2.5,1.8);\draw[dashed](0,0)--(-.5,-.4)--(2,-.4)--(2.5,0)(2,-.4)--(2,1.4)--(2.5,1.8);\node at(1.2,.9){$\dd V$};\draw[->,DeepBlue](2.5,.9)--(3.8,.9)node[right]{$\sigma_{xx}(x+\dd x)$};\draw[->,DeepBlue](0,.9)--(-1.3,.9)node[left]{$\sigma_{xx}(x)$};\draw[->](0,-1)--(2.5,-1)node[right]{$x$};
+\end{tikzpicture}
+\figcap{微小体元两侧牵引力的差（题设几何）}\label{advA1:fig:quality-stress-divergence-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue](0,0)rectangle(2.5,1.8);\draw[dashed](0,0)--(-.5,-.4)--(2,-.4)--(2.5,0)(2,-.4)--(2,1.4)--(2.5,1.8);\node at(1.2,.9){$\dd V$};\draw[->,DeepBlue](2.5,.9)--(3.8,.9)node[right]{$\sigma_{xx}(x+\dd x)$};\draw[->,DeepBlue](0,.9)--(-1.3,.9)node[left]{$\sigma_{xx}(x)$};\draw[->](0,-1)--(2.5,-1)node[right]{$x$};\node at(1.3,2.6){相对两面的牵引力作差后除以体积};\draw[->,Gold](1.2,-1.7)--(2.5,-1.7)node[right]{$\rho_m\ddot{\xi}_x$};
+\end{tikzpicture}
+\figcap{微小体元两侧牵引力的差（解答辅助图）}\label{advA1:fig:quality-stress-divergence-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-stress-divergence-a}中，相对两面的外法线相反，两侧应力分量的差除以体积才形成散度；本构关系随后把应力导数转成位移的二阶导数。
+
 由式\eqref{advA1:eq:svk}及
 $2\bm\varepsilon=\nabla\vect\xi+(\nabla\vect\xi)^{\mathsf T}$，
 \[
@@ -223,8 +255,16 @@ $\bm\Sigma=2G\bm E$。
 \begin{advexamplebox}{梁的均匀弯曲}\label{advA1:ex:beam-bending}
 长为 $L$、宽为 $b$、厚为 $h$ 的均匀矩形梁弯成总转角 $\Theta$ 的圆弧。质量密度为
 $\rho_m$。求应变分布、弹性能和维持弯曲所需端力矩，并用拉梅参数表示结果。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-2.7,0)--(2.7,0)--(2.7,.45)--(-2.7,.45)--cycle;\draw[<->](-2.7,-.6)--(2.7,-.6)node[midway,below]{$L$};\draw[<->](3,0)--(3,.45)node[midway,right]{$h$};\node at(0,1){矩形截面宽 $b$};\draw[->,Gold](-2.7,.8)arc(90:210:.5);\draw[->,Gold](2.7,.8)arc(90:-30:.5);\node at(0,-1.5){端力矩使梁弯成总转角 $\Theta$ 的圆弧};
+\end{tikzpicture}
+\figcap{矩形梁的几何尺寸与端弯矩（题设几何）}\label{advA1:fig:quality-beam-bending-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-beam-bending-q}中，梁长为 $L$，厚度方向为 $h$，截面宽为 $b$；弯曲后中性层与偏离中性层的纤维长度不同，应变由这段几何长度差求出。
+
 欧拉--伯努利假设下，中性面到距离 $y$ 处的纵向应变为
 \[
  \varepsilon_{xx}=-\kappa y,\qquad \kappa=\frac{\Theta}{L}.
@@ -268,8 +308,16 @@ $I_b=bh^3/12$，所以
 
 \begin{advexamplebox}{圆柱的扭转}\label{advA1:ex:cylinder-torsion}
 半径 $R$、长度 $L$ 的均匀实心圆柱，底面固定，顶面刚性转过小角 $\Theta$。求位移场、剪应力、维持转动所需力矩和弹性能。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-1,0)--(-1,3)(1,0)--(1,3);\draw[thick](0,3)ellipse(1 and .3);\draw(-1,0)arc(180:360:1 and .3);\draw[dashed](-1,0)arc(180:0:1 and .3);\draw[->](0,-.5)--(0,3.8)node[above]{$z$};\draw[<->](1.5,0)--(1.5,3)node[midway,right]{$L$};\draw(0,3)--(1,3)node[midway,above]{$R$};\draw[->,Gold](0,3.3)arc(90:210:.7 and .3)node[left]{$\Theta$};\node at(0,-1){底面固定};
+\end{tikzpicture}
+\figcap{固定底面与转过小角的圆柱顶面（题设几何）}\label{advA1:fig:quality-cylinder-torsion-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-cylinder-torsion-q}中，底面取 $z=0$，顶面取 $z=L$；各截面转角按 $z$ 插值，再由半径方向上的位移差求剪应变和剪应力。
+
 取柱坐标，满足两端边界的位移为
 \[
  \xi_\varphi(r,z)=\frac{\Theta z}{L}r,\qquad
@@ -314,7 +362,7 @@ $[\mu R^4/L]=FL$，检查正确。
 \newcommand{\AOneFluidSection}{%
 \subsection{流体}
 
-流体没有由静态形变直接决定的恢复应力，其应力取决于形变速率，并且常与热学自由度耦合。因此用欧拉描述：速度、密度、压强和温度是空间与时间的场
+流体在静止时不能维持剪切应力，但仍有各向同性压强；压强由密度、温度等状态量决定，黏滞应力则与形变速率有关。以下采用欧拉描述：速度、密度、压强和温度是空间与时间的场
 $\vect v(\vect r,t),\rho(\vect r,t),p(\vect r,t),T(\vect r,t)$。质量守恒为
 \begin{equation}\label{advA1:eq:continuity}
  \frac{\partial\rho}{\partial t}+\nabla\cdot(\rho\vect v)=0.
@@ -360,7 +408,7 @@ $\nabla\rho\times\nabla p=0$。
 \end{advdefinition}
 
 \begin{advdefinition}{理想流体}\label{advA1:def:ideal-fluid}
-忽略全部黏滞偏应力，即
+忽略全部黏滞应力，即
 \[
  \bm\sigma=-p\mathsf1.
 \]
@@ -405,14 +453,29 @@ $D(\dd\vect l)/Dt=(\dd\vect l\cdot\nabla)\vect v$，故
 $\nabla p/\rho=\nabla h(p)$，保守体力也是梯度，闭路积分均为零。
 
 \begin{advexamplebox}{涡度方程}\label{advA1:ex:vorticity}
-在无黏正压流体中证明
+在无黏正压流体中，假设单位质量体力为势场 $-\nabla\phi$，证明
 \[
  \frac{D\vect\omega}{Dt}
  =(\vect\omega\cdot\nabla)\vect v
  -(\nabla\cdot\vect v)\vect\omega .
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick](-.7,0)--(-.4,2.5)(.7,0)--(.4,2.5);\draw(0,0)ellipse(.7 and .18);\draw(0,2.5)ellipse(.4 and .12);\draw[->,Gold](0,.4)--(0,2.2)node[right]{$\vect\omega$};\draw[->](-1.4,.3)--(-1.4,-.5)node[left]{$\vect v_1$};\draw[->](-1.4,2.2)--(-1.4,3.4)node[left]{$\vect v_2$};\node at(2.7,1.5){局部速度梯度};
+\end{tikzpicture}
+\figcap{流体涡管中的伸长和体积变化（题设几何）}\label{advA1:fig:quality-vorticity-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick](-.7,0)--(-.4,2.5)(.7,0)--(.4,2.5);\draw(0,0)ellipse(.7 and .18);\draw(0,2.5)ellipse(.4 and .12);\draw[->,Gold](0,.4)--(0,2.2)node[right]{$\vect\omega$};\draw[->](-1.4,.3)--(-1.4,-.5)node[left]{$\vect v_1$};\draw[->](-1.4,2.2)--(-1.4,3.4)node[left]{$\vect v_2$};\node at(2.7,1.5){局部速度梯度};\node at(0,-1.3){涡管伸长与体积膨胀分别进入两项};
+\end{tikzpicture}
+\figcap{流体涡管中的伸长和体积变化（解答辅助图）}\label{advA1:fig:quality-vorticity-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-vorticity-a}中，流体微团随速度场运动；沿涡度方向的速度梯度使涡管伸长，局部体积膨胀则另由 $\nabla\cdot\vect v$ 控制。两项来源不同。
+
 对欧拉方程取旋度。正压条件使
 $\nabla\times(\nabla p/\rho)=
 \nabla(1/\rho)\times\nabla p=0$。利用
@@ -435,15 +498,30 @@ $\nabla\times(\nabla p/\rho)=
 \end{advsolution}
 
 \begin{advexamplebox}{应变率张量的随体演化}\label{advA1:ex:strain-rate}
-设理想流体满足 $\rho=\rho(p)$。证明
+设理想流体满足 $\rho=\rho(p)$，忽略体力，并将速度梯度分为对称部分 $\bm U$ 与反对称部分 $\bm W$。证明
 \[
  \frac{D\bm U}{Dt}
  =-\frac{\nabla\nabla p}{\rho}
  +\frac{\dd\rho}{\dd p}\frac{\nabla p\otimes\nabla p}{\rho^2}
  -\bm U^2-\bm W^2.
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue](0,0)rectangle(2,1.5);\draw[dashed](-.3,-.2)--(2.4,.1)--(2.7,1.9)--(0,1.6)--cycle;\draw[->,Gold](0,0)--(-.3,-.2);\draw[->,Gold](2,1.5)--(2.7,1.9);\node at(1,2.7){相邻流体点的速度差由 $\nabla\vect v$ 给出};
+\end{tikzpicture}
+\figcap{流体微团在局部速度梯度下的形变（题设几何）}\label{advA1:fig:quality-strain-rate-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue](0,0)rectangle(2,1.5);\draw[dashed](-.3,-.2)--(2.4,.1)--(2.7,1.9)--(0,1.6)--cycle;\draw[->,Gold](0,0)--(-.3,-.2);\draw[->,Gold](2,1.5)--(2.7,1.9);\node at(1,2.7){相邻流体点的速度差由 $\nabla\vect v$ 给出};\node[align=left]at(1.5,-1.5){对称部分 $U$ 改变形状\\反对称部分 $W$ 产生局部转动};
+\end{tikzpicture}
+\figcap{流体微团在局部速度梯度下的形变（解答辅助图）}\label{advA1:fig:quality-strain-rate-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-strain-rate-a}中，速度梯度的对称部分改变长度和夹角，反对称部分只描述瞬时刚性转动；对它们求随体导数时还须保留基于矩阵乘法的二次项。
+
 记 $\mathsf A=\nabla\vect v=\bm U+\bm W$。对速度梯度取随体导数时，随体导数与空间梯度不对易：
 \[
  \frac{D\mathsf A}{Dt}
@@ -477,8 +555,16 @@ $\vect v=\nabla\Phi$。利用
  \Phi=-v_0\left(r+\frac{R^2}{r}\right)\cos\theta.
 \]
 若机库内部压强为远处静压 $p_\infty$，求单位长度机库受到的竖直升力。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](-3,0)--(3,0);\draw[thick](-2,0)arc(180:0:2);\draw[dashed](0,0)--(1.414,1.414)node[midway,left]{$R$};\draw(.6,0)arc(0:45:.6)node[midway,right]{$\theta$};\draw[->,DeepBlue](3,2.7)--(1.5,2.7)node[midway,above]{$v_0$};\node at(-1,.6){$p_{\rm in}=p_\infty$};\node at(-2.7,1.6){$p(\theta)$};
+\end{tikzpicture}
+\figcap{半圆形机库截面和外部来流（题设几何）}\label{advA1:fig:quality-hangar-lift-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-hangar-lift-q}中，屋顶表面为 $r=R$，内压为远处静压；将外部压强差沿屋顶外法线投影到竖直方向，再对半圆周积分。
+
 速度分量为
 \[
  v_r=\partial_r\Phi=-v_0\left(1-\frac{R^2}{r^2}\right)\cos\theta,
@@ -547,10 +633,25 @@ $\nabla\cdot(p\vect v)$，即得守恒形式。
 \[
  u_s+\frac p\rho+\frac{v^2}{2}+\phi=C.
 \]
-(2) 对不可压缩理想流体，证明即使不使用准静态绝热条件，也有
+(2) 仍取定常流动，对密度处处相同的不可压缩理想流体，证明即使不使用准静态绝热条件，也有
 $p/\rho+v^2/2+\phi$ 沿流线不变；若流动无旋，则常数在整个连通流区相同。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,->,domain=0:5,samples=60]plot(\x,{.4*\x+.35*sin(72*\x)});\draw[DeepBlue,domain=0:5,samples=60]plot(\x,{.4*\x+.35*sin(72*\x)-.5});\fill(1,.7329)circle(2pt)node[above]{$A$};\fill(4,1.2671)circle(2pt)node[below]{$B$};\node[align=center]at(1,-1.1){$p_A,\rho_A,v_A,\phi_A$};\node[align=center]at(4,-1.1){$p_B,\rho_B,v_B,\phi_B$};
+\end{tikzpicture}
+\figcap{同一流线上的两个状态（题设几何）}\label{advA1:fig:quality-bernoulli-principle-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,->,domain=0:5,samples=60]plot(\x,{.4*\x+.35*sin(72*\x)});\draw[DeepBlue,domain=0:5,samples=60]plot(\x,{.4*\x+.35*sin(72*\x)-.5});\fill(1,.7329)circle(2pt)node[above]{$A$};\fill(4,1.2671)circle(2pt)node[below]{$B$};\node[align=center]at(1,-1.1){$p_A,\rho_A,v_A,\phi_A$};\node[align=center]at(4,-1.1){$p_B,\rho_B,v_B,\phi_B$};\node at(2.5,3){先沿同一条流线积分；跨流线相等需要无旋条件};
+\end{tikzpicture}
+\figcap{同一流线上的两个状态（解答辅助图）}\label{advA1:fig:quality-bernoulli-principle-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-bernoulli-principle-a}中，先沿 $A$ 到 $B$ 的同一条流线积分动量方程。不同流线上的常数能否统一，是额外的无旋性问题，不由定常条件单独保证。
+
 (1) 把定常能量方程写成随体形式，并用热力学恒等式
 $\dd h=T\dd s+\dd p/\rho$，其中 $h=u_s+p/\rho$。沿绝热流线
 $\dd s=0$，故
@@ -559,7 +660,7 @@ $\dd s=0$，故
  h+\frac{v^2}{2}+\phi\right)=0.
 \]
 
-(2) 不可压缩欧拉方程是
+(2) 在定常、密度处处相同的条件下，不可压缩欧拉方程是
 \[
  (\vect v\cdot\nabla)\vect v
  =-\nabla\left(\frac p\rho+\phi\right).
@@ -623,9 +724,17 @@ $F=6\pi\eta Rv$ 都是其经典特解或渐近结果。
 
 \begin{advexamplebox}{同轴圆柱间的旋转 Couette 流}\label{advA1:ex:cylindrical-couette}
 高为 $H$ 的同轴圆柱半径为 $R_1<R_2$，角速度分别为
-$\omega_1,\omega_2$。间隙内充满不可压缩牛顿流体，黏度为 $\eta$。求定常速度场及维持两圆柱转动所需外力矩。
+$\omega_1,\omega_2$。间隙内充满不可压缩牛顿流体，黏度为 $\eta$。忽略端部效应，两个圆柱壁均满足无滑移条件。求定常速度场及维持两圆柱转动所需外力矩。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill[PaleBlue,even odd rule](0,0)circle(2.2)(0,0)circle(1);\draw[thick](0,0)circle(2.2);\draw[thick](0,0)circle(1);\draw(0,0)--(1,0)node[midway,below]{$R_1$};\draw(0,0)--(-1.55,1.55)node[midway,above]{$R_2$};\draw[->,Gold](0,.7)arc(90:190:.7)node[left]{$\omega_1$};\draw[->,Gold](0,2.5)arc(90:30:2.5)node[right]{$\omega_2$};\node at(3.7,0){黏度 $\eta$，高度 $H$};
+\end{tikzpicture}
+\figcap{同轴圆柱与黏性环隙（题设几何）}\label{advA1:fig:quality-cylindrical-couette-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-cylindrical-couette-q}中，两个边界的切向速度分别为 $\omega_1R_1,\omega_2R_2$；剪应力依赖 $\partial_rv_\varphi-v_\varphi/r$，不能直接把平板的速度梯度照搬进来。
+
 轴对称定常解只有方位分量，纳维--斯托克斯方程化为
 \[
  \frac{\dd^2v_\theta}{\dd r^2}
@@ -674,8 +783,16 @@ $\mathcal M_2=-4\pi\eta HB$；两者之和为零，功率差转化为黏滞热�
 \begin{advexamplebox}{环隙中稳定下落圆柱测黏度}\label{advA1:ex:falling-cylinder-viscosity}
 半径 $R$ 的圆柱杯内盛密度 $\rho_0$、黏度未知的液体。半径 $r<R$、高 $a$、密度
 $\rho>\rho_0$ 的小圆柱与杯同轴，以稳定速度 $v$ 下落。圆柱完全浸没，杯底封闭，液体不可压缩；取远离杯底的长环隙、低雷诺数极限，忽略端部局部损失，但保留连续性所要求的压差与回流。求黏度。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick](-2,3)--(-2,-.5)--(2,-.5)--(2,3);\draw[fill=PaleBlue](-1,0)rectangle(1,2.4);\draw[dashed](0,-.6)--(0,3.3);\draw[<->](1.3,0)--(1.3,2.4)node[midway,right]{$a$};\draw[->,Gold](0,1.7)--(0,.7)node[right]{$v$};\foreach\x in{-1.6,1.6}{\draw[->,DeepBlue](\x,.4)--(\x,1.5);}\draw(0,2.8)--(2,2.8)node[midway,above]{$R$};\draw(0,-.9)--(1,-.9)node[midway,below]{$r$};\node at(3.7,1){环隙回流向上};
+\end{tikzpicture}
+\figcap{圆柱下落与封闭杯中的环隙回流（题设几何）}\label{advA1:fig:quality-falling-cylinder-viscosity-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-falling-cylinder-viscosity-q}中，小圆柱向下排开的体积必须通过环隙向上返回；因此环隙速度同时受壁面拖曳和压力梯度驱动，不能只保留零压差的 Couette 项。
+
 取向下为 $z$ 正向，设圆柱完全浸没，液体不可压缩且杯底封闭。
 记 $H=\ln(R/r)$、$D=R^2-r^2$，把静水压梯度扣除后令
 $G=\dd p/\dd z-\rho_0g$。充分发展方程与无滑移边界为
@@ -688,6 +805,24 @@ $G=\dd p/\dd z-\rho_0g$。充分发展方程与无滑移边界为
  u(s)=v\frac{\ln(R/s)}H+
  \frac G{4\eta}\left[s^2-R^2+\frac D H\ln\frac R s\right].
 \]
+\begin{center}\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=.88]
+ \draw[very thick] (-2,-2)--(-2,2);
+ \draw[very thick] (2,-2)--(2,2);
+ \draw[ground] (-2,-2)--(2,-2);
+ \fill[DeepBlue!6] (-2,-1.95) rectangle (2,1.15);
+ \draw[very thick,fill=white] (-.75,-.65) rectangle (.75,1.05);
+ \draw[vector] (0,.25)--(0,-.60) node[midway,right]{$v$};
+ \foreach\xx in{-1.50,1.55}{\draw[->,DeepBlue,thick](\xx,-.95)--(\xx,.35);}
+\draw[->,TextGray](-2.45,1)--(-2.45,-1.1) node[below]{$z$};
+\node[TextGray,font=\scriptsize] at(-1.45,.68){净回流};
+\draw[<->,TextGray] (-.75,1.38)--(.75,1.38) node[midway,above]{$2r$};
+ \draw[<->,TextGray] (-2,-1.55)--(2,-1.55) node[midway,below]{$2R$};
+ \draw[<->,TextGray] (1.05,-.65)--(1.05,1.05) node[midway,right]{$a$};
+\end{tikzpicture}
+\bookcaption{同轴下落圆柱与杯壁之间的轴向环隙层流}\label{advA1:fig:falling-cylinder}
+\end{minipage}\end{center}
+图\ref{advA1:fig:falling-cylinder}中，$z$ 向下；环隙中箭头标明的是向上净回流，靠内壁的液体仍满足 $u(r)=v>0$，外壁处 $u(R)=0$。因此整体通量为负，而不能把整个环隙的 $u(s)$ 都取为负。
 圆柱每秒排开 $\pi r^2v$ 的液体，故环隙必须向上回流：
 \[
  2\pi\int_r^R u(s)s\,\dd s=-\pi r^2v.
@@ -713,21 +848,7 @@ $\eta\simeq(\rho-\rho_0)gh^3/(6rv)$。
 原来的纯对数速度剖面仅有剪切流，会给出向下净流量，不满足封底杯的连续性条件。
 本式保留压差但忽略入口、出口的局部损失，适用于长圆柱、低雷诺数和远离杯底的充分发展段；
 “忽略端部绕流细节”不等于可以删去端面压差。
-\begin{center}\begin{minipage}{\linewidth}\centering
-\begin{tikzpicture}[scale=.88]
- \draw[very thick] (-2,-2)--(-2,2);
- \draw[very thick] (2,-2)--(2,2);
- \draw[ground] (-2,-2)--(2,-2);
- \fill[DeepBlue!6] (-2,-1.95) rectangle (2,1.15);
- \draw[very thick,fill=white] (-.75,-.65) rectangle (.75,1.05);
- \draw[vector] (0,.25)--(0,-.60) node[midway,right]{$v$};
- \draw[<->,TextGray] (-.75,1.38)--(.75,1.38) node[midway,above]{$2r$};
- \draw[<->,TextGray] (-2,-1.55)--(2,-1.55) node[midway,below]{$2R$};
- \draw[<->,TextGray] (1.05,-.65)--(1.05,1.05) node[midway,right]{$a$};
-\end{tikzpicture}
-\bookcaption{同轴下落圆柱与杯壁之间的轴向环隙层流}\label{advA1:fig:falling-cylinder}
-\end{minipage}\end{center}
-图\ref{advA1:fig:falling-cylinder}明确画出 $r<R$、共轴和侧面环隙；液体在环隙内向上净回流，端部局部损失按长环隙近似忽略。
+
 \end{advsolution}
 
 }
@@ -739,8 +860,23 @@ $\eta\simeq(\rho-\rho_0)gh^3/(6rv)$。
  \le\frac{C^2}{4\pi},
 \]
 并指出等号条件。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick](0,0)..controls(-2,1)and(-.7,3)..(.7,2.2)..controls(3,2.5)and(3,-.5)..(0,0);\node at(.6,1){有向面积 $A$};\node at(2.8,2.4){周长 $C$};\draw[->,Gold](2,.1)..controls(1.7,-.1)and(1.3,-.2)..(.9,-.15);
+\end{tikzpicture}
+\figcap{定周长闭曲线的有向面积（题设几何）}\label{advA1:fig:quality-isoperimetric-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue,thick](0,0)..controls(-2,1)and(-.7,3)..(.7,2.2)..controls(3,2.5)and(3,-.5)..(0,0);\node at(.6,1){有向面积 $A$};\node at(2.8,2.4){周长 $C$};\draw[->,Gold](2,.1)..controls(1.7,-.1)and(1.3,-.2)..(.9,-.15);\draw[dashed](5,1)circle(1.3);\node at(5,-.8){等号对应圆};
+\end{tikzpicture}
+\figcap{定周长闭曲线的有向面积（解答辅助图）}\label{advA1:fig:quality-isoperimetric-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-isoperimetric-a}中，闭曲线有选定走向，有向面积随走向改变符号，周长则不变；证明须先取绝对值，等号条件再决定几何形状。
+
 以弧长 $s\in[0,C]$ 参数化，并平移原点使
 $\int_0^C x\,\dd s=\int_0^C y\,\dd s=0$。周期函数的维廷格不等式给出
 \[
@@ -765,8 +901,16 @@ $x,y$ 只含第一傅里叶谐波且切矢量处处与位矢垂直，故曲线�
  \mathcal T[y]=\int_0^l\sqrt{\frac{1+y'^2}{2gy}}\,\dd x
 \]
 最小的曲线。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(5.5,0)node[right]{$x$};\draw[->](0,0)--(0,-3)node[below]{$y$（向下）};\fill(0,0)circle(2pt)node[above left]{$A(0,0)$};\fill(5,-2.4)circle(2pt)node[right]{$B(l,h)$};\draw[dashed](0,0)--(5,-2.4);\draw[DeepBlue](0,0)..controls(.5,-2.8)and(3,-3)..(5,-2.4);\draw[Gold](0,0)..controls(2,0)and(4,-1)..(5,-2.4);\node at(3,-3.6){比较同端点的候选曲线，重力向下};
+\end{tikzpicture}
+\figcap{相同端点之间的下降候选轨道（题设几何）}\label{advA1:fig:quality-brachistochrone-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-brachistochrone-q}中，重力沿向下的 $y$ 正向，起点 $A$ 的速度为零；每条候选轨道在深度 $y$ 的速率均由相同势能差给出，时间差来自路径弧长。
+
 密度函数不显含 $x$，可用贝尔特拉米恒等式
 \[
  \mathcal L-y'\frac{\partial\mathcal L}{\partial y'}
@@ -799,14 +943,29 @@ $l=a(\theta_1-\sin\theta_1)$、$h=a(1-\cos\theta_1)$ 唯一确定适用分支。
 \end{advsolution}
 
 \begin{advexamplebox}{最小耗散原理}\label{advA1:ex:least-dissipation}
-区域 $D$ 内电导率为 $\sigma(\vect r)>0$，给定非静电力场 $\vect K$。在固定非静电力功率
+区域边界的电势给定，假定以下功率约束存在可行函数。区域 $D$ 内电导率为 $\sigma(\vect r)>0$，给定非静电力场 $\vect K$。在固定非静电力功率
 \[
  -\int_D \vect K\cdot\sigma\nabla\phi\,\dd V=P
 \]
 的条件下，求使给定二次泛函
 $Q[\phi]=\int_D\sigma|\nabla\phi|^2\dd V$ 取极值的函数，并解释它与稳恒导电方程的形式关系，辨明何时可解释为物理耗散。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick,fill=PaleBlue](0,0)..controls(-1,1)and(0,3)..(2,2.6)..controls(4,3)and(4,0)..(0,0);\node at(1,1){$D,\sigma(\vect r)>0$};\node at(3.5,2.7){$\partial D$};\draw[->,Gold](.5,1.6)--(2,1.8)node[above]{$\vect K$};\draw[DeepBlue](.5,.5)..controls(1,1)and(2,.5)..(2.8,1);\node[right]at(2.8,1){等势线};
+\end{tikzpicture}
+\figcap{有给定电导率的区域与固定边界（题设几何）}\label{advA1:fig:quality-least-dissipation-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick,fill=PaleBlue](0,0)..controls(-1,1)and(0,3)..(2,2.6)..controls(4,3)and(4,0)..(0,0);\node at(1,1){$D,\sigma(\vect r)>0$};\node at(3.5,2.7){$\partial D$};\draw[->,Gold](.5,1.6)--(2,1.8)node[above]{$\vect K$};\draw[DeepBlue](.5,.5)..controls(1,1)and(2,.5)..(2.8,1);\node[right]at(2.8,1){等势线};\node at(1.5,-1){变分时必须同时指定边界条件和功率约束};
+\end{tikzpicture}
+\figcap{有给定电导率的区域与固定边界（解答辅助图）}\label{advA1:fig:quality-least-dissipation-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-least-dissipation-a}中，区域内的 $\vect K$ 与 $\sigma$ 已知，电势是待变函数；变分固定边界值并满足同一个功率约束，不能把不同边界条件的试函数混在一起。
+
 对
 \[
  \mathcal F[\phi]=\int_D\sigma|\nabla\phi|^2\dd V
@@ -846,8 +1005,23 @@ $\delta^2Q=2\int_D\sigma|\nabla\delta\phi|^2\dd V>0$，所以在固定边界、�
 \begin{advexamplebox}{中心力场中的最速降线}\label{advA1:ex:central-brachistochrone}
 质点从半径 $r_0$ 处静止释放。分别对
 (1) 平方反比引力场；(2) 均匀球形天体内部的线性引力场，写出最速降线的确定方程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,0)circle(2pt)node[below left]{$O$};\draw[dashed](0,0)circle(2.5);\fill(2.5,0)circle(2pt)node[right]{$A:r_0$};\fill(.7,-.8)circle(2pt)node[below]{$P:r$};\draw(0,0)--(2.5,0);\draw(0,0)--(.7,-.8)node[midway,left]{$r$};\draw[DeepBlue](2.5,0)..controls(2,-1.5)and(1.3,-1.4)..(.7,-.8);\draw[->,Gold](1.6,-.5)--(.8,-.25)node[above]{$\vect g$};
+\end{tikzpicture}
+\figcap{从给定释放半径出发的中心力轨道（题设几何）}\label{advA1:fig:quality-central-brachistochrone-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,0)circle(2pt)node[below left]{$O$};\draw[dashed](0,0)circle(2.5);\fill(2.5,0)circle(2pt)node[right]{$A:r_0$};\fill(.7,-.8)circle(2pt)node[below]{$P:r$};\draw(0,0)--(2.5,0);\draw(0,0)--(.7,-.8)node[midway,left]{$r$};\draw[DeepBlue](2.5,0)..controls(2,-1.5)and(1.3,-1.4)..(.7,-.8);\draw[->,Gold](1.6,-.5)--(.8,-.25)node[above]{$\vect g$};\node at(1,-3.4){先用势能差得到 $v(r)$，再写路径时间泛函};
+\end{tikzpicture}
+\figcap{从给定释放半径出发的中心力轨道（解答辅助图）}\label{advA1:fig:quality-central-brachistochrone-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-central-brachistochrone-a}中，释放点半径是 $r_0$，路径上的瞬时半径为 $r$；速率由这两个半径对应的势能差确定，再以极坐标弧长建立最速泛函。
+
 若速率只依赖 $r$，下降时间是光学型泛函
 \[
  \mathcal T=\int n(r)\,\dd s,\qquad n(r)=\frac1{v(r)}.
@@ -916,8 +1090,23 @@ $n(r)r=b$ 决定的最近心点 $r_*$。若先向内后向外，角位移须改�
  \dd s^2=g_{ij}(u)\dd u^i\dd u^j.
 \]
 求参数曲线 $u^i=u^i(t)$ 为测地线的条件。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue,thick](0,0)..controls(1,1.4)and(3,-.2)..(4,1)..controls(4.7,2)and(4,3)..(3.5,3)..controls(2,2)and(.5,3)..(0,2)--cycle;\foreach\y in{.6,1.2,1.8}{\draw[gray,thin](.2,\y)..controls(1.5,\y+.7)and(2.5,\y-.3)..(3.8,\y+.6);}\draw[->](.3,.4)--(1.4,.8)node[below]{$u^1$};\draw[->](.3,.4)--(.4,1.6)node[left]{$u^2$};\fill(.8,1.3)circle(2pt)node[left]{$A$};\fill(3,1.8)circle(2pt)node[right]{$B$};\draw[DeepBlue,thick](.8,1.3)..controls(1.5,.8)and(2.3,2.5)..(3,1.8);
+\end{tikzpicture}
+\figcap{曲面参数网格、端点与候选曲线（题设几何）}\label{advA1:fig:quality-geodesic-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue,thick](0,0)..controls(1,1.4)and(3,-.2)..(4,1)..controls(4.7,2)and(4,3)..(3.5,3)..controls(2,2)and(.5,3)..(0,2)--cycle;\foreach\y in{.6,1.2,1.8}{\draw[gray,thin](.2,\y)..controls(1.5,\y+.7)and(2.5,\y-.3)..(3.8,\y+.6);}\draw[->](.3,.4)--(1.4,.8)node[below]{$u^1$};\draw[->](.3,.4)--(.4,1.6)node[left]{$u^2$};\fill(.8,1.3)circle(2pt)node[left]{$A$};\fill(3,1.8)circle(2pt)node[right]{$B$};\draw[DeepBlue,thick](.8,1.3)..controls(1.5,.8)and(2.3,2.5)..(3,1.8);\draw[->,Gold](2,1.7)--(2,3.2)node[above]{$\vect n$};\node at(2,-1.4){分离切向重参数化与法向几何变化};
+\end{tikzpicture}
+\figcap{曲面参数网格、端点与候选曲线（解答辅助图）}\label{advA1:fig:quality-geodesic-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-geodesic-a}中，$u^1,u^2$ 是曲面坐标，实际弧长由度量 $g_{ij}$ 给出；曲线加速度的切向部分与法向弯曲必须分开，参数的选取也应说明。
+
 若 $t$ 是仿射参数，可对能量泛函
 \[
  S=\frac12\int g_{ij}\dot u^i\dot u^j\dd t
@@ -940,8 +1129,23 @@ $f(t)\dot u^\ell$；重新参数化为弧长或其他仿射参数后该项消失
 
 \begin{advexamplebox}{极小曲面的条件}\label{advA1:ex:minimal-surface}
 曲面 $\vect r=\vect r(u^1,u^2)$ 是某空间区域的边界。求固定边界曲线时它使面积取驻值的条件，并写出图形曲面 $z=f(x,y)$ 的方程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue,thick](0,0)..controls(1,1.4)and(3,-.2)..(4,1)..controls(4.7,2)and(4,3)..(3.5,3)..controls(2,2)and(.5,3)..(0,2)--cycle;\foreach\y in{.6,1.2,1.8}{\draw[gray,thin](.2,\y)..controls(1.5,\y+.7)and(2.5,\y-.3)..(3.8,\y+.6);}\draw[->](.3,.4)--(1.4,.8)node[below]{$u^1$};\draw[->](.3,.4)--(.4,1.6)node[left]{$u^2$};\node at(2,-.7){边界曲线固定，内部曲面可变};\node at(4.4,3){$\Gamma$};
+\end{tikzpicture}
+\figcap{固定边界曲线内的曲面变化（题设几何）}\label{advA1:fig:quality-minimal-surface-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue,thick](0,0)..controls(1,1.4)and(3,-.2)..(4,1)..controls(4.7,2)and(4,3)..(3.5,3)..controls(2,2)and(.5,3)..(0,2)--cycle;\foreach\y in{.6,1.2,1.8}{\draw[gray,thin](.2,\y)..controls(1.5,\y+.7)and(2.5,\y-.3)..(3.8,\y+.6);}\draw[->](.3,.4)--(1.4,.8)node[below]{$u^1$};\draw[->](.3,.4)--(.4,1.6)node[left]{$u^2$};\node at(2,-.7){边界曲线固定，内部曲面可变};\node at(4.4,3){$\Gamma$};\draw[->,Gold](2,1.7)--(2,3.2)node[above]{$\vect n$};\node at(2,-1.4){分离切向重参数化与法向几何变化};
+\end{tikzpicture}
+\figcap{固定边界曲线内的曲面变化（解答辅助图）}\label{advA1:fig:quality-minimal-surface-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-minimal-surface-a}中，边界曲线保持固定，内部允许法向微位移；切向变化只对应重新参数化，驻值条件来自法向变分的系数。
+
 面积泛函为
 \[
  A[\vect r]=\int\sqrt{\det g}\,\dd u^1\dd u^2.
@@ -1015,12 +1219,27 @@ $\partial_\mu[\partial\mathcal L/\partial(\partial_\mu\phi_\nu)]
  \partial_\nu\phi_a-\delta^\mu{}_\nu\mathcal L,
  \qquad \partial_\mu T^\mu{}_\nu=0.
 \]
-其时间分量是能量密度与能流，空间分量是动量密度与动量流。
+$\nu=0$ 对应能量密度与能流；空间平移给出正则动量流。须注意，这里的“动量”取决于被平移的坐标。对于用材料坐标描述的弹性棒，$\mathcal L=\rho\xi_t^2/2-E\xi_x^2/2$，上述空间坐标平移给出$T^0{}_1=\rho\xi_t\xi_x$，是正则动量（也称伪动量）密度；真实机械动量密度为 $\rho\xi_t$，由下题的位移场平移 $\xi\mapsto\xi+\varepsilon$ 产生。二者不能直接等同。
 
 \begin{advexamplebox}{弹性棒的平移对称性与机械动量}\label{advA1:ex:rod-noether}
 证明一维弹性棒的拉格朗日密度不显含 $\xi$ 所对应的连续对称性产生机械动量守恒。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue](0,0)rectangle(5,.6);\draw[->](-.3,-.5)--(5.5,-.5)node[right]{$x$};\draw[dashed](1,-.1)--(1,.9)(3,-.1)--(3,.9);\node[above]at(1,1){$x$};\node[above]at(3,1){$x+\dd x$};\draw[->,DeepBlue](1,.3)--(1.8,.3)node[above]{$\xi$};\node at(2.5,-1.3){局部棒段两端应力通量之差改变机械动量};
+\end{tikzpicture}
+\figcap{弹性棒局部段的应力与动量通量（题设几何）}\label{advA1:fig:quality-rod-noether-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[fill=PaleBlue](0,0)rectangle(5,.6);\draw[->](-.3,-.5)--(5.5,-.5)node[right]{$x$};\draw[dashed](1,-.1)--(1,.9)(3,-.1)--(3,.9);\node[above]at(1,1){$x$};\node[above]at(3,1){$x+\dd x$};\draw[->,DeepBlue](1,.3)--(1.8,.3)node[above]{$\xi$};\node at(2.5,-1.3){局部棒段两端应力通量之差改变机械动量};\draw[->,Gold](1,.3)--(.2,.3)node[left]{$\sigma(x)$};\draw[->,Gold](3,.3)--(3.8,.3)node[right]{$\sigma(x+\dd x)$};\node at(2.5,1.9){$\pi=\rho_m\dot\xi$};
+\end{tikzpicture}
+\figcap{弹性棒局部段的应力与动量通量（解答辅助图）}\label{advA1:fig:quality-rod-noether-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-rod-noether-a}中，对 $x$ 与 $x+\dd x$ 之间的小棒段列平衡，应力通量之差改变该段机械动量；场位移 $\xi$ 的整体平移对称性对应这条局域守恒式。
+
 变换 $\xi\mapsto\xi+\epsilon$ 不改变 $\xi_t,\xi_x$，故 $\delta\mathcal L=0$，生成元为 $\Psi=1$。
 诺特流可整体乘以 $-1$ 重新约定为
 \[
@@ -1054,8 +1273,16 @@ $g_{ij}=\vect\varepsilon_i\cdot\vect\varepsilon_j$。
  \bm\varepsilon=\begin{pmatrix}0&\theta/2\\\theta/2&0\end{pmatrix}.
 \]
 求单位圆 $x^2+y^2=1$ 的变形后曲线，并对角化应变张量。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-2,0)--(2,0)node[right]{$x$};\draw[->](0,-2)--(0,2)node[above]{$y$};\draw[thick](0,0)circle(1.3);\draw[->,Gold](1.3,0)--(1.3,.5);\draw[->,Gold](0,1.3)--(.5,1.3);\node at(0,-2.7){小位移 $\vect\xi=\bm\varepsilon\vect r$};
+\end{tikzpicture}
+\figcap{单位圆在小纯剪切下的主方向（题设几何）}\label{advA1:fig:quality-shear-circle-q}
+\end{qualityfigure}
 \end{advexamplebox}
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-shear-circle-q}中，位移与原位置的关系取到应变的一阶；主方向相对原坐标转过 $45^\circ$，一个方向伸长、另一方向缩短，不能把纯剪切误作整体转动。
+
 取不含刚性转动的代表变形梯度
 $\mathsf F=\mathsf1+\bm\varepsilon$：
 \[
@@ -1143,8 +1370,24 @@ $\operatorname{tr}\bm\varepsilon$ 是体积相对变化，反对称部分是刚�
 \[
  3\otimes3\otimes3=7\oplus2\cdot5\oplus3\cdot3\oplus1.
 \]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\node[align=left]at(4.6,1.5){$T_{ijk}$ 有三个矢量指标\\三个指标受同一个 $SO(3)$ 转动};
+\end{tikzpicture}
+\figcap{三个矢量指标的共同转动与角动量耦合（题设几何）}\label{advA1:fig:quality-rank3-decomp-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\node at(0,1.2){前两个角动量 $1\otimes1$};\foreach\y/\j in{0/0,-1.5/1,-3/2}{\node[draw,circle](j\j)at(0,\y){$j_{12}=\j$};}
+\node at(4,0){$0\otimes1\to J=1$};\node at(4,-1.5){$1\otimes1\to J=0,1,2$};\node at(4,-3){$2\otimes1\to J=1,2,3$};\foreach\y/\j in{0/0,-1.5/1,-3/2}{\draw[->,DeepBlue](j\j)--(2,\y);}\node at(2,-4.1){每个角动量 $J$ 的维数为 $2J+1$};
+\end{tikzpicture}
+\figcap{三个矢量指标的共同转动与角动量耦合（解答辅助图）}\label{advA1:fig:quality-rank3-decomp-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-rank3-decomp-a}中，先把前两个自旋 $1$ 耦合成 $j_{12}=0,1,2$，再各与第三个自旋 $1$ 耦合。相同最终 $J$ 来自不同路径时要保留相应重数。
+
 先耦合前两个矢量表示：
 \[
  3\otimes3=5\oplus3\oplus1

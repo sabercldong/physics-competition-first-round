@@ -1,3 +1,4 @@
+% AdvancedOpticsQuality20261023
 \section{几何光学}
 
 \subsection{光线方程}
@@ -14,8 +15,7 @@ $\kappa=\dd\theta/\dd s$，式 \eqref{advA5:eq:ray} 的切向和法向分量分�
  n\kappa=(\nabla n)\cdot\vect\nu .
 \]
 前式是链式法则，后式则说明光线总向折射率增大的方向弯曲。图
-\ref{advA5:fig:ray-equation} 把局部折射率分层、切向、法向和梯度放在同一幅图中；
-其中所有标签都避开了曲线。
+\ref{advA5:fig:ray-equation} 把局部折射率分层、切向、法向和梯度放在同一幅图中，便于比较梯度的切向与法向分量。
 
 \begin{center}\begin{minipage}{\linewidth}\centering
 \centering
@@ -59,6 +59,8 @@ $\dd x/\dd y=\tan\theta(y)$ 便给出轨迹。
  \mathcal S[\vect r]=\int_A^B n(\vect r)\,\dd s
 \]
 出发，证明其驻值条件与式 \eqref{advA5:eq:ray} 等价。
+
+\QAOFrame{\QAOFermat{0}}{变折射率介质中的固定端点与可变路径；虚线是折射率等值线。}{quality:A5:q1}
 \end{advexamplebox}
 \begin{advsolution}
 以任意参数 $\lambda$ 描述路径，令
@@ -82,6 +84,10 @@ $\delta\vect r$ 并分部积分，边界项为零，得到
 $\delta\mathcal S=0$。两者等价。量纲上两边均为
 $\text{长度}^{-1}$；均匀介质 $\nabla n=0$ 时
 $\vect\tau$ 不变，退化为直线传播。
+
+\QAOFrame{\QAOFermat{1}}{端点固定的邻近路径变分与局部切向；边界项为零来自端点条件。}{quality:A5:a1}
+
+图~\ref{quality:A5:a1}的两条路径共用 $A,B$，所以分部积分的边界项 $[n\vect\tau\cdot\delta\vect r]_A^B$ 消失。局部任意的 $\delta\vect r$ 才迫使积分内的 Euler--Lagrange 余项逐点为零；只比较端点光程不能代替变分。
 \end{advsolution}
 
 \subsection{光力类比与变折射率介质}
@@ -101,8 +107,10 @@ $c/n$。平移对称性对应 $n\sin\theta$ 守恒，球对称性对应
 $nr\sin\theta$ 守恒。
 
 \begin{advexamplebox}{浅水波靠岸的轨迹}\label{advA5:ex:beach-ray}
-海岸线为 $x$ 轴，水深 $H(y)=ay$，$y>0$。在浅水近似下
+海岸线为 $x$ 轴，水深 $H(y)=ay$，$a>0,y>0$。在浅水近似下
 $c(y)=\sqrt{gH(y)}$。求一条波线的轨迹，并说明它如何靠岸。
+
+\QAOFrame{\QAOBeachQuestion}{水深随离岸距离增大；$\theta$ 从岸线法向量起。}{quality:A5:q2}
 \end{advexamplebox}
 \begin{advsolution}
 定频波的等效折射率 $n\propto1/c\propto y^{-1/2}$。
@@ -113,38 +121,31 @@ $c(y)=\sqrt{gH(y)}$。求一条波线的轨迹，并说明它如何靠岸。
 \]
 其中 $y_m$ 是轨迹在 $\theta=\pi/2$ 处的最深位置。于是
 \[
- \frac{\dd x}{\dd y}=\tan\theta
- =\sqrt{\frac{y}{y_m-y}}.
+ \frac{\dd x}{\dd y}=\pm\tan\theta
+ =\pm\sqrt{\frac{y}{y_m-y}}.
 \]
 积分得到
 \[
  \boxed{x-x_c
- =y_m\arcsin\sqrt{\frac{y}{y_m}}
- -\sqrt{y(y_m-y)}}.
+ =\pm\left[y_m\arcsin\sqrt{\frac{y}{y_m}}
+ -\sqrt{y(y_m-y)}\right]}.
 \]
 令 $y=y_m\sin^2u$，可写成摆线参数式
 \[
  y=\frac{y_m}{2}(1-\cos2u),\qquad
- x-x_c=y_m\!\left(u-\frac12\sin2u\right).
+ x-x_c=\pm y_m\!\left(u-\frac12\sin2u\right),\quad 0\le u\le\frac\pi2.
 \]
 图中靠岸端 $y\to0$ 时 $\theta\to0$，波线垂直海岸入射，符合海浪近岸转向的物理图像。
 
-\begin{center}
-\begin{tikzpicture}[>=Latex,scale=.75]
- \fill[DeepBlue!7] (-.4,0) rectangle (7,3.25);
- \draw[thick] (-.4,0)--(7,0);
- \node[below] at (5.8,0) {海岸};
- \draw[->] (0,0)--(0,3.45) node[above]{$y$};
- \draw[->] (0,0)--(7.2,0) node[right]{$x$};
- \draw[DeepBlue,very thick,->,domain=.06:3.05,samples=80]
-   plot ({2.1*(\x-.5*sin(2*\x r))},{2.1*sin(\x r)^2});
- \node[TextGray] at (5.35,2.65) {$H(y)=ay$};
-\end{tikzpicture}
-\end{center}
+\QAOFrame{\QAOBeachAnswer}{摆线的向岸分支，箭头指向水深减小的一端；岸边垂直入射为理想模型的极限。}{quality:A5:a2}
+
+图~\ref{quality:A5:a2}画的是向岸传播分支，其 $y$ 随传播减小、$x$ 增大，故 $\dd x/\dd y<0$；它对应上式的负号分支。两支关于 $x=x_c$ 镜像；仅反向参数化只会改变传播方向，不会改变轨迹的斜率。若沿岸动量常数为零，另有直线 $x=\mathrm{const}$；有限 $y_m$ 的摆线式不覆盖该极限。非常靠近岸边时，破波、黏性及波长与水深变化尺度的比较会使浅水射线近似失效，垂直靠岸是理想模型的外推。
 \end{advsolution}
 
 \begin{advexamplebox}{构造全方向无像差成像的折射率场}\label{advA5:ex:maxwell-fisheye}
-构造一个球对称折射率场，使任一点发出的全部光线在另一点重新会聚。
+在几何光学理想模型中，容许把无穷远补为一个点，构造球对称折射率场，使任意非原点发出的光线在另一点重新会聚，并说明边界与极限。
+
+\QAOFrame{\QAOFishQuestion}{球对称折射率的构造问题；图只给物点和不同发射方向，不预设光线路径。}{quality:A5:q3}
 \end{advexamplebox}
 \begin{advsolution}
 取 Maxwell 鱼眼分布
@@ -164,21 +165,24 @@ $c(y)=\sqrt{gH(y)}$。求一条波线的轨迹，并说明它如何靠岸。
 \]
 等光程来自球面上两对跖点间大圆弧长恒为 $\pi n_0a$。
 在 $r\ll a$ 的局部，$n\approx2n_0$，光线近似直线；在 $r\to\infty$ 时
-$n\to0$，这说明理想分布需要有限边界或镜面截断才能工程实现。
+$n\to0$。原点的像位于补入的无穷远点；非原点的径向外射线也须按经过该补点的极限理解。实际有限边界或镜面截断会改变部分传播路径和物像关系，必须另解边界问题，不能直接沿用全空间的像点式。
+
+\QAOFrame{\QAOFishAnswer}{鱼眼光线在同一子午面内的圆轨迹示例；物像满足 $z_i=-a^2/\bar z_0$。}{quality:A5:a3}
+
+图~\ref{quality:A5:a3}在 $z_0/a=1/2$ 时给出像点 $z_i/a=-2$。所有曲线通过这两个点，是球面上同一对对跖点的大圆投影。这里的成像结论属于几何光学和紧致化的理想光学度量，并未证明真实波场在有限孔径下无衍射。
 \end{advsolution}
 
 \begin{advexamplebox}{螺旋光线、出射双曲面与透镜束腰}\label{advA5:ex:helical-fiber}
 圆柱光纤中，一条光线在半径 $r$ 的薄层上以螺距 $h$ 沿 $z$ 方向传播，
-该层折射率为 $n$。
+该层折射率为 $n$，$r,h>0$。取这条光线绕轴旋转所得的光线族，端面垂直于 $z$ 轴。
 
 \begin{enumerate}
 \item 求该处 $\dd n/\dd r$；
-\item 光线从端面 $z=0$ 射入真空，求所有出射线构成的包络曲面；
+\item 光线从端面 $z=0$ 射入真空，求这族出射线所在的曲面；
 \item 端面加焦距 $f$ 的薄凸透镜，在出射光满足近轴条件时求束腰半径和束腰到端面的距离。
 \end{enumerate}
 
-\begin{center}
-\begin{tikzpicture}[>=Latex,scale=.72]
+\QAOFrame{\begin{tikzpicture}[>=Latex,scale=.72]
  \draw[RuleGray] (-2,-1.25) ellipse (1.15 and .38);
  \draw[RuleGray] (-2,2.1) ellipse (1.15 and .38);
  \draw[RuleGray] (-3.15,-1.25)--(-3.15,2.1) ( -0.85,-1.25)--(-.85,2.1);
@@ -188,8 +192,7 @@ $n\to0$，这说明理想分布需要有限边界或镜面截断才能工程实�
  \draw[<->] (-2,-.82)--(-.85,-.82) node[midway,above]{$r$};
  \draw[<->] (-3.55,-1.08)--(-3.55,.44) node[midway,left]{$h$};
  \draw[->,DeepBlue] ({-2+1.15*cos(675)},{-1.1+.0042*675+.18*sin(675)})--++(.7,.316698) node[right]{$\vect\tau$};
-\end{tikzpicture}
-\end{center}
+\end{tikzpicture}}{圆柱坐标中的螺旋光线及其半径、螺距和切向；端面位于垂直轴线的平面。}{quality:A5:q4}
 \end{advexamplebox}
 \begin{advsolution}
 令 $b=h/(2\pi)$。螺线可写为
@@ -207,10 +210,10 @@ $\vect r(\phi)=(r\cos\phi,r\sin\phi,b\phi)$，其曲率
 螺线相对端面法线的入射角满足
 $\sin\theta_i=r/\sqrt{r^2+b^2}$。由 Snell 定律
 \[
- q\equiv\tan\theta_t,\qquad
+ q\equiv|\tan\theta_t|,\qquad
  \sin\theta_t=\frac{nr}{\sqrt{r^2+b^2}},
 \]
-这要求右端不超过 $1$；否则发生全反射，题设的出射不成立。
+这要求右端严格小于 $1$；等号对应临界掠射，不能形成向 $z>0$ 传播的这族光线；大于 $1$ 时发生全反射。
 出射线的横向分量沿圆周切向，故传播距离 $z$ 后
 \[
  \boxed{\rho^2=r^2+q^2z^2},
@@ -228,6 +231,10 @@ $\sin\theta_i=r/\sqrt{r^2+b^2}$。由 Snell 定律
 \]
 $q\to0$ 时回到普通聚焦 $z_w=f,\rho_w=0$；$f\to\infty$ 时
 $z_w\to0,\rho_w\to r$，极限正确。
+
+\QAOFrame{\QAOHelixAnswer}{比较出射族的无透镜轮廓与透镜后束腰；图取 $qf/r=1$，不要求 $q=1$。}{quality:A5:a4}
+
+图~\ref{quality:A5:a4}中两条曲线都以 $\rho(0)=r$ 为起点；透镜增加径向斜率，保留原来的切向斜率，因此最窄处早于 $z=f$，一般也不缩为一点。图取 $qf/r=1$，可同时满足 $r/f\ll1$ 与 $q\ll1$，与近轴假设相容。
 \end{advsolution}
 
 \subsection{成像法则与傍轴系统}
@@ -437,11 +444,16 @@ $xx'=ff'$ 与 $\beta=-f/x=-x'/f'$。
 \label{advA5:fig:conjugate-points}
 \end{minipage}\end{center}
 
-角放大率定义为 $B=\tan u'/\tan u$，傍轴下为 $u'/u$。拉格朗日--亥姆霍兹不变量给出
+对图~\ref{advA5:fig:angular-magnification}中轴上共轭点的光锥，
+角放大率定义为 $B=\tan u'/\tan u\simeq u'/u$，倾角取有向值。
+用一条轴上光线和另一条从邻近离轴物点发出的光线组成拉格朗日不变量，得到
 \[
  nyu=n'y'u',\qquad
  \boxed{B=\frac{n}{n'\beta}}.
 \]
+这里 $y,y'$ 是邻近共轭物像的高度，$u,u'$ 是轴上光线的倾角，不能把同一任意光线的 $nyu$ 当作不变量。
+对离轴点的光束，应比较两条光线的倾角差，写成
+$B=\Delta u'/\Delta u$，由 $ny\Delta u=n'y'\Delta u'$ 得到同一结果。
 
 \begin{center}\begin{minipage}{\linewidth}\centering
 \centering
@@ -590,9 +602,11 @@ $g=0$ 时是望远系统，物像距线性且横向放大率恒定；$g\ne0$ 时
 
 \begin{advexamplebox}{厚目镜望远镜：景物像、刻线与出瞳}\label{advA5:ex:thick-eyepiece}
 如图，薄凸物镜 $L_O$ 在右，折射率 $n=3$ 的厚凸目镜 $L_E$ 在左，光从右向左传播；镜筒长度 $L=8\,\mathrm{cm}$。目镜右表面刻有基准线，用来测量远物张角。设计要求景物与刻线均可由放松眼看清，并把右侧物镜的孔径成像到目镜左出射面，使收集的光束进入眼瞳。角放大率大小 $M=5$。求目镜厚度 $x$、两镜空气间距 $y$、物镜焦距 $f_O$、目镜左、右表面曲率半径大小 $R,R'$，以及匹配人眼瞳孔 $d=4\,\mathrm{mm}$ 的物镜孔径 $D$。采用近轴球面折射模型。
+
+\QAOFrame{\QAOThickQuestion}{光从右向左传播；厚目镜两表面、刻线面与物镜孔径的位置及未知尺寸。}{quality:A5:q5}
 \end{advexamplebox}
 \begin{advsolution}
-原图的“将右侧凸透镜成像至左侧单球面透镜”是\textbf{物镜孔径的瞳成像}，与景物成像同时发生。不能把它读成目镜右表面向左表面成像。
+本题同时要求\textbf{物镜孔径的瞳成像}与景物成像。目镜右表面是景物第一像面，左表面是出瞳面，必须分别建立两组共轭关系。
 
 \begin{center}\begin{minipage}{\linewidth}\centering
 % Design: 12 cm print width, 9 pt labels; source p175 right-to-left layout.
@@ -648,10 +662,14 @@ $g=0$ 时是望远系统，物像距线性且横向放大率恒定；$g\ne0$ 时
  \boxed{D=5d=20\,\mathrm{mm}}.
 \]
 独立检验：令物镜面光线高度为 $u$、入射倾角为 $\theta$，连续应用两球面折射和玻璃内传播，可得目镜左面的高度 $-u/5$、出射倾角 $-5\theta$。前者与 $\theta$ 无关，说明孔径确已成像；后者与 $u$ 无关，说明远物确实给出平行出射光。负号表示景物倒像。这些是近轴设计参数，不能据此声称有限孔径下的球差、色差与边缘通光已经全部校正。
+
+图~\ref{advA5:fig:eyepiece-source}中景物像位于右刻线面，而物镜孔径的像位于左出射面；前者给 $y=f_O$，后者给 $1/y+n/x=(n-1)/R'$。这两条不同的共轭关系分别约束成像与通光，不能用一条普通薄透镜关系代替。
 \end{advsolution}
 
 \begin{advexamplebox}{潜望镜的五片透镜、镜筒长度与视场}\label{advA5:ex:periscope}
 潜望镜有两块反射棱镜及五片薄凸透镜 $L_0,\ldots,L_4$，焦距和有效孔径分别为 $f_i,D_i$。两棱镜反射中心的竖直间距为 $H$。原图在 $L_1,L_3$ 处分别标出了远物的第一、第二实像 $y',y''$，$L_2$ 在二者之间。说明各镜作用，求适配镜筒的焦距及共轭条件、望远倍率，并讨论各孔径如何限制视场。
+
+\QAOFrame{\QAOPeriscopeQuestion}{潜望镜的两反射中心与五片透镜；两次景物实像分别位于两片指定镜面。}{quality:A5:q6}
 \end{advexamplebox}
 \begin{advsolution}
 $L_0$ 是物镜；$L_1$ 是第一像面上的场镜；$L_2$ 是将第一像再次成像的中继物镜；$L_3$ 是第二像面上的场镜；$L_4$ 是目镜。\textbf{不能把 $L_2,L_3$ 当作两片中继物镜}：光线在 $L_3$ 处已经会聚为第二像，场镜改变光束的去向，却不改变位于自身平面上的物像点。
@@ -744,4 +762,6 @@ $H$ 是棱镜中心距，不应直接改称光程。设从上棱镜中心 $P$ �
  H=\frac{f_0^2}{f_0-f_1}+\frac{f_4^2}{f_4-f_3}.
 \]
 棱镜的有效面宽若有限，也须加入相同的逐面截光检验；仅由五个透镜孔径无法保证真实棱镜不挡光。
+
+图~\ref{advA5:fig:periscope-source}右侧将实际传播折线展开，$a,b$ 分别连接第一像、第二像与中继物镜，因而 $-b/a$ 是景物中继倍率。计算视场时同一光线的入口高度 $u$ 必须贯穿全部镜面约束，这正是式中各个 $h_i(u,\theta)$ 共用同一个 $u$ 的理由。
 \end{advsolution}

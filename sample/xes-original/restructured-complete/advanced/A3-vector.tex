@@ -1,3 +1,5 @@
+% AdvancedThermalQuality20261023-v1
+\input{chapters/quality-20261023/thermal/A3-vector.tex}
 \section{矢量分析}
 
 \subsection{指标语言与三维矢量}
@@ -92,8 +94,12 @@ $\delta_{jm}\delta_{jn}-\delta_{jn}\delta_{jm}=0$。若 $j\ne k$，只有唯一�
  \item 由此证明 $\varepsilon_{ijk}$ 全反对称；
  \item 证明定理\ref{advA3:thm:epsilon-identities}。
 \end{enumerate}
+
+\AQEpsilon
 \end{advexamplebox}
 \begin{advsolution}
+\AAEpsilon
+
 若 $i,j,k$ 有重复，行列式有两行相同而为零；若互异，这三行恰是单位阵三行的一个置换，行列式等于置换符号，正是 $\varepsilon_{ijk}$。交换任意两个指标等于交换两行，故符号反号。
 
 对两个行列式用柯西--比内公式，
@@ -116,7 +122,7 @@ $\delta_{jm}\delta_{kn}-\delta_{jn}\delta_{km}$。继续令 $m=j$、$n=k$ 缩并
 \end{advdefinition}
 
 这里要严格区分三个对象：$\vect e_i$ 是基矢，$x^i$ 是三个实数分量，$x^a$ 是与选基无关的抽象矢量。若换基
-$\vect e'_i=M_i{}^j\vect e_j$，同一个几何矢量的分量必须反向变化，
+$\vect e'_i=\vect e_jM^j{}_i$，其中矩阵 $M$ 的第 $i$ 列为新基矢 $\vect e'_i$ 在旧基中的分量。同一个几何矢量的坐标列必须满足 $x=Mx'$，因而反向变化，
 \[
  x'^i=(M^{-1})^i{}_jx^j,
  \qquad x'^i\vect e'_i=x^j\vect e_j.
@@ -215,8 +221,12 @@ $u_iw_iv_l-v_iw_iu_l$，即得。
  +(\vect w\times\vect u)\times\vect v
  +(\vect v\times\vect w)\times\vect u=0.
 \]
+
+\AQJacobi
 \end{advexamplebox}
 \begin{advsolution}
+\AAJacobi
+
 逐项使用定理\ref{advA3:thm:triple-vector}：
 \[
  (u\cdot w)v-(v\cdot w)u
@@ -236,8 +246,12 @@ $[L_1,L_2]=L_1L_2-L_2L_1$。证明
  =(D_{\vect u}\vect v)\times\vect w
  +\vect v\times(D_{\vect u}\vect w).
 \]
+
+\AQDerivations
 \end{advexamplebox}
 \begin{advsolution}
+\AADerivations
+
 对任意 $\vect w$，雅可比恒等式重排为
 \[
  \vect u\times(\vect v\times\vect w)
@@ -285,7 +299,7 @@ $(t_{12}T)^{ab}=T^{ba}$；矩阵转置只是二阶张量的这一特例。
 
 \begin{advdefinition}{张量缩并}\label{advA3:def:contraction}
 缩并 $c_{pq}$ 把第 $p,q$ 个一上一下指标相等并求和，从而使阶数降低2。例如
-$c_{12}(u^av_a)=u^au_a$，二阶张量的缩并是迹。
+对未缩并的二阶张量 $T^a{}_b=u^av_b$，有 $c_{12}T=T^a{}_a=u^av_a=\vect u\cdot\vect v$。二阶混合张量的缩并就是迹，不能把原来两个不同矢量误写成同一矢量的模平方。
 \end{advdefinition}
 抽象指标能无歧义地区分矩阵乘法的不同转置组合：
 $A^{ab}B_{bc}$、$A^{ab}B_{cb}$、$A^{ba}B_{bc}$ 分别代表不同缩并。双点积也是两个指标同时缩并。
@@ -332,8 +346,12 @@ $A^{ab}B_{ab}=\operatorname{tr}(A^{\mathsf T}B)$
  \dim S^n(\mathbb R^3)=\frac{(n+1)(n+2)}2,
 \]
 并推广到 $S^n(\mathbb R^m)$。
+
+\AQSensors
 \end{advexamplebox}
 \begin{advsolution}
+\AASensors
+
 完全对称分量只由指标1、2、3各出现多少次决定。令出现次数为
 $r_1,r_2,r_3\ge0$ 且 $r_1+r_2+r_3=n$，不同非负整数解的个数由插板法为
 \[
@@ -439,8 +457,12 @@ $\Omega=\vect e_1\wedge\vect e_2\wedge\vect e_3$，则内插乘积满足
 \[
  \dim\Lambda(\mathbb R^n)=2^n.
 \]
+
+\AQExterior
 \end{advexamplebox}
 \begin{advsolution}
+\AAExterior
+
 $l$ 阶基由 $n$ 个基矢中任选 $l$ 个并按递增次序楔积得到，故
 $\dim\Lambda^l=\binom nl$。于是
 \[
@@ -454,8 +476,12 @@ $\dim\Lambda^l=\binom nl$。于是
 \[
  \boxed{\star(\vect u\wedge\star\vect v)=\vect u\cdot\vect v}.
 \]
+
+\AQHodge
 \end{advexamplebox}
 \begin{advsolution}
+\AAHodge
+
 写 $\star\vect v=\tfrac12v_i\varepsilon_{ijk}\vect e_j\wedge\vect e_k$，则
 \[
  \star(\vect u\wedge\star\vect v)
@@ -525,8 +551,12 @@ $\vect F=F_i(x)\vect e_i$ 和张量场。直角坐标固定基中
 \begin{advexamplebox}{径向函数的梯度与Hessian}\label{advA3:ex:radial-gradients}
 令 $r=(x_ix_i)^{1/2}$、$\vect r=x_i\vect e_i$。计算
 $\nabla x_i,\nabla r^2,\nabla r,\nabla(1/r),\nabla(\vect r/r^3)$ 以及 $\nabla\nabla r^n$（$r\ne0$）。
+
+\AQRadialHessian
 \end{advexamplebox}
 \begin{advsolution}
+\AARadialHessian
+
 \[
  \boxed{\nabla x_i=\vect e_i},\qquad
  \boxed{\nabla r^2=2\vect r},\qquad
@@ -555,7 +585,7 @@ $\nabla\cdot(\vect r/r^3)=4\pi\delta^{(3)}(\vect r)$。
 对标量，它就是梯度；对矢量取霍奇对偶得到旋度；对矢量的霍奇对偶再外导并对偶，得到散度。
 
 \begin{advtheorem}{庞加莱引理}\label{advA3:thm:poincare}
-在星形区域上，外导数满足 $\dd^2=0$；每个闭微分形式局部都是恰当形式。特别地
+外导数恒满足 $\dd^2=0$。在星形区域上，每个次数 $k\ge1$ 的闭微分形式都是恰当形式；对一般区域，这一结论局部成立。零次闭形式只是局部常数，不属于上述正次数结论。特别地
 \[
  \nabla\times\nabla f=0,
  \qquad
@@ -710,8 +740,12 @@ $\nabla\times(\vect F\times\vect a)
  \int_V(\phi\nabla^2\psi-\psi\nabla^2\phi)\dd V
  =\oint_{\partial V}(\phi\nabla\psi-\psi\nabla\phi)\cdot\dd\vect S.
 \]
+
+\AQGreen
 \end{advexamplebox}
 \begin{advsolution}
+\AAGreen
+
 乘法法则给出
 \[
  \nabla\cdot(\phi\nabla\psi)

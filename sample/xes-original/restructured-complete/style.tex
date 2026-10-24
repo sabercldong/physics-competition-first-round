@@ -91,9 +91,17 @@
     coltitle=Ink,colbacktitle=PaleBlue,borderline west={1.4pt}{0pt}{DeepBlue}]
 }{\end{tcolorbox}}
 
+
+% FinalReviewSolutionHeading20261024
+\makeatletter
+\newcommand{\LectureSolutionHeading}{%
+  \par\noindent{\bfseries\color{DeepBlue}解答}\par\nobreak
+  \@afterindentfalse\@afterheading}
+\makeatother
+
 \NewDocumentEnvironment{xesolution}{+b}{%
   \par\smallskip\begingroup\small\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 
 \NewDocumentEnvironment{thinkanswer}{+b}{%
@@ -158,7 +166,7 @@
 
 \NewDocumentEnvironment{advsolution}{+b}{%
   \par\smallskip\begingroup\small\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 
 \NewDocumentEnvironment{advdefinition}{m +b}{%
@@ -213,6 +221,10 @@
 \newcommand{\diagramcaption}[1]{\bookcaption{#1}}
 \newcommand{\figcap}[1]{\bookcaption{#1}}
 \newcommand{\origcaption}[1]{\bookcaption{#1}}
+% Keep newly authored diagrams and their complete captions on the same page.
+\NewDocumentEnvironment{qualityfigure}{}{%
+  \par\begin{center}\begin{minipage}{\linewidth}\centering
+}{\end{minipage}\end{center}}
 \newcommand{\historyfigure}[3][0.9\linewidth]{%
   \begin{center}\begin{minipage}{#1}\centering
   \includegraphics[width=\linewidth]{#2}\par\smallskip

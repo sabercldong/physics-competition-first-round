@@ -1,0 +1,17 @@
+\paragraph{全程守恒与首末动量相同的区别}
+选定固定惯性系中的 $x$ 方向后，$\dd P_x/\dd t=F_x^{\rm ext}$。只有该方向合外力在整个过程中都为零，才能说 $P_x$ 全程守恒。若合外力并不始终为零，只是 $\int_{t_1}^{t_2}F_x^{\rm ext}\dd t=0$，则只能推出首末两时刻的分量相同，不能推出中间各时刻都不变。
+图~\ref{quality:07:component}把两个相互作用物体一起选为系统，水平方向的相互作用力是内力；竖直方向的支持力和重力仍是外力。由哪个方向的外冲量可忽略来选择守恒分量，而不是看到碰撞就把两个方向同时写成守恒。若选的是随物体转动的轴，还会有基矢变化项，不能直接把固定轴的分量定理照搬过去。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \draw[ground] (-.5,0)--(6.5,0);\draw (0,0) rectangle (1.5,1);\draw (4,0) rectangle (5.5,1);
+ \draw[guide] (-.3,-.3) rectangle (5.8,1.35);
+ \draw[vector] (1.5,.5)--node[above] {$F_{21}$}(2.7,.5);
+ \draw[vector] (4,.5)--node[above] {$F_{12}$}(2.8,.5);
+ \draw[->] (.75,1)--node[left] {$N_1$}(.75,2);
+ \draw[->] (4.75,1)--node[right] {$N_2$}(4.75,2);
+ \draw[->] (.75,.5)--node[left] {$m_1g$}(.75,-1);
+ \draw[->] (4.75,.5)--node[right] {$m_2g$}(4.75,-1);
+ \node[below] at (2.7,-1.3) {整体系统；光滑水平面上 $F_x^{\rm ext}=0$};
+ \draw[axis] (6,.4)--(7,.4) node[right] {$x$};
+\end{tikzpicture}
+\figcap{内力在整体动量方程中相消；支持力与重力仍属于竖直方向的外力。}\label{quality:07:component}
+\end{qualityfigure}

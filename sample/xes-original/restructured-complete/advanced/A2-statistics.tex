@@ -1,3 +1,5 @@
+% AdvancedThermalQuality20261023-v1
+\input{chapters/quality-20261023/thermal/A2-statistics.tex}
 \section{统计力学}
 
 \subsection{相空间、系综与配分函数}
@@ -65,8 +67,12 @@ $S=-k\int\rho\ln\rho\,\dd\Omega=k\ln\omega$。
 \begin{advexamplebox}{等概率分布使微正则熵最大}\label{advA2:ex:microcanonical-maximum}
 证明：在给定能壳和归一化条件下，均匀分布 $\rho=1/\omega$ 使
 $S=-k\int\rho\ln\rho\,\dd\Omega$ 最大。
+
+\AQMicrocanonical
 \end{advexamplebox}
 \begin{advsolution}
+\AAMicrocanonical
+
 对任意归一化分布 $\rho$，与均匀分布 $\rho_0=1/\omega$ 的相对熵满足
 \[
  D(\rho\Vert\rho_0)=\int\rho\ln\frac{\rho}{\rho_0}\dd\Omega\ge0.
@@ -122,17 +128,21 @@ $e^{-(E-\mu N)/(kT)}$。
 
 \begin{advexamplebox}{由巨配分函数直接求热力学量}\label{advA2:ex:grand-observables}
 用 $\Xi(\mu,V,T)$ 写出平均粒子数、压强、熵和内能。
+
+\AQGrand
 \end{advexamplebox}
 \begin{advsolution}
+\AAGrand
+
 对 $z=e^{\beta\mu}$ 求导，
 \[
  \boxed{\langle N\rangle
  =z\frac{\partial\ln\Xi}{\partial z}
  =kT\left(\frac{\partial\ln\Xi}{\partial\mu}\right)_{T,V}}.
 \]
-由 $\Omega=-kT\ln\Xi=-pV$，
+由 $\Omega=-kT\ln\Xi$ 及 $p=-(\partial\Omega/\partial V)_{T,\mu}$，
 \[
- \boxed{p=\frac{kT}{V}\ln\Xi},
+ \boxed{p=kT\left(\frac{\partial\ln\Xi}{\partial V}\right)_{T,\mu}},
  \qquad
  \boxed{S=k\ln\Xi+kT
  \left(\frac{\partial\ln\Xi}{\partial T}\right)_{\mu,V}}.
@@ -148,15 +158,19 @@ $U=TS-pV+\mu N$ 可作一致性校验。
 
 \subsection{经典统计结论}
 
-无内禀简并的自由粒子单态配分函数写成
+无内禀简并的自由粒子单粒子配分函数写成
 \[
  z_1=\int_0^\infty g(\varepsilon)e^{-\beta\varepsilon}\dd\varepsilon.
 \]
 
 \begin{advexamplebox}{不同维数自由粒子的态密度}\label{advA2:ex:density-of-states}
 求一、二、三维非相对论自由粒子和无质量相对论粒子的态密度 $g(\varepsilon)$。
+
+\AQDensityStates
 \end{advexamplebox}
 \begin{advsolution}
+\AADensityStates
+
 每个平动量子态占据相空间体积 $(2\pi\hbar)^d$。先数动量球内态数，再对能量求导。
 对 $\varepsilon=p^2/(2m)$，
 \[
@@ -179,10 +193,14 @@ $U=TS-pV+\mu N$ 可作一致性校验。
 \end{advsolution}
 
 \begin{advexamplebox}{自由粒子配分函数与物态方程}\label{advA2:ex:free-particle-partition}
-计算三维非相对论和无质量相对论自由粒子的单态配分函数，并证明平均能量分别为
+计算三维非相对论和无质量相对论自由粒子的单粒子配分函数，并证明平均能量分别为
 $3kT/2$、$3kT$，且分别满足 $pV=2E/3$、$pV=E/3$。
+
+\AQFreePartition
 \end{advexamplebox}
 \begin{advsolution}
+\AAFreePartition
+
 令热德布罗意波长
 \[
  \lambda_T=\sqrt{\frac{2\pi\hbar^2}{mkT}}.
@@ -212,8 +230,12 @@ $\ln N!\simeq N\ln N-N$ 使自由能和熵恢复广延性。
  \quad
  s_0=\frac32\ln\frac{mk}{2\pi\hbar^2}+\frac52.
 \]
+
+\AQClassicalEntropy
 \end{advexamplebox}
 \begin{advsolution}
+\AAClassicalEntropy
+
 用 $F=-kT\ln Z_N$、$S=-(\partial F/\partial T)_{V,N}$：
 \[
  S=Nk\left[\ln\frac{V}{N\lambda_T^3}+\frac52\right].
@@ -223,8 +245,12 @@ $\ln N!\simeq N\ln N-N$ 使自由能和熵恢复广延性。
 
 \begin{advexamplebox}{$N$ 个一维经典谐振子}\label{advA2:ex:harmonic-partition}
 计算 $N$ 个频率为 $\omega$、彼此独立且固定在不同位置的一维经典谐振子的配分函数、内能与热容。
+
+\AQOscillators
 \end{advexamplebox}
 \begin{advsolution}
+\AAOscillators
+
 单振子的哈密顿量 $H=p^2/(2m)+m\omega^2q^2/2$，故
 \[
  z=\frac1h\int_{-\infty}^{\infty}\!\dd p\dd q\,e^{-\beta H}
@@ -242,8 +268,12 @@ $e^{-\beta\hbar\omega/2}/(1-e^{-\beta\hbar\omega})$。
 
 \begin{advexamplebox}{$N$ 个三自由度刚体转子}\label{advA2:ex:rigid-rotor-partition}
 主惯量为 $I_1,I_2,I_3$ 的非线性刚体分子只有转动自由度。求其高温经典配分函数，并给出转动内能与热容。
+
+\AQRotors
 \end{advexamplebox}
 \begin{advsolution}
+\AARotors
+
 对欧拉角和三个共轭角动量作高斯积分，单分子转动配分函数为
 \[
  z_{\rm rot}=\frac{\sqrt\pi}{\sigma}
@@ -261,8 +291,12 @@ $Z=(z_{\rm trans}z_{\rm rot})^N/N!$。因 $z_{\rm rot}\propto T^{3/2}$，
 
 \begin{advexamplebox}{匀强电场中的刚性偶极子}\label{advA2:ex:dipole-partition}
 $N$ 个大小为 $d$ 的刚性电偶极子置于匀强电场 $E$ 中，忽略动能。求配分函数、平均偶极矩与弱场极化率。
+
+\AQDipoleStatistics
 \end{advexamplebox}
 \begin{advsolution}
+\AADipoleStatistics
+
 取 $x=dE/(kT)$。单偶极子取向积分为
 \[
  z_1=\int e^{x\cos\theta}\dd\Omega
@@ -296,8 +330,12 @@ $E=\sum_i n_i\varepsilon_i,N=\sum_i n_i$。每个态的巨配分函数为
 
 \begin{advexamplebox}{费米--狄拉克与玻色--爱因斯坦分布}\label{advA2:ex:quantum-distributions}
 求两种统计的平均占据数和巨势，并写出压强公式。
+
+\AQQuantumDistributions
 \end{advexamplebox}
 \begin{advsolution}
+\AAQuantumDistributions
+
 令 $z_i=e^{-\beta(\varepsilon_i-\mu)}$。费米子
 $\Xi_i=1+z_i$，玻色子 $\Xi_i=(1-z_i)^{-1}$。用
 $\langle n_i\rangle=z_i\partial_{z_i}\ln\Xi_i$，
@@ -312,7 +350,7 @@ $\langle n_i\rangle=z_i\partial_{z_i}\ln\Xi_i$，
 \[
  \boxed{pV=\pm kT\sum_i\ln\!\left(1\pm e^{-\beta(\varepsilon_i-\mu)}\right)}.
 \]
-玻色式要求 $\mu$ 不超过基态能量；费米式自动体现泡利不相容原理。
+有限系统的玻色巨配分级数严格要求 $\mu$ 低于基态能量（凝聚热力学极限另行处理）；费米式自动体现泡利不相容原理。
 \end{advsolution}
 
 三维理想费米气在零温下把单粒子态填充到费米能
@@ -328,8 +366,12 @@ $\langle n_i\rangle=z_i\partial_{z_i}\ln\Xi_i$，
 \[
  \boxed{C_V=\frac{\pi^2}{2}Nk\frac{kT}{\varepsilon_F}}.
 \]
+
+\AQFermiCapacity
 \end{advexamplebox}
 \begin{advsolution}
+\AAFermiCapacity
+
 索末菲展开给出定粒子数下
 \[
  U(T)=U(0)+\frac{\pi^2}{6}g(\varepsilon_F)(kT)^2+O(T^4).
@@ -354,8 +396,12 @@ $g(\varepsilon_F)=3N/(2\varepsilon_F)$，故
 
 \begin{advexamplebox}{玻色--爱因斯坦凝聚的热容曲线}\label{advA2:ex:bec-heat-capacity}
 定性并定量说明三维理想玻色气定容热容随温度的变化，并画出临界点附近曲线。
+
+\AQBoseCapacity
 \end{advexamplebox}
 \begin{advsolution}
+\AABoseCapacity
+
 $T<T_c$ 时
 \[
  U=\frac32kT\frac{V}{\lambda_T^3}\zeta(5/2),
@@ -367,18 +413,9 @@ $T<T_c$ 时
  \left(\frac T{T_c}\right)^{3/2}}.
 \]
 它从零按 $T^{3/2}$ 增加，在 $T_c^-$ 达到约 $1.93Nk$。$T>T_c$ 时化学势转为负值，热容从同一数值连续接出，随后趋向经典极限 $3Nk/2$；一阶导数在 $T_c$ 处不连续，形成尖点而非潜热跃变。
-\begin{center}\begin{minipage}{\linewidth}\centering
-\begin{tikzpicture}[scale=.92]
- \draw[axis] (0,0)--(5.2,0) node[right]{$T/T_c$};
- \draw[axis] (0,0)--(0,2.5) node[above]{$C_V/(Nk)$};
- \draw[curve,domain=.02:1,samples=100] plot ({3*\x},{1.926*\x^(1.5)});
- \draw[curve,domain=1:1.65,samples=80] plot ({3*\x},{1.5+.426*exp(-3*(\x-1))});
- \draw[guide] (3,0)--(3,2.02);
- \draw[guide] (0,1.5)--(5.0,1.5) node[right]{$3/2$};
- \node[below] at (3,0) {$1$};
-\end{tikzpicture}
-\bookcaption{三维理想玻色气热容在凝聚温度处连续但有尖点}\label{advA2:fig:bec-heat-capacity}
-\end{minipage}\end{center}
+
+
+图~\ref{advA2:quality:bose-c-a}的两支在临界点相接；基态在本模型中不贡献激发能，低温热容来自激发态占据随温度改变。
 \end{advsolution}
 
 \begin{advexamplebox}{稀薄量子气体的第二维里修正}\label{advA2:ex:quantum-virial}
@@ -389,8 +426,12 @@ $T<T_c$ 时
  \item 把物态方程与无排斥体积的范德瓦耳斯形式
  $(p+aN^2/V^2)V=NkT$ 比较，说明这种等价的物理边界。
 \end{enumerate}
+
+\AQQuantumVirial
 \end{advexamplebox}
 \begin{advsolution}
+\AAQuantumVirial
+
 令 $\eta=+1$ 表示费米统计、$\eta=-1$ 表示玻色统计，逸度
 $z=e^{\mu/(kT)}$，并记 $x=n\lambda_T^3/g$。经典麦克斯韦--玻尔兹曼极限为
 \[
@@ -411,16 +452,11 @@ $z=e^{\mu/(kT)}$，并记 $x=n\lambda_T^3/g$。经典麦克斯韦--玻尔兹曼�
 \]
 反解并保留一阶修正：
 \[
- \boxed{\mu=kT\left[\ln x+\eta\frac{x}{2^{3/2}}\right]},
+ \begin{aligned}
+ \mu&=kT\left[\ln x+\eta\frac{x}{2^{3/2}}\right],\\
+ p&=nkT\left[1+\eta\frac{x}{2^{5/2}}\right],\qquad U=\frac32pV.
+ \end{aligned}
 \]
-\[
- \boxed{p=nkT\left[1+\eta\frac{x}{2^{5/2}}\right]},
- \qquad
- \boxed{U=\frac32pV}.
-\]
-与 $p=nkT-an^2$ 比较，
-\[
- \boxed{a(T)=-\eta\frac{kT\lambda_T^3}{2^{5/2}g}}.
-\]
+与 $p=nkT-an^2$ 比较，得到 $a(T)=-\eta kT\lambda_T^3/(2^{5/2}g)$。
 费米统计给出正压修正，可看成“统计排斥”；玻色统计给出负压修正，可看成“统计聚集”。它只是第二维里系数的数学等价，并不意味着无相互作用量子粒子之间真的出现了范德瓦耳斯力；密度升高后高阶项不可忽略，等价立即失效。
 \end{advsolution}

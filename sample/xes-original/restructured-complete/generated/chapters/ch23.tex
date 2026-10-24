@@ -1,14 +1,16 @@
+% EMOpticsQuality20261023
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false,after={\par\nobreak\smallskip}}
 \RenewDocumentEnvironment{xesolution}{+b}{%
   \par\nobreak\smallskip\nobreak\begingroup\small
   \clubpenalties 2 10000 10000\displaywidowpenalties 2 10000 10000\noindent
-  {\bfseries\color{DeepBlue}解答}\quad #1\par\endgroup\smallskip
+  \LectureSolutionHeading #1\par\endgroup\smallskip
 }{}
 \chapter{磁场、安培力与安培定律}
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-ninth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirty-ninth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/thirty-ninth-section/}{../../../sample/xes-original/thirty-ninth-section/assets/}}
 \section{电流元叠加与典型磁场}
 
 % Restrained diagrams for Lesson 8.  Vector directions and integration geometry
@@ -667,7 +669,7 @@ $\vect r$；用叉积确定 $\dd\vect B$；最后只把不被对称性抵消的�
 图~\ref{ch23:fig:review-biotsavartdiagram-1}中，源点Q位于导线上，线元取Q处切线；从Q到P的矢量与线元叉乘指向纸外。
 \par\noindent\begin{minipage}{\linewidth}
 \biotSavartDiagram
-\figcap{源点、切线和磁场叉积方向}\label{ch23:fig:review-biotsavartdiagram-1}
+\figcap{源点、切线和磁场叉积方向\label{ch23:fig:review-biotsavartdiagram-1}}
 \end{minipage}\par\medskip
 
 半径为 $R$ 的圆电流在轴线上距圆心 $z$ 处，横向分量成对抵消，只留下轴向分量：
@@ -693,7 +695,7 @@ $\vect r$；用叉积确定 $\dd\vect B$；最后只把不被对称性抵消的�
 图~\ref{ch23:fig:review-loopaxisdiagram-1}中，Q与对径点 $Q\prime$ 同在圆环上，到P距离相同；两个场的横向分量相消，轴向分量相加。
 \par\noindent\begin{minipage}{\linewidth}
 \loopAxisDiagram
-\figcap{圆电流对径线元的轴向叠加}\label{ch23:fig:review-loopaxisdiagram-1}
+\figcap{圆电流对径线元的轴向叠加\label{ch23:fig:review-loopaxisdiagram-1}}
 \end{minipage}\par\medskip
 
 两个半径均为 $R$、每个有 $N$ 匝的同轴线圈，圆心位于 $x=\pm D$，通以同向电流 $I$。轴线上
@@ -725,7 +727,7 @@ $\vect r$；用叉积确定 $\dd\vect B$；最后只把不被对称性抵消的�
 图~\ref{ch23:fig:review-helmholtzdiagram-1}中，两圆心分别在 $\pm D$；三条曲线均由同一个轴场表达式计算，$D=0.5R$ 的中心二阶曲率为零。
 \par\noindent\begin{minipage}{\linewidth}
 \helmholtzDiagram
-\figcap{亥姆霍兹线圈间距与三条轴场曲线}\label{ch23:fig:review-helmholtzdiagram-1}
+\figcap{亥姆霍兹线圈间距与三条轴场曲线\label{ch23:fig:review-helmholtzdiagram-1}}
 \end{minipage}\par\medskip
 
 \motorHelmholtzContext
@@ -780,7 +782,7 @@ $\mu_0I\alpha|1/a-1/b|/(4\pi)$，方向由较小半径那段决定。
   \draw pic[draw,"$\theta_2$",angle radius=7mm,angle eccentricity=1.3]
     {angle=WireH--P--WireD};
   \end{tikzpicture}\end{center}
-\figcap{有限长直电流及观察点的端点角。}\label{ch23:fig:em23-question-1}
+\figcap{有限长直电流及观察点的端点角。\label{ch23:fig:em23-question-1}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -805,7 +807,7 @@ $\rho=\sqrt{r^2+y^2}$，且 $\dd\vect\ell\times\vect\rho$ 的大小为 $r\,\dd y
 图~\ref{ch23:fig:review-finitewirediagram-1}中，两个端点角以垂线为基准；场点P在电流右侧，右手规则给出纸内磁场。
 \par\noindent\begin{minipage}{\linewidth}
 \finiteWireDiagram
-\figcap{有限直电流的两端角度}\label{ch23:fig:review-finitewirediagram-1}
+\figcap{有限直电流的两端角度\label{ch23:fig:review-finitewirediagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -835,7 +837,7 @@ $\rho=\sqrt{r^2+y^2}$，且 $\dd\vect\ell\times\vect\rho$ 的大小为 $r\,\dd y
   \draw pic[draw,"$\theta_2$",angle radius=11mm,angle eccentricity=1.25]
     {angle=SheetH--P--SheetR};
   \end{tikzpicture}\end{center}
-\figcap{沿纸面法线流动的均匀面电流，横向边缘由两端点角给定。}\label{ch23:fig:em23-question-2}
+\figcap{沿纸面法线流动的均匀面电流，横向边缘由两端点角给定。\label{ch23:fig:em23-question-2}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -862,7 +864,7 @@ $2B\ell=\mu_0j\ell$，与积分结果相同。
 图~\ref{ch23:fig:review-currentsheetdiagram-1}中，左侧宽于右侧，因此积分的法向分量向下；水平分量由各窄条同向叠加。
 \par\noindent\begin{minipage}{\linewidth}
 \currentSheetDiagram
-\figcap{有限宽电流带的分量积分}\label{ch23:fig:review-currentsheetdiagram-1}
+\figcap{有限宽电流带的分量积分\label{ch23:fig:review-currentsheetdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -881,7 +883,7 @@ $2B\ell=\mu_0j\ell$，与积分结果相同。
  \draw[<->](-1,0)--(-1,1.6)node[midway,left]{$R$};
  \draw[<->](0,-2.1)--(4,-2.1)node[midway,below]{$z$};
 \end{tikzpicture}\end{center}
-\figcap{圆电流与轴上观察点。}\label{ch23:fig:em23-question-3}
+\figcap{圆电流与轴上观察点。\label{ch23:fig:em23-question-3}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -905,7 +907,7 @@ $R/\rho$，故
 图~\ref{ch23:fig:review-loopaxisdiagram-2}中，Q与对径点 $Q\prime$ 同在圆环上，到P距离相同；两个场的横向分量相消，轴向分量相加。
 \par\noindent\begin{minipage}{\linewidth}
 \loopAxisDiagram
-\figcap{圆电流对径线元的轴向叠加}\label{ch23:fig:review-loopaxisdiagram-2}
+\figcap{圆电流对径线元的轴向叠加\label{ch23:fig:review-loopaxisdiagram-2}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -946,7 +948,7 @@ $\oint\vect B\cdot\dd\vect\ell$ 可与力沿闭合路径所做的功类比理解
 图~\ref{ch23:fig:review-amperelawdiagram-1}中，环路正向决定纸外电流为正；外部电流虽改变局部场，却不计入所穿净电流。
 \par\noindent\begin{minipage}{\linewidth}
 \ampereLawDiagram
-\figcap{有向安培环路及穿面电流}\label{ch23:fig:review-amperelawdiagram-1}
+\figcap{有向安培环路及穿面电流\label{ch23:fig:review-amperelawdiagram-1}}
 \end{minipage}\par\medskip
 
 环路定律最适合高对称电流分布。无限长直导线周围的磁场沿同心圆切向，故
@@ -989,13 +991,13 @@ $B=\mu_0nI$。有限线圈端部的漏场不是“误差画出来”，而是磁
 图~\ref{ch23:fig:review-wiresolenoiddiagram-1}中，右图矩形环路的下边在管内、上边在管外，内部场线没有越出管体；左图虚线表示圆周后半段。
 \par\noindent\begin{minipage}{\linewidth}
 \wireSolenoidDiagram
-\figcap{直电流与理想螺线管的磁场}\label{ch23:fig:review-wiresolenoiddiagram-1}
+\figcap{直电流与理想螺线管的磁场\label{ch23:fig:review-wiresolenoiddiagram-1}}
 \end{minipage}\par\medskip
 
 图~\ref{ch23:fig:finite-coil-field}中，线圈内部向上的磁场经两端接到外部向下的回流场；有限长线圈外部不为零。
 \par\noindent\begin{minipage}{\linewidth}
 \finiteCoilFieldDiagram
-\figcap{有限长螺线管的内部场与外部回流场}\label{ch23:fig:finite-coil-field}
+\figcap{有限长螺线管的内部场与外部回流场\label{ch23:fig:finite-coil-field}}
 \end{minipage}\par\medskip
 \handSolenoidContext
 右手图中的四指弯曲方向可代表圆电流方向，拇指即为磁矩和轴上磁场方向；若把拇指改指直导线电流，
@@ -1053,17 +1055,17 @@ $\nabla\cdot\vect B=0$ 或闭合面总磁通为零作为基本约束。
 图~\ref{ch23:fig:review-magneticgaussdiagram-1}中，内部场从S指向N，外部场回到S；闭合面有穿入也有穿出，不是面上处处无场。
 \par\noindent\begin{minipage}{\linewidth}
 \magneticGaussDiagram
-\figcap{磁体内部与外部的磁感线}\label{ch23:fig:review-magneticgaussdiagram-1}
+\figcap{磁体内部与外部的磁感线\label{ch23:fig:review-magneticgaussdiagram-1}}
 \end{minipage}\par\medskip
 图~\ref{ch23:fig:review-fluxpatchdiagram-1}中，小面元面积为 $\dd S$，向量 $\dd\vect S$ 沿局部法向，与B的夹角进入 $B\dd S\cos\theta$。
 \par\noindent\begin{minipage}{\linewidth}
 \fluxPatchDiagram
-\figcap{面积微元与局部法向}\label{ch23:fig:review-fluxpatchdiagram-1}
+\figcap{面积微元与局部法向\label{ch23:fig:review-fluxpatchdiagram-1}}
 \end{minipage}\par\medskip
 图~\ref{ch23:fig:review-chargemonopolecomparison-1}中，上排给出电荷场，下排只是假设磁荷时的类比；两种源汇结构的差别对应两条高斯定律的右端。
 \par\noindent\begin{minipage}{\linewidth}
 \chargeMonopoleComparison
-\figcap{电荷场与假想磁荷场的比较}\label{ch23:fig:review-chargemonopolecomparison-1}
+\figcap{电荷场与假想磁荷场的比较\label{ch23:fig:review-chargemonopolecomparison-1}}
 \end{minipage}\par\medskip
 比较图上排是电荷产生的场，下排是假设存在孤立磁荷时的对应图像，并非已经观测到磁单极子。
 普通磁铁的N、S极不能拆成两个孤立源；切开磁铁仍得到同时带有两极的磁体。
@@ -1124,7 +1126,7 @@ $\nabla\cdot\vect B=0$ 或闭合面总磁通为零作为基本约束。
 \node[font=\small] at(-4.1,-3){理想圆匝排列};\node[font=\small] at(4.1,-3){连续螺旋绕线};
 \end{tikzpicture}
 \end{center}
-\figcap{圆匝近似与连续螺旋绕组的区别。}\label{ch23:fig:em23-question-4}
+\figcap{圆匝近似与连续螺旋绕组的区别。\label{ch23:fig:em23-question-4}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1162,7 +1164,7 @@ $nR\gg1$ 下，附加场与主轴向场之比约为 $1/(2\pi nR)$，理想模型
 图~\ref{ch23:fig:review-idealhelixdiagram-1}中，左侧仅含方位电流，右侧绕线还沿轴推进；后者的轴向电流决定附加方位场。
 \par\noindent\begin{minipage}{\linewidth}
 \idealHelixDiagram
-\figcap{圆环叠加近似与有轴向推进的绕线}\label{ch23:fig:review-idealhelixdiagram-1}
+\figcap{圆环叠加近似与有轴向推进的绕线\label{ch23:fig:review-idealhelixdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1195,7 +1197,7 @@ $\dd\ell$ 成正比，单个载流子的磁力与 $v_d$ 成正比；二者相乘
 图~\ref{ch23:fig:review-ampereforcediagram-1}中，正载流子的漂移方向向右，磁场向纸内，磁力向上；三者方向用于确定电流元的受力。
 \par\noindent\begin{minipage}{\linewidth}
 \ampereForceDiagram
-\figcap{载流子与电流元受力}\label{ch23:fig:review-ampereforcediagram-1}
+\figcap{载流子与电流元受力\label{ch23:fig:review-ampereforcediagram-1}}
 \end{minipage}\par\medskip
 
 若长度为 $L$ 的直导线垂直于匀强磁场，合力大小为 $F=IBL$。更一般地，匀强磁场中从 $a$ 到
@@ -1235,12 +1237,12 @@ $U=-\vect\mu\cdot\vect B(\vect r)$，于是平移力可写成
 图~\ref{ch23:fig:review-bentwireresultdiagram-1}中，端点位移 $\vect L_{ab}$ 从a指向b；只有匀强场中才可把共同的磁场移到积分号外。
 \par\noindent\begin{minipage}{\linewidth}
 \bentWireResultDiagram
-\figcap{弯曲导线合力的端点等效}\label{ch23:fig:review-bentwireresultdiagram-1}
+\figcap{弯曲导线合力的端点等效\label{ch23:fig:review-bentwireresultdiagram-1}}
 \end{minipage}\par\medskip
 图~\ref{ch23:fig:straight-conductor}把同一结果用于直导线：从a到b的电流向右、磁场向纸内，故合力向上。
 \par\noindent\begin{minipage}{\linewidth}
 \straightConductorDiagram
-\figcap{垂直匀强磁场的直导线受力}\label{ch23:fig:straight-conductor}
+\figcap{垂直匀强磁场的直导线受力\label{ch23:fig:straight-conductor}}
 \end{minipage}\par\medskip
 
 
@@ -1293,7 +1295,7 @@ $\mathcal E_0I=I^2R+Fv$。
     \draw pic[draw,"$45^\circ$",angle radius=8mm,angle eccentricity=1.35]
       {angle=GridB--GridO--GridN};
     \end{scope}\end{tikzpicture}\end{center}
-\figcap{方格网络的通流端点，以及磁场和板面法线的夹角。}\label{ch23:fig:em23-question-5}
+\figcap{方格网络的通流端点，以及磁场和板面法线的夹角。\label{ch23:fig:em23-question-5}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1327,7 +1329,7 @@ $\vect n=\vect e_1\times\vect e_2$，并令磁场在网络面内的投影沿 $\v
 图~\ref{ch23:fig:review-resistorgridforcediagram-1}中，入口和出口位移决定总合力，内部结点的流入流出项成对抵消。
 \par\noindent\begin{minipage}{\linewidth}
 \resistorGridForceDiagram
-\figcap{电流网络合力的端点等效}\label{ch23:fig:review-resistorgridforcediagram-1}
+\figcap{电流网络合力的端点等效\label{ch23:fig:review-resistorgridforcediagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1353,7 +1355,7 @@ $\vect n=\vect e_1\times\vect e_2$，并令磁场在网络面内的投影沿 $\v
  \draw[vector](B)--(5.5,2)node[right]{$I_2\dd\vect\ell_2$};
  \draw[vector](B)--(A)node[midway,below right=4pt]{$\vect r=\vect r_1-\vect r_2$};
  \end{tikzpicture}\end{center}
-\figcap{两电流元与从电流元2指向电流元1的位置差。}\label{ch23:fig:em23-question-6}
+\figcap{两电流元与从电流元2指向电流元1的位置差。\label{ch23:fig:em23-question-6}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1375,7 +1377,7 @@ $C=\mu_0I_1I_2/(4\pi r^3)$。由毕奥--萨伐尔定律和安培力公式，
 图~\ref{ch23:fig:review-currentelementsdiagram-1}中，位置矢量从2指向1，两力分别由各自的双重叉积计算，均垂直于本地电流元。
 \par\noindent\begin{minipage}{\linewidth}
 \currentElementsDiagram
-\figcap{两电流元的相互作用力}\label{ch23:fig:review-currentelementsdiagram-1}
+\figcap{两电流元的相互作用力\label{ch23:fig:review-currentelementsdiagram-1}}
 \end{minipage}\par\medskip
 
 \textbf{(2) 闭合回路。} 两回路的互感能量可写成
@@ -1466,13 +1468,13 @@ $\mathrm{A\,m^2}$。在远离回路、看不清其形状细节时，不同小回
 图~\ref{ch23:fig:review-looptorquediagram-1}中，A、C两侧导线平行转轴，其力不共线；右侧视图的距离 $a\sin\theta$ 直接给出力矩。
 \par\noindent\begin{minipage}{\linewidth}
 \loopTorqueDiagram
-\figcap{矩形线框的力偶与力臂}\label{ch23:fig:review-looptorquediagram-1}
+\figcap{矩形线框的力偶与力臂\label{ch23:fig:review-looptorquediagram-1}}
 \end{minipage}\par\medskip
 
 图~\ref{ch23:fig:review-motorstagesdiagram-1}中，阶段2到3之间电流换向，导线电流的点、叉和受力箭头随之同时改变。
 \par\noindent\begin{minipage}{\linewidth}
 \motorStagesDiagram
-\figcap{直流电动机的四个转动阶段}\label{ch23:fig:review-motorstagesdiagram-1}
+\figcap{直流电动机的四个转动阶段\label{ch23:fig:review-motorstagesdiagram-1}}
 \end{minipage}\par\medskip
 四阶段图是沿转轴看线框的截面，两端的圆点、叉号分别表示沿轴向纸外、纸内的电流，
 上下箭头由 $I\dd\vect\ell\times\vect B$ 确定。阶段2到3之间，导线转过中性位置，
@@ -1524,7 +1526,7 @@ $\mathrm{A\,m^2}$。在远离回路、看不清其形状细节时，不同小回
  \draw[guide](-3,-1.6)--(-1,1.4)node[midway,left]{$\boldsymbol r$};
  \draw[vector](3,-.7)--(3,1.3)node[above]{$\boldsymbol B$};
 \end{tikzpicture}\end{center}
-\figcap{闭合载流回路、任意参考点与外磁场。}\label{ch23:fig:em23-question-7}
+\figcap{闭合载流回路、任意参考点与外磁场。\label{ch23:fig:em23-question-7}}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1577,12 +1579,14 @@ $-\vect a\times\vect F$ 为零，故力矩确实与参考点无关。
 图~\ref{ch23:fig:review-looptorquediagram-2}中，A、C两侧导线平行转轴，其力不共线；右侧视图的距离 $a\sin\theta$ 直接给出力矩。
 \par\noindent\begin{minipage}{\linewidth}
 \loopTorqueDiagram
-\figcap{矩形线框的力偶与力臂}\label{ch23:fig:review-looptorquediagram-2}
+\figcap{矩形线框的力偶与力臂\label{ch23:fig:review-looptorquediagram-2}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
 
 
+% FinalReviewQuestionSplit20261024 【电子显微镜】
+\tcbset{breakable/.default=true}
 \begin{origexamplebox}{【电子显微镜】}\label{ch23:ex:s39-8-8}
 半径为 $R$ 的平面圆电流环中通有电流 $I$。质量为 $m$、电量为 $+q$ 的粒子从轴上距线圈
 $u\gg R$ 的物点近轴入射，轴向速率记为 $v_0$，入射角满足 $|\theta|u\ll R$。
@@ -1599,8 +1603,23 @@ $u\gg R$ 的物点近轴入射，轴向速率记为 $v_0$，入射角满足 $|\t
 并求焦距；
 
 (2) 求像绕轴线产生的角度偏转。
-\end{origexamplebox}
 
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (-2,0)--(4.5,0) node[right]{$z$};
+\draw[thick] (0,0) ellipse (.25 and 1.2);\node[above] at (0,1.2){圆线圈 $R,I$};
+\fill (-1.8,0) circle (1.6pt) node[below]{物点};
+\draw[DeepBlue,->] (-1.8,0)--(-.6,.25) node[midway,above]{$v_0,\theta$};
+\draw[<->] (-1.8,-.7)--(0,-.7) node[midway,below]{$u$};
+
+\end{tikzpicture}
+\figcap{题图：物点、圆线圈和近轴初始射线；成像位置由磁场聚焦决定。\label{ch23:quality:q8}}
+\end{minipage}\end{center}
+\end{origexamplebox}
+\tcbset{breakable/.default=false}
+
+\par\pagebreak[0]
 \begin{xesolution}
 焦距必须依赖粒子的轴向动量 $p=mv_0$；若未指定束流速率，就应保留这一参数。
 取轴场为 $B_z(z)$。轴对称条件下磁场无散给出
@@ -1676,7 +1695,7 @@ $\cos^4t=(3+4\cos2t+\cos4t)/8$，得到
 图~\ref{ch23:fig:review-magneticlensdiagram-1}中，高度为 $\xi$ 的射线前后斜率为 $\xi/u$ 与 $-\xi/v$；图在拉莫尔随动平面内表示聚焦。
 \par\noindent\begin{minipage}{\linewidth}
 \magneticLensDiagram
-\figcap{近轴磁透镜的斜率变化}\label{ch23:fig:review-magneticlensdiagram-1}
+\figcap{近轴磁透镜的斜率变化\label{ch23:fig:review-magneticlensdiagram-1}}
 \end{minipage}\par\medskip
 \end{xesolution}
 
@@ -1700,6 +1719,18 @@ $e=1.60\times10^{-19}\,\mathrm C$ 时，求进动频率；
 (3) 求同频电磁波的真空波长并判断所属波段；
 
 (4) 再施加一个垂直于 $\vect B_0$、并以同频率旋转的弱磁场，定性描述自旋的变化。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->,thick] (0,0)--(0,2) node[above]{$\boldsymbol B_0$};
+\draw[DeepBlue,->,thick] (0,0)--(1.2,1.3) node[right]{$\boldsymbol s$};
+\draw[dashed] (1.2,0)--(1.2,1.3);
+\draw[->] (2.2,0)--(3.4,0) node[right]{$\boldsymbol B_1(t)\perp\boldsymbol B_0$};
+
+\end{tikzpicture}
+\figcap{题图：初始自旋与纵向恒定场，以及待施加的横向旋转弱场。\label{ch23:quality:q9}}
+\end{minipage}\end{center}
 \end{origexamplebox}
 
 \begin{xesolution}
@@ -1739,7 +1770,7 @@ $e=1.60\times10^{-19}\,\mathrm C$ 时，求进动频率；
 图~\ref{ch23:fig:review-spinprecessiondiagram-1}中，右图B1垂直纸面，转动发生在yz平面，整个过程中 $s_x=0$，不会转成平行B1。
 \par\noindent\begin{minipage}{\linewidth}
 \spinPrecessionDiagram
-\figcap{进动与随动系中的自旋翻转}\label{ch23:fig:review-spinprecessiondiagram-1}
+\figcap{进动与随动系中的自旋翻转\label{ch23:fig:review-spinprecessiondiagram-1}}
 \end{minipage}\par\medskip
 
 最后加横向旋转场 $\vect B_1$，令它与自旋进动同频、同向，即旋转角速度矢量为

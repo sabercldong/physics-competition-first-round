@@ -1,0 +1,166 @@
+% Editable TikZ for Hilbert-space geometry and initial/boundary-value problems.
+\providecommand{\ThermalFigure}[3]{\begin{qualityfigure}\begin{tikzpicture}[>=Latex,font=\small,x=.8cm,y=.8cm]#1\end{tikzpicture}\figcap{#2}\label{#3}\end{qualityfigure}}
+\newcommand{\AQOrthogonal}{\ThermalFigure{
+ \draw[->](0,0)--(4,0)node[right]{$z_1$};\draw[->,DeepBlue](0,0)--(2.5,2.1)node[above]{$z_2$};\node[right]at(5,1.5){函数空间中的方向示意，内积带权 $\rho$};
+}{线性无关函数一般不正交，正交化须保留原来张成的空间。}{advA3:quality:orthogonal-q}}
+\newcommand{\AAOrthogonal}{\ThermalFigure{
+ \draw[->,thick](0,0)--(4,0)node[right]{$g$};\draw[->,DeepBlue,thick](0,0)--(2.5,2.1)node[above]{$f$};
+ \draw[->,thick](0,0)--(2.5,0)node[below]{$cg$};\draw[->,DeepBlue](2.5,0)--(2.5,2.1)node[right]{$f-cg$};\draw(2.25,0)--(2.25,.25)--(2.5,.25);
+}{选择投影系数使残差与被投影方向正交，残差范数平方非负。}{advA3:quality:orthogonal-a}
+图~\ref{advA3:quality:orthogonal-a}按本节“第二变量线性”的内积约定，投影系数为 $c=(g,f)_\rho/\|g\|_\rho^2$。复函数时必须保留共轭，不能把它换成 $(f,g)$。等号情形就是残差为零；逐步对已有正交方向扣除投影，才得到 Gram--Schmidt 递推。
+}
+\newcommand{\AQSelfAdjoint}{\ThermalFigure{
+ \draw[->](-.5,0)--(7,0)node[right]{$x$};\fill(0,0)circle(2pt)node[below]{$a$};\fill(6,0)circle(2pt)node[below]{$b$};\draw[DeepBlue,thick](0,1)..controls(2,2.5)and(4,-.1)..(6,1.7);
+ \node[above]at(3,2.8){在 $P(x)\ne0$ 的区间上处理 $y(x)$};
+}{微分表达式的变换必须在系数不奇异的指定区间内进行，边界条件另行指定。}{advA3:quality:self-adjoint-q}}
+\newcommand{\AASelfAdjoint}{\ThermalFigure{
+ \draw[thick](0,0)rectangle(5,1.4);\draw[dashed](1.5,0)--(1.5,1.4) (3,0)--(3,1.4);
+ \draw[->,DeepBlue,thick](.2,.7)--(1.3,.7)node[above]{$py'(x)$};\draw[->,DeepBlue,thick](3.2,.7)--(4.8,.7)node[above]{$py'(x+\dd x)$};
+ \draw[<->](1.5,-.6)--node[below]{$\dd x$}(3,-.6);\node[above]at(2.5,2.2){$y''+(Q/P)y'$ 合成为通量导数 $(py')'$};
+}{积分因子使导数项成为一个总导数，为分部积分与边界型提供共同通量。}{advA3:quality:self-adjoint-a}
+图~\ref{advA3:quality:self-adjoint-a}中的 $p$ 是 Sturm--Liouville 系数，不是原方程的 $P$。先除以 $P$ 后令 $p'/p=Q/P$，才使 $py''+p'y'$ 合并。自伴微分表达式还不等于自伴边值问题，端点必须使 $p(f^*g'-f'^*g)$ 的边界差消失，权函数也须具有所要求的正号。
+}
+\newcommand{\AQBessel}{\ThermalFigure{
+ \draw[thick](0,0)circle(2);\draw[dashed](0,0)--(2,0);\draw[->,DeepBlue](0,0)--(1.3,1.2)node[midway,above left]{$x$};\draw(.6,0)arc(0:42.7:.6)node[right]{$\varphi$};
+ \node[right]at(3.5,1){圆形几何的径向变量常产生 Bessel 方程};
+}{以径向分离变量解释系数 $x$ 的来源，图不另加题中未给出的边界条件。}{advA3:quality:bessel-q}}
+\newcommand{\AABessel}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.2);\draw[DeepBlue,thick](0,0)circle(1.5);\draw[->](0,0)--(1.2,0)node[midway,above]{$x$};
+ \draw[<->](1.2,-.6)--node[below]{$\dd x$}(1.5,-.6);\node[right,align=left]at(3,1){径向面积元 $2\pi x\dd x$\\固定阶数、以 $k^2$ 为谱参数时权函数 $\rho=x$};
+}{权函数包含径向几何因子，正交性应在同一阶数与同一自伴边界下使用。}{advA3:quality:bessel-a}
+图~\ref{advA3:quality:bessel-a}中的径向权 $x$ 与标准 Bessel 正交积分相对应，不能在把阶数 $\alpha$ 当参数的写法中仍机械沿用。是否存在有限次多项式还可直接检查最高次项：若 $y$ 的次数为 $n$，原式中的 $x^2y$ 产生唯一的 $x^{n+2}$ 项，其系数无法被导数项抵消，故非零解不可能为有限多项式。
+}
+\newcommand{\AQChebyshev}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$x$};\draw[thick](-2,0)arc(180:0:2);\fill({2*cos(55)},{2*sin(55)})circle(2pt);\draw[->](0,0)--(55:2);\draw(.7,0)arc(0:55:.7)node[right]{$\theta$};
+ \draw[dashed](55:2)--({2*cos(55)},0);\node[below]at(-2,0){$-1$};\node[below]at(2,0){$1$};\node[above]at(0,2.5){$x=\cos\theta,\quad0\le\theta\le\pi$};
+}{单位半圆把端点 $x=\pm1$ 对应到角区间端点，图的半径为绘制而缩放。}{advA3:quality:cheb-q}}
+\newcommand{\AAChebyshev}{\ThermalFigure{
+ \draw[->](0,0)--(6.7,0)node[right]{$\theta$};\draw[->](0,-1.4)--(0,1.5)node[above]{$y$};\draw[DeepBlue,thick,domain=0:6,samples=90]plot(\x,{cos(60*\x)});
+ \node[below]at(0,-1.55){$0$};\node[below]at(6,-1.55){$\pi$};\draw[thick](-.5,1)--(.5,1) (5.5,1)--(6.5,1);\node[right]at(7,1){两端 $y_\theta=0$};
+}{示例 $n=2$ 的角变量模态；端点斜率为零才筛选出整数 $n$。}{advA3:quality:cheb-a}
+图~\ref{advA3:quality:cheb-a}的水平端切线对应题设自然边界。变换后 $\rho(x)\dd x=|\dd\theta|$，加权正交积分成为普通余弦正交积分；零模的范数是 $\pi$，其他余弦模为 $\pi/2$，所以归一化系数必须分两类，不能给所有阶乘同一个常数。
+}
+\newcommand{\AQLegendreRecurrence}{\ThermalFigure{
+ \draw[->](-2.4,0)--(2.4,0)node[right]{$x$};\draw[->](0,-1.5)--(0,1.7)node[above]{$P_n$};
+ \draw[DeepBlue,thick,domain=-1:1,samples=60]plot({2*\x},{\x});\draw[thick,domain=-1:1,samples=60]plot({2*\x},{(3*(\x)*(\x)-1)/2});
+ \node[right,align=left]at(3,1){示例：$P_1=x$\\$P_2=(3x^2-1)/2$};
+}{相邻阶多项式及其导数通过递推关系相连，但待证结论应对任意阶成立。}{advA3:quality:leg-rec-q}}
+\newcommand{\AALegendreRecurrence}{\ThermalFigure{
+ \foreach\y/\lab in {2/{(1-xt)G_x},.7/{-t^2G_t},-.6/{tG}}{\node[left]at(0,\y){$\lab$};\draw[thick](0,\y-.35)rectangle(7,\y+.35);\draw[DeepBlue,fill=DeepBlue!10](4.5,\y-.35)rectangle(6.5,\y+.35);}
+ \node[above]at(5.5,3){同一列 $t^{n+1}$};\node[below]at(3.5,-1.4){逐列比较，不把不同幂次的系数混在一起};
+}{母函数恒等式按同一幂次对齐，阴影列对应所求递推。}{advA3:quality:leg-rec-a}
+图~\ref{advA3:quality:leg-rec-a}中第一行该列为 $P'_{n+1}-xP'_n$，第二行贡献 $-nP_n$，第三行为 $P_n$。将第二行移项便得到系数 $n+1$；只写“比较系数”而不列出移位后的指标，容易把这个系数误写成 $n$。
+}
+\newcommand{\AQLegendreNorm}{\ThermalFigure{
+ \draw[->](-2.4,0)--(2.4,0)node[right]{$x$};\draw[->](0,-1.5)--(0,1.5)node[above]{$P_n$};
+ \draw[DeepBlue,thick,domain=-1:1,samples=90]plot({2*\x},{(5*(\x)*(\x)*(\x)-3*\x)/2});\node[right]at(3,1){示例 $n=3$，求全区间导数平方积分};
+}{区间固定为 $[-1,1]$，范数使用无权测度 $\dd x$。}{advA3:quality:leg-norm-q}}
+\newcommand{\AALegendreNorm}{\ThermalFigure{
+ \draw[->](-2.4,0)--(2.4,0)node[right]{$x$};\draw[->](0,0)--(0,2.8)node[above]{$(P'_3)^2$};
+ \draw[DeepBlue,thick,domain=-1:1,samples=100]plot({2*\x},{.06*(7.5*(\x)*(\x)-1.5)*(7.5*(\x)*(\x)-1.5)});
+ \node[right]at(3,1.6){$P'_3=5P_2+P_0$};\node[below]at(-2,0){$-1$};\node[below]at(2,0){$1$};
+}{平方被积函数非负；正交展开消掉的是积分后的交叉项，不是逐点交叉项。}{advA3:quality:leg-norm-a}
+图~\ref{advA3:quality:leg-norm-a}的示例给出 $\int(P'_3)^2=25(2/5)+2=12$，与 $3\times4$ 相符。一般展开的末项按奇偶性停在 $P_0$ 或 $P_1$，对应等差和的末系数1或3；$n=0$ 时导数为零，需要把空和也计入结论。
+}
+\newcommand{\AQDipoleMatrix}{\ThermalFigure{
+ \draw[->](-2.4,0)--(2.4,0)node[right]{$x$};\draw[DeepBlue,thick,domain=-1:1,samples=70]plot({2*\x},{\x});\draw[thick,domain=-1:1,samples=70]plot({2*\x},{(3*(\x)*(\x)-1)/2});
+ \node[right,align=left]at(3,1){$xP_iP_j$ 的积分\\既受奇偶性也受正交性约束};
+}{乘以坐标 $x$ 改变奇偶性，需再判断哪些不同阶之间真正耦合。}{advA3:quality:dipole-matrix-q}}
+\newcommand{\AADipoleMatrix}{\ThermalFigure{
+ \draw[thick](0,0)grid[step=.6](3,3);\foreach\i in {0,1,2,3}{\fill[DeepBlue!20](.6*\i,1.8-.6*\i)rectangle(.6*\i+.6,2.4-.6*\i);\fill[DeepBlue!20](.6*\i+.6,2.4-.6*\i)rectangle(.6*\i+1.2,3-.6*\i);}
+ \node[above]at(1.5,3.4){列指标 $j$};\node[left]at(0,1.5){$i$};\node[right]at(4,1.5){非零元只位于相邻阶的两条带};
+}{坐标乘法算子在 Legendre 基中是三对角结构，主对角线在本题中为零。}{advA3:quality:dipole-matrix-a}
+图~\ref{advA3:quality:dipole-matrix-a}中的两条带分别对应 $j=i+1$ 与 $j=i-1$。奇偶性只能排除同奇偶阶，还不足以排除相差3、5等阶数；真正的相邻阶选择来自 Bonnet 递推加正交性。基函数尚未归一化，矩阵元公式须保留各阶范数 $2/(2j+1)$。
+}
+\newcommand{\AQPDETypes}{\ThermalFigure{
+ \node[draw,align=left]at(1.8,1){波：$u_{tt}-c^2u_{xx}$\\热：$u_t-\kappa u_{xx}$\\量子：$\ii\hbar u_t+\cdots$};
+ \node[draw,align=left]at(8,1){Laplace：$\nabla^2u$\\Poisson：$\nabla^2u=f$\\Helmholtz：$\nabla^2u+k^2u$};
+}{先识别最高阶主部，源项和零阶项不参与实系数二阶方程的主部符号分类。}{advA3:quality:pde-types-q}}
+\newcommand{\AAPDETypes}{\ThermalFigure{
+ \draw[->](-2,0)--(2,0)node[right]{$x$};\draw[->](0,0)--(0,2.7)node[above]{$t$};\draw[DeepBlue,thick](-1.8,2.4)--(0,0)--(1.8,2.4);\node[below]at(0,-.5){波：有限传播锥};
+ \begin{scope}[shift={(6,0)}]\draw[->](0,0)--(3,0)node[right]{$t$};\draw[->](0,0)--(0,2.7)node[above]{模幅};\draw[DeepBlue,thick,domain=0:2.7,samples=50]plot(\x,{2*exp(-\x)});\node[below]at(1,-.5){热：模幅衰减};\end{scope}
+ \begin{scope}[shift={(11,1.2)}]\draw[thick](0,0)circle(1);\draw[->,DeepBlue,thick](0,0)--(55:1);\draw[->](1.2,0)arc(0:120:1.2);\node[below]at(0,-1.8){Schr\"odinger：相位转动};\end{scope}
+}{主部结构对应不同演化；三个实椭圆方程则共享空间边值问题的主部。}{advA3:quality:pde-types-a}
+图~\ref{advA3:quality:pde-types-a}比较单个空间傅里叶模：热模因子为 $e^{-\kappa k^2t}$，自由 Schr\"odinger 模因子为纯相位，模长不衰减。后者虽也对时间一阶、空间二阶，却不应直接套实系数标量分类；Laplace、Poisson 与 Helmholtz 则因具有相同的正定空间主部而同属椭圆型。
+}
+\newcommand{\AQDirichlet}{\ThermalFigure{
+ \draw[->](-4.1,0)--(4.1,0)node[right]{$x$};\draw[->](0,-.7)--(0,2.5)node[above]{$\sin(kx)/x$};
+ \draw[DeepBlue,thick,domain=-9:-.02,samples=150]plot({.4*\x},{2*sin(deg(\x))/(\x)});\draw[DeepBlue,thick,domain=.02:9,samples=150]plot({.4*\x},{2*sin(deg(\x))/(\x)});
+}{正 $k$ 的一个比例示意：原点是可去奇点，尾部振荡且不绝对可积。}{advA3:quality:dirichlet-q}}
+\newcommand{\AADirichlet}{\ThermalFigure{
+ \draw[->](-4.5,0)--(4.5,0)node[right]{$k$};\draw[->](0,-1.8)--(0,1.8)node[above]{$F_\epsilon$};
+ \draw[DeepBlue,thick,domain=-4:4,samples=100]plot(\x,{rad(atan(\x/.25))});\draw[TextGray,domain=-4:4,samples=100]plot(\x,{rad(atan(\x/.8))});
+ \node[right]at(5,1){$\epsilon\downarrow0$ 时变陡，极限为 $\tfrac\pi2\operatorname{sgn}k$};
+}{半轴积分先加 Abel 收敛因子，获得可合法求导的反正切函数。}{advA3:quality:dirichlet-a}
+图~\ref{advA3:quality:dirichlet-a}显示的是半轴积分，故最后还要利用被积函数关于 $x$ 的偶性乘2。把收敛因子移除并非任意交换极限：对 $k\ne0$，分部积分给出尾积分在 $\epsilon\ge0$ 下一致受 $2/(|k|R)$ 控制，因此 Abel 极限等于通常的振荡反常积分。
+}
+\newcommand{\AQParseval}{\ThermalFigure{
+ \node[draw,minimum width=3cm,minimum height=1.2cm](X)at(1.5,1){$f(x),g(x)$};\node[draw,minimum width=3cm,minimum height=1.2cm](K)at(9,1){$\widetilde f(k),\widetilde g(k)$};
+ \draw[->,thick](X)--node[above]{$e^{-\ii kx}/\sqrt{2\pi}$}(K);\node[below]at(5,-.4){比较位置域与波数域的内积};
+}{固定本节对称 Fourier 约定，复共轭与积分核的符号必须配套。}{advA3:quality:parseval-q}}
+\newcommand{\AAParseval}{\ThermalFigure{
+ \draw[->](-2.6,0)--(2.6,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$|f|^2$};
+ \draw[DeepBlue,thick,domain=-4:4,samples=100]plot({.6*\x},{exp(-.25*(\x)*(\x))});\node[below]at(0,-.5){$f=e^{-x^2/8}$};
+ \begin{scope}[shift={(7,0)}]\draw[->](-2.6,0)--(2.6,0)node[right]{$k$};\draw[->](0,0)--(0,3)node[above]{$|\widetilde f|^2$};\draw[DeepBlue,thick,domain=-4:4,samples=150]plot({.6*\x},{.65*4*exp(-4*(\x)*(\x))});\node[below]at(0,-.5){$\widetilde f=2e^{-2k^2}$};\end{scope}
+}{具体 Gaussian 对的两个积分均为 $2\sqrt\pi$；右图纵轴为容纳峰值而另作缩放。}{advA3:quality:parseval-a}
+图~\ref{advA3:quality:parseval-a}比较的是各自坐标测度下的积分，不能按图上不同纵向比例直接比较墨迹面积。证明可先对 Schwartz 函数进行积分换序，再用其在 $L^2$ 中稠密以及等距性延拓至所有 $L^2$ 函数；对一般 $L^2$ 函数直接写绝对可积的双积分并不合法。
+}
+\newcommand{\AQGaussianFourier}{\ThermalFigure{
+ \draw[->](-3.5,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,2.5)node[above]{$f(x)$};\draw[DeepBlue,thick,domain=-3:3,samples=100]plot(\x,{2*exp(-.5*(\x)*(\x))});
+ \node[right]at(4,1.5){$f=(2\pi)^{-1/2}e^{-x^2/2}$};
+}{标准正态函数在本题中宽度已固定，纵向作示意缩放；变换常数取决于既定 Fourier 归一化。}{advA3:quality:gaussian-q}}
+\newcommand{\AAGaussianFourier}{\ThermalFigure{
+ \draw[->](-3.8,0)--(3.8,0)node[right]{$\operatorname{Re}z$};\draw[->](0,-.5)--(0,2.8)node[above]{$\operatorname{Im}z$};
+ \draw[->,thick](-3,0)--(3,0);\draw[->,DeepBlue,thick](-3,1.8)--(3,1.8);\draw[dashed](-3,0)--(-3,1.8) (3,0)--(3,1.8);
+ \node[left]at(-3,0){$-R$};\node[right]at(3,0){$R$};\node[left]at(0,1.8){$k$};
+}{配方后积分线位于 $\operatorname{Im}z=k$，通过矩形闭路移回实轴，图示 $k>0$。}{advA3:quality:gaussian-a}
+图~\ref{advA3:quality:gaussian-a}的被积函数为整函数，没有留数项；还必须检查两竖边。对固定 $k$，竖边上 $|e^{-z^2/2}|\le e^{-R^2/2+k^2/2}$，乘有限边长后随 $R\to\infty$ 消失，因此平移积分线有依据。$k<0$ 时作向下的同样闭路即可。
+}
+\newcommand{\AQBoundaryLift}{\ThermalFigure{
+ \draw[->](-.4,0)--(6.6,0)node[right]{$x$};\draw[DeepBlue,thick,domain=0:6,samples=80]plot(\x,{1+\x/6+.5*sin(30*\x)});
+ \draw[dashed](0,0)--(0,1) (6,0)--(6,2);\node[left]at(0,1){$a(t)$};\node[right]at(6,2){$b(t)$};\node[below]at(6,0){$l$};
+}{在固定端点位置上施加随时间改变的位移，端点位置本身并未移动到新的横坐标。}{advA3:quality:lift-q}}
+\newcommand{\AABoundaryLift}{\ThermalFigure{
+ \draw[->](-.4,0)--(6.6,0)node[right]{$x$};\draw[DeepBlue,thick,domain=0:6,samples=80]plot(\x,{1+\x/6+.5*sin(30*\x)});\draw[dashed,thick](0,1)--(6,2)node[right]{$h$};
+ \draw[<->](3,1.5)--(3,2);\draw[thin](3.1,1.75)--(4,2.7)node[above]{$u=y-h$};\node[below]at(3,-.6){$h(0,t)=a(t),\quad h(l,t)=b(t)$};
+}{减去连接两端边值的线性抬升，残余函数在两端都为零。}{advA3:quality:lift-a}
+图~\ref{advA3:quality:lift-a}的虚线 $h$ 恰好承担两端的非零边值，因此正弦展开应施于 $u$ 而不是直接施于 $y$。由于 $h_{xx}=0$，代回方程只留下源项 $-h_{tt}$；初位移与初速度也要分别减去 $h(x,0)$、$h_t(x,0)$。若要求经典光滑解，原初值还须与端点的 $a(0),b(0)$ 及其导数相容。
+}
+\newcommand{\AQForcedWave}{\ThermalFigure{
+ \draw[very thick](0,-.5)--(0,.5) (6,-.5)--(6,.5);\draw[thick](0,0)--(6,0);
+ \foreach\x in {1,2,3,4,5}{\draw[->,DeepBlue](\x,-1)--(\x,-.1);}\node[below]at(3,-1.4){分布源 $A(x,t)$，两端齐次边界};\draw[<->](0,.9)--node[above]{$l$}(6,.9);
+}{零初值并不意味着以后始终为零，分布源会持续激发弦的各模态。}{advA3:quality:forced-q}}
+\newcommand{\AAForcedWave}{\ThermalFigure{
+ \foreach\n/\s in {1/1.7,2/-.7}{\begin{scope}[shift={(0,\s)}]\draw[dashed](0,0)--(6,0);\draw[DeepBlue,thick,domain=0:6,samples=90]plot(\x,{.6*sin(\n*30*\x)});\node[right]at(6.5,0){$\sin(n\pi x/l)$，$n=\n$};\end{scope}}
+}{每个空间正弦模分别受投影源 $A_n(t)$ 驱动，不同阶在这一线性模型中不混合。}{advA3:quality:forced-a}
+图~\ref{advA3:quality:forced-a}中各模态在端点严格为零，所以边界条件逐项成立。时间积分中的 $\tau$ 是激励发生时刻，$t-\tau$ 是该激励随后自由演化的时间；上限只能取当前时刻 $t$，体现因果性。核在上限处的零位移及非零导数保证零初值，同时二次求导能恢复即时源项。
+}
+\newcommand{\AQHeatKernel}{\ThermalFigure{
+ \draw[->](-4,0)--(4,0)node[right]{$x\in\mathbb R$};\draw[DeepBlue,thick,domain=-3.8:3.8,samples=90]plot(\x,{1.7*exp(-(\x+1)*(\x+1))});\node[right]at(4,1.5){初始局域温度分布 $f(x)$};
+}{全直线热方程没有有限位置的边界条件，演化由初态与无界域条件决定。}{advA3:quality:heat-q}}
+\newcommand{\AAHeatKernel}{\ThermalFigure{
+ \begin{scope}[yscale=3]
+ \draw[->](-4.5,0)--(4.5,0)node[right]{$x$};\draw[->](0,0)--(0,.85)node[above]{$K_t$};
+ \draw[DeepBlue,thick,domain=-4:4,samples=100]plot(\x,{.5641895835*exp(-(\x)*(\x))});\draw[thick,domain=-4:4,samples=100]plot(\x,{.2820947918*exp(-.25*(\x)*(\x))});
+ \node[right,align=left]at(5,.55){较晚：更宽、更低\\每条核曲线积分均为1};
+ \end{scope}
+}{热核宽度按 $\sqrt{\kappa t}$ 增长、峰值按 $t^{-1/2}$ 减小，守恒面积不变。}{advA3:quality:heat-a}
+图~\ref{advA3:quality:heat-a}中每个初态点 $\xi$ 都产生平移后的核 $K_t(x-\xi)$，按 $f(\xi)$ 加权叠加才得到卷积。以下变换与微分可先对 Schwartz 初值进行；对一般可积初值，恢复初态应解释为近似恒等核的相应范数收敛，或在连续点、Lebesgue点处的点态收敛，不能无条件在每个不连续点声称取回指定点值。
+}
+\newcommand{\AQAssociatedLegendre}{\ThermalFigure{
+ \draw[thick](0,0)circle(1.8);\draw[->](0,-2.2)--(0,2.4)node[above]{$x=\cos\theta$};\fill({1.8*sin(55)},{1.8*cos(55)})circle(2pt);\fill({1.8*sin(55)},{-1.8*cos(55)})circle(2pt);
+ \draw[dashed](0,0)--({1.8*sin(55)},{1.8*cos(55)}) (0,0)--({1.8*sin(55)},{-1.8*cos(55)});
+ \node[right]at(3,1){南北反射：$\theta\mapsto\pi-\theta$，$x\mapsto-x$};
+}{角变量的反射与阶数 $m\mapsto-m$ 是两种不同操作，需分别确定符号和归一化。}{advA3:quality:assoc-q}}
+\newcommand{\AAAssociatedLegendre}{\ThermalFigure{
+ \draw[->](-2.5,0)--(2.5,0)node[right]{$x$};\draw[->](0,-1.9)--(0,1.9)node[above]{$P_2^1$};
+ \draw[DeepBlue,thick,domain=-1:1,samples=100]plot({2*\x},{-3*(\x)*sqrt(max(0,1-(\x)*(\x)))});
+ \node[right,align=left]at(3,1){$l+m=3$：奇函数\\$P_2^{-1}=-P_2^1/6$};
+}{具体阶数核验反射宇称；负阶改变比例与相位，不改变端点正则函数的形状。}{advA3:quality:assoc-a}
+图~\ref{advA3:quality:assoc-a}使用本节 Condon--Shortley 相位。对 $0\le m\le l$，Rodrigues 公式给出两端点正则解在 $x\to1^-$ 的首项
+\[
+ P_l^m\sim(-1)^m\frac{(l+m)!}{2^m m!(l-m)!}(1-x^2)^{m/2},\quad
+ P_l^{-m}\sim\frac{(1-x^2)^{m/2}}{2^m m!}.
+\]
+两者相除得到题给阶乘比，补出了归一化常数的来源；只说“方程含 $m^2$”只能证明成比例，尚不能确定这个常数。
+}

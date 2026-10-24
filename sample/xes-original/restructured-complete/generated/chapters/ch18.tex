@@ -1,3 +1,4 @@
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,6 +7,9 @@
 \vskip0pt\endgroup}
 \chapter{统计物理基础}
 
+
+\tcbset{breakable/.default=false}
+\input{chapters/quality-20261023/ch18-figures.tex}
 \section{概率、随机变量与涨落}
 
 一次随机试验的全部互斥且完备的结果组成样本空间（sample space）。事件是样本空间的子集；互斥事件满足概率加法，
@@ -23,7 +27,7 @@
 \[
  \operatorname{Var}\!\left(\sum_{i=1}^NX_i\right)=N\operatorname{Var}(X_1),
 \]
-而总量的平均值正比于 $N$，所以相对涨落通常按 $N^{-1/2}$ 衰减。这是宏观量看起来稳定、微观量却始终涨落的数学原因。
+若单个变量的均值非零且方差有限，总量平均值正比于 $N$，相对标准差才按 $N^{-1/2}$ 衰减；均值为零时不能用它作分母。这是宏观量看起来稳定、微观量却始终涨落的数学原因。
 
 随机变量变换时不能只把 $x$ 换成 $y(x)$。若一个 $y$ 对应若干个根 $x_j$，概率密度应写成
 \begin{equation}
@@ -101,6 +105,8 @@ $f_u(u)=(2\pi)^{-1/2}\exp(-u^2/2)$，令无量纲动能 $e=u^2/2$。
 \Needspace{180pt}
 \begin{origexamplebox}{体积比为四比一的两区域粒子数}\label{ch18:ex:teaching-asymmetric-binomial}
 均匀平衡的稀薄理想气体含 $N$ 个粒子。把容器在几何上分成体积为 $4V/5$ 和 $V/5$ 的两区域，并无阻止粒子穿过的实体隔板。忽略粒子位置间的关联，求较小区域粒子数 $n$ 的分布、平均值和标准差，并解释宏观密度为何仍近似稳定。
+
+\StatQAsymmetric
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
@@ -115,6 +121,8 @@ $f_u(u)=(2\pi)^{-1/2}\exp(-u^2/2)$，令无量纲动能 $e=u^2/2$。
  \frac{\sigma_n}{\langle n\rangle}=\frac2{\sqrt N}.
 \]
 粒子数的绝对起伏随 $N$ 增大，却比平均数增长得慢，所以相对密度起伏变小。大区域粒子数为 $N-n$，与小区域完全反相关；不能把两区域总粒子数的方差写成两个方差直接相加，否则会误判固定的 $N$ 也在涨落。这里的临时粒子编号只用于稀薄经典模型的位置计数，不是为全同粒子添加新的可观测身份。
+
+\StatAAsymmetric
 \end{xesolution}
 
 \section{微观状态、宏观状态与熵}
@@ -135,7 +143,7 @@ $f_u(u)=(2\pi)^{-1/2}\exp(-u^2/2)$，令无量纲动能 $e=u^2/2$。
 \end{equation}
 若能量壳内的 $\Omega$ 个状态等概率，$p_i=1/\Omega$，上式立即退化为 $S=k_B\ln\Omega$。
 因此“状态数熵”和“概率分布的信息熵”并非两套无关定义，而是同一结构在等概率分布下的特例。
-\subsection{信息量、条件熵与相关性}
+\subsection{选读：信息量、条件熵与相关性}
 
 一个事件越罕见，观察到它所获得的信息越多。要求独立事件的信息可加、确定事件的信息为零，
 即 $I(pq)=I(p)+I(q)$、$I(1)=0$；再要求连续及随概率递减，得到 $I(p)=-c\ln p$，其中 $c>0$。
@@ -169,7 +177,7 @@ $f_u(u)=(2\pi)^{-1/2}\exp(-u^2/2)$，令无量纲动能 $e=u^2/2$。
 同方向的连续、无测量噪声变量完全相同，互信息发散；若按有限分辨率离散读数，同方向的互信息才等于该离散变量的熵。
 这说明讨论光场相关性时应交代分布模型和测量分辨率，不能把连续与离散结论直接混用。
 
-\subsection{连续分布与最大熵的条件}
+\subsection{选读：连续分布与最大熵的条件}
 
 连续变量可形式地写微分熵 $h=-\int f\ln f\,\dd x$，但量纲与坐标选择必须明确。
 可以先选定参考尺度把变量无量纲化，或用参考测度写相对熵；不能对带单位的密度直接取对数后比较不同单位下的数值。
@@ -190,6 +198,8 @@ $\dd A=r^2\sin\theta\,\dd\theta\dd\phi$，故极角密度为 $f_\theta(\theta)=\
 \Needspace{22\baselineskip}
 \begin{origexamplebox}{二项分布与最概然宏观态}
 $N$ 个彼此独立、可区分的粒子，每个粒子以相同概率处在容器左半或右半。左侧有 $n$ 个粒子的微观状态数是多少？哪个 $n$ 最可能？
+
+\StatQBinomial
 \end{origexamplebox}
 \begin{xesolution}
 选择哪 $n$ 个粒子位于左侧，有
@@ -208,6 +218,8 @@ $\langle X_i\rangle=1/2$、$\operatorname{Var}(X_i)=1/4$。独立性给出
 \[\langle n\rangle=N/2,\qquad \operatorname{Var}(n)=N/4,\qquad \sigma_n=\sqrt N/2.\]
 这是任意 $N$ 的精确结果。以总粒子数为分母时 $\sigma_n/N=1/(2\sqrt N)$；
 以左侧平均数为分母时 $\sigma_n/\langle n\rangle=1/\sqrt N$。两者都随粒子数增大而消失。
+
+\StatABinomial
 \end{xesolution}
 
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -312,6 +324,8 @@ $Z$ 是配分函数（partition function）。任意物理量的平均值为 $\l
 
 \begin{origexamplebox}{二能级系统的平均能量与热容}
 $N$ 个独立、可区分或局域化的粒子各有能量 $0$ 和 $\varepsilon>0$ 两个非简并能级，与温度 $T>0$ 的热库平衡。求平均总能量和热容，并判断低温和高温极限。
+
+\StatQTwoLevels
 \end{origexamplebox}
 \begin{xesolution}
 单粒子配分函数 $z=1+e^{-\beta\varepsilon}$，处于激发态的概率为
@@ -333,6 +347,8 @@ $T\to0$ 时 $U\to0$；$T\to\infty$ 时两个能级等概率，$U\to N\varepsilon
  \frac{e^{\varepsilon/(k_BT)}}{[1+e^{\varepsilon/(k_BT)}]^2}
 \]
 在高低温两端都趋于零，中间出现峰值。高温能量饱和说明有限能级系统不能无限吸热。
+
+\StatATwoLevels
 \end{xesolution}
 
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -356,6 +372,8 @@ $P_n=q^n/Z=(1-q)q^n$，所有高度之和为1。下面求配分函数时，求�
 
 \begin{origexamplebox}{等间隔能级的配分函数}
 一个粒子具有能级 $E_n=n\varepsilon$（$n=0,1,2,\ldots$），各能级非简并。求单粒子配分函数和平均能量，并检验高、低温极限。
+
+\StatQLadder
 \end{origexamplebox}
 \begin{xesolution}
 令 $q=e^{-\beta\varepsilon}$。因 $T>0,\varepsilon>0$，有 $0<q<1$。配分函数是收敛的等比级数：
@@ -378,11 +396,15 @@ $\partial\ln Z/\partial\beta=-\varepsilon q/(1-q)$。
 $e^x-1\sim x$ 得 $U/(k_BT)\to1$，即 $U\sim k_BT$，与一维经典谐振子两个二次项的均分结果一致。
 更精细地，$U=k_BT-\varepsilon/2+O(\varepsilon^2/(k_BT))$，故不能把渐近等价理解为两者差值趋于零。
 $Z$ 无量纲，$U$ 的量纲由 $\varepsilon$ 给出。
+
+\StatALadder
 \end{xesolution}
 
 \Needspace{180pt}
 \begin{origexamplebox}{简并度能否抵消较高能量的不利因素}\label{ch18:ex:teaching-degeneracy}
 一个系统只有两组能级：能量为0的基能级有1个微观状态，能量为 $\varepsilon>0$ 的激发能级有3个微观状态。系统与正温度热库平衡。求激发能级的总概率、两组总布居相等的温度及平均能量，并讨论高、低温极限。
+
+\StatQDegeneracy
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
@@ -397,6 +419,8 @@ $Z$ 无量纲，$U$ 的量纲由 $\varepsilon$ 给出。
  U=0\cdot P_g+\varepsilon P_e=\varepsilon P_e.
 \]
 当 $T\to0^+$ 时，$P_e\to0$、$U\to0$；当 $T\to\infty$ 时，四个微观状态等概率，$P_e\to3/4$、$U\to3\varepsilon/4$，并非 $\varepsilon/2$。即使激发组总概率超过基组，任一单独激发态的概率仍低于唯一基态；这不是逐态布居反转，而是简并状态数带来的总数优势。
+
+\StatADegeneracy
 \end{xesolution}
 
 \section{能量均分定理}
@@ -472,6 +496,8 @@ F(\boldsymbol v)=(a/\pi)^{3/2}e^{-a(v_x^2+v_y^2+v_z^2)}.\]
 
 \begin{origexamplebox}{氮分子的方均根速率}
 把氮气视为理想气体，摩尔质量 $M=28.0\,\mathrm{g/mol}$。求 $T=300\,\mathrm K$ 时的方均根速率。
+
+\StatQSpeeds
 \end{origexamplebox}
 \begin{xesolution}
 用单分子质量公式也可计算，但摩尔形式更直接：
@@ -481,11 +507,15 @@ F(\boldsymbol v)=(a/\pi)^{3/2}e^{-a(v_x^2+v_y^2+v_z^2)}.\]
  \approx5.17\times10^2\,\mathrm{m/s}.
 \]
 所以 $\boxed{v_{\rm rms}\approx517\,\mathrm{m/s}}$。必须把摩尔质量换成 $\mathrm{kg/mol}$；否则数值会错约 $\sqrt{1000}$ 倍。
+
+\StatASpeeds
 \end{xesolution}
 
 \begin{origexamplebox}{麦克斯韦分布中的越阈概率}
 质量为 $m$ 的理想气体分子处于温度 $T$。写出速率大于给定阈值 $v_0$ 的概率积分，并在
 $v_0\gg\sqrt{k_BT/m}$ 时判断其主要数量级。
+
+\StatQTail
 \end{origexamplebox}
 \begin{xesolution}
 由归一化速率分布，所求概率为
@@ -509,6 +539,8 @@ $v_0\gg\sqrt{k_BT/m}$ 时判断其主要数量级。
 \[P(v>v_0)=\frac{2x_0}{\sqrt\pi}e^{-x_0^2}
 \left[1+\frac1{2x_0^2}+O(x_0^{-4})\right]\quad(x_0\gg1).\]
 各项无量纲。$v_0=0$ 时精确式为1，$v_0\to\infty$ 时趋于0；大阈值近似不能用于 $v_0=0$。
+
+\StatATail
 \end{xesolution}
 
 \section{熵增的统计含义}
@@ -553,6 +585,8 @@ $V=V_1+V_2$。因为理想气体内能只依赖温度，等温混合的熵变为
 
 \begin{origexamplebox}{两种等量理想气体的混合熵}
 各有 $1.00\,\mathrm{mol}$ 的两种不同理想气体，在同温同压下由隔板分开，各占体积 $V$。撤去隔板并等温混合，求熵变；若两侧是同一种气体，结果怎样？
+
+\StatQMixing
 \end{origexamplebox}
 \begin{xesolution}
 两种气体各自从 $V$ 自由扩展到 $2V$，所以
@@ -564,6 +598,8 @@ $V=V_1+V_2$。因为理想气体内能只依赖温度，等温混合的熵变为
  \boxed{\Delta S=0}.
 \]
 把同种气体也人为贴上“左、右来源标签”会造成虚假的吉布斯佯谬。
+
+\StatAMixing
 \end{xesolution}
 
 \subsection{能量涨落与热容}
@@ -604,6 +640,8 @@ $Z''=\sum_iE_i^2e^{-\beta E_i}$，所以
 \Needspace{15\baselineskip}
 \begin{origexamplebox}{能量相对涨落的粒子数标度}
 经典单原子理想气体含 $N$ 个粒子，处于温度 $T$ 的正则系综。求能量标准差与平均能量之比。
+
+\StatQFluctuation
 \end{origexamplebox}
 \begin{xesolution}
 理想气体
@@ -620,6 +658,8 @@ $Z''=\sum_iE_i^2e^{-\beta E_i}$，所以
  \boxed{\frac{\sigma_E}{U}=\sqrt{\frac{2}{3N}}}.
 \]
 该比值无量纲并随 $N^{-1/2}$ 消失；$N\to\infty$ 时热力学能量成为相对稳定的宏观量。对少粒子系统，涨落不可忽略。
+
+\StatAFluctuation
 \end{xesolution}
 
 \section{分子通量、压强与统计假设}
@@ -650,6 +690,8 @@ $Z''=\sum_iE_i^2e^{-\beta E_i}$，所以
 \Needspace{180pt}
 \begin{origexamplebox}{小孔逸出为何使绝热容器中的气体冷却}\label{ch18:ex:teaching-effusion}
 刚性绝热容器中有稀薄单原子理想气体，粒子数和温度初值为 $N_0,T_0$。通过足够小的孔缓慢向真空逸出；逸出之间气体有足够时间恢复麦克斯韦分布。忽略孔边作用和回流。求一个逸出分子的平均动能，以及容器内剩余气体的温度随 $N$ 的关系。
+
+\StatQEffusion
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
@@ -675,6 +717,8 @@ $Z''=\sum_iE_i^2e^{-\beta E_i}$，所以
  T=T_0\left(\frac{N}{N_0}\right)^{1/3}.
 \]
 $N$ 减小时 $T$ 减小，初值和符号均相符。这不是封闭气体的可逆绝热膨胀，不能套 $TV^{\gamma-1}=\mathrm{const}$；本题体积没有变化，变的是粒子数。若漏气过快、孔尺度超过平均自由程或来不及再平衡，穿孔抽样及此冷却律都须重新判断。
+
+\StatAEffusion
 \end{xesolution}
 
 \subsection{动力学与概率描述之间的条件}

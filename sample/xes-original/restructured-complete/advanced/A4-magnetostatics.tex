@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{静磁场}
 
 \subsection{电流分布、矢势与磁能}
@@ -29,8 +30,34 @@
 \begin{advexamplebox}{Biot--Savart 矢势的 Coulomb 规范}\label{advA4:ex:coulomb-gauge}
 证明在稳恒局域电流条件下，上述 $\vect A$ 自动满足
 $\nabla\cdot\vect A=0$。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) ellipse (1.2 and .6);\draw[DeepBlue,->] (1.2,0) arc[start angle=0,end angle=65,x radius=1.2,y radius=.6];
+\fill (2.5,1.2) circle (1.7pt) node[right]{$\boldsymbol r$};\fill (0,.6) circle (1.5pt) node[above]{$\boldsymbol r'$};\draw[dashed] (0,.6)--(2.5,1.2) node[midway,above]{$|\boldsymbol r-\boldsymbol r'|$};
+\node[below] at (0,-.9){局域稳恒电流，$\nabla'\cdot\boldsymbol j=0$};
+
+\end{tikzpicture}
+\figcap{题图：源点与场点的导数作用在同一个距离核上，源电流局域且无散。}\label{advA4:quality:A4-magnetostatics:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) ellipse (1.2 and .6);\draw[DeepBlue,->] (1.2,0) arc[start angle=0,end angle=65,x radius=1.2,y radius=.6];
+\fill (2.5,1.2) circle (1.7pt) node[right]{$\boldsymbol r$};\fill (0,.6) circle (1.5pt) node[above]{$\boldsymbol r'$};\draw[dashed] (0,.6)--(2.5,1.2) node[midway,above]{$|\boldsymbol r-\boldsymbol r'|$};
+\node[below] at (0,-.9){局域稳恒电流，$\nabla'\cdot\boldsymbol j=0$};
+
+\end{tikzpicture}
+\figcap{解图：源点与场点的导数作用在同一个距离核上，源电流局域且无散。}\label{advA4:quality:A4-magnetostatics:a1}
+\end{minipage}\end{center}
+
 利用 $\nabla(1/R)=-\nabla'(1/R)$，
 \[
  \nabla\cdot\vect A
@@ -47,6 +74,8 @@ $\nabla\cdot\vect A=0$。
  \boxed{\nabla\cdot\vect A=0}.
 \]
 若电流穿过所选有限区域边界，边界项不能任意丢弃；应把回流路径一并计入。
+
+图~\ref{advA4:quality:A4-magnetostatics:a1} 中，同一核满足 $\nabla(1/R)=-\nabla'(1/R)$；对源坐标分部积分时，体项由稳恒连续性为零，远处面项由局域性为零。
 \end{advsolution}
 
 静磁能为
@@ -92,14 +121,46 @@ $\nabla\cdot\vect A=0$。
 局域场在无穷远的边界项消失，乘以 $1/2$ 即得。\hfill$\square$
 
 \begin{advexamplebox}{线圈系统的电感矩阵}\label{advA4:ex:inductance-matrix}
-证明线性介质中 $N$ 个线圈的磁能为
+证明真空或线性互易介质中 $N$ 个线圈的磁能为
 \[
  U_B=\frac12\sum_{i,j}L_{ij}I_iI_j,
 \]
 其中穿过线圈 $i$ 的磁链 $\Phi_i=\sum_jL_{ij}I_j$，并证明
 $L_{ij}=L_{ji}$。说明固定电流求机械力时为什么使用磁共能。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) ellipse (1.1 and .5);\draw[thick] (2.6,.7) ellipse (1.1 and .5);\node at (0,-.8){线圈 $i,I_i$};\node at (2.6,1.6){线圈 $j,I_j$};\draw[dashed] (.5,.35)--(2.1,.45) node[midway,above]{$M_{ij}$};
+
+\end{tikzpicture}
+\figcap{题图：相互交链的线圈系统，各电流和磁链都带同一个端口方向约定。}\label{advA4:quality:A4-magnetostatics:q2}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) ellipse (1.1 and .5);\draw[thick] (2.6,.7) ellipse (1.1 and .5);\node at (0,-.8){线圈 $i,I_i$};\node at (2.6,1.6){线圈 $j,I_j$};\draw[dashed] (.5,.35)--(2.1,.45) node[midway,above]{$M_{ij}$};
+
+\end{tikzpicture}
+\figcap{解图：相互交链的线圈系统，各电流和磁链都带同一个端口方向约定。}\label{advA4:quality:A4-magnetostatics:a2}
+\end{minipage}\end{center}
+
+% EMReciprocalMedium
+“互易”是这里不可省略的条件。真空可直接使用前述积分核；对于位置可变但满足 $\mu_{ij}=\mu_{ji}$ 的线性磁介质，忽略无穷远面项后有
+\[
+ \int\boldsymbol j_1\cdot\boldsymbol A_2\,\mathrm dV
+ =\int\boldsymbol H_1\cdot\boldsymbol B_2\,\mathrm dV
+ =\int\boldsymbol H_2\cdot\boldsymbol B_1\,\mathrm dV
+ =\int\boldsymbol j_2\cdot\boldsymbol A_1\,\mathrm dV.
+\]
+中间等号才使用介质张量的对称性。一般非互易介质不能仅凭“线性”就声称电感矩阵对称。
+
 把总电流写成 $\vect j=\sum_iI_i\vect j_i^{(1)}$，矢势也线性叠加。于是
 \[
  U_B=\frac12\sum_{i,j}I_iI_j
@@ -118,6 +179,8 @@ $\sum_iI_i\dd\Phi_i$。Legendre 变换后的机械势为
 \]
 （线性体系），所以广义力
 $Q_\alpha=\partial U_B/\partial q_\alpha|_I$。若超导回路固定磁链，则直接在固定 $\Phi$ 下用场能，两个条件不能混用。
+
+图~\ref{advA4:quality:A4-magnetostatics:a2} 中，互感项连接两个不同线圈，能量双重求和中的 $1/2$ 防止把同一对耦合重复计数；电流固定的机械变化必须把电源做功一起核算。
 \end{advsolution}
 
 \subsection{磁多极矩}
@@ -198,9 +261,32 @@ $\nabla\cdot\vect B=0$ 在原点也成立。\hfill$\square$
  \node[above] at (0,.48) {$N$ 匝，截面积 $S$};
 \node at(0,-1.5){箭头规定两端向外位移的正向，非实际速度};
 \end{tikzpicture}
+\figcap{题图：端点质点、可变线圈长度和固定截面积，原图保留。}\label{advA4:quality:A4-magnetostatics:q3}
+
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex]
+ \draw[thick] (-3,0) circle(.32) node {$m$};
+ \draw[thick] (3,0) circle(.32) node {$m$};
+ \draw[thick] (-2.68,0) -- (-2.35,0);
+ \draw[thick,decorate,decoration={coil,segment length=5.5pt,amplitude=5pt}]
+   (-2.35,0)--(2.35,0);
+ \draw[thick] (2.35,0)--(2.68,0);
+ \draw[<->] (-2.35,-.72)--(2.35,-.72) node[midway,fill=none,below] {$x(t)$};
+ \draw[->,DeepBlue] (-3.45,0)--(-3.9,0) node[left] {$+q_L$};
+ \draw[->,DeepBlue] (3.45,0)--(3.9,0) node[right] {$+q_R$};
+ \node[above] at (0,.48) {$N$ 匝，截面积 $S$};
+\node at(0,-1.5){箭头规定两端向外位移的正向，非实际速度};
+\end{tikzpicture}
+\figcap{解图：端点质点、可变线圈长度和固定截面积，原图保留。}\label{advA4:quality:A4-magnetostatics:a3}
+\end{minipage}\end{center}
+
 长螺线管自感
 \[
  L(x)=\frac{\mu_0N^2S}{x}.
@@ -230,6 +316,8 @@ $K=m\dot x^2/4$。能量守恒
 \]
 此式适用于 $0\le t\le t_c$，其中
 $t_c=\sqrt{2ml^3/(\mu_0N^2SI^2)}$。磁能减少恰等于两质点动能；$x\downarrow0$ 时理想模型的长螺线管近似失效，不能继续外推。
+
+图~\ref{advA4:quality:A4-magnetostatics:a3} 中，长度变化改变自感 $L(x)$，理想超导闭回路保持磁链而不是电流；两端以相反速度运动，长度坐标的等效质量须由两质点动能相加得到。
 \end{advsolution}
 
 \subsection{磁介质与磁标势}
@@ -259,8 +347,30 @@ $w=\tfrac12\vect B\cdot\vect H$。
 
 \begin{advexamplebox}{均匀磁化球的内外磁场}\label{advA4:ex:uniform-magnetized-sphere}
 半径 $R$ 的球体具有均匀磁化强度 $\vect M=M\vect e_z$。求内外 $\vect H,\vect B$。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.2);\foreach \x in {-.5,0,.5}{\draw[DeepBlue,->] (\x,-.6)--(\x,.65);}\node[above] at (0,1.5){$\boldsymbol M=M\boldsymbol e_z$};\draw[->] (0,0)--(1.2,0) node[midway,below]{$R$};\node[right] at (1.7,.4){球外无自由电流};
+
+\end{tikzpicture}
+\figcap{题图：均匀磁化球、磁化轴与半径，内外场均待求。}\label{advA4:quality:A4-magnetostatics:q4}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.2);\foreach \x in {-.5,0,.5}{\draw[DeepBlue,->] (\x,-.6)--(\x,.65);}\node[above] at (0,1.5){$\boldsymbol M=M\boldsymbol e_z$};\draw[->] (0,0)--(1.2,0) node[midway,below]{$R$};\node[right] at (1.7,.4){球外无自由电流};
+
+\end{tikzpicture}
+\figcap{解图：均匀磁化球、磁化轴与半径，内外场均待求。}\label{advA4:quality:A4-magnetostatics:a4}
+\end{minipage}\end{center}
+
 体磁荷 $-\nabla\cdot\vect M=0$，表面磁荷
 $\sigma_M=M\cos\theta$。轴对称标势取
 \[
@@ -283,13 +393,37 @@ $H_{n,\rm out}-H_{n,\rm in}=\sigma_M$。代入得到
  \boxed{\vect B_{\rm out}=\frac{\mu_0}{4\pi r^3}
  [3(\vect m\cdot\vect e_r)\vect e_r-\vect m]}.
 \]
-在 $r=R$ 检查 $B_n$ 连续、$H_t$ 连续，边界条件满足。
+球外是真空，另有 $\boldsymbol H_{\rm out}=\boldsymbol B_{\rm out}/\mu_0$。在 $r=R$ 检查 $B_n$ 连续、$H_t$ 连续，边界条件满足。
+
+图~\ref{advA4:quality:A4-magnetostatics:a4} 中，均匀磁化使体束缚电流为零、面束缚电流为 $\boldsymbol M\times\boldsymbol n$；内外标势的连续和法向跃变决定退磁场，不能把 $H$ 与 $B/\mu_0$ 在球内等同。
 \end{advsolution}
 
 \begin{advexamplebox}{自由电流圈的磁偶极层与磁标势}\label{advA4:ex:current-loop-scalar-potential}
-证明载流 $I$ 的闭合线圈在不穿过线圈的区域可由磁标势描述，并等效于跨任意张面 $S$ 的磁偶极层。
+证明载流 $I$ 的闭合线圈在无电流的单连通子区域内可由磁标势描述，并等效于跨任意张面 $S$ 的磁偶极层；说明跨张面的支路跳跃。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!8] (0,0) ellipse (1.4 and .65);\draw[thick] (0,0) ellipse (1.4 and .65);\draw[DeepBlue,->] (1.4,0) arc[start angle=0,end angle=65,x radius=1.4,y radius=.65];\draw[->] (0,0)--(0,1.5) node[above]{$\boldsymbol n$};\node at (.3,-.2){张面 $S$};\node[right] at (1.7,0){边界电流 $I$};
+
+\end{tikzpicture}
+\figcap{题图：闭合电流圈与任取的跨面，张面法向和边界绕行方向按右手规则关联。}\label{advA4:quality:A4-magnetostatics:q5}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!8] (0,0) ellipse (1.4 and .65);\draw[thick] (0,0) ellipse (1.4 and .65);\draw[DeepBlue,->] (1.4,0) arc[start angle=0,end angle=65,x radius=1.4,y radius=.65];\draw[->] (0,0)--(0,1.5) node[above]{$\boldsymbol n$};\node at (.3,-.2){张面 $S$};\node[right] at (1.7,0){边界电流 $I$};
+
+\end{tikzpicture}
+\figcap{解图：闭合电流圈与任取的跨面，张面法向和边界绕行方向按右手规则关联。}\label{advA4:quality:A4-magnetostatics:a5}
+\end{minipage}\end{center}
+
 张面法线与正电流方向满足右手关系，其有向立体角定义为
 \[
  \Omega(\vect r)=\int_S
@@ -310,6 +444,8 @@ $H_{n,\rm out}-H_{n,\rm in}=\sigma_M$。代入得到
 按正法线方向穿过割面，$\Omega$ 从 $-2\pi$ 跳到 $+2\pi$，故选定支上的 $\psi_H$ 跳变 $+I$；沿正向闭合回路跟踪连续支，势累计下降 $I$，与环路积分
 $\oint\vect H\cdot\dd\vect l=I$。面上单位面积磁偶极矩取
 $I\vect n$ 就产生同一势，所以线圈等效于磁偶极层。标势是多值的，只有在割去张面后的单连通区域内才能单值使用。
+
+图~\ref{advA4:quality:A4-magnetostatics:a5} 中，改变张面只改变标势所用的支路面，真实磁场由边界电流决定；跨面势函数可有跳跃，而绕过电流圈的环路不允许全局单值标势。
 \end{advsolution}
 
 \subsection{静磁边值问题}
@@ -318,11 +454,33 @@ $I\vect n$ 就产生同一势，所以线圈等效于磁偶极层。标势是多
 $\partial_n\psi=0$ 的 Neumann 条件。
 
 \begin{advexamplebox}{反向平行电流、二维磁偶极与超导圆柱}\label{advA4:ex:parallel-currents-cylinder}
-两条无限长 $z$ 向导线位于 $x=\pm d/2$，载流分别为 $+I,-I$。求磁标势；取 $p=Id$、$d\to0$ 的二维偶极极限。再把该偶极置于半径 $R$ 的超导圆柱轴线上，求柱内平衡场。
+两条无限长 $z$ 向导线分别位于 $x=+d/2$ 和 $x=-d/2$，相应载流为 $+I$ 和 $-I$。求磁标势；取 $p=Id$、$d\to0$ 的二维偶极极限。再把该偶极置于半径 $R$ 的无限长超导圆柱空腔轴线上，求腔内平衡场。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.4);\node at (-.4,0){$\otimes$};\node at (.4,0){$\odot$};\node[above] at (-.4,.3){$-I$};\node[above] at (.4,.3){$+I$};\draw[<->] (-.4,-.8)--(.4,-.8) node[midway,below]{$d$};\node[above] at (0,1.7){超导圆柱空腔横截面 $R$};
+
+\end{tikzpicture}
+\figcap{题图：两反向长电流及其二维偶极极限，柱面边界在横截面内取圆。}\label{advA4:quality:A4-magnetostatics:q6}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.4);\node at (-.4,0){$\otimes$};\node at (.4,0){$\odot$};\node[above] at (-.4,.3){$-I$};\node[above] at (.4,.3){$+I$};\draw[<->] (-.4,-.8)--(.4,-.8) node[midway,below]{$d$};\node[above] at (0,1.7){超导圆柱空腔横截面 $R$};
+
+\end{tikzpicture}
+\figcap{解图：两反向长电流及其二维偶极极限，柱面边界在横截面内取圆。}\label{advA4:quality:A4-magnetostatics:a6}
+\end{minipage}\end{center}
+
 在不跨过割线的区域，单根 $+I$ 导线的标势是
-$-I\arg(z-z_0)/(2\pi)$。因此成对电流给出单值势
+$-I\arg(z-z_0)/(2\pi)$。因此在共同选定的割线之外，成对电流的标势为
 \[
  \boxed{\psi=-\frac I{2\pi}
  [\arg(x-d/2+\ii y)-\arg(x+d/2+\ii y)]}.
@@ -344,7 +502,9 @@ $-I\arg(z-z_0)/(2\pi)$。因此成对电流给出单值势
  H_y=\frac p{2\pi}\left(\frac{x^2-y^2}{r^4}+\frac1{R^2}\right),
  \qquad \vect B=\mu_0\vect H.
 \]
-在 $r=R$ 直接计算 $H_r=0$；$R\to\infty$ 时附加均匀场消失，退回自由空间偶极。
+在 $r=R$ 直接计算 $H_r=0$；例如自由空间中 $x=0,y\ne0$ 处有 $H_y=-p/(2\pi y^2)$，也与右侧 $+I$、左侧 $-I$ 的 Biot--Savart 场相符。$R\to\infty$ 时附加均匀场消失，退回自由空间偶极。
+
+图~\ref{advA4:quality:A4-magnetostatics:a6} 中，两导线的标势必须使用相同支路约定，取 $d\to0$ 时保持 $Id$ 固定；超导边界要求法向磁场为零，不能只规定标势本身为零。
 \end{advsolution}
 
 \begin{advexamplebox}{圆柱面电流与三圆柱相交体}\label{advA4:ex:steinmetz-currents}
@@ -371,9 +531,29 @@ $\vect K=i_0\cos\phi\,\vect e_z$，求内外磁场。
  \draw[vector,TextGray](1.8,0)--(1.8,.65)node[right]{$\vect K_3$ 切向};
  \node at(0,-2){局部方向示意，非三圆柱相交体的投影边界};
 \end{tikzpicture}
+\figcap{题图：原圆柱与三圆柱相交边界的切向电流几何保留。}\label{advA4:quality:A4-magnetostatics:q7}
+
 \end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[scale=.9]
+ \draw[axis](-2,-1)--(2.4,1.2)node[right]{$x$};
+ \draw[axis](2,-1)--(-2.4,1.2)node[left]{$y$};
+ \draw[axis](0,-1.5)--(0,2.1)node[above]{$z$};
+ \draw[DeepBlue] (0,0)ellipse(1.8 and .9);
+ \draw[vector,Gold!80!black](.7,.8)--(-.3,.3);\node[anchor=west]at(.8,1.55){$\vect K_1\parallel-\vect e_x$};\draw[guide](.8,1.4)--(.2,.55);
+ \draw[vector,DeepBlue](-.7,.8)--(-1.7,1.3)node[above]{$\vect K_2\parallel\vect e_y$};
+ \draw[vector,TextGray](1.8,0)--(1.8,.65)node[right]{$\vect K_3$ 切向};
+ \node at(0,-2){局部方向示意，非三圆柱相交体的投影边界};
+\end{tikzpicture}
+\figcap{解图：原圆柱与三圆柱相交边界的切向电流几何保留。}\label{advA4:quality:A4-magnetostatics:a7}
+\end{minipage}\end{center}
+
 环形面电流正是均匀磁化 $\vect M=i_0\vect e_z$ 的束缚面电流
 $\vect K=\vect M\times\vect n$，所以
 \[
@@ -418,4 +598,6 @@ $V_S=8(2-\sqrt2)R^3$，故
 \]
 图中只示三类面流的局部方向，不把椭圆当作三圆柱相交体的边界。各面电流均由同一公式
 $\vect M\times\vect n$ 决定，所以方向关系不是装饰性示意，而直接参与连续性证明。
+
+图~\ref{advA4:quality:A4-magnetostatics:a7} 中，面电流只能沿实际边界切向流动；接缝处各面流入、流出量须连续，远区偶极矩要对三类面电流共同积分，不能任意把某一完整圆柱场截断。
 \end{advsolution}

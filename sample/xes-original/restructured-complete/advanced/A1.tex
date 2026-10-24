@@ -1,3 +1,5 @@
+% AdvancedMechanicsAssumptions20261023-v1
+% AdvancedMechanicsQuality20261023-v1
 \begingroup
 \input{advanced/layout.tex}
 \AdvancedUnit{1}{力学}
@@ -28,8 +30,27 @@
 \begin{advexamplebox}{刚性椭球的十二个约束}\label{advA1:ex:ellipsoid}
 六个质点固定在椭球的六个顶点 $A,A',B,B',C,C'$ 上，
 $AA'=2a,BB'=2b,CC'=2c$。用十八个直角坐标写出一组相互独立的十二个约束。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue](0,0)ellipse(2.5 and 1.5);\draw[dashed](-2.5,0)arc(180:360:2.5 and .45);\draw(-2.5,0)arc(180:0:2.5 and .45);
+\foreach\x/\y/\t in {2.5/0/A,-2.5/0/A',.9/.45/B,-.9/-.45/B',0/1.5/C,0/-1.5/C'}{\fill(\x,\y)circle(2pt)node[above right]{$\t$};}
+\draw[dashed](-2.5,0)--(2.5,0)(-.9,-.45)--(.9,.45)(0,-1.5)--(0,1.5);\draw[<->](-2.5,-2.1)--(2.5,-2.1)node[midway,below]{$AA'=2a$};\draw[<->](-3,-1.5)--(-3,1.5)node[midway,left]{$CC'=2c$};\node at(1.7,.85){$BB'=2b$};
+\end{tikzpicture}
+\figcap{六个对径顶点和三条主轴（题设几何）}\label{advA1:fig:quality-ellipsoid-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[DeepBlue](0,0)ellipse(2.5 and 1.5);\draw[dashed](-2.5,0)arc(180:360:2.5 and .45);\draw(-2.5,0)arc(180:0:2.5 and .45);
+\foreach\x/\y/\t in {2.5/0/A,-2.5/0/A',.9/.45/B,-.9/-.45/B',0/1.5/C,0/-1.5/C'}{\fill(\x,\y)circle(2pt)node[above right]{$\t$};}
+\draw[dashed](-2.5,0)--(2.5,0)(-.9,-.45)--(.9,.45)(0,-1.5)--(0,1.5);\draw[<->](-2.5,-2.1)--(2.5,-2.1)node[midway,below]{$AA'=2a$};\draw[<->](-3,-1.5)--(-3,1.5)node[midway,left]{$CC'=2c$};\node at(1.7,.85){$BB'=2b$};\node[align=left]at(6.5,0){三组对径端点共用同一中点\\$|\vect u|=2a,\ |\vect v|=2b,\ |\vect w|=2c$\\三条对径矢量两两正交};
+\end{tikzpicture}
+\figcap{六个对径顶点和三条主轴（解答辅助图）}\label{advA1:fig:quality-ellipsoid-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-ellipsoid-a}中，$A,A'$、$B,B'$、$C,C'$ 各自的中点必须相同；长度条件与正交条件是另外六个标量约束，不能把六个端点各自固定在实验室坐标中。
+
 引入三条对径矢量
 \[
  \vect u=\vect r_A-\vect r_{A'},\quad
@@ -104,10 +125,27 @@ $A(q_\alpha,\dot q_\alpha,t)$，沿轨道的全导数为
 \end{advdefinition}
 
 \begin{advexamplebox}{在膨胀球面上运动的质点}\label{advA1:ex:expanding-sphere}
-质量为 $m$ 的质点被约束在 $x^2+y^2+z^2-v^2t^2=0$ 上。以球坐标角
+设 $v>0,t>0$。质量为 $m$ 的质点被约束在 $x^2+y^2+z^2-v^2t^2=0$ 上。以球坐标角
 $\theta,\varphi$ 为广义坐标，求位矢、动能、广义动量及其全导数、广义力和元功。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[DeepBlue](0,0)circle(2);\coordinate(P)at(1.3,1.3);\fill(P)circle(2pt)node[right]{$P$};\draw[thick](0,0)--(P)node[pos=.65,below right=3pt]{$r$};
+\draw[dashed](P)--(1.3,-.45)--(0,0);\draw(0,.7)arc(90:45:.7)node[midway,above]{$\theta$};\draw(.7,0)arc(0:-19.1:.7)node[midway,below]{$\varphi$};\node at(3.5,2){$r(t)=vt$};
+\end{tikzpicture}
+\figcap{膨胀球面的瞬时半径和两角坐标（题设几何）}\label{advA1:fig:quality-expanding-sphere-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[DeepBlue](0,0)circle(2);\coordinate(P)at(1.3,1.3);\fill(P)circle(2pt)node[right]{$P$};\draw[thick](0,0)--(P)node[pos=.65,below right=3pt]{$r$};
+\draw[dashed](P)--(1.3,-.45)--(0,0);\draw(0,.7)arc(90:45:.7)node[midway,above]{$\theta$};\draw(.7,0)arc(0:-19.1:.7)node[midway,below]{$\varphi$};\node at(3.5,2){$r(t)=vt$};\draw[->,Gold](P)--(2.1,2.1)node[right]{$\vect e_r$};\draw[->,Gold](P)--(2.1,.5)node[right]{$\vect e_\theta$};\node[align=left]at(4,-1.4){$\dd s_r=\dd r$\\$\dd s_\theta=r\dd\theta$\\$\dd s_\varphi=r\sin\theta\dd\varphi$};
+\end{tikzpicture}
+\figcap{膨胀球面的瞬时半径和两角坐标（解答辅助图）}\label{advA1:fig:quality-expanding-sphere-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-expanding-sphere-a}中，$P$ 的径向距离已由非稳定约束固定为 $vt$；仍可独立变化的是 $\theta,\varphi$，而实际微位移还含球面膨胀的径向部分。
+
 \[
  \vect r=vt(\sin\theta\cos\varphi,\sin\theta\sin\varphi,\cos\theta),
 \]
@@ -168,21 +206,53 @@ $m_i\ddot{\vect r}_i=\vect F_i$ 便得式\eqref{advA1:eq:lagrange-lemma}。
 
 \begin{advexamplebox}{二维极坐标中的动力学方程}\label{advA1:ex:polar}
 由拉格朗日引理推导平面极坐标中的质点动力学方程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(4.6,0)node[right]{$x$};\draw[->](0,0)--(0,3.4)node[above]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(2.5,1.8);\fill(P)circle(2pt)node[left]{$P$};\draw[thick](0,0)--(P)node[midway,below]{$r$};\draw(.9,0)arc(0:35.75:.9)node[midway,right]{$\theta$};
+\end{tikzpicture}
+\figcap{极坐标中随位置旋转的正交基矢（题设几何）}\label{advA1:fig:quality-polar-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(4.6,0)node[right]{$x$};\draw[->](0,0)--(0,3.4)node[above]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(2.5,1.8);\fill(P)circle(2pt)node[left]{$P$};\draw[thick](0,0)--(P)node[midway,below]{$r$};\draw(.9,0)arc(0:35.75:.9)node[midway,right]{$\theta$};\draw[->,DeepBlue](P)--(3.5,2.52)node[right]{$\vect e_r$};\draw[->,DeepBlue](P)--(1.78,2.8)node[left]{$\vect e_\theta$};
+\end{tikzpicture}
+\figcap{极坐标中随位置旋转的正交基矢（解答辅助图）}\label{advA1:fig:quality-polar-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-polar-a}中，径向与横向单位矢量随 $\theta$ 改变。先把速度写成径向、横向两项，再求导时须同时对基矢求导。
+
 $T=m(\dot r^2+r^2\dot\theta^2)/2$，而 $Q_r=F_r, Q_\theta=rF_\theta$。代入式\eqref{advA1:eq:lagrange-lemma}：
 \[
  m(\ddot r-r\dot\theta^2)=F_r,
  \qquad
  m(r\ddot\theta+2\dot r\dot\theta)=F_\theta.
 \]
-第二式左边每项均为加速度；若漏掉 $r\ddot\theta$ 中的 $r$，量纲会立即失配。
+第二式括号内每项均为加速度；乘以质量 $m$ 后与右端力同量纲。若漏掉 $r\ddot\theta$ 中的 $r$，量纲会立即失配。
 \end{advsolution}
 
 \begin{advexamplebox}{三维球坐标中的动力学方程}\label{advA1:ex:spherical}
 推导球坐标 $(r,\theta,\varphi)$ 中的三个动力学方程，并与加速度的矢量分解比较。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[DeepBlue](0,0)circle(2);\coordinate(P)at(1.3,1.3);\fill(P)circle(2pt)node[right]{$P$};\draw[thick](0,0)--(P)node[pos=.65,below right=3pt]{$r$};
+\draw[dashed](P)--(1.3,-.45)--(0,0);\draw(0,.7)arc(90:45:.7)node[midway,above]{$\theta$};\draw(.7,0)arc(0:-19.1:.7)node[midway,below]{$\varphi$};
+\end{tikzpicture}
+\figcap{球坐标的径向、极角和方位角位移（题设几何）}\label{advA1:fig:quality-spherical-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(3.5,0)node[right]{$x$};\draw[->](0,0)--(0,3)node[above]{$z$};\draw[->](0,0)--(-1.3,-1)node[left]{$y$};\node[below left]at(0,0){$O$};\draw[DeepBlue](0,0)circle(2);\coordinate(P)at(1.3,1.3);\fill(P)circle(2pt)node[right]{$P$};\draw[thick](0,0)--(P)node[pos=.65,below right=3pt]{$r$};
+\draw[dashed](P)--(1.3,-.45)--(0,0);\draw(0,.7)arc(90:45:.7)node[midway,above]{$\theta$};\draw(.7,0)arc(0:-19.1:.7)node[midway,below]{$\varphi$};\draw[->,Gold](P)--(2.1,2.1)node[right]{$\vect e_r$};\draw[->,Gold](P)--(2.1,.5)node[right]{$\vect e_\theta$};\node[align=left]at(4,-1.4){$\dd s_r=\dd r$\\$\dd s_\theta=r\dd\theta$\\$\dd s_\varphi=r\sin\theta\dd\varphi$};
+\end{tikzpicture}
+\figcap{球坐标的径向、极角和方位角位移（解答辅助图）}\label{advA1:fig:quality-spherical-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-spherical-a}中，三个线元分别为 $\dd r,r\dd\theta,r\sin\theta\dd\varphi$；第三项的纬圈半径是 $r\sin\theta$，不能漏掉这个度量因子。
+
 \[
  T=\frac m2[\dot r^2+r^2\dot\theta^2+r^2\sin^2\theta\dot\varphi^2],
 \quad
@@ -207,8 +277,23 @@ $(\vect e_r,\vect e_\theta,\vect e_\varphi)$，会得到完全相同的三个分
  \left[\binom{x}{y}-\binom{X}{Y}\right],
 \]
 其中 $X,Y,\theta$ 均为时间函数。解释其几何意义，写出元功并推导新系中的运动方程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(4.2,0)node[right]{$x$};\draw[->](0,0)--(0,3.2)node[above]{$y$};\node[below left]at(0,0){$O$};\coordinate(C)at(1.8,1);\fill(C)circle(2pt)node[below right]{$O'$};\draw[->,Gold](0,0)--(C)node[midway,below]{$\vect R$};\draw[->,DeepBlue](C)--(3.8,2.2)node[right]{$\bar x$};\draw[->,DeepBlue](C)--(.8,2.67)node[above]{$\bar y$};\draw(2.4,1)arc(0:31:.6)node[midway,right]{$\theta$};
+\end{tikzpicture}
+\figcap{原点平移与坐标基矢转动（题设几何）}\label{advA1:fig:quality-moving-frame-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(4.2,0)node[right]{$x$};\draw[->](0,0)--(0,3.2)node[above]{$y$};\node[below left]at(0,0){$O$};\coordinate(C)at(1.8,1);\fill(C)circle(2pt)node[below right]{$O'$};\draw[->,Gold](0,0)--(C)node[midway,below]{$\vect R$};\draw[->,DeepBlue](C)--(3.8,2.2)node[right]{$\bar x$};\draw[->,DeepBlue](C)--(.8,2.67)node[above]{$\bar y$};\draw(2.4,1)arc(0:31:.6)node[midway,right]{$\theta$};\node[align=left]at(4,-1.2){平移原点后再旋转分量\\相同物理矢量使用不同基矢表示};
+\end{tikzpicture}
+\figcap{原点平移与坐标基矢转动（解答辅助图）}\label{advA1:fig:quality-moving-frame-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-moving-frame-a}中，先减去原点位移 $\vect R=(X,Y)$，再将同一个相对位置投影到转过 $\theta$ 的新轴上。对坐标变换求导时，平移和基矢转动均随时间变化。
+
 这是原点位于 $\vect R=(X,Y)$、坐标轴相对惯性系转过 $\theta$ 的非惯性系。令
 $\vect\rho=(\bar x,\bar y)$，$\vect\Omega=\dot\theta\vect e_z$，则
 \[
@@ -268,9 +353,17 @@ $\sum_i\nabla_i f^A\cdot\partial\vect r_i/\partial q_\alpha=0$，它对任一允
 
 \begin{advexamplebox}{收短摆绳的圆锥摆}\label{advA1:ex:conical-pendulum}
 均匀重力场中，质量 $m$ 的摆球以竖直向下方向为极轴，摆角为 $\theta$、方位角为 $\varphi$。摆长以常速 $v$ 收短，$l(t)=l_0-vt$。写出 $\theta,\varphi$ 的运动方程。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,2.5)circle(2pt)node[above]{$O$};\draw[dashed](0,2.5)--(0,-1);\coordinate(P)at(1.5,.1);\draw[thick](0,2.5)--(P);\fill(P)circle(3pt)node[right]{$m$};\draw(0,1.6)arc(-90:-58:.9)node[midway,below right]{$\theta$};\draw[dashed](0,.1)ellipse(1.5 and .4);\node[above right]at(.75,1.3){$l(t)=l_0-vt$};
+\end{tikzpicture}
+\figcap{收短摆绳的摆角和瞬时轨道（题设几何）}\label{advA1:fig:quality-conical-pendulum-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \AdvHideHeadingtrue
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-conical-pendulum-q}中，摆长沿绳方向改变，方位角对应的水平轨道半径为 $l\sin\theta$；因而 $\varphi$ 的广义动量含 $l^2\sin^2\theta$，收绳时不能视为常系数。
+
 \noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
 \begin{center}\begin{minipage}{\linewidth}\centering
 \begin{tikzpicture}[scale=.95]
@@ -306,8 +399,23 @@ $l$ 是给定函数而非待求自由度。对 $\theta,\varphi$ 列方程：
 
 \begin{advexamplebox}{缓慢变化引力常量的开普勒问题}\label{advA1:ex:kepler-time}
 平面有心力 $F_r=-mk(t)/r^2$。忽略使 $k$ 改变的物质流、辐射等其他作用，写出运动方程并判断哪些守恒量仍然存在。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(4.6,0)node[right]{$x$};\draw[->](0,0)--(0,3.4)node[above]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(2.5,1.8);\fill(P)circle(2pt)node[left]{$P$};\draw[thick](0,0)--(P)node[midway,below]{$r$};\draw(.9,0)arc(0:35.75:.9)node[midway,right]{$\theta$};\draw[->,Gold,very thick](P)--(1.7,1.224)node[above left]{$F_r$};\node at(3,-1){$k=k(t)$};
+\end{tikzpicture}
+\figcap{随时间变化的中心引力和极径（题设几何）}\label{advA1:fig:quality-kepler-time-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](0,0)--(4.6,0)node[right]{$x$};\draw[->](0,0)--(0,3.4)node[above]{$y$};\node[below left]at(0,0){$O$};\coordinate(P)at(2.5,1.8);\fill(P)circle(2pt)node[left]{$P$};\draw[thick](0,0)--(P)node[midway,below]{$r$};\draw(.9,0)arc(0:35.75:.9)node[midway,right]{$\theta$};\draw[->,Gold,very thick](P)--(1.7,1.224)node[above left]{$F_r$};\node at(3,-1){$k=k(t)$};\draw[->,DeepBlue](P)--(3.5,2.52)node[right]{$\vect e_r$};\draw[->,DeepBlue](P)--(1.78,2.8)node[left]{$\vect e_\theta$};
+\end{tikzpicture}
+\figcap{随时间变化的中心引力和极径（解答辅助图）}\label{advA1:fig:quality-kepler-time-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-kepler-time-a}中，力始终沿 $PO$，所以对 $O$ 的力矩为零；但力的强度显含时间，角动量守恒与能量是否守恒须分别判断。
+
 \[
  L=\frac m2(\dot r^2+r^2\dot\varphi^2)+\frac{mk(t)}r .
 \]
@@ -356,7 +464,7 @@ $l$ 是给定函数而非待求自由度。对 $\theta,\varphi$ 列方程：
 $p_\alpha=\partial L/\partial\dot q_\alpha$，前两组项逐项消去，即得式\eqref{advA1:eq:Hdot}。
 
 \begin{advexamplebox}{系数随时间同比增长的谐振子}\label{advA1:ex:scaled-oscillator}
-对 $L=(m\dot q^2-kq^2)/2$：
+设 $m,k>0$；涉及缓变极限时取 $0<\gamma<\sqrt{k/m}$，并固定不随 $\gamma$ 改变的有限初始位置与速度。对 $L=(m\dot q^2-kq^2)/2$：
 (1) 作坐标标度变换使动能系数为 $1$；
 (2) 再考虑
 \[
@@ -366,8 +474,23 @@ $p_\alpha=\partial L/\partial\dot q_\alpha$，前两组项逐项消去，即得�
 求方程、哈密顿量及其全导数；
 (3) 用 $\bar q=e^{\gamma t}q$ 找出守恒量；
 (4) 证明在 $t=1/\gamma$ 的时间尺度上，$\gamma\to0$ 时哈密顿量的变化趋于零。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick](0,-.5)--(0,.6);\draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt}](0,0)--(3,0);\draw[fill=PaleBlue](3,-.4)rectangle(4,.4);\draw[->](3.5,-.9)--(5,-.9)node[right]{$q$};\node at(2,1.2){拉格朗日量中的系数同比增长};
+\end{tikzpicture}
+\figcap{谐振坐标与指数标度后的振动（题设几何）}\label{advA1:fig:quality-scaled-oscillator-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[very thick](0,-.5)--(0,.6);\draw[decorate,decoration={coil,segment length=5pt,amplitude=3pt}](0,0)--(3,0);\draw[fill=PaleBlue](3,-.4)rectangle(4,.4);\draw[->](3.5,-.9)--(5,-.9)node[right]{$q$};\node at(2,1.2){拉格朗日量中的系数同比增长};\draw[->](0,-2.4)--(5,-2.4)node[right]{$t$};\draw[DeepBlue,domain=0:5,samples=90]plot(\x,{-2.4+.6*exp(-.3*\x)*cos(240*\x)});\node at(2,-3.3){$q=e^{-\gamma t}\bar q$};
+\end{tikzpicture}
+\figcap{谐振坐标与指数标度后的振动（解答辅助图）}\label{advA1:fig:quality-scaled-oscillator-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-scaled-oscillator-a}中，原坐标 $q$ 具有指数包络，标度坐标 $\bar q=e^{\gamma t}q$ 消去了包络；这项坐标变化不能直接把原哈密顿量当成新系统的守恒能量。
+
 (1) 取 $Q=\sqrt m\,q$，则
 $L=(\dot Q^2-\omega^2Q^2)/2$。
 
@@ -387,7 +510,7 @@ $L=(\dot Q^2-\omega^2Q^2)/2$。
 \]
 不显含时间，因而
 \[
- \mathcal E=\frac m2[\dot{\bar q}^{,2}+(\omega^2-\gamma^2)\bar q^2]
+ \mathcal E=\frac m2[\dot{\bar q}^{\,2}+(\omega^2-\gamma^2)\bar q^2]
  =H+m\gamma e^{2\gamma t}q\dot q
 \]
 守恒。
@@ -400,6 +523,17 @@ $L=(\dot Q^2-\omega^2Q^2)/2$。
 代入 $H$ 可见其非常数部分的振幅为 $\mathcal O(\gamma)$，故即使取
 $t=1/\gamma$，仍有
 $|H(1/\gamma)-H(0)|\le C_1\gamma+C_2\gamma^2\to0$。这是缓变极限，不是对任意有限 $\gamma$ 的精确能量守恒。
+还可给出对全部时间成立的界，避免把短时估计直接外推到 $1/\gamma$。
+由守恒量 $\mathcal E=m(\dot{\bar q}^{\,2}+\Omega^2\bar q^2)/2$，有
+\[
+ H-\mathcal E=-m\gamma\bar q\dot{\bar q}+m\gamma^2\bar q^2,
+ \quad |H-\mathcal E|\le\frac{\gamma\mathcal E}{\Omega}
+ +\frac{2\gamma^2\mathcal E}{\Omega^2}.
+\]
+因而 $|H(t)-H(0)|\le2\gamma\mathcal E/\Omega+4\gamma^2\mathcal E/\Omega^2$。
+在题设固定初值且 $\gamma\to0^+$ 时，$\mathcal E$ 有界、$\Omega\to\omega>0$，
+故这个一致界在 $t=1/\gamma$ 时仍趋于零。
+
 \end{advsolution}
 
 \begin{advtheorem}{循环坐标与动量积分}\label{advA1:thm:cyclic}
@@ -432,10 +566,18 @@ $\delta q_\alpha=(\partial\Lambda_\alpha/\partial\lambda)_0\delta\lambda$。不�
 空间平移对应线动量，旋转对应角动量，时间平移对应能量。
 
 \begin{advexamplebox}{对称解绕的旋转圆筒}\label{advA1:ex:unwinding-cylinder}
-质量 $M$、半径 $R$ 的薄壁圆筒可绕定轴自由转动。两条相同轻绳对称缠绕，自由端各系质量 $m$ 的小球。初始直绳段长度为零，整体角速度为 $\omega_0$。释放后绳不打滑。（1）求每侧打开长度 $s(t)$；（2）若绳总长度为 $L$，讨论原题所问“打开后”绳相对固定在筒上的直径的夹角随时间的关系。须说明所选绳端连接模型与公式适用阶段。
+质量 $M$、半径 $R$ 的薄壁圆筒可绕定轴自由转动。两条相同轻绳对称缠绕，自由端各系质量 $m$ 的小球。初始直绳段长度为零，整体角速度为 $\omega_0$。释放后绳不打滑。（1）求每侧打开长度 $s(t)$；（2）若两侧可打开绳长的总和为 $L$，讨论原题所问“打开后”绳相对固定在筒上的直径的夹角随时间的关系。须说明所选绳端连接模型与公式适用阶段。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,0)circle(1.3);\draw[dashed](-1.7,0)--(1.7,0);\draw[very thick](1.3,0)--(1.3,2);\draw[very thick](-1.3,0)--(-1.3,-2);\fill(1.3,2)circle(3pt)node[right]{$m$};\fill(-1.3,-2)circle(3pt)node[left]{$m$};\draw(0,0)--(1.3,0)node[midway,below]{$R$};\node at(0,.4){$M$};\draw[->,Gold](.7,0)arc(0:100:.7)node[midway,above]{$\omega_0$};\node at(3.5,.7){对称解绕；俯视图};
+\end{tikzpicture}
+\figcap{两侧对称解绕的切线绳段（题设几何）}\label{advA1:fig:quality-unwinding-cylinder-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \AdvHideHeadingtrue
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-unwinding-cylinder-q}中，圆筒两侧的直绳段与筒面相切，另一侧由中心对称得到。绳不打滑联系的是筒转角、切点方位和打开长度，公式只在仍有筒面接触的阶段有效。
+
 \noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
 \begin{center}\begin{minipage}{\linewidth}\centering
 \begin{tikzpicture}[scale=.88]
@@ -494,9 +636,17 @@ $t_*=L/(2R\omega_0)$，在这一阶段终点，累计相对转角为 $L/(2R)$，
 \begin{advexamplebox}{自由转动圆环上小珠的小振动}\label{advA1:ex:routh-hoop}
 \emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
 半径 $a$ 的竖直圆环可绕竖直直径无摩擦转动，圆环对该轴的转动惯量为 $I$。质量 $m$ 的小珠在环上滑动。以珠从最低点向上的角位移 $\theta$ 和环的方位角 $\varphi$ 为坐标。在绕竖直轴角动量为 $J$ 时，求最低点附近的振动频率及稳定条件。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[thick](0,0)ellipse(1.5 and 2);\draw[->](0,-2.4)--(0,2.5)node[above]{竖直转轴};\fill(0,0)circle(2pt)node[left]{$O$};\coordinate(P)at(.7949,-1.6961);\draw[dashed](0,0)--(P);\fill(P)circle(3pt)node[right]{$m$};\draw[DeepBlue](0,-.7)arc(-90:-58:.525 and .7);\node at(.34,-.8){$\theta$};\draw[->,Gold](-.7,.7)arc(180:0:.7 and .2)node[right]{$\varphi$};\node[align=left]at(3.3,0){环半径 $a$\\轴惯量 $I$};
+\end{tikzpicture}
+\figcap{可绕竖直直径转动的圆环与小珠（题设几何）}\label{advA1:fig:quality-routh-hoop-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \AdvHideHeadingtrue
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-routh-hoop-q}中，小珠到竖直轴的距离是 $a\sin\theta$；它使绕轴惯量成为 $I+ma^2\sin^2\theta$，消去循环坐标时应固定角动量 $J$。
+
 \noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
 \begin{center}\begin{minipage}{\linewidth}\centering
 \begin{tikzpicture}[scale=.9]
@@ -535,7 +685,12 @@ $J=(I+ma^2\sin^2\theta)\dot\varphi$。作罗斯约化：
  \boxed{\omega^2=\frac ga-\left(\frac JI\right)^2},
  \qquad \frac{|J|}I<\sqrt{\frac ga}.
 \]
-当等号成立时二阶恢复力消失，必须保留四阶项；超过阈值时最低点变为不稳定点。
+当 $|J|/I=\sqrt{g/a}$ 时二阶恢复力消失，但有效势的首个非零增量为
+\[
+ U_{\rm eff}(\theta)-U_{\rm eff}(0)
+ =mga\left(\frac18+\frac{ma^2}{2I}\right)\theta^4+\order{\theta^6}>0
+\]
+（充分小的非零 $\theta$），所以最低点仍为稳定平衡，只是线性小振动频率为零，有限小振幅的周期须由非线性项决定。因此稳定范围含等号；上式严格不等号对应非零的线性回复频率。超过阈值时最低点变为不稳定点。
 \end{advsolution}
 
 \subsection{小振动、傅里叶变换与周期系统}
@@ -600,8 +755,23 @@ $\omega_j^2>0$ 表示稳定振动，$\omega_j^2=0$ 表示零模，$\omega_j^2<0$
 \begin{advexamplebox}{刚体复摆的小振动}\label{advA1:ex:physical-pendulum}
 \emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
 刚体质量为 $M$，质心到水平固定轴的距离为 $a$，对该轴的转动惯量为 $I$。求竖直向下稳定位置附近的周期。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,2.5)circle(2pt)node[above]{$O$};\draw[dashed](0,2.5)--(0,-1);\coordinate(P)at(1.5,.1);\draw[thick](0,2.5)--(P);\fill(P)circle(3pt)node[right]{$G$};\draw(0,1.6)arc(-90:-58:.9)node[midway,below right]{$\theta$};\node at(3,1.2){$OG=a$};\node at(3,.4){轴惯量 $I$，质量 $M$};
+\end{tikzpicture}
+\figcap{固定轴与偏离铅垂线的刚体质心（题设几何）}\label{advA1:fig:quality-physical-pendulum-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\fill(0,2.5)circle(2pt)node[above]{$O$};\draw[dashed](0,2.5)--(0,-1);\coordinate(P)at(1.5,.1);\draw[thick](0,2.5)--(P);\fill(P)circle(3pt)node[right]{$G$};\draw(0,1.6)arc(-90:-58:.9)node[midway,below right]{$\theta$};\node at(3,1.2){$OG=a$};\node at(3,.4){轴惯量 $I$，质量 $M$};\draw[->,Gold](P)--++(0,-1)node[below]{$Mg$};
+\end{tikzpicture}
+\figcap{固定轴与偏离铅垂线的刚体质心（解答辅助图）}\label{advA1:fig:quality-physical-pendulum-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-physical-pendulum-a}中，质心 $G$ 距支点轴为 $a$，重力矩的力臂是 $a\sin\theta$；小角展开后用刚体对该固定轴的惯量 $I$，不能用质点式 $Ma^2$ 代替。
+
 以偏角 $\theta$ 为坐标，
 \[
  L=\frac12I\dot\theta^2+Mga\cos\theta.
@@ -640,8 +810,8 @@ $\omega_j^2>0$ 表示稳定振动，$\omega_j^2=0$ 表示零模，$\omega_j^2<0$
  \ddot\zeta+\omega_0^2\zeta=0,
  \qquad \omega_0^2=\omega^2+\frac{\Omega^2}{4}.
 \]
-两个圆偏振模的频率为 $\omega_0\pm\Omega/2$，线偏振叠加后的振动平面以 $\Omega/2$ 进动。对地球上的傅科摆，若将当地竖直方向的地球自转分量记为 $\Omega_E\sin\lambda$，则上式的速度耦合系数是
-$\Omega=2\Omega_E\sin\lambda$，所以进动角速度是 $\Omega_E\sin\lambda$。
+两个圆偏振模的频率为 $\omega_0\pm\Omega/2$，线偏振叠加后的振动平面以 $\Omega/2$ 进动。对地球上的傅科摆，取 $x$ 向东、$y$ 向北、竖直向上为正，地球自转的竖直分量为 $\Omega_E\sin\lambda$。科里奥利力的水平分量为 $F_x=2m\Omega_E\sin\lambda\,\dot y$、$F_y=-2m\Omega_E\sin\lambda\,\dot x$，故按本节的力和复坐标约定，应代入
+$\Omega=-2\Omega_E\sin\lambda$，振动平面的有符号进动角速度为 $-\Omega_E\sin\lambda$；北半球从上方看为顺时针，进动速率的大小为 $|\Omega_E\sin\lambda|$。
 
 \begin{advtheorem}{周期函数的傅里叶级数}\label{advA1:thm:fourier-series}
 对周期 $l$ 的光滑函数，
@@ -692,9 +862,24 @@ $L\to\infty$。此时离散波数间距 $\Delta k=2\pi/L\to0$，级数的黎曼�
 $l\sqrt{\kappa/m}$；在布里渊区边界 $k=\pm\pi/l$ 处群速度为零。
 
 \begin{advexamplebox}{用极坐标求傅科摆进动}\label{advA1:ex:foucault-polar}
-将速度耦合二维谐振子改用极坐标 $(r,\theta)$，求共转线偏振解的进动速率，并说明一般初态及静止释放时的区别。
+对 $L=m(\dot x^2+\dot y^2)/2-m\omega^2(x^2+y^2)/2-m\Omega(x\dot y-y\dot x)/2$，改用极坐标 $(r,\theta)$，求共转线偏振解的进动速率，并说明一般初态及静止释放时的区别。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-2.5,0)--(3,0)node[right]{$x$};\draw[->](0,-2)--(0,2.4)node[above]{$y$};\draw[DeepBlue,rotate=25](0,0)ellipse(2 and .5);\draw[dashed,rotate=25](-2.3,0)--(2.3,0)node[right]{共转长轴};\draw(.8,0)arc(0:25:.8)node[midway,right]{$\theta$};
+\end{tikzpicture}
+\figcap{共转坐标中椭圆的主轴与极角（题设几何）}\label{advA1:fig:quality-foucault-polar-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\draw[->](-2.5,0)--(3,0)node[right]{$x$};\draw[->](0,-2)--(0,2.4)node[above]{$y$};\draw[DeepBlue,rotate=25](0,0)ellipse(2 and .5);\draw[dashed,rotate=25](-2.3,0)--(2.3,0)node[right]{共转长轴};\draw(.8,0)arc(0:25:.8)node[midway,right]{$\theta$};\node[align=center]at(0,-2.6){共转椭圆的主轴以 $\Omega/2$ 转动\\一般初态不必是直线振动};
+\end{tikzpicture}
+\figcap{共转坐标中椭圆的主轴与极角（解答辅助图）}\label{advA1:fig:quality-foucault-polar-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-foucault-polar-a}中，椭圆的轴角与质点的瞬时极角不同；只有共转系中的特定线偏振解才有 $J=0$，一般初态应保留椭圆的横向运动。
+
 因 $x\dot y-y\dot x=r^2\dot\theta$，
 \[
  L=\frac m2(\dot r^2+r^2\dot\theta^2)-\frac k2r^2
@@ -723,8 +908,23 @@ $l\sqrt{\kappa/m}$；在布里渊区边界 $k=\pm\pi/l$ 处群速度为零。
 \begin{advexamplebox}{无限一维电阻网络}\label{advA1:ex:resistor-chain}
 \emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
 无限多个节点按整数 $n$ 排列，相邻节点之间接电阻 $R$，每个节点再通过电阻 $r$ 接公共地。求 $n=0$ 节点对地的等效电阻。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\i in{-2,-1,0,1,2}{\fill(1.5*\i,0)circle(2pt)node[above]{$\i$};\draw(1.5*\i,0)--(1.5*\i,-.3)--++(.12,-.12)--++(-.24,-.2)--++(.24,-.2)--++(-.24,-.2)--++(.12,-.12)--(1.5*\i,-1.5);\node[right]at(1.5*\i,-.8){$r$};}\draw(-3,-1.5)--(3,-1.5)node[right]{公共地};\foreach\i in{-2,-1,0,1}{\draw(1.5*\i,0)--++(.4,0)--++(.1,.15)--++(.2,-.3)--++(.2,.3)--++(.2,-.3)--++(.1,.15)--++(.3,0);\node at(1.5*\i+.75,.5){$R$};}\node at(-3.7,0){$\cdots$};\node at(3.7,0){$\cdots$};
+\end{tikzpicture}
+\figcap{无限电阻链的节点和对地支路（题设几何）}\label{advA1:fig:quality-resistor-chain-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \begin{advsolution}
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\i in{-2,-1,0,1,2}{\fill(1.5*\i,0)circle(2pt)node[above]{$\i$};\draw(1.5*\i,0)--(1.5*\i,-.3)--++(.12,-.12)--++(-.24,-.2)--++(.24,-.2)--++(-.24,-.2)--++(.12,-.12)--(1.5*\i,-1.5);\node[right]at(1.5*\i,-.8){$r$};}\draw(-3,-1.5)--(3,-1.5)node[right]{公共地};\foreach\i in{-2,-1,0,1}{\draw(1.5*\i,0)--++(.4,0)--++(.1,.15)--++(.2,-.3)--++(.2,.3)--++(.2,-.3)--++(.1,.15)--++(.3,0);\node at(1.5*\i+.75,.5){$R$};}\node at(-3.7,0){$\cdots$};\node at(3.7,0){$\cdots$};\draw[Gold,thick](-.3,-1.7)rectangle(.3,.7);\node at(0,-2.3){在 $n=0$ 注入电流，两侧衰减解须在无穷远有界};
+\end{tikzpicture}
+\figcap{无限电阻链的节点和对地支路（解答辅助图）}\label{advA1:fig:quality-resistor-chain-a}
+\end{qualityfigure}
+图~\ref{advA1:fig:quality-resistor-chain-a}中，每个整数节点均通过 $r$ 接地，相邻节点通过 $R$ 相连；在零号节点注入电流后，两侧节点电势必须满足同一差分方程及无穷远有界条件。
+
 向 $0$ 节点注入电流 $I$，节点电势为 $V_n$。对所有 $n$，
 \[
  \frac{V_n}{r}+\frac{2V_n-V_{n-1}-V_{n+1}}R=I\delta_{n0}.
@@ -750,9 +950,17 @@ $R\to\infty$ 时各节点断开，$R_{\rm eq}\to r$；$r\to\infty$ 时整个网�
 \begin{advexamplebox}{六原子环的简正模}\label{advA1:ex:six-atom-ring}
 \emph{题源说明：原资料仅给主题或注明课堂描述；以下条件为依据主题所作的教学补全。}\par
 六个质量均为 $m$ 的原子排成闭环，只考虑沿环方向的小位移 $u_j$，相邻原子之间的有效弹簧常量为 $\kappa$，$u_{j+6}=u_j$。求全部简正频率及简并度。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+\foreach\i in{0,...,5}{\coordinate(P\i)at({60*\i}:1.8);\fill(P\i)circle(2.5pt)node[below right]{$j=\i$};\draw[->,Gold](P\i)--++({60*\i+90}:.55)node[above]{$u_\i$};}\draw[DeepBlue,thick](P0)--(P1)--(P2)--(P3)--(P4)--(P5)--cycle;\node[align=center]at(0,0){$m_j=m$\\$\kappa$};\node at(0,-2.7){沿环方向的小位移，$u_{j+6}=u_j$};
+\end{tikzpicture}
+\figcap{六原子的周期边界与切向小位移（题设几何）}\label{advA1:fig:quality-six-atom-ring-q}
+\end{qualityfigure}
 \end{advexamplebox}
 \AdvHideHeadingtrue
-\begin{advsolution}
+\begin{advsolution}题图~\ref{advA1:fig:quality-six-atom-ring-q}中，相邻原子之间的力取决于位移差，首尾相接给出 $u_{j+6}=u_j$；允许波数由这个周期边界量子化，不能使用自由端链的边界条件。
+
 \noindent\begin{minipage}{\linewidth}{\bfseries\color{DeepBlue}解答}\par
 \begin{center}\begin{minipage}{\linewidth}\centering
 \begin{tikzpicture}[scale=.92]

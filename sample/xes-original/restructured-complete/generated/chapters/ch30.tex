@@ -1,3 +1,5 @@
+% EMOpticsQuality20261023
+% QualityRevision20261023
 \begingroup\tcbset{breakable/.default=false}
 \renewcommand{\Needspace}[1]{\par\begingroup
 \dimen0=#1\relax\vskip0pt plus\dimen0\penalty-100
@@ -6,7 +8,7 @@
 \chapter{衍射、偏振与晶体光学}
 
 
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/forty-fifth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/forty-fifth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/forty-fifth-section/}{../../../sample/xes-original/forty-fifth-section/assets/}}
 
 
 \section{衍射现象与波动模型}
@@ -32,7 +34,7 @@
  \node[above]at(0,1.9){孔径};
  \node[below,align=center]at(.2,-2.3){孔内各微元波相干叠加\\不能当作几条折射光线};
 \end{scope}
-\end{tikzpicture}\figcap{不透明障碍与孔径改变开放波面的范围；虚线只标几何阴影边界。}\label{ch30:fig:s45-22-1}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{不透明障碍与孔径改变开放波面的范围；虚线只标几何阴影边界。\label{ch30:fig:s45-22-1}}\end{minipage}\end{center}
 }
 
 % Geometry: shared coordinates; transparent labels; numerical profiles where required.
@@ -51,7 +53,7 @@
  \node[above left]at(H){$H$};
  \draw[<->](0,-1.65)--(2,-1.65)node[midway,below]{$AB=d$};
  \node[anchor=west,align=left]at(3,2.75){$BH\perp AH$\\$AH=d\sin\theta$};
-\end{tikzpicture}\figcap{在共同出射波前 $BH$ 上比较相位，程差的大小等于投影 $AH$。}\label{ch30:fig:s45-22-2}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{在共同出射波前 $BH$ 上比较相位，程差的大小等于投影 $AH$。\label{ch30:fig:s45-22-2}}\end{minipage}\end{center}
 }
 
 \newcommand{\SpectrumDiagram}{%
@@ -66,7 +68,7 @@
  \node[green!50!black,anchor=west] at (3.05,-1.28) {绿光};
  \node[red!70!black,anchor=west] at (2.65,-1.95) {红光};
  \node[below]at(0,-2.65){同一级中长波长偏转角更大};
-\end{tikzpicture}\figcap{白光通过光栅后按波长分离。}\label{ch30:fig:s45-22-3}\end{minipage}\end{center}}
+\end{tikzpicture}\figcap{白光通过光栅后按波长分离。\label{ch30:fig:s45-22-3}}\end{minipage}\end{center}}
 
 % Geometry: shared coordinates; transparent labels; numerical profiles where required.
 \newcommand{\GratingCurves}{%
@@ -80,7 +82,7 @@
  \foreach \u in {-1,0,1}{\draw(\u,0)--(\u,-.05)node[below]{$\u$};}
  \node at(0,2.05){$N=\N$};
  \end{scope}}
-\end{tikzpicture}\figcap{$u=\delta/(2\pi)$，纵坐标为 $I/(N^2I_1)$；相邻整数位置为主极大，其间有 $N-1$ 个零点与 $N-2$ 个次极大。}\label{ch30:fig:s45-22-4}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{$u=\delta/(2\pi)$，纵坐标为 $I/(N^2I_1)$；相邻整数位置为主极大，其间有 $N-1$ 个零点与 $N-2$ 个次极大。\label{ch30:fig:s45-22-4}}\end{minipage}\end{center}
 }
 
 % Geometry: shared coordinates; transparent labels; numerical profiles where required.
@@ -99,7 +101,7 @@
  \node[above]at(A){$A$};\node[below]at(B){$B$};
  \node[left]at(H){$H$};\node[right]at(K){$K$};
  \node[align=left,anchor=west]at(3,1.4){$AH\perp HB$\\$AK\perp BK$\\$HB+BK=2d\sin\theta$};
-\end{tikzpicture}\figcap{布拉格几何中，$\theta$ 从晶面量起；$HB$ 与 $BK$ 是相对共同入射、出射波前的两段额外光程。}\label{ch30:fig:s45-22-7}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{布拉格几何中，$\theta$ 从晶面量起；$HB$ 与 $BK$ 是相对共同入射、出射波前的两段额外光程。\label{ch30:fig:s45-22-7}}\end{minipage}\end{center}
 }
 
 \newcommand{\SingleSlitCurve}{%
@@ -115,7 +117,7 @@
  \pgfmathsetmacro{\bright}{100*(sin(180*\u)/(pi*\u))^2}\fi
  \fill[white!\bright!black](\u,1.4)rectangle({\u+.051},1.56);}
  \node[below]at(0,-.52){中央主极大两侧第一零点为 $-1,+1$};
-\end{tikzpicture}\figcap{矩形单缝的 $\operatorname{sinc}^2$ 强度分布。}\label{ch30:fig:s45-22-8}\end{minipage}\end{center}}
+\end{tikzpicture}\figcap{矩形单缝的 $\operatorname{sinc}^2$ 强度分布。\label{ch30:fig:s45-22-8}}\end{minipage}\end{center}}
 
 \newcommand{\ResolutionPanel}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[x=.65cm,y=1.1cm,>=Latex,font=\small]
@@ -3107,7 +3109,7 @@
 \draw[DeepBlue,thick]plot coordinates{(-2.200,0.002715)(-2.180,0.002675)(-2.160,0.002678)(-2.140,0.002728)(-2.120,0.002832)(-2.100,0.002994)(-2.080,0.003217)(-2.060,0.003505)(-2.040,0.003860)(-2.020,0.004283)(-2.000,0.004772)(-1.980,0.005327)(-1.960,0.005945)(-1.940,0.006620)(-1.920,0.007347)(-1.900,0.008119)(-1.880,0.008928)(-1.860,0.009763)(-1.840,0.010615)(-1.820,0.011471)(-1.800,0.012318)(-1.780,0.013144)(-1.760,0.013936)(-1.740,0.014679)(-1.720,0.015361)(-1.700,0.015968)(-1.680,0.016489)(-1.660,0.016912)(-1.640,0.017228)(-1.620,0.017430)(-1.600,0.017512)(-1.580,0.017471)(-1.560,0.017306)(-1.540,0.017022)(-1.520,0.016624)(-1.500,0.016124)(-1.480,0.015534)(-1.460,0.014874)(-1.440,0.014167)(-1.420,0.013441)(-1.400,0.012727)(-1.380,0.012062)(-1.360,0.011489)(-1.340,0.011054)(-1.320,0.010807)(-1.300,0.010805)(-1.280,0.011105)(-1.260,0.011773)(-1.240,0.012874)(-1.220,0.014479)(-1.200,0.016661)(-1.180,0.019494)(-1.160,0.023055)(-1.140,0.027422)(-1.120,0.032673)(-1.100,0.038885)(-1.080,0.046137)(-1.060,0.054502)(-1.040,0.064055)(-1.020,0.074864)(-1.000,0.086997)(-0.980,0.100514)(-0.960,0.115471)(-0.940,0.131919)(-0.920,0.149901)(-0.900,0.169454)(-0.880,0.190605)(-0.860,0.213374)(-0.840,0.237772)(-0.820,0.263800)(-0.800,0.291449)(-0.780,0.320701)(-0.760,0.351525)(-0.740,0.383884)(-0.720,0.417725)(-0.700,0.452987)(-0.680,0.489600)(-0.660,0.527479)(-0.640,0.566533)(-0.620,0.606660)(-0.600,0.647746)(-0.580,0.689670)(-0.560,0.732303)(-0.540,0.775507)(-0.520,0.819138)(-0.500,0.863042)(-0.480,0.907063)(-0.460,0.951040)(-0.440,0.994805)(-0.420,1.038191)(-0.400,1.081025)(-0.380,1.123136)(-0.360,1.164351)(-0.340,1.204499)(-0.320,1.243412)(-0.300,1.280923)(-0.280,1.316870)(-0.260,1.351096)(-0.240,1.383450)(-0.220,1.413789)(-0.200,1.441976)(-0.180,1.467884)(-0.160,1.491397)(-0.140,1.512405)(-0.120,1.530813)(-0.100,1.546536)(-0.080,1.559501)(-0.060,1.569648)(-0.040,1.576930)(-0.020,1.581312)(0.000,1.582776)(0.020,1.581312)(0.040,1.576930)(0.060,1.569648)(0.080,1.559501)(0.100,1.546536)(0.120,1.530813)(0.140,1.512405)(0.160,1.491397)(0.180,1.467884)(0.200,1.441976)(0.220,1.413789)(0.240,1.383450)(0.260,1.351096)(0.280,1.316870)(0.300,1.280923)(0.320,1.243412)(0.340,1.204499)(0.360,1.164351)(0.380,1.123136)(0.400,1.081025)(0.420,1.038191)(0.440,0.994805)(0.460,0.951040)(0.480,0.907063)(0.500,0.863042)(0.520,0.819138)(0.540,0.775507)(0.560,0.732303)(0.580,0.689670)(0.600,0.647746)(0.620,0.606660)(0.640,0.566533)(0.660,0.527479)(0.680,0.489600)(0.700,0.452987)(0.720,0.417725)(0.740,0.383884)(0.760,0.351525)(0.780,0.320701)(0.800,0.291449)(0.820,0.263800)(0.840,0.237772)(0.860,0.213374)(0.880,0.190605)(0.900,0.169454)(0.920,0.149901)(0.940,0.131919)(0.960,0.115471)(0.980,0.100514)(1.000,0.086997)(1.020,0.074864)(1.040,0.064055)(1.060,0.054502)(1.080,0.046137)(1.100,0.038885)(1.120,0.032673)(1.140,0.027422)(1.160,0.023055)(1.180,0.019494)(1.200,0.016661)(1.220,0.014479)(1.240,0.012874)(1.260,0.011773)(1.280,0.011105)(1.300,0.010805)(1.320,0.010807)(1.340,0.011054)(1.360,0.011489)(1.380,0.012062)(1.400,0.012727)(1.420,0.013441)(1.440,0.014167)(1.460,0.014874)(1.480,0.015534)(1.500,0.016124)(1.520,0.016624)(1.540,0.017022)(1.560,0.017306)(1.580,0.017471)(1.600,0.017512)(1.620,0.017430)(1.640,0.017228)(1.660,0.016912)(1.680,0.016489)(1.700,0.015968)(1.720,0.015361)(1.740,0.014679)(1.760,0.013936)(1.780,0.013144)(1.800,0.012318)(1.820,0.011471)(1.840,0.010615)(1.860,0.009763)(1.880,0.008928)(1.900,0.008119)(1.920,0.007347)(1.940,0.006620)(1.960,0.005945)(1.980,0.005327)(2.000,0.004772)(2.020,0.004283)(2.040,0.003860)(2.060,0.003505)(2.080,0.003217)(2.100,0.002994)(2.120,0.002832)(2.140,0.002728)(2.160,0.002678)(2.180,0.002675)(2.200,0.002715)};
 \node[below,align=center]at(0,-.2){$\Delta\theta/\theta_{\rm A}=0.5$\\低于瑞利判据};
 \end{scope}
-\end{tikzpicture}\figcap{等强、不相干点源的艾里强度相加。上为二维亮度，下为中心剖面；虚线是单点强度，实线是总强度，$u=\theta/\theta_{\rm A}$、$\theta_{\rm A}=1.22\lambda/D$。}\label{ch30:fig:s45-22-9}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{等强、不相干点源的艾里强度相加。上为二维亮度，下为中心剖面；虚线是单点强度，实线是总强度，$u=\theta/\theta_{\rm A}$、$\theta_{\rm A}=1.22\lambda/D$。\label{ch30:fig:s45-22-9}}\end{minipage}\end{center}
 }
 
 \newcommand{\ArrayDiagram}{%
@@ -3130,7 +3132,7 @@
 \node[above left]at(S){西班牙 IRAM};
 \node[below,align=center]at(-30,-100){南极 SPT（极点经度任意）};
 \draw[TextGray](P)--(-15,-99);
-\end{tikzpicture}\figcap{2017年事件视界望远镜的8个台站分布在6个地理位置。点位按近似经纬度标出，线仅连接示例基线，不代表地面大圆路径或连续填满的口径。}\label{ch30:fig:s45-22-10}\end{minipage}\end{center}}
+\end{tikzpicture}\figcap{2017年事件视界望远镜的8个台站分布在6个地理位置。点位按近似经纬度标出，线仅连接示例基线，不代表地面大圆路径或连续填满的口径。\label{ch30:fig:s45-22-10}}\end{minipage}\end{center}}
 \newcommand{\LaserMoonDiagram}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.8,>=Latex,font=\small]
  \begin{scope}[xshift=-3.5cm]
@@ -3149,7 +3151,7 @@
  \node at(0,-.2){月球投影};
  \node[below,align=center]at(0,-1.95){$r_1=2.965\,\mathrm{Mm}>R_{\rm M}$\\$R_{\rm M}=1.737\,\mathrm{Mm}$};
  \end{scope}
-\end{tikzpicture}\figcap{右图按半径比例画出中央斑第一暗环与月球投影；左图传播距离不按比例。}\label{ch30:fig:s45-22-11}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{右图按半径比例画出中央斑第一暗环与月球投影；左图传播距离不按比例。\label{ch30:fig:s45-22-11}}\end{minipage}\end{center}
 }
 
 % Geometry: shared coordinates; transparent labels; numerical profiles where required.
@@ -3173,7 +3175,7 @@
  \fill[DeepBlue,opacity=\op](.75*\m,.75*\n)circle(.11);}}
  \node[below]at(0,-1.8){亮度受单个孔的衍射包络调制};
  \end{scope}
-\end{tikzpicture}\figcap{二维正方形孔阵的衍射级次；点距由周期决定，强度并不相同。}\label{ch30:fig:s45-22-13}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{二维正方形孔阵的衍射级次；点距由周期决定，强度并不相同。\label{ch30:fig:s45-22-13}}\end{minipage}\end{center}
 }
 
 % Geometry: shared coordinates; transparent labels; numerical profiles where required.
@@ -3191,7 +3193,7 @@
  \node[above left=4pt]at(A){$A$};\node[above left=4pt]at(B){$B$};
  \draw[<->](-3.2,0)--(-3.2,1.5)node[midway,left]{$a$};
  \node[below,align=center]at(0,-1.5){有向角均从 $+x$ 法线向 $+y$ 量取\\入射贡献 $ka\sin\theta_i$，远场传播贡献 $-ka\sin\theta_m$};
-\end{tikzpicture}\figcap{解图：比较刻线 $A,B$，入射相位差与传播相位差必须一起计入。}\label{ch30:fig:s45-ex-22-9}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{解图：比较刻线 $A,B$，入射相位差与传播相位差必须一起计入。\label{ch30:fig:s45-ex-22-9}}\end{minipage}\end{center}
 }
 
 
@@ -3265,8 +3267,30 @@ B. 上述配置中红光中央亮斑更宽；
 C. 红光通过 $0.7\,\mathrm{mm}$ 缝、绿光通过 $0.8\,\mathrm{mm}$ 缝时，绿光中央亮斑更宽；
 
 D. 上述配置中红光中央亮斑更宽。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-1.5)--(0,-.4) (0,.4)--(0,1.5);\draw[<->] (.35,-.4)--(.35,.4) node[midway,right]{$a$};
+\draw[DeepBlue,->] (-2,0)--(-.2,0) node[midway,above]{$\lambda$};\draw[thick] (4,-1.5)--(4,1.5) node[above]{屏};
+\draw[dashed] (0,0)--(4,0);\draw[<->] (0,-1.8)--(4,-1.8) node[midway,below]{$L$};
+
+\end{tikzpicture}
+\figcap{题图：可调缝宽 $a$ 与固定屏距 $L$；更换颜色和缝宽时分别代入。\label{ch30:quality:q1}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-1.5)--(0,-.4) (0,.4)--(0,1.5);\draw[<->] (.35,-.4)--(.35,.4) node[midway,right]{$a$};
+\draw[DeepBlue,->] (-2,0)--(-.2,0) node[midway,above]{$\lambda$};\draw[thick] (4,-1.5)--(4,1.5) node[above]{屏};
+\draw[dashed] (0,0)--(4,0);\draw[<->] (0,-1.8)--(4,-1.8) node[midway,below]{$L$};
+
+\end{tikzpicture}
+\figcap{解图：单缝两侧第一暗纹的间隔为 $2L\lambda/a$。\label{ch30:quality:a1}}
+\end{minipage}\end{center}
+
 单缝中央亮斑宽度 $w\simeq2L\lambda/a$，只需比较 $\lambda/a$。第一组
 \[
  \frac{655}{0.8}=818.8>\frac{532}{0.7}=760,
@@ -3280,6 +3304,8 @@ D. 上述配置中红光中央亮斑更宽。
  \boxed{\text{B、D正确。}}
 \]
 条纹尺度由波长与孔径宽度的比值共同决定，不能只比较波长或只比较缝宽。
+
+图~\ref{ch30:quality:a1} 中，中央亮斑边界由两侧第一暗纹决定，角半宽为 $\lambda/a$；比较的是每一种配置的波长与缝宽之比。
 \end{xesolution}
 
 \section{孔径、分辨率与成像限制}
@@ -3314,8 +3340,30 @@ D. 上述配置中红光中央亮斑更宽。
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【视网膜屏】}\label{ch30:ex:s45-22-1}
 手机号称“视网膜屏”。（1）若近视者的明视距离仅为 $10\,\mathrm{cm}$，像素密度需达到多少才使单个像素不易被眼分辨？（2）继续增加像素是否有用？
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-1)--(0,1);\fill (0,.25) circle (2pt);\fill (0,-.25) circle (2pt);
+\draw[DeepBlue] (0,.25)--(3,0)--(0,-.25);\draw[<->] (-.4,-.25)--(-.4,.25) node[midway,left]{$p$};
+\draw[<->] (0,-1.3)--(3,-1.3) node[midway,below]{$L=10\,\mathrm{cm}$};\node[right] at (3,0){眼};
+
+\end{tikzpicture}
+\figcap{题图：相邻像素中心间距 $p$ 与观看距离 $L$ 决定张角。\label{ch30:quality:q2}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-1)--(0,1);\fill (0,.25) circle (2pt);\fill (0,-.25) circle (2pt);
+\draw[DeepBlue] (0,.25)--(3,0)--(0,-.25);\draw[<->] (-.4,-.25)--(-.4,.25) node[midway,left]{$p$};
+\draw[<->] (0,-1.3)--(3,-1.3) node[midway,below]{$L=10\,\mathrm{cm}$};\node[right] at (3,0){眼};
+
+\end{tikzpicture}
+\figcap{解图：像素中心的视角与眼的角分辨率直接比较。\label{ch30:quality:a2}}
+\end{minipage}\end{center}
+
 正常眼的典型角分辨率约为 $1'$，即
 \[
  \theta_{\min}\approx\frac{\pi}{180\times60}=2.91\times10^{-4}\,\mathrm{rad}.
@@ -3331,29 +3379,95 @@ D. 上述配置中红光中央亮斑更宽。
 即约 $900\,\mathrm{ppi}$。这是量级估计，个体视力、对比度、子像素排列和观看距离都会改变结果。
 
 当像素角尺度已明显小于眼的分辨角，再增加像素不会在该距离增加可见空间细节，只会提高数据量和功耗；它仍可能有利于更近观看、图像缩放、抗锯齿、彩色子像素采样或后期裁剪，所以“无用”只限于固定距离下的直接视觉分辨。
+
+图~\ref{ch30:quality:a2} 中，眼处两条视线的夹角近似为 $p/L$；将给定角分辨率先化为弧度，才可把得到的 $p$ 换算成每英寸像素数。
 \end{xesolution}
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【六角星芒】}\label{ch30:ex:s45-22-2}
 拍摄点光源时出现六角星芒。（1）解释成因并判断可推知什么；（2）动画中角色飞走后留下星芒是否合理？
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \a in {0,60,120,180,240,300}{\draw[DeepBlue,thick] (0,0)--(\a:1.25);}
+\fill (0,0) circle (2pt);\node[below] at (0,-1.5){观测到的六向星芒};
+\draw[dashed] (3,0) circle (.8);\node[below,align=center] at (3,-1.2){孔径或支撑结构\\形状待判别};
+
+\end{tikzpicture}
+\figcap{题图：观测现象是六个亮芒方向；仅凭该图样不能预先指定光阑边数。\label{ch30:quality:q3}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0:1)--(60:1)--(120:1)--(180:1)--(240:1)--(300:1)--cycle;
+\begin{scope}[xshift=3.4cm]\draw[thick] (90:1)--(210:1)--(330:1)--cycle;\end{scope}
+\foreach \a in {30,90,150,210,270,330}{\draw[DeepBlue,->] (0,0)--(\a:1.45);\draw[DeepBlue,->] (3.4,0)--++(\a:1.45);}
+\node[below] at (0,-1.8){六边形的三组对边};\node[below] at (3.4,-1.8){三角形的三条边};
+
+\end{tikzpicture}
+\figcap{解图：两种孔径均能给出三组相反方向的直边衍射，星芒数不足以唯一反演孔径。\label{ch30:quality:a3}}
+\end{minipage}\end{center}
+
 相机光圈不是理想圆孔时，直边会产生方向性衍射：垂直于一条边的两个相反方向形成一对亮芒，平行边产生的方向会重合。六边形光阑的三组平行对边因此可形成六条星芒；但三角形孔径的三条边也可给出六个方向，望远镜的支撑结构也能产生相似图样。因此\boxed{\text{六条星芒不能唯一确定叶片数}}。只能结合孔径结构、星芒方向及曝光条件判断；六边形光圈是一个可能模型，而不是唯一结论。圆整孔径减弱这种定向结构，光学表面划痕和传感器溢出也可能叠加其他伪影。
 
 角色本身飞走不会在空气中凭空留下固定星芒。只有画面经过具有多边形孔径的“摄影机”、且角色或背景含足够亮的近点光源时，星芒作为成像系统的衍射效果才合理；动画中的星芒通常是表现速度或闪光的艺术符号。
+
+图~\ref{ch30:quality:a3} 中，每组平行直边给出一对法向衍射方向；六边形的三组对边与三角形的三条边都可能给出六向星芒，所以反推结构并不唯一。
 \end{xesolution}
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【提升视力】}\label{ch30:ex:s45-22-3}
 看不清远处公交车号时，用拇指和食指做一个很小的缝，透过缝反而看清，为什么？
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-1.2)--(0,-.2) (0,.2)--(0,1.2);\node[above] at (0,1.2){手指小缝};
+\draw[<->,thick] (2,-1)--(2,1);\draw[thick] (4,-1.2)--(4,1.2) node[above]{视网膜};
+\draw[DeepBlue,->] (-1.5,.12)--(2,.12);\draw[DeepBlue] (2,.12)--(4,-.08);
+\draw[DeepBlue,->] (-1.5,-.12)--(2,-.12);\draw[DeepBlue] (2,-.12)--(4,.08);
+\draw[dashed] (.2,.8)--(2,.8)--(4,-.5) (.2,-.8)--(2,-.8)--(4,.5);
+
+\end{tikzpicture}
+\figcap{题图：小缝挡去部分边缘光线，虚线表示被挡掉的边缘光在屈光不正时的假想传播。\label{ch30:quality:q4}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-1.2)--(0,-.2) (0,.2)--(0,1.2);\node[above] at (0,1.2){手指小缝};
+\draw[<->,thick] (2,-1)--(2,1);\draw[thick] (4,-1.2)--(4,1.2) node[above]{视网膜};
+\draw[DeepBlue,->] (-1.5,.12)--(2,.12);\draw[DeepBlue] (2,.12)--(4,-.08);
+\draw[DeepBlue,->] (-1.5,-.12)--(2,-.12);\draw[DeepBlue] (2,-.12)--(4,.08);
+\draw[dashed] (.2,.8)--(2,.8)--(4,-.5) (.2,-.8)--(2,-.8)--(4,.5);
+
+\end{tikzpicture}
+\figcap{解图：对照保留的近轴光和被挡去的边缘光，区分几何模糊与衍射模糊。\label{ch30:quality:a4}}
+\end{minipage}\end{center}
+
 屈光不正或调焦误差使大瞳孔内不同位置进入的光不能在同一视网膜点会聚，形成较大的弥散圆。小缝挡掉离轴边缘光，只保留方向范围窄的近轴光，弥散圆缩小、景深增大，所以暂时变清楚；这就是针孔效应。
 
 但孔继续缩小时，衍射角 $\sim\lambda/D$ 增大，艾里斑又会变宽，同时亮度下降。因此存在几何模糊与衍射模糊的折中，小孔不能真正治疗近视，也不能无限提升分辨率。
+
+图~\ref{ch30:quality:a4} 中，实线仅保留窄范围入瞳位置，几何弥散圈因而变小；继续减小缝宽会增加 $\lambda/D$ 的衍射角，故清晰度存在折中。
 \end{xesolution}
 
 \Needspace{25\baselineskip}
 \Needspace{7\baselineskip}\begin{origexamplebox}{【激光照月】}\label{ch30:ex:s45-22-4}
 口径 $D=100\,\mu\mathrm m$ 的 He--Ne 激光器发射 $\lambda=632.8\,\mathrm{nm}$ 单色光，对准月球。地月距离 $L=3.84\times10^8\,\mathrm m$，估算到达月球时覆盖面积。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-.7)--(0,.7);\draw[DeepBlue,->] (-1,0)--(.5,0);\node[above] at (0,.7){出光口 $D$};
+\draw[dashed] (.5,0)--(4.5,0);\draw[thick] (4.5,0) circle (.75);\node[above] at (4.5,.75){月球};
+\draw[<->] (0,-1)--(4.5,-1) node[midway,below]{$L=3.84\times10^8\,\mathrm m$};
+
+\end{tikzpicture}
+\figcap{题图：给定激光出光口径与地月距离，远处束斑大小待求；图不按比例。\label{ch30:quality:q5}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
 先区分垂直于传播方向的束斑截面与弯曲的月球表面。图~\ref{ch30:fig:s45-22-11} 右图中，月球投影和第一暗环使用相同的长度比例。
@@ -3376,8 +3490,32 @@ D. 上述配置中红光中央亮斑更宽。
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【数码相机】}\label{ch30:ex:s45-22-5}
 边长 $L=35\,\mathrm{mm}$、像素数 $N_p=5\,\mathrm{Mpix}$ 的方形 CCD 配焦距 $f=38\,\mathrm{mm}$ 镜头。光圈数 $F\#=f/D$ 可取 $2,2.8,4,5.6,8,11,16,22$。（1）估计像面最佳空间分辨率 $\Delta x_{\min}$；（2）估计超过何种像素总数后只会造成采样浪费。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[<->,thick] (0,-1.2)--(0,1.2);\draw[thick] (3,-1.2) rectangle (3.4,1.2);
+\foreach \y in {-1,-.6,-.2,.2,.6,1}{\draw (3,\y)--(3.4,\y);}
+\draw[DeepBlue,->] (-1.5,.7)--(0,.7);\draw[DeepBlue] (0,.7)--(3,0);\draw[DeepBlue,->] (-1.5,-.7)--(0,-.7);\draw[DeepBlue] (0,-.7)--(3,0);
+\draw[<->] (0,-1.6)--(3,-1.6) node[midway,below]{$f$};\node[above] at (0,1.2){口径 $D$};\node[right] at (3.5,.7){CCD像素};
+
+\end{tikzpicture}
+\figcap{题图：有限口径镜头在CCD焦平面成像；光圈数为 $f/D$。\label{ch30:quality:q6}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[<->,thick] (0,-1.2)--(0,1.2);\draw[thick] (3,-1.2) rectangle (3.4,1.2);
+\foreach \y in {-1,-.6,-.2,.2,.6,1}{\draw (3,\y)--(3.4,\y);}
+\draw[DeepBlue,->] (-1.5,.7)--(0,.7);\draw[DeepBlue] (0,.7)--(3,0);\draw[DeepBlue,->] (-1.5,-.7)--(0,-.7);\draw[DeepBlue] (0,-.7)--(3,0);
+\draw[<->] (0,-1.6)--(3,-1.6) node[midway,below]{$f$};\node[above] at (0,1.2){口径 $D$};\node[right] at (3.5,.7){CCD像素};
+
+\end{tikzpicture}
+\figcap{解图：把角衍射尺度转换为焦平面线尺度后，再与像素采样间距比较。\label{ch30:quality:a6}}
+\end{minipage}\end{center}
+
 衍射斑角半径 $1.22\lambda/D$，落在焦平面的线半径
 \[
  \Delta x=1.22\lambda\frac fD=1.22\lambda(F\#).
@@ -3392,6 +3530,8 @@ D. 上述配置中红光中央亮斑更宽。
  \approx\boxed{6.8\times10^8\ \text{像素，约 }680\,\mathrm{Mpix}}.
 \]
 这个 $680\,\mathrm{Mpix}$ 只是按“一格对应一个瑞利间隔”作出的数量级估算，\textbf{不是超过它像素就严格无用的阈值}。以非相干成像的衍射截止频率 $f_c=1/(\lambda F\#)$ 为准，奈奎斯特采样需要 $p\le1/(2f_c)=\lambda F\#/2$；在本题理想参数下为 $0.55\,\mu\mathrm m$，对应约 $4.0\times10^9$ 个方形像素。两种数字不同，是因为“分辨两个点”和“采样全部可传递空间频率”不是同一判据。实际系统还受彩色滤镜、噪声、像差、对比度和数据处理影响，不能给出与这些条件无关的统一“浪费界线”。现有 $5\,\mathrm{Mpix}$ 的像素间距约 $15.7\,\mu\mathrm m$，远大于上述理想衍射尺度。
+
+图~\ref{ch30:quality:a6} 中，焦平面衍射尺度由角尺度再乘焦距 $f$ 得到；CCD像素间距由感光面边长除以每边像素数求出，不能把总像素数直接当作每边像素数。
 \end{xesolution}
 
 \MolecularLimitDiagram
@@ -3399,8 +3539,30 @@ D. 上述配置中红光中央亮斑更宽。
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【光学极限】}\label{ch30:ex:s45-22-6}
 解释为什么无论怎样改造普通基于可见光的光学显微镜，都无法直接观察 RNA 合成蛋白质的分子过程。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \x/\y in {0/0,.25/.12,.48/-.05,.72/.1}{\fill[DeepBlue] (\x,\y) circle (2pt);}
+\node[below] at (.35,-.6){分子局部结构};\draw[<->,thick] (2,-1)--(2,1) node[above]{有限NA物镜};
+\draw[->] (1,0)--(1.8,0);\node[right] at (2.7,.6){可见光 $\lambda$};
+
+\end{tikzpicture}
+\figcap{题图：分子尺度结构通过有限数值孔径的普通远场物镜成像。\label{ch30:quality:q7}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[DeepBlue!55,thick] (-.25,0) circle (.9);\draw[DeepBlue!55,thick] (.25,0) circle (.9);
+\fill (-.25,0) circle (1.6pt);\fill (.25,0) circle (1.6pt);\draw[<->] (-.25,-1.2)--(.25,-1.2) node[midway,below]{数纳米};
+\node[right,align=left] at (1.5,0){扩散斑约 $200\,\mathrm{nm}$\\图示中心间距已夸大};
+
+\end{tikzpicture}
+\figcap{解图：两个分子位置的普通光学点扩散斑重叠，几何放大不能分开已丢失的细节。\label{ch30:quality:a7}}
+\end{minipage}\end{center}
+
 普通远场显微镜的横向衍射极限约为
 \[
  \Delta x\simeq0.61\frac{\lambda}{\mathrm{NA}}.
@@ -3408,12 +3570,38 @@ D. 上述配置中红光中央亮斑更宽。
 可见光 $\lambda\sim400$--$700\,\mathrm{nm}$，即使高数值孔径 $\mathrm{NA}\sim1.4$，分辨尺度仍约 $200\,\mathrm{nm}$。RNA、核糖体上的局部结构和氨基酸连接过程尺度是数纳米甚至更小，相差两至三数量级，两个分子态的普通光学点扩散斑完全重叠。
 
 增大倍率只会放大同一个模糊斑，不能恢复被孔径截止的空间频率。电子显微镜、X 射线、单分子荧光和超分辨技术可间接研究相关过程，但它们不再是本题所指的普通可见光衍射极限显微镜，且实时、活体和化学标记条件各有约束。
+
+图~\ref{ch30:quality:a7} 中，相邻分子态的间距远小于 $0.61\lambda/\mathrm{NA}$，各点产生的扩散斑强烈重叠；提高后续倍率不会增加物镜已截止的空间频率。
 \end{xesolution}
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【充分遐想】}\label{ch30:ex:s45-22-7}
 非鸟类恐龙约在 6600 万年前灭绝。距地球一亿光年以上的文明若想用可见光望远镜分辨地球上的恐龙，估算所需口径。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,0) circle (.65);\node[below] at (0,-.85){地球上尺度 $s$};
+\draw[<->,thick] (5,-.9)--(5,.9) node[above]{望远镜口径 $D$};
+\draw[DeepBlue,->] (.7,.12)--(4.8,.02);\draw[DeepBlue,->] (.7,-.12)--(4.8,-.02);
+\draw[<->] (.7,-1.4)--(5,-1.4) node[midway,below]{$L\ge10^8\,\mathrm{ly}$};
+
+\end{tikzpicture}
+\figcap{题图：目标的物理尺度 $s$、传播距离 $L$ 和接收口径 $D$；距离同时决定光行时。\label{ch30:quality:q8}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,0) circle (.65);\node[below] at (0,-.85){地球上尺度 $s$};
+\draw[<->,thick] (5,-.9)--(5,.9) node[above]{望远镜口径 $D$};
+\draw[DeepBlue,->] (.7,.12)--(4.8,.02);\draw[DeepBlue,->] (.7,-.12)--(4.8,-.02);
+\draw[<->] (.7,-1.4)--(5,-1.4) node[midway,below]{$L\ge10^8\,\mathrm{ly}$};
+
+\end{tikzpicture}
+\figcap{解图：角分辨率与光行时是两个独立的约束，分别使用 $s/L$ 与 $L/c$。\label{ch30:quality:a8}}
+\end{minipage}\end{center}
+
 取恐龙特征尺度 $s\sim10\,\mathrm m$，距离 $L=10^8\,\mathrm{ly}\approx9.46\times10^{23}\,\mathrm m$，角尺度
 \[
  \theta\sim\frac sL\approx1.06\times10^{-23}\,\mathrm{rad}.
@@ -3426,6 +3614,8 @@ D. 上述配置中红光中央亮斑更宽。
 \]
 这只是分辨一个十米亮暗结构的理论口径；真实恐龙不自行发光，反射光子极少，恒星、行星大气和背景噪声使要求更加夸张。图~\ref{ch30:fig:distant-past} 的两个场景用于区分距离与所见时代：在忽略宇宙膨胀的估算中，距地球一亿光年的观察者现在接收到约一亿年前离开地球的光，所见仍处于恐龙时代；若要恰看灭绝前后，则距离约为6600万光年。题设“一亿光年以上”是下界，不能据此断言任何更远距离都恰好对应恐龙时代。
 \historyfigure{galaxy-dinosaurs-20260923.png}{遥远星系与远古地球的情景示意。所见时代由光行时决定，能否看清个体则取决于角分辨率和光子数。\label{ch30:fig:distant-past}}
+
+图~\ref{ch30:quality:a8} 中，目标在望远镜处只张角 $s/L$，该角必须大于口径的衍射角；收到哪一时代的光则由 $L/c$ 单独决定，不由口径决定。
 \end{xesolution}
 
 \section{多缝干涉与光栅衍射}
@@ -3500,8 +3690,32 @@ D. 上述配置中红光中央亮斑更宽。
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{【周期结构】}\label{ch30:ex:s45-22-8}
 通过经纬正交织物观看 $20\,\mathrm m$ 外、波长 $550\,\mathrm{nm}$ 的点光源，周围出现正方形亮斑阵列，最近邻表观距离 $12\,\mathrm{cm}$。求织物线间距。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \x in {0,.3,.6,.9}{\draw (\x,-.6)--(\x,.6);}\foreach \y in {-.6,-.3,0,.3,.6}{\draw (0,\y)--(.9,\y);}
+\node[below] at (.45,-.85){正交织物间距 $a$};
+\foreach \x in {3.3,3.9,4.5}{\foreach \y in {-.6,0,.6}{\fill[DeepBlue] (\x,\y) circle (2pt);}}
+\draw[<->] (3.3,1)--(3.9,1) node[midway,above]{$\Delta x$};\node[below] at (3.9,-.85){观察到的方形亮点阵};
+
+\end{tikzpicture}
+\figcap{题图：织物的两组正交周期与观察到的最近邻亮斑距离。\label{ch30:quality:q9}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \x in {0,.3,.6,.9}{\draw (\x,-.6)--(\x,.6);}\foreach \y in {-.6,-.3,0,.3,.6}{\draw (0,\y)--(.9,\y);}
+\node[below] at (.45,-.85){正交织物间距 $a$};
+\foreach \x in {3.3,3.9,4.5}{\foreach \y in {-.6,0,.6}{\fill[DeepBlue] (\x,\y) circle (2pt);}}
+\draw[<->] (3.3,1)--(3.9,1) node[midway,above]{$\Delta x$};\node[below] at (3.9,-.85){观察到的方形亮点阵};
+
+\end{tikzpicture}
+\figcap{解图：把亮点阵的一个坐标方向化成一维光栅，再由屏面位移反求周期。\label{ch30:quality:a9}}
+\end{minipage}\end{center}
+
 经、纬线分别构成一维光栅，两组衍射的乘积形成二维正方点阵。最近邻一级斑的角度很小：
 \[
  \theta\simeq\frac{0.12}{20}=6.0\times10^{-3}\,\mathrm{rad}.
@@ -3512,6 +3726,8 @@ D. 上述配置中红光中央亮斑更宽。
  =9.17\times10^{-5}\,\mathrm m=0.092\,\mathrm{mm}}.
 \]
 两正交方向间距若不同，亮斑阵列会成为矩形而非正方形；这就是图~\ref{ch30:fig:s45-22-13} 中位置关系所表达的信息。
+
+图~\ref{ch30:quality:a9} 中，两组正交纤维分别产生两个正交衍射方向；最近邻亮点对应一级空间频率，故 $a\sin\theta=\lambda$、$\tan\theta=\Delta x/L$。
 \end{xesolution}
 
 \ObliqueGratingDiagram
@@ -3523,8 +3739,34 @@ D. 上述配置中红光中央亮斑更宽。
  a(\sin\theta_m-\sin\theta_i)=m\lambda,
 \]
 其中 $a$ 为刻线间距，$\theta_i,\theta_m$ 分别为入射光与第 $m$ 级衍射光相对光栅法线的有向角。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-.4)--(0,1.4);\fill (0,0) circle (2pt) node[right]{$A$};\fill (0,1) circle (2pt) node[right]{$B$};
+\draw[DeepBlue,->] (-2,-1)--(0,0);\draw[DeepBlue,->] (-2,0)--(0,1);
+\draw[DeepBlue,->] (0,0)--(2,1.3);\draw[DeepBlue,->] (0,1)--(2,2.3);
+\draw[dashed,->] (-.5,0)--(2.6,0) node[right]{法线};\draw[<->] (-.4,0)--(-.4,1) node[midway,left]{$a$};
+\node at (-1,-.2){$\theta_i$};\node at (1,.3){$\theta_m$};
+
+\end{tikzpicture}
+\figcap{题图：相邻缝 $A,B$ 和入、出射波矢；两个角相对同一正法线取有向值。\label{ch30:quality:q10}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[thick] (0,-.4)--(0,1.4);\fill (0,0) circle (2pt) node[right]{$A$};\fill (0,1) circle (2pt) node[right]{$B$};
+\draw[DeepBlue,->] (-2,-1)--(0,0);\draw[DeepBlue,->] (-2,0)--(0,1);
+\draw[DeepBlue,->] (0,0)--(2,1.3);\draw[DeepBlue,->] (0,1)--(2,2.3);
+\draw[dashed,->] (-.5,0)--(2.6,0) node[right]{法线};\draw[<->] (-.4,0)--(-.4,1) node[midway,left]{$a$};
+\node at (-1,-.2){$\theta_i$};\node at (1,.3){$\theta_m$};
+
+\end{tikzpicture}
+\figcap{解图：同时保留入射与出射的波矢投影，避免漏掉入射的原有相位差。\label{ch30:quality:a10}}
+\end{minipage}\end{center}
+
 取相邻两缝 $A,B$，沿刻线间距方向的位移为 $a$。斜入射波到达 $A,B$ 时已经有初始光程差 $a\sin\theta_i$；从两缝向观察方向 $\theta_m$ 传播时，又产生出射几何程差 $a\sin\theta_m$。按图中的有向角约定，总有效程差为
 \[
  \Delta\mathcal L=a\sin\theta_m-a\sin\theta_i.
@@ -3534,6 +3776,8 @@ D. 上述配置中红光中央亮斑更宽。
  \boxed{a(\sin\theta_m-\sin\theta_i)=m\lambda}.
 \]
 正入射 $\theta_i=0$ 时退化为 $a\sin\theta_m=m\lambda$。若把入射光画在法线另一侧，$\theta_i$ 本身为负，公式仍自动给出正确的“正弦相加”形式；因此必须使用有向角，而不是事后凭图改正负号。
+
+图~\ref{ch30:quality:a10} 中，两相邻缝在入射波中已有相位差 $ka\sin\theta_i$，出射远场又引入 $ka\sin\theta_m$；相减后等于 $2\pi m$，才得到有向角光栅方程。
 \end{xesolution}
 
 
@@ -3568,7 +3812,7 @@ X 射线是极短波长电磁波，其波长与原子间距相当。晶体中的
 \fill[white!80!black](\x,\y)circle(.035);}}
 \node[below]at(0,-1.8){固定取向晶体的离散点斑};
 \end{scope}
-\end{tikzpicture}\figcap{环纹和点斑是两类不同的衍射结构；这里展示形态，不代表某一种样品的测量数据。}\label{ch30:fig:xray-patterns}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{环纹和点斑是两类不同的衍射结构；这里展示形态，不代表某一种样品的测量数据。\label{ch30:fig:xray-patterns}}\end{minipage}\end{center}
 
 图~\ref{ch30:fig:xray-patterns} 中，大量随机取向微晶把相同散射角的信号分布到圆锥面上，平面探测器截得环纹；固定取向单晶则只在满足相位匹配的方向产生离散斑点。不能把所有晶体的衍射照片都画成相同方阵。
 
@@ -3605,7 +3849,7 @@ X 射线是极短波长电磁波，其波长与原子间距相当。晶体中的
 \node at(1,0,-.55){$\{100\}$ 类晶面};
 \node at(6,0,-.55){$\{110\}$ 类晶面};
 \node[anchor=west]at(0,0,3.15){深色大球：$\mathrm{Cl}^-$；浅色小球：$\mathrm{Na}^+$；球大小仅用于区分离子};
-\end{tikzpicture}\figcap{氯化钠晶格的同一常规晶胞、两类晶面及二维截面中的平行行族。沿立方轴相邻离子间距为晶格常数的一半，不把立方格线当作共价键。}\label{ch30:fig:nacl}\end{minipage}\end{center}
+\end{tikzpicture}\figcap{氯化钠晶格的同一常规晶胞、两类晶面及二维截面中的平行行族。沿立方轴相邻离子间距为晶格常数的一半，不把立方格线当作共价键。\label{ch30:fig:nacl}}\end{minipage}\end{center}
 
 图~\ref{ch30:fig:nacl} 把钠、氯离子交替排列在立方细网格上；同种离子各自组成面心立方子晶格。不同方向的平行晶面具有不同间距，立方晶格满足 $d_{hkl}=a_{\rm c}/\sqrt{h^2+k^2+l^2}$，其中 $a_{\rm c}$ 是常规晶胞边长。例如 $d_{100}=a_{\rm c}$，$d_{110}=a_{\rm c}/\sqrt2$；具体哪一级反射出现还取决于基元的散射相位，不能只凭几何间距断言每一峰都存在。
 \BraggDiagram
@@ -3678,8 +3922,28 @@ $\delta=\pm\pi/2$ 时为圆偏振；一般情况为椭圆偏振。旋向必须�
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{三片偏振片}
 自然光强度为 $I_0$，依次通过透光轴为 $0^\circ,45^\circ,90^\circ$ 的三片理想偏振片。求最终强度，并与只放首尾两片比较。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \x/\a/\lab in {0/0/0,2/45/45,4/90/90}{\draw[thick] (\x,0) circle (.55);\draw[DeepBlue,thick] (\x,0)++(\a:.5)--++(\a+180:1);\node[above] at (\x,.7){$\lab^\circ$};}
+\draw[->] (-1.6,0)--(-.65,0) node[midway,above]{$I_0$};\draw[->] (.65,0)--(1.35,0);\draw[->] (2.65,0)--(3.35,0);\draw[->] (4.65,0)--(5.3,0);
+
+\end{tikzpicture}
+\figcap{题图：自然光依次通过三片偏振片，各圆以正视图表示该片的透光轴。\label{ch30:quality:q11}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\foreach \x/\a/\lab in {0/0/0,2/45/45,4/90/90}{\draw[thick] (\x,0) circle (.55);\draw[DeepBlue,thick] (\x,0)++(\a:.5)--++(\a+180:1);\node[above] at (\x,.7){$\lab^\circ$};}
+\draw[->] (-1.6,0)--(-.65,0) node[midway,above]{$I_0$};\draw[->] (.65,0)--(1.35,0);\draw[->] (2.65,0)--(3.35,0);\draw[->] (4.65,0)--(5.3,0);
+
+\end{tikzpicture}
+\figcap{解图：逐片跟踪偏振方向，两个 $\cos^245^\circ$ 分别对应后两片。\label{ch30:quality:a11}}
+\end{minipage}\end{center}
+
 第一片后 $I_1=I_0/2$。第二片与第一片夹角 $45^\circ$：
 \[
  I_2=I_1\cos^245^\circ=\frac{I_0}{4}.
@@ -3689,6 +3953,8 @@ $\delta=\pm\pi/2$ 时为圆偏振；一般情况为椭圆偏振。旋向必须�
  \boxed{I_3=I_2\cos^245^\circ=\frac{I_0}{8}}.
 \]
 若只放 $0^\circ$ 与 $90^\circ$ 两片，第二片前的线偏振方向与其轴垂直，理想透射强度为零。
+
+图~\ref{ch30:quality:a11} 中，第一片把自然光强度减半，后两片各有 $45^\circ$ 的相对轴夹角；应用马吕斯定律时用相邻两片夹角，不能直接用最后一片相对第一片的 $90^\circ$。
 \end{xesolution}
 
 界面反射也能选择偏振：第27章已经由菲涅尔公式推出布儒斯特角，并说明该角度处 p 偏振反射消失。
@@ -3719,8 +3985,30 @@ $E_x=A\cos\omega t$、$E_y=B\cos(\omega t-\delta)$，就可以代入 $t=0$ 及�
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{四分之一波片产生圆偏振}
 线偏振光入射四分之一波片，偏振方向与快轴夹角为 $45^\circ$。证明出射光为圆偏振，并说明条件改变后的结果。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (-.4,0)--(2,0) node[right]{快轴 $x$};\draw[->] (0,-.4)--(0,2) node[above]{慢轴 $y$};
+\draw[DeepBlue,thick,->] (0,0)--(1.3,1.3) node[above right]{$\boldsymbol E_{\rm in}$};
+\draw[dashed] (1.3,0)--(1.3,1.3)--(0,1.3);\node at (.7,.28){$45^\circ$};
+
+\end{tikzpicture}
+\figcap{题图：入射线偏振与波片快、慢轴成 $45^\circ$，因此两本征分量等幅。\label{ch30:quality:q12}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (-1.5,0)--(1.7,0) node[right]{$E_x$};\draw[->] (0,-1.5)--(0,1.7) node[above]{$E_y$};
+\draw[DeepBlue,thick] (0,0) circle (1.1);\draw[DeepBlue,->] (1.1,0) arc[start angle=0,end angle=55,radius=1.1];
+\node[right,align=left] at (2,0){$E_x=A\cos\omega t$\\$E_y=A\sin\omega t$\\图示一种时间相位约定};
+
+\end{tikzpicture}
+\figcap{解图：等幅且正交相位的两个分量在 $E_x,E_y$ 平面上扫过圆。\label{ch30:quality:a12}}
+\end{minipage}\end{center}
+
 令快轴为 $x$、慢轴为 $y$，入射偏振的有向角为 $\alpha$。按前面的 $kz-\omega t$ 约定，去掉两分量的共同相位后，可写
 \[
  E_x=E_0\cos\alpha\cos\psi,\qquad
@@ -3735,6 +4023,8 @@ $E_x=A\cos\omega t$、$E_y=B\cos(\omega t-\delta)$，就可以代入 $t=0$ 及�
 $\alpha=45^\circ+90^\circ m$ 时为圆偏振；$\alpha=90^\circ m$ 时只激发一个本征分量，仍是线偏振；其余角度为非退化椭圆偏振。这里 $m$ 为整数。$135^\circ$ 同样能产生圆偏振，但两分量的相对符号改变，旋向与 $45^\circ$ 时相反。
 
 旋向可用固定点的时间变化判断，而不依赖含混的左右旋名称：在上述约定和 $\alpha=45^\circ$ 下，取 $\psi=0$ 的时刻，$E_x>0,E_y=0$；随时间增加，$\psi$ 减小，$E_y$ 转为正值，故端点从 $+x$ 向 $+y$ 转动。若波长改变，相位延迟一般不再恰为 $\pi/2$，还须同时检验等幅与正交相位两项条件。
+
+图~\ref{ch30:quality:a12} 中，沿快、慢轴的两分量等幅；加入 $\pi/2$ 相位延迟后，在固定空间点消去时间即得圆，而改变幅值比或延迟会给出一般椭圆。
 \end{xesolution}
 
 
@@ -3757,14 +4047,36 @@ $\alpha=45^\circ+90^\circ m$ 时为圆偏振；$\alpha=90^\circ m$ 时只激发�
   \draw[->,DeepBlue] (1.1,0) arc[start angle=0,end angle=34.5,radius=1.1];
   \node[clearlabel] at (1.3,.36) {$\alpha$};
 \end{tikzpicture}
-\figcap{入射线偏振在波片快、慢轴上的分解。波片改变两分量相位，不改变理想情况下的分量振幅。}\label{ch30:fig:waveplate-components}
+\figcap{入射线偏振在波片快、慢轴上的分解。波片改变两分量相位，不改变理想情况下的分量振幅。\label{ch30:fig:waveplate-components}}
 \end{minipage}\end{center}
 图~\ref{ch30:fig:waveplate-components} 的两个投影给出快、慢轴上的分量振幅。仅当相对相位为 $\pm\pi/2$ 时，这两个方向才是偏振椭圆的主轴；一般相位差下椭圆会倾斜，不能把任意坐标分量直接称为椭圆半轴。
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{零级四分之一波片的厚度}
 材料在波长 $\lambda_0=600\,\mathrm{nm}$ 时有 $n_s-n_f=0.0090$。求最薄四分之一波片的厚度；若制成厚度为该值的5倍，判断其等效延迟。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\fill[DeepBlue!7] (0,-1) rectangle (2.4,1);\draw[thick] (0,-1) rectangle (2.4,1);
+\draw[DeepBlue,->] (-1,.4)--(3.3,.4) node[right]{$E_f,n_f$};\draw[DeepBlue,->] (-1,-.4)--(3.3,-.4) node[right]{$E_s,n_s$};
+\draw[<->] (0,-1.3)--(2.4,-1.3) node[midway,below]{$d$};\node[above] at (1.2,1.2){$\lambda_0=600\,\mathrm{nm}$};
+
+\end{tikzpicture}
+\figcap{题图：两本征分量经过相同几何厚度 $d$，光程差由折射率差产生。\label{ch30:quality:q13}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\fill[DeepBlue!7] (0,-1) rectangle (2.4,1);\draw[thick] (0,-1) rectangle (2.4,1);
+\draw[DeepBlue,->] (-1,.4)--(3.3,.4) node[right]{$E_f,n_f$};\draw[DeepBlue,->] (-1,-.4)--(3.3,-.4) node[right]{$E_s,n_s$};
+\draw[<->] (0,-1.3)--(2.4,-1.3) node[midway,below]{$d$};\node[above] at (1.2,1.2){$\lambda_0=600\,\mathrm{nm}$};
+
+\end{tikzpicture}
+\figcap{解图：以同厚度的两条本征光路求相位差，区分零级厚度与模 $2\pi$ 的等效延迟。\label{ch30:quality:a13}}
+\end{minipage}\end{center}
+
 最薄四分之一波片要求 $\delta=\pi/2$：
 \[
  d_0=\frac{\lambda_0}{4\Delta n}
@@ -3773,6 +4085,8 @@ $\alpha=45^\circ+90^\circ m$ 时为圆偏振；$\alpha=90^\circ m$ 时只激发�
 \]
 厚度 $5d_0$ 的延迟为 $5\pi/2=2\pi+\pi/2$，对单色完全偏振光等效于四分之一波片；但它是更高阶波片，波长改变时额外的 $2\pi$ 也会变化，因此色散敏感性不同。
 量纲上波长除以无量纲折射率差仍为长度。
+
+图~\ref{ch30:quality:a13} 中，几何长度相同而光程相差 $(n_s-n_f)d$；最薄四分之一波片取延迟 $\pi/2$，五倍厚度给 $5\pi/2$，模 $2\pi$ 后仍等效于四分之一波片。
 \end{xesolution}
 
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -3790,14 +4104,37 @@ $\alpha=45^\circ+90^\circ m$ 时为圆偏振；$\alpha=90^\circ m$ 时只激发�
   \node at (-2.1,1.55) {出射偏振};
   \node at (-2.1,-1.55) {入射偏振};
 \end{tikzpicture}
-\figcap{半波片把入射线偏振关于快轴镜像，因此偏振方位转过 $2\alpha$。}\label{ch30:fig:half-wave}
+\figcap{半波片把入射线偏振关于快轴镜像，因此偏振方位转过 $2\alpha$。\label{ch30:fig:half-wave}}
 \end{minipage}\end{center}
 图~\ref{ch30:fig:half-wave} 中实线与虚线关于快轴对称，故两者方位差为 $2\alpha$。
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{半波片旋转偏振方向}
 线偏振方向与半波片快轴夹角为 $\alpha=20^\circ$。半波片后接一检偏器；为使透射强度最大，检偏器相对原偏振方向应转多少度？若检偏器保持原方向，透射强度是入射到检偏器前强度的多少？
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (-.4,0)--(2,0) node[right]{快轴 $x$};\draw[->] (0,-.4)--(0,1.6) node[above]{慢轴 $y$};
+\draw[DeepBlue,thick,->] (0,0)--(1.5,.546) node[above right]{$\boldsymbol E_{\rm in}$};
+\draw[dashed] (1.5,0)--(1.5,.546)--(0,.546);\node at (.8,.13){$\alpha=20^\circ$};
+
+\end{tikzpicture}
+\figcap{题图：入射偏振与半波片快轴成 $\alpha$，检偏器的方向待定。\label{ch30:quality:q14}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (-.5,0)--(2.3,0) node[right]{快轴};
+\draw[DeepBlue,thick,->] (0,0)--(1.6,.582) node[right]{入射 $+20^\circ$};
+\draw[DeepBlue,thick,->] (0,0)--(1.6,-.582) node[right]{出射 $-20^\circ$};
+\draw[dashed] (-.4,.146)--(1.9,-.691);\node[below] at (1,-1){最大透射时检偏轴沿出射偏振};
+
+\end{tikzpicture}
+\figcap{解图：半波片使偏振方向关于快轴对称；检偏轴应随出射方向选择。\label{ch30:quality:a14}}
+\end{minipage}\end{center}
+
 把入射场分解到快、慢轴，半波片使两分量相差 $\pi$，等价于偏振方向关于快轴反射。因此出射偏振相对原方向转过
 \[
  2\alpha=\boxed{40^\circ}.
@@ -3807,6 +4144,8 @@ $\alpha=45^\circ+90^\circ m$ 时为圆偏振；$\alpha=90^\circ m$ 时只激发�
  \boxed{\frac I{I_{\rm before}}=\cos^2(40^\circ)\approx0.587}.
 \]
 $\alpha\to0$ 时出射方向不变；快轴转动 $\Delta\alpha$ 会使偏振方向转动 $2\Delta\alpha$，与半波片常用于偏振旋转相符。
+
+图~\ref{ch30:quality:a14} 中，半波延迟使一个本征分量变号，等效于把线偏振方向关于快轴反射；入射 $+\alpha$ 变为 $-\alpha$，两方向相差 $2\alpha$。
 \end{xesolution}
 
 \tcbset{breakable/.default=true}\begin{starread}{晶体光学与琼斯矩阵}
@@ -3825,6 +4164,17 @@ $\alpha\to0$ 时出射方向不变；快轴转动 $\Delta\alpha$ 会使偏振方
 部分椭圆偏振光沿 $z$ 方向传播，通过理想线偏振检偏器。透振轴沿 $x$ 轴时透射强度最大，为 $1.5I_0$；沿 $y$ 轴时最小，为 $I_0$。
 （1）透振轴与 $x$ 轴成角 $\theta$ 时，透射强度怎样变化？是否依赖光束中自然光所占比例？
 （2）在检偏器前加入两本征轴沿 $x,y$ 的理想四分之一波片，发现检偏器透振轴与 $x$ 轴成 $30^\circ$ 时透射强度最大。求这个最大值及原入射光中非偏振成分所占比例。把部分偏振光看成一束完全偏振光与一束互不相干的自然光的叠加。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (-.8,0)--(1.3,0) node[right]{$x$};\draw[->] (0,-.8)--(0,1.3) node[above]{$y$};
+\draw[DeepBlue,thick] (0,0)--(35:1);\node[right] at (.6,.25){检偏轴 $\theta$};
+\node[below,align=left] at (.4,-1.2){$I_x=1.5I_0,\ I_y=I_0$\\可在前方加入本征轴沿 $x,y$ 的四分之一波片};
+
+\end{tikzpicture}
+\figcap{题图：检偏器横截面与两个已测正交方向；入射光允许含非偏振成分。\label{ch30:quality:q15}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
 第一问不能直接把 $1.5I_0$ 代入马吕斯定律，因为光束不是纯线偏振。用 $X,Y$ 表示完全偏振部分沿椭圆两主轴的分量强度，$U$ 表示自然光部分的总强度。自然光通过任意方向的理想检偏器都贡献 $U/2$。由两个极值方向得
@@ -3918,7 +4268,7 @@ $\vect S$ 一般不平行于波矢 $\vect k$，所以e光的能流方向会相�
   \node[clearlabel,anchor=west] at (2.45,-1.0) {e光};
   \draw[thin,TextGray] (2.39,-.96)--(1.94,-.84);
 \end{tikzpicture}
-\figcap{正单轴晶体的等频波矢面截面。圆对应o光，横向较长的椭圆对应e光；两曲线在光轴方向相切。}\label{ch30:fig:index-ellipse}
+\figcap{正单轴晶体的等频波矢面截面。圆对应o光，横向较长的椭圆对应e光；两曲线在光轴方向相切。\label{ch30:fig:index-ellipse}}
 \end{minipage}\end{center}
 图~\ref{ch30:fig:index-ellipse} 中沿光轴的两个截距相同，直观对应 $n_e(0)=n_o$。
 
@@ -3926,8 +4276,28 @@ $\vect S$ 一般不平行于波矢 $\vect k$，所以e光的能流方向会相�
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{非寻常光的方向折射率}
 某负单轴晶体 $n_o=1.66$、$n_e=1.49$。波矢与光轴夹角为 $45^\circ$。求e光的有效折射率，并检验它应落在哪个范围。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (0,-.3)--(0,2) node[above]{光轴};\draw[DeepBlue,->,thick] (0,0)--(1.4,1.4) node[right]{$\boldsymbol k$};
+\node at (.3,.85){$45^\circ$};\node[right,align=left] at (2,0){$n_o=1.66$\\$n_e=1.49$};
+
+\end{tikzpicture}
+\figcap{题图：角度从晶体光轴量到波矢，题目求的是相位折射率。\label{ch30:quality:q16}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\draw[->] (0,-.3)--(0,2) node[above]{光轴};\draw[DeepBlue,->,thick] (0,0)--(1.4,1.4) node[right]{$\boldsymbol k$};
+\node at (.3,.85){$45^\circ$};\node[right,align=left] at (2,0){$n_o=1.66$\\$n_e=1.49$};
+
+\end{tikzpicture}
+\figcap{解图：明确波矢角度的参考轴，再检验折射率的上下界。\label{ch30:quality:a16}}
+\end{minipage}\end{center}
+
 代入方向折射率公式：
 \[
  \frac1{n_e^2(45^\circ)}
@@ -3939,6 +4309,8 @@ $\vect S$ 一般不平行于波矢 $\vect k$，所以e光的能流方向会相�
 \]
 结果位于 $1.49$ 与 $1.66$ 之间；若算出超出两主折射率范围，通常是把折射率椭圆的半轴或角度定义颠倒了。
 $\theta\to0$ 时公式给出 $n_o$，$\theta\to90^\circ$ 时给出主值 $n_e$。
+
+图~\ref{ch30:quality:a16} 中，$45^\circ$ 是波矢与光轴的夹角；代入折射率椭球截面的方向关系后，所得有效折射率必须在 $n_e$ 与 $n_o$ 之间，且不能把能流走离角代入同一个公式。
 \end{xesolution}
 
 \begin{center}\begin{minipage}{\linewidth}\centering
@@ -3964,13 +4336,35 @@ $\theta\to0$ 时公式给出 $n_o$，$\theta\to90^\circ$ 时给出主值 $n_e$�
   \node[above left] at (A){$A$};\node[below left] at (B){$B$};
   \node[above left] at (C){$C$};
 \end{tikzpicture}
-\figcap{正入射单轴晶片的一种双折射几何。o光不偏折，e光能流可因走离而产生横向分离。}\label{ch30:fig:double-refraction}
+\figcap{正入射单轴晶片的一种双折射几何。o光不偏折，e光能流可因走离而产生横向分离。\label{ch30:fig:double-refraction}}
 \end{minipage}\end{center}
 
 \Needspace{7\baselineskip}\begin{origexamplebox}{晶片后的两束横向分离}
 厚度为 $d$ 的平行晶片中，o光沿法线传播，e光的能流与法线夹角为走离角 $\rho$。忽略出射面的额外横移，求两束在出射面处的间距，并给出小角近似。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\fill[DeepBlue!7] (0,-.5) rectangle (3,1.5);\draw[thick] (0,-.5)--(0,1.5) (3,-.5)--(3,1.5);
+\draw[DeepBlue,->] (0,0)--(3,0) node[right]{o光};\draw[DeepBlue,->] (0,0)--(3,1) node[right]{e光能流};
+\draw[<->] (0,-.9)--(3,-.9) node[midway,below]{$d$};\draw[<->] (3.6,0)--(3.6,1) node[midway,right]{$\Delta x$};\node at (1,.16){$\rho$};
+
+\end{tikzpicture}
+\figcap{题图：两束从同一点进入晶片，e光能流相对法线走离，图中 $\Delta x$ 待求。\label{ch30:quality:q17}}
+\end{minipage}\end{center}
 \end{origexamplebox}\par\nopagebreak[3]
 \begin{xesolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,every node/.style={fill=none},scale=.88]
+
+\fill[DeepBlue!7] (0,-.5) rectangle (3,1.5);\draw[thick] (0,-.5)--(0,1.5) (3,-.5)--(3,1.5);
+\draw[DeepBlue,->] (0,0)--(3,0) node[right]{o光};\draw[DeepBlue,->] (0,0)--(3,1) node[right]{e光能流};
+\draw[<->] (0,-.9)--(3,-.9) node[midway,below]{$d$};\draw[<->] (3.6,0)--(3.6,1) node[midway,right]{$\Delta x$};\node at (1,.16){$\rho$};
+
+\end{tikzpicture}
+\figcap{解图：厚度与横移是走离角所对应的邻边和对边。\label{ch30:quality:a17}}
+\end{minipage}\end{center}
+
 图~\ref{ch30:fig:double-refraction} 中 $A$ 是共同入射点，$AB=d$ 沿晶片法线，$BC=\Delta x$ 为出射面内的横移。由直角三角形 $ABC$ 得
 \[
  \boxed{\Delta x=d\tan\rho}.
@@ -3980,6 +4374,8 @@ $\theta\to0$ 时公式给出 $n_o$，$\theta\to90^\circ$ 时给出主值 $n_e$�
  \boxed{\Delta x\simeq d\rho}.
 \]
 间距符号由走离方向决定，通常报告其绝对值。$d$ 乘无量纲三角函数仍是长度；$\rho\to0$ 时两束重合，符合沿光轴或无各向异性时的极限。
+
+图~\ref{ch30:quality:a17} 中，$d$ 沿法线量取，而 $\Delta x$ 沿出射面量取，二者形成直角三角形；因此使用 $\tan\rho$，不能用光程长度误代 $d$。
 \end{xesolution}
 
 
@@ -4069,4 +4465,6 @@ $\theta\to0$ 时公式给出 $n_o$，$\theta\to90^\circ$ 时给出主值 $n_e$�
 在 $0$ 与 $1$ 之间。$\mathcal P=1$ 等价于 $\det\mathbf J=0$，表示完全偏振；理想自然光满足 $\mathbf J=(I/2)\mathbf 1$，故 $\mathcal P=0$。这也说明“每一瞬间电场都有方向”并不意味着长时间平均后的光必为完全偏振。
 
 
+
+\input{chapters/quality-20261023/em-optics/ch30-notes.tex}
 \endgroup

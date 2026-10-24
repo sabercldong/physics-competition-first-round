@@ -1,3 +1,5 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,9 +8,11 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{流体静力学与动力学}
+\input{chapters/quality-20261023/thermal/ch13.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/kinematics-supplement/assets/}}
+\graphicspath{{../../../sample/xes-original/kinematics-supplement/}{../../../sample/xes-original/kinematics-supplement/assets/}}
 \section{流线、流管与质量流率}
 \newcommand{\SphereStreamlinesDiagram}{%
 \begin{center}\begin{minipage}{\linewidth}\centering\begin{tikzpicture}[scale=.85,>=Latex]
@@ -130,6 +134,8 @@
 \PipeContinuityDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAFlowVolume
+
 图~\ref{ch13:fig:k10-ex-2-97}标出截面 $S_A,S_B$ 与对应速度。取相同时间 $\Delta t$，通过两截面的体积分别为 $S_Av_A\Delta t$、$S_Bv_B\Delta t$。稳态且不可压缩时两者相等：
 \[
 S_Av_A=S_Bv_B.
@@ -147,6 +153,8 @@ S_Av_A=S_Bv_B.
 \UniformPipeDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAUniformFlow
+
 图~\ref{ch13:fig:k10-ex-2-98}中圆柱管的截面积 $S$ 处处相同。连续性方程要求任意两截面
 \[
 Sv_1=Sv_2,
@@ -165,6 +173,8 @@ Sv_1=Sv_2,
 \FallingJetDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAFallingFlow
+
 图~\ref{ch13:fig:k10-ex-2-99}中，$h$ 的下端、$S(h)$ 与 $v(h)$ 标在同一横截面。自由下落的速度由
 \[
 v(h)^2=v^2+2gh
@@ -198,6 +208,8 @@ Sv=S(h)v(h).
 \CompressiblePipeDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAFlowMass
+
 图~\ref{ch13:fig:k10-ex-2-100}将两侧密度分别标为 $\rho_A,\rho_B$。单位时间通过截面的质量为 $\rho Sv$，不能只比较体积。质量连续性给出
 \[
 \rho_AS_Av_A=\rho_BS_Bv_B,
@@ -211,8 +223,12 @@ Sv=S(h)v(h).
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{等截面自由落体液柱的密度}\label{ch13:ex:k10-2-101}
 极大容器中液体初始密度为 $\rho$，从面积为 $S$ 的孔以速度 $v$ 流出。忽略分子间相互作用和表面张力，设下落过程中水束截面积始终为 $S$，每个分子作自由落体。求密度 $\rho(h)$。
+
+\ThQDilutingColumn
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThADilutingColumn
+
 下落 $h$ 后速度仍为
 \[
 v(h)=\sqrt{v^2+2gh}.
@@ -426,8 +442,12 @@ $p$ 是绝对压强，$p-p_a$ 是相对大气的表压。自由面与大气相�
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{两层液体中的侧壁压力}\label{ch13:ex:teaching-layered}
 一个敞口容器中，上层液体密度为 $\rho_1$、厚度为 $h_1$，下层密度为 $\rho_2>\rho_1$、厚度为 $h_2$。竖直侧壁宽度为 $b$，外侧为大气。求液体作用在侧壁下层部分上的净压力及其作用点深度，忽略界面张力。
+
+\ThQLayers
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThALayers
+
 从两液体界面向下量 $x$，$0\le x\le h_2$。上层已贡献表压 $\rho_1gh_1$，下层再贡献 $\rho_2gx$，故
 \[
  \Delta p(x)=\rho_1gh_1+\rho_2gx,
@@ -456,8 +476,12 @@ $p$ 是绝对压强，$p-p_a$ 是相对大气的表压。自由面与大气相�
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{浮体的竖直小振动}\label{ch13:ex:teaching-buoyancy}
 质量为 $m$、水平截面积恒为 $S$ 的直立柱体，在密度 $\rho$ 的液体中平衡漂浮。只允许竖直运动，忽略流体附加惯性、阻力和表面张力，且小振动中底面始终浸没、顶面始终露出。求平衡浸深及小振动周期。
+
+\ThQFloat
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAFloat
+
 平衡时 $mg=\rho gSh_0$，所以 $h_0=m/(\rho S)$。取柱体向下的位移 $x$ 为正；此时浸深为 $h_0+x$，浮力向上且增大：
 \[
  m\ddot x=mg-\rho gS(h_0+x)=-\rho gSx.
@@ -542,6 +566,8 @@ $\dd m[(v_2^2-v_1^2)/2+g(z_2-z_1)]$。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{小孔流出速度}\label{ch13:ex:outlet}
 大水箱自由液面到侧壁小孔的高度差为 $h$，水箱横截面远大于小孔。忽略黏性，求流出速度。
+
+\ThQOutlet
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 在自由液面与小孔出口之间使用伯努利方程。两点都与大气相通，压强项相消；大水箱自由液面速度近似为零：
@@ -568,6 +594,8 @@ $\dd m[(v_2^2-v_1^2)/2+g(z_2-z_1)]$。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{水射流正撞平板}\label{ch13:ex:jet-plate}
 密度为 $\rho$、截面积为 $A$、速度为 $v$ 的稳定水射流垂直撞击静止大平板，撞后水沿板面向四周流走。忽略重力，求水对板的平均力。
+
+\ThQJet
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 取法向为 $x$ 轴。质量流率 $\dot m=\rho Av$。流入法向速度为 $v$，流出水流沿板面，法向速度为零。
@@ -592,8 +620,12 @@ $\dd m[(v_2^2-v_1^2)/2+g(z_2-z_1)]$。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{射流推动匀速后退的平板}\label{ch13:ex:teaching-moving-plate}
 沿水平 $+x$ 方向的细水射流速度为 $v$、截面积为 $A$、密度为 $\rho$。一块足够大的平板沿同方向以恒速 $u$ 后退，$0\le u<v$。水撞板后沿板面流走，相对平板没有法向速度。忽略重力及空气作用，求水对板的力和传给板的功率。
+
+\ThQMovingPlate
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAMovingPlate
+
 以匀速平板为参考系，它仍是惯性系。对应图~\ref{ch13:fig:jet-plate} 的控制体随板平移，入射相对速度为 $v-u$，故每秒真正撞板的质量为
 \[
  \dot m_{\rm hit}=\rho A(v-u).
@@ -646,6 +678,8 @@ $\eta r^{-1}\dd[r\,\dd v_z/\dd r]/\dd r=-G$。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{小球在黏性液体中的终端速度}\label{ch13:ex:settling}
 密度为 $\rho_s$、半径为 $R$ 的小球在密度 $\rho_f$、黏度 $\eta$ 的液体中下落。假设满足斯托克斯阻力，求终端速度。
+
+\ThQSettling
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 终端状态合力为零。向下重力减去浮力等于向上黏性阻力：
@@ -695,8 +729,12 @@ $\eta r^{-1}\dd[r\,\dd v_z/\dd r]/\dd r=-G$。
 
 \Needspace{16\baselineskip}\begin{origexamplebox}{液滴合并时的界面能变化}\label{ch13:ex:teaching-droplets}
 两滴同种不可压缩液体均为半径 $R$ 的球形液滴，合并后形成一个球形液滴。设表面张力为常量 $\gamma$，忽略重力。求合并后的半径、界面能减少量及新液滴的内外压差。界面能的减少是否等于总能量的消失？
+
+\ThQDroplets
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThADroplets
+
 先守恒的是体积而不是表面积。设新半径为 $R_f$，则
 \[
  \frac43\pi R_f^3=2\frac43\pi R^3,
@@ -911,6 +949,8 @@ $g=9.8\,\mathrm{m/s^2}$。忽略阻力，把空气视为双原子理想气体并
 \FluidCoupledHgDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThACoupledMercury
+
 图~\ref{ch13:fig:coupled-hg}中，水平气柱中心线到两个自由面的竖直高度均为 $h$。
 平衡时空气压强等于大气压再加一段高度为 $h$ 的水银柱压强：
 \[
@@ -977,6 +1017,8 @@ $f_-=0.719\,\mathrm{Hz}$、$f_+=1.36\,\mathrm{Hz}$。
 \FluidCouetteDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThACouette
+
 稳定轴对称流满足 $v_r=v_z=0$、$v_\theta=r\omega(r)$。
 图~\ref{ch13:fig:couette}中 $P$ 的切向速度为 $v_\theta$，半径为 $r$；所画水平截面上各点的高度相同。将速度代入切应力公式，得到
 \[
@@ -1031,6 +1073,8 @@ $\partial p/\partial z=-\rho g$。若把方括号中的径向差记为 $\Delta p
 \FluidHangarDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAHangar
+
 图~\ref{ch13:fig:hangar}中，$\theta$ 从正 $x$ 方向量起，门口 $A$ 对应 $\pi$。
 由 $\vect v=\nabla\phi$，在曲面 $r=R$ 上有
 \[
@@ -1066,6 +1110,8 @@ $\vect n=(\cos\theta,\sin\theta)$。左右对称使水平分量相消，而竖�
 \FluidFunnelDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAFunnel
+
 图~\ref{ch13:fig:funnel}保留有限出口。先取 $a\ll R$ 的尖锥近似，忽略小孔截断锥尖带来的几何修正。
 由相似三角形，水深为 $h$ 时的自由液面面积为
 \[
@@ -1101,6 +1147,8 @@ $B=(0,y_0)$ 出发，初始传播方向平行于岸线。求波包射线，并�
 \FluidShoreDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAShore
+
 介质只随 $y$ 变化，沿岸方向平移对称。令 $\theta$ 为射线与指向岸边的法线方向（$-y$ 方向）的夹角，
 图~\ref{ch13:fig:shore}中 $B$ 在 $y$ 轴上，故初始沿岸坐标为零。
 射线折射不变量为
@@ -1149,6 +1197,8 @@ $g=10\,\mathrm{m/s^2}$，忽略黏性和出口之外水流的重量，求稳定�
 \FluidHoseDiagram
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAHose
+
 图~\ref{ch13:fig:hose}中 $O$ 是转轴，$E$ 是直角弯头，$P$ 是出水口。两段长度相等且转动中保持垂直。
 出口平均速度为
 \[

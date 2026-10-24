@@ -1,6 +1,10 @@
+% MathQuality20261023
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{数学工具：量纲、矢量、坐标与微积分}
+\input{chapters/quality-20261023/ch01-figures.tex}
+
 
 \section{量纲、尺度估计与无量纲化}
 
@@ -17,6 +21,8 @@ $M,L,T$。若某物理量 $Q$ 的量纲为
 
 \begin{origexamplebox}{单摆周期的量纲结构}
 长度为 $\ell$ 的单摆在重力场中作小振动。只用 $\ell$、重力加速度 $g$ 和摆球质量 $m$，由量纲分析确定周期的幂律形式，并说明量纲分析不能确定什么。
+
+\QMathNamed{\QMPendulum{0}}{单摆的长度、质量和重力场；摆角由竖直方向量起。}{quality:01:q1}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 设 $T_0=C\ell^a g^b m^c$，其中 $C$ 无量纲。比较质量量纲先得 $c=0$；再由
@@ -29,10 +35,14 @@ $M,L,T$。若某物理量 $Q$ 的量纲为
 \]
 质量不进入结果。量纲分析不能确定 $C=2\pi$，也不能判断大振幅时还会出现怎样的无量纲振幅修正。
 单位检查：$\ell/g$ 的量纲为 $T^2$，开方后确为时间。
+
+\QMathNamed{\QMPendulum{1}}{长度与重力加速度组合成时间尺度，量纲不能确定右侧的纯数系数。}{quality:01:a1}
+
+图~\ref{quality:01:a1}将几何长度与重力加速度合成时间尺度；摆角是无量纲量，量纲方法不能排除周期的振幅依赖，小角条件才将其收敛到常系数极限。
 \end{xesolution}
 
 \begin{origexamplebox}{黏性流体中小球的终端速度}
-半径为 $R$、密度为 $\rho_s$ 的小球，在密度为 $\rho_f$、动力黏度为 $\eta$ 的静止流体中由静止释放，且 $\rho_s>\rho_f$。为判断黏性是否主导流动，定义以球直径 $2R$ 为特征长度的雷诺数
+半径为 $R$、密度为 $\rho_s$ 的小球，在密度为 $\rho_f$、动力黏度为 $\eta$ 的静止流体中、远离边界处由静止释放。采用准稳阻力近似，忽略流体附加质量和历史力，且 $\rho_s>\rho_f$。为判断黏性是否主导流动，定义以球直径 $2R$ 为特征长度的雷诺数
 \[
  \mathrm{Re}=\frac{\rho_fv(2R)}{\eta}.
 \]
@@ -43,6 +53,8 @@ $M,L,T$。若某物理量 $Q$ 的量纲为
 (2) 若进一步采用斯托克斯阻力 $F_D=6\pi\eta Rv$，求 $v_t$ 的准确表达式；
 
 (3) 把求得的 $v_t$ 代入 $\mathrm{Re}$，写出斯托克斯阻力适用的参数条件。
+
+\QMathNamed{\QMStokes}{小球与静止流体的题设参数；释放时速度为零。}{quality:01:q2}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 先把物理过程分成两个阶段：刚释放时小球加速下落；速度增大后，向上的黏滞阻力也增大。当加速度降为零时，小球保持恒定速度，这个恒定速度才叫终端速度。
@@ -95,7 +107,7 @@ $[(\rho_s-\rho_f)gR^2/\eta]=\mathrm{m/s}$。若 $\mathrm{Re}_t$ 不再远小于 
 小球由静止单调加速到终端速度的过程中始终有 $0\le v\le v_t$，而雷诺数与 $v$ 成正比，
 因此终端状态的 $\mathrm{Re}_t$ 是整个下落过程中的最大值；只要 $\mathrm{Re}_t\ll1$，此前各时刻也都满足低雷诺数条件。
 
-\begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[scale=.9,>=Latex]
   \fill[DeepBlue!8] (-3.2,-2.0) rectangle (3.2,2.15);
   \draw[DeepBlue!35] (-3.2,1.55)--(3.2,1.55);
@@ -110,7 +122,7 @@ $[(\rho_s-\rho_f)gR^2/\eta]=\mathrm{m/s}$。若 $\mathrm{Re}_t$ 不再远小于 
 \end{tikzpicture}
 \figcap{终端状态的受力图：速度向下，浮力与黏滞阻力的合力向上。}
 \label{ch01:fig:terminal-speed}
-\end{center}
+\end{qualityfigure}
 \end{xesolution}
 
 \section{点乘、投影、叉积与方向判断}
@@ -191,6 +203,8 @@ $a_b$ 可以为负，它只给出带符号的分量大小。把这个大小再�
 \begin{origexamplebox}{力矩的坐标计算与方向}
 在 $xy$ 平面内，质点位置为 $\vect r=(2.0\,\uvec i+1.0\,\uvec j)\,\mathrm m$，受力
 $\vect F=(3.0\,\uvec i-4.0\,\uvec j)\,\mathrm N$。求力对原点的力矩，并解释正负号。
+
+\QMathNamed{\QMTorque{0}}{作用点位置与力方向；力对原点的力矩待求。}{quality:01:q3}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 先把力矩写成基矢的叉积，使用分配律逐项计算。平行基矢的叉积为零，
@@ -224,6 +238,10 @@ $\uvec j\times\uvec i=-\uvec k$，所以
  \boxed{\vect\tau=-11\,\uvec k\,\mathrm{N\,m}}.
 \]
 $-\uvec k$ 指向纸内；从 $+z$ 轴正向朝原点观察，力使质点呈顺时针转动趋势。量纲为力乘力臂，即 $\mathrm{N\,m}$；它与能量虽同量纲，物理对象不同。
+
+\QMathNamed{\QMTorque{1}}{力的两个坐标分量都产生顺时针转动趋势；$\otimes$ 表示力矩指向纸内。}{quality:01:a3}
+
+图~\ref{quality:01:a3}中 $F_y<0$ 与 $F_x>0$ 均使该作用点绕原点顺时针转动，故两项 $xF_y$ 与 $-yF_x$ 同为负，与叉积计算相符。
 \end{xesolution}
 
 \section{常用坐标系与微元}
@@ -304,7 +322,9 @@ $\dd A$ 是面积大小，是标量；若计算电通量或流量，需要带方
 图~\ref{ch01:fig:spherical} 的角度约定决定公式中的 $\sin\theta$；若把 $\theta$ 改为从赤道面量起，尺度因子的写法也必须同步改变。特别要区分 $\dd A$ 与 $\dd\vect A$：前者只有面积大小，后者还带球面外法线方向。
 
 \begin{origexamplebox}{球对称密度的总质量}
-半径为 $R$ 的球体密度为 $\rho(r)=\rho_0(1-r/R)$。求总质量，并检查结果的符号和量纲。
+半径为 $R>0$ 的球体密度为 $\rho(r)=\rho_0(1-r/R)$，其中 $\rho_0>0$。求总质量，并检查结果的符号和量纲。
+
+\QMathNamed{\QMSphere{0}}{球对称密度只依赖距球心的距离，并在球面降为零。}{quality:01:q4}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 \textbf{先把“累加微元”写清楚。}把球体分成许多很薄的球壳，第 $j$ 层的质量近似为
@@ -350,11 +370,15 @@ $\sin\theta$，它的总变化就等于相应的累加量。这种“由变化�
 被积函数在 $0\le r\le R$ 非负，所以总质量为正；$\rho_0R^3$ 的量纲为质量。
 这里的 $r^2\sin\theta$ 正是把三个坐标微元换成实际体积的几何因子；它给出薄球壳体积
 $4\pi r^2\dd r$，从而把本题的三重积分化成只对半径 $r$ 的一重积分。
+
+\QMathNamed{\QMSphere{1}}{球壳法：同半径的体积元合并为厚度 $\dd r$ 的完整薄壳。}{quality:01:a4}
+
+图~\ref{quality:01:a4}的薄壳包含所有同半径的位置，故质量元须乘整个球面面积，不能把径向线积分 $\int\rho(r)\dd r$ 直接当质量。
 \end{xesolution}
 
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fourteenth-section/}}
+\graphicspath{{../../../sample/xes-original/fourteenth-section/}}
 \section{导数及其应用}
 % TikZ figures redrawn from the source.  Blue annotations in solution figures
 % are added for the present edition.
@@ -798,13 +822,15 @@ $\dot X$ 的量级约为 $X/T$；两个机制谁占主导，可比较相应导�
 这类先估量级、再保留主导项的做法，常比直接处理完整方程更清楚。
 
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-1}
+\begin{origexamplebox}{五类函数的差商极限}\label{ch01:ex:s14-1-1}
 根据定义求下列函数的导数：
 \[
  y(x)=C,\qquad y(x)=kx,\qquad y(x)=ax^n,\qquad
  y(x)=A\sin(kx),\qquad y(x)=\e^x,
 \]
 其中除自变量 $x$ 外，其余字母均为常数；幂函数一式先取非负整数 $n$。
+
+\QMathNamed{\QMDerivatives{0}}{五类函数的形状示例：取常数为1、幂指数为2；一般参数仍按题干保留。}{quality:01:q5}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -888,9 +914,13 @@ $\sin(-u)/(-u)=\sin u/u$，左极限相同。因此
 \]
 因此 $\lim_{u\to0}(\e^u-1)/u=1$。取 $u=\Delta x$，上式中的极限等于 $1$，最终得到
 $\dd(\e^x)/\dd x=\e^x$。
+
+\QMathNamed{\QMDerivatives{1}}{实线是五类函数的代表曲线，虚线是在同一横坐标处的切线。}{quality:01:a5}
+
+图~\ref{quality:01:a5}用虚线切线检验差商极限的几何意义；常数曲线切线水平，指数函数的切线斜率随横坐标增大。图中的特定参数只用于展示，不能代替一般常数的极限推导。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-2}
+\begin{origexamplebox}{乘积法则与链式法则}\label{ch01:ex:s14-1-2}
 函数 $f(x),g(x)$ 对 $x$ 的导数已知。根据导数定义证明以下求导运算的基本规律：
 \[
  \frac{\dd}{\dd x}[a f(x)]=a\frac{\dd f}{\dd x},
@@ -902,6 +932,8 @@ $\dd(\e^x)/\dd x=\e^x$。
 \[
  \frac{\dd}{\dd x}f(g(x))=\frac{\dd f}{\dd g}\frac{\dd g}{\dd x}.
 \]
+
+\QMathNamed{\QMProduct{0}}{正值函数的面积示意与复合函数的两级映射；求导法则本身不限于正值函数。}{quality:01:q6}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -941,6 +973,10 @@ $g$ 可导因而连续，所以 $\Delta x\to0$ 时 $\Delta g\to0$，
 \[
  \boxed{\frac{\dd f(g(x))}{\dd x}=f'(g(x))g'(x)}.
 \]
+
+\QMathNamed{\QMProduct{1}}{乘积增量的两条边带与二阶角块；图示取正增量以便显示面积。}{quality:01:a6}
+
+图~\ref{quality:01:a6}的两条边带贡献 $g\Delta f$ 与 $f\Delta g$，角上的小块为 $\Delta f\Delta g$。可导时两增量均为 $O(\Delta x)$，小块除以 $\Delta x$ 后趋零；符号变化时仍按代数增量计算。
 \end{xesolution}
 
 \subsection{物理量的变化率}
@@ -950,7 +986,7 @@ $g$ 可导因而连续，所以 $\Delta x\to0$ 时 $\Delta g\to0$，
 也与势能随坐标的变化率直接相关。若能写出两个物理量之间的函数关系，直接求导便可
 得到一个物理量改变时另一个物理量的变化率。
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-3}
+\begin{origexamplebox}{从坐标函数求速度与加速度}\label{ch01:ex:s14-1-3}
 一个一维运动质点的坐标随时间的关系分别为下列函数，求瞬时速度、加速度与时间的函数：
 \begin{enumerate}[label=\arabic*.,leftmargin=2.2em]
  \item $x(t)=v_0t+\dfrac12at^2$；
@@ -958,6 +994,8 @@ $g$ 可导因而连续，所以 $\Delta x\to0$ 时 $\Delta g\to0$，
  \item $x(t)=\dfrac{mv_0}{\beta}\left(1-\e^{-\frac{\beta}{m}t}\right)$，
        $\beta,m$ 为已知数。
 \end{enumerate}
+
+\QMathNamed{\QMMotion{0}}{三类位置曲线的无量纲示例，横坐标各用本情形的时间尺度，不能比较实际时间数值。}{quality:01:q7}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -988,7 +1026,7 @@ $g$ 可导因而连续，所以 $\Delta x\to0$ 时 $\Delta g\to0$，
 \[
  a=\frac{\dd v}{\dd t}=-\frac{\beta}{m}v.
 \]
-在本题给出的运动中 $v>0$ 而 $a<0$，所以加速度方向与速度方向相反，速率随时间减小。
+在 $v_0>0,m>0,\beta>0$ 的减速分支中 $v>0$ 而 $a<0$，所以加速度方向与速度方向相反，速率随时间减小。
 这种“与速度反向、使速率减小的加速度分量”常被称为减速度；它不是一种新的物理量，
 仍然是加速度。若把这一运动解释为物体只受线性阻力，或其他恒力已经彼此平衡，则由
 牛顿第二定律
@@ -997,14 +1035,18 @@ $g$ 可导因而连续，所以 $\Delta x\to0$ 时 $\Delta g\to0$，
 \]
 可知阻力为 $F_{\rm D}=-\beta v$：负号表示阻力与速度反向，大小 $\beta v$ 随速率增大。
 若没有这一受力模型，仅由给定的 $x(t)$ 只能判断物体在减速，不能凭空断定具体是哪一种力造成的。
+
+\QMathNamed{\QMMotion{1}}{三种归一化运动的一阶导实线与二阶导虚线；图示取正尺度参数，定义见解答正文。}{quality:01:a7}
+
+图~\ref{quality:01:a7}实线是位置对无量纲时间的一阶导，虚线是二阶导。图示取 $a,v_0,A,\omega,\beta,m>0$，三图分别取 $s=at/v_0$、$s=\omega t$ 且 $\beta/\omega=1/4$、$s=\beta t/m$；对应位置归一化为 $ax/v_0^2,x/A,\beta x/(mv_0)$。零值或其他符号参数仍按正文的一般导数式处理。实际速度、加速度还要乘回各自尺度，不能从无量纲图漏掉链式法则因子。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-4}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{移动半圆柱与竖直杆的约束微分}\label{ch01:ex:s14-1-4}
 一个半径为 $R$ 的半圆柱体在垂直于柱轴的水平方向上以匀速 $v_0$ 运动。如图，在圆柱面
-上搁一竖直杆，此杆只能沿竖直方向上下运动。求杆上任意一点的速度、加速度与图示角
+上搁一竖直杆，此杆只能沿竖直方向上下运动。在图示 $0<\theta<\pi/2$、$v_0>0$ 且保持接触的阶段，求杆上任意一点的速度、加速度与图示角
 $\theta$ 的关系。
-\probdiagOneFour
+\QMathNamed{\probdiagOneFour}{半圆柱水平移动而杆的水平坐标固定；角度由竖直半径量起。}{quality:01:q8}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1023,7 +1065,7 @@ $\theta$ 的关系。
  v_y=\dot y=-R\sin\theta\,\dot\theta
  =\boxed{v_0\tan\theta}.
 \]
-\soldiagOneFour
+\QMathNamed{\soldiagOneFour}{保持接触的杆—圆柱几何约束，位置关系随时间一起变化。}{quality:01:a8}
 继续求导：
 \[
  a_y=v_0\sec^2\theta\,\dot\theta
@@ -1032,11 +1074,15 @@ $\theta$ 的关系。
 若取竖直向上为正，速度向上，加速度向下。刚性杆作平动，所以杆上任意一点的速度和
 加速度都相同。当 $\theta\to\pi/2$ 时理想模型给出发散结果，说明接触状态不可能一直
 保持到圆柱侧缘。
+
+图~\ref{quality:01:a8}的杆水平坐标固定，而圆柱中心的 $X$ 改变，所以先微分 $X+R\sin\theta=\mathrm{const}$，再微分高度 $R\cos\theta$；不能把 $\theta$ 误当作恒定角速度变量。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-5}
+\begin{origexamplebox}{透镜像点的有向速度}\label{ch01:ex:s14-1-5}
 一个发光点在焦距为 $f$ 的凸透镜主光轴上，以恒定不变的速度 $v$ 向着透镜运动。求其
 像点移动速度与物距 $u$ 的关系。
+
+\QMathNamed{\QMLens{0}}{物点向右接近薄凸透镜；图先示意实像分支 $u>f$。}{quality:01:q9}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1059,6 +1105,10 @@ $\theta$ 的关系。
 其含义却是负的像坐标向零增加，虚像向透镜靠近，而不是远离。
 例如 $u=f/2$ 时 $q=-f$、$\dot q=4v$，这与有向坐标的判断一致。
 不能把 $u=f$ 两侧的像当作以有限速度连续越过无穷远的同一个物点。
+
+\QMathNamed{\QMLens{1}}{实像右移与虚像右移对应不同的空间含义；两幅图分别使用各自光路。}{quality:01:a9}
+
+图~\ref{quality:01:a9}的两幅图分别表示实像与虚像：同一正号 $\dot q>0$ 在右半轴表示远离透镜，在左半轴表示靠近透镜。有向坐标使两个分支使用同一公式。
 \end{xesolution}
 
 \subsection{求极值}
@@ -1073,12 +1123,12 @@ $\theta$ 的关系。
 当感兴趣的物理量随其他因素变化时，先写出它们之间的函数关系，再令一阶导数为零，便
 可寻找变化过程中的极值；必要时再借助二阶导数或端点条件判断极值类型。
 
-\Needspace{0.38\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-6}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{光程极值与折射定律}\label{ch01:ex:s14-1-6}
 利用费马原理证明光的折射定律：两个均匀介质的折射率分别为 $n_1,n_2$，分界面为一
 平面。证明由平面外一点 $A$ 到达另一点 $B$ 的光线中，满足折射定律的光线的光程为
 极值。
-\probdiagOneSix
+\QMathNamed{\probdiagOneSix}{跨平面界面的两段光路与可变折射点；高度及水平间距均固定。}{quality:01:q10}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1110,10 +1160,14 @@ $\theta$ 的关系。
  +\frac{n_2h_2^2}{[h_2^2+(L-x)^2]^{3/2}}>0,
 \]
 故该稳定光路给出的确是光程的极小值。
+
+\QMathNamed{\QMFermat}{固定端点、移动折射点的光程变分；入射和折射角均从法线量起。}{quality:01:a10}
+
+图~\ref{quality:01:a10}中的 $\delta x$ 只移动折射点而不移动 $A,B$。上段长度一阶变化为 $\sin\theta_1\delta x$，下段为 $-\sin\theta_2\delta x$；光程一阶变化相消便给出折射定律。两段长度的二阶导均为正，所以对这两个固定异侧端点，所得极值是唯一最小值。
 \end{xesolution}
 
-\Needspace{0.40\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-7}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{两种热力学路径的温度极值}\label{ch01:ex:s14-1-7}
 求理想气体在下面两个热力学过程中的温度最大值和最小值：
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
  \item 气体从状态 $(2p_0,V_0)$ 沿连接两点的直线段变化到状态 $(p_0,2V_0)$；
@@ -1123,7 +1177,7 @@ $\theta$ 的关系。
   \left(\frac V{V_0}-1\right)^2=\left(\frac12\right)^2.
  \]
 \end{enumerate}
-\probdiagOneSeven
+\QMathNamed{\probdiagOneSeven}{直线路径与无量纲圆路径；物理坐标中的后者一般是椭圆。}{quality:01:q11}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1170,13 +1224,17 @@ $R_g$ 为气体常量。
  \boxed{T_{\min}=\frac{p_0V_0}{nR_g}
   \left(1-\frac1{2\sqrt2}\right)^2}.
 \]
+
+\QMathNamed{\QMPVExtrema}{直线路径上的等温线相切与无量纲圆路径上的两个温度极值。}{quality:01:a11}
+
+图~\ref{quality:01:a11}中温度正比于 $pV$。左图等温双曲线与直线路径在中点相切；右图沿 $p/p_0=V/V_0$ 的两点分别给出最大、最小乘积，两个点都必须检查，不能只求一个驻点。
 \end{xesolution}
 
-\Needspace{0.30\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-8}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{双星引力的最大值}\label{ch01:ex:s14-1-8}
 宇宙中有两个天体，质量均为 $M$，相距 $2L$。求在它们连线的垂直平分线上何处的小
 天体受到两个大天体的万有引力合力能够达到最大值。
-\probdiagOneEight
+\QMathNamed{\probdiagOneEight}{两个等质量天体与垂直平分线上的试探位置。}{quality:01:q12}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1197,10 +1255,14 @@ $r=\sqrt{x^2+L^2}$。两个引力的垂直分量相消，沿垂直平分线方�
  \qquad
  \boxed{F_{\max}=\frac{4GMm}{3\sqrt3\,L^2}}.
 \]
+
+\QMathNamed{\QMGravityMaximum}{垂直平分线上的合力大小随距离变化，归一化后峰位与试探质量无关。}{quality:01:a12}
+
+图~\ref{quality:01:a12}把试探质量记为 $m$，横坐标为题图中的距离 $x$。中心处两引力抵消，远处合力又趋零；在 $x/L=1/\sqrt2$ 的内部峰值因此具有正确的两端行为。
 \end{xesolution}
 
-\Needspace{0.43\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-9}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{抛体包络线与球顶的可达条件}\label{ch01:ex:s14-1-9}
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
  \item 从坐标原点以给定初速度 $v_0$ 沿不同角度抛出物体。证明能击中的目标与因初速度
  不足而无法击中的目标之间，分界线满足
@@ -1211,6 +1273,8 @@ $r=\sqrt{x^2+L^2}$。两个引力的垂直分量相消，沿垂直平分线方�
  在命中球顶以前不接触球体的条件下，求抛出速度的下界，并判断最小值是否能取到；
  再讨论允许提前相切但不穿入球体时的最小抛出速度、抛出角及抛出点到球底部的距离。
 \end{enumerate}
+
+\QMathNamed{\QMSafety}{左图为同速轨迹族及题给包络线；右图只示意一条可行命中轨迹，不预设最优。}{quality:01:q13}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1323,7 +1387,7 @@ $X=s$ 处的函数值为 $1+r$、斜率为 $-s/r$，且二次项系数为 $-A$�
 \[
  \boxed{d_0=\frac{\sqrt3(1+\sqrt{33})}{8}R}.
 \]
-\soldiagOneNine
+\QMathNamed{\soldiagOneNine}{允许提前相切时的边界轨迹；相切点与球顶是两个不同的点。}{quality:01:a13}
 在这组参数下，抛物线在球体左上方
 $(x/R,y/R)=(-\sqrt3/2,3/2)$ 处与球面相切，随后到达球顶；因此解图中的“相切”发生在
 球顶之前，而不是球顶本身。
@@ -1357,6 +1421,8 @@ $Y=2-qX-AX^2$。为避免在球顶左邻域穿入球面，必须有 $q\ge0$；
 \]
 若允许提前相切而不穿入，才有 $v_{\min}=v_*$，相应角度和距离为上式的 $\theta_0,d_0$。
 $\sqrt{gR}$ 具有速度量纲，$d_0$ 与 $R$ 成正比，符合几何相似性。
+
+图~\ref{quality:01:a13}中的球面相切点发生在到达球顶以前。因此该图对应允许提前相切的临界情形；严格不提前接触时，必须采用正文的抬高轨迹极限，不能直接把这幅等号轨迹当成可取的最小值。
 \end{xesolution}
 
 \subsection{平衡位置及其稳定性}
@@ -1389,12 +1455,12 @@ $\sqrt{gR}$ 具有速度量纲，$d_0$ 与 $R$ 成正比，符合几何相似性
 平衡。更一般地，势能曲线的局部极小点是稳定平衡，局部极大点是不稳定平衡；导数不为
 零的点不能平衡，二阶导数为零的平衡位置须作进一步判断。
 
-\Needspace{0.37\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-10}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{侧向弹簧的平衡}\label{ch01:ex:s14-1-10}
 如图，在固定点 $A$ 上系有一根质量可忽略、原长为 $h$、劲度系数为 $k$ 的弹簧，另一
 端连接质量为 $m$ 的重物。重物被限制在竖直光滑直线上，$A$ 点到约束直线的距离恰为
 $h$。求平衡时重物到 $B$ 点的距离 $x$。
-\probdiagOneTen
+\QMathNamed{\probdiagOneTen}{弹簧原长为水平距离 $h$，重物沿竖直直线运动。}{quality:01:q14}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1429,13 +1495,17 @@ $\lambda=mg/(kh)$、$z=x/h$，则
 \]
 所以该平衡位置唯一且稳定。一般参数下没有更简洁的初等显式根式，保留隐式方程
 更能体现其物理结构。
+
+\QMathNamed{\QMSpringForces}{竖直导轨上重物的受力分解：支持力水平，弹簧分量平衡重力。}{quality:01:a14}
+
+图~\ref{quality:01:a14}中导轨支持力水平，不进入竖直平衡式；弹簧拉力的竖直分量为 $F_s x/\ell$。令它等于 $mg$，与势能驻值条件完全等价，且说明了导轨约束怎样进入计算。
 \end{xesolution}
 
-\Needspace{0.36\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-11}
-如图，锥角为 $\alpha$ 的光滑圆锥体上放着一段质量为 $m$、等效劲度系数为 $k$、原长为
-$L_0$ 的弹簧，弹簧始终保持水平。求平衡时弹簧到锥体顶端的距离 $x$。
-\probdiagOneEleven
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{圆锥上环形弹簧的平衡}\label{ch01:ex:s14-1-11}
+如图，母线与轴线夹角为 $\alpha$ 的光滑圆锥体上放着一个质量为 $m$、周长方向等效劲度系数为 $k$、原周长为
+$L_0$ 的闭合环形弹簧，弹簧始终保持水平。求平衡时弹簧到锥体顶端的竖直距离 $x$。
+\QMathNamed{\probdiagOneEleven}{母线与轴线夹角为 $\alpha$；环形弹簧位于距顶点竖直距离 $x$ 处。}{quality:01:q15}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1459,14 +1529,18 @@ $r=x\tan\alpha$，所以环形弹簧长度
 \]
 又因
 $U''(x)=k(2\pi\tan\alpha)^2>0$，该平衡位置稳定。这里的 $k$ 是整段环形弹簧在周长方向的等效劲度系数。
+
+\QMathNamed{\QMConeEnergy}{环形弹簧势能的凸曲线；图取无量纲重力参数 $\eta=1/2$。}{quality:01:a15}
+
+图~\ref{quality:01:a15}取 $\eta=mg/(2\pi kL_0\tan\alpha)=1/2$ 作形状示意。一般极小值为 $s=1+\eta$，二阶导为正；图的具体参数不限制正文的一般解。
 \end{xesolution}
 
-\Needspace{0.37\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-12}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{弹簧连接双杆的平衡及稳定性}\label{ch01:ex:s14-1-12}
 两根质量可忽略、长度为 $l$ 的杆在顶部无摩擦连接，质量为 $m$ 的重物 $A$ 放在连接
 处。两杆底部放在光滑水平地面上，底端之间由原长为零、劲度系数为 $k$ 的弹簧连接。
 求平衡时两杆与地面的夹角 $\theta$。
-\probdiagOneTwelve
+\QMathNamed{\probdiagOneTwelve}{两杆长度均为 $l$，底端弹簧原长为零，角度从地面量起。}{quality:01:q16}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1495,6 +1569,10 @@ $mgl$ 的大小；实际能否到达边界，还须结合杆、铰链和重物�
 $U''<0$ 判断。令 $\delta=\pi/2-\theta$，展开得
 $U=4kl^2-\tfrac12kl^2\delta^4+O(\delta^6)$。
 若允许向 $\delta>0$ 偏离，这仍是退化的单侧极大值，而不是稳定内点。
+
+\QMathNamed{\QMDoubleRodEnergy}{双杆系统的内点平衡位于势能极大处，图取 $mg/(kl)=2$。}{quality:01:a16}
+
+图~\ref{quality:01:a16}取 $mg/(kl)=2$，内点平衡为 $\theta=30^\circ$，对应势能峰顶。求出平衡角不等于证明稳定，正是图中峰与谷的区别。
 \end{xesolution}
 
 \subsection{做展开}
@@ -1512,8 +1590,8 @@ $U=4kl^2-\tfrac12kl^2\delta^4+O(\delta^6)$。
 \begin{equation}
  \Delta f\simeq f'(x_0)\Delta x.
 \end{equation}
-这说明连续函数在某点附近的函数值变化量，近似正比于自变量的变化量，比例系数就是
-函数在该点的导数。
+这说明可导函数在该点附近满足 $\Delta f=f'(x_0)\Delta x+o(\Delta x)$；
+在一阶近似下，函数增量与自变量增量成正比，比例系数为该点的导数。
 
 下面令 $\varepsilon$ 表示无量纲小量，且 $|\varepsilon|\ll1$。常见的小量展开有
 \[
@@ -1528,12 +1606,14 @@ $U=4kl^2-\tfrac12kl^2\delta^4+O(\delta^6)$。
 应先用问题中的特征长度 $L$ 构造 $\varepsilon=\Delta x/L$，不能直接把有量纲的 $\Delta x$ 与数字 $1$ 比较。
 小量展开在研究物理系统某点附近的运动行为时非常有效。
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-13}
+\begin{origexamplebox}{相对论能量的低速展开}\label{ch01:ex:s14-1-13}
 相对论中运动物体的能量随速度的关系不是经典力学中的动能 $\frac12mv^2$，而是
 \[
  E(v)=\frac{mc^2}{\sqrt{1-v^2/c^2}}.
 \]
-证明当物体速度远小于光速时，相对论性能量与经典力学动能给出的结果一致。
+证明当物体速度远小于光速时，扣除静能 $mc^2$ 后的相对论动能趋于经典动能。
+
+\QMathNamed{\QMRelativityEnergy{0}}{相对论总能量含静能，故零速度时图像的纵坐标为1。}{quality:01:q17}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1557,15 +1637,21 @@ $U=4kl^2-\tfrac12kl^2\delta^4+O(\delta^6)$。
 \]
 与经典力学一致。严格地说，题设所给 $E(v)$ 是总能量，不是单独的动能；这正是为何须
 扣除 $mc^2$。
+
+\QMathNamed{\QMRelativityEnergy{1}}{相对论动能与经典动能比较，二者均已扣除静能。}{quality:01:a17}
+
+图~\ref{quality:01:a17}比较的是扣除静能后的动能与经典抛物线。两曲线只在 $|v|/c\ll1$ 时接近；把总能量直接与经典动能比较，会漏掉常数 $mc^2$。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-14}
+\begin{origexamplebox}{恒力相对论位移的低速极限}\label{ch01:ex:s14-1-14}
 相对论中，质量为 $m$ 的质点在恒力 $F$ 作用下由静止出发做直线运动，位移和时间的关系为
 \[
  x(t)=\frac{mc^2}{F}
  \left(\sqrt{1+\left(\frac{Ft}{mc}\right)^2}-1\right).
 \]
 证明在 $\dfrac{Ft}{mc}\ll1$ 时，相对论公式与经典力学一致。
+
+\QMathNamed{\QMRelativityMotion{0}}{恒力位移关系改写为无量纲形式，低速区对应横坐标远小于1。}{quality:01:q18}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1582,6 +1668,10 @@ $\sqrt{1+\varepsilon^2}=1+\varepsilon^2/2+\order{\varepsilon^4}$，有
  \boxed{x(t)\simeq\frac12at^2}.
 \]
 下一阶修正为 $-F^3t^4/(8m^3c^2)$，说明相对论位移略小于经典结果。
+
+\QMathNamed{\QMRelativityMotion{1}}{精确恒力位移与低速抛物线近似；控制参数为 $Ft/(mc)$。}{quality:01:a18}
+
+图~\ref{quality:01:a18}中精确曲线与经典抛物线在 $s\ll1$ 区域重合至主阶。这里控制展开的是无量纲组合 $Ft/(mc)$，不能单凭“时间短”而忽略力与质量的尺度。
 \end{xesolution}
 
 当一个物理量随另一个物理量改变时，在自变量产生微小变化的情况下，函数值的微小变化
@@ -1595,12 +1685,14 @@ $\sqrt{1+\varepsilon^2}=1+\varepsilon^2/2+\order{\varepsilon^4}$，有
 上式右边含有两个量：自变量的取值 $x_0$ 与其改变量 $\Delta x$。它们共同给出 $x_0$
 附近的函数值变化量，且 $\Delta y$ 正比于该点的导数和 $\Delta x$。
 
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-15}
+\begin{origexamplebox}{射程对初速与角度的灵敏度}\label{ch01:ex:s14-1-15}
 已知抛体运动的射程
 \[
  S=\frac{v^2}{g}\sin2\theta,
 \]
 其中 $v$ 为初速度，$\theta$ 为抛出角。求速度或角度有微小变化时，射程如何变化。
+
+\QMathNamed{\QMRange{0}}{同一高度抛出、落地的理想抛体；虚线只示意发射参数发生微小改变。}{quality:01:q19}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1625,16 +1717,20 @@ $\sqrt{1+\varepsilon^2}=1+\varepsilon^2/2+\order{\varepsilon^4}$，有
 弧度计。特别地，
 $\theta=45^\circ$ 时角度的一阶影响为零，这正对应最大射程；此时角度误差的主要影响是
 二阶量，而速度误差仍产生一阶影响。
+
+\QMathNamed{\QMRange{1}}{射程的角度响应在 $45^\circ$ 处切线水平，一阶角度灵敏度为零。}{quality:01:a19}
+
+图~\ref{quality:01:a19}的 $45^\circ$ 处切线水平，所以纯角度误差的一阶贡献为零。若初速固定而 $\theta=\pi/4+\delta\theta$，则 $S/S_{\max}=\cos(2\delta\theta)=1-2(\delta\theta)^2+O((\delta\theta)^4)$，角度必须按弧度代入。
 \end{xesolution}
 
-\Needspace{0.40\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s14-1-16}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{均匀角分布与壁面接收密度}\label{ch01:ex:s14-1-16}
 如图，在 $A$ 点有一个粒子发射源，它在上方 $180^\circ$ 的范围内独立、均匀随机地发射出 $N$ 个
 粒子。粒子被与 $A$ 相距 $h$ 的壁接收。建立图示坐标系，求在 $x$ 到 $x+\Delta x$
 范围内接收到的粒子数的期望值 $\mathbb E[\Delta n]$，其中 $\Delta x>0$。
 假设该小区间足够窄，使方向角在其中可作一阶近似；
 例如在 $x=0$ 附近要求 $|\Delta x|\ll h$。
-\probdiagOneSixteen
+\QMathNamed{\probdiagOneSixteen}{壁上小区间与源处小角区间的对应；不能把两种均匀分布混为一谈。}{quality:01:q20}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1667,11 +1763,13 @@ $|\Delta x|\ll\sqrt{h^2+x^2}$；在 $x=0$ 处它退化为 $|\Delta x|\ll h$，�
  \boxed{\mathbb E[\Delta n]\simeq
  \frac{Nh}{\pi(h^2+x^2)}\Delta x}.
 \]
-\soldiagOneSixteen
+\QMathNamed{\soldiagOneSixteen}{壁面区间与源处方向角的微小变化，一阶几何关系给出接收密度。}{quality:01:a20}
 该结果显示墙上粒子分布不均匀：离 $O$ 点越远，单位长度接收的粒子越少。若把墙的两侧
 全部计入，积分平均粒子数密度 $\rho(x)=Nh/[\pi(h^2+x^2)]$ 从 $-\infty$ 到 $+\infty$ 恰好得到
 总数 $N$，也为系数提供了检验。
 一次实验的实际粒子数为整数，会围绕期望值波动；期望值本身不必是整数。
+
+图~\ref{quality:01:a20}的扇形角宽与壁上区间宽度通过斜射几何联系；越偏离法向，相同 $\Delta x$ 对应的角宽越小，这与接收密度随 $|x|$ 增大而减小的趋势相符。
 \end{xesolution}
 }
 
@@ -1692,6 +1790,8 @@ $|\Delta x|\ll\sqrt{h^2+x^2}$；在 $x=0$ 处它退化为 $|\Delta x|\ll h$，�
 
 \begin{origexamplebox}{单摆非线性修正的量级}
 单摆精确方程为 $\ddot\theta+(g/\ell)\sin\theta=0$。若最大摆角为 $\theta_0\ll1$，估计线性化所忽略项相对于恢复项的量级。
+
+\QMathNamed{\QMPendulum{0}}{摆球处于极端摆位时 $\theta=\theta_0$；线性化以弧度小角为条件。}{quality:01:q21}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 展开 $\sin\theta=\theta-\theta^3/6+\cdots$。线性恢复项是 $\theta$，首个被忽略项为 $-\theta^3/6$，二者比值的最大量级为
@@ -1699,11 +1799,15 @@ $|\Delta x|\ll\sqrt{h^2+x^2}$；在 $x=0$ 处它退化为 $|\Delta x|\ll h$，�
  \left|\frac{-\theta^3/6}{\theta}\right|\lesssim\frac{\theta_0^2}{6}.
 \]
 因此小角近似的相对方程误差为 $\order{\theta_0^2}$。角度必须用弧度，弧度是无量纲量；若用度数直接代入展开，数值和阶数判断都会失去意义。
+
+\QMathNamed{\QMSmallAngle}{精确正弦恢复项与小角线性项，横轴统一使用弧度。}{quality:01:a21}
+
+图~\ref{quality:01:a21}比较精确恢复项与其切线近似。差从三次项开始，而恢复项本身是一阶，故相对修正是二阶；在零点用极限理解这个比值。
 \end{xesolution}
 
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/fifteenth-section/}}
+\graphicspath{{../../../sample/xes-original/fifteenth-section/}}
 \section{积分及其应用}
 % TikZ figures redrawn from the source; annotations used only in solutions are
 % drawn in the restrained blue accent of the common style.
@@ -2022,7 +2126,7 @@ $v$--$t$ 图像上，它是宽为 $\Delta t$、高为 $v(t)$ 的窄矩形面积�
  =\int f(x)\dd x+\int g(x)\dd x.
 \end{equation}
 
-\Needspace{0.32\textheight}
+\Needspace{8\baselineskip}
 \subsection{定积分的方向、运算与检验}
 
 前述分割求和给出了定积分。它在 $v$--$t$ 图上表示有向面积：横轴下方的部分给负位移，而路程应对速率 $|v|$ 积分。类似地，
@@ -2092,9 +2196,9 @@ $M=\int_0^\infty\lambda(x)\dd x$ 只有在密度衰减足够快时才有限；�
 往往比先套积分表更能避免错误。
 
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-17}
+\begin{origexamplebox}{直线下的面积}\label{ch01:ex:s15-1-17}
 设 $a>0,k>0$。计算通过坐标原点的直线 $f(x)=kx$ 在 $x=0$ 到 $x=a$ 之间与横轴所围成的几何面积。
-\areaLineDiagram
+\QMathNamed{\areaLineDiagram}{直线与横轴围成的积分区域；$a,k$ 均为正。}{quality:01:q22}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2109,12 +2213,16 @@ $M=\int_0^\infty\lambda(x)\dd x$ 只有在密度衰减足够快时才有限；�
  =\boxed{\frac12ka^2}.
 \]
 这正是底为 $a$、高为 $ka$ 的三角形面积 $\frac12a\cdot ka$。
+
+\QMathNamed{\QMStrip{1}}{直线下的窄矩形条：宽度与取样高度共同组成面积元。}{quality:01:a22}
+
+图~\ref{quality:01:a22}的窄条高为 $kx$、宽为 $\dd x$，因此其一阶面积为 $kx\dd x$。积分区间与题图右边界 $a$ 一致，结果还可由三角形面积直接复核。
 \end{xesolution}
 
-\Needspace{0.32\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-18}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{抛物线下的面积}\label{ch01:ex:s15-1-18}
 设 $a>0,k>0$。计算抛物线 $f(x)=kx^2$ 在 $x=0$ 到 $x=a$ 之间与横轴所围成的几何面积。
-\areaParabolaDiagram
+\QMathNamed{\areaParabolaDiagram}{抛物线与横轴围成的积分区域；$a,k$ 均为正。}{quality:01:q23}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2129,10 +2237,14 @@ $M=\int_0^\infty\lambda(x)\dd x$ 只有在密度衰减足够快时才有限；�
  =\boxed{\frac13ka^3}.
 \]
 若以外接矩形面积 $a\cdot ka^2=ka^3$ 作比较，抛物线下的面积恰为它的三分之一。
+
+\QMathNamed{\QMStrip{2}}{抛物线下的窄矩形条：曲线高度随积分位置改变。}{quality:01:a23}
+
+图~\ref{quality:01:a23}中不同横坐标的窄条高度是 $kx^2$；累加面积不是用端点高度乘总宽度，因为中间各条的高度并不相同。
 \end{xesolution}
 
-\Needspace{0.42\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-19}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{圆面积的三种分割}\label{ch01:ex:s15-1-19}
 把下列计算圆面积的分割思路用积分表示出来并计算圆的面积，与熟悉的公式
 $S=\pi R^2$ 比较。
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
@@ -2140,7 +2252,7 @@ $S=\pi R^2$ 比较。
  \item 把圆分成许多厚度为 $\dd r$ 的圆环，每个圆环的内半径为 $r$；
  \item 把圆切成许多矩形，每个矩形到圆心的距离为 $x$，宽为 $\dd x$。
 \end{enumerate}
-\circlePartitionsDiagram
+\QMathNamed{\circlePartitionsDiagram}{扇形、薄环与竖直条带三种面积分割，外边界均为半径 $R$ 的圆。}{quality:01:q24}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2181,10 +2293,16 @@ $x^2+y^2=R^2$ 给出：
  =\boxed{\pi R^2}.
 \]
 三种积分都得到熟悉的圆面积公式。
+
+\QMathNamed{\circlePartitionsDiagram}{同一个圆的角分割、薄环分割与条带分割，对应三种面积元。}{quality:01:a24}
+
+图~\ref{quality:01:a24}三种小区域分别对应角变量、半径变量与直角坐标变量。选哪个分割，就使用其自身的面积元与上下限，不能把三种变量的微元混在同一个积分中。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-20}
+\begin{origexamplebox}{圆锥体积的薄片积分}\label{ch01:ex:s15-1-20}
 利用积分证明圆锥体体积是同底等高圆柱体积的 $1/3$。
+
+\QMathNamed{\QMCone{0}}{圆锥与同底等高圆柱的比较参数 $R,H$；坐标 $x$ 从锥顶向下。}{quality:01:q25}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2205,6 +2323,10 @@ $\dd x$ 的圆盘。由相似三角形
  =\boxed{\frac13\pi R^2H}.
 \]
 同底等高圆柱体积为 $\pi R^2H$，故圆锥体积恰为其三分之一。
+
+\QMathNamed{\QMCone{1}}{圆锥横截面半径从锥顶线性增长，体积元按半径平方增长。}{quality:01:a25}
+
+图~\ref{quality:01:a25}的坐标从锥顶向下，故薄片半径与 $x$ 成正比。若把坐标改从底部向上，半径应改为 $R(1-x/H)$，不能仅改积分上下限而保留旧半径式。
 \end{xesolution}
 
 在物理中经常会遇到复杂的求和过程。若一个物理量发生变化，与它相关的量也随之改变，
@@ -2234,13 +2356,15 @@ $\dd x$ 的圆盘。由相似三角形
  Q=\int_{T_1}^{T_2}C(T)\dd T.
 \end{equation}
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-21}
+\begin{origexamplebox}{非均匀密度的质量元}\label{ch01:ex:s15-1-21}
 利用积分写出下列两个物体质量的表达式：
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
  \item 轴对称物体的底部为 $x=0$、顶部为 $x=H$，半径随 $x$ 的关系为 $r(x)$，
  密度随高度的关系为 $\rho(x)$；
  \item 半径为 $R$ 的球对称物体，密度与距球心距离 $r$ 的关系由函数 $\rho(r)$ 给出。
 \end{enumerate}
+
+\QMathNamed{\QMMassGeometry}{左为随高度变半径的轴对称物体，右为密度只依赖半径的球体。}{quality:01:q26}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2262,13 +2386,16 @@ $4\pi r^2\dd r$，故
 \[
  \boxed{M=4\pi\int_0^R\rho(r)r^2\dd r}.
 \]
-\massElementsDiagram
+\QMathNamed{\massElementsDiagram}{轴对称物体的薄片与球对称物体的薄壳分别构造质量元。}{quality:01:a26}
 两个式子的上下限都从对称中心或底部开始，直到物体边界；量纲均为
 $[\rho][\text{体积}]=[\text{质量}]$。
+
+图~\ref{quality:01:a26}左图的薄片覆盖整个横截面，右图的薄壳覆盖整个球面；密度在这两种区域内分别近似相同，才可把密度提出对应的体积元。
 \end{xesolution}
 
-\Needspace{0.38\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-22}
+% FinalReviewQuestionSplit20261024 变力功与气体过程功
+\tcbset{breakable/.default=true}
+\begin{origexamplebox}{变力功与气体过程功}\label{ch01:ex:s15-1-22}
 一维运动中，外力与物体位置的关系为 $F(x)$。物体从 $x_1$ 运动到 $x_2$ 时，外力的功为
 \[
  W_{12}=\int_{x_1}^{x_2}F(x)\dd x.
@@ -2277,11 +2404,14 @@ $[\rho][\text{体积}]=[\text{质量}]$。
 \begin{enumerate}[label=(\alph*),leftmargin=2.2em]
  \item 弹性力 $F=-kx$ 从 $x_1$ 到 $x_2$ 的功；
  \item 万有引力 $F=-\dfrac{Gm_1m_2}{r^2}$ 从 $r_1$ 到 $r_2$ 的功；
- \item 分子力 $F=\dfrac{A}{r^6}-\dfrac{B}{r^{12}}$ 从 $r_1$ 到 $r_2$ 的功；
+ \item 给定径向模型力 $F=\dfrac{A}{r^6}-\dfrac{B}{r^{12}}$ 从 $r_1$ 到 $r_2$ 的功；
  \item 理想气体分别经过准静态等温过程和准静态可逆绝热过程，从体积 $V_1$ 膨胀到 $V_2$ 对外所做的功。
 \end{enumerate}
-\pvWorkDiagram
+\QMathNamed{\pvWorkDiagram}{气体过程功由给定路径下的面积计算，膨胀时体积积分方向为正。}{quality:01:q27-pv}
+
+\QMathNamed{\QMForceCurves{0}}{三种给定力函数的示意曲线；各自作正尺度归一化，只示意正位置分支。}{quality:01:q27}
 \end{origexamplebox}
+\tcbset{breakable/.default=false}
 
 \Needspace{6\baselineskip}\begin{xesolution}
 \textbf{(a)}
@@ -2327,15 +2457,21 @@ $[\rho][\text{体积}]=[\text{质量}]$。
 \end{align*}
 图中曲线下的阴影面积就是相应过程的功；同一初态膨胀到同一体积时，绝热线下降更快，
 其曲线下面积小于等温过程。
+
+\QMathNamed{\QMForceCurves{1}\pvWorkDiagram}{给定力函数的有向积分区间与气体过程路径；力—位置图面积具有正负号。}{quality:01:a27}
+
+图~\ref{quality:01:a27}的曲线以下、位置轴以上区域记正功，位于轴下方记负功；气体对外功则按 $p$—$V$ 图面积求取。力函数的符号已由题设给定，不应因“引力”或“分子力”的名称而再任意变号。
 \end{xesolution}
 
 积分还能处理物理量之间更复杂的依赖关系。通常先用小量分析写出过程中的物理关系，再
 取极限得到微分方程，最后通过积分得到所需结果。
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-23}
+\begin{origexamplebox}{线性阻力下的减速}\label{ch01:ex:s15-1-23}
 质量为 $m$ 的质点受到正比于速度的阻力 $f=-\alpha v$，在其作用下作减速运动。设
 $t=0$ 时速度为 $v_0$，且位于坐标原点 $x=0$。求速度随时间的规律 $v(t)$、前进距离
 随时间的关系 $x(t)$，以及速度与位移的关系 $v(x)$。
+
+\QMathNamed{\QMDragBody{0}}{正方向沿初速度，线性阻力始终与当前速度反向。}{quality:01:q28}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2368,11 +2504,17 @@ $t=0$ 时速度为 $v_0$，且位于坐标原点 $x=0$。求速度随时间的�
 \]
 当 $t\to\infty$ 时速度渐近于零，极限位移为
 $x_\infty=mv_0/\alpha$，与 $v(x)=0$ 给出的结果一致。
+
+\QMathNamed{\QMLinearDrag}{线性阻力的时间响应与速度—位置关系；空心点只在无限时间达到。}{quality:01:a28}
+
+图~\ref{quality:01:a28}取 $\tau=m/\alpha$。右图的空心端点表示 $x\to v_0\tau,v\to0$ 只在 $t\to\infty$ 达到，不能把直线外推到 $x>v_0\tau$ 后解释为速度反向。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-24}
+\begin{origexamplebox}{线性阻力下的自由下落}\label{ch01:ex:s15-1-24}
 物体在重力作用下下落，同时受到正比于速度的阻力 $f=-\alpha v$。已知 $t=0$ 时它在
 竖直向下坐标系的原点处静止，求此后速度随时间的关系 $v(t)$。
+
+\QMathNamed{\QMFallingDrag{0}}{下落阶段的受力方向；初始瞬间阻力为零。}{quality:01:q29}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2396,11 +2538,17 @@ $x_\infty=mv_0/\alpha$，与 $v(x)=0$ 给出的结果一致。
 \]
 初始时 $v=0$、加速度为 $g$；时间足够长时 $v\to mg/\alpha$、加速度趋于零，符合受力
 平衡的终端速度图景。
+
+\QMathNamed{\QMFallingDrag{1}}{竖直下落速度单调接近终端值，初始斜率与自由落体加速度相符。}{quality:01:a29}
+
+图~\ref{quality:01:a29}中 $\tau=m/\alpha$，速度单调接近 $v_\infty=mg/\alpha$。曲线初始斜率还原尺度后为 $g$，提供了初值与受力方向的独立检查。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-25}
-质点在 $t=0$ 时位于坐标原点，初速度为 $v_0$。它受到正比于速度平方的阻力
+\begin{origexamplebox}{平方阻力下的速度衰减}\label{ch01:ex:s15-1-25}
+质点在 $t=0$ 时位于坐标原点，初速度为 $v_0>0$，取初速度方向为正，$\beta>0$。它受到正比于速度平方的阻力
 $f=-\beta v^2$。求速度随时间衰减的规律 $v(t)$。
+
+\QMathNamed{\QMDragBody{1}}{本题取 $v_0>0$、$\beta>0$，图中阻力的平方形式只用于正速度分支。}{quality:01:q30}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2423,12 +2571,18 @@ $f=-\beta v^2$。求速度随时间衰减的规律 $v(t)$。
 \]
 与线性阻力的指数衰减不同，平方阻力下速度按 $1/t$ 的量级衰减。阻力写作
 $-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能始终与速度反向。
+
+\QMathNamed{\QMQuadraticDrag}{平方阻力的速度按倒数形式衰减，有限时间内保持原运动方向。}{quality:01:a30}
+
+图~\ref{quality:01:a30}在任意有限 $t\ge0$ 均保持 $v>0$，因此正速度分支的积分自洽。倒数函数的尾部比指数衰减慢，与速度小时平方阻力更弱的物理含义一致。
 \end{xesolution}
 
-\Needspace{0.30\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-26}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{引力场中的径向自由落体}\label{ch01:ex:s15-1-26}
 坐标原点处有质量为 $M$ 的物体 $A$，它始终保持静止。在距它 $r_0$ 处有另一个质量远小
-于它的质点，在二者万有引力作用下由静止出发落向 $A$。求它们相撞的时间。
+于它的质点，在二者万有引力作用下由静止出发落向 $A$。把两者视为质点，以间距趋于零表示相撞，求这一理想极限的下落时间。
+
+\QMathNamed{\QMRadialInitial}{试探质点由 $r_0$ 处静止释放；理想中心质点固定在原点。}{quality:01:q31}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2440,7 +2594,7 @@ $-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能
 \[
  v(r)=\sqrt{2GM\left(\frac1r-\frac1{r_0}\right)}.
 \]
-\radialFallDiagram
+\QMathNamed{\radialFallDiagram}{径向坐标向外而落体速度向内，时间积分必须处理相反的符号。}{quality:01:a31}
 图中虚圈表示 $t=0$ 时位于 $r_0$ 的初始位置，实点表示当前位于 $r$ 的位置；速度箭头指向
 半径减小的方向，所以 $\dd r/\dd t<0$。
 由于 $\dd r/\dd t=-v$，下落时间为
@@ -2460,9 +2614,11 @@ $-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能
 \]
 小质点的质量被约去，体现了引力场中自由落体时间与试探质量无关。若中心物体有有限
 半径 $R_A$，真正碰到表面的时间应把积分下限改为 $R_A$，会小于上述结果。
+
+图~\ref{quality:01:a31}的径向正方向向外，而速度向内，因此 $\dot r=-v$。将时间积分的上下限翻转为 $0$ 到 $r_0$ 正是这个负号的结果；不能把速率 $v>0$ 直接写成 $\dot r$。
 \end{xesolution}
 
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-27}
+\begin{origexamplebox}{衰变的平均规律与半衰期}\label{ch01:ex:s15-1-27}
 放射性衰变是随机过程。对含有大量同类原子的样品，用 $N(t)$ 表示尚未衰变原子数的期望值
 （实际宏观样品中也可视为平均数）。在无穷小时间间隔中，期望衰变数正比于当前期望总数，即
 \[
@@ -2470,6 +2626,8 @@ $-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能
 \]
 其中 $\lambda$ 为衰变常数。若 $t=0$ 时有 $N_0$ 个放射性原子，求任意时刻 $t$ 尚未
 衰变的原子数期望值；并给出衰变常数与半衰期 $\tau_{1/2}$ 的关系。
+
+\QMathNamed{\QMDecay{0}}{样品中的单个衰变事件随机；微分方程描述未衰变数的期望。}{quality:01:q32}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2495,12 +2653,16 @@ $-\beta v^2$ 默认 $v\ge0$；一般一维形式应写成 $-\beta v|v|$，才能
  \boxed{\lambda=\frac{\ln2}{\tau_{1/2}}}.
 \]
 衰变常数的量纲是时间的倒数；样品经过 $n$ 个半衰期后剩余比例为 $2^{-n}$。
+
+\QMathNamed{\QMDecay{1}}{未衰变数的连续期望曲线及半高位置，不表示每个样品都按光滑曲线衰变。}{quality:01:a32}
+
+图~\ref{quality:01:a32}的平滑曲线是期望值，虚线在 $\lambda t=\ln2$ 处截出一半高度。单个样品的实际数目为整数并有随机涨落，不能要求它逐点等于连续期望曲线。
 \end{xesolution}
 
-\Needspace{0.36\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-28}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{弧长元与曲线长度}\label{ch01:ex:s15-1-28}
 用定积分给出任意光滑曲线 $y(x)$ 在 $x_1$ 到 $x_2$ 之间的部分曲线长度 $L_{12}$。
-\arcLengthDiagram
+\QMathNamed{\arcLengthDiagram}{曲线上微小弦段与两个坐标投影；极限中弦长趋于弧长元。}{quality:01:q33}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2521,13 +2683,17 @@ $\dd x,\dd y$，斜边表示弧长微元 $\dd s$。局部曲线段在极限
 \]
 被积函数始终不小于 $1$，所以弧长不小于两端点的水平距离 $x_2-x_1$；这是公式的一个
 直接检验。
+
+\QMathNamed{\arcLengthDiagram}{局部弧长与两个坐标微元组成直角三角形，再沿整段曲线累加。}{quality:01:a33}
+
+图~\ref{quality:01:a33}的直角小三角形满足 $\dd s^2=\dd x^2+\dd y^2$。对 $x_2>x_1$ 取正长度元并累加，才得到根号内含 $1+[y'(x)]^2$ 的弧长积分。
 \end{xesolution}
 
-\Needspace{0.39\textheight}
-\begin{origexamplebox}{}\label{ch01:ex:s15-1-29}
+\Needspace{8\baselineskip}
+\begin{origexamplebox}{光滑轨道上的下落时间}\label{ch01:ex:s15-1-29}
 坐标系中有 $A,B$ 两点，坐标分别为 $(0,H)$ 和 $(L,0)$。一条光滑轨道 $y(x)$ 连接
-$A,B$。求物体由 $A$ 点从静止出发、沿该轨道下落到 $B$ 点所需的时间。
-\trackTimeDiagram
+$A,B$。设 $y(x)<H$（$0<x\le L$）。写出物体由 $A$ 点从静止出发、沿该轨道到 $B$ 点的时间积分，并讨论起点切线对自行出发与积分收敛的影响。
+\QMathNamed{\trackTimeDiagram}{光滑轨道连接 $A(0,H)$ 与 $B(L,0)$，重力竖直向下。}{quality:01:q34}
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -2550,12 +2716,14 @@ $A,B$。求物体由 $A$ 点从静止出发、沿该轨道下落到 $B$ 点所�
  \frac{\sqrt{1+[y'(x)]^2}}
  {\sqrt{2g[H-y(x)]}}\dd x}.
 \]
-\trackTimeSolutionDiagram
+\QMathNamed{\trackTimeSolutionDiagram}{轨道下降高度决定速率，局部弧长决定行进距离，二者分工不同。}{quality:01:a34}
 积分在起点处的分母趋于零，因此这是需要检查收敛性的反常积分；其是否收敛取决于轨道离开 $A$ 点的
 方式。若起点切线具有非零向下斜率，则 $H-y(x)$ 与 $x$ 同阶，积分像
 $\int\dd x/\sqrt{x}$ 一样收敛；若起点是严格水平且曲线足够光滑，物体可能不能自行
 离开静止点，相应积分会发散。该式也是最速降线问题的出发点，但这里只要求给出任意
 已知轨道的下落时间。
+
+图~\ref{quality:01:a34}将局部弧长与下降高度分别用于 $\dd s$ 和能量守恒；两种几何量不能用同一个水平位移代替。起点速率为零的奇点仍须按正文检查收敛性。
 \end{xesolution}
 }
 
@@ -2600,6 +2768,8 @@ $\ii^{2n+1}=\ii(-1)^n$，恰好得到余弦和正弦的级数，因而这不是�
 
 \begin{origexamplebox}{同频简谐量的合成}
 $x_1=A\cos\omega t$，$x_2=A\cos(\omega t+2\pi/3)$。求 $x=x_1+x_2$ 的振幅和初相。
+
+\QMathNamed{\QMPhasorQuestion}{两个同频量的相量振幅相同、初相差 $2\pi/3$；公共时间因子省略。}{quality:01:q35}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 相量为 $\widetilde x_1=A$、$\widetilde x_2=Ae^{\ii2\pi/3}$，所以
@@ -2610,7 +2780,7 @@ $x_1=A\cos\omega t$，$x_2=A\cos(\omega t+2\pi/3)$。求 $x=x_1+x_2$ 的振幅�
 合相量的实部、虚部分别为 $A/2$、$\sqrt3A/2$，故其模为
 $\sqrt{A^2/4+3A^2/4}=A$；它在第一象限，且正切为 $\sqrt3$，所以初相为 $\pi/3$。
 图~\ref{ch01:fig:phasor-sum} 中，两相量首尾相接得到合相量，虚线表示平移后的第二相量。
-\begin{center}
+\begin{qualityfigure}
 \begin{tikzpicture}[>=Latex,scale=1]
  \draw[axis] (-1.9,0)--(3.3,0) node[right]{$\Re$};
  \draw[axis] (0,-.4)--(0,2.65) node[above]{$\Im$};
@@ -2622,7 +2792,7 @@ $\sqrt{A^2/4+3A^2/4}=A$；它在第一象限，且正切为 $\sqrt3$，所以初
  \node at (.87,.60) {$\pi/3$};
 \end{tikzpicture}
 \figcap{同频相量相加：合相量长度为 $A$，辐角为 $\pi/3$。}\label{ch01:fig:phasor-sum}
-\end{center}
+\end{qualityfigure}
 因此
 \[
  \boxed{x=A\cos(\omega t+\pi/3)}.
@@ -2692,6 +2862,8 @@ $\gamma=b/(2m)$、$\omega_0=\sqrt{k/m}>0$，得到二阶常系数齐次方程
 \begin{origexamplebox}{一阶弛豫过程}
 温度为 $T(t)$ 的小物体置于恒温环境 $T_a$ 中，满足牛顿冷却模型
 $\dot T=-k(T-T_a)$，其中 $k>0$，且 $T(0)=T_0$。求 $T(t)$，并检验长时间极限。
+
+\QMathNamed{\QMCooling{0}}{小物体与恒温环境交换热量；实际传热方向由温差符号决定。}{quality:01:q36}
 \end{origexamplebox}
 \Needspace{6\baselineskip}\begin{xesolution}
 令温差 $\Theta=T-T_a$，因环境温度不变，方程化为 $\dot\Theta=-k\Theta$。
@@ -2706,6 +2878,10 @@ $\ln|\Theta(t)|-\ln|\Theta(0)|=-kt$；温差始终同号，才可化为
 $\ln[\Theta(t)/\Theta(0)]=-kt$。当 $T_0=T_a$ 时不能除以温差，
 但上面的积分因子解仍直接给出 $T(t)=T_a$。
 $k$ 的量纲为 $\mathsf T^{-1}$（例如 $\mathrm{s^{-1}}$），所以指数 $kt$ 无量纲。$t\to\infty$ 时 $T\to T_a$；若 $T_0>T_a$，温度单调下降且不会在有限时间越过环境温度，均与模型的物理含义一致。
+
+\QMathNamed{\QMCooling{1}}{非零初始温差的统一弛豫曲线；初温等于环境温度时另取恒温解。}{quality:01:a36}
+
+图~\ref{quality:01:a36}对 $T_0\ne T_a$ 画出归一化温差，冷却与升温均对应同一正指数曲线；$T_0=T_a$ 时归一化分母为零，应直接使用恒温解而不画这条比值曲线。
 \end{xesolution}
 
 \endgroup

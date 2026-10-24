@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{相对论辐射、散射与综合模型}
 \noindent 本节把方向变换、能动量守恒和波相位联系起来。先明确观测量的时间口径与参考系，再列不变量，最后检查低速、无限重靶及零重力等极限；同一符号不能跨参考系沿用而省略变换。
 
@@ -9,8 +10,30 @@
 若观察者以速率 $v$ 匀速运动，他看到的星体数密度角分布如何变化？
 这与同一时刻测定星体实际空间位置后得到的角分布是否相同？
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (0,0) circle (2pt) node[below]{光源};\draw[->] (0,-.5)--(2,-.5) node[midway,below]{$v$};\draw[dashed,->] (0,0)--(3.5,0);\draw[DeepBlue,->] (0,0)--(2.4,1.4) node[right]{观察光线};\node at (.9,.2){$\theta$};\draw[gray,dashed] (0,0) circle (1.1);
+
+\end{tikzpicture}
+\figcap{题图：运动方向、观察方向与源静止系各向同性条件；球形虚线不预设实验室角分布。}\label{advA6:quality:A6-source-more:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (0,0) circle (2pt) node[below]{光源};\draw[->] (0,-.5)--(2,-.5) node[midway,below]{$v$};\draw[dashed,->] (0,0)--(3.5,0);\draw[DeepBlue,->] (0,0)--(2.4,1.4) node[right]{观察光线};\node at (.9,.2){$\theta$};\draw[gray,dashed] (0,0) circle (1.1);
+
+\end{tikzpicture}
+\figcap{解图：运动方向、观察方向与源静止系各向同性条件；球形虚线不预设实验室角分布。}\label{advA6:quality:A6-source-more:a1}
+\end{minipage}\end{center}
+
 （1）先明确强度的时间约定：取 $I_0=\dd E_0/(\dd\tau\dd\Omega_0)$，
 即光源静止系每单位时间、每单位立体角辐射的能量；若给的是总功率，以下 $I_0$ 应换成总功率除以 $4\pi$。
 实验室出射方向与光源速度的夹角为 $\theta$，令
@@ -65,6 +88,8 @@ $v\to0$ 时两式均回到 $I_0$；正前方 $D$ 大于正后方，辐射向前�
 若恒星各有自行、按新系固定半径截取样本，或按探测亮度筛选，单凭原先的均匀角分布不能确定新的实际分布；
 必须再给速度、距离或光度信息，不能把上述特定模型推广到任意星云。
 即使恒星静止，离开这个相遇时刻后还有 $-vt'$ 的坐标平移；有限距离星云的实际角分布也会随取样时刻改变。
+
+图~\ref{advA6:quality:A6-source-more:a1} 中，光行差改变立体角元，多普勒因子改变单光子能量；若强度按观察者接收时间定义，还需计入光行时压缩，不能与按发射实验室时间定义的功率混用。
 \end{advsolution}
 
 \begin{advexamplebox}{经典原子寿命与同步辐射}\label{advA6:ex:synchrotron}
@@ -77,8 +102,32 @@ $v\to0$ 时两式均回到 $I_0$；正前方 $D$ 大于正后方，辐射向前�
 \item 辐射集中在沿瞬时切线、半顶角约 $1/\gamma$ 的光锥内。
 估算远处一个固定方向收到单个电子脉冲的持续时间。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (.9);\fill (0,0) circle (2pt) node[below]{核};\fill (.9,0) circle (1.5pt) node[right]{$e^-$};\draw[DeepBlue,->] (.9,0)--(.9,.7);\node[below] at (0,-1.3){经典Coulomb圆轨道};
+\begin{scope}[xshift=4.1cm]\draw[thick] (0,0) circle (1.1);\draw[DeepBlue,->] (1.1,0)--(1.1,.8);\node[right] at (1.1,.2){近光速电子};\node[below] at (0,-1.3){存储环弯转半径 $\rho$};\end{scope}
+
+\end{tikzpicture}
+\figcap{题图：原子圆轨道与存储环弯转轨道分别使用各自的动力学和辐射近似。}\label{advA6:quality:A6-source-more:q2}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (.9);\fill (0,0) circle (2pt) node[below]{核};\fill (.9,0) circle (1.5pt) node[right]{$e^-$};\draw[DeepBlue,->] (.9,0)--(.9,.7);\node[below] at (0,-1.3){经典Coulomb圆轨道};
+\begin{scope}[xshift=4.1cm]\draw[thick] (0,0) circle (1.1);\draw[DeepBlue,->] (1.1,0)--(1.1,.8);\node[right] at (1.1,.2){近光速电子};\node[below] at (0,-1.3){存储环弯转半径 $\rho$};\end{scope}
+
+\end{tikzpicture}
+\figcap{解图：原子圆轨道与存储环弯转轨道分别使用各自的动力学和辐射近似。}\label{advA6:quality:A6-source-more:a2}
+\end{minipage}\end{center}
+
 （1）令 $k_e=1/(4\pi\varepsilon_0)$，轨道半径为 $r$。
 圆周运动给 $a=k_e e^2/(m_er^2)$，总机械能为 $E=-k_e e^2/(2r)$。
 拉莫尔功率和能量损失方程为
@@ -134,14 +183,38 @@ $r_0=a_0=5.29\times10^{-11}\,\mathrm m$ 为例，$\tau\simeq1.56\times10^{-11}\,
 \]
 这个系数对应“半顶角严格取 $1/\gamma$”的几何宽度；真实脉冲无硬边界，不同宽度定义的数值系数不同，
 但 $\rho/(c\gamma^3)$ 的时间尺度相同。漏掉光程变化就会误得大得多的发射时间尺度 $\rho/(c\gamma)$。
+
+图~\ref{advA6:quality:A6-source-more:a2} 中，原子模型需用能量损失求半径随时间收缩，不能用初始能量除初始功率替代整个积分；存储环的近光速辐射含相对论增强，周长也不能直接替代偏转磁铁的弯曲半径。
 \end{advsolution}
 
 \begin{advexamplebox}{正交连续换系后的坐标轴方向}\label{advA6:ex:successive-boosts}
 $S'$ 相对 $S$ 沿 $+x$ 以 $v_1$ 运动，$S''$ 相对 $S'$ 沿 $+y'$ 以 $v_2$ 运动。
 在 $S$ 的同一时刻测量，求 $S''$ 的 $x''$ 轴与 $x$ 轴夹角。
 分别用同步钟与测长的物理方法、直接洛伦兹变换两种方法求解。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,0)--(3,0) node[right]{$x$};\draw[->] (0,0)--(0,2) node[above]{$y$};\draw[DeepBlue,->] (.4,.4)--(2,.4) node[midway,above]{$v_1\boldsymbol e_x$};\draw[DeepBlue,->] (2,.5)--(2,1.7) node[right]{$v_2\boldsymbol e_{y'}$};
+
+\end{tikzpicture}
+\figcap{题图：两次正交换系的速度分别相对各自前一参考系定义。}\label{advA6:quality:A6-source-more:q3}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-.3,0)--(3.2,0) node[right]{$x$};\draw[->] (0,-1.2)--(0,1.5) node[above]{$y$};\draw[DeepBlue,thick,->] (0,0)--(2.6,-.9) node[right]{$x''$（$S$ 同时截面）};\node at (1,-.12){$\psi<0$};\node[above] at (1.4,1){$v_1,v_2>0$ 的示意};
+
+\end{tikzpicture}
+\figcap{解图：同时截面上的轴倾斜向右下，斜率由两个推动共同决定。}\label{advA6:quality:A6-source-more:a3}
+\end{minipage}\end{center}
+
 这里的夹角指 $S$ 同时截面上坐标轴的空间朝向，不是直接把两个速度方向夹角称为坐标轴转角。
 记 $\gamma_i=(1-v_i^2/c^2)^{-1/2}$。
 
@@ -173,6 +246,8 @@ $\Delta y=v_2\Delta t'=-v_1v_2\Delta x'/c^2$。
 $y+\gamma_1v_1v_2x/c^2=0$，立刻得到同一斜率。
 任一速度为零时夹角为零；低速时夹角为二阶小量 $-v_1v_2/c^2$。
 连续推动还可分解成一次标准推动加一个维格纳旋转，但该旋转角不应不加区分地等同于这里的同时截面轴倾角。
+
+图~\ref{advA6:quality:A6-source-more:a3} 中，$S$ 同时测量要求 $t$ 固定，$x''$ 轴还须满足 $y''=0$；合并两条件才得到右下方倾斜的轴线，该倾角不应直接称为标准推动分解中的Wigner旋转角。
 \end{advsolution}
 
 \begin{advexamplebox}{载流导线、横向力与场的变换}\label{advA6:ex:wire-field-transform}
@@ -183,8 +258,30 @@ $y+\gamma_1v_1v_2x/c^2=0$，立刻得到同一斜率。
 \item 换到以 $u\vect e_x$ 运动的 $S'$，求同一事件处的力。
 \item 用导线的电荷、电流变换推导垂直于换系速度的电场和磁场变换。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[very thick] (-1,0)--(4.5,0);\draw[->] (0,0)--(1.5,0) node[midway,below]{$I>0$};\fill (1.8,1.3) circle (2pt) node[above]{$q$};\draw[DeepBlue,->] (1.8,1.3)--(3.4,1.3) node[midway,above]{$v_x$};\draw[<->] (.4,0)--(.4,1.3) node[midway,left]{$a$};\node[right] at (4.5,0){$x$};
+
+\end{tikzpicture}
+\figcap{题图：中性载流导线、电荷高度与电荷速度；换系沿导线方向。}\label{advA6:quality:A6-source-more:q4}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[very thick] (-1,0)--(4.5,0);\draw[->] (0,0)--(1.5,0) node[midway,below]{$I>0$};\fill (1.8,1.3) circle (2pt) node[above]{$q$};\draw[DeepBlue,->] (1.8,1.3)--(3.4,1.3) node[midway,above]{$v_x$};\draw[<->] (.4,0)--(.4,1.3) node[midway,left]{$a$};\node[right] at (4.5,0){$x$};
+\node at (1.1,1.1){$\boldsymbol B\;\odot$};\draw[->] (1.8,1.1)--(1.8,.4) node[right]{$\boldsymbol F\ (qv_x>0)$};
+\end{tikzpicture}
+\figcap{解图：实验室磁力方向及其符号条件，其他参考系的电磁力须重新分解。}\label{advA6:quality:A6-source-more:a4}
+\end{minipage}\end{center}
+
 （1）由右手定则，在导线上方 $\vect B=B\vect e_z$，$B=\mu_0I/(2\pi a)$，而 $\vect E=0$。
 由于 $\vect e_x\times\vect e_z=-\vect e_y$，
 \[
@@ -225,6 +322,8 @@ $E_y=\lambda/(2\pi\varepsilon_0a)$、$B_z=\mu_0I/(2\pi a)$。
  \boxed{\vect B'_\perp=\gamma_u(\vect B_\perp-\vect u\times\vect E/c^2)}.
 \]
 这里 $uB$ 与电场同量纲，$uE/c^2$ 与磁场同量纲；把 $u$ 换为 $-u$ 并交换两系即可得到逆变换。
+
+图~\ref{advA6:quality:A6-source-more:a4} 中，电荷处的实验室磁场出纸面，取 $qv_x>0$ 时力指向导线；换系后同时出现电场和磁场，必须在同一事件相加电力与磁力后再比较三维力。
 \end{advsolution}
 
 \begin{advexamplebox}{逐次放出核子的最大末速度}\label{advA6:ex:nuclear-chain-speed}
@@ -232,8 +331,30 @@ $E_y=\lambda/(2\pi\varepsilon_0a)$、$B_z=\mu_0I/(2\pi a)$。
 对于含两个及以上核子的核，平均每核子的结合吸能恒为 $Q>0$。
 初始有一个静止的20核子核，连续19次各放出一个核子，最后剩下一个核子。
 求这个剩余核子的最大速度与光速之比。不考虑其他粒子或辐射带走能量。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\node[draw,circle,minimum size=1.1cm] (a) at (0,0){$A_N$};\draw[->] (.7,0)--(1.6,0);\node[draw,circle,minimum size=.8cm] (b) at (2.4,0){$A_{N-1}$};\node[draw,circle,minimum size=.5cm] (c) at (4,0){$m$};\draw[DeepBlue,->] (b)--(1.6,-.6);\draw[DeepBlue,->] (c)--(4.8,.6);\node[below] at (2,-1.2){从20核子初态连续放出19个核子};
+
+\end{tikzpicture}
+\figcap{题图：每一步都是二体反冲，所画箭头在该步母核静止系中相反。}\label{advA6:quality:A6-source-more:q5}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\node[draw,circle,minimum size=1.1cm] (a) at (0,0){$A_N$};\draw[->] (.7,0)--(1.6,0);\node[draw,circle,minimum size=.8cm] (b) at (2.4,0){$A_{N-1}$};\node[draw,circle,minimum size=.5cm] (c) at (4,0){$m$};\draw[DeepBlue,->] (b)--(1.6,-.6);\draw[DeepBlue,->] (c)--(4.8,.6);\node[below] at (2,-1.2){从20核子初态连续放出19个核子};
+
+\end{tikzpicture}
+\figcap{解图：每一步都是二体反冲，所画箭头在该步母核静止系中相反。}\label{advA6:quality:A6-source-more:a5}
+\end{minipage}\end{center}
+
 先把反常的结合能符号写进质量，而不能套用普通核的质量亏损：
 \[
  M_j=j(m+Q/c^2)\quad(j\ge2),\qquad M_1=m.
@@ -275,6 +396,8 @@ $E_y=\lambda/(2\pi\varepsilon_0a)$、$B_z=\mu_0I/(2\pi a)$。
 有限求和就是精确的参数化结果，不需要把19次释放近似成连续火箭。
 各次二体公式均保持能量、动量守恒；快度有限时速度严格小于 $c$。
 当 $Q\to0$，$s\to1$，所有快度都趋于零，末速度也为零，符合没有可释放能量的极限。
+
+图~\ref{advA6:quality:A6-source-more:a5} 中，每次反冲应在当次母核静止系计算，再用快度相加组合到初始系；最大末速度要求后继核的反冲方向逐步同向，最后二核子到单核子的质量公式须单独处理。
 \end{advsolution}
 
 \begin{advexamplebox}{顶夸克对的玻尔模型估计}\label{advA6:ex:toponium-estimate}
@@ -284,8 +407,30 @@ $E_y=\lambda/(2\pi\varepsilon_0a)$、$B_z=\mu_0I/(2\pi a)$。
 $U=-4\alpha_s k/(3r)$，其中 $\alpha_s=0.12$、$k=199\,\mathrm{MeV\,fm}$。
 类比玻尔模型求基态二者间距、基态周期以及更高能级周期与基态周期的关系。
 根据寿命判断能否形成长寿命、具有清晰能级的束缚态。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (-1,0) circle (3pt) node[below]{$t$};\fill (1,0) circle (3pt) node[below]{$\bar t$};\draw[DeepBlue,->] (-1,0)--(-.3,0);\draw[DeepBlue,->] (1,0)--(.3,0);\draw[<->] (-1,.7)--(1,.7) node[midway,above]{$r$};\fill (0,0) circle (1pt) node[below]{质心};\node[above] at (0,1.4){$U(r)=-4\alpha_s k/(3r)$};
+
+\end{tikzpicture}
+\figcap{题图：等质量夸克对的相对距离与共同质心，库仑型势只作题设估算模型。}\label{advA6:quality:A6-source-more:q6}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill (-1,0) circle (3pt) node[below]{$t$};\fill (1,0) circle (3pt) node[below]{$\bar t$};\draw[DeepBlue,->] (-1,0)--(-.3,0);\draw[DeepBlue,->] (1,0)--(.3,0);\draw[<->] (-1,.7)--(1,.7) node[midway,above]{$r$};\fill (0,0) circle (1pt) node[below]{质心};\node[above] at (0,1.4){$U(r)=-4\alpha_s k/(3r)$};
+
+\end{tikzpicture}
+\figcap{解图：等质量夸克对的相对距离与共同质心，库仑型势只作题设估算模型。}\label{advA6:quality:A6-source-more:a6}
+\end{minipage}\end{center}
+
 两个质量相同的粒子都在运动，应使用约化质量 $\mu=m_t/2$，而不是把反夸克固定后仍用 $m_t$。
 令 $\kappa=4\alpha_s k/3=31.84\,\mathrm{MeV\,fm}$，相对圆周运动满足
 \[
@@ -311,6 +456,8 @@ $U=-4\alpha_s k/(3r)$，其中 $\alpha_s=0.12$、$k=199\,\mathrm{MeV\,fm}$。
 但单粒子寿命只有基态周期约 $0.22$ 倍；若两者独立衰变，完整夸克对的平均存活时间更短，为 $\tau/2$。
 因此不能形成这种玻尔图景下长寿命、能级清晰的原子式束缚系统。
 这一寿命判据不等于否认阈值附近的短程库仑关联或宽共振效应。
+
+图~\ref{advA6:quality:A6-source-more:a6} 中，$r$ 是两体相对距离，单体绕质心半径为 $r/2$，径向方程使用约化质量 $m_t/2$；能否形成轨道结构还要比较公转时间与题给寿命。
 \end{advsolution}
 
 \begin{advexamplebox}{一维有限粒子数费米气体}\label{advA6:ex:finite-fermi-gas}
@@ -321,8 +468,30 @@ $U=-4\alpha_s k/(3r)$，其中 $\alpha_s=0.12$、$k=199\,\mathrm{MeV\,fm}$。
 求边界力与 $L$ 的精确关系，不得假定 $N\gg1$。
 \item 缓慢压缩到 $L/2$，使每个粒子保持原占据态的量子数，求过程的指数及外界做功，仍不得对 $N$ 近似。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[very thick] (0,1.4)--(0,0)--(4,0)--(4,1.4);\draw[<->] (0,-.5)--(4,-.5) node[midway,below]{$L$};\node[above] at (2,1.6){$N$ 个自旋1/2费米子};\draw[->] (4,.6)--(4.9,.6) node[right]{$F$};
+
+\end{tikzpicture}
+\figcap{题图：一维刚性盒的长度、粒子数与右边界力，粒子数在求长度导数时保持不变。}\label{advA6:quality:A6-source-more:q7}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\foreach \y/\n in {0/1,.6/2,1.6/3}{\draw[thick] (0,\y)--(3,\y);\node[right] at (3,\y){$n=\n$};}\foreach \y in {0,.6}{\draw[DeepBlue,->] (1,\y-.18)--(1,\y+.18);\draw[DeepBlue,->] (2,\y+.18)--(2,\y-.18);}\draw[DeepBlue,->] (1,1.42)--(1,1.78);\node[above] at (1.5,2.2){$N=5$ 的奇数填充示意};
+
+\end{tikzpicture}
+\figcap{解图：两个反向自旋占同一空间能级，奇数粒子的最后一级单占。}\label{advA6:quality:A6-source-more:a7}
+\end{minipage}\end{center}
+
 （1）一维气体只有一个平动自由度，$U=Nk_BT/2$、$FL=Nk_BT=2U$。
 绝热准静态过程满足 $\dd U=-F\dd L=-2U\dd L/L$，积分得 $UL^2$ 恒定，故
 \[
@@ -362,6 +531,8 @@ $U=-4\alpha_s k/(3r)$，其中 $\alpha_s=0.12$、$k=199\,\mathrm{MeV\,fm}$。
 也可积分外力功 $-\int_L^{L/2}F\dd L$ 得到同一结果。
 压缩功为正，且量纲 $\hbar^2/(mL^2)$ 为能量。经典与量子指数相同源于能量的 $L^{-2}$ 标度，
 并不意味着它们具有相同的微观分布或零温能量。
+
+图~\ref{advA6:quality:A6-source-more:a7} 中，每个空间能级最多容纳两个相反自旋，零温填充从低能级向上进行；奇数粒子的最高空间态只有一个粒子，有限粒子数结果应区分奇偶。
 \end{advsolution}
 
 \begin{advexamplebox}{均匀磁场中的半经典量子化}\label{advA6:ex:landau-action}
@@ -369,8 +540,32 @@ $U=-4\alpha_s k/(3r)$，其中 $\alpha_s=0.12$、$k=199\,\mathrm{MeV\,fm}$。
 $\oint\vect P\cdot\dd\vect r=(n+1/2)h$，求电子在均匀磁场中的回旋运动量子化条件。
 说明哪些量离散，角动量能否取 $n\hbar$ 的任意整数倍。
 忽略自旋与相对论修正。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.15);\draw[->] (0,0)--(0,1.15) node[midway,right]{$R$};\fill (0,1.15) circle (1.6pt);\draw[DeepBlue,->] (0,1.15)--(-1.1,1.15) node[left]{$\boldsymbol\pi=m\boldsymbol v$};\node[right] at (1.8,.4){电子 $q=-e$};\node[right] at (1.8,-.1){$\boldsymbol B=B\boldsymbol e_z\;\odot$};
+
+\end{tikzpicture}
+\figcap{题图：电子在出纸面磁场中的逆时针局部回旋，机械动量沿轨道切线。}\label{advA6:quality:A6-source-more:q8}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!7] (0,0) circle (1.1);\draw[thick] (0,0) circle (1.1);\node at (0,0){$\Phi>0\;\odot$};
+\draw[DeepBlue,thick,->] (0,1.1)--(-1.3,1.1) node[left]{$\boldsymbol\pi$};\draw[->] (0,1.5)--(-.65,1.5) node[left]{$\boldsymbol P$};\draw[->] (0,.75)--(.65,.75) node[right]{$q\boldsymbol A$};
+\node[right,align=left] at (1.8,0){对称规范，原点取导引中心\\$\boldsymbol P=\boldsymbol\pi+q\boldsymbol A$\\上方三箭头仅平移分层以便比较};
+
+\end{tikzpicture}
+\figcap{解图：在对称规范下，电子的磁通项使闭轨正则作用量减小；各动量箭头按同一比例画出。}\label{advA6:quality:A6-source-more:a8}
+\end{minipage}\end{center}
+
 明确符号：机械动量 $\vect\pi=m\vect v$，正则动量为
 $\vect P=\vect\pi+q\vect A$，即 $\vect\pi=\vect P-q\vect A$。
 量子化的作用量积分必须用正则动量，不能把两者交换。
@@ -402,6 +597,8 @@ $2\pi R\pi=2\pi eBR^2$，磁通项为
 在轴对称规范中，固定原点的正则 $L_z$ 可另有整数角量子数；
 它与机械角动量不同，朗道能量又有导引中心简并，不能只给能级 $n$ 就唯一确定后一角量子数。
 半经典的半径和机械角动量应理解为回旋量的对应关系，不是电子在精确量子态中具有可同时确定的位置轨迹。
+
+图~\ref{advA6:quality:A6-source-more:a8} 中，轨道按电子运动方向逆时针积分时磁通为正，但电荷 $q=-e$ 使磁通项为负；正则作用量是机械项加 $q\Phi$，导引中心简并与沿场自由动能仍需保留。
 \end{advsolution}
 
 \begin{advexamplebox}{作用量相位、费马原理与圆轨道量子化}\label{advA6:ex:action-optics}
@@ -415,8 +612,30 @@ $S=\int(\vect p\cdot\vect v-E)\dd t$，$E=mv^2/2+V(\vect r)$。
 \item 对氢原子库仑势 $V=-e^2/(4\pi\varepsilon_0r)$，用光学类比推导电子圆轨道的向心力条件。
 \item 用环绕一周的相位相容性推导角动量量子化条件。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.15);\fill (0,0) circle (1.5pt) node[below]{$O$};\draw[DeepBlue,->] (1.15,0)--(1.15,.8) node[right]{$p$};\draw[->] (0,0)--(1.15,0) node[midway,below]{$r$};\node[right] at (2,0){$n=n(r)$ 或 $V=V(r)$};\draw[dashed] (0,0) circle (1.4);
+
+\end{tikzpicture}
+\figcap{题图：圆对称介质/势场中的候选圆轨道，虚圆表示半径的邻近变分。}\label{advA6:quality:A6-source-more:q9}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.15);\fill (0,0) circle (1.5pt) node[below]{$O$};\draw[DeepBlue,->] (1.15,0)--(1.15,.8) node[right]{$p$};\draw[->] (0,0)--(1.15,0) node[midway,below]{$r$};\node[right] at (2,0){$n=n(r)$ 或 $V=V(r)$};\draw[dashed] (0,0) circle (1.4);
+
+\end{tikzpicture}
+\figcap{解图：圆对称介质/势场中的候选圆轨道，虚圆表示半径的邻近变分。}\label{advA6:quality:A6-source-more:a9}
+\end{minipage}\end{center}
+
 （1）自由粒子的作用量为 $S=\vect p\cdot\vect r-Et$。
 德布罗意关系要求相位为 $(\vect p\cdot\vect r-Et)/\hbar$，故
 \[
@@ -461,4 +680,6 @@ $n'/n=-V'/[2(E-V)]$。
 但这是早期圆轨道半经典模型，不应把 $L=n\hbar$ 直接当作氢原子精确三维量子力学中
 $|\vect L|=\sqrt{\ell(\ell+1)}\hbar$ 的替代式。
 费马驻值光线也不表示单光子一定沿一条经典路径传播；它是波动相位在短波极限中相干叠加所给出的几何描述。
+
+图~\ref{advA6:quality:A6-source-more:a9} 中，半径变分比较的是固定能量的空间简化作用量，故圆轨道条件来自 $\mathrm d[rn(r)]/\mathrm dr=0$；绕同一时刻的一周相位闭合再给出早期圆轨道量子化，两种条件不能互相替代。
 \end{advsolution}

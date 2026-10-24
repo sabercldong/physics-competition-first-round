@@ -1,3 +1,4 @@
+% AdvancedEMQuality20261023
 \section{量子力学初步}
 
 \subsection{Schrödinger 方程与定态问题}
@@ -28,8 +29,30 @@ $\widehat T\psi=T_{\min}\psi$；
 \item 说明 Coulomb 势下电子不能无限塌缩到原点；
 \item 用该球内基态作变分试探函数，估算氢原子基态能量。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.3);\fill (0,0) circle (1.5pt) node[below]{$O$};\draw[->] (0,0)--(1.3,0) node[midway,below]{$R$};\node[above] at (0,1.6){$\psi(R)=0$};\node[right] at (1.7,.5){球内允许，球外 $\psi=0$};
+
+\end{tikzpicture}
+\figcap{题图：球形禁闭区域与Dirichlet边界；Coulomb问题另以此态作变分试探。}\label{advA6:quality:A6-quantum-mechanics:q1}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[thick] (0,0) circle (1.3);\fill (0,0) circle (1.5pt) node[below]{$O$};\draw[->] (0,0)--(1.3,0) node[midway,below]{$R$};\node[above] at (0,1.6){$\psi(R)=0$};\node[right] at (1.7,.5){球内允许，球外 $\psi=0$};
+
+\end{tikzpicture}
+\figcap{解图：球形禁闭区域与Dirichlet边界；Coulomb问题另以此态作变分试探。}\label{advA6:quality:A6-quantum-mechanics:a1}
+\end{minipage}\end{center}
+
 归一化约束下令
 \[
  \mathcal F[\psi]=
@@ -54,6 +77,17 @@ $u''+k^2u=0$、$u(0)=u(R)=0$。故
 尺度压缩 $R\to0$ 时动能按 $R^{-2}$ 发散，而 Coulomb 势能只按
 $-R^{-1}$ 发散，所以总能量必在有限尺度取最小值。
 
+上述是尺度解释，不能只凭一族试探函数就断言所有态都有下界。对任意归一化、有限动能且使分部积分面项消失的波函数，令 $a_0=\hbar^2/(mk_ee^2)$，利用 $\nabla\cdot\hat{\boldsymbol r}=2/r$ 可直接配方：
+\[
+ \langle H\rangle=
+ \frac{\hbar^2}{2m}\int\left|\nabla\psi+
+ \frac{\hat{\boldsymbol r}}{a_0}\psi\right|^2\mathrm dV
+ -\frac{\hbar^2}{2ma_0^2}
+ \ge-\frac{mk_e^2e^4}{2\hbar^2}.
+\]
+这里 $k_e=1/(4\pi\varepsilon_0)$；平方项展开后的交叉项恰是 $-k_ee^2\langle1/r\rangle$。这个对所有允许态成立的界排除了无限塌缩。等号态的径向衰减为 $e^{-r/a_0}$，也说明下面的硬球试探态只能给出较粗的变分上界。
+
+
 记 $k_e=1/(4\pi\varepsilon_0)$。对上述试探态
 \[
  \left\langle\frac1r\right\rangle
@@ -76,6 +110,8 @@ $-R^{-1}$ 发散，所以总能量必在有限尺度取最小值。
  =-8.19\,\mathrm{eV}}.
 \]
 它高于精确基态 $-13.6\,\mathrm{eV}$，符合变分上界原理；估算较粗是因硬球边界并非真实指数尾部。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a1} 中，半径 $R$ 同时决定边界和径向驻波波数；球内基态用 $u=r\psi$ 消去球坐标的一阶导数，变分能量还须连同势能一起计算。
 \end{advsolution}
 
 \subsection{三个一维模型}
@@ -86,8 +122,32 @@ $-R^{-1}$ 发散，所以总能量必在有限尺度取最小值。
  E_n=\frac{n^2\pi^2\hbar^2}{2ma^2},\qquad
  \Psi_n(x)=\sqrt{\frac2a}\sin\frac{n\pi x}{a}.
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-.7,0)--(4.2,0) node[right]{$x$};\draw[very thick] (0,2)--(0,0)--(3,0)--(3,2);\node[below] at (0,0){0};\node[below] at (3,0){$a$};\node at (1.5,1){$V=0$};\node[left] at (0,2){$\infty$};\node[right] at (3,2){$\infty$};
+
+\end{tikzpicture}
+\figcap{题图：无限深阱的两个硬壁位于 $0,a$，波函数在两壁为零。}\label{advA6:quality:A6-quantum-mechanics:q2}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\foreach \shift/\n/\freq in {0/1/60,5/2/120}{\begin{scope}[xshift=\shift cm]
+\draw[->] (-.3,0)--(3.5,0) node[right]{$x$};\draw[->] (0,-.9)--(0,1.1) node[above]{$\Psi_{\n}$};\draw[dashed] (3,-.9)--(3,1.1);\node[below] at (3,-.9){$a$};
+\draw[DeepBlue,thick,domain=0:3,samples=80] plot(\x,{.7*sin(\freq*\x)});\end{scope}}
+
+\end{tikzpicture}
+\figcap{解图：$n=1,2$ 的驻波在两端均为零，第二态还在阱中点有节点；两图纵轴共同按波函数幅值取示意比例。}\label{advA6:quality:A6-quantum-mechanics:a2}
+\end{minipage}\end{center}
+
 阱内定态方程为
 \[
  -\frac{\hbar^2}{2m}\Psi''=E\Psi,
@@ -103,6 +163,8 @@ $ka=n\pi$，$n=1,2,\ldots$。由 $E=\hbar^2k^2/(2m)$ 得所求能级。
 \]
 给 $A=\sqrt{2/a}$。$n=0$ 只给零波函数，不是物理态；
 $E_n\propto a^{-2}$ 与禁闭动能尺度一致。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a2} 中，两个端点同时为节点，所以只有整数个半波可放入宽度 $a$；$n=0$ 的曲线恒为零，不能归一化，因而不构成态。
 \end{advsolution}
 
 \begin{advexamplebox}{有限方势垒的隧穿系数}\label{advA6:ex:square-barrier}
@@ -121,8 +183,32 @@ $E_n\propto a^{-2}$ 与禁闭动能尺度一致。
 \qquad
  \kappa=\frac{\sqrt{2m(V_0-E)}}{\hbar}.
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1.5,0)--(4.5,0) node[right]{$x$};\draw[thick] (-1.4,0)--(0,0)--(0,1.5)--(2.5,1.5)--(2.5,0)--(4.2,0);
+\draw[dashed] (-1.3,.8)--(4,.8) node[right]{$E$};\node[above] at (1.2,1.5){$V_0$};\node[below] at (0,0){0};\node[below] at (2.5,0){$a$};\node[below] at (-.8,-.5){I};\node[below] at (1.2,-.5){II};\node[below] at (3.5,-.5){III};
+
+\end{tikzpicture}
+\figcap{题图：三区方势垒，能量位于阱外势能与垒顶之间。}\label{advA6:quality:A6-quantum-mechanics:q3}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1.5,0)--(4.5,0) node[right]{$x$};\draw[thick] (-1.4,0)--(0,0)--(0,1.5)--(2.5,1.5)--(2.5,0)--(4.2,0);
+\draw[dashed] (-1.3,.8)--(4,.8) node[right]{$E$};\node[above] at (1.2,1.5){$V_0$};\node[below] at (0,0){0};\node[below] at (2.5,0){$a$};\node[below] at (-.8,-.5){I};\node[below] at (1.2,-.5){II};\node[below] at (3.5,-.5){III};
+
+\end{tikzpicture}
+\figcap{解图：三区方势垒，能量位于阱外势能与垒顶之间。}\label{advA6:quality:A6-quantum-mechanics:a3}
+\end{minipage}\end{center}
+
 三区波函数取
 \[
  \Psi_I=\e^{\ii kx}+r\e^{-\ii kx},\quad
@@ -130,7 +216,16 @@ $E_n\propto a^{-2}$ 与禁闭动能尺度一致。
  \Psi_{III}=t\e^{\ii kx},
 \]
 $k=\sqrt{2mE}/\hbar$。在 $x=0,a$ 连续匹配 $\Psi,\Psi'$。
-用传播矩阵消去 $A,B,r$ 后，
+为看清消元所依据的四个匹配条件，势垒内部的传播可写成
+\[
+ \begin{pmatrix}\Psi(a)\\\Psi'(a)\end{pmatrix}
+ =\begin{pmatrix}
+ \cosh\kappa a&\sinh(\kappa a)/\kappa\\
+ \kappa\sinh\kappa a&\cosh\kappa a
+ \end{pmatrix}
+ \begin{pmatrix}\Psi(0)\\\Psi'(0)\end{pmatrix}.
+\]
+代入 $\Psi(0)=1+r$、$\Psi'(0)=\mathrm ik(1-r)$，以及 $\Psi(a)=te^{\mathrm ika}$、$\Psi'(a)=\mathrm ikte^{\mathrm ika}$，两式相减即可消去 $r$。整理后，
 \[
  t=\frac{\e^{-\ii ka}}
  {\cosh\kappa a+
@@ -148,6 +243,8 @@ $k=\sqrt{2mE}/\hbar$。在 $x=0,a$ 连续匹配 $\Psi,\Psi'$。
  \frac{16E(V_0-E)}{V_0^2}\e^{-2\kappa a},
 \]
 显示指数隧穿；$a\to0$ 时 $T\to1$。分母中的 $4$ 不可遗漏。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a3} 中，I、III区具有同一实波数 $k$，II区具有实衰减系数 $\kappa$；因此透射流比可直接取 $|t|^2$，而势垒内须同时保留两个指数项以满足两个界面的匹配。
 \end{advsolution}
 
 \begin{advexamplebox}{一维量子谐振子}\label{advA6:ex:harmonic-oscillator}
@@ -163,8 +260,30 @@ $k=\sqrt{2mE}/\hbar$。在 $x=0,a$ 连续匹配 $\Psi,\Psi'$。
 \qquad
  \xi=\sqrt{\frac{m\omega}{\hbar}}x.
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-2,0)--(2.3,0) node[right]{$x$};\draw[->] (0,-.2)--(0,2.2) node[above]{$V$};\draw[DeepBlue,domain=-1.7:1.7,samples=70] plot(\x,{.65*\x*\x});\node[right] at (1.2,.8){$V=m\omega^2x^2/2$};
+
+\end{tikzpicture}
+\figcap{题图：一维谐势及坐标原点，束缚态需在左右无穷远可归一化。}\label{advA6:quality:A6-quantum-mechanics:q4}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1.8,0)--(2,0) node[right]{$x$};\draw[DeepBlue,domain=-1.5:1.5] plot(\x,{.7*\x*\x});\foreach \y/\n in {.35/0,.85/1,1.35/2}{\draw[thick] (-1.5,\y)--(1.5,\y);\node[right] at (1.5,\y){$E_{\n}$};}\draw[->] (-1.7,.4)--(-1.7,.8) node[left]{$a^\dagger$};
+
+\end{tikzpicture}
+\figcap{解图：谐势内的等间隔能级，最低能级高于势能最低点。}\label{advA6:quality:A6-quantum-mechanics:a4}
+\end{minipage}\end{center}
+
 定义
 \[
  \widehat a=
@@ -195,6 +314,8 @@ $\widehat a^\dagger$ 并用 Rodrigues 公式
 \]
 得到题中归一化波函数。$n$ 偶、奇时波函数宇称分别为偶、奇，
 与对称势能相符。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a4} 中，抛物势的两端都上升，允许态要同时满足两端衰减；引入升降算符后，基态被降算符湮灭，逐级升高能量而不改变相邻间隔 $\hbar\omega$。
 \end{advsolution}
 
 \subsection{Hilbert 空间与 Dirac 符号}
@@ -222,20 +343,44 @@ Hilbert 空间 $\mathcal H$ 是带正定 Hermitian 内积的完备复线性空�
  |\langle a|b\rangle|^2
  \le\langle a|a\rangle\langle b|b\rangle.
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[DeepBlue,thick,->] (0,0)--(2.7,0) node[right]{$|a\rangle$};\draw[DeepBlue,thick,->] (0,0)--(1.5,1.6) node[above]{$|b\rangle$};\fill (0,0) circle (1pt) node[below]{$0$};
+
+\end{tikzpicture}
+\figcap{题图：两个Hilbert空间向量；图示为它们张成子空间的示意，复相位仍由内积规定。}\label{advA6:quality:A6-quantum-mechanics:q5}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
-若 $b=0$ 显然成立。若 $b\ne0$，对任意复数 $\lambda$，
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[DeepBlue,thick,->] (0,0)--(2.7,0) node[right]{$|a\rangle$};\draw[DeepBlue,thick,->] (0,0)--(1.5,1.6) node[above]{$|b\rangle$};\fill (0,0) circle (1pt) node[below]{$0$};
+\draw[dashed] (1.5,0)--(1.5,1.6);\fill (1.5,0) circle (1.5pt) node[below]{$\lambda|a\rangle$};\node[right] at (1.5,.8){$|b\rangle-\lambda|a\rangle$};
+\end{tikzpicture}
+\figcap{解图：经适当相位选择后，投影与正交余量的实平面截面。}\label{advA6:quality:A6-quantum-mechanics:a5}
+\end{minipage}\end{center}
+
+按解图把 $b$ 分解为沿 $a$ 的投影和正交余量。若 $a=0$ 显然成立；
+若 $a\ne0$，对任意复数 $\lambda$ 都有
 \[
- 0\le\|a-\lambda b\|^2.
+ 0\le\|b-\lambda a\|^2.
 \]
-取
-$\lambda=\langle b|a\rangle/\langle b|b\rangle$，展开得
+取 $\lambda=\langle a|b\rangle/\langle a|a\rangle$，余量与 $a$ 正交，且
 \[
- 0\le\langle a|a\rangle
- -\frac{|\langle a|b\rangle|^2}{\langle b|b\rangle}.
+ 0\le\langle b|b\rangle
+ -\frac{|\langle a|b\rangle|^2}{\langle a|a\rangle}.
 \]
-移项即得。等号成立当且仅当
-$a=\lambda b$，即两向量线性相关。
+乘以正数 $\langle a|a\rangle$ 即得不等式。等号要求余量为零，
+即 $b=\lambda a$；连同零向量情形，等号当且仅当两个向量线性相关。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a5} 中，把 $|b\rangle$ 分成沿 $|a\rangle$ 的投影与正交余量，余量范数非负给出不等式；等号要求余量为零，即两个向量线性相关。
 \end{advsolution}
 
 \begin{advexamplebox}{Hilbert 空间中的三角不等式}\label{advA6:ex:triangle}
@@ -243,8 +388,30 @@ $a=\lambda b$，即两向量线性相关。
 \[
  d(a,b)\le d(a,c)+d(c,b).
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\coordinate (a) at (0,0);\coordinate (b) at (3,.3);\coordinate (c) at (1.3,1.7);\draw[thick] (a)--(b)--(c)--cycle;\node[left] at (a){$a$};\node[right] at (b){$b$};\node[above] at (c){$c$};\node[below] at (1.5,.1){$d(a,b)$};\node[left] at (.6,.9){$d(a,c)$};\node[right] at (2.2,1){$d(c,b)$};
+
+\end{tikzpicture}
+\figcap{题图：三个态向量在其仿射实平面中的距离三角形，距离由Hilbert范数定义。}\label{advA6:quality:A6-quantum-mechanics:q6}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\coordinate (a) at (0,0);\coordinate (b) at (3,.3);\coordinate (c) at (1.3,1.7);\draw[thick] (a)--(b)--(c)--cycle;\node[left] at (a){$a$};\node[right] at (b){$b$};\node[above] at (c){$c$};\node[below] at (1.5,.1){$d(a,b)$};\node[left] at (.6,.9){$d(a,c)$};\node[right] at (2.2,1){$d(c,b)$};
+
+\end{tikzpicture}
+\figcap{解图：三个态向量在其仿射实平面中的距离三角形，距离由Hilbert范数定义。}\label{advA6:quality:A6-quantum-mechanics:a6}
+\end{minipage}\end{center}
+
 令 $x=a-c$、$y=c-b$，则 $a-b=x+y$。利用上题，
 \[
 \begin{aligned}
@@ -256,6 +423,8 @@ $a=\lambda b$，即两向量线性相关。
 \]
 两边取非负平方根即得
 $\|a-b\|\le\|a-c\|+\|c-b\|$。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a6} 中，沿 $a\to c\to b$ 的向量位移相加等于 $a\to b$，展开范数平方后用Cauchy--Schwarz控制交叉项，才得到长度的三角不等式。
 \end{advsolution}
 
 \begin{advdefinition}{共射线的归一化态矢}\label{advA6:def:same-ray}
@@ -266,11 +435,11 @@ $\|a-b\|\le\|a-c\|+\|c-b\|$。
 则称它们在同一射线上。任何转移概率和可观测量期望都不依赖该全局相位。
 \end{advdefinition}
 
-\begin{advdefinition}{态等价与量子态}\label{advA6:def:state-equivalence}
+\begin{advdefinition}{态等价与纯量子态}\label{advA6:def:state-equivalence}
 任意非零共线态矢
 $|\psi'\rangle=\lambda\e^{\ii\theta}|\psi\rangle$（$\lambda>0$）
-代表同一物理态。量子态是非零 Hilbert 向量在此等价关系下的等价类；
-计算时通常选取范数为 $1$ 的代表元。
+代表同一纯态。纯量子态是非零 Hilbert 向量在此等价关系下的等价类；
+计算时通常选取范数为 $1$ 的代表元。一般混态需用密度算符描述，不能都表示为单条态矢射线。
 \end{advdefinition}
 
 \begin{advdefinition}{左矢、右矢与对偶}\label{advA6:def:bra-ket}
@@ -301,8 +470,30 @@ $|\psi'\rangle=\lambda\e^{\ii\theta}|\psi\rangle$（$\lambda>0$）
  \langle\Theta a|\Theta b\rangle
 \]
 对 $|a\rangle$ 线性、对 $|b\rangle$ 反线性，并说明反幺正条件如何保持概率。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+\draw[->] (-.4,0)--(3,0) node[right]{$x$};\draw[->] (0,-.4)--(0,2) node[above]{$y$};
+\draw[DeepBlue,->] (0,0)--(1.3,1.1) node[above]{$\lambda$};\draw[dashed] (1.3,-1.1)--(1.3,1.1);\node[below] at (1.3,-1.1){$\lambda^*$};\node[right] at (2,1.5){复系数平面};
+
+\end{tikzpicture}
+\figcap{题图：反线性作用会共轭复系数，图只表示复系数而非Hilbert空间的物理位置。}\label{advA6:quality:A6-quantum-mechanics:q7}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+\draw[->] (-.4,0)--(3,0) node[right]{$x$};\draw[->] (0,-.4)--(0,2) node[above]{$y$};
+\draw[DeepBlue,->] (0,0)--(1.3,1.1) node[above]{$\lambda$};\draw[dashed] (1.3,-1.1)--(1.3,1.1);\node[below] at (1.3,-1.1){$\lambda^*$};\node[right] at (2,1.5){复系数平面};
+
+\end{tikzpicture}
+\figcap{解图：反线性作用会共轭复系数，图只表示复系数而非Hilbert空间的物理位置。}\label{advA6:quality:A6-quantum-mechanics:a7}
+\end{minipage}\end{center}
+
 由反线性，
 $\Theta(\lambda a+\mu b)=\lambda^*\Theta a+\mu^*\Theta b$。
 因此
@@ -322,13 +513,15 @@ $\Theta(\lambda a+\mu b)=\lambda^*\Theta a+\mu^*\Theta b$。
  \langle\Theta a|\Theta b\rangle
  =\langle a|b\rangle^*=\langle b|a\rangle,
 \]
-则 $\Theta$ 为反幺正，且
+若 $\Theta$ 还把整个空间映满，则称为反幺正；有限维等维情形下满射性由上述保内积条件推出。此时
 \[
  |\langle\Theta a|\Theta b\rangle|^2
  =|\langle a|b\rangle|^2,
 \]
 所有转移概率保持不变。这里不能把反线性算符的“伴随”当作普通矩阵转置，
 必须同时追踪复共轭的作用位置。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a7} 中，$\lambda$ 与 $\lambda^*$ 在复系数平面关于实轴对称，故 $\Theta(\lambda|a\rangle)=\lambda^*\Theta|a\rangle$；再结合内积第一槽反线性，才能逐槽判断题中双线性类型。
 \end{advsolution}
 
 \begin{advdefinition}{伴随算符}\label{advA6:def:adjoint}
@@ -382,8 +575,30 @@ $(T(\varepsilon)\psi)(x)=\psi(x-\varepsilon)$；
 证明位置/动量谱投影、位置算符和动量算符为自伴对象，
 而非零平移算符一般不是 Hermitian，却是幺正算符，且
 $T(\varepsilon)^\dagger=T(-\varepsilon)$。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1,0)--(4.5,0) node[right]{$x$};\draw[DeepBlue,domain=-.8:2,samples=60] plot(\x,{exp(-3*(\x-.5)^2)});\draw[DeepBlue,dashed,domain=.5:3.5,samples=60] plot(\x,{exp(-3*(\x-2)^2)});\draw[->] (.5,1.3)--(2,1.3) node[midway,above]{$+\epsilon$};\node[below] at (2,-.5){虚线为 $\psi(x-\epsilon)$};
+
+\end{tikzpicture}
+\figcap{题图：实轴上的波包与主动平移后的波包，图中取 $\epsilon>0$。}\label{advA6:quality:A6-quantum-mechanics:q8}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1,0)--(4.5,0) node[right]{$x$};\draw[DeepBlue,domain=-.8:2,samples=60] plot(\x,{exp(-3*(\x-.5)^2)});\draw[DeepBlue,dashed,domain=.5:3.5,samples=60] plot(\x,{exp(-3*(\x-2)^2)});\draw[->] (.5,1.3)--(2,1.3) node[midway,above]{$+\epsilon$};\node[below] at (2,-.5){虚线为 $\psi(x-\epsilon)$};
+
+\end{tikzpicture}
+\figcap{解图：实轴上的波包与主动平移后的波包，图中取 $\epsilon>0$。}\label{advA6:quality:A6-quantum-mechanics:a8}
+\end{minipage}\end{center}
+
 先用有限测量区间 $\Delta$ 写位置谱投影：
 \[
  (P_x(\Delta)\psi)(x)=\mathbf1_\Delta(x)\psi(x),\qquad
@@ -412,13 +627,37 @@ $\langle\phi|\widehat p\psi\rangle
 所以 $T$ 幺正。除 $\varepsilon=0$ 或特殊离散谱情形外，
 $T^\dagger\ne T$，本征值 $\e^{-\ii\varepsilon p/\hbar}$ 也不是实数，
 故它本身不是可观测量。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a8} 中，主动向右平移作用在函数上是自变量替换 $x\mapsto x-\epsilon$，其逆为 $-\epsilon$；内积保持说明幺正，不能由此直接断言平移算符自伴。
 \end{advsolution}
 
 \begin{advexamplebox}{位置、动量与平移的广义本征态}\label{advA6:ex:generalized-eigenstates}
 说明位置算符、动量算符和平移算符的本征态与完备性；
 解释连续谱密度、区间投影与位置算符三者的区别。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1,0)--(4.7,0) node[right]{$x$};\draw[very thick,DeepBlue] (.5,0)--(3,0);\draw (.5,-.15)--(.5,.15) (3,-.15)--(3,.15);\node[below] at (.5,0){$a$};\node[below] at (3,0){$b$};\draw[<->] (1.5,.7)--(1.9,.7) node[midway,above]{$\mathrm dx$};\node[above] at (3.2,1.3){位置谱区间投影};
+
+\end{tikzpicture}
+\figcap{题图：连续位置谱中的一个区间及微元，区间投影与点本征态不同。}\label{advA6:quality:A6-quantum-mechanics:q9}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (-1,0)--(4.7,0) node[right]{$x$};\draw[very thick,DeepBlue] (.5,0)--(3,0);\draw (.5,-.15)--(.5,.15) (3,-.15)--(3,.15);\node[below] at (.5,0){$a$};\node[below] at (3,0){$b$};\draw[<->] (1.5,.7)--(1.9,.7) node[midway,above]{$\mathrm dx$};\node[above] at (3.2,1.3){位置谱区间投影};
+
+\end{tikzpicture}
+\figcap{解图：连续位置谱中的一个区间及微元，区间投影与点本征态不同。}\label{advA6:quality:A6-quantum-mechanics:a9}
+\end{minipage}\end{center}
+
 \[
  \widehat x|x_0\rangle=x_0|x_0\rangle,\qquad
  \widehat p|p_0\rangle=p_0|p_0\rangle.
@@ -444,6 +683,8 @@ $|x_0\rangle$ 和 $|p_0\rangle$ 不是 Hilbert 空间中的可归一向量，
 在 $L^2(\mathbb R)$ 的通常位置表象中，单点集合测度为零，所以
 $P_x(\{x_0\})=0$。形式符号 $|x_0\rangle\langle x_0|$ 不能直接平方成自身，
 否则会遇到无意义的 $\delta(0)$；它不是具有 $0,1$ 两个谱值的普通秩一投影。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a9} 中，蓝色区间对应 $P_{[a,b]}=\int_a^b|x\rangle\langle x|\,\mathrm dx$；点核是算符值密度，位置算符还需再乘坐标 $x$ 积分，三者的量纲和作用都不同。
 \end{advsolution}
 
 \subsection{有限维态、矩阵与自旋}
@@ -465,8 +706,32 @@ $|2\rangle=|\downarrow\rangle$，
  [A^\dagger]=[A]^{*\,\mathsf T}.
 \]
 并说明 Hermitian 矩阵的元素条件。
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!12] (.8,1.2) rectangle (1.6,1.8);\draw (0,0) grid[xstep=.8,ystep=.6] (2.4,1.8);\node at (1.2,1.5){$A_{ij}$};\node[above] at (1.2,2){正交归一基};\node[below] at (1.2,-.4){行 $i$，列 $j$（以非对角元示意）};
+
+\end{tikzpicture}
+\figcap{题图：算符矩阵的一个行列元素，索引由所选正交归一基决定。}\label{advA6:quality:A6-quantum-mechanics:q10}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\fill[DeepBlue!12] (.8,1.2) rectangle (1.6,1.8);\draw (0,0) grid[xstep=.8,ystep=.6] (2.4,1.8);\node at (1.2,1.5){$A_{ij}$};\node[above] at (1.2,2){$[A]$};
+\begin{scope}[xshift=4.2cm]\fill[DeepBlue!12] (0,.6) rectangle (.8,1.2);\draw (0,0) grid[xstep=.8,ystep=.6] (2.4,1.8);\node at (.4,.9){$A_{ij}^*$};\node[above] at (1.2,2){$[A^\dagger]$};\end{scope}
+\node[below] at (3.3,-.5){原来的 $(i,j)$ 元素进入伴随矩阵的 $(j,i)$ 位置并取复共轭};
+
+\end{tikzpicture}
+\figcap{解图：非对角矩阵元的位置对换与复共轭同时进行。}\label{advA6:quality:A6-quantum-mechanics:a10}
+\end{minipage}\end{center}
+
 矩阵元 $A_{ij}=\langle i|A|j\rangle$。由伴随定义，
 \[
  (A^\dagger)_{ij}
@@ -479,6 +744,8 @@ $|2\rangle=|\downarrow\rangle$，
 $A_{ij}=A_{ji}^*$，对角元 $A_{ii}$ 必为实数；
 反之满足这些元素关系的矩阵就是 Hermitian 矩阵。
 投影和 Pauli 矩阵均满足该条件；升、降算符互为伴随。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a10} 中，行列交换来自交换内积的两个基向量，复共轭来自伴随定义；因此必须把转置和共轭同时执行，不能仅对每个元素取共轭而保持索引不变。
 \end{advsolution}
 
 Hermitian 算符的本征值实、不同本征值的本征态正交。
@@ -505,7 +772,7 @@ $|\psi\rangle$ 测得 $A_i$ 的概率为
 \[
  \boxed{p_i=\langle\psi|P_i|\psi\rangle}.
 \]
-在理想选择性测量中，得到 $A_i$ 后的态为
+在理想选择性测量中，对 $p_i>0$ 的实际结果，得到 $A_i$ 后的态为
 \[
  \boxed{|\psi_i'\rangle=
  \frac{P_i|\psi\rangle}{\sqrt{p_i}}}.
@@ -513,16 +780,21 @@ $|\psi\rangle$ 测得 $A_i$ 的概率为
 连续谱用投影值测度替代离散求和。
 \end{advtheorem}
 
-\begin{advdefinition}{期望值与跃迁振幅}\label{advA6:def:expectation-transition}
-归一化态中算符 $A$ 的期望值为
+\begin{advdefinition}{期望值、矩阵元与跃迁振幅}\label{advA6:def:expectation-transition}
+归一化态中算符 $A$ 的期望值为 $\langle A\rangle_\psi=\langle\psi|A|\psi\rangle$。
+矩阵元 $A_{\phi\psi}=\langle\phi|A|\psi\rangle$ 与 $A$ 具有相同量纲，
+不能无条件把它的模方当作跃迁概率。真正的演化振幅是
 \[
- \langle A\rangle_\psi=\langle\psi|A|\psi\rangle.
+ \mathcal A_{\psi\to\phi}(t)=\langle\phi|U(t,0)|\psi\rangle,
 \]
-从 $|\psi\rangle$ 到 $|\phi\rangle$、由相互作用算符 $A$ 引起的跃迁振幅为
+其中 $U$ 是时间演化算符。对时间无关的 $H_0$ 的不同本征态 $i,f$，
+若附加弱扰动 $V(t)$，相互作用表象的一阶振幅为
 \[
- \mathcal A_{\psi\to\phi}=\langle\phi|A|\psi\rangle.
+ c_f^{(1)}(t)=-\frac{\ii}{\hbar}\int_0^t
+ \langle f|V(t')|i\rangle\,
+ \e^{\ii(E_f-E_i)t'/\hbar}\,\dd t'.
 \]
-相应概率还需结合归一化、态密度和时间演化。
+积分和 $1/\hbar$ 使振幅无量纲；在一阶微扰适用且该一阶振幅非零时，$|c_f^{(1)}|^2$ 给出相应跃迁概率的最低非零阶。若一阶振幅被选择定则禁止，则需继续计算高阶项。
 \end{advdefinition}
 
 \begin{advdefinition}{对易子}\label{advA6:def:commutator}
@@ -547,7 +819,7 @@ $[A,B]=0$ 时称两者对易或相容。对易关系需在共同稠密定义域�
 故 $B$ 把 $V_a$ 映入自身。在每个 $V_a$ 中限制的 $B$ 仍为 Hermitian，
 可选取其正交归一本征基。对所有 $A$ 的本征空间合并这些基，
 便得到 $A,B$ 的共同正交归一本征基。
-一组对易可观测量若共同量子数能唯一标记基态，称为对易可观测量完全集。
+一组对易可观测量若共同量子数能唯一标记每个共同本征态，称为对易可观测量完全集。
 
 \begin{advdefinition}{Pauli 矩阵}\label{advA6:def:pauli}
 \[
@@ -573,8 +845,30 @@ $P_\downarrow$ 的本征值和本征空间；
 $\sigma_\pm=(\sigma_x\pm\ii\sigma_y)/2$，
 说明其作用并证明没有非零本征值。
 \end{enumerate}
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.4)--(0,1.7) node[above]{$z$};\draw[->] (-1.5,0)--(1.7,0) node[right]{$x$};\draw[->] (-.9,-.7)--(.9,.7) node[above right]{$y$};\draw[dashed] (0,0) circle (1.1);\fill[DeepBlue] (0,1.1) circle (2pt) node[left]{$|\uparrow\rangle$};\fill[DeepBlue] (0,-1.1) circle (2pt) node[left]{$|\downarrow\rangle$};
+
+\end{tikzpicture}
+\figcap{题图：自旋1/2态的Bloch球示意，南北极对应 $\sigma_z$ 的两个本征方向。}\label{advA6:quality:A6-quantum-mechanics:q11}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.4)--(0,1.7) node[above]{$z$};\draw[->] (-1.5,0)--(1.7,0) node[right]{$x$};\draw[->] (-.9,-.7)--(.9,.7) node[above right]{$y$};\draw[dashed] (0,0) circle (1.1);\fill[DeepBlue] (0,1.1) circle (2pt) node[left]{$|\uparrow\rangle$};\fill[DeepBlue] (0,-1.1) circle (2pt) node[left]{$|\downarrow\rangle$};
+
+\end{tikzpicture}
+\figcap{解图：自旋1/2态的Bloch球示意，南北极对应 $\sigma_z$ 的两个本征方向。}\label{advA6:quality:A6-quantum-mechanics:a11}
+\end{minipage}\end{center}
+
 \[
  P_\uparrow=\begin{pmatrix}1&0\\0&0\end{pmatrix},\qquad
  P_\downarrow=\begin{pmatrix}0&0\\0&1\end{pmatrix}.
@@ -607,6 +901,8 @@ $|\uparrow\rangle,|\downarrow\rangle$；
 并把最高/最低态映为零。由于
 $\sigma_\pm^2=0$，任一本征值 $\lambda$ 必满足 $\lambda^2=0$，
 故只有 $\lambda=0$；核空间虽有非零向量，但不存在非零本征值。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a11} 中，投影算符保留各自极点的态并湮灭正交态；$\sigma_+$ 从下态升到上态而在上态作用为零，$\sigma_-$ 相反。Bloch方向不等于一个粒子的空间轨道。
 \end{advsolution}
 
 \begin{advexamplebox}{Pauli 矩阵指数与自旋旋转}\label{advA6:ex:pauli-exponential}
@@ -614,8 +910,30 @@ $\sigma_\pm^2=0$，任一本征值 $\lambda$ 必满足 $\lambda^2=0$，
 \[
  U=\exp(\ii\theta\,\vect n\cdot\vect\sigma).
 \]
+
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.4)--(0,1.7) node[above]{$z$};\draw[->] (-1.5,0)--(1.7,0) node[right]{$x$};\draw[->] (-.9,-.7)--(.9,.7) node[above right]{$y$};\draw[dashed] (0,0) circle (1.1);\fill[DeepBlue] (0,1.1) circle (2pt) node[left]{$|\uparrow\rangle$};\fill[DeepBlue] (0,-1.1) circle (2pt) node[left]{$|\downarrow\rangle$};
+\draw[DeepBlue,->,thick] (0,0)--(1,1.3) node[right]{$\boldsymbol n$};
+\end{tikzpicture}
+\figcap{题图：单位方向 $\boldsymbol n$ 决定自旋算符指数的轴，指数参数为 $\theta$。}\label{advA6:quality:A6-quantum-mechanics:q12}
+\end{minipage}\end{center}
 \end{advexamplebox}
+\global\AdvHideHeadingtrue
 \begin{advsolution}
+\begin{center}\begin{minipage}{.96\linewidth}\centering
+% EMAdvFigureHeading
+\raggedright{\bfseries\color{DeepBlue}解答}\par\smallskip\centering
+
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
+
+\draw[->] (0,-1.4)--(0,1.7) node[above]{$z$};\draw[->] (-1.5,0)--(1.7,0) node[right]{$x$};\draw[->] (-.9,-.7)--(.9,.7) node[above right]{$y$};\draw[dashed] (0,0) circle (1.1);\fill[DeepBlue] (0,1.1) circle (2pt) node[left]{$|\uparrow\rangle$};\fill[DeepBlue] (0,-1.1) circle (2pt) node[left]{$|\downarrow\rangle$};
+\draw[DeepBlue,->,thick] (0,0)--(1,1.3) node[right]{$\boldsymbol n$};
+\end{tikzpicture}
+\figcap{解图：单位方向 $\boldsymbol n$ 决定自旋算符指数的轴，指数参数为 $\theta$。}\label{advA6:quality:A6-quantum-mechanics:a12}
+\end{minipage}\end{center}
+
 利用 Pauli 乘法，
 \[
  (\vect n\cdot\vect\sigma)^2
@@ -643,6 +961,8 @@ $\sigma_\pm^2=0$，任一本征值 $\lambda$ 必满足 $\lambda^2=0$，
 \]
 因半角出现，自旋子旋转 $2\pi$ 后变号，旋转 $4\pi$ 才回到原态矢；
 但全局负号不改变单次态的物理射线。
+
+图~\ref{advA6:quality:A6-quantum-mechanics:a12} 中，沿 $\boldsymbol n$ 的两个本征态分别获得 $e^{\pm\mathrm i\theta}$ 相位；相对相位变为 $2\theta$，对 $U=e^{+\mathrm i\theta\boldsymbol n\cdot\boldsymbol\sigma}$，Bloch向量的主动转角为 $-2\theta$。
 \end{advsolution}
 
 \subsubsection*{Bloch 矢量上的旋转及可观测检验}

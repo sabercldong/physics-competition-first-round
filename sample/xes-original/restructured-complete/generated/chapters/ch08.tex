@@ -1,9 +1,13 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \begingroup
 \tcbset{breakable/.default=false}
 \chapter{功、能量和守恒定律}
+\input{chapters/quality-20261023/thermal/ch08.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/tenth-section/}}
+\graphicspath{{../../../sample/xes-original/tenth-section/}}
 \section{功、功率与动能定理}
 % Technical geometry and labels share one coordinate system per panel.
 \tikzset{solbody/.style={draw=Ink,line width=.8pt},solpath/.style={draw=Ink,line width=.8pt},
@@ -339,7 +343,7 @@ $1\,\mathrm W=1\,\mathrm{J/s}$。只有牵引力平行于速度且 $v>0$ 时，�
 重力功只由初、末位置的高度差决定，与实际路径的形状和长度无关。
 \end{xesolution}
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-2}
 质量为 $m$ 的物体在与水平方向夹角为 $\theta$ 的恒力 $F$ 作用下，沿摩擦系数为
 $\mu$ 的水平面向右运动距离 $L$。求在此过程中恒力 $F$、摩擦力 $f$、重力 $mg$
@@ -386,7 +390,7 @@ $\mu$ 的水平面向右运动距离 $L$。求在此过程中恒力 $F$、摩擦
 已降为零，物体会先停下，摩擦力方向和后续运动必须重新判断。
 \end{xesolution}
 
-\Needspace{0.35\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-3}
 如图，质量为 $m$ 的小球系在劲度系数为 $k$、原长为 $l_0$ 的轻弹簧一端，弹簧另一端
 固定在 $O$ 点。开始时小球位于水平位置 $A$，弹簧处于原长。小球由 $A$ 自由释放，
@@ -438,7 +442,7 @@ $\mu$ 的水平面向右运动距离 $L$。求在此过程中恒力 $F$、摩擦
 时，外力功和内力功都不能遗漏。例如枪和子弹的总动量在发射过程中可以守恒，但火药内力
 做正功，使系统总动能明显增加。
 
-\Needspace{0.32\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-4}
 如图，把弹簧的一端固定在墙上，另一端系物体 $A$。将弹簧压缩 $x_1$ 后，在 $A$ 的
 右边紧靠放置物体 $B$，然后撤去外力。物体 $A,B$ 均在光滑水平面上，质量分别为
@@ -483,12 +487,14 @@ $m_A,m_B$，弹簧劲度系数为 $k$。求物体 $A$ 移动的最大距离。
 最大距离，因此还要加上先前走过的 $x_1$。
 \end{xesolution}
 
-\Needspace{0.28\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-5}
 光滑水平面上有一块足够长、质量为 $M$、初始静止的板 $B$。某时刻质量为 $m$、
 速度为 $v_0$ 的物体 $A$ 冲上板的上表面，两者间的动摩擦因数为 $\mu$。求从开始相对
 滑动到相对速度变为零的过程中，摩擦力对两个物体所做的功各为多少；并求整个系统的
 动能变化量。
+
+\ThQSlidingBoard
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -549,6 +555,8 @@ $W_{f,A}=\tfrac12m(V^2-v_0^2)$、$W_{f,B}=\tfrac12MV^2$，代入共同速度即�
 一列火车以速度 $v_0$ 做匀速直线运动。火车上的人在光滑水平面上用恒力 $F$ 向前拉动质量为 $m$ 的物体，
 使它相对火车向前移动距离 $L$。物体起初相对火车静止。先在火车参考系中求物体最后的
 速度，再在相对地面静止的参考系中描述同一过程，并列出动能定理方程。
+
+\ThQTrain
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -573,10 +581,12 @@ $W_{f,A}=\tfrac12m(V^2-v_0^2)$、$W_{f,B}=\tfrac12MV^2$，代入共同速度即�
 变化的数值可以不同，但各自在本参考系内仍满足动能定理。
 \end{xesolution}
 
-\Needspace{0.30\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-7}
 同上，但火车以加速度 $a$ 做匀加速运动。在火车参考系和地面参考系中分别直接使用
 动能定理，能否得到正确结果？若要使动能定理在火车参考系中也成立，应怎样处理？
+
+\ThQAcceleratingTrain
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -662,10 +672,15 @@ $(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
  W=\int_A^B\vec F\cdot\dd\vec r.
 \]
 
+
+\input{chapters/quality-20261023/ch08-work.tex}
+
 \Needspace{14\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-8}
 两个物体间的相互吸引力大小与它们之间的距离成反比。固定其中一个物体，求另一个物体
 由相距 $r_A$ 运动到相距 $r_B$ 的过程中，该吸引力所做的功。
+
+\ThQInverseForce
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -695,6 +710,8 @@ $(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
 \begin{origexamplebox}{}\label{ch08:ex:s10-4-9}
 两个物体间的相互吸引力大小与它们之间距离的平方成反比。固定其中一个物体，求另一个
 物体由相距 $r_A$ 运动到相距 $r_B$ 的过程中，该吸引力所做的功。
+
+\ThQInverseSquareForce
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -724,7 +741,7 @@ $(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/eleventh-section/}}
+\graphicspath{{../../../sample/xes-original/eleventh-section/}}
 \section{势能与机械能守恒}
 \tikzset{solbody/.style={draw=Ink,line width=.8pt},solpath/.style={draw=Ink,line width=.8pt},
  solforce/.style={-{Latex[length=2mm]},draw=DeepBlue,line width=.9pt},
@@ -1055,7 +1072,7 @@ $(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
 这里问首次上升；如果再碰到内壁，后续还与碰撞模型有关。只用能量写 $H=v^2/(2g)$ 会漏掉约束失效后的运动。
 \end{xesolution}
 
-\Needspace{0.34\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s11-4-11}
 一个质量为 $m$ 的质点从固定在水平面上、半径为 $R$ 的半圆柱形光滑表面的顶端由静止
 开始下滑。求质点脱离圆柱体时，质点与圆心连线和竖直方向的夹角 $\theta$；并求落地点
@@ -1124,7 +1141,7 @@ $(F_x,F_y,F_z)$，位移微元写成 $(\dd x,\dd y,\dd z)$，则功的微元为
 脱离后支持力消失，必须改用抛体运动，不能把圆周运动方程继续使用到落地。
 \end{xesolution}
 
-\Needspace{0.33\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s11-4-12}
 如图，光滑水平面上质量为 $m$ 的物体以初速度 $v$ 运动，冲向一个半径为 $R$ 的光滑
 圆形表面。图~\ref{ch08:fig:probdiagFourTwelve} 的圆弧为固定的右半圆内壁，与水平面在最低点相切。
@@ -1254,6 +1271,8 @@ $a$ 在第(1)问是力随时间增加的系数，不是加速度，各题 $\alph
  f(r)=-k\frac{e^{-\alpha r}}{r^2}.
  \]
 \end{enumerate}
+
+\ThQConservative
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
@@ -1310,7 +1329,7 @@ $E_p(\infty)=0$，可写成
 但是否保守只取决于它是位置的单值中心力，而不取决于积分能否用初等函数表示。
 \end{xesolution}
 
-\Needspace{0.32\textheight}
+\Needspace{8\baselineskip}
 \begin{origexamplebox}{}\label{ch08:ex:s11-4-14}
 劲度系数为 $k$、自然长度为 $l_0$ 的弹簧一端固定在给定点 $A$，另一端连接质量为
 $m$ 的物体。前两问限定物体沿弹簧轴线作一维运动，弹簧可拉伸也可压缩，忽略碰壁等几何限制。
@@ -1415,7 +1434,7 @@ $v(x)=\pm\sqrt{2[E-U(x)]/m}$，再积分 $t_B-t_A=\int_{x_A}^{x_B}\dd x/v(x)$。
 }
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirteenth-section/}}
+\graphicspath{{../../../sample/xes-original/thirteenth-section/}}
 \section{能量的转化与守恒}
 机械能守恒是有条件的，能量守恒则讨论系统中所有形式的能量。摩擦、非弹性碰撞或物体的塑性形变
 会使宏观机械能减少，但这部分能量并没有消失，而是转入物体的内能、形变能、声能等其他形式。
@@ -1491,9 +1510,13 @@ $v(x)=\pm\sqrt{2[E-U(x)]/m}$，再积分 $t_B-t_A=\int_{x_A}^{x_B}\dd x/v(x)$。
 \begin{origexamplebox}{粗糙水平面上的停车距离}\label{ch08:ex:s13-4-21}
 质量为 $m$ 的滑块以速度 $v_0$ 沿粗糙水平面滑动，动摩擦因数为 $\mu_k$。求滑块停下前的距离，
 并分别用“滑块”和“滑块+地面”为系统说明能量变化。
+
+\ThQStopping
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThAStopping
+
 滑块竖直方向平衡，所以 $N=mg$，滑动摩擦力大小为 $f_k=\mu_kmg$。设停车距离为 $s$。
 
 若只选滑块为系统，摩擦力是外力，由动能定理
@@ -1543,6 +1566,8 @@ $v(x)=\pm\sqrt{2[E-U(x)]/m}$，再积分 $t_B-t_A=\int_{x_A}^{x_B}\dd x/v(x)$。
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThARoughSpring
+
 图~\ref{ch08:fig:rough-spring} 中弹簧向左拉，启动前静摩擦力向右。释放瞬间弹簧力大小为 $ka$。
 若 $ka\le\mu_smg$，静摩擦可以平衡它，物块可保持静止；不依赖额外扰动而启动的条件为
 \begin{equation}
@@ -1582,9 +1607,13 @@ $v(x)=\pm\sqrt{2[E-U(x)]/m}$，再积分 $t_B-t_A=\int_{x_A}^{x_B}\dd x/v(x)$。
 \begin{origexamplebox}{子弹射入木块}\label{ch08:ex:s13-4-23}
 质量为 $m$ 的子弹以速度 $u$ 水平射入质量为 $M$ 的静止木块并留在其中。碰撞时间极短，
 可忽略水平外力冲量。求共同速度以及碰撞中增加的内能。
+
+\ThQBullet
 \end{origexamplebox}
 
 \Needspace{6\baselineskip}\begin{xesolution}
+\ThABullet
+
 以“子弹+木块”为系统。碰撞时间内水平外力冲量可忽略，所以水平动量守恒。设碰后共同速度为 $v$，
 \[
   m u=(M+m)v,\qquad \boxed{v=\frac{m}{M+m}u}.

@@ -1,3 +1,5 @@
+% ThermalQualityRevision20261023-v1
+% QualityRevision20261023
 \hypersetup{bookmarksdepth=3}
 \begingroup
 \renewcommand{\Needspace}[1]{\par\begingroup
@@ -6,9 +8,11 @@
 \vskip0pt\endgroup}
 \tcbset{breakable/.default=false}
 \chapter{热力学第二定律}
+\input{chapters/quality-20261023/thermal/ch16.tex}
+
 
 {
-\graphicspath{{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirtieth-section/}{/Users/dongxingxi/Documents/物理竞赛一轮资料/sample/xes-original/thirtieth-section/assets/}}
+\graphicspath{{../../../sample/xes-original/thirtieth-section/}{../../../sample/xes-original/thirtieth-section/assets/}}
 
 % Original vector redraws for Lesson 21.  Text labels deliberately have no
 % rectangular background; spacing is achieved by placement, not masking.
@@ -745,9 +749,13 @@ $\dd Q=mc\,\dd T$，因而
 \Needspace{180pt}
 \begin{origexamplebox}{同末态的两种膨胀，熵产生为何不同}\label{ch16:ex:teaching-two-paths}
 $n$ 摩尔理想气体初态为 $(T_0,V_0)$。过程甲是在 $T_0$ 热库作用下可逆等温膨胀至 $2V_0$；过程乙是在隔热刚性容器中向真空自由膨胀至 $2V_0$。求气体、有关环境的熵变和总熵产生。忽略容器热容量、整体动能及势能的变化。
+
+\ThQTwoPaths
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThATwoPaths
+
 乙过程既不传热也不向外做功，内能不变，理想气体末温仍为 $T_0$。所以甲、乙的气体初末态完全相同，均有
 \[
  \Delta S_{\rm gas}=nc_v\ln\frac{T_0}{T_0}+nR\ln2=nR\ln2.
@@ -767,9 +775,13 @@ $n$ 摩尔理想气体初态为 $(T_0,V_0)$。过程甲是在 $T_0$ 热库作用
 \Needspace{180pt}
 \begin{origexamplebox}{两物体之间能够取出的最大功}\label{ch16:ex:teaching-finite-work}
 两个物体的恒定热容量为 $C_1,C_2$，初温为 $T_h>T_c>0$。在它们之间运行热机，直到两者达到共同终温，热机最后恢复原态。整体与外界不交换热量，但可以输出机械功；忽略体积变化和其他能量改变。求最多能输出多少功，并与两物体直接接触比较。
+
+\ThQFiniteWork
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThAFiniteWork
+
 若共同终温为 $T_f$，热机不储存净能量，输出功为
 \[
  W=C_1T_h+C_2T_c-(C_1+C_2)T_f.
@@ -798,9 +810,13 @@ $n$ 摩尔理想气体初态为 $(T_0,V_0)$。过程甲是在 $T_0$ 热库作用
 \Needspace{180pt}
 \begin{origexamplebox}{将有限物体冷却到环境温度以下所需的最少功}\label{ch16:ex:teaching-cooling-work}
 热容量为常数 $C$ 的物体初温与环境热库同为 $T_0$。用循环复原的制冷机将物体冷却到 $T_1<T_0$，环境保持 $T_0$。求最少输入功。忽略体积变化及漏热，假定此温区无相变。
+
+\ThQCooling
 \end{origexamplebox}
 \Needspace{65pt}
 \begin{xesolution}
+\ThACooling
+
 在物体瞬时温度 $T$ 下再降低 $\dd T<0$，须取出热量 $\delta Q_c=-C\dd T>0$。可逆制冷系数为 $T/(T_0-T)$，所以最小元功为
 \[
  \delta W_{\min}=(-C\dd T)\frac{T_0-T}{T}.
@@ -890,6 +906,8 @@ $\SI{40}{J}$ 热量。这个热库的熵变才是
   \eta=1-\frac{T_2}{T_1},
 \]
 其中 $T_1,T_2$ 分别为高、低温热库的温度。
+
+\ThQCarnot
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -924,6 +942,8 @@ $\SI{40}{J}$ 热量。这个热库的熵变才是
 
 \Needspace{12\baselineskip}\begin{origexamplebox}{【熵增原理】}\label{ch16:ex:s30-21-2}
 利用熵增原理，重新对热力学第二定律的开尔文和克劳修斯陈述给出定量说明。
+
+\ThQSecondLaw
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -963,6 +983,8 @@ $T_h$ 的高温热库，其中 $T_h>T_c$。两热库的总熵变为
   \item 有限温差热传递过程不可逆；
   \item 快速膨胀过程不可逆。
 \end{enumerate}
+
+\ThQIrreversibility
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -1025,6 +1047,8 @@ $\Delta S_{\rm tot}=\int(1/T_c-1/T_h)\,\delta Q>0$；不能把初始温度直接
 三个热容量均为 $c$ 的物体，已知 $T_1=T_2=\SI{300}{K}$，$T_3=\SI{100}{K}$。若外界不做功也不供热，
 利用热机工作于三物体之间，使三物中某一物体温度升高，求它所能达到的最高温度；此时另外两物体的
 温度各为多少？
+
+\ThQThreeBodies
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}
@@ -1106,6 +1130,8 @@ $\delta W=c\dd X(1-Z/X)$。二者相等，等价于
 \]
 其中 $\sigma$ 为液体的表面张力系数，$A$ 为液体表面积。请研究利用液体表面作为工作物质的热机，并
 求出其效率。
+
+\ThQSurfaceEngine
 \end{origexamplebox}\par\nopagebreak[4]
 
 \par\nopagebreak[4]\begin{xesolution}

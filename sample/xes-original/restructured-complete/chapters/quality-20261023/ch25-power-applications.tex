@@ -1,0 +1,142 @@
+\section{整流、滤波与稳压}
+
+\subsection{非线性元件为何必须回到瞬时电路}
+相量法把同频率的线性微分关系变成代数关系。二极管的导通状态随电压改变，一段正弦电压经过整流后也不再是单一频率的正弦信号，所以不能用一个固定复阻抗表示完整整流过程。
+对于理想桥式全波整流器，每半周期由不同的两只二极管导通，负半周经换路后也给负载同方向的电流；在纯电阻负载且无滤波电容时，输出为
+\[
+ u_o(t)=|U_m\sin\omega t|,\qquad
+ \overline U_o=\frac{2U_m}{\pi},\qquad U_{o,\rm rms}=\frac{U_m}{\sqrt2}.
+\]
+最后一个结果来自平方后波形不变；输出的脉动频率是输入频率的两倍，且仍有交流纹波。若每只导通二极管压降近似为 $U_D$，需在导通区间扣除两只的压降，并在电源不足以使它们导通时令输出截止，不能让负载电压算成负值。
+
+在输出两端并联电容后，电源电压接近峰值且超过电容电压时，整流器向电容补充电荷；其余时间二极管截止，电容向负载放电。忽略源内阻和充电时间，并在小纹波、近似恒定负载电流 $I_L$ 下，电荷守恒给出
+\[
+ C\Delta U_{\rm pp}\simeq I_L\Delta t,\qquad
+ \Delta t\simeq\frac1{2f},\qquad
+ \boxed{\Delta U_{\rm pp}\simeq\frac{I_L}{2fC}}.
+\]
+这里 $\Delta U_{\rm pp}$ 是峰峰值，不是纹波的有效值。半波整流两次补充电荷间隔约 $1/f$，在相同条件下纹波约为两倍。电阻负载的实际放电为指数形式；只有电压变化不大时，才可把 $I_L$ 近似取常量并画成直线下降。
+
+\begin{origexamplebox}{全波整流后的电容纹波}\label{quality:25:ex:ripple}
+理想桥式整流器接有效值 $12.0\,\mathrm V$、频率 $50.0\,\mathrm{Hz}$ 的正弦电源；输出并联 $C=1000\,\mu\mathrm F$ 电容，负载在工作区近似恒定吸取 $I_L=20.0\,\mathrm{mA}$。忽略源内阻、二极管压降与充电时间。估计输出峰值、纹波峰峰值和平均电压，并检验小纹波近似。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex]
+ \node[draw,minimum width=1.5cm,minimum height=1cm] (ac) at (0,0) {正弦源};
+ \node[draw,minimum width=1.7cm,minimum height=1cm] (br) at (3,0) {桥式整流};
+ \draw (.75,.2)--(2.15,.2) (.75,-.2)--(2.15,-.2);
+ \node[above] at (1.45,.3) {$12.0\,\mathrm V$};
+ \draw (3.85,.2)--(4.2,.2)--(4.2,0)--(8,0);
+ \draw (3.85,-.2)--(4,-.2)--(4,-1.7)--(8,-1.7);
+ \node[above] at (4.2,.2) {$+$};\node[left] at (4,-1.35) {$-$};
+ \draw (5.2,0)--(5.2,-.65) (4.85,-.65)--(5.55,-.65) (4.85,-.85)--(5.55,-.85) (5.2,-.85)--(5.2,-1.7);
+ \node[right] at (5.5,-.75) {$C$};
+ \node[draw,minimum height=.8cm] (load) at (8,-.85) {负载};
+ \draw (8,0)--(load.north) (load.south)--(8,-1.7);
+ \draw[->,DeepBlue] (6.4,.4)--node[above] {$I_L$}(7.8,.4);
+ \node[right] at (8.4,-.85) {$u_o$};
+\end{tikzpicture}
+\figcap{桥的交流端为两线输入，图中连接线概括端口；右侧电容与负载跨接同一输出。}\label{quality:25:ripple-q}
+\end{qualityfigure}
+\end{origexamplebox}
+\begin{xesolution}
+题图~\ref{quality:25:ripple-q}中的 $12.0\,\mathrm V$ 是交流有效值，电容能充到的理想峰值为
+\[
+ U_{\max}=\sqrt2\,12.0=16.97\,\mathrm V.
+\]
+全波每半个输入周期充电一次，取 $\Delta t\simeq1/(2f)=0.0100\,\mathrm s$。图~\ref{quality:25:ripple-a}中相邻峰之间下降的电荷为 $I_L\Delta t$，所以
+\[
+ \Delta U_{\rm pp}\simeq\frac{0.0200\times0.0100}{1.00\times10^{-3}}
+ =\boxed{0.200\,\mathrm V},\qquad
+ \overline U_o\simeq U_{\max}-\frac{\Delta U_{\rm pp}}2
+ =\boxed{16.9\,\mathrm V}.
+\]
+\begin{qualityfigure}\begin{tikzpicture}[x=1cm,y=1cm]
+ \draw[axis] (0,0)--(7.5,0) node[right] {$t$};\draw[axis] (0,0)--(0,2.6) node[above] {$u_o$};
+ \draw[DeepBlue,thick] (0,2.1)--(2,1.55)--(2,2.1)--(4,1.55)--(4,2.1)--(6,1.55)--(6,2.1)--(7,1.83);
+ \draw[guide] (0,2.1)--(7,2.1) (0,1.55)--(7,1.55);
+ \draw[<->] (6.8,1.55)--node[right] {$\Delta U_{\rm pp}$}(6.8,2.1);
+ \draw[<->] (2,.7)--node[above] {$\Delta t\simeq1/(2f)$}(4,.7);
+ \node[above] at (3.5,2.45) {纵向放大纹波；充电过程近似为竖直跃升};
+\end{tikzpicture}
+\figcap{稳定工作后的充放电近似；纵轴省略了真实直流电平的比例。}\label{quality:25:ripple-a}
+\end{qualityfigure}
+相对纹波约 $0.200/16.97=1.18\%$，小纹波假定自洽。电容增大能减小纹波，却会使实际充电电流更集中；本模型没有给出源内阻，因此不能再用竖直跃升估算峰值充电电流。
+\end{xesolution}
+
+\subsection{稳压需要电流余量与功率余量}
+整流提供同向电压，滤波减小纹波，稳压则抑制输入与负载变化引起的输出变化，三者功能不同。以处于反向稳压区的稳压二极管为例，串联限流电阻 $R_s$，输出端并联负载时，近似取输出为 $U_Z$，节点电流关系为
+\[
+ I_Z=\frac{U_{\rm in}-U_Z}{R_s}-I_L.
+\]
+只有在 $I_{Z,\min}\le I_Z\le I_{Z,\max}$ 且 $U_ZI_Z$ 不超过允许耗散时，此近似才成立。输入最低、负载最重时检查是否脱离稳压区；输入最高、负载最轻时检查二极管与电阻是否过载。单写“输出总为 $U_Z$”会漏掉维持这一状态的条件。
+
+\section{对称三相电与星形、三角形负载}
+\subsection{先定义线量与相量，再作相减}
+三相对称电源的三个相电压具有相同有效值 $U_{\rm ph}$，依次相差 $120^\circ$。取相序A、B、C及同一参考中性点N，有
+\[
+ \widetilde U_{AN}=U_{\rm ph},\qquad
+ \widetilde U_{BN}=U_{\rm ph}e^{-\ii2\pi/3},\qquad
+ \widetilde U_{CN}=U_{\rm ph}e^{\ii2\pi/3}.
+\]
+线电压是两条相线间的电压，例如
+\[
+ \widetilde U_{AB}=\widetilde U_{AN}-\widetilde U_{BN}
+ =U_{\rm ph}\left(\frac32+\ii\frac{\sqrt3}{2}\right)
+ =\sqrt3U_{\rm ph}e^{\ii\pi/6}.
+\]
+因此相序与参考方向给定后，线电压不但大 $\sqrt3$ 倍，还相对对应相电压超前 $30^\circ$，不能只用有效值作 $U-U=0$。
+
+平衡星形负载的每相阻抗相同，线电流等于相电流；三相电流相量和为零，中性线电流为零。不平衡时中性点可能位移，不能无条件把每相电压取为线电压除以 $\sqrt3$。三角形负载的每支路直接承受线电压，但线电流是两支路电流之差；平衡时其大小为相电流的 $\sqrt3$ 倍。
+三相总有功功率是各相平均功率之和，平衡正弦情形为
+\[
+ P=3U_{\rm ph}I_{\rm ph}\cos\varphi
+ =\sqrt3U_LI_L\cos\varphi.
+\]
+这里的 $\varphi$ 是每相负载阻抗角，不能直接取线电压与任一线电流之间的几何夹角。
+
+\newcommand{\QualityThreePhaseLoads}{%
+\begin{tikzpicture}[>=Latex]
+ \coordinate (N) at (2,1);\node[below right] at (N) {N};
+ \foreach \x/\y/\a in {0/2/A,0/0/B,4/1/C}{
+  \draw (\x,\y)--(N) node[midway,fill=white] {$R$};\fill (\x,\y) circle (1.5pt);\node[left] at (\x,\y) {$\a$};}
+ \node[below] at (2,-.5) {星形：每支路为相—中性点};
+ \begin{scope}[xshift=8cm]
+  \coordinate (A) at (0,2);\coordinate (B) at (-1.5,0);\coordinate (C) at (1.5,0);
+  \draw (A)--node[midway,fill=white] {$R$}(B)--node[midway,fill=white] {$R$}(C)--node[midway,fill=white] {$R$}(A);
+  \node[above] at (A) {A};\node[left] at (B) {B};\node[right] at (C) {C};
+  \node[below] at (0,-.5) {三角形：每支路为相—相};
+ \end{scope}
+\end{tikzpicture}}
+
+\begin{origexamplebox}{同一组电阻改接后三相功率的变化}\label{quality:25:ex:threephase}
+三个相同的 $R=30.0\,\Omega$ 电阻，先接成平衡星形，再接成平衡三角形。两次均接到线电压有效值 $U_L=380\,\mathrm V$ 的理想对称三相电源，导线电阻忽略。求两次的支路电压、支路电流、线电流和总功率。
+\begin{qualityfigure}\QualityThreePhaseLoads
+\figcap{相线端口均为A、B、C；每个标记 $R$ 的支路均代表一个电阻。}\label{quality:25:threephase-q}
+\end{qualityfigure}
+\end{origexamplebox}
+\begin{xesolution}
+题图~\ref{quality:25:threephase-q}左侧星形连接的每个电阻跨在相线与公共点N之间。负载平衡，因此
+\[
+ U_{\rm ph,Y}=380/\sqrt3=219\,\mathrm V,\quad
+ I_{\rm ph,Y}=I_{L,Y}=\frac{380}{30\sqrt3}=7.31\,\mathrm A,
+ \quad P_Y=3\frac{(380/\sqrt3)^2}{30}=4.81\,\mathrm{kW}.
+\]
+右侧三角形的每个电阻跨在两相线之间，所以
+\[
+ U_{\mathrm{ph},\Delta}=380\,\mathrm V,\quad I_{\mathrm{ph},\Delta}=12.7\,\mathrm A,
+ \quad I_{L,\Delta}=\sqrt3 I_{\mathrm{ph},\Delta}=21.9\,\mathrm A,
+ \quad P_\Delta=3\frac{380^2}{30}=14.4\,\mathrm{kW}.
+\]
+图~\ref{quality:25:threephase-a}示出星形电压关系的相量相减；三角形线电流也须在相同参考方向下作支路相量相减，不能把两支路电流大小直接相加。
+\begin{qualityfigure}\begin{tikzpicture}[>=Latex,scale=.9]
+ \draw[axis] (-2,0)--(4.3,0) node[right] {$\Re$};
+ \draw[axis] (0,-2.5)--(0,1.5) node[above] {$\Im$};
+ \coordinate (O) at (0,0);\coordinate (A) at (2.5,0);\coordinate (B) at (-1.25,-2.165);
+ \draw[vector] (O)--(A) node[above] {$\widetilde U_{AN}$};
+ \draw[vector] (O)--(B) node[left] {$\widetilde U_{BN}$};
+ \draw[vector,draw=TextGray] (B)--node[below right] {$\widetilde U_{AB}$}(A);
+ \node[right,align=left] at (4,1) {$|U_{AB}|=\sqrt3U_{\rm ph}$\\$P_\Delta/P_Y=3$};
+\end{tikzpicture}
+\figcap{线电压是从B相电压端点指向A相电压端点的差矢量；图的水平坐标轴仅作方向参照。}\label{quality:25:threephase-a}
+\end{qualityfigure}
+同一电源和同一电阻下，三角形每支路电压增大 $\sqrt3$ 倍，每支路功率增大3倍，总功率也增大3倍。这是改变连接方式的结果；若约束的是相功率或电阻额定电压，不能照搬这一比值。
+\end{xesolution}
