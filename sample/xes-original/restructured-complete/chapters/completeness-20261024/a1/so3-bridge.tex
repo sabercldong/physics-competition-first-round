@@ -1,0 +1,96 @@
+% A1Completeness20261024: so3-teaching-bridge
+\textbf{先说明分解的是怎样的对象。}
+旋转不只作用于一个矢量，也会同时作用于张量的每个指标。例如二阶张量按
+$\mathsf P\mapsto\mathsf O\mathsf P\mathsf O^{\mathsf T}$变换。把所有可能的张量作为一个线性空间，每个旋转就在这个空间中对应一个线性变换，这称为旋转的\emph{表示}。若一个子空间在所有旋转下都仍留在自身内，就称它为不变子空间；不能再拆成更小非零不变子空间的表示称为不可约表示。
+
+$V\otimes W$表示两个指标空间的张量积：若基分别为$\vect e_i,\vect f_j$，张量积基为$\vect e_i\otimes\vect f_j$，维数是两维数之积。两个指标必须受\emph{同一个}旋转，作用写成$D_V(\mathsf O)\otimes D_W(\mathsf O)$。
+符号$V_1\oplus V_2$则表示每个张量能唯一写成来自两个不变子空间的分量之和，维数相加。因而$3\otimes3=5\oplus3\oplus1$不是普通数字乘加的新规则，而是九维张量空间可以按旋转性质分为三个互不混合的部分。
+
+欧氏张量的自然内积在旋转下不变，例如二阶张量内积为$\operatorname{tr}(\mathsf P^{\mathsf T}\mathsf Q)$。若$U$为不变子空间，$U$的正交补也不变：对$\vect w\perp U$及$\vect u\in U$，有
+$\langle D(\mathsf O)\vect w,\vect u\rangle=\langle\vect w,D(\mathsf O)^{-1}\vect u\rangle=0$。
+反复取正交补，便能把有限维张量空间分成不可约的块。下面说明块的维数和组合规则从何而来。
+
+\textbf{为什么一个整数旋转类型有$2\ell+1$个分量。}
+为了便于对角化，暂用复数基，但不增加物理自由度；成对的$m,-m$最终可换成正弦、余弦型实基。把小转角的作用写成
+\[
+ D_i(\delta)=\mathsf1-\ii\delta\mathsf J_i+\order{\delta^2},\qquad
+ [\mathsf J_i,\mathsf J_j]=\ii\epsilon_{ijk}\mathsf J_k.
+\]
+方括号是矩阵对易子$[A,B]=AB-BA$；$\epsilon_{ijk}$为右手系的全反对称符号，$\epsilon_{123}=1$，交换两指标变号，重复指标时为零。上述对易关系可由前面的三轴转动矩阵展开到转角乘积阶验证：对矢量，生成元为$\ii[\vect e_i]_\times$，叉乘矩阵相乘便给出该式；对多指标张量，总生成元是各指标生成元之和，不同指标的矩阵彼此对易，所以关系逐项继承。三个$\mathsf J_i$是无量纲的无穷小旋转生成元；保持内积意味着它们是厄米矩阵，即$\mathsf J_i^\dagger=\mathsf J_i$，$\dagger$表示共轭转置。
+取$\mathsf J_3$的本征基$\vect e_m$，其本征值为$m$。绕轴转$2\pi$在这里是恒等变换，故$e^{-\ii2\pi m}=1$，$m$必须为整数。
+
+令$\mathsf J_\pm=\mathsf J_1\pm\ii\mathsf J_2$，由对易关系有
+$[\mathsf J_3,\mathsf J_\pm]=\pm\mathsf J_\pm$，所以$\mathsf J_\pm$将$m$变为$m\pm1$。
+$\mathsf J^2=\sum_i\mathsf J_i^2$与三个生成元均对易；在不可约空间中，它的每个本征子空间都不变，因而只能有一个本征值$c$。
+设最大的$m$为$\ell$，则$\mathsf J_+\vect e_\ell=0$。利用
+\[
+ \mathsf J_-\mathsf J_+=\mathsf J^2-\mathsf J_3^2-\mathsf J_3
+\]
+得到$c=\ell(\ell+1)$。继续使用另一顺序的乘积，对归一化基矢有
+\[
+ \|\mathsf J_-\vect e_m\|^2
+ =c-m(m-1)=(\ell+m)(\ell-m+1).
+\]
+它从$m=\ell$开始逐级下降，在$m=-\ell$才为零；顶端的范数平方为$2\ell\ge0$，故$\ell\ge0$。这些基矢生成的空间在三个生成元下都封闭，不可约性要求它已是整个空间。因此一个不可约旋转类型$V_\ell$恰有
+\[
+ m=-\ell,-\ell+1,\ldots,\ell,\qquad \dim V_\ell=2\ell+1.
+\]
+这里的$\ell$是张量在旋转下的类型标签；称矢量为“$\ell=1$表示”，并不是说每个被画成箭头的物体都是自旋为1的量子粒子。半整数自旋属于旋转双覆盖的表示，不在本段普通$SO(3)$张量的范围内。
+
+\begin{advtheorem}{$SO(3)$张量积的不可约分解}\label{advA1:thm:so3-decomposition}
+若$\ell_1\ge\ell_2$为非负整数，则
+\[
+ V_{\ell_1}\otimes V_{\ell_2}
+ =\bigoplus_{J=\ell_1-\ell_2}^{\ell_1+\ell_2}V_J,
+\]
+各$J$取遍区间内的整数，每种类型恰出现一次。用$m=2\ell_1+1,n=2\ell_2+1$记维数，就是
+\[
+ m\otimes n=(m+n-1)\oplus(m+n-3)\oplus\cdots\oplus(m-n+1).
+\]
+\end{advtheorem}
+\textbf{证明：从绕一根轴的分量数逐层剥离。}
+在张量积基$\vect e_{m_1}\otimes\vect e_{m_2}$上，第三生成元为
+$\mathsf J_3^{\rm tot}=\mathsf J_3^{(1)}\otimes\mathsf1+\mathsf1\otimes\mathsf J_3^{(2)}$，故总本征值是$M=m_1+m_2$。
+记同一个$M$的出现次数为$c_M$。逐一数满足
+$-\ell_1\le m_1\le\ell_1$、$-\ell_2\le m_2\le\ell_2$、$m_1+m_2=M$的整数对，得到$c_{-M}=c_M$，且对$M\ge0$，
+\[
+ c_M=\begin{cases}
+  2\ell_2+1,&0\le M\le\ell_1-\ell_2,\\
+  \ell_1+\ell_2-M+1,&\ell_1-\ell_2\le M\le\ell_1+\ell_2,\\
+  0,&M>\ell_1+\ell_2.
+ \end{cases}
+\]
+每个$V_J$在$M=-J,\ldots,J$各贡献一个分量。若$V_J$出现$n_J$次，便有$c_J=n_J+n_{J+1}+\cdots$，相邻两式相减给
+\[
+ n_J=c_J-c_{J+1}
+ =\begin{cases}1,&\ell_1-\ell_2\le J\le\ell_1+\ell_2,\\0,&\text{其余}.
+ \end{cases}
+\]
+这就证明了允许类型与每种类型的重数。仅检查总维数相等不能代替这一步，因为不同拆分也可能具有相同的总维数。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=1cm,y=.75cm]
+ \foreach\m in{-3,...,3}{\node at(\m,1){$\m$};}
+ \node[left]at(-3.7,1){$M$};
+ \foreach\m in{-3,...,3}{\fill[DeepBlue](\m,0)circle(2.4pt);}
+ \foreach\m in{-2,...,2}{\fill[Gold](\m,-1)circle(2.4pt);}
+ \foreach\m in{-1,...,1}{\fill[TextGray](\m,-2)circle(2.4pt);}
+ \node[right]at(3.8,0){$J=3$：7个分量};
+ \node[right]at(3.8,-1){$J=2$：5个分量};
+ \node[right]at(3.8,-2){$J=1$：3个分量};
+ \draw[dashed](-.45,.5)rectangle(.45,-2.5);
+ \node at(0,-3.25){$M=0$列有3点，$M=1,2,3$列分别有3、2、1点};
+\end{tikzpicture}
+\figcap{$V_2\otimes V_1$的分量计数：每一行是一个不可约块，每一列是固定总轴分量$M$的重数。}\label{advA1:fig:completeness-so3-weights}
+\end{qualityfigure}
+图~\ref{advA1:fig:completeness-so3-weights}中，从最高$M=3$的一个分量开始，先取出蓝色$J=3$一行，再取出金色$J=2$一行，余下灰色$J=1$一行，因此$5\otimes3=7\oplus5\oplus3$。下题的三个矢量指标就是把这样的两指标规则连续应用两次，而不是把普通乘法任意拆成若干数字。
+
+对最常用的二阶张量，上述抽象分解还可直接写出三个投影：
+\[
+ \mathsf P_{\rm ST}=\frac{\mathsf P+\mathsf P^{\mathsf T}}2
+          -\frac{\operatorname{tr}\mathsf P}{3}\mathsf1,\qquad
+ \mathsf P_{\rm A}=\frac{\mathsf P-\mathsf P^{\mathsf T}}2,\qquad
+ \mathsf P_{\rm tr}=\frac{\operatorname{tr}\mathsf P}{3}\mathsf1.
+\]
+三项之和是$\mathsf P$，在Frobenius内积下彼此正交，维数依次为$6-1=5$、$3$、$1$，对应$\ell=2,1,0$。
+旋转保持转置对称性和迹，所以三类不会混合；反对称矩阵又可写成一个轴矢量的叉乘矩阵，直接说明三维块为何按矢量方式旋转。当$\mathsf P$取位移梯度时，对称无迹部分描述线性定体积形变，迹给体积相对变化，反对称部分描述局部刚性转动。这把不可约分解重新接回了弹性体的具体物理量。

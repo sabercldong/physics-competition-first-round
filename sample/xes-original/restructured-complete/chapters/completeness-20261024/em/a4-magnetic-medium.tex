@@ -1,0 +1,76 @@
+\noindent\textbf{从磁偶极矩密度到束缚电流。}
+磁化强度 $\vect M$ 是单位体积的磁偶极矩。令
+$R=|\vect r-\vect r'|$，体元的偶极矢势叠加为
+\[
+ \vect A_M(\vect r)=\frac{\mu_0}{4\pi}\int_V
+ \vect M(\vect r')\times\nabla'\frac1R\dd V'.
+\]
+由 $\nabla'\times(\vect M/R)
+=\nabla'(1/R)\times\vect M+(\nabla'\times\vect M)/R$，
+并把旋度体积分转为边界积分，得到
+\[
+ \vect A_M=\frac{\mu_0}{4\pi}\left[
+ \int_V\frac{\nabla'\times\vect M}{R}\dd V'
+ +\oint_{\partial V}\frac{\vect M\times\vect n}{R}\dd S'\right].
+\]
+与电流的矢势比较，便识别出
+\[
+ \boxed{\vect j_M=\nabla\times\vect M,\qquad
+ \vect K_M=\vect M\times\vect n}.
+\]
+若界面两侧都有磁化，$\vect n$ 从介质1指向介质2，则净面流为
+$(\vect M_1-\vect M_2)\times\vect n$。
+均匀磁化体内部 $\vect j_M=0$，并不意味着没有磁场，边界面流仍然存在。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.9]
+ \fill[PaleBlue](-1.6,-1.1)rectangle(1.3,1.35);
+ \draw[thick](1.3,-1.1)--(1.3,1.35);
+ \foreach\x in{-.8,.2}{\draw[->,DeepBlue,thick](\x,-.65)--(\x,.7);}
+ \node[left]at(-.8,.1){$\vect M$};
+ \draw[->](1.3,.9)--(2.45,.9)node[right]{$\vect n=\vect e_x$};
+ \node[draw,circle,inner sep=1pt]at(1.3,-.35){$\times$};
+ \node[right]at(1.7,-.35){$\vect K_M=M\vect e_y$（入纸面）};
+ \draw[->](-1.8,-1.65)--(-.65,-1.65)node[right]{$x$};
+ \draw[->](-1.8,-1.65)--(-1.8,-.6)node[above]{$z$};
+\end{tikzpicture}
+\figcap{右手坐标的 $xz$ 截面：$+y$ 指向纸内，因此 $\vect e_z\times\vect e_x=\vect e_y$ 的面流画作叉号。\label{complete:em:bound-current}}
+\end{qualityfigure}
+
+图~\ref{complete:em:bound-current} 把 $\vect M$、外法线和面流三个方向同时固定，
+可用于检查下一例磁化球的面流符号。定义
+$\vect H=\vect B/\mu_0-\vect M$ 后，静磁 Maxwell 方程成为
+\[
+ \nabla\times\vect H=\vect j_f,\qquad
+ \nabla\cdot\vect H=-\nabla\cdot\vect M.
+\]
+在无自由电流的单连通区域才能全局写 $\vect H=-\nabla\psi_M$；于是
+\[
+ \rho_M=-\nabla\cdot\vect M,\qquad
+ \sigma_M=(\vect M_1-\vect M_2)\cdot\vect n,
+\]
+\[
+ \nabla^2\psi_M=-\rho_M,\qquad
+ \psi_M(\vect r)=\frac1{4\pi}\left[
+ \int\frac{\rho_M}{R}\dd V'+\oint\frac{\sigma_M}{R}\dd S'\right].
+\]
+这些磁荷只是计算 $\vect H$ 的等效源；实际 $\vect B=\mu_0(\vect H+\vect M)$
+仍满足 $\nabla\cdot\vect B=0$，不能把等效磁荷理解为真实磁单极。
+若有自由电流，可先求其真空形式的场
+\[
+ \vect H_f=\frac1{4\pi}\int
+ \frac{\vect j_f(\vect r')\times(\vect r-\vect r')}{R^3}\dd V',
+ \qquad \vect H=\vect H_f-\nabla\psi_M,
+\]
+再联立磁化关系与边界条件确定 $\vect M$。
+
+对准静态、无磁滞且可逆的介质，固定材料参数时增量能量为
+$\dd w=\vect H\cdot\dd\vect B$。
+若本构关系是通过原点的线性各向同性关系
+$\vect M=\chi_m\vect H$、$\vect B=\mu\vect H$，从零场积分得到
+\[
+ w=\int_0^{\vect B}\vect H(\vect B')\cdot\dd\vect B'
+ =\frac12\vect B\cdot\vect H.
+\]
+有永久磁化、磁滞或色散时，不能不加条件地套用这一简单能量式。
+

@@ -273,6 +273,18 @@ def main() -> None:
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     source = source_review(args.book)
+    source["numbering_note"] = "id is source scan order; use pdf_example_number when available because TeX may expand declared question macros later."
+    if args.pdf and args.pdf.with_suffix(".aux").exists():
+        aux_text = args.pdf.with_suffix(".aux").read_text()
+        compiled_numbers = {}
+        for match in re.finditer(r"\\newlabel\{([^}]+)\}", aux_text):
+            body, _ = group(aux_text, match.end())
+            if body.startswith("{"):
+                compiled_numbers[match[1]], _ = group(body, 0)
+        for chapter in source["chapters"]:
+            for example in chapter["examples"]:
+                if example.get("label") in compiled_numbers:
+                    example["pdf_example_number"] = compiled_numbers[example["label"]]
     (args.output / "source-review.json").write_text(json.dumps(source, ensure_ascii=False, indent=2))
     counts = collections.Counter(i["kind"] for i in source["issues"])
     print(json.dumps({"source_examples": source["example_count"], "manual_review_candidates": counts}, ensure_ascii=False))

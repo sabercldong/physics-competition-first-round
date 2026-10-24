@@ -1,0 +1,89 @@
+{
+  "fermi_fixed_N": [
+    {
+      "T_over_TF": 0.01,
+      "mu": 0.9999177411113399,
+      "mu_T2_coefficient": -0.8225888866014698,
+      "U_T2_coefficient": 2.467035619484394,
+      "Cv_over_T": 4.93333988323415
+    },
+    {
+      "T_over_TF": 0.02,
+      "mu": 0.9996708177769347,
+      "mu_T2_coefficient": -0.8229555576632196,
+      "U_T2_coefficient": 2.4659367981408655,
+      "Cv_over_T": 4.928938610158668
+    },
+    {
+      "T_over_TF": 0.04,
+      "mu": 0.998680896717585,
+      "mu_T2_coefficient": -0.8244395515093568,
+      "U_T2_coefficient": 2.461504620338468,
+      "Cv_over_T": 4.911108766807855
+    }
+  ],
+  "fermi_leading_coefficients": {
+    "mu": -0.8224670334241132,
+    "U": 2.4674011002723395,
+    "Cv_over_T": 4.934802200544679
+  },
+  "sommerfeld_first_moment": 1.6449340668482264,
+  "associated_endpoint_and_parity_cases": 66,
+  "GL_tanh_ODE_residual": "0 (symbolic)",
+  "sphere_images": [
+    {
+      "L_over_R": 2.001,
+      "images_per_chain": 1151,
+      "max_surface_V_error": 1.354472090042691e-14,
+      "recurrence_error": 8.992806499463768e-15,
+      "C_over_4pi_eps_R": 1.3864420573401386
+    },
+    {
+      "L_over_R": 2.01,
+      "images_per_chain": 376,
+      "max_surface_V_error": 1.1102230246251565e-15,
+      "recurrence_error": 4.3298697960381105e-15,
+      "C_over_4pi_eps_R": 1.3877695682496813
+    },
+    {
+      "L_over_R": 2.2,
+      "images_per_chain": 89,
+      "max_surface_V_error": 4.440892098500626e-16,
+      "recurrence_error": 3.1086244689504383e-15,
+      "C_over_4pi_eps_R": 1.415060874999127
+    },
+    {
+      "L_over_R": 3.0,
+      "images_per_chain": 42,
+      "max_surface_V_error": 2.220446049250313e-16,
+      "recurrence_error": 2.3314683517128287e-15,
+      "C_over_4pi_eps_R": 1.5144087500920147
+    },
+    {
+      "L_over_R": 10.0,
+      "images_per_chain": 19,
+      "max_surface_V_error": 2.220446049250313e-16,
+      "recurrence_error": 4.579669976578771e-16,
+      "C_over_4pi_eps_R": 1.81834845226029
+    }
+  ],
+  "touching_C_over_4pi_eps_R": 1.3862943611198906,
+  "SL_Pruefer_derivative": [
+    {
+      "lambda": 1.3,
+      "theta_lambda": 0.31707900476219675,
+      "integral": 0.31707900476219675
+    },
+    {
+      "lambda": 4.0,
+      "theta_lambda": 0.3913042349674174,
+      "integral": 0.3913042349674174
+    },
+    {
+      "lambda": 7.0,
+      "theta_lambda": 0.10264088410713093,
+      "integral": 0.10264088410713093
+    }
+  ],
+  "Green_jump": "G_x(s+)-G_x(s-)=-s-(1-s)=-1 for p=1"
+}

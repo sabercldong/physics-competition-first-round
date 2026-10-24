@@ -1,0 +1,38 @@
+从 $\vect A$ 到电场还须保留标势的同阶项，否则会留下错误的纵向辐射场。
+记 $t_r=t-r/c$。在远区作一次源坐标展开，
+$R^{-1}=r^{-1}+\vect e_r\cdot\vect r'/r^2+\cdots$、
+$t-R/c=t_r+\vect e_r\cdot\vect r'/c+\cdots$，于是
+\[
+ \varphi\simeq\frac1{4\pi\varepsilon_0}
+ \left[\frac Qr+\frac{\vect e_r\cdot\vect p(t_r)}{r^2}
+ +\frac{\vect e_r\cdot\dot{\vect p}(t_r)}{cr}\right].
+\]
+局域体系的总电荷 $Q$ 不随时间变，前两项只产生 $r^{-2}$ 或更快衰减的场。
+令 $\varphi_{\rm rad}=(\vect e_r\cdot\dot{\vect p})/(4\pi\varepsilon_0cr)$。
+求其梯度时，$\nabla t_r=-\vect e_r/c$ 给出唯一的 $1/r$ 项；
+对 $1/r$ 和 $\vect e_r$ 的空间导数都降为 $1/r^2$。因而
+\[
+ -\nabla\varphi_{\rm rad}\simeq
+ \frac{\vect e_r(\vect e_r\cdot\ddot{\vect p})}{4\pi\varepsilon_0c^2r},
+ \qquad
+ -\partial_t\vect A\simeq
+ -\frac{\ddot{\vect p}}{4\pi\varepsilon_0c^2r}.
+\]
+两项的纵向部分恰相消，只剩负的横向投影。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.95]
+ \coordinate(O)at(0,0);\coordinate(P)at(0,2.15);
+ \coordinate(T)at(.931, .5375);\coordinate(E)at(.931,-1.6125);
+ \draw[->,TextGray](O)--(3,1.732)node[right]{$\vect e_r$};
+ \draw[->,thick](O)--(P)node[above]{$\ddot{\vect p}$};
+ \draw[->,DeepBlue](O)--(T);
+ \draw[dashed,DeepBlue](T)--(P)node[midway,above right]{$\ddot{\vect p}_{\perp}$};
+ \draw[->,DeepBlue,thick](O)--(E)node[below right]{$\vect E_{\rm rad}\propto-\ddot{\vect p}_{\perp}$};
+ \node[right]at(1.05,.25){$\vect e_r(\vect e_r\cdot\ddot{\vect p})$};
+\end{tikzpicture}
+\figcap{辐射场的矢量投影图；虚线是从纵向投影终点指向 $\ddot{\vect p}$ 终点的横向分量。\label{complete:em:radiation-project}}
+\end{qualityfigure}
+
+图~\ref{complete:em:radiation-project} 中的 $\vect E_{\rm rad}$ 与观察方向垂直，
+其方向由双重叉乘而非单次叉乘决定。再对 $\vect A$ 取旋度得到磁场，保留 $1/r$ 项，

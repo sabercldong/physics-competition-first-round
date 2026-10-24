@@ -1,0 +1,39 @@
+% A1Completeness20261024: resistor-integral
+下面把最后的积分算清，避免把电路答案藏在“标准积分”中。对$a>|b|$，设
+\[
+ J(a,b)=\frac1{2\pi}\int_{-\pi}^{\pi}\frac{\dd k}{a-b\cos k}.
+\]
+令$t=\tan(k/2)$，则$\cos k=(1-t^2)/(1+t^2)$、$\dd k=2\dd t/(1+t^2)$。
+$k$从$-\pi$走到$\pi$时，$t$从$-\infty$走到$+\infty$，故
+\[
+ J=\frac1\pi\int_{-\infty}^{\infty}
+ \frac{\dd t}{(a-b)+(a+b)t^2}.
+\]
+因$a-b,a+b$都为正，再令$u=t\sqrt{(a+b)/(a-b)}$：
+\[
+ J=\frac1{\pi\sqrt{a^2-b^2}}
+ \int_{-\infty}^{\infty}\frac{\dd u}{1+u^2}
+ =\frac{\arctan u|_{-\infty}^{\infty}}{\pi\sqrt{a^2-b^2}}
+ =\frac1{\sqrt{a^2-b^2}}.
+\]
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}
+  \draw[->](-2.2,1)--(2.3,1)node[right]{$k$};
+  \foreach\x/\lab in{-1.8/-\pi,0/0,1.8/\pi}{\draw(\x,.92)--(\x,1.08);\node[above]at(\x,1.1){$\lab$};}
+  \draw[->](-2.2,-.7)--(2.3,-.7)node[right]{$t$};
+  \node[below]at(-1.8,-.8){$-\infty$};\node[below]at(0,-.8){$0$};\node[below]at(1.8,-.8){$+\infty$};
+  \foreach\x in{-1.8,0,1.8}{\draw[->,DeepBlue](\x,.65)--(\x,-.35);}
+  \node at(0,-1.7){$t=\tan(k/2)$};
+ \end{scope}
+ \begin{scope}[shift={(6.2,-.4)}]
+  \draw[->](-2.1,0)--(2.3,0)node[right]{$u$};
+  \draw[->](0,0)--(0,1.65)node[above]{$(1+u^2)^{-1}$};
+  \fill[PaleBlue,domain=-2:2,samples=80](-2,0)--plot(\x,{1/(1+\x*\x)})--(2,0)--cycle;
+  \draw[DeepBlue,thick,domain=-2:2,samples=80]plot(\x,{1/(1+\x*\x)});
+  \node at(0,-.65){全实轴曲线下的面积为$\pi$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{半角代换将一个周期的积分化为全实轴上的反正切积分；右图的两端尾部延伸到无穷远。}\label{advA1:fig:completeness-resistor-integral}
+\end{qualityfigure}
+图~\ref{advA1:fig:completeness-resistor-integral}左侧的三个对应点固定了积分区间，右侧面积由反正切的两个端点极限得到。本题取$a=r^{-1}+2R^{-1}$、$b=2R^{-1}$，电阻为正保证$a-b=r^{-1}>0$，代入得

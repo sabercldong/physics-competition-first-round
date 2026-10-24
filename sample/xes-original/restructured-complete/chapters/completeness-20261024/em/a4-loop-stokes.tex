@@ -1,0 +1,42 @@
+下面把这个梯度具体化。记 $f=1/|\vect r-\vect r'|$，则
+$\nabla'f=(\vect r-\vect r')/R^3$，且对核有 $\partial_i f=-\partial'_i f$。
+在场点不在张面上时，$\nabla'^2f=0$。用分量形式的 Stokes 公式，
+\[
+ \begin{aligned}
+ \left[\oint_{\partial S}\dd\vect l'\times\nabla'f\right]_i
+ &=\int_S\left(n_j\partial'_i\partial'_jf
+       -n_i\nabla'^2f\right)\dd S'\\
+ &=\int_S n_j\partial'_i\partial'_jf\dd S'
+ =-\partial_i\int_S\vect n\cdot\nabla'f\dd S'
+ =-\partial_i\Omega.
+ \end{aligned}
+\]
+第一行可由 $\varepsilon_{ijk}\varepsilon_{j\ell m}
+=\delta_{im}\delta_{k\ell}-\delta_{i\ell}\delta_{km}$ 展开验证，
+这也明确了源点导数与场点导数之间的负号。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.9]
+ \fill[PaleBlue](0,0)ellipse(1.65 and .6);
+ \draw[thick](0,0)ellipse(1.65 and .6);
+ \draw[DeepBlue,->,thick](1.65,0)arc[start angle=0,end angle=65,x radius=1.65,y radius=.6];
+ \node[right]at(1.65,.25){$I,\ \partial S$};
+ \draw[->](0,-.95)--(0,1.6)node[above]{$\vect n$};
+ \fill(0,.85)circle(1.7pt)node[right]{$h>0$};
+ \fill(0,-.75)circle(1.7pt)node[right]{$h<0$};
+ \draw[dashed](-.65,0)ellipse(.65 and .23);
+ \draw[<->](-.65,-1.25)--(0,-1.25)node[midway,below]{$a_0$};
+\end{tikzpicture}
+\figcap{张面局部用半径 $a_0$ 的平面片核对支路跳跃；正法向与边界电流按右手规则关联。\label{complete:em:loop-cut}}
+\end{qualityfigure}
+
+图~\ref{complete:em:loop-cut} 中，令 $h$ 为场点相对局部平面片的有符号高度，
+其立体角贡献为
+\[
+ \Omega_{\rm loc}(h)=2\pi\int_0^{a_0}
+ \frac{hs\dd s}{(s^2+h^2)^{3/2}}
+ =2\pi\left(\operatorname{sgn}h-\frac{h}{\sqrt{h^2+a_0^2}}\right).
+\]
+$h\to0^\pm$ 时分别为 $\pm2\pi$；远离这个小面片的部分连续，
+所以跨割面的跳跃恰为 $4\pi$。这里不是说磁场在任意张面上产生真实面流奇点，
+而是对两侧支路分别求梯度。综上得到

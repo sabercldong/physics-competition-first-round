@@ -1,0 +1,124 @@
+\noindent\textbf{用一次 $\beta$ 衰变逐项记守恒账。}
+以静止自由中子的衰变为例，
+\[
+ n\longrightarrow p+e^-+\overline\nu_e,\qquad
+ Q=(m_n-m_p-m_e)c^2\simeq0.782\,\mathrm{MeV}.
+\]
+反中微子的质量在本例能量尺度下忽略。逐次事件满足
+\[
+ K_p+K_e+E_\nu=Q,\qquad
+ \vect p_p+\vect p_e+\vect p_\nu=0.
+\]
+图~\ref{complete:em:beta-decay} 左侧的三动量必须闭合，不能把中微子只当成补能量的符号。
+按电荷（单位 $e$）、重子数 $B$、电子轻子数 $L_e$ 记账，分别有
+\[
+ 0=1-1+0,\qquad 1=1+0+0,\qquad 0=0+1-1.
+\]
+这解释了为什么此处是电子\emph{反}中微子。
+$L_e$ 的账用于这个弱顶点；中微子传播中的味振荡不能再用“电子味始终不变”描述。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.9]
+ \coordinate(O)at(0,0);\fill(O)circle(1.5pt)node[below right]{$O$};
+ \draw[->,thick,DeepBlue](O)--(1.7,-.6)node[right]{$\vect p_e$};
+ \draw[->,thick,DeepBlue](O)--(-.7,1.1)node[above]{$\vect p_\nu$};
+ \draw[->,thick,DeepBlue](O)--(-1,-.5)node[left]{$\vect p_p$};
+ \draw[dashed](1.7,-.6)--(1,.5)--(0,0);
+ \node at(.2,-1.25){静止中子：三动量和为零};
+ \begin{scope}[xshift=4.3cm,yshift=-.8cm]
+  \draw[->](0,0)--(3.4,0)node[right]{$K_e/Q$};
+  \draw[->](0,0)--(0,2.05)node[above]{相对谱密度};
+  \draw[DeepBlue,thick,domain=0:1,samples=90,smooth]
+   plot({3*\x},{4.2*sqrt(\x*(\x+1.3069))*(\x+.65345)*(1-\x)^2});
+  \node[below]at(0,0){$0$};\node[below]at(3,0){$1$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{左：满足动量闭合的一个衰变事件；虚线把三向量首尾相接。右：忽略库仑修正和反冲的允许 $\beta$ 谱形，横轴终点为近似值 $Q$。\label{complete:em:beta-decay}}
+\end{qualityfigure}
+
+若不存在中微子，静止中子只能作二体衰变。由
+$(P_n-P_e)^2=P_p^2$ 立即得到固定的电子总能量
+\[
+ E_e=\frac{m_n^2+m_e^2-m_p^2}{2m_n}c^2,
+\]
+不会有连续能谱。三体末态则允许电子与中微子连续分配能量，同时改变三动量夹角。
+例如忽略质子反冲能时，$K_e=0.300\,\mathrm{MeV}$ 对应
+$E_\nu\simeq0.482\,\mathrm{MeV}$，但不是每次事件都取这个值。
+对允许跃迁，忽略库仑修正、反冲以及矩阵元随能量的慢变，谱形为
+\[
+ \frac{\dd N}{\dd K_e}\propto
+ p_e(K_e+m_ec^2)(Q-K_e)^2,
+ \qquad p_ec=\sqrt{K_e(K_e+2m_ec^2)}.
+\]
+图~\ref{complete:em:beta-decay} 右侧正按此式绘制，显示连续性和两端趋零；
+精确端点还要扣除质子反冲，并考虑中微子质量。
+
+\noindent\textbf{振荡：产生的味态不是单一质量态。}
+在两味真空近似中，设
+\[
+ |\nu_e\rangle=\cos\theta|\nu_1\rangle+\sin\theta|\nu_2\rangle,
+ \quad
+ |\nu_\mu\rangle=-\sin\theta|\nu_1\rangle+\cos\theta|\nu_2\rangle.
+\]
+取超相对论且保持相干的传播，$t\simeq L/c$，去掉共同相位后，
+第 $i$ 个质量态累积相位 $\phi_i=m_i^2c^3L/(2\hbar E)$。
+所以转化振幅与概率为
+\[
+ \begin{aligned}
+ \mathcal A_{e\to\mu}
+ &=\sin\theta\cos\theta(\e^{-\ii\phi_2}-\e^{-\ii\phi_1}),\\
+ P_{e\to\mu}
+ &=\sin^2(2\theta)\sin^2\left(\frac{\Delta m^2c^3L}{4\hbar E}\right),
+ \qquad \Delta m^2=m_2^2-m_1^2.
+ \end{aligned}
+\]
+为看清相位差，图~\ref{complete:em:neutrino-phase} 取演示值 $\theta=\pi/4$，
+横轴为 $\Phi=\Delta m^2c^3L/(4\hbar E)$。两质量态在产生时同相，
+传播到 $\Phi=\pi/2$ 时相对相位为 $2\Phi=\pi$，原味完全转成另一味。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,xscale=1.8,yscale=1.4]
+ \draw[->](0,0)--(3.65,0)node[right]{$\Phi$};
+ \draw[->](0,0)--(0,1.25)node[above]{$P_{e\to\mu}$};
+ \draw[DeepBlue,thick,domain=0:3.14159,samples=80]
+  plot(\x,{sin(\x*180/pi)^2});
+ \draw[dashed](1.570796,0)--(1.570796,1)--(0,1);
+ \node[left]at(0,1){$1$};\node[below]at(0,0){$0$};
+ \node[below]at(1.570796,0){$\pi/2$};\node[below]at(3.14159,0){$\pi$};
+\end{tikzpicture}
+\figcap{最大混合的两味演示：概率随相位差振荡，而非随距离单调衰减。\label{complete:em:neutrino-phase}}
+\end{qualityfigure}
+
+若 $\Delta m^2=0$ 或没有混合，公式给出零转化；观测到振荡说明至少存在不同的质量本征值，
+中微子质量不能全为零。实际有三味，物质中的传播还会受到相干前向散射影响；
+本式只承担真空两味的入门推导，不替代完整三味分析。
+
+\noindent\textbf{粒子分类与一个夸克层面的检验。}
+标准模型的物质费米子自旋均为 $1/2$；下表把三代按弱相互作用配对列出，
+每种粒子还有相应反粒子，其电荷和重子数反号。
+\begin{center}\small
+\begin{tabular}{p{.14\linewidth}p{.37\linewidth}p{.19\linewidth}p{.13\linewidth}}
+\hline
+类别 & 三代配对 & 电荷（单位$e$） & 重子数\\\hline
+轻子 & $(\nu_e,e^-)$，$(\nu_\mu,\mu^-)$，$(\nu_\tau,\tau^-)$ & $(0,-1)$ & $0$\\
+夸克 & $(u,d)$，$(c,s)$，$(t,b)$ & $(2/3,-1/3)$ & $1/3$\\\hline
+\end{tabular}
+\end{center}
+质子 $uud$ 的电荷为 $2/3+2/3-1/3=1$，中子 $udd$ 的电荷为零；
+两者的重子数都是 $1$。介子由夸克和反夸克组成，重子数为零。
+例如 $\pi^+=u\overline d$ 的电荷为 $2/3+1/3=1$。
+在前面的中子衰变中，一个 $d$ 夸克发生
+$d\to u+W^-$，随后 $W^-\to e^-+\overline\nu_e$，
+两步的电荷账分别是 $-1/3=2/3-1$ 和 $-1=-1+0$。
+这里的 $W^-$ 是虚中间态，不要求真实产生一个静质量约为几十 GeV 的自由 $W$ 粒子。
+夸克带色荷，强相互作用将它们禁闭在强子中，不能把上面的夸克符号当成可自由分离的小球。
+
+光子传递电磁相互作用，胶子传递强相互作用，$W^\pm,Z^0$ 参与弱相互作用；
+它们是自旋 $1$ 的规范玻色子。Higgs 粒子是自旋 $0$ 的标量，
+不能把它列作又一种规范力的传递粒子，也不能把核子质量全部归于 Higgs 机制。
+标准模型不包含完整的量子引力理论，也不能单独解释暗物质等全部现象。
+
+历史上，连续 $\beta$ 谱促使泡利提出中微子假说。2002年诺贝尔物理学奖的一半授予戴维斯和小柴昌俊，
+表彰宇宙中微子探测；另一半授予贾科尼，表彰宇宙X射线源研究。2015年奖项表彰中微子振荡的发现，
+两次奖项对应不同成果，不能合并为一次“发现中微子质量”的奖项。
+

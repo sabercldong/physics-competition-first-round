@@ -1,0 +1,32 @@
+% A1Completeness20261024: wirtinger-proof
+这里需要的周期函数不等式也可从前面的傅里叶正交性直接证明。若光滑实函数$f(s)$周期为$C$，且$\int_0^Cf\,\dd s=0$，写
+\[
+ f(s)=\sum_{n\ne0}c_n e^{\ii2\pi ns/C}.
+\]
+零均值恰好排除了$n=0$常数项。先对有限部分和计算平方积分，交叉项因正交性消失，再取光滑函数的收敛极限，得到
+\[
+ \int_0^C f^2\dd s=C\sum_{n\ne0}|c_n|^2,
+ \qquad
+ \int_0^C(f')^2\dd s
+ =C\left(\frac{2\pi}C\right)^2\sum_{n\ne0}n^2|c_n|^2.
+\]
+每个保留的整数$n$都有$n^2\ge1$，因此
+\[
+ \int_0^C f^2\dd s\le
+ \left(\frac C{2\pi}\right)^2\int_0^C(f')^2\dd s.
+\]
+这就是此处使用的维廷格不等式；等号要求仅有$n=\pm1$，即$f=A\cos(2\pi s/C)+B\sin(2\pi s/C)$，包括$f\equiv0$的退化情形。
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=1cm,y=.8cm]
+ \draw[->](-.2,0)--(6.65,0)node[right]{$s$};
+ \draw[->](0,-1.5)--(0,1.65)node[above]{$f$};
+ \draw[DeepBlue,thick,domain=0:6.283185,samples=120]plot(\x,{sin(\x r)});
+ \draw[Gold,thick,dashed,domain=0:6.283185,samples=160]plot(\x,{sin(2*\x r)});
+ \node[below]at(0,-.05){$0$};\node[below]at(3.141593,-.05){$C/2$};\node[below]at(6.283185,-.05){$C$};
+ \node[DeepBlue,right]at(7,1){$f_1=\sin(2\pi s/C)$};
+ \node[Gold!70!black,right]at(7,.2){$f_2=\sin(4\pi s/C)$};
+ \node[right,align=left]at(7,-1){$\int f_1^2=\int f_2^2=C/2$\\$\int(f_2')^2=4\int(f_1')^2$};
+\end{tikzpicture}
+\figcap{坐标函数的高次谐波具有更大的导数平方积分；图中函数不是平面闭曲线本身。}\label{advA1:fig:completeness-wirtinger}
+\end{qualityfigure}
+图~\ref{advA1:fig:completeness-wirtinger}中，两函数的平方积分相同，双频金色曲线的导数平方积分却大四倍。这说明固定导数平方积分后，只有最低非零谐波能达到上界。分别对闭曲线的周期坐标$x(s),y(s)$应用已证不等式并相加，得到

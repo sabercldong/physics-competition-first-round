@@ -10,6 +10,11 @@ MODULES = [import_module(name) for name in (
     "quality_final_review_em_optics",
     "quality_final_review_advanced",
     "quality_final_review_layout",
+    "quality_completeness_a1",
+    "quality_completeness_thermal_fields",
+    "quality_completeness_em",
+    "quality_completeness_advanced",
+    "quality_completeness_layout",
 )]
 
 
@@ -32,5 +37,7 @@ if __name__ == "__main__":
         apply(path, "apply_advanced_revision", path.name)
         apply(path, "apply_file_revision", path.name)
     apply(BOOK / "chapters/quality-20261023/em-optics/ch29-notes.tex", "apply_chapter_revision", 29)
-    for name in ["style.tex", "advanced/layout.tex"]:
+    for name in ["style.tex", "advanced/layout.tex", "main.tex",
+                 "frontmatter/reading-guide.tex",
+                 "chapters/quality-20261023/ch21-conduction-devices.tex"]:
         apply(BOOK / name, "apply_file_revision", Path(name).name)

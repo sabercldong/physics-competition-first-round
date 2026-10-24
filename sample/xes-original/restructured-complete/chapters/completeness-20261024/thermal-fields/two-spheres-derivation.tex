@@ -1,0 +1,76 @@
+% CompletenessThermalFields20261024: finite-distance Kelvin images.
+设两个等半径导体球的半径为 $R$、球心距为 $L>2R$，二者导通并保持共同电势 $V$；
+无穷远取零电势。以 $O_A,O_B$ 表示球心，沿 $O_AO_B$ 的轴线放置像电荷。
+定义 $\alpha>0$ 使 $\cosh\alpha=L/(2R)$。图~\ref{appE:complete:two-sphere-images}
+标出第一条反演链：$q_0$ 从 $A$ 球心开始，$q_1$ 位于 $B$ 内，再把 $q_1$ 对 $A$ 反演得到 $q_2$；
+另有一条从 $B$ 球心开始的镜面对称链。
+
+\begin{qualityfigure}
+\centering
+\begin{tikzpicture}[>=Latex,font=\small,scale=1.0]
+ \draw[thick](-2,0)circle(1.15);\draw[thick](2,0)circle(1.15);
+ \draw[dashed](-3.5,0)--(3.5,0);
+ \fill[DeepBlue](-2,0)circle(2.2pt);\node[below]at(-2,-.08){$q_0$};
+ \fill[TextGray](1.6694,0)circle(2.2pt);\node[above]at(1.60,.12){$q_1$};
+ \fill[DeepBlue](-1.6396,0)circle(2.2pt);\node[above]at(-1.60,.12){$q_2$};
+ \node[left]at(-3.15,.5){球 $A$};\node[right]at(3.15,.5){球 $B$};
+ \node[below]at(-2,-1.19){$O_A$};\node[below]at(2,-1.19){$O_B$};
+ \draw[->,DeepBlue](-2,.08)to[bend left=37]node[above]{$q_1=-Rq_0/L$}(1.6694,.08);
+ \draw[->,TextGray](1.65,-.08)to[bend left=28]node[below]{$q_2=-Rq_1/(L-d_1)$}(-1.6396,-.08);
+ \draw[<->](-2,-1.65)--node[below]{$L$}(2,-1.65);
+ \draw[<->](2,.7)--node[above]{$d_1$}(1.6694,.7);
+ \draw[->](-2,0)--(-2.8132,-.8132)node[midway,below left]{$R$};
+\end{tikzpicture}
+\figcap{有限间距双球的一条交错像电荷链。$d_n$ 从该像所在球的球心向另一球量取；
+图按 $R/L=1.15/4$ 绘出 $d_1=R^2/L$ 与 $d_2=R^2/(L-d_1)$。
+镜面对称的第二条链未重复画出。\label{appE:complete:two-sphere-images}}
+\end{qualityfigure}
+
+\textbf{球面反演为什么给出递推。}
+一个距球心 $s>R$ 的外部点电荷 $q$，在该球内的 Kelvin 像为
+$q'=-Rq/s$，像点距球心 $d'=R^2/s$；在球面上，两者的电势逐点相消。
+从球 $A$ 中心的 $q_0=4\pi\varepsilon_0RV$ 开始，它在 $A$ 球面单独给出常数 $V$。
+对 $B$ 反演产生 $q_1$，消除 $q_0$ 在 $B$ 球面的电势；再对 $A$ 反演产生 $q_2$，消除 $q_1$ 在 $A$ 球面的电势。
+以后继续交替。若 $d_n$ 是第 $n$ 个像距所在球心、向另一球的距离，则
+\begin{equation}
+ d_0=0,\qquad
+ d_{n+1}=\frac{R^2}{L-d_n},\qquad
+ q_{n+1}=-\frac{R}{L-d_n}q_n.
+ \label{appE:eq:complete-image-recurrence}
+\end{equation}
+图中 $q_0$ 与 $q_1$ 在球 $B$ 上相消，$q_1$ 与 $q_2$ 在球 $A$ 上相消，清楚显示了配对方式。
+单独这条链给 $A$ 球电势 $V$、$B$ 球电势零；再叠加从 $B$ 球心开始的对称链，才得到两球同时为 $V$ 的边界条件。
+
+\textbf{解出位置和电量。}
+利用 $2\cosh\alpha\,\sinh[(n+1)\alpha]-\sinh(n\alpha)=\sinh[(n+2)\alpha]$，
+从 $n=0$ 归纳可得
+\[
+ \frac{d_n}{R}=\frac{\sinh(n\alpha)}{\sinh[(n+1)\alpha]},\qquad
+ \frac{q_n}{q_0}=(-1)^n\frac{\sinh\alpha}{\sinh[(n+1)\alpha]}.
+\]
+例如把第一个位置式代入 $L-d_n$，恰得
+$R\sinh[(n+2)\alpha]/\sinh[(n+1)\alpha]$，故同时恢复式~\eqref{appE:eq:complete-image-recurrence}的两个递推。
+$L>2R$ 时 $\alpha>0$，$|q_n|$ 按指数衰减；像点留在各球内部，并向
+$d_\infty=Re^{-\alpha}<R$ 聚集，所以球外电势级数收敛。
+配对相消验证了真实球面的边界条件，无穷远电势也为零；由外部 Dirichlet 问题的唯一性，
+该像系统在球外等效于真实导体。包住两球的远处高斯面又说明真实总电荷等于全部像电荷之和。
+
+两条链的总和为 $Q_{\rm tot}=2\sum_{n=0}^\infty q_n$，因此
+\[
+ \boxed{C(L)=\frac{Q_{\rm tot}}V
+ =8\pi\varepsilon_0R\sinh\alpha
+ \sum_{n=1}^\infty\frac{(-1)^{n+1}}{\sinh(n\alpha)}}.
+\]
+电容的量纲为 $\varepsilon_0R$。当 $L\to\infty$，$\alpha\to\infty$，除首项外的比值均趋零，
+故 $C(L)\to8\pi\varepsilon_0R$，等于两个远离的孤立球电容之和。
+
+相切极限 $L\to2R^+$ 对应 $\alpha\to0^+$。对每个固定 $n$，
+$\sinh\alpha/\sinh(n\alpha)\to1/n$。
+这里还要允许极限与级数交换：这些正系数随 $n$ 单调下降，且
+$\sinh(n\alpha)\ge n\sinh\alpha$，所以第 $N$ 项之后的交错余项不超过 $1/(N+1)$，
+这个界与 $\alpha$ 无关。先控制余项、再对有限项取极限，便有
+\[
+ C(2R)=8\pi\varepsilon_0R\sum_{n=1}^\infty\frac{(-1)^{n+1}}n
+ =\boxed{8\pi\varepsilon_0R\ln2}.
+\]
+这既恢复第20章的相切结果，也说明有限间距的双曲函数递推怎样连续过渡为 $q_n\propto(-1)^n/(n+1)$。

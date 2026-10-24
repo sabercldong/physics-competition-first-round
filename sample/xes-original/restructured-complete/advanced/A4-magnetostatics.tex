@@ -322,28 +322,8 @@ $t_c=\sqrt{2ml^3/(\mu_0N^2SI^2)}$。磁能减少恰等于两质点动能；$x\do
 
 \subsection{磁介质与磁标势}
 
-磁化强度 $\vect M$ 等效为束缚电流
-\[
- \vect j_M=\nabla\times\vect M,
- \qquad \vect K_M=\vect M\times\vect n.
-\]
-也可在无自由电流的单连通区域引入磁标势
-\[
- \vect H=-\nabla\psi_M,\qquad
- \vect B=\mu_0(\vect H+\vect M),
-\]
-等效磁荷为
-$\rho_M=-\nabla\cdot\vect M$、
-$\sigma_M=(\vect M_1-\vect M_2)\cdot\vect n$。含自由电流时
-\[
- \vect H=\frac1{4\pi}\int
- \frac{\vect j_f(\vect r')\times(\vect r-\vect r')}{R^3}\dd V'
- -\nabla\psi_M.
-\]
-线性各向同性介质取
-$\vect M=\chi_m\vect H$、
-$\vect B=\mu\vect H$，能量密度为
-$w=\tfrac12\vect B\cdot\vect H$。
+% CompletenessEM:a4-magnetic-medium
+\input{chapters/completeness-20261024/em/a4-magnetic-medium.tex}
 
 \begin{advexamplebox}{均匀磁化球的内外磁场}\label{advA4:ex:uniform-magnetized-sphere}
 半径 $R$ 的球体具有均匀磁化强度 $\vect M=M\vect e_z$。求内外 $\vect H,\vect B$。
@@ -429,7 +409,9 @@ $H_{n,\rm out}-H_{n,\rm in}=\sigma_M$。代入得到
  \Omega(\vect r)=\int_S
  \frac{(\vect r-\vect r')\cdot\dd\vect S'}{|\vect r-\vect r'|^3}.
 \]
-对场点求梯度并用 Stokes 定理，可得
+% CompletenessEM:a4-loop-stokes
+\input{chapters/completeness-20261024/em/a4-loop-stokes.tex}
+
 \[
  -\nabla\left(\frac I{4\pi}\Omega\right)
  =\frac I{4\pi}\oint_{\partial S}
@@ -586,6 +568,9 @@ $\vect K_1=-i_0\cos\phi_y\vect e_x$；沿 $y$、$z$ 的圆柱面同理恰得 $\v
 \[
  \vect m=\int\vect M\dd V=i_0V_S\vect e_z.
 \]
+% CompletenessEM:a4-triple-volume
+\input{chapters/completeness-20261024/em/a4-triple-volume.tex}
+
 三个正交圆柱公共区域的体积为
 $V_S=8(2-\sqrt2)R^3$，故
 \[

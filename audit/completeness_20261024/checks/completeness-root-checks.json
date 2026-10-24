@@ -1,0 +1,744 @@
+{
+  "checks": [
+    {
+      "name": "polarizer mixture at 0 degrees",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "polarizer mixture at 17 degrees",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "polarizer mixture at 45 degrees",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "polarizer mixture at 73 degrees",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "polarizer mixture at 90 degrees",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "polarizer mixture at 138 degrees",
+      "error": 1.1102230246251565e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "polarization degree from determinant",
+      "error": 1.1102230246251565e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "pure circular light is flat under linear analyzer: 0",
+      "error": 1.1102230246251565e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "pure circular light is flat under linear analyzer: 30",
+      "error": 1.1102230246251565e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "pure circular light is flat under linear analyzer: 60",
+      "error": 1.1102230246251565e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "pure circular light is flat under linear analyzer: 90",
+      "error": 1.1102230246251565e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "four-acceleration orthogonality v=0.1",
+      "error": 4.184309843058287e-11,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "rest longitudinal acceleration v=0.1",
+      "error": 3.0039859488795173e-12,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "rest transverse acceleration v=0.1",
+      "error": 5.1514348342607263e-14,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "four-acceleration orthogonality v=0.6",
+      "error": 2.7755575615628914e-11,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "rest longitudinal acceleration v=0.6",
+      "error": 5.687672555154677e-11,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "rest transverse acceleration v=0.6",
+      "error": 1.9628743075372768e-13,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "four-acceleration orthogonality v=0.9",
+      "error": 1.5282264342886265e-10,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "rest longitudinal acceleration v=0.9",
+      "error": 4.87529128179176e-10,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "rest transverse acceleration v=0.9",
+      "error": 7.761791209759394e-12,
+      "tolerance": 1e-07,
+      "passed": true
+    },
+    {
+      "name": "superposition probability phase=0",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "superposition probability phase=0.7",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "superposition probability phase=3.141592653589793",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "superposition probability phase=4.2",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "probability continuity at x=0.13",
+      "error": 2.220446049250313e-10,
+      "tolerance": 2e-07,
+      "passed": true
+    },
+    {
+      "name": "probability continuity at x=0.37",
+      "error": 8.881784197001252e-10,
+      "tolerance": 2e-07,
+      "passed": true
+    },
+    {
+      "name": "probability continuity at x=0.72",
+      "error": 1.3877787807814457e-09,
+      "tolerance": 2e-07,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=0",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=1",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=2",
+      "error": 2.7755575615628914e-17,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=3",
+      "error": 1.3877787807814457e-17,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=4",
+      "error": 6.938893903907228e-18,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=5",
+      "error": 6.938893903907228e-18,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=6",
+      "error": 3.469446951953614e-18,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=7",
+      "error": 5.204170427930421e-18,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=8",
+      "error": 3.469446951953614e-18,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=9",
+      "error": 8.673617379884035e-19,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=10",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=11",
+      "error": 4.336808689942018e-19,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=12",
+      "error": 4.336808689942018e-19,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=13",
+      "error": 5.421010862427522e-20,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=14",
+      "error": 2.710505431213761e-20,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=15",
+      "error": 4.0657581468206416e-20,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=16",
+      "error": 3.3881317890172014e-20,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=17",
+      "error": 2.710505431213761e-20,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=18",
+      "error": 3.3881317890172014e-21,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=19",
+      "error": 4.235164736271502e-21,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=20",
+      "error": 3.8116482626443515e-21,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=21",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=22",
+      "error": 3.1763735522036263e-22,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=23",
+      "error": 3.1763735522036263e-22,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=24",
+      "error": 3.1763735522036263e-22,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=25",
+      "error": 2.117582368135751e-22,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=26",
+      "error": 1.4558378780933287e-22,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=27",
+      "error": 3.970466940254533e-23,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=28",
+      "error": 9.926167350636332e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=29",
+      "error": 1.6543612251060553e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=30",
+      "error": 2.481541837659083e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=31",
+      "error": 2.895132143935597e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=32",
+      "error": 2.481541837659083e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=33",
+      "error": 1.7577588016751838e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=34",
+      "error": 1.1890721305449773e-24,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=35",
+      "error": 7.237830359838992e-25,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=36",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=37",
+      "error": 2.5849394142282115e-26,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=38",
+      "error": 3.2311742677852644e-26,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=39",
+      "error": 2.908056841006738e-26,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=40",
+      "error": 2.1002632740604218e-26,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=41",
+      "error": 1.3732490638087374e-26,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=42",
+      "error": 9.289626019882635e-27,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=43",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=44",
+      "error": 4.0389678347315804e-28,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=45",
+      "error": 5.048709793414476e-28,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=46",
+      "error": 4.0389678347315804e-28,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=47",
+      "error": 2.7767903863779616e-28,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=48",
+      "error": 1.8932661725304283e-28,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=49",
+      "error": 1.199068575935938e-28,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=50",
+      "error": 7.573064690121713e-29,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=51",
+      "error": 4.5753932502818685e-29,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=52",
+      "error": 4.733165431326071e-30,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=53",
+      "error": 1.6566079009641248e-29,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=54",
+      "error": 3.1554436208840472e-30,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=55",
+      "error": 1.1832913578315177e-30,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=56",
+      "error": 1.4791141972893971e-30,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=57",
+      "error": 4.930380657631324e-32,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=58",
+      "error": 5.9164567891575885e-31,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=59",
+      "error": 6.162975822039155e-32,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=60",
+      "error": 2.0954117794933126e-31,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=61",
+      "error": 4.0059342843254506e-32,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=62",
+      "error": 7.395570986446986e-32,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=63",
+      "error": 1.8488927466117464e-32,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=64",
+      "error": 7.703719777548943e-34,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=65",
+      "error": 7.318533788671496e-33,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=66",
+      "error": 9.62964972193618e-34,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=67",
+      "error": 2.6963019221421302e-33,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=68",
+      "error": 5.296307347064899e-34,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=69",
+      "error": 9.14816723583937e-34,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=70",
+      "error": 2.2870418089598426e-34,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=71",
+      "error": 3.1296361596292583e-34,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=72",
+      "error": 9.328723168125674e-35,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=73",
+      "error": 9.027796614315168e-36,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=74",
+      "error": 3.4606553688208144e-35,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=75",
+      "error": 6.770847460736376e-36,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=76",
+      "error": 1.1660903960157092e-35,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=77",
+      "error": 3.009265538105056e-36,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=78",
+      "error": 3.949661018762886e-36,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=79",
+      "error": 1.222514124855179e-36,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=80",
+      "error": 1.410593220986745e-37,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=81",
+      "error": 4.349329098042464e-37,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=82",
+      "error": 9.4039548065783e-38,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=83",
+      "error": 1.5281426560689738e-37,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=84",
+      "error": 4.1142302278780063e-38,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=85",
+      "error": 5.289724578700294e-38,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=86",
+      "error": 1.6163047323806453e-38,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=87",
+      "error": 2.204051907791789e-39,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=88",
+      "error": 5.877471754111438e-39,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "image coefficient n=89",
+      "error": 1.1938614500538858e-39,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "two-sphere boundary potential theta=0.1",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "two-sphere boundary potential theta=0.5",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "two-sphere boundary potential theta=1.0",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "two-sphere boundary potential theta=2.0",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "two-sphere boundary potential theta=3.141592653589793",
+      "error": 0.0,
+      "tolerance": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "triple-cylinder geometric integral",
+      "error": 8.881784197001252e-16,
+      "tolerance": 1e-09,
+      "passed": true
+    }
+  ],
+  "passed": 123,
+  "total": 123
+}

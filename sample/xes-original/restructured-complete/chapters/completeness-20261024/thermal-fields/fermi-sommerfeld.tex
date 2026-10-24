@@ -1,0 +1,84 @@
+% CompletenessThermalFields20261024: fixed-N Sommerfeld derivation.
+先说明低温展开怎样产生，再实施定粒子数约束。定义 $T_F=\varepsilon_F/k$，以下固定 $N,V$，
+并令 $g(\varepsilon)$ 表示包含全部自旋简并的\emph{总态密度}，单位为能量的倒数。
+费米分布为 $f_T(\varepsilon)=[\exp((\varepsilon-\mu)/(kT))+1]^{-1}$。
+图~\ref{advA2:complete:sommerfeld}把它与同一化学势处的零温阶跃相减；这一步把整个费米海的积分
+变成只在 $|\varepsilon-\mu|\sim kT$ 内有贡献的修正。
+
+\begin{qualityfigure}
+\centering
+\begin{tikzpicture}[>=Latex,font=\small,x=1.0cm,y=2.8cm]
+ \draw[->](-4.6,0)--(4.6,0)node[right]{$x=(\varepsilon-\mu)/(kT)$};
+ \draw[->](0,-.62)--(0,.69)node[above]{$D(x)$};
+ \fill[DeepBlue!13,domain=0:4,samples=70] (0,0)--plot(\x,{1/(exp(\x)+1)})--(4,0)--cycle;
+ \fill[DeepBlue!13,domain=-4:0,samples=70] (-4,0)--plot(\x,{-1/(exp(-\x)+1)})--(0,0)--cycle;
+ \draw[DeepBlue,thick,domain=0:4,samples=70]plot(\x,{1/(exp(\x)+1)});
+ \draw[DeepBlue,thick,domain=-4:0,samples=70]plot(\x,{-1/(exp(-\x)+1)});
+ \draw[dashed](0,-.5)--(0,.5);
+ \node[above,align=center]at(2,.25){增占据\\$x>0$};
+ \node[below,align=center]at(-2,-.25){减占据\\$x<0$};
+ \node[below]at(3.7,-.47){$D(-x)=-D(x)$};
+ \node[above]at(-2.6,.48){$\int D(x)\,\dd x=0$};
+\end{tikzpicture}
+\figcap{费米分布相对零温阶跃的差 $D(x)=(e^x+1)^{-1}-\Theta(-x)$。
+两瓣的有向面积相消，但乘上 $x$ 后两侧贡献同号；这决定首项为 $T^2$ 修正。\label{advA2:complete:sommerfeld}}
+\end{qualityfigure}
+
+对在 $\mu$ 附近光滑、无带边或奇点的函数 $\Phi$，考虑
+\[
+ I_\Phi=\int_0^\infty\Phi(\varepsilon)f_T(\varepsilon)\,\dd\varepsilon.
+\]
+设 $\mu\gg kT$。作 $x=(\varepsilon-\mu)/(kT)$ 代换，并在费米面附近展开 $\Phi$，得到
+\[
+ I_\Phi-\int_0^\mu\Phi(\varepsilon)\,\dd\varepsilon
+ =kT\int_{-\mu/(kT)}^\infty\Phi(\mu+kTx)D(x)\,\dd x.
+\]
+由于 $D$ 的尾部指数衰减，各项的矩积分可把下限延到 $-\infty$，所添误差指数小。
+图中 $D$ 为奇函数，因此常数项和二次项不贡献；一次项的系数为
+\[
+ \int_{-\infty}^{\infty}xD(x)\,\dd x
+ =2\int_0^\infty\frac{x\,\dd x}{e^x+1}
+ =2\sum_{r=1}^\infty\frac{(-1)^{r+1}}{r^2}
+ =\frac{\pi^2}{6}.
+\]
+这里先展开 $(e^x+1)^{-1}=\sum_{r\ge1}(-1)^{r+1}e^{-rx}$，逐项积分用
+$\int_0^\infty xe^{-rx}\dd x=r^{-2}$；交错平方和是普通平方和 $\pi^2/6$ 的一半。
+于是索末菲展开的前两项为
+\begin{equation}
+ I_\Phi=\int_0^\mu\Phi(\varepsilon)\,\dd\varepsilon
+ +\frac{\pi^2}{6}(kT)^2\Phi'(\mu)+O(T^4).
+ \label{advA2:eq:complete-sommerfeld}
+\end{equation}
+余项表示在费米面光滑、导数有界的低温渐近展开；不能用在 $kT$ 已与 $\varepsilon_F$ 同量级的区域。
+
+\textbf{先固定粒子数。} 取 $\Phi=g$，写 $\mu=\varepsilon_F+\delta\mu$。由于
+$N=\int_0^{\varepsilon_F}g\,\dd\varepsilon$，式~\eqref{advA2:eq:complete-sommerfeld}给出
+\[
+ 0=g_F\delta\mu+\frac{\pi^2}{6}(kT)^2g'_F+O(T^4),
+ \qquad
+ \delta\mu=-\frac{\pi^2}{6}(kT)^2\frac{g'_F}{g_F}+O(T^4),
+\]
+下标 $F$ 表示在 $\varepsilon_F$ 处取值。三维自由粒子有 $g=A\sqrt\varepsilon$，因此
+\[
+ g_F=\frac{3N}{2\varepsilon_F},\qquad
+ \mu=\varepsilon_F-\frac{\pi^2}{12}\frac{(kT)^2}{\varepsilon_F}+O(T^4).
+\]
+化学势的微小下移正是补偿图中态密度不恒定时两侧粒子数不完全相等的修正。
+
+\textbf{再计算能量。} 取 $\Phi=\varepsilon g(\varepsilon)$，保留同阶的两项：
+\begin{align*}
+ U(T)-U(0)
+ &=\varepsilon_Fg_F\delta\mu
+   +\frac{\pi^2}{6}(kT)^2(g_F+\varepsilon_Fg'_F)+O(T^4)\\
+ &=-\frac{\pi^2}{6}(kT)^2\varepsilon_Fg'_F
+   +\frac{\pi^2}{6}(kT)^2(g_F+\varepsilon_Fg'_F)+O(T^4)\\
+ &=\frac{\pi^2}{6}g_F(kT)^2+O(T^4)
+  =\frac{\pi^2}{4}N\frac{(kT)^2}{\varepsilon_F}+O(T^4).
+\end{align*}
+第一项来自积分上限的移动；若误把 $\mu$ 固定，就会漏掉这一项并改变系数。
+最后在固定 $N,V$ 下求导，得到
+\[
+ \boxed{C_V=\frac{\pi^2}{2}Nk\frac{kT}{\varepsilon_F}+O(T^3)}.
+\]
+$C_V$ 的单位为能量除以温度，$T\to0$ 时线性趋零；只有费米面附近的窄能窗能被热激发，
+所以它比经典值 $3Nk/2$ 小一个 $T/T_F$ 因子。

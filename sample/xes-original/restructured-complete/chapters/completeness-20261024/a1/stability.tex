@@ -1,0 +1,71 @@
+% A1Completeness20261024: free-body-stability
+图\ref{advA1:fig:poinsot}(a)是三维守恒曲面交线的斜投影，未画出$\Pi_2$轴；投影曲线相交，不表示同一三维状态有两条运动轨道。要判定主轴转动的稳定性，还须检验受到微小横向扰动后是否远离该轴。
+
+先考察绕中间主轴的定常转动$\omega_2=\Omega\ne0$，令
+$\omega_1=u$、$\omega_3=v$为小量。式\eqref{advA1:eq:euler-dynamics}在无外力矩时，保留一阶项给出
+\[
+ I_1\dot u=-(I_3-I_2)\Omega v,\qquad
+ I_3\dot v=-(I_2-I_1)\Omega u.
+\]
+对第一式再求导，并用第二式消去$\dot v$，得到
+\[
+ \ddot u=\sigma^2u,\qquad
+ \sigma^2=\frac{(I_3-I_2)(I_2-I_1)}{I_1I_3}\Omega^2>0.
+\]
+因此一般扰动含$e^{\sigma t}$分量；即使起初很小，也会离开线性化邻域。并非每一条特殊扰动都立即增长，例如纯$e^{-\sigma t}$分量会衰减，但稳定性要求\emph{所有足够小的扰动}保持小，存在增长方向已足以否定稳定。
+
+对最小、最大主轴重复同样的两式消元，横向扰动$q$分别满足
+\[
+ \ddot q+\nu_1^2q=0,\qquad
+ \nu_1^2=\frac{(I_2-I_1)(I_3-I_1)}{I_2I_3}\Omega^2>0,
+\]
+\[
+ \ddot q+\nu_3^2q=0,\qquad
+ \nu_3^2=\frac{(I_3-I_1)(I_3-I_2)}{I_1I_2}\Omega^2>0.
+\]
+轴向的一阶扰动只改变转速，横向扰动则为有界振动。这里说的稳定，是刚体系中角速度方向不会因小扰动而远离所选主轴。守恒量也给出非线性检验：
+\[
+ \frac{L^2}{2I_1}-T
+ =\frac12\left[\left(\frac1{I_1}-\frac1{I_2}\right)\Pi_2^2
+              +\left(\frac1{I_1}-\frac1{I_3}\right)\Pi_3^2\right],
+\]
+\[
+ T-\frac{L^2}{2I_3}
+ =\frac12\left[\left(\frac1{I_1}-\frac1{I_3}\right)\Pi_1^2
+              +\left(\frac1{I_2}-\frac1{I_3}\right)\Pi_2^2\right].
+\]
+两个右端的系数均为正，左端又守恒，所以若横向分量起初小，以后也被同一个小上界限制住。这补足了单凭线性方程不能一般保证的非线性稳定结论。几何上，第一、第三主轴分别是角动量球上能量的最大、最小点，附近等值线封闭；中间轴处则为鞍点。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=1.05cm,y=1.05cm]
+ \begin{scope}
+  \draw[->](-1.7,0)--(1.9,0)node[right]{$q$};
+  \draw[->](0,-1.5)--(0,1.65)node[above]{$\dot q/\nu_j$};
+  \foreach\r in{.5,1,1.35}{\draw[DeepBlue](0,0)circle(\r);}
+  \draw[DeepBlue,thick,->](1,0)arc(0:-65:1);
+  \fill(0,0)circle(1.5pt)node[below left]{$O$};
+  \node[align=center]at(0,-2){(a)最小或最大主轴\\$j=1,3$：横向扰动有界};
+ \end{scope}
+ \begin{scope}[shift={(6.2,0)}]
+  \draw[->](-1.7,0)--(1.9,0)node[right]{$u$};
+  \draw[->](0,-1.5)--(0,1.65)node[above]{$\dot u/\sigma$};
+  \draw[dashed,TextGray](-1.4,-1.4)--(1.4,1.4);
+  \draw[dashed,TextGray](-1.4,1.4)--(1.4,-1.4);
+  \foreach\s in{-1,1}{
+   \draw[Gold,very thick,->]({.3*\s},{.3*\s})--({1.35*\s},{1.35*\s});
+   \draw[DeepBlue,thick,->]({1.35*\s},{-1.35*\s})--({.3*\s},{-.3*\s});
+  }
+  \fill(0,0)circle(1.5pt)node[below left]{$O$};
+  \node[align=center]at(0,-2){(b)中间主轴\\金色为增长方向，蓝色为衰减方向};
+ \end{scope}
+\end{tikzpicture}
+\figcap{主轴转动附近的线性扰动相图。坐标均取横向角速度扰动，不是刚体在空间中的位置。}\label{advA1:fig:completeness-axis-stability}
+\end{qualityfigure}
+图~\ref{advA1:fig:completeness-axis-stability}(a)的闭曲线对应振幅保持有限；(b)从$O$向外的金色方向对应$u\propto e^{\sigma t}$。中间轴附近离开小邻域后的大角度翻转必须由完整欧拉方程描述，不能把线性指数无限外推。这正是中间轴定理所描述的不稳定性；实验中的反复翻转常称为扎尼别科夫效应。
+
+庞锁构造则给出另一种几何读法。在角速度辅助空间中，能量椭球满足
+$\vect w\cdot\mathsf I\vect w=2T$。接触点取$\vect w=\vect\omega$，该点的法线为$\mathsf I\vect\omega=\vect L$，切平面因而是
+\[
+ \vect L\cdot\vect w=2T.
+\]
+$\vect L$与$T$在惯性系中恒定，所以这是定平面。把这一椭球按刚体姿态携带，接触半径平行于瞬时角速度，接触点的刚性转动速度为$\vect\omega\times\vect r_{\rm contact}=0$；因此椭球沿定平面作无滑动滚动。图~\ref{advA1:fig:poinsot}(b)中的平面垂直于$\vect L$，即来自这个切平面方程，而不是额外施加的接触约束。

@@ -1,0 +1,143 @@
+% CompletenessThermalFields20261024: regular separated SL spectrum proof.
+\noindent\textbf{证明的条件与主线。}
+这里的“正则”具体指 $[a,b]$ 有限，$p\in C^1[a,b]$，$q,\rho\in C[a,b]$ 为实函数，
+且存在正常数 $p_0,\rho_0$ 使 $p\ge p_0$、$\rho\ge\rho_0$。
+本定理仅讨论实系数\emph{分离}边界条件；周期边界虽也可自伴，本征值却可能重根，不能照搬单重性与零点数的结论。
+以下先把微分方程化为有连续核的积分算子，证明其正交展开没有漏掉方向，再证明节点计数。
+
+\textbf{1. 先移位，使逆算子存在。}
+对满足边界条件的 $y$ 分部积分，记
+\[
+ \mathcal Q[y]=(y,Ly)_\rho
+ =\int_a^b(p|y'|^2-q|y|^2)\,\dd x-[py^*y']_a^b.
+\]
+Dirichlet 端点的边界项为零；Robin 端点可写 $y'=h y$，其中 $h$ 为固定实数，
+故余下边界项只是端点 $|y|^2$ 的实系数倍。
+它们未必为正，但可被体积分控制。由 $y(a)=y(x)-\int_a^xy'(s)\dd s$、Cauchy--Schwarz 不等式，
+再对 $a<x<a+\delta$ 平均，可得
+\[
+ |y(a)|^2\le\frac2\delta\int_a^{a+\delta}|y|^2\dd x
+             +2\delta\int_a^{a+\delta}|y'|^2\dd x;
+\]
+右端点同理。先选小 $\delta$，把可能为负的导数边界贡献吸收入 $p_0\int|y'|^2$，再选充分大的常数 $\kappa>0$，便有
+\[
+ \mathcal Q[y]+\kappa\|y\|_\rho^2
+ \ge c\left(\int_a^b|y'|^2\dd x+\int_a^b|y|^2\dd x\right),\qquad c>0.
+\]
+因此 $(L+\kappa)y=0$ 只有零解。常微分方程的两个积分常数由两端边界条件唯一确定，
+所以非齐次问题 $(L+\kappa)y=f$ 存在唯一解。对平方可积的 $f$，下述积分式同样给出其解。
+
+\textbf{2. 构造 Green 核，证明逆算子紧且自伴。}
+取齐次方程 $(L+\kappa)u=0$ 中满足左端条件的非零解 $u$，以及满足右端条件的非零解 $v$。
+带权 Wronskian
+$W=p(u'v-uv')$ 与 $x$ 无关，且 $W\ne0$，否则会得到同时满足两端条件的非零齐次解。
+令 $x_<=\min(x,s)$、$x_>=\max(x,s)$，则
+\[
+ G(x,s)=\frac{u(x_<)v(x_>)}W,\qquad
+ (Kf)(x)=\int_a^bG(x,s)f(s)\rho(s)\,\dd s.
+\]
+这个核在 $x=s$ 连续，且满足
+$-p(s)[\partial_xG(s^+,s)-\partial_xG(s^-,s)]=1$。
+因而 $K=(L+\kappa)^{-1}$；导数跳跃的符号来自 $L$ 中的负号。
+图~\ref{advA3:complete:sl-green}左图给出 $L=-\dd^2/\dd x^2$、两端固定时的一个可直接代回的例子；
+该例最低本征值已为正，可取 $\kappa=0$。
+
+\begin{qualityfigure}
+\centering
+\begin{tikzpicture}[>=Latex,font=\small]
+ \begin{scope}[x=4.5cm,y=5.5cm]
+  \draw[->](0,0)--(1.14,0)node[right]{$x/l$};
+  \draw[->](0,0)--(0,.38)node[above]{$G/l$};
+  \draw[DeepBlue,thick](0,0)--(.4,.24)--(1,0);
+  \draw[dashed](.4,0)--(.4,.24);
+  \node[below]at(.4,0){$s/l$};\node[below]at(1,0){$1$};
+  \node[above,align=center]at(.52,.31){$G=x_<(l-x_>)/l$\\$G'_+-G'_-=-1$};
+ \end{scope}
+ \begin{scope}[shift={(7,0)},x=4.3cm,y=.47cm]
+  \foreach \n in {1,2,3}{
+   \begin{scope}[shift={(0,{5-2*\n})}]
+    \draw[->](0,0)--(1.09,0);
+    \draw[DeepBlue,thick,domain=0:1,samples=100]plot(\x,{.7*sin(180*\n*\x)});
+    \node[left]at(0,0){$n=\n$};
+   \end{scope}
+  }
+  \node[above,align=center]at(.5,4.4){固定弦本征函数\\内部零点数 $0,1,2$};
+  \node[below]at(1,-1.8){$x/l=1$};
+ \end{scope}
+\end{tikzpicture}
+\figcap{正则谱证明的两个具体对象：左图取 $\kappa=0$，是单位点源产生的连续 Green 核截面，
+右图是同一 Dirichlet 问题的前三阶模态。核的导数跳跃产生点源，模态的节点随阶数增加。\label{advA3:complete:sl-green}}
+\end{qualityfigure}
+
+由于 $G(x,s)=G(s,x)$ 为实函数，$K$ 在带权内积中自伴。它为何是紧算子也可以具体看见：
+把矩形 $[a,b]^2$ 分成小格，用每格常数逼近连续的 $G$，得到核 $G_M$。
+对应 $K_Mf$ 只是有限个区间示性函数的线性组合，因此为有限秩算子；而
+\[
+ \|(K-K_M)f\|_\rho
+ \le\left(\int_a^b\!\int_a^b|G-G_M|^2\rho(x)\rho(s)\,\dd x\dd s\right)^{1/2}\|f\|_\rho
+ \longrightarrow0.
+\]
+有限秩算子的算子范数极限把任意有界序列变成具有收敛子列的序列，这正是紧性。
+此外 $K$ 无核；写 $y=Kf$，还得到
+\[
+ (f,Kf)_\rho=((L+\kappa)y,y)_\rho>0\qquad(f\ne0).
+\]
+所以 $K$ 是正的紧自伴算子，而不只是形式对称的积分表达式。
+
+\textbf{3. 从紧性得到离散谱与完备性。}
+下面把所需的紧算子结论也说明。正二次型满足
+$|(f,Kg)_\rho|^2\le(f,Kf)_\rho(g,Kg)_\rho$（对 $f+t g$ 的二次式取判别式即可），
+因此正算子的范数等于其单位向量二次型的上确界。
+令 $\mu_1=\sup_{\|f\|_\rho=1}(f,Kf)_\rho>0$，取逼近这个上确界的单位向量序列。
+它有弱收敛子列 $f_j\rightharpoonup f$；紧性使 $Kf_j\to Kf$ 强收敛，故二次型趋于 $(f,Kf)_\rho=\mu_1$。
+若 $\|f\|_\rho<1$，把 $f$ 归一化反而给出更大的值，矛盾；因此最大值取得。
+对所有垂直于 $f$ 的微小变化求一阶变分，得到 $Kf=\mu_1f$。
+
+在 $f$ 的正交补上重复这一过程。自伴性保证每个正交补对 $K$ 不变，于是得到正交归一的
+$\phi_n$ 和正本征值 $\mu_n$。若 $\mu_n$ 不趋零，互相正交的像 $K\phi_n=\mu_n\phi_n$
+便没有收敛子列，与紧性矛盾，故 $\mu_n\downarrow0$。
+若某 $h$ 与全部 $\phi_n$ 正交，对每个 $n$ 都有
+$\|Kh\|_\rho\le\mu_{n+1}\|h\|_\rho$，于是 $Kh=0$；由 $K$ 无核，$h=0$。
+这证明没有遗漏的正交方向，即 $\{\phi_n\}$ 完备。
+这里 Hilbert 空间无限维，而 $K$ 无核，不可能在有限步就只剩零算子，所以本征函数有无穷多个。
+变回微分算子，
+\[
+ L\phi_n=(\mu_n^{-1}-\kappa)\phi_n,\qquad
+ \lambda_n=\mu_n^{-1}-\kappa\longrightarrow+\infty.
+\]
+实性也可直接由 $\lambda\|y\|_\rho^2=\mathcal Q[y]\in\mathbb R$ 得到。
+同一本征值的两个解在左端满足同一分离条件，故其 Wronskian 在左端为零；常数 Wronskian 处处为零，
+二阶方程的初值唯一性便使两解成比例。这证明本征值单重，按大小排列时为严格不等号。
+
+\textbf{4. 为什么第 $n$ 阶恰有 $n-1$ 个内部零点。}
+先看最低阶。把 $\mathcal Q$ 扩展到函数和一阶弱导数均平方可积的能量空间 $H^1$；
+这里只强制 Dirichlet 端点的函数值，Robin 条件由端点二次项对应的自然边界条件产生，
+因此取绝对值的试探函数仍然合法。
+在 $\|y\|_\rho=1$ 下最小化 $\mathcal Q$。移位后的下界控制 $\int|y'|^2$；不等式
+$|y(x)-y(s)|\le\|y'\|_2\sqrt{|x-s|}$ 保证等度连续，再结合范数控制，有限区间上有界的这类函数列具有一致收敛子列。
+同时导数在 $L^2$ 中有弱收敛子列，弱极限正是极限函数的弱导数；
+加权导数能量 $\int p|y'|^2\dd x$ 弱下半连续，势项与端点项则由一致收敛而连续。
+所以极限函数保留单位范数并取得最小值。变分方程连同自然边界条件构成原本征问题，所给本征值不能低于 $\lambda_1$；
+取 $\phi_1$ 为试探函数又给出反向不等式，所以该最小值恰为 $\lambda_1$。
+把实极小函数换成 $|y|$ 不改变范数、导数平方积分或 Robin 端点项，因此可选它非负。
+若它在内部为零，该点同时有 $y=y'=0$；初值唯一性将迫使 $y\equiv0$，矛盾。
+所以最低阶解在内部严格同号，没有零点。
+
+接着取实解，在把变量作固定正比例无量纲化后，记 $z=py'$，用连续相位表示
+$y=\mathcal R\sin\vartheta$、$z=\mathcal R\cos\vartheta$。
+非零解不会同时有 $y=z=0$。左端条件固定 $\vartheta(a)$，右端条件固定
+$\vartheta(b)$ 模 $\pi$ 的值。由 $y'=z/p$、$z'=-(q+\lambda\rho)y$，可得
+\[
+ \vartheta'=\frac{\cos^2\vartheta}{p}+(q+\lambda\rho)\sin^2\vartheta.
+\]
+在零点 $y=0$ 处，$\vartheta'=1/p>0$，所以每个零点对应相位向上穿过一个整数倍 $\pi$。
+再对 $\lambda$ 求导；固定左端初始向量，Lagrange 恒等式给出
+\[
+ \frac{\partial\vartheta(b,\lambda)}{\partial\lambda}
+ =\frac{\int_a^b\rho(x)y(x,\lambda)^2\,\dd x}{y(b,\lambda)^2+z(b,\lambda)^2}>0.
+\]
+因此右端相位随 $\lambda$ 连续、严格增加。相邻两个本征值的右端相位恰好差 $\pi$：
+若多出一个 $\pi$，中间便还有一次满足右端条件的相位，违背“相邻”；
+若少于 $\pi$，又不能同时满足同一分离条件。
+每增加一阶就多一个内部零点，从最低阶的零个开始，恰得 $n-1$。
+图~\ref{advA3:complete:sl-green}右侧的固定弦曲线是这个一般结论最直观的特例。\hfill$\square$

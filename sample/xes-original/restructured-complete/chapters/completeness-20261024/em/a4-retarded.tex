@@ -1,0 +1,61 @@
+\noindent\textbf{由波动方程选择因果支。}
+采用 Lorenz 规范
+$\nabla\cdot\vect A+c^{-2}\partial_t\varphi=0$，
+令 $D=c^{-2}\partial_t^2-\nabla^2$，真空中的势满足
+\[
+ D\varphi=\frac\rho{\varepsilon_0},\qquad
+ D\vect A=\mu_0\vect j.
+\]
+若 $D G=\delta(t-t')\delta^{(3)}(\vect r-\vect r')$，
+源与核的时空卷积就是一个特解。为使场不先于源的扰动到达，取
+\[
+ G_{\rm ret}(t,\vect r;t',\vect r')
+ =\frac{\delta(t-t'-R/c)}{4\pi R},
+ \qquad R=|\vect r-\vect r'|.
+\]
+核只在 $t'=t-R/c$ 有贡献。先对 $t'$ 积分，$\delta$ 函数的自变量对 $t'$ 的导数绝对值为1，故
+\[
+ \begin{aligned}
+ \varphi(t,\vect r)&=\frac1{4\pi\varepsilon_0}\int
+ \frac{\rho(t-R/c,\vect r')}{R}\dd V',\\
+ \vect A(t,\vect r)&=\frac{\mu_0}{4\pi}\int
+ \frac{\vect j(t-R/c,\vect r')}{R}\dd V'.
+ \end{aligned}
+\]
+这里不能再多乘一个 $c$。若改用 $\delta(c(t-t')-R)$ 表示核，才需要相应的因子 $c$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.9]
+ \draw[->](-3,0)--(3.1,0)node[right]{$x$};
+ \draw[->](0,-.4)--(0,3)node[above]{$ct$};
+ \draw[DeepBlue,thick](-2.5,-.2)--(0,2.3)--(2.5,-.2);
+ \fill(0,2.3)circle(2pt)node[right]{$P:(t,x)$};
+ \fill(-1.8,.5)circle(2pt)node[left]{$S:(t',x')$};
+ \draw[dashed](-1.8,.5)--(0,.5);
+ \draw[<->](-2.2,.5)--(-2.2,2.3)node[midway,left]{$c(t-t')$};
+ \draw[dashed](-1.8,.5)--(-1.8,-.45)(0,.5)--(0,-.45);
+ \draw[<->](-1.8,-.45)--(0,-.45)node[midway,below]{$R$};
+ \node at(1.75,1.55){过去光锥};
+\end{tikzpicture}
+\figcap{光锥的一个空间截面；源事件 $S$ 沿光锥边界影响观察事件 $P$，满足 $c(t-t')=R$。\label{complete:em:retarded-cone}}
+\end{qualityfigure}
+
+图~\ref{complete:em:retarded-cone} 中，同一观察事件取各源点不同的推迟时刻，
+不能把 $t-R/c$ 当作全源共同的常数。上述解对应无入射自由波的边界条件；
+若另有外来波，还应加上齐次方程的解。
+将 $\delta$ 的自变量改为 $t-t'+R/c$ 会选择未来源事件，是超前支。
+
+采用时间约定 $\exp(-\ii\omega t)$，波动算符化为
+$-(\nabla^2+k^2)$，$k=\omega/c$。外向 Helmholtz 核满足
+\[
+ (\nabla^2+k^2)G_+=-\delta^{(3)}(\vect r-\vect r'),\qquad
+ G_+=\frac{\exp(\ii kR)}{4\pi R}.
+\]
+其相位 $kR-\omega t$ 向外传播；换用相反时间约定时外向核的指数符号也要一起改变。
+四势 $A^\nu=(\varphi/c,\vect A)$、四电流 $j^\nu=(c\rho,\vect j)$ 因而统一为
+\[
+ A^\nu(t,\vect r)=\frac{\mu_0}{4\pi}\int
+ \frac{j^\nu(t-R/c,\vect r')}{R}\dd V'.
+\]
+静态极限中推迟时间不再改变源，分别恢复 Coulomb 势和稳恒电流矢势。
+

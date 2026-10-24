@@ -1,0 +1,32 @@
+上述像场系数也可逐项算出。图~\ref{advA4:quality:A4-electrostatics:a4} 中，真实源到像点的距离
+$\ell=a-b=d/a$，三项像场分别来自 $q'$、$\vect p'$ 和球心 $q_0$，故
+\[
+ 4\pi\varepsilon_0\vect E_{\rm im}
+ =\left(\frac{q'}{\ell^2}+\frac{2p'_\parallel}{\ell^3}
+ +\frac{q_0}{a^2}\right)\vect e_r
+ -\frac{\vect p'_\perp}{\ell^3}.
+\]
+代入 $q',\vect p',q_0$，径向三项依次为
+$Rp_\parallel/d^2$、$2R^3p_\parallel/d^3$、$-Rp_\parallel/a^4$，
+切向项为 $R^3\vect p_\perp/d^3$，即前述 $A,B$。
+势能中的 $1/2$ 也不能漏：把源从 $0$ 连续建立为 $\lambda\vect p$ 时，感应场同时变为
+$\lambda\vect E_{\rm im}$，因此感应相互作用能为
+$-\int_0^1\lambda\vect p\cdot\vect E_{\rm im}\dd\lambda$。
+
+求平移力时固定的是空间中的 $\vect p$，而非随位置改变的 $p_\parallel$。
+写成 $U=-[Bp^2+(A-B)p_\parallel^2]/(8\pi\varepsilon_0)$，利用
+\[
+ \nabla p_\parallel=\frac{\vect p_\perp}{a},\qquad
+ \nabla(p_\parallel^2)=\frac{2p_\parallel\vect p_\perp}{a},
+\]
+得到
+\[
+ F_r=\frac{A'p_\parallel^2+B'p_\perp^2}{8\pi\varepsilon_0},\qquad
+ \vect F_\perp=\frac{(A-B)p_\parallel\vect p_\perp}{4\pi\varepsilon_0a}.
+\]
+这里
+\[
+ A'=-\frac{4Ra}{d^3}-\frac{12R^3a}{d^4}+\frac{4R}{a^5},
+ \qquad B'=-\frac{6R^3a}{d^4}.
+\]
+横向力正是投影轴 $\vect e_r$ 随横移转动的结果；若在求导时误把 $p_\parallel$ 当常数，就会漏掉它。

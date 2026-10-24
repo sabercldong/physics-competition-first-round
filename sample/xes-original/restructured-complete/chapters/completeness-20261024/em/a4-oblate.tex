@@ -1,0 +1,65 @@
+\noindent\textbf{扁旋转椭球的实坐标构造。}
+扁椭球的极半轴为 $A$、赤道半轴为 $B>A$，令 $c=\sqrt{B^2-A^2}$。
+不必借助复参数延拓，可直接采用扁椭球坐标
+\[
+ s=c\sqrt{1+\xi^2}\sqrt{1-\eta^2},\qquad
+ z=c\xi\eta,\qquad \xi\geq0,\quad-1\leq\eta\leq1.
+\]
+图~\ref{complete:em:oblate} 中的导体为 $\xi=\xi_0=A/c$，
+因为其赤道半轴正是 $c\sqrt{1+\xi_0^2}=B$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=1.1]
+ \draw[->](-2.05,0)--(2.5,0)node[right]{$s$};
+ \draw[->](0,-1.55)--(0,1.7)node[above]{$z$};
+ \draw[thick,DeepBlue](0,0)ellipse(1.4866 and 1.1);
+ \draw[very thick,Gold](-1,0)--(1,0);
+ \draw[<->](0,-1.35)--(1.4866,-1.35)node[midway,below]{$B$};
+ \draw[<->](-1.75,0)--(-1.75,1.1)node[midway,left]{$A$};
+ \fill(.974,.8316)circle(1.8pt)node[above right]{$P:\ \xi=\xi_0$};
+ \node[below left]at(-1,0){$-c$};\node[below right]at(1,0){$c$};
+ \draw[TextGray](.45,-.03)--(1.9,-.85)node[right]{焦盘的子午截线};
+\end{tikzpicture}
+\figcap{扁椭球的子午面。焦盘位于 $z=0,s<c$；轴左侧表示绕轴旋转所得截面的另一半。\label{complete:em:oblate}}
+\end{qualityfigure}
+
+对于仅依赖 $\xi$ 的势，Laplace 方程约化为
+\[
+ \frac1{c^2(\xi^2+\eta^2)}
+ \frac{\dd}{\dd\xi}\left[(1+\xi^2)\frac{\dd\varphi}{\dd\xi}\right]=0.
+\]
+积分并取 $\varphi(\infty)=0$，得到
+\[
+ \varphi(\xi)=K\arctan\frac1\xi,\qquad
+ K=\frac{V}{\arctan(1/\xi_0)}.
+\]
+远处 $r\simeq c\xi$，故 $\varphi\simeq Kc/r$。
+与 $Q/(4\pi\varepsilon_0r)$ 比较，$Q=4\pi\varepsilon_0cK$，所以
+\[
+ \boxed{C_{\rm oblate}=\frac QV
+ =\frac{4\pi\varepsilon_0c}{\arctan(c/A)}}.
+\]
+尺度因子 $h_\xi=c\sqrt{(\xi^2+\eta^2)/(1+\xi^2)}$ 给出实际导体表面密度
+\[
+ \sigma(\eta)=-\frac{\varepsilon_0}{h_\xi}\partial_\xi\varphi
+ =\frac{\varepsilon_0K}
+ {c\sqrt{(1+\xi_0^2)(\xi_0^2+\eta^2)}}.
+\]
+
+继续把同一外部调和势延拓到焦盘之外。盘上两侧对应 $\xi\to0^+$、
+$\eta=\pm\sqrt{1-s^2/c^2}$；两侧外法向场大小均为
+$K/\sqrt{c^2-s^2}$。因此跨盘的电场跳跃所对应的\emph{总面密度}为
+\[
+ \boxed{\sigma_{\rm disk}(s)=\frac{2\varepsilon_0K}{\sqrt{c^2-s^2}}
+ =\frac{Q}{2\pi c\sqrt{c^2-s^2}}},\qquad 0\leq s<c.
+\]
+它不是椭球真实表面电荷的平面投影。上述势在盘外满足 Laplace 方程，
+在盘两侧连续，其法向导数跳跃恰好给出这个密度，又在无穷远消失，
+故由唯一性就是该焦盘的库仑势；图~\ref{complete:em:oblate} 的共焦扁椭球因而全是其等势面。
+还可检查
+\[
+ 2\pi\int_0^c\sigma_{\rm disk}(s)s\dd s=Q.
+\]
+$A\to0$ 时得到薄圆盘电容 $8\varepsilon_0c$；$c\to0$、$A\to B$ 时
+$\arctan(c/A)\sim c/A$，回到球电容 $4\pi\varepsilon_0A$。
+

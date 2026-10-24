@@ -1,0 +1,84 @@
+% CompletenessThermalFields20261024: GL variables, energy and a solvable boundary profile.
+\medskip\noindent\textbf{从均匀序参量到空间场。}
+上题的 $F(\phi)$ 只比较均匀态；若序参量随位置改变，还要计算相邻位置之间的变化代价。
+以临界温度附近、可用单个各向同性复序参量描述的超导体为例，令
+\[
+ \psi(\boldsymbol r)=\sqrt{n_s(\boldsymbol r)}\,e^{i\theta(\boldsymbol r)},
+ \qquad q_*=-2e\quad(e>0).
+\]
+这里 $n_s=|\psi|^2$ 按约定为库珀对数密度，$\theta$ 是凝聚态相位，$q_*$ 是电子对电荷；
+$m_*>0$ 是梯度项中的有效对质量，在最简单的自由电子近似中为 $2m_e$。
+外场用 $\boldsymbol B=\nabla\times\boldsymbol A$ 表示。
+取包含样品的有限区域 $\mathcal V$，固定其边界上的磁矢势，材料占据 $\mathcal V_s$。
+扣除固定参考能后，一个 Helmholtz 型的朗道--金兹堡自由能\emph{泛函}为
+\begin{align}
+ \mathcal F[\psi,\boldsymbol A]
+ &=\int_{\mathcal V_s}\left[
+ f_n+\alpha|\psi|^2+\frac\beta2|\psi|^4
+ +\frac1{2m_*}|(-i\hbar\nabla-q_*\boldsymbol A)\psi|^2
+ \right]\dd^3r \notag\\
+ &\quad+\int_{\mathcal V}\frac{|\boldsymbol B|^2}{2\mu_0}\,\dd^3r.
+ \label{advA2:eq:complete-gl-functional}
+\end{align}
+$f_n$ 是正常态材料自由能密度。方括号及磁场项均为 $\mathrm{J/m^3}$，积分后才是能量；
+因此不能把一个未作空间积分的密度表达式直接当成总自由能。
+在 $n_s$ 的这个归一化下，$\alpha$ 的单位为 $\mathrm J$，$\beta$ 的单位为 $\mathrm{J\,m^3}$。
+若外场由固定电流的外源维持，还须计入外源做功、改用相应热力学势，不能原封不动地把
+式~\eqref{advA2:eq:complete-gl-functional}当作固定外场的 Gibbs 势。
+
+每一项都有独立作用。均匀材料的二次项 $\alpha\simeq a_{\rm GL}(T-T_c)$（$a_{\rm GL}>0$）
+使低温侧有序态有利；标准连续相变模型取 $\beta>0$ 以限制幅度。
+本题的一级相变模型却有负四次项，因此推广它时必须保留正六次项，例如再加
+$\gamma|\psi|^6$、$\gamma>0$，不能只把四次系数改负而删掉稳定高阶项。
+
+梯度项同时记录幅度变化与带电凝聚态的流动。直接把 $\psi=\sqrt{n_s}e^{i\theta}$ 代入，得到
+\[
+ |(-i\hbar\nabla-q_*\boldsymbol A)\psi|^2
+ =\hbar^2|\nabla\sqrt{n_s}|^2
+ +n_s|\hbar\nabla\theta-q_*\boldsymbol A|^2.
+\]
+两部分都非负：前者惩罚幅度突变，后者含每对粒子的机械动量
+$\boldsymbol p_s=\hbar\nabla\theta-q_*\boldsymbol A$。
+在变换 $\boldsymbol A\mapsto\boldsymbol A+\nabla\chi$、
+$\theta\mapsto\theta+q_*\chi/\hbar$ 下，$\boldsymbol p_s$ 不变，这说明为何导数与矢势必须这样组合。
+对应电流为
+\[
+ \boldsymbol j_s=\frac{q_*}{m_*}\operatorname{Re}
+ [\psi^*(-i\hbar\nabla-q_*\boldsymbol A)\psi]
+ =\frac{q_*n_s}{m_*}\boldsymbol p_s.
+\]
+
+\textbf{一个可直接核对的边界剖面。}
+保持 $\boldsymbol A$ 不变，对 $\psi^*$ 作变分，体内满足
+\[
+ \frac1{2m_*}(-i\hbar\nabla-q_*\boldsymbol A)^2\psi
+ +\alpha\psi+\beta|\psi|^2\psi=0.
+\]
+现在取 $\alpha<0,\beta>0$、$\boldsymbol A=0$、相位恒定，材料占据 $x>0$，
+并由边界条件强制 $\psi(0)=0$、$\psi(\infty)=\psi_\infty=\sqrt{|\alpha|/\beta}$。
+令 $f=\psi/\psi_\infty$，则
+\[
+ \xi^2 f''+f-f^3=0,\qquad
+ \xi=\frac{\hbar}{\sqrt{2m_*|\alpha|}},\qquad
+ f(x)=\tanh\frac{x}{\sqrt2\xi}.
+\]
+对双曲正切求两次导数即可代回核验。$\xi$ 的单位为长度；图~\ref{advA2:complete:gl-profile}
+显示幅度在这个尺度内连续恢复，说明梯度项把纯均匀模型中没有的空间结构带入了计算。
+此处边界是\emph{强制抑制}条件，不是绝缘自由表面的零法向导数条件；本图的相位恒定，故没有超电流。
+
+\begin{qualityfigure}
+\centering
+\begin{tikzpicture}[>=Latex,font=\small,x=1.35cm,y=2.7cm]
+ \fill[PaleBlue](0,0)rectangle(1.2,1.12);
+ \draw[thick](0,0)--(0,1.13);
+ \draw[->](0,0)--(5.2,0)node[right]{$x/\xi$};
+ \draw[->](0,0)--(0,1.23)node[above]{$\psi/\psi_\infty$};
+ \draw[dashed](0,1)--(5,1)node[right]{$1$};
+ \draw[DeepBlue,thick,domain=0:5,samples=100]plot(\x,{tanh(\x/sqrt(2))});
+ \draw[<->](0,-.18)--node[below]{一个相干长度 $\xi$}(1,-.18);
+ \node[above,align=center]at(2.7,.38){$\boldsymbol A=0$，$\theta$ 恒定\\$\boldsymbol j_s=0$};
+ \node[left]at(0,.55){$\psi(0)=0$};
+\end{tikzpicture}
+\figcap{指定抑制边界下的一维 GL 解。浅色带标记边界附近的幅度变化区，
+曲线为 $\tanh[x/(\sqrt2\xi)]$，不是任意连接两端的示意线。\label{advA2:complete:gl-profile}}
+\end{qualityfigure}

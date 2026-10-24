@@ -12,6 +12,8 @@ parser.add_argument("--repo",type=Path,required=True)
 parser.add_argument("--output",type=Path,required=True)
 parser.add_argument("--date",default="20261024")
 parser.add_argument("--report",type=Path,default=Path("audit/final_review_20261024"))
+parser.add_argument("--pdf-name",default="高中物理竞赛一轮讲义_董兴习.pdf")
+parser.add_argument("--source-name",default="一轮竞赛讲义_可编辑源码与TikZ.zip")
 args=parser.parse_args()
 repo=args.repo.resolve()
 book=repo/"sample/xes-original/restructured-complete"
@@ -23,10 +25,10 @@ suffixes={".tex",".sty",".cls",".py",".bib",".dat",".csv",".json",".md"}
 for p in (repo/"sample/xes-original").rglob("*"):
     if p.is_file() and p.suffix in suffixes and not {"build","__pycache__",".git"}.intersection(p.relative_to(repo).parts):
         files.add(p)
-for name in ["review_lecture_quality.py","render_quality_pages.py","verify_revision_physics.py","package_quality_revision.py","verify_book_release.py"]:
+for name in ["review_lecture_quality.py","render_quality_pages.py","verify_revision_physics.py","package_quality_revision.py","verify_book_release.py","stage_portable_book.py"]:
     files.add(repo/"tools"/name)
 for report_folder in [repo/"audit/quality_revision_20261023",report]:
-    files.update(p for p in report_folder.rglob("*") if p.is_file() and p.suffix in {".json",".md"} and "intermediate-pass3" not in p.parts)
+    files.update(p for p in report_folder.rglob("*") if p.is_file() and p.suffix in {".json",".md",".py",".txt"} and "intermediate-pass3" not in p.parts)
 
 # -recorder output includes assets actually opened by TeX; include those even
 # when their names do not have the normal text-source extensions.
@@ -42,9 +44,9 @@ for p in files:
     if p.read_bytes()[:100].startswith(b"version https://git-lfs.github.com/spec/v1"):
         raise SystemExit(f"Unrestored LFS asset: {p.relative_to(repo)}")
 
-pdf=args.output/f"高中物理竞赛一轮讲义_终审版_{args.date}.pdf"
+pdf=args.output/args.pdf_name
 shutil.copy2(build/"main.pdf",pdf)
-archive=args.output/f"一轮讲义_可编辑源码与TikZ_终审版_{args.date}.zip"
+archive=args.output/args.source_name
 with zipfile.ZipFile(archive,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for p in sorted(files):
         z.write(p,Path("physics-competition-first-round")/p.relative_to(repo))

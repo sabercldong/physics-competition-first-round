@@ -298,16 +298,26 @@ $\nabla(\vect p\cdot\vect E)=(\vect p\cdot\nabla)\vect E$。力矩使 $\vect p$ 
 
 \begin{tikzpicture}[>=Latex,font=\small,scale=.85,every node/.style={fill=none}]
 
-\draw[thick] (0,0) circle (1);\fill (0,0) circle (1.3pt) node[below]{$O$};
-\draw[->] (0,0)--(0,1) node[midway,left]{$R$};
-\fill (2.8,0) circle (1.8pt) node[below]{$\boldsymbol r_0$};\draw[dashed] (0,0)--(2.8,0);
-
-\fill[DeepBlue] (.36,0) circle (1.8pt) node[above]{$q',\boldsymbol p'$};\fill[DeepBlue] (0,0) circle (2pt) node[below]{$q_0=-q'$};
-\draw[DeepBlue,->] (2.8,0)--(3.5,.7) node[right]{$\boldsymbol p$};\node[below] at (1,-.6){像点 $b=R^2/a$；像系不是真实球内电荷};
+% CompletenessFigure20261024 dipole-image-labels
+\draw[thick] (0,0) circle (1);
+\draw[->] (0,0)--(-.707,.707) node[midway,below left]{$R$};
+\fill (2.8,0) circle (1.8pt) node[below]{$\boldsymbol r_0$};
+\draw[dashed] (0,0)--(2.8,0);
+\fill[DeepBlue] (0,0) circle (2pt) node[below]{$O$};
+\draw[TextGray,thin] (0,0)--(-.55,-.6)--(-1.10,-.6);
+\node[left,DeepBlue] at (-1.10,-.6) {$q_0=-q'$};
+\fill[DeepBlue] (.36,0) circle (1.8pt);
+\draw[TextGray,thin] (.36,0)--(.65,.65)--(1.15,.65);
+\node[right,DeepBlue] at (1.15,.65) {$q',\boldsymbol p'$};
+\draw[DeepBlue,->] (2.8,0)--(3.5,.7) node[right]{$\boldsymbol p$};
+\node at (1.9,-.65) {$b=R^2/a$};
 
 \end{tikzpicture}
 \figcap{解图：像点的点电荷/偶极与球心补偿电荷承担不同的边界条件。}\label{advA4:quality:A4-electrostatics:a4}
 \end{minipage}\end{center}
+
+% CompletenessEM:a4-dipole-construction
+\input{chapters/completeness-20261024/em/a4-dipole-construction.tex}
 
 先构造接地球的像系：令 $d=a^2-R^2$，像点位于 $b=R^2/a$，其上有
 \[
@@ -339,6 +349,9 @@ $\nabla(\vect p\cdot\vect E)=(\vect p\cdot\nabla)\vect E$。力矩使 $\vect p$ 
  =-\frac{A p_\parallel^2+B p_\perp^2}{8\pi\varepsilon_0}}.
 \]
 相对接地球，中心补偿像使 $U$ 增加 $Rp_\parallel^2/(8\pi\varepsilon_0a^4)$。
+% CompletenessEM:a4-dipole-field-force
+\input{chapters/completeness-20261024/em/a4-dipole-field-force.tex}
+
 固定偶极矩大小和空间方向求 $-\nabla U$，径向及横向分量分别为
 \[
  F_r=-\frac1{8\pi\varepsilon_0}
@@ -761,20 +774,10 @@ $h_\xi=c\sqrt{(\xi^2-\eta^2)/(\xi^2-1)}$，表面法向场为
 \]
 它在尖端 $|\eta|=1$ 较大，符合曲率越大电荷越集中的物理图像。
 
-扁旋转椭球取极半轴 $A$、赤道半轴 $B>A$，令
-$c=\sqrt{B^2-A^2}$。把 $c$ 作解析延拓可得
-\[
- \boxed{C_{\rm oblate}=
- \frac{4\pi\varepsilon_0c}{\arctan(c/A)}}.
-\]
-它可由焦盘 $s<c$ 上的等效电荷产生，盘面密度可取
-\[
- \sigma_{\rm disk}(s)=\frac{Q}{2\pi c\sqrt{c^2-s^2}},
- \qquad 0<s<c,
-\]
-其积分为 $Q$，所产生的等势面正是共焦扁旋转椭球。$A\to B$ 时两种电容都趋于 $4\pi\varepsilon_0A$，球极限通过。
+% CompletenessEM:a4-oblate
+\input{chapters/completeness-20261024/em/a4-oblate.tex}
 
-最后用互易定理。令状态1为外点电荷 $Q$ 与接地椭球，状态2为椭球保持单位电势且无外点电荷。状态2在轴上 $l$ 处的势为
+最后用互易定理回到长旋转椭球情形（$A>B$、$c=\sqrt{A^2-B^2}$）。令状态1为外点电荷 $Q$ 与接地椭球，状态2为椭球保持单位电势且无外点电荷。状态2在轴上 $l$ 处的势为
 \[
  \varphi_2(l)=\frac{Q_0(l/c)}{Q_0(A/c)}.
 \]
@@ -809,8 +812,8 @@ Dirichlet Green 函数取 $G_D=0$ 于边界，解为
  -\frac1{4\pi}\oint_{\partial V}
  \varphi(\vect r')\partial_{n'}G_D\dd S'.
 \]
-Neumann Green 函数取常数法向导数以满足积分相容条件；选定势的加权平均后，解由体电荷项和
-$G_N\partial_n\varphi$ 的边界项给出。
+% CompletenessEM:a4-neumann
+\input{chapters/completeness-20261024/em/a4-neumann.tex}
 
 \begin{advtheorem}{静电 Green 函数的对称性}\label{advA4:thm:green-symmetry}
 在相同的齐次边界条件和同一规范常数约定下，

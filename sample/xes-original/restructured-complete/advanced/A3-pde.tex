@@ -125,7 +125,7 @@ $\int_0^l|y|^2\dd x=\sum_n|c_n|^2$。这正是有限维正交投影在函数空�
 \]
 每个本征值的本征空间为一维；可取实归一化本征函数 $\phi_n$，它在 $(a,b)$ 内恰有 $n-1$ 个零点。$\{\phi_n\}$ 在相应带权 $L^2$ 空间中完备。
 \end{advtheorem}
-这个谱定理保证后面的模态展开不是形式猜测。正则问题的一维本征空间来自二阶方程的 Wronskian 与两端边界条件；离散性和完备性可由自伴算符的 Green 函数是紧算符来证明。
+\input{chapters/completeness-20261024/thermal-fields/sl-spectrum-proof.tex}
 
 \begin{advtheorem}{不同本征值的本征函数正交}\label{advA3:thm:sl-orthogonality}
 归一化后
@@ -901,7 +901,7 @@ $z=\e^{\ii m\varphi}$、$m\in\mathbb Z$；$y$ 满足连带 Legendre 方程
  P_l^m(x)=(-1)^m(1-x^2)^{m/2}\frac{\dd^mP_l}{\dd x^m},
  \qquad 0\le m\le l.
 \]
-这里的 $l,m$ 均为整数，导数定义先用于 $0\le m\le l$；负阶由下题关系延拓。采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。
+\input{chapters/completeness-20261024/thermal-fields/associated-definition.tex}
 
 \begin{advexamplebox}{连带 Legendre 函数的负阶与宇称关系}\label{advA3:ex:associated-legendre}
 证明
@@ -913,25 +913,5 @@ $z=\e^{\ii m\varphi}$、$m\in\mathbb Z$；$y$ 满足连带 Legendre 方程
 \AQAssociatedLegendre
 \end{advexamplebox}
 \begin{advsolution}
-\AAAssociatedLegendre
-
-第二式最直接。由 Rodrigues 公式 $P_l(-x)=(-1)^lP_l(x)$，对 $x$ 求 $m$ 阶导数时每次链式法则再带一个负号，故
-\[
- \frac{\dd^mP_l(-x)}{\dd(-x)^m}=(-1)^{l+m}
- \frac{\dd^mP_l(x)}{\dd x^m}.
-\]
-乘上偶函数 $(1-x^2)^{m/2}$，得到
-$P_l^m(-x)=(-1)^{l+m}P_l^m(x)$。
-
-对负阶，连带 Legendre 方程只含 $m^2$，所以 $P_l^{-m}$ 与 $P_l^m$ 是同一端点正则解的常数倍。用 Rodrigues 公式比较 $x\to1^-$ 的首项，或比较球谐函数归一化
-\[
- Y_l^m=N_{lm}P_l^m(\cos\theta)\e^{\ii m\varphi},\qquad
- Y_l^{-m}=(-1)^m(Y_l^m)^*,
-\]
-可得比例常数
-\[
- \boxed{P_l^{-m}=(-1)^m\frac{(l-m)!}{(l+m)!}P_l^m}.
-\]
-例如 $l=1,m=1$ 时 $P_1^1=-\sqrt{1-x^2}$、
-$P_1^{-1}=\tfrac12\sqrt{1-x^2}$，正好满足公式，符号约定检查通过。
+\input{chapters/completeness-20261024/thermal-fields/associated-proof.tex}
 \end{advsolution}

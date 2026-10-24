@@ -822,6 +822,8 @@ $G=\dd p/\dd z-\rho_0g$。充分发展方程与无滑移边界为
 \end{tikzpicture}
 \bookcaption{同轴下落圆柱与杯壁之间的轴向环隙层流}\label{advA1:fig:falling-cylinder}
 \end{minipage}\end{center}
+% CompletenessTail20261024 a1-annular-flow-calculation
+\par\Needspace{.60\textheight}
 图\ref{advA1:fig:falling-cylinder}中，$z$ 向下；环隙中箭头标明的是向上净回流，靠内壁的液体仍满足 $u(r)=v>0$，外壁处 $u(R)=0$。因此整体通量为负，而不能把整个环隙的 $u(s)$ 都取为负。
 圆柱每秒排开 $\pi r^2v$ 的液体，故环隙必须向上回流：
 \[
@@ -878,7 +880,8 @@ $\eta\simeq(\rho-\rho_0)gh^3/(6rv)$。
 图~\ref{advA1:fig:quality-isoperimetric-a}中，闭曲线有选定走向，有向面积随走向改变符号，周长则不变；证明须先取绝对值，等号条件再决定几何形状。
 
 以弧长 $s\in[0,C]$ 参数化，并平移原点使
-$\int_0^C x\,\dd s=\int_0^C y\,\dd s=0$。周期函数的维廷格不等式给出
+$\int_0^C x\,\dd s=\int_0^C y\,\dd s=0$。% A1CompletenessInput20261024: wirtinger
+\input{chapters/completeness-20261024/a1/wirtinger.tex}
 \[
  \int_0^C(x^2+y^2)\dd s\le
  \left(\frac{C}{2\pi}\right)^2
@@ -911,35 +914,8 @@ $x,y$ 只含第一傅里叶谐波且切矢量处处与位矢垂直，故曲线�
 \end{advexamplebox}
 \begin{advsolution}题图~\ref{advA1:fig:quality-brachistochrone-q}中，重力沿向下的 $y$ 正向，起点 $A$ 的速度为零；每条候选轨道在深度 $y$ 的速率均由相同势能差给出，时间差来自路径弧长。
 
-密度函数不显含 $x$，可用贝尔特拉米恒等式
-\[
- \mathcal L-y'\frac{\partial\mathcal L}{\partial y'}
- =\frac1{\sqrt{2gy(1+y'^2)}}=C_0 .
-\]
-令 $y=a(1-\cos\theta)$，则由上式得到
-\[
- x=a(\theta-\sin\theta)+C_1.
-\]
-取起点为 $\theta=0$：
-\[
- \boxed{x=a(\theta-\sin\theta),\qquad
- y=a(1-\cos\theta)}.
-\]
-这是半径为 $a$ 的圆滚动时圆周上一点描出的旋轮线。参数 $a$ 与终点参数 $\theta_1$ 由
-$l=a(\theta_1-\sin\theta_1)$、$h=a(1-\cos\theta_1)$ 唯一确定适用分支。
-\begin{center}\begin{minipage}{\linewidth}\centering
-\begin{tikzpicture}[x=1.05cm,y=.85cm]
- \draw[axis] (0,0)--(4.2,0) node[right]{$x$};
- \draw[axis] (0,0)--(0,-2.65) node[below]{$y$（向下）};
- \draw[curve,domain=0.03:2.8,samples=120,smooth,variable=\t]
-   plot ({\t-sin(\t r)},{-(1-cos(\t r))});
- \fill (0,0) circle(2pt) node[above left]{$O$};
- \fill ({2.8-sin(2.8 r)},{-(1-cos(2.8 r))}) circle(2pt) node[right]{$P$};
- \draw[guide] (0,{-(1-cos(2.8 r))})--({2.8-sin(2.8 r)},{-(1-cos(2.8 r))});
-\end{tikzpicture}
-\bookcaption{最速降线是旋轮线，而不是直线或圆弧}\label{advA1:fig:brachistochrone}
-\end{minipage}\end{center}
-图\ref{advA1:fig:brachistochrone}中轨道在起点具有竖直切线，使质点先迅速获得速度，再用较高速度完成横向运动。
+% A1CompletenessInput20261024: brachistochrone
+\input{chapters/completeness-20261024/a1/brachistochrone.tex}
 \end{advsolution}
 
 \begin{advexamplebox}{最小耗散原理}\label{advA1:ex:least-dissipation}
@@ -1146,28 +1122,8 @@ $f(t)\dot u^\ell$；重新参数化为弧长或其他仿射参数后该项消失
 \end{qualityfigure}
 图~\ref{advA1:fig:quality-minimal-surface-a}中，边界曲线保持固定，内部允许法向微位移；切向变化只对应重新参数化，驻值条件来自法向变分的系数。
 
-面积泛函为
-\[
- A[\vect r]=\int\sqrt{\det g}\,\dd u^1\dd u^2.
-\]
-沿法向作变分 $\delta\vect r=\eta\vect n$，一阶面积变分为
-\[
- \delta A=-2\int H\eta\,\dd A+\oint_{\partial S}(\cdots),
-\]
-固定边界使线积分消失。由于 $\eta$ 任意，极小曲面的必要条件为平均曲率
-\[
- \boxed{H=0}.
-\]
-对 $z=f(x,y)$，
-\[
- A[f]=\iint\sqrt{1+f_x^2+f_y^2}\,\dd x\dd y.
-\]
-代入欧拉--拉格朗日方程，得到
-\[
- \boxed{(1+f_y^2)f_{xx}-2f_xf_yf_{xy}
- +(1+f_x^2)f_{yy}=0}.
-\]
-平面显然满足该方程；悬链面等非平凡曲面也满足，但球面因 $H\ne0$ 不是无约束极小曲面。
+% A1CompletenessInput20261024: minimal-surface
+\input{chapters/completeness-20261024/a1/minimal-surface.tex}
 \end{advsolution}
 
 \subsection{弹性体与场论守恒律}
@@ -1343,28 +1299,8 @@ $\bm\varepsilon=(\mathsf g-\mathsf1)/2$ 即得。反对称部分
 \]
 只描述质元的刚性小转动，不改变线元长度。
 
-\begin{advtheorem}{$SO(3)$ 张量积的不可约分解}\label{advA1:thm:so3-decomposition}
-三维旋转群的整数角动量不可约实表示维数为 $2\ell+1$。对
-$m=2\ell_1+1\ge n=2\ell_2+1$，
-\[
- m\otimes n=(m+n-1)\oplus(m+n-3)\oplus\cdots\oplus(m-n+1).
-\]
-特别地，
-\[
- 3\otimes3=5\oplus3\oplus1.
-\]
-\end{advtheorem}
-对二阶张量 $\mathsf P$，这三个部分分别是
-\[
- \mathsf P_{\rm ST}
- =\frac{\mathsf P+\mathsf P^{\mathsf T}}2
- -\frac{\operatorname{tr}\mathsf P}{3}\mathsf1,\quad
- \mathsf P_{\rm A}=\frac{\mathsf P-\mathsf P^{\mathsf T}}2,\quad
- \mathsf P_{\rm tr}=\frac{\operatorname{tr}\mathsf P}{3}\mathsf1.
-\]
-它们的维数依次为 $5,3,1$。对称无迹应变描述定体积形变，迹
-$\operatorname{tr}\bm\varepsilon$ 是体积相对变化，反对称部分是刚性转动。
-
+% A1CompletenessInput20261024: so3-bridge
+\input{chapters/completeness-20261024/a1/so3-bridge.tex}
 \begin{advexamplebox}{三阶张量的不可约分解计数}\label{advA1:ex:rank3-decomp}
 证明维数分解
 \[

@@ -1,0 +1,83 @@
+% A1Completeness20261024: brachistochrone-minimum
+先求驻值候选，再检验它是否真正最短。设$l,h>0$，允许轨道为连接两端点、内部满足$y>0$的分段光滑图形$y(x)$，起点的竖直切线按极限理解。由能量守恒，速率为$\sqrt{2gy}$，所以题给时间泛函正是沿轨道累加$\dd s/\sqrt{2gy}$。
+
+密度不显含$x$，贝尔特拉米恒等式给出
+\[
+ \mathcal L-y'\frac{\partial\mathcal L}{\partial y'}
+ =\frac1{\sqrt{2gy(1+y'^2)}}=C_0>0.
+\]
+取$a=1/(4gC_0^2)>0$，便有$y(1+y'^2)=2a$。令
+\[
+ y=a(1-\cos\theta),\qquad y'=\cot(\theta/2).
+\]
+在$0<\theta<2\pi$内，$\dd x/\dd\theta=(\dd y/\dd\theta)/y'=a(1-\cos\theta)>0$，在$\theta=\pi$处按连续极限取值。积分并以起点为原点，得到
+\[
+ \boxed{x=a(\theta-\sin\theta),\qquad y=a(1-\cos\theta)}.
+\]
+这是旋轮线的一拱。起点有$y'\to+\infty$，但时间并不发散：
+\[
+ \frac{\dd s}{\dd\theta}=2a\sin(\theta/2),\qquad
+ \sqrt{2gy}=2\sqrt{ag}\sin(\theta/2),\qquad
+ \dd t=\sqrt{a/g}\,\dd\theta.
+\]
+
+\textbf{端点唯一决定首拱的参数。}
+令$F(\theta)=(\theta-\sin\theta)/(1-\cos\theta)$。端点条件等价于
+\[
+ \frac lh=F(\theta_1),\qquad
+ a=\frac h{1-\cos\theta_1},\qquad 0<\theta_1<2\pi.
+\]
+其中
+\[
+ F'(\theta)=\frac{2(1-\cos\theta)-\theta\sin\theta}{(1-\cos\theta)^2}>0.
+\]
+在$0<\theta<\pi$，分子为
+$2\sin(\theta/2)[2\sin(\theta/2)-\theta\cos(\theta/2)]$；方括号从零开始，其导数为$\theta\sin(\theta/2)/2>0$。在$\pi\le\theta<2\pi$，$\sin\theta\le0$，分子也为正。
+又$F(0^+)=0$、$F(2\pi^-)=+\infty$，故每个$l/h>0$恰对应一个$\theta_1$。若$l/h<\pi/2$，终点在最低点之前；若$l/h>\pi/2$，轨道先下降到更深处再上升到终点。因而“首拱”不能误写成一律取$\theta_1<\pi$。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=1.55cm,y=1.55cm]
+ \draw[->](0,0)--(4.35,0)node[right]{$x$};
+ \draw[->](0,.15)--(0,-2.25)node[below]{$y$（向下）};
+ \coordinate(A)at(0,0);
+ \coordinate(B)at({.8*(4-sin(4 r))},{-.8*(1-cos(4 r))});
+ \draw[TextGray,dashed,thick](A)--(B)node[pos=.7,above]{$\mathcal C$};
+ \draw[DeepBlue,very thick,domain=.001:4,samples=160,variable=\t]
+  plot({.8*(\t-sin(\t r))},{-.8*(1-cos(\t r))});
+ \coordinate(P)at({.8*(2.3-sin(2.3 r))},{-.8*(1-cos(2.3 r))});
+ \coordinate(M)at({.8*pi},-1.6);
+ \fill(A)circle(1.5pt)node[above left]{$A$};
+ \fill(B)circle(1.5pt)node[right]{$B(l,h)$};
+ \fill(M)circle(1.5pt)node[below right]{$M:\theta=\pi$};
+ \fill(P)circle(1.5pt)node[below left]{$P$};
+ \draw[Gold,thick,->](P)--++({.65*sin(1.15 r)},{-.65*cos(1.15 r)})coordinate(E);
+ \draw[thin,TextGray](E)--(2.1,-2.1)--(2.8,-2.1);
+ \node[below]at(2.8,-2.12){$\nabla W\parallel\dd\vect r_{\Gamma}$};
+ \node[DeepBlue]at(3,-1.25){$\Gamma$};
+ \draw[dotted](B)--({.8*(4-sin(4 r))},0);
+\end{tikzpicture}
+\figcap{首拱旋轮线$\Gamma$与同端点的比较曲线$\mathcal C$。图示终点已越过最低点$M$；在$P$处最优轨道沿比较函数$W$的梯度方向。}\label{advA1:fig:completeness-brachistochrone}\label{advA1:fig:brachistochrone}
+\end{qualityfigure}
+
+\textbf{用同一个比较函数证明最小性。}
+只满足欧拉--拉格朗日方程一般不足以保证极小。这里利用上面已证的唯一性，对整个$x>0,y>0$区域中的每一点，都用经过它的首拱定义$a(x,y),\theta(x,y)$，再定义
+\[
+ W(x,y)=\theta\sqrt{a/g}.
+\]
+它就是从$A$沿该旋轮线到这点的时间，但此时尚未假定它最短。对$x=a(\theta-\sin\theta)$、$y=a(1-\cos\theta)$和$W$求全微分，分别比较$\dd a,\dd\theta$的系数，得到
+\[
+ \dd W=\frac{\dd x+\cot(\theta/2)\dd y}{2\sqrt{ag}},\qquad
+ |\nabla W|=\frac1{2\sqrt{ag}\sin(\theta/2)}=\frac1{\sqrt{2gy}}.
+\]
+图~\ref{advA1:fig:completeness-brachistochrone}中的蓝色$\Gamma$在$P$处沿$\nabla W$前进；对于任意比较曲线$\mathcal C$，柯西不等式则给出
+\[
+ \dd W=\nabla W\cdot\dd\vect r
+ \le|\nabla W|\,\dd s=\frac{\dd s}{\sqrt{2gy}}=\dd t.
+\]
+从靠近$A$的截断点积分到$B$，再让截断点趋近$A$。此时$W\to0$：由
+$x+y=a[\theta-\sin\theta+1-\cos\theta]$可见，$W^2/(x+y)$在$0<\theta<2\pi$两端均有有限极限。
+因而任何允许轨道均满足
+\[
+ \mathcal T[\mathcal C]\ge W(B)=\theta_1\sqrt{a/g}.
+\]
+沿$\Gamma$时，每一小段都与$\nabla W$同向，上式处处取等号，故它确为题给允许轨道中的\emph{全局最短时间轨道}，而不只是驻值候选。只在个别点满足切向一致不足以取等，必须整条轨道沿同一梯度场前进。这个比较还说明，选择回到$y=0$尖点后再接下一拱不能更快；对这样的有限时间极限轨道，可分段截断后使用同一不等式。

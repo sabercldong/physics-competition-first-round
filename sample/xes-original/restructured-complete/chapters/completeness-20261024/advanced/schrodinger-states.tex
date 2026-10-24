@@ -1,0 +1,128 @@
+% Completeness20261024: probability, current, boundary conditions and stationary-state superposition.
+本节先讨论无自旋、非相对论的单粒子，质量 $m$ 恒定，势能 $V(\vect r,t)$ 为实数。
+波函数 $\psi$ 是概率振幅，$\rho=|\psi|^2$ 是位置概率密度：
+\[
+ \Pr(\vect r\in\Omega,t)=\int_\Omega|\psi(\vect r,t)|^2\dd V,
+ \qquad \int|\psi|^2\dd V=1.
+\]
+因而三维波函数的量纲为长度的 $-3/2$ 次方。整体相位不改变概率；
+不同分量之间的相对相位则可能改变干涉项。
+
+Schrödinger方程给出振幅的时间演化。对于经典形式
+$H=p^2/(2m)+V$，用 $\widehat{\vect p}=-\ii\hbar\nabla$ 构成量子Hamilton算符，写成
+\[
+ \ii\hbar\frac{\partial\psi}{\partial t}
+ =\widehat H\psi,
+ \qquad \widehat H=-\frac{\hbar^2}{2m}\nabla^2+V.
+\]
+这是量子动力学的基本假设及其对应规则，不能仅凭一次符号替换就认为从经典力学证明了量子力学。
+本节不含电磁矢势、位置依赖质量或奇异点势，这些情形需要相应调整算符与边界条件。
+
+\paragraph{方程如何保证总概率守恒}
+用方程及其复共轭求 $\partial_t(\psi^*\psi)$，实势能项相消，得到
+\[
+ \begin{aligned}
+ \frac{\partial\rho}{\partial t}
+ &=\frac{\ii\hbar}{2m}
+  (\psi^*\nabla^2\psi-\psi\nabla^2\psi^*)
+ =-\nabla\cdot\vect j,\\
+ \vect j&=\frac{\hbar}{2m\ii}
+ (\psi^*\nabla\psi-\psi\nabla\psi^*)
+ =\frac{\hbar}{m}\operatorname{Im}(\psi^*\nabla\psi).
+ \end{aligned}
+\]
+对区域 $\Omega$ 积分并用散度定理，
+\[
+ \frac{\dd}{\dd t}\int_\Omega\rho\dd V
+ =-\oint_{\partial\Omega}\vect j\cdot\vect n\dd S.
+\]
+边界外流使区域内概率减少；封闭系统边界无概率通量，或全空间无穷远处通量消失时，
+初始归一化就会保持。这也说明散射题中的“透射率”应由概率流之比计算，而不总是振幅平方之比。
+
+\begin{center}\begin{minipage}{.94\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[thick,fill=PaleBlue] (0,0) ellipse (1.6 and 1.05);
+ \node at (-.25,0) {$\Omega$：$\displaystyle\int_\Omega\rho\,\dd V$};
+ \fill (1.6,0) circle (1.4pt);
+ \draw[->,thick] (1.6,0)--(2.65,0) node[right]{$\vect n$};
+ \draw[->,very thick,DeepBlue] (1.45,.15)--(2.4,.7) node[above]{$\vect j$};
+ \node[below] at (.2,-1.2) {$\partial\Omega$};
+ \node[align=left,text width=5.2cm] at (5.8,-.05)
+ {边界只计法向通量 $\vect j\cdot\vect n$。\\向外为正，对区域内概率变化取负号。};
+\end{tikzpicture}
+\figcap{概率连续性方程的几何含义：区域、外法向和穿过边界的概率流共同决定守恒式的符号。}
+\label{comp:A6:probability-flux}
+\end{minipage}\end{center}
+图~\ref{comp:A6:probability-flux}的外法向约定也用于下列分部积分边界项。
+
+\paragraph{定态方程、边界与归一化各负责什么}
+当 $V$ 不显含时间，尝试 $\psi(\vect r,t)=\Psi(\vect r)T(t)$，代入并分离：
+\[
+ \ii\hbar\frac{T'}T=\frac{\widehat H\Psi}{\Psi}=E.
+\]
+左边只依赖时间，右边只依赖位置，所以等于分离常数 $E$，从而
+\[
+ \boxed{\widehat H\Psi=E\Psi},\qquad
+ T(t)=\e^{-\ii Et/\hbar}.
+\]
+这里的比值用于波函数非零处，得到的本征方程通过连续性延伸到节点。
+在使边界项消失的束缚态条件下，乘 $\Psi^*$ 积分，有
+\[
+ E\int|\Psi|^2\dd V
+ =\int\left(\frac{\hbar^2}{2m}|\nabla\Psi|^2+V|\Psi|^2\right)\dd V.
+\]
+右侧为实数，因此本征能量为实数。于是定态的 $|\psi|^2=|\Psi|^2$ 不随时间变，
+但这不意味着概率流一定为零；例如有确定动量的平面波就有恒定概率流。
+
+本征微分方程本身通常容许许多解，物理边界挑出允许能量和波形，归一化最后确定整体幅值。
+对一维、常质量且无奇异点势的有限势阶跃，积分定态方程可得
+\[
+ \Psi'(x_0^+)-\Psi'(x_0^-)
+ =\lim_{\epsilon\to0}\frac{2m}{\hbar^2}
+ \int_{x_0-\epsilon}^{x_0+\epsilon}(V-E)\Psi\,\dd x=0.
+\]
+波函数本身也连续，否则二阶导数含不能由有限势能抵消的奇异项。
+无限高硬壁则要求波函数在壁处为零，不要求内侧导数为零；束缚态还须在无穷远可归一化。
+因此解题时先给区域中的一般解，再按界面和远端条件联立，最后做归一化，不能仅从局部方程猜能级。
+
+自由粒子的平面波 $\psi\propto\e^{\ii(\vect k\cdot\vect r-\omega t)}$ 代入方程得到
+$E=\hbar\omega=\hbar^2k^2/(2m)$、$\vect p=\hbar\vect k$，其概率流为
+$\vect j=(\hbar\vect k/m)|\psi|^2$。无限空间的单一平面波不能按总概率1归一化，
+实际局域粒子用波包描述，或先在有限盒中归一化后取连续极限。
+
+\paragraph{一般状态为什么还会随时间变化}
+设 $\Psi_n$ 为一组正交归一的离散能量本征态。线性方程容许
+\[
+ \psi(\vect r,t)=\sum_n c_n\Psi_n(\vect r)\e^{-\ii E_nt/\hbar},
+ \qquad \sum_n|c_n|^2=1.
+\]
+初始波函数决定 $c_n=\int\Psi_n^*\psi(\vect r,0)\dd V$。
+若同时有两个不同能量分量，概率密度中含
+$2\operatorname{Re}[c_1^*c_2\Psi_1^*\Psi_2\e^{-\ii(E_2-E_1)t/\hbar}]$，
+相对相位随时间转动，局部概率就可能振荡；两态的正交性使这个交叉项在全空间积分为零，总概率仍守恒。
+
+下图先取后文无限深阱 $0<x<a$ 的两个实本征函数，令 $c_1=c_2=1/\sqrt2$。
+在 $t=0$ 与 $(E_2-E_1)t/\hbar=\pi$ 两时刻，分别有
+\[
+ a\rho(x)=\left[\sin\frac{\pi x}a+\sin\frac{2\pi x}a\right]^2,
+ \qquad
+ a\rho(x)=\left[\sin\frac{\pi x}a-\sin\frac{2\pi x}a\right]^2.
+\]
+\begin{center}\begin{minipage}{.94\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,x=6.2cm,y=.7cm]
+ \draw[->] (0,0)--(1.12,0) node[right]{$x/a$};
+ \draw[->] (0,0)--(0,3.65) node[above]{$a\rho$};
+ \draw[thick] (1,0)--(1,3.45);
+ \draw[DeepBlue,very thick,domain=0:1,samples=120]
+ plot(\x,{(sin(180*\x)+sin(360*\x))^2});
+ \draw[Gold,very thick,dashed,domain=0:1,samples=120]
+ plot(\x,{(sin(180*\x)-sin(360*\x))^2});
+ \node[below] at (0,0) {$0$};\node[below] at (1,0) {$1$};
+ \node[above,text=DeepBlue] at (.27,3.18) {$\Delta\varphi=0$};
+ \node[above,text=Gold] at (.76,3.18) {$\Delta\varphi=\pi$};
+\end{tikzpicture}
+\figcap{两个定态的叠加可以形成随时间变化的概率密度。两曲线在 $x=0,a$ 都为零，曲线下的总概率相同。}
+\label{comp:A6:stationary-superposition}
+\end{minipage}\end{center}
+图~\ref{comp:A6:stationary-superposition}中的左右重心变化来自交叉项的符号改变，
+不是粒子能量本征值随时间改变。后面的球形禁闭与一维模型分别练习边界选态和归一化。

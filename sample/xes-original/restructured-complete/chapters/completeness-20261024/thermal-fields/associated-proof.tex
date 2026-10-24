@@ -1,0 +1,59 @@
+% CompletenessThermalFields20261024: normalization and parity proof.
+先求非负阶正则解在端点的首项，再由独立规范~\eqref{advA3:eq:complete-negative-norm}确定负阶幅度。
+图~\ref{advA3:complete:associated}用同一坐标轴比较 $l=2,m=1$ 的两条曲线：正、负阶解形状成比例，
+但幅度和符号必须由规范计算，不能由方程只含 $m^2$ 就猜出。
+
+\begin{qualityfigure}
+\centering
+\begin{tikzpicture}[>=Latex,font=\small,x=3.1cm,y=1.35cm]
+ \draw[->](-1.12,0)--(1.18,0)node[right]{$x$};
+ \draw[->](0,-1.8)--(0,1.85)node[above]{$P_l^{\pm m}$};
+ \draw[DeepBlue,thick,domain=-1:1,samples=140]plot(\x,{-3*\x*sqrt(max(0,1-\x*\x))});
+ \draw[TextGray,thick,dashed,domain=-1:1,samples=140]plot(\x,{.5*\x*sqrt(max(0,1-\x*\x))});
+ \node[above,DeepBlue]at(-.61,1.49){$P_2^1$};
+ \node[above]at(.68,.36){$P_2^{-1}=-P_2^1/6$};
+ \node[below]at(-1,0){$-1$};\node[below]at(1,0){$1$};
+ \fill(-1,0)circle(.7pt);\fill(1,0)circle(.7pt);
+\end{tikzpicture}
+\figcap{相同端点正则支的幅度比较：$P_2^1=-3x\sqrt{1-x^2}$，
+$P_2^{-1}=x\sqrt{1-x^2}/2$。两者都为奇函数，负阶改变幅度与相位。\label{advA3:complete:associated}}
+\end{qualityfigure}
+
+\textbf{端点首项与负阶系数。} 从 Rodrigues 公式
+\[
+ P_l(x)=\frac1{2^ll!}\frac{\dd^l}{\dd x^l}[(x-1)^l(x+1)^l]
+\]
+出发，在 $x=1$ 处再求 $m$ 阶导数。Leibniz 展开中，只有恰好对 $(x-1)^l$ 求 $l$ 次导数的一项不为零，故
+\[
+ P_l^{(m)}(1)
+ =\frac1{2^ll!}\binom{l+m}{l}l!\frac{l!}{(l-m)!}2^{l-m}
+ =\frac{(l+m)!}{2^m m!(l-m)!}.
+\]
+于是已定义的非负阶解满足
+\[
+ P_l^m(x)\sim(-1)^m\frac{(l+m)!}{2^m m!(l-m)!}(1-x^2)^{m/2}.
+\]
+该解在两端正则，且所列系数非零；乘以适当常数便能满足负阶的独立规范，因此存在性成立。
+为说明唯一性，任意两正则解 $u,v$ 的带权 Wronskian 满足
+\[
+ W=(1-x^2)(uv'-u'v),\qquad W'=0.
+\]
+把两者的端点正则行为代入，得 $\lim_{x\to1^-}W=0$，所以 $W\equiv0$，两解成比例。
+再比较规范~\eqref{advA3:eq:complete-negative-norm}与刚求出的首项，比例只能是
+\[
+ \boxed{P_l^{-m}(x)=(-1)^m\frac{(l-m)!}{(l+m)!}P_l^m(x)}.
+\]
+这同时证明了满足指定负阶规范的解唯一；端点条件不仅选择“有限解”，还固定了幅度。
+
+\textbf{宇称。} Rodrigues 公式首先给出 $P_l(-x)=(-1)^lP_l(x)$。
+对 $x$ 求 $m$ 次导数，用链式法则得到
+\[
+ (-1)^mP_l^{(m)}(-x)=(-1)^lP_l^{(m)}(x).
+\]
+再乘非负阶定义中的 $(-1)^m(1-x^2)^{m/2}$，便有
+\[
+ \boxed{P_l^m(-x)=(-1)^{l+m}P_l^m(x)}.
+\]
+负阶情形由刚证明的常数倍关系立即成立，因为 $(-1)^{l-m}=(-1)^{l+m}$。
+图~\ref{advA3:complete:associated}中 $l+m=3$，两条曲线关于原点反对称，恰好核对这一结论；
+$l=1,m=1$ 时另有 $P_1^1=-\sqrt{1-x^2}$、$P_1^{-1}=\sqrt{1-x^2}/2$，核对负阶相位。

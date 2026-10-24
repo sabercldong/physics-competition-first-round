@@ -369,18 +369,8 @@ $\vect K_s=-\vect n\times\vect H$ 即得：TE 模虽 $E_z=0$，仍因法向横�
 
 \subsection{推迟势与电磁辐射}
 
-Helmholtz 方程和波动方程的外向 Green 函数分别为
-\[
- G_+(\vect r,\vect r')=\frac{\e^{\ii kR}}{4\pi R},
- \qquad
- G_{\rm ret}(t,\vect r;t',\vect r')
- =\frac{\delta(t-t'-R/c)}{4\pi R},
-\]
-其中 $R=|\vect r-\vect r'|$。因果性选择推迟解，四维势为
-\[
- A^\nu(t,\vect r)=\frac{\mu_0}{4\pi}\int
- \frac{j^\nu(t-R/c,\vect r')}{R}\dd V'.
-\]
+% CompletenessEM:a4-retarded
+\input{chapters/completeness-20261024/em/a4-retarded.tex}
 
 \begin{advexamplebox}{电偶极辐射与 Larmor 公式}\label{advA4:ex:electric-dipole-radiation}
 先证明局域电流体系满足
@@ -426,7 +416,9 @@ Helmholtz 方程和波动方程的外向 Green 函数分别为
  \vect A\simeq\frac{\mu_0}{4\pi r}
  \dot{\vect p}(t-r/c).
 \]
-只保留 $1/r$ 辐射项，
+% CompletenessEM:a4-radiation-bridge
+\input{chapters/completeness-20261024/em/a4-radiation-bridge.tex}
+
 \[
  \vect E_{\rm rad}=\frac1{4\pi\varepsilon_0c^2r}
  \vect e_r\times(\vect e_r\times\ddot{\vect p}),

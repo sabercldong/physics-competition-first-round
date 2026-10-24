@@ -1,0 +1,48 @@
+\noindent\textbf{由点电荷像系取偶极极限。}
+先把真实偶极子拆成位于 $\vect a\pm\vect s/2$ 的 $\pm q$，令
+$q\vect s=\vect p$，最后取 $s\to0$。这里 $\vect a=a\vect e_r$。
+球外点电荷 $q$ 的接地球像电荷为
+\[
+ q_i=-\frac{Rq}{a},\qquad
+ \vect b(\vect a)=\frac{R^2}{a^2}\vect a.
+\]
+可在球面上直接核验：若 $|\vect r|=R$，则
+$|\vect r-\vect b|=(R/a)|\vect r-\vect a|$，故真、像两项的势恰相消。
+如图~\ref{complete:em:dipole-inversion}，偶极的两端分别反演，像电量不再等大，像点间距也不再与原间距平行。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85]
+ \draw[thick](0,0)circle(1.12);\fill(0,0)circle(1.3pt)node[above left]{$O$};
+ \draw[dashed,TextGray](0,0)--(4.35,0)node[right]{$\vect e_r$};
+ \coordinate(Pm)at(3.25,-.5);\coordinate(Pp)at(3.95,.5);
+ \coordinate(Im)at(.3764,-.0579);\coordinate(Ip)at(.3126,.0396);
+ \draw[TextGray,thin](0,0)--(Pp)(0,0)--(Pm);
+ \fill(Pm)circle(2pt)node[below]{$-q$};\fill(Pp)circle(2pt)node[above]{$+q$};
+ \draw[DeepBlue,->,thick](Pm)--(Pp)node[midway,right]{$\vect s$};
+ \fill[DeepBlue](Im)circle(2pt);\fill[DeepBlue](Ip)circle(2pt);
+ \draw[TextGray](Im)--(-.9,-.75)--(-1.4,-.75)node[left]{$+qR/a_-$};
+ \draw[TextGray](Ip)--(-.9,.75)--(-1.4,.75)node[left]{$-qR/a_+$};
+ \draw[<->](0,-1.5)--(3.6,-1.5)node[midway,below]{$a$};
+ \node[align=center]at(1.45,1.65){各端分别反演\quad$\vect b_\pm=R^2\vect a_\pm/a_\pm^2$};
+\end{tikzpicture}
+\figcap{偶极极限的构造；两像点的位置按反演关系绘制，像电荷标签的正负随原电荷反转。\label{complete:em:dipole-inversion}}
+\end{qualityfigure}
+
+两像电荷之和为
+\[
+ q'=\vect p\cdot\nabla_{\!a}\left(-\frac Ra\right)
+ =\frac{Rp_\parallel}{a^2}.
+\]
+以合并后的像点 $\vect b$ 为原点计算一阶偶极矩，利用反演映射的微分
+\[
+ \dd\vect b=\frac{R^2}{a^2}
+ (\mathsf 1-2\vect e_r\vect e_r)\dd\vect a,
+\]
+得
+\[
+ \vect p'=-\frac Ra\frac{R^2}{a^2}
+ (\mathsf 1-2\vect e_r\vect e_r)\vect p
+ =\left(\frac Ra\right)^3
+ (p_\parallel\vect e_r-\vect p_\perp).
+\]
+所以径向偶极分量保持方向，切向分量反向；两者还共同伴随一个点像电荷，不能只放一个偶极像。

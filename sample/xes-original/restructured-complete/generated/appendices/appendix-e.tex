@@ -2613,34 +2613,6 @@ $\sigma(\theta)=3\varepsilon_0E_0\cos\theta$ 还可直接检验中性条件：
 
 \subsection{两等势导体球的有限间距推广}
 
-设两个等半径导体球的半径为 $R$、球心距为 $L>2R$，二者导通并保持共同电势 $V$。
-定义双球坐标参数
-\[
- \cosh\alpha=\frac{L}{2R}.
-\]
-逐次球面反演产生两列交错的等效像电荷。把两球总电荷求和，可得组合导体的单极电容
-\[
- \boxed{C(L)=8\pi\varepsilon_0R\sinh\alpha
- \sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\sinh(n\alpha)}}.
-\]
-当 $L\to\infty$ 时，$\alpha\to\infty$，级数由首项主导，
-\[
- C(L)\longrightarrow 8\pi\varepsilon_0R,
-\]
-即两个相互影响可忽略的孤立球电容之和。
-
-相切极限 $L\to2R^+$ 对应 $\alpha\to0^+$，且
-\[
- \frac{\sinh\alpha}{\sinh(n\alpha)}\longrightarrow\frac1n.
-\]
-于是
-\[
- C(2R)=8\pi\varepsilon_0R
- \left(1-\frac12+\frac13-\frac14+\cdots\right)
- =\boxed{8\pi\varepsilon_0R\ln2},
-\]
-连续退回第20章相切双球的结果。这个推广同时给出了远离与相切两个极限，
-可用来检查级数的符号、量纲和单调趋势。
-
+\input{chapters/completeness-20261024/thermal-fields/two-spheres-derivation.tex}
 
 \endgroup

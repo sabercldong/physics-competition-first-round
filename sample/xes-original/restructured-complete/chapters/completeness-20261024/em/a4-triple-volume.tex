@@ -1,0 +1,39 @@
+为计算 $V_S$，把三圆柱公共区域写成
+\[
+ x^2+y^2\leq R^2,\quad x^2+z^2\leq R^2,\quad y^2+z^2\leq R^2.
+\]
+先限于第一卦限，再取其中的 $x\geq y$ 部分；其余由三坐标变号和 $x,y$ 互换生成，
+总体积是这一部分的 $16$ 倍。对固定的 $x,y$，后两个不等式给出
+$0\leq z\leq\sqrt{R^2-x^2}$；投影区域如图~\ref{complete:em:triple-projection}，
+$y$ 的上界为 $\min(x,\sqrt{R^2-x^2})$，在 $x=R/\sqrt2$ 处分段。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=1.05]
+ \fill[PaleBlue](0,0)--(1.6971,1.6971)
+ arc[start angle=45,end angle=0,radius=2.4]--cycle;
+ \draw[->](0,0)--(2.85,0)node[right]{$x$};
+ \draw[->](0,0)--(0,2.8)node[above]{$y$};
+ \draw[DeepBlue,thick](0,0)--(1.6971,1.6971);
+ \draw[DeepBlue,thick](1.6971,1.6971)arc[start angle=45,end angle=0,radius=2.4];
+ \draw[TextGray](0,2.4)arc[start angle=90,end angle=45,radius=2.4];
+ \draw[dashed](1.6971,0)--(1.6971,1.6971);
+ \node[below left]at(1.6971,-.05){$R/\sqrt2$};\node[below right]at(2.4,-.05){$R$};
+ \node[above left]at(1,1){$y=x$};
+ \node[above right]at(2.05,1.35){$x^2+y^2=R^2$};
+ \node at(1.25,.5){$D$};
+\end{tikzpicture}
+\figcap{积分域 $D$ 是第一卦限且 $x\geq y$ 的 $xy$ 投影；每点竖向高度为 $\sqrt{R^2-x^2}$。\label{complete:em:triple-projection}}
+\end{qualityfigure}
+
+因此不用预先记忆相交体积，也可直接积分：
+\[
+ \begin{aligned}
+ V_S&=16\left[\int_0^{R/\sqrt2}x\sqrt{R^2-x^2}\dd x
+ +\int_{R/\sqrt2}^{R}(R^2-x^2)\dd x\right]\\
+ &=16R^3\left[\frac13-\frac1{6\sqrt2}
+ +\frac23-\frac5{6\sqrt2}\right]
+ =8(2-\sqrt2)R^3.
+ \end{aligned}
+\]
+第一段来自 $0\leq y\leq x$，第二段来自 $0\leq y\leq\sqrt{R^2-x^2}$；
+这就是数值系数中出现 $\sqrt2$ 的几何来源。

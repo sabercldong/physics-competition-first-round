@@ -1,0 +1,88 @@
+\noindent\textbf{自旋投影与连续两次测量。}
+电子自旋是内禀角动量，不能用带电小球绕轴转动代替。
+忽略空间自由度时，自旋态是两个复振幅组成的归一化态
+\[
+ |\chi\rangle=a|z+\rangle+b|z-\rangle,\quad |a|^2+|b|^2=1,
+ \qquad S_z=\frac\hbar2\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+沿 $z$ 测量只有 $+\hbar/2$、$-\hbar/2$ 两种结果，概率分别为 $|a|^2,|b|^2$。
+换到 $x$ 方向的本征态为
+\[
+ |x+\rangle=\frac{|z+\rangle+|z-\rangle}{\sqrt2},\qquad
+ |x-\rangle=\frac{|z+\rangle-|z-\rangle}{\sqrt2}.
+\]
+例如一束已制备为 $|z+\rangle$ 的粒子，先测 $S_x$，并只让 $x+$ 支路通过；
+因 $|z+\rangle=(|x+\rangle+|x-\rangle)/\sqrt2$，通过率为 $1/2$。
+再测 $S_z$ 时，$|x+\rangle$ 中的两种 $z$ 投影概率又各为 $1/2$，
+故相对于最初束流，最终两支各占 $1/4$，如图~\ref{complete:em:spin-sequence}。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.82]
+ \draw[thick,fill=PaleBlue](.8,-.45)rectangle(2.1,.45);
+ \node at(1.45,0){$S_x$};
+ \draw[->,DeepBlue,thick](-1,0)--(.75,0)node[midway,above]{$|z+\rangle$};
+ \draw[DeepBlue,->,thick](2.1,0)--(3,1)--(4,1);
+ \draw[DeepBlue,->](2.1,0)--(3,-1)--(3.5,-1);
+ \draw[very thick](3.5,-1.25)--(3.5,-.75);
+ \node[below]at(3,-1.25){$x-$ 阻挡};
+ \node[above]at(3.05,1){$x+\ (1/2)$};
+ \draw[thick,fill=PaleBlue](4, .55)rectangle(5.3,1.45);
+ \node at(4.65,1){$S_z$};
+ \draw[DeepBlue,->,thick](5.3,1)--(6.2,1.8)--(7,1.8);
+ \draw[DeepBlue,->,thick](5.3,1)--(6.2,.2)--(7,.2);
+ \node[right]at(7,1.8){$z+\ (1/4)$};\node[right]at(7,.2){$z-\ (1/4)$};
+\end{tikzpicture}
+\figcap{理想自旋 $1/2$ 分析器的选择和再分束；括号给相对最初束流的概率，两次分析轴不同。\label{complete:em:spin-sequence}}
+\end{qualityfigure}
+
+图中描述的是理想两态测量模型，可用中性原子束的适当两态系统实现类似操作；
+不是忽略洛伦兹偏转而直接给自由电子设计 Stern--Gerlach 装置。
+若第二次仍沿 $x$ 分析，选出的 $x+$ 束会全进入 $x+$ 出口；
+改测 $z$ 才重新得到两支，这体现不同自旋分量不能同时具有确定值。
+电子磁矩为
+\[
+ \vect\mu_s=-g_e\mu_B\frac{\vect S}{\hbar},\qquad
+ \mu_B=\frac{e\hbar}{2m_e},\qquad g_e\simeq2.
+\]
+在 $\vect B=B\vect e_z$ 中，$U=-\vect\mu_s\cdot\vect B$，
+两态磁能相差 $g_e\mu_BB\simeq2\mu_BB$。磁矩说明能级怎样受磁场影响，
+泡利原理说明多电子态怎样被允许，两者的作用不同。
+
+\noindent\textbf{从反对称性到每轨道两电子。}
+电子是全同费米子，交换两电子的\emph{全部}坐标（空间和自旋）时总波函数必须变号。
+若两电子占据单粒子态 $\chi_a,\chi_b$，归一化的反对称组合为
+\[
+ \Psi(1,2)=\frac1{\sqrt2}
+ [\chi_a(1)\chi_b(2)-\chi_b(1)\chi_a(2)]
+\]
+（这里假设两态正交）。若 $\chi_a=\chi_b$，整个式子恒为零，
+因而同一个完整单电子态不能被两电子同时占据。
+同一空间轨道 $\phi$ 则允许两种不同自旋，其合法总态为
+\[
+ \Psi=\phi(\vect r_1)\phi(\vect r_2)
+ \frac{|z+\rangle_1|z-\rangle_2-|z-\rangle_1|z+\rangle_2}{\sqrt2}.
+\]
+空间部分对称，自旋单态反对称；这才是“同一轨道至多两电子且自旋相反”的依据。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small]
+ \foreach\x/\m in{0/-1,1.8/0,3.6/1}{
+  \draw[thick](\x,0)rectangle(\x+1.1,1.1);
+  \draw[->,DeepBlue,thick](\x+.35,.15)--(\x+.35,.95);
+  \draw[->,DeepBlue,thick](\x+.75,.95)--(\x+.75,.15);
+  \node[below]at(\x+.55,-.1){$m_l=\m$};}
+ \node[left]at(-.3,.55){$2p$};
+\end{tikzpicture}
+\figcap{$l=1$ 的三个空间轨道，各有两个自旋态，共可容纳六电子；箭头表示自旋投影，不是电子轨迹。\label{complete:em:pauli-orbitals}}
+\end{qualityfigure}
+
+在中心场近似中，单电子态由 $(n,l,m_l,m_s)$ 标记，
+$l=0,\ldots,n-1$，$m_l=-l,\ldots,l$，$m_s=\pm1/2$。
+因此第 $n$ 层的\emph{容量}为
+\[
+ 2\sum_{l=0}^{n-1}(2l+1)=2n^2.
+\]
+图~\ref{complete:em:pauli-orbitals} 的 $2p$ 亚层对应 $2(2\times1+1)=6$ 个态。
+例如氖的基态排布 $1s^2\,2s^2\,2p^6$ 共 $2+2+6=10$ 个电子。
+容量并不是实际填充顺序：多电子原子的屏蔽和相互作用改变各亚层能量，
+所以不能仅凭 $2n^2$ 就断言一层填满后才开始下一层。

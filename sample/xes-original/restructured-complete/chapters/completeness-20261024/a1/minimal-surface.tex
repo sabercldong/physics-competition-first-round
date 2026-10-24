@@ -1,0 +1,83 @@
+% A1Completeness20261024: minimal-surface-variation
+先把“平均曲率”变成可以计算的局部量。设曲面正则，切向基矢为$\vect e_i=\partial_i\vect r$，度量$g_{ij}=\vect e_i\cdot\vect e_j$，单位法线为$\vect n$。定义第二基本形式
+\[
+ b_{ij}=\vect n\cdot\partial_i\partial_j\vect r
+       =-\vect e_i\cdot\partial_j\vect n.
+\]
+第二个等号来自对$\vect e_i\cdot\vect n=0$求导。矩阵$g^{-1}b$的两个实本征值为主曲率$\kappa_1,\kappa_2$；它们是两个相互正交的主方向上的有符号曲率。平均曲率为
+\[
+ H=\frac{\kappa_1+\kappa_2}{2}=\frac12g^{ij}b_{ij}.
+\]
+重复指标按$1,2$求和。改变法线方向会同时改变$b_{ij}$、$H$的符号，但不改变$H=0$这一几何条件。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,x=1.7cm,y=1.7cm]
+ \foreach\v in{-1,-.5,0,.5,1}{
+  \draw[TextGray,thin,domain=-1:1,samples=45,variable=\u]
+   plot({\u-.6*\v},{.35*\v+.36*(\u*\u-\v*\v)});
+ }
+ \foreach\u in{-1,-.5,0,.5,1}{
+  \draw[TextGray,thin,domain=-1:1,samples=45,variable=\v]
+   plot({\u-.6*\v},{.35*\v+.36*(\u*\u-\v*\v)});
+ }
+ \draw[DeepBlue,thick,domain=-1.1:1.1,samples=60,variable=\t]plot(\t,{.36*\t*\t});
+ \draw[Gold,thick,domain=-1.1:1.1,samples=60,variable=\t]plot({-.6*\t},{.35*\t-.36*\t*\t});
+ \fill(0,0)circle(1.6pt)node[below left]{$P$};
+ \draw[->,thick](0,0)--(0,1.65)node[above]{$\vect n$};
+ \draw[->,DeepBlue](0,0)--(1.35,0)node[right]{$\vect e_1$};
+ \draw[->,Gold!70!black](0,0)--(-.9,.525)node[left]{$\vect e_2$};
+ \fill[DeepBlue](0,.9)circle(1.6pt)node[right]{$P_\varepsilon$};
+ \draw[<->](-.22,.03)--(-.22,.88)node[midway,left]{$\varepsilon\eta$};
+ \node[align=left,right]at(2.1,.6){蓝、金曲线为两个法截面\\$\kappa_1$、$\kappa_2$决定局部弯曲\\位移沿法线，不是沿曲面滑动};
+\end{tikzpicture}
+\figcap{法向变分与主曲率的局部示意。图示在$P$处两主曲率异号；仅一个点的曲率抵消，并不保证整张曲面驻值。}\label{advA1:fig:completeness-surface-variation}
+\end{qualityfigure}
+
+图~\ref{advA1:fig:completeness-surface-variation}中，令$P$沿法线移到$P_\varepsilon$，即取$\delta\vect r=\eta\vect n$，固定边界要求$\eta|_{\partial S}=0$。对度量变分，含$\partial_i\eta$的项都与法线和切向基矢的点积相乘而为零，于是
+\begin{align*}
+ \delta g_{ij}
+ &=\partial_i(\eta\vect n)\cdot\vect e_j
+   +\vect e_i\cdot\partial_j(\eta\vect n)\\
+ &=\eta(\partial_i\vect n\cdot\vect e_j+
+                \vect e_i\cdot\partial_j\vect n)
+ =-2\eta b_{ij}.
+\end{align*}
+记$g=\det(g_{ij})$。行列式的微分为$\delta g=g\,g^{ij}\delta g_{ij}$，故面积元的变分是
+\[
+ \delta(\dd A)=\delta\sqrt g\,\dd u^1\dd u^2
+ =\frac12g^{ij}\delta g_{ij}\,\dd A
+ =-2H\eta\,\dd A.
+\]
+将每个局部面积元相加，便得到此前需要的核心关系
+\[
+ \delta A=-2\int_S H\eta\,\dd A.
+\]
+若还保留切向变分$\vect w$，它只重排曲面内部的参数标记，并在边缘留下
+$\oint_{\partial S}\vect w\cdot\vect\nu\,\dd s$；$\vect\nu$是在曲面内垂直边界、指向外侧的单位余法线。固定边界使$\vect w=0$，所以该线积分消失。内部$\eta$任意，因此面积驻值的必要条件是
+\[
+ \boxed{H=0\quad\text{在曲面每一点成立}}.
+\]
+这不要求两个主曲率各自为零；图中$P$处可以由一正一负相互抵消。对一般参数曲面，驻值并不自动意味着面积的全局最小值，还须检查允许变分及二阶变化。
+
+对图形曲面$\vect r=(x,y,f(x,y))$，取向上的法线，并令$W=\sqrt{1+f_x^2+f_y^2}$。面积泛函为
+\[
+ A[f]=\iint W\,\dd x\dd y.
+\]
+在边界值固定时，欧拉--拉格朗日方程逐项给出
+\[
+ \partial_x\left(\frac{f_x}{W}\right)
+ +\partial_y\left(\frac{f_y}{W}\right)=0.
+\]
+例如$\partial_x(f_x/W)=[(1+f_y^2)f_{xx}-f_xf_yf_{xy}]/W^3$，另一项交换$x,y$，因此
+\[
+ \boxed{(1+f_y^2)f_{xx}-2f_xf_yf_{xy}+(1+f_x^2)f_{yy}=0}.
+\]
+按上面的法线约定，左端除以$2W^3$正是$H$，所以参数曲面与图形曲面的两种写法相符。平面满足此式；半径$R$的球面有$|H|=1/R\ne0$，并不是无体积约束的面积驻值曲面。
+
+还可进一步检验固定平面区域上的\emph{图形}解确实最小。函数$F(\vect p)=\sqrt{1+|\vect p|^2}$严格凸，因为
+\[
+ \vect z^{\mathsf T}F''(\vect p)\vect z
+ =\frac{(1+|\vect p|^2)|\vect z|^2-(\vect p\cdot\vect z)^2}
+        {(1+|\vect p|^2)^{3/2}}>0\quad(\vect z\ne0).
+\]
+凸函数的切平面下界给出$A[f+\eta]-A[f]\ge\iint F'(\nabla f)\cdot\nabla\eta\,\dd x\dd y$。分部积分后，边界上$\eta=0$，内部系数恰为已证的方程，故右端为零。于是光滑图形解在相同固定区域、相同边界值的图形类中全局最小；严格凸性还给出该类中的唯一性。这一充分性结论不应未经说明推广到所有拓扑类型的空间曲面。

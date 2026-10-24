@@ -109,9 +109,12 @@ $\Delta C=a^2T_c/(2b)$。若在求第二次温度导数时错误地固定 $\phi$
         text = _replace(text,
             r"\qquad |m|\le l.",
             r"\qquad 0\le m\le l.")
-        text = _replace(text,
-            "这里采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。",
-            "这里的 $l,m$ 均为整数，导数定义先用于 $0\\le m\\le l$；负阶由下题关系延拓。采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。")
+        # The later completeness layer replaces only this historical paragraph
+        # with an independent endpoint normalization. Keep all other fixes live.
+        if r"\input{chapters/completeness-20261024/thermal-fields/associated-definition.tex}" not in text:
+            text = _replace(text,
+                "这里采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。",
+                "这里的 $l,m$ 均为整数，导数定义先用于 $0\\le m\\le l$；负阶由下题关系延拓。采用含 Condon--Shortley 相位 $(-1)^m$ 的现代约定；若去掉该相位，下面负阶公式中的相应符号也要同步改变。")
     return text
 
 

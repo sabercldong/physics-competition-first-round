@@ -1,0 +1,87 @@
+\noindent\textbf{四电流为什么按四矢量变换？}
+先看只有一种载流子的连续介质。设其自身静止系中的有符号电荷密度为
+$\rho_*$，在当前参考系中的速度为 $\vect u$。电荷不变而沿运动方向的体积缩短，
+故 $\rho=\gamma_u\rho_*$、$\vect j=\rho\vect u$，从而
+\[
+ J^\mu=(c\rho,\vect j)=\rho_*U^\mu,
+ \qquad U^\mu=\gamma_u(c,\vect u).
+\]
+右边是标量乘四速度，所以是四矢量；多种载流子的贡献相加，结论不变。
+沿 $x$ 轴以速度 $v$ 换系时，直接使用与 $(ct,x)$ 相同的变换矩阵：
+\[
+ \begin{pmatrix}c\rho'\\j_x'\end{pmatrix}
+ =\gamma_v\begin{pmatrix}1&-v/c\\-v/c&1\end{pmatrix}
+ \begin{pmatrix}c\rho\\j_x\end{pmatrix}.
+\]
+因此
+\[
+ \boxed{\rho'=\gamma_v\left(\rho-\frac{vj_x}{c^2}\right),\qquad
+ j_x'=\gamma_v(j_x-v\rho)},\qquad j_y'=j_y,\quad j_z'=j_z.
+\]
+连续性方程可统一写成 $\partial_\mu J^\mu=0$，其意义是同一个电荷守恒律在各系中成立，
+并不要求各系在各自同时面上测得相同的局部电荷密度。
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85]
+ \draw[thick](-.4,.3)rectangle(8,1.85);
+ \draw[thick](-.4,-2.1)rectangle(8,-.55);
+ \node[left]at(-.5,1.05){$S$};\node[left]at(-.5,-1.3){$S'$};
+ \node[anchor=west]at(-.15,1.5){离子：$+\rho_0$，静止};
+ \node[anchor=west]at(-.15,.65){电子：$-\rho_0$};
+ \draw[->,DeepBlue,thick](7.5,.7)--(6.3,.7)node[midway,above]{$u$};
+ \node[anchor=west]at(-.15,-.85){离子：$\gamma_v\rho_0$};
+ \draw[->,DeepBlue](7.5,-.9)--(6.3,-.9)node[midway,above]{$v$};
+ \node[anchor=west]at(-.15,-1.65){电子：$-\gamma_v\rho_0(1+vu/c^2)$};
+ \draw[->,DeepBlue](7.5,-1.75)--(6.3,-1.75)node[midway,above]{$|u_e'|$};
+ \draw[->](-.2,2.45)--(2.1,2.45)node[right]{$x$，$S'$相对$S$的速度$v$};
+\end{tikzpicture}
+\figcap{中性导线的两种载流子分别换系；框内标的是各系测得的体密度，不是相同同时面上的粒子计数。\label{complete:em:current-boost}}
+\end{qualityfigure}
+
+\noindent\textbf{算例：中性导线换系后为何带电？}
+在图~\ref{complete:em:current-boost} 的 $S$ 系中，离子静止，密度 $+\rho_0$；
+电子以 $-u\vect e_x$ 运动，密度 $-\rho_0$。所以总密度为零，但
+$j_x=\rho_0u>0$。分别变换而非把两种物质当成同一个静止介质，得到
+\[
+ \begin{aligned}
+ \rho_+'&=\gamma_v\rho_0,&j_+'&=-\gamma_vv\rho_0,\\
+ \rho_e'&=-\gamma_v\rho_0(1+vu/c^2),&
+ j_e'&=\gamma_v\rho_0(u+v).
+ \end{aligned}
+\]
+电子速度也满足 $u_e'=-(u+v)/(1+vu/c^2)$，与 $j_e'=\rho_e'u_e'$ 一致。
+两项相加，
+\[
+ \rho'=-\frac{\gamma_vv\rho_0u}{c^2},\qquad
+ j_x'=\gamma_v\rho_0u.
+\]
+例如 $u=0.10c$、$v=0.60c$ 时 $\gamma_v=1.25$，
+离子密度为 $1.25\rho_0$，电子密度为 $-1.325\rho_0$，总密度为
+$-0.075\rho_0$，而 $j_x'=1.25j_x$。这里 $\rho_0$ 是两种载流子在 $S$ 系中的密度大小，
+不是同时声称它们在各自静止系中也有相同固有密度。
+
+\noindent\textbf{四力密度及其检验。}
+沿用度规 $(+---)$，取电磁场张量分量
+$F^{0i}=-E_i/c$、$F^{ij}=-\varepsilon_{ijk}B_k$，且
+$J_\nu=(c\rho,-\vect j)$。缩并得到
+\[
+ f^\mu=F^{\mu\nu}J_\nu
+ =\left(\frac{\vect j\cdot\vect E}{c},\,
+ \rho\vect E+\vect j\times\vect B\right)
+ =\left(\frac wc,\vect f\right).
+\]
+因张量与四矢量缩并仍是四矢量，同一矩阵作用于 $(w/c,f_x)$，所以
+\[
+ \boxed{w'=\gamma_v(w-vf_x),\qquad
+ f_x'=\gamma_v\left(f_x-\frac{vw}{c^2}\right)},\qquad
+ f_y'=f_y,\quad f_z'=f_z.
+\]
+用前面的中性导线做直接检验：只计外加纵向电场 $\vect E=E_x\vect e_x$、外加 $\vect B=0$
+造成的贡献，则 $f_x=0$、$w=j_xE_x$。
+沿电场换系后 $E_x'=E_x$、$\vect B'=0$，故由电荷密度直接算出
+\[
+ f_x'=\rho'E_x=-\frac{\gamma_vv j_xE_x}{c^2},\qquad
+ w'=j_x'E_x=\gamma_vj_xE_x,
+\]
+与四矢量变换逐项相符。这个检验只隔离外场贡献，导线自身场另行叠加。
+此处 $\vect f$ 是单位体积的力；它与单粒子三维力 $\vect F$ 的换系规律不同，不能混用。

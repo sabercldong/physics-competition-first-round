@@ -1,0 +1,118 @@
+% Completeness20261024: coherency matrix, its decomposition and an analyzer calculation.
+在固定横截面上，用复振幅描述准单色光的两个横向分量，写成
+$\vect A=(A_x,A_y)^{\mathsf T}$。把强度的比例常数吸收进振幅定义，便有
+$I=\langle|A_x|^2+|A_y|^2\rangle$；尖括号表示探测时间内的平均。
+稳定偏振光的两个分量有确定的振幅比和相位差，Jones向量即可描述；
+若它们随时间随机变化，必须先平均振幅的乘积，而不能先平均振幅再平方。
+相干矩阵定义为
+\[
+ P=\langle\vect A\vect A^\dagger\rangle
+ =\begin{pmatrix}
+ \langle|A_x|^2\rangle&\langle A_xA_y^*\rangle\\
+ \langle A_yA_x^*\rangle&\langle|A_y|^2\rangle
+ \end{pmatrix},\qquad I=\operatorname{tr}P.
+\]
+非对角元保留两个方向的相关性及相对相位。由定义直接得到 $P^\dagger=P$。
+对任意复向量 $\vect z$，
+\[
+ \vect z^\dagger P\vect z
+ =\left\langle|\vect z^\dagger\vect A|^2\right\rangle\ge0,
+\]
+所以 $P$ 半正定，两个本征值均非负。这一性质保证任意检偏方向测出的强度不会为负。
+
+\paragraph{为什么能够分成完全偏振光和非偏振光}
+设 $I>0$，将 $P$ 对角化，记本征值 $\lambda_1\ge\lambda_2\ge0$，
+对应单位正交Jones向量 $\vect e_1,\vect e_2$。利用
+$\vect e_1\vect e_1^\dagger+\vect e_2\vect e_2^\dagger=I_2$，有
+\[
+ \begin{aligned}
+ P&=\lambda_1\vect e_1\vect e_1^\dagger
+       +\lambda_2\vect e_2\vect e_2^\dagger\\
+  &=(\lambda_1-\lambda_2)\vect e_1\vect e_1^\dagger+\lambda_2 I_2.
+ \end{aligned}
+\]
+第一项沿固定偏振态 $\vect e_1$，强度为 $I_{\rm p}=\lambda_1-\lambda_2$；
+第二项在任何正交偏振基中都相同，是强度为 $I_{\rm u}=2\lambda_2$ 的完全非偏振分量。
+两项的强度相加等于 $I$。因此偏振度为
+\[
+ \mathcal P=\frac{I_{\rm p}}I
+ =\frac{\lambda_1-\lambda_2}{\lambda_1+\lambda_2}
+ =\sqrt{1-\frac{4\det P}{(\operatorname{tr}P)^2}}.
+\]
+纯偏振光的 $\lambda_2=0$，即 $\det P=0$、$\mathcal P=1$；
+完全非偏振光则有 $\lambda_1=\lambda_2=I/2$，即 $P=(I/2)I_2$。
+零光强时偏振度不定义，不能把零矩阵仅凭行列式为零称为纯偏振光。
+
+\paragraph{从矩阵算出检偏器的读数}
+图~\ref{comp:A5:analyzer}在横截面内标出检偏器透光轴
+$\vect e_\theta=(\cos\theta,\sin\theta)^{\mathsf T}$。
+理想线偏振片透过的振幅是 $A_\theta=\vect e_\theta^\dagger\vect A$，故
+\[
+ I_\theta=\langle|A_\theta|^2\rangle
+ =\vect e_\theta^\dagger P\vect e_\theta
+ =P_{xx}\cos^2\theta+P_{yy}\sin^2\theta
+   +2\operatorname{Re}P_{xy}\sin\theta\cos\theta.
+\]
+\begin{center}\begin{minipage}{.94\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small]
+ \draw[->] (-1.5,0)--(1.8,0) node[right]{$x$};
+ \draw[->] (0,-1.05)--(0,1.65) node[above]{$y$};
+ \draw[very thick,DeepBlue,<->] (-.9,-.63)--(1.25,.875);
+ \draw[->] (.65,0) arc[start angle=0,end angle=35,radius=.65];
+ \node at (.9,.25) {$\theta$};
+ \node[above right] at (1.05,.86) {$\vect e_\theta$};
+ \node[below,align=center] at (0,-1.25) {传播方向垂直纸面\\透光轴与 $x$ 轴夹角为 $\theta$};
+ \draw[->,thick] (2.35,.35)--(3.65,.35);
+ \node[draw,rounded corners=1pt,align=center,text width=3.6cm] at (5,.35)
+ {$I_\theta=\vect e_\theta^\dagger P\vect e_\theta$\\探测器记录平均强度};
+\end{tikzpicture}
+\figcap{偏振矩阵的检偏测量：图中的方向向量同时进入振幅投影和强度二次型。}
+\label{comp:A5:analyzer}
+\end{minipage}\end{center}
+
+例如，把总强度 $I_0$ 的光分解为强度 $0.6I_0$ 的 $x$ 线偏振光和强度
+$0.4I_0$ 的非偏振光，两部分互不相干。各自的相干矩阵相加，得到
+\[
+ P=0.6I_0\begin{pmatrix}1&0\\0&0\end{pmatrix}
+   +0.2I_0 I_2
+ =I_0\begin{pmatrix}0.8&0\\0&0.2\end{pmatrix}.
+\]
+由图~\ref{comp:A5:analyzer}的投影式，
+\[
+ \frac{I_\theta}{I_0}=0.8\cos^2\theta+0.2\sin^2\theta
+ =0.5+0.3\cos2\theta.
+\]
+图~\ref{comp:A5:analyzer-result}中 $\theta=0$ 透过 $0.8I_0$，
+$\theta=\pi/2$ 仍透过 $0.2I_0$：后者来自非偏振分量的一半。
+本例本征偏振是线偏振，故旋转线检偏器的反差
+$(I_{\max}-I_{\min})/(I_{\max}+I_{\min})=0.6$ 恰等于偏振度。
+这个结论不能推广为任意光的测量公式：纯圆偏振光通过所有线检偏方向都透过一半，
+却有 $\mathcal P=1$；一般椭圆偏振态还需波片才能测出虚部相关信息。
+\begin{center}\begin{minipage}{.94\linewidth}\centering
+\begin{tikzpicture}[>=Latex,font=\small,x=1.6cm,y=2.5cm]
+ \draw[->] (0,0)--(3.5,0) node[right]{$\theta$};
+ \draw[->] (0,0)--(0,1.02) node[above]{$I_\theta/I_0$};
+ \draw[DeepBlue,thick,domain=0:3.141593,samples=100]
+   plot(\x,{.5+.3*cos(2*\x*180/pi)});
+ \draw[dashed,TextGray] (0,.2)--(3.141593,.2);
+ \draw[dashed,TextGray] (0,.8)--(3.141593,.8);
+ \node[left] at (0,.2) {$0.2$};\node[left] at (0,.8) {$0.8$};
+ \node[below] at (0,0) {$0$};
+ \node[below] at (1.570796,0) {$\pi/2$};\node[below] at (3.141593,0) {$\pi$};
+ \fill[DeepBlue] (1.570796,.2) circle[radius=1.2pt];
+\end{tikzpicture}
+\figcap{上述混合光的检偏曲线：非偏振分量使最小透射强度保持为正。}
+\label{comp:A5:analyzer-result}
+\end{minipage}\end{center}
+
+\paragraph{偏振元件怎样作用于相干矩阵}
+若线性光学元件的Jones矩阵为 $J$，则 $\vect A'=J\vect A$，从定义即得
+$P'=JPJ^\dagger$。理想无损波片的 $J$ 为酉矩阵，保留 $P$ 的本征值、总强度和偏振度，
+但可以改变偏振椭圆。以快慢轴为坐标轴、忽略公共相位，可按相位约定写成
+\[
+ J_{\rm ret}=\begin{pmatrix}\e^{\ii\delta}&0\\0&1\end{pmatrix}.
+\]
+$\delta=\pi$ 为半波片，$\delta=\pi/2$ 为四分之一波片。
+例如等幅同相输入 $(1,1)^{\mathsf T}/\sqrt2$ 经过后一种矩阵变为
+$(\ii,1)^{\mathsf T}/\sqrt2$，两个分量相差四分之一周期，成为圆偏振光。
+其旋向还须连同传播方向和时间因子约定说明。

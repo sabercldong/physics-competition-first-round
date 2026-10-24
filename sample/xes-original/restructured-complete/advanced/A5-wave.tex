@@ -567,36 +567,7 @@ $Y_0=F d\alpha$（模倒易周期），即形成闪耀光栅。
 
 \subsection{偏振密度矩阵}
 
-在固定横截面上把 Jones 振幅写成
-$\vect A=(A_x,A_y)^{\mathsf T}$。部分相干光用相干矩阵
-\[
- P=\langle\vect A\vect A^\dagger\rangle
- =\begin{pmatrix}
- \langle|A_x|^2\rangle&\langle A_xA_y^*\rangle\\
- \langle A_yA_x^*\rangle&\langle|A_y|^2\rangle
- \end{pmatrix}
-\]
-描述；它是 Hermitian 半正定矩阵，$\operatorname{tr}P=I$。
-纯偏振态满足 $\det P=0$；完全非偏振光满足 $P=(I/2)I_2$；
-一般部分偏振光可分解为一个纯偏振分量与一个非偏振分量。
-
-线偏振角为 $\theta$ 时
-\[
- P=I\begin{pmatrix}
- \cos^2\theta&\sin\theta\cos\theta\\
- \sin\theta\cos\theta&\sin^2\theta
- \end{pmatrix}.
-\]
-左右圆偏振分别对应 Jones 向量
-$\frac1{\sqrt2}(1,\pm\ii)^{\mathsf T}$。偏振片方向
-$\vect e_\theta=(\cos\theta,\sin\theta)$ 的出射振幅为
-$A_\theta=\vect e_\theta^\dagger\vect A$；波片则在快慢轴间引入相位延迟
-$\delta$：
-\[
- J_{\rm ret}=
- \begin{pmatrix}\e^{\ii\delta}&0\\0&1\end{pmatrix}.
-\]
-$\delta=\pi$ 为半波片，$\delta=\pi/2$ 为四分之一波片。
+\input{chapters/completeness-20261024/advanced/polarization-matrix.tex}
 
 \subsection{晶体光学}
 

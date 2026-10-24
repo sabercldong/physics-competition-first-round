@@ -1,0 +1,53 @@
+\noindent\textbf{有限区域的 Neumann 相容条件与规范。}
+以下取有界连通区域 $V$，边界面积记为 $S_0$，$\vect n$ 指向区域外；
+给定 $g=\partial_n\varphi$。对 Poisson 方程积分便得
+\[
+ \boxed{\oint_{\partial V}g\dd S=-\frac Q{\varepsilon_0}},
+ \qquad Q=\int_V\rho\dd V.
+\]
+若右、左不等，根本不存在满足条件的静电势。又因增加常数不改变 $g$，
+还需给出一个势的平均值。采用边界面积平均
+$\overline\varphi_S=S_0^{-1}\oint\varphi\dd S$，并定义
+\[
+ \nabla'^2G_N=-4\pi\delta^{(3)}(\vect r-\vect r'),\qquad
+ \partial_{n'}G_N=-\frac{4\pi}{S_0},\qquad
+ \oint_{\partial V}G_N(\vect r,\vect r')\dd S'=0.
+\]
+第二式使 $G_N$ 自身的 Gauss 积分也等于 $-4\pi$；不能在有界区域把它误设为零。
+第三式固定其加法常数，也使后面的对称性证明中边界项相消。
+Green 第二恒等式给出
+\[
+ -4\pi\varphi(\vect r)+\frac1{\varepsilon_0}\int_VG_N\rho\dd V'
+ =-\frac{4\pi}{S_0}\oint_{\partial V}\varphi\dd S'
+ -\oint_{\partial V}G_Ng\dd S'.
+\]
+移项后即为完整的 Neumann 解表示
+\[
+ \boxed{\varphi(\vect r)=\overline\varphi_S
+ +\frac1{4\pi\varepsilon_0}\int_VG_N\rho\dd V'
+ +\frac1{4\pi}\oint_{\partial V}G_Ng\dd S'}.
+\]
+
+\begin{qualityfigure}
+\begin{tikzpicture}[>=Latex,font=\small,scale=.85]
+ \fill[PaleBlue](0,0)circle(1.3);\draw[thick](0,0)circle(1.3);
+ \fill(0,0)circle(1.2pt)node[below]{$O$};
+ \draw[->](0,0)--(.92,.92)node[midway,above left]{$R$};
+ \draw[->,DeepBlue,thick](.92,.92)--(1.6,1.6)node[right]{$\vect n$};
+ \node at(0,-.55){均匀 $\rho$};
+ \node[align=left,anchor=west]at(2,-.05){边界给 $g=\partial_n\varphi$\\另取 $\overline\varphi_S=0$};
+\end{tikzpicture}
+\figcap{球域上的 Neumann 数据：$g$ 沿外法线求导，和电场外法向分量相差负号。\label{complete:em:neumann-ball}}
+\end{qualityfigure}
+
+例如图~\ref{complete:em:neumann-ball} 的半径 $R$ 球域内充满均匀电荷。
+球对称性使 $r^2\varphi'=-\rho r^3/(3\varepsilon_0)$，在原点有限便排除额外的 $1/r$ 项。
+所以相容数据必须是 $g=-\rho R/(3\varepsilon_0)$；若取
+$\overline\varphi_S=0$，积分得
+\[
+ \varphi(r)=\frac{\rho}{6\varepsilon_0}(R^2-r^2).
+\]
+直接验算 $\nabla^2\varphi=-\rho/\varepsilon_0$、$\varphi'(R)=g$ 即可核对符号与规范。
+本段的常法向导数约定只针对有界区域；下文半空间或球外域还存在无穷远通量，
+其有限边界可以采用齐次 Neumann 条件，不能机械套用 $-4\pi/S_0$。
+
