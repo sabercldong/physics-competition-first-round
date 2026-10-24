@@ -38,6 +38,5 @@ if __name__ == "__main__":
         apply(path, "apply_file_revision", path.name)
     apply(BOOK / "chapters/quality-20261023/em-optics/ch29-notes.tex", "apply_chapter_revision", 29)
     for name in ["style.tex", "advanced/layout.tex", "main.tex",
-                 "frontmatter/reading-guide.tex",
                  "chapters/quality-20261023/ch21-conduction-devices.tex"]:
         apply(BOOK / name, "apply_file_revision", Path(name).name)

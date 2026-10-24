@@ -19,6 +19,9 @@ repo=args.repo.resolve()
 book=repo/"sample/xes-original/restructured-complete"
 build=book/"build/quality-main"
 report=repo/args.report
+review_names=["source-review.json","figure-reference-review.json","pdf-review.json","physics-checks.json","compile-and-portability.json"]
+if (report/"preface-removal-validation.json").is_file():
+    review_names.append("preface-removal-validation.json")
 args.output.mkdir(parents=True,exist_ok=True)
 files=set()
 suffixes={".tex",".sty",".cls",".py",".bib",".dat",".csv",".json",".md"}
@@ -52,14 +55,14 @@ with zipfile.ZipFile(archive,"w",compression=zipfile.ZIP_DEFLATED,compresslevel=
         z.write(p,Path("physics-competition-first-round")/p.relative_to(repo))
     z.write(args.output/"编译与修订说明.md","physics-competition-first-round/README-精修版.md")
     z.write(args.output/"修订与验收报告.md","physics-competition-first-round/修订与验收报告.md")
-    for name in ["source-review.json","figure-reference-review.json","pdf-review.json","physics-checks.json","compile-and-portability.json"]:
+    for name in review_names:
         z.write(report/name,"physics-competition-first-round/"+name)
 
-for name in ["source-review.json","figure-reference-review.json","pdf-review.json","physics-checks.json","compile-and-portability.json"]:
+for name in review_names:
     shutil.copy2(report/name,args.output/name)
 manifest={"version":args.date,"source_files":len(files),"source_uncompressed_bytes":sum(p.stat().st_size for p in files),"deliverables":[]}
 for p in [pdf,archive,args.output/"编译与修订说明.md",args.output/"修订与验收报告.md",
-          *[args.output/name for name in ["source-review.json","figure-reference-review.json","pdf-review.json","physics-checks.json","compile-and-portability.json"]]]:
+          *[args.output/name for name in review_names]]:
     manifest["deliverables"].append({"file":p.name,"bytes":p.stat().st_size,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()})
 (args.output/"交付清单.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
 print(json.dumps({"source_files":len(files),"pdf_bytes":pdf.stat().st_size,"zip_bytes":archive.stat().st_size},ensure_ascii=False))

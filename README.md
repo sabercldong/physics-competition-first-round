@@ -4,11 +4,11 @@
 
 ## 最新讲义
 
-全书含32章、附录E及高阶A1—A6，共765道例题。每题均有题图和解答内部的可编辑TikZ配图，解答结合图中的变量、方向、区域或边界展开推导。封面署名董兴习、合肥一六八中学、19719272621，不印日期。
+全书含32章、附录E及高阶A1—A6，共765道例题。每题均有题图和解答内部的可编辑TikZ配图，解答结合图中的变量、方向、区域或边界展开推导。封面署名董兴习、合肥一六八中学、19719272621，不印日期。书前序言已删除，封面后直接进入目录。
 
-- [下载讲义PDF](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-complete/physics-competition-first-round.pdf)
-- [下载可编辑源码与TikZ](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-complete/physics-competition-first-round-sources-tikz.zip)
-- [查看发布版本与附件](https://github.com/sabercldong/physics-competition-first-round/releases/tag/v2026.10.24-complete)
+- [下载讲义PDF](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-no-preface/physics-competition-first-round.pdf)
+- [下载可编辑源码与TikZ](https://github.com/sabercldong/physics-competition-first-round/releases/download/v2026.10.24-no-preface/physics-competition-first-round-sources-tikz.zip)
+- [查看发布版本与附件](https://github.com/sabercldong/physics-competition-first-round/releases/tag/v2026.10.24-no-preface)
 - [修订与验收报告](audit/completeness_20261024/修订与验收报告.md) · [编译说明](audit/completeness_20261024/编译与修订说明.md)
 
 本次继续处理只读检查报告中的提纲式知识段、解答跳步与内容过少的尾页，新增27个教学片段、29幅可编辑TikZ，补齐证明、条件、计算过程和图文衔接。全书结构检查、重点数学核算、编译及分页检查的结果和范围见验收报告。

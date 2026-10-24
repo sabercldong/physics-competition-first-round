@@ -63,13 +63,8 @@ def apply_file_revision(name, text):
                             + r"\par\Needspace{.85\textheight}" + "\n", "")
         return keep_tail(text, r"\begin{origexamplebox}{二极管的工作状态与负载线}",
                          ".75", "ch21-diode-example")
-    if name == "reading-guide.tex":
-        text = keep_tail(text, r"\section*{把理论理解接到实际训练}", ".72", "guide-and-notation")
-        text = text.replace("复习次序", "学习次序").replace("每次复习", "每次学习")
-        if r"\input{frontmatter/notation.tex}" not in text:
-            text = text.rstrip() + "\n\n" + r"\input{frontmatter/notation.tex}" + "\n"
-        return text
     if name == "main.tex":
+        text = text.replace(r"\input{frontmatter/reading-guide.tex}" + "\n", "")
         start = text.find(r"\bookmarksetup{startatroot}" + "\n" + r"\backmatter")
         if start >= 0:
             end = text.index(r"\end{document}", start)
@@ -88,7 +83,7 @@ if __name__ == "__main__":
             print(f"balanced {path.relative_to(BOOK)}")
     for rel in ["advanced/A1-continuum.tex", "advanced/A4-electrostatics.tex",
                 "chapters/quality-20261023/ch21-conduction-devices.tex",
-                "frontmatter/reading-guide.tex", "main.tex"]:
+                "main.tex"]:
         path = BOOK / rel
         old = path.read_text()
         new = apply_file_revision(path.name, old)
